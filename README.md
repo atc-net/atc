@@ -1,2 +1,2 @@
-# atc-common
-Common library for ATC.NET
+# atc
+Common library for atc-net written in C#
