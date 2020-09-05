@@ -223,13 +223,71 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.PascalCase());
 
         [Theory]
-        [InlineData("Halloworld", "halloWorld", new[] { ' ', '-' })]
-        [InlineData("Hallo world", "hallo World", new[] { ' ', '-' })]
-        [InlineData("Hallo world", "hallo world", new[] { ' ', '-' })]
+        [InlineData("HalloWorld", "halloWorld", false)]
+        [InlineData("Hallo World", "hallo World", false)]
+        [InlineData("Hallo World", "hallo world", false)]
+        [InlineData("HalloWorld", "halloWorld", true)]
+        [InlineData("HalloWorld", "hallo World", true)]
+        [InlineData("HalloWorld", "hallo world", true)]
+        public void PascalCase_RemoveSeparators(string expected, string input, bool removeSeparators)
+            => Assert.Equal(expected, input.PascalCase(removeSeparators));
+
+        [Theory]
+        [InlineData("HalloWorld", "halloWorld", new[] { ' ', '-' })]
+        [InlineData("Hallo World", "hallo World", new[] { ' ', '-' })]
+        [InlineData("Hallo World", "hallo world", new[] { ' ', '-' })]
         [InlineData("Hallo-World", "hallo-World", new[] { ' ', '-' })]
         [InlineData("Hallo-World", "hallo-world", new[] { ' ', '-' })]
         public void PascalCase_Separators(string expected, string input, char[] separators)
             => Assert.Equal(expected, input.PascalCase(separators));
+
+        [Theory]
+        [InlineData("HalloWorld", "halloWorld", new[] { ' ', '-' }, false)]
+        [InlineData("Hallo World", "hallo World", new[] { ' ', '-' }, false)]
+        [InlineData("Hallo World", "hallo world", new[] { ' ', '-' }, false)]
+        [InlineData("Hallo-World", "hallo-World", new[] { ' ', '-' }, false)]
+        [InlineData("Hallo-World", "hallo-world", new[] { ' ', '-' }, false)]
+        [InlineData("HalloWorld", "halloWorld", new[] { ' ', '-' }, true)]
+        [InlineData("HalloWorld", "hallo World", new[] { ' ', '-' }, true)]
+        [InlineData("HalloWorld", "hallo world", new[] { ' ', '-' }, true)]
+        [InlineData("HalloWorld", "hallo-World", new[] { ' ', '-' }, true)]
+        [InlineData("HalloWorld", "hallo-world", new[] { ' ', '-' }, true)]
+        public void PascalCase_Separators_RemoveSeparators(string expected, string input, char[] separators, bool removeSeparators)
+            => Assert.Equal(expected, input.PascalCase(separators, removeSeparators));
+
+        [Theory]
+        [InlineData("Hallo", "hallo")]
+        public void EnsureFirstLetterToUpper(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstLetterToUpper());
+
+        [Theory]
+        [InlineData("hallo", "Hallo")]
+        public void EnsureFirstLetterToLower(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstLetterToLower());
+
+        [Theory]
+        [InlineData("Hallo", "Hallo")]
+        [InlineData("Hallo", "Hallos")]
+        public void EnsureSingular(string expected, string input)
+            => Assert.Equal(expected, input.EnsureSingular());
+
+        [Theory]
+        [InlineData("Hallos", "Hallo")]
+        [InlineData("Hallos", "Hallos")]
+        public void EnsurePlural(string expected, string input)
+            => Assert.Equal(expected, input.EnsurePlural());
+
+        [Theory]
+        [InlineData("Hallo", "hallo")]
+        [InlineData("Hallo", "hallos")]
+        public void EnsureFirstLetterToUpperAndSingular(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstLetterToUpperAndSingular());
+
+        [Theory]
+        [InlineData("Hallos", "hallo")]
+        [InlineData("Hallos", "hallos")]
+        public void EnsureFirstLetterToUpperAndPlural(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstLetterToUpperAndPlural());
 
         [Theory]
         [InlineData(false, "Hallo World", "world")]
@@ -365,7 +423,7 @@ namespace Atc.Tests.Extensions
             var input = "Hallo word".Base64Encode();
 
             // Atc
-            var actual = input.ToStreamFromBase64();
+            var actual = input!.ToStreamFromBase64();
 
             // Assert
             Assert.NotNull(actual);

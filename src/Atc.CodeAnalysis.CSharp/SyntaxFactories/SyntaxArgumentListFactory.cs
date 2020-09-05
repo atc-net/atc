@@ -1,0 +1,21 @@
+﻿using System;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
+{
+    public static class SyntaxArgumentListFactory
+    {
+        public static ArgumentListSyntax CreateWithOneItem(string argumentName)
+        {
+            if (argumentName == null)
+            {
+                throw new ArgumentNullException(nameof(argumentName));
+            }
+
+            return SyntaxFactory.ArgumentList(
+                SyntaxFactory.SingletonSeparatedList(
+                    SyntaxArgumentFactory.Create(argumentName)));
+        }
+    }
+}

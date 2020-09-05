@@ -146,39 +146,48 @@ namespace Atc.XUnit.Internal
 
                 string className = classType.Name.Replace("Extensions", string.Empty, StringComparison.Ordinal);
                 var classNamePrefixSimplified = GetSimpleTypeName(className);
-                var firstParameterNameSimplified = GetSimpleTypeName(method.GetParameters().First().ParameterType);
-                if (!classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal))
+                var firstParameterType = method.GetParameters().First().ParameterType;
+                var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
+                if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal))
                 {
-                    if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified)) ||
-                        (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified)) ||
-                        (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified)))
+                    return null;
+                }
+
+                if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified)) ||
+                    (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified)) ||
+                    (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified)))
+                {
+                    // Ok
+                    return null;
+                }
+
+                if (firstParameterType.IsGenericType)
+                {
+                    if (firstParameterType.GenericTypeArguments.Any(x => x.Name.Equals(className, StringComparison.Ordinal)))
                     {
                         // Ok
-                    }
-                    else
-                    {
-                        string[] sa = className.Humanize().Split(' ');
-                        if (sa.Length <= 1)
-                        {
-                            return "Extension parameter type should match the class name-prefix.";
-                        }
-
-                        if (GetSimpleTypeName(sa[0]).Equals(firstParameterNameSimplified, StringComparison.Ordinal) &&
-                            sa.Any(x => x.Equals("Is", StringComparison.Ordinal) || x.Equals("Has", StringComparison.Ordinal)))
-                        {
-                            return null;
-                        }
-
-                        return "Extension parameter type should match the class name-prefix.";
+                        return null;
                     }
                 }
-            }
-            else
-            {
-                if (method.IsDefined(typeof(ExtensionAttribute)))
+
+                string[] sa = className.Humanize().Split(' ');
+                if (sa.Length <= 1)
                 {
-                    return "Class name-suffix is not Extensions.";
+                    return "Extension parameter type should match the class name-prefix.";
                 }
+
+                if (GetSimpleTypeName(sa[0]).Equals(firstParameterNameSimplified, StringComparison.Ordinal) &&
+                    sa.Any(x => x.Equals("Is", StringComparison.Ordinal) || x.Equals("Has", StringComparison.Ordinal)))
+                {
+                    return null;
+                }
+
+                return "Extension parameter type should match the class name-prefix.";
+            }
+
+            if (method.IsDefined(typeof(ExtensionAttribute)))
+            {
+                return "Class name-suffix is not Extensions.";
             }
 
             return null;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -17,6 +18,30 @@ namespace Atc.CodeAnalysis.CSharp.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(ClassDeclarationSyntaxExtensions),
+            typeof(Factories.SuppressMessageAttributeFactory),
+            typeof(SyntaxAccessorDeclarationFactory),
+            typeof(SyntaxArgumentFactory),
+            typeof(SyntaxArgumentListFactory),
+            typeof(SyntaxAssignmentExpressionFactory),
+            typeof(SyntaxAttributeArgumentFactory),
+            typeof(SyntaxAttributeArgumentListFactory),
+            typeof(SyntaxAttributeFactory),
+            typeof(SyntaxAttributeListFactory),
+            typeof(SyntaxClassDeclarationFactory),
+            typeof(SyntaxIfStatementFactory),
+            typeof(SyntaxInterfaceDeclarationFactory),
+            typeof(SyntaxInterpolatedFactory),
+            typeof(SyntaxLiteralExpressionFactory),
+            typeof(SyntaxMemberAccessExpressionFactory),
+            typeof(SyntaxNameEqualsFactory),
+            typeof(SyntaxObjectCreationExpressionFactory),
+            typeof(SyntaxParameterFactory),
+            typeof(SyntaxParameterListFactory),
+            typeof(SyntaxTokenFactory),
+            typeof(SyntaxTokenListFactory),
+            typeof(SyntaxTypeArgumentListFactory),
+            typeof(SyntaxVariableDeclarationFactory),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

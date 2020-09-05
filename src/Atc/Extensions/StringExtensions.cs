@@ -305,8 +305,6 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            cultureInfo ??= GlobalizationConstants.EnglishCultureInfo;
-
             dateTime = DateTime.MinValue;
             return !string.IsNullOrEmpty(value) &&
                    DateTime.TryParse(value, cultureInfo, dateTimeStyles, out dateTime);
@@ -706,17 +704,18 @@ namespace System
         /// Gets as pascal case.
         /// </summary>
         /// <param name="value">The string to work on.</param>
+        /// <param name="removeSeparators">If true, remove all separators.</param>
         /// <returns>The string with pascal-case format.</returns>
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
-        public static string PascalCase(this string value)
+        public static string PascalCase(this string value, bool removeSeparators = false)
         {
             if (string.IsNullOrEmpty(value))
             {
                 return value;
             }
 
-            char[] c = { ' ' };
-            return PascalCase(value, c);
+            char[] c = { ' ', '-', '_' };
+            return PascalCase(value, c, removeSeparators);
         }
 
         /// <summary>
@@ -724,10 +723,11 @@ namespace System
         /// </summary>
         /// <param name="value">The string to work on.</param>
         /// <param name="separators">A char array to separate on.</param>
+        /// <param name="removeSeparators">If true, remove all separators.</param>
         /// <returns>The string with pascal-case format.</returns>
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
-        public static string PascalCase(this string value, char[]? separators)
+        public static string PascalCase(this string value, char[]? separators, bool removeSeparators = false)
         {
             if (string.IsNullOrEmpty(value) || separators == null)
             {
@@ -750,13 +750,126 @@ namespace System
                 StringBuilder sb = new StringBuilder(value.Length + 1);
                 foreach (string t in strArray)
                 {
-                    sb.Append(t.Substring(0, 1).ToUpperInvariant() + t.Substring(1).ToLowerInvariant() + charSeparator);
+                    sb.Append(t.Substring(0, 1).ToUpperInvariant() + t.Substring(1) + charSeparator);
                 }
 
                 value = sb.ToString().TrimEnd(charSeparator);
             }
 
+            if (removeSeparators)
+            {
+                value = separators.Aggregate(value, (current, charSeparator) => current.Replace(charSeparator.ToString(), string.Empty, StringComparison.Ordinal));
+            }
+
             return value;
+        }
+
+        /// <summary>
+        /// Ensures the first letter to upper.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsureFirstLetterToUpper(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return value.Length switch
+            {
+                0 => value,
+                1 => value.ToUpper(CultureInfo.CurrentCulture),
+                _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1)
+            };
+        }
+
+        /// <summary>
+        /// Ensures the first letter to lower.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsureFirstLetterToLower(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return value.Length switch
+            {
+                0 => value,
+                1 => value.ToLower(CultureInfo.CurrentCulture),
+                _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1)
+            };
+        }
+
+        /// <summary>
+        /// Ensures the singular.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsureSingular(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (value.Length < 2)
+            {
+                return value;
+            }
+
+            return value.EndsWith("s", StringComparison.Ordinal)
+                ? value.Substring(0, value.Length - 1)
+                : value;
+        }
+
+        /// <summary>
+        /// Ensures the plural.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsurePlural(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (value.Length < 2)
+            {
+                return value;
+            }
+
+            return value.EndsWith("s", StringComparison.Ordinal)
+                ? value
+                : value + "s";
+        }
+
+        /// <summary>
+        /// Ensures the first letter to upper and singular.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsureFirstLetterToUpperAndSingular(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return EnsureFirstLetterToUpper(EnsureSingular(value));
+        }
+
+        /// <summary>
+        /// Ensures the first letter to upper and plural.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string EnsureFirstLetterToUpperAndPlural(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return EnsureFirstLetterToUpper(EnsurePlural(value));
         }
 
         /// <summary>

@@ -420,6 +420,66 @@ string Cut(this string value, int maxLength, string appendValue = ...)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appendValue`&nbsp;&nbsp;-&nbsp;&nbsp;The append value.<br />
 <p><b>Returns:</b> The string that is cutoff by the max-length and appended with the appendValue.</p>
 
+#### EnsureFirstLetterToLower
+
+```csharp
+string EnsureFirstLetterToLower(this string value)
+```
+<p><b>Summary:</b> Ensures the first letter to lower.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### EnsureFirstLetterToUpper
+
+```csharp
+string EnsureFirstLetterToUpper(this string value)
+```
+<p><b>Summary:</b> Ensures the first letter to upper.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### EnsureFirstLetterToUpperAndPlural
+
+```csharp
+string EnsureFirstLetterToUpperAndPlural(this string value)
+```
+<p><b>Summary:</b> Ensures the first letter to upper and plural.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### EnsureFirstLetterToUpperAndSingular
+
+```csharp
+string EnsureFirstLetterToUpperAndSingular(this string value)
+```
+<p><b>Summary:</b> Ensures the first letter to upper and singular.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### EnsurePlural
+
+```csharp
+string EnsurePlural(this string value)
+```
+<p><b>Summary:</b> Ensures the plural.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### EnsureSingular
+
+```csharp
+string EnsureSingular(this string value)
+```
+<p><b>Summary:</b> Ensures the singular.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### GetStringFormatParameterLiteralCount
 
 ```csharp
@@ -546,25 +606,27 @@ DateTime ParseDateFromIso8601(this string value)
 #### PascalCase
 
 ```csharp
-string PascalCase(this string value)
+string PascalCase(this string value, bool removeSeparators = False)
 ```
 <p><b>Summary:</b> Gets as pascal case.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If true, remove all separators.<br />
 <p><b>Returns:</b> The string with pascal-case format.</p>
 
 #### PascalCase
 
 ```csharp
-string PascalCase(this string value, char[] separators)
+string PascalCase(this string value, char[] separators, bool removeSeparators = False)
 ```
 <p><b>Summary:</b> Gets as pascal case.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If true, remove all separators.<br />
 <p><b>Returns:</b> The string with pascal-case format.</p>
 
 #### RemoveDataCrap

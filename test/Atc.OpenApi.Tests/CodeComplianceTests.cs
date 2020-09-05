@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Atc.XUnit;
+using Microsoft.OpenApi.Models;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -17,6 +18,12 @@ namespace Atc.OpenApi.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(OpenApiDocumentExtensions),
+            typeof(OpenApiOperationExtensions),
+            typeof(OpenApiParameterExtensions),
+            typeof(OpenApiPathItemExtensions),
+            typeof(OpenApiPathsExtensions),
+            typeof(OpenApiSchemaExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
