@@ -9,4 +9,18 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.3.1" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="6.1.0.5902" />
+    <PackageReference Include="Mono.Reflection" Version="2.0.0">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atc.CodeDocumentation\Atc.CodeDocumentation.csproj" />
+    <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
 </Project>

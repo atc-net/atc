@@ -41,7 +41,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.ApiGenerator.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.Extended.Tests", "test\Atc.Rest.Extended.Tests\Atc.Rest.Extended.Tests.csproj", "{F758EDDA-20BC-45A4-ABE9-01C348A68FFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atc.XUnit.Tests", "test\Atc.XUnit.Tests\Atc.XUnit.Tests.csproj", "{66B5DE03-50F1-44CA-98A0-3C3A225C02F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.XUnit.Tests", "test\Atc.XUnit.Tests\Atc.XUnit.Tests.csproj", "{66B5DE03-50F1-44CA-98A0-3C3A225C02F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{1575FE97-3F0C-4E58-963E-30B06A03133F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
