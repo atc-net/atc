@@ -1,5 +1,6 @@
 ![build status](https://dev.azure.com/atc-net/ATC.NET/_apis/build/status/atc-net.atc) 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=alert_status)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![NuGet](https://img.shields.io/nuget/v/atc.svg?style=flat-square)](https://www.nuget.org/profiles/atc-net)
 
 # Atc
 Repository for atc-net written in C#
