@@ -1,3 +1,5 @@
+![build status](https://dev.azure.com/atc-net/ATC.NET/_apis/build/status/atc-net.atc) 
+
 # Atc
 Repository for atc-net written in C#
 
