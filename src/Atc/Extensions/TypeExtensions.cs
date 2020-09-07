@@ -2,10 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using Atc.Helpers;
 
 // ReSharper disable once CheckNamespace
-namespace System.Reflection
+namespace System
 {
     /// <summary>
     /// Extensions for the <see cref="Type"/> class.
@@ -527,6 +528,91 @@ namespace System.Reflection
             }
 
             return typeName;
+        }
+
+        public static bool TryGetEnumType(this Type type, out Type enumType)
+        {
+            if (type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
+            if (type.IsEnum)
+            {
+                enumType = type;
+                return true;
+            }
+
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                var underlyingType = Nullable.GetUnderlyingType(type);
+                if (underlyingType != null && underlyingType.IsEnum)
+                {
+                    enumType = underlyingType;
+                    return true;
+                }
+            }
+            else
+            {
+                var underlyingType = type.GetIEnumerableType();
+                if (underlyingType != null && underlyingType.IsEnum)
+                {
+                    enumType = underlyingType;
+                    return true;
+                }
+
+                var interfaces = type.GetInterfaces();
+                foreach (var interfaceType in interfaces)
+                {
+                    underlyingType = interfaceType.GetIEnumerableType();
+                    if (underlyingType == null || !underlyingType.IsEnum)
+                    {
+                        continue;
+                    }
+
+                    enumType = underlyingType;
+                    return true;
+                }
+            }
+
+            enumType = null!;
+            return false;
+        }
+
+        public static bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
+        {
+            while (derivedType != null && derivedType != typeof(object))
+            {
+                var currentType = derivedType.IsGenericType
+                    ? derivedType.GetGenericTypeDefinition()
+                    : derivedType;
+                if (baseType == currentType)
+                {
+                    return true;
+                }
+
+                derivedType = derivedType.BaseType!;
+            }
+
+            return false;
+        }
+
+        private static Type GetIEnumerableType(this Type type)
+        {
+            if (type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
+            if (!type.IsGenericType || type.GetGenericTypeDefinition() != typeof(IEnumerable<>))
+            {
+                return null!;
+            }
+
+            var underlyingType = type.GetGenericArguments()[0];
+            return underlyingType.IsEnum
+                ? underlyingType
+                : null!;
         }
     }
 }

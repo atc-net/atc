@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using Atc.Collections;
 using Xunit;
 
-namespace Atc.Tests.Extensions.Reflection
+namespace Atc.Tests.Extensions
 {
     public class TypeExtensionsTests
     {

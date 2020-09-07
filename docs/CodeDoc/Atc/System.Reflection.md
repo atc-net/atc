@@ -19,27 +19,27 @@ public static class AssemblyExtensions
 ### Static Methods
 
 
+#### GetBeautifiedName
+
+```csharp
+string GetBeautifiedName(this Assembly assembly)
+```
+<p><b>Summary:</b> Gets the beautified name of the assembly.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 #### GetExportedTypeByName
 
 ```csharp
 Type GetExportedTypeByName(this Assembly assembly, string typeName)
 ```
-<p><b>Summary:</b> Gets the name of the exported type by.</p>
+<p><b>Summary:</b> Gets the name of the exported type by typeName.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
-#### GetPrettyName
-
-```csharp
-string GetPrettyName(this Assembly assembly)
-```
-<p><b>Summary:</b> Gets the name of the pretty.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 #### IsDebugBuild
 
 ```csharp
@@ -249,226 +249,4 @@ string GetName(this PropertyInfo propertyInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
-
-<br />
-
-
-## TypeExtensions
-Extensions for the `System.Type` class.
-
-
-```csharp
-public static class TypeExtensions
-```
-
-### Static Methods
-
-
-#### BeautifyName
-
-```csharp
-string BeautifyName(this Type type, bool useFullName = False, bool useHtmlFormat = False, bool useGenericParameterNamesAsT = False, bool useSuffixQuestionMarkForGeneric = False)
-```
-<p><b>Summary:</b> Beautifies the name.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useGenericParameterNamesAsT`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use generic parameter names as t].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useSuffixQuestionMarkForGeneric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use suffix question mark for generic].<br />
-#### BeautifyTypeName
-
-```csharp
-string BeautifyTypeName(this Type type, bool useFullName = False)
-```
-<p><b>Summary:</b> Beautifies the name of the type.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
-#### BeautifyTypeOfName
-
-```csharp
-string BeautifyTypeOfName(this Type type, bool useFullName = False, bool useHtmlFormat = False)
-```
-<p><b>Summary:</b> Beautifies the name of the type of.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
-#### GetAttribute
-
-```csharp
-T GetAttribute(this Type type)
-```
-<p><b>Summary:</b> Gets the attribute.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-#### GetAttributes
-
-```csharp
-IEnumerable<T> GetAttributes(this Type type)
-```
-<p><b>Summary:</b> Gets the attributes.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-#### GetBaseTypeGenericArgumentType
-
-```csharp
-Type GetBaseTypeGenericArgumentType(this Type type)
-```
-<p><b>Summary:</b> Gets the type of the base type generic argument.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-#### GetBaseTypeGenericArgumentTypes
-
-```csharp
-Type[] GetBaseTypeGenericArgumentTypes(this Type type)
-```
-<p><b>Summary:</b> Gets the base type generic argument types.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-#### GetNameWithoutGenericType
-
-```csharp
-string GetNameWithoutGenericType(this Type type, bool useFullName = False)
-```
-<p><b>Summary:</b> Get the name of the type without generic part.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
-#### GetPrivateDeclaredOnlyMethod
-
-```csharp
-MethodInfo GetPrivateDeclaredOnlyMethod(this Type type, string name)
-```
-<p><b>Summary:</b> Gets the private declared only method.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name.<br />
-#### GetPrivateDeclaredOnlyMethods
-
-```csharp
-MethodInfo[] GetPrivateDeclaredOnlyMethods(this Type type)
-```
-<p><b>Summary:</b> Gets the private declared only methods.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-#### GetPublicDeclaredOnlyMethods
-
-```csharp
-MethodInfo[] GetPublicDeclaredOnlyMethods(this Type type)
-```
-<p><b>Summary:</b> Gets the public declared only methods.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Remarks:</b> Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</p>
-
-#### HasValidationAttributes
-
-```csharp
-bool HasValidationAttributes(this Type type)
-```
-<p><b>Summary:</b> Determines whether [has validation attributes].</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if [has validation attributes] [the specified type]; otherwise, false.</p>
-
-#### IsDelegate
-
-```csharp
-bool IsDelegate(this Type type)
-```
-<p><b>Summary:</b> Determines whether this instance is delegate.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is delegate; otherwise, false.</p>
-
-#### IsInheritedFrom
-
-```csharp
-bool IsInheritedFrom(this Type type, Type inheritType)
-```
-<p><b>Summary:</b> Determines whether [is inherited from] [the specified inherit type].</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
-<p><b>Returns:</b> true if [is inherited from] [the specified inherit type]; otherwise, false.</p>
-
-#### IsInheritedFromGenericWithArgumentType
-
-```csharp
-bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = True)
-```
-<p><b>Summary:</b> Determines whether [is inherited from generic with argument type] [the specified inherit type].</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argumentType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the argument.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchAlsoOnArgumentTypeInterface`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [match also on argument type interface].<br />
-<p><b>Returns:</b> true if [is inherited from generic with argument type] [the specified inherit type]; otherwise, false.</p>
-
-#### IsNullable
-
-```csharp
-bool IsNullable(this Type type)
-```
-<p><b>Summary:</b> Determines whether this instance is nullable.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is nullable; otherwise, false.</p>
-
-#### IsSimple
-
-```csharp
-bool IsSimple(this Type type)
-```
-<p><b>Summary:</b> Determines whether this instance is simple.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is simple; otherwise, false.</p>
-
-#### TryGetAttribute
-
-```csharp
-T TryGetAttribute(this Type type)
-```
-<p><b>Summary:</b> Tries the get attribute.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

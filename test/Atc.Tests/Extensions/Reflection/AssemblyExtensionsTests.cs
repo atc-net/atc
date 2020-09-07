@@ -43,7 +43,7 @@ namespace Atc.Tests.Extensions.Reflection
         public void GetPrettyName()
         {
             // Act
-            var actual = Assembly.GetExecutingAssembly().GetPrettyName();
+            var actual = Assembly.GetExecutingAssembly().GetBeautifiedName();
 
             // Assert
             Assert.NotNull(actual);

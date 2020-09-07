@@ -28,7 +28,7 @@ namespace System.Reflection
         }
 
         /// <summary>
-        /// Gets the name of the exported type by.
+        /// Gets the name of the exported type by typeName.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         /// <param name="typeName">Name of the type.</param>
@@ -50,10 +50,10 @@ namespace System.Reflection
         }
 
         /// <summary>
-        /// Gets the name of the pretty.
+        /// Gets the beautified name of the assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
-        public static string GetPrettyName(this Assembly assembly)
+        public static string GetBeautifiedName(this Assembly assembly)
         {
             if (assembly == null)
             {
