@@ -19,9 +19,9 @@ steps:
   - task: DotNetCoreCLI@2
     displayName: 'Create Packages'
     inputs:
-      command: pack
-      packagesToPack: '**/*.csproj'
-      versioningScheme: byBuildNumber
+      command: 'pack'
+      packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj'
+      versioningScheme: 'byBuildNumber'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet test'
     inputs:
