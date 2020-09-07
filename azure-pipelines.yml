@@ -27,13 +27,10 @@ steps:
     inputs:
       command: restore
       projects: 'Atc.sln'
-  - task: VSBuild@1
-    displayName: 'Build solution Atc.sln'
+  - task: DotNetCoreCLI@2
     inputs:
-      solution: Atc.sln
-      platform: 'Any CPU'
-      configuration: 'Release'
-    timeoutInMinutes: 20
+      command: 'build'
+      projects: 'Atc.sln'
   - task: DotNetCoreCLI@2
     displayName: 'Create Packages'
     inputs:
