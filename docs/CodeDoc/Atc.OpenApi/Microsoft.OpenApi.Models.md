@@ -287,6 +287,59 @@ List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this
 <br />
 
 
+## OpenApiResponsesExtensions
+
+```csharp
+public static class OpenApiResponsesExtensions
+```
+
+### Static Methods
+
+
+#### GetHttpStatusCodes
+
+```csharp
+List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
+```
+#### GetModelNameForStatusCode
+
+```csharp
+string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
+#### GetSchemaForStatusCode
+
+```csharp
+OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
+#### HasSchemaTypeOfArray
+
+```csharp
+bool HasSchemaTypeOfArray(this OpenApiResponses responses)
+```
+#### HasSchemaTypeOfHttpStatusCodeUsingSystemNet
+
+```csharp
+bool HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+```
+#### IsSchemaTypeArrayForStatusCode
+
+```csharp
+bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
+#### IsSchemaTypePaginationForStatusCode
+
+```csharp
+bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
+#### IsSchemaTypeProblemDetailsForStatusCode
+
+```csharp
+bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
+
+<br />
+
+
 ## OpenApiSchemaExtensions
 
 ```csharp

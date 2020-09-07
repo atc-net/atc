@@ -23,6 +23,7 @@ namespace Atc.OpenApi.Tests
             typeof(OpenApiParameterExtensions),
             typeof(OpenApiPathItemExtensions),
             typeof(OpenApiPathsExtensions),
+            typeof(OpenApiResponsesExtensions),
             typeof(OpenApiSchemaExtensions),
         };
 

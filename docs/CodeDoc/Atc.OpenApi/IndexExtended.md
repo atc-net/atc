@@ -64,6 +64,16 @@
 - [OpenApiPathsExtensions](Microsoft.OpenApi.Models.md#openapipathsextensions)
   -  Static Methods
      - GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
+- [OpenApiResponsesExtensions](Microsoft.OpenApi.Models.md#openapiresponsesextensions)
+  -  Static Methods
+     - GetHttpStatusCodes(this OpenApiResponses responses)
+     - HasSchemaTypeOfArray(this OpenApiResponses responses)
+     - HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+     - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
 - [OpenApiSchemaExtensions](Microsoft.OpenApi.Models.md#openapischemaextensions)
   -  Static Methods
      - HasDataTypeOfList(this IList&lt;OpenApiSchema&gt; schemas)

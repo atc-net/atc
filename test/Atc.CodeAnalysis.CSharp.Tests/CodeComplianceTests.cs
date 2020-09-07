@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.XUnit;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -19,6 +20,7 @@ namespace Atc.CodeAnalysis.CSharp.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(ClassDeclarationSyntaxExtensions),
+            typeof(CompilationUnitSyntaxExtensions),
             typeof(Factories.SuppressMessageAttributeFactory),
             typeof(SyntaxAccessorDeclarationFactory),
             typeof(SyntaxArgumentFactory),

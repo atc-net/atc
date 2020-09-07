@@ -50,6 +50,10 @@
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
 
+## [System.Net](System.Net.md)
+
+- [HttpStatusCodeExtensions](System.Net.md#httpstatuscodeextensions)
+
 ## [System.Reflection](System.Reflection.md)
 
 - [AssemblyExtensions](System.Reflection.md#assemblyextensions)
