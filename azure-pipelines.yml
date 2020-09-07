@@ -11,11 +11,25 @@ steps:
     inputs:
       version: '3.1.x'
       packageType: sdk
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'SonarCloud'
+      organization: 'atc-net'
+      scannerMode: 'MSBuild'
+      projectKey: 'atc-net_atc'
+      projectName: 'ATC'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
       command: restore
       projects: 'Atc.sln'
+  - task: VSBuild@1
+    displayName: 'Build solution Atc.sln'
+    inputs:
+      solution: Atc.sln
+      platform: 'Any CPU'
+      configuration: 'Release'
+    timeoutInMinutes: 20
   - task: DotNetCoreCLI@2
     displayName: 'Create Packages'
     inputs:
@@ -28,6 +42,8 @@ steps:
     inputs:
       command: test
       projects: '**/*.csproj'
+  - task: SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis and Publish Quality Gate Result'
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
     inputs:
