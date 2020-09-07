@@ -38,7 +38,7 @@ steps:
     displayName: 'Create Packages'
     inputs:
       command: 'pack'
-      packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj'
+      packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj;!**/*.Samples.csproj'
       versioningScheme: 'byBuildNumber'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet test'
