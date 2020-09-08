@@ -92,36 +92,18 @@ namespace Atc.Extensions.BaseTypes
             try
             {
                 TimeSpan timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
-                switch (howToCompare)
+                diff = howToCompare switch
                 {
-                    case DateTimeDiffCompareType.Ticks:
-                        diff = Convert.ToDouble(timeSpan.Ticks);
-                        break;
-                    case DateTimeDiffCompareType.Milliseconds:
-                        diff = Convert.ToDouble(timeSpan.TotalMilliseconds);
-                        break;
-                    case DateTimeDiffCompareType.Seconds:
-                        diff = Convert.ToDouble(timeSpan.TotalSeconds);
-                        break;
-                    case DateTimeDiffCompareType.Minutes:
-                        diff = Convert.ToDouble(timeSpan.TotalMinutes);
-                        break;
-                    case DateTimeDiffCompareType.Hours:
-                        diff = Convert.ToDouble(timeSpan.TotalHours);
-                        break;
-                    case DateTimeDiffCompareType.Days:
-                        diff = Convert.ToDouble(timeSpan.TotalDays);
-                        break;
-                    case DateTimeDiffCompareType.Year:
-                        diff = Convert.ToDouble(timeSpan.TotalDays / 365);
-                        break;
-                    case DateTimeDiffCompareType.Quartal:
-                        diff = Convert.ToDouble(timeSpan.TotalDays / 365 / 4);
-                        break;
-                    default:
-                        diff = Convert.ToDouble(timeSpan.TotalDays);
-                        break;
-                }
+                    DateTimeDiffCompareType.Ticks => Convert.ToDouble(timeSpan.Ticks),
+                    DateTimeDiffCompareType.Milliseconds => Convert.ToDouble(timeSpan.TotalMilliseconds),
+                    DateTimeDiffCompareType.Seconds => Convert.ToDouble(timeSpan.TotalSeconds),
+                    DateTimeDiffCompareType.Minutes => Convert.ToDouble(timeSpan.TotalMinutes),
+                    DateTimeDiffCompareType.Hours => Convert.ToDouble(timeSpan.TotalHours),
+                    DateTimeDiffCompareType.Days => Convert.ToDouble(timeSpan.TotalDays),
+                    DateTimeDiffCompareType.Year => Convert.ToDouble(timeSpan.TotalDays / 365),
+                    DateTimeDiffCompareType.Quartal => Convert.ToDouble(timeSpan.TotalDays / 365 / 4),
+                    _ => Convert.ToDouble(timeSpan.TotalDays),
+                };
             }
             catch
             {
