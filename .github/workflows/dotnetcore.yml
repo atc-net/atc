@@ -17,5 +17,3 @@ jobs:
       run: dotnet restore Atc.sln
     - name: Build with dotnet
       run: dotnet build Atc.sln
-    - name: Test with dotnet
-      run: dotnet test Atc.sln
