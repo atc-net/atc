@@ -17,6 +17,20 @@ namespace Atc.Rest.Extended.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(Filters.ApiVersionDocumentFilter),
+            typeof(Filters.ApiVersionOperationFilter),
+            typeof(Filters.AuthorizeResponseOperationFilter),
+            typeof(Filters.DefaultResponseOperationFilter),
+            typeof(Filters.SecurityRequirementsOperationFilter),
+            typeof(Filters.SwaggerEnumDescriptionsDocumentFilter),
+            typeof(Options.ConfigureApiVersioningOptions),
+            typeof(Versioning.VersionErrorResponseProvider),
+            typeof(Microsoft.AspNetCore.Builder.OpenApiBuilderExtensions),
+            typeof(Microsoft.AspNetCore.Builder.RestApiExtendedBuilderExtensions),
+            typeof(Microsoft.Extensions.DependencyInjection.FluentValidationExtensions),
+            typeof(Microsoft.Extensions.DependencyInjection.OpenApiExtensions),
+            typeof(Microsoft.Extensions.DependencyInjection.RestApiExtendedExtensions),
+            typeof(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptionsExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

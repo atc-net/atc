@@ -12,8 +12,8 @@
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
-     - CultureInfo EnglishCultureInfo
      - CultureInfo DanishCultureInfo
+     - CultureInfo EnglishCultureInfo
      - string DateTimeIso8601
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
   -  Static Fields
@@ -206,11 +206,11 @@
      - BeautifyTypeOfName(this Type type, bool useFullName = False, bool useHtmlFormat = False)
      - BeautifyName(this Type type, bool useFullName = False, bool useHtmlFormat = False, bool useGenericParameterNamesAsT = False, bool useSuffixQuestionMarkForGeneric = False)
      - BeautifyTypeName(this Type type, bool useFullName = False)
+     - TryGetEnumType(this Type type, out Type enumType)
+     - IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
      - GetAttribute(this Type type)
      - TryGetAttribute(this Type type)
      - GetAttributes(this Type type)
-     - TryGetEnumType(this Type type, out Type enumType)
-     - IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
 
 ## [System.Net](System.Net.md)

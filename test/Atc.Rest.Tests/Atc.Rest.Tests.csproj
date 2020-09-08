@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Atc.Rest.Extended\Atc.Rest.Extended.csproj" />
     <ProjectReference Include="..\..\src\Atc.Rest\Atc.Rest.csproj" />
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
   </ItemGroup>

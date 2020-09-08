@@ -148,26 +148,28 @@ namespace Atc.XUnit.Internal
                 var classNamePrefixSimplified = GetSimpleTypeName(className);
                 var firstParameterType = method.GetParameters().First().ParameterType;
                 var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
-                if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal))
-                {
-                    return null;
-                }
-
-                if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified)) ||
-                    (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified)) ||
-                    (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified)))
+                if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||
+                    ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified, StringComparison.Ordinal))
                 {
                     // Ok
                     return null;
                 }
 
-                if (firstParameterType.IsGenericType)
+                if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified)) ||
+                    (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified)) ||
+                    (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified)) ||
+                    firstParameterType.Name.Equals("IApplicationBuilder", StringComparison.Ordinal) ||
+                    firstParameterType.Name.Equals("IServiceCollection", StringComparison.Ordinal))
                 {
-                    if (firstParameterType.GenericTypeArguments.Any(x => x.Name.Equals(className, StringComparison.Ordinal)))
-                    {
-                        // Ok
-                        return null;
-                    }
+                    // Ok
+                    return null;
+                }
+
+                if (firstParameterType.IsGenericType &&
+                    firstParameterType.GenericTypeArguments.Any(x => x.Name.Equals(className, StringComparison.Ordinal)))
+                {
+                    // Ok
+                    return null;
                 }
 
                 string[] sa = className.Humanize().Split(' ');

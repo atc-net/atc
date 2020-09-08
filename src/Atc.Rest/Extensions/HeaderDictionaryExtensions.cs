@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.Http
             }
 
             return headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header)
-                ? header.FirstOrDefault()
+                ? header.FirstOrDefault()!
                 : headers.AddCorrelationId(Guid.NewGuid().ToString().ToUpperInvariant());
         }
 
@@ -33,7 +33,7 @@ namespace Microsoft.AspNetCore.Http
             return correlationId;
         }
 
-        public static string GetOrAddRequestId(this IHeaderDictionary headers)
+        public static string? GetOrAddRequestId(this IHeaderDictionary headers)
         {
             if (headers == null)
             {

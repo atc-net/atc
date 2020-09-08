@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Atc.Collections;
+using Atc.Tests.XUnitTestTypes;
 using Xunit;
 
 namespace Atc.Tests.Extensions
@@ -426,6 +427,33 @@ namespace Atc.Tests.Extensions
         public void BeautifyTypeName_UseFullName(string expected, Type type, bool useFullName)
         {
             Assert.Equal(expected, type.BeautifyTypeName(useFullName));
+        }
+
+        [Fact]
+        public void TryGetEnumType()
+        {
+            // Arrange
+            var testType = typeof(DayOfWeek);
+
+            // Act
+            var actual = testType.TryGetEnumType(out var actualType);
+
+            // Assert
+            Assert.True(actual);
+            Assert.Equal(typeof(DayOfWeek), actualType);
+        }
+
+        [Fact]
+        public void IsSubClassOfRawGeneric()
+        {
+            // Arrange
+            var testType = typeof(TestStringList);
+
+            // Act
+            var actual = typeof(List<>).IsSubClassOfRawGeneric(testType);
+
+            // Assert
+            Assert.True(actual);
         }
     }
 }

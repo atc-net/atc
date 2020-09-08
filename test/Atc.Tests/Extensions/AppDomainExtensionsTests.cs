@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Atc.Tests.Extensions.Reflection
+namespace Atc.Tests.Extensions
 {
     public class AppDomainExtensionsTests
     {

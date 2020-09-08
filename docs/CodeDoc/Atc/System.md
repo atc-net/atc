@@ -1449,6 +1449,14 @@ bool IsSimple(this Type type)
 ```csharp
 bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
 ```
+<p><b>Summary:</b> Determines whether [is sub class of raw generic] [the specified derived type].</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`baseType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the base.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`derivedType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the derived.<br />
+<p><b>Returns:</b> true if [is sub class of raw generic] [the specified derived type]; otherwise, false.</p>
+
 #### TryGetAttribute
 
 ```csharp
@@ -1464,6 +1472,12 @@ T TryGetAttribute(this Type type)
 ```csharp
 bool TryGetEnumType(this Type type, out Type enumType)
 ```
+<p><b>Summary:</b> Try to extract the enum-type.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
 
 <br />
 

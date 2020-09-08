@@ -19,6 +19,7 @@ namespace Atc.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(ReflectionHelper),
+            typeof(System.TypeExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

@@ -17,6 +17,21 @@ namespace Atc.Rest.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(Rest.Extensions.EndpointRouteBuilderExtensions),
+            typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
+            typeof(Rest.Middleware.KeepAliveMiddleware),
+            typeof(Rest.Middleware.RequestCorrelationMiddleware),
+            typeof(Options.ConfigureApiAnonymousDevelopmentOptions),
+            typeof(Options.ConfigureApiBehaviorOptions),
+            typeof(Options.RestApiOptions),
+            typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),
+            typeof(Microsoft.ApplicationInsights.Extensibility.CallingIdentityTelemetryInitializer),
+            typeof(Microsoft.AspNetCore.Builder.RestApiBuilderExtensions),
+            typeof(Microsoft.AspNetCore.Http.AnonymousAccessExtensions),
+            typeof(Microsoft.AspNetCore.Http.HttpContextExtensions),
+            typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilter),
+            typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
+            typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

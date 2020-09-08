@@ -530,6 +530,11 @@ namespace System
             return typeName;
         }
 
+        /// <summary>
+        /// Try to extract the enum-type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="enumType">Type of the enum.</param>
         public static bool TryGetEnumType(this Type type, out Type enumType)
         {
             if (type == null)
@@ -579,6 +584,14 @@ namespace System
             return false;
         }
 
+        /// <summary>
+        /// Determines whether [is sub class of raw generic] [the specified derived type].
+        /// </summary>
+        /// <param name="baseType">Type of the base.</param>
+        /// <param name="derivedType">Type of the derived.</param>
+        /// <returns>
+        ///   <c>true</c> if [is sub class of raw generic] [the specified derived type]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
         {
             while (derivedType != null && derivedType != typeof(object))
