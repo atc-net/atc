@@ -13,8 +13,8 @@
 - [CasingStyle](Atc.md#casingstyle)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
-     - CultureInfo EnglishCultureInfo
      - CultureInfo DanishCultureInfo
+     - CultureInfo EnglishCultureInfo
      - string DateTimeIso8601
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
   -  Static Fields

@@ -133,6 +133,8 @@ namespace Atc.Tests.Extensions.BaseTypes
         public void ToIso8601Utc(string expected, int year, int hour, int seconds)
         {
             // Arrange
+            Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
+
             var input = new DateTime(year, 1, 1, hour, 0, seconds);
 
             // Act
