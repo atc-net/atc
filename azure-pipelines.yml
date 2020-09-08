@@ -8,14 +8,17 @@ pool:
 
 steps:
   - task: UseDotNet@2
+    displayName: 'Installing .Net 2.1.x (Used by SonarCloud)'
     inputs:
       version: '2.1.x'
       packageType: sdk
   - task: UseDotNet@2
+    displayName: 'Installing .Net 3.1.x'
     inputs:
       version: '3.1.x'
       packageType: sdk
   - task: SonarCloudPrepare@1
+    displayName: 'Preparing SonarCloud Analysis'
     inputs:
       SonarCloud: 'SonarCloud'
       organization: 'atc-net'
@@ -23,22 +26,23 @@ steps:
       projectKey: 'atc-net_atc'
       projectName: 'ATC'
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
+    displayName: 'Running dotnet restore'
     inputs:
       command: restore
       projects: 'Atc.sln'
   - task: DotNetCoreCLI@2
+    displayName: 'Running dotnet build'
     inputs:
       command: 'build'
       projects: 'Atc.sln'
   - task: DotNetCoreCLI@2
-    displayName: 'Create Packages'
+    displayName: 'Creating Nuget Packages'
     inputs:
       command: 'pack'
       packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj;!**/*.Samples.csproj'
       versioningScheme: 'byBuildNumber'
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet test'
+    displayName: 'Running dotnet test'
     inputs:
       command: test
       projects: '**/*.csproj'
