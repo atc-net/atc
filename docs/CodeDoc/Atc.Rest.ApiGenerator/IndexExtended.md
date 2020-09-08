@@ -1,6 +1,3 @@
-[![NuGet](https://img.shields.io/nuget/v/Atc.Rest.ApiGenerator.svg?style=flat-square)](http://www.nuget.org/packages/Atc.Rest.ApiGenerator)
-[![NuGet](https://img.shields.io/nuget/dt/Atc.Rest.ApiGenerator.svg?style=flat-square)](http://www.nuget.org/packages/Atc.Rest.ApiGenerator)
-
 <div style='text-align: right'>
 
 [References](Index.md)

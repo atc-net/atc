@@ -482,42 +482,42 @@ string Cut(this string value, int maxLength, string appendValue = ...)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appendValue`&nbsp;&nbsp;-&nbsp;&nbsp;The append value.<br />
 <p><b>Returns:</b> The string that is cutoff by the max-length and appended with the appendValue.</p>
 
-#### EnsureFirstLetterToLower
+#### EnsureFirstCharacterToLower
 
 ```csharp
-string EnsureFirstLetterToLower(this string value)
+string EnsureFirstCharacterToLower(this string value)
 ```
-<p><b>Summary:</b> Ensures the first letter to lower.</p>
+<p><b>Summary:</b> Ensures the first character to lower.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-#### EnsureFirstLetterToUpper
+#### EnsureFirstCharacterToUpper
 
 ```csharp
-string EnsureFirstLetterToUpper(this string value)
+string EnsureFirstCharacterToUpper(this string value)
 ```
-<p><b>Summary:</b> Ensures the first letter to upper.</p>
+<p><b>Summary:</b> Ensures the first character to upper.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-#### EnsureFirstLetterToUpperAndPlural
+#### EnsureFirstCharacterToUpperAndPlural
 
 ```csharp
-string EnsureFirstLetterToUpperAndPlural(this string value)
+string EnsureFirstCharacterToUpperAndPlural(this string value)
 ```
-<p><b>Summary:</b> Ensures the first letter to upper and plural.</p>
+<p><b>Summary:</b> Ensures the first character to upper and plural.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-#### EnsureFirstLetterToUpperAndSingular
+#### EnsureFirstCharacterToUpperAndSingular
 
 ```csharp
-string EnsureFirstLetterToUpperAndSingular(this string value)
+string EnsureFirstCharacterToUpperAndSingular(this string value)
 ```
-<p><b>Summary:</b> Ensures the first letter to upper and singular.</p>
+<p><b>Summary:</b> Ensures the first character to upper and singular.</p>
 
 <b>Parameters</b>
 

@@ -1,0 +1,534 @@
+openapi: 3.0.0
+info:
+  title: Demo Api
+  description: Demo Api - SingleFileVersion
+  version: '1.0'
+  contact:
+    name: Delegate A/S
+servers:
+  - url: /api/v1
+    description: Api version 1.0
+paths:
+  /orders:
+    get:
+      tags:
+        - Orders
+      summary: Get orders
+      description: Get orders
+      operationId: getOrders
+      parameters:
+        - $ref: '#/components/parameters/pagingPageSize'
+        - $ref: '#/components/parameters/pagingPageIndex'
+        - $ref: '#/components/parameters/queryString'
+        - $ref: '#/components/parameters/continuationToken'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/pagination'
+                  - $ref: '#/components/schemas/orders'
+        '404':
+          description: Not Found
+  '/orders/{id}':
+    get:
+      tags:
+        - Orders
+      summary: Get order by id
+      description: Get order by id
+      operationId: getOrderById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            format: email
+          in: query
+          name: myEmail
+          description: The email for filter orders to retrieve
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/order'
+        '404':
+          description: Not Found
+    patch:
+      summary: Update part of order by id
+      description: Update part of order by id
+      operationId: patch-orders-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+          in: header
+          name: myTestHeader
+          description: The myTestHeader special key
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrderRequest'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/problemDetails'
+  /users/email:
+    get:
+      tags:
+        - Users
+      summary: Get user by email
+      description: Get user by email
+      operationId: getUserByEmail
+      parameters:
+        - name: email
+          in: query
+          description: The email of the user to retrieve
+          required: true
+          schema:
+            type: string
+            format: email
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+  '/users/{id}':
+    get:
+      summary: Get user by id
+      description: Get user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+    put:
+      summary: Update user by id
+      description: Update user by id
+      operationId: updateUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to update
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateUserRequest'
+    delete:
+      summary: Delete user by id
+      description: Delete user by id
+      operationId: deleteUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+  /users:
+    get:
+      summary: Get all users
+      description: Get all users
+      operationId: get-users
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/users'
+        '409':
+          description: Conflict
+    post:
+      summary: Create a new user
+      description: Create a new user
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUserRequest'
+  '/users/{id}/gender':
+    put:
+      summary: Update gender on a user
+      description: Update gender on a user
+      operationId: update-my-test-gender
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to update
+          schema:
+            type: string
+        - name: genderParam
+          in: query
+          description: The gender to set on the user
+          schema:
+            $ref: '#/components/schemas/genderType'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateTestGenderRequest'
+components:
+  parameters:
+    pagingPageSize:
+      in: query
+      name: pageSize
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: The numbers of items to return.
+    pagingPageIndex:
+      in: query
+      name: pageIndex
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: The number of items to skip before starting to collect the result set.
+    queryString:
+      in: query
+      name: queryString
+      required: false
+      schema:
+        type: string
+      description: The query string.
+    continuationToken:
+      in: query
+      name: continuationToken
+      required: false
+      schema:
+        type: string
+      description: The continuation token.
+  schemas:
+    pagination:
+      type: object
+      title: Pagination
+      description: A item result subset of a data query.
+      properties:
+        pageSize:
+          type: number
+          description: 'The number of items to request.'
+        pageIndex:
+          type: number
+          description: 'The given page index starting with 0.'
+        queryString:
+          type: string
+          description: 'The query to filter items by.'
+        continuationToken:
+          type: string
+          description: 'Token to indicate next result set.'
+        count:
+          type: number
+          description: 'Items count in result set.'
+        totalCount:
+          type: number
+          description: 'Total items count.'
+        totalPages:
+          type: number
+          description: 'Total pages.'
+      required:
+        - pageSize
+        - count
+    problemDetails:
+      type: object
+      title: ProblemDetails
+      description: 'A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.'
+      properties:
+        type:
+          type: string
+          description: 'A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]).'
+        title:
+          type: string
+          description: 'A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization(e.g., using proactive content negotiation; see[RFC7231], Section 3.4).'
+        status:
+          type: integer
+          format: int32
+          description: 'The HTTP status code([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.'
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
+    order:
+      title: Order
+      description: |-
+        A single order.
+        Hallo description with multiline and no ending dot
+      type: object
+      x-examples:
+        MyExample:
+          id: 123
+          name: Hallo world
+        MyExample2: {}
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        myTime:
+          type: string
+          format: time
+        myEmail:
+          type: string
+          format: email
+          default: a@a.com
+        myDateTime:
+          type: string
+          format: date-time
+        myNumber:
+          type: number
+        myInteger:
+          type: integer
+          minimum: 1.1
+          maximum: 20.2
+          default: 15
+        myBool:
+          type: boolean
+          description: MyBool is great
+        myUri:
+          type: string
+          format: uri
+          description: 'This is the good uri :-)'
+        myByte:
+          type: string
+          format: byte
+        myStringList:
+          type: array
+          description: 'Hallo myStringList desc :-)'
+          items:
+            type: string
+        myLong:
+          type: integer
+          format: int64
+          minimum: 10
+          exclusiveMinimum: false
+        deliveryAddress:
+          $ref: '#/components/schemas/address'
+    orders:
+      description: A list of orders.
+      type: array
+      x-tags:
+        - Orders
+      title: Orders
+      items:
+        $ref: '#/components/schemas/order'
+    genderType:
+      title: GenderType
+      description: ''
+      type: object
+      properties:
+        gender:
+          type: string
+          description: The users gender type
+          enum:
+            - Unknown
+            - NonBinary
+            - Male
+            - Female
+      required:
+        - gender
+    user:
+      title: User
+      description: A single user.
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 00000000-0000-0000-0000-000000000000
+        gender:
+          $ref: '#/components/schemas/genderType'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+          example: email@email.dk
+        homeAddress:
+          $ref: '#/components/schemas/address'
+        companyAddress:
+          $ref: '#/components/schemas/address'
+    users:
+      description: A list of users.
+      type: array
+      items:
+        $ref: '#/components/schemas/user'
+      x-tags:
+        - Users
+      title: Users
+    createUserRequest:
+      title: CreateUserRequest
+      description: Request to create a user
+      required:
+        - firstName
+        - lastName
+        - email
+        - gender
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+          example: email@email.dk
+        gender:
+          $ref: '#/components/schemas/genderType'
+    updateUserRequest:
+      title: UpdateUserRequest
+      description: Request to update a user
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+          example: email@email.dk
+        gender:
+          $ref: '#/components/schemas/genderType'
+    updateTestGenderRequest:
+      title: Update test-gender Request
+      description: ''
+      type: object
+      properties:
+        gender:
+          $ref: '#/components/schemas/genderType'
+    address:
+      title: Address
+      type: object
+      properties:
+        streetName:
+          type: string
+        streetNumber:
+          type: string
+        postalCode:
+          type: string
+        cityName:
+          type: string
+        myCountry:
+          $ref: '#/components/schemas/country'
+    country:
+      title: Country
+      type: object
+      properties:
+        name:
+          type: string
+        alpha2Code:
+          type: string
+          minLength: 2
+          maxLength: 2
+          pattern: '^[A-Z]$'
+        alpha3Code:
+          type: string
+          minLength: 3
+          maxLength: 3
+          pattern: '^[A-Z]$'
+      required:
+        - name
+        - alpha2Code
+        - alpha3Code
+    updateOrderRequest:
+      title: UpdateOrderRequest
+      description: Request to update an order
+      type: object
+      properties:
+        myEmail:
+          type: string
+          format: email
+      required:
+        - myEmail

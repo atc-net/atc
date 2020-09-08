@@ -1,6 +1,3 @@
-[![NuGet](https://img.shields.io/nuget/v/atc.svg?style=flat-square)](http://www.nuget.org/packages/atc)
-[![NuGet](https://img.shields.io/nuget/dt/atc.svg?style=flat-square)](http://www.nuget.org/packages/atc)
-
 <div style='text-align: right'>
 
 [References](Index.md)
@@ -16,8 +13,8 @@
 - [CasingStyle](Atc.md#casingstyle)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
-     - CultureInfo DanishCultureInfo
      - CultureInfo EnglishCultureInfo
+     - CultureInfo DanishCultureInfo
      - string DateTimeIso8601
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
   -  Static Fields
@@ -146,12 +143,12 @@
      - CamelCase(this string value)
      - PascalCase(this string value, bool removeSeparators = False)
      - PascalCase(this string value, char[] separators, bool removeSeparators = False)
-     - EnsureFirstLetterToUpper(this string value)
-     - EnsureFirstLetterToLower(this string value)
+     - EnsureFirstCharacterToUpper(this string value)
+     - EnsureFirstCharacterToLower(this string value)
      - EnsureSingular(this string value)
      - EnsurePlural(this string value)
-     - EnsureFirstLetterToUpperAndSingular(this string value)
-     - EnsureFirstLetterToUpperAndPlural(this string value)
+     - EnsureFirstCharacterToUpperAndSingular(this string value)
+     - EnsureFirstCharacterToUpperAndPlural(this string value)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
      - ReplaceAt(this string value, int index, char newChar)

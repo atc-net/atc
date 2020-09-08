@@ -362,7 +362,7 @@ Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
 #### GetModelName
 
 ```csharp
-string GetModelName(this OpenApiSchema schema)
+string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
 ```
 #### GetTitleFromPropertyByPropertyKey
 

@@ -1,6 +1,3 @@
-[![NuGet](https://img.shields.io/nuget/v/Atc.OpenApi.svg?style=flat-square)](http://www.nuget.org/packages/Atc.OpenApi)
-[![NuGet](https://img.shields.io/nuget/dt/Atc.OpenApi.svg?style=flat-square)](http://www.nuget.org/packages/Atc.OpenApi)
-
 <div style='text-align: right'>
 
 [References](Index.md)
@@ -96,7 +93,7 @@
      - IsItemsOfSimpleDataType(this OpenApiSchema schema)
      - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiSchema&gt; schemas)
-     - GetModelName(this OpenApiSchema schema)
+     - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
      - GetDataType(this OpenApiSchema schema)
      - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
      - IsHttpStatusCodeModelReference(this OpenApiSchema schema)

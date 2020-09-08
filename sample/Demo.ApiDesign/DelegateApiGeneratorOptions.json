@@ -1,0 +1,12 @@
+{
+	"Generator": {
+		"UseNullableReferenceTypes": true,
+		"Request": {
+		},
+		"Response": {
+			"UseProblemDetailsAsDefaultBody": true
+		}
+	},
+	"Validation": {
+	}
+}
