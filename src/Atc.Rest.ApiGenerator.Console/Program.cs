@@ -20,12 +20,12 @@ namespace Atc.Rest.ApiGenerator.Console
                 "-n",
                 "Demo.Api",
                 "-p",
-                @"C:\CodeDelegate\ATC\sample\Demo.ApiDesign\SingleFileVersion",
+                @"C:\Code\atc-net\atc\sample\Demo.ApiDesign\SingleFileVersion",
                 ////Util.GetProjectPath() + @"Demo.ApiDesign\MultiFileVersion",
                 "-o",
-                @"C:\CodeDelegate\ATC\sample\Demo.Api.Generated",
+                @"C:\Code\atc-net\atc\sample\Demo.Api.Generated",
                 "--optionsPath",
-                @"C:\CodeDelegate\ATC\sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json",
+                @"C:\Code\atc-net\atc\sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json",
             };
 
             Parser.Default.ParseArguments<ArgumentOptions>(args)

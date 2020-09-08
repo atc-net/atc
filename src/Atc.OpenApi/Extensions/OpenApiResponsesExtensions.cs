@@ -78,7 +78,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+        public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = "application/json")
         {
             foreach (var response in responses.OrderBy(x => x.Key))
             {
@@ -93,10 +93,10 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                foreach (var mediaType in response.Value.Content)
-                {
-                    return mediaType.Value.Schema;
-                }
+                var (key, value) = response.Value.Content.FirstOrDefault(x => x.Key == contentType);
+                return key == null
+                    ? null
+                    : value.Schema;
             }
 
             return null;

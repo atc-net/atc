@@ -356,16 +356,16 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             return SyntaxFactory.TriviaList(comments);
         }
 
-        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody)
+        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody, string contentType = "application/json")
         {
             var comments = new List<SyntaxTrivia>();
 
             string? apiParameterDescription = null;
-            foreach (var item in apiRequestBody.Content.Values)
-            {
-                apiParameterDescription = item.Schema.Description;
-                break;
-            }
+
+            var (key, value) = apiRequestBody.Content.FirstOrDefault(x => x.Key == contentType);
+            apiParameterDescription = key == null
+                ? string.Empty
+                : value.Schema.Description;
 
             if (!string.IsNullOrEmpty(apiParameterDescription))
             {
