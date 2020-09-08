@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/Atc.Rest.svg?style=flat-square)](http://www.nuget.org/packages/Atc.Rest)
+[![NuGet](https://img.shields.io/nuget/dt/Atc.Rest.svg?style=flat-square)](http://www.nuget.org/packages/Atc.Rest)
+
 <div style='text-align: right'>
 
 [References extended](IndexExtended.md)
