@@ -120,8 +120,8 @@ namespace Microsoft.OpenApi.Models
             var schema = responses.GetSchemaForStatusCode(httpStatusCode);
             if (schema != null && schema.AllOf.Count == 2)
             {
-                if (schema.AllOf[0].Reference?.Id == NameConstants.Pagination ||
-                    schema.AllOf[1].Reference?.Id == NameConstants.Pagination)
+                if (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                    NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }

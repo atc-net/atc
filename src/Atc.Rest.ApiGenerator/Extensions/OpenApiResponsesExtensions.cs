@@ -105,7 +105,7 @@ namespace Microsoft.OpenApi.Models
             };
 
             return reservedModelNames.Contains(modelName)
-                ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstLetterToUpper()}.{modelName}"
+                ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}"
                 : modelName;
         }
     }

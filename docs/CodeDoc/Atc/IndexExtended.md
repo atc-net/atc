@@ -10,6 +10,7 @@
 ## [Atc](Atc.md)
 
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
+- [CasingStyle](Atc.md#casingstyle)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
      - CultureInfo DanishCultureInfo
@@ -184,6 +185,8 @@
      - IsSentence(this string value)
      - IsStringFormatParametersBalanced(this string value, bool isNumeric = True)
      - IsWord(this string value)
+     - IsFirstCharacterLowerCase(this string value)
+     - IsFirstCharacterUpperCase(this string value)
      - IsCompanyCvrNumber(this string cvrNumber)
      - IsCompanyPNumber(this string pNumber)
      - IsPersonCprNumber(this string cprNumber)

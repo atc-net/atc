@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
@@ -68,7 +69,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 var apiEnumSchema = ApiSchema.GetEnumSchema();
 
                 // Create an enum
-                var enumDeclaration = SyntaxEnumFactory.Create(apiEnumSchema.Item1, apiEnumSchema.Item2);
+                var enumDeclaration = SyntaxEnumFactory.Create(apiEnumSchema.Item1.EnsureFirstCharacterToUpper(), apiEnumSchema.Item2);
 
                 // Add the enum to the namespace.
                 @namespace = @namespace.AddMembers(enumDeclaration);
@@ -92,7 +93,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 }
 
                 // Create class
-                var classDeclaration = SyntaxClassDeclarationFactory.Create(ApiSchemaKey)
+                var classDeclaration = SyntaxClassDeclarationFactory.Create(ApiSchemaKey.EnsureFirstCharacterToUpper())
                     .WithLeadingTrivia(SyntaxDocumentationFactory.Create(ApiSchema));
 
                 // Create class-properties and add to class
@@ -100,9 +101,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 {
                     if (ApiSchema.Type == OpenApiDataTypeConstants.Array)
                     {
-                        var title = ApiProjectOptions.Document.Components.Schemas.ContainsKey(ApiSchema.Title)
-                            ? $"{ApiSchema.Title.EnsureFirstLetterToUpperAndSingular()}List"
-                            : ApiSchema.Title.EnsureFirstLetterToUpper();
+                        var (key, _) = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(ApiSchema.Title, StringComparison.OrdinalIgnoreCase));
+                        var title = key != null
+                            ? $"{ApiSchema.Title.EnsureFirstCharacterToUpperAndSingular()}List"
+                            : ApiSchema.Title.EnsureFirstCharacterToUpper();
 
                         var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateListAuto(ApiSchema.Items.Title, title)
                             .WithLeadingTrivia(SyntaxDocumentationFactory.CreateSummary($"A list of {ApiSchema.Items.Title}."));
@@ -167,8 +169,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public void ToFile()
         {
-            var area = FocusOnSegmentName.EnsureFirstLetterToUpper();
-            var modelName = ApiSchemaKey.EnsureFirstLetterToUpper();
+            var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
+            var modelName = ApiSchemaKey.EnsureFirstCharacterToUpper();
             var file = IsEnum
                 ? Util.GetCsFileNameForContractEnumTypes(ApiProjectOptions.PathForContracts, modelName)
                 : IsSharedContract

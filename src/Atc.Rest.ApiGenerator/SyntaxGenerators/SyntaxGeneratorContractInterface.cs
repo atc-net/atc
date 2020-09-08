@@ -95,7 +95,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public void ToFile()
         {
-            var area = FocusOnSegmentName.EnsureFirstLetterToUpper();
+            var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var interfaceName = "I" + ApiOperation.GetOperationName() + NameConstants.ContractHandler;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractInterfaces, interfaceName);
             FileHelper.Save(file, ToCodeAsString());

@@ -32,13 +32,13 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 {
                     SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
                     SyntaxTokenFactory.Comma(),
-                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstLetterToLower())
+                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
                 }
                 : new SyntaxNodeOrToken[]
                 {
-                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstLetterToLower())
+                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
                 };
@@ -64,7 +64,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 var lastKey = apiSchemaProperties.Keys.Last();
                 foreach (var schema in apiSchemaProperties)
                 {
-                    var name = schema.Key.EnsureFirstLetterToUpper();
+                    var name = schema.Key.EnsureFirstCharacterToUpper();
                     if (schema.Value.Properties.Count == 0)
                     {
                         content.Add(SyntaxInterpolatedFactory.CreateNameOf(name));

@@ -77,7 +77,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                         continue;
                     }
 
-                    var requestBodyType = item.Schema.Reference.Id;
+                    var requestBodyType = item.Schema.Reference.Id.EnsureFirstCharacterToUpper();
 
                     var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
                             SchemaMapLocatedAreaType.RequestBody,
@@ -137,7 +137,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public void ToFile()
         {
-            var area = FocusOnSegmentName.EnsureFirstLetterToUpper();
+            var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var parameterName = ApiOperation.GetOperationName() + NameConstants.ContractParameters;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractParameters, parameterName);
             FileHelper.Save(file, ToCodeAsString());

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable LocalizableElement
 // ReSharper disable ReturnTypeCanBeEnumerable.Local
 // ReSharper disable InvertIf
@@ -42,6 +43,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
         {
+            // TODO: UseOptions
+            var apiOptionCasingStyle = CasingStyle.CamelCase;
+
             var result = new List<string>();
             foreach (var schema in schemas)
             {
@@ -53,7 +57,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
                             {
                                 result.Add($"Schema - Missing title on array type '{schema.Reference.ReferenceV3}'.");
                             }
+                            else if (schema.Title.IsFirstCharacterLowerCase())
+                            {
+                                result.Add($"Schema - Title on array type '{schema.Title}' is not starting with uppercase.");
+                            }
 
+                            result.AddRange(ValidateSchemaModelNameCasing(apiOptionCasingStyle, schema));
                             break;
                         }
 
@@ -62,6 +71,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
                             if (string.IsNullOrEmpty(schema.Title))
                             {
                                 result.Add($"Schema - Missing title on object type '{schema.Reference.ReferenceV3}'.");
+                            }
+                            else if (schema.Title.IsFirstCharacterLowerCase())
+                            {
+                                result.Add($"Schema - Title on object type '{schema.Title}' is not starting with uppercase.");
                             }
 
                             foreach (var (key, value) in schema.Properties)
@@ -73,8 +86,13 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                         result.Add($"Schema - Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported.");
                                     }
                                 }
+                                else
+                                {
+                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(apiOptionCasingStyle, key, schema));
+                                }
                             }
 
+                            result.AddRange(ValidateSchemaModelNameCasing(apiOptionCasingStyle, schema));
                             break;
                         }
                 }
@@ -189,6 +207,59 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         }
                     }
                 }
+            }
+
+            return result;
+        }
+
+        private static List<string> ValidateSchemaModelNameCasing(CasingStyle apiOptionCasingStyle, OpenApiSchema schema)
+        {
+            var result = new List<string>();
+            var modelName = schema.GetModelName(false);
+            switch (apiOptionCasingStyle)
+            {
+                case CasingStyle.CamelCase:
+                    if (modelName.IsFirstCharacterUpperCase())
+                    {
+                        result.Add($"Schema - Object '{modelName}' is not using {apiOptionCasingStyle}.");
+                    }
+
+                    break;
+                case CasingStyle.PascalCase:
+                    if (modelName.IsFirstCharacterLowerCase())
+                    {
+                        result.Add($"Schema - Object '{modelName}' is not using {apiOptionCasingStyle}.");
+                    }
+
+                    break;
+                default:
+                    throw new SwitchCaseDefaultException(apiOptionCasingStyle);
+            }
+
+            return result;
+        }
+
+        private static List<string> ValidateSchemaModelPropertyNameCasing(CasingStyle apiOptionCasingStyle, string key, OpenApiSchema schema)
+        {
+            var result = new List<string>();
+            switch (apiOptionCasingStyle)
+            {
+                case CasingStyle.CamelCase:
+                    if (key.IsFirstCharacterUpperCase())
+                    {
+                        result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {apiOptionCasingStyle}.");
+                    }
+
+                    break;
+                case CasingStyle.PascalCase:
+                    if (key.IsFirstCharacterLowerCase())
+                    {
+                        result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {apiOptionCasingStyle}.");
+                    }
+
+                    break;
+                default:
+                    throw new SwitchCaseDefaultException(apiOptionCasingStyle);
             }
 
             return result;

@@ -201,6 +201,22 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.IsWord());
 
         [Theory]
+        [InlineData(false, "")]
+        [InlineData(false, "1")]
+        [InlineData(true, "hest")]
+        [InlineData(false, "Hest")]
+        public void IsFirstCharacterLowerCase(bool expected, string input)
+            => Assert.Equal(expected, input.IsFirstCharacterLowerCase());
+
+        [Theory]
+        [InlineData(false, "")]
+        [InlineData(false, "1")]
+        [InlineData(false, "hest")]
+        [InlineData(true, "Hest")]
+        public void IsFirstCharacterUpperCase(bool expected, string input)
+            => Assert.Equal(expected, input.IsFirstCharacterUpperCase());
+
+        [Theory]
         [InlineData(false, "Hest")]
         [InlineData(false, "2675972")]
         [InlineData(true, "26759722")]

@@ -55,7 +55,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 
             return SyntaxNamespaceDeclarationFactory.Create(
                 GetGeneratedByToolAndVersion(),
-                $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}.{focusOnSegmentName.EnsureFirstLetterToUpper()}");
+                $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
         }
 
         private static string GetGeneratedByToolAndVersion()

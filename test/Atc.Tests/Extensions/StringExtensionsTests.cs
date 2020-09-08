@@ -257,13 +257,13 @@ namespace Atc.Tests.Extensions
 
         [Theory]
         [InlineData("Hallo", "hallo")]
-        public void EnsureFirstLetterToUpper(string expected, string input)
-            => Assert.Equal(expected, input.EnsureFirstLetterToUpper());
+        public void EnsureFirstCharacterToUpper(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstCharacterToUpper());
 
         [Theory]
         [InlineData("hallo", "Hallo")]
-        public void EnsureFirstLetterToLower(string expected, string input)
-            => Assert.Equal(expected, input.EnsureFirstLetterToLower());
+        public void EnsureFirstCharacterToLower(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstCharacterToLower());
 
         [Theory]
         [InlineData("Hallo", "Hallo")]
@@ -280,14 +280,14 @@ namespace Atc.Tests.Extensions
         [Theory]
         [InlineData("Hallo", "hallo")]
         [InlineData("Hallo", "hallos")]
-        public void EnsureFirstLetterToUpperAndSingular(string expected, string input)
-            => Assert.Equal(expected, input.EnsureFirstLetterToUpperAndSingular());
+        public void EnsureFirstCharacterToUpperAndSingular(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstCharacterToUpperAndSingular());
 
         [Theory]
         [InlineData("Hallos", "hallo")]
         [InlineData("Hallos", "hallos")]
-        public void EnsureFirstLetterToUpperAndPlural(string expected, string input)
-            => Assert.Equal(expected, input.EnsureFirstLetterToUpperAndPlural());
+        public void EnsureFirstCharacterToUpperAndPlural(string expected, string input)
+            => Assert.Equal(expected, input.EnsureFirstCharacterToUpperAndPlural());
 
         [Theory]
         [InlineData(false, "Hallo World", "world")]

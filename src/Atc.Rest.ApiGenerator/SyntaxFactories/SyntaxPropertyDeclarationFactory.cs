@@ -69,13 +69,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             var propertyDeclaration = schema.Value.Type == OpenApiDataTypeConstants.Array
                 ? CreateListAuto(
                     schema.Value.Items.GetDataType(),
-                    schema.Key.EnsureFirstLetterToUpper())
+                    schema.Key.EnsureFirstCharacterToUpper())
                 : CreateAuto(
                     locationArea,
                     isRequired,
                     schema.Value.IsSchemaEnumOrPropertyEnum(),
                     schema.Value.GetDataType(),
-                    schema.Key.EnsureFirstLetterToUpper(),
+                    schema.Key.EnsureFirstCharacterToUpper(),
                     useNullableReferenceTypes,
                     schema.Value.Default);
 
@@ -116,7 +116,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 parameter.Required,
                 parameter.Schema.IsSchemaEnumOrPropertyEnum(),
                 parameter.Schema.GetDataType(),
-                parameter.Name.EnsureFirstLetterToUpper(),
+                parameter.Name.EnsureFirstCharacterToUpper(),
                 useNullableReferenceTypes,
                 parameter.Schema.Default);
 

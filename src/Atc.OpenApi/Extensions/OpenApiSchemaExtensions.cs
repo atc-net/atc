@@ -125,7 +125,7 @@ namespace Microsoft.OpenApi.Models
                    schemas.HasFormatTypeOfUri();
         }
 
-        public static string GetModelName(this OpenApiSchema schema)
+        public static string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = true)
         {
             if (schema == null)
             {
@@ -134,24 +134,33 @@ namespace Microsoft.OpenApi.Models
 
             if (schema.AllOf.Count == 2)
             {
-                if (schema.AllOf[0].Reference?.Id == NameConstants.Pagination ||
-                    schema.AllOf[1].Reference?.Id == NameConstants.Pagination)
+                if (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                    NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (schema.AllOf[0].Reference?.Id != NameConstants.Pagination)
+                    if (!NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                     {
                         return schema.AllOf[0].GetModelName();
                     }
 
-                    if (schema.AllOf[1].Reference?.Id != NameConstants.Pagination)
+                    if (!NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                     {
                         return schema.AllOf[1].GetModelName();
                     }
                 }
             }
 
-            return schema.Items != null
-                ? schema.Items.Reference.Id
-                : schema.Reference.Id;
+            if (ensureFirstCharacterToUpper)
+            {
+                return schema.Items != null
+                    ? schema.Items.Reference.Id.EnsureFirstCharacterToUpper()
+                    : schema.Reference.Id.EnsureFirstCharacterToUpper();
+            }
+            else
+            {
+                return schema.Items != null
+                    ? schema.Items.Reference.Id
+                    : schema.Reference.Id;
+            }
         }
 
         public static string GetDataType(this OpenApiSchema schema)
@@ -204,7 +213,9 @@ namespace Microsoft.OpenApi.Models
                 dataType = schema.Reference.Id;
             }
 
-            return dataType;
+            return dataType == OpenApiDataTypeConstants.String
+                ? dataType
+                : dataType.EnsureFirstCharacterToUpper();
         }
 
         public static string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)

@@ -1077,6 +1077,30 @@ bool IsFalse(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### IsFirstCharacterLowerCase
+
+```csharp
+bool IsFirstCharacterLowerCase(this string value)
+```
+<p><b>Summary:</b> Determines whether [is first character lower case].</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+<p><b>Returns:</b> true if [is first character lower case] [the specified value]; otherwise, false.</p>
+
+#### IsFirstCharacterUpperCase
+
+```csharp
+bool IsFirstCharacterUpperCase(this string value)
+```
+<p><b>Summary:</b> Determines whether [is first character upper case].</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+<p><b>Returns:</b> true if [is first character upper case] [the specified value]; otherwise, false.</p>
+
 #### IsFormatJson
 
 ```csharp

@@ -84,6 +84,8 @@
   -  Properties
      - UseProblemDetailsAsDefaultBody
 - [ApiOptionsValidation](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsvalidation)
+  -  Properties
+     - CasingStyle
 
 ## [Atc.Rest.ApiGenerator.SyntaxGenerators](Atc.Rest.ApiGenerator.SyntaxGenerators.md)
 

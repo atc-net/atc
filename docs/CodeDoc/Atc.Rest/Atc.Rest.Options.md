@@ -99,6 +99,11 @@ AssemblyPairs
 ```csharp
 ErrorHandlingExceptionFilter
 ```
+#### JsonSerializerCasingStyle
+
+```csharp
+JsonSerializerCasingStyle
+```
 #### UseApplicationInsights
 
 ```csharp

@@ -765,10 +765,10 @@ namespace System
         }
 
         /// <summary>
-        /// Ensures the first letter to upper.
+        /// Ensures the first character to upper.
         /// </summary>
         /// <param name="value">The value.</param>
-        public static string EnsureFirstLetterToUpper(this string value)
+        public static string EnsureFirstCharacterToUpper(this string value)
         {
             if (value == null)
             {
@@ -784,10 +784,10 @@ namespace System
         }
 
         /// <summary>
-        /// Ensures the first letter to lower.
+        /// Ensures the first character to lower.
         /// </summary>
         /// <param name="value">The value.</param>
-        public static string EnsureFirstLetterToLower(this string value)
+        public static string EnsureFirstCharacterToLower(this string value)
         {
             if (value == null)
             {
@@ -845,31 +845,31 @@ namespace System
         }
 
         /// <summary>
-        /// Ensures the first letter to upper and singular.
+        /// Ensures the first character to upper and singular.
         /// </summary>
         /// <param name="value">The value.</param>
-        public static string EnsureFirstLetterToUpperAndSingular(this string value)
+        public static string EnsureFirstCharacterToUpperAndSingular(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return EnsureFirstLetterToUpper(EnsureSingular(value));
+            return EnsureFirstCharacterToUpper(EnsureSingular(value));
         }
 
         /// <summary>
-        /// Ensures the first letter to upper and plural.
+        /// Ensures the first character to upper and plural.
         /// </summary>
         /// <param name="value">The value.</param>
-        public static string EnsureFirstLetterToUpperAndPlural(this string value)
+        public static string EnsureFirstCharacterToUpperAndPlural(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return EnsureFirstLetterToUpper(EnsurePlural(value));
+            return EnsureFirstCharacterToUpper(EnsurePlural(value));
         }
 
         /// <summary>

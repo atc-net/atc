@@ -22,7 +22,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return path
                 .Split('/', StringSplitOptions.RemoveEmptyEntries)
                 .First()
-                .EnsureFirstLetterToUpperAndPlural();
+                .EnsureFirstCharacterToUpperAndPlural();
         }
 
         public static List<ApiOperationSchemaMap> CollectMappings(OpenApiDocument apiDocument)
@@ -108,23 +108,23 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var schemaKey = string.Empty;
             if (apiSchema.Reference?.Id != null)
             {
-                schemaKey = apiSchema.Reference.Id;
+                schemaKey = apiSchema.Reference.Id.EnsureFirstCharacterToUpper();
             }
             else if (apiSchema.Items?.Reference?.Id != null)
             {
-                schemaKey = apiSchema.Items.Reference.Id;
+                schemaKey = apiSchema.Items.Reference.Id.EnsureFirstCharacterToUpper();
             }
             else if (apiSchema.AllOf.Count == 2)
             {
-                if (apiSchema.AllOf[0].Reference?.Id == Microsoft.OpenApi.Models.NameConstants.Pagination ||
-                    apiSchema.AllOf[1].Reference?.Id == Microsoft.OpenApi.Models.NameConstants.Pagination)
+                if (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                    Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (apiSchema.AllOf[0].Reference?.Id != Microsoft.OpenApi.Models.NameConstants.Pagination)
+                    if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                     {
                         schemaKey = apiSchema.AllOf[0].GetModelName();
                     }
 
-                    if (apiSchema.AllOf[1].Reference?.Id != Microsoft.OpenApi.Models.NameConstants.Pagination)
+                    if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                     {
                         schemaKey = apiSchema.AllOf[1].GetModelName();
                     }

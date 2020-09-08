@@ -18,6 +18,26 @@ public class AtcAssemblyTypeInitializer
 <br />
 
 
+## CasingStyle
+
+```csharp
+public enum CasingStyle
+```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None | The none. | 
+| 1 | CamelCase | Camel Case | The camel case - "camelCase". | 
+| 2 | KebabCase | Kebab Case | The kebab case - "kebab-case". | 
+| 3 | PascalCase | Pascal Case | The pascal case - "PascalCase". | 
+| 4 | SnakeCase | Snake Case | The snake case - "snake_case". | 
+
+
+
+<br />
+
+
 ## GlobalizationConstants
 GlobalizationConstants.
 

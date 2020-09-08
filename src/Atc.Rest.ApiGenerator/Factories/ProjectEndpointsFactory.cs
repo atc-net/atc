@@ -21,7 +21,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "System",
                 "System.Threading",
                 "System.Threading.Tasks",
-                $"{apiProjectName}.Generated.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstLetterToUpper()}",
+                $"{apiProjectName}.Generated.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",
                 "Microsoft.AspNetCore.Http",
                 "Microsoft.AspNetCore.Mvc",
             };

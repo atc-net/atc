@@ -38,7 +38,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public bool GenerateCode()
         {
-            var controllerTypeName = FocusOnSegmentName.EnsureFirstLetterToUpper() + "Controller";
+            var controllerTypeName = FocusOnSegmentName.EnsureFirstCharacterToUpper() + "Controller";
 
             // Create compilationUnit
             var compilationUnit = SyntaxFactory.CompilationUnit();
@@ -103,7 +103,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public void ToFile()
         {
-            var controllerName = FocusOnSegmentName.EnsureFirstLetterToUpper() + "Controller";
+            var controllerName = FocusOnSegmentName.EnsureFirstCharacterToUpper() + "Controller";
             var file = Util.GetCsFileNameForEndpoints(ApiProjectOptions.PathForEndpoints, controllerName);
             FileHelper.Save(file, ToCodeAsString());
         }
@@ -200,7 +200,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                             SyntaxTokenFactory.Comma(),
                             SyntaxParameterFactory.CreateWithAttribute(nameof(FromServicesAttribute), interfaceName, "handler"),
                             SyntaxTokenFactory.Comma(),
-                            SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstLetterToLower())
+                            SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         }));
             }
             else
@@ -211,7 +211,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                         {
                             SyntaxParameterFactory.CreateWithAttribute(nameof(FromServicesAttribute), interfaceName, "handler"),
                             SyntaxTokenFactory.Comma(),
-                            SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstLetterToLower())
+                            SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         }));
             }
 

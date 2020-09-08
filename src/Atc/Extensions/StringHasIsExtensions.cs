@@ -341,6 +341,30 @@ namespace System
         }
 
         /// <summary>
+        /// Determines whether [is first character lower case].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if [is first character lower case] [the specified value]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFirstCharacterLowerCase(this string value)
+        {
+            return !string.IsNullOrEmpty(value) && char.IsLower(value[0]);
+        }
+
+        /// <summary>
+        /// Determines whether [is first character upper case].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if [is first character upper case] [the specified value]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFirstCharacterUpperCase(this string value)
+        {
+            return !string.IsNullOrEmpty(value) && char.IsUpper(value[0]);
+        }
+
+        /// <summary>
         /// Determines whether the specified company CVR number is a valid number.
         /// </summary>
         /// <remarks>This works only for Danish companies.</remarks>

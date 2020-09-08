@@ -110,7 +110,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public void ToFile()
         {
-            var area = FocusOnSegmentName.EnsureFirstLetterToUpper();
+            var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var resultName = ApiOperation.GetOperationName() + NameConstants.ContractResult;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractResults, resultName);
             FileHelper.Save(file, ToCodeAsString());

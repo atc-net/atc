@@ -66,6 +66,7 @@
      - ErrorHandlingExceptionFilter
      - UseRequireHttpsPermanent
      - UseJsonSerializerOptionsIgnoreNullValues
+     - JsonSerializerCasingStyle
      - UseValidateServiceRegistrations
      - AssemblyPairs
   -  Methods

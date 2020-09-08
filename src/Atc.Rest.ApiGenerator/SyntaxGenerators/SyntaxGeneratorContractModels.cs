@@ -45,7 +45,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
             foreach (var schemaKey in schemaKeys)
             {
-                var apiSchema = ApiProjectOptions.Document.Components.Schemas.First(x => x.Key == schemaKey);
+                var apiSchema = ApiProjectOptions.Document.Components.Schemas.First(x => x.Key.Equals(schemaKey, StringComparison.OrdinalIgnoreCase));
                 if (apiSchema.Value.IsSchemaEnumOrPropertyEnum())
                 {
                     var syntaxGeneratorContractModel = new SyntaxGeneratorContractModel(ApiProjectOptions, apiSchema.Key, apiSchema.Value, FocusOnSegmentName);

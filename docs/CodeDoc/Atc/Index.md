@@ -10,6 +10,7 @@
 ## [Atc](Atc.md)
 
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
+- [CasingStyle](Atc.md#casingstyle)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
 - [IgnoreDisplayAttribute](Atc.md#ignoredisplayattribute)

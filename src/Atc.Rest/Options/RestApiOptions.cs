@@ -21,6 +21,8 @@ namespace Atc.Rest.Options
 
         public bool UseJsonSerializerOptionsIgnoreNullValues { get; set; } = true;
 
+        public CasingStyle JsonSerializerCasingStyle { get; set; } = CasingStyle.CamelCase;
+
         public bool UseValidateServiceRegistrations { get; set; } = true;
 
         public List<AssemblyPairOptions> AssemblyPairs { get; set; } = new List<AssemblyPairOptions>();

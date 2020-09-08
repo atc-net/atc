@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Atc;
 using Atc.Rest;
 using Atc.Rest.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -68,8 +70,20 @@ namespace Microsoft.Extensions.DependencyInjection
                 })
                 .AddJsonOptions(jsonOptions =>
                 {
-                    jsonOptions.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-                    jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                    switch (restApiOptions.JsonSerializerCasingStyle)
+                    {
+                        case CasingStyle.CamelCase:
+                            jsonOptions.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                            jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                            break;
+                        case CasingStyle.PascalCase:
+                            jsonOptions.JsonSerializerOptions.DictionaryKeyPolicy = null;
+                            jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+                            break;
+                        default:
+                            throw new SwitchCaseDefaultException(restApiOptions.JsonSerializerCasingStyle);
+                    }
+
                     jsonOptions.JsonSerializerOptions.IgnoreNullValues = restApiOptions.UseJsonSerializerOptionsIgnoreNullValues;
                     jsonOptions.JsonSerializerOptions.WriteIndented = false;
                     jsonOptions.JsonSerializerOptions.AllowTrailingCommas = false;

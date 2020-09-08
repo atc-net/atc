@@ -149,7 +149,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var missingOperationSchemaMappings = new List<ApiOperationSchemaMap>();
             foreach (var map in operationSchemaMappings)
             {
-                if (sgContractModels.FirstOrDefault(x => x.ApiSchemaKey == map.SchemaKey) == null)
+                if (sgContractModels.FirstOrDefault(x => x.ApiSchemaKey.Equals(map.SchemaKey, StringComparison.OrdinalIgnoreCase)) == null)
                 {
                     missingOperationSchemaMappings.Add(map);
                 }
@@ -157,7 +157,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             foreach (var map in missingOperationSchemaMappings)
             {
-                if (missingOperationSchemaMappings.Count(x => x.SchemaKey == map.SchemaKey) > 1)
+                if (missingOperationSchemaMappings.Count(x => x.SchemaKey.Equals(map.SchemaKey, StringComparison.OrdinalIgnoreCase)) > 1)
                 {
                     throw new NotImplementedException($"SchemaKey: {map.SchemaKey} is not generated and exist multiple times - location-calculation is missing.");
                 }
@@ -165,7 +165,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 var generatorModel = new SyntaxGeneratorContractModel(
                     apiProjectOptions,
                     map.SchemaKey,
-                    apiProjectOptions.Document.Components.Schemas.First(x => x.Key == map.SchemaKey).Value,
+                    apiProjectOptions.Document.Components.Schemas.First(x => x.Key.Equals(map.SchemaKey, StringComparison.OrdinalIgnoreCase)).Value,
                     map.SegmentName);
 
                 if (map.LocatedArea == SchemaMapLocatedAreaType.RequestBody)
@@ -518,7 +518,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         private static void ScaffoldBasicFilePagination(ApiProjectOptions apiProjectOptions)
         {
-            if (!apiProjectOptions.Document.Components.Schemas.ContainsKey(Microsoft.OpenApi.Models.NameConstants.Pagination))
+            var (key, _) = apiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.OrdinalIgnoreCase));
+            if (key == null)
             {
                 return;
             }

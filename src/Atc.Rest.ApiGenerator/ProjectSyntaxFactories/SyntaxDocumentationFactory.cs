@@ -142,7 +142,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             {
                 CreateComment("<summary>"),
                 CreateComment("Endpoint definitions."),
-                CreateComment($"Area: {area.EnsureFirstLetterToUpper()}."),
+                CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}."),
                 CreateComment("</summary>"),
             });
         }
@@ -167,7 +167,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             comments.Add(CreateComment("<summary>"));
             comments.Add(CreateComment($"Description: {operationSummary}", true));
             comments.Add(CreateComment($"Operation: {operationName}", true));
-            comments.Add(CreateComment($"Area: {area.EnsureFirstLetterToUpper()}", true));
+            comments.Add(CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}", true));
             comments.Add(CreateComment("</summary>"));
 
             return SyntaxFactory.TriviaList(comments);
@@ -403,7 +403,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 CreateComment(title),
                 CreateComment($"Description: {description}", true),
                 CreateComment($"Operation: {operationId}."),
-                CreateComment($"Area: {area.EnsureFirstLetterToUpper()}."),
+                CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}."),
                 CreateComment("</summary>")
             };
         }

@@ -21,7 +21,7 @@ namespace Microsoft.OpenApi.Models
             return openApiOperation
                 .OperationId
                 .PascalCase(true)
-                .EnsureFirstLetterToUpper();
+                .EnsureFirstCharacterToUpper();
         }
 
         public static bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
