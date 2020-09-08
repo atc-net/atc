@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/Atc.OpenApi.svg?style=flat-square)](http://www.nuget.org/packages/Atc.OpenApi)
+[![NuGet](https://img.shields.io/nuget/dt/Atc.OpenApi.svg?style=flat-square)](http://www.nuget.org/packages/Atc.OpenApi)
+
 <div style='text-align: right'>
 
 [References](Index.md)
