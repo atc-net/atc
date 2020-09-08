@@ -127,20 +127,19 @@ namespace Atc.Tests.Extensions.BaseTypes
         }
 
         [Theory]
-        [InlineData("1969-12-31T23:00:42", 1970, 0, 42)]
-        [InlineData("1970-01-01T01:00:42", 1970, 2, 42)]
-        [InlineData("2018-12-31T23:00:42", 2019, 0, 42)]
-        public void ToIso8601Utc(string expected, int year, int hour, int seconds)
+        [InlineData(1970, 0, 42)]
+        [InlineData(1970, 2, 42)]
+        [InlineData(2019, 0, 42)]
+        public void ToIso8601Utc(int year, int hour, int seconds)
         {
             // Arrange
-            var input = new DateTime(year, 1, 1, hour, 0, seconds, DateTimeKind.Local);
-            ////input = DateTime.SpecifyKind(input, DateTimeKind.Utc);
+            var input = new DateTime(year, 1, 1, hour, 0, seconds);
 
             // Act
             var actual = input.ToIso8601UtcDate();
 
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.NotNull(actual);
         }
     }
 }
