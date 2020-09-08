@@ -133,9 +133,8 @@ namespace Atc.Tests.Extensions.BaseTypes
         public void ToIso8601Utc(string expected, int year, int hour, int seconds)
         {
             // Arrange
-            Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
-
-            var input = new DateTime(year, 1, 1, hour, 0, seconds);
+            var input = new DateTime(year, 1, 1, hour, 0, seconds, DateTimeKind.Local);
+            ////input = DateTime.SpecifyKind(input, DateTimeKind.Utc);
 
             // Act
             var actual = input.ToIso8601UtcDate();
