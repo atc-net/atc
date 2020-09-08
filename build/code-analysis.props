@@ -17,10 +17,12 @@
   </ItemGroup>
 
   <ItemGroup Label="NuGet">
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
+    <!-- <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="All" /> -->
+	<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
     <PackageReference Include="AsyncFixer" Version="1.3.0" PrivateAssets="All" />
     <PackageReference Include="SecurityCodeScan" Version="3.5.3" PrivateAssets="all" />
+	<!-- <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095" PrivateAssets="all" /> -->
   </ItemGroup>
 
 </Project>

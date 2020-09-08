@@ -109,7 +109,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (string s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -155,7 +155,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (string s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -617,7 +617,7 @@ namespace System
             {
                 if (i > 0 && char.IsUpper(value[i]) && !char.IsUpper(value[i - 1]))
                 {
-                    sb.Append(" ");
+                    sb.Append(' ');
                     if (i == value.Length - 1 || char.IsUpper(value[i + 1]))
                     {
                         sb.Append(value[i]);
@@ -670,7 +670,7 @@ namespace System
                     sb.Append(chars[i]);
                     if (i != lengthMinusOne && char.IsDigit(chars[i]) && !char.IsDigit(chars[i + 1]))
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
 
@@ -734,7 +734,7 @@ namespace System
                 return value;
             }
 
-            if (separators.Length <= 0 || separators.Length <= 0)
+            if (separators.Length <= 0)
             {
                 return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1);
             }
@@ -889,12 +889,7 @@ namespace System
                 return false;
             }
 
-            if (ignoreCaseSensitive)
-            {
-                return value.IndexOf(containsValue, StringComparison.CurrentCultureIgnoreCase) >= 0;
-            }
-
-            return value.IndexOf(containsValue, StringComparison.CurrentCulture) >= 0;
+            return value.Contains(containsValue, ignoreCaseSensitive ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture);
         }
 
         /// <summary>
@@ -1190,7 +1185,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (value.IndexOf(" ", StringComparison.Ordinal) == -1)
+            if (value.Contains(' ', StringComparison.Ordinal))
             {
                 return value;
             }

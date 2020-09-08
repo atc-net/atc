@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 // ReSharper disable LocalizableElement
 // ReSharper disable once CheckNamespace
@@ -8,9 +9,7 @@ namespace System
     /// ArgumentPropertyException.
     /// </summary>
     /// <seealso cref="System.Exception" />
-    [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors", Justification = "Reviewed.")]
-    [SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable", Justification = "Reviewed.")]
-    [SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Justification = "Reviewed.")]
+    [Serializable]
     public sealed class ArgumentPropertyException : ArgumentException
     {
         /// <summary>
@@ -49,6 +48,11 @@ namespace System
         /// <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         public ArgumentPropertyException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        private ArgumentPropertyException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+            : base("Value does not fall within the expected range.")
         {
         }
     }

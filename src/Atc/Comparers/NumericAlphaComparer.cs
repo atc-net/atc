@@ -30,21 +30,15 @@ namespace Atc
             }
 
             int? a = null;
-            if (x.IsDigitOnly())
+            if (x.IsDigitOnly() && int.TryParse(x, out int i1))
             {
-                if (int.TryParse(x, out int i))
-                {
-                    a = i;
-                }
+                a = i1;
             }
 
             int? b = null;
-            if (y.IsDigitOnly())
+            if (y.IsDigitOnly() && int.TryParse(y, out int i2))
             {
-                if (int.TryParse(y, out int i))
-                {
-                    b = i;
-                }
+                b = i2;
             }
 
             if (a.HasValue && b.HasValue)

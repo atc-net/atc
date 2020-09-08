@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
+﻿using System.Runtime.Serialization;
 using Atc.Helpers;
 
 // ReSharper disable once CheckNamespace
@@ -8,8 +7,7 @@ namespace System
     /// <summary>
     /// The exception that is thrown when actual type differs from expected type.
     /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors", Justification = "Reviewed.")]
-    [SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable", Justification = "Reviewed.")]
+    [Serializable]
     public class UnexpectedTypeException : Exception
     {
         /// <summary>
@@ -106,6 +104,11 @@ namespace System
         /// <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         public UnexpectedTypeException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected UnexpectedTypeException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+            : base("Unexpected type.")
         {
         }
     }

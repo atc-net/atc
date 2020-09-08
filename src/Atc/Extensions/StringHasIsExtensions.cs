@@ -45,6 +45,7 @@ namespace System
         ///   <c>true</c> if the specified b is equal; otherwise, <c>false</c>.
         /// </returns>
         [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
+        [SuppressMessage("Major Bug", "S2259:Null pointers should not be dereferenced", Justification = "OK.")]
         public static bool IsEqual(this string a, string b, StringComparison stringComparison = StringComparison.Ordinal, bool treatNullAsEmpty = true, bool useNormalizeAccents = false)
         {
             if (string.Equals(a, null, StringComparison.Ordinal) && string.Equals(b, null, StringComparison.Ordinal))
@@ -52,12 +53,9 @@ namespace System
                 return true;
             }
 
-            if (treatNullAsEmpty)
+            if (treatNullAsEmpty && string.IsNullOrEmpty(a) && string.IsNullOrEmpty(b))
             {
-                if (string.IsNullOrEmpty(a) && string.IsNullOrEmpty(b))
-                {
-                    return true;
-                }
+                return true;
             }
 
             if (string.Equals(a, null, StringComparison.Ordinal))
@@ -303,7 +301,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (string s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }

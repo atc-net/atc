@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Atc.Helpers
@@ -14,6 +15,7 @@ namespace Atc.Helpers
         /// <param name="target">The target.</param>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
+        [SuppressMessage("Major Code Smell", "S112:General exceptions should never be thrown", Justification = "OK.")]
         public static void SetPrivateField(object target, string fieldName, object value)
         {
             if (target == null)

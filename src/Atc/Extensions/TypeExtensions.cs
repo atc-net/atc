@@ -271,6 +271,7 @@ namespace System
         /// </summary>
         /// <param name="type">The type.</param>
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         public static Type[]? GetBaseTypeGenericArgumentTypes(this Type type)
         {
             if (type == null)
@@ -427,6 +428,7 @@ namespace System
         /// <param name="useGenericParameterNamesAsT">if set to <c>true</c> [use generic parameter names as t].</param>
         /// <param name="useSuffixQuestionMarkForGeneric">if set to <c>true</c> [use suffix question mark for generic].</param>
         /// <exception cref="ArgumentNullException">type.</exception>
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         public static string BeautifyName(this Type type, bool useFullName = false, bool useHtmlFormat = false, bool useGenericParameterNamesAsT = false, bool useSuffixQuestionMarkForGeneric = false)
         {
             if (type == null)
@@ -516,13 +518,13 @@ namespace System
 
             if (isNullable &&
                 workOnType != typeof(string) &&
-                typeName.IndexOf("?", StringComparison.Ordinal) == -1)
+                typeName.Contains("?", StringComparison.Ordinal))
             {
                 typeName += "?";
             }
 
             if (workOnType.IsByRef &&
-                typeName.IndexOf("&", StringComparison.Ordinal) == -1)
+                typeName.Contains("&", StringComparison.Ordinal))
             {
                 typeName += "&";
             }
