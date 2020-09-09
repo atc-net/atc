@@ -11,12 +11,18 @@ namespace Demo.Domain.Handlers.Orders
 {
     public class GetOrdersHandler : IGetOrdersHandler
     {
-        public async Task<GetOrdersResult> ExecuteAsync(GetOrdersParameters parameters, CancellationToken cancellationToken = default)
+        public Task<GetOrdersResult> ExecuteAsync(GetOrdersParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
+
+            return ExecuteHelperAsync(parameters);
+        }
+
+        private static async Task<GetOrdersResult> ExecuteHelperAsync(GetOrdersParameters parameters)
+        {
 
             var allItems = new List<Order>();
             for (var i = 0; i < 347; i++)

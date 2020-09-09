@@ -3,11 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Users;
 
+// ReSharper disable ConvertIfStatementToReturnStatement
 namespace Demo.Domain.Handlers.Users
 {
     public class DeleteUserByIdHandler : IDeleteUserByIdHandler
     {
-        public async Task<DeleteUserByIdResult> ExecuteAsync(DeleteUserByIdParameters parameters, CancellationToken cancellationToken = default)
+        public Task<DeleteUserByIdResult> ExecuteAsync(DeleteUserByIdParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
             {
@@ -16,9 +17,14 @@ namespace Demo.Domain.Handlers.Users
 
             if (parameters.Id == "7")
             {
-                return await Task.FromResult(DeleteUserByIdResult.NotFound($"Can't find user with id={parameters.Id}"));
+                return Task.FromResult(DeleteUserByIdResult.NotFound($"Can't find user with id={parameters.Id}"));
             }
 
+            return ExecuteHelperAsync(parameters);
+        }
+
+        private static async Task<DeleteUserByIdResult> ExecuteHelperAsync(DeleteUserByIdParameters parameters)
+        {
             return await Task.FromResult("User deleted.");
         }
     }

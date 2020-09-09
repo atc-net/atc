@@ -7,13 +7,18 @@ namespace Demo.Domain.Handlers.Users
 {
     public class UpdateUserByIdHandler : IUpdateUserByIdHandler
     {
-        public async Task<UpdateUserByIdResult> ExecuteAsync(UpdateUserByIdParameters parameters, CancellationToken cancellationToken = default)
+        public Task<UpdateUserByIdResult> ExecuteAsync(UpdateUserByIdParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
+            return ExecuteHelperAsync();
+        }
+
+        private static async Task<UpdateUserByIdResult> ExecuteHelperAsync()
+        {
             return await Task.FromResult("We are now updated.");
         }
     }

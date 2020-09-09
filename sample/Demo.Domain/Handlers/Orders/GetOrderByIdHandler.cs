@@ -15,31 +15,19 @@ namespace Demo.Domain.Handlers.Orders
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            if (parameters.Id == "7")
+            return parameters.Id switch
             {
-                return await Task.FromResult(GetOrderByIdResult.NotFound($"Could not find order with id={parameters.Id}"));
-            }
+                "7" => await Task.FromResult(GetOrderByIdResult.NotFound($"Could not find order with id={parameters.Id}")),
+                "8" => throw new Exception("Crash! Boom! Bang! # " + parameters.Id),
+                "9" => throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id),
+                "10" => throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id),
+                "11" => throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id),
+                _ => await ExecuteHelperAsync(parameters)
+            };
+        }
 
-            if (parameters.Id == "8")
-            {
-                throw new Exception("Crash! Boom! Bang! # " + parameters.Id);
-            }
-
-            if (parameters.Id == "9")
-            {
-                throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id);
-            }
-
-            if (parameters.Id == "10")
-            {
-                throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id);
-            }
-
-            if (parameters.Id == "11")
-            {
-                throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id);
-            }
-
+        private static async Task<GetOrderByIdResult> ExecuteHelperAsync(GetOrderByIdParameters parameters)
+        {
             var data = new Order
             {
                 Id = parameters.Id,

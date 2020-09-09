@@ -14,8 +14,16 @@ namespace Demo.Api.Full.Configuration
         {
             // Handlers
             services.AddTransient<IGetOrderByIdHandler, GetOrderByIdHandler>();
-            services.AddTransient<IGetUserByIdHandler, GetUserByIdHandler>();
+            services.AddTransient<IGetOrdersHandler, GetOrdersHandler>();
+            services.AddTransient<IPatchOrdersIdHandler, PatchOrdersIdHandler>();
+            
+            services.AddTransient<IDeleteUserByIdHandler, DeleteUserByIdHandler>();
             services.AddTransient<IGetUserByEmailHandler, GetUserByEmailHandler>();
+            services.AddTransient<IGetUserByIdHandler, GetUserByIdHandler>();
+            services.AddTransient<IGetUsersHandler, GetUsersHandler>();
+            services.AddTransient<IPostUsersHandler, PostUsersHandler>();
+            services.AddTransient<IUpdateMyTestGenderHandler, UpdateMyTestGenderHandler>();
+            services.AddTransient<IUpdateUserByIdHandler, UpdateUserByIdHandler>();
 
             // Validators
             services.AddTransient<IValidator<PostUsersParameters>, PostUsersParametersValidator>();
