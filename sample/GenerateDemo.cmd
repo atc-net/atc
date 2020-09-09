@@ -1,0 +1,14 @@
+@ECHO off
+
+CLS
+SET currentDirectory=%cd%
+FOR %%a IN ("%currentDirectory%") DO SET rootDirectory=%%~dpa
+SET srcDirectory=%rootDirectory%src
+SET generatorFile=%srcDirectory%\Atc.Rest.ApiGenerator.Console\bin\Debug\netcoreapp3.1\Atc.Rest.ApiGenerator.Console.exe
+
+SET projectName=Demo.Api
+SET specFile=%currentDirectory%\Demo.ApiDesign\SingleFileVersion\Api.v1.yaml
+SET generatedDirectory=%currentDirectory%\Demo.Api.Generated
+SET optionsFile=%currentDirectory%\\Demo.ApiDesign\DelegateApiGeneratorOptions.json
+
+%generatorFile% -n %projectName% -p %specFile% -o %generatedDirectory% --optionsPath %optionsFile%
