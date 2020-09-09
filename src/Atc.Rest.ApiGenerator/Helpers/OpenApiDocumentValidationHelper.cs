@@ -42,7 +42,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return false;
         }
 
-        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
         {
             var result = new List<string>();
