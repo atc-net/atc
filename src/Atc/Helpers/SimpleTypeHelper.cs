@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable MemberCanBePrivate.Global
 namespace Atc.Helpers
 {
     /// <summary>
@@ -164,6 +165,7 @@ namespace Atc.Helpers
         /// Gets the beautify type name by reference.
         /// </summary>
         /// <param name="type">The type.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string? GetBeautifyTypeNameByRef(Type type)
         {
             if (type == null)

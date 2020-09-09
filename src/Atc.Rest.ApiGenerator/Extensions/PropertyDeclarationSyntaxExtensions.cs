@@ -151,6 +151,7 @@ namespace Atc.CodeAnalysis.CSharp
             return propertyDeclaration;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static PropertyDeclarationSyntax AddValidationAttributeForMinMaxIfRequired(this PropertyDeclarationSyntax propertyDeclaration, OpenApiSchema schema)
         {
             if (schema == null)

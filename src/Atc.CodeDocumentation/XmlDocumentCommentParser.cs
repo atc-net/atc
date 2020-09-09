@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -84,6 +85,7 @@ namespace Atc.CodeDocumentation
                 .ToArray();
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static string TrimCode(string code, bool trimEachLine)
         {
             var sb = new StringBuilder();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -199,6 +200,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                                                                         SyntaxArgumentListFactory.CreateWithOneItem(parameterName)))))))))))));
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private List<MemberDeclarationSyntax> CreateMethods(string className)
         {
             var result = new List<MemberDeclarationSyntax>();

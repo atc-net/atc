@@ -515,6 +515,7 @@ namespace System
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="enumType">Type of the enum.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool TryGetEnumType(this Type type, out Type enumType)
         {
             if (type == null)

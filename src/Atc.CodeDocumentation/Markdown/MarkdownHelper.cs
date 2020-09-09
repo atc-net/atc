@@ -27,6 +27,7 @@ namespace Atc.CodeDocumentation.Markdown
             return mb.ToString();
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string? RenderSubList(TypeComments typeComments)
         {
             if (typeComments.Type.IsEnum)
@@ -373,6 +374,7 @@ namespace Atc.CodeDocumentation.Markdown
         }
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static void Build<T>(MarkdownBuilder mb, TypeComments typeComments, string label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)
         {
             if (!array.Any())

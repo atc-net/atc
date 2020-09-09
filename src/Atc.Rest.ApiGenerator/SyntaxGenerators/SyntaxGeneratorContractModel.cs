@@ -52,6 +52,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public SchemaMapLocatedAreaType LocationArea { get; set; } = SchemaMapLocatedAreaType.Response;
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public bool GenerateCode()
         {
             // Create compilationUnit

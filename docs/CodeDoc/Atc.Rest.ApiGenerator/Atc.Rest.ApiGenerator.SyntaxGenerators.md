@@ -324,11 +324,6 @@ public class SyntaxGeneratorContractModel : ISyntaxSchemaCodeGenerator, ISyntaxC
 ### Properties
 
 
-#### ApiProjectOptions
-
-```csharp
-ApiProjectOptions
-```
 #### ApiSchema
 
 ```csharp
@@ -353,11 +348,6 @@ FocusOnSegmentName
 
 ```csharp
 IsEnum
-```
-#### IsSharedContract
-
-```csharp
-IsSharedContract
 ```
 #### LocationArea
 
