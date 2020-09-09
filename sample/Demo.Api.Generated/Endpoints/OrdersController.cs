@@ -31,14 +31,14 @@ namespace Demo.Api.Generated.Endpoints
         [HttpGet]
         [ProducesResponseType(typeof(Pagination<Order>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> GetOrdersAsync(GetOrdersParameters parameters, [FromServices] IGetOrdersHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetOrdersAsync(GetOrdersParameters parameters, [FromServices] IGetOrdersHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return GetOrdersHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -49,14 +49,14 @@ namespace Demo.Api.Generated.Endpoints
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Order), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> GetOrderByIdAsync(GetOrderByIdParameters parameters, [FromServices] IGetOrderByIdHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetOrderByIdAsync(GetOrderByIdParameters parameters, [FromServices] IGetOrderByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return GetOrderByIdHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -69,13 +69,28 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status502BadGateway)]
-        public async Task<ActionResult> PatchOrdersIdAsync(PatchOrdersIdParameters parameters, [FromServices] IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> PatchOrdersIdAsync(PatchOrdersIdParameters parameters, [FromServices] IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
+            return PatchOrdersIdHelperAsync(parameters, handler, cancellationToken);
+        }
+
+        private static async Task<ActionResult> GetOrdersHelperAsync(GetOrdersParameters parameters, IGetOrdersHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> GetOrderByIdHelperAsync(GetOrderByIdParameters parameters, IGetOrderByIdHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> PatchOrdersIdHelperAsync(PatchOrdersIdParameters parameters, IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
+        {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
     }

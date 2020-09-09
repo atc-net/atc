@@ -30,7 +30,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
         }
 
-        public ApiProjectOptions ApiProjectOptions { get; }
+        private ApiProjectOptions ApiProjectOptions { get; }
 
         public string FocusOnSegmentName { get; }
 
@@ -64,6 +64,17 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 {
                     var methodDeclaration = CreateMembersForEndpoints(apiOperation, key, ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody, FocusOnSegmentName)
                         .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForEndpointMethods(apiOperation, FocusOnSegmentName));
+                    classDeclaration = classDeclaration.AddMembers(methodDeclaration);
+
+                    usedApiOperations.Add(apiOperation.Value);
+                }
+            }
+
+            foreach (var (_, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
+            {
+                foreach (var apiOperation in value.Operations)
+                {
+                    var methodDeclaration = CreateMembersForEndpointsPrivateHelper(apiOperation);
                     classDeclaration = classDeclaration.AddMembers(methodDeclaration);
 
                     usedApiOperations.Add(apiOperation.Value);
@@ -127,6 +138,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             var operationName = apiOperation.Value.GetOperationName();
             var interfaceName = "I" + operationName + NameConstants.ContractHandler;
             var methodName = operationName + "Async";
+            var helperMethodName = operationName + "HelperAsync";
             var parameterTypeName = operationName + NameConstants.ContractParameters;
             var resultTypeName = operationName + NameConstants.ContractResult;
 
@@ -136,12 +148,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                         .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(nameof(ActionResult))),
                     SyntaxFactory.Identifier(methodName))
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .AddModifiers(SyntaxTokenFactory.AsyncKeyword())
-                .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName))
+                .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName, true))
                 .WithBody(
                     SyntaxFactory.Block(
                         SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("handler"),
-                        CreateCodeBlockReturnStatement(apiOperation.Value.HasParametersOrRequestBody())));
+                        CreateCodeBlockReturnStatement(helperMethodName, apiOperation.Value.HasParametersOrRequestBody())));
 
             // Create and add Http-method-attribute
             var httpAttributeRoutePart = GetHttpAttributeRoutePart(urlPath);
@@ -160,6 +171,30 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                     methodDeclaration,
                     (current, producesResponseAttributePart) => current.AddAttributeLists(
                         SyntaxAttributeListFactory.CreateWithOneItem(producesResponseAttributePart)));
+        }
+
+        private static MethodDeclarationSyntax CreateMembersForEndpointsPrivateHelper(
+            KeyValuePair<OperationType, OpenApiOperation> apiOperation)
+        {
+            var operationName = apiOperation.Value.GetOperationName();
+            var interfaceName = "I" + operationName + NameConstants.ContractHandler;
+            var methodName = operationName + "HelperAsync";
+            var parameterTypeName = operationName + NameConstants.ContractParameters;
+
+            // Create method # use CreateParameterList & CreateCodeBlockReturnStatement
+            var methodDeclaration = SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.GenericName(SyntaxFactory.Identifier(nameof(Task)))
+                        .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(nameof(ActionResult))),
+                    SyntaxFactory.Identifier(methodName))
+                .AddModifiers(SyntaxTokenFactory.PrivateKeyword())
+                .AddModifiers(SyntaxTokenFactory.StaticKeyword())
+                .AddModifiers(SyntaxTokenFactory.AsyncKeyword())
+                .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName, false))
+                .WithBody(
+                    SyntaxFactory.Block(
+                        CreateCodeBlockReturnStatementForHelper(apiOperation.Value.HasParametersOrRequestBody())));
+
+            return methodDeclaration;
         }
 
         private static string GetHttpAttributeRoutePart(string urlPath)
@@ -187,21 +222,38 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
         private static ParameterListSyntax CreateParameterList(
             KeyValuePair<OperationType, OpenApiOperation> apiOperation,
             string parameterTypeName,
-            string interfaceName)
+            string interfaceName,
+            bool useFromServicesAttributeOnInterface)
         {
             ParameterListSyntax parameterList;
             if (apiOperation.Value.HasParametersOrRequestBody())
             {
-                parameterList = SyntaxFactory.ParameterList(
-                    SyntaxFactory.SeparatedList<ParameterSyntax>(
-                        new SyntaxNodeOrToken[]
-                        {
-                            SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
-                            SyntaxTokenFactory.Comma(),
-                            SyntaxParameterFactory.CreateWithAttribute(nameof(FromServicesAttribute), interfaceName, "handler"),
-                            SyntaxTokenFactory.Comma(),
-                            SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
-                        }));
+                if (useFromServicesAttributeOnInterface)
+                {
+                    parameterList = SyntaxFactory.ParameterList(
+                        SyntaxFactory.SeparatedList<ParameterSyntax>(
+                            new SyntaxNodeOrToken[]
+                            {
+                                SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
+                                SyntaxTokenFactory.Comma(),
+                                SyntaxParameterFactory.CreateWithAttribute(nameof(FromServicesAttribute), interfaceName, "handler"),
+                                SyntaxTokenFactory.Comma(),
+                                SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
+                            }));
+                }
+                else
+                {
+                    parameterList = SyntaxFactory.ParameterList(
+                        SyntaxFactory.SeparatedList<ParameterSyntax>(
+                            new SyntaxNodeOrToken[]
+                            {
+                                SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
+                                SyntaxTokenFactory.Comma(),
+                                SyntaxParameterFactory.Create(interfaceName, "handler"),
+                                SyntaxTokenFactory.Comma(),
+                                SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
+                            }));
+                }
             }
             else
             {
@@ -218,7 +270,32 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             return parameterList;
         }
 
-        private static ReturnStatementSyntax CreateCodeBlockReturnStatement(bool hasParameters)
+        private static ReturnStatementSyntax CreateCodeBlockReturnStatement(string helperMethodName, bool hasParameters)
+        {
+            var arguments = hasParameters
+                ? new SyntaxNodeOrToken[]
+                {
+                    SyntaxArgumentFactory.Create("parameters"),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxArgumentFactory.Create("handler"),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxArgumentFactory.Create("cancellationToken")
+                }
+                : new SyntaxNodeOrToken[]
+                {
+                    SyntaxArgumentFactory.Create("handler"),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxArgumentFactory.Create("cancellationToken")
+                };
+
+            return SyntaxFactory.ReturnStatement(
+                SyntaxFactory.InvocationExpression(SyntaxFactory.IdentifierName(helperMethodName))
+                    .WithArgumentList(
+                        SyntaxFactory.ArgumentList(
+                            SyntaxFactory.SeparatedList<ArgumentSyntax>(arguments))));
+        }
+
+        private static ReturnStatementSyntax CreateCodeBlockReturnStatementForHelper(bool hasParameters)
         {
             var arguments = hasParameters
                 ? new SyntaxNodeOrToken[]

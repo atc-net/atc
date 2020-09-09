@@ -32,14 +32,14 @@ namespace Demo.Api.Generated.Endpoints
         [HttpGet]
         [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> GetUsersAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetUsersAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(cancellationToken);
+            return GetUsersHelperAsync(handler, cancellationToken);
         }
 
         /// <summary>
@@ -51,14 +51,14 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> PostUsersAsync(PostUsersParameters parameters, [FromServices] IPostUsersHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> PostUsersAsync(PostUsersParameters parameters, [FromServices] IPostUsersHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return PostUsersHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -70,14 +70,14 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> GetUserByIdAsync(GetUserByIdParameters parameters, [FromServices] IGetUserByIdHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetUserByIdAsync(GetUserByIdParameters parameters, [FromServices] IGetUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return GetUserByIdHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -90,14 +90,14 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> UpdateUserByIdAsync(UpdateUserByIdParameters parameters, [FromServices] IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> UpdateUserByIdAsync(UpdateUserByIdParameters parameters, [FromServices] IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return UpdateUserByIdHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -109,14 +109,14 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> DeleteUserByIdAsync(DeleteUserByIdParameters parameters, [FromServices] IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> DeleteUserByIdAsync(DeleteUserByIdParameters parameters, [FromServices] IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return DeleteUserByIdHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -129,14 +129,14 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> UpdateMyTestGenderAsync(UpdateMyTestGenderParameters parameters, [FromServices] IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> UpdateMyTestGenderAsync(UpdateMyTestGenderParameters parameters, [FromServices] IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return await handler.ExecuteAsync(parameters, cancellationToken);
+            return UpdateMyTestGenderHelperAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -149,13 +149,48 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> GetUserByEmailAsync(GetUserByEmailParameters parameters, [FromServices] IGetUserByEmailHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetUserByEmailAsync(GetUserByEmailParameters parameters, [FromServices] IGetUserByEmailHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
+            return GetUserByEmailHelperAsync(parameters, handler, cancellationToken);
+        }
+
+        private static async Task<ActionResult> GetUsersHelperAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(cancellationToken);
+        }
+
+        private static async Task<ActionResult> PostUsersHelperAsync(PostUsersParameters parameters, IPostUsersHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> GetUserByIdHelperAsync(GetUserByIdParameters parameters, IGetUserByIdHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> UpdateUserByIdHelperAsync(UpdateUserByIdParameters parameters, IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> DeleteUserByIdHelperAsync(DeleteUserByIdParameters parameters, IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> UpdateMyTestGenderHelperAsync(UpdateMyTestGenderParameters parameters, IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
+        {
+            return await handler.ExecuteAsync(parameters, cancellationToken);
+        }
+
+        private static async Task<ActionResult> GetUserByEmailHelperAsync(GetUserByEmailParameters parameters, IGetUserByEmailHandler handler, CancellationToken cancellationToken)
+        {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
     }
