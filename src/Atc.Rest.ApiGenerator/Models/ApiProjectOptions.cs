@@ -17,7 +17,7 @@ namespace Atc.Rest.ApiGenerator.Models
             ApiOptions.ApiOptions apiOptions)
         {
             var executingAssembly = Assembly.GetExecutingAssembly();
-            ToolNameAndProjectVersion = executingAssembly.GetName().Name + " - " + executingAssembly.GetName().Version;
+            ToolNameAndProjectVersion = $"ApiGenerator {executingAssembly.GetName().Version}";
             ApiOptions = apiOptions;
             PathForSrcGenerate = apiProjectSrcGeneratePath ?? throw new ArgumentNullException(nameof(apiProjectSrcGeneratePath));
             Document = openApiDocument ?? throw new ArgumentNullException(nameof(openApiDocument));

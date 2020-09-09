@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Atc.Rest.ApiGenerator.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -15,7 +14,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
-                GetGeneratedByToolAndVersion(),
+                apiProjectOptions.ToolNameAndProjectVersion,
                 $"{apiProjectOptions.ProjectName}.Generated");
         }
 
@@ -32,7 +31,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
-                GetGeneratedByToolAndVersion(),
+                apiProjectOptions.ToolNameAndProjectVersion,
                 $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}");
         }
 
@@ -54,14 +53,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
-                GetGeneratedByToolAndVersion(),
+                apiProjectOptions.ToolNameAndProjectVersion,
                 $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
-        }
-
-        private static string GetGeneratedByToolAndVersion()
-        {
-            var assemblyName = Assembly.GetExecutingAssembly().GetName();
-            return $"{assemblyName.Name} {assemblyName.Version}";
         }
     }
 }

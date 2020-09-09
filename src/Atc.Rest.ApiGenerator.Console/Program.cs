@@ -12,26 +12,11 @@ namespace Atc.Rest.ApiGenerator.Console
 {
     public static class Program
     {
-        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         public static void Main(string[] args)
         {
-            // TODO: This args = new should be removed when development has completed -> CMD.file
-            string pathBase = @"C:\CodeDelegate\ATC\sample";
-            args = new[]
-            {
-                "-n",
-                "Demo.Api",
-                "-p",
-                @$"{pathBase}\Demo.ApiDesign\SingleFileVersion",
-                "-o",
-                @$"{pathBase}\Demo.Api.Generated",
-                "--optionsPath",
-                @$"{pathBase}\Demo.ApiDesign\DelegateApiGeneratorOptions.json",
-            };
-
             Parser.Default.ParseArguments<ArgumentOptions>(args)
-                .WithParsed(Run)
-                .WithNotParsed(HandleInvalidArguments);
+                    .WithParsed(Run)
+                    .WithNotParsed(HandleInvalidArguments);
         }
 
         private static void HandleInvalidArguments(IEnumerable<Error> errors)

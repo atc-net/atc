@@ -235,7 +235,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var lines = File.ReadLines(apiGeneratedFile).ToList();
 
             var executingAssembly = Assembly.GetExecutingAssembly();
-            var toolName = executingAssembly.GetName().Name;
+            const string toolName = "ApiGenerator";
             var newVersion = executingAssembly.GetName().Version;
 
             foreach (var line in lines)
@@ -262,11 +262,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 {
                     return true;
                 }
-                else
-                {
-                    Console.WriteLine("Existing project version is never than this tool version.");
-                    return false;
-                }
+
+                Console.WriteLine("Existing project version is never than this tool version.");
+                return false;
             }
 
             Console.WriteLine("Existing project did not contain a version.");
