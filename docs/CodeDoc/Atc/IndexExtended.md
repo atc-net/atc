@@ -117,6 +117,7 @@
      - GetNumberOfWeeksByYear(this int year)
      - GetFirstDayOfWeekNumberByYear(this int year, int weekNumber)
      - GetLastDayOfWeekNumberByYear(this int year, int weekNumber)
+- [ItemNotFoundException](System.md#itemnotfoundexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)

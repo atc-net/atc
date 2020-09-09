@@ -29,12 +29,9 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("Microsoft.AspNetCore.Mvc");
             }
 
-            if (requestBody != null)
+            if (requestBody != null && list.All(x => x != "System.ComponentModel.DataAnnotations"))
             {
-                if (list.All(x => x != "System.ComponentModel.DataAnnotations"))
-                {
-                    list.Add("System.ComponentModel.DataAnnotations");
-                }
+                list.Add("System.ComponentModel.DataAnnotations");
             }
 
             return list.ToArray();

@@ -10,6 +10,7 @@ namespace Atc.Rest.ApiGenerator.Factories
     /// Code Analysis Warnings for Managed Code by CheckId:
     /// https://docs.microsoft.com/en-us/visualstudio/code-quality/code-analysis-warnings-for-managed-code-by-checkid?view=vs-2019.
     /// </remarks>
+    [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
     internal static class SuppressMessageAttributeFactory
     {
         public static SuppressMessageAttribute Create(int checkId, string? justification)

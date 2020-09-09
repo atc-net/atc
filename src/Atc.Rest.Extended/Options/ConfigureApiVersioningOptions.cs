@@ -32,9 +32,9 @@ namespace Atc.Rest.Extended.Options
             // Advertise the API versions supported for the particular endpoint
             options.ReportApiVersions = true;
 
-            // DEFAULT Version reader is QueryStringApiVersionReader();
-            // clients request the specific version using the x-api-version header
-            // Supporting multiple versioning scheme
+            //// DEFAULT Version reader is QueryStringApiVersionReader();
+            //// clients request the specific version using the x-api-version header
+            //// Supporting multiple versioning scheme
             options.ApiVersionReader = ApiVersionReader.Combine(
                 new HeaderApiVersionReader(ApiVersionConstants.ApiVersionHeaderParameter),
                 new MediaTypeApiVersionReader(ApiVersionConstants.ApiVersionMediaTypeParameter),

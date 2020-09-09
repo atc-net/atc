@@ -31,7 +31,7 @@
      - Apply(OpenApiOperation operation, OperationFilterContext context)
 - [SwaggerEnumDescriptionsDocumentFilter](Atc.Rest.Extended.Filters.md#swaggerenumdescriptionsdocumentfilter)
   -  Methods
-     - Apply(OpenApiDocument document, DocumentFilterContext context)
+     - Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 
 ## [Atc.Rest.Extended.Options](Atc.Rest.Extended.Options.md)
 

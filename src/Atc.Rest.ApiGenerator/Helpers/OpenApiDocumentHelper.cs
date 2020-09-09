@@ -149,6 +149,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
+        [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK for now.")]
         private static FileInfo? CreateCombineApiYamlDocFile(string apiDesignPath)
         {
             var openApiYamlDocs = GetAllYamlDocuments(new DirectoryInfo(apiDesignPath));

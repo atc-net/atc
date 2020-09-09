@@ -47,6 +47,7 @@
 - [EnumExtensions](System.md#enumextensions)
 - [ExceptionExtensions](System.md#exceptionextensions)
 - [IntegerExtensions](System.md#integerextensions)
+- [ItemNotFoundException](System.md#itemnotfoundexception)
 - [StringExtensions](System.md#stringextensions)
 - [StringHasIsExtensions](System.md#stringhasisextensions)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)

@@ -145,6 +145,14 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                 astNodeForMethodParameters);
         }
 
+        internal static AstNode? GetAstNodeForMethod(AstNode astNode, string methodName)
+        {
+            return astNode.Descendants
+                .Where(x => x.IsType(typeof(InvocationExpression)))
+                .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && x.ToString() == methodName))
+                .FirstOrDefault(x => x != null);
+        }
+
         internal static AstNode? GetAstNodeForParameter(AstNode astNode, string parameterName)
         {
             return astNode.Descendants
@@ -152,14 +160,6 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                             x.IsType(typeof(VariableInitializer)) ||
                             x.IsType(typeof(MemberReferenceExpression)))
                 .Select(node => node.Descendants.FirstOrDefault(x => x.ToString() == parameterName))
-                .FirstOrDefault(x => x != null);
-        }
-
-        internal static AstNode? GetAstNodeForMethod(AstNode astNode, string methodName)
-        {
-            return astNode.Descendants
-                .Where(x => x.IsType(typeof(InvocationExpression)))
-                .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && x.ToString() == methodName))
                 .FirstOrDefault(x => x != null);
         }
 

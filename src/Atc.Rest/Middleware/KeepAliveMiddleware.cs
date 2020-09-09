@@ -18,13 +18,18 @@ namespace Atc.Rest.Middleware
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public Task Invoke(HttpContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return InternalInvokeAsync(context);
+        }
+
+        private async Task InternalInvokeAsync(HttpContext context)
+        {
             if (IsKeepAlivePing(context.Request))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -37,7 +42,7 @@ namespace Atc.Rest.Middleware
 
         private static bool IsKeepAlivePing(HttpRequest request)
         {
-            return request.Path == "/" && request.Method == "GET" && request.PathBase.HasValue == false;
+            return request.Path == "/" && request.Method == "GET" && !request.PathBase.HasValue;
         }
     }
 }

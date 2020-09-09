@@ -227,34 +227,32 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
 
         private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(AstNode astNode, string parameterName)
         {
-            string s = astNode.ToString();
-            bool stopRecursive = astNode.Parent == null ||
-                                 s.StartsWith("[Fact]", StringComparison.Ordinal) ||
-                                 s.StartsWith("[Theory]", StringComparison.Ordinal);
+            var s = astNode.ToString();
+            var stopRecursive = astNode.Parent == null ||
+                                s.StartsWith("[Fact]", StringComparison.Ordinal) ||
+                                s.StartsWith("[Theory]", StringComparison.Ordinal);
 
-            int index = s.IndexOf(" " + parameterName, StringComparison.Ordinal);
-            if (index != -1)
+            var index = s.IndexOf(" " + parameterName, StringComparison.Ordinal);
+            if (index != -1 &&
+                (index <= parameterName.Length + 1 ||
+                 !AllowedCharsBeforeParameterNameSpace.Contains(s[index - 1])))
             {
-                if (index <= parameterName.Length + 1 ||
-                    !AllowedCharsBeforeParameterNameSpace.Contains(s[index - 1]))
+                var ix = index + 1 + parameterName.Length;
+                if (ix < s.Length)
                 {
-                    var ix = index + 1 + parameterName.Length;
-                    if (ix < s.Length)
+                    var c = s[ix];
+                    if (AllowedCharsAfterParameterName.Contains(c))
                     {
-                        char c = s[ix];
-                        if (AllowedCharsAfterParameterName.Contains(c))
+                        var astNodeForParameter = DecompilerMethodHelper.GetAstNodeForParameter(astNode, parameterName);
+                        if (astNodeForParameter != null)
                         {
-                            var astNodeForParameter = DecompilerMethodHelper.GetAstNodeForParameter(astNode, parameterName);
-                            if (astNodeForParameter != null)
+                            var tmp = astNodeForParameter.Parent.FirstChild.ToString();
+                            if (tmp == parameterName)
                             {
-                                string tmp = astNodeForParameter.Parent.FirstChild.ToString();
-                                if (tmp == parameterName)
-                                {
-                                    tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString();
-                                }
-
-                                return tmp;
+                                tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString();
                             }
+
+                            return tmp;
                         }
                     }
                 }
@@ -281,7 +279,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             if (foundAstNode?.Parent != null)
             {
                 var sa = foundAstNode.Parent.Children.Select(x => x.ToString()).ToArray();
-                for (int i = 1; i < sa.Length; i++)
+                for (var i = 1; i < sa.Length; i++)
                 {
                     if (sa[i] == parameterName)
                     {

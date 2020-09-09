@@ -84,7 +84,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             var missingRegistrations = notRegistered.Select(typeInfo => typeInfo.Name).ToArray();
-            throw new Exception($"Missing registrations for {apiAssembly.GetName().Name}: {string.Join(", ", missingRegistrations)}");
+            throw new ItemNotFoundException($"Missing registrations for {apiAssembly.GetName().Name}: {string.Join(", ", missingRegistrations)}");
         }
 
         private static bool IsImplementationTypeRegistered(IServiceCollection services, Type type)

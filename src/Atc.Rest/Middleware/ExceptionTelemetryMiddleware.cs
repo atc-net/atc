@@ -19,13 +19,18 @@ namespace Atc.Rest.Middleware
             this.client = client;
         }
 
-        public async Task Invoke(HttpContext context)
+        public Task Invoke(HttpContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
+            return InternalInvokeAsync(context);
+        }
+
+        private async Task InternalInvokeAsync(HttpContext context)
+        {
             var requestFailed = false;
 
             try

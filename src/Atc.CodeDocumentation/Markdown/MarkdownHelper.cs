@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -248,6 +249,7 @@ namespace Atc.CodeDocumentation.Markdown
             mb.AppendLine();
         }
 
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         private static void AppendTypeBox(MarkdownBuilder mb, TypeComments typeComments)
         {
             var sb = new StringBuilder();

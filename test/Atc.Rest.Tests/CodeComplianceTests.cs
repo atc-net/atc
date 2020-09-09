@@ -29,7 +29,7 @@ namespace Atc.Rest.Tests
             typeof(Microsoft.AspNetCore.Builder.RestApiBuilderExtensions),
             typeof(Microsoft.AspNetCore.Http.AnonymousAccessExtensions),
             typeof(Microsoft.AspNetCore.Http.HttpContextExtensions),
-            typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilter),
+            typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilterAttribute),
             typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
             typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
         };

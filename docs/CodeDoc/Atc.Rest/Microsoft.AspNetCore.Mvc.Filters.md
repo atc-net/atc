@@ -8,10 +8,10 @@
 <br />
 
 
-## ErrorHandlingExceptionFilter
+## ErrorHandlingExceptionFilterAttribute
 
 ```csharp
-public class ErrorHandlingExceptionFilter : ExceptionFilterAttribute, IAsyncExceptionFilter, IFilterMetadata, IExceptionFilter, IOrderedFilter
+public class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttribute, IAsyncExceptionFilter, IFilterMetadata, IExceptionFilter, IOrderedFilter
 ```
 
 ### Methods

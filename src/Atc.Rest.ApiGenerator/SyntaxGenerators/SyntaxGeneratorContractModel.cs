@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
@@ -167,6 +168,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 .FormatDoubleLines();
         }
 
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         public void ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();

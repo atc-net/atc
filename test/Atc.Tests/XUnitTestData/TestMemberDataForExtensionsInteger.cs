@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Atc.Tests.XUnitTestData
 {
-    internal class TestMemberDataForExtensionsInteger
+    internal static class TestMemberDataForExtensionsInteger
     {
         public static IEnumerable<object[]> MonthNameData =>
             new List<object[]>

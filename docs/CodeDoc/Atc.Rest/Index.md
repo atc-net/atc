@@ -49,7 +49,7 @@
 
 ## [Microsoft.AspNetCore.Mvc.Filters](Microsoft.AspNetCore.Mvc.Filters.md)
 
-- [ErrorHandlingExceptionFilter](Microsoft.AspNetCore.Mvc.Filters.md#errorhandlingexceptionfilter)
+- [ErrorHandlingExceptionFilterAttribute](Microsoft.AspNetCore.Mvc.Filters.md#errorhandlingexceptionfilterattribute)
 
 ## [Microsoft.Extensions.DependencyInjection](Microsoft.Extensions.DependencyInjection.md)
 

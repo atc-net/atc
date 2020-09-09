@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Http;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc.Filters
 {
-    public sealed class ErrorHandlingExceptionFilter : ExceptionFilterAttribute
+    public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private readonly bool includeException;
         private readonly bool useProblemDetailsAsResponseBody;
         private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex = new Regex("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
 
-        public ErrorHandlingExceptionFilter(bool includeException = false, bool useProblemDetailsAsResponseBody = true)
+        public ErrorHandlingExceptionFilterAttribute(bool includeException = false, bool useProblemDetailsAsResponseBody = true)
         {
             this.includeException = includeException;
             this.useProblemDetailsAsResponseBody = useProblemDetailsAsResponseBody;

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Atc.Tests.XUnitTestData
 {
-    internal class TestMemberDataForExtensionsMethodInfo
+    internal static class TestMemberDataForExtensionsMethodInfo
     {
         public static IEnumerable<object[]> BeautifyNameData =>
             new List<object[]>
@@ -36,18 +35,19 @@ namespace Atc.Tests.XUnitTestData
     }
 
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
+    [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK, since this is a test.")]
     internal class TestMethods
     {
-        public void TestInInt(in int data) { int x = data; }
+        public void TestInInt(in int data) { var x = data; }
 
-        public void TestInNullInt(in int? data) { int? x = data; }
+        public void TestInNullInt(in int? data) { var x = data; }
 
         public void TestOutInt(out int data) { data = 0; }
 
         public void TestInNullOut(out int? data) { data = 0; }
 
-        public void TestRefInt(ref int data) { int x = data; }
+        public void TestRefInt(ref int data) { var x = data; }
 
-        public void TestRefNullInt(ref int? data) { int? x = data; }
+        public void TestRefNullInt(ref int? data) { var x = data; }
     }
 }

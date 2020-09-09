@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Any;
@@ -12,11 +13,12 @@ namespace Atc.Rest.Extended.Filters
 {
     public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
     {
-        public void Apply(OpenApiDocument document, DocumentFilterContext context)
+        [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            if (document == null)
+            if (swaggerDoc == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(swaggerDoc));
             }
 
             if (context == null)
@@ -25,7 +27,7 @@ namespace Atc.Rest.Extended.Filters
             }
 
             // Add enum descriptions to result models
-            foreach (var item in document.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
+            foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
             {
                 var propertyEnums = item.Value.Enum;
                 if (propertyEnums != null && propertyEnums.Count > 0)
@@ -35,12 +37,13 @@ namespace Atc.Rest.Extended.Filters
             }
 
             // Add enum descriptions to input parameters
-            foreach (var item in document.Paths)
+            foreach (var item in swaggerDoc.Paths)
             {
-                DescribeEnumParameters(item.Value.Operations, document, context.ApiDescriptions, item.Key);
+                DescribeEnumParameters(item.Value.Operations, swaggerDoc, context.ApiDescriptions, item.Key);
             }
         }
 
+        [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
         private static void DescribeEnumParameters(
             IDictionary<OperationType,
             OpenApiOperation> operations,

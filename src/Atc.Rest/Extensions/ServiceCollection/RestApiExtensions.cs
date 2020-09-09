@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Atc;
@@ -27,6 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         // ReSharper disable once UnusedTypeParameter
+        [SuppressMessage("Major Code Smell", "S2326:Unused type parameters should be removed", Justification = "OK. Due to pattern for base class.")]
         public static IServiceCollection AddRestApi<TStartup>(
             this IServiceCollection services,
             Action<IMvcBuilder> setupMvcAction,
@@ -60,7 +62,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     if (restApiOptions.ErrorHandlingExceptionFilter.Enable)
                     {
                         mvcOptions.Filters.Add(
-                            new ErrorHandlingExceptionFilter(
+                            new ErrorHandlingExceptionFilterAttribute(
                                 restApiOptions.ErrorHandlingExceptionFilter.IncludeExceptionDetails,
                                 restApiOptions.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody));
                     }

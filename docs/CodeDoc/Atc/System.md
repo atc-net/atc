@@ -399,6 +399,18 @@ bool IsPrime(this int number)
 <br />
 
 
+## ItemNotFoundException
+The exception that is thrown when an item is not found.
+
+
+```csharp
+public class ItemNotFoundException : Exception, ISerializable
+```
+
+
+<br />
+
+
 ## StringExtensions
 Extensions for the string class.
 

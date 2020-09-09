@@ -114,20 +114,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 schemaKey = apiSchema.Items.Reference.Id.EnsureFirstCharacterToUpper();
             }
-            else if (apiSchema.AllOf.Count == 2)
+            else if (apiSchema.AllOf.Count == 2 &&
+                     (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                      Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
             {
-                if (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
-                    Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        schemaKey = apiSchema.AllOf[0].GetModelName();
-                    }
+                    schemaKey = apiSchema.AllOf[0].GetModelName();
+                }
 
-                    if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        schemaKey = apiSchema.AllOf[1].GetModelName();
-                    }
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    schemaKey = apiSchema.AllOf[1].GetModelName();
                 }
             }
 

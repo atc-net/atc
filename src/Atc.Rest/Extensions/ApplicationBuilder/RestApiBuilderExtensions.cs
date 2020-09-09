@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Atc.Rest.Extensions;
 using Atc.Rest.Middleware;
 using Atc.Rest.Options;
@@ -24,6 +25,7 @@ namespace Microsoft.AspNetCore.Builder
             return app.UseRestApi(env, restApiOptions, _ => { });
         }
 
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         public static IApplicationBuilder UseRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,

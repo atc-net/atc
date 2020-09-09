@@ -11,7 +11,7 @@ using ICSharpCode.Decompiler.CSharp.Syntax;
 
 namespace Atc.XUnit.Internal.AbstractSyntaxTree
 {
-    internal class AnalyzerHelper
+    internal static class AnalyzerHelper
     {
         internal static MethodInfo[] GetSourceMethodsWithMissingTest(
             Type[] sourceTypes,
@@ -53,11 +53,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                             else if (debugLimitData != null)
                             {
                                 // Dummy for breakpoint
-                                throw new Exception("Ups..");
-                            }
-                            else
-                            {
-                                // Dummy for breakpoint
+                                throw new Exception("Whoops..");
                             }
                         }
                     }

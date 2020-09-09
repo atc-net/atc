@@ -102,13 +102,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             {
                 useNullableReferenceTypes = false;
             }
-            else if (parameter.Schema.Default != null)
+            else if (parameter.Schema.Default != null &&
+                     (parameter.In == ParameterLocation.Query ||
+                      parameter.In == ParameterLocation.Header))
             {
-                if (parameter.In == ParameterLocation.Query ||
-                    parameter.In == ParameterLocation.Header)
-                {
-                    useNullableReferenceTypes = false;
-                }
+                useNullableReferenceTypes = false;
             }
 
             var propertyDeclaration = CreateAuto(

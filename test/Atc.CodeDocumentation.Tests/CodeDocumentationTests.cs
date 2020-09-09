@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using Atc.CodeDocumentation.Markdown;
@@ -19,15 +20,16 @@ namespace Atc.CodeDocumentation.Tests
         }
 
         [Fact]
+        [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK. This \"Test\" generates our Markdown files.")]
         public void RunMarkdownCodeDocGenerator()
         {
             // Arrange
             var assemblyName = typeof(CodeDocumentationTests).Assembly.GetName().Name;
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            int index = baseDirectory!.IndexOf(assemblyName!, StringComparison.Ordinal);
+            var index = baseDirectory!.IndexOf(assemblyName!, StringComparison.Ordinal);
             var testProjectDirectory = new DirectoryInfo(baseDirectory.Substring(0, index + assemblyName.Length));
             var rootDirectory = testProjectDirectory!.Parent!.Parent;
-            string codeDocPath =
+            var codeDocPath =
                 Path.Combine(
                     Path.Combine(
                         Path.Combine(rootDirectory!.FullName, "docs"), "CodeDoc"), sourceAssembly.GetName().Name!);

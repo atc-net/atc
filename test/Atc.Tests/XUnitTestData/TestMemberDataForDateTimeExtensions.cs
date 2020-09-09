@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Atc.Tests.XUnitTestData
 {
-    internal class TestMemberDataForDateTimeExtensions
+    internal static class TestMemberDataForDateTimeExtensions
     {
         public static IEnumerable<object[]> GetPrettyTimeDiff()
         {
-            DateTime unitTestEnd = DateTime.Now;
+            var unitTestEnd = DateTime.Now;
 
-            List<object[]> list = new List<object[]>
+            var list = new List<object[]>
             {
                 new object[] { "11,509 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15) },
                 new object[] { "12,213 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15) },
@@ -23,9 +23,9 @@ namespace Atc.Tests.XUnitTestData
 
         public static IEnumerable<object[]> GetPrettyTimeDiffWithDecimalPrecision()
         {
-            DateTime unitTestEnd = DateTime.Now;
+            var unitTestEnd = DateTime.Now;
 
-            List<object[]> list = new List<object[]>
+            var list = new List<object[]>
             {
                 new object[] { "11,5 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), 1 },
                 new object[] { "12,2 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15), 1 },
@@ -49,9 +49,9 @@ namespace Atc.Tests.XUnitTestData
 
         public static IEnumerable<object[]> GetPrettyTimeDiffWithEnd()
         {
-            DateTime unitTestEnd = DateTime.Now;
+            var unitTestEnd = DateTime.Now;
 
-            List<object[]> list = new List<object[]>
+            var list = new List<object[]>
             {
                 new object[] { "11,509 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), unitTestEnd },
                 new object[] { "12,213 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15), unitTestEnd },
@@ -65,9 +65,9 @@ namespace Atc.Tests.XUnitTestData
 
         public static IEnumerable<object[]> GetPrettyTimeDiffWithEndNowAndDecimalPrecision()
         {
-            DateTime unitTestEnd = DateTime.Now;
+            var unitTestEnd = DateTime.Now;
 
-            List<object[]> list = new List<object[]>
+            var list = new List<object[]>
             {
                 new object[] { "11,5 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), unitTestEnd, 1 },
                 new object[] { "12,2 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15), unitTestEnd, 1 },

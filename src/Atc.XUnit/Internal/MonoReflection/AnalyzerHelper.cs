@@ -6,7 +6,7 @@ using Mono.Reflection;
 
 namespace Atc.XUnit.Internal.MonoReflection
 {
-    internal class AnalyzerHelper
+    internal static class AnalyzerHelper
     {
         internal static MethodInfo[] GetUsedSourceMethods(
             Type[] sourceTypes,
@@ -94,10 +94,6 @@ namespace Atc.XUnit.Internal.MonoReflection
                                 // Dummy for breakpoint
                                 throw new Exception("Ups..");
                             }
-                            else
-                            {
-                                // Dummy for breakpoint
-                            }
                         }
                     }
                 }
@@ -124,7 +120,7 @@ namespace Atc.XUnit.Internal.MonoReflection
             // ReSharper disable once InvertIf
             if (debugLimitData != null && debugLimitData.HasClassNames)
             {
-                bool notFound = debugLimitData.ClassMethodNames
+                var notFound = debugLimitData.ClassMethodNames
                     .Where(x => x.Item2 != null)
                     .All(x => !x.Item2.Any(m => method.BeautifyName().Equals(m, StringComparison.Ordinal)));
 
@@ -134,7 +130,7 @@ namespace Atc.XUnit.Internal.MonoReflection
                 }
             }
 
-            bool isEqual = usedSourceMethods.Any(x =>
+            var isEqual = usedSourceMethods.Any(x =>
                 x.DeclaringType!.GetNameWithoutGenericType(true)!.Equals(method.DeclaringType!.GetNameWithoutGenericType(true), StringComparison.Ordinal) &&
                 x.BeautifyName().Equals(method.BeautifyName(), StringComparison.Ordinal));
             if (isEqual)

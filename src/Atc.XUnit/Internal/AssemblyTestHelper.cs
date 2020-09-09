@@ -12,6 +12,7 @@ namespace Atc.XUnit.Internal
         private static readonly DebugLimitData? DebugLimitData;
 
         [SuppressMessage("Performance", "CA1810:Initialize reference type static fields inline", Justification = "OK.")]
+        [SuppressMessage("Minor Code Smell", "S3963:\"static\" fields should be initialized inline", Justification = "OK.")]
         static AssemblyTestHelper()
         {
             DebugLimitData = null;

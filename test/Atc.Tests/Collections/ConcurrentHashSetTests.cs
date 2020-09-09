@@ -72,6 +72,9 @@ namespace Atc.Tests.Collections
 
             // Act
             list.Clear();
+
+            // Assert
+            Assert.Empty(list);
             list.Dispose();
         }
 

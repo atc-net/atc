@@ -12,6 +12,7 @@ namespace Atc.CodeAnalysis.CSharp.Factories
     /// </remarks>
     public static class SuppressMessageAttributeFactory
     {
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         public static SuppressMessageAttribute Create(int checkId, string? justification)
         {
             if (string.IsNullOrEmpty(justification))

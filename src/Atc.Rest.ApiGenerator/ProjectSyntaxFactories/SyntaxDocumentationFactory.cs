@@ -183,6 +183,16 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             });
         }
 
+        private static SyntaxTrivia CreateComment(string value, bool ensureEndingDot = false)
+        {
+            if (ensureEndingDot && !value.EndsWith(".", StringComparison.Ordinal))
+            {
+                value += ".";
+            }
+
+            return SyntaxFactory.Comment(Prefix + value);
+        }
+
         public static SyntaxTriviaList CreateSummary(string value, bool ensureEndingDot = false)
         {
             if (value == null)
@@ -198,19 +208,6 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             };
 
             return SyntaxFactory.TriviaList(comments);
-        }
-
-        private static SyntaxTrivia CreateComment(string value, bool ensureEndingDot = false)
-        {
-            if (ensureEndingDot)
-            {
-                if (!value.EndsWith(".", StringComparison.Ordinal))
-                {
-                    value += ".";
-                }
-            }
-
-            return SyntaxFactory.Comment(Prefix + value);
         }
 
         private static IEnumerable<SyntaxTrivia> CreateSummary(OpenApiSchema apiSchema)
@@ -251,6 +248,73 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             comments.Add(CreateComment("</summary>"));
 
             return comments;
+        }
+
+        private static IEnumerable<SyntaxTrivia> CreateSummary(
+            string title,
+            string description,
+            string operationId,
+            string area)
+        {
+            return new List<SyntaxTrivia>
+            {
+                CreateComment("<summary>"),
+                CreateComment(title),
+                CreateComment($"Description: {description}", true),
+                CreateComment($"Operation: {operationId}."),
+                CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}."),
+                CreateComment("</summary>")
+            };
+        }
+
+        private static SyntaxTriviaList CreateSummary(string title, OpenApiOperation apiOperation, string area)
+        {
+            var operationSummary = apiOperation.Summary;
+            if (string.IsNullOrEmpty(operationSummary))
+            {
+                operationSummary = apiOperation.Description;
+            }
+
+            var comments = new List<SyntaxTrivia>();
+            comments.AddRange(CreateSummary(title, operationSummary, apiOperation.GetOperationName(), area));
+
+            return SyntaxFactory.TriviaList(comments);
+        }
+
+        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiParameter apiParameter)
+        {
+            var comments = new List<SyntaxTrivia>();
+
+            var apiParameterDescription = apiParameter.Description;
+            if (!string.IsNullOrEmpty(apiParameterDescription))
+            {
+                comments.Add(CreateComment("<summary>"));
+                comments.Add(CreateComment(apiParameterDescription, true));
+                comments.Add(CreateComment("</summary>"));
+            }
+
+            return SyntaxFactory.TriviaList(comments);
+        }
+
+        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody, string contentType = "application/json")
+        {
+            var comments = new List<SyntaxTrivia>();
+
+            string? apiParameterDescription = null;
+
+            var (key, value) = apiRequestBody.Content.FirstOrDefault(x => x.Key == contentType);
+            apiParameterDescription = key == null
+                ? string.Empty
+                : value.Schema.Description;
+
+            if (!string.IsNullOrEmpty(apiParameterDescription))
+            {
+                comments.Add(CreateComment("<summary>"));
+                comments.Add(CreateComment(apiParameterDescription, true));
+                comments.Add(CreateComment("</summary>"));
+            }
+
+            return SyntaxFactory.TriviaList(comments);
         }
 
         private static IEnumerable<SyntaxTrivia> CreateExample(OpenApiSchema apiSchema)
@@ -338,73 +402,6 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                     CreateComment("</remarks>")
                 },
                 _ => SyntaxFactory.TriviaList()
-            };
-        }
-
-        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiParameter apiParameter)
-        {
-            var comments = new List<SyntaxTrivia>();
-
-            var apiParameterDescription = apiParameter.Description;
-            if (!string.IsNullOrEmpty(apiParameterDescription))
-            {
-                comments.Add(CreateComment("<summary>"));
-                comments.Add(CreateComment(apiParameterDescription, true));
-                comments.Add(CreateComment("</summary>"));
-            }
-
-            return SyntaxFactory.TriviaList(comments);
-        }
-
-        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody, string contentType = "application/json")
-        {
-            var comments = new List<SyntaxTrivia>();
-
-            string? apiParameterDescription = null;
-
-            var (key, value) = apiRequestBody.Content.FirstOrDefault(x => x.Key == contentType);
-            apiParameterDescription = key == null
-                ? string.Empty
-                : value.Schema.Description;
-
-            if (!string.IsNullOrEmpty(apiParameterDescription))
-            {
-                comments.Add(CreateComment("<summary>"));
-                comments.Add(CreateComment(apiParameterDescription, true));
-                comments.Add(CreateComment("</summary>"));
-            }
-
-            return SyntaxFactory.TriviaList(comments);
-        }
-
-        private static SyntaxTriviaList CreateSummary(string title, OpenApiOperation apiOperation, string area)
-        {
-            var operationSummary = apiOperation.Summary;
-            if (string.IsNullOrEmpty(operationSummary))
-            {
-                operationSummary = apiOperation.Description;
-            }
-
-            var comments = new List<SyntaxTrivia>();
-            comments.AddRange(CreateSummary(title, operationSummary, apiOperation.GetOperationName(), area));
-
-            return SyntaxFactory.TriviaList(comments);
-        }
-
-        private static IEnumerable<SyntaxTrivia> CreateSummary(
-            string title,
-            string description,
-            string operationId,
-            string area)
-        {
-            return new List<SyntaxTrivia>
-            {
-                CreateComment("<summary>"),
-                CreateComment(title),
-                CreateComment($"Description: {description}", true),
-                CreateComment($"Operation: {operationId}."),
-                CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}."),
-                CreateComment("</summary>")
             };
         }
 

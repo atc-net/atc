@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using Microsoft.OpenApi.Models;
@@ -41,6 +42,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return false;
         }
 
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
         {
             // TODO: UseOptions
@@ -101,6 +103,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
+        [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK for now.")]
         private static List<string> ValidatePaths(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
         {
             var result = new List<string>();
@@ -152,13 +156,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 result.Add($"Operation - OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'.");
                             }
                         }
-                        else if (key == OperationType.Delete)
+                        else if (key == OperationType.Delete &&
+                                 !value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase) &&
+                                 !value.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase) &&
-                                !value.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result.Add($"Operation - OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'.");
-                            }
+                            result.Add($"Operation - OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'.");
                         }
                     }
                 }
@@ -174,15 +176,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 foreach (var (key, value) in path.Operations)
                 {
-                    if (key == OperationType.Get)
+                    if (key == OperationType.Get && value.Parameters.Any(x => x.In == ParameterLocation.Path))
                     {
-                        if (value.Parameters.Any(x => x.In == ParameterLocation.Path))
+                        var httpStatusCodes = value.Responses.GetHttpStatusCodes();
+                        if (!httpStatusCodes.Contains(HttpStatusCode.NotFound))
                         {
-                            var httpStatusCodes = value.Responses.GetHttpStatusCodes();
-                            if (!httpStatusCodes.Contains(HttpStatusCode.NotFound))
-                            {
-                                result.Add($"Operation - Missing NotFound response type for operation '{value.GetOperationName()}', required by url parameter.");
-                            }
+                            result.Add($"Operation - Missing NotFound response type for operation '{value.GetOperationName()}', required by url parameter.");
                         }
                     }
                 }
@@ -199,12 +198,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 foreach (var (key, value) in path.Operations)
                 {
                     var httpStatusCodes = value.Responses.GetHttpStatusCodes();
-                    if (httpStatusCodes.Contains(HttpStatusCode.BadRequest))
+                    if (httpStatusCodes.Contains(HttpStatusCode.BadRequest) &&
+                        !value.HasParametersOrRequestBody() && !path.HasParameters())
                     {
-                        if (!value.HasParametersOrRequestBody() && !path.HasParameters())
-                        {
-                            result.Add($"Operation - Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters.");
-                        }
+                        result.Add($"Operation - Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters.");
                     }
                 }
             }

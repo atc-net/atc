@@ -132,20 +132,18 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (schema.AllOf.Count == 2)
+            if (schema.AllOf.Count == 2 &&
+                (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                 NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
             {
-                if (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
-                    NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                if (!NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return schema.AllOf[0].GetModelName();
-                    }
+                    return schema.AllOf[0].GetModelName();
+                }
 
-                    if (!NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return schema.AllOf[1].GetModelName();
-                    }
+                if (!NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    return schema.AllOf[1].GetModelName();
                 }
             }
 
@@ -238,7 +236,7 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
-            throw new Exception($"Can't find property title by property-key: {propertyKey}");
+            throw new ItemNotFoundException($"Can't find property title by property-key: {propertyKey}");
         }
 
         public static bool IsHttpStatusCodeModelReference(this OpenApiSchema schema)
@@ -339,7 +337,7 @@ namespace Microsoft.OpenApi.Models
                 return Tuple.Create(enumName, schemaProperty.Value);
             }
 
-            throw new Exception("Schema does not contain an enum!");
+            throw new ItemNotFoundException("Schema does not contain an enum!");
         }
     }
 }

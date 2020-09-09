@@ -41,10 +41,18 @@ namespace Atc.Rest.Extensions
                     }
                     else
                     {
-                        await using var stream = resourceStream;
-                        using var reader = new StreamReader(stream);
-                        yaml = await reader.ReadToEndAsync();
-                        YamlCache.Add(yamlEndpoint, yaml);
+                        Stream? stream = null;
+                        try
+                        {
+                            stream = resourceStream;
+                            using var reader = new StreamReader(stream);
+                            yaml = await reader.ReadToEndAsync();
+                            YamlCache.Add(yamlEndpoint, yaml);
+                        }
+                        finally
+                        {
+                            stream?.Dispose();
+                        }
                     }
 
                     context.Response.ContentType = "application/x-yaml";

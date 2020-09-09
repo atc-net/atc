@@ -87,6 +87,7 @@ namespace System
         /// ]]></example>
         public static bool IsBinarySequence(this int number)
         {
+            const int numberLimit = int.MaxValue / 2;
             var numberToCheck = 1;
             do
             {
@@ -97,7 +98,7 @@ namespace System
 
                 numberToCheck *= 2;
             }
-            while (numberToCheck <= number);
+            while (numberToCheck <= number && numberToCheck < numberLimit);
 
             return false;
         }

@@ -12,6 +12,7 @@ namespace Atc.Rest.ApiGenerator.Console
 {
     public static class Program
     {
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         public static void Main(string[] args)
         {
             // TODO: This args = new should be removed when development has completed -> CMD.file
