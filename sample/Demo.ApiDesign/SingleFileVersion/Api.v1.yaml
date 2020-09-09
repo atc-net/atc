@@ -28,8 +28,8 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - $ref: '#/components/schemas/orders'
+                  - $ref: '#/components/schemas/Pagination'
+                  - $ref: '#/components/schemas/Orders'
         '404':
           description: Not Found
   '/orders/{id}':
@@ -58,7 +58,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/order'
+                $ref: '#/components/schemas/Order'
         '404':
           description: Not Found
     patch:
@@ -82,7 +82,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateOrderRequest'
+              $ref: '#/components/schemas/UpdateOrderRequest'
       responses:
         '200':
           description: OK
@@ -95,7 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/problemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /users/email:
     get:
       tags:
@@ -117,7 +117,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/user'
+                $ref: '#/components/schemas/User'
         '400':
           description: Bad Request
         '404':
@@ -142,7 +142,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/user'
+                $ref: '#/components/schemas/User'
         '404':
           description: Not Found
         '409':
@@ -171,7 +171,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateUserRequest'
+              $ref: '#/components/schemas/UpdateUserRequest'
     delete:
       summary: Delete user by id
       description: Delete user by id
@@ -202,7 +202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/users'
+                $ref: '#/components/schemas/Users'
         '409':
           description: Conflict
     post:
@@ -220,7 +220,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createUserRequest'
+              $ref: '#/components/schemas/CreateUserRequest'
   '/users/{id}/gender':
     put:
       summary: Update gender on a user
@@ -237,7 +237,7 @@ paths:
           in: query
           description: The gender to set on the user
           schema:
-            $ref: '#/components/schemas/genderType'
+            $ref: '#/components/schemas/GenderType'
       responses:
         '200':
           description: OK
@@ -251,7 +251,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateTestGenderRequest'
+              $ref: '#/components/schemas/UpdateTestGenderRequest'
 components:
   parameters:
     pagingPageSize:
@@ -288,7 +288,7 @@ components:
         type: string
       description: The continuation token.
   schemas:
-    pagination:
+    Pagination:
       type: object
       title: Pagination
       description: A item result subset of a data query.
@@ -317,7 +317,7 @@ components:
       required:
         - pageSize
         - count
-    problemDetails:
+    ProblemDetails:
       type: object
       title: ProblemDetails
       description: 'A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.'
@@ -338,7 +338,7 @@ components:
         instance:
           type: string
           description: A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
-    order:
+    Order:
       title: Order
       description: |-
         A single order.
@@ -392,16 +392,16 @@ components:
           minimum: 10
           exclusiveMinimum: false
         deliveryAddress:
-          $ref: '#/components/schemas/address'
-    orders:
+          $ref: '#/components/schemas/Address'
+    Orders:
       description: A list of orders.
       type: array
       x-tags:
         - Orders
       title: Orders
       items:
-        $ref: '#/components/schemas/order'
-    genderType:
+        $ref: '#/components/schemas/Order'
+    GenderType:
       title: GenderType
       description: ''
       type: object
@@ -416,7 +416,7 @@ components:
             - Female
       required:
         - gender
-    user:
+    User:
       title: User
       description: A single user.
       type: object
@@ -426,7 +426,7 @@ components:
           format: uuid
           example: 00000000-0000-0000-0000-000000000000
         gender:
-          $ref: '#/components/schemas/genderType'
+          $ref: '#/components/schemas/GenderType'
         firstName:
           type: string
         lastName:
@@ -436,18 +436,18 @@ components:
           format: email
           example: email@email.dk
         homeAddress:
-          $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/Address'
         companyAddress:
-          $ref: '#/components/schemas/address'
-    users:
+          $ref: '#/components/schemas/Address'
+    Users:
       description: A list of users.
       type: array
       items:
-        $ref: '#/components/schemas/user'
+        $ref: '#/components/schemas/User'
       x-tags:
         - Users
       title: Users
-    createUserRequest:
+    CreateUserRequest:
       title: CreateUserRequest
       description: Request to create a user
       required:
@@ -465,8 +465,8 @@ components:
           format: email
           example: email@email.dk
         gender:
-          $ref: '#/components/schemas/genderType'
-    updateUserRequest:
+          $ref: '#/components/schemas/GenderType'
+    UpdateUserRequest:
       title: UpdateUserRequest
       description: Request to update a user
       type: object
@@ -480,15 +480,15 @@ components:
           format: email
           example: email@email.dk
         gender:
-          $ref: '#/components/schemas/genderType'
-    updateTestGenderRequest:
+          $ref: '#/components/schemas/GenderType'
+    UpdateTestGenderRequest:
       title: Update test-gender Request
       description: ''
       type: object
       properties:
         gender:
-          $ref: '#/components/schemas/genderType'
-    address:
+          $ref: '#/components/schemas/GenderType'
+    Address:
       title: Address
       type: object
       properties:
@@ -501,8 +501,8 @@ components:
         cityName:
           type: string
         myCountry:
-          $ref: '#/components/schemas/country'
-    country:
+          $ref: '#/components/schemas/Country'
+    Country:
       title: Country
       type: object
       properties:
@@ -522,7 +522,7 @@ components:
         - name
         - alpha2Code
         - alpha3Code
-    updateOrderRequest:
+    UpdateOrderRequest:
       title: UpdateOrderRequest
       description: Request to update an order
       type: object
