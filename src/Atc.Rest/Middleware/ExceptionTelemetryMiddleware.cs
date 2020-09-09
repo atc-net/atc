@@ -21,6 +21,11 @@ namespace Atc.Rest.Middleware
 
         public async Task Invoke(HttpContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             var requestFailed = false;
 
             try

@@ -9,11 +9,12 @@ namespace Atc.XUnit.Internal
 {
     internal static class AssemblyTestHelper
     {
-        private static readonly DebugLimitData? DebugLimitData = null;
+        private static readonly DebugLimitData? DebugLimitData;
 
         [SuppressMessage("Performance", "CA1810:Initialize reference type static fields inline", Justification = "OK.")]
         static AssemblyTestHelper()
         {
+            DebugLimitData = null;
             ////var classMethodNames = new List<Tuple<string, List<string>>>
             ////{
             ////    // Add debug stuff....

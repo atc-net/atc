@@ -732,7 +732,7 @@ string RemoveEndingSlashIfExist(this string value)
 ```csharp
 string RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = True)
 ```
-<p><b>Summary:</b> Remove a specified string from the string if occure in the start of the string.</p>
+<p><b>Summary:</b> Remove a specified string from the string if occurs in the start of the string.</p>
 
 <b>Parameters</b>
 

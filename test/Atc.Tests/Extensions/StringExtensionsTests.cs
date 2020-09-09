@@ -392,7 +392,7 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.TrimSpecial());
 
         [Theory]
-        ////[InlineData("Hallo World", "Hallo World")]
+        [InlineData("Hallo World", "Hallo World")]
         [InlineData("Hallo World", "  Hallo      World  ")]
         public void TrimExtended(string expected, string input)
             => Assert.Equal(expected, input.TrimExtended());
