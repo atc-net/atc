@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using Atc.Helpers;
 
 // ReSharper disable once CheckNamespace
@@ -31,6 +32,7 @@ namespace System
         /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
+        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public SwitchCaseDefaultException(Enum value)
         {
             if (value == null)
@@ -46,6 +48,7 @@ namespace System
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="message">The message.</param>
+        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public SwitchCaseDefaultException(Enum value, string message)
         {
             if (value == null)

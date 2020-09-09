@@ -26,6 +26,7 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
+        [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
         public static IApplicationBuilder UseRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,

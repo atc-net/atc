@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using Atc.Helpers;
 
 // ReSharper disable once CheckNamespace
@@ -32,6 +33,7 @@ namespace System
         /// </summary>
         /// <param name="actualType">The actual type.</param>
         /// <param name="expectedType">The expected type.</param>
+        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public UnexpectedTypeException(Type actualType, Type expectedType)
         {
             if (actualType == null)
@@ -65,6 +67,7 @@ namespace System
         /// <param name="actualType">The actual type.</param>
         /// <param name="expectedType">The expected type.</param>
         /// <param name="message">The message.</param>
+        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public UnexpectedTypeException(Type actualType, Type expectedType, string message)
         {
             if (actualType == null)
