@@ -43,9 +43,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
         {
-            // TODO: UseOptions
-            var apiOptionCasingStyle = CasingStyle.CamelCase;
-
             var result = new List<string>();
             foreach (var schema in schemas)
             {
@@ -62,7 +59,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 result.Add($"Schema - Title on array type '{schema.Title}' is not starting with uppercase.");
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(apiOptionCasingStyle, schema));
+                            result.AddRange(ValidateSchemaModelNameCasing(schema));
                             break;
                         }
 
@@ -88,11 +85,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 }
                                 else
                                 {
-                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(apiOptionCasingStyle, key, schema));
+                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema));
                                 }
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(apiOptionCasingStyle, schema));
+                            result.AddRange(ValidateSchemaModelNameCasing(schema));
                             break;
                         }
                 }
@@ -212,54 +209,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
-        private static List<string> ValidateSchemaModelNameCasing(CasingStyle apiOptionCasingStyle, OpenApiSchema schema)
+        private static List<string> ValidateSchemaModelNameCasing(OpenApiSchema schema)
         {
             var result = new List<string>();
             var modelName = schema.GetModelName(false);
-            switch (apiOptionCasingStyle)
+            if (modelName.IsFirstCharacterLowerCase())
             {
-                case CasingStyle.CamelCase:
-                    if (modelName.IsFirstCharacterUpperCase())
-                    {
-                        result.Add($"Schema - Object '{modelName}' is not using {apiOptionCasingStyle}.");
-                    }
-
-                    break;
-                case CasingStyle.PascalCase:
-                    if (modelName.IsFirstCharacterLowerCase())
-                    {
-                        result.Add($"Schema - Object '{modelName}' is not using {apiOptionCasingStyle}.");
-                    }
-
-                    break;
-                default:
-                    throw new SwitchCaseDefaultException(apiOptionCasingStyle);
+                result.Add($"Schema - Object '{modelName}' is not using {CasingStyle.PascalCase}.");
             }
 
             return result;
         }
 
-        private static List<string> ValidateSchemaModelPropertyNameCasing(CasingStyle apiOptionCasingStyle, string key, OpenApiSchema schema)
+        private static List<string> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema)
         {
             var result = new List<string>();
-            switch (apiOptionCasingStyle)
+            if (key.IsFirstCharacterUpperCase())
             {
-                case CasingStyle.CamelCase:
-                    if (key.IsFirstCharacterUpperCase())
-                    {
-                        result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {apiOptionCasingStyle}.");
-                    }
-
-                    break;
-                case CasingStyle.PascalCase:
-                    if (key.IsFirstCharacterLowerCase())
-                    {
-                        result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {apiOptionCasingStyle}.");
-                    }
-
-                    break;
-                default:
-                    throw new SwitchCaseDefaultException(apiOptionCasingStyle);
+                result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {CasingStyle.CamelCase}.");
             }
 
             return result;

@@ -15,17 +15,17 @@ namespace Atc.Rest.ApiGenerator.Console
         public static void Main(string[] args)
         {
             // TODO: This args = new should be removed when development has completed -> CMD.file
+            string pathBase = @"C:\CodeDelegate\ATC\sample";
             args = new[]
             {
                 "-n",
                 "Demo.Api",
                 "-p",
-                @"C:\Code\atc-net\atc\sample\Demo.ApiDesign\SingleFileVersion",
-                ////Util.GetProjectPath() + @"Demo.ApiDesign\MultiFileVersion",
+                @$"{pathBase}\Demo.ApiDesign\SingleFileVersion",
                 "-o",
-                @"C:\Code\atc-net\atc\sample\Demo.Api.Generated",
+                @$"{pathBase}\Demo.Api.Generated",
                 "--optionsPath",
-                @"C:\Code\atc-net\atc\sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json",
+                @$"{pathBase}\Demo.ApiDesign\DelegateApiGeneratorOptions.json",
             };
 
             Parser.Default.ParseArguments<ArgumentOptions>(args)
