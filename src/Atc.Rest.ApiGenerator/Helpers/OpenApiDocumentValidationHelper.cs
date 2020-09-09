@@ -42,6 +42,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return false;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
         {
             var result = new List<string>();
@@ -110,6 +111,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<string> ValidateOperations(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
         {
             var result = new List<string>();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 // ReSharper disable ConvertIfStatementToReturnStatement
@@ -86,6 +87,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static bool IsOperationReferencingSchemaCheckResponses(OpenApiOperation openApiOperation, string schemaKey)
         {
             if (openApiOperation.Responses != null && openApiOperation.Responses.Any())

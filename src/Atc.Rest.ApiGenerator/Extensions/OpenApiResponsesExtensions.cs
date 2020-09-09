@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
+// ReSharper disable ReturnTypeCanBeEnumerable.Global
+// ReSharper disable UseDeconstruction
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
 {
     internal static class OpenApiResponsesExtensions
     {
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static List<string> GetProducesResponseAttributeParts(this OpenApiResponses responses, string resultTypeName, bool useProblemDetailsAsDefaultResponseBody, string contractArea)
         {
             var result = new List<string>();

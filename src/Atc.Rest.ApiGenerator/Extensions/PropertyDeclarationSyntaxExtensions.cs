@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable CheckNamespace
 namespace Atc.CodeAnalysis.CSharp
 {
@@ -100,6 +102,7 @@ namespace Atc.CodeAnalysis.CSharp
                         SyntaxAttributeFactory.CreateFromValidationAttribute(validationAttribute))));
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static PropertyDeclarationSyntax AddValidationAttributeFromSchemaFormatIfRequired(this PropertyDeclarationSyntax propertyDeclaration, OpenApiSchema schema)
         {
             if (schema == null)

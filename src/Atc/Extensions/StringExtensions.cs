@@ -453,6 +453,7 @@ namespace System
         /// <param name="forLower">if set to <c>true</c> [for lower].</param>
         /// <param name="forUpper">if set to <c>true</c> [for upper].</param>
         /// <returns>The string that is normalize for accent-letter.</returns>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
         {
             //// http://symbolcodes.tlt.psu.edu/web/codehtml.html
@@ -1243,6 +1244,7 @@ namespace System
             return stream;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static string NormalizeAccentsHelper(string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
         {
             //// http://symbolcodes.tlt.psu.edu/web/codehtml.html

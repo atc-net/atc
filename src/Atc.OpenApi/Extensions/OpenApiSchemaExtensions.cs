@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-// ReSharper disable InvertIf
-// ReSharper disable UseDeconstructionOnParameter
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-// ReSharper disable UseDeconstruction
+// ReSharper disable InvertIf
 // ReSharper disable LoopCanBeConvertedToQuery
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UseDeconstruction
+// ReSharper disable UseDeconstructionOnParameter
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
 {
@@ -270,6 +272,7 @@ namespace Microsoft.OpenApi.Models
                    (schema.Properties.Any(x => x.Value.Enum.Any()) && schema.Properties.Count == 1);
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
         {
             if (schema == null)

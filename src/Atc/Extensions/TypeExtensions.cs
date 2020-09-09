@@ -327,6 +327,7 @@ namespace System
         /// </summary>
         /// <param name="type">The type.</param>
         /// <exception cref="ArgumentNullException">type.</exception>
+        [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
         public static MethodInfo[] GetPrivateDeclaredOnlyMethods(this Type type)
         {
             if (type == null)

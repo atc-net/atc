@@ -36,7 +36,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             }
         }
 
-        public ApiProjectOptions ApiProjectOptions { get; }
+        private ApiProjectOptions ApiProjectOptions { get; }
+
+        private bool IsSharedContract { get; set; }
 
         public string ApiSchemaKey { get; }
 
@@ -45,8 +47,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
         public string FocusOnSegmentName { get; }
 
         public CompilationUnitSyntax? Code { get; private set; }
-
-        public bool IsSharedContract { get; private set; }
 
         public bool IsEnum { get; private set; }
 

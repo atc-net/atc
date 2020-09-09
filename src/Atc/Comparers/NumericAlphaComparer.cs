@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -12,6 +13,7 @@ namespace Atc
     public class NumericAlphaComparer : IComparer<string>
     {
         /// <inheritdoc />
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public int Compare(string x, string y)
         {
             if (string.IsNullOrEmpty(x) && string.IsNullOrEmpty(y))

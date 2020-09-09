@@ -318,6 +318,7 @@ namespace Atc.CodeDocumentation.Markdown
             Build(mb, typeComments, "Methods", GetMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(false, false, true));
         }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         private static void BuildTable<T>(MarkdownBuilder mb, TypeComments typeComments, string? label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)
         {
             if (!array.Any())
@@ -371,6 +372,7 @@ namespace Atc.CodeDocumentation.Markdown
             }
         }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         private static void Build<T>(MarkdownBuilder mb, TypeComments typeComments, string label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)
         {
             if (!array.Any())
