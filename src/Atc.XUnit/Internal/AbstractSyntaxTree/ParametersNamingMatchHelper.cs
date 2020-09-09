@@ -31,10 +31,10 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             }
 
             // ReSharper disable once LoopCanBeConvertedToQuery
-            for (int i = 0; i < astNodeForTestParameters.Count; i++)
+            for (var i = 0; i < astNodeForTestParameters.Count; i++)
             {
                 var parameter = parameters[i];
-                bool pc = ParameterCheck(parameter, i, astNodeForTestParameters);
+                var pc = ParameterCheck(parameter, i, astNodeForTestParameters);
                 if (!pc)
                 {
                     return false;
@@ -55,10 +55,10 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             }
 
             // ReSharper disable once LoopCanBeConvertedToQuery
-            for (int i = 0; i < astNodeForTestMethodAndParameters.Item2.Count; i++)
+            for (var i = 0; i < astNodeForTestMethodAndParameters.Item2.Count; i++)
             {
                 var parameter = filteredParameters[i];
-                bool pc = ParameterCheck(parameter, i, astNodeForTestMethodAndParameters.Item2);
+                var pc = ParameterCheck(parameter, i, astNodeForTestMethodAndParameters.Item2);
                 if (!pc)
                 {
                     return false;
@@ -72,9 +72,9 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             ParameterInfo[] parameters,
             Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters)
         {
-            for (int i = 0; i < astNodeForTestMethodAndParameters.Item2.Count; i++)
+            for (var i = 0; i < astNodeForTestMethodAndParameters.Item2.Count; i++)
             {
-                bool pc = false;
+                var pc = false;
                 if (i < parameters.Length)
                 {
                     var parameter = parameters[i];

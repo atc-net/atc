@@ -88,9 +88,9 @@ namespace Atc.CodeDocumentation
         {
             var sb = new StringBuilder();
             var sa = code.Split(new[] { '\n' }, StringSplitOptions.None);
-            int ei = sa.Length - 1;
+            var ei = sa.Length - 1;
             const string lineStartOverheadSpaces = "            ";
-            for (int i = 0; i < sa.Length; i++)
+            for (var i = 0; i < sa.Length; i++)
             {
                 if (i == 0 && sa[i].Length == 0)
                 {
@@ -115,7 +115,7 @@ namespace Atc.CodeDocumentation
             }
 
             var s = sb.ToString();
-            int charsToRemove = 0;
+            var charsToRemove = 0;
             if (s.EndsWith(Environment.NewLine, StringComparison.Ordinal))
             {
                 charsToRemove += 2;
@@ -134,15 +134,14 @@ namespace Atc.CodeDocumentation
         private static string ResolveSeeElement(Match m, string? ns)
         {
             var typeName = m.Groups[1].Value;
-            if (!string.IsNullOrWhiteSpace(ns))
+            if (string.IsNullOrWhiteSpace(ns))
             {
-                if (typeName.StartsWith(ns, StringComparison.Ordinal))
-                {
-                    return $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace(".", "#", StringComparison.Ordinal).ToLower(GlobalizationConstants.EnglishCultureInfo))})";
-                }
+                return $"`{typeName}`";
             }
 
-            return $"`{typeName}`";
+            return typeName.StartsWith(ns, StringComparison.Ordinal)
+                ? $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace(".", "#", StringComparison.Ordinal).ToLower(GlobalizationConstants.EnglishCultureInfo))})"
+                : $"`{typeName}`";
         }
     }
 }

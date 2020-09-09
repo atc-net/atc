@@ -57,7 +57,7 @@ namespace Atc.XUnit
             }
 
             var sb = new StringBuilder();
-            for (int i = 0; i < lines.Count; i++)
+            for (var i = 0; i < lines.Count; i++)
             {
                 if (i < lines.Count - 1
                     && lines[i].EndsWith(":", StringComparison.Ordinal)
@@ -66,8 +66,7 @@ namespace Atc.XUnit
                     continue;
                 }
 
-                if (i == lines.Count - 1
-                    && lines[i].EndsWith(":", StringComparison.Ordinal))
+                if (i == lines.Count - 1 && lines[i].EndsWith(":", StringComparison.Ordinal))
                 {
                     continue;
                 }

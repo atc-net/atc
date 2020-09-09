@@ -19,7 +19,7 @@ namespace Demo.Domain.Handlers.Orders
             }
 
             var allItems = new List<Order>();
-            for (int i = 0; i < 347; i++)
+            for (var i = 0; i < 347; i++)
             {
                 allItems.Add(
                     new Order

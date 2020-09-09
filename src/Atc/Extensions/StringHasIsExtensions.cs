@@ -289,19 +289,19 @@ namespace System
                 return false;
             }
 
-            int countLeft = value.Count(x => x == '{');
-            int countRight = value.Count(x => x == '}');
+            var countLeft = value.Count(x => x == '{');
+            var countRight = value.Count(x => x == '}');
             if (countLeft != countRight)
             {
                 return false;
             }
 
-            string[] sa = value.Split('{');
+            var sa = value.Split('{');
 
             // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (string s in sa)
+            foreach (var s in sa)
             {
-                if (s.Contains("}", StringComparison.Ordinal))
+                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
                 {
                     continue;
                 }
@@ -316,8 +316,8 @@ namespace System
                     continue;
                 }
 
-                string[] sas = s.Split('}');
-                if (sas.Length == 0 || !int.TryParse(sas[0], out int _))
+                var sas = s.Split('}');
+                if (sas.Length == 0 || !int.TryParse(sas[0], out var _))
                 {
                     return false;
                 }
@@ -384,9 +384,9 @@ namespace System
                 return false;
             }
 
-            int[] validate = new[] { 2, 7, 6, 5, 4, 3, 2 };
-            int sum = 0;
-            for (int i = 0; i < 7; i++)
+            var validate = new[] { 2, 7, 6, 5, 4, 3, 2 };
+            var sum = 0;
+            for (var i = 0; i < 7; i++)
             {
                 sum += int.Parse(cvrNumber[i].ToString(Thread.CurrentThread.CurrentCulture), Thread.CurrentThread.CurrentCulture) * validate[i];
             }
@@ -454,8 +454,8 @@ namespace System
             }
 
             int[] c = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
-            int temp = 0;
-            for (int i = 0; i < 10; i++)
+            var temp = 0;
+            for (var i = 0; i < 10; i++)
             {
                 temp += c[i] * int.Parse(cprNumber.Substring(i, 1), Thread.CurrentThread.CurrentCulture);
             }

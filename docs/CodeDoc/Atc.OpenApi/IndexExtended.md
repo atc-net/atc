@@ -69,7 +69,7 @@
      - GetHttpStatusCodes(this OpenApiResponses responses)
      - HasSchemaTypeOfArray(this OpenApiResponses responses)
      - HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
-     - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
      - GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)

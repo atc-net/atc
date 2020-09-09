@@ -103,21 +103,21 @@ namespace System
                 return -1;
             }
 
-            List<int> parameterIds = new List<int>();
-            string[] sa = value.Split('{');
+            var parameterIds = new List<int>();
+            var sa = value.Split('{');
 
             // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (string s in sa)
+            foreach (var s in sa)
             {
-                if (s.Contains("}", StringComparison.Ordinal))
+                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
                 {
                     continue;
                 }
 
-                string[] sas = s.Split('}');
+                var sas = s.Split('}');
 
                 // ReSharper disable once InvertIf
-                if (sas.Length > 0 && int.TryParse(sas[0], out int x))
+                if (sas.Length > 0 && int.TryParse(sas[0], out var x))
                 {
                     if (!parameterIds.Contains(x))
                     {
@@ -149,21 +149,20 @@ namespace System
                 return -1;
             }
 
-            List<string> parameterLiterals = new List<string>();
-            string[] sa = value.Split('{');
+            var parameterLiterals = new List<string>();
+            var sa = value.Split('{');
 
+            // ReSharper disable once NotAccessedVariable
             // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (string s in sa)
+            int x;
+            foreach (var s in sa)
             {
-                if (s.Contains("}", StringComparison.Ordinal))
+                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
                 {
                     continue;
                 }
 
-                string[] sas = s.Split('}');
-
-                // ReSharper disable once NotAccessedVariable
-                int x;
+                var sas = s.Split('}');
 
                 // ReSharper disable once InvertIf
                 if (sas.Length > 0 && !int.TryParse(sas[0], out x))
@@ -613,7 +612,7 @@ namespace System
             }
 
             var sb = new StringBuilder();
-            for (int i = 0; i < value.Length; i++)
+            for (var i = 0; i < value.Length; i++)
             {
                 if (i > 0 && char.IsUpper(value[i]) && !char.IsUpper(value[i - 1]))
                 {
@@ -663,9 +662,9 @@ namespace System
             if (value.Any(char.IsDigit))
             {
                 var chars = value.ToCharArray();
-                int lengthMinusOne = chars.Length - 1;
+                var lengthMinusOne = chars.Length - 1;
                 var sb = new StringBuilder();
-                for (int i = 0; i < chars.Length; i++)
+                for (var i = 0; i < chars.Length; i++)
                 {
                     sb.Append(chars[i]);
                     if (i != lengthMinusOne && char.IsDigit(chars[i]) && !char.IsDigit(chars[i + 1]))
@@ -1185,12 +1184,12 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (value.Contains(' ', StringComparison.Ordinal))
+            if (value.IndexOf(" ", StringComparison.Ordinal) == -1)
             {
                 return value;
             }
 
-            string s = value.Trim();
+            var s = value.Trim();
             while (s.IndexOf("  ", StringComparison.Ordinal) != -1)
             {
                 s = s.Replace("  ", " ", StringComparison.Ordinal);

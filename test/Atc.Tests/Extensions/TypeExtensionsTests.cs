@@ -369,7 +369,6 @@ namespace Atc.Tests.Extensions
         [InlineData("object", null)]
         [InlineData("object", typeof(object))]
         [InlineData("void", typeof(void))]
-
         [InlineData("string", typeof(string))]
         [InlineData("bool", typeof(bool))]
         [InlineData("int", typeof(int))]

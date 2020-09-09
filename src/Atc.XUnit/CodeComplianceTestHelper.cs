@@ -174,7 +174,7 @@ namespace Atc.XUnit
             sb.AppendLine("            var excludeTypes = new List<Type>");
             sb.AppendLine("            {");
             sb.AppendLine("            {    // TODO: Implement tests on the following types, and then remove the type from the exclude list.");
-            for (int i = 0; i < typesWithMissingTests.Length; i++)
+            for (var i = 0; i < typesWithMissingTests.Length; i++)
             {
                 var type = typesWithMissingTests[i];
                 if (i == typesWithMissingTests.Length - 1)

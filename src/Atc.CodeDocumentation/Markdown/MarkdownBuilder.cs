@@ -26,7 +26,7 @@ namespace Atc.CodeDocumentation.Markdown
         public void AppendLine(int indentSpaces, string text)
         {
             var sbLocal = new StringBuilder();
-            for (int i = 0; i < indentSpaces; i++)
+            for (var i = 0; i < indentSpaces; i++)
             {
                 sbLocal.Append("&nbsp;");
             }
@@ -42,7 +42,7 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void Header(int level, string text)
         {
-            for (int i = 0; i < level; i++)
+            for (var i = 0; i < level; i++)
             {
                 sb.Append("#");
             }
@@ -53,7 +53,7 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void HeaderWithCode(int level, string code)
         {
-            for (int i = 0; i < level; i++)
+            for (var i = 0; i < level; i++)
             {
                 sb.Append("#");
             }
@@ -65,7 +65,7 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void HeaderWithLink(int level, string text, string url)
         {
-            for (int i = 0; i < level; i++)
+            for (var i = 0; i < level; i++)
             {
                 sb.Append("#");
             }

@@ -448,7 +448,7 @@ namespace System
                 var sa = type.GetGenericArguments()
                     .Select(x => x.BeautifyName(useFullName, useHtmlFormat, true))
                     .ToArray();
-                for (int i = 0; i < sa.Length; i++)
+                for (var i = 0; i < sa.Length; i++)
                 {
                     sa[0] = "T";
                 }
@@ -463,7 +463,7 @@ namespace System
                     .Aggregate((a, b) => $"{a}, {b}");
             }
 
-            int indexOfGeneric = typeName.IndexOf(GenericSign, StringComparison.Ordinal);
+            var indexOfGeneric = typeName.IndexOf(GenericSign, StringComparison.Ordinal);
             return indexOfGeneric == -1
                 ? typeName
                 : useHtmlFormat
@@ -490,8 +490,8 @@ namespace System
                 return "void";
             }
 
-            Type workOnType = type;
-            bool isNullable = false;
+            var workOnType = type;
+            var isNullable = false;
             if (type.IsNullable() && type.GetGenericArguments().Length == 1)
             {
                 isNullable = true;
@@ -517,8 +517,7 @@ namespace System
                 : workOnType.Name;
 
             if (isNullable &&
-                workOnType != typeof(string) &&
-                typeName.Contains("?", StringComparison.Ordinal))
+                workOnType != typeof(string))
             {
                 typeName += "?";
             }

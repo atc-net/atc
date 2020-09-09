@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -7,6 +7,10 @@
     <Description>A set of convenience classes and extension methods</Description>
     <PackageProjectUrl>https://github.com/atc-net/atc/blob/master/README.md</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <PropertyGroup>

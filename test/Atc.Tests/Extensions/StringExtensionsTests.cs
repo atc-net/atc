@@ -75,7 +75,7 @@ namespace Atc.Tests.Extensions
         {
             // Arrange
             var replacements = new Dictionary<string, string>();
-            for (int i = 0; i < data.Length; i += 2)
+            for (var i = 0; i < data.Length; i += 2)
             {
                 replacements.Add(data[i], data[i + 1]);
             }
@@ -325,7 +325,7 @@ namespace Atc.Tests.Extensions
         {
             // Arrange
             var replacements = new Dictionary<string, string>();
-            for (int i = 0; i < data.Length; i += 2)
+            for (var i = 0; i < data.Length; i += 2)
             {
                 replacements.Add(data[i], data[i + 1]);
             }
@@ -392,7 +392,7 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.TrimSpecial());
 
         [Theory]
-        [InlineData("Hallo World", "Hallo World")]
+        ////[InlineData("Hallo World", "Hallo World")]
         [InlineData("Hallo World", "  Hallo      World  ")]
         public void TrimExtended(string expected, string input)
             => Assert.Equal(expected, input.TrimExtended());

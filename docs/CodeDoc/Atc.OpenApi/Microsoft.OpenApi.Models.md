@@ -309,7 +309,7 @@ string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode
 #### GetSchemaForStatusCode
 
 ```csharp
-OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
 ```
 #### HasSchemaTypeOfArray
 
