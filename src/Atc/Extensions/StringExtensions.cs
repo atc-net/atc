@@ -109,7 +109,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (!s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -157,7 +157,7 @@ namespace System
             int x;
             foreach (var s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (!s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -221,11 +221,11 @@ namespace System
                 throw new ArgumentNullException(nameof(replacements));
             }
 
-            List<string> placeholders = value.GetStringFormatParameterTemplatePlaceholders();
-            foreach (KeyValuePair<string, string> pair in replacements)
+            var placeholders = value.GetStringFormatParameterTemplatePlaceholders();
+            foreach (var pair in replacements)
             {
-                string s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
-                            pair.Key.EndsWith("}}", StringComparison.Ordinal)
+                var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
+                         pair.Key.EndsWith("}}", StringComparison.Ordinal)
                     ? placeholders.FirstOrDefault(x => x == pair.Key)
                     : placeholders.FirstOrDefault(x => x == "{{" + pair.Key + "}}"))!;
 
@@ -251,7 +251,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (TryParseDateFromIso8601(value, out DateTime dateTime))
+            if (TryParseDateFromIso8601(value, out var dateTime))
             {
                 return dateTime;
             }
@@ -422,7 +422,7 @@ namespace System
 
             // 1.
             // Convert to char array.
-            char[] charArray = value.ToCharArray();
+            var charArray = value.ToCharArray();
 
             // 2.
             // Sort letters.
@@ -743,11 +743,11 @@ namespace System
                 return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1);
             }
 
-            foreach (char charSeparator in separators)
+            foreach (var charSeparator in separators)
             {
-                string[] strArray = value.Split(charSeparator);
-                StringBuilder sb = new StringBuilder(value.Length + 1);
-                foreach (string t in strArray)
+                var strArray = value.Split(charSeparator);
+                var sb = new StringBuilder(value.Length + 1);
+                foreach (var t in strArray)
                 {
                     sb.Append(t.Substring(0, 1).ToUpperInvariant() + t.Substring(1) + charSeparator);
                 }
@@ -917,7 +917,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            char[] chars = value.ToCharArray();
+            var chars = value.ToCharArray();
             chars[index] = newChar;
             return new string(chars);
         }
@@ -966,7 +966,7 @@ namespace System
         }
 
         /// <summary>
-        /// Remove a specified string from the string if occure in the start of the string.
+        /// Remove a specified string from the string if occurs in the start of the string.
         /// </summary>
         /// <param name="value">The string to work on.</param>
         /// <param name="startValue">The string to compare with.</param>
@@ -1040,7 +1040,7 @@ namespace System
                 return value;
             }
 
-            StringBuilder sb = new StringBuilder(value);
+            var sb = new StringBuilder(value);
             sb.Replace("\u0000", " ");
             sb.Replace("\u0001", " ");
             sb.Replace("\u0002", " ");
@@ -1115,7 +1115,7 @@ namespace System
                 value = value.Replace("\t", " ", StringComparison.Ordinal);
             }
 
-            int lengthBefore = value.Length;
+            var lengthBefore = value.Length;
             while (value.IndexOf("\n ", StringComparison.Ordinal) != -1)
             {
                 value = value.Replace("\n ", "\n", StringComparison.Ordinal);
@@ -1184,7 +1184,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (value.IndexOf(" ", StringComparison.Ordinal) == -1)
+            if (!value.Contains(" ", StringComparison.Ordinal))
             {
                 return value;
             }

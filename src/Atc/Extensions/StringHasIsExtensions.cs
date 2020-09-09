@@ -301,7 +301,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var s in sa)
             {
-                if (s.IndexOf("}", StringComparison.Ordinal) == -1)
+                if (!s.Contains("}", StringComparison.Ordinal))
                 {
                     continue;
                 }

@@ -61,8 +61,8 @@ namespace System
                 return false;
             }
 
-            int bound = (int)Math.Sqrt(number);
-            for (int i = 2; i <= bound; i++)
+            var bound = (int)Math.Sqrt(number);
+            for (var i = 2; i <= bound; i++)
             {
                 if (number % i == 0)
                 {
@@ -116,11 +116,11 @@ namespace System
                 return string.Empty;
             }
 
-            DateTime timeBegin = DateTime.Parse("01-JAN-1970", GlobalizationConstants.EnglishCultureInfo);
-            DateTime time = timeBegin.AddMonths(month - 1);
+            var timeBegin = DateTime.Parse("01-JAN-1970", GlobalizationConstants.EnglishCultureInfo);
+            var time = timeBegin.AddMonths(month - 1);
 
             // ReSharper disable once StringLiteralTypo
-            string str = time.ToString("MMMM", Thread.CurrentThread.CurrentUICulture);
+            var str = time.ToString("MMMM", Thread.CurrentThread.CurrentUICulture);
             if (str.Length <= 0)
             {
                 return string.Empty;
@@ -149,20 +149,20 @@ namespace System
         /// <returns>The date of the first day in the given year and week number.</returns>
         public static DateTime GetFirstDayOfWeekNumberByYear(this int year, int weekNumber)
         {
-            Calendar calendar = CultureInfo.CurrentUICulture.Calendar;
-            DateTime firstOfYear = new DateTime(year, 1, 1, calendar);
-            int daysOffset = DayOfWeek.Thursday - firstOfYear.DayOfWeek;
+            var calendar = CultureInfo.CurrentUICulture.Calendar;
+            var firstOfYear = new DateTime(year, 1, 1, calendar);
+            var daysOffset = DayOfWeek.Thursday - firstOfYear.DayOfWeek;
 
-            DateTime firstThursday = firstOfYear.AddDays(daysOffset);
-            int firstWeek = CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            var firstThursday = firstOfYear.AddDays(daysOffset);
+            var firstWeek = CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-            int weekNum = weekNumber;
+            var weekNum = weekNumber;
             if (firstWeek <= 1)
             {
                 weekNum -= 1;
             }
 
-            DateTime result = firstThursday.AddDays(weekNum * 7);
+            var result = firstThursday.AddDays(weekNum * 7);
             return result.AddDays(-3);
         }
 

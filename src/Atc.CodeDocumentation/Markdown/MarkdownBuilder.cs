@@ -44,10 +44,10 @@ namespace Atc.CodeDocumentation.Markdown
         {
             for (var i = 0; i < level; i++)
             {
-                sb.Append("#");
+                sb.Append('#');
             }
 
-            sb.Append(" ");
+            sb.Append(' ');
             sb.AppendLine(text);
         }
 
@@ -55,10 +55,10 @@ namespace Atc.CodeDocumentation.Markdown
         {
             for (var i = 0; i < level; i++)
             {
-                sb.Append("#");
+                sb.Append('#');
             }
 
-            sb.Append(" ");
+            sb.Append(' ');
             CodeQuote(code);
             sb.AppendLine();
         }
@@ -67,27 +67,27 @@ namespace Atc.CodeDocumentation.Markdown
         {
             for (var i = 0; i < level; i++)
             {
-                sb.Append("#");
+                sb.Append('#');
             }
 
-            sb.Append(" ");
+            sb.Append(' ');
             Link(text, url);
             sb.AppendLine();
         }
 
         public void Link(string text, string url)
         {
-            sb.Append("[");
+            sb.Append('[');
             sb.Append(text);
-            sb.Append("]");
-            sb.Append("(");
+            sb.Append(']');
+            sb.Append('(');
             sb.Append(url);
-            sb.Append(")");
+            sb.Append(')');
         }
 
         public void Image(string altText, string imageUrl)
         {
-            sb.Append("!");
+            sb.Append('!');
             Link(altText, imageUrl);
         }
 
@@ -111,9 +111,9 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void CodeQuote(string code)
         {
-            sb.Append("`");
+            sb.Append('`');
             sb.Append(code);
-            sb.Append("`");
+            sb.Append('`');
         }
 
         public void Table(string[] headers, List<string[]> items)

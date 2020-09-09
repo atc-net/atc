@@ -19,7 +19,7 @@ namespace Atc.XUnit
             Type type,
             bool useFullName = false)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>

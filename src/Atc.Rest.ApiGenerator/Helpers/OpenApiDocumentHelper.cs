@@ -39,7 +39,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 // Find all yaml files, except files starting with '.' as example '.spectral.yaml'
                 var yamlFiles = Directory
                     .GetFiles(apiDesignPath, "*.yaml", SearchOption.AllDirectories)
-                    .Where(x => x.IndexOf("\\.", StringComparison.Ordinal) == -1)
+                    .Where(x => !x.Contains("\\.", StringComparison.Ordinal))
                     .ToArray();
 
                 apiYamlFile = yamlFiles.Length switch

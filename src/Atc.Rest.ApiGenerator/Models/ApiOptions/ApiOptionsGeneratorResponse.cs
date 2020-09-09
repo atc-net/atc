@@ -3,6 +3,6 @@
     public class ApiOptionsGeneratorResponse
     {
         // ReSharper disable once InconsistentNaming
-        public bool UseProblemDetailsAsDefaultBody { get; set; } = false;
+        public bool UseProblemDetailsAsDefaultBody { get; set; }
     }
 }
