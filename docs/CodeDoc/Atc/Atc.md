@@ -130,12 +130,12 @@ public class IgnoreDisplayAttribute : Attribute
 <br />
 
 
-## LetterAccentType
+## LetterAccentTypes
 Flag-Enumeration: LetterAccentType.
 
 
 ```csharp
-public enum LetterAccentType
+public enum LetterAccentTypes
 ```
 
 

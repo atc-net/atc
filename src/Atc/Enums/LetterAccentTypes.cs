@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace Atc
@@ -8,8 +7,7 @@ namespace Atc
     /// Flag-Enumeration: LetterAccentType.
     /// </summary>
     [Flags]
-    [SuppressMessage("Naming", "CA1714:FlagsEnumsShouldHavePluralNames", Justification = "OK.")]
-    public enum LetterAccentType
+    public enum LetterAccentTypes
     {
         /// <summary>
         /// Default None.

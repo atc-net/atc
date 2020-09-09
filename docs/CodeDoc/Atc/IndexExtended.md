@@ -24,7 +24,7 @@
      - int Denmark
      - int Germany
 - [IgnoreDisplayAttribute](Atc.md#ignoredisplayattribute)
-- [LetterAccentType](Atc.md#letteraccenttype)
+- [LetterAccentTypes](Atc.md#letteraccenttypes)
 - [LocalizedDescriptionAttribute](Atc.md#localizeddescriptionattribute)
   -  Properties
      - Description
@@ -49,7 +49,6 @@
      - Clear()
      - FirstOrDefault(Func&lt;T, bool&gt; predicate)
      - Dispose()
-     - Dispose(bool disposing)
 
 ## [Atc.Enums](Atc.Enums.md)
 
@@ -138,7 +137,7 @@
      - XmlDecode(this string xml)
      - Alphabetize(this string value)
      - NormalizeAccents(this string value)
-     - NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
+     - NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
      - NormalizePascalCase(this string value)
      - Humanize(this string value)
      - CamelCase(this string value)

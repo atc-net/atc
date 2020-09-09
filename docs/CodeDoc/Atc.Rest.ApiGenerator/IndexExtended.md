@@ -208,7 +208,6 @@
      - GenerateSyntaxTrees()
 - [SyntaxGeneratorEndpointControllers](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorendpointcontrollers)
   -  Properties
-     - ApiProjectOptions
      - FocusOnSegmentName
      - Code
   -  Methods

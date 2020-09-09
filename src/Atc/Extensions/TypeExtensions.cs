@@ -218,36 +218,14 @@ namespace System
                 return false;
             }
 
-            if (inheritType.IsGenericType)
-            {
-                inheritTypeFullName = inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
-            }
-
-            if (type.BaseType.IsGenericType && baseTypeFullName == inheritTypeFullName)
-            {
-                var baseTypeGenericArgumentType = type.GetBaseTypeGenericArgumentType();
-                if (baseTypeGenericArgumentType != null)
-                {
-                    if (baseTypeGenericArgumentType.IsInterface)
-                    {
-                        if (matchAlsoOnArgumentTypeInterface)
-                        {
-                            var interfaces = argumentType.GetInterfaces();
-                            if (interfaces.FirstOrDefault(x => x.FullName == baseTypeGenericArgumentType.FullName) != null)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    else if (baseTypeGenericArgumentType.FullName == argumentType.FullName)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            // ReSharper disable once TailRecursiveCall
-            return type.BaseType.IsInheritedFromGenericWithArgumentType(inheritType, argumentType);
+            return IsInheritedFromGenericWithArgumentTypeHelper(
+                type,
+                inheritType,
+                argumentType,
+                matchAlsoOnArgumentTypeInterface,
+                inheritTypeFullName,
+                baseTypeFullName) ||
+                type.BaseType.IsInheritedFromGenericWithArgumentType(inheritType, argumentType);
         }
 
         /// <summary>
@@ -627,6 +605,47 @@ namespace System
             return underlyingType.IsEnum
                 ? underlyingType
                 : null!;
+        }
+
+        private static bool IsInheritedFromGenericWithArgumentTypeHelper(Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface, string inheritTypeFullName, string baseTypeFullName)
+        {
+            if (inheritType.IsGenericType)
+            {
+                inheritTypeFullName =
+                    inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
+            }
+
+            if (type.BaseType == null || !type.BaseType.IsGenericType ||
+                baseTypeFullName != inheritTypeFullName)
+            {
+                return false;
+            }
+
+            var baseTypeGenericArgumentType = type.GetBaseTypeGenericArgumentType();
+            if (baseTypeGenericArgumentType == null)
+            {
+                return false;
+            }
+
+            if (baseTypeGenericArgumentType.IsInterface)
+            {
+                if (!matchAlsoOnArgumentTypeInterface)
+                {
+                    return false;
+                }
+
+                var interfaces = argumentType.GetInterfaces();
+                if (interfaces.FirstOrDefault(x => x.FullName == baseTypeGenericArgumentType.FullName) != null)
+                {
+                    return true;
+                }
+            }
+            else if (baseTypeGenericArgumentType.FullName == argumentType.FullName)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

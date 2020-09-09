@@ -164,46 +164,6 @@ Type
 ### Methods
 
 
-#### GetEvents
-
-```csharp
-EventInfo[] GetEvents()
-```
-#### GetFields
-
-```csharp
-FieldInfo[] GetFields()
-```
-#### GetMethods
-
-```csharp
-MethodInfo[] GetMethods()
-```
-#### GetProperties
-
-```csharp
-PropertyInfo[] GetProperties()
-```
-#### GetStaticEvents
-
-```csharp
-EventInfo[] GetStaticEvents()
-```
-#### GetStaticFields
-
-```csharp
-FieldInfo[] GetStaticFields()
-```
-#### GetStaticMethods
-
-```csharp
-MethodInfo[] GetStaticMethods()
-```
-#### GetStaticProperties
-
-```csharp
-PropertyInfo[] GetStaticProperties()
-```
 #### GetXmlDocumentComments
 
 ```csharp

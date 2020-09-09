@@ -38,63 +38,78 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 foreach (var apiOperation in apiPath.Value.Operations)
                 {
                     // Parameters
-                    foreach (var apiParameter in apiOperation.Value.Parameters)
-                    {
-                        if (apiParameter.Content == null)
-                        {
-                            continue;
-                        }
-
-                        foreach (var apiMediaType in apiParameter.Content)
-                        {
-                            CollectSchema(
-                                apiMediaType.Value.Schema,
-                                SchemaMapLocatedAreaType.Parameter,
-                                apiPath.Key,
-                                apiOperation.Key,
-                                null,
-                                list);
-                        }
-                    }
+                    CollectMappingsForParameters(apiOperation, apiPath, list);
 
                     // RequestBody
-                    if (apiOperation.Value.RequestBody?.Content != null)
-                    {
-                        foreach (var apiMediaType in apiOperation.Value.RequestBody.Content)
-                        {
-                            CollectSchema(
-                                apiMediaType.Value.Schema,
-                                SchemaMapLocatedAreaType.RequestBody,
-                                apiPath.Key,
-                                apiOperation.Key,
-                                null,
-                                list);
-                        }
-                    }
+                    CollectMappingsForRequestBody(apiOperation, apiPath, list);
 
                     // Responses
-                    foreach (var apiResponse in apiOperation.Value.Responses)
-                    {
-                        if (apiResponse.Value?.Content == null)
-                        {
-                            continue;
-                        }
-
-                        foreach (var apiMediaType in apiResponse.Value.Content)
-                        {
-                            CollectSchema(
-                                apiMediaType.Value.Schema,
-                                SchemaMapLocatedAreaType.Response,
-                                apiPath.Key,
-                                apiOperation.Key,
-                                null,
-                                list);
-                        }
-                    }
+                    CollectMappingsForResponses(apiOperation, apiPath, list);
                 }
             }
 
             return list;
+        }
+
+        private static void CollectMappingsForParameters(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        {
+            foreach (var apiParameter in apiOperation.Value.Parameters)
+            {
+                if (apiParameter.Content == null)
+                {
+                    continue;
+                }
+
+                foreach (var apiMediaType in apiParameter.Content)
+                {
+                    CollectSchema(
+                        apiMediaType.Value.Schema,
+                        SchemaMapLocatedAreaType.Parameter,
+                        apiPath.Key,
+                        apiOperation.Key,
+                        null,
+                        list);
+                }
+            }
+        }
+
+        private static void CollectMappingsForRequestBody(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        {
+            if (apiOperation.Value.RequestBody?.Content != null)
+            {
+                foreach (var apiMediaType in apiOperation.Value.RequestBody.Content)
+                {
+                    CollectSchema(
+                        apiMediaType.Value.Schema,
+                        SchemaMapLocatedAreaType.RequestBody,
+                        apiPath.Key,
+                        apiOperation.Key,
+                        null,
+                        list);
+                }
+            }
+        }
+
+        private static void CollectMappingsForResponses(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        {
+            foreach (var apiResponse in apiOperation.Value.Responses)
+            {
+                if (apiResponse.Value?.Content == null)
+                {
+                    continue;
+                }
+
+                foreach (var apiMediaType in apiResponse.Value.Content)
+                {
+                    CollectSchema(
+                        apiMediaType.Value.Schema,
+                        SchemaMapLocatedAreaType.Response,
+                        apiPath.Key,
+                        apiOperation.Key,
+                        null,
+                        list);
+                }
+            }
         }
 
         private static void CollectSchema(

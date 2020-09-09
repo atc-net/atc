@@ -19,7 +19,6 @@
 - [ApiVersionOperationFilter](Atc.Rest.Extended.Filters.md#apiversionoperationfilter)
   -  Methods
      - Apply(OpenApiOperation operation, OperationFilterContext context)
-     - ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
 - [AuthorizeResponseOperationFilter](Atc.Rest.Extended.Filters.md#authorizeresponseoperationfilter)
   -  Methods
      - Apply(OpenApiOperation operation, OperationFilterContext context)

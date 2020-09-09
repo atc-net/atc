@@ -135,16 +135,16 @@ namespace Atc.CodeDocumentation.Markdown
             return mb.ToString();
         }
 
-        internal static MethodInfo[] GetMethods(Type type)
+        private static MethodInfo[] GetMethods(Type type)
         {
-            return type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            return type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
                 .ToArray();
         }
 
-        internal static PropertyInfo[] GetProperties(Type type)
+        private static PropertyInfo[] GetProperties(Type type)
         {
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
@@ -170,30 +170,30 @@ namespace Atc.CodeDocumentation.Markdown
                 .ToArray();
         }
 
-        internal static FieldInfo[] GetFields(Type type)
+        private static FieldInfo[] GetFields(Type type)
         {
-            return type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            return type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
                 .ToArray();
         }
 
-        internal static EventInfo[] GetEvents(Type type)
+        private static EventInfo[] GetEvents(Type type)
         {
             return type.GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .ToArray();
         }
 
-        internal static FieldInfo[] GetStaticFields(Type type)
+        private static FieldInfo[] GetStaticFields(Type type)
         {
-            return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
                 .ToArray();
         }
 
-        internal static PropertyInfo[] GetStaticProperties(Type type)
+        private static PropertyInfo[] GetStaticProperties(Type type)
         {
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            return type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
@@ -219,14 +219,14 @@ namespace Atc.CodeDocumentation.Markdown
                 .ToArray();
         }
 
-        internal static MethodInfo[] GetStaticMethods(Type type)
+        private static MethodInfo[] GetStaticMethods(Type type)
         {
-            return type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            return type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
                 .ToArray();
         }
 
-        internal static EventInfo[] GetStaticEvents(Type type)
+        private static EventInfo[] GetStaticEvents(Type type)
         {
             return type.GetEvents(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
@@ -297,7 +297,7 @@ namespace Atc.CodeDocumentation.Markdown
                 {
                     Value = (int)Enum.Parse(typeComments.Type, x),
                     Name = x,
-                    Description = (Enum.Parse(typeComments.Type, x) as Enum)!.GetDescription() ?? string.Empty,
+                    Description = (Enum.Parse(typeComments.Type, x) as Enum)!.GetDescription(),
                 })
                 .OrderBy(x => x.Value)
                 .ToArray();

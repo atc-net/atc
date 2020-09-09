@@ -16,14 +16,6 @@ MarkdownCodeDocGenerator.
 public static class MarkdownCodeDocGenerator
 ```
 
-### Static Fields
-
-
-#### GeneratedBy
-
-```csharp
-string GeneratedBy
-```
 ### Static Methods
 
 

@@ -40,11 +40,6 @@ public class ApiVersionOperationFilter : IOperationFilter
 ```csharp
 void Apply(OpenApiOperation operation, OperationFilterContext context)
 ```
-#### ConfigureApiVersion
-
-```csharp
-void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
-```
 
 <br />
 

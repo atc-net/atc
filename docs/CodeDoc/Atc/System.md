@@ -646,7 +646,7 @@ string NormalizeAccents(this string value)
 #### NormalizeAccents
 
 ```csharp
-string NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
+string NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
 ```
 <p><b>Summary:</b> Normalizes the accents.</p>
 

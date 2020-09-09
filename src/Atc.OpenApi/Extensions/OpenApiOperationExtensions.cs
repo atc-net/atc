@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+// ReSharper disable ConvertIfStatementToReturnStatement
 // ReSharper disable UseDeconstruction
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable LoopCanBeConvertedToQuery
@@ -47,6 +48,46 @@ namespace Microsoft.OpenApi.Models
             }
 
             // Check Responses
+            if (IsOperationReferencingSchemaCheckResponses(openApiOperation, schemaKey))
+            {
+                return true;
+            }
+
+            // Check RequestBody
+            if (IsOperationReferencingSchemaCheckRequestBody(openApiOperation, schemaKey))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
+        {
+            if (apiOperations == null)
+            {
+                throw new ArgumentNullException(nameof(apiOperations));
+            }
+
+            foreach (var apiOperation in apiOperations)
+            {
+                foreach (var response in apiOperation.Responses.Values)
+                {
+                    foreach (var mediaType in response.Content.Values)
+                    {
+                        if (mediaType.Schema.Type == OpenApiDataTypeConstants.Array)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsOperationReferencingSchemaCheckResponses(OpenApiOperation openApiOperation, string schemaKey)
+        {
             if (openApiOperation.Responses != null && openApiOperation.Responses.Any())
             {
                 foreach (var response in openApiOperation.Responses)
@@ -74,7 +115,11 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
-            // Check RequestBody
+            return false;
+        }
+
+        private static bool IsOperationReferencingSchemaCheckRequestBody(OpenApiOperation openApiOperation, string schemaKey)
+        {
             if (openApiOperation.RequestBody?.Content != null)
             {
                 foreach (var item in openApiOperation.RequestBody.Content)
@@ -87,30 +132,6 @@ namespace Microsoft.OpenApi.Models
                     if (schemaKey == item.Value.Schema.Title.PascalCase(true))
                     {
                         return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
-        {
-            if (apiOperations == null)
-            {
-                throw new ArgumentNullException(nameof(apiOperations));
-            }
-
-            foreach (var apiOperation in apiOperations)
-            {
-                foreach (var response in apiOperation.Responses.Values)
-                {
-                    foreach (var mediaType in response.Content.Values)
-                    {
-                        if (mediaType.Schema.Type == OpenApiDataTypeConstants.Array)
-                        {
-                            return true;
-                        }
                     }
                 }
             }

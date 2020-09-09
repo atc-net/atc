@@ -22,11 +22,11 @@ namespace Demo.Domain.Handlers.Orders
                 "9" => Task.FromResult(PatchOrdersIdResult.Conflict()),
                 "10" => Task.FromResult(PatchOrdersIdResult.Conflict("Something is broken - maybe a horse!")),
                 "11" => Task.FromResult(PatchOrdersIdResult.BadGateway("Something is broken - maybe a horse!")),
-                _ => ExecuteHelperAsync(parameters)
+                _ => ExecuteHelperAsync()
             };
         }
 
-        private static async Task<PatchOrdersIdResult> ExecuteHelperAsync(PatchOrdersIdParameters parameters)
+        private static async Task<PatchOrdersIdResult> ExecuteHelperAsync()
         {
             return await Task.FromResult("Data is updated");
         }

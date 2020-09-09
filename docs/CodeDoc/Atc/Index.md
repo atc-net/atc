@@ -14,7 +14,7 @@
 - [GlobalizationConstants](Atc.md#globalizationconstants)
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
 - [IgnoreDisplayAttribute](Atc.md#ignoredisplayattribute)
-- [LetterAccentType](Atc.md#letteraccenttype)
+- [LetterAccentTypes](Atc.md#letteraccenttypes)
 - [LocalizedDescriptionAttribute](Atc.md#localizeddescriptionattribute)
 - [NumericAlphaComparer](Atc.md#numericalphacomparer)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)

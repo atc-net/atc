@@ -53,11 +53,6 @@ bool Contains(T item)
 ```csharp
 void Dispose()
 ```
-#### Dispose
-
-```csharp
-void Dispose(bool disposing)
-```
 #### FirstOrDefault
 
 ```csharp

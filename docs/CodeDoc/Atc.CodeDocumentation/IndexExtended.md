@@ -29,14 +29,6 @@
   -  Methods
      - GetXmlDocumentComments()
      - ToString()
-     - GetMethods()
-     - GetProperties()
-     - GetFields()
-     - GetEvents()
-     - GetStaticFields()
-     - GetStaticProperties()
-     - GetStaticMethods()
-     - GetStaticEvents()
 - [XmlDocumentComment](Atc.CodeDocumentation.md#xmldocumentcomment)
   -  Properties
      - MemberType
@@ -54,8 +46,6 @@
 ## [Atc.CodeDocumentation.Markdown](Atc.CodeDocumentation.Markdown.md)
 
 - [MarkdownCodeDocGenerator](Atc.CodeDocumentation.Markdown.md#markdowncodedocgenerator)
-  -  Static Fields
-     - string GeneratedBy
   -  Static Methods
      - Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null)
 

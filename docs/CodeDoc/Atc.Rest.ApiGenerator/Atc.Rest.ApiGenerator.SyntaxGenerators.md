@@ -635,11 +635,6 @@ public class SyntaxGeneratorEndpointControllers : ISyntaxGeneratorEndpointContro
 ### Properties
 
 
-#### ApiProjectOptions
-
-```csharp
-ApiProjectOptions
-```
 #### Code
 
 ```csharp
