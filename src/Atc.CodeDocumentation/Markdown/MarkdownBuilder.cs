@@ -166,7 +166,7 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void SubList(TypeComments typeComments)
         {
-            string? s = MarkdownHelper.RenderSubList(typeComments);
+            var s = MarkdownHelper.RenderSubList(typeComments);
             if (!string.IsNullOrEmpty(s))
             {
                 sb.Append(s);
