@@ -9,6 +9,5 @@ SET generatorFile=%srcDirectory%\Atc.Rest.ApiGenerator.Console\bin\Debug\netcore
 SET projectName=Demo.Api
 SET specFile=%currentDirectory%\Demo.ApiDesign\SingleFileVersion\Api.v1.yaml
 SET generatedDirectory=%currentDirectory%\Demo.Api.Generated
-SET optionsFile=%currentDirectory%\\Demo.ApiDesign\DelegateApiGeneratorOptions.json
 
-%generatorFile% -n %projectName% -p %specFile% -o %generatedDirectory% --optionsPath %optionsFile%
+%generatorFile% -n %projectName% -p %specFile% -o %generatedDirectory%
