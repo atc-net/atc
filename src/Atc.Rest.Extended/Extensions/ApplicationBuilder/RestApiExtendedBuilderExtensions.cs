@@ -7,20 +7,20 @@ namespace Microsoft.AspNetCore.Builder
 {
     public static class RestApiExtendedBuilderExtensions
     {
-        public static IApplicationBuilder UseRestApi<TStartup>(this IApplicationBuilder app, IWebHostEnvironment env)
+        public static IApplicationBuilder ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-            return app.UseRestApi<TStartup>(env, new RestApiExtendedOptions(), _ => { });
+            return app.ConfigureRestApi(env, new RestApiExtendedOptions(), _ => { });
         }
 
-        public static IApplicationBuilder UseRestApi<TStartup>(
+        public static IApplicationBuilder ConfigureRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,
             RestApiExtendedOptions restApiOptions)
         {
-            return app.UseRestApi<TStartup>(env, restApiOptions, _ => { });
+            return app.ConfigureRestApi(env, restApiOptions, _ => { });
         }
 
-        public static IApplicationBuilder UseRestApi<TStartup>(
+        public static IApplicationBuilder ConfigureRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,
             RestApiExtendedOptions restApiOptions,
@@ -50,7 +50,7 @@ namespace Microsoft.AspNetCore.Builder
 
             if (restApiOptions.UseOpenApiSpec)
             {
-                app.UseOpenApiSpec<TStartup>(env, restApiOptions);
+                app.UseOpenApiSpec(env, restApiOptions);
             }
 
             return app;
