@@ -146,7 +146,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             if (schemaKey.Length == 0 ||
                 schemaKey == nameof(ProblemDetails) ||
-                schemaKey == "Pagination")
+                schemaKey.Equals(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }

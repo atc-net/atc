@@ -54,8 +54,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             ProjectGenerateHelper.Scaffold(apiProjectOptions);
             ProjectGenerateHelper.CopyApiSpecification(apiProjectOptions);
-            ProjectGenerateHelper.GenerateContracts(apiProjectOptions);
-            ProjectGenerateHelper.GenerateEndpoints(apiProjectOptions);
+
+            var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(apiProjectOptions.Document);
+            ProjectGenerateHelper.GenerateContracts(apiProjectOptions, operationSchemaMappings);
+            ProjectGenerateHelper.GenerateEndpoints(apiProjectOptions, operationSchemaMappings);
             return true;
         }
     }

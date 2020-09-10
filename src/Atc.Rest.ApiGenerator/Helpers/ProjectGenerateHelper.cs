@@ -115,14 +115,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
             File.Copy(apiProjectOptions.DocumentFile.FullName, resourceFile.FullName);
         }
 
-        public static void GenerateContracts(ApiProjectOptions apiProjectOptions)
+        public static void GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
                 throw new ArgumentNullException(nameof(apiProjectOptions));
             }
 
-            var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(apiProjectOptions.Document);
+            if (operationSchemaMappings == null)
+            {
+                throw new ArgumentNullException(nameof(operationSchemaMappings));
+            }
+
             var sgContractModels = new List<SyntaxGeneratorContractModel>();
             var sgContractParameters = new List<SyntaxGeneratorContractParameter>();
             var sgContractResults = new List<SyntaxGeneratorContractResult>();
@@ -198,17 +202,22 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
         }
 
-        public static void GenerateEndpoints(ApiProjectOptions apiProjectOptions)
+        public static void GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
                 throw new ArgumentNullException(nameof(apiProjectOptions));
             }
 
+            if (operationSchemaMappings == null)
+            {
+                throw new ArgumentNullException(nameof(operationSchemaMappings));
+            }
+
             var sgEndpoints = new List<SyntaxGeneratorEndpointControllers>();
             foreach (var segmentName in apiProjectOptions.BasePathSegmentNames)
             {
-                var generator = new SyntaxGeneratorEndpointControllers(apiProjectOptions, segmentName);
+                var generator = new SyntaxGeneratorEndpointControllers(apiProjectOptions, operationSchemaMappings, segmentName);
                 generator.GenerateCode();
                 sgEndpoints.Add(generator);
             }

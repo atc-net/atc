@@ -24,13 +24,17 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
     {
         public SyntaxGeneratorEndpointControllers(
             ApiProjectOptions apiProjectOptions,
+            List<ApiOperationSchemaMap> operationSchemaMappings,
             string focusOnSegmentName)
         {
             this.ApiProjectOptions = apiProjectOptions ?? throw new ArgumentNullException(nameof(apiProjectOptions));
+            this.OperationSchemaMappings = operationSchemaMappings ?? throw new ArgumentNullException(nameof(apiProjectOptions));
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
         }
 
         private ApiProjectOptions ApiProjectOptions { get; }
+
+        public List<ApiOperationSchemaMap> OperationSchemaMappings { get; }
 
         public string FocusOnSegmentName { get; }
 
@@ -62,7 +66,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             {
                 foreach (var apiOperation in value.Operations)
                 {
-                    var methodDeclaration = CreateMembersForEndpoints(apiOperation, key, ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody, FocusOnSegmentName)
+                    var methodDeclaration = CreateMembersForEndpoints(apiOperation, key, FocusOnSegmentName)
                         .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForEndpointMethods(apiOperation, FocusOnSegmentName));
                     classDeclaration = classDeclaration.AddMembers(methodDeclaration);
 
@@ -129,10 +133,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             FileHelper.Save(file, ToCodeAsString());
         }
 
-        private static MethodDeclarationSyntax CreateMembersForEndpoints(
+        private MethodDeclarationSyntax CreateMembersForEndpoints(
             KeyValuePair<OperationType, OpenApiOperation> apiOperation,
             string urlPath,
-            bool useProblemDetailsAsDefaultResponseBody,
             string area)
         {
             var operationName = apiOperation.Value.GetOperationName();
@@ -165,7 +168,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                         httpAttributeRoutePart));
 
             // Create and add producesResponseTypes-attributes
-            var producesResponseAttributeParts = apiOperation.Value.Responses.GetProducesResponseAttributeParts(resultTypeName, useProblemDetailsAsDefaultResponseBody, area);
+            var producesResponseAttributeParts = apiOperation.Value.Responses.GetProducesResponseAttributeParts(
+                resultTypeName,
+                ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody,
+                area,
+                OperationSchemaMappings);
+
             return producesResponseAttributeParts
                 .Aggregate(
                     methodDeclaration,

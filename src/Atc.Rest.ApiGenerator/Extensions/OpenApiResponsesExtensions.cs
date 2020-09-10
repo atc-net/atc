@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Atc.Rest.ApiGenerator.Extensions;
+using Atc.Rest.ApiGenerator.Models;
 
 // ReSharper disable ReturnTypeCanBeEnumerable.Global
 // ReSharper disable UseDeconstruction
@@ -14,7 +16,12 @@ namespace Microsoft.OpenApi.Models
     internal static class OpenApiResponsesExtensions
     {
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        public static List<string> GetProducesResponseAttributeParts(this OpenApiResponses responses, string resultTypeName, bool useProblemDetailsAsDefaultResponseBody, string contractArea)
+        public static List<string> GetProducesResponseAttributeParts(
+            this OpenApiResponses responses,
+            string resultTypeName,
+            bool useProblemDetailsAsDefaultResponseBody,
+            string contractArea,
+            List<ApiOperationSchemaMap> apiOperationSchemaMappings)
         {
             var result = new List<string>();
             foreach (var response in responses.OrderBy(x => x.Key))
@@ -28,7 +35,8 @@ namespace Microsoft.OpenApi.Models
 
                 var isList = responses.IsSchemaTypeArrayForStatusCode(httpStatusCode);
                 var modelName = responses.GetModelNameForStatusCode(httpStatusCode);
-                modelName = EnsureModelNameNamespaceIfNeeded(modelName, contractArea);
+                var isShared = apiOperationSchemaMappings.IsShared(modelName);
+                modelName = EnsureModelNameNamespaceIfNeeded(modelName, contractArea, isShared);
 
                 var useProblemDetails = responses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
                 if (!useProblemDetails && useProblemDetailsAsDefaultResponseBody)
@@ -96,7 +104,7 @@ namespace Microsoft.OpenApi.Models
             return result;
         }
 
-        private static string EnsureModelNameNamespaceIfNeeded(string modelName, string contractArea)
+        private static string EnsureModelNameNamespaceIfNeeded(string modelName, string contractArea, bool isShared)
         {
             if (string.IsNullOrEmpty(modelName))
             {
@@ -109,9 +117,14 @@ namespace Microsoft.OpenApi.Models
                 "Event",
             };
 
-            return reservedModelNames.Contains(modelName)
-                ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}"
-                : modelName;
+            if (reservedModelNames.Contains(modelName))
+            {
+                return isShared
+                    ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{modelName}"
+                    : $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}";
+            }
+
+            return modelName;
         }
     }
 }
