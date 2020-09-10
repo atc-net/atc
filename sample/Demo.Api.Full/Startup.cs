@@ -20,7 +20,7 @@ namespace Demo.Api.Full
             restApiOptions = new RestApiExtendedOptions
             {
                 // Base
-                AllowAnonymousAccessForDevelopment = true,
+                AllowAnonymousAccessForDevelopment = false,
                 UseApplicationInsights = true,
                 UseAutoRegistrateServices = true,
                 UseEnumAsStringInSerialization = true,

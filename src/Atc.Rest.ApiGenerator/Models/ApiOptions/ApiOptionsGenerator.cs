@@ -4,7 +4,7 @@
     {
         public bool UseNullableReferenceTypes { get; set; } = true;
 
-        public bool UseAuthorization { get; set; } = true;
+        public bool UseAuthorization { get; set; }
 
         public ApiOptionsGeneratorRequest Request { get; set; } = new ApiOptionsGeneratorRequest();
 

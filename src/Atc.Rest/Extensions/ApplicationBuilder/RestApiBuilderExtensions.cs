@@ -25,7 +25,6 @@ namespace Microsoft.AspNetCore.Builder
             return app.UseRestApi(env, restApiOptions, _ => { });
         }
 
-        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
         public static IApplicationBuilder UseRestApi(
             this IApplicationBuilder app,
@@ -86,10 +85,11 @@ namespace Microsoft.AspNetCore.Builder
 
             app.UseRouting();
 
-            // TODO: Enable Authentication logic...
-            ////app.UseAuthentication();
-
-            app.UseAuthorization();
+            if (!restApiOptions.AllowAnonymousAccessForDevelopment)
+            {
+                app.UseAuthentication();
+                app.UseAuthorization();
+            }
 
             app.UseEndpoints(endpoints =>
             {
