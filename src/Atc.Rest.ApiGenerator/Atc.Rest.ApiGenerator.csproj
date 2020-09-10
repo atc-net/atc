@@ -1,13 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Title>Atc.Rest.ApiGenerator</Title>
     <Authors>Atc-net</Authors>
-    <Description>A set of convenience classes and extension methods</Description>
-    <PackageProjectUrl>https://github.com/atc-net/atc/blob/master/README.md</PackageProjectUrl>
+    <Description>Atc.Rest.ApiGenerator is a WebApi C# code generator using a OpenApi 3.x specification YAML file.</Description>
+    <PackageProjectUrl>https://github.com/atc-net/atc/tree/master/src/Atc.Rest.Generator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <PropertyGroup>
     <Nullable>enable</Nullable>

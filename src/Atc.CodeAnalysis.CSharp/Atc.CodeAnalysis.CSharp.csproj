@@ -4,10 +4,18 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Title>Atc.CodeAnalysis.CSharp</Title>
     <Authors>Atc-net</Authors>
-    <Description>A set of convenience classes and extension methods</Description>
-    <PackageProjectUrl>https://github.com/atc-net/atc/blob/master/README.md</PackageProjectUrl>
+    <Description>Atc.CodeAnalysis.CSharp is a collection of classes and extension methods for Microsoft.CodeAnalysis.CSharp.</Description>
+    <PackageProjectUrl>https://github.com/atc-net/atc/tree/master/src/Atc.CodeAnalysis.CSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 
   <PropertyGroup>
     <Nullable>enable</Nullable>

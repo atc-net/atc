@@ -4,10 +4,17 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Title>Atc.XUnit</Title>
     <Authors>Atc-net</Authors>
-    <Description>A set of convenience classes and extension methods</Description>
-    <PackageProjectUrl>https://github.com/atc-net/atc/blob/master/README.md</PackageProjectUrl>
+    <Description>Atc.XUnit is a collection of helper method for code compliance of documentation and tests.</Description>
+    <PackageProjectUrl>https://github.com/atc-net/atc/tree/master/src/Atc.XUnit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <PropertyGroup>
     <IsTestProject>false</IsTestProject>
