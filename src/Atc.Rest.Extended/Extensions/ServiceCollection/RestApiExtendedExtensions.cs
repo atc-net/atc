@@ -35,6 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
 
+            services.AddSingleton(restApiOptions);
+
             if (restApiOptions.UseApiVersioning)
             {
                 services.ConfigureOptions<ConfigureApiVersioningOptions>();
