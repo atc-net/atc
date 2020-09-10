@@ -31,7 +31,7 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUsersAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -49,8 +49,8 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> PostUsersAsync(PostUsersParameters parameters, [FromServices] IPostUsersHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -68,8 +68,8 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUserByIdAsync(GetUserByIdParameters parameters, [FromServices] IGetUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -87,9 +87,9 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> UpdateUserByIdAsync(UpdateUserByIdParameters parameters, [FromServices] IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -107,8 +107,8 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> DeleteUserByIdAsync(DeleteUserByIdParameters parameters, [FromServices] IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -126,9 +126,9 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpPut("{id}/gender")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> UpdateMyTestGenderAsync(UpdateMyTestGenderParameters parameters, [FromServices] IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
@@ -146,9 +146,9 @@ namespace Demo.Api.Generated.Endpoints
         /// </summary>
         [HttpGet("email")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUserByEmailAsync(GetUserByEmailParameters parameters, [FromServices] IGetUserByEmailHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
