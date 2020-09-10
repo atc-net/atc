@@ -48,46 +48,10 @@ namespace Microsoft.AspNetCore.Builder
             app.UseSwagger();
             if (env.IsDevelopment())
             {
-                app.UseSwaggerUI(options =>
-                {
-                    app.ConfigureSwaggerEndpointPerApiVersion(options, restApiOptions);
-                    options.EnableValidator();
-                    options.DocExpansion(DocExpansion.List);
-                    options.SupportedSubmitMethods(SubmitMethod.Get, SubmitMethod.Post, SubmitMethod.Put, SubmitMethod.Patch, SubmitMethod.Delete);
-                    options.DefaultModelRendering(ModelRendering.Model);
-                    options.DisplayRequestDuration();
-                    options.EnableDeepLinking();
-                    options.ShowCommonExtensions();
-                    options.DocumentTitle = typeof(TStartup).GetApiName(true);
-                    options.InjectStylesheet("/swagger-ui/style.css");
-                    options.InjectJavascript("/swagger-ui/main.js");
-
-                    setupAction(options);
-                });
+                app.UseSwaggerUI();
             }
 
             return app;
-        }
-
-        private static void ConfigureSwaggerEndpointPerApiVersion(
-            this IApplicationBuilder app,
-            SwaggerUIOptions options,
-            RestApiExtendedOptions restApiOptions)
-        {
-            if (restApiOptions.UseApiVersioning)
-            {
-                var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
-                foreach (var description in provider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint(
-                        $"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant());
-                }
-            }
-            else
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
-            }
         }
     }
 }
