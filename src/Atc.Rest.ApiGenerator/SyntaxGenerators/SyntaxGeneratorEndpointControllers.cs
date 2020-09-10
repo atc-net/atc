@@ -10,6 +10,7 @@ using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.ProjectSyntaxFactories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -34,7 +35,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         private ApiProjectOptions ApiProjectOptions { get; }
 
-        public List<ApiOperationSchemaMap> OperationSchemaMappings { get; }
+        private List<ApiOperationSchemaMap> OperationSchemaMappings { get; }
 
         public string FocusOnSegmentName { get; }
 
@@ -53,8 +54,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 NameConstants.Endpoints);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.Create(controllerTypeName)
-                .AddAttributeLists(
+            var classDeclaration = SyntaxClassDeclarationFactory.Create(controllerTypeName);
+            if (ApiProjectOptions.ApiOptions.Generator.UseAuthorization)
+            {
+                classDeclaration =
+                    classDeclaration.AddAttributeLists(
+                        SyntaxAttributeListFactory.CreateWithOneItem(nameof(AuthorizeAttribute)));
+            }
+
+            classDeclaration =
+                classDeclaration.AddAttributeLists(
                     SyntaxAttributeListFactory.CreateWithOneItem(nameof(ApiControllerAttribute)),
                     SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{FocusOnSegmentName}"))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(nameof(ControllerBase))))
@@ -89,7 +98,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             @namespace = @namespace.AddMembers(classDeclaration);
 
             // Add using statement to compilationUnit
-            compilationUnit = compilationUnit.AddUsingStatements(ProjectEndpointsFactory.CreateUsingList(ApiProjectOptions.ProjectName, FocusOnSegmentName, usedApiOperations));
+            compilationUnit = compilationUnit.AddUsingStatements(ProjectEndpointsFactory.CreateUsingList(
+                ApiProjectOptions,
+                FocusOnSegmentName,
+                usedApiOperations));
 
             // Add namespace to compilationUnit
             compilationUnit = compilationUnit.AddMembers(@namespace);

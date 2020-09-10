@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace Demo.Api.Generated.Endpoints
     /// Endpoint definitions.
     /// Area: Users.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/v1/users")]
     public class UsersController : ControllerBase

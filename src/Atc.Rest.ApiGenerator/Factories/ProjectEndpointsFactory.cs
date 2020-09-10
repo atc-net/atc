@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Factories
@@ -7,7 +8,7 @@ namespace Atc.Rest.ApiGenerator.Factories
     internal static class ProjectEndpointsFactory
     {
         public static string[] CreateUsingList(
-            string apiProjectName,
+            ApiProjectOptions apiProjectOptions,
             string focusOnSegmentName,
             List<OpenApiOperation> apiOperations)
         {
@@ -21,7 +22,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "System",
                 "System.Threading",
                 "System.Threading.Tasks",
-                $"{apiProjectName}.Generated.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",
+                $"{apiProjectOptions.ProjectName}.Generated.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",
                 "Microsoft.AspNetCore.Http",
                 "Microsoft.AspNetCore.Mvc",
             };
@@ -29,6 +30,11 @@ namespace Atc.Rest.ApiGenerator.Factories
             if (apiOperations.HasDataTypeFromSystemCollectionGenericNamespace())
             {
                 list.Add("System.Collections.Generic");
+            }
+
+            if (apiProjectOptions.ApiOptions.Generator.UseAuthorization)
+            {
+                list.Add("Microsoft.AspNetCore.Authorization");
             }
 
             return list.ToArray();

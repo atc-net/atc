@@ -55,6 +55,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Api.Full", "sample\Demo.Api.Full\Demo.Api.Full.csproj", "{DF929E2C-7526-423B-891B-AB752E7A1635}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo.ApiDesign", "Demo.ApiDesign", "{7676D3AA-2882-4517-8E93-93E632C9EA80}"
+	ProjectSection(SolutionItems) = preProject
+		sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json = sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SingleFileVersion", "SingleFileVersion", "{C27353DA-1802-4443-80EE-B838A29AC419}"
 	ProjectSection(SolutionItems) = preProject
