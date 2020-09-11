@@ -37,7 +37,10 @@ namespace Atc.Rest.ApiGenerator.Factories
                     list.Add("System.Net");
                 }
 
-                list.Add("Microsoft.AspNetCore.Http");
+                if (responses.HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp())
+                {
+                    list.Add("Microsoft.AspNetCore.Http");
+                }
             }
 
             return list.ToArray();

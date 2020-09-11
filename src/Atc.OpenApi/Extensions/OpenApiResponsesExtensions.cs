@@ -78,6 +78,26 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        public static bool HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+        {
+            if (responses == null)
+            {
+                throw new ArgumentNullException(nameof(responses));
+            }
+
+            var httpStatusCodes = responses.GetHttpStatusCodes();
+            foreach (var httpStatusCode in httpStatusCodes)
+            {
+                switch (httpStatusCode)
+                {
+                    case HttpStatusCode.Created:
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = "application/json")
         {
             foreach (var response in responses.OrderBy(x => x.Key))
