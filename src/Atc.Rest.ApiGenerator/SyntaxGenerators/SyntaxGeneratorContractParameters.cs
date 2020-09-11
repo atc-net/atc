@@ -38,7 +38,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                         continue;
                     }
 
-                    var generator = new SyntaxGeneratorContractParameter(ApiProjectOptions, apiOperation.Key, apiOperation.Value, FocusOnSegmentName);
+                    var generator = new SyntaxGeneratorContractParameter(
+                        ApiProjectOptions,
+                        urlPath.Value.Parameters,
+                        apiOperation.Key,
+                        apiOperation.Value,
+                        FocusOnSegmentName);
+
                     generator.GenerateCode();
                     list.Add(generator);
                 }

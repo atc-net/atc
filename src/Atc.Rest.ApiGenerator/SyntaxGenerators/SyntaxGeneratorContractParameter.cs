@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Rest.ApiGenerator.Factories;
@@ -20,17 +22,21 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
     {
         public SyntaxGeneratorContractParameter(
             ApiProjectOptions apiProjectOptions,
+            IList<OpenApiParameter> globalPathParameters,
             OperationType apiOperationType,
             OpenApiOperation apiOperation,
             string focusOnSegmentName)
         {
             this.ApiProjectOptions = apiProjectOptions ?? throw new ArgumentNullException(nameof(apiProjectOptions));
+            this.GlobalPathParameters = globalPathParameters ?? throw new ArgumentNullException(nameof(globalPathParameters));
             this.ApiOperationType = apiOperationType;
             this.ApiOperation = apiOperation ?? throw new ArgumentNullException(nameof(apiOperation));
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
         }
 
         public ApiProjectOptions ApiProjectOptions { get; }
+
+        public IList<OpenApiParameter> GlobalPathParameters { get; }
 
         public OperationType ApiOperationType { get; }
 
@@ -58,6 +64,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameters(ApiOperation, FocusOnSegmentName));
 
             // Add properties to the class
+            if (GlobalPathParameters.Any())
+            {
+                foreach (var parameter in GlobalPathParameters)
+                {
+                    var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(parameter, ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes)
+                        .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(parameter));
+                    classDeclaration = classDeclaration.AddMembers(propertyDeclaration);
+                }
+            }
+
             if (ApiOperation.Parameters != null)
             {
                 foreach (var parameter in ApiOperation.Parameters)
