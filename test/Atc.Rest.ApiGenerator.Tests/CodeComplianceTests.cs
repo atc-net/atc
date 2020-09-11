@@ -33,6 +33,7 @@ namespace Atc.Rest.ApiGenerator.Tests
             typeof(SyntaxGeneratorContractResult),
             typeof(SyntaxGeneratorContractResults),
             typeof(SyntaxGeneratorEndpointControllers),
+            typeof(ValidatePathsAndOperationsHelper),
             typeof(Util),
         };
 

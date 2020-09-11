@@ -50,6 +50,11 @@ Request
 ```csharp
 Response
 ```
+#### UseAuthorization
+
+```csharp
+UseAuthorization
+```
 #### UseNullableReferenceTypes
 
 ```csharp

@@ -316,6 +316,11 @@ OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatus
 ```csharp
 bool HasSchemaTypeOfArray(this OpenApiResponses responses)
 ```
+#### HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp
+
+```csharp
+bool HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+```
 #### HasSchemaTypeOfHttpStatusCodeUsingSystemNet
 
 ```csharp

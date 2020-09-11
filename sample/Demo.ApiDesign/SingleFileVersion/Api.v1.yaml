@@ -4,7 +4,7 @@ info:
   description: Demo Api - SingleFileVersion
   version: '1.0'
   contact:
-    name: Delegate A/S
+    name: atc-net A/S
 servers:
   - url: /api/v1
     description: Api version 1.0
@@ -295,25 +295,25 @@ components:
       properties:
         pageSize:
           type: number
-          description: 'The number of items to request.'
+          description: The number of items to request.
         pageIndex:
           type: number
-          description: 'The given page index starting with 0.'
+          description: The given page index starting with 0.
         queryString:
           type: string
-          description: 'The query to filter items by.'
+          description: The query to filter items by.
         continuationToken:
           type: string
-          description: 'Token to indicate next result set.'
+          description: Token to indicate next result set.
         count:
           type: number
-          description: 'Items count in result set.'
+          description: Items count in result set.
         totalCount:
           type: number
-          description: 'Total items count.'
+          description: Total items count.
         totalPages:
           type: number
-          description: 'Total pages.'
+          description: Total pages.
       required:
         - pageSize
         - count

@@ -456,6 +456,11 @@ Code
 ```csharp
 FocusOnSegmentName
 ```
+#### GlobalPathParameters
+
+```csharp
+GlobalPathParameters
+```
 ### Methods
 
 

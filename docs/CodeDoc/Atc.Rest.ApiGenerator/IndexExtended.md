@@ -39,6 +39,12 @@
   -  Static Methods
      - GetSegmentName(string path)
      - CollectMappings(OpenApiDocument apiDocument)
+- [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
+  -  Static Methods
+     - ValidateGlobalParameters(IEnumerable&lt;string&gt; globalPathParameterNames, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateMissingOperationParameters(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateOperationsWithParametersNotPresentInPath(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateGetOperations(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 
@@ -77,6 +83,7 @@
 - [ApiOptionsGenerator](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgenerator)
   -  Properties
      - UseNullableReferenceTypes
+     - UseAuthorization
      - Request
      - Response
 - [ApiOptionsGeneratorRequest](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgeneratorrequest)
@@ -169,6 +176,7 @@
 - [SyntaxGeneratorContractParameter](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractparameter)
   -  Properties
      - ApiProjectOptions
+     - GlobalPathParameters
      - ApiOperationType
      - ApiOperation
      - FocusOnSegmentName

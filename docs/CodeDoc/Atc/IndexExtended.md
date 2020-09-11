@@ -13,8 +13,8 @@
 - [CasingStyle](Atc.md#casingstyle)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
-     - CultureInfo EnglishCultureInfo
      - CultureInfo DanishCultureInfo
+     - CultureInfo EnglishCultureInfo
      - string DateTimeIso8601
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
   -  Static Fields
@@ -58,12 +58,12 @@
 
 - [DateTimeExtensions](Atc.Extensions.BaseTypes.md#datetimeextensions)
   -  Static Methods
+     - ToIso8601Date(this DateTime dateTime)
      - IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
      - GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
      - GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
      - GetWeekNumber(this DateTime date)
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
-     - ToIso8601Date(this DateTime dateTime)
      - ToIso8601UtcDate(this DateTime dateTime)
 
 ## [Atc.Helpers](Atc.Helpers.md)

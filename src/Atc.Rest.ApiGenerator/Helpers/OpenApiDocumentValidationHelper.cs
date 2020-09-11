@@ -26,7 +26,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             validationErrors.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values));
             validationErrors.AddRange(ValidatePaths(apiDocument.Paths.Values));
             validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values));
-            validationErrors.AddRange(ValidatePathsAndOperations(apiDocument.Paths.Values));
+            validationErrors.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
             validationErrors.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
 
             if (validationErrors.Count <= 0)
@@ -167,22 +167,30 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
-        private static List<string> ValidatePathsAndOperations(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
+        private static List<string> ValidatePathsAndOperations(OpenApiPaths paths)
         {
             var result = new List<string>();
             foreach (var path in paths)
             {
-                foreach (var (key, value) in path.Operations)
+                if (!path.Key.IsStringFormatParametersBalanced(false))
                 {
-                    if (key == OperationType.Get && value.Parameters.Any(x => x.In == ParameterLocation.Path))
-                    {
-                        var httpStatusCodes = value.Responses.GetHttpStatusCodes();
-                        if (!httpStatusCodes.Contains(HttpStatusCode.NotFound))
-                        {
-                            result.Add($"Operation - Missing NotFound response type for operation '{value.GetOperationName()}', required by url parameter.");
-                        }
-                    }
+                    result.Add($"Path - Path parameters are not well-formatted for '{path.Key}'.");
                 }
+
+                var globalPathParameterNames = path.Value.Parameters
+                    .Where(x => x.In == ParameterLocation.Path)
+                    .Select(x => x.Name)
+                    .ToList();
+
+                result.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
+
+                if (!globalPathParameterNames.Any())
+                {
+                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(path));
+                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(path));
+                }
+
+                result.AddRange(ValidatePathsAndOperationsHelper.ValidateGetOperations(path));
             }
 
             return result;
@@ -193,7 +201,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var result = new List<string>();
             foreach (var path in paths)
             {
-                foreach (var (key, value) in path.Operations)
+                foreach (var (_, value) in path.Operations)
                 {
                     var httpStatusCodes = value.Responses.GetHttpStatusCodes();
                     if (httpStatusCodes.Contains(HttpStatusCode.BadRequest) &&
