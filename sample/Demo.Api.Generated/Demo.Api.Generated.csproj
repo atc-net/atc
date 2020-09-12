@@ -1,30 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
- <PropertyGroup>
-     <TargetFramework>netcoreapp3.1</TargetFramework>
- </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 
- <PropertyGroup>
-     <Nullable>enable</Nullable>
-     <LangVersion>8.0</LangVersion>
- </PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
- <PropertyGroup>
-     <GenerateDocumentationFile>true</GenerateDocumentationFile>
- </PropertyGroup>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
 
- <PropertyGroup>
-     <DocumentationFile>bin\Debug\netcoreapp3.1\Demo.Api.Generated.xml</DocumentationFile>
-     <NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>
- </PropertyGroup>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 
- <ItemGroup>
-     <None Remove="Resources\ApiSpecification.yaml" />
-     <EmbeddedResource Include="Resources\ApiSpecification.yaml" />
- </ItemGroup>
+  <PropertyGroup>
+    <DocumentationFile>bin\Debug\netcoreapp3.1\Demo.Api.Generated.xml</DocumentationFile>
+    <NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>
+  </PropertyGroup>
 
- <ItemGroup>
-     <FrameworkReference Include="Microsoft.AspNetCore.App" />
- </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\ApiSpecification.yaml" />
+    <EmbeddedResource Include="Resources\ApiSpecification.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
 
 </Project>
