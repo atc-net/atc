@@ -36,6 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             services.AddSingleton(restApiOptions);
+            services.AddSingleton<RestApiOptions>(restApiOptions);
 
             if (restApiOptions.UseApiVersioning)
             {
