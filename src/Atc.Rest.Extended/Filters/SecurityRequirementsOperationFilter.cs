@@ -42,7 +42,7 @@ namespace Atc.Rest.Extended.Filters
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "oauth2",
+                    Id = SecuritySchemeType.OAuth2.ToString(),
                 },
             };
 
