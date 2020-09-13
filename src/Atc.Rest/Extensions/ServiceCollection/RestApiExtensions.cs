@@ -96,10 +96,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     }
                 });
 
-            if (restApiOptions.AllowAnonymousAccessForDevelopment)
-            {
-                services.AddAnonymousAccessForDevelopment();
-            }
+            services.AddAnonymousAccessForDevelopment();
 
             setupMvcAction(mvc);
 
