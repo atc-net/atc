@@ -57,6 +57,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddFluentValidation<TStartup>(restApiOptions.UseAutoRegistrateServices, restApiOptions.AssemblyPairs);
             }
 
+            services.ConfigureOptions<ConfigureAuthorizationOptions>();
+            services.AddAuthentication().AddJwtBearer();
+
             return services;
         }
     }
