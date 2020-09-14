@@ -21,7 +21,7 @@ namespace Atc.Rest.Tests
             typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
             typeof(Rest.Middleware.KeepAliveMiddleware),
             typeof(Rest.Middleware.RequestCorrelationMiddleware),
-            typeof(Options.ConfigureApiAnonymousDevelopmentOptions),
+            typeof(Options.AllowAnonymousAccessForDevelopmentHandler),
             typeof(Options.ConfigureApiBehaviorOptions),
             typeof(Options.RestApiOptions),
             typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),

@@ -8,7 +8,6 @@ namespace Microsoft.AspNetCore.Http
     {
         public static IServiceCollection AddAnonymousAccessForDevelopment(this IServiceCollection services)
         {
-            services.ConfigureOptions<ConfigureApiAnonymousDevelopmentOptions>();
             services.AddSingleton<AllowAnonymousAccessForDevelopmentHandler>();
             return services;
         }
