@@ -35,6 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
 
+            services.AddSingleton(restApiOptions);
+
             if (restApiOptions.UseApiVersioning)
             {
                 services.ConfigureOptions<ConfigureApiVersioningOptions>();
@@ -44,6 +46,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             if (restApiOptions.UseOpenApiSpec)
             {
+                services.ConfigureOptions<ConfigureSwaggerOptions>();
                 services.AddOpenApiSpec<TStartup>(restApiOptions);
             }
 

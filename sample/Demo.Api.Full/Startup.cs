@@ -63,7 +63,7 @@ namespace Demo.Api.Full
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseRestApi<Startup>(env, restApiOptions);
+            app.ConfigureRestApi(env, restApiOptions);
         }
     }
 }

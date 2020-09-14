@@ -108,5 +108,6 @@
 	<!-- Disabled rule for documenting properties with Gets or Sets... -->
     <Rule Id="SA1623" Action="None" />
     <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1118" Action="None" />
   </Rules>
 </RuleSet>
