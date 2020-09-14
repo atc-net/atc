@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Atc.Rest.Options;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Atc.Rest.Options
+namespace Atc.Rest.Extensions
 {
     public class AllowAnonymousAccessForDevelopmentHandler : IAuthorizationHandler
     {

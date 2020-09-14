@@ -1,4 +1,4 @@
-﻿using Atc.Rest.Options;
+﻿using Atc.Rest.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 

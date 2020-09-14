@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Atc.Rest.Extensions;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -21,7 +22,7 @@ namespace Atc.Rest.Tests
             typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
             typeof(Rest.Middleware.KeepAliveMiddleware),
             typeof(Rest.Middleware.RequestCorrelationMiddleware),
-            typeof(Options.AllowAnonymousAccessForDevelopmentHandler),
+            typeof(AllowAnonymousAccessForDevelopmentHandler),
             typeof(Options.ConfigureApiBehaviorOptions),
             typeof(Options.RestApiOptions),
             typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),
