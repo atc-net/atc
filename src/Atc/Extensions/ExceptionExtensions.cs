@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -104,7 +103,6 @@ namespace System
         /// To the XML.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "OK.")]
         public static XDocument ToXml(this Exception exception)
         {
             if (exception == null)
