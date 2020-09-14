@@ -8,7 +8,7 @@ namespace Atc
     /// Flag-Enumeration: LetterAccentType.
     /// </summary>
     [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames", Justification = "OK.")]
-    [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
+    [SuppressMessage("Minor Code Smell", "S2342:Enumeration types should comply with a naming convention", Justification = "OK.")]
     [Flags]
     public enum LetterAccentType
     {

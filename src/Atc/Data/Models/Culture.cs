@@ -27,7 +27,7 @@ namespace Atc.Data.Models
             this.LongTimePattern = string.Empty;
         }
 
-        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         public Culture(
             int lcid,
             string name,
