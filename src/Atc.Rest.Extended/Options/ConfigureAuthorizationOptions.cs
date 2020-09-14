@@ -41,11 +41,12 @@ namespace Atc.Rest.Extended.Options
                 throw new InvalidOperationException("AuthorizationValidAudiences is empty");
             }
 
-            options.Authority = $"https://login.microsoftonline.com/{apiOptions.AuthorizationTenant}/";
+            options.Authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/";
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = true,
-                ValidAudiences = apiOptions.AuthorizationValidAudiences,
+                ValidAudience = apiOptions.Authorization.Audience,
+                ValidAudiences = apiOptions.Authorization.ValidAudiences,
             };
         }
 
