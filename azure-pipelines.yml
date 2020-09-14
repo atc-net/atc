@@ -46,6 +46,7 @@ steps:
       command: 'pack'
       packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj;!**/*.Samples.csproj'
       versioningScheme: 'byBuildNumber'
+      arguments: '--version-suffix pre'
   - task: SonarCloudAnalyze@1
     displayName: 'Run Code Analysis and Publish Quality Gate Result'
   - task: PublishBuildArtifacts@1
