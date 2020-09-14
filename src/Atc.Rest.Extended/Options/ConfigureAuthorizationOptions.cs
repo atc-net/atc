@@ -26,17 +26,17 @@ namespace Atc.Rest.Extended.Options
                 throw new ArgumentNullException(nameof(options));
             }
 
-            if (string.IsNullOrEmpty(apiOptions.AuthorizationTenant))
+            if (string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
             {
                 throw new InvalidOperationException("AuthorizationTenant not defined");
             }
 
-            if (string.IsNullOrEmpty(apiOptions.AuthorizationClientId))
+            if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
             {
                 throw new InvalidOperationException("AuthorizationClientId not defined");
             }
 
-            if (!apiOptions.AuthorizationValidAudiences.Any())
+            if (!apiOptions.Authorization.ValidAudiences.Any())
             {
                 throw new InvalidOperationException("AuthorizationValidAudiences is empty");
             }
