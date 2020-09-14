@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Atc.Rest.Options
 {
     /// <summary>
-    /// Copy and fill out the AzureAd section into the project User Secrets
+    /// Copy and fill out the AzureAd section into the project User Secrets.
     ///
     /// <code>
     /// {
