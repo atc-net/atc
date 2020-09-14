@@ -69,12 +69,12 @@ namespace Microsoft.Extensions.DependencyInjection
 
             if (restApiOptions.Authorization.UseAzureADBearer)
             {
-                configuration.Bind("AzureAd", restApiOptions.Authorization);
+                configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
                 services.AddMicrosoftIdentityWebApiAuthentication(configuration);
             }
             else
             {
-                configuration.Bind("AzureAd", restApiOptions.Authorization);
+                configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
                 services.ConfigureOptions<ConfigureAuthorizationOptions>();
                 services.AddAuthentication().AddJwtBearer();
             }
