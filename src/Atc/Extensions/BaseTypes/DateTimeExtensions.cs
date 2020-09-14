@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using Atc.Enums;
 
 namespace Atc.Extensions.BaseTypes
 {

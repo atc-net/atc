@@ -24,7 +24,7 @@ namespace System
         /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class.
         /// </summary>
         /// <param name="paramName">Name of the parameter.</param>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "OK.")]
         public ArgumentPropertyException(string paramName)
             : base("Value does not fall within the expected range.", paramName)
         {
@@ -35,7 +35,7 @@ namespace System
         /// </summary>
         /// <param name="paramName">Name of the parameter.</param>
         /// <param name="message">The message.</param>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "OK.")]
         public ArgumentPropertyException(string message, string paramName)
             : base(message, paramName)
         {

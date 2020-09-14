@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Atc.Resources;
 
-namespace Atc.Enums
+// ReSharper disable once CheckNamespace
+namespace Atc
 {
     /// <summary>
     /// Enumeration: DateTimeDiffCompareType.
@@ -9,51 +10,51 @@ namespace Atc.Enums
     public enum DateTimeDiffCompareType
     {
         /// <summary>
-        /// Ticks
+        /// Ticks.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeTicks", typeof(EnumResources))]
         Ticks,
 
         /// <summary>
-        /// Milliseconds
+        /// Milliseconds.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeMilliseconds", typeof(EnumResources))]
         Milliseconds,
 
         /// <summary>
-        /// Seconds
+        /// Seconds.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeSeconds", typeof(EnumResources))]
         Seconds,
 
         /// <summary>
-        /// Minutes
+        /// Minutes.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeMinutes", typeof(EnumResources))]
         Minutes,
 
         /// <summary>
-        /// Hours
+        /// Hours.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeHours", typeof(EnumResources))]
         Hours,
 
         /// <summary>
-        /// Days
+        /// Days.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeDays", typeof(EnumResources))]
         Days,
 
         /// <summary>
-        /// Year
+        /// Year.
         /// </summary>
         [LocalizedDescription("DateTimeDiffCompareTypeYear", typeof(EnumResources))]
         Year,
 
         /// <summary>
-        /// Quartal
+        /// Quartal.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Quartal", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Quartal", Justification = "OK.")]
         [LocalizedDescription("DateTimeDiffCompareTypeQuartal", typeof(EnumResources))]
         Quartal
     }

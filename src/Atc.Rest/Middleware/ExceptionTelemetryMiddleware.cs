@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Atc.Rest.Middleware
 {
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
     public class ExceptionTelemetryMiddleware
     {
         private readonly RequestDelegate next;

@@ -117,6 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AppTypeApplication" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="AppTypeService" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="BaseUnitTypeAmountOfSubstance" xml:space="preserve">
+    <value>Amount Of Substance</value>
+  </data>
+  <data name="BaseUnitTypeElectricCurrent" xml:space="preserve">
+    <value>Electric Current</value>
+  </data>
+  <data name="BaseUnitTypeLength" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="BaseUnitTypeLuminousIntensity" xml:space="preserve">
+    <value>Luminous Intensity</value>
+  </data>
+  <data name="BaseUnitTypeMass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="BaseUnitTypeThermodynamicTemperature" xml:space="preserve">
+    <value>Thermodynamic Temperature</value>
+  </data>
+  <data name="BaseUnitTypeTime" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="BooleanOperatorTypeAnd" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="BooleanOperatorTypeNear" xml:space="preserve">
+    <value>Near</value>
+  </data>
+  <data name="BooleanOperatorTypeNot" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="BooleanOperatorTypeOr" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="CollectionActionTypeAdded" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="CollectionActionTypeCleared" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="CollectionActionTypeLoaded" xml:space="preserve">
+    <value>Loaded</value>
+  </data>
+  <data name="CollectionActionTypeRemoved" xml:space="preserve">
+    <value>Removed</value>
+  </data>
+  <data name="CollectionActionTypeSaved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="CollectionActionTypeUpdated" xml:space="preserve">
+    <value>Updated</value>
+  </data>
   <data name="DateTimeDiffCompareTypeDays" xml:space="preserve">
     <value>Days</value>
   </data>
@@ -140,5 +200,173 @@
   </data>
   <data name="DateTimeDiffCompareTypeYear" xml:space="preserve">
     <value>Year</value>
+  </data>
+  <data name="DropDownFirstItemTypeIncludeAll" xml:space="preserve">
+    <value>-- All --</value>
+  </data>
+  <data name="DropDownFirstItemTypePleaseSelect" xml:space="preserve">
+    <value>-- Select --</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeAdded" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeChanged" xml:space="preserve">
+    <value>Changed</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeDeleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeRenamed" xml:space="preserve">
+    <value>Renamed</value>
+  </data>
+  <data name="ForwardReverseTypeForward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="ForwardReverseTypeReverse" xml:space="preserve">
+    <value>Reverse</value>
+  </data>
+  <data name="IdentityRoleTypeAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeAnonymous" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="IdentityRoleTypeSuperAdmin" xml:space="preserve">
+    <value>Super Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeSuperUser" xml:space="preserve">
+    <value>Super User</value>
+  </data>
+  <data name="IdentityRoleTypeUser" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="InsertRemoveTypeInsert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="InsertRemoveTypeRemove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="LeftRightTypeLeft" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="LeftRightTypeRight" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="LogCategoryType" xml:space="preserve">
+    <value>Log Category Type</value>
+  </data>
+  <data name="LogCategoryTypeAudit" xml:space="preserve">
+    <value>Audit</value>
+  </data>
+  <data name="LogCategoryTypeCritical" xml:space="preserve">
+    <value>Critical</value>
+  </data>
+  <data name="LogCategoryTypeDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="LogCategoryTypeError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LogCategoryTypeInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="LogCategoryTypeSecurity" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="LogCategoryTypeService" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="LogCategoryTypeTrace" xml:space="preserve">
+    <value>Trace</value>
+  </data>
+  <data name="LogCategoryTypeUI" xml:space="preserve">
+    <value>UI</value>
+  </data>
+  <data name="LogCategoryTypeWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="OnOffTypeOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="OnOffTypeOn" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="QualityCategoryTypeExcellent" xml:space="preserve">
+    <value>Excellent</value>
+  </data>
+  <data name="QualityCategoryTypeFair" xml:space="preserve">
+    <value>Fair</value>
+  </data>
+  <data name="QualityCategoryTypeGood" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="QualityCategoryTypePerfect" xml:space="preserve">
+    <value>Perfect</value>
+  </data>
+  <data name="QualityCategoryTypePoor" xml:space="preserve">
+    <value>Poor</value>
+  </data>
+  <data name="QualityCategoryTypeVeryGood" xml:space="preserve">
+    <value>Very Good</value>
+  </data>
+  <data name="QualityCategoryTypeVeryPoor" xml:space="preserve">
+    <value>Very Poor</value>
+  </data>
+  <data name="RequestPriorityLevelCouldHave" xml:space="preserve">
+    <value>Could have</value>
+  </data>
+  <data name="RequestPriorityLevelMustHave" xml:space="preserve">
+    <value>Must have</value>
+  </data>
+  <data name="RequestPriorityLevelMustHaveNow" xml:space="preserve">
+    <value>Must have now</value>
+  </data>
+  <data name="RequestPriorityLevelShouldHave" xml:space="preserve">
+    <value>Should have</value>
+  </data>
+  <data name="RequestPriorityLevelWonotHave" xml:space="preserve">
+    <value>Won't have</value>
+  </data>
+  <data name="SeverityLevelCritical" xml:space="preserve">
+    <value>Critical</value>
+  </data>
+  <data name="SeverityLevelHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="SeverityLevelLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="SeverityLevelMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="SortDirectionTypeAscending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="SortDirectionTypeDescending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="TriggerActionTypeDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="TriggerActionTypeInsert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="TriggerActionTypeUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpDownTypeDown" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="UpDownTypeUp" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="YesNoTypeNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="YesNoTypeYes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

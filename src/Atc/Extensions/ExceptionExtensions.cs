@@ -104,7 +104,7 @@ namespace System
         /// To the XML.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed.")]
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "OK.")]
         public static XDocument ToXml(this Exception exception)
         {
             if (exception == null)

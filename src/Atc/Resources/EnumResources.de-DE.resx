@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="AppTypeApplication" xml:space="preserve">
+    <value>Anwendung</value>
+  </data>
+  <data name="AppTypeService" xml:space="preserve">
+    <value>Bedienung</value>
+  </data>
+  <data name="BaseUnitTypeAmountOfSubstance" xml:space="preserve">
+    <value>Stoffmenge</value>
+  </data>
+  <data name="BaseUnitTypeElectricCurrent" xml:space="preserve">
+    <value>Elektrischer strom</value>
+  </data>
+  <data name="BaseUnitTypeLength" xml:space="preserve">
+    <value>Länge</value>
+  </data>
+  <data name="BaseUnitTypeLuminousIntensity" xml:space="preserve">
+    <value>Lichtstärke</value>
+  </data>
+  <data name="BaseUnitTypeMass" xml:space="preserve">
+    <value>Messe</value>
+  </data>
+  <data name="BaseUnitTypeThermodynamicTemperature" xml:space="preserve">
+    <value>Thermodynamischen temperatur</value>
+  </data>
+  <data name="BaseUnitTypeTime" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="BooleanOperatorTypeAnd" xml:space="preserve">
+    <value>Und</value>
+  </data>
+  <data name="BooleanOperatorTypeNear" xml:space="preserve">
+    <value>Nah</value>
+  </data>
+  <data name="BooleanOperatorTypeNot" xml:space="preserve">
+    <value>Nicht</value>
+  </data>
+  <data name="BooleanOperatorTypeOr" xml:space="preserve">
+    <value>Oder</value>
+  </data>
+  <data name="CollectionActionTypeAdded" xml:space="preserve">
+    <value>Hinzugefügt</value>
+  </data>
+  <data name="CollectionActionTypeCleared" xml:space="preserve">
+    <value>Geklärt</value>
+  </data>
+  <data name="CollectionActionTypeLoaded" xml:space="preserve">
+    <value>Geladen</value>
+  </data>
+  <data name="CollectionActionTypeRemoved" xml:space="preserve">
+    <value>Entfernt</value>
+  </data>
+  <data name="CollectionActionTypeSaved" xml:space="preserve">
+    <value>Gespeichert</value>
+  </data>
+  <data name="CollectionActionTypeUpdated" xml:space="preserve">
+    <value>Aktualisiert</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeDays" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeHours" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeMilliseconds" xml:space="preserve">
+    <value>Millisekunden</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeQuartal" xml:space="preserve">
+    <value>Quartal</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeSeconds" xml:space="preserve">
+    <value>Sekunden</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeTicks" xml:space="preserve">
+    <value>Ticks</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeYear" xml:space="preserve">
+    <value>Jahr</value>
+  </data>
+  <data name="DropDownFirstItemTypeIncludeAll" xml:space="preserve">
+    <value>-- Alles --</value>
+  </data>
+  <data name="DropDownFirstItemTypePleaseSelect" xml:space="preserve">
+    <value>-- Wählen --</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeAdded" xml:space="preserve">
+    <value>Hinzugefügt</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeChanged" xml:space="preserve">
+    <value>Geändert</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeDeleted" xml:space="preserve">
+    <value>Gelöscht</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeRenamed" xml:space="preserve">
+    <value>Umbenannt</value>
+  </data>
+  <data name="ForwardReverseTypeForward" xml:space="preserve">
+    <value>Vorwärts</value>
+  </data>
+  <data name="ForwardReverseTypeReverse" xml:space="preserve">
+    <value>Rückwärts</value>
+  </data>
+  <data name="IdentityRoleTypeAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeAnonymous" xml:space="preserve">
+    <value>Anonym</value>
+  </data>
+  <data name="IdentityRoleTypeSuperAdmin" xml:space="preserve">
+    <value>Super Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeSuperUser" xml:space="preserve">
+    <value>Super Benutzer</value>
+  </data>
+  <data name="IdentityRoleTypeUser" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="InsertRemoveTypeInsert" xml:space="preserve">
+    <value>Legen</value>
+  </data>
+  <data name="InsertRemoveTypeRemove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="LeftRightTypeLeft" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="LeftRightTypeRight" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="LogCategoryType" xml:space="preserve">
+    <value>Anmelden kategorie typ</value>
+  </data>
+  <data name="LogCategoryTypeAudit" xml:space="preserve">
+    <value>Prüfung</value>
+  </data>
+  <data name="LogCategoryTypeCritical" xml:space="preserve">
+    <value>Kritisch</value>
+  </data>
+  <data name="LogCategoryTypeDebug" xml:space="preserve">
+    <value>Debuggen</value>
+  </data>
+  <data name="LogCategoryTypeError" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="LogCategoryTypeInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="LogCategoryTypeSecurity" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
+  <data name="LogCategoryTypeService" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="LogCategoryTypeTrace" xml:space="preserve">
+    <value>Spur</value>
+  </data>
+  <data name="LogCategoryTypeUI" xml:space="preserve">
+    <value>UI</value>
+  </data>
+  <data name="LogCategoryTypeWarning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="OnOffTypeOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="OnOffTypeOn" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="QualityCategoryTypeExcellent" xml:space="preserve">
+    <value>Exzellent</value>
+  </data>
+  <data name="QualityCategoryTypeFair" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="QualityCategoryTypeGood" xml:space="preserve">
+    <value>Gut</value>
+  </data>
+  <data name="QualityCategoryTypePerfect" xml:space="preserve">
+    <value>Perfect</value>
+  </data>
+  <data name="QualityCategoryTypePoor" xml:space="preserve">
+    <value>Schlecht</value>
+  </data>
+  <data name="QualityCategoryTypeVeryGood" xml:space="preserve">
+    <value>Sehr gut</value>
+  </data>
+  <data name="QualityCategoryTypeVeryPoor" xml:space="preserve">
+    <value>Sehr schlecht</value>
+  </data>
+  <data name="RequestPriorityLevelCouldHave" xml:space="preserve">
+    <value>Könnte haben</value>
+  </data>
+  <data name="RequestPriorityLevelMustHave" xml:space="preserve">
+    <value>Haben müssen</value>
+  </data>
+  <data name="RequestPriorityLevelMustHaveNow" xml:space="preserve">
+    <value>Muss jetzt haben</value>
+  </data>
+  <data name="RequestPriorityLevelShouldHave" xml:space="preserve">
+    <value>Sollte haben</value>
+  </data>
+  <data name="RequestPriorityLevelWonotHave" xml:space="preserve">
+    <value>Werde nicht haben</value>
+  </data>
+  <data name="SeverityLevelCritical" xml:space="preserve">
+    <value>Kritisch</value>
+  </data>
+  <data name="SeverityLevelHigh" xml:space="preserve">
+    <value>Hoch</value>
+  </data>
+  <data name="SeverityLevelLow" xml:space="preserve">
+    <value>Niedrig</value>
+  </data>
+  <data name="SeverityLevelMedium" xml:space="preserve">
+    <value>Mittel</value>
+  </data>
+  <data name="SortDirectionTypeAscending" xml:space="preserve">
+    <value>Aufsteigend</value>
+  </data>
+  <data name="SortDirectionTypeDescending" xml:space="preserve">
+    <value>Absteigend</value>
+  </data>
+  <data name="TriggerActionTypeDelete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="TriggerActionTypeInsert" xml:space="preserve">
+    <value>Einfügen</value>
+  </data>
+  <data name="TriggerActionTypeUpdate" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="UpDownTypeDown" xml:space="preserve">
+    <value>Nach unten</value>
+  </data>
+  <data name="UpDownTypeUp" xml:space="preserve">
+    <value>Nach oben</value>
+  </data>
+  <data name="YesNoTypeNo" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="YesNoTypeYes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+</root>

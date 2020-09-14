@@ -9,12 +9,37 @@
 
 ## [Atc](Atc.md)
 
+- [AddressType](Atc.md#addresstype)
+- [ArticleNumberType](Atc.md#articlenumbertype)
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
+- [BooleanOperatorType](Atc.md#booleanoperatortype)
+- [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
+- [CollectionActionType](Atc.md#collectionactiontype)
+- [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)
+- [DropDownFirstItemType](Atc.md#dropdownfirstitemtype)
+- [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
+  -  Static Methods
+     - GetEnumValue(string value, bool ignoreCase = True)
+     - TryGetEnumValue(string value, bool ignoreCase, out T returnedValue)
+     - TryGetEnumValue(Enum value, out T returnedValue)
+     - Parse(string value, bool ignoreCase = True)
+     - TryParse(string value, out T returnedValue)
+     - TryParse(string value, bool ignoreCase, out T returnedValue)
+     - ToArray(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ToDictionary(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ToDictionaryWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ToKeyValuePairs(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ToKeyValuePairsWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+- [EnumGuidAttribute](Atc.md#enumguidattribute)
+  -  Properties
+     - GlobalIdentifier
+- [FileSystemWatcherChangeType](Atc.md#filesystemwatcherchangetype)
+- [ForwardReverseType](Atc.md#forwardreversetype)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
   -  Static Fields
-     - CultureInfo DanishCultureInfo
      - CultureInfo EnglishCultureInfo
+     - CultureInfo DanishCultureInfo
      - string DateTimeIso8601
 - [GlobalizationLcidConstants](Atc.md#globalizationlcidconstants)
   -  Static Fields
@@ -23,18 +48,60 @@
      - int GreatBritain
      - int Denmark
      - int Germany
+- [GridCell](Atc.md#gridcell)
+  -  Properties
+     - X
+     - Y
+     - IsDefault
+  -  Methods
+     - Equals(GridCell other)
+     - Equals(object obj)
+     - GetHashCode()
+     - Clone()
+     - ToString()
+     - ToStringShort()
+- [IdentityRoleType](Atc.md#identityroletype)
 - [IgnoreDisplayAttribute](Atc.md#ignoredisplayattribute)
-- [LetterAccentTypes](Atc.md#letteraccenttypes)
+- [InsertRemoveType](Atc.md#insertremovetype)
+- [LeftRightType](Atc.md#leftrighttype)
+- [LetterAccentType](Atc.md#letteraccenttype)
 - [LocalizedDescriptionAttribute](Atc.md#localizeddescriptionattribute)
   -  Properties
      - Description
+- [LogCategoryType](Atc.md#logcategorytype)
 - [NumericAlphaComparer](Atc.md#numericalphacomparer)
   -  Methods
      - Compare(string x, string y)
+- [OnOffType](Atc.md#onofftype)
+- [Point2D](Atc.md#point2d)
+  -  Properties
+     - X
+     - Y
+     - IsDefault
+  -  Methods
+     - Equals(Point2D other)
+     - Equals(object obj)
+     - GetHashCode()
+     - ToString()
+- [Point3D](Atc.md#point3d)
+  -  Properties
+     - X
+     - Y
+     - Z
+     - IsDefault
+  -  Methods
+     - Equals(Point3D other)
+     - Equals(object obj)
+     - GetHashCode()
+     - ToString()
+- [SortDirectionType](Atc.md#sortdirectiontype)
+- [TriggerActionType](Atc.md#triggeractiontype)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)
   -  Methods
      - Equals(Tuple&lt;T1, T2&gt; x, Tuple&lt;T1, T2&gt; y)
      - GetHashCode(Tuple&lt;T1, T2&gt; obj)
+- [UpDownType](Atc.md#updowntype)
+- [YesNoType](Atc.md#yesnotype)
 
 ## [Atc.Collections](Atc.Collections.md)
 
@@ -50,27 +117,165 @@
      - FirstOrDefault(Func&lt;T, bool&gt; predicate)
      - Dispose()
 
-## [Atc.Enums](Atc.Enums.md)
+## [Atc.Data](Atc.Data.md)
 
-- [DateTimeDiffCompareType](Atc.Enums.md#datetimediffcomparetype)
+- [DataFactory](Atc.Data.md#datafactory)
+  -  Static Methods
+     - CreateKeyValueDataTableOfIntString(DropDownFirstItemType dropDownFirstItemType = None)
+     - CreateKeyValueDataTableOfGuidString(DropDownFirstItemType dropDownFirstItemType = None)
+     - CreateKeyValueDictionaryOfIntString(DropDownFirstItemType dropDownFirstItemType = None)
+     - CreateKeyValueDictionaryOfGuidString(DropDownFirstItemType dropDownFirstItemType = None)
+     - CreateKeyValueDictionaryOfStringString(DropDownFirstItemType dropDownFirstItemType = None)
+
+## [Atc.Data.Models](Atc.Data.Models.md)
+
+- [Culture](Atc.Data.Models.md#culture)
+  -  Properties
+     - Lcid
+     - Name
+     - CountryEnglishName
+     - CountryDisplayName
+     - CountryCodeA2
+     - CountryCodeA3
+     - LanguageEnglishName
+     - LanguageDisplayName
+     - LanguageCodeA3
+     - LanguageCodeA2
+     - CurrencySymbol
+     - NumberDecimalSeparator
+     - ShortDatePattern
+     - LongTimePattern
+  -  Methods
+     - ToString()
 
 ## [Atc.Extensions.BaseTypes](Atc.Extensions.BaseTypes.md)
 
 - [DateTimeExtensions](Atc.Extensions.BaseTypes.md#datetimeextensions)
   -  Static Methods
-     - ToIso8601Date(this DateTime dateTime)
      - IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
      - GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
      - GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
      - GetWeekNumber(this DateTime date)
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
+     - ToIso8601Date(this DateTime dateTime)
      - ToIso8601UtcDate(this DateTime dateTime)
 
 ## [Atc.Helpers](Atc.Helpers.md)
 
+- [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
+  -  Static Methods
+     - GetArticleNumberType(string articleNumber)
+     - IsValidAsin(string asin)
+     - IsValidEan(string code)
+     - IsValidGtin(string code)
+     - TryConvertToGtin(string code, out string gtin)
+     - IsValidIssn(string code)
+     - IsValidIsbn10(string isbn10)
+     - IsValidIsbn13(string isbn13)
+     - IsValidUpc(string code)
+- [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
+  -  Static Methods
+     - GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+     - GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+     - GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+     - GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+     - GetWhenRotate180(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+     - GetTheClosestByAngle(CardinalDirectionType combinedCardinalDirectionType, double angle)
+     - GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
+     - GetTargetCardinalDirectionByGridCells(GridCell sourceGridCell, GridCell targetGridCell)
+     - GetTargetCardinalDirectionByPoint2Ds(Point2D sourceGridCell, Point2D targetGridCell)
+- [CultureHelper](Atc.Helpers.md#culturehelper)
+  -  Static Methods
+     - GetCultures()
+     - GetCultures(List&lt;int&gt; includeOnlyLcids)
+     - GetCultures(List&lt;string&gt; includeOnlyCultureNames)
+     - GetCultures(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids)
+     - GetCultures(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames)
+     - GetCultures(int displayLanguageLcid)
+     - GetCulturesForCountries()
+     - GetCultureByLcid(int lcid)
+     - GetCultureByLcid(int displayLanguageLcid, int lcid)
+     - GetCultureByCountryCodeA2(string value)
+     - GetCultureByCountryCodeA2(int displayLanguageLcid, string value)
+     - GetCulturesByCountryCodeA2(string value)
+     - GetCulturesByCountryCodeA2(int displayLanguageLcid, string value)
+     - GetCulturesByLanguageCodeA2(string value)
+     - GetCulturesByLanguageCodeA2(int displayLanguageLcid, string value)
+     - GetCultureFromValue(string value)
+     - GetCultureFromValue(int displayLanguageLcid, string value)
+     - GetCultureFromValue(int displayLanguageLcid, List&lt;int&gt; includeLcids, string value)
+     - GetCountryNames(DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCountryNames(int displayLanguageLcid, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCountryNames(List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCountryNames(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCountryNames(List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCountryNames(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(int displayLanguageLcid, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetLanguageNames(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetCultureLcidsWhereCountryIsNotTranslated(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids)
+     - GetCultureLcidsWhereLanguageIsNotTranslated(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids)
+- [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
+  -  Static Methods
+     - GetDescription(DayOfWeek dayOfWeek, CultureInfo culture = null)
+     - GetDescriptions(CultureInfo culture = null)
+     - TryParseDescription(string value, out DayOfWeek dayOfWeek, CultureInfo culture = null)
+- [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)
+  -  Static Methods
+     - GetEnumGuid(DropDownFirstItemType dropDownFirstItemType)
+     - GetItemFromEnumGuid(Guid key)
+     - EnsureFirstItemType(List&lt;string&gt; list, DropDownFirstItemType dropDownFirstItemType)
+- [EnumHelper](Atc.Helpers.md#enumhelper)
+  -  Static Methods
+     - GetName(Enum enumeration)
+     - GetEnumValue(string value, bool ignoreCase = True)
+     - GetDescription(Enum enumeration)
+     - GetValueFromDescription(string description)
+     - ConvertEnumToArray(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ConvertEnumToDictionary(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+     - ConvertEnumToDictionaryWithStringKey(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+- [MathHelper](Atc.Helpers.md#mathhelper)
+  -  Static Methods
+     - PercentageAsInteger(double totalValue, double value)
+     - Percentage(double totalValue, double value, int digits = 2)
+     - CelsiusToFahrenheit(double celsius)
+     - FahrenheitToCelsius(double fahrenheit)
+     - DegreesToRadians(double degrees)
+     - RadiansToDegrees(double radians)
+     - EnsureDegreesAreBetween0And360(double degrees)
+     - EnsureDegreesAreBetween0And360(Point2D degrees)
+     - EnsureDegreesAreBetween0And360(Point3D degrees)
+     - Sin(double degrees)
+     - Cos(double degrees)
+     - Tan(double degrees)
+     - Asin(double value)
+     - Acos(double value)
+     - Atan(double value)
+     - Min(int[] values)
+     - Min(List&lt;int&gt; values)
+     - Min(double[] values)
+     - Min(List&lt;double&gt; values)
+     - Max(int[] values)
+     - Max(List&lt;int&gt; values)
+     - Max(double[] values)
+     - Max(List&lt;double&gt; values)
+     - IsEqualToZero(double value)
+     - IsEquals(double value1, double value2)
+     - TruncateToMaxPrecision(double value, int decimalPrecision)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
      - SetPrivateField(object target, string fieldName, object value)
+- [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
+  -  Static Methods
+     - GetAllRegionInfos()
+     - GetRegionInfoByLcid(int lcid)
+     - GetRegionInfoByIsoAlpha3(string isoAlpha3Code)
+     - GetCultureInfoByIsoAlpha3(string isoAlpha3Code)
+     - GetLcidFromRegionInfo(RegionInfo regionInfo)
+     - GetAllRegionInfosAsLcids()
 - [SimpleTypeHelper](Atc.Helpers.md#simpletypehelper)
   -  Static Fields
      - Type[] PrimitiveTypes
@@ -81,6 +286,22 @@
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
      - GetBeautifyArrayTypeName(Type type)
+- [ThreadHelper](Atc.Helpers.md#threadhelper)
+  -  Static Methods
+     - GetParallelOptions(int exemptProcessorCount = 2)
+
+## [Atc.Structs](Atc.Structs.md)
+
+- [CartesianCoordinate](Atc.Structs.md#cartesiancoordinate)
+  -  Properties
+     - Latitude
+     - Longitude
+     - IsDefault
+  -  Methods
+     - Equals(CartesianCoordinate other)
+     - Equals(object obj)
+     - GetHashCode()
+     - ToString()
 
 ## [System](System.md)
 
@@ -94,6 +315,51 @@
 - [ArgumentNullPropertyException](System.md#argumentnullpropertyexception)
 - [ArgumentPropertyException](System.md#argumentpropertyexception)
 - [ArgumentPropertyNullException](System.md#argumentpropertynullexception)
+- [ArrayExtensions](System.md#arrayextensions)
+  -  Static Methods
+     - RemoveDuplicates(this Array array)
+     - ToArray(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
+     - ToList(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
+- [BooleanExtensions](System.md#booleanextensions)
+  -  Static Methods
+     - IsEqual(this bool? a, bool? b)
+     - ToInt(this bool source)
+     - ToInt(this bool? source)
+- [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
+  -  Static Methods
+     - ToUnixTime(this DateTimeOffset value)
+     - ToIso8601Date(this DateTimeOffset value)
+- [DecimalExtensions](System.md#decimalextensions)
+  -  Static Methods
+     - IsEqual(this decimal a, decimal b)
+     - IsEqual(this decimal? a, decimal? b)
+     - IsEqual(this decimal a, decimal b, int decimalPrecision)
+     - IsEqual(this decimal? a, decimal? b, int decimalPrecision)
+     - CurrencyRoundingAsInteger(this decimal value)
+     - CurrencyRounding(this decimal value)
+     - CurrencyRounding(this decimal value, int digits)
+     - RoundOff2(this decimal value)
+     - RoundOff10(this decimal value)
+     - RoundOff(this decimal value, int numberOfDecimals)
+     - RoundOffPercent(this decimal percent)
+- [DoubleExtensions](System.md#doubleextensions)
+  -  Static Fields
+     - double DoubleEpsilon
+  -  Static Methods
+     - IsEqual(this double a, double b)
+     - IsEqual(this double? a, double? b)
+     - IsEqual(this double a, double b, int decimalPrecision)
+     - IsEqual(this double? a, double? b, int decimalPrecision)
+     - AreClose(this double value1, double value2)
+     - GreaterThanOrClose(this double value1, double value2)
+     - IsZero(this double value)
+     - CurrencyRoundingAsInteger(this double value)
+     - CurrencyRounding(this double value)
+     - CurrencyRounding(this double value, int digits)
+     - RoundOff2(this double value)
+     - RoundOff10(this double value)
+     - RoundOff(this double value, int numberOfDecimals)
+     - RoundOffPercent(this double percent)
 - [EnumExtensions](System.md#enumextensions)
   -  Static Methods
      - IsSet(this Enum enumeration, Enum matchTo)
@@ -117,6 +383,9 @@
      - GetFirstDayOfWeekNumberByYear(this int year, int weekNumber)
      - GetLastDayOfWeekNumberByYear(this int year, int weekNumber)
 - [ItemNotFoundException](System.md#itemnotfoundexception)
+- [LongExtensions](System.md#longextensions)
+  -  Static Methods
+     - FromUnixTime(this long value)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
@@ -137,7 +406,7 @@
      - XmlDecode(this string xml)
      - Alphabetize(this string value)
      - NormalizeAccents(this string value)
-     - NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
+     - NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
      - NormalizePascalCase(this string value)
      - Humanize(this string value)
      - CamelCase(this string value)
@@ -192,6 +461,12 @@
      - IsPersonCprNumber(this string cprNumber)
      - IsEmailAddress(this string value)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
+- [TimeSpanExtensions](System.md#timespanextensions)
+  -  Static Methods
+     - Min(this TimeSpan t1, TimeSpan t2)
+     - Max(this TimeSpan t1, TimeSpan t2)
+     - RemoveMilliseconds(this TimeSpan timespan)
+     - SecondsNotZero(this TimeSpan timespan)
 - [TypeExtensions](System.md#typeextensions)
   -  Static Methods
      - HasValidationAttributes(this Type type)
@@ -202,6 +477,9 @@
      - IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = True)
      - GetBaseTypeGenericArgumentType(this Type type)
      - GetBaseTypeGenericArgumentTypes(this Type type)
+     - GetAttribute(this Type type)
+     - TryGetAttribute(this Type type)
+     - GetAttributes(this Type type)
      - GetPublicDeclaredOnlyMethods(this Type type)
      - GetPrivateDeclaredOnlyMethods(this Type type)
      - GetPrivateDeclaredOnlyMethod(this Type type, string name)
@@ -211,10 +489,28 @@
      - BeautifyTypeName(this Type type, bool useFullName = False)
      - TryGetEnumType(this Type type, out Type enumType)
      - IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
-     - GetAttribute(this Type type)
-     - TryGetAttribute(this Type type)
-     - GetAttributes(this Type type)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
+
+## [System.Data](System.Data.md)
+
+- [DataTableExtensions](System.Data.md#datatableextensions)
+  -  Static Methods
+     - SortTable(this DataTable dataTable, string sortOnColumn, SortDirectionType sortDirection)
+     - FilterTable(this DataTable dataTable, string filterExpression, string sortExpression)
+     - GetGroupCount(this DataTable dataTable, string countOnColumn)
+     - ToCollection(this DataTable dataTable)
+     - ToXPathNodeIterator(this DataTable dataTable)
+
+## [System.IO](System.IO.md)
+
+- [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
+  -  Static Methods
+     - ToString(this MemoryStream stream, Encoding encoding = null)
+- [StreamExtensions](System.IO.md#streamextensions)
+  -  Static Methods
+     - CopyToStream(this Stream stream, int bufferSize = 4096)
+     - ToBytes(this Stream stream)
+     - ToStringData(this Stream stream)
 
 ## [System.Net](System.Net.md)
 
@@ -255,6 +551,13 @@
 - [ClaimsPrincipalExtensions](System.Security.Claims.md#claimsprincipalextensions)
   -  Static Methods
      - GetIdentity(this ClaimsPrincipal principal)
+
+## [System.Text](System.Text.md)
+
+- [StringBuilderExtensions](System.Text.md#stringbuilderextensions)
+  -  Static Methods
+     - Append(this StringBuilder sb, string format, object[] args)
+     - AppendLine(this StringBuilder sb, string format, object[] args)
 
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>
 

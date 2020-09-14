@@ -25,7 +25,7 @@ namespace Atc.Rest.ApiGenerator.Console
             System.Console.ReadKey();
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ok.")]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
         private static void Run(ArgumentOptions options)
         {
             var isGenerated = false;

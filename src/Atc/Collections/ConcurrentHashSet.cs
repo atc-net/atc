@@ -13,7 +13,7 @@ namespace Atc.Collections
     /// <typeparam name="T">The generic type.</typeparam>
     /// <seealso cref="System.Collections.Generic.IEnumerable{T}" />
     /// <seealso cref="System.IDisposable" />
-    [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "Reviewed.")]
+    [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "OK.")]
     public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     {
         private readonly ReaderWriterLockSlim readerWriterLock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
@@ -190,7 +190,7 @@ namespace Atc.Collections
         {
             if (disposing)
             {
-                this.readerWriterLock?.Dispose();
+                this.readerWriterLock.Dispose();
             }
         }
     }

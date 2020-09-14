@@ -116,6 +116,466 @@ public class ArgumentPropertyNullException : ArgumentException, ISerializable
 <br />
 
 
+## ArrayExtensions
+Extensions for the `System.Array` class.
+
+
+```csharp
+public static class ArrayExtensions
+```
+
+### Static Methods
+
+
+#### RemoveDuplicates
+
+```csharp
+Array RemoveDuplicates(this Array array)
+```
+<p><b>Summary:</b> Removes the duplicates.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
+#### ToArray
+
+```csharp
+Array ToArray(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
+```
+<p><b>Summary:</b> To the array.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [remove duplicates].<br />
+#### ToList
+
+```csharp
+List<string> ToList(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
+```
+<p><b>Summary:</b> To the list.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [remove duplicates].<br />
+
+<br />
+
+
+## BooleanExtensions
+Extensions for the `System.Boolean` class.
+
+
+```csharp
+public static class BooleanExtensions
+```
+
+### Static Methods
+
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this bool? a, bool? b)
+```
+<p><b>Summary:</b> Determines whether the specified a is equal.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
+<p><b>Returns:</b> true if the specified a is equal; otherwise, false.</p>
+
+#### ToInt
+
+```csharp
+int ToInt(this bool source)
+```
+<p><b>Summary:</b> Converts the string representation of a number to an integer.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [source].<br />
+#### ToInt
+
+```csharp
+int ToInt(this bool? source)
+```
+<p><b>Summary:</b> Converts the string representation of a number to an integer.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [source].<br />
+
+<br />
+
+
+## DateTimeOffsetExtensions
+Extensions for the `System.DateTimeOffset` class.
+
+
+```csharp
+public static class DateTimeOffsetExtensions
+```
+
+### Static Methods
+
+
+#### ToIso8601Date
+
+```csharp
+string ToIso8601Date(this DateTimeOffset value)
+```
+<p><b>Summary:</b> Converts to ISO 8601 date.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### ToUnixTime
+
+```csharp
+long ToUnixTime(this DateTimeOffset value)
+```
+<p><b>Summary:</b> Converts the DateTimeOffset to a unix time - seconds stating from 1-1-1970.</p>
+
+<p><b>Returns:</b> The long value from a DateTimeOffset.</p>
+
+<b>Code usage:</b>
+
+```csharp
+long unixTime = DateTimeOffset.ToUnixTime(value);
+```
+<b>Code example:</b>
+
+```csharp
+DateTimeOffset dateTimeOffset = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
+long unixTime = dateTimeOffset.ToUnixTime();
+```
+
+<br />
+
+
+## DecimalExtensions
+Extensions for the `System.Decimal` class.
+
+
+```csharp
+public static class DecimalExtensions
+```
+
+### Static Methods
+
+
+#### CurrencyRounding
+
+```csharp
+decimal CurrencyRounding(this decimal value)
+```
+<p><b>Summary:</b> Currencies the rounding.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CurrencyRounding
+
+```csharp
+decimal CurrencyRounding(this decimal value, int digits)
+```
+<p><b>Summary:</b> Currencies the rounding.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CurrencyRoundingAsInteger
+
+```csharp
+int CurrencyRoundingAsInteger(this decimal value)
+```
+<p><b>Summary:</b> Currencies the rounding as integer.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### IsEqual
+
+```csharp
+bool IsEqual(this decimal a, decimal b)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this decimal? a, decimal? b)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this decimal a, decimal b, int decimalPrecision)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### RoundOff
+
+```csharp
+decimal RoundOff(this decimal value, int numberOfDecimals)
+```
+<p><b>Summary:</b> Rounds the off.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimals.<br />
+#### RoundOff10
+
+```csharp
+decimal RoundOff10(this decimal value)
+```
+<p><b>Summary:</b> Rounds the off10.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RoundOff2
+
+```csharp
+decimal RoundOff2(this decimal value)
+```
+<p><b>Summary:</b> Rounds the off2.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RoundOffPercent
+
+```csharp
+decimal RoundOffPercent(this decimal percent)
+```
+<p><b>Summary:</b> Rounds the off percent.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percent.<br />
+
+<br />
+
+
+## DoubleExtensions
+Extensions for the `System.Double` class.
+
+
+```csharp
+public static class DoubleExtensions
+```
+
+### Static Fields
+
+
+#### DoubleEpsilon
+
+```csharp
+double DoubleEpsilon
+```
+<p><b>Summary:</b> The double epsilon.</p>
+
+### Static Methods
+
+
+#### AreClose
+
+```csharp
+bool AreClose(this double value1, double value2)
+```
+<p><b>Summary:</b> Ares the close.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+#### CurrencyRounding
+
+```csharp
+double CurrencyRounding(this double value)
+```
+<p><b>Summary:</b> Currencies the rounding.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CurrencyRounding
+
+```csharp
+double CurrencyRounding(this double value, int digits)
+```
+<p><b>Summary:</b> Currencies the rounding.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CurrencyRoundingAsInteger
+
+```csharp
+int CurrencyRoundingAsInteger(this double value)
+```
+<p><b>Summary:</b> Currencies the rounding as integer.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### GreaterThanOrClose
+
+```csharp
+bool GreaterThanOrClose(this double value1, double value2)
+```
+<p><b>Summary:</b> Greater the than or close.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+#### IsEqual
+
+```csharp
+bool IsEqual(this double a, double b)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this double? a, double? b)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this double a, double b, int decimalPrecision)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsEqual
+
+```csharp
+bool IsEqual(this double? a, double? b, int decimalPrecision)
+```
+<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
+<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+
+#### IsZero
+
+```csharp
+bool IsZero(this double value)
+```
+<p><b>Summary:</b> Determines whether the specified value is zero.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RoundOff
+
+```csharp
+double RoundOff(this double value, int numberOfDecimals)
+```
+<p><b>Summary:</b> Rounds the off.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimals.<br />
+#### RoundOff10
+
+```csharp
+double RoundOff10(this double value)
+```
+<p><b>Summary:</b> Rounds the off10.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RoundOff2
+
+```csharp
+double RoundOff2(this double value)
+```
+<p><b>Summary:</b> Rounds the off2.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RoundOffPercent
+
+```csharp
+double RoundOffPercent(this double percent)
+```
+<p><b>Summary:</b> Rounds the off percent.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percent.<br />
+
+<br />
+
+
 ## EnumExtensions
 Extension methods for enumerations.
 
@@ -411,6 +871,44 @@ public class ItemNotFoundException : Exception, ISerializable
 <br />
 
 
+## LongExtensions
+Extensions for the `System.Int64` class.
+
+
+```csharp
+public static class LongExtensions
+```
+
+### Static Methods
+
+
+#### FromUnixTime
+
+```csharp
+DateTimeOffset FromUnixTime(this long value)
+```
+<p><b>Summary:</b> Converts a unix time to a DateTimeOffset.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A long containing the value to convert.<br />
+<p><b>Returns:</b> The DateTimeOffset value from a long.</p>
+
+<b>Code usage:</b>
+
+```csharp
+DateTimeOffset dateTimeOffset = value.FromUnixTimeSeconds(value);
+```
+<b>Code example:</b>
+
+```csharp
+long unixTime = 0; // Equivalent to 1-1-1970
+DateTimeOffset dateTimeOffset = unixTime.FromUnixTimeSeconds();
+```
+
+<br />
+
+
 ## StringExtensions
 Extensions for the string class.
 
@@ -646,7 +1144,7 @@ string NormalizeAccents(this string value)
 #### NormalizeAccents
 
 ```csharp
-string NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
+string NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
 ```
 <p><b>Summary:</b> Normalizes the accents.</p>
 
@@ -1267,6 +1765,65 @@ The exception.
 ```csharp
 public class SwitchCaseDefaultException : Exception, ISerializable
 ```
+
+
+<br />
+
+
+## TimeSpanExtensions
+Extensions for the `System.TimeSpan` class.
+
+
+```csharp
+public static class TimeSpanExtensions
+```
+
+### Static Methods
+
+
+#### Max
+
+```csharp
+TimeSpan Max(this TimeSpan t1, TimeSpan t2)
+```
+<p><b>Summary:</b> Maximums the specified t1.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The t1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The t2.<br />
+#### Min
+
+```csharp
+TimeSpan Min(this TimeSpan t1, TimeSpan t2)
+```
+<p><b>Summary:</b> Minimums the specified t1.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The t1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The t2.<br />
+#### RemoveMilliseconds
+
+```csharp
+TimeSpan RemoveMilliseconds(this TimeSpan timespan)
+```
+<p><b>Summary:</b> Removes the millisecond part of the timespan.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timespan`&nbsp;&nbsp;-&nbsp;&nbsp;The timespan.<br />
+#### SecondsNotZero
+
+```csharp
+bool SecondsNotZero(this TimeSpan timespan)
+```
+<p><b>Summary:</b> Determines whether the seconds part of the datetime is zero.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timespan`&nbsp;&nbsp;-&nbsp;&nbsp;The timespan.<br />
+<p><b>Returns:</b> true if [is seconds is zero] otherwise, false.</p>
 
 
 <br />

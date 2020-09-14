@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
 {
-    [SuppressMessage("Microsoft.Naming", "CA1720", Justification = "Reviewed.")]
+    [SuppressMessage("Microsoft.Naming", "CA1720", Justification = "OK.")]
     public static class OpenApiDataTypeConstants
     {
         public const string Array = "array";

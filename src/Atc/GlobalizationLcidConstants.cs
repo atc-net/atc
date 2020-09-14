@@ -11,7 +11,7 @@
         public const int Invariant = 0;
 
         /// <summary>
-        /// United States - 1030.
+        /// United States - 1033.
         /// </summary>
         public const int UnitedStates = 1033;
 

@@ -21,7 +21,7 @@ namespace Atc
         /// </summary>
         /// <param name="resourceKey">The resource key.</param>
         /// <param name="resourceType">Type of the resource.</param>
-        public LocalizedDescriptionAttribute(string resourceKey, Type resourceType)
+        public LocalizedDescriptionAttribute(string? resourceKey, Type resourceType)
         {
             if (resourceType == null)
             {

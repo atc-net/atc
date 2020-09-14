@@ -22,8 +22,7 @@ namespace Microsoft.OpenApi.Models
             var startName = basePathSegmentName.EnsureSingular();
             return document.Paths
                 .OrderBy(x => x.Key)
-                .Where(x => x.Key.StartsWith(startName, StringComparison.Ordinal) ||
-                            x.Key.StartsWith("/" + startName, StringComparison.Ordinal)).ToList();
+                .Where(x => x.IsPathStartingSegmentName(startName)).ToList();
         }
     }
 }

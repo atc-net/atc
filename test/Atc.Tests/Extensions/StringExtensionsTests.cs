@@ -188,12 +188,12 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.NormalizeAccents());
 
         [Theory]
-        [InlineData("abc", "&agrave;bc", LetterAccentTypes.Grave, true, true, true)]
-        [InlineData("abc", "&aacute;bc", LetterAccentTypes.Acute, true, true, true)]
-        [InlineData("abc", "&acirc;bc", LetterAccentTypes.Circumflex, true, true, true)]
-        [InlineData("abc", "&atilde;bc", LetterAccentTypes.Tilde, true, true, true)]
-        [InlineData("abc", "&auml;bc", LetterAccentTypes.Umlaut, true, true, true)]
-        public void NormalizeAccents_LetterAccentType_LetterAccentType_Decode_ForLower_ForUpper(string expected, string input, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
+        [InlineData("abc", "&agrave;bc", LetterAccentType.Grave, true, true, true)]
+        [InlineData("abc", "&aacute;bc", LetterAccentType.Acute, true, true, true)]
+        [InlineData("abc", "&acirc;bc", LetterAccentType.Circumflex, true, true, true)]
+        [InlineData("abc", "&atilde;bc", LetterAccentType.Tilde, true, true, true)]
+        [InlineData("abc", "&auml;bc", LetterAccentType.Umlaut, true, true, true)]
+        public void NormalizeAccents_LetterAccentType_LetterAccentType_Decode_ForLower_ForUpper(string expected, string input, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
             => Assert.Equal(expected, input.NormalizeAccents(letterAccentType, decode, forLower, forUpper));
 
         [Theory]

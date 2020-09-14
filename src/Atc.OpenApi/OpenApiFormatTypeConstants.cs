@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
 {
-    [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Justification = "Ok.")]
+    [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Justification = "OK.")]
     public static class OpenApiFormatTypeConstants
     {
         public const string Uuid = "uuid";

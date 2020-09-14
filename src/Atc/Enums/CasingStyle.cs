@@ -4,27 +4,27 @@ namespace Atc
     public enum CasingStyle
     {
         /// <summary>
-        /// The none.
+        /// Default None.
         /// </summary>
         None,
 
         /// <summary>
-        /// The camel case - "camelCase".
+        /// The camel case is formatted like this: "camelCase".
         /// </summary>
         CamelCase,
 
         /// <summary>
-        /// The kebab case - "kebab-case".
+        /// The kebab case is formatted like this: "kebab-case".
         /// </summary>
         KebabCase,
 
         /// <summary>
-        /// The pascal case - "PascalCase".
+        /// The pascal case is formatted like this: "PascalCase".
         /// </summary>
         PascalCase,
 
         /// <summary>
-        /// The snake case - "snake_case".
+        /// The snake case is formatted like this: "snake_case".
         /// </summary>
         SnakeCase,
     }

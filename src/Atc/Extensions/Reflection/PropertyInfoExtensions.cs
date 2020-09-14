@@ -93,11 +93,6 @@ namespace System.Reflection
 
             if (string.IsNullOrEmpty(attributeValue))
             {
-                attributeValue = GetAttributeValue<DescriptionAttribute, string>(propertyInfo, arg => arg.Description);
-            }
-
-            if (string.IsNullOrEmpty(attributeValue))
-            {
                 attributeValue = GetAttributeValue<DisplayNameAttribute, string>(propertyInfo, arg => arg.DisplayName);
             }
 

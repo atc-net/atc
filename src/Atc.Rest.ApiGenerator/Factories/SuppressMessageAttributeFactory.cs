@@ -17,7 +17,7 @@ namespace Atc.Rest.ApiGenerator.Factories
         {
             if (string.IsNullOrEmpty(justification))
             {
-                justification = "Ok.";
+                justification = "OK.";
             }
 
             return checkId switch

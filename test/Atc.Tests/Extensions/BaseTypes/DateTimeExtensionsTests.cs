@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Atc.Enums;
 using Atc.Extensions.BaseTypes;
 using Atc.Tests.XUnitTestData;
 using Xunit;

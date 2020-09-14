@@ -441,7 +441,7 @@ namespace System
         public static string NormalizeAccents(this string value)
         {
             // ReSharper disable once IntroduceOptionalParameters.Global
-            return NormalizeAccents(value, LetterAccentTypes.All, true, true, true);
+            return NormalizeAccents(value, LetterAccentType.All, true, true, true);
         }
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace System
         /// <param name="forUpper">if set to <c>true</c> [for upper].</param>
         /// <returns>The string that is normalize for accent-letter.</returns>
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        public static string NormalizeAccents(this string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
+        public static string NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
         {
             //// http://symbolcodes.tlt.psu.edu/web/codehtml.html
             ////-------------------------------------------------------------
@@ -470,27 +470,27 @@ namespace System
                     // ReSharper disable once SwitchStatementMissingSomeCases
                     switch (letterAccentType)
                     {
-                        case LetterAccentTypes.Grave:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, true, true, forUpper);
+                        case LetterAccentType.Grave:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Grave, true, true, forUpper);
                             break;
-                        case LetterAccentTypes.Acute:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, true, true, forUpper);
+                        case LetterAccentType.Acute:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Acute, true, true, forUpper);
                             break;
-                        case LetterAccentTypes.Circumflex:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, true, true, forUpper);
+                        case LetterAccentType.Circumflex:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, true, true, forUpper);
                             break;
-                        case LetterAccentTypes.Tilde:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, true, true, forUpper);
+                        case LetterAccentType.Tilde:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, true, true, forUpper);
                             break;
-                        case LetterAccentTypes.Umlaut:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, true, true, forUpper);
+                        case LetterAccentType.Umlaut:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, true, true, forUpper);
                             break;
-                        case LetterAccentTypes.All:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, true, true, forUpper);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, true, true, forUpper);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, true, true, forUpper);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, true, true, forUpper);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, true, true, forUpper);
+                        case LetterAccentType.All:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Grave, true, true, forUpper);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Acute, true, true, forUpper);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, true, true, forUpper);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, true, true, forUpper);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, true, true, forUpper);
                             break;
                         default:
                             throw new SwitchCaseDefaultException(letterAccentType);
@@ -502,27 +502,27 @@ namespace System
                     // ReSharper disable once SwitchStatementMissingSomeCases
                     switch (letterAccentType)
                     {
-                        case LetterAccentTypes.Grave:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, true, forLower, true);
+                        case LetterAccentType.Grave:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Grave, true, forLower, true);
                             break;
-                        case LetterAccentTypes.Acute:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, true, forLower, true);
+                        case LetterAccentType.Acute:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Acute, true, forLower, true);
                             break;
-                        case LetterAccentTypes.Circumflex:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, true, forLower, true);
+                        case LetterAccentType.Circumflex:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, true, forLower, true);
                             break;
-                        case LetterAccentTypes.Tilde:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, true, forLower, true);
+                        case LetterAccentType.Tilde:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, true, forLower, true);
                             break;
-                        case LetterAccentTypes.Umlaut:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, true, forLower, true);
+                        case LetterAccentType.Umlaut:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, true, forLower, true);
                             break;
-                        case LetterAccentTypes.All:
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, true, forLower, true);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, true, forLower, true);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, true, forLower, true);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, true, forLower, true);
-                            value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, true, forLower, true);
+                        case LetterAccentType.All:
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Grave, true, forLower, true);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Acute, true, forLower, true);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, true, forLower, true);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, true, forLower, true);
+                            value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, true, forLower, true);
                             break;
                         default:
                             throw new SwitchCaseDefaultException(letterAccentType);
@@ -535,27 +535,27 @@ namespace System
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (letterAccentType)
                 {
-                    case LetterAccentTypes.Grave:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, decode, true, forUpper);
+                    case LetterAccentType.Grave:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Grave, decode, true, forUpper);
                         break;
-                    case LetterAccentTypes.Acute:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, decode, true, forUpper);
+                    case LetterAccentType.Acute:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Acute, decode, true, forUpper);
                         break;
-                    case LetterAccentTypes.Circumflex:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, decode, true, forUpper);
+                    case LetterAccentType.Circumflex:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, decode, true, forUpper);
                         break;
-                    case LetterAccentTypes.Tilde:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, decode, true, forUpper);
+                    case LetterAccentType.Tilde:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, decode, true, forUpper);
                         break;
-                    case LetterAccentTypes.Umlaut:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, decode, true, forUpper);
+                    case LetterAccentType.Umlaut:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, decode, true, forUpper);
                         break;
-                    case LetterAccentTypes.All:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, decode, true, forUpper);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, decode, true, forUpper);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, decode, true, forUpper);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, decode, true, forUpper);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, decode, true, forUpper);
+                    case LetterAccentType.All:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Grave, decode, true, forUpper);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Acute, decode, true, forUpper);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, decode, true, forUpper);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, decode, true, forUpper);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, decode, true, forUpper);
                         break;
                     default:
                         throw new SwitchCaseDefaultException(letterAccentType);
@@ -568,27 +568,27 @@ namespace System
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (letterAccentType)
                 {
-                    case LetterAccentTypes.Grave:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, decode, forLower, true);
+                    case LetterAccentType.Grave:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Grave, decode, forLower, true);
                         break;
-                    case LetterAccentTypes.Acute:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, decode, forLower, true);
+                    case LetterAccentType.Acute:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Acute, decode, forLower, true);
                         break;
-                    case LetterAccentTypes.Circumflex:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, decode, forLower, true);
+                    case LetterAccentType.Circumflex:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, decode, forLower, true);
                         break;
-                    case LetterAccentTypes.Tilde:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, decode, forLower, true);
+                    case LetterAccentType.Tilde:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, decode, forLower, true);
                         break;
-                    case LetterAccentTypes.Umlaut:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, decode, forLower, true);
+                    case LetterAccentType.Umlaut:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, decode, forLower, true);
                         break;
-                    case LetterAccentTypes.All:
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Grave, decode, forLower, true);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Acute, decode, forLower, true);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Circumflex, decode, forLower, true);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Tilde, decode, forLower, true);
-                        value = NormalizeAccentsHelper(value, LetterAccentTypes.Umlaut, decode, forLower, true);
+                    case LetterAccentType.All:
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Grave, decode, forLower, true);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Acute, decode, forLower, true);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Circumflex, decode, forLower, true);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Tilde, decode, forLower, true);
+                        value = NormalizeAccentsHelper(value, LetterAccentType.Umlaut, decode, forLower, true);
                         break;
                     default:
                         throw new SwitchCaseDefaultException(letterAccentType);
@@ -603,8 +603,8 @@ namespace System
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The string with space inserted before each capital letter.</returns>
-        /// [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
-        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
+        /// [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
         public static string NormalizePascalCase(this string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -687,7 +687,7 @@ namespace System
         /// </summary>
         /// <param name="value">The string to work on.</param>
         /// <returns>The string with camel-case format.</returns>
-        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
         public static string? CamelCase(this string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -706,7 +706,7 @@ namespace System
         /// <param name="value">The string to work on.</param>
         /// <param name="removeSeparators">If true, remove all separators.</param>
         /// <returns>The string with pascal-case format.</returns>
-        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
         public static string PascalCase(this string value, bool removeSeparators = false)
         {
             if (string.IsNullOrEmpty(value))
@@ -726,7 +726,7 @@ namespace System
         /// <param name="removeSeparators">If true, remove all separators.</param>
         /// <returns>The string with pascal-case format.</returns>
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
-        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
         public static string PascalCase(this string value, char[]? separators, bool removeSeparators = false)
         {
             if (string.IsNullOrEmpty(value) || separators == null)
@@ -910,7 +910,7 @@ namespace System
         /// <param name="value">The value.</param>
         /// <param name="index">The index.</param>
         /// <param name="newChar">The new character.</param>
-        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "char", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "char", Justification = "OK.")]
         public static string ReplaceAt(this string value, int index, char newChar)
         {
             if (value == null)
@@ -1245,7 +1245,7 @@ namespace System
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static string NormalizeAccentsHelper(string value, LetterAccentTypes letterAccentType, bool decode, bool forLower, bool forUpper)
+        private static string NormalizeAccentsHelper(string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
         {
             //// http://symbolcodes.tlt.psu.edu/web/codehtml.html
             ////-------------------------------------------------------------
@@ -1257,7 +1257,7 @@ namespace System
                     // ReSharper disable StringLiteralTypo
                     switch (letterAccentType)
                     {
-                        case LetterAccentTypes.Grave:
+                        case LetterAccentType.Grave:
                             value = value
                                 .Replace("&agrave;", "a", StringComparison.Ordinal)
                                 .Replace("&egrave; ", "e", StringComparison.Ordinal)
@@ -1270,7 +1270,7 @@ namespace System
                                 .Replace("&#242;", "o", StringComparison.Ordinal)
                                 .Replace("&#249;", "u", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Acute:
+                        case LetterAccentType.Acute:
                             value = value
                                 .Replace("&aacute;", "a", StringComparison.Ordinal)
                                 .Replace("&eacute;", "e", StringComparison.Ordinal)
@@ -1285,7 +1285,7 @@ namespace System
                                 .Replace("&#250;", "u", StringComparison.Ordinal)
                                 .Replace("&#253;", "y", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Circumflex:
+                        case LetterAccentType.Circumflex:
                             value = value
                                 .Replace("&acirc;", "a", StringComparison.Ordinal)
                                 .Replace("&ecirc;", "e", StringComparison.Ordinal)
@@ -1298,7 +1298,7 @@ namespace System
                                 .Replace("&#244;", "o", StringComparison.Ordinal)
                                 .Replace("&#251;", "u", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Tilde:
+                        case LetterAccentType.Tilde:
                             value = value
                                 .Replace("&atilde;", "a", StringComparison.Ordinal)
                                 .Replace("&ntilde;", "n", StringComparison.Ordinal)
@@ -1307,7 +1307,7 @@ namespace System
                                 .Replace("&#241;", "n", StringComparison.Ordinal)
                                 .Replace("&#245;", "o", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Umlaut:
+                        case LetterAccentType.Umlaut:
                             value = value
                                 .Replace("&auml;", "a", StringComparison.Ordinal)
                                 .Replace("&euml;", "e", StringComparison.Ordinal)
@@ -1333,7 +1333,7 @@ namespace System
                     // ReSharper disable StringLiteralTypo
                     switch (letterAccentType)
                     {
-                        case LetterAccentTypes.Grave:
+                        case LetterAccentType.Grave:
                             value = value
                                 .Replace("&Agrave;", "A", StringComparison.Ordinal)
                                 .Replace("&Egrave;", "E", StringComparison.Ordinal)
@@ -1346,7 +1346,7 @@ namespace System
                                 .Replace("&#210;", "O", StringComparison.Ordinal)
                                 .Replace("&#217;", "U", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Acute:
+                        case LetterAccentType.Acute:
                             value = value
                                 .Replace("&Aacute;", "A", StringComparison.Ordinal)
                                 .Replace("&Eacute;", "E", StringComparison.Ordinal)
@@ -1361,7 +1361,7 @@ namespace System
                                 .Replace("&#218;", "U", StringComparison.Ordinal)
                                 .Replace("&#221;", "Y", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Circumflex:
+                        case LetterAccentType.Circumflex:
                             value = value
                                 .Replace("&Acirc;", "A", StringComparison.Ordinal)
                                 .Replace("&Ecirc;", "E", StringComparison.Ordinal)
@@ -1374,13 +1374,13 @@ namespace System
                                 .Replace("&#212;", "O", StringComparison.Ordinal)
                                 .Replace("&#219;", "U", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Tilde:
+                        case LetterAccentType.Tilde:
                             value = value
                                 .Replace("&#195;", "A", StringComparison.Ordinal)
                                 .Replace("&#209;", "N", StringComparison.Ordinal)
                                 .Replace("&#213;", "O", StringComparison.Ordinal);
                             break;
-                        case LetterAccentTypes.Umlaut:
+                        case LetterAccentType.Umlaut:
                             value = value
                                 .Replace("&#196;", "A", StringComparison.Ordinal)
                                 .Replace("&#203;", "E", StringComparison.Ordinal)
@@ -1400,7 +1400,7 @@ namespace System
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (letterAccentType)
                 {
-                    case LetterAccentTypes.Grave:
+                    case LetterAccentType.Grave:
                         value = value
                             .Replace("à", "a", StringComparison.Ordinal)
                             .Replace("è", "e", StringComparison.Ordinal)
@@ -1408,7 +1408,7 @@ namespace System
                             .Replace("ò", "o", StringComparison.Ordinal)
                             .Replace("ù", "u", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Acute:
+                    case LetterAccentType.Acute:
                         value = value
                             .Replace("á", "a", StringComparison.Ordinal)
                             .Replace("é", "e", StringComparison.Ordinal)
@@ -1417,7 +1417,7 @@ namespace System
                             .Replace("ú", "u", StringComparison.Ordinal)
                             .Replace("ý", "y", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Circumflex:
+                    case LetterAccentType.Circumflex:
                         value = value
                             .Replace("â", "a", StringComparison.Ordinal)
                             .Replace("ê", "e", StringComparison.Ordinal)
@@ -1425,13 +1425,13 @@ namespace System
                             .Replace("ô", "o", StringComparison.Ordinal)
                             .Replace("û", "u", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Tilde:
+                    case LetterAccentType.Tilde:
                         value = value
                             .Replace("ã", "a", StringComparison.Ordinal)
                             .Replace("ñ", "n", StringComparison.Ordinal)
                             .Replace("õ", "o", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Umlaut:
+                    case LetterAccentType.Umlaut:
                         value = value
                             .Replace("ä", "a", StringComparison.Ordinal)
                             .Replace("ë", "e", StringComparison.Ordinal)
@@ -1451,7 +1451,7 @@ namespace System
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (letterAccentType)
                 {
-                    case LetterAccentTypes.Grave:
+                    case LetterAccentType.Grave:
                         value = value
                             .Replace("À", "A", StringComparison.Ordinal)
                             .Replace("È", "E", StringComparison.Ordinal)
@@ -1459,7 +1459,7 @@ namespace System
                             .Replace("Ò", "O", StringComparison.Ordinal)
                             .Replace("Ù", "U", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Acute:
+                    case LetterAccentType.Acute:
                         value = value
                             .Replace("Á", "A", StringComparison.Ordinal)
                             .Replace("É", "E", StringComparison.Ordinal)
@@ -1468,7 +1468,7 @@ namespace System
                             .Replace("Ú", "U", StringComparison.Ordinal)
                             .Replace("Ý", "Y", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Circumflex:
+                    case LetterAccentType.Circumflex:
                         value = value
                             .Replace("Â", "A", StringComparison.Ordinal)
                             .Replace("Ê", "E", StringComparison.Ordinal)
@@ -1476,13 +1476,13 @@ namespace System
                             .Replace("Ô", "O", StringComparison.Ordinal)
                             .Replace("Û", "U", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Tilde:
+                    case LetterAccentType.Tilde:
                         value = value
                             .Replace("Ã", "A", StringComparison.Ordinal)
                             .Replace("Ñ", "N", StringComparison.Ordinal)
                             .Replace("Õ", "O", StringComparison.Ordinal);
                         break;
-                    case LetterAccentTypes.Umlaut:
+                    case LetterAccentType.Umlaut:
                         value = value
                             .Replace("Ä", "A", StringComparison.Ordinal)
                             .Replace("Ë", "E", StringComparison.Ordinal)

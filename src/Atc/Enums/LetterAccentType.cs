@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace Atc
@@ -7,7 +8,8 @@ namespace Atc
     /// Flag-Enumeration: LetterAccentType.
     /// </summary>
     [Flags]
-    public enum LetterAccentTypes
+    [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames", Justification = "OK.")]
+    public enum LetterAccentType
     {
         /// <summary>
         /// Default None.
@@ -15,27 +17,27 @@ namespace Atc
         None = 0x00,
 
         /// <summary>
-        /// The grave.
+        /// Grave.
         /// </summary>
         Grave = 0x01,
 
         /// <summary>
-        /// The acute.
+        /// Acute.
         /// </summary>
         Acute = 0x02,
 
         /// <summary>
-        /// The circumflex.
+        /// Circumflex.
         /// </summary>
         Circumflex = 0x04,
 
         /// <summary>
-        /// The tilde.
+        /// Tilde.
         /// </summary>
         Tilde = 0x08,
 
         /// <summary>
-        /// The umlaut.
+        /// Umlaut.
         /// </summary>
         Umlaut = 0x10,
 

@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="AppTypeApplication" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="AppTypeService" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="BaseUnitTypeAmountOfSubstance" xml:space="preserve">
+    <value>Stofmængde</value>
+  </data>
+  <data name="BaseUnitTypeElectricCurrent" xml:space="preserve">
+    <value>Elektrisk strøm</value>
+  </data>
+  <data name="BaseUnitTypeLength" xml:space="preserve">
+    <value>Længde</value>
+  </data>
+  <data name="BaseUnitTypeLuminousIntensity" xml:space="preserve">
+    <value>Lysstyrke</value>
+  </data>
+  <data name="BaseUnitTypeMass" xml:space="preserve">
+    <value>Masse</value>
+  </data>
+  <data name="BaseUnitTypeThermodynamicTemperature" xml:space="preserve">
+    <value>Termodynamiske temperatur</value>
+  </data>
+  <data name="BaseUnitTypeTime" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="BooleanOperatorTypeAnd" xml:space="preserve">
+    <value>Og</value>
+  </data>
+  <data name="BooleanOperatorTypeNear" xml:space="preserve">
+    <value>Tæt</value>
+  </data>
+  <data name="BooleanOperatorTypeNot" xml:space="preserve">
+    <value>Ikke</value>
+  </data>
+  <data name="BooleanOperatorTypeOr" xml:space="preserve">
+    <value>Eller</value>
+  </data>
+  <data name="CollectionActionTypeAdded" xml:space="preserve">
+    <value>Tilføjet</value>
+  </data>
+  <data name="CollectionActionTypeCleared" xml:space="preserve">
+    <value>Ryddet</value>
+  </data>
+  <data name="CollectionActionTypeLoaded" xml:space="preserve">
+    <value>Indlæst</value>
+  </data>
+  <data name="CollectionActionTypeRemoved" xml:space="preserve">
+    <value>Fjernet</value>
+  </data>
+  <data name="CollectionActionTypeSaved" xml:space="preserve">
+    <value>Gemt</value>
+  </data>
+  <data name="CollectionActionTypeUpdated" xml:space="preserve">
+    <value>Opdateret</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeDays" xml:space="preserve">
+    <value>Dage</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeHours" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeMilliseconds" xml:space="preserve">
+    <value>Millisekunder</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeMinutes" xml:space="preserve">
+    <value>Minutter</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeQuartal" xml:space="preserve">
+    <value>Quartal</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeSeconds" xml:space="preserve">
+    <value>Sekunder</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeTicks" xml:space="preserve">
+    <value>Tidsmærke</value>
+  </data>
+  <data name="DateTimeDiffCompareTypeYear" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="DropDownFirstItemTypeIncludeAll" xml:space="preserve">
+    <value>-- Alle --</value>
+  </data>
+  <data name="DropDownFirstItemTypePleaseSelect" xml:space="preserve">
+    <value>-- Vælg --</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeAdded" xml:space="preserve">
+    <value>Tilføjet</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeChanged" xml:space="preserve">
+    <value>Ændret</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeDeleted" xml:space="preserve">
+    <value>Slettet</value>
+  </data>
+  <data name="FileSystemWatcherChangeTypeRenamed" xml:space="preserve">
+    <value>Omdøbt</value>
+  </data>
+  <data name="ForwardReverseTypeForward" xml:space="preserve">
+    <value>Fremad</value>
+  </data>
+  <data name="ForwardReverseTypeReverse" xml:space="preserve">
+    <value>Tilbage</value>
+  </data>
+  <data name="IdentityRoleTypeAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeAnonymous" xml:space="preserve">
+    <value>Anonym</value>
+  </data>
+  <data name="IdentityRoleTypeSuperAdmin" xml:space="preserve">
+    <value>Super Administrator</value>
+  </data>
+  <data name="IdentityRoleTypeSuperUser" xml:space="preserve">
+    <value>Super Bruger</value>
+  </data>
+  <data name="IdentityRoleTypeUser" xml:space="preserve">
+    <value>Bruger</value>
+  </data>
+  <data name="InsertRemoveTypeInsert" xml:space="preserve">
+    <value>Indsæt</value>
+  </data>
+  <data name="InsertRemoveTypeRemove" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="LeftRightTypeLeft" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="LeftRightTypeRight" xml:space="preserve">
+    <value>Højre</value>
+  </data>
+  <data name="LogCategoryType" xml:space="preserve">
+    <value>Log kategori type</value>
+  </data>
+  <data name="LogCategoryTypeAudit" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="LogCategoryTypeCritical" xml:space="preserve">
+    <value>Kritisk</value>
+  </data>
+  <data name="LogCategoryTypeDebug" xml:space="preserve">
+    <value>Fejlsøg</value>
+  </data>
+  <data name="LogCategoryTypeError" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="LogCategoryTypeInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="LogCategoryTypeSecurity" xml:space="preserve">
+    <value>Sikkerhed</value>
+  </data>
+  <data name="LogCategoryTypeService" xml:space="preserve">
+    <value>Tjenesten</value>
+  </data>
+  <data name="LogCategoryTypeTrace" xml:space="preserve">
+    <value>Trace</value>
+  </data>
+  <data name="LogCategoryTypeUI" xml:space="preserve">
+    <value>UI</value>
+  </data>
+  <data name="LogCategoryTypeWarning" xml:space="preserve">
+    <value>Advarsel</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="OnOffTypeOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="OnOffTypeOn" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="QualityCategoryTypeExcellent" xml:space="preserve">
+    <value>Fremragende</value>
+  </data>
+  <data name="QualityCategoryTypeFair" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="QualityCategoryTypeGood" xml:space="preserve">
+    <value>God</value>
+  </data>
+  <data name="QualityCategoryTypePerfect" xml:space="preserve">
+    <value>Perfect</value>
+  </data>
+  <data name="QualityCategoryTypePoor" xml:space="preserve">
+    <value>Dårlig</value>
+  </data>
+  <data name="QualityCategoryTypeVeryGood" xml:space="preserve">
+    <value>Meget god</value>
+  </data>
+  <data name="QualityCategoryTypeVeryPoor" xml:space="preserve">
+    <value>Meget dårlig</value>
+  </data>
+  <data name="RequestPriorityLevelCouldHave" xml:space="preserve">
+    <value>Kunne have</value>
+  </data>
+  <data name="RequestPriorityLevelMustHave" xml:space="preserve">
+    <value>Må have</value>
+  </data>
+  <data name="RequestPriorityLevelMustHaveNow" xml:space="preserve">
+    <value>Skal have nu</value>
+  </data>
+  <data name="RequestPriorityLevelShouldHave" xml:space="preserve">
+    <value>Skulle have</value>
+  </data>
+  <data name="RequestPriorityLevelWonotHave" xml:space="preserve">
+    <value>Vil ikke have</value>
+  </data>
+  <data name="SeverityLevelCritical" xml:space="preserve">
+    <value>Kritisk</value>
+  </data>
+  <data name="SeverityLevelHigh" xml:space="preserve">
+    <value>Høj</value>
+  </data>
+  <data name="SeverityLevelLow" xml:space="preserve">
+    <value>Lav</value>
+  </data>
+  <data name="SeverityLevelMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="SortDirectionTypeAscending" xml:space="preserve">
+    <value>Stigende</value>
+  </data>
+  <data name="SortDirectionTypeDescending" xml:space="preserve">
+    <value>Faldende</value>
+  </data>
+  <data name="TriggerActionTypeDelete" xml:space="preserve">
+    <value>Slette</value>
+  </data>
+  <data name="TriggerActionTypeInsert" xml:space="preserve">
+    <value>Indsæt</value>
+  </data>
+  <data name="TriggerActionTypeUpdate" xml:space="preserve">
+    <value>Opdatering</value>
+  </data>
+  <data name="UpDownTypeDown" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="UpDownTypeUp" xml:space="preserve">
+    <value>Op</value>
+  </data>
+  <data name="YesNoTypeNo" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="YesNoTypeYes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+</root>
