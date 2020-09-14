@@ -14,6 +14,8 @@ jobs:
       with:
         dotnet-version: 3.1
     - name: Restore packages with dotnet
-      run: dotnet restore Atc.sln
+      run: dotnet restore
     - name: Build with dotnet
-      run: dotnet build Atc.sln
+      run: dotnet build
+    - name: Create packages with dotnet
+      run: dotnet pack
