@@ -15,7 +15,10 @@ namespace Atc.Tests.Helpers
 
             // Assert
             actual.Should().NotBeNull();
-            actual.MaxDegreeOfParallelism.Should().Be(Environment.ProcessorCount - 2);
+            if (Environment.ProcessorCount > 0)
+            {
+                actual.MaxDegreeOfParallelism.Should().Be(Environment.ProcessorCount - 2);
+            }
         }
 
         [Theory]
@@ -28,7 +31,10 @@ namespace Atc.Tests.Helpers
 
             // Assert
             actual.Should().NotBeNull();
-            actual.MaxDegreeOfParallelism.Should().Be(Environment.ProcessorCount - exemptProcessorCount);
+            if (Environment.ProcessorCount > 0)
+            {
+                actual.MaxDegreeOfParallelism.Should().Be(Environment.ProcessorCount - exemptProcessorCount);
+            }
         }
     }
 }
