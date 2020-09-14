@@ -63,6 +63,7 @@ namespace Demo.Api.Full
                 services.ConfigureServices();
             }
 
+            services.ConfigureOptions<ConfigureSwaggerOptions>();
             services.AddRestApi<Startup>(restApiOptions, Configuration);
         }
 
