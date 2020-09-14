@@ -12,11 +12,11 @@
 - [AtcRestApiGeneratorAssemblyTypeInitializer](Atc.Rest.ApiGenerator.md#atcrestapigeneratorassemblytypeinitializer)
 - [Util](Atc.Rest.ApiGenerator.md#util)
   -  Static Methods
-     - GetProjectPath()
-     - GetCsFileNameForEndpoints(DirectoryInfo pathForEndpoints, string modelName)
      - GetCsFileNameForContract(DirectoryInfo pathForContracts, string area, string subArea, string modelName)
      - GetCsFileNameForContractEnumTypes(DirectoryInfo pathForContracts, string modelName)
      - GetCsFileNameForContractShared(DirectoryInfo pathForContracts, string modelName)
+     - GetCsFileNameForEndpoints(DirectoryInfo pathForEndpoints, string modelName)
+     - GetProjectPath()
 
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
@@ -25,53 +25,53 @@
      - Create(string apiProjectName, DirectoryInfo apiOutputPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions)
 - [FileHelper](Atc.Rest.ApiGenerator.Helpers.md#filehelper)
   -  Static Methods
-     - Save(string file, string text)
      - Save(FileInfo fileInfo, string text)
+     - Save(string file, string text)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
   -  Static Methods
      - CombineAndGetApiYamlDoc(string apiDesignPath)
-     - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc)
      - GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
+     - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
   -  Static Methods
      - IsDocumentValid(OpenApiDocument apiDocument)
 - [OpenApiOperationSchemaMapHelper](Atc.Rest.ApiGenerator.Helpers.md#openapioperationschemamaphelper)
   -  Static Methods
-     - GetSegmentName(string path)
      - CollectMappings(OpenApiDocument apiDocument)
+     - GetSegmentName(string path)
 - [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
   -  Static Methods
+     - ValidateGetOperations(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
      - ValidateGlobalParameters(IEnumerable&lt;string&gt; globalPathParameterNames, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
      - ValidateMissingOperationParameters(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
      - ValidateOperationsWithParametersNotPresentInPath(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
-     - ValidateGetOperations(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 
 - [ApiOperationSchemaMap](Atc.Rest.ApiGenerator.Models.md#apioperationschemamap)
   -  Properties
-     - SchemaKey
      - LocatedArea
-     - SegmentName
-     - Path
      - OperationType
      - ParentSchemaKey
+     - Path
+     - SchemaKey
+     - SegmentName
   -  Methods
      - ToString()
 - [ApiProjectOptions](Atc.Rest.ApiGenerator.Models.md#apiprojectoptions)
   -  Properties
-     - ToolNameAndProjectVersion
      - ApiOptions
-     - PathForSrcGenerate
-     - PathForEndpoints
+     - ApiVersion
+     - BasePathSegmentNames
+     - Document
+     - DocumentFile
      - PathForContracts
      - PathForContractsEnumerationTypes
      - PathForContractsShared
-     - Document
-     - DocumentFile
+     - PathForEndpoints
+     - PathForSrcGenerate
      - ProjectName
-     - ApiVersion
-     - BasePathSegmentNames
+     - ToolNameAndProjectVersion
 - [SchemaMapLocatedAreaType](Atc.Rest.ApiGenerator.Models.md#schemamaplocatedareatype)
 
 ## [Atc.Rest.ApiGenerator.Models.ApiOptions](Atc.Rest.ApiGenerator.Models.ApiOptions.md)
@@ -82,10 +82,10 @@
      - Validation
 - [ApiOptionsGenerator](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgenerator)
   -  Properties
-     - UseNullableReferenceTypes
-     - UseAuthorization
      - Request
      - Response
+     - UseAuthorization
+     - UseNullableReferenceTypes
 - [ApiOptionsGeneratorRequest](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgeneratorrequest)
 - [ApiOptionsGeneratorResponse](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgeneratorresponse)
   -  Properties
@@ -98,8 +98,8 @@
 
 - [ISyntaxCodeGenerator](Atc.Rest.ApiGenerator.SyntaxGenerators.md#isyntaxcodegenerator)
   -  Properties
-     - FocusOnSegmentName
      - Code
+     - FocusOnSegmentName
   -  Methods
      - GenerateCode()
      - ToCodeAsString()
@@ -126,20 +126,20 @@
 - [ISyntaxGeneratorEndpointControllers](Atc.Rest.ApiGenerator.SyntaxGenerators.md#isyntaxgeneratorendpointcontrollers)
 - [ISyntaxOperationCodeGenerator](Atc.Rest.ApiGenerator.SyntaxGenerators.md#isyntaxoperationcodegenerator)
   -  Properties
-     - ApiProjectOptions
-     - ApiOperationType
      - ApiOperation
+     - ApiOperationType
+     - ApiProjectOptions
 - [ISyntaxSchemaCodeGenerator](Atc.Rest.ApiGenerator.SyntaxGenerators.md#isyntaxschemacodegenerator)
   -  Properties
-     - ApiSchemaKey
      - ApiSchema
+     - ApiSchemaKey
 - [SyntaxGeneratorContractInterface](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractinterface)
   -  Properties
-     - ApiProjectOptions
-     - ApiOperationType
      - ApiOperation
-     - FocusOnSegmentName
+     - ApiOperationType
+     - ApiProjectOptions
      - Code
+     - FocusOnSegmentName
   -  Methods
      - GenerateCode()
      - ToCodeAsString()
@@ -154,10 +154,10 @@
      - GenerateSyntaxTrees()
 - [SyntaxGeneratorContractModel](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractmodel)
   -  Properties
-     - ApiSchemaKey
      - ApiSchema
-     - FocusOnSegmentName
+     - ApiSchemaKey
      - Code
+     - FocusOnSegmentName
      - IsEnum
      - LocationArea
   -  Methods
@@ -169,18 +169,18 @@
 - [SyntaxGeneratorContractModels](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractmodels)
   -  Properties
      - ApiProjectOptions
-     - OperationSchemaMappings
      - FocusOnSegmentName
+     - OperationSchemaMappings
   -  Methods
      - GenerateSyntaxTrees()
 - [SyntaxGeneratorContractParameter](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractparameter)
   -  Properties
-     - ApiProjectOptions
-     - GlobalPathParameters
-     - ApiOperationType
      - ApiOperation
-     - FocusOnSegmentName
+     - ApiOperationType
+     - ApiProjectOptions
      - Code
+     - FocusOnSegmentName
+     - GlobalPathParameters
   -  Methods
      - GenerateCode()
      - ToCodeAsString()
@@ -195,11 +195,11 @@
      - GenerateSyntaxTrees()
 - [SyntaxGeneratorContractResult](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorcontractresult)
   -  Properties
-     - ApiProjectOptions
-     - ApiOperationType
      - ApiOperation
-     - FocusOnSegmentName
+     - ApiOperationType
+     - ApiProjectOptions
      - Code
+     - FocusOnSegmentName
   -  Methods
      - GenerateCode()
      - ToCodeAsString()
@@ -214,8 +214,8 @@
      - GenerateSyntaxTrees()
 - [SyntaxGeneratorEndpointControllers](Atc.Rest.ApiGenerator.SyntaxGenerators.md#syntaxgeneratorendpointcontrollers)
   -  Properties
-     - FocusOnSegmentName
      - Code
+     - FocusOnSegmentName
   -  Methods
      - GenerateCode()
      - ToCodeAsString()

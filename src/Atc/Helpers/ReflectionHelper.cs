@@ -16,6 +16,7 @@ namespace Atc.Helpers
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
         [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
+        [ExcludeFromCodeCoverage]
         public static void SetPrivateField(object target, string fieldName, object value)
         {
             if (target == null)

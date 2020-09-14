@@ -61,12 +61,11 @@
   -  Static Methods
      - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
      - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
-     - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, Action&lt;SwaggerUIOptions&gt; setupAction)
 - [RestApiExtendedBuilderExtensions](Microsoft.AspNetCore.Builder.md#restapiextendedbuilderextensions)
   -  Static Methods
-     - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
-     - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
-     - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
 
 ## [Microsoft.Extensions.DependencyInjection](Microsoft.Extensions.DependencyInjection.md)
 
@@ -81,8 +80,8 @@
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
   -  Static Methods
      - AddRestApi(this IServiceCollection services)
-     - AddRestApi(this IServiceCollection services, RestApiExtendedOptions restApiOptions)
      - AddRestApi(this IServiceCollection services, Action&lt;IMvcBuilder&gt; setupMvcAction, RestApiExtendedOptions restApiOptions)
+     - AddRestApi(this IServiceCollection services, RestApiExtendedOptions restApiOptions)
 
 ## [Swashbuckle.AspNetCore.SwaggerGen](Swashbuckle.AspNetCore.SwaggerGen.md)
 

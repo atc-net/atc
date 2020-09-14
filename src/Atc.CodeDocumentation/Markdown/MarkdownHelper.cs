@@ -42,11 +42,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Static Fields");
                 mb.AppendLine();
-                foreach (var item in staticFields)
-                {
-                    mb.Append($"     - {item.BeautifyName(false, true, true)}");
-                    mb.AppendLine();
-                }
+                var list = staticFields
+                    .Select(x => x.BeautifyName(false, true, true))
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var staticProperties = GetStaticProperties(typeComments.Type);
@@ -54,11 +54,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Static Properties");
                 mb.AppendLine();
-                foreach (var item in staticProperties)
-                {
-                    mb.Append($"     - {item.Name}");
-                    mb.AppendLine();
-                }
+                var list = staticProperties
+                    .Select(x => x.Name)
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var staticEvents = GetStaticEvents(typeComments.Type);
@@ -66,11 +66,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Static Events");
                 mb.AppendLine();
-                foreach (var item in staticEvents)
-                {
-                    mb.Append($"     - {item.Name}");
-                    mb.AppendLine();
-                }
+                var list = staticEvents
+                    .Select(x => x.Name)
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var staticMethods = GetStaticMethods(typeComments.Type);
@@ -78,11 +78,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Static Methods");
                 mb.AppendLine();
-                foreach (var item in staticMethods)
-                {
-                    mb.Append($"     - {item.BeautifyName(false, true)}");
-                    mb.AppendLine();
-                }
+                var list = staticMethods
+                    .Select(x => x.BeautifyName(false, true))
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var fields = GetFields(typeComments.Type);
@@ -90,11 +90,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Fields");
                 mb.AppendLine();
-                foreach (var item in fields)
-                {
-                    mb.Append($"     - {item.BeautifyName(false, true, true)}");
-                    mb.AppendLine();
-                }
+                var list = fields
+                    .Select(x => x.BeautifyName(false, true, true))
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var properties = GetProperties(typeComments.Type);
@@ -102,11 +102,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Properties");
                 mb.AppendLine();
-                foreach (var item in properties)
-                {
-                    mb.Append($"     - {item.Name}");
-                    mb.AppendLine();
-                }
+                var list = properties
+                    .Select(x => x.Name)
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var events = GetEvents(typeComments.Type);
@@ -114,11 +114,11 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Events");
                 mb.AppendLine();
-                foreach (var item in events)
-                {
-                    mb.Append($"     - {item.Name}");
-                    mb.AppendLine();
-                }
+                var list = events
+                    .Select(x => x.Name)
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             var methods = GetMethods(typeComments.Type);
@@ -126,14 +126,23 @@ namespace Atc.CodeDocumentation.Markdown
             {
                 mb.Append("  -  Methods");
                 mb.AppendLine();
-                foreach (var item in methods)
-                {
-                    mb.Append($"     - {item.BeautifyName(false, true)}");
-                    mb.AppendLine();
-                }
+                var list = methods
+                    .Select(x => x.BeautifyName(false, true))
+                    .OrderBy(x => x)
+                    .ToList();
+                AppendIndentedLines(mb, list);
             }
 
             return mb.ToString();
+        }
+
+        private static void AppendIndentedLines(MarkdownBuilder mb, IEnumerable<string> list)
+        {
+            foreach (var item in list)
+            {
+                mb.Append($"     - {item}");
+                mb.AppendLine();
+            }
         }
 
         private static MethodInfo[] GetMethods(Type type)

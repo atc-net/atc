@@ -49,6 +49,12 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters)
         {
             var filteredParameters = parameters.Where(x => !x.IsOut).Skip(1).ToArray();
+            if (filteredParameters.Length == 0 &&
+                parameters.Count(x => x.IsOut) == astNodeForTestMethodAndParameters.Item2.Count)
+            {
+                return true;
+            }
+
             if (filteredParameters.Length != astNodeForTestMethodAndParameters.Item2.Count)
             {
                 return false;

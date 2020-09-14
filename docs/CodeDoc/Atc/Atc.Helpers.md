@@ -1263,7 +1263,7 @@ string GetBeautifyTypeNameByRef(Type type)
 
 
 ## ThreadHelper
-ThreadUtil.
+ThreadHelper.
 
 
 ```csharp

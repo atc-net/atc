@@ -29,79 +29,79 @@
      - GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
 - [OpenApiFormatTypeConstants](Microsoft.OpenApi.Models.md#openapiformattypeconstants)
   -  Static Fields
-     - string Uuid
-     - string Date
-     - string Time
-     - string Timestamp
-     - string DateTime
      - string Byte
+     - string Date
+     - string DateTime
+     - string Email
      - string Int32
      - string Int64
-     - string Email
+     - string Time
+     - string Timestamp
      - string Uri
+     - string Uuid
 - [OpenApiOperationExtensions](Microsoft.OpenApi.Models.md#openapioperationextensions)
   -  Static Methods
      - GetOperationName(this OpenApiOperation openApiOperation)
+     - HasDataTypeFromSystemCollectionGenericNamespace(this List&lt;OpenApiOperation&gt; apiOperations)
      - HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
      - IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
-     - HasDataTypeFromSystemCollectionGenericNamespace(this List&lt;OpenApiOperation&gt; apiOperations)
 - [OpenApiParameterExtensions](Microsoft.OpenApi.Models.md#openapiparameterextensions)
   -  Static Methods
-     - HasFormatTypeOfUuid(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfByte(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfDate(this IList&lt;OpenApiParameter&gt; parameters)
-     - HasFormatTypeOfTime(this IList&lt;OpenApiParameter&gt; parameters)
-     - HasFormatTypeOfTimestamp(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfDateTime(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfEmail(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfTime(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfTimestamp(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfUri(this IList&lt;OpenApiParameter&gt; parameters)
-     - HasFormatTypeOfByte(this IList&lt;OpenApiParameter&gt; parameters)
-     - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiParameter&gt; parameters)
-     - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfUuid(this IList&lt;OpenApiParameter&gt; parameters)
 - [OpenApiPathItemExtensions](Microsoft.OpenApi.Models.md#openapipathitemextensions)
   -  Static Methods
-     - IsPathStartingSegmentName(this KeyValuePair&lt;string, OpenApiPathItem&gt; urlPath, string segmentName)
      - HasParameters(this OpenApiPathItem openApiOperation)
+     - IsPathStartingSegmentName(this KeyValuePair&lt;string, OpenApiPathItem&gt; urlPath, string segmentName)
 - [OpenApiPathsExtensions](Microsoft.OpenApi.Models.md#openapipathsextensions)
   -  Static Methods
      - GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
 - [OpenApiResponsesExtensions](Microsoft.OpenApi.Models.md#openapiresponsesextensions)
   -  Static Methods
      - GetHttpStatusCodes(this OpenApiResponses responses)
-     - HasSchemaTypeOfArray(this OpenApiResponses responses)
-     - HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
-     - HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
-     - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
      - GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+     - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
+     - HasSchemaTypeOfArray(this OpenApiResponses responses)
+     - HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+     - HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
      - IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
 - [OpenApiSchemaExtensions](Microsoft.OpenApi.Models.md#openapischemaextensions)
   -  Static Methods
+     - GetDataType(this OpenApiSchema schema)
+     - GetEnumSchema(this OpenApiSchema schema)
+     - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
+     - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
+     - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasDataTypeOfList(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfUuid(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfDate(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfTime(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfTimestamp(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfDateTime(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeOfByte(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeOfDate(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeOfDateTime(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeOfEmail(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeOfInt32(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeOfInt64(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeOfEmail(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeOfTime(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeOfTimestamp(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeOfUri(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiSchema&gt; schemas)
-     - IsSimpleDataType(this OpenApiSchema schema)
-     - IsReferenceTypeDeclared(this OpenApiSchema schema)
-     - IsItemsOfSimpleDataType(this OpenApiSchema schema)
-     - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
-     - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiSchema&gt; schemas)
-     - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
-     - GetDataType(this OpenApiSchema schema)
-     - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
+     - HasFormatTypeOfUuid(this IList&lt;OpenApiSchema&gt; schemas)
      - IsHttpStatusCodeModelReference(this OpenApiSchema schema)
+     - IsItemsOfSimpleDataType(this OpenApiSchema schema)
+     - IsReferenceTypeDeclared(this OpenApiSchema schema)
      - IsSchemaEnum(this OpenApiSchema schema)
      - IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
      - IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
-     - GetEnumSchema(this OpenApiSchema schema)
+     - IsSimpleDataType(this OpenApiSchema schema)
 
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>
 

@@ -105,6 +105,18 @@ Type GetUnderlyingType(this MemberInfo member)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member.<br />
+#### HasExcludeFromCodeCoverageAttribute
+
+```csharp
+bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
+```
+<p><b>Summary:</b> Determines whether [has exclude from code coverage attribute].</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
+<p><b>Returns:</b> true if [has exclude from code coverage attribute] [the specified member information]; otherwise, false.</p>
+
 #### HasIgnoreDisplayAttribute
 
 ```csharp

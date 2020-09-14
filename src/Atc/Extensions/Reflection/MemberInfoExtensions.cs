@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Atc;
 
@@ -10,6 +11,25 @@ namespace System.Reflection
     /// </summary>
     public static class MemberInfoExtensions
     {
+        /// <summary>
+        /// Determines whether [has exclude from code coverage attribute].
+        /// </summary>
+        /// <param name="memberInfo">The member information.</param>
+        /// <returns>
+        ///   <c>true</c> if [has exclude from code coverage attribute] [the specified member information]; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">memberInfo.</exception>
+        public static bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
+        {
+            if (memberInfo == null)
+            {
+                throw new ArgumentNullException(nameof(memberInfo));
+            }
+
+            var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(ExcludeFromCodeCoverageAttribute));
+            return attributeData != null;
+        }
+
         /// <summary>
         /// Determines whether [has ignore display attribute].
         /// </summary>

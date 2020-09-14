@@ -134,6 +134,11 @@ namespace Atc.XUnit.Internal
                 return true;
             }
 
+            if (method.HasExcludeFromCodeCoverageAttribute())
+            {
+                return true;
+            }
+
             if (method.Name.StartsWith("get_", StringComparison.Ordinal) ||
                 method.Name.StartsWith("set_", StringComparison.Ordinal) ||
                 method.Name.StartsWith("op_", StringComparison.Ordinal) ||

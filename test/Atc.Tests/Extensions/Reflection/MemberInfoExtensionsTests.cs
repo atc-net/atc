@@ -12,6 +12,21 @@ namespace Atc.Tests.Extensions.Reflection
         [Theory]
         [InlineData(false, typeof(TestItem), "Hallo")]
         [InlineData(true, typeof(TestItem), "World")]
+        public void HasExcludeFromCodeCoverageAttribute(bool expected, Type type, string methodName)
+        {
+            // Arrange
+            var memberInfo = type.GetMember(methodName).First();
+
+            // Act
+            var actual = memberInfo.HasExcludeFromCodeCoverageAttribute();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(false, typeof(TestItem), "Hallo")]
+        [InlineData(true, typeof(TestItem), "World")]
         public void HasIgnoreDisplayAttribute(bool expected, Type type, string methodName)
         {
             // Arrange
@@ -76,6 +91,7 @@ namespace Atc.Tests.Extensions.Reflection
     {
         public string Hallo { get; set; }
 
+        [ExcludeFromCodeCoverage]
         [IgnoreDisplay]
         [Required]
         public string World { get; }

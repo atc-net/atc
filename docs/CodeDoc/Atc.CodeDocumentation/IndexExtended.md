@@ -12,34 +12,34 @@
 - [AtcCodeDocumentationAssemblyTypeInitializer](Atc.CodeDocumentation.md#atccodedocumentationassemblytypeinitializer)
 - [DocumentationHelper](Atc.CodeDocumentation.md#documentationhelper)
   -  Static Methods
-     - CollectExportedTypeWithCommentsFromType(Type type)
      - CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List&lt;Type&gt; excludeTypes = null)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
+     - CollectExportedTypeWithCommentsFromType(Type type)
 - [MemberType](Atc.CodeDocumentation.md#membertype)
 - [TypeComments](Atc.CodeDocumentation.md#typecomments)
   -  Properties
-     - Type
-     - CommentLookup
-     - Namespace
-     - Name
-     - FullName
      - BeautifyHtmlName
+     - CommentLookup
+     - FullName
      - HasComments
+     - Name
+     - Namespace
+     - Type
   -  Methods
      - GetXmlDocumentComments()
      - ToString()
 - [XmlDocumentComment](Atc.CodeDocumentation.md#xmldocumentcomment)
   -  Properties
-     - MemberType
      - ClassName
-     - MemberName
-     - Summary
-     - Remarks
      - Code
      - Example
+     - MemberName
+     - MemberType
      - Parameters
+     - Remarks
      - Returns
+     - Summary
   -  Methods
      - ToString()
 

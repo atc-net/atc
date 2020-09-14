@@ -119,7 +119,8 @@ namespace Atc.XUnit.Internal
                 .Where(x => !x.IsInterface &&
                             !x.IsNested &&
                             !(x.IsAbstract && !x.IsSealed) &&
-                            !x.IsDelegate())
+                            !x.IsDelegate() &&
+                            !x.HasExcludeFromCodeCoverageAttribute())
                 .OrderBy(x => x.Name)
                 .ToArray();
 
