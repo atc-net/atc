@@ -6,7 +6,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Atc.Rest.Extended.Options
 {
-    public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerUIOptions>
+    internal class ConfigureSwaggerOptions : IConfigureOptions<SwaggerUIOptions>
     {
         private readonly IApiVersionDescriptionProvider versionDescriptionProvider;
         private readonly RestApiExtendedOptions restApiOptions;
