@@ -41,14 +41,7 @@ namespace Demo.Api.Full
                 UseFluentValidation = true,
                 UseOpenApiSpec = true,
 
-                // Auth
-                AuthorizationClientId = "e7cbb57b-4d3d-4cf4-b8df-175ca5120fa2",
-                AuthorizationTenant = "8089c11e-7333-4156-8602-1203b5aad8dd",
-                AuthorizationValidAudiences = new[]
-                {
-                    "e7cbb57b-4d3d-4cf4-b8df-175ca5120fa2",
-                    "api://e7cbb57b-4d3d-4cf4-b8df-175ca5120fa2"
-                }
+                Authorization = new AuthorizationOptions { UseAzureADBearer = true }
             };
 
             restApiOptions.AddAssemblyPairs(
