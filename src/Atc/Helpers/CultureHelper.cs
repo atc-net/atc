@@ -321,6 +321,7 @@ namespace Atc.Helpers
         /// <param name="displayLanguageLcid">The display language lcid.</param>
         /// <param name="includeLcids">The include lcids.</param>
         /// <param name="value">The value.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Culture? GetCultureFromValue(int displayLanguageLcid, List<int> includeLcids, string value)
         {
             if (displayLanguageLcid == 0)
@@ -554,7 +555,7 @@ namespace Atc.Helpers
         /// <param name="displayLanguageLcid">The display language lcid.</param>
         /// <param name="includeOnlyCultureNames">The include only culture names.</param>
         /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter should not span multiple lines", Justification = "OK.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Dictionary<int, string> GetCountryNames(
             int displayLanguageLcid,
             List<string> includeOnlyCultureNames,
@@ -686,7 +687,7 @@ namespace Atc.Helpers
         /// <param name="displayLanguageLcid">The display language lcid.</param>
         /// <param name="includeOnlyCultureNames">The include only culture names.</param>
         /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter should not span multiple lines", Justification = "OK.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Dictionary<int, string> GetLanguageNames(
             int displayLanguageLcid,
             List<string> includeOnlyCultureNames,

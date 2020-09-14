@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Atc.Resources;
@@ -74,6 +75,7 @@ namespace Atc.Helpers
         /// <typeparam name="T">The type.</typeparam>
         /// <param name="description">The description.</param>
         /// <returns>The associated enumeration value.</returns>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static T GetValueFromDescription<T>(string description)
         {
             if (description == null)
@@ -174,6 +176,7 @@ namespace Atc.Helpers
         /// <param name="sortDirectionType">Type of the sort direction.</param>
         /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
         /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Dictionary<int, string> ConvertEnumToDictionary(
             Type enumType,
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
@@ -292,6 +295,7 @@ namespace Atc.Helpers
         /// <param name="sortDirectionType">Type of the sort direction.</param>
         /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
         /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Dictionary<string, string> ConvertEnumToDictionaryWithStringKey(
             Type enumType,
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,

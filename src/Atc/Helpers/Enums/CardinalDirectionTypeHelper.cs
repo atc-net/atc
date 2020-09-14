@@ -265,6 +265,7 @@ namespace Atc.Helpers
         /// </summary>
         /// <param name="combinedCardinalDirectionType">Type of the combined cardinal direction.</param>
         /// <param name="angle">The angle.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static CardinalDirectionType GetTheClosestByAngle(CardinalDirectionType combinedCardinalDirectionType, double angle)
         {
             if (angle < 0 || angle > 360)
@@ -458,6 +459,7 @@ namespace Atc.Helpers
         /// </summary>
         /// <param name="sourceGridCell">The source grid cell.</param>
         /// <param name="targetGridCell">The target grid cell.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static CardinalDirectionType GetTargetCardinalDirectionByGridCells(GridCell sourceGridCell, GridCell targetGridCell)
         {
             if (targetGridCell.X < sourceGridCell.X && targetGridCell.Y < sourceGridCell.Y)
@@ -508,6 +510,7 @@ namespace Atc.Helpers
         /// </summary>
         /// <param name="sourceGridCell">The source grid cell.</param>
         /// <param name="targetGridCell">The target grid cell.</param>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static CardinalDirectionType GetTargetCardinalDirectionByPoint2Ds(Point2D sourceGridCell, Point2D targetGridCell)
         {
             if (targetGridCell.X < sourceGridCell.X && targetGridCell.Y < sourceGridCell.Y)
