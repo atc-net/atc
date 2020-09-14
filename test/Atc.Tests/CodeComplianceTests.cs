@@ -17,6 +17,7 @@ namespace Atc.Tests
 
         private readonly List<Type> excludeTypes = new List<Type>
         {
+            typeof(ThreadHelper),
             // TODO: Add UnitTest and remove from this list!!
             typeof(ReflectionHelper),
             typeof(System.TypeExtensions),
