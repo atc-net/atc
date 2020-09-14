@@ -36,16 +36,16 @@ steps:
       command: 'build'
       projects: 'Atc.sln'
   - task: DotNetCoreCLI@2
+    displayName: 'Running dotnet test'
+    inputs:
+      command: test
+      projects: '**/*.csproj'
+  - task: DotNetCoreCLI@2
     displayName: 'Creating Nuget Packages'
     inputs:
       command: 'pack'
       packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj;!**/*.Samples.csproj'
       versioningScheme: 'byBuildNumber'
-  - task: DotNetCoreCLI@2
-    displayName: 'Running dotnet test'
-    inputs:
-      command: test
-      projects: '**/*.csproj'
   - task: SonarCloudAnalyze@1
     displayName: 'Run Code Analysis and Publish Quality Gate Result'
   - task: PublishBuildArtifacts@1
