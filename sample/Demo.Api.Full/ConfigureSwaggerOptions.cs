@@ -47,7 +47,7 @@ namespace Demo.Api.Full
                             AuthorizationUrl = new Uri(uri),
                             Scopes = new Dictionary<string, string>
                             {
-                                {$"{apiOptions.Authorization.Audience}/user_impersonation", "User Impersonation"}
+                                {$"{apiOptions.Authorization.Audience}/.default", "Default"}
                             }
                         }
                     }
