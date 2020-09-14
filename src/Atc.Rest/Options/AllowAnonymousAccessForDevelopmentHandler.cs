@@ -27,7 +27,7 @@ namespace Atc.Rest.Options
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (!apiOptions.AllowAnonymousAccessForDevelopment && !environment.IsDevelopment())
+            if (!apiOptions.AllowAnonymousAccessForDevelopment || !environment.IsDevelopment())
             {
                 return Task.CompletedTask;
             }
