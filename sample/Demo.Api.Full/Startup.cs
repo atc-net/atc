@@ -67,7 +67,7 @@ namespace Demo.Api.Full
                 services.ConfigureServices();
             }
 
-            services.AddRestApi<Startup>(restApiOptions);
+            services.AddRestApi<Startup>(restApiOptions, Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

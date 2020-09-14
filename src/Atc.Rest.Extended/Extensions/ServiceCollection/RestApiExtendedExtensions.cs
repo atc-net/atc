@@ -1,6 +1,7 @@
 ﻿using System;
 using Atc.Rest.Extended.Options;
 using Atc.Rest.Options;
+using Microsoft.Extensions.Configuration;
 
 // ReSharper disable InvertIf
 // ReSharper disable once CheckNamespace
@@ -15,15 +16,17 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddRestApi<TStartup>(
             this IServiceCollection services,
-            RestApiExtendedOptions restApiOptions)
+            RestApiExtendedOptions restApiOptions,
+            IConfiguration configuration)
         {
-            return services.AddRestApi<TStartup>(mvc => { }, restApiOptions);
+            return services.AddRestApi<TStartup>(mvc => { }, restApiOptions, configuration);
         }
 
         public static IServiceCollection AddRestApi<TStartup>(
             this IServiceCollection services,
             Action<IMvcBuilder> setupMvcAction,
-            RestApiExtendedOptions restApiOptions)
+            RestApiExtendedOptions restApiOptions,
+            IConfiguration configuration)
         {
             if (setupMvcAction == null)
             {
@@ -33,6 +36,11 @@ namespace Microsoft.Extensions.DependencyInjection
             if (restApiOptions == null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
+            }
+
+            if (configuration == null)
+            {
+                throw new ArgumentNullException(nameof(configuration));
             }
 
             services.AddSingleton(restApiOptions);
