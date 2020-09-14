@@ -9,7 +9,6 @@
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <VersionSuffix>pre</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
