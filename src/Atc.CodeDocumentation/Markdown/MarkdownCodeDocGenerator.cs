@@ -108,12 +108,6 @@ namespace Atc.CodeDocumentation.Markdown
 
                     homeBuilder.ListLink(beautifyItemName1, g.Key + ".md" + "#" + beautifyItemName2);
                     homeExtendedBuilder.ListLink(beautifyItemName1, g.Key + ".md" + "#" + beautifyItemName2);
-                    if (item.Name == "GridCell")
-#pragma warning disable S108 // Nested blocks of code should not be left empty
-                    {
-                    }
-#pragma warning restore S108 // Nested blocks of code should not be left empty
-
                     homeExtendedBuilder.SubList(item);
                     sb.Append(MarkdownHelper.Render(item));
                 }
