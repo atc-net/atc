@@ -36,12 +36,6 @@ namespace Atc.Rest.Extended.Options
                 return;
             }
 
-            if (string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
-            {
-                throw new InvalidOperationException(
-                    "Missing TenantId. Please verify the AzureAd section in appsettings");
-            }
-
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
             {
                 throw new InvalidOperationException(
