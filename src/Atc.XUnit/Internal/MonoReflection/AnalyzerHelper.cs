@@ -192,7 +192,7 @@ namespace Atc.XUnit.Internal.MonoReflection
                     else
                     {
                         // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-                        foreach (string methodName in classMethodNames.Item2)
+                        foreach (var methodName in classMethodNames.Item2)
                         {
                             if (usedSourceMethod.BeautifyName().Equals(methodName, StringComparison.Ordinal))
                             {

@@ -102,32 +102,32 @@ namespace Atc.Tests.Extensions
         [InlineData(true, "2000-12-01T23:47:37")]
         [InlineData(false, "2000-12-01")]
         public void TryParseDateFromIso8601(bool expected, string input)
-            => Assert.Equal(expected, input.TryParseDateFromIso8601(out DateTime _));
+            => Assert.Equal(expected, input.TryParseDateFromIso8601(out var _));
 
         [Theory]
         [InlineData(true, "03-24-2000")]
         [InlineData(false, "24-03-2000")]
         public void TryParseDate(bool expected, string input)
-            => Assert.Equal(expected, input.TryParseDate(out DateTime _));
+            => Assert.Equal(expected, input.TryParseDate(out var _));
 
         [Theory]
         [InlineData(false, "03-24-2000")]
         [InlineData(true, "24-03-2000")]
         public void TryParseDate_DanishCultureCulture(bool expected, string input)
-            => Assert.Equal(expected, input.TryParseDate(out DateTime _, GlobalizationConstants.DanishCultureInfo));
+            => Assert.Equal(expected, input.TryParseDate(out var _, GlobalizationConstants.DanishCultureInfo));
 
         [Theory]
         [InlineData(false, "03-24-2000", DateTimeStyles.None)]
         [InlineData(true, "24-03-2000", DateTimeStyles.None)]
         public void TryParseDate_DanishCultureCulture_DateTimeStyles(bool expected, string input, DateTimeStyles dateTimeStyles)
-            => Assert.Equal(expected, input.TryParseDate(out DateTime _, GlobalizationConstants.DanishCultureInfo, dateTimeStyles));
+            => Assert.Equal(expected, input.TryParseDate(out var _, GlobalizationConstants.DanishCultureInfo, dateTimeStyles));
 
         [Theory]
         [InlineData("Hallo world")]
         public void Base64Encode(string input)
         {
             // Act
-            string encodeData = input.Base64Encode();
+            var encodeData = input.Base64Encode();
 
             // Assert
             Assert.NotNull(encodeData);
@@ -138,10 +138,10 @@ namespace Atc.Tests.Extensions
         public void Base64Decode(string input)
         {
             // Arrange
-            string encodeData = input.Base64Encode();
+            var encodeData = input.Base64Encode();
 
             // Act
-            string decodeData = encodeData!.Base64Decode();
+            var decodeData = encodeData!.Base64Decode();
 
             // Assert
             Assert.NotNull(decodeData);

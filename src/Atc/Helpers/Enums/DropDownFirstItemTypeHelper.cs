@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
 using Atc.Resources;
 
 // ReSharper disable once CheckNamespace
@@ -25,11 +24,11 @@ namespace Atc.Helpers
         /// </exception>
         public static Guid GetEnumGuid(DropDownFirstItemType dropDownFirstItemType)
         {
-            Type type = dropDownFirstItemType.GetType();
-            MemberInfo[] memberInfos = type.GetMember(dropDownFirstItemType.ToString());
+            var type = dropDownFirstItemType.GetType();
+            var memberInfos = type.GetMember(dropDownFirstItemType.ToString());
             if (memberInfos.Length > 0)
             {
-                object[] attrs = memberInfos[0].GetCustomAttributes(typeof(EnumGuidAttribute), false);
+                var attrs = memberInfos[0].GetCustomAttributes(typeof(EnumGuidAttribute), false);
                 if (attrs.Length > 0)
                 {
                     return ((EnumGuidAttribute)attrs[0]).GlobalIdentifier;
@@ -54,7 +53,7 @@ namespace Atc.Helpers
         [SuppressMessage("Major Bug", "S1751:Loops with at most one iteration should be refactored", Justification = "OK.")]
         public static DropDownFirstItemType GetItemFromEnumGuid(Guid key)
         {
-            foreach (DropDownFirstItemType item
+            foreach (var item
                 in Enum.GetValues(typeof(DropDownFirstItemType))
                     .Cast<DropDownFirstItemType>()
                     .Where(item => key == GetEnumGuid(item)))

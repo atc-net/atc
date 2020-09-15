@@ -50,7 +50,7 @@ namespace System
             }
 
             var indexes = new List<int>();
-            int index = 0;
+            var index = 0;
             while ((index = value.IndexOf(
                 pattern,
                 index,
@@ -81,7 +81,7 @@ namespace System
                 return -1;
             }
 
-            Regex rgx = new Regex("[^a-zA-Z0-9 ]");
+            var rgx = new Regex("[^a-zA-Z0-9 ]");
             value = rgx.Replace(value, string.Empty);
 
             return Regex.Matches(value, @"[\S]+").Count;

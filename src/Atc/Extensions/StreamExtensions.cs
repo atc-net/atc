@@ -43,11 +43,11 @@ namespace System.IO
             }
 
             stream.Position = 0;
-            byte[] buffer = new byte[32768];
+            var buffer = new byte[32768];
             using var ms = new MemoryStream();
             while (true)
             {
-                int read = stream.Read(buffer, 0, buffer.Length);
+                var read = stream.Read(buffer, 0, buffer.Length);
                 if (read <= 0)
                 {
                     return ms.ToArray();
@@ -70,7 +70,7 @@ namespace System.IO
 
             stream.Position = 0;
             using var reader = new StreamReader(stream);
-            string val = reader.ReadToEnd();
+            var val = reader.ReadToEnd();
             return val;
         }
     }

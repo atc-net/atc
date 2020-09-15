@@ -31,7 +31,7 @@ namespace Atc.Tests.Helpers
         public void GetItemFromEnumGuid(DropDownFirstItemType expected, string input)
         {
             // Arrange
-            Guid guid = Guid.Parse(input);
+            var guid = Guid.Parse(input);
 
             // Act
             var actual = DropDownFirstItemTypeHelper.GetItemFromEnumGuid(guid);

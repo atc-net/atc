@@ -26,7 +26,7 @@ namespace Atc.Tests.Extensions
         {
             // Arrange
             var input = "Hallo world".ToStream();
-            int bufferSize = 1024;
+            var bufferSize = 1024;
 
             // Act
             var actual = input.CopyToStream(bufferSize);

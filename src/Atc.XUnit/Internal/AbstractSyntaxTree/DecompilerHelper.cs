@@ -16,7 +16,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
     {
         internal static CSharpDecompiler GetDecompiler(Assembly assembly)
         {
-            string assemblyFileName = new Uri(assembly.CodeBase).AbsolutePath;
+            var assemblyFileName = new Uri(assembly.CodeBase).AbsolutePath;
             using var module = new PEFile(assemblyFileName);
             var resolver = new UniversalAssemblyResolver(assemblyFileName, false, module.Reader.DetectTargetFrameworkId());
             return new CSharpDecompiler(assemblyFileName, resolver, GetSettings());

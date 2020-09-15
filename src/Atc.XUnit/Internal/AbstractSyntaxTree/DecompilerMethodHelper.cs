@@ -35,7 +35,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                     else
                     {
                         // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-                        foreach (string methodName in classMethodNames.Item2)
+                        foreach (var methodName in classMethodNames.Item2)
                         {
                             var astNodeForMethod = GetAstNodeForMethod(testMethodWithDeclaration.Item2.Body, methodName);
                             if (astNodeForMethod != null)
@@ -77,7 +77,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                     else
                     {
                         // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-                        foreach (string methodName in classMethodsNames.Item2)
+                        foreach (var methodName in classMethodsNames.Item2)
                         {
                             if (!methodName.Equals(method.Name, StringComparison.Ordinal))
                             {
@@ -121,7 +121,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             }
             else
             {
-                string mn = method.DeclaringType.BeautifyName().Replace("<T>", string.Empty, StringComparison.Ordinal);
+                var mn = method.DeclaringType.BeautifyName().Replace("<T>", string.Empty, StringComparison.Ordinal);
                 tuples = testMethodsWithDeclaration
                     .Where(x => x.Item1.DeclaringType != null &&
                                 x.Item1.DeclaringType.Name.StartsWith(mn, StringComparison.Ordinal))
@@ -170,10 +170,10 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
 
         internal static AstNode? GetAstNodeForTestMethodCode(AstNode astNode)
         {
-            string s = astNode.ToString();
-            bool stopRecursive = astNode.Parent == null ||
-                                 s.StartsWith("[Fact]", StringComparison.Ordinal) ||
-                                 s.StartsWith("[Theory]", StringComparison.Ordinal);
+            var s = astNode.ToString();
+            var stopRecursive = astNode.Parent == null ||
+                                s.StartsWith("[Fact]", StringComparison.Ordinal) ||
+                                s.StartsWith("[Theory]", StringComparison.Ordinal);
             if (stopRecursive)
             {
                 return astNode;

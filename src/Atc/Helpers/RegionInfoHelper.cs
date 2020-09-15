@@ -31,7 +31,7 @@ namespace Atc.Helpers
 
                 allRegionInfos = new List<RegionInfo>();
                 var cultureInfos = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
-                foreach (CultureInfo cultureInfo in cultureInfos)
+                foreach (var cultureInfo in cultureInfos)
                 {
                     try
                     {
@@ -152,7 +152,7 @@ namespace Atc.Helpers
             {
                 var regionInfos = GetAllRegionInfos();
                 var lcids = new List<int>();
-                foreach (int lcid in regionInfos.Select(GetLcidFromRegionInfo).Where(lcid => lcid != -1 && !lcids.Contains(lcid)))
+                foreach (var lcid in regionInfos.Select(GetLcidFromRegionInfo).Where(lcid => lcid != -1 && !lcids.Contains(lcid)))
                 {
                     try
                     {

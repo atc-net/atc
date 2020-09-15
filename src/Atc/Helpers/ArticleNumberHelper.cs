@@ -164,7 +164,7 @@ namespace Atc.Helpers
                 // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
                 foreach (var c in code.Replace("-", string.Empty, StringComparison.Ordinal))
                 {
-                    int number = c == 'X'
+                    var number = c == 'X'
                         ? 10
                         : int.Parse(c.ToString(), GlobalizationConstants.EnglishCultureInfo);
                     checksum += number * multi;
@@ -209,7 +209,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            if (!long.TryParse(isbn10.Substring(0, isbn10.Length - 1), out long _))
+            if (!long.TryParse(isbn10.Substring(0, isbn10.Length - 1), out var _))
             {
                 return false;
             }
@@ -260,7 +260,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            if (!long.TryParse(isbn13, out long _))
+            if (!long.TryParse(isbn13, out var _))
             {
                 return false;
             }
@@ -309,7 +309,7 @@ namespace Atc.Helpers
 
             var articleNumberType = ArticleNumberType.Unknown;
 
-            if (!long.TryParse(code, out long temp))
+            if (!long.TryParse(code, out var temp))
             {
                 return articleNumberType;
             }

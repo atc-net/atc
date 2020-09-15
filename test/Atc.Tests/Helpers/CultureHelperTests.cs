@@ -335,7 +335,7 @@ namespace Atc.Tests.Helpers
         public void GetCountryNames(int expectedExtraOnCultureCount, DropDownFirstItemType input)
         {
             // Arrange
-            int culturesCount = CultureHelper.GetCultures().Count;
+            var culturesCount = CultureHelper.GetCultures().Count;
 
             // Act
             var actual = CultureHelper.GetCountryNames(input);
@@ -354,7 +354,7 @@ namespace Atc.Tests.Helpers
         public void GetCountryNames_DisplayLanguageLcid(int expectedExtraOnCultureCount, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid)
         {
             // Arrange
-            int culturesCount = CultureHelper.GetCultures().Count;
+            var culturesCount = CultureHelper.GetCultures().Count;
 
             // Act
             var actual = CultureHelper.GetCountryNames(displayLanguageLcid, dropDownFirstItemType);
@@ -462,7 +462,7 @@ namespace Atc.Tests.Helpers
         public void GetLanguageNames(int expectedExtraOnCultureCount, DropDownFirstItemType input)
         {
             // Arrange
-            int culturesCount = CultureHelper.GetCultures().Count;
+            var culturesCount = CultureHelper.GetCultures().Count;
 
             // Act
             var actual = CultureHelper.GetLanguageNames(input);
@@ -481,7 +481,7 @@ namespace Atc.Tests.Helpers
         public void GetLanguageNames_DisplayLanguageLcid(int expectedExtraOnCultureCount, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid)
         {
             // Arrange
-            int culturesCount = CultureHelper.GetCultures().Count;
+            var culturesCount = CultureHelper.GetCultures().Count;
 
             // Act
             var actual = CultureHelper.GetLanguageNames(displayLanguageLcid, dropDownFirstItemType);

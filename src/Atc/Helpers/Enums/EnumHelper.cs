@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
 using Atc.Resources;
 
 // ReSharper disable UnreachableSwitchCaseDueToIntegerAnalysis
@@ -44,13 +43,13 @@ namespace Atc.Helpers
                 throw new ArgumentOutOfRangeException(nameof(value));
             }
 
-            Type type = typeof(T);
+            var type = typeof(T);
             if (!type.IsEnum)
             {
                 throw new UnexpectedTypeException($"Type {type.FullName} is not a enumerated type");
             }
 
-            if (!Enum<T>.TryParse(value, ignoreCase, out T returnedValue))
+            if (!Enum<T>.TryParse(value, ignoreCase, out var returnedValue))
             {
                 return default!;
             }
@@ -88,41 +87,41 @@ namespace Atc.Helpers
                 throw new ArgumentOutOfRangeException(nameof(description));
             }
 
-            Type type = typeof(T);
+            var type = typeof(T);
             if (!type.IsEnum)
             {
                 throw new UnexpectedTypeException($"Type {type.FullName} is not a enumerated type");
             }
 
-            foreach (FieldInfo fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
                 if (fieldInfo.Name.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
-                LocalizedDescriptionAttribute? localizedDescriptionAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(LocalizedDescriptionAttribute)) as LocalizedDescriptionAttribute;
+                var localizedDescriptionAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(LocalizedDescriptionAttribute)) as LocalizedDescriptionAttribute;
                 if (localizedDescriptionAttribute?.Description != null &&
                     localizedDescriptionAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
-                DescriptionAttribute? descriptionAttributeOrg = Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
+                var descriptionAttributeOrg = Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
                 if (descriptionAttributeOrg?.Description != null &&
                     descriptionAttributeOrg.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
-                DisplayNameAttribute? displayNameAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
+                var displayNameAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
                 if (displayNameAttribute?.DisplayName != null &&
                     displayNameAttribute.DisplayName.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
-                DisplayAttribute? displayAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayAttribute)) as DisplayAttribute;
+                var displayAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayAttribute)) as DisplayAttribute;
                 if (displayAttribute?.Description != null &&
                     displayAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
@@ -152,7 +151,7 @@ namespace Atc.Helpers
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            Dictionary<int, string> dictionary = ConvertEnumToDictionary(
+            var dictionary = ConvertEnumToDictionary(
                 enumType,
                 dropDownFirstItemType,
                 useDescriptionAttribute,
@@ -196,21 +195,21 @@ namespace Atc.Helpers
                 throw new UnexpectedTypeException($"Type {enumType.FullName} is not a enumerated type");
             }
 
-            Dictionary<int, string> list = new Dictionary<int, string>();
-            Array enums = Enum.GetValues(enumType);
-            bool hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), false);
+            var list = new Dictionary<int, string>();
+            var enums = Enum.GetValues(enumType);
+            var hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), false);
             foreach (var e in enums)
             {
-                object objEnumValue = e;
+                var objEnumValue = e;
                 if (ShouldEnumValueBeSkipped(objEnumValue, includeDefault, hasFlagAttribute, byFlagIncludeBase, byFlagIncludeCombined))
                 {
                     continue;
                 }
 
-                string value = objEnumValue.ToString();
+                var value = objEnumValue.ToString();
                 if (useDescriptionAttribute)
                 {
-                    string description = ((objEnumValue as Enum)!).GetDescription();
+                    var description = ((objEnumValue as Enum)!).GetDescription();
                     if (!string.IsNullOrEmpty(description))
                     {
                         value = description;
@@ -230,7 +229,7 @@ namespace Atc.Helpers
                 }
             }
 
-            List<KeyValuePair<int, string>> orderList = sortDirectionType switch
+            var orderList = sortDirectionType switch
             {
                 SortDirectionType.None => list.ToList(),
                 SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
@@ -315,21 +314,21 @@ namespace Atc.Helpers
                 throw new UnexpectedTypeException($"Type {enumType.FullName} is not a enumerated type");
             }
 
-            Dictionary<string, string> list = new Dictionary<string, string>();
-            Array enums = Enum.GetValues(enumType);
-            bool hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), false);
+            var list = new Dictionary<string, string>();
+            var enums = Enum.GetValues(enumType);
+            var hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), false);
             foreach (var e in enums)
             {
-                object objEnumValue = e;
+                var objEnumValue = e;
                 if (ShouldEnumValueBeSkipped(objEnumValue, includeDefault, hasFlagAttribute, byFlagIncludeBase, byFlagIncludeCombined))
                 {
                     continue;
                 }
 
-                string value = objEnumValue.ToString();
+                var value = objEnumValue.ToString();
                 if (useDescriptionAttribute)
                 {
-                    string description = ((objEnumValue as Enum)!).GetDescription();
+                    var description = ((objEnumValue as Enum)!).GetDescription();
                     if (!string.IsNullOrEmpty(description))
                     {
                         value = description;
@@ -349,7 +348,7 @@ namespace Atc.Helpers
                 }
             }
 
-            List<KeyValuePair<string, string>> orderList = sortDirectionType switch
+            var orderList = sortDirectionType switch
             {
                 SortDirectionType.None => list.ToList(),
                 SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
@@ -421,7 +420,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            int n = (int)objEnumValue;
+            var n = (int)objEnumValue;
             if (!byFlagIncludeBase && n.IsBinarySequence())
             {
                 return true;

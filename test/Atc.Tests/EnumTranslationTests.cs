@@ -33,7 +33,7 @@ namespace Atc.Tests
             // Arrange
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
             var type = dummyAssignment.GetType();
-            bool includeDefault =
+            var includeDefault =
                 type == typeof(DateTimeDiffCompareType) ||
                 type == typeof(LogCategoryType);
 

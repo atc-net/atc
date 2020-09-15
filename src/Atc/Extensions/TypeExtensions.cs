@@ -235,7 +235,7 @@ namespace System
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
         public static Type? GetBaseTypeGenericArgumentType(this Type type)
         {
-            Type[]? types = GetBaseTypeGenericArgumentTypes(type);
+            var types = GetBaseTypeGenericArgumentTypes(type);
             if (types != null && types.Length == 1)
             {
                 return types.First();
@@ -372,12 +372,12 @@ namespace System
             {
                 if (useFullName && type.FullName != null)
                 {
-                    int indexOfGeneric = type.FullName.IndexOf(GenericSign, StringComparison.Ordinal);
+                    var indexOfGeneric = type.FullName.IndexOf(GenericSign, StringComparison.Ordinal);
                     return type.FullName.Substring(0, indexOfGeneric);
                 }
                 else
                 {
-                    int indexOfGeneric = type.Name.IndexOf(GenericSign, StringComparison.Ordinal);
+                    var indexOfGeneric = type.Name.IndexOf(GenericSign, StringComparison.Ordinal);
                     return type.Name.Substring(0, indexOfGeneric);
                 }
             }

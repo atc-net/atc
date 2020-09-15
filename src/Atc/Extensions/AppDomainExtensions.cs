@@ -87,7 +87,7 @@ namespace System
                 throw new ArgumentNullException(nameof(propertyName));
             }
 
-            Type? type = GetExportedTypeByName(appDomain, typeName);
+            var type = GetExportedTypeByName(appDomain, typeName);
             return type == null
                 ? null
                 : type

@@ -42,7 +42,7 @@ namespace Atc.Extensions.BaseTypes
         [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
         public static string GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
         {
-            TimeSpan timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
+            var timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
             if ((int)timeSpan.TotalDays > 0)
             {
                 return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} days";
@@ -90,7 +90,7 @@ namespace Atc.Extensions.BaseTypes
             double diff;
             try
             {
-                TimeSpan timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
+                var timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
                 diff = howToCompare switch
                 {
                     DateTimeDiffCompareType.Ticks => Convert.ToDouble(timeSpan.Ticks),

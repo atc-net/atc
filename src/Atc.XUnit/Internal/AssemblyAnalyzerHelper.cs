@@ -144,7 +144,7 @@ namespace Atc.XUnit.Internal
                     return "Method in not a extension method.";
                 }
 
-                string className = classType.Name.Replace("Extensions", string.Empty, StringComparison.Ordinal);
+                var className = classType.Name.Replace("Extensions", string.Empty, StringComparison.Ordinal);
                 var classNamePrefixSimplified = GetSimpleTypeName(className);
                 var firstParameterType = method.GetParameters().First().ParameterType;
                 var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
@@ -172,7 +172,7 @@ namespace Atc.XUnit.Internal
                     return null;
                 }
 
-                string[] sa = className.Humanize().Split(' ');
+                var sa = className.Humanize().Split(' ');
                 if (sa.Length <= 1)
                 {
                     return "Extension parameter type should match the class name-prefix.";
@@ -239,7 +239,7 @@ namespace Atc.XUnit.Internal
                 beautifyName = beautifyName.Replace("?", string.Empty, StringComparison.Ordinal);
             }
 
-            int i = beautifyName.IndexOf("<", StringComparison.Ordinal);
+            var i = beautifyName.IndexOf("<", StringComparison.Ordinal);
             if (i != -1)
             {
                 beautifyName = beautifyName.Substring(0, i);

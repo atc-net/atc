@@ -32,13 +32,13 @@ namespace Atc
             }
 
             int? a = null;
-            if (x.IsDigitOnly() && int.TryParse(x, out int i1))
+            if (x.IsDigitOnly() && int.TryParse(x, out var i1))
             {
                 a = i1;
             }
 
             int? b = null;
-            if (y.IsDigitOnly() && int.TryParse(y, out int i2))
+            if (y.IsDigitOnly() && int.TryParse(y, out var i2))
             {
                 b = i2;
             }
@@ -61,10 +61,10 @@ namespace Atc
                 }
             }
 
-            Tuple<int, string> tupleA = a.HasValue
+            var tupleA = a.HasValue
                 ? new Tuple<int, string>(a.Value, null!)
                 : new Tuple<int, string>(ExtractNumber(x), ExtractLetters(x));
-            Tuple<int, string> tupleB = b.HasValue
+            var tupleB = b.HasValue
                 ? new Tuple<int, string>(b.Value, null!)
                 : new Tuple<int, string>(ExtractNumber(y), ExtractLetters(y));
 
@@ -92,7 +92,7 @@ namespace Atc
             if (!string.IsNullOrEmpty(value))
             {
                 var s = Regex.Match(value, @"\d+").Value;
-                if (int.TryParse(s, out int x))
+                if (int.TryParse(s, out var x))
                 {
                     return x;
                 }

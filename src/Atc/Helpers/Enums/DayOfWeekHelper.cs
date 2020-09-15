@@ -41,7 +41,7 @@ namespace Atc.Helpers
         /// <param name="culture">The culture.</param>
         public static Dictionary<DayOfWeek, string> GetDescriptions(CultureInfo? culture = null)
         {
-            Dictionary<DayOfWeek, string> list = new Dictionary<DayOfWeek, string>
+            var list = new Dictionary<DayOfWeek, string>
             {
                 { DayOfWeek.Sunday, GetDescription(DayOfWeek.Sunday, culture) },
                 { DayOfWeek.Monday, GetDescription(DayOfWeek.Monday, culture) },
@@ -69,8 +69,8 @@ namespace Atc.Helpers
                 return false;
             }
 
-            Dictionary<DayOfWeek, string> descriptions = GetDescriptions(culture);
-            foreach (KeyValuePair<DayOfWeek, string> pair in descriptions.Where(x => x.Value.Equals(value, StringComparison.OrdinalIgnoreCase)))
+            var descriptions = GetDescriptions(culture);
+            foreach (var pair in descriptions.Where(x => x.Value.Equals(value, StringComparison.OrdinalIgnoreCase)))
             {
                 dayOfWeek = pair.Key;
                 return true;

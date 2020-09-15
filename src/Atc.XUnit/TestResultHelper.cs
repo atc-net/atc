@@ -33,7 +33,7 @@ namespace Atc.XUnit
             {
                 if (testResult.IsError)
                 {
-                    int indentSpaces = testResult.IndentLevel * 3;
+                    var indentSpaces = testResult.IndentLevel * 3;
                     lines.Add(testResult.Text.PadLeft(testResult.Text.Length + indentSpaces));
                     if (testResult.SubLines != null)
                     {
@@ -50,7 +50,7 @@ namespace Atc.XUnit
                     }
                     else
                     {
-                        int indentSpaces = testResult.IndentLevel * 3;
+                        var indentSpaces = testResult.IndentLevel * 3;
                         lines.Add(testResult.Text.PadLeft(testResult.Text.Length + indentSpaces));
                     }
                 }
@@ -140,7 +140,7 @@ namespace Atc.XUnit
 
             ws.Cells["A1"].Value = "Class";
             ws.Cells["B1"].Value = "Method";
-            int row = 2;
+            var row = 2;
             foreach (var item in methodsWithMissingTestsGroups)
             {
                 ws.Cells["A" + row].Value = item.Key;

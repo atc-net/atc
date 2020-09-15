@@ -92,7 +92,7 @@ namespace Atc.Tests.Helpers.Enums
             bool byFlagIncludeCombined) where T : Enum
         {
             // Arrange
-            Type enumType = dummyForT.GetType();
+            var enumType = dummyForT.GetType();
 
             // Act
             var actual = EnumHelper.ConvertEnumToArray(
@@ -121,7 +121,7 @@ namespace Atc.Tests.Helpers.Enums
             bool byFlagIncludeCombined) where T : Enum
         {
             // Arrange
-            Type enumType = dummyForT.GetType();
+            var enumType = dummyForT.GetType();
 
             // Act
             var actual = EnumHelper.ConvertEnumToDictionary(
@@ -150,7 +150,7 @@ namespace Atc.Tests.Helpers.Enums
             bool byFlagIncludeCombined) where T : Enum
         {
             // Arrange
-            Type enumType = dummyForT.GetType();
+            var enumType = dummyForT.GetType();
 
             // Act
             var actual = EnumHelper.ConvertEnumToDictionaryWithStringKey(

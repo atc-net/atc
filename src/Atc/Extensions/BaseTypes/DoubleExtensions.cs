@@ -86,8 +86,8 @@ namespace System
                 return true;
             }
 
-            double num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * DoubleEpsilon / 10;
-            double num2 = value1 - value2;
+            var num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * DoubleEpsilon / 10;
+            var num2 = value1 - value2;
             return -num1 < num2 && num1 > num2;
         }
 

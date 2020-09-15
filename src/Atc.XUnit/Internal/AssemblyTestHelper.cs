@@ -162,7 +162,7 @@ namespace Atc.XUnit.Internal
         {
             var methodsAsRenderTextItems = GetMethodsAsRenderTextLines(methods, useFullName);
             var sb = new StringBuilder();
-            foreach (string item in methodsAsRenderTextItems)
+            foreach (var item in methodsAsRenderTextItems)
             {
                 sb.AppendLine(item);
             }

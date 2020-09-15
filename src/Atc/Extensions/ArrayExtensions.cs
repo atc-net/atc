@@ -43,10 +43,10 @@ namespace System
                 throw new ArgumentNullException(nameof(array));
             }
 
-            List<string> list = new List<string>(array.Length);
-            for (int i = 0; i < array.Length; i++)
+            var list = new List<string>(array.Length);
+            for (var i = 0; i < array.Length; i++)
             {
-                string s = array.GetValue(i).ToString();
+                var s = array.GetValue(i).ToString();
                 if (removeDuplicates)
                 {
                     if (!list.Contains(s))

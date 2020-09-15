@@ -129,7 +129,7 @@ namespace Atc.Tests.Helpers
         public void TryConvertToGtin(bool expected, string input)
         {
             // Act
-            var actual = ArticleNumberHelper.TryConvertToGtin(input, out string _);
+            var actual = ArticleNumberHelper.TryConvertToGtin(input, out var _);
 
             // Assert
             Assert.Equal(expected, actual);

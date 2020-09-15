@@ -22,7 +22,7 @@ namespace System.Reflection
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
 
-            Type underlyingType = Nullable.GetUnderlyingType(propertyInfo.PropertyType)!;
+            var underlyingType = Nullable.GetUnderlyingType(propertyInfo.PropertyType)!;
             if (underlyingType != null)
             {
                 return underlyingType.BeautifyTypeName() + "?";
@@ -54,7 +54,7 @@ namespace System.Reflection
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
 
-            string attributeValue = GetAttributeValue<DisplayNameAttribute, string>(propertyInfo, arg => arg.DisplayName);
+            var attributeValue = GetAttributeValue<DisplayNameAttribute, string>(propertyInfo, arg => arg.DisplayName);
             if (string.IsNullOrEmpty(attributeValue))
             {
                 attributeValue= GetAttributeValue<ComponentModel.DataAnnotations.DisplayAttribute, string>(propertyInfo, arg => arg.Name);
@@ -112,7 +112,7 @@ namespace System.Reflection
         // ReSharper disable once SuggestBaseTypeForParameter
         private static TExpected GetAttributeValue<T, TExpected>(this PropertyInfo propertyInfo, Func<T, TExpected> expression) where T : Attribute
         {
-            T? attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
+            var attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
             return (attribute == null
                 ? default
                 : expression(attribute))!;

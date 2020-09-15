@@ -50,7 +50,7 @@ namespace Atc
                     return string.Empty;
                 }
 
-                string? displayName = this.resource.GetString(this.resourceKey, CultureInfo.CurrentUICulture);
+                var displayName = this.resource.GetString(this.resourceKey, CultureInfo.CurrentUICulture);
                 return string.IsNullOrEmpty(displayName)
                     ? null
                     : displayName;

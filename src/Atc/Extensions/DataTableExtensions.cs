@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Xml;
 using System.Xml.XPath;
 using Atc;
@@ -31,7 +30,7 @@ namespace System.Data
                 throw new ArgumentNullOrDefaultException(nameof(sortOnColumn));
             }
 
-            string sortExpression = sortDirection == SortDirectionType.Ascending
+            var sortExpression = sortDirection == SortDirectionType.Ascending
                 ? sortOnColumn + " ASC"
                 : sortOnColumn + " DESC";
 
@@ -61,12 +60,12 @@ namespace System.Data
                 throw new ArgumentNullException(nameof(sortExpression));
             }
 
-            DataRow[] draFiltered = dataTable.Select(filterExpression, sortExpression);
-            DataTable dtFiltered = dataTable.Clone();
-            foreach (DataRow drOld in draFiltered)
+            var draFiltered = dataTable.Select(filterExpression, sortExpression);
+            var dtFiltered = dataTable.Clone();
+            foreach (var drOld in draFiltered)
             {
-                DataRow dr = dtFiltered.NewRow();
-                for (int i = 0; i < dataTable.Columns.Count; i++)
+                var dr = dtFiltered.NewRow();
+                for (var i = 0; i < dataTable.Columns.Count; i++)
                 {
                     dr[dataTable.Columns[i].ColumnName] = drOld[dataTable.Columns[i].ColumnName];
                 }
@@ -95,7 +94,7 @@ namespace System.Data
             }
 
             var list = new Dictionary<string, int>();
-            foreach (string key in
+            foreach (var key in
                     from DataRow dr
                     in dataTable.Rows
                     select dr[countOnColumn].ToString())
@@ -128,14 +127,14 @@ namespace System.Data
                 throw new ArgumentNullException(nameof(dataTable));
             }
 
-            List<T> list = new List<T>();
-            Type typeClass = typeof(T);
-            PropertyInfo[] propertyInfos = typeClass.GetProperties();
-            List<DataColumn> dataColumns = dataTable.Columns.Cast<DataColumn>().ToList();
+            var list = new List<T>();
+            var typeClass = typeof(T);
+            var propertyInfos = typeClass.GetProperties();
+            var dataColumns = dataTable.Columns.Cast<DataColumn>().ToList();
             foreach (DataRow item in dataTable.Rows)
             {
-                T cn = (T)Activator.CreateInstance(typeClass);
-                foreach (PropertyInfo propertyInfo in
+                var cn = (T)Activator.CreateInstance(typeClass);
+                foreach (var propertyInfo in
                     from pc in propertyInfos
                     let d = dataColumns.Find(c => c.ColumnName == pc.Name)
                     where d != null
@@ -170,7 +169,7 @@ namespace System.Data
             }
 
             var xPathNavigator = xmlDocument.CreateNavigator();
-            return xPathNavigator?.Select(".");
+            return xPathNavigator.Select(".");
         }
     }
 }

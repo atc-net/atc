@@ -22,24 +22,26 @@ namespace Atc.CodeDocumentation.Markdown
         public static void Run(Assembly assemblyToCodeDoc, DirectoryInfo? outputPath = null)
         {
             var typeComments = AssemblyCommentHelper.CollectExportedTypesWithComments(assemblyToCodeDoc);
-            if (typeComments.Any())
+            if (!typeComments.Any())
             {
-                outputPath ??= GetOutputPath(assemblyToCodeDoc);
-                if (outputPath == null)
-                {
-                    throw new IOException($"No CodeDoc output path found for the assembly:  {assemblyToCodeDoc.FullName}");
-                }
-
-                PrepareOutputPath(outputPath);
-                GenerateAndWrites(typeComments, outputPath);
+                return;
             }
+
+            outputPath ??= GetOutputPath(assemblyToCodeDoc);
+            if (outputPath == null)
+            {
+                throw new IOException($"No CodeDoc output path found for the assembly:  {assemblyToCodeDoc.FullName}");
+            }
+
+            PrepareOutputPath(outputPath);
+            GenerateAndWrites(typeComments, outputPath);
         }
 
         private static DirectoryInfo? GetOutputPath(Assembly assembly)
         {
             var assemblyName = assembly.GetName().Name;
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            int index = baseDirectory.IndexOf(assemblyName, StringComparison.Ordinal);
+            var index = baseDirectory.IndexOf(assemblyName, StringComparison.Ordinal);
             if (index == -1)
             {
                 return null;
@@ -57,7 +59,7 @@ namespace Atc.CodeDocumentation.Markdown
             }
             else
             {
-                foreach (string file in Directory.GetFiles(outputPath.FullName, "*.md", SearchOption.AllDirectories))
+                foreach (var file in Directory.GetFiles(outputPath.FullName, "*.md", SearchOption.AllDirectories))
                 {
                     File.Delete(file);
                 }
@@ -100,8 +102,8 @@ namespace Atc.CodeDocumentation.Markdown
                 sb.AppendLine($"# {g.Key}");
                 foreach (var item in g.OrderBy(x => x.Name))
                 {
-                    string beautifyItemName1 = item.BeautifyHtmlName;
-                    string beautifyItemName2 = item.BeautifyHtmlName
+                    var beautifyItemName1 = item.BeautifyHtmlName;
+                    var beautifyItemName2 = item.BeautifyHtmlName
                         .Replace(",", string.Empty, StringComparison.Ordinal)
                         .Replace(" ", "-", StringComparison.Ordinal)
                         .ToLower(GlobalizationConstants.EnglishCultureInfo);

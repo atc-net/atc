@@ -35,7 +35,7 @@ namespace Atc
                 throw new ArgumentOutOfRangeException(nameof(value));
             }
 
-            if (!TryParse(value, ignoreCase, out T returnedValue))
+            if (!TryParse(value, ignoreCase, out var returnedValue))
             {
                 return default!;
             }
@@ -168,7 +168,7 @@ namespace Atc
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            Dictionary<int, string> dictionary = ToDictionary(
+            var dictionary = ToDictionary(
                 dropDownFirstItemType,
                 useDescriptionAttribute,
                 includeDefault,
@@ -267,7 +267,7 @@ namespace Atc
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            Dictionary<int, string> dictionary = ToDictionary(
+            var dictionary = ToDictionary(
                 dropDownFirstItemType,
                 useDescriptionAttribute,
                 includeDefault,
@@ -302,7 +302,7 @@ namespace Atc
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            Dictionary<string, string> dictionary = ToDictionaryWithStringKey(
+            var dictionary = ToDictionaryWithStringKey(
                 dropDownFirstItemType,
                 useDescriptionAttribute,
                 includeDefault,

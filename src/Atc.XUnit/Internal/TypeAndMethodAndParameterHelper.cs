@@ -35,11 +35,11 @@ namespace Atc.XUnit.Internal
 
         internal static string GetDebugMethodInfo(MethodInfo method)
         {
-            string debugMethodInfo = $"{method.DeclaringType?.BeautifyName()} # {method.BeautifyName(false, false, true)}";
-            bool c1 = method.DeclaringType != null && method.DeclaringType.IsGenericType;
-            bool c2 = method.DeclaringType != null && method.DeclaringType.IsGenericTypeDefinition;
-            bool m1 = method.IsGenericMethod;
-            bool m2 = method.IsGenericMethodDefinition;
+            var debugMethodInfo = $"{method.DeclaringType?.BeautifyName()} # {method.BeautifyName(false, false, true)}";
+            var c1 = method.DeclaringType != null && method.DeclaringType.IsGenericType;
+            var c2 = method.DeclaringType != null && method.DeclaringType.IsGenericTypeDefinition;
+            var m1 = method.IsGenericMethod;
+            var m2 = method.IsGenericMethodDefinition;
             int p1C = 0, p2C = 0, p3C = 0, p4C = 0, p5C = 0, p6C = 0;
             var parameters = method.GetParameters();
             if (parameters.Length > 0)

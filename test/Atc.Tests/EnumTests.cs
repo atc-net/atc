@@ -31,7 +31,7 @@ namespace Atc.Tests
         [InlineData(DayOfWeek.Monday, "MONDAY", true)]
         public void TryGetEnumValue(DayOfWeek expected, string value, bool ignoreCase)
         {
-            bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
+            var isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
             Assert.True(isParsed, "Can parse");
             Assert.True(expected.Equals(dayOfWeek), "Enum-value compare");
         }
@@ -40,7 +40,7 @@ namespace Atc.Tests
         [InlineData(DayOfWeek.Monday, DayOfWeek.Monday)]
         public void TryGetEnumFromEnumType(DayOfWeek expected, Enum value)
         {
-            bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, out var dayOfWeek);
+            var isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, out var dayOfWeek);
             Assert.True(isParsed, "Can parse");
             Assert.True(expected.Equals(dayOfWeek), "Enum-value compare");
         }
@@ -72,7 +72,7 @@ namespace Atc.Tests
         [InlineData(DayOfWeek.Monday, "MONDAY")]
         public void TryParseWithDefaultIgnoreCase(DayOfWeek expectedOut, string value)
         {
-            bool isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
+            var isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
             Assert.True(isParsed);
             Assert.Equal(expectedOut, dayOfWeek);
         }
@@ -82,7 +82,7 @@ namespace Atc.Tests
         [InlineData(DayOfWeek.Monday, "MONDAY", true)]
         public void TryParse(DayOfWeek expected, string value, bool ignoreCase)
         {
-            bool isParsed = Enum<DayOfWeek>.TryParse(value, ignoreCase, out var dayOfWeek);
+            var isParsed = Enum<DayOfWeek>.TryParse(value, ignoreCase, out var dayOfWeek);
             Assert.True(isParsed, "Can parse");
             Assert.True(expected.Equals(dayOfWeek), "Enum-value compare");
         }

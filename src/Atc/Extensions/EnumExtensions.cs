@@ -47,7 +47,7 @@ namespace System
                 throw new ArgumentNullException(nameof(enumeration));
             }
 
-            string attributeValue = GetAttributeValue<DisplayNameAttribute, string>(enumeration, arg => arg.DisplayName);
+            var attributeValue = GetAttributeValue<DisplayNameAttribute, string>(enumeration, arg => arg.DisplayName);
             if (string.IsNullOrEmpty(attributeValue))
             {
                 attributeValue = GetAttributeValue<ComponentModel.DataAnnotations.DisplayAttribute, string>(enumeration, arg => arg.Name);
@@ -125,7 +125,7 @@ namespace System
                 throw new ArgumentNullException(nameof(expression));
             }
 
-            T? attribute = enumeration.GetType().GetMember(enumeration.ToString())[0].GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
+            var attribute = enumeration.GetType().GetMember(enumeration.ToString())[0].GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
             return (attribute == null
                 ? default
                 : expression(attribute))!;

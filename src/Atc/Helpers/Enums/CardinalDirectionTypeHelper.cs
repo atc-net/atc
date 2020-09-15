@@ -25,8 +25,8 @@ namespace Atc.Helpers
                 throw new ArgumentException("Number have to be grater then 0", nameof(rotationNumber));
             }
 
-            CardinalDirectionType tmp = cardinalDirectionType;
-            for (int i = 0; i < rotationNumber; i++)
+            var tmp = cardinalDirectionType;
+            for (var i = 0; i < rotationNumber; i++)
             {
                 tmp = GetWhenRotateRight(cardinalDirectionTypeToInclude, tmp);
             }
@@ -41,7 +41,7 @@ namespace Atc.Helpers
         /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
         public static CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
         {
-            CardinalDirectionType returnValue = CardinalDirectionType.None;
+            var returnValue = CardinalDirectionType.None;
             if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Medium ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Advanced)
@@ -117,8 +117,8 @@ namespace Atc.Helpers
                 throw new ArgumentException("Number have to be grater then 0", nameof(rotationNumber));
             }
 
-            CardinalDirectionType tmp = cardinalDirectionType;
-            for (int i = 0; i < rotationNumber; i++)
+            var tmp = cardinalDirectionType;
+            for (var i = 0; i < rotationNumber; i++)
             {
                 tmp = GetWhenRotateLeft(cardinalDirectionTypeToInclude, tmp);
             }
@@ -134,7 +134,7 @@ namespace Atc.Helpers
         [SuppressMessage("Major Code Smell", "S2589:Boolean expressions should not be gratuitous", Justification = "OK.")]
         public static CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
         {
-            CardinalDirectionType returnValue = CardinalDirectionType.None;
+            var returnValue = CardinalDirectionType.None;
             if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Medium ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Advanced)
@@ -201,7 +201,7 @@ namespace Atc.Helpers
         [SuppressMessage("Major Code Smell", "S2589:Boolean expressions should not be gratuitous", Justification = "OK.")]
         public static CardinalDirectionType GetWhenRotate180(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
         {
-            CardinalDirectionType returnValue = CardinalDirectionType.None;
+            var returnValue = CardinalDirectionType.None;
             if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Medium ||
                 cardinalDirectionTypeToInclude == CardinalDirectionType.Advanced)
@@ -450,7 +450,7 @@ namespace Atc.Helpers
                 throw new ArgumentOutOfRangeException("RotationNumber should be between/include 0 and 7: " + rotationNumber);
             }
 
-            CardinalDirectionType tmp1 = GetTheClosestByAngle(CardinalDirectionType.Medium, rotationNumber * 45);
+            var tmp1 = GetTheClosestByAngle(CardinalDirectionType.Medium, rotationNumber * 45);
             return GetWhenRotateLeft(CardinalDirectionType.Medium, tmp1, 2);
         }
 

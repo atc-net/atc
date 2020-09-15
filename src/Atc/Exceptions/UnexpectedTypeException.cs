@@ -46,13 +46,13 @@ namespace System
                 throw new ArgumentNullException(nameof(expectedType));
             }
 
-            string actualTypeName = actualType.FullName!;
+            var actualTypeName = actualType.FullName!;
             if (actualType.IsSimple())
             {
                 actualTypeName = actualType.BeautifyTypeName();
             }
 
-            string expectedTypeName = expectedType.FullName!;
+            var expectedTypeName = expectedType.FullName!;
             if (actualType.IsSimple())
             {
                 expectedTypeName = expectedType.BeautifyTypeName();
@@ -85,13 +85,13 @@ namespace System
                 throw new ArgumentNullException(nameof(message));
             }
 
-            string actualTypeName = actualType.FullName!;
+            var actualTypeName = actualType.FullName!;
             if (actualType.IsSimple())
             {
                 actualTypeName = actualType.BeautifyTypeName();
             }
 
-            string expectedTypeName = expectedType.FullName!;
+            var expectedTypeName = expectedType.FullName!;
             if (actualType.IsSimple())
             {
                 expectedTypeName = expectedType.BeautifyTypeName();

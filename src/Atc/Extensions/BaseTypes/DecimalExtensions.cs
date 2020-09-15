@@ -48,13 +48,13 @@ namespace System
         /// <param name="decimalPrecision">The decimal precision.</param>
         public static bool IsEqual(this decimal a, decimal b, int decimalPrecision)
         {
-            string sa = a.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
-            string sb = b.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
+            var sa = a.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
+            var sb = b.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
 
-            string[] saa = sa.Split('.');
-            string[] sab = sb.Split('.');
+            var saa = sa.Split('.');
+            var sab = sb.Split('.');
 
-            string sad = string.Empty;
+            var sad = string.Empty;
             if (saa.Length == 2)
             {
                 sad = saa[1];
@@ -64,7 +64,7 @@ namespace System
                 }
             }
 
-            string sbd = string.Empty;
+            var sbd = string.Empty;
             if (sab.Length == 2)
             {
                 sbd = sab[1];
