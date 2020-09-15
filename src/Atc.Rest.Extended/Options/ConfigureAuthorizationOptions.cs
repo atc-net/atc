@@ -58,6 +58,12 @@ namespace Atc.Rest.Extended.Options
                 ValidAudience = apiOptions.Authorization.Audience,
                 ValidAudiences = apiOptions.Authorization.ValidAudiences,
             };
+
+            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+            {
+                options.TokenValidationParameters.ValidateIssuer = true;
+                options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
+            }
         }
 
         public void PostConfigure(string name, AuthenticationOptions options)
