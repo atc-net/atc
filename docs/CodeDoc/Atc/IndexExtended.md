@@ -438,6 +438,7 @@
      - HasHtmlTags(this string value)
      - IsAlphaNumericOnly(this string value)
      - IsAlphaOnly(this string value)
+     - IsCasingStyleValid(this string value, CasingStyle casingStyle)
      - IsCompanyCvrNumber(this string cvrNumber)
      - IsCompanyPNumber(this string pNumber)
      - IsDate(this string value)

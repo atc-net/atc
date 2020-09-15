@@ -1487,6 +1487,19 @@ bool IsAlphaOnly(this string value)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 <p><b>Returns:</b> true if the specified value is alpha [a-zA-Z]; otherwise, false.</p>
 
+#### IsCasingStyleValid
+
+```csharp
+bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
+```
+<p><b>Summary:</b> Determines whether [is casing style valid] [the specified casing style].</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`casingStyle`&nbsp;&nbsp;-&nbsp;&nbsp;The casing style.<br />
+<p><b>Returns:</b> true if [is casing style valid] [the specified casing style]; otherwise, false.</p>
+
 #### IsCompanyCvrNumber
 
 ```csharp

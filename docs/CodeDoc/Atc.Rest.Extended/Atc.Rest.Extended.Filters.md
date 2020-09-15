@@ -65,6 +65,8 @@ void Apply(OpenApiOperation operation, OperationFilterContext context)
 ## DefaultResponseOperationFilter
 Bad request as default response.
 
+<p><b>Remarks:</b> REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1278 .</p>
+
 
 ```csharp
 public class DefaultResponseOperationFilter : IOperationFilter

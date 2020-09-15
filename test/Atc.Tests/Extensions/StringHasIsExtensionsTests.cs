@@ -1,4 +1,5 @@
 ﻿using System;
+using Atc.Tests.XUnitTestData;
 using Xunit;
 
 namespace Atc.Tests.Extensions
@@ -215,6 +216,11 @@ namespace Atc.Tests.Extensions
         [InlineData(true, "Hest")]
         public void IsFirstCharacterUpperCase(bool expected, string input)
             => Assert.Equal(expected, input.IsFirstCharacterUpperCase());
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForExtensionsString.IsCasingStyleValidData), MemberType = typeof(TestMemberDataForExtensionsString))]
+        public void IsCasingStyleValid(bool expected, string input, CasingStyle casingStyle)
+            => Assert.Equal(expected, input.IsCasingStyleValid(casingStyle));
 
         [Theory]
         [InlineData(false, "Hest")]

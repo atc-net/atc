@@ -11,6 +11,9 @@
 ## SuppressMessageAttributeFactory
 SuppressMessage Attribute Factory.
 
+<p><b>Remarks:</b> Code Analysis Warnings for Managed Code by CheckId:
+            https://docs.microsoft.com/en-us/visualstudio/code-quality/code-analysis-warnings-for-managed-code-by-checkid?view=vs-2019.</p>
+
 
 ```csharp
 public static class SuppressMessageAttributeFactory

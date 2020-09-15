@@ -3,7 +3,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Atc;
 
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable once CheckNamespace
 namespace System
 {
@@ -360,6 +362,78 @@ namespace System
         public static bool IsFirstCharacterUpperCase(this string value)
         {
             return !string.IsNullOrEmpty(value) && char.IsUpper(value[0]);
+        }
+
+        /// <summary>
+        /// Determines whether [is casing style valid] [the specified casing style].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="casingStyle">The casing style.</param>
+        /// <returns>
+        ///   <c>true</c> if [is casing style valid] [the specified casing style]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return true;
+            }
+
+            switch (casingStyle)
+            {
+                case CasingStyle.CamelCase:
+                    if (value.IsFirstCharacterUpperCase() ||
+                        value.IndexOfAny(new[] { ' ', '-', '_' }) != -1)
+                    {
+                        return false;
+                    }
+
+                    if (value.Length > 1)
+                    {
+                        for (int i = 0; i < value.Length - 1; i++)
+                        {
+                            if (char.IsUpper(value[i]) && char.IsUpper(value[i + 1]))
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
+                    break;
+                case CasingStyle.KebabCase:
+                    if (value.Any(char.IsUpper) ||
+                        value.IndexOfAny(new[] { ' ', '_' }) != -1)
+                    {
+                        return false;
+                    }
+
+                    break;
+                case CasingStyle.PascalCase:
+                    if (value.IsFirstCharacterLowerCase() ||
+                        value.IndexOfAny(new[] { ' ', '-', '_' }) != -1)
+                    {
+                        return false;
+                    }
+
+                    if (value.Length > 1 && char.IsUpper(value[1]))
+                    {
+                        return false;
+                    }
+
+                    break;
+                case CasingStyle.SnakeCase:
+                    if (value.Any(char.IsUpper) ||
+                        value.IndexOfAny(new[] { ' ', '-' }) != -1)
+                    {
+                        return false;
+                    }
+
+                    break;
+                default:
+                    throw new SwitchCaseDefaultException(casingStyle);
+            }
+
+            return true;
         }
 
         /// <summary>

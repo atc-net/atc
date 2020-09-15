@@ -149,6 +149,9 @@ AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(string attributeName
 ## SyntaxAttributeFactory
 Syntax Attribute Factory.
 
+<p><b>Remarks:</b> List of ValidationAttribute's:
+            https://referencesource.microsoft.com/#System.ComponentModel.DataAnnotations/DataAnnotations/ValidationAttribute.cs.</p>
+
 
 ```csharp
 public static class SyntaxAttributeFactory
