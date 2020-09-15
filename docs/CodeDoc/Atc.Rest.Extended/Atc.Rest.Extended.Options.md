@@ -11,7 +11,7 @@
 ## ConfigureApiVersioningOptions
 
 ```csharp
-public class ConfigureApiVersioningOptions : IConfigureOptions&lt;ApiVersioningOptions&gt;
+public class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOptions>
 ```
 
 ### Methods
@@ -21,6 +21,29 @@ public class ConfigureApiVersioningOptions : IConfigureOptions&lt;ApiVersioningO
 
 ```csharp
 void Configure(ApiVersioningOptions options)
+```
+
+<br />
+
+
+## ConfigureAuthorizationOptions
+
+```csharp
+public class ConfigureAuthorizationOptions : IPostConfigureOptions<JwtBearerOptions>, IPostConfigureOptions<AuthenticationOptions>
+```
+
+### Methods
+
+
+#### PostConfigure
+
+```csharp
+void PostConfigure(string name, JwtBearerOptions options)
+```
+#### PostConfigure
+
+```csharp
+void PostConfigure(string name, AuthenticationOptions options)
 ```
 
 <br />

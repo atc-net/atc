@@ -13,7 +13,7 @@ Represents an latitude- and longitude-coordinate.
 
 
 ```csharp
-public struct CartesianCoordinate : IEquatable&lt;CartesianCoordinate&gt;
+public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
 ```
 
 ### Properties

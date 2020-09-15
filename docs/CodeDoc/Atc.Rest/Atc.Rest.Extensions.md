@@ -8,6 +8,24 @@
 <br />
 
 
+## AllowAnonymousAccessForDevelopmentHandler
+
+```csharp
+public class AllowAnonymousAccessForDevelopmentHandler : IAuthorizationHandler
+```
+
+### Methods
+
+
+#### HandleAsync
+
+```csharp
+Task HandleAsync(AuthorizationHandlerContext context)
+```
+
+<br />
+
+
 ## EndpointRouteBuilderExtensions
 
 ```csharp

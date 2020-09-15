@@ -5,7 +5,7 @@ namespace Atc.Rest.Options
 {
     /// <summary>
     /// Copy and fill out the AzureAd section into the project User Secrets.
-    ///
+    /// </summary>
     /// <code>
     /// {
     ///   "AzureAd": {
@@ -24,9 +24,8 @@ namespace Atc.Rest.Options
     ///     "TenantId": "common",
     ///     "Audience": "[App Identifier URI of the Azure AD App Registration]"
     ///   }
-    /// }
+    /// }.
     /// </code>
-    /// </summary>
     public class AuthorizationOptions
     {
         public const string ConfigurationSectionName = "AzureAd";

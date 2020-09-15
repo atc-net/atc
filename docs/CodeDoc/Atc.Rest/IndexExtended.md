@@ -27,6 +27,9 @@
 
 ## [Atc.Rest.Extensions](Atc.Rest.Extensions.md)
 
+- [AllowAnonymousAccessForDevelopmentHandler](Atc.Rest.Extensions.md#allowanonymousaccessfordevelopmenthandler)
+  -  Methods
+     - HandleAsync(AuthorizationHandlerContext context)
 - [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
   -  Static Methods
      - MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List&lt;AssemblyPairOptions&gt; assemblyPairs)
@@ -51,9 +54,15 @@
      - DomainAssembly
   -  Methods
      - ToString()
-- [ConfigureApiAnonymousDevelopmentOptions](Atc.Rest.Options.md#configureapianonymousdevelopmentoptions)
-  -  Methods
-     - Configure(MvcOptions options)
+- [AuthorizationOptions](Atc.Rest.Options.md#authorizationoptions)
+  -  Static Fields
+     - string ConfigurationSectionName
+  -  Properties
+     - Audience
+     - ClientId
+     - Instance
+     - TenantId
+     - ValidAudiences
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
   -  Methods
      - Configure(ApiBehaviorOptions options)
@@ -61,6 +70,7 @@
   -  Properties
      - AllowAnonymousAccessForDevelopment
      - AssemblyPairs
+     - Authorization
      - ErrorHandlingExceptionFilter
      - JsonSerializerCasingStyle
      - UseApplicationInsights

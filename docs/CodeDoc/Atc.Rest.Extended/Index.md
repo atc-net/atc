@@ -23,6 +23,7 @@
 ## [Atc.Rest.Extended.Options](Atc.Rest.Extended.Options.md)
 
 - [ConfigureApiVersioningOptions](Atc.Rest.Extended.Options.md#configureapiversioningoptions)
+- [ConfigureAuthorizationOptions](Atc.Rest.Extended.Options.md#configureauthorizationoptions)
 - [RestApiExtendedOptions](Atc.Rest.Extended.Options.md#restapiextendedoptions)
 
 ## [Atc.Rest.Extended.Versioning](Atc.Rest.Extended.Versioning.md)

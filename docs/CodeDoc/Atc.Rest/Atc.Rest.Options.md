@@ -39,19 +39,70 @@ string ToString()
 <br />
 
 
-## ConfigureApiAnonymousDevelopmentOptions
+## AuthorizationOptions
+Copy and fill out the AzureAd section into the project User Secrets.
+
+<b>Code usage:</b>
 
 ```csharp
-public class ConfigureApiAnonymousDevelopmentOptions : IConfigureOptions&lt;MvcOptions&gt;
+{
+"AzureAd": {
+"Instance": "https://login.microsoftonline.com",
+"ClientId": "[Application ID of the Azure AD App Registration]",
+/*
+You need specify the TenantId only if you want to accept access tokens from a single tenant
+(line-of-business app).
+Otherwise, you can leave them set to common.
+This can be:
+- A GUID (Tenant ID = Directory ID)
+- 'common' (any organization and personal accounts)
+- 'organizations' (any organization)
+- 'consumers' (Microsoft personal accounts)
+*/
+"TenantId": "common",
+"Audience": "[App Identifier URI of the Azure AD App Registration]"
+}
 ```
 
-### Methods
+```csharp
+public class AuthorizationOptions
+```
+
+### Static Fields
 
 
-#### Configure
+#### ConfigurationSectionName
 
 ```csharp
-void Configure(MvcOptions options)
+string ConfigurationSectionName
+```
+### Properties
+
+
+#### Audience
+
+```csharp
+Audience
+```
+#### ClientId
+
+```csharp
+ClientId
+```
+#### Instance
+
+```csharp
+Instance
+```
+#### TenantId
+
+```csharp
+TenantId
+```
+#### ValidAudiences
+
+```csharp
+ValidAudiences
 ```
 
 <br />
@@ -60,7 +111,7 @@ void Configure(MvcOptions options)
 ## ConfigureApiBehaviorOptions
 
 ```csharp
-public class ConfigureApiBehaviorOptions : IConfigureOptions&lt;ApiBehaviorOptions&gt;
+public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
 ```
 
 ### Methods
@@ -93,6 +144,11 @@ AllowAnonymousAccessForDevelopment
 
 ```csharp
 AssemblyPairs
+```
+#### Authorization
+
+```csharp
+Authorization
 ```
 #### ErrorHandlingExceptionFilter
 

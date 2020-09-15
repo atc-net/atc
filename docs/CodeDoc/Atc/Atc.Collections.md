@@ -13,7 +13,7 @@ ConcurrentHashSet.
 
 
 ```csharp
-public class ConcurrentHashSet&lt;T&gt; : IEnumerable&lt;T&gt;, IEnumerable, IDisposable
+public class ConcurrentHashSet&lt;T&gt; : IEnumerable<T>, IEnumerable, IDisposable
 ```
 
 ### Properties

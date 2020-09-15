@@ -37,6 +37,10 @@
 - [ConfigureApiVersioningOptions](Atc.Rest.Extended.Options.md#configureapiversioningoptions)
   -  Methods
      - Configure(ApiVersioningOptions options)
+- [ConfigureAuthorizationOptions](Atc.Rest.Extended.Options.md#configureauthorizationoptions)
+  -  Methods
+     - PostConfigure(string name, AuthenticationOptions options)
+     - PostConfigure(string name, JwtBearerOptions options)
 - [RestApiExtendedOptions](Atc.Rest.Extended.Options.md#restapiextendedoptions)
   -  Properties
      - UseApiVersioning
@@ -80,8 +84,8 @@
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
   -  Static Methods
      - AddRestApi(this IServiceCollection services)
-     - AddRestApi(this IServiceCollection services, Action&lt;IMvcBuilder&gt; setupMvcAction, RestApiExtendedOptions restApiOptions)
-     - AddRestApi(this IServiceCollection services, RestApiExtendedOptions restApiOptions)
+     - AddRestApi(this IServiceCollection services, Action&lt;IMvcBuilder&gt; setupMvcAction, RestApiExtendedOptions restApiOptions, IConfiguration configuration)
+     - AddRestApi(this IServiceCollection services, RestApiExtendedOptions restApiOptions, IConfiguration configuration)
 
 ## [Swashbuckle.AspNetCore.SwaggerGen](Swashbuckle.AspNetCore.SwaggerGen.md)
 

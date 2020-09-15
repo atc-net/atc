@@ -681,7 +681,7 @@ Represents an x- and y-coordinate point in 2-D grid.
 
 
 ```csharp
-public struct GridCell : ICloneable, IEquatable&lt;GridCell&gt;
+public struct GridCell : ICloneable, IEquatable<GridCell>
 ```
 
 ### Properties
@@ -916,7 +916,7 @@ NumericAlphaComparer.
 
 
 ```csharp
-public class NumericAlphaComparer : IComparer&lt;string&gt;
+public class NumericAlphaComparer : IComparer<string>
 ```
 
 ### Methods
@@ -956,7 +956,7 @@ Represents an x- and y-coordinate point in 2-D space.
 
 
 ```csharp
-public struct Point2D : IEquatable&lt;Point2D&gt;
+public struct Point2D : IEquatable<Point2D>
 ```
 
 ### Properties
@@ -1025,7 +1025,7 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 
 
 ```csharp
-public struct Point3D : IEquatable&lt;Point3D&gt;
+public struct Point3D : IEquatable<Point3D>
 ```
 
 ### Properties
@@ -1142,7 +1142,7 @@ TupleEqualityComparer.
 
 
 ```csharp
-public class TupleEqualityComparer&lt;T1, T2&gt; : EqualityComparer&lt;Tuple&lt;T1, T2&gt;&gt;, IEqualityComparer, IEqualityComparer&lt;Tuple&lt;T1, T2&gt;&gt;
+public class TupleEqualityComparer&lt;T1, T2&gt; : EqualityComparer<Tuple<T1, T2>>, IEqualityComparer, IEqualityComparer<Tuple<T1, T2>>
 ```
 
 ### Methods

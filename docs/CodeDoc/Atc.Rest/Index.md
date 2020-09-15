@@ -15,6 +15,7 @@
 
 ## [Atc.Rest.Extensions](Atc.Rest.Extensions.md)
 
+- [AllowAnonymousAccessForDevelopmentHandler](Atc.Rest.Extensions.md#allowanonymousaccessfordevelopmenthandler)
 - [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
 
 ## [Atc.Rest.Middleware](Atc.Rest.Middleware.md)
@@ -26,7 +27,7 @@
 ## [Atc.Rest.Options](Atc.Rest.Options.md)
 
 - [AssemblyPairOptions](Atc.Rest.Options.md#assemblypairoptions)
-- [ConfigureApiAnonymousDevelopmentOptions](Atc.Rest.Options.md#configureapianonymousdevelopmentoptions)
+- [AuthorizationOptions](Atc.Rest.Options.md#authorizationoptions)
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
 - [RestApiOptionsErrorHandlingExceptionFilter](Atc.Rest.Options.md#restapioptionserrorhandlingexceptionfilter)

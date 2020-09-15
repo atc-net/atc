@@ -250,10 +250,30 @@ namespace Atc.CodeDocumentation.Markdown
             mb.AppendLine();
             mb.Header(2, typeComments.Type.BeautifyName(false, true));
 
-            var desc = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Summary ?? string.Empty;
-            if (desc.Length > 0)
+            var summary = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Summary ?? string.Empty;
+            if (summary.Length > 0)
             {
-                mb.AppendLine(desc);
+                mb.AppendLine(summary);
+
+                var remarks = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Remarks ?? string.Empty;
+                if (!string.IsNullOrEmpty(remarks))
+                {
+                    mb.AppendLine($"<p><b>Remarks:</b> {remarks}</p>");
+                }
+
+                var code = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Code ?? string.Empty;
+                if (!string.IsNullOrEmpty(code))
+                {
+                    mb.AppendLine("<b>Code usage:</b>");
+                    mb.Code("csharp", code);
+                }
+
+                var example = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Example ?? string.Empty;
+                if (!string.IsNullOrEmpty(example))
+                {
+                    mb.AppendLine("<b>Code example:</b>");
+                    mb.Code("csharp", example);
+                }
             }
 
             mb.AppendLine();
@@ -289,7 +309,7 @@ namespace Atc.CodeDocumentation.Markdown
                             && x != typeof(object)
                             && x != typeof(ValueType)
                             && !"System.Runtime.InteropServices".Equals(x.Namespace, StringComparison.Ordinal))
-                        .Select(x => x!.BeautifyName(false, true)));
+                        .Select(x => x!.BeautifyName()));
             }
 
             sb.AppendLine(impl.Length > 0
