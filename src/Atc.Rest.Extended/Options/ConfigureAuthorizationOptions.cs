@@ -28,17 +28,21 @@ namespace Atc.Rest.Extended.Options
 
             if (string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
             {
-                throw new InvalidOperationException("AuthorizationTenant not defined");
+                throw new InvalidOperationException("Missing TenantId. Please verify the AzureAd section in appsettings");
             }
 
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
             {
-                throw new InvalidOperationException("AuthorizationClientId not defined");
+                throw new InvalidOperationException("Missing ClientId. Please verify the AzureAd section in appsettings");
             }
 
             if (!apiOptions.Authorization.ValidAudiences.Any())
             {
-                throw new InvalidOperationException("AuthorizationValidAudiences is empty");
+                apiOptions.Authorization.ValidAudiences = new[]
+                {
+                    apiOptions.Authorization.ClientId,
+                    $"api://{apiOptions.Authorization.ClientId}"
+                };
             }
 
             options.Authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/";

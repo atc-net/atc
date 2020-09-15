@@ -39,9 +39,7 @@ namespace Demo.Api.Full
                 // Extended
                 UseApiVersioning = true,
                 UseFluentValidation = true,
-                UseOpenApiSpec = true,
-
-                Authorization = new AuthorizationOptions { UseAzureADBearer = true }
+                UseOpenApiSpec = true
             };
 
             restApiOptions.AddAssemblyPairs(

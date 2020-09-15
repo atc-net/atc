@@ -2,7 +2,6 @@
 using Atc.Rest.Extended.Options;
 using Atc.Rest.Options;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Web;
 
 // ReSharper disable InvertIf
 // ReSharper disable once CheckNamespace
@@ -67,17 +66,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddFluentValidation<TStartup>(restApiOptions.UseAutoRegistrateServices, restApiOptions.AssemblyPairs);
             }
 
-            if (restApiOptions.Authorization.UseAzureADBearer)
-            {
-                configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
-                services.AddMicrosoftIdentityWebApiAuthentication(configuration);
-            }
-            else
-            {
-                configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
-                services.ConfigureOptions<ConfigureAuthorizationOptions>();
-                services.AddAuthentication().AddJwtBearer();
-            }
+            configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
+            services.ConfigureOptions<ConfigureAuthorizationOptions>();
+            services.AddAuthentication().AddJwtBearer();
 
             return services;
         }

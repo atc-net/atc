@@ -31,15 +31,24 @@ namespace Atc.Rest.Options
     {
         public const string ConfigurationSectionName = "AzureAd";
 
-        public bool UseAzureADBearer { get; set; }
-
-        public string ClientId { get; set; } = string.Empty;
+        private string clientId = string.Empty;
+        public string ClientId
+        {
+            get => clientId;
+            set
+            {
+                clientId = value;
+                ValidAudiences = new[]
+                {
+                    clientId,
+                    $"api://{clientId}"
+                };
+            }
+        }
 
         public string TenantId { get; set; } = string.Empty;
 
         public string Instance { get; set; } = string.Empty;
-
-        public string Domain { get; set; } = string.Empty;
 
         public string Audience { get; set; } = string.Empty;
 
