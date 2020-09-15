@@ -10,6 +10,7 @@ namespace Microsoft.OpenApi.Models
 
         public const string Date = "date";
         public const string Time = "time";
+        public const string TimeSpan = "timespan";
         public const string Timestamp = "timestamp"; // This is a legacy
         public const string DateTime = "date-time";
 

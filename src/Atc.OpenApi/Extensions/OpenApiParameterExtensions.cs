@@ -22,6 +22,11 @@ namespace Microsoft.OpenApi.Models
             return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Time, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static bool HasFormatTypeOfTimeSpan(this IList<OpenApiParameter> parameters)
+        {
+            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.TimeSpan, StringComparison.OrdinalIgnoreCase));
+        }
+
         public static bool HasFormatTypeOfTimestamp(this IList<OpenApiParameter> parameters)
         {
             return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Timestamp, StringComparison.OrdinalIgnoreCase));
@@ -52,6 +57,7 @@ namespace Microsoft.OpenApi.Models
             return parameters.HasFormatTypeOfByte() ||
                    parameters.HasFormatTypeOfDate() ||
                    parameters.HasFormatTypeOfTime() ||
+                   parameters.HasFormatTypeOfTimeSpan() ||
                    parameters.HasFormatTypeOfTimestamp() ||
                    parameters.HasFormatTypeOfDateTime() ||
                    parameters.HasFormatTypeOfUuid();

@@ -118,6 +118,7 @@ namespace Atc.CodeAnalysis.CSharp
 
                     OpenApiFormatTypeConstants.Date => propertyDeclaration,
                     OpenApiFormatTypeConstants.Time => propertyDeclaration,
+                    OpenApiFormatTypeConstants.TimeSpan => propertyDeclaration,
                     OpenApiFormatTypeConstants.Timestamp => propertyDeclaration,
                     OpenApiFormatTypeConstants.DateTime => propertyDeclaration,
 

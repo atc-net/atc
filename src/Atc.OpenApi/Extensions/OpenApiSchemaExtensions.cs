@@ -37,6 +37,11 @@ namespace Microsoft.OpenApi.Models
             return schemas.Any(x => !string.IsNullOrEmpty(x.Format) && x.Format.Equals(OpenApiFormatTypeConstants.Time, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static bool HasFormatTypeOfTimeSpan(this IList<OpenApiSchema> schemas)
+        {
+            return schemas.Any(x => !string.IsNullOrEmpty(x.Format) && x.Format.Equals(OpenApiFormatTypeConstants.TimeSpan, StringComparison.OrdinalIgnoreCase));
+        }
+
         public static bool HasFormatTypeOfTimestamp(this IList<OpenApiSchema> schemas)
         {
             return schemas.Any(x => !string.IsNullOrEmpty(x.Format) && x.Format.Equals(OpenApiFormatTypeConstants.Timestamp, StringComparison.OrdinalIgnoreCase));
@@ -77,6 +82,7 @@ namespace Microsoft.OpenApi.Models
             return schemas.HasFormatTypeOfUuid() ||
                    schemas.HasFormatTypeOfDate() ||
                    schemas.HasFormatTypeOfTime() ||
+                   schemas.HasFormatTypeOfTimeSpan() ||
                    schemas.HasFormatTypeOfTimestamp() ||
                    schemas.HasFormatTypeOfDateTime();
         }
@@ -195,6 +201,8 @@ namespace Microsoft.OpenApi.Models
                     case OpenApiFormatTypeConstants.Timestamp:
                     case OpenApiFormatTypeConstants.DateTime:
                         return "DateTimeOffset";
+                    case OpenApiFormatTypeConstants.TimeSpan:
+                        return "TimeSpan";
                     case OpenApiFormatTypeConstants.Byte:
                         return "string";
                     case OpenApiFormatTypeConstants.Int32:
