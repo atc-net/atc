@@ -2,6 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -11,11 +13,14 @@ namespace Atc.Rest.Extended.Options
         IPostConfigureOptions<JwtBearerOptions>,
         IPostConfigureOptions<AuthenticationOptions>
     {
+        private readonly IWebHostEnvironment environment;
         private readonly RestApiExtendedOptions apiOptions;
 
         public ConfigureAuthorizationOptions(
-            RestApiExtendedOptions options)
+            RestApiExtendedOptions options,
+            IWebHostEnvironment environment)
         {
+            this.environment = environment;
             apiOptions = options ?? throw new ArgumentNullException(nameof(options));
         }
 
@@ -26,14 +31,21 @@ namespace Atc.Rest.Extended.Options
                 throw new ArgumentNullException(nameof(options));
             }
 
+            if (apiOptions.AllowAnonymousAccessForDevelopment && environment?.IsDevelopment() == true)
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
             {
-                throw new InvalidOperationException("Missing TenantId. Please verify the AzureAd section in appsettings");
+                throw new InvalidOperationException(
+                    "Missing TenantId. Please verify the AzureAd section in appsettings");
             }
 
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
             {
-                throw new InvalidOperationException("Missing ClientId. Please verify the AzureAd section in appsettings");
+                throw new InvalidOperationException(
+                    "Missing ClientId. Please verify the AzureAd section in appsettings");
             }
 
             if (!apiOptions.Authorization.ValidAudiences.Any())
