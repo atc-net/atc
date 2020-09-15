@@ -38,7 +38,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return GetOrdersHelperAsync(parameters, handler, cancellationToken);
+            return InvokeGetOrdersAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return GetOrderByIdHelperAsync(parameters, handler, cancellationToken);
+            return InvokeGetOrderByIdAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -76,20 +76,20 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return PatchOrdersIdHelperAsync(parameters, handler, cancellationToken);
+            return InvokePatchOrdersIdAsync(parameters, handler, cancellationToken);
         }
 
-        private static async Task<ActionResult> GetOrdersHelperAsync(GetOrdersParameters parameters, IGetOrdersHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetOrdersAsync(GetOrdersParameters parameters, IGetOrdersHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> GetOrderByIdHelperAsync(GetOrderByIdParameters parameters, IGetOrderByIdHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetOrderByIdAsync(GetOrderByIdParameters parameters, IGetOrderByIdHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> PatchOrdersIdHelperAsync(PatchOrdersIdParameters parameters, IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokePatchOrdersIdAsync(PatchOrdersIdParameters parameters, IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }

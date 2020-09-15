@@ -219,7 +219,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         {
             var result = new List<string>();
             var modelName = schema.GetModelName(false);
-            if (modelName.IsCasingStyleValid(CasingStyle.PascalCase))
+            if (!modelName.IsCasingStyleValid(CasingStyle.PascalCase))
             {
                 result.Add($"Schema - Object '{modelName}' is not using {CasingStyle.PascalCase}.");
             }
@@ -230,7 +230,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         private static List<string> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema)
         {
             var result = new List<string>();
-            if (key.IsCasingStyleValid(CasingStyle.CamelCase))
+            if (!key.IsCasingStyleValid(CasingStyle.CamelCase))
             {
                 result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {CasingStyle.CamelCase}.");
             }

@@ -153,7 +153,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
             var operationName = apiOperation.Value.GetOperationName();
             var interfaceName = "I" + operationName + NameConstants.ContractHandler;
             var methodName = operationName + "Async";
-            var helperMethodName = operationName + "HelperAsync";
+            var helperMethodName = $"Invoke{operationName}Async";
             var parameterTypeName = operationName + NameConstants.ContractParameters;
             var resultTypeName = operationName + NameConstants.ContractResult;
 
@@ -198,7 +198,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
         {
             var operationName = apiOperation.Value.GetOperationName();
             var interfaceName = "I" + operationName + NameConstants.ContractHandler;
-            var methodName = operationName + "HelperAsync";
+            var methodName = $"Invoke{operationName}Async";
             var parameterTypeName = operationName + NameConstants.ContractParameters;
 
             // Create method # use CreateParameterList & CreateCodeBlockReturnStatement

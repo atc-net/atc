@@ -20,10 +20,10 @@ namespace Demo.Domain.Handlers.Users
                 return Task.FromResult(DeleteUserByIdResult.NotFound($"Can't find user with id={parameters.Id}"));
             }
 
-            return ExecuteHelperAsync();
+            return InvokeExecuteAsync();
         }
 
-        private static async Task<DeleteUserByIdResult> ExecuteHelperAsync()
+        private static async Task<DeleteUserByIdResult> InvokeExecuteAsync()
         {
             return await Task.FromResult("User deleted.");
         }

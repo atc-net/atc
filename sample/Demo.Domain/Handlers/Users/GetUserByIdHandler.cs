@@ -20,10 +20,10 @@ namespace Demo.Domain.Handlers.Users
                 return Task.FromResult(GetUserByIdResult.NotFound($"Could not find user with id={parameters.Id}"));
             }
 
-            return ExecuteHelperAsync();
+            return InvokeExecuteAsync();
         }
 
-        private static async Task<GetUserByIdResult> ExecuteHelperAsync()
+        private static async Task<GetUserByIdResult> InvokeExecuteAsync()
         {
             var data = new User
             {

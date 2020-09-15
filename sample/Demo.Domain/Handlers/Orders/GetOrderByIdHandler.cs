@@ -24,11 +24,11 @@ namespace Demo.Domain.Handlers.Orders
                 "9" => throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id),
                 "10" => throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id),
                 "11" => throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id),
-                _ => await ExecuteHelperAsync(parameters)
+                _ => await InvokeExecuteAsync(parameters)
             };
         }
 
-        private static async Task<GetOrderByIdResult> ExecuteHelperAsync(GetOrderByIdParameters parameters)
+        private static async Task<GetOrderByIdResult> InvokeExecuteAsync(GetOrderByIdParameters parameters)
         {
             var data = new Order
             {

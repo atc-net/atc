@@ -18,10 +18,10 @@ namespace Demo.Domain.Handlers.Orders
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return ExecuteHelperAsync(parameters);
+            return InvokeExecuteAsync(parameters);
         }
 
-        private static async Task<GetOrdersResult> ExecuteHelperAsync(GetOrdersParameters parameters)
+        private static async Task<GetOrdersResult> InvokeExecuteAsync(GetOrdersParameters parameters)
         {
 
             var allItems = new List<Order>();

@@ -39,7 +39,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return GetUsersHelperAsync(handler, cancellationToken);
+            return InvokeGetUsersAsync(handler, cancellationToken);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return PostUsersHelperAsync(parameters, handler, cancellationToken);
+            return InvokePostUsersAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return GetUserByIdHelperAsync(parameters, handler, cancellationToken);
+            return InvokeGetUserByIdAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return UpdateUserByIdHelperAsync(parameters, handler, cancellationToken);
+            return InvokeUpdateUserByIdAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return DeleteUserByIdHelperAsync(parameters, handler, cancellationToken);
+            return InvokeDeleteUserByIdAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return UpdateMyTestGenderHelperAsync(parameters, handler, cancellationToken);
+            return InvokeUpdateMyTestGenderAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -156,40 +156,40 @@ namespace Demo.Api.Generated.Endpoints
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return GetUserByEmailHelperAsync(parameters, handler, cancellationToken);
+            return InvokeGetUserByEmailAsync(parameters, handler, cancellationToken);
         }
 
-        private static async Task<ActionResult> GetUsersHelperAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetUsersAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(cancellationToken);
         }
 
-        private static async Task<ActionResult> PostUsersHelperAsync(PostUsersParameters parameters, IPostUsersHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokePostUsersAsync(PostUsersParameters parameters, IPostUsersHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> GetUserByIdHelperAsync(GetUserByIdParameters parameters, IGetUserByIdHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetUserByIdAsync(GetUserByIdParameters parameters, IGetUserByIdHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> UpdateUserByIdHelperAsync(UpdateUserByIdParameters parameters, IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeUpdateUserByIdAsync(UpdateUserByIdParameters parameters, IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> DeleteUserByIdHelperAsync(DeleteUserByIdParameters parameters, IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeDeleteUserByIdAsync(DeleteUserByIdParameters parameters, IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> UpdateMyTestGenderHelperAsync(UpdateMyTestGenderParameters parameters, IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeUpdateMyTestGenderAsync(UpdateMyTestGenderParameters parameters, IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<ActionResult> GetUserByEmailHelperAsync(GetUserByEmailParameters parameters, IGetUserByEmailHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetUserByEmailAsync(GetUserByEmailParameters parameters, IGetUserByEmailHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }
