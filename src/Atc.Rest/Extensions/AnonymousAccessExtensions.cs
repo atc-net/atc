@@ -1,4 +1,5 @@
-﻿using Atc.Rest.Options;
+﻿using Atc.Rest.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 // ReSharper disable once CheckNamespace
@@ -8,7 +9,7 @@ namespace Microsoft.AspNetCore.Http
     {
         public static IServiceCollection AddAnonymousAccessForDevelopment(this IServiceCollection services)
         {
-            services.ConfigureOptions<ConfigureApiAnonymousDevelopmentOptions>();
+            services.AddSingleton<IAuthorizationHandler, AllowAnonymousAccessForDevelopmentHandler>();
             return services;
         }
     }

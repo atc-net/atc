@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Atc.Rest.Extended.Options;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -23,7 +24,8 @@ namespace Atc.Rest.Extended.Tests
             typeof(Filters.DefaultResponseOperationFilter),
             typeof(Filters.SecurityRequirementsOperationFilter),
             typeof(Filters.SwaggerEnumDescriptionsDocumentFilter),
-            typeof(Options.ConfigureApiVersioningOptions),
+            typeof(ConfigureAuthorizationOptions),
+            typeof(ConfigureApiVersioningOptions),
             typeof(Versioning.VersionErrorResponseProvider),
             typeof(Microsoft.AspNetCore.Builder.OpenApiBuilderExtensions),
             typeof(Microsoft.AspNetCore.Builder.RestApiExtendedBuilderExtensions),

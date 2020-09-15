@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 
 namespace Demo.Api.Full
 {
@@ -38,12 +39,14 @@ namespace Demo.Api.Full
                 // Extended
                 UseApiVersioning = true,
                 UseFluentValidation = true,
-                UseOpenApiSpec = true,
+                UseOpenApiSpec = true
             };
 
             restApiOptions.AddAssemblyPairs(
                 Assembly.GetAssembly(typeof(ApiGenerated)),
                 Assembly.GetAssembly(typeof(DomainRegistration)));
+
+            IdentityModelEventSource.ShowPII = true;
         }
 
         public IConfiguration Configuration { get; }
@@ -58,7 +61,8 @@ namespace Demo.Api.Full
                 services.ConfigureServices();
             }
 
-            services.AddRestApi<Startup>(restApiOptions);
+            services.ConfigureOptions<ConfigureSwaggerOptions>();
+            services.AddRestApi<Startup>(restApiOptions, Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

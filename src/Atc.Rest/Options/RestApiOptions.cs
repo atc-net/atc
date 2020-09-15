@@ -9,6 +9,8 @@ namespace Atc.Rest.Options
     {
         public bool AllowAnonymousAccessForDevelopment { get; set; } = true;
 
+        public AuthorizationOptions Authorization { get; set; } = new AuthorizationOptions();
+
         public bool UseApplicationInsights { get; set; } = true;
 
         public bool UseAutoRegistrateServices { get; set; } = true;

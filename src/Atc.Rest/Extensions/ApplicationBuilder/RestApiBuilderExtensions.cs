@@ -84,12 +84,8 @@ namespace Microsoft.AspNetCore.Builder
             });
 
             app.UseRouting();
-
-            if (!restApiOptions.AllowAnonymousAccessForDevelopment)
-            {
-                app.UseAuthentication();
-                app.UseAuthorization();
-            }
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
