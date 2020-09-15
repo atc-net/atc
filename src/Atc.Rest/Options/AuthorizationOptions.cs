@@ -9,6 +9,11 @@ namespace Atc.Rest.Options
     /// <code>
     /// {
     ///   "AzureAd": {
+    ///     /*
+    ///       This will be used to set the Authority on the JWT bearer options
+    ///       - 'https://login.microsoftonline.com' (For Azure AD)
+    ///       - 'https://adfs1.some.organization.com' (For on-prem ADFS)
+    ///     */
     ///     "Instance": "https://login.microsoftonline.com",
     ///     "ClientId": "[Application ID of the Azure AD App Registration]",
     ///     /*
@@ -20,9 +25,11 @@ namespace Atc.Rest.Options
     ///       - 'common' (any organization and personal accounts)
     ///       - 'organizations' (any organization)
     ///       - 'consumers' (Microsoft personal accounts)
+    ///       - 'adfs' (For on-prem ADFS)
     ///     */
     ///     "TenantId": "common",
     ///     "Audience": "[App Identifier URI of the Azure AD App Registration]"
+    ///     "Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
     ///   }
     /// }.
     /// </code>
