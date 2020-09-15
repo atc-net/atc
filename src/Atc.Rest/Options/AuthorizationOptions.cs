@@ -51,6 +51,8 @@ namespace Atc.Rest.Options
 
         public string Audience { get; set; } = string.Empty;
 
+        public string Issuer { get; set; } = string.Empty;
+
         public IReadOnlyCollection<string> ValidAudiences { get; set; } = Array.Empty<string>();
     }
 }
