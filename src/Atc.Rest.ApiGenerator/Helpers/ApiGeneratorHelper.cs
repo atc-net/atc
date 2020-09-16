@@ -35,7 +35,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(apiOptions));
             }
 
-            if (!OpenApiDocumentHelper.Validate(apiYamlDoc))
+            if (!OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation))
             {
                 return false;
             }

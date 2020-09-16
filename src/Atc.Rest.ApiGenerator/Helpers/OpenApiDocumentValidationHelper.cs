@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
+using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -15,17 +16,22 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class OpenApiDocumentValidationHelper
     {
-        public static bool IsDocumentValid(OpenApiDocument apiDocument)
+        public static bool IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
         {
             if (apiDocument == null)
             {
                 throw new ArgumentNullException(nameof(apiDocument));
             }
 
+            if (validationOptions == null)
+            {
+                throw new ArgumentNullException(nameof(validationOptions));
+            }
+
             var validationErrors = new List<string>();
-            validationErrors.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values));
+            validationErrors.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values, validationOptions));
             validationErrors.AddRange(ValidatePaths(apiDocument.Paths.Values));
-            validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values));
+            validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions));
             validationErrors.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
             validationErrors.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
 
@@ -43,7 +49,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas)
+        private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas, ApiOptionsValidation validationOptions)
         {
             var result = new List<string>();
             foreach (var schema in schemas)
@@ -61,7 +67,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 result.Add($"Schema - Title on array type '{schema.Title}' is not starting with uppercase.");
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(schema));
+                            result.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
                             break;
                         }
 
@@ -87,11 +93,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 }
                                 else
                                 {
-                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema));
+                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema, validationOptions));
                                 }
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(schema));
+                            result.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
                             break;
                         }
                 }
@@ -112,7 +118,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<string> ValidateOperations(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
+        private static List<string> ValidateOperations(Dictionary<string, OpenApiPathItem>.ValueCollection paths, ApiOptionsValidation validationOptions)
         {
             var result = new List<string>();
             foreach (var path in paths)
@@ -125,6 +131,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     }
                     else
                     {
+                        if (!value.OperationId.IsCasingStyleValid(validationOptions.OperationIdCasingStyle))
+                        {
+                            result.Add($"Operation - OperationId '{value.OperationId}' is not using {validationOptions.OperationIdCasingStyle}.");
+                        }
+
                         if (key == OperationType.Get)
                         {
                             if (!value.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase))
@@ -182,9 +193,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     .Select(x => x.Name)
                     .ToList();
 
-                result.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
-
-                if (!globalPathParameterNames.Any())
+                if (globalPathParameterNames.Any())
+                {
+                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
+                }
+                else
                 {
                     result.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(path));
                     result.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(path));
@@ -215,24 +228,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
-        private static List<string> ValidateSchemaModelNameCasing(OpenApiSchema schema)
+        private static List<string> ValidateSchemaModelNameCasing(OpenApiSchema schema, ApiOptionsValidation validationOptions)
         {
             var result = new List<string>();
             var modelName = schema.GetModelName(false);
-            if (!modelName.IsCasingStyleValid(CasingStyle.PascalCase))
+            if (!modelName.IsCasingStyleValid(validationOptions.ModelNameCasingStyle))
             {
-                result.Add($"Schema - Object '{modelName}' is not using {CasingStyle.PascalCase}.");
+                result.Add($"Schema - Object '{modelName}' is not using {validationOptions.ModelNameCasingStyle}.");
             }
 
             return result;
         }
 
-        private static List<string> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema)
+        private static List<string> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema, ApiOptionsValidation validationOptions)
         {
             var result = new List<string>();
-            if (!key.IsCasingStyleValid(CasingStyle.CamelCase))
+            if (!key.IsCasingStyleValid(validationOptions.ModelPropertyNameCasingStyle))
             {
-                result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {CasingStyle.CamelCase}.");
+                result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {validationOptions.ModelPropertyNameCasingStyle}.");
             }
 
             return result;

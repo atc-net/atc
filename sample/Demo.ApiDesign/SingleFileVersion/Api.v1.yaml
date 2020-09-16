@@ -64,7 +64,7 @@ paths:
     patch:
       summary: Update part of order by id
       description: Update part of order by id
-      operationId: patch-orders-id
+      operationId: patchOrdersId
       parameters:
         - name: id
           in: path
@@ -194,7 +194,7 @@ paths:
     get:
       summary: Get all users
       description: Get all users
-      operationId: get-users
+      operationId: getUsers
       tags: []
       responses:
         '200':
@@ -208,7 +208,7 @@ paths:
     post:
       summary: Create a new user
       description: Create a new user
-      operationId: post-users
+      operationId: postUsers
       responses:
         '201':
           description: Created
@@ -225,7 +225,7 @@ paths:
     put:
       summary: Update gender on a user
       description: Update gender on a user
-      operationId: update-my-test-gender
+      operationId: updateMyTestGender
       parameters:
         - name: id
           in: path

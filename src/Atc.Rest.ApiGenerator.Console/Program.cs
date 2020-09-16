@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using CommandLine;
@@ -69,9 +70,13 @@ namespace Atc.Rest.ApiGenerator.Console
                 return apiOptions;
             }
 
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+            serializeOptions.WriteIndented = true;
+
             using var stream = new StreamReader(fileInfo.FullName);
             var json = stream.ReadToEnd();
-            apiOptions = JsonSerializer.Deserialize<ApiOptions>(json);
+            apiOptions = JsonSerializer.Deserialize<ApiOptions>(json, serializeOptions);
 
             return apiOptions;
         }

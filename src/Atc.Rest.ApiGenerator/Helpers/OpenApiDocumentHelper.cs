@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using Atc.Rest.ApiGenerator.Models;
+using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.Readers;
 
@@ -60,11 +61,16 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return new Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo>(openApiDocument, diagnostic, new FileInfo(apiYamlFile.FullName));
         }
 
-        public static bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc)
+        public static bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
         {
             if (apiYamlDoc == null)
             {
                 throw new ArgumentNullException(nameof(apiYamlDoc));
+            }
+
+            if (validationOptions == null)
+            {
+                throw new ArgumentNullException(nameof(validationOptions));
             }
 
             var isValid = true;
@@ -81,7 +87,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 isValid = false;
             }
 
-            return isValid && OpenApiDocumentValidationHelper.IsDocumentValid(apiYamlDoc.Item1);
+            return isValid && OpenApiDocumentValidationHelper.IsDocumentValid(apiYamlDoc.Item1, validationOptions);
         }
 
         public static List<string> GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
