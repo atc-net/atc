@@ -208,7 +208,7 @@ paths:
     post:
       summary: Create a new user
       description: Create a new user
-      operationId: postUsers
+      operationId: postUser
       responses:
         '201':
           description: Created
@@ -466,6 +466,14 @@ components:
           example: email@email.dk
         gender:
           $ref: '#/components/schemas/GenderType'
+    CreateUsersRequest:
+      description: A list of users.
+      type: array
+      x-tags:
+        - CreateUsersRequest
+      title: CreateUsersRequest
+      items:
+        $ref: '#/components/schemas/CreateUserRequest'
     UpdateUserRequest:
       title: UpdateUserRequest
       description: Request to update a user

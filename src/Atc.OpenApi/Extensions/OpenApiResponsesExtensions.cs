@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
+// ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
 {
@@ -100,23 +101,20 @@ namespace Microsoft.OpenApi.Models
 
         public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = "application/json")
         {
-            foreach (var response in responses.OrderBy(x => x.Key))
+            foreach (var (key, value) in responses.OrderBy(x => x.Key))
             {
-                if (!response.Key.Equals(httpStatusCode.ToString(), StringComparison.OrdinalIgnoreCase) &&
-                    !response.Key.Equals($"{(int)httpStatusCode}", StringComparison.Ordinal))
+                if (!key.Equals(httpStatusCode.ToString(), StringComparison.OrdinalIgnoreCase) &&
+                    !key.Equals($"{(int)httpStatusCode}", StringComparison.Ordinal))
                 {
                     continue;
                 }
 
-                if (response.Value == null)
+                if (value == null)
                 {
                     continue;
                 }
 
-                var (key, value) = response.Value.Content.FirstOrDefault(x => x.Key == contentType);
-                return key == null
-                    ? null
-                    : value.Schema;
+                return value.Content.GetSchema(contentType);
             }
 
             return null;

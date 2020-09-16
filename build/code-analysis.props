@@ -3,7 +3,7 @@
 
   <PropertyGroup Label="Code Analysis">
     <Features>IOperation</Features>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors Condition=" '$(Configuration)' == 'Release' ">true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <nullable Condition="'$(IsTestFolder)' == 'false'">enable</nullable>
 

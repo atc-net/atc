@@ -44,21 +44,21 @@ namespace Demo.Api.Generated.Endpoints
 
         /// <summary>
         /// Description: Create a new user.
-        /// Operation: PostUsers.
+        /// Operation: PostUser.
         /// Area: Users.
         /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-        public Task<ActionResult> PostUsersAsync(PostUsersParameters parameters, [FromServices] IPostUsersHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> PostUserAsync(PostUserParameters parameters, [FromServices] IPostUserHandler handler, CancellationToken cancellationToken)
         {
             if (handler == null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return InvokePostUsersAsync(parameters, handler, cancellationToken);
+            return InvokePostUserAsync(parameters, handler, cancellationToken);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Demo.Api.Generated.Endpoints
             return await handler.ExecuteAsync(cancellationToken);
         }
 
-        private static async Task<ActionResult> InvokePostUsersAsync(PostUsersParameters parameters, IPostUsersHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokePostUserAsync(PostUserParameters parameters, IPostUserHandler handler, CancellationToken cancellationToken)
         {
             return await handler.ExecuteAsync(parameters, cancellationToken);
         }

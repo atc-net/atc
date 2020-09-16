@@ -30,8 +30,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             var validationErrors = new List<string>();
             validationErrors.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values, validationOptions));
-            validationErrors.AddRange(ValidatePaths(apiDocument.Paths.Values));
-            validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions));
+            validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions, apiDocument.Components.Schemas));
             validationErrors.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
             validationErrors.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
 
@@ -106,19 +105,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return result;
         }
 
-        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
-        [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK for now.")]
-        private static List<string> ValidatePaths(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
-        {
-            var result = new List<string>();
-            var x = paths;
-
-            // TODO:
-            return result;
-        }
-
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<string> ValidateOperations(Dictionary<string, OpenApiPathItem>.ValueCollection paths, ApiOptionsValidation validationOptions)
+        private static List<string> ValidateOperations(
+            Dictionary<string, OpenApiPathItem>.ValueCollection paths,
+            ApiOptionsValidation validationOptions,
+            IDictionary<string, OpenApiSchema> modelSchemas)
         {
             var result = new List<string>();
             foreach (var path in paths)
@@ -170,6 +161,28 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                  !value.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
                         {
                             result.Add($"Operation - OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'.");
+                        }
+                    }
+                }
+
+                foreach (var (_, value) in path.Operations)
+                {
+                    var modelSchema = value.GetModelSchema();
+                    if (modelSchema != null)
+                    {
+                        if (value.OperationId.EndsWith("s", StringComparison.Ordinal))
+                        {
+                            if (!IsModelOfTypeArray(modelSchema, modelSchemas))
+                            {
+                                result.Add($"Operation - OperationId '{value.GetOperationName()}' is not singular - Response model is defined as a single item.");
+                            }
+                        }
+                        else
+                        {
+                            if (IsModelOfTypeArray(modelSchema, modelSchemas))
+                            {
+                                result.Add($"Operation - OperationId '{value.GetOperationName()}' is not pluralized - Response model is defined as an array.");
+                            }
                         }
                     }
                 }
@@ -249,6 +262,21 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             return result;
+        }
+
+        private static bool IsModelOfTypeArray(OpenApiSchema schema, IDictionary<string, OpenApiSchema> modelSchemas)
+        {
+            var modelType = schema.GetModelType();
+            if (modelType == null && schema.Reference.Id != null)
+            {
+                var (key, value) = modelSchemas.FirstOrDefault(x => x.Key.Equals(schema.Reference.Id, StringComparison.OrdinalIgnoreCase));
+                if (key != null)
+                {
+                    return value.Type != null && value.Type.EndsWith(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            return modelType != null && modelType.EndsWith(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

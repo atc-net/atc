@@ -5,9 +5,9 @@ using Demo.Api.Generated.Contracts.Users;
 
 namespace Demo.Domain.Handlers.Users
 {
-    public class PostUsersHandler : IPostUsersHandler
+    public class PostUserHandler : IPostUserHandler
     {
-        public Task<PostUsersResult> ExecuteAsync(PostUsersParameters parameters, CancellationToken cancellationToken = default)
+        public Task<PostUserResult> ExecuteAsync(PostUserParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
             {
@@ -17,9 +17,9 @@ namespace Demo.Domain.Handlers.Users
             return InvokeExecuteAsync();
         }
 
-        private static async Task<PostUsersResult> InvokeExecuteAsync()
+        private static async Task<PostUserResult> InvokeExecuteAsync()
         {
-            return await Task.FromResult(PostUsersResult.Created());
+            return await Task.FromResult(PostUserResult.Created());
         }
     }
 }

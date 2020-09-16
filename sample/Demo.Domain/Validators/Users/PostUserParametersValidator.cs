@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Demo.Domain.Validators.Users
 {
-    public class PostUsersParametersValidator : AbstractValidator<PostUsersParameters>
+    public class PostUserParametersValidator : AbstractValidator<PostUserParameters>
     {
-        public PostUsersParametersValidator()
+        public PostUserParametersValidator()
         {
             RuleFor(x => x.Request.FirstName)
                 .NotNull()

@@ -16,15 +16,15 @@ namespace Demo.Api.Generated.Contracts.Users
     /// <summary>
     /// Results for operation request.
     /// Description: Create a new user.
-    /// Operation: PostUsers.
+    /// Operation: PostUser.
     /// Area: Users.
     /// </summary>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Should not throw ArgumentNullExceptions from implicit operators.")]
-    public class PostUsersResult
+    public class PostUserResult
     {
         private readonly ActionResult result;
 
-        private PostUsersResult(ActionResult result)
+        private PostUserResult(ActionResult result)
         {
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
@@ -32,21 +32,21 @@ namespace Demo.Api.Generated.Contracts.Users
         /// <summary>
         /// 201 - Created response.
         /// </summary>
-        public static PostUsersResult Created() => new PostUsersResult(ResultFactory.CreateContentResult(HttpStatusCode.Created, null));
+        public static PostUserResult Created() => new PostUserResult(ResultFactory.CreateContentResult(HttpStatusCode.Created, null));
 
         /// <summary>
         /// 400 - BadRequest response.
         /// </summary>
-        public static PostUsersResult BadRequest(string message) => new PostUsersResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.BadRequest, message));
+        public static PostUserResult BadRequest(string message) => new PostUserResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.BadRequest, message));
 
         /// <summary>
         /// 409 - Conflict response.
         /// </summary>
-        public static PostUsersResult Conflict(string? error = null) => new PostUsersResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.Conflict, error));
+        public static PostUserResult Conflict(string? error = null) => new PostUserResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.Conflict, error));
 
         /// <summary>
-        /// Performs an implicit conversion from PostUsersResult to ActionResult.
+        /// Performs an implicit conversion from PostUserResult to ActionResult.
         /// </summary>
-        public static implicit operator ActionResult(PostUsersResult x) => x.result;
+        public static implicit operator ActionResult(PostUserResult x) => x.result;
     }
 }

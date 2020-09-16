@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net;
 
+// ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable ConvertIfStatementToReturnStatement
 // ReSharper disable UseDeconstruction
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
@@ -24,6 +26,30 @@ namespace Microsoft.OpenApi.Models
                 .OperationId
                 .PascalCase(true)
                 .EnsureFirstCharacterToUpper();
+        }
+
+        public static OpenApiSchema? GetModelSchema(this OpenApiOperation openApiOperation)
+        {
+            if (openApiOperation == null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
+            var httpStatusCodes = openApiOperation.Responses.GetHttpStatusCodes();
+            foreach (var httpStatusCode in httpStatusCodes)
+            {
+                if (httpStatusCode == HttpStatusCode.OK ||
+                    httpStatusCode == HttpStatusCode.Created)
+                {
+                    var modelSchema = openApiOperation.Responses.GetSchemaForStatusCode(httpStatusCode);
+                    if (modelSchema != null)
+                    {
+                        return modelSchema;
+                    }
+                }
+            }
+
+            return openApiOperation.RequestBody?.Content?.GetSchema();
         }
 
         public static bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)

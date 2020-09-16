@@ -151,16 +151,39 @@ namespace Microsoft.OpenApi.Models
 
             if (ensureFirstCharacterToUpper)
             {
-                return schema.Items != null
-                    ? schema.Items.Reference.Id.EnsureFirstCharacterToUpper()
-                    : schema.Reference.Id.EnsureFirstCharacterToUpper();
+                return schema.Items == null
+                    ? schema.Reference.Id.EnsureFirstCharacterToUpper()
+                    : schema.Items.Reference.Id.EnsureFirstCharacterToUpper();
             }
-            else
+
+            return schema.Items == null
+                ? schema.Reference.Id
+                : schema.Items.Reference.Id;
+        }
+
+        public static string? GetModelType(this OpenApiSchema schema)
+        {
+            if (schema == null)
             {
-                return schema.Items != null
-                    ? schema.Items.Reference.Id
-                    : schema.Reference.Id;
+                throw new ArgumentNullException(nameof(schema));
             }
+
+            if (schema.AllOf.Count == 2 &&
+                (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                 NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (!NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    return schema.AllOf[0].GetModelType();
+                }
+
+                if (!NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    return schema.AllOf[1].GetModelType();
+                }
+            }
+
+            return schema.Type;
         }
 
         public static string GetDataType(this OpenApiSchema schema)

@@ -21,12 +21,12 @@ namespace Demo.Api.Full.Configuration
             services.AddTransient<IGetUserByEmailHandler, GetUserByEmailHandler>();
             services.AddTransient<IGetUserByIdHandler, GetUserByIdHandler>();
             services.AddTransient<IGetUsersHandler, GetUsersHandler>();
-            services.AddTransient<IPostUsersHandler, PostUsersHandler>();
+            services.AddTransient<IPostUserHandler, PostUserHandler>();
             services.AddTransient<IUpdateMyTestGenderHandler, UpdateMyTestGenderHandler>();
             services.AddTransient<IUpdateUserByIdHandler, UpdateUserByIdHandler>();
 
             // Validators
-            services.AddTransient<IValidator<PostUsersParameters>, PostUsersParametersValidator>();
+            services.AddTransient<IValidator<PostUserParameters>, PostUserParametersValidator>();
         }
     }
 }
