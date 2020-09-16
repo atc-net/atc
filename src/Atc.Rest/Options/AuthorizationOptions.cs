@@ -8,7 +8,7 @@ namespace Atc.Rest.Options
     /// </summary>
     /// <code>
     /// {
-    ///   "AzureAd": {
+    ///   "Authorization": {
     ///     /*
     ///       This will be used to set the Authority on the JWT bearer options
     ///       - 'https://login.microsoftonline.com' (For Azure AD)
@@ -35,7 +35,7 @@ namespace Atc.Rest.Options
     /// </code>
     public class AuthorizationOptions
     {
-        public const string ConfigurationSectionName = "AzureAd";
+        public const string ConfigurationSectionName = "Authorization";
 
         private string clientId = string.Empty;
         public string ClientId
