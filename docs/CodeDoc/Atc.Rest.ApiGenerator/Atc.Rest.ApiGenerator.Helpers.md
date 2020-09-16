@@ -71,7 +71,7 @@ List<string> GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
 #### Validate
 
 ```csharp
-bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc)
+bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
 ```
 
 <br />
@@ -89,7 +89,7 @@ public static class OpenApiDocumentValidationHelper
 #### IsDocumentValid
 
 ```csharp
-bool IsDocumentValid(OpenApiDocument apiDocument)
+bool IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
 ```
 
 <br />

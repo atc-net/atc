@@ -2,19 +2,20 @@
 using Microsoft.OpenApi.Models;
 using Xunit;
 
-namespace Atc.OpenApi.Tests
+namespace Atc.OpenApi.Tests.Extensions
 {
     public class OpenApiDocumentExtensionsTests
     {
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiDocumentExtensions.OpenApiPathItemData), MemberType = typeof(TestMemberDataForOpenApiDocumentExtensions))]
-        public void GetPathsByBasePathSegmentName(string basePathSegmentName, int expectedCount, OpenApiDocument openApiDocument)
+        public void GetPathsByBasePathSegmentName(int expectedCount, string basePathSegmentName, OpenApiDocument openApiDocument)
         {
             // Act
-            var pathsByBasePathSegmentName = openApiDocument.GetPathsByBasePathSegmentName(basePathSegmentName);
+            var actual = openApiDocument.GetPathsByBasePathSegmentName(basePathSegmentName);
 
             // Assert
-            Assert.Equal(expectedCount, pathsByBasePathSegmentName.Count);
+            Assert.NotNull(actual);
+            Assert.Equal(expectedCount, actual.Count);
         }
     }
 }

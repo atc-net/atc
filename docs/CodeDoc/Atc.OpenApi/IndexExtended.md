@@ -39,8 +39,12 @@
      - string Timestamp
      - string Uri
      - string Uuid
+- [OpenApiMediaTypeExtensions](Microsoft.OpenApi.Models.md#openapimediatypeextensions)
+  -  Static Methods
+     - GetSchema(this IDictionary&lt;string, OpenApiMediaType&gt; content, string contentType = application/json)
 - [OpenApiOperationExtensions](Microsoft.OpenApi.Models.md#openapioperationextensions)
   -  Static Methods
+     - GetModelSchema(this OpenApiOperation openApiOperation)
      - GetOperationName(this OpenApiOperation openApiOperation)
      - HasDataTypeFromSystemCollectionGenericNamespace(this List&lt;OpenApiOperation&gt; apiOperations)
      - HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
@@ -80,6 +84,7 @@
      - GetDataType(this OpenApiSchema schema)
      - GetEnumSchema(this OpenApiSchema schema)
      - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
+     - GetModelType(this OpenApiSchema schema)
      - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
      - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasDataTypeOfList(this IList&lt;OpenApiSchema&gt; schemas)

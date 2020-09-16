@@ -31,10 +31,10 @@
   -  Static Methods
      - CombineAndGetApiYamlDoc(string apiDesignPath)
      - GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
-     - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc)
+     - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptionsValidation validationOptions)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
   -  Static Methods
-     - IsDocumentValid(OpenApiDocument apiDocument)
+     - IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
 - [OpenApiOperationSchemaMapHelper](Atc.Rest.ApiGenerator.Helpers.md#openapioperationschemamaphelper)
   -  Static Methods
      - CollectMappings(OpenApiDocument apiDocument)
@@ -92,7 +92,9 @@
      - UseProblemDetailsAsDefaultBody
 - [ApiOptionsValidation](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsvalidation)
   -  Properties
-     - CasingStyle
+     - ModelNameCasingStyle
+     - ModelPropertyNameCasingStyle
+     - OperationIdCasingStyle
 
 ## [Atc.Rest.ApiGenerator.SyntaxGenerators](Atc.Rest.ApiGenerator.SyntaxGenerators.md)
 

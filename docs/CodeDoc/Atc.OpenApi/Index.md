@@ -17,6 +17,7 @@
 - [OpenApiDataTypeConstants](Microsoft.OpenApi.Models.md#openapidatatypeconstants)
 - [OpenApiDocumentExtensions](Microsoft.OpenApi.Models.md#openapidocumentextensions)
 - [OpenApiFormatTypeConstants](Microsoft.OpenApi.Models.md#openapiformattypeconstants)
+- [OpenApiMediaTypeExtensions](Microsoft.OpenApi.Models.md#openapimediatypeextensions)
 - [OpenApiOperationExtensions](Microsoft.OpenApi.Models.md#openapioperationextensions)
 - [OpenApiParameterExtensions](Microsoft.OpenApi.Models.md#openapiparameterextensions)
 - [OpenApiPathItemExtensions](Microsoft.OpenApi.Models.md#openapipathitemextensions)

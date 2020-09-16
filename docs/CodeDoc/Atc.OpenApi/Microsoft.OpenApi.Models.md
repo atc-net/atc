@@ -150,6 +150,24 @@ string Uuid
 <br />
 
 
+## OpenApiMediaTypeExtensions
+
+```csharp
+public static class OpenApiMediaTypeExtensions
+```
+
+### Static Methods
+
+
+#### GetSchema
+
+```csharp
+OpenApiSchema GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = application/json)
+```
+
+<br />
+
+
 ## OpenApiOperationExtensions
 
 ```csharp
@@ -159,6 +177,11 @@ public static class OpenApiOperationExtensions
 ### Static Methods
 
 
+#### GetModelSchema
+
+```csharp
+OpenApiSchema GetModelSchema(this OpenApiOperation openApiOperation)
+```
 #### GetOperationName
 
 ```csharp
@@ -368,6 +391,11 @@ Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
 
 ```csharp
 string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
+```
+#### GetModelType
+
+```csharp
+string GetModelType(this OpenApiSchema schema)
 ```
 #### GetTitleFromPropertyByPropertyKey
 
