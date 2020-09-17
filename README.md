@@ -20,3 +20,47 @@
 |[Atc.Rest.ApiGenerator.Web](src/Atc.Rest.ApiGenerator.Web)|netcoreapp3.1||||
 |[Atc.Rest.Extended](src/Atc.Rest.Extended)|netcoreapp3.1|Atc.Rest.Extended is a collection of classes and extension methods for Atc.Rest, that contains SwaggerUI, FluentValidation Versioning etc.|[References](docs/CodeDoc/Atc.Rest.Extended/Index.md)<br/>[References extended](docs/CodeDoc/Atc.Rest.Extended/IndexExtended.md)|[![Nuget](https://img.shields.io/nuget/dt/Atc.Rest.Extended?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Rest.Extended)|
 |[Atc.XUnit](src/Atc.XUnit)|netstandard2.1|Atc.XUnit is a collection of helper method for code compliance of documentation and tests.|[References](docs/CodeDoc/Atc.XUnit/Index.md)<br/>[References extended](docs/CodeDoc/Atc.XUnit/IndexExtended.md)|[![Nuget](https://img.shields.io/nuget/dt/Atc.XUnit?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.XUnit)|
+
+## CLI Tool Usage
+
+All libraries mentioned above are available through a cross platform command line application
+
+**Requirements**
+- .NET Core 3.1 runtime
+
+### Installation
+
+The tool can be installed as a .NET Core global tool that you can call from the shell / command line
+
+```
+dotnet tool install --global atc-api-gen
+```
+
+or by following the instructions [here](https://www.nuget.org/packages/atc-api-gen/) to install a specific version of tool.
+
+A successful installation will output something like:
+
+```
+You can invoke the tool using the following command: atc-api
+Tool 'atc-api-gen' (version '1.0.104') was successfully installed.`
+```
+
+### Usage
+
+Since the tool is published as a .NET Core Tool, it can be launched from anywhere using any command line interface by calling **atc-api**. The help information is displayed using the `--help` argument to **atc-api**
+
+```
+$ atc-api --help
+
+Copyright (C) 2020 Atc-net
+
+  -n, --projectName    Required. The name of the project.
+  -p, --designPath     Required. The path of a yaml file(s).
+  -o, --outputPath     Required. The path to place the output.
+  --optionsPath        The path to an optional JSON options file.
+  --help               Display this help screen.
+```
+
+### USage Examples:
+
+Comming soon...
