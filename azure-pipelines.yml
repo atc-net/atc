@@ -44,7 +44,7 @@ steps:
     displayName: 'Creating Nuget Packages'
     inputs:
       command: 'pack'
-      packagesToPack: '**/*.csproj;!**/*.Tests.csproj;!**/*.Console.csproj;!**/*.Web.csproj;!**/*.Samples.csproj'
+      packagesToPack: '**/src/*.csproj;!**/*.Tests.csproj;!**/*.Web.csproj;!**/Demo.*.csproj'
       versioningScheme: 'byBuildNumber'
   - task: SonarCloudAnalyze@1
     displayName: 'Run Code Analysis and Publish Quality Gate Result'
