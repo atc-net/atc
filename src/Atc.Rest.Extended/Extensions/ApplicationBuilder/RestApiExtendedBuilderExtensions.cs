@@ -1,6 +1,8 @@
 ﻿using System;
 using Atc.Rest.Extended.Options;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Builder
@@ -44,6 +46,11 @@ namespace Microsoft.AspNetCore.Builder
             if (setupAction == null)
             {
                 throw new ArgumentNullException(nameof(setupAction));
+            }
+
+            if (env.IsDevelopment())
+            {
+                IdentityModelEventSource.ShowPII = true;
             }
 
             app.UseRestApi(env, restApiOptions, setupAction);

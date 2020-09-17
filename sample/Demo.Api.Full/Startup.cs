@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Logging;
 
 namespace Demo.Api.Full
 {
@@ -45,8 +44,6 @@ namespace Demo.Api.Full
             restApiOptions.AddAssemblyPairs(
                 Assembly.GetAssembly(typeof(ApiGenerated)),
                 Assembly.GetAssembly(typeof(DomainRegistration)));
-
-            IdentityModelEventSource.ShowPII = true;
         }
 
         public IConfiguration Configuration { get; }
