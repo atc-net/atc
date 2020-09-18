@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Atc.Rest.Options;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
@@ -39,13 +40,13 @@ namespace Atc.Rest.Extended.Options
             if (string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
             {
                 throw new InvalidOperationException(
-                    "Missing TenantId. Please verify the AzureAd section in appsettings");
+                    $"Missing TenantId. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings");
             }
 
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
             {
                 throw new InvalidOperationException(
-                    "Missing ClientId. Please verify the AzureAd section in appsettings");
+                    $"Missing ClientId. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings");
             }
 
             if (!apiOptions.Authorization.ValidAudiences.Any())
