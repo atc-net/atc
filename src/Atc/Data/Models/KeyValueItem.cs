@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Atc.Data.Models
 {
@@ -22,6 +23,7 @@ namespace Atc.Data.Models
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
+        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public KeyValueItem(string key, string value)
         {
             this.Key = key ?? throw new ArgumentNullException(nameof(key));
