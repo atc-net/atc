@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.ProjectSyntaxFactories;
@@ -228,17 +229,17 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
         }
 
-        public static bool ValidateVersioning(ApiProjectOptions apiProjectOptions)
+        public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
         {
             if (!Directory.Exists(apiProjectOptions.PathForSrcGenerate.FullName))
             {
-                return true;
+                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated01, "Old project don't exist.");
             }
 
             var apiGeneratedFile = Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiGenerated.cs");
             if (!File.Exists(apiGeneratedFile))
             {
-                return true;
+                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated02, "Old ApiGenerated.cs in project don't exist.");
             }
 
             var lines = File.ReadLines(apiGeneratedFile).ToList();
@@ -263,21 +264,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                 if (!Version.TryParse(oldVersion, out var oldVersionResult))
                 {
-                    Console.WriteLine("Existing project version is invalid.");
-                    return false;
+                    return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated03, "Existing project version is invalid.");
                 }
 
                 if (newVersion >= oldVersionResult)
                 {
-                    return true;
+                    return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated04, "The generate project version is the same or newer.");
                 }
 
-                Console.WriteLine("Existing project version is never than this tool version.");
-                return false;
+                return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated05, "Existing project version is never than this tool version.");
             }
 
-            Console.WriteLine("Existing project did not contain a version.");
-            return false;
+            return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated06, "Existing project did not contain a version.");
         }
 
         private static MethodDeclarationSyntax CreateResultFactoryProblemDetails()

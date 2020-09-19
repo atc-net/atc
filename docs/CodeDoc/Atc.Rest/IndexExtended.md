@@ -61,6 +61,7 @@
      - Audience
      - ClientId
      - Instance
+     - Issuer
      - TenantId
      - ValidAudiences
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)

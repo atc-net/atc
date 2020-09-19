@@ -11,11 +11,13 @@
 
 - [AtcRestApiGeneratorAssemblyTypeInitializer](Atc.Rest.ApiGenerator.md#atcrestapigeneratorassemblytypeinitializer)
 - [Util](Atc.Rest.ApiGenerator.md#util)
+- [ValidationRuleNameConstants](Atc.Rest.ApiGenerator.md#validationrulenameconstants)
 
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
 - [ApiGeneratorHelper](Atc.Rest.ApiGenerator.Helpers.md#apigeneratorhelper)
 - [FileHelper](Atc.Rest.ApiGenerator.Helpers.md#filehelper)
+- [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
 - [OpenApiOperationSchemaMapHelper](Atc.Rest.ApiGenerator.Helpers.md#openapioperationschemamaphelper)

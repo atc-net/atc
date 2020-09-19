@@ -20,7 +20,7 @@ public static class ApiGeneratorHelper
 #### Create
 
 ```csharp
-bool Create(string apiProjectName, DirectoryInfo apiOutputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
+List<LogKeyValueItem> Create(string apiProjectName, DirectoryInfo apiOutputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
 ```
 
 <br />
@@ -49,6 +49,24 @@ void Save(FileInfo fileInfo, string text)
 <br />
 
 
+## LogItemHelper
+
+```csharp
+public static class LogItemHelper
+```
+
+### Static Methods
+
+
+#### Create
+
+```csharp
+LogKeyValueItem Create(LogCategoryType logCategoryType, string ruleName, string description)
+```
+
+<br />
+
+
 ## OpenApiDocumentHelper
 
 ```csharp
@@ -71,7 +89,7 @@ List<string> GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
 #### Validate
 
 ```csharp
-bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
+List<LogKeyValueItem> Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
 ```
 
 <br />
@@ -86,10 +104,10 @@ public static class OpenApiDocumentValidationHelper
 ### Static Methods
 
 
-#### IsDocumentValid
+#### ValidateDocument
 
 ```csharp
-bool IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
+List<LogKeyValueItem> ValidateDocument(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
 ```
 
 <br />
@@ -130,7 +148,7 @@ public static class ValidatePathsAndOperationsHelper
 #### ValidateGetOperations
 
 ```csharp
-List<string> ValidateGetOperations(KeyValuePair<string, OpenApiPathItem> path)
+List<LogKeyValueItem> ValidateGetOperations(KeyValuePair<string, OpenApiPathItem> path)
 ```
 <p><b>Summary:</b> Check for response types according to operation/global parameters.</p>
 
@@ -140,7 +158,7 @@ List<string> ValidateGetOperations(KeyValuePair<string, OpenApiPathItem> path)
 #### ValidateGlobalParameters
 
 ```csharp
-List<string> ValidateGlobalParameters(IEnumerable<string> globalPathParameterNames, KeyValuePair<string, OpenApiPathItem> path)
+List<LogKeyValueItem> ValidateGlobalParameters(IEnumerable<string> globalPathParameterNames, KeyValuePair<string, OpenApiPathItem> path)
 ```
 <p><b>Summary:</b> Check global parameters.</p>
 
@@ -151,7 +169,7 @@ List<string> ValidateGlobalParameters(IEnumerable<string> globalPathParameterNam
 #### ValidateMissingOperationParameters
 
 ```csharp
-List<string> ValidateMissingOperationParameters(KeyValuePair<string, OpenApiPathItem> path)
+List<LogKeyValueItem> ValidateMissingOperationParameters(KeyValuePair<string, OpenApiPathItem> path)
 ```
 <p><b>Summary:</b> Check for operations that are not defining parameters, which are present in the path.key.</p>
 
@@ -161,7 +179,7 @@ List<string> ValidateMissingOperationParameters(KeyValuePair<string, OpenApiPath
 #### ValidateOperationsWithParametersNotPresentInPath
 
 ```csharp
-List<string> ValidateOperationsWithParametersNotPresentInPath(KeyValuePair<string, OpenApiPathItem> path)
+List<LogKeyValueItem> ValidateOperationsWithParametersNotPresentInPath(KeyValuePair<string, OpenApiPathItem> path)
 ```
 <p><b>Summary:</b> Check for operations with parameters, that are not present in the path.key.</p>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Atc.Data.Models;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable LoopCanBeConvertedToQuery
@@ -14,36 +15,37 @@ namespace Atc.Rest.ApiGenerator.Helpers
         /// </summary>
         /// <param name="globalPathParameterNames">The global path parameter names.</param>
         /// <param name="path">The path.</param>
-        public static List<string> ValidateGlobalParameters(IEnumerable<string> globalPathParameterNames, KeyValuePair<string, OpenApiPathItem> path)
+        public static List<LogKeyValueItem> ValidateGlobalParameters(IEnumerable<string> globalPathParameterNames, KeyValuePair<string, OpenApiPathItem> path)
         {
             if (globalPathParameterNames == null)
             {
                 throw new ArgumentNullException(nameof(globalPathParameterNames));
             }
 
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+
             foreach (var pathParameterName in globalPathParameterNames)
             {
                 if (!path.Key.Contains(pathParameterName, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.Add($"Operation - Defined global path parameter '{pathParameterName}' does not exist in route '{path.Key}'.");
+                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation11, $"Defined global path parameter '{pathParameterName}' does not exist in route '{path.Key}'."));
                 }
             }
 
-            return result;
+            return logItems;
         }
 
         /// <summary>
         /// Check for operations that are not defining parameters, which are present in the path.key.
         /// </summary>
         /// <param name="path">The path.</param>
-        public static List<string> ValidateMissingOperationParameters(KeyValuePair<string, OpenApiPathItem> path)
+        public static List<LogKeyValueItem> ValidateMissingOperationParameters(KeyValuePair<string, OpenApiPathItem> path)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
             if (!path.Key.Contains('{', StringComparison.Ordinal) ||
                 !path.Key.IsStringFormatParametersBalanced(false))
             {
-                return result;
+                return logItems;
             }
 
             var parameterNamesToCheckAgainst = GetParameterListFromPathKey(path.Key);
@@ -66,27 +68,27 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         .Select(x => x.Item1)
                         .ToList();
 
-                    result.Add($"Operation - The operations '{string.Join(',', operationsWithMissingParameter)}' in path '{path.Key}' does not define a parameter named '{parameterName}'.");
+                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation12, $"The operations '{string.Join(',', operationsWithMissingParameter)}' in path '{path.Key}' does not define a parameter named '{parameterName}'."));
                 }
             }
 
-            return result;
+            return logItems;
         }
 
         /// <summary>
         /// Check for operations with parameters, that are not present in the path.key.
         /// </summary>
         /// <param name="path">The path.</param>
-        public static List<string> ValidateOperationsWithParametersNotPresentInPath(KeyValuePair<string, OpenApiPathItem> path)
+        public static List<LogKeyValueItem> ValidateOperationsWithParametersNotPresentInPath(KeyValuePair<string, OpenApiPathItem> path)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
             var openApiOperationsWithPathParameter = path.Value.Operations.Values
                 .Where(x => x.Parameters.Any(p => p.In == ParameterLocation.Path))
                 .ToList();
 
             if (!openApiOperationsWithPathParameter.Any())
             {
-                return result;
+                return logItems;
             }
 
             var operationPathParameterNames = new List<string>();
@@ -99,27 +101,27 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             if (!operationPathParameterNames.Any())
             {
-                return result;
+                return logItems;
             }
 
             foreach (var operationParameterName in operationPathParameterNames)
             {
                 if (!path.Key.Contains(operationParameterName, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.Add($"Operation - Defined path parameter '{operationParameterName}' does not exist in route '{path.Key}'.");
+                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation13, $"Defined path parameter '{operationParameterName}' does not exist in route '{path.Key}'."));
                 }
             }
 
-            return result;
+            return logItems;
         }
 
         /// <summary>
         /// Check for response types according to operation/global parameters.
         /// </summary>
         /// <param name="path">The path.</param>
-        public static List<string> ValidateGetOperations(KeyValuePair<string, OpenApiPathItem> path)
+        public static List<LogKeyValueItem> ValidateGetOperations(KeyValuePair<string, OpenApiPathItem> path)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
             foreach (var (key, value) in path.Value.Operations)
             {
                 if (key != OperationType.Get || (path.Value.Parameters.All(x => x.In != ParameterLocation.Path) &&
@@ -131,11 +133,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 var httpStatusCodes = value.Responses.GetHttpStatusCodes();
                 if (!httpStatusCodes.Contains(HttpStatusCode.NotFound))
                 {
-                    result.Add($"Operation - Missing NotFound response type for operation '{value.GetOperationName()}', required by url parameter.");
+                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation14, $"Missing NotFound response type for operation '{value.GetOperationName()}', required by url parameter."));
                 }
             }
 
-            return result;
+            return logItems;
         }
 
         private static IEnumerable<string> GetParameterListFromPathKey(string pathKey)

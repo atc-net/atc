@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
 
@@ -16,7 +17,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class OpenApiDocumentValidationHelper
     {
-        public static bool IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
+        public static List<LogKeyValueItem> ValidateDocument(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
         {
             if (apiDocument == null)
             {
@@ -28,29 +29,23 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(validationOptions));
             }
 
-            var validationErrors = new List<string>();
-            validationErrors.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values, validationOptions));
-            validationErrors.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions, apiDocument.Components.Schemas));
-            validationErrors.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
-            validationErrors.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
+            var logItems = new List<LogKeyValueItem>();
+            logItems.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values, validationOptions));
+            logItems.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions, apiDocument.Components.Schemas));
+            logItems.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
+            logItems.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
 
-            if (validationErrors.Count <= 0)
-            {
-                return true;
-            }
-
-            foreach (var validationError in validationErrors)
-            {
-                Console.WriteLine($"Yaml Validation Error: {validationError}");
-            }
-
-            return false;
+            return logItems;
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<string> ValidateSchemas(ICollection<OpenApiSchema> schemas, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemas(ICollection<OpenApiSchema> schemas, ApiOptionsValidation validationOptions)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
+
             foreach (var schema in schemas)
             {
                 switch (schema.Type)
@@ -59,14 +54,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         {
                             if (string.IsNullOrEmpty(schema.Title))
                             {
-                                result.Add($"Schema - Missing title on array type '{schema.Reference.ReferenceV3}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema01, $"Missing title on array type '{schema.Reference.ReferenceV3}'."));
                             }
                             else if (schema.Title.IsFirstCharacterLowerCase())
                             {
-                                result.Add($"Schema - Title on array type '{schema.Title}' is not starting with uppercase.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema02, $"Title on array type '{schema.Title}' is not starting with uppercase."));
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
+                            logItems.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
                             break;
                         }
 
@@ -74,11 +69,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         {
                             if (string.IsNullOrEmpty(schema.Title))
                             {
-                                result.Add($"Schema - Missing title on object type '{schema.Reference.ReferenceV3}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema03, $"Missing title on object type '{schema.Reference.ReferenceV3}'."));
                             }
                             else if (schema.Title.IsFirstCharacterLowerCase())
                             {
-                                result.Add($"Schema - Title on object type '{schema.Title}' is not starting with uppercase.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema04, $"Title on object type '{schema.Title}' is not starting with uppercase."));
                             }
 
                             foreach (var (key, value) in schema.Properties)
@@ -87,65 +82,69 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 {
                                     if (!value.IsReferenceTypeDeclared() && !value.IsItemsOfSimpleDataType())
                                     {
-                                        result.Add($"Schema - Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported.");
+                                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema05, $"Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported."));
                                     }
                                 }
                                 else
                                 {
-                                    result.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema, validationOptions));
+                                    logItems.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema, validationOptions));
                                 }
                             }
 
-                            result.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
+                            logItems.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
                             break;
                         }
                 }
             }
 
-            return result;
+            return logItems;
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<string> ValidateOperations(
+        private static List<LogKeyValueItem> ValidateOperations(
             Dictionary<string, OpenApiPathItem>.ValueCollection paths,
             ApiOptionsValidation validationOptions,
             IDictionary<string, OpenApiSchema> modelSchemas)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
+
             foreach (var path in paths)
             {
                 foreach (var (key, value) in path.Operations)
                 {
                     if (string.IsNullOrEmpty(value.OperationId))
                     {
-                        result.Add($"Operation - Missing OperationId in path '{key} # {path}'.");
+                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation01, $"Missing OperationId in path '{key} # {path}'."));
                     }
                     else
                     {
                         if (!value.OperationId.IsCasingStyleValid(validationOptions.OperationIdCasingStyle))
                         {
-                            result.Add($"Operation - OperationId '{value.OperationId}' is not using {validationOptions.OperationIdCasingStyle}.");
+                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation02, $"OperationId '{value.OperationId}' is not using {validationOptions.OperationIdCasingStyle}."));
                         }
 
                         if (key == OperationType.Get)
                         {
                             if (!value.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase))
                             {
-                                result.Add($"Operation - OperationId should start with the prefix 'Get' for operation '{value.GetOperationName()}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation03, $"OperationId should start with the prefix 'Get' for operation '{value.GetOperationName()}'."));
                             }
                         }
                         else if (key == OperationType.Post)
                         {
                             if (value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase))
                             {
-                                result.Add($"Operation - OperationId should not start with the prefix 'Delete' for operation '{value.GetOperationName()}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation04, $"OperationId should not start with the prefix 'Delete' for operation '{value.GetOperationName()}'."));
                             }
                         }
                         else if (key == OperationType.Put)
                         {
                             if (!value.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
                             {
-                                result.Add($"Operation - OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation05, $"OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'."));
                             }
                         }
                         else if (key == OperationType.Patch)
@@ -153,14 +152,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
                             if (!value.OperationId.StartsWith("Patch", StringComparison.OrdinalIgnoreCase) &&
                                 !value.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
                             {
-                                result.Add($"Operation - OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation06, $"OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'."));
                             }
                         }
                         else if (key == OperationType.Delete &&
                                  !value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase) &&
                                  !value.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
                         {
-                            result.Add($"Operation - OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'.");
+                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation07, $"OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'."));
                         }
                     }
                 }
@@ -174,31 +173,32 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         {
                             if (!IsModelOfTypeArray(modelSchema, modelSchemas))
                             {
-                                result.Add($"Operation - OperationId '{value.GetOperationName()}' is not singular - Response model is defined as a single item.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation08, $"OperationId '{value.GetOperationName()}' is not singular - Response model is defined as a single item."));
                             }
                         }
                         else
                         {
                             if (IsModelOfTypeArray(modelSchema, modelSchemas))
                             {
-                                result.Add($"Operation - OperationId '{value.GetOperationName()}' is not pluralized - Response model is defined as an array.");
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation09, $"OperationId '{value.GetOperationName()}' is not pluralized - Response model is defined as an array."));
                             }
                         }
                     }
                 }
             }
 
-            return result;
+            return logItems;
         }
 
-        private static List<string> ValidatePathsAndOperations(OpenApiPaths paths)
+        private static List<LogKeyValueItem> ValidatePathsAndOperations(OpenApiPaths paths)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+
             foreach (var path in paths)
             {
                 if (!path.Key.IsStringFormatParametersBalanced(false))
                 {
-                    result.Add($"Path - Path parameters are not well-formatted for '{path.Key}'.");
+                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Path01, $"Path parameters are not well-formatted for '{path.Key}'."));
                 }
 
                 var globalPathParameterNames = path.Value.Parameters
@@ -208,23 +208,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                 if (globalPathParameterNames.Any())
                 {
-                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
                 }
                 else
                 {
-                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(path));
-                    result.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(path));
                 }
 
-                result.AddRange(ValidatePathsAndOperationsHelper.ValidateGetOperations(path));
+                logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGetOperations(path));
             }
 
-            return result;
+            return logItems;
         }
 
-        private static List<string> ValidateOperationsParametersAndResponses(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
+        private static List<LogKeyValueItem> ValidateOperationsParametersAndResponses(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+
             foreach (var path in paths)
             {
                 foreach (var (_, value) in path.Operations)
@@ -233,35 +234,43 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     if (httpStatusCodes.Contains(HttpStatusCode.BadRequest) &&
                         !value.HasParametersOrRequestBody() && !path.HasParameters())
                     {
-                        result.Add($"Operation - Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters.");
+                        logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
                     }
                 }
             }
 
-            return result;
+            return logItems;
         }
 
-        private static List<string> ValidateSchemaModelNameCasing(OpenApiSchema schema, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemaModelNameCasing(OpenApiSchema schema, ApiOptionsValidation validationOptions)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
+
             var modelName = schema.GetModelName(false);
             if (!modelName.IsCasingStyleValid(validationOptions.ModelNameCasingStyle))
             {
-                result.Add($"Schema - Object '{modelName}' is not using {validationOptions.ModelNameCasingStyle}.");
+                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema06, $"Object '{modelName}' is not using {validationOptions.ModelNameCasingStyle}."));
             }
 
-            return result;
+            return logItems;
         }
 
-        private static List<string> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema, ApiOptionsValidation validationOptions)
         {
-            var result = new List<string>();
+            var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
+
             if (!key.IsCasingStyleValid(validationOptions.ModelPropertyNameCasingStyle))
             {
-                result.Add($"Schema - Object '{schema.Title}' with property '{key}' is not using {validationOptions.ModelPropertyNameCasingStyle}.");
+                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema07, $"Object '{schema.Title}' with property '{key}' is not using {validationOptions.ModelPropertyNameCasingStyle}."));
             }
 
-            return result;
+            return logItems;
         }
 
         private static bool IsModelOfTypeArray(OpenApiSchema schema, IDictionary<string, OpenApiSchema> modelSchemas)

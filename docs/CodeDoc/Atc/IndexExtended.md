@@ -147,6 +147,18 @@
      - ShortDatePattern
   -  Methods
      - ToString()
+- [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
+  -  Properties
+     - Key
+     - Value
+  -  Methods
+     - ToString()
+- [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
+  -  Properties
+     - Description
+     - LogCategory
+  -  Methods
+     - ToString()
 
 ## [Atc.Extensions.BaseTypes](Atc.Extensions.BaseTypes.md)
 

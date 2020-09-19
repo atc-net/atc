@@ -53,6 +53,8 @@
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
 - [Culture](Atc.Data.Models.md#culture)
+- [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
+- [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
 
 ## [Atc.Extensions.BaseTypes](Atc.Extensions.BaseTypes.md)
 

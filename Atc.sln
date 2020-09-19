@@ -56,6 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Api.Full", "sample\Dem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo.ApiDesign", "Demo.ApiDesign", "{7676D3AA-2882-4517-8E93-93E632C9EA80}"
 	ProjectSection(SolutionItems) = preProject
+		sample\Demo.ApiDesign\ApiGeneratorOptions.json = sample\Demo.ApiDesign\ApiGeneratorOptions.json
 		sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json = sample\Demo.ApiDesign\DelegateApiGeneratorOptions.json
 	EndProjectSection
 EndProject

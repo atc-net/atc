@@ -17,6 +17,37 @@
      - GetCsFileNameForContractShared(DirectoryInfo pathForContracts, string modelName)
      - GetCsFileNameForEndpoints(DirectoryInfo pathForEndpoints, string modelName)
      - GetProjectPath()
+- [ValidationRuleNameConstants](Atc.Rest.ApiGenerator.md#validationrulenameconstants)
+  -  Static Fields
+     - string OpenApiCore
+     - string Operation01
+     - string Operation02
+     - string Operation03
+     - string Operation04
+     - string Operation05
+     - string Operation06
+     - string Operation07
+     - string Operation08
+     - string Operation09
+     - string Operation10
+     - string Operation11
+     - string Operation12
+     - string Operation13
+     - string Operation14
+     - string Path01
+     - string ProjectApiGenerated01
+     - string ProjectApiGenerated02
+     - string ProjectApiGenerated03
+     - string ProjectApiGenerated04
+     - string ProjectApiGenerated05
+     - string ProjectApiGenerated06
+     - string Schema01
+     - string Schema02
+     - string Schema03
+     - string Schema04
+     - string Schema05
+     - string Schema06
+     - string Schema07
 
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
@@ -27,6 +58,9 @@
   -  Static Methods
      - Save(FileInfo fileInfo, string text)
      - Save(string file, string text)
+- [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
+  -  Static Methods
+     - Create(LogCategoryType logCategoryType, string ruleName, string description)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
   -  Static Methods
      - CombineAndGetApiYamlDoc(string apiDesignPath)
@@ -34,7 +68,7 @@
      - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptionsValidation validationOptions)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
   -  Static Methods
-     - IsDocumentValid(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
+     - ValidateDocument(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
 - [OpenApiOperationSchemaMapHelper](Atc.Rest.ApiGenerator.Helpers.md#openapioperationschemamaphelper)
   -  Static Methods
      - CollectMappings(OpenApiDocument apiDocument)
@@ -95,6 +129,7 @@
      - ModelNameCasingStyle
      - ModelPropertyNameCasingStyle
      - OperationIdCasingStyle
+     - StrictMode
 
 ## [Atc.Rest.ApiGenerator.SyntaxGenerators](Atc.Rest.ApiGenerator.SyntaxGenerators.md)
 

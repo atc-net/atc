@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using CommandLine;
 
+// ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable LocalizableElement
 namespace Atc.Rest.ApiGenerator.Console
 {
@@ -29,12 +33,14 @@ namespace Atc.Rest.ApiGenerator.Console
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
         private static void Run(ArgumentOptions options)
         {
-            var isGenerated = false;
+            Colorful.Console.WriteAscii("ATC-API Generator", Color.Chocolate);
+
+            var logItems = new List<LogKeyValueItem>();
             try
             {
                 var apiOptions = LoadApiOptions(options.OptionsPath);
                 var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(options.ApiDesignPath!);
-                isGenerated = ApiGeneratorHelper.Create(
+                logItems = ApiGeneratorHelper.Create(
                     options.ApiProjectName!,
                     new DirectoryInfo(options.ApiOutputPath!),
                     apiYamlDoc,
@@ -45,9 +51,12 @@ namespace Atc.Rest.ApiGenerator.Console
                 System.Console.WriteLine(ex.Message);
             }
 
-            System.Console.WriteLine(isGenerated
-                ? "Api is now generated - done."
-                : "Api is not generated - sorry.");
+            WriteLogItemsToConsole(logItems);
+            if (logItems.All(x => x.LogCategory != LogCategoryType.Error))
+            {
+                Colorful.Console.WriteLine("Api is now generated - done.", Color.DarkGreen);
+            }
+
             System.Console.WriteLine("Press any key...");
             System.Console.ReadKey();
         }
@@ -79,6 +88,28 @@ namespace Atc.Rest.ApiGenerator.Console
             apiOptions = JsonSerializer.Deserialize<ApiOptions>(json, serializeOptions);
 
             return apiOptions;
+        }
+
+        private static void WriteLogItemsToConsole(IEnumerable<LogKeyValueItem> logItems)
+        {
+            foreach (var logItem in logItems)
+            {
+                var message = "#".Equals(logItem.Value, StringComparison.Ordinal)
+                    ? $"{logItem.Key} # {logItem.LogCategory}: {logItem.Description}"
+                    : $"{logItem.Key} # {logItem.LogCategory}: {logItem.Value} - {logItem.Description}";
+                switch (logItem.LogCategory)
+                {
+                    case LogCategoryType.Error:
+                        Colorful.Console.WriteLine(message, Color.Red);
+                        break;
+                    case LogCategoryType.Warning:
+                        Colorful.Console.WriteLine(message, Color.Yellow);
+                        break;
+                    case LogCategoryType.Information:
+                        Colorful.Console.WriteLine(message, Color.LightSkyBlue);
+                        break;
+                }
+            }
         }
     }
 }

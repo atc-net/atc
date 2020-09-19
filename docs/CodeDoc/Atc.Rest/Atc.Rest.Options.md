@@ -46,7 +46,12 @@ Copy and fill out the AzureAd section into the project User Secrets.
 
 ```csharp
 {
-"AzureAd": {
+"Authorization": {
+/*
+This will be used to set the Authority on the JWT bearer options
+- 'https://login.microsoftonline.com' (For Azure AD)
+- 'https://adfs1.some.organization.com' (For on-prem ADFS)
+*/
 "Instance": "https://login.microsoftonline.com",
 "ClientId": "[Application ID of the Azure AD App Registration]",
 /*
@@ -58,9 +63,11 @@ This can be:
 - 'common' (any organization and personal accounts)
 - 'organizations' (any organization)
 - 'consumers' (Microsoft personal accounts)
+- 'adfs' (For on-prem ADFS)
 */
 "TenantId": "common",
 "Audience": "[App Identifier URI of the Azure AD App Registration]"
+"Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
 }
 ```
 
@@ -93,6 +100,11 @@ ClientId
 
 ```csharp
 Instance
+```
+#### Issuer
+
+```csharp
+Issuer
 ```
 #### TenantId
 

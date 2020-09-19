@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
@@ -9,7 +12,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class ApiGeneratorHelper
     {
-        public static bool Create(
+        public static List<LogKeyValueItem> Create(
             string apiProjectName,
             DirectoryInfo apiOutputPath,
             Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
@@ -35,16 +38,19 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(apiOptions));
             }
 
-            if (!OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation))
+            var logItems = new List<LogKeyValueItem>();
+            logItems.AddRange(OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation));
+            if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {
-                return false;
+                return logItems;
             }
 
             var apiProjectOptions = new ApiProjectOptions(apiOutputPath, apiYamlDoc.Item1, apiYamlDoc.Item3, apiProjectName, apiOptions);
 
-            if (!ProjectGenerateHelper.ValidateVersioning(apiProjectOptions))
+            logItems.Add(ProjectGenerateHelper.ValidateVersioning(apiProjectOptions));
+            if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {
-                return false;
+                return logItems;
             }
 
             if (apiOutputPath.Exists)
@@ -58,7 +64,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(apiProjectOptions.Document);
             ProjectGenerateHelper.GenerateContracts(apiProjectOptions, operationSchemaMappings);
             ProjectGenerateHelper.GenerateEndpoints(apiProjectOptions, operationSchemaMappings);
-            return true;
+            return logItems;
         }
     }
 }

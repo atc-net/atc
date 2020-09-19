@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
@@ -61,7 +62,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return new Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo>(openApiDocument, diagnostic, new FileInfo(apiYamlFile.FullName));
         }
 
-        public static bool Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
+        public static List<LogKeyValueItem> Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
         {
             if (apiYamlDoc == null)
             {
@@ -73,7 +74,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(validationOptions));
             }
 
-            var isValid = true;
+            var logItems = new List<LogKeyValueItem>();
             foreach (var diagnosticError in apiYamlDoc.Item2.Errors)
             {
                 if (diagnosticError.Message.EndsWith("#/components/schemas", StringComparison.Ordinal))
@@ -81,13 +82,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     continue;
                 }
 
-                Console.WriteLine(string.IsNullOrEmpty(diagnosticError.Pointer)
+                var description = string.IsNullOrEmpty(diagnosticError.Pointer)
                     ? $"{diagnosticError.Message}"
-                    : $"{diagnosticError.Message} <#> {diagnosticError.Pointer}");
-                isValid = false;
+                    : $"{diagnosticError.Message} <#> {diagnosticError.Pointer}";
+                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.OpenApiCore, description));
             }
 
-            return isValid && OpenApiDocumentValidationHelper.IsDocumentValid(apiYamlDoc.Item1, validationOptions);
+            logItems.AddRange(OpenApiDocumentValidationHelper.ValidateDocument(apiYamlDoc.Item1, validationOptions));
+            return logItems;
         }
 
         public static List<string> GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
