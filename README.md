@@ -1,11 +1,11 @@
 ![.NET Core](https://github.com/atc-net/atc/workflows/.NET%20Core/badge.svg)
 [![Issues Open](https://img.shields.io/github/issues/atc-net/atc.svg?style=flat-square&logo=github)](https://github.com/atc-net/atc/issues)
 [![Build Status](https://dev.azure.com/atc-net/ATC.NET/_apis/build/status/atc-net.atc?branchName=master)](https://dev.azure.com/atc-net/ATC.NET/_build/latest?definitionId=1&branchName=master)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project==atc-net_atc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project==atc-net_atc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project==atc-net_atc&metric=security_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project==atc-net_atc&metric=bugs)](https://sonarcloud.io/dashboard?id=atc-net_atc)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project==atc-net_atc&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=security_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=bugs)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=atc-net_atc)
 [![NuGet](https://img.shields.io/nuget/v/atc.svg?style=flat-square)](https://www.nuget.org/profiles/atc-net)
 
 # ATC.Net
