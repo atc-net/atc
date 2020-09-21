@@ -71,6 +71,10 @@ namespace Atc.Rest.Extended.Options
                 options.TokenValidationParameters.ValidateIssuer = true;
                 options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
             }
+            else
+            {
+                options.TokenValidationParameters.ValidateIssuer = false;
+            }
         }
 
         public void PostConfigure(string name, AuthenticationOptions options)
