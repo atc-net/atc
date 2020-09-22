@@ -160,7 +160,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         /// <param name="validationOptions">The validation options.</param>
         /// <param name="path">The path.</param>
         public static List<LogKeyValueItem> ValidateGetOperations(
-            ApiOptionsValidation validationOptions, 
+            ApiOptionsValidation validationOptions,
             KeyValuePair<string, OpenApiPathItem> path)
         {
             if (validationOptions == null)
