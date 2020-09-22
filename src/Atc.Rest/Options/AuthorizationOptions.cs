@@ -38,20 +38,7 @@ namespace Atc.Rest.Options
     {
         public const string ConfigurationSectionName = "Authorization";
 
-        private string clientId = string.Empty;
-        public string ClientId
-        {
-            get => clientId;
-            set
-            {
-                clientId = value;
-                ValidAudiences = new[]
-                {
-                    clientId,
-                    $"api://{clientId}"
-                };
-            }
-        }
+        public string ClientId { get; set; } = string.Empty;
 
         public string TenantId { get; set; } = string.Empty;
 
