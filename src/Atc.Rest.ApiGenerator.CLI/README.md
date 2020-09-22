@@ -1,6 +1,6 @@
 # CLI Tool Usage
 
-All tools mentioned [here](https://github.com/atc-net/atc/blob/master/README.md) are available through a cross platform command line application
+The Atc.Rest.ApiGenerator.CLI library mentioned above is available through a cross platform command line application.
 
 **Requirements**
 - .NET Core 3.1 runtime
@@ -13,7 +13,7 @@ The tool can be installed as a .NET Core global tool that you can call from the 
 dotnet tool install --global atc-api-gen
 ```
 
-or by following the instructions [here](https://www.nuget.org/packages/atc-api-gen/) to install a specific version of tool.
+or by following the instructions [here](https://www.nuget.org/packages/atc-api-gen/) to install a specific version of the tool.
 
 A successful installation will output something like:
 
@@ -38,6 +38,6 @@ Copyright (C) 2020 Atc-net
   --help               Display this help screen.
 ```
 
-## USage Examples:
+## Usage Examples:
 
 Comming soon...

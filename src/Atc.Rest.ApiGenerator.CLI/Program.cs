@@ -13,7 +13,7 @@ using CommandLine;
 
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable LocalizableElement
-namespace Atc.Rest.ApiGenerator.Console
+namespace Atc.Rest.ApiGenerator.CLI
 {
     public static class Program
     {
@@ -26,8 +26,7 @@ namespace Atc.Rest.ApiGenerator.Console
 
         private static void HandleInvalidArguments(IEnumerable<Error> errors)
         {
-            System.Console.WriteLine("Press any key...");
-            System.Console.ReadKey();
+            Colorful.Console.WriteLine("Invalid arguments received.", Color.Red);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
@@ -48,7 +47,7 @@ namespace Atc.Rest.ApiGenerator.Console
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
 
             WriteLogItemsToConsole(logItems);
@@ -56,9 +55,6 @@ namespace Atc.Rest.ApiGenerator.Console
             {
                 Colorful.Console.WriteLine("Api is now generated - done.", Color.DarkGreen);
             }
-
-            System.Console.WriteLine("Press any key...");
-            System.Console.ReadKey();
         }
 
         private static ApiOptions LoadApiOptions(string? optionsPath)

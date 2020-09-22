@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Atc.Rest.ApiGenerator.Console
+namespace Atc.Rest.ApiGenerator.CLI
 {
     /// <summary>
     /// Represents command-line arguments.
