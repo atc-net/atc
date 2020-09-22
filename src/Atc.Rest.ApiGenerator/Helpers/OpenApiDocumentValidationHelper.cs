@@ -30,16 +30,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             var logItems = new List<LogKeyValueItem>();
-            logItems.AddRange(ValidateSchemas(apiDocument.Components.Schemas.Values, validationOptions));
-            logItems.AddRange(ValidateOperations(apiDocument.Paths.Values, validationOptions, apiDocument.Components.Schemas));
-            logItems.AddRange(ValidatePathsAndOperations(apiDocument.Paths));
-            logItems.AddRange(ValidateOperationsParametersAndResponses(apiDocument.Paths.Values));
+            logItems.AddRange(ValidateSchemas(validationOptions, apiDocument.Components.Schemas.Values));
+            logItems.AddRange(ValidateOperations(validationOptions, apiDocument.Paths.Values, apiDocument.Components.Schemas));
+            logItems.AddRange(ValidatePathsAndOperations(validationOptions, apiDocument.Paths));
+            logItems.AddRange(ValidateOperationsParametersAndResponses(validationOptions, apiDocument.Paths.Values));
 
             return logItems;
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        private static List<LogKeyValueItem> ValidateSchemas(ICollection<OpenApiSchema> schemas, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemas(
+            ApiOptionsValidation validationOptions,
+            ICollection<OpenApiSchema> schemas)
         {
             var logItems = new List<LogKeyValueItem>();
             var logCategory = validationOptions.StrictMode
@@ -61,7 +63,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema02, $"Title on array type '{schema.Title}' is not starting with uppercase."));
                             }
 
-                            logItems.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
+                            logItems.AddRange(ValidateSchemaModelNameCasing(validationOptions, schema));
                             break;
                         }
 
@@ -87,11 +89,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                 }
                                 else
                                 {
-                                    logItems.AddRange(ValidateSchemaModelPropertyNameCasing(key, schema, validationOptions));
+                                    logItems.AddRange(ValidateSchemaModelPropertyNameCasing(validationOptions, key, schema));
                                 }
                             }
 
-                            logItems.AddRange(ValidateSchemaModelNameCasing(schema, validationOptions));
+                            logItems.AddRange(ValidateSchemaModelNameCasing(validationOptions, schema));
                             break;
                         }
                 }
@@ -102,8 +104,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<LogKeyValueItem> ValidateOperations(
-            Dictionary<string, OpenApiPathItem>.ValueCollection paths,
             ApiOptionsValidation validationOptions,
+            Dictionary<string, OpenApiPathItem>.ValueCollection paths,
             IDictionary<string, OpenApiSchema> modelSchemas)
         {
             var logItems = new List<LogKeyValueItem>();
@@ -128,9 +130,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                         if (key == OperationType.Get)
                         {
-                            if (!value.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase))
+                            if (!value.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase) &&
+                                !value.OperationId.StartsWith("List", StringComparison.OrdinalIgnoreCase))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation03, $"OperationId should start with the prefix 'Get' for operation '{value.GetOperationName()}'."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation03, $"OperationId should start with the prefix 'Get' or 'List' for operation '{value.GetOperationName()}'."));
                             }
                         }
                         else if (key == OperationType.Post)
@@ -190,15 +193,20 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return logItems;
         }
 
-        private static List<LogKeyValueItem> ValidatePathsAndOperations(OpenApiPaths paths)
+        private static List<LogKeyValueItem> ValidatePathsAndOperations(
+            ApiOptionsValidation validationOptions,
+            OpenApiPaths paths)
         {
             var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
 
             foreach (var path in paths)
             {
                 if (!path.Key.IsStringFormatParametersBalanced(false))
                 {
-                    logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Path01, $"Path parameters are not well-formatted for '{path.Key}'."));
+                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Path01, $"Path parameters are not well-formatted for '{path.Key}'."));
                 }
 
                 var globalPathParameterNames = path.Value.Parameters
@@ -208,23 +216,28 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                 if (globalPathParameterNames.Any())
                 {
-                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(globalPathParameterNames, path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGlobalParameters(validationOptions, globalPathParameterNames, path));
                 }
                 else
                 {
-                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(path));
-                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateMissingOperationParameters(validationOptions, path));
+                    logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateOperationsWithParametersNotPresentInPath(validationOptions, path));
                 }
 
-                logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGetOperations(path));
+                logItems.AddRange(ValidatePathsAndOperationsHelper.ValidateGetOperations(validationOptions, path));
             }
 
             return logItems;
         }
 
-        private static List<LogKeyValueItem> ValidateOperationsParametersAndResponses(Dictionary<string, OpenApiPathItem>.ValueCollection paths)
+        private static List<LogKeyValueItem> ValidateOperationsParametersAndResponses(
+            ApiOptionsValidation validationOptions,
+            Dictionary<string, OpenApiPathItem>.ValueCollection paths)
         {
             var logItems = new List<LogKeyValueItem>();
+            var logCategory = validationOptions.StrictMode
+                ? LogCategoryType.Error
+                : LogCategoryType.Warning;
 
             foreach (var path in paths)
             {
@@ -234,7 +247,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     if (httpStatusCodes.Contains(HttpStatusCode.BadRequest) &&
                         !value.HasParametersOrRequestBody() && !path.HasParameters())
                     {
-                        logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
+                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
                     }
                 }
             }
@@ -242,7 +255,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return logItems;
         }
 
-        private static List<LogKeyValueItem> ValidateSchemaModelNameCasing(OpenApiSchema schema, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemaModelNameCasing(
+            ApiOptionsValidation validationOptions,
+            OpenApiSchema schema)
         {
             var logItems = new List<LogKeyValueItem>();
             var logCategory = validationOptions.StrictMode
@@ -258,7 +273,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return logItems;
         }
 
-        private static List<LogKeyValueItem> ValidateSchemaModelPropertyNameCasing(string key, OpenApiSchema schema, ApiOptionsValidation validationOptions)
+        private static List<LogKeyValueItem> ValidateSchemaModelPropertyNameCasing(
+            ApiOptionsValidation validationOptions,
+            string key,
+            OpenApiSchema schema)
         {
             var logItems = new List<LogKeyValueItem>();
             var logCategory = validationOptions.StrictMode

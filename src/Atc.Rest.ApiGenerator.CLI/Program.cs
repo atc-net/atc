@@ -32,7 +32,7 @@ namespace Atc.Rest.ApiGenerator.CLI
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
         private static void Run(ArgumentOptions options)
         {
-            Colorful.Console.WriteAscii("ATC-API Generator", Color.Chocolate);
+            Colorful.Console.WriteAscii(" ATC-API Generator", Color.CornflowerBlue);
 
             var logItems = new List<LogKeyValueItem>();
             try

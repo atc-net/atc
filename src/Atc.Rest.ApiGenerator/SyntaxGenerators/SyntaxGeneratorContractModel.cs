@@ -104,6 +104,17 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                     if (ApiSchema.Type == OpenApiDataTypeConstants.Array)
                     {
                         var (key, _) = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(ApiSchema.Title, StringComparison.OrdinalIgnoreCase));
+                        if (string.IsNullOrEmpty(ApiSchema.Title))
+                        {
+                            ApiSchema.Title = ApiSchemaKey;
+                            key = ApiSchemaKey;
+                        }
+
+                        if (string.IsNullOrEmpty(ApiSchema.Items.Title))
+                        {
+                            ApiSchema.Items.Title = ApiSchemaKey;
+                        }
+
                         var title = key != null
                             ? $"{ApiSchema.Title.EnsureFirstCharacterToUpperAndSingular()}List"
                             : ApiSchema.Title.EnsureFirstCharacterToUpper();

@@ -30,8 +30,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
             FileInfo? apiYamlFile;
             if (apiDesignPath.EndsWith(".yaml", StringComparison.Ordinal))
             {
-                apiYamlFile = new FileInfo(apiDesignPath);
-                if (!apiYamlFile.Exists)
+                apiYamlFile = apiDesignPath.StartsWith("http", StringComparison.CurrentCultureIgnoreCase) 
+                    ? HttpClientHelper.DownloadToTempFile(apiDesignPath)
+                    : new FileInfo(apiDesignPath);
+
+                if (apiYamlFile == null || !apiYamlFile.Exists)
                 {
                     throw new IOException("Api yaml file don't exist.");
                 }
