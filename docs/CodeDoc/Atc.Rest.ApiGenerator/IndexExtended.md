@@ -58,6 +58,9 @@
   -  Static Methods
      - Save(FileInfo fileInfo, string text)
      - Save(string file, string text)
+- [HttpClientHelper](Atc.Rest.ApiGenerator.Helpers.md#httpclienthelper)
+  -  Static Methods
+     - DownloadToTempFile(string apiDesignPath)
 - [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
   -  Static Methods
      - Create(LogCategoryType logCategoryType, string ruleName, string description)
@@ -75,10 +78,10 @@
      - GetSegmentName(string path)
 - [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
   -  Static Methods
-     - ValidateGetOperations(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
-     - ValidateGlobalParameters(IEnumerable&lt;string&gt; globalPathParameterNames, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
-     - ValidateMissingOperationParameters(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
-     - ValidateOperationsWithParametersNotPresentInPath(KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateGetOperations(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateGlobalParameters(ApiOptionsValidation validationOptions, IEnumerable&lt;string&gt; globalPathParameterNames, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateMissingOperationParameters(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+     - ValidateOperationsWithParametersNotPresentInPath(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 

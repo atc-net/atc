@@ -17,6 +17,7 @@
 
 - [ApiGeneratorHelper](Atc.Rest.ApiGenerator.Helpers.md#apigeneratorhelper)
 - [FileHelper](Atc.Rest.ApiGenerator.Helpers.md#filehelper)
+- [HttpClientHelper](Atc.Rest.ApiGenerator.Helpers.md#httpclienthelper)
 - [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)

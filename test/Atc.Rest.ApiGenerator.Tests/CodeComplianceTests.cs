@@ -21,6 +21,7 @@ namespace Atc.Rest.ApiGenerator.Tests
             // TODO: Add UnitTest and remove from this list!!
             typeof(ApiGeneratorHelper),
             typeof(FileHelper),
+            typeof(HttpClientHelper),
             typeof(OpenApiDocumentHelper),
             typeof(OpenApiDocumentValidationHelper),
             typeof(OpenApiOperationSchemaMapHelper),

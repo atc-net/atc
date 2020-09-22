@@ -167,7 +167,7 @@ string ToString()
 
 
 ## LogKeyValueItem
-LogKeyValueItem
+LogKeyValueItem.
 
 
 ```csharp
