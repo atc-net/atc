@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Atc.Rest.Options;
 using Microsoft.AspNetCore.Authentication;
@@ -51,7 +52,7 @@ namespace Atc.Rest.Extended.Options
 
             if (!apiOptions.Authorization.ValidAudiences.Any())
             {
-                apiOptions.Authorization.ValidAudiences = new[]
+                apiOptions.Authorization.ValidAudiences = new List<string>
                 {
                     apiOptions.Authorization.ClientId,
                     $"api://{apiOptions.Authorization.ClientId}"
