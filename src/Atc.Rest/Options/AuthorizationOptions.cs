@@ -30,6 +30,7 @@ namespace Atc.Rest.Options
     ///     "TenantId": "common",
     ///     "Audience": "[App Identifier URI of the Azure AD App Registration]"
     ///     "Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
+    ///     "ValidAudiences": ["A", "collection", "of", "app", "identifier", "URIs"]
     ///   }
     /// }.
     /// </code>
@@ -37,20 +38,7 @@ namespace Atc.Rest.Options
     {
         public const string ConfigurationSectionName = "Authorization";
 
-        private string clientId = string.Empty;
-        public string ClientId
-        {
-            get => clientId;
-            set
-            {
-                clientId = value;
-                ValidAudiences = new[]
-                {
-                    clientId,
-                    $"api://{clientId}"
-                };
-            }
-        }
+        public string ClientId { get; set; } = string.Empty;
 
         public string TenantId { get; set; } = string.Empty;
 
@@ -60,6 +48,6 @@ namespace Atc.Rest.Options
 
         public string Issuer { get; set; } = string.Empty;
 
-        public IReadOnlyCollection<string> ValidAudiences { get; set; } = Array.Empty<string>();
+        public List<string> ValidAudiences { get; set; } = new List<string>();
     }
 }

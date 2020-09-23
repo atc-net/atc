@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Atc.Rest.Options;
 using Microsoft.AspNetCore.Authentication;
@@ -43,15 +44,15 @@ namespace Atc.Rest.Extended.Options
                     $"Missing TenantId. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings");
             }
 
-            if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId))
+            if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) && string.IsNullOrEmpty(apiOptions.Authorization.Audience))
             {
                 throw new InvalidOperationException(
-                    $"Missing ClientId. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings");
+                    $"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings and ensure that the ClientId or Audience is specified");
             }
 
             if (!apiOptions.Authorization.ValidAudiences.Any())
             {
-                apiOptions.Authorization.ValidAudiences = new[]
+                apiOptions.Authorization.ValidAudiences = new List<string>
                 {
                     apiOptions.Authorization.ClientId,
                     $"api://{apiOptions.Authorization.ClientId}"
