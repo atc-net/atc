@@ -30,7 +30,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             FileInfo? apiYamlFile;
             if (apiDesignPath.EndsWith(".yaml", StringComparison.Ordinal))
             {
-                apiYamlFile = apiDesignPath.StartsWith("http", StringComparison.CurrentCultureIgnoreCase) 
+                apiYamlFile = apiDesignPath.StartsWith("http", StringComparison.CurrentCultureIgnoreCase)
                     ? HttpClientHelper.DownloadToTempFile(apiDesignPath)
                     : new FileInfo(apiDesignPath);
 
