@@ -9,7 +9,7 @@
 		}
 	},
 	"Validation": {
-    "StrictMode": true,
+		"StrictMode": true,
 		"OperationIdCasingStyle": "CamelCase",
 		"ModelNameCasingStyle": "PascalCase",
 		"ModelPropertyNameCasingStyle": "CamelCase"
