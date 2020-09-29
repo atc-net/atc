@@ -3,58 +3,109 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
-using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Atc.Data.Models;
-using Atc.Rest.ApiGenerator.Helpers;
+using Atc.Rest.ApiGenerator.CLI.Commands;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
-using CommandLine;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable LocalizableElement
 namespace Atc.Rest.ApiGenerator.CLI
 {
+    [ExcludeFromCodeCoverage]
     public static class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
-            Parser.Default.ParseArguments<ArgumentOptions>(args)
-                    .WithParsed(Run)
-                    .WithNotParsed(HandleInvalidArguments);
-        }
+            args = new[]
+            {
+                "validate",
+                "schema",
+                "--specificationPath", @"c:\temp",
+                "--strictMode", "true",
+                "--operationIdCasingStyle", "CamelCase",
+                "--modelNameCasingStyle", "PascalCase",
+                "--modelPropertyNameCasingStyle", "CamelCase",
+            };
 
-        private static void HandleInvalidArguments(IEnumerable<Error> errors)
-        {
-            Colorful.Console.WriteLine("Invalid arguments received.", Color.Red);
-        }
+            ////args = new[]
+            ////{
+            ////    "generate",
+            ////    "server",
+            ////    "-?",
+            ////};
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
-        private static void Run(ArgumentOptions options)
-        {
-            Colorful.Console.WriteAscii(" ATC-API Generator", Color.CornflowerBlue);
+            var builder = new HostBuilder()
+                ////.ConfigureLogging(x => x.AddConsole())
+                .ConfigureServices(ConfigureServices);
 
-            var logItems = new List<LogKeyValueItem>();
             try
             {
-                var apiOptions = LoadApiOptions(options.OptionsPath);
-                var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(options.ApiDesignPath!);
-                logItems = ApiGeneratorHelper.Create(
-                    options.ApiProjectName!,
-                    new DirectoryInfo(options.ApiOutputPath!),
-                    apiYamlDoc,
-                    apiOptions);
+                return builder
+                    .RunCommandLineApplicationAsync<RootCommand>(args)
+                    .GetAwaiter()
+                    .GetResult();
+            }
+            catch (TargetInvocationException ex) when (ex.InnerException != null)
+            {
+                Console.WriteLine($@"Error: {ex.InnerException.Message}");
+                return ExitStatusCodes.Failure;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($@"Error: {ex.Message}");
+                return ExitStatusCodes.Failure;
             }
+        }
 
-            WriteLogItemsToConsole(logItems);
-            if (logItems.All(x => x.LogCategory != LogCategoryType.Error))
-            {
-                Colorful.Console.WriteLine("Api is now generated - done.", Color.DarkGreen);
-            }
+        ////public static void Main(string[] args)
+        ////{
+        ////    Parser.Default.ParseArguments<ArgumentOptions>(args)
+        ////            .WithParsed(Run)
+        ////            .WithNotParsed(HandleInvalidArguments);
+        ////}
+
+        ////private static void HandleInvalidArguments(IEnumerable<Error> errors)
+        ////{
+        ////    Colorful.Console.WriteLine("Invalid arguments received.", Color.Red);
+        ////}
+
+        ////[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
+        ////private static void Run(ArgumentOptions options)
+        ////{
+        ////    Colorful.Console.WriteAscii(" ATC-API Generator", Color.CornflowerBlue);
+
+        ////    var logItems = new List<LogKeyValueItem>();
+        ////    try
+        ////    {
+        ////        var apiOptions = LoadApiOptions(options.OptionsPath);
+        ////        var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(options.ApiDesignPath!);
+        ////        logItems = ApiGeneratorHelper.Create(
+        ////            options.ApiProjectName!,
+        ////            new DirectoryInfo(options.ApiOutputPath!),
+        ////            apiYamlDoc,
+        ////            apiOptions);
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        Console.WriteLine(ex.Message);
+        ////    }
+
+        ////    WriteLogItemsToConsole(logItems);
+        ////    if (logItems.All(x => x.LogCategory != LogCategoryType.Error))
+        ////    {
+        ////        Colorful.Console.WriteLine("Api is now generated - done.", Color.DarkGreen);
+        ////    }
+        ////}
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            ////services.AddLogging(x => x.AddDebug());
+            ////services.AddSingleton<IConsole>(PhysicalConsole.Singleton);
         }
 
         private static ApiOptions LoadApiOptions(string? optionsPath)
