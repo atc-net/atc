@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Rest.ApiGenerator.Models;
@@ -201,10 +202,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             };
         }
 
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "OK for now.")]
         private static bool IsSimpleDotNetType(string dataType)
         {
             if (dataType == "bool" ||
-                dataType == "DateTimeOffset" ||
+                ////dataType == "DateTimeOffset" ||  // TODO: Implement proper handling of nullable in yaml. https://swagger.io/docs/specification/data-models/data-types/#:~:text=OpenAPI%203.0%20does%20not%20have,from%20an%20empty%20string%20%22%22.&text=The%20example%20above%20may%20be,int%3F%20in%20C%23%20and%20java.
                 dataType == "double" ||
                 dataType == "Guid" ||
                 dataType == "int" ||

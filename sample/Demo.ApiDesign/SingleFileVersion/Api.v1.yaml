@@ -450,22 +450,30 @@ components:
     CreateUserRequest:
       title: CreateUserRequest
       description: Request to create a user
-      required:
-        - firstName
-        - lastName
-        - email
-        - gender
+      type: object
       properties:
         firstName:
           type: string
         lastName:
           type: string
+        myNullableDateTime:
+          type: string
+          format: date-time
+        myDateTime:
+          type: string
+          format: date-time
         email:
           type: string
           format: email
           example: email@email.dk
         gender:
           $ref: '#/components/schemas/GenderType'
+      required:
+        - firstName
+        - lastName
+        - myDateTime
+        - email
+        - gender
     CreateUsersRequest:
       description: A list of users.
       type: array

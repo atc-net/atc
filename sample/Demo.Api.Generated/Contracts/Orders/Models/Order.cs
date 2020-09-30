@@ -26,7 +26,7 @@ namespace Demo.Api.Generated.Contracts.Orders
 
         public string? Description { get; set; }
 
-        public DateTimeOffset MyTime { get; set; }
+        public DateTimeOffset? MyTime { get; set; }
 
         /// <summary>
         /// Undefined description.
@@ -37,7 +37,7 @@ namespace Demo.Api.Generated.Contracts.Orders
         [EmailAddress]
         public string? MyEmail { get; set; } = "a@a.com";
 
-        public DateTimeOffset MyDateTime { get; set; }
+        public DateTimeOffset? MyDateTime { get; set; }
 
         public double MyNumber { get; set; }
 
