@@ -21,7 +21,7 @@ using Microsoft.OpenApi.Models;
 // ReSharper disable UseObjectOrCollectionInitializer
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable ReturnTypeCanBeEnumerable.Local
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public class SyntaxGeneratorContractResult : ISyntaxOperationCodeGenerator
     {

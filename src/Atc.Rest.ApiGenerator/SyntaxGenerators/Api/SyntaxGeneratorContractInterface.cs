@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.OpenApi.Models;
 
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public class SyntaxGeneratorContractInterface : ISyntaxOperationCodeGenerator
     {

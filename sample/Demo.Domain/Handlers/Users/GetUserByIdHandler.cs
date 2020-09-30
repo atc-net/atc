@@ -20,10 +20,10 @@ namespace Demo.Domain.Handlers.Users
                 return Task.FromResult(GetUserByIdResult.NotFound($"Could not find user with id={parameters.Id}"));
             }
 
-            return InvokeExecuteAsync();
+            return InvokeExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<GetUserByIdResult> InvokeExecuteAsync()
+        private async Task<GetUserByIdResult> InvokeExecuteAsync(GetUserByIdParameters parameters, CancellationToken cancellationToken)
         {
             var data = new User
             {

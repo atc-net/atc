@@ -35,6 +35,21 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 SyntaxTokenFactory.OverrideKeyword(withTrailingSpace));
         }
 
+        public static SyntaxTokenList PublicAsyncKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+        {
+            if (withLeadingLineFeed)
+            {
+                return SyntaxFactory.TokenList(
+                    SyntaxTokenFactory.CarriageReturnLineFeed(),
+                    SyntaxTokenFactory.PublicKeyword(),
+                    SyntaxTokenFactory.AsyncKeyword(withTrailingSpace));
+            }
+
+            return SyntaxFactory.TokenList(
+                SyntaxTokenFactory.PublicKeyword(),
+                SyntaxTokenFactory.AsyncKeyword(withTrailingSpace));
+        }
+
         public static SyntaxTokenList InternalStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
         {
             if (withLeadingLineFeed)

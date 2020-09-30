@@ -16,7 +16,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable LoopCanBeConvertedToQuery
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public class SyntaxGeneratorContractParameter : ISyntaxOperationCodeGenerator
     {

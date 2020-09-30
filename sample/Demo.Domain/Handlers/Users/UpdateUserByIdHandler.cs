@@ -14,10 +14,10 @@ namespace Demo.Domain.Handlers.Users
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return InvokeExecuteAsync();
+            return InvokeExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<UpdateUserByIdResult> InvokeExecuteAsync()
+        private async Task<UpdateUserByIdResult> InvokeExecuteAsync(UpdateUserByIdParameters parameters, CancellationToken cancellationToken)
         {
             return await Task.FromResult("We are now updated.");
         }

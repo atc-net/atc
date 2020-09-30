@@ -19,7 +19,7 @@ using Microsoft.OpenApi.Models;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable UseDeconstruction
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public class SyntaxGeneratorEndpointControllers : ISyntaxGeneratorEndpointControllers
     {

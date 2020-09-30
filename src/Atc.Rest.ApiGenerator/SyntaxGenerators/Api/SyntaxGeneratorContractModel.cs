@@ -16,7 +16,7 @@ using Microsoft.OpenApi.Models;
 // ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable ConvertIfStatementToConditionalTernaryExpression
 // ReSharper disable UseDeconstruction
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public class SyntaxGeneratorContractModel : ISyntaxSchemaCodeGenerator
     {

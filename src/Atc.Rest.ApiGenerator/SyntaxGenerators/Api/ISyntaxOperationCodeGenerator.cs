@@ -1,7 +1,7 @@
 ﻿using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
     public interface ISyntaxOperationCodeGenerator : ISyntaxCodeGenerator
     {

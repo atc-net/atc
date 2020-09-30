@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Xml.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
@@ -12,7 +11,7 @@ using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.ProjectSyntaxFactories;
 using Atc.Rest.ApiGenerator.SyntaxFactories;
-using Atc.Rest.ApiGenerator.SyntaxGenerators;
+using Atc.Rest.ApiGenerator.SyntaxGenerators.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -25,8 +24,94 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 // ReSharper disable UseDeconstruction
 namespace Atc.Rest.ApiGenerator.Helpers
 {
-    internal static class ProjectGenerateHelper
+    internal static class GenerateServerApiHelper
     {
+        public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
+        {
+            if (!Directory.Exists(apiProjectOptions.PathForSrcGenerate.FullName))
+            {
+                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated01, "Old project don't exist.");
+            }
+
+            var apiGeneratedFile = Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiGenerated.cs");
+            if (!File.Exists(apiGeneratedFile))
+            {
+                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated02, "Old ApiGenerated.cs in project don't exist.");
+            }
+
+            var lines = File.ReadLines(apiGeneratedFile).ToList();
+
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            const string toolName = "ApiGenerator";
+            var newVersion = executingAssembly.GetName().Version;
+
+            foreach (var line in lines)
+            {
+                var indexOfToolName = line.IndexOf(toolName!, StringComparison.Ordinal);
+                if (indexOfToolName == -1)
+                {
+                    continue;
+                }
+
+                var oldVersion = line.Substring(indexOfToolName + toolName!.Length);
+                if (oldVersion.EndsWith('.'))
+                {
+                    oldVersion = oldVersion.Substring(0, oldVersion.Length - 1);
+                }
+
+                if (!Version.TryParse(oldVersion, out var oldVersionResult))
+                {
+                    return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated03, "Existing project version is invalid.");
+                }
+
+                if (newVersion >= oldVersionResult)
+                {
+                    return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated04, "The generate project version is the same or newer.");
+                }
+
+                return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated05, "Existing project version is never than this tool version.");
+            }
+
+            return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated06, "Existing project did not contain a version.");
+        }
+
+        public static void PerformCleanup(DirectoryInfo projectSrcGeneratePath)
+        {
+            if (projectSrcGeneratePath == null)
+            {
+                throw new ArgumentNullException(nameof(projectSrcGeneratePath));
+            }
+
+            if (!projectSrcGeneratePath.Exists)
+            {
+                return;
+            }
+
+            var contractsPath = new DirectoryInfo(Path.Combine(projectSrcGeneratePath.FullName, "Contracts"));
+            if (contractsPath.Exists)
+            {
+                Directory.Delete(contractsPath.FullName, true);
+            }
+
+            var endpointsPath = new DirectoryInfo(Path.Combine(projectSrcGeneratePath.FullName, "Endpoints"));
+            if (endpointsPath.Exists)
+            {
+                Directory.Delete(endpointsPath.FullName, true);
+            }
+
+            var fileResultFactory = new FileInfo(Path.Combine(projectSrcGeneratePath.FullName, "ResultFactory.cs"));
+            if (fileResultFactory.Exists)
+            {
+                fileResultFactory.Delete();
+            }
+
+            var filePagination = new FileInfo(Path.Combine(projectSrcGeneratePath.FullName, $"{Microsoft.OpenApi.Models.NameConstants.Pagination}.cs"));
+            if (filePagination.Exists)
+            {
+                filePagination.Delete();
+            }
+        }
+
         public static void Scaffold(ApiProjectOptions apiProjectOptions)
         {
             if (apiProjectOptions == null)
@@ -39,64 +124,31 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 Directory.CreateDirectory(apiProjectOptions.PathForSrcGenerate.FullName);
             }
 
-            var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, $"{apiProjectOptions.ProjectName}.Generated.csproj"));
+            var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, $"{apiProjectOptions.ProjectName}.csproj"));
             if (apiProjectOptions.PathForSrcGenerate.Exists && file.Exists)
             {
                 var element = XElement.Load(file.FullName);
-                var originalNullableValue = GetBoolFromNullableString(GetNullableValueFromProject(element));
+                var originalNullableValue = GenerateHelper.GetBoolFromNullableString(GenerateHelper.GetNullableValueFromProject(element));
 
                 if (apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes != originalNullableValue)
                 {
-                    var newNullableValue = GetNullableStringFromBool(apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes);
-                    SetNullableValueForProject(element, newNullableValue);
+                    var newNullableValue = GenerateHelper.GetNullableStringFromBool(apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes);
+                    GenerateHelper.SetNullableValueForProject(element, newNullableValue);
                     element.Save(file.FullName);
                 }
             }
             else
             {
-                ScaffoldProjFile(apiProjectOptions.PathForSrcGenerate, apiProjectOptions.ProjectName, apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes);
+                GenerateHelper.ScaffoldProjFile(
+                    apiProjectOptions.PathForSrcGenerate,
+                    apiProjectOptions.ProjectName,
+                    apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                    true);
             }
 
             ScaffoldBasicFileApiGenerated(apiProjectOptions);
             ScaffoldBasicFileResultFactory(apiProjectOptions);
             ScaffoldBasicFilePagination(apiProjectOptions);
-        }
-
-        public static void PerformCleanup(DirectoryInfo apiProjectSrcGeneratePath)
-        {
-            if (apiProjectSrcGeneratePath == null)
-            {
-                throw new ArgumentNullException(nameof(apiProjectSrcGeneratePath));
-            }
-
-            if (!apiProjectSrcGeneratePath.Exists)
-            {
-                return;
-            }
-
-            var contractsPath = new DirectoryInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, "Contracts"));
-            if (contractsPath.Exists)
-            {
-                Directory.Delete(contractsPath.FullName, true);
-            }
-
-            var endpointsPath = new DirectoryInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, "Endpoints"));
-            if (endpointsPath.Exists)
-            {
-                Directory.Delete(endpointsPath.FullName, true);
-            }
-
-            var fileResultFactory = new FileInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, "ResultFactory.cs"));
-            if (fileResultFactory.Exists)
-            {
-                fileResultFactory.Delete();
-            }
-
-            var filePagination = new FileInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, $"{Microsoft.OpenApi.Models.NameConstants.Pagination}.cs"));
-            if (filePagination.Exists)
-            {
-                filePagination.Delete();
-            }
         }
 
         public static void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
@@ -227,55 +279,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 sg.ToFile();
             }
-        }
-
-        public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
-        {
-            if (!Directory.Exists(apiProjectOptions.PathForSrcGenerate.FullName))
-            {
-                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated01, "Old project don't exist.");
-            }
-
-            var apiGeneratedFile = Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiGenerated.cs");
-            if (!File.Exists(apiGeneratedFile))
-            {
-                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated02, "Old ApiGenerated.cs in project don't exist.");
-            }
-
-            var lines = File.ReadLines(apiGeneratedFile).ToList();
-
-            var executingAssembly = Assembly.GetExecutingAssembly();
-            const string toolName = "ApiGenerator";
-            var newVersion = executingAssembly.GetName().Version;
-
-            foreach (var line in lines)
-            {
-                var indexOfToolName = line.IndexOf(toolName!, StringComparison.Ordinal);
-                if (indexOfToolName == -1)
-                {
-                    continue;
-                }
-
-                var oldVersion = line.Substring(indexOfToolName + toolName!.Length);
-                if (oldVersion.EndsWith('.'))
-                {
-                    oldVersion = oldVersion.Substring(0, oldVersion.Length - 1);
-                }
-
-                if (!Version.TryParse(oldVersion, out var oldVersionResult))
-                {
-                    return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated03, "Existing project version is invalid.");
-                }
-
-                if (newVersion >= oldVersionResult)
-                {
-                    return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated04, "The generate project version is the same or newer.");
-                }
-
-                return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated05, "Existing project version is never than this tool version.");
-            }
-
-            return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated06, "Existing project did not contain a version.");
         }
 
         private static MethodDeclarationSyntax CreateResultFactoryProblemDetails()
@@ -787,111 +790,5 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, $"{Microsoft.OpenApi.Models.NameConstants.Pagination}.cs"));
             FileHelper.Save(file, codeAsString);
         }
-
-        private static void ScaffoldProjFile(
-            DirectoryInfo apiProjectSrcGeneratePath,
-            string apiProjectName,
-            bool useNullableReferenceTypes)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine("     <TargetFramework>netcoreapp3.1</TargetFramework>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            if (useNullableReferenceTypes)
-            {
-                sb.AppendLine("     <Nullable>enable</Nullable>");
-            }
-
-            sb.AppendLine("     <LangVersion>8.0</LangVersion>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine("     <GenerateDocumentationFile>true</GenerateDocumentationFile>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine($"     <DocumentationFile>bin\\Debug\\netcoreapp3.1\\{apiProjectName}.Generated.xml</DocumentationFile>");
-            sb.AppendLine("     <NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <ItemGroup>");
-            sb.AppendLine("     <None Remove=\"Resources\\ApiSpecification.yaml\" />");
-            sb.AppendLine("     <EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
-            sb.AppendLine(" </ItemGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <ItemGroup>");
-            sb.AppendLine("     <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />");
-            sb.AppendLine(" </ItemGroup>");
-            sb.AppendLine();
-            sb.AppendLine("</Project>");
-            var file = new FileInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, $"{apiProjectName}.Generated.csproj"));
-            FileHelper.Save(file, sb.ToString());
-        }
-
-        private static string GetNullableValueFromProject(XElement element)
-        {
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
-            {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name == "Nullable")
-                    {
-                        return propertyGroupElement.Value;
-                    }
-                }
-            }
-
-            return string.Empty;
-        }
-
-        private static void SetNullableValueForProject(XElement element, string newNullableValue)
-        {
-            var isUpdated = false;
-            var hasLanguageVersion = false;
-
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
-            {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name != "Nullable")
-                    {
-                        continue;
-                    }
-
-                    propertyGroupElement.Value = newNullableValue;
-                    isUpdated = true;
-                }
-            }
-
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
-            {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name == "LangVersion")
-                    {
-                        hasLanguageVersion = true;
-                    }
-                }
-            }
-
-            if (isUpdated)
-            {
-                return;
-            }
-
-            var nullabilityRoot = XElement.Parse(hasLanguageVersion
-                ? @"<PropertyGroup><Nullable>enable</Nullable></PropertyGroup>"
-                : @"<PropertyGroup><Nullable>enable</Nullable><LangVersion>8.0</LangVersion></PropertyGroup>");
-
-            element.Add(nullabilityRoot);
-        }
-
-        private static bool GetBoolFromNullableString(string value) => value == "enable";
-
-        private static string GetNullableStringFromBool(bool value) => value ? "enable" : "disable";
     }
 }

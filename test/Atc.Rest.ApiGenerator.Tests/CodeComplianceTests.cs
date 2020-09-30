@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.SyntaxGenerators;
+using Atc.Rest.ApiGenerator.SyntaxGenerators.Api;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -19,7 +20,7 @@ namespace Atc.Rest.ApiGenerator.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(ApiGeneratorHelper),
+            typeof(GeneratorHelper),
             typeof(FileHelper),
             typeof(HttpClientHelper),
             typeof(OpenApiDocumentHelper),

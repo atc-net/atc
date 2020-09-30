@@ -6,23 +6,29 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 {
     internal static class SyntaxProjectFactory
     {
-        public static NamespaceDeclarationSyntax CreateNamespace(ApiProjectOptions apiProjectOptions)
+        public static NamespaceDeclarationSyntax CreateNamespace(BaseProjectOptions baseProjectOptions, bool withAutoGen = true)
         {
-            if (apiProjectOptions == null)
+            if (baseProjectOptions == null)
             {
-                throw new ArgumentNullException(nameof(apiProjectOptions));
+                throw new ArgumentNullException(nameof(baseProjectOptions));
+            }
+
+            if (withAutoGen)
+            {
+                return SyntaxNamespaceDeclarationFactory.Create(
+                    baseProjectOptions.ToolNameAndProjectVersion,
+                    baseProjectOptions.ProjectName);
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
-                apiProjectOptions.ToolNameAndProjectVersion,
-                $"{apiProjectOptions.ProjectName}.Generated");
+                baseProjectOptions.ProjectName);
         }
 
-        public static NamespaceDeclarationSyntax CreateNamespace(ApiProjectOptions apiProjectOptions, string namespacePart)
+        public static NamespaceDeclarationSyntax CreateNamespace(BaseProjectOptions baseProjectOptions, string namespacePart, bool withAutoGen = true)
         {
-            if (apiProjectOptions == null)
+            if (baseProjectOptions == null)
             {
-                throw new ArgumentNullException(nameof(apiProjectOptions));
+                throw new ArgumentNullException(nameof(baseProjectOptions));
             }
 
             if (namespacePart == null)
@@ -30,16 +36,22 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 throw new ArgumentNullException(nameof(namespacePart));
             }
 
+            if (withAutoGen)
+            {
+                return SyntaxNamespaceDeclarationFactory.Create(
+                    baseProjectOptions.ToolNameAndProjectVersion,
+                    $"{baseProjectOptions.ProjectName}.{namespacePart}");
+            }
+
             return SyntaxNamespaceDeclarationFactory.Create(
-                apiProjectOptions.ToolNameAndProjectVersion,
-                $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}");
+                $"{baseProjectOptions.ProjectName}.{namespacePart}");
         }
 
-        public static NamespaceDeclarationSyntax CreateNamespace(ApiProjectOptions apiProjectOptions, string namespacePart, string focusOnSegmentName)
+        public static NamespaceDeclarationSyntax CreateNamespace(BaseProjectOptions baseProjectOptions, string namespacePart, string focusOnSegmentName, bool withAutoGen = true)
         {
-            if (apiProjectOptions == null)
+            if (baseProjectOptions == null)
             {
-                throw new ArgumentNullException(nameof(apiProjectOptions));
+                throw new ArgumentNullException(nameof(baseProjectOptions));
             }
 
             if (namespacePart == null)
@@ -52,9 +64,15 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 throw new ArgumentNullException(nameof(focusOnSegmentName));
             }
 
+            if (withAutoGen)
+            {
+                return SyntaxNamespaceDeclarationFactory.Create(
+                    baseProjectOptions.ToolNameAndProjectVersion,
+                    $"{baseProjectOptions.ProjectName}.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
+            }
+
             return SyntaxNamespaceDeclarationFactory.Create(
-                apiProjectOptions.ToolNameAndProjectVersion,
-                $"{apiProjectOptions.ProjectName}.Generated.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
+                $"{baseProjectOptions.ProjectName}.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
         }
     }
 }

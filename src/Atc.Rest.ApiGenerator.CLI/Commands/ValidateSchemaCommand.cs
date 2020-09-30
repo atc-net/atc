@@ -1,7 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.CLI.Commands.Options;
+using Atc.Rest.ApiGenerator.Helpers;
 using McMaster.Extensions.CommandLineUtils;
 
 // ReSharper disable LocalizableElement
@@ -15,12 +16,16 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
         {
             ConsoleHelper.WriteHeader();
 
-            var commandOptions = configCmd.GetOptions().ToList();
+            var apiOptions = ApiOptionsHelper.CreateDefault(configCmd);
+            ApiOptionsHelper.ApplyValidationOverrides(apiOptions, configCmd);
 
-            Console.WriteLine("Hallo - ValidateSchemaCommand");
-            Console.WriteLine();
+            var specificationPath = CommandLineApplicationHelper.GetSpecificationPath(configCmd);
+            var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(specificationPath);
 
-            return ExitStatusCodes.Success;
+            var logItems = new List<LogKeyValueItem>();
+            logItems.AddRange(OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation));
+
+            return ConsoleHelper.WriteLogItemsAndExit(logItems, "Schema");
         }
     }
 }

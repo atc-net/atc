@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable UseDeconstruction
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
-    public class SyntaxGeneratorContractParameters : ISyntaxGeneratorContractParameters
+    public class SyntaxGeneratorContractInterfaces : ISyntaxGeneratorContractInterfaces
     {
-        public SyntaxGeneratorContractParameters(
+        public SyntaxGeneratorContractInterfaces(
             ApiProjectOptions apiProjectOptions,
             string focusOnSegmentName)
         {
@@ -21,9 +22,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public string FocusOnSegmentName { get; }
 
-        public List<SyntaxGeneratorContractParameter> GenerateSyntaxTrees()
+        public List<SyntaxGeneratorContractInterface> GenerateSyntaxTrees()
         {
-            var list = new List<SyntaxGeneratorContractParameter>();
+            var list = new List<SyntaxGeneratorContractInterface>();
             foreach (var urlPath in ApiProjectOptions.Document.Paths)
             {
                 if (!urlPath.IsPathStartingSegmentName(FocusOnSegmentName))
@@ -31,23 +32,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                     continue;
                 }
 
-                foreach (var apiOperation in urlPath.Value.Operations)
-                {
-                    if (!apiOperation.Value.HasParametersOrRequestBody())
-                    {
-                        continue;
-                    }
-
-                    var generator = new SyntaxGeneratorContractParameter(
-                        ApiProjectOptions,
-                        urlPath.Value.Parameters,
-                        apiOperation.Key,
-                        apiOperation.Value,
-                        FocusOnSegmentName);
-
-                    generator.GenerateCode();
-                    list.Add(generator);
-                }
+                list.AddRange(
+                    urlPath.Value.Operations
+                        .Select(x => new SyntaxGeneratorContractInterface(ApiProjectOptions, x.Key, x.Value, FocusOnSegmentName))
+                        .Where(item => item.GenerateCode()));
             }
 
             return list;

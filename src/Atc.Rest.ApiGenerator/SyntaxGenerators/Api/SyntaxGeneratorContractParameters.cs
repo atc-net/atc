@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable UseDeconstruction
-namespace Atc.Rest.ApiGenerator.SyntaxGenerators
+namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 {
-    public class SyntaxGeneratorContractInterfaces : ISyntaxGeneratorContractInterfaces
+    public class SyntaxGeneratorContractParameters : ISyntaxGeneratorContractParameters
     {
-        public SyntaxGeneratorContractInterfaces(
+        public SyntaxGeneratorContractParameters(
             ApiProjectOptions apiProjectOptions,
             string focusOnSegmentName)
         {
@@ -22,9 +21,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         public string FocusOnSegmentName { get; }
 
-        public List<SyntaxGeneratorContractInterface> GenerateSyntaxTrees()
+        public List<SyntaxGeneratorContractParameter> GenerateSyntaxTrees()
         {
-            var list = new List<SyntaxGeneratorContractInterface>();
+            var list = new List<SyntaxGeneratorContractParameter>();
             foreach (var urlPath in ApiProjectOptions.Document.Paths)
             {
                 if (!urlPath.IsPathStartingSegmentName(FocusOnSegmentName))
@@ -32,10 +31,23 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
                     continue;
                 }
 
-                list.AddRange(
-                    urlPath.Value.Operations
-                        .Select(x => new SyntaxGeneratorContractInterface(ApiProjectOptions, x.Key, x.Value, FocusOnSegmentName))
-                        .Where(item => item.GenerateCode()));
+                foreach (var apiOperation in urlPath.Value.Operations)
+                {
+                    if (!apiOperation.Value.HasParametersOrRequestBody())
+                    {
+                        continue;
+                    }
+
+                    var generator = new SyntaxGeneratorContractParameter(
+                        ApiProjectOptions,
+                        urlPath.Value.Parameters,
+                        apiOperation.Key,
+                        apiOperation.Value,
+                        FocusOnSegmentName);
+
+                    generator.GenerateCode();
+                    list.Add(generator);
+                }
             }
 
             return list;
