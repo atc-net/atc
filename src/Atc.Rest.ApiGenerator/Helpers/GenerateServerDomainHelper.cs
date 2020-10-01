@@ -23,7 +23,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(domainProjectOptions));
             }
 
-            var apiFile = new FileInfo(Path.Combine(domainProjectOptions.ApiProjectSrcPath.FullName, "ApiGenerated.cs"));
+            var apiFile = new FileInfo(Path.Combine(domainProjectOptions.ApiProjectSrcPath.FullName, "ApiRegistration.cs"));
             if (!File.Exists(apiFile.FullName))
             {
                 return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectDomainGenerated01, $"Can't find API project in folder '{domainProjectOptions.ApiProjectSrcPath.FullName}'");
@@ -111,10 +111,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     false);
             }
 
-            ScaffoldBasicFileDomainGenerated(domainProjectOptions);
+            ScaffoldBasicFileDomainRegistration(domainProjectOptions);
         }
 
-        private static void ScaffoldBasicFileDomainGenerated(DomainProjectOptions domainProjectOptions)
+        private static void ScaffoldBasicFileDomainRegistration(DomainProjectOptions domainProjectOptions)
         {
             // Create compilationUnit
             var compilationUnit = SyntaxFactory.CompilationUnit();
@@ -123,7 +123,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var @namespace = SyntaxProjectFactory.CreateNamespace(domainProjectOptions);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.Create("DomainGenerated");
+            var classDeclaration = SyntaxClassDeclarationFactory.Create("DomainRegistration");
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);

@@ -8,7 +8,7 @@
 // ReSharper disable once CheckNamespace
 namespace Demo.Api.Generated
 {
-    public class ApiGenerated
+    public class ApiRegistration
     {
     }
 }

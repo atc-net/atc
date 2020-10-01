@@ -14,7 +14,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(hostProjectOptions));
             }
 
-            var apiFile = new FileInfo(Path.Combine(hostProjectOptions.ApiProjectSrcPath.FullName, "ApiGenerated.cs"));
+            var apiFile = new FileInfo(Path.Combine(hostProjectOptions.ApiProjectSrcPath.FullName, "ApiRegistration.cs"));
             if (!File.Exists(apiFile.FullName))
             {
                 return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectHostGenerated02, $"Can't find API project in folder '{hostProjectOptions.ApiProjectSrcPath.FullName}'");

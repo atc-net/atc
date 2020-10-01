@@ -25,7 +25,7 @@ namespace Atc.Rest.ApiGenerator.Models
             ApiProjectSrcPath = apiProjectSrcPath ?? throw new ArgumentNullException(nameof(projectSrcGeneratePath));
             if (apiProjectSrcPath.Exists)
             {
-                var files = Directory.GetFiles(apiProjectSrcPath.FullName, "ApiGenerated.cs", SearchOption.AllDirectories);
+                var files = Directory.GetFiles(apiProjectSrcPath.FullName, "ApiRegistration.cs", SearchOption.AllDirectories);
                 if (files.Length == 1)
                 {
                     ApiProjectSrcPath = new FileInfo(files[0]).Directory!;

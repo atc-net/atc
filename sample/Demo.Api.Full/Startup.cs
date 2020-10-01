@@ -42,7 +42,7 @@ namespace Demo.Api.Full
             };
 
             restApiOptions.AddAssemblyPairs(
-                Assembly.GetAssembly(typeof(ApiGenerated)),
+                Assembly.GetAssembly(typeof(ApiRegistration)),
                 Assembly.GetAssembly(typeof(DomainRegistration)));
         }
 

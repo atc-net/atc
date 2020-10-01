@@ -35,7 +35,7 @@ namespace Demo.Api
             };
 
             restApiOptions.AddAssemblyPairs(
-                Assembly.GetAssembly(typeof(ApiGenerated)),
+                Assembly.GetAssembly(typeof(ApiRegistration)),
                 Assembly.GetAssembly(typeof(DomainRegistration)));
         }
 

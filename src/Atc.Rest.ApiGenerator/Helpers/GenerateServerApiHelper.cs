@@ -38,10 +38,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated01, "Old project don't exist.");
             }
 
-            var apiGeneratedFile = Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiGenerated.cs");
+            var apiGeneratedFile = Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiRegistration.cs");
             if (!File.Exists(apiGeneratedFile))
             {
-                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated02, "Old ApiGenerated.cs in project don't exist.");
+                return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated02, "Old ApiRegistration.cs in project don't exist.");
             }
 
             var lines = File.ReadLines(apiGeneratedFile).ToList();
@@ -480,7 +480,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var @namespace = SyntaxProjectFactory.CreateNamespace(apiProjectOptions);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.Create("ApiGenerated");
+            var classDeclaration = SyntaxClassDeclarationFactory.Create("ApiRegistration");
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -492,7 +492,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 .NormalizeWhitespace()
                 .ToFullString();
 
-            var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiGenerated.cs"));
+            var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiRegistration.cs"));
             FileHelper.Save(file, codeAsString);
         }
 
