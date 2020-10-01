@@ -8,24 +8,6 @@
 <br />
 
 
-## ApiGeneratorHelper
-
-```csharp
-public static class ApiGeneratorHelper
-```
-
-### Static Methods
-
-
-#### Create
-
-```csharp
-List<LogKeyValueItem> Create(string apiProjectName, DirectoryInfo apiOutputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
-```
-
-<br />
-
-
 ## FileHelper
 
 ```csharp
@@ -44,6 +26,161 @@ void Save(string file, string text)
 
 ```csharp
 void Save(FileInfo fileInfo, string text)
+```
+
+<br />
+
+
+## GenerateHelper
+
+```csharp
+public static class GenerateHelper
+```
+
+### Static Methods
+
+
+#### GetBoolFromNullableString
+
+```csharp
+bool GetBoolFromNullableString(string value)
+```
+#### GetNullableStringFromBool
+
+```csharp
+string GetNullableStringFromBool(bool value)
+```
+#### GetNullableValueFromProject
+
+```csharp
+string GetNullableValueFromProject(XElement element)
+```
+#### ScaffoldProjFile
+
+```csharp
+void ScaffoldProjFile(DirectoryInfo projectSrcGeneratePath, string projectName, bool useNullableReferenceTypes, bool includeApiSpecification)
+```
+#### SetNullableValueForProject
+
+```csharp
+void SetNullableValueForProject(XElement element, string newNullableValue)
+```
+
+<br />
+
+
+## GenerateServerApiHelper
+
+```csharp
+public static class GenerateServerApiHelper
+```
+
+### Static Methods
+
+
+#### CopyApiSpecification
+
+```csharp
+void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
+```
+#### GenerateContracts
+
+```csharp
+List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+```
+#### GenerateEndpoints
+
+```csharp
+List<LogKeyValueItem> GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+```
+#### PerformCleanup
+
+```csharp
+void PerformCleanup(DirectoryInfo projectSrcGeneratePath)
+```
+#### Scaffold
+
+```csharp
+void Scaffold(ApiProjectOptions apiProjectOptions)
+```
+#### ValidateVersioning
+
+```csharp
+LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
+```
+
+<br />
+
+
+## GenerateServerDomainHelper
+
+```csharp
+public static class GenerateServerDomainHelper
+```
+
+### Static Methods
+
+
+#### GenerateHandlers
+
+```csharp
+List<LogKeyValueItem> GenerateHandlers(DomainProjectOptions domainProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+```
+#### Scaffold
+
+```csharp
+void Scaffold(DomainProjectOptions domainProjectOptions)
+```
+#### ValidateVersioning
+
+```csharp
+LogKeyValueItem ValidateVersioning(DomainProjectOptions domainProjectOptions)
+```
+
+<br />
+
+
+## GenerateServerHostHelper
+
+```csharp
+public static class GenerateServerHostHelper
+```
+
+### Static Methods
+
+
+#### ValidateVersioning
+
+```csharp
+LogKeyValueItem ValidateVersioning(HostProjectOptions hostProjectOptions)
+```
+
+<br />
+
+
+## GeneratorHelper
+
+```csharp
+public static class GeneratorHelper
+```
+
+### Static Methods
+
+
+#### GenerateServerApi
+
+```csharp
+List<LogKeyValueItem> GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
+```
+#### GenerateServerDomain
+
+```csharp
+List<LogKeyValueItem> GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
+```
+#### GenerateServerHost
+
+```csharp
+List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
 ```
 
 <br />
@@ -97,7 +234,7 @@ public static class OpenApiDocumentHelper
 #### CombineAndGetApiYamlDoc
 
 ```csharp
-Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiYamlDoc(string apiDesignPath)
+Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiYamlDoc(string specificationPath)
 ```
 #### GetBasePathSegmentNames
 

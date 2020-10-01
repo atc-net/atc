@@ -62,7 +62,40 @@ string ToString()
 ## ApiProjectOptions
 
 ```csharp
-public class ApiProjectOptions
+public class ApiProjectOptions : BaseProjectOptions
+```
+
+### Properties
+
+
+#### PathForContracts
+
+```csharp
+PathForContracts
+```
+#### PathForContractsEnumerationTypes
+
+```csharp
+PathForContractsEnumerationTypes
+```
+#### PathForContractsShared
+
+```csharp
+PathForContractsShared
+```
+#### PathForEndpoints
+
+```csharp
+PathForEndpoints
+```
+
+<br />
+
+
+## BaseProjectOptions
+
+```csharp
+public abstract class BaseProjectOptions
 ```
 
 ### Properties
@@ -93,26 +126,6 @@ Document
 ```csharp
 DocumentFile
 ```
-#### PathForContracts
-
-```csharp
-PathForContracts
-```
-#### PathForContractsEnumerationTypes
-
-```csharp
-PathForContractsEnumerationTypes
-```
-#### PathForContractsShared
-
-```csharp
-PathForContractsShared
-```
-#### PathForEndpoints
-
-```csharp
-PathForEndpoints
-```
 #### PathForSrcGenerate
 
 ```csharp
@@ -127,6 +140,52 @@ ProjectName
 
 ```csharp
 ToolNameAndProjectVersion
+```
+
+<br />
+
+
+## DomainProjectOptions
+
+```csharp
+public class DomainProjectOptions : BaseProjectOptions
+```
+
+### Properties
+
+
+#### ApiProjectSrcPath
+
+```csharp
+ApiProjectSrcPath
+```
+#### PathForHandlers
+
+```csharp
+PathForHandlers
+```
+
+<br />
+
+
+## HostProjectOptions
+
+```csharp
+public class HostProjectOptions : BaseProjectOptions
+```
+
+### Properties
+
+
+#### ApiProjectSrcPath
+
+```csharp
+ApiProjectSrcPath
+```
+#### DomainProjectSrcPath
+
+```csharp
+DomainProjectSrcPath
 ```
 
 <br />

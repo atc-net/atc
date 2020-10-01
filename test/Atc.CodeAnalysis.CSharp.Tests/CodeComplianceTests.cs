@@ -40,6 +40,7 @@ namespace Atc.CodeAnalysis.CSharp.Tests
             typeof(SyntaxObjectCreationExpressionFactory),
             typeof(SyntaxParameterFactory),
             typeof(SyntaxParameterListFactory),
+            typeof(SyntaxThrowStatementFactory),
             typeof(SyntaxTokenFactory),
             typeof(SyntaxTokenListFactory),
             typeof(SyntaxTypeArgumentListFactory),

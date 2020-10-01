@@ -64,11 +64,12 @@
   -  Static Methods
      - Create(string classTypeName)
      - CreateAsInternalStatic(string classTypeName)
+     - CreateWithInterface(string classTypeName, string interfaceTypeName)
      - CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
      - CreateWithSuppressMessageAttributeByCheckId(string classTypeName, int checkId, string justification = )
 - [SyntaxIfStatementFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxifstatementfactory)
   -  Static Methods
-     - CreateParameterArgumentNullCheck(string parameterName)
+     - CreateParameterArgumentNullCheck(string parameterName, bool includeSystem = True)
 - [SyntaxInterfaceDeclarationFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxinterfacedeclarationfactory)
   -  Static Methods
      - Create(string interfaceTypeName)
@@ -94,6 +95,7 @@
 - [SyntaxObjectCreationExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxobjectcreationexpressionfactory)
   -  Static Methods
      - Create(string identifierName)
+     - Create(string namespaceName, string identifierName)
 - [SyntaxParameterFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterfactory)
   -  Static Methods
      - Create(string parameterTypeName, string parameterName, string genericListTypeName = null)
@@ -101,6 +103,10 @@
 - [SyntaxParameterListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterlistfactory)
   -  Static Methods
      - CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
+- [SyntaxThrowStatementFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxthrowstatementfactory)
+  -  Static Methods
+     - CreateArgumentNullException(string parameterName, bool includeSystem = True)
+     - CreateNotImplementedException(bool includeSystem = True)
 - [SyntaxTokenFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenfactory)
   -  Static Methods
      - AsyncKeyword(bool withTrailingSpace = True)
@@ -130,6 +136,8 @@
   -  Static Methods
      - InternalStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PrivateReadonlyKeyword(bool withTrailingSpace = True)
+     - PublicAsyncKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+     - PublicKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PublicOverrideKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PublicStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
 - [SyntaxTypeArgumentListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtypeargumentlistfactory)

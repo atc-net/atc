@@ -36,6 +36,7 @@
 - [SyntaxObjectCreationExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxobjectcreationexpressionfactory)
 - [SyntaxParameterFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterfactory)
 - [SyntaxParameterListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterlistfactory)
+- [SyntaxThrowStatementFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxthrowstatementfactory)
 - [SyntaxTokenFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenfactory)
 - [SyntaxTokenListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenlistfactory)
 - [SyntaxTypeArgumentListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtypeargumentlistfactory)

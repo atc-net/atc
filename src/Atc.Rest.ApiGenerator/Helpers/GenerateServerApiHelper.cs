@@ -24,7 +24,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 // ReSharper disable UseDeconstruction
 namespace Atc.Rest.ApiGenerator.Helpers
 {
-    internal static class GenerateServerApiHelper
+    public static class GenerateServerApiHelper
     {
         public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
         {
