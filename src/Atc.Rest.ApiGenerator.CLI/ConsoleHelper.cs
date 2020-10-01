@@ -23,7 +23,7 @@ namespace Atc.Rest.ApiGenerator.CLI
             configCmd.ShowHelp();
         }
 
-        public static void WriteLogItems(List<LogKeyValueItem> logItems)
+        public static void WriteLogItems(List<LogKeyValueItem> logItems, bool verboseMode)
         {
             if (logItems == null)
             {
@@ -46,13 +46,19 @@ namespace Atc.Rest.ApiGenerator.CLI
                     case LogCategoryType.Information:
                         Colorful.Console.WriteLine(message, Color.LightSkyBlue);
                         break;
+                    case LogCategoryType.Debug:
+                        if (verboseMode)
+                        {
+                            Colorful.Console.WriteLine(message, Color.Tan);
+                        }
+                        break;
                 }
             }
         }
 
-        public static int WriteLogItemsAndExit(List<LogKeyValueItem> logItems, string area)
+        public static int WriteLogItemsAndExit(List<LogKeyValueItem> logItems, bool verboseMode, string area)
         {
-            WriteLogItems(logItems);
+            WriteLogItems(logItems, verboseMode);
             Console.WriteLine();
             if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {

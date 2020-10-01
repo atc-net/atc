@@ -4,7 +4,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands.Options
 {
     public class SchemaCommandOptions : BaseCommandOptions
     {
-        [Option("--strictMode", "Use strictMode", CommandOptionType.SingleValue)]
+        [Option("--strictMode", "Use strictMode - Treat Warnings As Errors", CommandOptionType.SingleValue)]
         public bool StrictMode { get; set; }
 
         [Option("--operationIdCasingStyle", "Set casingStyle for operationId", CommandOptionType.SingleValue)]

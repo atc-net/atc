@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -109,12 +110,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .FormatBracketSpacing();
         }
 
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var resultName = ApiOperation.GetOperationName() + NameConstants.ContractResult;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractResults, resultName);
             FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGCResult", "#", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)

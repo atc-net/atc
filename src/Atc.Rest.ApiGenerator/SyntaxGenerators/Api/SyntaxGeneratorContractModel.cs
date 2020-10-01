@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -181,7 +182,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         }
 
         [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var modelName = ApiSchemaKey.EnsureFirstCharacterToUpper();
@@ -191,6 +192,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     ? Util.GetCsFileNameForContractShared(ApiProjectOptions.PathForContractsShared, modelName)
                     : Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractModels, modelName);
             FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGCModel", "#", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)

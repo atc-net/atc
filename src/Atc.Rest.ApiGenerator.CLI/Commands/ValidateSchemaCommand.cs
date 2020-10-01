@@ -16,6 +16,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
         {
             ConsoleHelper.WriteHeader();
 
+            var verboseMode = CommandLineApplicationHelper.GetVerboseMode(configCmd);
             var apiOptions = ApiOptionsHelper.CreateDefault(configCmd);
             ApiOptionsHelper.ApplyValidationOverrides(apiOptions, configCmd);
 
@@ -25,7 +26,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
             var logItems = new List<LogKeyValueItem>();
             logItems.AddRange(OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation));
 
-            return ConsoleHelper.WriteLogItemsAndExit(logItems, "Schema");
+            return ConsoleHelper.WriteLogItemsAndExit(logItems, verboseMode, "Schema");
         }
     }
 }

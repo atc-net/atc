@@ -18,11 +18,11 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands.Options
         public CasingStyle ModelPropertyNameCasingStyle { get; set; } = CasingStyle.CamelCase;
 
         [Required]
-        [Option("--projectPrefixName", "Project prefix name (e.g. 'PetStore' becomes 'PetStore.Api.Generated').", CommandOptionType.SingleValue)]
+        [Option("--projectPrefixName", "Project prefix name (e.g. 'PetStore' becomes 'PetStore.Api.Generated').", CommandOptionType.SingleValue, ShortName = "p")]
         public string? ProjectPrefixName { get; set; }
 
         [Required]
-        [Option("--outputPath", "Path to generated project.", CommandOptionType.SingleValue)]
+        [Option("--outputPath", "Path to generated project.", CommandOptionType.SingleValue, ShortName = "o")]
         public string? OutputPath { get; set; }
 
         [Option("--useNullableReferenceTypes", "Use nullable reference types in .csproj", CommandOptionType.SingleValue)]

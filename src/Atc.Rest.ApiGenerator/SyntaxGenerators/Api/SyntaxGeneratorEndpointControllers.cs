@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -128,11 +129,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .ToFullString();
         }
 
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var controllerName = FocusOnSegmentName.EnsureFirstCharacterToUpper() + "Controller";
             var file = Util.GetCsFileNameForEndpoints(ApiProjectOptions.PathForEndpoints, controllerName);
             FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGCController", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)

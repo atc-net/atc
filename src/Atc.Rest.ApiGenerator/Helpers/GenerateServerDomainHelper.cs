@@ -139,7 +139,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             FileHelper.Save(file, codeAsString);
         }
 
-        public static void GenerateHandlers(DomainProjectOptions domainProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+        public static List<LogKeyValueItem> GenerateHandlers(DomainProjectOptions domainProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (domainProjectOptions == null)
             {
@@ -151,6 +151,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(operationSchemaMappings));
             }
 
+            var logItems = new List<LogKeyValueItem>();
             var sgHandlers = new List<SyntaxGeneratorHandler>();
             foreach (var basePathSegmentName in domainProjectOptions.BasePathSegmentNames)
             {
@@ -161,8 +162,10 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             foreach (var sg in sgHandlers)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
+
+            return logItems;
         }
     }
 }

@@ -168,7 +168,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             File.Copy(apiProjectOptions.DocumentFile.FullName, resourceFile.FullName);
         }
 
-        public static void GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+        public static List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
@@ -234,28 +234,31 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 sgContractModels.Add(generatorModel);
             }
 
+            var logItems = new List<LogKeyValueItem>();
             foreach (var sg in sgContractModels)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
 
             foreach (var sg in sgContractParameters)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
 
             foreach (var sg in sgContractResults)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
 
             foreach (var sg in sgContractInterfaces)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
+
+            return logItems;
         }
 
-        public static void GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+        public static List<LogKeyValueItem> GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
@@ -275,10 +278,13 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 sgEndpoints.Add(generator);
             }
 
+            var logItems = new List<LogKeyValueItem>();
             foreach (var sg in sgEndpoints)
             {
-                sg.ToFile();
+                logItems.Add(sg.ToFile());
             }
+
+            return logItems;
         }
 
         private static MethodDeclarationSyntax CreateResultFactoryProblemDetails()

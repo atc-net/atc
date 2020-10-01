@@ -19,6 +19,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
         {
             ConsoleHelper.WriteHeader();
 
+            var verboseMode = CommandLineApplicationHelper.GetVerboseMode(configCmd);
             var apiOptions = ApiOptionsHelper.CreateDefault(configCmd);
             ApiOptionsHelper.ApplyValidationOverrides(apiOptions, configCmd);
             ApiOptionsHelper.ApplyGeneratorOverrides(apiOptions, configCmd);
@@ -31,7 +32,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
 
             if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {
-                return ConsoleHelper.WriteLogItemsAndExit(logItems, CommandArea);
+                return ConsoleHelper.WriteLogItemsAndExit(logItems, verboseMode, CommandArea);
             }
 
             var projectPrefixName = CommandLineApplicationHelper.GetProjectPrefixName(configCmd);
@@ -43,7 +44,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
                 apiYamlDoc,
                 apiOptions);
 
-            return ConsoleHelper.WriteLogItemsAndExit(logItems, CommandArea);
+            return ConsoleHelper.WriteLogItemsAndExit(logItems, verboseMode, CommandArea);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -151,12 +152,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .FormatDoubleLines();
         }
 
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var parameterName = ApiOperation.GetOperationName() + NameConstants.ContractParameters;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractParameters, parameterName);
             FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGCParameter", "#", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)

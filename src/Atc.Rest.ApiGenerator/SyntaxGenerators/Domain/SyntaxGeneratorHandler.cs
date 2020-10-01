@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -102,15 +103,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                 .ToFullString();
         }
 
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var handlerName = ApiOperation.GetOperationName() + NameConstants.Handler;
             var file = Util.GetCsFileNameForHandler(DomainProjectOptions.PathForHandlers, area, handlerName);
-            if (!File.Exists(file))
+            if (File.Exists(file))
             {
-                FileHelper.Save(file, ToCodeAsString());
+                return new LogKeyValueItem(LogCategoryType.Debug, "SGHandler", "#", $"Ignore existing file {file}");
             }
+
+            FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGHandler", "#", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)
@@ -164,7 +168,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
             var codeBody = hasParameters
                 ? SyntaxFactory.Block(
                     SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("parameters"),
-                    SyntaxThrowStatementFactory.CreateNotImplementedException())
+                    SyntaxFactory.ReturnStatement(
+                        SyntaxFactory.InvocationExpression(
+                                SyntaxFactory.IdentifierName("InvokeExecuteAsync"))
+                            .WithArgumentList(
+                                SyntaxFactory.ArgumentList(
+                                    SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                        new SyntaxNodeOrToken[]
+                                        {
+                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName("parameters")),
+                                            SyntaxTokenFactory.Comma(),
+                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName(nameof(CancellationToken).EnsureFirstCharacterToLower()))
+                                        })))))
                 : SyntaxFactory.Block(
                     SyntaxThrowStatementFactory.CreateNotImplementedException());
 
@@ -172,7 +187,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                     SyntaxFactory.GenericName(SyntaxFactory.Identifier(nameof(Task)))
                         .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(resultTypeName)),
                     SyntaxFactory.Identifier("ExecuteAsync"))
-                .WithModifiers(SyntaxTokenListFactory.PublicAsyncKeyword())
+                .WithModifiers(SyntaxTokenListFactory.PublicKeyword())
                 .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(arguments)))
                 .WithBody(codeBody);
         }

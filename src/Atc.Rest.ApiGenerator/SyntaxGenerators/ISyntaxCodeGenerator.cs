@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Atc.Data.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Atc.Rest.ApiGenerator.SyntaxGenerators
@@ -13,7 +14,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators
 
         string ToCodeAsString();
 
-        void ToFile();
+        LogKeyValueItem ToFile();
 
         void ToFile(FileInfo file);
     }

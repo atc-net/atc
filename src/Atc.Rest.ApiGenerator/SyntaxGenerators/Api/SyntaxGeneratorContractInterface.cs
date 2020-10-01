@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
+using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -93,12 +94,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .ToFullString();
         }
 
-        public void ToFile()
+        public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var interfaceName = "I" + ApiOperation.GetOperationName() + NameConstants.ContractHandler;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractInterfaces, interfaceName);
             FileHelper.Save(file, ToCodeAsString());
+            return new LogKeyValueItem(LogCategoryType.Debug, "SGCInterface", "#", $"Created file {file}");
         }
 
         public void ToFile(FileInfo file)

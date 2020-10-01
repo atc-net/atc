@@ -5,6 +5,19 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 {
     public static class SyntaxTokenListFactory
     {
+        public static SyntaxTokenList PublicKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+        {
+            if (withLeadingLineFeed)
+            {
+                return SyntaxFactory.TokenList(
+                    SyntaxTokenFactory.CarriageReturnLineFeed(),
+                    SyntaxTokenFactory.PublicKeyword(withTrailingSpace));
+            }
+
+            return SyntaxFactory.TokenList(
+                SyntaxTokenFactory.PublicKeyword(withTrailingSpace));
+        }
+
         public static SyntaxTokenList PublicStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
         {
             if (withLeadingLineFeed)

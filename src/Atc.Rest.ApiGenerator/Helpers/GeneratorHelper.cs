@@ -56,8 +56,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
             GenerateServerApiHelper.CopyApiSpecification(apiProjectOptions);
 
             var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(apiProjectOptions.Document);
-            GenerateServerApiHelper.GenerateContracts(apiProjectOptions, operationSchemaMappings);
-            GenerateServerApiHelper.GenerateEndpoints(apiProjectOptions, operationSchemaMappings);
+            logItems.AddRange(GenerateServerApiHelper.GenerateContracts(apiProjectOptions, operationSchemaMappings));
+            logItems.AddRange(GenerateServerApiHelper.GenerateEndpoints(apiProjectOptions, operationSchemaMappings));
             return logItems;
         }
 
@@ -105,7 +105,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             GenerateServerDomainHelper.Scaffold(domainProjectOptions);
 
             var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(domainProjectOptions.Document);
-            GenerateServerDomainHelper.GenerateHandlers(domainProjectOptions, operationSchemaMappings);
+            logItems.AddRange(GenerateServerDomainHelper.GenerateHandlers(domainProjectOptions, operationSchemaMappings));
             return logItems;
         }
 
