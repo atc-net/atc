@@ -10,4 +10,4 @@ SET projectName=PetStore.Api
 SET specUrl=https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml
 SET generatedDirectory=%currentDirectory%\PetStore.Api.Generated
 
-%generatorFile% -n %projectName% -p %specUrl% -o %generatedDirectory%
+%generatorFile% generate server api -p %projectName% -s %specUrl% -o %generatedDirectory%

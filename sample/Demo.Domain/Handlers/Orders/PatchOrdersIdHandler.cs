@@ -7,8 +7,7 @@ namespace Demo.Domain.Handlers.Orders
 {
     public class PatchOrdersIdHandler : IPatchOrdersIdHandler
     {
-        public Task<PatchOrdersIdResult> ExecuteAsync(PatchOrdersIdParameters parameters,
-            CancellationToken cancellationToken = default)
+        public Task<PatchOrdersIdResult> ExecuteAsync(PatchOrdersIdParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
             {
@@ -22,11 +21,11 @@ namespace Demo.Domain.Handlers.Orders
                 "9" => Task.FromResult(PatchOrdersIdResult.Conflict()),
                 "10" => Task.FromResult(PatchOrdersIdResult.Conflict("Something is broken - maybe a horse!")),
                 "11" => Task.FromResult(PatchOrdersIdResult.BadGateway("Something is broken - maybe a horse!")),
-                _ => InvokeExecuteAsync()
+                _ => InvokeExecuteAsync(parameters, cancellationToken)
             };
         }
 
-        private static async Task<PatchOrdersIdResult> InvokeExecuteAsync()
+        private async Task<PatchOrdersIdResult> InvokeExecuteAsync(PatchOrdersIdParameters parameters, CancellationToken cancellationToken)
         {
             return await Task.FromResult("Data is updated");
         }

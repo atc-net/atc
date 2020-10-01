@@ -246,6 +246,11 @@ ClassDeclarationSyntax Create(string classTypeName)
 ```csharp
 ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
 ```
+#### CreateWithInterface
+
+```csharp
+ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
+```
 #### CreateWithSuppressMessageAttribute
 
 ```csharp
@@ -272,7 +277,7 @@ public static class SyntaxIfStatementFactory
 #### CreateParameterArgumentNullCheck
 
 ```csharp
-StatementSyntax CreateParameterArgumentNullCheck(string parameterName)
+StatementSyntax CreateParameterArgumentNullCheck(string parameterName, bool includeSystem = True)
 ```
 
 <br />
@@ -417,6 +422,11 @@ public static class SyntaxObjectCreationExpressionFactory
 ```csharp
 ObjectCreationExpressionSyntax Create(string identifierName)
 ```
+#### Create
+
+```csharp
+ObjectCreationExpressionSyntax Create(string namespaceName, string identifierName)
+```
 
 <br />
 
@@ -457,6 +467,29 @@ public static class SyntaxParameterListFactory
 
 ```csharp
 ParameterListSyntax CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
+```
+
+<br />
+
+
+## SyntaxThrowStatementFactory
+
+```csharp
+public static class SyntaxThrowStatementFactory
+```
+
+### Static Methods
+
+
+#### CreateArgumentNullException
+
+```csharp
+ThrowStatementSyntax CreateArgumentNullException(string parameterName, bool includeSystem = True)
+```
+#### CreateNotImplementedException
+
+```csharp
+ThrowStatementSyntax CreateNotImplementedException(bool includeSystem = True)
 ```
 
 <br />
@@ -608,6 +641,16 @@ SyntaxTokenList InternalStaticKeyword(bool withLeadingLineFeed = False, bool wit
 
 ```csharp
 SyntaxTokenList PrivateReadonlyKeyword(bool withTrailingSpace = True)
+```
+#### PublicAsyncKeyword
+
+```csharp
+SyntaxTokenList PublicAsyncKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+```
+#### PublicKeyword
+
+```csharp
+SyntaxTokenList PublicKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
 ```
 #### PublicOverrideKeyword
 

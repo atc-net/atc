@@ -6,6 +6,17 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 {
     internal static class SyntaxNamespaceDeclarationFactory
     {
+        public static NamespaceDeclarationSyntax Create(string fullNamespace)
+        {
+            if (fullNamespace == null)
+            {
+                throw new ArgumentNullException(nameof(fullNamespace));
+            }
+
+            return SyntaxFactory.NamespaceDeclaration(
+                    SyntaxFactory.IdentifierName(fullNamespace));
+        }
+
         public static NamespaceDeclarationSyntax Create(string generatedByToolAndVersion, string fullNamespace)
         {
             if (generatedByToolAndVersion == null)

@@ -19,6 +19,22 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword());
         }
 
+        public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
+        {
+            if (classTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(classTypeName));
+            }
+
+            return SyntaxFactory.ClassDeclaration(classTypeName)
+                .AddModifiers(SyntaxTokenFactory.PublicKeyword())
+                .WithBaseList(
+                    SyntaxFactory.BaseList(
+                        SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(
+                            SyntaxFactory.SimpleBaseType(
+                                SyntaxFactory.IdentifierName(interfaceTypeName)))));
+        }
+
         public static ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
         {
             if (classTypeName == null)

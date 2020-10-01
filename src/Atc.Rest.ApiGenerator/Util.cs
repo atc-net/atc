@@ -102,5 +102,30 @@ namespace Atc.Rest.ApiGenerator
 
             return Path.Combine(pathForContracts.FullName, $"{modelName}.cs");
         }
+
+        public static string GetCsFileNameForHandler(
+            DirectoryInfo pathForHandlers,
+            string area,
+            string handlerName)
+        {
+            if (pathForHandlers == null)
+            {
+                throw new ArgumentNullException(nameof(pathForHandlers));
+            }
+
+            if (area == null)
+            {
+                throw new ArgumentNullException(nameof(area));
+            }
+
+            if (handlerName == null)
+            {
+                throw new ArgumentNullException(nameof(handlerName));
+            }
+
+            var a = Path.Combine(pathForHandlers.FullName, area);
+            var b = Path.Combine(a, $"{handlerName}.cs");
+            return b;
+        }
     }
 }

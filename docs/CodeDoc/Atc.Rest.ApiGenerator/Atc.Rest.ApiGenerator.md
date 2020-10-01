@@ -47,6 +47,11 @@ string GetCsFileNameForContractShared(DirectoryInfo pathForContracts, string mod
 ```csharp
 string GetCsFileNameForEndpoints(DirectoryInfo pathForEndpoints, string modelName)
 ```
+#### GetCsFileNameForHandler
+
+```csharp
+string GetCsFileNameForHandler(DirectoryInfo pathForHandlers, string area, string handlerName)
+```
 #### GetProjectPath
 
 ```csharp
@@ -174,6 +179,56 @@ string ProjectApiGenerated05
 
 ```csharp
 string ProjectApiGenerated06
+```
+#### ProjectDomainGenerated01
+
+```csharp
+string ProjectDomainGenerated01
+```
+#### ProjectDomainGenerated02
+
+```csharp
+string ProjectDomainGenerated02
+```
+#### ProjectDomainGenerated03
+
+```csharp
+string ProjectDomainGenerated03
+```
+#### ProjectDomainGenerated04
+
+```csharp
+string ProjectDomainGenerated04
+```
+#### ProjectDomainGenerated05
+
+```csharp
+string ProjectDomainGenerated05
+```
+#### ProjectDomainGenerated06
+
+```csharp
+string ProjectDomainGenerated06
+```
+#### ProjectDomainGenerated07
+
+```csharp
+string ProjectDomainGenerated07
+```
+#### ProjectHostGenerated01
+
+```csharp
+string ProjectHostGenerated01
+```
+#### ProjectHostGenerated02
+
+```csharp
+string ProjectHostGenerated02
+```
+#### ProjectHostGenerated03
+
+```csharp
+string ProjectHostGenerated03
 ```
 #### Schema01
 

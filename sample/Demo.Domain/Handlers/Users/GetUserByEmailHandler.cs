@@ -20,10 +20,10 @@ namespace Demo.Domain.Handlers.Users
                 return Task.FromResult(GetUserByEmailResult.NotFound($"Could not find user with email={parameters.Email}"));
             }
 
-            return InvokeExecuteAsync(parameters);
+            return InvokeExecuteAsync(parameters, cancellationToken);
         }
 
-        private static async Task<GetUserByEmailResult> InvokeExecuteAsync(GetUserByEmailParameters parameters)
+        private async Task<GetUserByEmailResult> InvokeExecuteAsync(GetUserByEmailParameters parameters, CancellationToken cancellationToken)
         {
             var data = new User
             {

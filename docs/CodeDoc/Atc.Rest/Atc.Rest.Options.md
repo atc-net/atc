@@ -68,6 +68,7 @@ This can be:
 "TenantId": "common",
 "Audience": "[App Identifier URI of the Azure AD App Registration]"
 "Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
+"ValidAudiences": ["A", "collection", "of", "app", "identifier", "URIs"]
 }
 ```
 

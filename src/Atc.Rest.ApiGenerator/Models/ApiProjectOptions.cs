@@ -1,45 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using Atc.Rest.ApiGenerator.Helpers;
+﻿using System.IO;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Models
 {
-    public class ApiProjectOptions
+    public class ApiProjectOptions : BaseProjectOptions
     {
         public ApiProjectOptions(
-            DirectoryInfo apiProjectSrcGeneratePath,
+            DirectoryInfo projectSrcGeneratePath,
             OpenApiDocument openApiDocument,
             FileInfo openApiDocumentFile,
-            string apiProjectName,
+            string projectPrefixName,
             ApiOptions.ApiOptions apiOptions)
+            : base(
+                projectSrcGeneratePath,
+                openApiDocument,
+                openApiDocumentFile,
+                projectPrefixName,
+                "Api.Generated",
+                apiOptions)
         {
-            var executingAssembly = Assembly.GetExecutingAssembly();
-            ToolNameAndProjectVersion = $"ApiGenerator {executingAssembly.GetName().Version}";
-            ApiOptions = apiOptions;
-            PathForSrcGenerate = apiProjectSrcGeneratePath ?? throw new ArgumentNullException(nameof(apiProjectSrcGeneratePath));
-            Document = openApiDocument ?? throw new ArgumentNullException(nameof(openApiDocument));
-            DocumentFile = openApiDocumentFile ?? throw new ArgumentNullException(nameof(openApiDocumentFile));
-            ProjectName = apiProjectName ?? throw new ArgumentNullException(nameof(apiProjectName));
-            ApiVersion = GetApiVersion(openApiDocument);
-            ProjectName = ProjectName
-                .Replace(" ", ".", StringComparison.Ordinal)
-                .Replace("-", ".", StringComparison.Ordinal)
-                .Trim();
-            PathForEndpoints = new DirectoryInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, NameConstants.Endpoints));
-            PathForContracts = new DirectoryInfo(Path.Combine(apiProjectSrcGeneratePath.FullName, NameConstants.Contracts));
+            PathForEndpoints = new DirectoryInfo(Path.Combine(PathForSrcGenerate.FullName, NameConstants.Endpoints));
+            PathForContracts = new DirectoryInfo(Path.Combine(PathForSrcGenerate.FullName, NameConstants.Contracts));
             PathForContractsEnumerationTypes = new DirectoryInfo(Path.Combine(PathForContracts.FullName, NameConstants.ContractsEnumerationTypes));
             PathForContractsShared = new DirectoryInfo(Path.Combine(PathForContracts.FullName, NameConstants.ContractsSharedModels));
-            BasePathSegmentNames = OpenApiDocumentHelper.GetBasePathSegmentNames(openApiDocument);
         }
-
-        public string ToolNameAndProjectVersion { get; }
-
-        public ApiOptions.ApiOptions ApiOptions { get; }
-
-        public DirectoryInfo PathForSrcGenerate { get; }
 
         public DirectoryInfo PathForEndpoints { get; }
 
@@ -48,32 +32,5 @@ namespace Atc.Rest.ApiGenerator.Models
         public DirectoryInfo PathForContractsEnumerationTypes { get; }
 
         public DirectoryInfo PathForContractsShared { get; }
-
-        public OpenApiDocument Document { get; }
-
-        public FileInfo DocumentFile { get; }
-
-        public string ProjectName { get; }
-
-        public string ApiVersion { get; }
-
-        public List<string> BasePathSegmentNames { get; }
-
-        private static string GetApiVersion(OpenApiDocument openApiDocument)
-        {
-            if (openApiDocument.Info?.Version != null)
-            {
-                return openApiDocument.Info.Version switch
-                {
-                    "1" => "v1",
-                    "1.0" => "v1",
-                    "v1" => "v1",
-                    "v1.0" => "v1",
-                    _ => openApiDocument.Info.Version.Replace(".", string.Empty, StringComparison.Ordinal)
-                };
-            }
-
-            return "v1";
-        }
     }
 }

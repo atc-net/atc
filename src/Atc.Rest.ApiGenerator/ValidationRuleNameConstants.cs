@@ -35,5 +35,17 @@
         public const string ProjectApiGenerated04 = "CR0804";
         public const string ProjectApiGenerated05 = "CR0805";
         public const string ProjectApiGenerated06 = "CR0806";
+
+        public const string ProjectDomainGenerated01 = "CR0851";
+        public const string ProjectDomainGenerated02 = "CR0852";
+        public const string ProjectDomainGenerated03 = "CR0853";
+        public const string ProjectDomainGenerated04 = "CR0854";
+        public const string ProjectDomainGenerated05 = "CR0855";
+        public const string ProjectDomainGenerated06 = "CR0856";
+        public const string ProjectDomainGenerated07 = "CR0857";
+
+        public const string ProjectHostGenerated01 = "CR0901";
+        public const string ProjectHostGenerated02 = "CR0902";
+        public const string ProjectHostGenerated03 = "CR0903";
     }
 }

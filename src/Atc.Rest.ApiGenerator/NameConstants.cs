@@ -13,5 +13,7 @@
         public const string ContractResults = "Results";
         public const string ContractResult = "Result";
         public const string Request = "Request";
+        public const string Handlers = "Handlers";
+        public const string Handler = "Handler";
     }
 }

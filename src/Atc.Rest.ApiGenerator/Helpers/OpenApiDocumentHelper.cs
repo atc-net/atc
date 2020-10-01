@@ -20,19 +20,19 @@ namespace Atc.Rest.ApiGenerator.Helpers
     {
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
         [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
-        public static Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiYamlDoc(string apiDesignPath)
+        public static Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiYamlDoc(string specificationPath)
         {
-            if (apiDesignPath == null)
+            if (specificationPath == null)
             {
-                throw new ArgumentNullException(nameof(apiDesignPath));
+                throw new ArgumentNullException(nameof(specificationPath));
             }
 
             FileInfo? apiYamlFile;
-            if (apiDesignPath.EndsWith(".yaml", StringComparison.Ordinal))
+            if (specificationPath.EndsWith(".yaml", StringComparison.Ordinal))
             {
-                apiYamlFile = apiDesignPath.StartsWith("http", StringComparison.CurrentCultureIgnoreCase)
-                    ? HttpClientHelper.DownloadToTempFile(apiDesignPath)
-                    : new FileInfo(apiDesignPath);
+                apiYamlFile = specificationPath.StartsWith("http", StringComparison.CurrentCultureIgnoreCase)
+                    ? HttpClientHelper.DownloadToTempFile(specificationPath)
+                    : new FileInfo(specificationPath);
 
                 if (apiYamlFile == null || !apiYamlFile.Exists)
                 {
@@ -43,7 +43,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 // Find all yaml files, except files starting with '.' as example '.spectral.yaml'
                 var yamlFiles = Directory
-                    .GetFiles(apiDesignPath, "*.yaml", SearchOption.AllDirectories)
+                    .GetFiles(specificationPath, "*.yaml", SearchOption.AllDirectories)
                     .Where(x => !x.Contains("\\.", StringComparison.Ordinal))
                     .ToArray();
 
@@ -51,7 +51,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 {
                     0 => throw new IOException("Api yaml file don't exist in folder."),
                     1 => new FileInfo(yamlFiles.First()),
-                    _ => CreateCombineApiYamlDocFile(apiDesignPath)
+                    _ => CreateCombineApiYamlDocFile(specificationPath)
                 };
             }
 
@@ -123,15 +123,15 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
         [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
-        private static List<OpenApiYamlDoc> GetAllYamlDocuments(DirectoryInfo apiDesignPath)
+        private static List<OpenApiYamlDoc> GetAllYamlDocuments(DirectoryInfo specificationPath)
         {
-            if (apiDesignPath == null)
+            if (specificationPath == null)
             {
-                throw new ArgumentNullException(nameof(apiDesignPath));
+                throw new ArgumentNullException(nameof(specificationPath));
             }
 
             var result = new List<OpenApiYamlDoc>();
-            var yamlFiles = Directory.GetFiles(apiDesignPath.FullName, "*.yaml", SearchOption.AllDirectories);
+            var yamlFiles = Directory.GetFiles(specificationPath.FullName, "*.yaml", SearchOption.AllDirectories);
 
             foreach (var yamlFile in yamlFiles)
             {
@@ -162,9 +162,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK for now.")]
-        private static FileInfo? CreateCombineApiYamlDocFile(string apiDesignPath)
+        private static FileInfo? CreateCombineApiYamlDocFile(string specificationPath)
         {
-            var openApiYamlDocs = GetAllYamlDocuments(new DirectoryInfo(apiDesignPath));
+            var openApiYamlDocs = GetAllYamlDocuments(new DirectoryInfo(specificationPath));
 
             // TODO: Combine all yaml files into 1
             throw new NotImplementedException();

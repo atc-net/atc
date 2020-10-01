@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts;
@@ -9,7 +8,6 @@ namespace Demo.Domain.Handlers.Orders
 {
     public class GetOrderByIdHandler : IGetOrderByIdHandler
     {
-        [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
         public async Task<GetOrderByIdResult> ExecuteAsync(GetOrderByIdParameters parameters, CancellationToken cancellationToken = default)
         {
             if (parameters == null)
@@ -24,11 +22,11 @@ namespace Demo.Domain.Handlers.Orders
                 "9" => throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id),
                 "10" => throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id),
                 "11" => throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id),
-                _ => await InvokeExecuteAsync(parameters)
+                _ => await InvokeExecuteAsync(parameters, cancellationToken)
             };
         }
 
-        private static async Task<GetOrderByIdResult> InvokeExecuteAsync(GetOrderByIdParameters parameters)
+        private async Task<GetOrderByIdResult> InvokeExecuteAsync(GetOrderByIdParameters parameters, CancellationToken cancellationToken)
         {
             var data = new Order
             {

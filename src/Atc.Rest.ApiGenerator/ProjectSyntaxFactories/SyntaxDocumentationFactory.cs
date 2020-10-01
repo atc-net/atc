@@ -174,6 +174,16 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             return SyntaxFactory.TriviaList(comments);
         }
 
+        public static SyntaxTriviaList CreateForHandlers(OpenApiOperation apiOperation, string area)
+        {
+            if (apiOperation == null)
+            {
+                throw new ArgumentNullException(nameof(apiOperation));
+            }
+
+            return CreateSummary("Handler for operation request.", apiOperation, area);
+        }
+
         public static SyntaxTriviaList CreateForOverrideToString()
         {
             return SyntaxFactory.TriviaList(new List<SyntaxTrivia>
