@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
-using Atc.Rest.ApiGenerator.Models;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.OpenApi.Any;
@@ -15,20 +13,14 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
     internal static class SyntaxPropertyDeclarationFactory
     {
         public static PropertyDeclarationSyntax CreateAuto(
-            SchemaMapLocatedAreaType locationArea,
+            bool isNullable,
             bool isRequired,
-            bool isEnum,
             string dataType,
             string propertyName,
             bool useNullableReferenceTypes,
             IOpenApiAny? initializer)
         {
-            if (useNullableReferenceTypes && DetermineIfNullableReferenceTypeCanBeOmittedOnProperty(locationArea, isRequired, isEnum, dataType))
-            {
-                useNullableReferenceTypes = false;
-            }
-
-            if (useNullableReferenceTypes)
+            if (useNullableReferenceTypes && isNullable && !isRequired)
             {
                 dataType += "?";
             }
@@ -55,7 +47,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
         }
 
         public static PropertyDeclarationSyntax CreateAuto(
-            SchemaMapLocatedAreaType locationArea,
             KeyValuePair<string, OpenApiSchema> schema,
             ISet<string> requiredProperties,
             bool useNullableReferenceTypes)
@@ -65,6 +56,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 throw new ArgumentNullException(nameof(requiredProperties));
             }
 
+            var isNullable = schema.Value.Nullable;
             var isRequired = requiredProperties.Contains(schema.Key);
 
             var propertyDeclaration = schema.Value.Type == OpenApiDataTypeConstants.Array
@@ -72,9 +64,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                     schema.Value.Items.GetDataType(),
                     schema.Key.EnsureFirstCharacterToUpper())
                 : CreateAuto(
-                    locationArea,
+                    isNullable,
                     isRequired,
-                    schema.Value.IsSchemaEnumOrPropertyEnum(),
                     schema.Value.GetDataType(),
                     schema.Key.EnsureFirstCharacterToUpper(),
                     useNullableReferenceTypes,
@@ -111,9 +102,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             }
 
             var propertyDeclaration = CreateAuto(
-                SchemaMapLocatedAreaType.Parameter,
+                parameter.Schema.Nullable,
                 parameter.Required,
-                parameter.Schema.IsSchemaEnumOrPropertyEnum(),
                 parameter.Schema.GetDataType(),
                 parameter.Name.EnsureFirstCharacterToUpper(),
                 useNullableReferenceTypes,
@@ -175,49 +165,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             }
 
             return propertyDeclaration;
-        }
-
-        private static bool DetermineIfNullableReferenceTypeCanBeOmittedOnProperty(
-            SchemaMapLocatedAreaType locationArea,
-            bool isRequired,
-            bool isEnum,
-            string dataType)
-        {
-            if (isRequired && locationArea == SchemaMapLocatedAreaType.Response && dataType == "string")
-            {
-                return true;
-            }
-
-            if (!isRequired && locationArea != SchemaMapLocatedAreaType.RequestBody && dataType == "string")
-            {
-                return false;
-            }
-
-            return locationArea switch
-            {
-                SchemaMapLocatedAreaType.Response => IsSimpleDotNetType(dataType) || isEnum,
-                SchemaMapLocatedAreaType.Parameter => isRequired && !isEnum,
-                SchemaMapLocatedAreaType.RequestBody => isRequired,
-                _ => throw new ArgumentOutOfRangeException(nameof(locationArea), locationArea, null)
-            };
-        }
-
-        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "OK for now.")]
-        private static bool IsSimpleDotNetType(string dataType)
-        {
-            if (dataType == "bool" ||
-                ////dataType == "DateTimeOffset" ||  // TODO: Implement proper handling of nullable in yaml. https://swagger.io/docs/specification/data-models/data-types/#:~:text=OpenAPI%203.0%20does%20not%20have,from%20an%20empty%20string%20%22%22.&text=The%20example%20above%20may%20be,int%3F%20in%20C%23%20and%20java.
-                dataType == "double" ||
-                dataType == "Guid" ||
-                dataType == "int" ||
-                dataType == "long" ||
-                dataType == "string" ||
-                dataType == "Uri")
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Demo.Api.Generated.Contracts.Users
         /// The gender to set on the user.
         /// </summary>
         [FromQuery(Name = "genderParam")]
-        public GenderType? GenderParam { get; set; }
+        public GenderType GenderParam { get; set; }
 
         [FromBody]
         [Required]

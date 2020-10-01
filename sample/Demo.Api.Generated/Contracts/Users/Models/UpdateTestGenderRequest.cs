@@ -16,7 +16,7 @@ namespace Demo.Api.Generated.Contracts.Users
         /// <summary>
         /// GenderType.
         /// </summary>
-        public GenderType? Gender { get; set; }
+        public GenderType Gender { get; set; }
 
         /// <summary>
         /// Converts to string.

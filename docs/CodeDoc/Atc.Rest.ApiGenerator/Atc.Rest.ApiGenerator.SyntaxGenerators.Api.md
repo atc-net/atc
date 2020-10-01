@@ -280,11 +280,6 @@ FocusOnSegmentName
 ```csharp
 IsEnum
 ```
-#### LocationArea
-
-```csharp
-LocationArea
-```
 ### Methods
 
 

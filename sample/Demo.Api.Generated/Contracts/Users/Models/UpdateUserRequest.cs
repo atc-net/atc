@@ -15,9 +15,9 @@ namespace Demo.Api.Generated.Contracts.Users
     /// </summary>
     public class UpdateUserRequest
     {
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public string? LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Undefined description.
@@ -26,12 +26,12 @@ namespace Demo.Api.Generated.Contracts.Users
         /// Email validation being enforced.
         /// </remarks>
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// GenderType.
         /// </summary>
-        public GenderType? Gender { get; set; }
+        public GenderType Gender { get; set; }
 
         /// <summary>
         /// Converts to string.

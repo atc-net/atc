@@ -13,18 +13,18 @@ namespace Demo.Api.Generated.Contracts
     /// </summary>
     public class Address
     {
-        public string? StreetName { get; set; }
+        public string StreetName { get; set; }
 
-        public string? StreetNumber { get; set; }
+        public string StreetNumber { get; set; }
 
-        public string? PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
-        public string? CityName { get; set; }
+        public string CityName { get; set; }
 
         /// <summary>
         /// Country.
         /// </summary>
-        public Country? MyCountry { get; set; }
+        public Country MyCountry { get; set; }
 
         /// <summary>
         /// Converts to string.

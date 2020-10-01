@@ -22,11 +22,11 @@ namespace Demo.Api.Generated.Contracts.Orders
     /// </example>
     public class Order
     {
-        public string? Id { get; set; }
+        public string Id { get; set; }
 
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
-        public DateTimeOffset? MyTime { get; set; }
+        public DateTimeOffset MyTime { get; set; }
 
         /// <summary>
         /// Undefined description.
@@ -35,9 +35,11 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// Email validation being enforced.
         /// </remarks>
         [EmailAddress]
-        public string? MyEmail { get; set; } = "a@a.com";
+        public string MyEmail { get; set; } = "a@a.com";
 
-        public DateTimeOffset? MyDateTime { get; set; }
+        public DateTimeOffset? MyNullableDateTime { get; set; }
+
+        public DateTimeOffset MyDateTime { get; set; }
 
         public double MyNumber { get; set; }
 
@@ -64,7 +66,7 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// <remarks>
         /// This string should be base64-encoded.
         /// </remarks>
-        public string? MyByte { get; set; }
+        public string MyByte { get; set; }
 
         /// <summary>
         /// Hallo myStringList desc :-).
@@ -77,14 +79,14 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// <summary>
         /// Address.
         /// </summary>
-        public Address? DeliveryAddress { get; set; }
+        public Address DeliveryAddress { get; set; }
 
         /// <summary>
         /// Converts to string.
         /// </summary>
         public override string ToString()
         {
-            return $"{nameof(Id)}: {Id}, {nameof(Description)}: {Description}, {nameof(MyTime)}: {MyTime}, {nameof(MyEmail)}: {MyEmail}, {nameof(MyDateTime)}: {MyDateTime}, {nameof(MyNumber)}: {MyNumber}, {nameof(MyInteger)}: {MyInteger}, {nameof(MyBool)}: {MyBool}, {nameof(MyUri)}: {MyUri}, {nameof(MyByte)}: {MyByte}, {nameof(MyStringList)}: {MyStringList}, {nameof(MyLong)}: {MyLong}, {nameof(DeliveryAddress)}: ({DeliveryAddress})";
+            return $"{nameof(Id)}: {Id}, {nameof(Description)}: {Description}, {nameof(MyTime)}: {MyTime}, {nameof(MyEmail)}: {MyEmail}, {nameof(MyNullableDateTime)}: {MyNullableDateTime}, {nameof(MyDateTime)}: {MyDateTime}, {nameof(MyNumber)}: {MyNumber}, {nameof(MyInteger)}: {MyInteger}, {nameof(MyBool)}: {MyBool}, {nameof(MyUri)}: {MyUri}, {nameof(MyByte)}: {MyByte}, {nameof(MyStringList)}: {MyStringList}, {nameof(MyLong)}: {MyLong}, {nameof(DeliveryAddress)}: ({DeliveryAddress})";
         }
     }
 }

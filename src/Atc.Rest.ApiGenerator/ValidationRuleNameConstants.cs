@@ -11,6 +11,7 @@
         public const string Schema05 = "CR0105";
         public const string Schema06 = "CR0106";
         public const string Schema07 = "CR0107";
+        public const string Schema08 = "CR0108";
 
         public const string Operation01 = "CR0201";
         public const string Operation02 = "CR0202";
@@ -26,6 +27,8 @@
         public const string Operation12 = "CR0212";
         public const string Operation13 = "CR0213";
         public const string Operation14 = "CR0214";
+        public const string Operation15 = "CR0215";
+        public const string Operation16 = "CR0216";
 
         public const string Path01 = "CR0301";
 

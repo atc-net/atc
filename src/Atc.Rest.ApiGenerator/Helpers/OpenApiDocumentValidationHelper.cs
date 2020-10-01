@@ -7,6 +7,7 @@ using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable LocalizableElement
 // ReSharper disable ReturnTypeCanBeEnumerable.Local
@@ -80,17 +81,17 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                             foreach (var (key, value) in schema.Properties)
                             {
-                                if (value.Type == OpenApiDataTypeConstants.Array)
+                                if (value.Nullable && schema.Required.Contains(key))
                                 {
-                                    if (!value.IsReferenceTypeDeclared() && !value.IsItemsOfSimpleDataType())
-                                    {
-                                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema05, $"Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported."));
-                                    }
+                                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema08, $"Nullable property '{key}' must not be present in required property list in type '{schema.Reference.ReferenceV3}'."));
                                 }
-                                else
+
+                                if (value.Type == OpenApiDataTypeConstants.Array && !value.IsReferenceTypeDeclared() && !value.IsItemsOfSimpleDataType())
                                 {
-                                    logItems.AddRange(ValidateSchemaModelPropertyNameCasing(validationOptions, key, schema));
+                                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema05, $"Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported."));
                                 }
+
+                                logItems.AddRange(ValidateSchemaModelPropertyNameCasing(validationOptions, key, schema));
                             }
 
                             logItems.AddRange(ValidateSchemaModelNameCasing(validationOptions, schema));
@@ -248,6 +249,27 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         !value.HasParametersOrRequestBody() && !path.HasParameters())
                     {
                         logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
+                    }
+
+                    foreach (var parameter in value.Parameters)
+                    {
+                        switch (parameter.In)
+                        {
+                            case ParameterLocation.Path:
+                                if (!parameter.Required)
+                                {
+                                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation15, $"Path parameter '{parameter.Name}' for operation '{value.GetOperationName()}' is missing required=true."));
+                                }
+
+                                if (parameter.Schema.Nullable)
+                                {
+                                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation16, $"Path parameter '{parameter.Name}' for operation '{value.GetOperationName()}' must not be nullable."));
+                                }
+
+                                break;
+                            case ParameterLocation.Query:
+                                break;
+                        }
                     }
                 }
             }

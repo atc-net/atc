@@ -23,9 +23,9 @@ namespace Demo.Api.Generated.Contracts.Users
         /// </summary>
         public GenderType Gender { get; set; }
 
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public string? LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Undefined description.
@@ -34,17 +34,17 @@ namespace Demo.Api.Generated.Contracts.Users
         /// Email validation being enforced.
         /// </remarks>
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Address.
         /// </summary>
-        public Address? HomeAddress { get; set; }
+        public Address HomeAddress { get; set; }
 
         /// <summary>
         /// Address.
         /// </summary>
-        public Address? CompanyAddress { get; set; }
+        public Address CompanyAddress { get; set; }
 
         /// <summary>
         /// Converts to string.

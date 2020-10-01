@@ -28,6 +28,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
     {
         public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
         {
+            if (apiProjectOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiProjectOptions));
+            }
+
             if (!Directory.Exists(apiProjectOptions.PathForSrcGenerate.FullName))
             {
                 return LogItemHelper.Create(LogCategoryType.Information, ValidationRuleNameConstants.ProjectApiGenerated01, "Old project don't exist.");
@@ -153,6 +158,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         public static void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
         {
+            if (apiProjectOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiProjectOptions));
+            }
+
             var resourceFolder = new DirectoryInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "Resources"));
             if (!resourceFolder.Exists)
             {
@@ -224,11 +234,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     map.SchemaKey,
                     apiProjectOptions.Document.Components.Schemas.First(x => x.Key.Equals(map.SchemaKey, StringComparison.OrdinalIgnoreCase)).Value,
                     map.SegmentName);
-
-                if (map.LocatedArea == SchemaMapLocatedAreaType.RequestBody)
-                {
-                    generatorModel.LocationArea = SchemaMapLocatedAreaType.RequestBody;
-                }
 
                 generatorModel.GenerateCode();
                 sgContractModels.Add(generatorModel);

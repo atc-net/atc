@@ -51,8 +51,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
         public bool IsEnum { get; private set; }
 
-        public SchemaMapLocatedAreaType LocationArea { get; set; } = SchemaMapLocatedAreaType.Response;
-
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public bool GenerateCode()
         {
@@ -129,7 +127,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         foreach (var property in ApiSchema.Properties)
                         {
                             var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
-                                    LocationArea,
                                     property,
                                     ApiSchema.Required,
                                     ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes)

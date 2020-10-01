@@ -35,6 +35,8 @@
      - string Operation12
      - string Operation13
      - string Operation14
+     - string Operation15
+     - string Operation16
      - string Path01
      - string ProjectApiGenerated01
      - string ProjectApiGenerated02
@@ -59,6 +61,7 @@
      - string Schema05
      - string Schema06
      - string Schema07
+     - string Schema08
 
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
@@ -248,7 +251,6 @@
      - Code
      - FocusOnSegmentName
      - IsEnum
-     - LocationArea
   -  Methods
      - GenerateCode()
      - ToCodeAsString()

@@ -46,12 +46,13 @@ paths:
           description: The id of the order to retrieve
           schema:
             type: string
-        - schema:
+        - name: myEmail
+          in: query
+          description: The email for filter orders to retrieve
+          schema:
             type: string
             format: email
-          in: query
-          name: myEmail
-          description: The email for filter orders to retrieve
+            nullable: true
       responses:
         '200':
           description: Expected response to a valid request
@@ -279,6 +280,7 @@ components:
       required: false
       schema:
         type: string
+        nullable: true
       description: The query string.
     continuationToken:
       in: query
@@ -286,6 +288,7 @@ components:
       required: false
       schema:
         type: string
+        nullable: true
       description: The continuation token.
   schemas:
     Pagination:
@@ -298,21 +301,26 @@ components:
           description: The number of items to request.
         pageIndex:
           type: number
+          nullable: true
           description: The given page index starting with 0.
         queryString:
           type: string
+          nullable: true
           description: The query to filter items by.
         continuationToken:
           type: string
+          nullable: true
           description: Token to indicate next result set.
         count:
           type: number
           description: Items count in result set.
         totalCount:
           type: number
+          nullable: true
           description: Total items count.
         totalPages:
           type: number
+          nullable: true
           description: Total pages.
       required:
         - pageSize
@@ -361,6 +369,10 @@ components:
           type: string
           format: email
           default: a@a.com
+        myNullableDateTime:
+          type: string
+          format: date-time          
+          nullable: true
         myDateTime:
           type: string
           format: date-time
@@ -459,6 +471,7 @@ components:
         myNullableDateTime:
           type: string
           format: date-time
+          nullable: true
         myDateTime:
           type: string
           format: date-time

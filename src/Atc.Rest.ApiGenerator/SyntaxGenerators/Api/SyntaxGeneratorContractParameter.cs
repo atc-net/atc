@@ -97,9 +97,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var requestBodyType = item.Schema.Reference.Id.EnsureFirstCharacterToUpper();
 
                     var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
-                            SchemaMapLocatedAreaType.RequestBody,
-                            true,
                             false,
+                            true,
                             requestBodyType,
                             NameConstants.Request,
                             ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
