@@ -168,7 +168,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName, true))
                 .WithBody(
                     SyntaxFactory.Block(
-                        SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("handler"),
+                        SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("handler", false),
                         CreateCodeBlockReturnStatement(helperMethodName, apiOperation.Value.HasParametersOrRequestBody())));
 
             // Create and add Http-method-attribute

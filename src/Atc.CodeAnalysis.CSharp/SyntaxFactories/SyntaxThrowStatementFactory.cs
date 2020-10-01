@@ -6,23 +6,44 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 {
     public static class SyntaxThrowStatementFactory
     {
-        public static ThrowStatementSyntax CreateNotImplementedException()
+        public static ThrowStatementSyntax CreateNotImplementedException(bool includeSystem = true)
         {
+            if (includeSystem)
+            {
+                return SyntaxFactory.ThrowStatement(
+                    SyntaxObjectCreationExpressionFactory.Create("System", "NotImplementedException")
+                        .WithArgumentList(SyntaxFactory.ArgumentList()));
+            }
+
             return SyntaxFactory.ThrowStatement(
-                SyntaxObjectCreationExpressionFactory.Create("System", "NotImplementedException")
+                SyntaxObjectCreationExpressionFactory.Create("NotImplementedException")
                     .WithArgumentList(SyntaxFactory.ArgumentList()));
         }
 
-        public static ThrowStatementSyntax CreateArgumentNullException(string parameterName)
+        public static ThrowStatementSyntax CreateArgumentNullException(string parameterName, bool includeSystem = true)
         {
+            if (includeSystem)
+            {
+                return SyntaxFactory.ThrowStatement(
+                    SyntaxObjectCreationExpressionFactory.Create("System", nameof(ArgumentNullException))
+                        .WithArgumentList(
+                            SyntaxFactory.ArgumentList(
+                                SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.InvocationExpression(SyntaxFactory.IdentifierName("nameof"))
+                                            .WithArgumentList(
+                                                SyntaxArgumentListFactory.CreateWithOneItem(parameterName)))))));
+            }
+
             return SyntaxFactory.ThrowStatement(
-                SyntaxObjectCreationExpressionFactory.Create("System", nameof(ArgumentNullException))
+                SyntaxObjectCreationExpressionFactory.Create(nameof(ArgumentNullException))
                     .WithArgumentList(
                         SyntaxFactory.ArgumentList(
                             SyntaxFactory.SingletonSeparatedList(
                                 SyntaxFactory.Argument(
                                     SyntaxFactory.InvocationExpression(SyntaxFactory.IdentifierName("nameof"))
-                                        .WithArgumentList(SyntaxArgumentListFactory.CreateWithOneItem(parameterName)))))));
+                                        .WithArgumentList(
+                                            SyntaxArgumentListFactory.CreateWithOneItem(parameterName)))))));
         }
     }
 }

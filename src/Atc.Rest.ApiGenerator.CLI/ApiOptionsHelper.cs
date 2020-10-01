@@ -17,18 +17,18 @@ namespace Atc.Rest.ApiGenerator.CLI
                 throw new ArgumentNullException(nameof(configCmd));
             }
 
-            var cmdOptionSpecificationPath = configCmd
+            var cmdOptionOptionsPath = configCmd
                 .GetOptions()
-                .FirstOrDefault(x => x.LongName!.Equals("specificationPath", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(x => x.LongName!.Equals("optionsPath", StringComparison.OrdinalIgnoreCase));
 
             var apiOptions = new ApiOptions();
 
-            if (cmdOptionSpecificationPath == null || string.IsNullOrEmpty(cmdOptionSpecificationPath.Value()))
+            if (cmdOptionOptionsPath == null || string.IsNullOrEmpty(cmdOptionOptionsPath.Value()))
             {
                 return apiOptions;
             }
 
-            var optionsPath = cmdOptionSpecificationPath.Value()!;
+            var optionsPath = cmdOptionOptionsPath.Value()!;
 
             var fileInfo = optionsPath.EndsWith(".json", StringComparison.Ordinal)
                 ? new FileInfo(optionsPath)

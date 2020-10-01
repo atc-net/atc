@@ -16,9 +16,10 @@ namespace Atc.Rest.ApiGenerator.CLI
 
             var cmdOptionParameter = configCmd
                 .GetOptions()
-                .FirstOrDefault(x =>
-                    x.LongName!.Equals("verboseMode", StringComparison.OrdinalIgnoreCase) ||
-                    x.ShortName!.Equals("v", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(x => x.LongName!.Equals("verboseMode", StringComparison.OrdinalIgnoreCase))
+                ?? configCmd
+                .GetOptions()
+                .FirstOrDefault(x => x.ShortName!.Equals("v", StringComparison.OrdinalIgnoreCase));
 
             if (cmdOptionParameter == null || string.IsNullOrEmpty(cmdOptionParameter.Value()))
             {

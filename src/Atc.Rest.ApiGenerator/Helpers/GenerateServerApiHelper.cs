@@ -596,7 +596,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                             })))
                             .WithBody(
                                 SyntaxFactory.Block(
-                                    SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("items"),
+                                    SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("items", false),
                                     SyntaxFactory.ExpressionStatement(
                                         SyntaxFactory.AssignmentExpression(
                                             SyntaxKind.SimpleAssignmentExpression,
@@ -656,7 +656,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                             })))
                             .WithBody(
                                 SyntaxFactory.Block(
-                                    SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("items"),
+                                    SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("items", false),
                                     SyntaxFactory.ExpressionStatement(
                                         SyntaxFactory.AssignmentExpression(
                                             SyntaxKind.SimpleAssignmentExpression,

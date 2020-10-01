@@ -51,6 +51,7 @@ namespace Atc.Rest.ApiGenerator.CLI
                         {
                             Colorful.Console.WriteLine(message, Color.Tan);
                         }
+
                         break;
                 }
             }
