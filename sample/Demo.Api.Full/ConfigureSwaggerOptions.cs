@@ -34,7 +34,19 @@ namespace Demo.Api.Full
                 return;
             }
 
-            var uri = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/oauth2/v2.0/authorize";
+            var authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}";
+            var authorizationUrl = $"{authority}/oauth2/v2.0/authorize";
+            var tokenUrl = $"{authority}/oauth2/v2.0/token";
+            var authFlow = new OpenApiOAuthFlow
+            {
+                TokenUrl = new Uri(tokenUrl),
+                AuthorizationUrl = new Uri(authorizationUrl),
+                Scopes = new Dictionary<string, string>
+                {
+                    {$"{apiOptions.Authorization.Audience}/.default", "Default"}
+                }
+            };
+
             options.AddSecurityDefinition(
                 SecuritySchemeType.OAuth2.ToString(),
                 new OpenApiSecurityScheme
@@ -42,14 +54,8 @@ namespace Demo.Api.Full
                     Type = SecuritySchemeType.OAuth2,
                     Flows = new OpenApiOAuthFlows
                     {
-                        Implicit = new OpenApiOAuthFlow
-                        {
-                            AuthorizationUrl = new Uri(uri),
-                            Scopes = new Dictionary<string, string>
-                            {
-                                {$"{apiOptions.Authorization.Audience}/.default", "Default"}
-                            }
-                        }
+                        Implicit = authFlow,
+                        AuthorizationCode = authFlow
                     }
                 });
 
@@ -73,6 +79,7 @@ namespace Demo.Api.Full
         public void Configure(SwaggerUIOptions options)
         {
             options.OAuthClientId(apiOptions.Authorization.ClientId);
+            options.OAuthUsePkce();
         }
     }
 }
