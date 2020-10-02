@@ -225,7 +225,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
         {
             if (string.IsNullOrEmpty(apiSchema.Title) &&
                 string.IsNullOrEmpty(apiSchema.Description) &&
-                !ShouldGenerateDefaultSummary(apiSchema))
+                !ShouldGenerateDefaultSummary(apiSchema) &&
+                !apiSchema.OneOf.Any())
             {
                 return SyntaxFactory.TriviaList();
             }
@@ -249,6 +250,20 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             else if (!string.IsNullOrEmpty(apiSchema.Title))
             {
                 comments.Add(CreateComment(apiSchema.Title, true));
+            }
+            else if (apiSchema.OneOf != null &&
+                     apiSchema.OneOf.Count == 1 &&
+                     apiSchema.OneOf.First().Reference != null)
+            {
+                var schema = apiSchema.OneOf.First();
+                if (!string.IsNullOrEmpty(schema.Description))
+                {
+                    comments.Add(CreateComment(schema.Description, true));
+                }
+                else if (!string.IsNullOrEmpty(schema.Title))
+                {
+                    comments.Add(CreateComment(schema.Title, true));
+                }
             }
 
             if (ShouldGenerateDefaultSummary(apiSchema) && comments.Count == 1)
@@ -311,10 +326,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
         {
             var comments = new List<SyntaxTrivia>();
 
-            string? apiParameterDescription = null;
-
             var (key, value) = apiRequestBody.Content.FirstOrDefault(x => x.Key == contentType);
-            apiParameterDescription = key == null
+            var apiParameterDescription = key == null
                 ? string.Empty
                 : value.Schema.Description;
 

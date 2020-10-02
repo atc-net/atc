@@ -402,6 +402,11 @@ string GetModelType(this OpenApiSchema schema)
 ```csharp
 string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
 ```
+#### HasAnyProperties
+
+```csharp
+bool HasAnyProperties(this OpenApiSchema schema)
+```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 
 ```csharp

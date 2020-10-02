@@ -81,6 +81,23 @@ namespace Microsoft.OpenApi.Models
                    schemas.HasFormatTypeOfDateTime();
         }
 
+        public static bool HasAnyProperties(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (schema.OneOf != null &&
+                schema.OneOf.Count == 1 &&
+                schema.OneOf.First().Properties.Count > 0)
+            {
+                return true;
+            }
+
+            return schema.Properties.Count > 0;
+        }
+
         public static bool IsSimpleDataType(this OpenApiSchema schema)
         {
             if (schema == null)
@@ -234,6 +251,10 @@ namespace Microsoft.OpenApi.Models
             if (schema.Reference?.Id != null)
             {
                 dataType = schema.Reference.Id;
+            }
+            else if (schema.OneOf != null && schema.OneOf.Count == 1 && schema.OneOf.First().Reference?.Id != null)
+            {
+                dataType = schema.OneOf.First().Reference.Id;
             }
 
             return dataType == OpenApiDataTypeConstants.String
