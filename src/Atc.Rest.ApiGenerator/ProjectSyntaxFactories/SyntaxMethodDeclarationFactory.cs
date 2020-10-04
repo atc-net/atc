@@ -65,7 +65,9 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 foreach (var schema in apiSchemaProperties)
                 {
                     var name = schema.Key.EnsureFirstCharacterToUpper();
-                    if (schema.Value.Properties.Count == 0)
+                    var hasAnyProperties = schema.Value.HasAnyProperties();
+
+                    if (!hasAnyProperties)
                     {
                         content.Add(SyntaxInterpolatedFactory.CreateNameOf(name));
                         content.Add(SyntaxInterpolatedFactory.StringTextColon());

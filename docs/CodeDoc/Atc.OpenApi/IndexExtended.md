@@ -86,6 +86,7 @@
      - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
      - GetModelType(this OpenApiSchema schema)
      - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
+     - HasAnyProperties(this OpenApiSchema schema)
      - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasDataTypeOfList(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiSchema&gt; schemas)
