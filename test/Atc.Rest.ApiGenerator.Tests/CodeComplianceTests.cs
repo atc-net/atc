@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Atc.Rest.ApiGenerator.Generators;
 using Atc.Rest.ApiGenerator.Helpers;
+using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.SyntaxGenerators.Api;
 using Atc.Rest.ApiGenerator.SyntaxGenerators.Domain;
 using Atc.XUnit;
@@ -20,12 +22,15 @@ namespace Atc.Rest.ApiGenerator.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(GeneratorHelper),
+            typeof(DomainProjectOptions),
+            typeof(HostProjectOptions),
             typeof(GenerateHelper),
-            typeof(GenerateServerApiHelper),
-            typeof(GenerateServerDomainHelper),
-            typeof(GenerateServerHostHelper),
-            typeof(FileHelper),
+            typeof(SolutionAndProjectHelper),
+            typeof(ServerApiGenerator),
+            typeof(ServerDomainGenerator),
+            typeof(ServerHostGenerator),
+            typeof(NugetPackageReferenceHelper),
+            typeof(TextFileHelper),
             typeof(HttpClientHelper),
             typeof(OpenApiDocumentHelper),
             typeof(OpenApiDocumentValidationHelper),

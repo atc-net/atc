@@ -131,10 +131,25 @@ DocumentFile
 ```csharp
 PathForSrcGenerate
 ```
+#### PathForTestGenerate
+
+```csharp
+PathForTestGenerate
+```
 #### ProjectName
 
 ```csharp
 ProjectName
+```
+#### ProjectSrcCsProj
+
+```csharp
+ProjectSrcCsProj
+```
+#### ProjectTestCsProj
+
+```csharp
+ProjectTestCsProj
 ```
 #### ToolNameAndProjectVersion
 
@@ -154,15 +169,33 @@ public class DomainProjectOptions : BaseProjectOptions
 ### Properties
 
 
+#### ApiProjectSrcCsProj
+
+```csharp
+ApiProjectSrcCsProj
+```
 #### ApiProjectSrcPath
 
 ```csharp
 ApiProjectSrcPath
 ```
-#### PathForHandlers
+#### PathForSrcHandlers
 
 ```csharp
-PathForHandlers
+PathForSrcHandlers
+```
+#### PathForTestHandlers
+
+```csharp
+PathForTestHandlers
+```
+### Methods
+
+
+#### SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles
+
+```csharp
+List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
 ```
 
 <br />
@@ -177,15 +210,38 @@ public class HostProjectOptions : BaseProjectOptions
 ### Properties
 
 
+#### ApiProjectSrcCsProj
+
+```csharp
+ApiProjectSrcCsProj
+```
 #### ApiProjectSrcPath
 
 ```csharp
 ApiProjectSrcPath
 ```
+#### DomainProjectSrcCsProj
+
+```csharp
+DomainProjectSrcCsProj
+```
 #### DomainProjectSrcPath
 
 ```csharp
 DomainProjectSrcPath
+```
+#### UseRestExtended
+
+```csharp
+UseRestExtended
+```
+### Methods
+
+
+#### SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles
+
+```csharp
+List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
 ```
 
 <br />

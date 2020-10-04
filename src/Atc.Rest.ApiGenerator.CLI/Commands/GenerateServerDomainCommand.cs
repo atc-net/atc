@@ -37,14 +37,16 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
 
             var projectPrefixName = CommandLineApplicationHelper.GetProjectPrefixName(configCmd);
             var outputPath = CommandLineApplicationHelper.GetOutputPath(configCmd);
+            var outputTestPath = CommandLineApplicationHelper.GetOutputTestPath(configCmd);
             var apiPath = CommandLineApplicationHelper.GetApiPath(configCmd);
 
-            logItems = GeneratorHelper.GenerateServerDomain(
+            logItems.AddRange(GenerateHelper.GenerateServerDomain(
                 projectPrefixName,
                 outputPath,
+                outputTestPath,
                 apiYamlDoc,
                 apiOptions,
-                apiPath);
+                apiPath));
 
             return ConsoleHelper.WriteLogItemsAndExit(logItems, verboseMode, CommandArea);
         }

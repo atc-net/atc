@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
+using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.ProjectSyntaxFactories;
 using Atc.Rest.ApiGenerator.SyntaxFactories;
@@ -17,16 +18,46 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-// ReSharper disable LocalizableElement
-// ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
-// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-// ReSharper disable LoopCanBeConvertedToQuery
-// ReSharper disable UseDeconstruction
-namespace Atc.Rest.ApiGenerator.Helpers
+// ReSharper disable SuggestBaseTypeForParameter
+// ReSharper disable ReturnTypeCanBeEnumerable.Local
+// ReSharper disable UseObjectOrCollectionInitializer
+namespace Atc.Rest.ApiGenerator.Generators
 {
-    public static class GenerateServerApiHelper
+    public class ServerApiGenerator
     {
-        public static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
+        private readonly ApiProjectOptions projectOptions;
+
+        public ServerApiGenerator(ApiProjectOptions projectOptions)
+        {
+            this.projectOptions = projectOptions ?? throw new ArgumentNullException(nameof(projectOptions));
+        }
+
+        public List<LogKeyValueItem> Generate()
+        {
+            var logItems = new List<LogKeyValueItem>();
+
+            logItems.Add(ValidateVersioning(projectOptions));
+            if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
+            {
+                return logItems;
+            }
+
+            logItems.AddRange(ScaffoldSrc(projectOptions));
+            if (projectOptions.PathForTestGenerate != null)
+            {
+                logItems.AddRange(ScaffoldTest(projectOptions));
+            }
+
+            CopyApiSpecification(projectOptions);
+
+            var operationSchemaMappings = OpenApiOperationSchemaMapHelper.CollectMappings(projectOptions.Document);
+            logItems.AddRange(GenerateContracts(projectOptions, operationSchemaMappings));
+            logItems.AddRange(GenerateEndpoints(projectOptions, operationSchemaMappings));
+            logItems.AddRange(PerformCleanup(projectOptions, logItems));
+            return logItems;
+        }
+
+        private static LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
         {
             if (apiProjectOptions == null)
             {
@@ -80,44 +111,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectApiGenerated06, "Existing project did not contain a version.");
         }
 
-        public static void PerformCleanup(DirectoryInfo projectSrcGeneratePath)
-        {
-            if (projectSrcGeneratePath == null)
-            {
-                throw new ArgumentNullException(nameof(projectSrcGeneratePath));
-            }
-
-            if (!projectSrcGeneratePath.Exists)
-            {
-                return;
-            }
-
-            var contractsPath = new DirectoryInfo(Path.Combine(projectSrcGeneratePath.FullName, "Contracts"));
-            if (contractsPath.Exists)
-            {
-                Directory.Delete(contractsPath.FullName, true);
-            }
-
-            var endpointsPath = new DirectoryInfo(Path.Combine(projectSrcGeneratePath.FullName, "Endpoints"));
-            if (endpointsPath.Exists)
-            {
-                Directory.Delete(endpointsPath.FullName, true);
-            }
-
-            var fileResultFactory = new FileInfo(Path.Combine(projectSrcGeneratePath.FullName, "ResultFactory.cs"));
-            if (fileResultFactory.Exists)
-            {
-                fileResultFactory.Delete();
-            }
-
-            var filePagination = new FileInfo(Path.Combine(projectSrcGeneratePath.FullName, $"{Microsoft.OpenApi.Models.NameConstants.Pagination}.cs"));
-            if (filePagination.Exists)
-            {
-                filePagination.Delete();
-            }
-        }
-
-        public static void Scaffold(ApiProjectOptions apiProjectOptions)
+        private static List<LogKeyValueItem> ScaffoldSrc(ApiProjectOptions apiProjectOptions)
         {
             if (apiProjectOptions == null)
             {
@@ -129,34 +123,93 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 Directory.CreateDirectory(apiProjectOptions.PathForSrcGenerate.FullName);
             }
 
-            var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, $"{apiProjectOptions.ProjectName}.csproj"));
-            if (apiProjectOptions.PathForSrcGenerate.Exists && file.Exists)
-            {
-                var element = XElement.Load(file.FullName);
-                var originalNullableValue = GenerateHelper.GetBoolFromNullableString(GenerateHelper.GetNullableValueFromProject(element));
+            var logItems = new List<LogKeyValueItem>();
 
+            if (apiProjectOptions.PathForSrcGenerate.Exists && apiProjectOptions.ProjectSrcCsProj.Exists)
+            {
+                var element = XElement.Load(apiProjectOptions.ProjectSrcCsProj.FullName);
+                var originalNullableValue = SolutionAndProjectHelper.GetBoolFromNullableString(SolutionAndProjectHelper.GetNullableValueFromProject(element));
+
+                bool hasUpdates = false;
                 if (apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes != originalNullableValue)
                 {
-                    var newNullableValue = GenerateHelper.GetNullableStringFromBool(apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes);
-                    GenerateHelper.SetNullableValueForProject(element, newNullableValue);
-                    element.Save(file.FullName);
+                    var newNullableValue = SolutionAndProjectHelper.GetNullableStringFromBool(apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes);
+                    SolutionAndProjectHelper.SetNullableValueForProject(element, newNullableValue);
+                    element.Save(apiProjectOptions.ProjectSrcCsProj.FullName);
+                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileUpdate", "#", $"Update API csproj - Nullable value={newNullableValue}"));
+                    hasUpdates = true;
+                }
+
+                if (!hasUpdates)
+                {
+                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", "No updates for API csproj"));
                 }
             }
             else
             {
-                GenerateHelper.ScaffoldProjFile(
-                    apiProjectOptions.PathForSrcGenerate,
+                logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
+                    apiProjectOptions.ProjectSrcCsProj,
+                    false,
+                    false,
                     apiProjectOptions.ProjectName,
                     apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                    true);
+                    new List<string> { "Microsoft.AspNetCore.App" },
+                    null,
+                    null,
+                    true));
             }
 
             ScaffoldBasicFileApiGenerated(apiProjectOptions);
             ScaffoldBasicFileResultFactory(apiProjectOptions);
             ScaffoldBasicFilePagination(apiProjectOptions);
+
+            return logItems;
         }
 
-        public static void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
+        private static List<LogKeyValueItem> ScaffoldTest(ApiProjectOptions apiProjectOptions)
+        {
+            if (apiProjectOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiProjectOptions));
+            }
+
+            var logItems = new List<LogKeyValueItem>();
+
+            if (apiProjectOptions.PathForTestGenerate != null && apiProjectOptions.ProjectTestCsProj != null)
+            {
+                if (apiProjectOptions.PathForTestGenerate.Exists && apiProjectOptions.ProjectTestCsProj.Exists)
+                {
+                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", "No updates for API test csproj"));
+                }
+                else
+                {
+                    if (!Directory.Exists(apiProjectOptions.PathForTestGenerate.FullName))
+                    {
+                        Directory.CreateDirectory(apiProjectOptions.PathForTestGenerate.FullName);
+                    }
+
+                    var projectReferences = new List<FileInfo>
+                    {
+                        apiProjectOptions.ProjectSrcCsProj
+                    };
+
+                    logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
+                        apiProjectOptions.ProjectTestCsProj,
+                        false,
+                        true,
+                        $"{apiProjectOptions.ProjectName}.Tests",
+                        apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                        null,
+                        NugetPackageReferenceHelper.CreateForTestProject(),
+                        projectReferences,
+                        true));
+                }
+            }
+
+            return logItems;
+        }
+
+        private static void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
         {
             if (apiProjectOptions == null)
             {
@@ -178,7 +231,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             File.Copy(apiProjectOptions.DocumentFile.FullName, resourceFile.FullName);
         }
 
-        public static List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+        private static List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
@@ -263,7 +316,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return logItems;
         }
 
-        public static List<LogKeyValueItem> GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
+        private static List<LogKeyValueItem> GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
         {
             if (apiProjectOptions == null)
             {
@@ -287,6 +340,53 @@ namespace Atc.Rest.ApiGenerator.Helpers
             foreach (var sg in sgEndpoints)
             {
                 logItems.Add(sg.ToFile());
+            }
+
+            return logItems;
+        }
+
+        private static List<LogKeyValueItem> PerformCleanup(ApiProjectOptions apiProjectOptions, List<LogKeyValueItem> orgLogItems)
+        {
+            if (apiProjectOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiProjectOptions));
+            }
+
+            if (orgLogItems == null)
+            {
+                throw new ArgumentNullException(nameof(orgLogItems));
+            }
+
+            var logItems = new List<LogKeyValueItem>();
+
+            if (Directory.Exists(apiProjectOptions.PathForContracts.FullName))
+            {
+                var files = Directory.GetFiles(apiProjectOptions.PathForContracts.FullName, "*.*", SearchOption.AllDirectories);
+                foreach (string file in files)
+                {
+                    if (orgLogItems.FirstOrDefault(x => x.Description == file) != null)
+                    {
+                        continue;
+                    }
+
+                    File.Delete(file);
+                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileDelete", "#", file));
+                }
+            }
+
+            if (Directory.Exists(apiProjectOptions.PathForEndpoints.FullName))
+            {
+                var files = Directory.GetFiles(apiProjectOptions.PathForEndpoints.FullName, "*.*", SearchOption.AllDirectories);
+                foreach (string file in files)
+                {
+                    if (orgLogItems.FirstOrDefault(x => x.Description == file) != null)
+                    {
+                        continue;
+                    }
+
+                    File.Delete(file);
+                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileDelete", "#", file));
+                }
             }
 
             return logItems;
@@ -493,7 +593,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 .ToFullString();
 
             var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ApiRegistration.cs"));
-            FileHelper.Save(file, codeAsString);
+            TextFileHelper.Save(file, codeAsString);
         }
 
         private static void ScaffoldBasicFileResultFactory(ApiProjectOptions apiProjectOptions)
@@ -532,7 +632,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 .FormatBracketSpacing();
 
             var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, "ResultFactory.cs"));
-            FileHelper.Save(file, codeAsString);
+            TextFileHelper.Save(file, codeAsString);
         }
 
         private static void ScaffoldBasicFilePagination(ApiProjectOptions apiProjectOptions)
@@ -799,7 +899,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 .FormatPublicPrivateLines();
 
             var file = new FileInfo(Path.Combine(apiProjectOptions.PathForSrcGenerate.FullName, $"{Microsoft.OpenApi.Models.NameConstants.Pagination}.cs"));
-            FileHelper.Save(file, codeAsString);
+            TextFileHelper.Save(file, codeAsString);
         }
     }
 }

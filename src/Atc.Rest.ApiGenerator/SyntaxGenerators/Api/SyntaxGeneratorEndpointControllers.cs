@@ -133,8 +133,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         {
             var controllerName = FocusOnSegmentName.EnsureFirstCharacterToUpper() + "Controller";
             var file = Util.GetCsFileNameForEndpoints(ApiProjectOptions.PathForEndpoints, controllerName);
-            FileHelper.Save(file, ToCodeAsString());
-            return new LogKeyValueItem(LogCategoryType.Debug, "SGCController", $"Created file {file}");
+            return TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public void ToFile(FileInfo file)
@@ -144,7 +143,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 throw new ArgumentNullException(nameof(file));
             }
 
-            FileHelper.Save(file, ToCodeAsString());
+            TextFileHelper.Save(file, ToCodeAsString());
         }
 
         private MethodDeclarationSyntax CreateMembersForEndpoints(

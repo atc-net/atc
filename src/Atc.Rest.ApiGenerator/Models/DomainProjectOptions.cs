@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using Atc.Data.Models;
+using Atc.Rest.ApiGenerator.Helpers;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Models
@@ -8,6 +11,7 @@ namespace Atc.Rest.ApiGenerator.Models
     {
         public DomainProjectOptions(
             DirectoryInfo projectSrcGeneratePath,
+            DirectoryInfo? projectTestGeneratePath,
             OpenApiDocument openApiDocument,
             FileInfo openApiDocumentFile,
             string projectPrefixName,
@@ -15,6 +19,7 @@ namespace Atc.Rest.ApiGenerator.Models
             DirectoryInfo apiProjectSrcPath)
             : base(
                 projectSrcGeneratePath,
+                projectTestGeneratePath,
                 openApiDocument,
                 openApiDocumentFile,
                 projectPrefixName,
@@ -22,20 +27,44 @@ namespace Atc.Rest.ApiGenerator.Models
                 apiOptions)
         {
             ApiProjectSrcPath = apiProjectSrcPath ?? throw new ArgumentNullException(nameof(apiProjectSrcPath));
-            if (apiProjectSrcPath.Exists)
+            PathForSrcHandlers = new DirectoryInfo(Path.Combine(PathForSrcGenerate.FullName, NameConstants.Handlers));
+            if (PathForTestGenerate != null)
             {
-                var files = Directory.GetFiles(apiProjectSrcPath.FullName, "ApiRegistration.cs", SearchOption.AllDirectories);
+                PathForTestHandlers = new DirectoryInfo(Path.Combine(PathForTestGenerate.FullName, NameConstants.Handlers));
+            }
+        }
+
+        public DirectoryInfo ApiProjectSrcPath { get; private set; }
+
+        public FileInfo? ApiProjectSrcCsProj { get; private set; }
+
+        public DirectoryInfo? PathForSrcHandlers { get; }
+
+        public DirectoryInfo? PathForTestHandlers { get; }
+
+        public List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
+        {
+            var logItems = new List<LogKeyValueItem>();
+            if (ApiProjectSrcPath.Exists)
+            {
+                var files = Directory.GetFiles(ApiProjectSrcPath.FullName, "ApiRegistration.cs", SearchOption.AllDirectories);
                 if (files.Length == 1)
                 {
                     ApiProjectSrcPath = new FileInfo(files[0]).Directory!;
+                    files = Directory.GetFiles(ApiProjectSrcPath.FullName, "*.csproj", SearchOption.AllDirectories);
+                    if (files.Length == 1)
+                    {
+                        ApiProjectSrcCsProj = new FileInfo(files[0]);
+                    }
                 }
             }
 
-            PathForHandlers = new DirectoryInfo(Path.Combine(PathForSrcGenerate.FullName, NameConstants.Handlers));
+            if (ApiProjectSrcCsProj == null || !ApiProjectSrcCsProj.Exists)
+            {
+                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectHostGenerated04, "Can't find API .csproj file"));
+            }
+
+            return logItems;
         }
-
-        public DirectoryInfo ApiProjectSrcPath { get; }
-
-        public DirectoryInfo PathForHandlers { get; set; }
     }
 }

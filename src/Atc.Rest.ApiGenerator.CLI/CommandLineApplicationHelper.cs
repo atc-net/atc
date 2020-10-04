@@ -9,24 +9,9 @@ namespace Atc.Rest.ApiGenerator.CLI
     {
         public static bool GetVerboseMode(CommandLineApplication configCmd)
         {
-            if (configCmd == null)
-            {
-                throw new ArgumentNullException(nameof(configCmd));
-            }
-
-            var cmdOptionParameter = configCmd
-                .GetOptions()
-                .FirstOrDefault(x => x.LongName!.Equals("verboseMode", StringComparison.OrdinalIgnoreCase))
-                ?? configCmd
-                .GetOptions()
-                .FirstOrDefault(x => x.ShortName!.Equals("v", StringComparison.OrdinalIgnoreCase));
-
-            if (cmdOptionParameter == null || string.IsNullOrEmpty(cmdOptionParameter.Value()))
-            {
-                return false;
-            }
-
-            return bool.TryParse(cmdOptionParameter.Value()!, out bool result) && result;
+            return TryGetValueForParameter(configCmd, "verboseMode", "v", out string parameterValueResult) &&
+                   bool.TryParse(parameterValueResult, out bool result) &&
+                   result;
         }
 
         public static string GetSpecificationPath(CommandLineApplication configCmd)
@@ -54,7 +39,34 @@ namespace Atc.Rest.ApiGenerator.CLI
             return new DirectoryInfo(GetValueForParameter(configCmd, "domainPath"));
         }
 
+        public static string GetOutputSlnPath(CommandLineApplication configCmd)
+        {
+            return GetValueForParameter(configCmd, "outputSlnPath");
+        }
+
+        public static DirectoryInfo GetOutputSrcPath(CommandLineApplication configCmd)
+        {
+            return new DirectoryInfo(GetValueForParameter(configCmd, "outputSrcPath"));
+        }
+
+        public static DirectoryInfo? GetOutputTestPath(CommandLineApplication configCmd)
+        {
+            return TryGetValueForParameter(configCmd, "outputTestPath", null, out string value)
+                ? new DirectoryInfo(value)
+                : null;
+        }
+
         private static string GetValueForParameter(CommandLineApplication configCmd, string parameterName, string? shortParameterName = null)
+        {
+            if (TryGetValueForParameter(configCmd, parameterName, shortParameterName, out string value))
+            {
+                return value;
+            }
+
+            throw new ArgumentNullOrDefaultException(parameterName, $"Argument {parameterName} is not specified.");
+        }
+
+        private static bool TryGetValueForParameter(CommandLineApplication configCmd, string parameterName, string? shortParameterName, out string value)
         {
             if (configCmd == null)
             {
@@ -79,10 +91,12 @@ namespace Atc.Rest.ApiGenerator.CLI
 
             if (cmdOptionParameter == null || string.IsNullOrEmpty(cmdOptionParameter.Value()))
             {
-                throw new ArgumentNullOrDefaultException(parameterName, $"Argument {parameterName} is not specified.");
+                value = string.Empty;
+                return false;
             }
 
-            return cmdOptionParameter.Value()!;
+            value = cmdOptionParameter.Value()!;
+            return true;
         }
     }
 }

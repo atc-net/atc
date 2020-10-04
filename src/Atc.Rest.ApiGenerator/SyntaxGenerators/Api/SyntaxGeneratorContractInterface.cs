@@ -99,8 +99,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var interfaceName = "I" + ApiOperation.GetOperationName() + NameConstants.ContractHandler;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractInterfaces, interfaceName);
-            FileHelper.Save(file, ToCodeAsString());
-            return new LogKeyValueItem(LogCategoryType.Debug, "SGCInterface", "#", $"Created file {file}");
+            return TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public void ToFile(FileInfo file)
@@ -110,7 +109,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 throw new ArgumentNullException(nameof(file));
             }
 
-            FileHelper.Save(file, ToCodeAsString());
+            TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public override string ToString()

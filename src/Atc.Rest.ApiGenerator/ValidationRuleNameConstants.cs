@@ -46,9 +46,12 @@
         public const string ProjectDomainGenerated05 = "CR0855";
         public const string ProjectDomainGenerated06 = "CR0856";
         public const string ProjectDomainGenerated07 = "CR0857";
+        public const string ProjectDomainGenerated08 = "CR0858";
 
         public const string ProjectHostGenerated01 = "CR0901";
         public const string ProjectHostGenerated02 = "CR0902";
         public const string ProjectHostGenerated03 = "CR0903";
+        public const string ProjectHostGenerated04 = "CR0903";
+        public const string ProjectHostGenerated05 = "CR0903";
     }
 }

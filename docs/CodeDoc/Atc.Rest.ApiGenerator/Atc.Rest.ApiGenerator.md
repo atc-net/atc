@@ -225,6 +225,11 @@ string ProjectDomainGenerated06
 ```csharp
 string ProjectDomainGenerated07
 ```
+#### ProjectDomainGenerated08
+
+```csharp
+string ProjectDomainGenerated08
+```
 #### ProjectHostGenerated01
 
 ```csharp
@@ -239,6 +244,16 @@ string ProjectHostGenerated02
 
 ```csharp
 string ProjectHostGenerated03
+```
+#### ProjectHostGenerated04
+
+```csharp
+string ProjectHostGenerated04
+```
+#### ProjectHostGenerated05
+
+```csharp
+string ProjectHostGenerated05
 ```
 #### Schema01
 

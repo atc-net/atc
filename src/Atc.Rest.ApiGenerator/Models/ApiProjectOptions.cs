@@ -7,12 +7,14 @@ namespace Atc.Rest.ApiGenerator.Models
     {
         public ApiProjectOptions(
             DirectoryInfo projectSrcGeneratePath,
+            DirectoryInfo? projectTestGeneratePath,
             OpenApiDocument openApiDocument,
             FileInfo openApiDocumentFile,
             string projectPrefixName,
             ApiOptions.ApiOptions apiOptions)
             : base(
                 projectSrcGeneratePath,
+                projectTestGeneratePath,
                 openApiDocument,
                 openApiDocumentFile,
                 projectPrefixName,

@@ -13,19 +13,23 @@
 - [Util](Atc.Rest.ApiGenerator.md#util)
 - [ValidationRuleNameConstants](Atc.Rest.ApiGenerator.md#validationrulenameconstants)
 
+## [Atc.Rest.ApiGenerator.Generators](Atc.Rest.ApiGenerator.Generators.md)
+
+- [ServerApiGenerator](Atc.Rest.ApiGenerator.Generators.md#serverapigenerator)
+- [ServerDomainGenerator](Atc.Rest.ApiGenerator.Generators.md#serverdomaingenerator)
+- [ServerHostGenerator](Atc.Rest.ApiGenerator.Generators.md#serverhostgenerator)
+
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
-- [FileHelper](Atc.Rest.ApiGenerator.Helpers.md#filehelper)
 - [GenerateHelper](Atc.Rest.ApiGenerator.Helpers.md#generatehelper)
-- [GenerateServerApiHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverapihelper)
-- [GenerateServerDomainHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverdomainhelper)
-- [GenerateServerHostHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverhosthelper)
-- [GeneratorHelper](Atc.Rest.ApiGenerator.Helpers.md#generatorhelper)
 - [HttpClientHelper](Atc.Rest.ApiGenerator.Helpers.md#httpclienthelper)
 - [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
+- [NugetPackageReferenceHelper](Atc.Rest.ApiGenerator.Helpers.md#nugetpackagereferencehelper)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
 - [OpenApiOperationSchemaMapHelper](Atc.Rest.ApiGenerator.Helpers.md#openapioperationschemamaphelper)
+- [SolutionAndProjectHelper](Atc.Rest.ApiGenerator.Helpers.md#solutionandprojecthelper)
+- [TextFileHelper](Atc.Rest.ApiGenerator.Helpers.md#textfilehelper)
 - [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)

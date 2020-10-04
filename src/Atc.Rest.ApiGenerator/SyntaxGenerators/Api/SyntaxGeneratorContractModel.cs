@@ -188,8 +188,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 : IsSharedContract
                     ? Util.GetCsFileNameForContractShared(ApiProjectOptions.PathForContractsShared, modelName)
                     : Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractModels, modelName);
-            FileHelper.Save(file, ToCodeAsString());
-            return new LogKeyValueItem(LogCategoryType.Debug, "SGCModel", "#", $"Created file {file}");
+            return TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public void ToFile(FileInfo file)
@@ -199,7 +198,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 throw new ArgumentNullException(nameof(file));
             }
 
-            FileHelper.Save(file, ToCodeAsString());
+            TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public override string ToString()

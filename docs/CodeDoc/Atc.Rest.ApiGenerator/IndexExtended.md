@@ -51,9 +51,12 @@
      - string ProjectDomainGenerated05
      - string ProjectDomainGenerated06
      - string ProjectDomainGenerated07
+     - string ProjectDomainGenerated08
      - string ProjectHostGenerated01
      - string ProjectHostGenerated02
      - string ProjectHostGenerated03
+     - string ProjectHostGenerated04
+     - string ProjectHostGenerated05
      - string Schema01
      - string Schema02
      - string Schema03
@@ -63,46 +66,36 @@
      - string Schema07
      - string Schema08
 
+## [Atc.Rest.ApiGenerator.Generators](Atc.Rest.ApiGenerator.Generators.md)
+
+- [ServerApiGenerator](Atc.Rest.ApiGenerator.Generators.md#serverapigenerator)
+  -  Methods
+     - Generate()
+- [ServerDomainGenerator](Atc.Rest.ApiGenerator.Generators.md#serverdomaingenerator)
+  -  Methods
+     - Generate()
+- [ServerHostGenerator](Atc.Rest.ApiGenerator.Generators.md#serverhostgenerator)
+  -  Methods
+     - Generate()
+
 ## [Atc.Rest.ApiGenerator.Helpers](Atc.Rest.ApiGenerator.Helpers.md)
 
-- [FileHelper](Atc.Rest.ApiGenerator.Helpers.md#filehelper)
-  -  Static Methods
-     - Save(FileInfo fileInfo, string text)
-     - Save(string file, string text)
 - [GenerateHelper](Atc.Rest.ApiGenerator.Helpers.md#generatehelper)
   -  Static Methods
-     - GetBoolFromNullableString(string value)
-     - GetNullableStringFromBool(bool value)
-     - GetNullableValueFromProject(XElement element)
-     - ScaffoldProjFile(DirectoryInfo projectSrcGeneratePath, string projectName, bool useNullableReferenceTypes, bool includeApiSpecification)
-     - SetNullableValueForProject(XElement element, string newNullableValue)
-- [GenerateServerApiHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverapihelper)
-  -  Static Methods
-     - CopyApiSpecification(ApiProjectOptions apiProjectOptions)
-     - GenerateContracts(ApiProjectOptions apiProjectOptions, List&lt;ApiOperationSchemaMap&gt; operationSchemaMappings)
-     - GenerateEndpoints(ApiProjectOptions apiProjectOptions, List&lt;ApiOperationSchemaMap&gt; operationSchemaMappings)
-     - PerformCleanup(DirectoryInfo projectSrcGeneratePath)
-     - Scaffold(ApiProjectOptions apiProjectOptions)
-     - ValidateVersioning(ApiProjectOptions apiProjectOptions)
-- [GenerateServerDomainHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverdomainhelper)
-  -  Static Methods
-     - GenerateHandlers(DomainProjectOptions domainProjectOptions, List&lt;ApiOperationSchemaMap&gt; operationSchemaMappings)
-     - Scaffold(DomainProjectOptions domainProjectOptions)
-     - ValidateVersioning(DomainProjectOptions domainProjectOptions)
-- [GenerateServerHostHelper](Atc.Rest.ApiGenerator.Helpers.md#generateserverhosthelper)
-  -  Static Methods
-     - ValidateVersioning(HostProjectOptions hostProjectOptions)
-- [GeneratorHelper](Atc.Rest.ApiGenerator.Helpers.md#generatorhelper)
-  -  Static Methods
-     - GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions)
-     - GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
-     - GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
+     - GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions)
+     - GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
+     - GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
+     - GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
 - [HttpClientHelper](Atc.Rest.ApiGenerator.Helpers.md#httpclienthelper)
   -  Static Methods
      - DownloadToTempFile(string apiDesignPath)
 - [LogItemHelper](Atc.Rest.ApiGenerator.Helpers.md#logitemhelper)
   -  Static Methods
      - Create(LogCategoryType logCategoryType, string ruleName, string description)
+- [NugetPackageReferenceHelper](Atc.Rest.ApiGenerator.Helpers.md#nugetpackagereferencehelper)
+  -  Static Methods
+     - CreateForHostProject(bool useRestExtended)
+     - CreateForTestProject()
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
   -  Static Methods
      - CombineAndGetApiYamlDoc(string specificationPath)
@@ -115,6 +108,18 @@
   -  Static Methods
      - CollectMappings(OpenApiDocument apiDocument)
      - GetSegmentName(string path)
+- [SolutionAndProjectHelper](Atc.Rest.ApiGenerator.Helpers.md#solutionandprojecthelper)
+  -  Static Methods
+     - GetBoolFromNullableString(string value)
+     - GetNullableStringFromBool(bool value)
+     - GetNullableValueFromProject(XElement element)
+     - ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List&lt;string&gt; frameworkReferences, List&lt;Tuple&lt;string, string&gt;&gt; packageReferences, List&lt;FileInfo&gt; projectReferences, bool includeApiSpecification)
+     - ScaffoldSlnFile(FileInfo slnFile, string projectName, DirectoryInfo apiPath, DirectoryInfo domainPath, DirectoryInfo hostPath, DirectoryInfo apiTestPath = null, DirectoryInfo domainTestPath = null, DirectoryInfo hostTestPath = null)
+     - SetNullableValueForProject(XElement element, string newNullableValue)
+- [TextFileHelper](Atc.Rest.ApiGenerator.Helpers.md#textfilehelper)
+  -  Static Methods
+     - Save(FileInfo fileInfo, string text, bool overrideIfExist = True)
+     - Save(string file, string text, bool overrideIfExist = True)
 - [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
   -  Static Methods
      - ValidateGetOperations(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
@@ -148,16 +153,28 @@
      - Document
      - DocumentFile
      - PathForSrcGenerate
+     - PathForTestGenerate
      - ProjectName
+     - ProjectSrcCsProj
+     - ProjectTestCsProj
      - ToolNameAndProjectVersion
 - [DomainProjectOptions](Atc.Rest.ApiGenerator.Models.md#domainprojectoptions)
   -  Properties
+     - ApiProjectSrcCsProj
      - ApiProjectSrcPath
-     - PathForHandlers
+     - PathForSrcHandlers
+     - PathForTestHandlers
+  -  Methods
+     - SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
 - [HostProjectOptions](Atc.Rest.ApiGenerator.Models.md#hostprojectoptions)
   -  Properties
+     - ApiProjectSrcCsProj
      - ApiProjectSrcPath
+     - DomainProjectSrcCsProj
      - DomainProjectSrcPath
+     - UseRestExtended
+  -  Methods
+     - SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
 - [SchemaMapLocatedAreaType](Atc.Rest.ApiGenerator.Models.md#schemamaplocatedareatype)
 
 ## [Atc.Rest.ApiGenerator.Models.ApiOptions](Atc.Rest.ApiGenerator.Models.ApiOptions.md)
@@ -328,6 +345,11 @@
      - Code
      - DomainProjectOptions
      - FocusOnSegmentName
+     - HandlerTypeName
+     - HasParametersOrRequestBody
+     - InterfaceTypeName
+     - ParameterTypeName
+     - ResultTypeName
   -  Methods
      - GenerateCode()
      - ToCodeAsString()

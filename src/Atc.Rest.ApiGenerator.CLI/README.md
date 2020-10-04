@@ -55,7 +55,7 @@ Options:
   --useAuthorization                       Use authorization
   -v|--verboseMode                         Use verboseMode for more debug/trace information
   --optionsPath                            Path to options json-file.
-  -s|--specificationPath                   Path to Open API specification (directory, file, url)
+  -s|--specificationPath                   Path to Open API specification (directory, file or url)
   -?|-h|--help                             Show help information
 ```
 

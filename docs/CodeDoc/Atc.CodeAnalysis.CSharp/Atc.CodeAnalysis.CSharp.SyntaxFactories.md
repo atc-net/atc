@@ -246,6 +246,11 @@ ClassDeclarationSyntax Create(string classTypeName)
 ```csharp
 ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
 ```
+#### CreateAsPublicStatic
+
+```csharp
+ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
+```
 #### CreateWithInterface
 
 ```csharp

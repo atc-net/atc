@@ -156,8 +156,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var parameterName = ApiOperation.GetOperationName() + NameConstants.ContractParameters;
             var file = Util.GetCsFileNameForContract(ApiProjectOptions.PathForContracts, area, NameConstants.ContractParameters, parameterName);
-            FileHelper.Save(file, ToCodeAsString());
-            return new LogKeyValueItem(LogCategoryType.Debug, "SGCParameter", "#", $"Created file {file}");
+            return TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public void ToFile(FileInfo file)
@@ -167,7 +166,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 throw new ArgumentNullException(nameof(file));
             }
 
-            FileHelper.Save(file, ToCodeAsString());
+            TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public override string ToString()

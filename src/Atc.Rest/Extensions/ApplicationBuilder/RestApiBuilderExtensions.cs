@@ -14,19 +14,19 @@ namespace Microsoft.AspNetCore.Builder
     {
         public static IApplicationBuilder UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-            return app.UseRestApi(env, new RestApiOptions(), _ => { });
+            return app.ConfigureRestApi(env, new RestApiOptions(), _ => { });
         }
 
-        public static IApplicationBuilder UseRestApi(
+        public static IApplicationBuilder ConfigureRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,
             RestApiOptions restApiOptions)
         {
-            return app.UseRestApi(env, restApiOptions, _ => { });
+            return app.ConfigureRestApi(env, restApiOptions, _ => { });
         }
 
         [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
-        public static IApplicationBuilder UseRestApi(
+        public static IApplicationBuilder ConfigureRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,
             RestApiOptions restApiOptions,

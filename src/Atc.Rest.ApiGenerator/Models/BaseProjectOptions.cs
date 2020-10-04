@@ -11,16 +11,32 @@ namespace Atc.Rest.ApiGenerator.Models
     {
         protected BaseProjectOptions(
             DirectoryInfo projectSrcGeneratePath,
+            DirectoryInfo? projectTestGeneratePath,
             OpenApiDocument openApiDocument,
             FileInfo openApiDocumentFile,
             string projectPrefixName,
             string projectSuffixName,
             ApiOptions.ApiOptions apiOptions)
         {
-            PathForSrcGenerate = projectSrcGeneratePath ?? throw new ArgumentNullException(nameof(projectSrcGeneratePath));
+            if (projectSrcGeneratePath == null)
+            {
+                throw new ArgumentNullException(nameof(projectSrcGeneratePath));
+            }
+
+            ProjectName = projectPrefixName ?? throw new ArgumentNullException(nameof(projectPrefixName));
+            PathForSrcGenerate = projectSrcGeneratePath.Name.StartsWith(ProjectName, StringComparison.OrdinalIgnoreCase)
+                ? projectSrcGeneratePath.Parent!
+                : projectSrcGeneratePath;
+
+            if (projectTestGeneratePath != null)
+            {
+                PathForTestGenerate = projectTestGeneratePath.Name.StartsWith(ProjectName, StringComparison.OrdinalIgnoreCase)
+                    ? projectTestGeneratePath.Parent!
+                    : projectTestGeneratePath;
+            }
+
             Document = openApiDocument ?? throw new ArgumentNullException(nameof(openApiDocument));
             DocumentFile = openApiDocumentFile ?? throw new ArgumentNullException(nameof(openApiDocumentFile));
-            ProjectName = projectPrefixName ?? throw new ArgumentNullException(nameof(projectPrefixName));
 
             var executingAssembly = Assembly.GetExecutingAssembly();
             ToolNameAndProjectVersion = $"ApiGenerator {executingAssembly.GetName().Version}";
@@ -32,6 +48,13 @@ namespace Atc.Rest.ApiGenerator.Models
                 .Replace("-", ".", StringComparison.Ordinal)
                 .Trim() + $".{projectSuffixName}";
             PathForSrcGenerate = new DirectoryInfo(Path.Combine(PathForSrcGenerate.FullName, ProjectName));
+            ProjectSrcCsProj = new FileInfo(Path.Combine(PathForSrcGenerate.FullName, $"{ProjectName}.csproj"));
+            if (PathForTestGenerate != null)
+            {
+                PathForTestGenerate = new DirectoryInfo(Path.Combine(PathForTestGenerate.FullName, $"{ProjectName}.Tests"));
+                ProjectTestCsProj = new FileInfo(Path.Combine(PathForTestGenerate.FullName, $"{ProjectName}.Tests.csproj"));
+            }
+
             BasePathSegmentNames = OpenApiDocumentHelper.GetBasePathSegmentNames(openApiDocument);
         }
 
@@ -40,6 +63,12 @@ namespace Atc.Rest.ApiGenerator.Models
         public ApiOptions.ApiOptions ApiOptions { get; }
 
         public DirectoryInfo PathForSrcGenerate { get; }
+
+        public DirectoryInfo? PathForTestGenerate { get; }
+
+        public FileInfo ProjectSrcCsProj { get; }
+
+        public FileInfo? ProjectTestCsProj { get; }
 
         public OpenApiDocument Document { get; }
 
@@ -59,8 +88,10 @@ namespace Atc.Rest.ApiGenerator.Models
                 {
                     "1" => "v1",
                     "1.0" => "v1",
+                    "1.0.0" => "v1",
                     "v1" => "v1",
                     "v1.0" => "v1",
+                    "v1.0.0" => "v1",
                     _ => openApiDocument.Info.Version.Replace(".", string.Empty, StringComparison.Ordinal)
                 };
             }

@@ -41,13 +41,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
 
         public CompilationUnitSyntax? Code { get; private set; }
 
+        public string InterfaceTypeName => "I" + ApiOperation.GetOperationName() + NameConstants.Handler;
+
+        public string ParameterTypeName => ApiOperation.GetOperationName() + NameConstants.ContractParameters;
+
+        public string ResultTypeName => ApiOperation.GetOperationName() + NameConstants.ContractResult;
+
+        public string HandlerTypeName => ApiOperation.GetOperationName() + NameConstants.Handler;
+
+        public bool HasParametersOrRequestBody => ApiOperation.HasParametersOrRequestBody();
+
         public bool GenerateCode()
         {
-            var interfaceTypeName = "I" + ApiOperation.GetOperationName() + NameConstants.Handler;
-            var parameterTypeName = ApiOperation.GetOperationName() + NameConstants.ContractParameters;
-            var resultTypeName = ApiOperation.GetOperationName() + NameConstants.ContractResult;
-            var handlerTypeName = ApiOperation.GetOperationName() + NameConstants.Handler;
-
             // Create compilationUnit
             var compilationUnit = SyntaxFactory.CompilationUnit();
 
@@ -59,11 +64,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                 false);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.CreateWithInterface(handlerTypeName, interfaceTypeName)
+            var classDeclaration = SyntaxClassDeclarationFactory.CreateWithInterface(HandlerTypeName, InterfaceTypeName)
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForHandlers(ApiOperation, FocusOnSegmentName));
 
             // Create members
-            var memberDeclarations = CreateMembers(parameterTypeName, resultTypeName, ApiOperation.HasParametersOrRequestBody());
+            var memberDeclarations = CreateMembers();
 
             // Add members to class
             classDeclaration = memberDeclarations.Aggregate(
@@ -107,14 +112,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var handlerName = ApiOperation.GetOperationName() + NameConstants.Handler;
-            var file = Util.GetCsFileNameForHandler(DomainProjectOptions.PathForHandlers, area, handlerName);
-            if (File.Exists(file))
-            {
-                return new LogKeyValueItem(LogCategoryType.Debug, "SGHandler", "#", $"Ignore existing file {file}");
-            }
-
-            FileHelper.Save(file, ToCodeAsString());
-            return new LogKeyValueItem(LogCategoryType.Debug, "SGHandler", "#", $"Created file {file}");
+            var file = Util.GetCsFileNameForHandler(DomainProjectOptions.PathForSrcHandlers!, area, handlerName);
+            return TextFileHelper.Save(file, ToCodeAsString(), false);
         }
 
         public void ToFile(FileInfo file)
@@ -124,7 +123,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                 throw new ArgumentNullException(nameof(file));
             }
 
-            FileHelper.Save(file, ToCodeAsString());
+            TextFileHelper.Save(file, ToCodeAsString());
         }
 
         public override string ToString()
@@ -132,16 +131,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
             return $"OperationType: {ApiOperationType}, OperationName: {ApiOperation.GetOperationName()}, SegmentName: {FocusOnSegmentName}";
         }
 
-        private List<MemberDeclarationSyntax> CreateMembers(string parameterTypeName, string resultTypeName, bool hasParameters)
+        private List<MemberDeclarationSyntax> CreateMembers()
         {
             var result = new List<MemberDeclarationSyntax>
             {
-                CreateExecuteAsyncMethod(parameterTypeName, resultTypeName, hasParameters)
+                CreateExecuteAsyncMethod(ParameterTypeName, ResultTypeName, HasParametersOrRequestBody)
             };
 
-            if (hasParameters)
+            if (HasParametersOrRequestBody)
             {
-                result.Add(CreateInvokeExecuteAsyncMethod(parameterTypeName, resultTypeName, hasParameters));
+                result.Add(CreateInvokeExecuteAsyncMethod(ParameterTypeName, ResultTypeName, HasParametersOrRequestBody));
             }
 
             return result;

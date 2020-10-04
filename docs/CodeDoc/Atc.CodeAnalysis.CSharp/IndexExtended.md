@@ -64,6 +64,7 @@
   -  Static Methods
      - Create(string classTypeName)
      - CreateAsInternalStatic(string classTypeName)
+     - CreateAsPublicStatic(string classTypeName)
      - CreateWithInterface(string classTypeName, string interfaceTypeName)
      - CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
      - CreateWithSuppressMessageAttributeByCheckId(string classTypeName, int checkId, string justification = )

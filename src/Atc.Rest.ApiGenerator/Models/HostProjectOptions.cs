@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using Atc.Data.Models;
+using Atc.Rest.ApiGenerator.Helpers;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Models
@@ -8,6 +11,7 @@ namespace Atc.Rest.ApiGenerator.Models
     {
         public HostProjectOptions(
             DirectoryInfo projectSrcGeneratePath,
+            DirectoryInfo? projectTestGeneratePath,
             OpenApiDocument openApiDocument,
             FileInfo openApiDocumentFile,
             string projectPrefixName,
@@ -16,6 +20,7 @@ namespace Atc.Rest.ApiGenerator.Models
             DirectoryInfo domainProjectSrcPath)
             : base(
                 projectSrcGeneratePath,
+                projectTestGeneratePath,
                 openApiDocument,
                 openApiDocumentFile,
                 projectPrefixName,
@@ -23,28 +28,61 @@ namespace Atc.Rest.ApiGenerator.Models
                 apiOptions)
         {
             ApiProjectSrcPath = apiProjectSrcPath ?? throw new ArgumentNullException(nameof(projectSrcGeneratePath));
-            if (apiProjectSrcPath.Exists)
+            DomainProjectSrcPath = domainProjectSrcPath ?? throw new ArgumentNullException(nameof(domainProjectSrcPath));
+        }
+
+        public DirectoryInfo ApiProjectSrcPath { get; private set; }
+
+        public FileInfo? ApiProjectSrcCsProj { get; private set; }
+
+        public DirectoryInfo DomainProjectSrcPath { get; private set; }
+
+        public FileInfo? DomainProjectSrcCsProj { get; private set; }
+
+        public bool UseRestExtended { get; set; } = true;
+
+        public List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
+        {
+            var logItems = new List<LogKeyValueItem>();
+            if (ApiProjectSrcPath.Exists)
             {
-                var files = Directory.GetFiles(apiProjectSrcPath.FullName, "ApiRegistration.cs", SearchOption.AllDirectories);
+                var files = Directory.GetFiles(ApiProjectSrcPath.FullName, "ApiRegistration.cs", SearchOption.AllDirectories);
                 if (files.Length == 1)
                 {
                     ApiProjectSrcPath = new FileInfo(files[0]).Directory!;
+                    files = Directory.GetFiles(ApiProjectSrcPath.FullName, "*.csproj", SearchOption.AllDirectories);
+                    if (files.Length == 1)
+                    {
+                        ApiProjectSrcCsProj = new FileInfo(files[0]);
+                    }
                 }
             }
 
-            DomainProjectSrcPath = domainProjectSrcPath ?? throw new ArgumentNullException(nameof(domainProjectSrcPath));
-            if (domainProjectSrcPath.Exists)
+            if (ApiProjectSrcCsProj == null || !ApiProjectSrcCsProj.Exists)
             {
-                var files = Directory.GetFiles(domainProjectSrcPath.FullName, "DomainRegistration.cs", SearchOption.AllDirectories);
+                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectHostGenerated04, "Can't find API .csproj file"));
+            }
+
+            if (DomainProjectSrcPath.Exists)
+            {
+                var files = Directory.GetFiles(DomainProjectSrcPath.FullName, "DomainRegistration.cs", SearchOption.AllDirectories);
                 if (files.Length == 1)
                 {
                     DomainProjectSrcPath = new FileInfo(files[0]).Directory!;
+                    files = Directory.GetFiles(DomainProjectSrcPath.FullName, "*.csproj", SearchOption.AllDirectories);
+                    if (files.Length == 1)
+                    {
+                        DomainProjectSrcCsProj = new FileInfo(files[0]);
+                    }
                 }
             }
+
+            if (DomainProjectSrcCsProj == null || !DomainProjectSrcCsProj.Exists)
+            {
+                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.ProjectHostGenerated05, "Can't find Domain .csproj file"));
+            }
+
+            return logItems;
         }
-
-        public DirectoryInfo ApiProjectSrcPath { get; }
-
-        public DirectoryInfo DomainProjectSrcPath { get; }
     }
 }

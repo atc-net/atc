@@ -1,137 +1,189 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Xml.Linq;
+using Atc.Data.Models;
+using Atc.Rest.ApiGenerator.Generators;
+using Atc.Rest.ApiGenerator.Models;
+using Atc.Rest.ApiGenerator.Models.ApiOptions;
+using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Readers;
 
+// ReSharper disable ReturnTypeCanBeEnumerable.Global
 namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class GenerateHelper
     {
-        public static void ScaffoldProjFile(
-            DirectoryInfo projectSrcGeneratePath,
-            string projectName,
-            bool useNullableReferenceTypes,
-            bool includeApiSpecification)
+        public static List<LogKeyValueItem> GenerateServerApi(
+            string projectPrefixName,
+            DirectoryInfo outputPath,
+            DirectoryInfo? outputTestPath,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            ApiOptions apiOptions)
         {
-            if (projectSrcGeneratePath == null)
+            if (projectPrefixName == null)
             {
-                throw new ArgumentNullException(nameof(projectSrcGeneratePath));
+                throw new ArgumentNullException(nameof(projectPrefixName));
             }
 
-            var sb = new StringBuilder();
-            sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine("     <TargetFramework>netcoreapp3.1</TargetFramework>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            if (useNullableReferenceTypes)
+            if (outputPath == null)
             {
-                sb.AppendLine("     <Nullable>enable</Nullable>");
+                throw new ArgumentNullException(nameof(outputPath));
             }
 
-            sb.AppendLine("     <LangVersion>8.0</LangVersion>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine("     <GenerateDocumentationFile>true</GenerateDocumentationFile>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine($"     <DocumentationFile>bin\\Debug\\netcoreapp3.1\\{projectName}.xml</DocumentationFile>");
-            sb.AppendLine("     <NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
-            sb.AppendLine(" </PropertyGroup>");
-            sb.AppendLine();
-
-            if (includeApiSpecification)
+            if (apiYamlDoc == null)
             {
-                sb.AppendLine(" <ItemGroup>");
-                sb.AppendLine("     <None Remove=\"Resources\\ApiSpecification.yaml\" />");
-                sb.AppendLine("     <EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
-                sb.AppendLine(" </ItemGroup>");
-                sb.AppendLine();
+                throw new ArgumentNullException(nameof(apiYamlDoc));
             }
 
-            sb.AppendLine(" <ItemGroup>");
-            sb.AppendLine("     <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />");
-            sb.AppendLine(" </ItemGroup>");
-            sb.AppendLine();
-            sb.AppendLine("</Project>");
-            var file = new FileInfo(Path.Combine(projectSrcGeneratePath.FullName, $"{projectName}.csproj"));
-            FileHelper.Save(file, sb.ToString());
+            if (apiOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiOptions));
+            }
+
+            var projectOptions = new ApiProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions);
+            var serverApiGenerator = new ServerApiGenerator(projectOptions);
+            return serverApiGenerator.Generate();
         }
 
-        public static string GetNullableValueFromProject(XElement element)
+        public static List<LogKeyValueItem> GenerateServerDomain(
+            string projectPrefixName,
+            DirectoryInfo outputPath,
+            DirectoryInfo? outputTestPath,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            ApiOptions apiOptions,
+            DirectoryInfo apiPath)
         {
-            if (element == null)
+            if (projectPrefixName == null)
             {
-                throw new ArgumentNullException(nameof(element));
+                throw new ArgumentNullException(nameof(projectPrefixName));
             }
 
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
+            if (outputPath == null)
             {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name == "Nullable")
-                    {
-                        return propertyGroupElement.Value;
-                    }
-                }
+                throw new ArgumentNullException(nameof(outputPath));
             }
 
-            return string.Empty;
+            if (apiYamlDoc == null)
+            {
+                throw new ArgumentNullException(nameof(apiYamlDoc));
+            }
+
+            if (apiOptions == null)
+            {
+                throw new ArgumentNullException(nameof(apiOptions));
+            }
+
+            if (apiPath == null)
+            {
+                throw new ArgumentNullException(nameof(apiPath));
+            }
+
+            var domainProjectOptions = new DomainProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions, apiPath);
+            var serverDomainGenerator = new ServerDomainGenerator(domainProjectOptions);
+            return serverDomainGenerator.Generate();
         }
 
-        public static void SetNullableValueForProject(XElement element, string newNullableValue)
+        public static List<LogKeyValueItem> GenerateServerHost(
+            string projectPrefixName,
+            DirectoryInfo outputPath,
+            DirectoryInfo? outputTestPath,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            ApiOptions apiOptions,
+            DirectoryInfo apiPath,
+            DirectoryInfo domainPath)
         {
-            if (element == null)
+            if (projectPrefixName == null)
             {
-                throw new ArgumentNullException(nameof(element));
+                throw new ArgumentNullException(nameof(projectPrefixName));
             }
 
-            var isUpdated = false;
-            var hasLanguageVersion = false;
-
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
+            if (outputPath == null)
             {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name != "Nullable")
-                    {
-                        continue;
-                    }
-
-                    propertyGroupElement.Value = newNullableValue;
-                    isUpdated = true;
-                }
+                throw new ArgumentNullException(nameof(outputPath));
             }
 
-            foreach (var propertyGroup in element.Descendants("PropertyGroup"))
+            if (apiYamlDoc == null)
             {
-                foreach (var propertyGroupElement in propertyGroup.Elements())
-                {
-                    if (propertyGroupElement.Name == "LangVersion")
-                    {
-                        hasLanguageVersion = true;
-                    }
-                }
+                throw new ArgumentNullException(nameof(apiYamlDoc));
             }
 
-            if (isUpdated)
+            if (apiOptions == null)
             {
-                return;
+                throw new ArgumentNullException(nameof(apiOptions));
             }
 
-            var nullabilityRoot = XElement.Parse(hasLanguageVersion
-                ? @"<PropertyGroup><Nullable>enable</Nullable></PropertyGroup>"
-                : @"<PropertyGroup><Nullable>enable</Nullable><LangVersion>8.0</LangVersion></PropertyGroup>");
+            if (apiPath == null)
+            {
+                throw new ArgumentNullException(nameof(apiPath));
+            }
 
-            element.Add(nullabilityRoot);
+            if (domainPath == null)
+            {
+                throw new ArgumentNullException(nameof(domainPath));
+            }
+
+            var hostProjectOptions = new HostProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions, apiPath, domainPath);
+            var serverHostGenerator = new ServerHostGenerator(hostProjectOptions);
+            return serverHostGenerator.Generate();
         }
 
-        public static bool GetBoolFromNullableString(string value) => value == "enable";
+        public static LogKeyValueItem GenerateServerSln(
+            string projectPrefixName,
+            string outputSlnPath,
+            DirectoryInfo outputSrcPath,
+            DirectoryInfo? outputTestPath)
+        {
+            if (projectPrefixName == null)
+            {
+                throw new ArgumentNullException(nameof(projectPrefixName));
+            }
 
-        public static string GetNullableStringFromBool(bool value) => value ? "enable" : "disable";
+            if (outputSlnPath == null)
+            {
+                throw new ArgumentNullException(nameof(outputSlnPath));
+            }
+
+            if (outputSrcPath == null)
+            {
+                throw new ArgumentNullException(nameof(outputSrcPath));
+            }
+
+            var projectName = projectPrefixName
+                .Replace(" ", ".", StringComparison.Ordinal)
+                .Replace("-", ".", StringComparison.Ordinal)
+                .Trim();
+
+            var apiPath = new DirectoryInfo(Path.Combine(outputSrcPath.FullName, $"{projectName}.Api.Generated"));
+            var domainPath = new DirectoryInfo(Path.Combine(outputSrcPath.FullName, $"{projectName}.Domain"));
+            var hostPath = new DirectoryInfo(Path.Combine(outputSrcPath.FullName, $"{projectName}.Api"));
+
+            var slnFile = outputSlnPath.EndsWith(".sln", StringComparison.OrdinalIgnoreCase)
+                ? new FileInfo(outputSlnPath)
+                : new FileInfo(Path.Combine(outputSlnPath, $"{projectName}.sln"));
+
+            if (outputTestPath != null)
+            {
+                var apiTestPath = new DirectoryInfo(Path.Combine(outputTestPath.FullName, $"{projectName}.Api.Generated"));
+                var domainTestPath = new DirectoryInfo(Path.Combine(outputTestPath.FullName, $"{projectName}.Domain"));
+                var hostTestPath = new DirectoryInfo(Path.Combine(outputTestPath.FullName, $"{projectName}.Api"));
+
+                return SolutionAndProjectHelper.ScaffoldSlnFile(
+                    slnFile,
+                    projectName,
+                    apiPath,
+                    domainPath,
+                    hostPath,
+                    apiTestPath,
+                    domainTestPath,
+                    hostTestPath);
+            }
+
+            return SolutionAndProjectHelper.ScaffoldSlnFile(
+                slnFile,
+                projectName,
+                apiPath,
+                domainPath,
+                hostPath);
+        }
     }
 }

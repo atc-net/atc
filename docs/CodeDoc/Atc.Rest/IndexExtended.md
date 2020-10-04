@@ -101,9 +101,9 @@
 
 - [RestApiBuilderExtensions](Microsoft.AspNetCore.Builder.md#restapibuilderextensions)
   -  Static Methods
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
      - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
-     - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions)
-     - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
 
 ## [Microsoft.AspNetCore.Http](Microsoft.AspNetCore.Http.md)
 

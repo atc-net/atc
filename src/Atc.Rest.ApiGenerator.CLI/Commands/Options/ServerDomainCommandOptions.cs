@@ -6,7 +6,14 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands.Options
     public class ServerDomainCommandOptions : BaseGenerateCommandOptions
     {
         [Required]
-        [Option("--apiPath", "Path to api project.", CommandOptionType.SingleValue)]
+        [Option("--outputPath", "Path to generated project (directory)", CommandOptionType.SingleValue, ShortName = "o")]
+        public string? OutputPath { get; set; }
+
+        [Option("--outputTestPath", "Path to generated test project (directory)", CommandOptionType.SingleValue)]
+        public string? OutputTestPath { get; set; }
+
+        [Required]
+        [Option("--apiPath", "Path to api project (directory)", CommandOptionType.SingleValue)]
         public string? ApiPath { get; set; }
     }
 }

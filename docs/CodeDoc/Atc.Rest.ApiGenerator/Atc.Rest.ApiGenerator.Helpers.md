@@ -8,29 +8,6 @@
 <br />
 
 
-## FileHelper
-
-```csharp
-public static class FileHelper
-```
-
-### Static Methods
-
-
-#### Save
-
-```csharp
-void Save(string file, string text)
-```
-#### Save
-
-```csharp
-void Save(FileInfo fileInfo, string text)
-```
-
-<br />
-
-
 ## GenerateHelper
 
 ```csharp
@@ -40,147 +17,25 @@ public static class GenerateHelper
 ### Static Methods
 
 
-#### GetBoolFromNullableString
-
-```csharp
-bool GetBoolFromNullableString(string value)
-```
-#### GetNullableStringFromBool
-
-```csharp
-string GetNullableStringFromBool(bool value)
-```
-#### GetNullableValueFromProject
-
-```csharp
-string GetNullableValueFromProject(XElement element)
-```
-#### ScaffoldProjFile
-
-```csharp
-void ScaffoldProjFile(DirectoryInfo projectSrcGeneratePath, string projectName, bool useNullableReferenceTypes, bool includeApiSpecification)
-```
-#### SetNullableValueForProject
-
-```csharp
-void SetNullableValueForProject(XElement element, string newNullableValue)
-```
-
-<br />
-
-
-## GenerateServerApiHelper
-
-```csharp
-public static class GenerateServerApiHelper
-```
-
-### Static Methods
-
-
-#### CopyApiSpecification
-
-```csharp
-void CopyApiSpecification(ApiProjectOptions apiProjectOptions)
-```
-#### GenerateContracts
-
-```csharp
-List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
-```
-#### GenerateEndpoints
-
-```csharp
-List<LogKeyValueItem> GenerateEndpoints(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
-```
-#### PerformCleanup
-
-```csharp
-void PerformCleanup(DirectoryInfo projectSrcGeneratePath)
-```
-#### Scaffold
-
-```csharp
-void Scaffold(ApiProjectOptions apiProjectOptions)
-```
-#### ValidateVersioning
-
-```csharp
-LogKeyValueItem ValidateVersioning(ApiProjectOptions apiProjectOptions)
-```
-
-<br />
-
-
-## GenerateServerDomainHelper
-
-```csharp
-public static class GenerateServerDomainHelper
-```
-
-### Static Methods
-
-
-#### GenerateHandlers
-
-```csharp
-List<LogKeyValueItem> GenerateHandlers(DomainProjectOptions domainProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)
-```
-#### Scaffold
-
-```csharp
-void Scaffold(DomainProjectOptions domainProjectOptions)
-```
-#### ValidateVersioning
-
-```csharp
-LogKeyValueItem ValidateVersioning(DomainProjectOptions domainProjectOptions)
-```
-
-<br />
-
-
-## GenerateServerHostHelper
-
-```csharp
-public static class GenerateServerHostHelper
-```
-
-### Static Methods
-
-
-#### ValidateVersioning
-
-```csharp
-LogKeyValueItem ValidateVersioning(HostProjectOptions hostProjectOptions)
-```
-
-<br />
-
-
-## GeneratorHelper
-
-```csharp
-public static class GeneratorHelper
-```
-
-### Static Methods
-
-
 #### GenerateServerApi
 
 ```csharp
-List<LogKeyValueItem> GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
+List<LogKeyValueItem> GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
 ```
 #### GenerateServerDomain
 
 ```csharp
-List<LogKeyValueItem> GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
+List<LogKeyValueItem> GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
 ```
 #### GenerateServerHost
 
 ```csharp
-List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
+List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
+```
+#### GenerateServerSln
+
+```csharp
+LogKeyValueItem GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
 ```
 
 <br />
@@ -217,6 +72,29 @@ public static class LogItemHelper
 
 ```csharp
 LogKeyValueItem Create(LogCategoryType logCategoryType, string ruleName, string description)
+```
+
+<br />
+
+
+## NugetPackageReferenceHelper
+
+```csharp
+public static class NugetPackageReferenceHelper
+```
+
+### Static Methods
+
+
+#### CreateForHostProject
+
+```csharp
+List<Tuple<string, string>> CreateForHostProject(bool useRestExtended)
+```
+#### CreateForTestProject
+
+```csharp
+List<Tuple<string, string>> CreateForTestProject()
 ```
 
 <br />
@@ -286,6 +164,72 @@ List<ApiOperationSchemaMap> CollectMappings(OpenApiDocument apiDocument)
 
 ```csharp
 string GetSegmentName(string path)
+```
+
+<br />
+
+
+## SolutionAndProjectHelper
+
+```csharp
+public static class SolutionAndProjectHelper
+```
+
+### Static Methods
+
+
+#### GetBoolFromNullableString
+
+```csharp
+bool GetBoolFromNullableString(string value)
+```
+#### GetNullableStringFromBool
+
+```csharp
+string GetNullableStringFromBool(bool value)
+```
+#### GetNullableValueFromProject
+
+```csharp
+string GetNullableValueFromProject(XElement element)
+```
+#### ScaffoldProjFile
+
+```csharp
+LogKeyValueItem ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List<string> frameworkReferences, List<Tuple<string, string>> packageReferences, List<FileInfo> projectReferences, bool includeApiSpecification)
+```
+#### ScaffoldSlnFile
+
+```csharp
+LogKeyValueItem ScaffoldSlnFile(FileInfo slnFile, string projectName, DirectoryInfo apiPath, DirectoryInfo domainPath, DirectoryInfo hostPath, DirectoryInfo apiTestPath = null, DirectoryInfo domainTestPath = null, DirectoryInfo hostTestPath = null)
+```
+#### SetNullableValueForProject
+
+```csharp
+void SetNullableValueForProject(XElement element, string newNullableValue)
+```
+
+<br />
+
+
+## TextFileHelper
+
+```csharp
+public static class TextFileHelper
+```
+
+### Static Methods
+
+
+#### Save
+
+```csharp
+LogKeyValueItem Save(string file, string text, bool overrideIfExist = True)
+```
+#### Save
+
+```csharp
+LogKeyValueItem Save(FileInfo fileInfo, string text, bool overrideIfExist = True)
 ```
 
 <br />

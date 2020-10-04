@@ -5,9 +5,12 @@ namespace System
 {
     internal static class StringExtensions
     {
-        private const string AutoPropResultPattern = " { get; set; }";
-        private static readonly Regex AutoPropRegex = new Regex(@"\s*\{\s*get;\s*set;\s*}\s");
-        private static readonly Regex AutoPropInitializerRegex = new Regex(@"\s*\{ get; set; }\s*= \s*");
+        private const string AutoPropGetSetResultPattern = " { get; set; }";
+        private const string AutoPropGetResultPattern = " { get; }";
+        private static readonly Regex AutoPropGetSetRegex = new Regex(@"\s*\{\s*get;\s*set;\s*}\s");
+        private static readonly Regex AutoPropGetRegex = new Regex(@"\s*\{\s*get;\s*}\s");
+        private static readonly Regex AutoPropInitializerGetSetRegex = new Regex(@"\s*\{ get; set; }\s*= \s*");
+        private static readonly Regex AutoPropInitializerGetRegex = new Regex(@"\s*\{ get; }\s*= \s*");
         private static readonly Regex AutoPublicLinesRegex = new Regex(@"\s*;\s*public \s*");
         private static readonly Regex AutoPrivateLinesRegex = new Regex(@"\s*;\s*private \s*");
         private static readonly Regex AutoCommentLinesRegex = new Regex(@"\s*;\s*/// \s*");
@@ -21,8 +24,10 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            value = AutoPropRegex.Replace(value, AutoPropResultPattern);
-            value = AutoPropInitializerRegex.Replace(value, $"{AutoPropResultPattern} = ");
+            value = AutoPropGetSetRegex.Replace(value, AutoPropGetSetResultPattern);
+            value = AutoPropGetRegex.Replace(value, AutoPropGetSetResultPattern);
+            value = AutoPropInitializerGetSetRegex.Replace(value, $"{AutoPropGetSetResultPattern} = ");
+            value = AutoPropInitializerGetRegex.Replace(value, $"{AutoPropGetResultPattern} = ");
             value = value.Replace(">();", $">();{Environment.NewLine}", StringComparison.Ordinal);
             return value;
         }

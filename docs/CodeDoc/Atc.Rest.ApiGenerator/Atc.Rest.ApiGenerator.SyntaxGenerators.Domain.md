@@ -73,6 +73,31 @@ DomainProjectOptions
 ```csharp
 FocusOnSegmentName
 ```
+#### HandlerTypeName
+
+```csharp
+HandlerTypeName
+```
+#### HasParametersOrRequestBody
+
+```csharp
+HasParametersOrRequestBody
+```
+#### InterfaceTypeName
+
+```csharp
+InterfaceTypeName
+```
+#### ParameterTypeName
+
+```csharp
+ParameterTypeName
+```
+#### ResultTypeName
+
+```csharp
+ResultTypeName
+```
 ### Methods
 
 

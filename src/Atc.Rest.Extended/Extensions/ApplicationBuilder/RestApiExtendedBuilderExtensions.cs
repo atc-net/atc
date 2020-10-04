@@ -1,9 +1,11 @@
 ﻿using System;
 using Atc.Rest.Extended.Options;
+using Atc.Rest.Options;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 
+// ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Builder
 {
@@ -53,7 +55,8 @@ namespace Microsoft.AspNetCore.Builder
                 IdentityModelEventSource.ShowPII = true;
             }
 
-            app.UseRestApi(env, restApiOptions, setupAction);
+            // Cast to base-restApiOptions to force to use ConfigureRestApi in RestApiBuilderExtensions
+            app.ConfigureRestApi(env, restApiOptions as RestApiOptions, setupAction);
 
             if (restApiOptions.UseOpenApiSpec)
             {
