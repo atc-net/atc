@@ -111,8 +111,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
         public LogKeyValueItem ToFile()
         {
             var area = FocusOnSegmentName.EnsureFirstCharacterToUpper();
-            var handlerName = ApiOperation.GetOperationName() + NameConstants.Handler;
-            var file = Util.GetCsFileNameForHandler(DomainProjectOptions.PathForSrcHandlers!, area, handlerName);
+            var file = Util.GetCsFileNameForHandler(DomainProjectOptions.PathForSrcHandlers!, area, HandlerTypeName);
             return TextFileHelper.Save(file, ToCodeAsString(), false);
         }
 
