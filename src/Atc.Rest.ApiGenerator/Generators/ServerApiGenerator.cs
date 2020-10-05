@@ -175,35 +175,37 @@ namespace Atc.Rest.ApiGenerator.Generators
 
             var logItems = new List<LogKeyValueItem>();
 
-            if (apiProjectOptions.PathForTestGenerate != null && apiProjectOptions.ProjectTestCsProj != null)
+            if (apiProjectOptions.PathForTestGenerate == null || apiProjectOptions.ProjectTestCsProj == null)
             {
-                if (apiProjectOptions.PathForTestGenerate.Exists && apiProjectOptions.ProjectTestCsProj.Exists)
-                {
-                    logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", "No updates for API test csproj"));
-                }
-                else
-                {
-                    if (!Directory.Exists(apiProjectOptions.PathForTestGenerate.FullName))
-                    {
-                        Directory.CreateDirectory(apiProjectOptions.PathForTestGenerate.FullName);
-                    }
+                return logItems;
+            }
 
-                    var projectReferences = new List<FileInfo>
-                    {
-                        apiProjectOptions.ProjectSrcCsProj
-                    };
-
-                    logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
-                        apiProjectOptions.ProjectTestCsProj,
-                        false,
-                        true,
-                        $"{apiProjectOptions.ProjectName}.Tests",
-                        apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                        null,
-                        NugetPackageReferenceHelper.CreateForTestProject(),
-                        projectReferences,
-                        true));
+            if (apiProjectOptions.PathForTestGenerate.Exists && apiProjectOptions.ProjectTestCsProj.Exists)
+            {
+                logItems.Add(new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", "No updates for API test csproj"));
+            }
+            else
+            {
+                if (!Directory.Exists(apiProjectOptions.PathForTestGenerate.FullName))
+                {
+                    Directory.CreateDirectory(apiProjectOptions.PathForTestGenerate.FullName);
                 }
+
+                var projectReferences = new List<FileInfo>
+                {
+                    apiProjectOptions.ProjectSrcCsProj
+                };
+
+                logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
+                    apiProjectOptions.ProjectTestCsProj,
+                    false,
+                    true,
+                    $"{apiProjectOptions.ProjectName}.Tests",
+                    apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                    null,
+                    NugetPackageReferenceHelper.CreateForTestProject(),
+                    projectReferences,
+                    true));
             }
 
             return logItems;

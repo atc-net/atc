@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Orders;
 
 namespace Demo.Domain.Handlers.Orders
 {
+    [ExcludeFromCodeCoverage]
     public class PatchOrdersIdHandler : IPatchOrdersIdHandler
     {
         public Task<PatchOrdersIdResult> ExecuteAsync(PatchOrdersIdParameters parameters, CancellationToken cancellationToken = default)

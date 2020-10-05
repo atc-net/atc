@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Helpers;
@@ -42,6 +43,7 @@ namespace Atc.Rest.ApiGenerator.Models
 
         public DirectoryInfo? PathForTestHandlers { get; }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
         {
             var logItems = new List<LogKeyValueItem>();

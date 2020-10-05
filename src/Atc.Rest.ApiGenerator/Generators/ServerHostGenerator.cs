@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -114,6 +115,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             return logItems;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<LogKeyValueItem> ScaffoldTest(HostProjectOptions hostProjectOptions)
         {
             if (hostProjectOptions == null)
@@ -123,41 +125,43 @@ namespace Atc.Rest.ApiGenerator.Generators
 
             var logItems = new List<LogKeyValueItem>();
 
-            if (hostProjectOptions.PathForTestGenerate != null && hostProjectOptions.ProjectTestCsProj != null)
+            if (hostProjectOptions.PathForTestGenerate == null || hostProjectOptions.ProjectTestCsProj == null)
             {
-                if (hostProjectOptions.PathForTestGenerate.Exists && hostProjectOptions.ProjectTestCsProj.Exists)
+                return logItems;
+            }
+
+            if (hostProjectOptions.PathForTestGenerate.Exists && hostProjectOptions.ProjectTestCsProj.Exists)
+            {
+                // Update
+            }
+            else
+            {
+                if (!Directory.Exists(hostProjectOptions.PathForTestGenerate.FullName))
                 {
-                    // Update
+                    Directory.CreateDirectory(hostProjectOptions.PathForTestGenerate.FullName);
                 }
-                else
+
+                var projectReferences = new List<FileInfo>();
+                if (hostProjectOptions.ApiProjectSrcCsProj != null)
                 {
-                    if (!Directory.Exists(hostProjectOptions.PathForTestGenerate.FullName))
-                    {
-                        Directory.CreateDirectory(hostProjectOptions.PathForTestGenerate.FullName);
-                    }
-
-                    var projectReferences = new List<FileInfo>();
-                    if (hostProjectOptions.ApiProjectSrcCsProj != null)
-                    {
-                        projectReferences.Add(hostProjectOptions.ApiProjectSrcCsProj);
-                    }
-
-                    if (hostProjectOptions.DomainProjectSrcCsProj != null)
-                    {
-                        projectReferences.Add(hostProjectOptions.DomainProjectSrcCsProj);
-                    }
-
-                    logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
-                        hostProjectOptions.ProjectTestCsProj,
-                        false,
-                        true,
-                        $"{hostProjectOptions.ProjectName}.Tests",
-                        hostProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                        null,
-                        NugetPackageReferenceHelper.CreateForTestProject(),
-                        projectReferences,
-                        true));
+                    projectReferences.Add(hostProjectOptions.ApiProjectSrcCsProj);
                 }
+
+                if (hostProjectOptions.DomainProjectSrcCsProj != null)
+                {
+                    projectReferences.Add(hostProjectOptions.DomainProjectSrcCsProj);
+                }
+
+                logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
+                    hostProjectOptions.ProjectTestCsProj,
+                    false,
+                    true,
+                    $"{hostProjectOptions.ProjectName}.Tests",
+                    hostProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                    null,
+                    NugetPackageReferenceHelper.CreateForTestProject(),
+                    projectReferences,
+                    true));
             }
 
             return logItems;

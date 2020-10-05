@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class SolutionAndProjectHelper
     {
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static LogKeyValueItem ScaffoldProjFile(
             FileInfo projectCsProjFile,
             bool createAsWeb,
@@ -18,7 +20,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             string projectName,
             bool useNullableReferenceTypes,
             List<string>? frameworkReferences,
-            List<Tuple<string, string>>? packageReferences,
+            List<Tuple<string, string, string?>>? packageReferences,
             List<FileInfo>? projectReferences,
             bool includeApiSpecification)
         {
@@ -87,9 +89,23 @@ namespace Atc.Rest.ApiGenerator.Helpers
             if (packageReferences != null && packageReferences.Count > 0)
             {
                 sb.AppendLine(" <ItemGroup>");
-                foreach (var (package, version) in packageReferences.OrderBy(x => x.Item1))
+                foreach (var (package, version, extra) in packageReferences.OrderBy(x => x.Item1))
                 {
-                    sb.AppendLine($"     <PackageReference Include=\"{package}\" Version=\"{version}\" />");
+                    if (extra == null)
+                    {
+                        sb.AppendLine($"     <PackageReference Include=\"{package}\" Version=\"{version}\" />");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"     <PackageReference Include=\"{package}\" Version=\"{version}\">");
+                        var sa = extra.Split('\n');
+                        foreach (var s in sa)
+                        {
+                            sb.AppendLine($"       {s}");
+                        }
+
+                        sb.AppendLine("     </PackageReference>");
+                    }
                 }
 
                 sb.AppendLine(" </ItemGroup>");

@@ -113,7 +113,7 @@
      - GetBoolFromNullableString(string value)
      - GetNullableStringFromBool(bool value)
      - GetNullableValueFromProject(XElement element)
-     - ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List&lt;string&gt; frameworkReferences, List&lt;Tuple&lt;string, string&gt;&gt; packageReferences, List&lt;FileInfo&gt; projectReferences, bool includeApiSpecification)
+     - ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List&lt;string&gt; frameworkReferences, List&lt;Tuple&lt;string, string, string&gt;&gt; packageReferences, List&lt;FileInfo&gt; projectReferences, bool includeApiSpecification)
      - ScaffoldSlnFile(FileInfo slnFile, string projectName, DirectoryInfo apiPath, DirectoryInfo domainPath, DirectoryInfo hostPath, DirectoryInfo apiTestPath = null, DirectoryInfo domainTestPath = null, DirectoryInfo hostTestPath = null)
      - SetNullableValueForProject(XElement element, string newNullableValue)
 - [TextFileHelper](Atc.Rest.ApiGenerator.Helpers.md#textfilehelper)

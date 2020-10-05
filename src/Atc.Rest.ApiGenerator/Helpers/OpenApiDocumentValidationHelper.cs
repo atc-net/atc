@@ -231,6 +231,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return logItems;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<LogKeyValueItem> ValidateOperationsParametersAndResponses(
             ApiOptionsValidation validationOptions,
             Dictionary<string, OpenApiPathItem>.ValueCollection paths)

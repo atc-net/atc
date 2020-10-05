@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts;
@@ -6,6 +7,7 @@ using Demo.Api.Generated.Contracts.Orders;
 
 namespace Demo.Domain.Handlers.Orders
 {
+    [ExcludeFromCodeCoverage]
     public class GetOrderByIdHandler : IGetOrderByIdHandler
     {
         public async Task<GetOrderByIdResult> ExecuteAsync(GetOrderByIdParameters parameters, CancellationToken cancellationToken = default)

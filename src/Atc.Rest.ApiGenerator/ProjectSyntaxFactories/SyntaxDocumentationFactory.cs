@@ -221,6 +221,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             return SyntaxFactory.TriviaList(comments);
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static IEnumerable<SyntaxTrivia> CreateSummary(OpenApiSchema apiSchema)
         {
             if (string.IsNullOrEmpty(apiSchema.Title) &&

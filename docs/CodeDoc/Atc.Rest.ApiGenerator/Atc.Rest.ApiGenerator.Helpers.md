@@ -89,12 +89,12 @@ public static class NugetPackageReferenceHelper
 #### CreateForHostProject
 
 ```csharp
-List<Tuple<string, string>> CreateForHostProject(bool useRestExtended)
+List<Tuple<string, string, string>> CreateForHostProject(bool useRestExtended)
 ```
 #### CreateForTestProject
 
 ```csharp
-List<Tuple<string, string>> CreateForTestProject()
+List<Tuple<string, string, string>> CreateForTestProject()
 ```
 
 <br />
@@ -196,7 +196,7 @@ string GetNullableValueFromProject(XElement element)
 #### ScaffoldProjFile
 
 ```csharp
-LogKeyValueItem ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List<string> frameworkReferences, List<Tuple<string, string>> packageReferences, List<FileInfo> projectReferences, bool includeApiSpecification)
+LogKeyValueItem ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, bool createAsTestProject, string projectName, bool useNullableReferenceTypes, List<string> frameworkReferences, List<Tuple<string, string, string>> packageReferences, List<FileInfo> projectReferences, bool includeApiSpecification)
 ```
 #### ScaffoldSlnFile
 

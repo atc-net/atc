@@ -121,36 +121,39 @@ namespace Atc.Rest.ApiGenerator.Generators
 
             var logItems = new List<LogKeyValueItem>();
 
-            if (domainProjectOptions.PathForTestGenerate != null && domainProjectOptions.ProjectTestCsProj != null)
+            if (domainProjectOptions.PathForTestGenerate == null || domainProjectOptions.ProjectTestCsProj == null)
             {
-                if (domainProjectOptions.PathForTestGenerate.Exists && domainProjectOptions.ProjectTestCsProj.Exists)
-                {
-                    // Update
-                }
-                else
-                {
-                    if (!Directory.Exists(domainProjectOptions.PathForTestGenerate.FullName))
-                    {
-                        Directory.CreateDirectory(domainProjectOptions.PathForTestGenerate.FullName);
-                    }
+                return logItems;
+            }
 
-                    var projectReferences = new List<FileInfo>();
-                    if (domainProjectOptions.ApiProjectSrcCsProj != null)
-                    {
-                        projectReferences.Add(domainProjectOptions.ApiProjectSrcCsProj);
-                    }
-
-                    logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
-                        domainProjectOptions.ProjectTestCsProj,
-                        false,
-                        true,
-                        $"{domainProjectOptions.ProjectName}.Tests",
-                        domainProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                        null,
-                        NugetPackageReferenceHelper.CreateForTestProject(),
-                        projectReferences,
-                        true));
+            if (domainProjectOptions.PathForTestGenerate.Exists && domainProjectOptions.ProjectTestCsProj.Exists)
+            {
+                // Update
+            }
+            else
+            {
+                if (!Directory.Exists(domainProjectOptions.PathForTestGenerate.FullName))
+                {
+                    Directory.CreateDirectory(domainProjectOptions.PathForTestGenerate.FullName);
                 }
+
+                var projectReferences = new List<FileInfo>();
+                if (domainProjectOptions.ApiProjectSrcCsProj != null)
+                {
+                    projectReferences.Add(domainProjectOptions.ApiProjectSrcCsProj);
+                    projectReferences.Add(domainProjectOptions.ProjectSrcCsProj);
+                }
+
+                logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(
+                    domainProjectOptions.ProjectTestCsProj,
+                    false,
+                    true,
+                    $"{domainProjectOptions.ProjectName}.Tests",
+                    domainProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                    null,
+                    NugetPackageReferenceHelper.CreateForTestProject(),
+                    projectReferences,
+                    true));
             }
 
             return logItems;
@@ -199,21 +202,28 @@ namespace Atc.Rest.ApiGenerator.Generators
                 foreach (var sgHandler in sgHandlers)
                 {
                     var area = sgHandler.FocusOnSegmentName.EnsureFirstCharacterToUpper();
-                    var path = Path.Combine(domainProjectOptions.PathForTestHandlers.FullName, area);
-                    if (!Directory.Exists(path))
+                    var pathGenerated = Path.Combine(Path.Combine(domainProjectOptions.PathForTestHandlers.FullName, area), "Generated");
+                    var pathCustom = Path.Combine(domainProjectOptions.PathForTestHandlers.FullName, area);
+
+                    if (!Directory.Exists(pathGenerated))
                     {
-                        Directory.CreateDirectory(path);
+                        Directory.CreateDirectory(pathGenerated);
+                    }
+
+                    if (!Directory.Exists(pathCustom))
+                    {
+                        Directory.CreateDirectory(pathCustom);
                     }
 
                     var nsSrc = $"{domainProjectOptions.ProjectName}.{NameConstants.Handlers}.{area}";
                     var nsTest = $"{domainProjectOptions.ProjectName}.Api.Generated.{NameConstants.Handlers}";
 
-                    var codeForAuto = CreateAutoTestFile(domainProjectOptions, sgHandler, nsSrc, nsTest);
-                    var fileAuto = new FileInfo(Path.Combine(path, $"{sgHandler.HandlerTypeName}Tests.cs"));
-                    logItems.Add(TextFileHelper.Save(fileAuto, codeForAuto));
+                    var codeForGenerated = CreateGeneratedTestFile(domainProjectOptions, sgHandler, nsSrc, nsTest);
+                    var fileGenerated = new FileInfo(Path.Combine(pathGenerated, $"Generated{sgHandler.HandlerTypeName}Tests.cs"));
+                    logItems.Add(TextFileHelper.Save(fileGenerated, codeForGenerated));
 
                     var codeForCustom = CreateCustomTestFile(sgHandler, nsSrc, nsTest);
-                    var fileCustom = new FileInfo(Path.Combine(path, $"{sgHandler.HandlerTypeName}CustomTests.cs"));
+                    var fileCustom = new FileInfo(Path.Combine(pathCustom, $"{sgHandler.HandlerTypeName}Tests.cs"));
                     logItems.Add(TextFileHelper.Save(fileCustom, codeForCustom, false));
                 }
             }
@@ -221,13 +231,13 @@ namespace Atc.Rest.ApiGenerator.Generators
             return logItems;
         }
 
-        private static string CreateAutoTestFile(
+        private static string CreateGeneratedTestFile(
             DomainProjectOptions domainProjectOptions,
             SyntaxGeneratorHandler sgHandler,
             string nsSrc,
             string nsTest)
         {
-            var srcSyntaxNodeRoot = ReadCsFileTo(domainProjectOptions, sgHandler.FocusOnSegmentName, sgHandler);
+            var srcSyntaxNodeRoot = ReadCsFile(domainProjectOptions, sgHandler.FocusOnSegmentName, sgHandler);
             var usedInterfacesInConstructor = GetUsedInterfacesInConstructor(srcSyntaxNodeRoot);
 
             var usingStatements = GetUsedUsingStatements(
@@ -252,7 +262,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             sb.AppendLine("// ReSharper disable once CheckNamespace");
             sb.AppendLine($"namespace {nsTest}.Tests");
             sb.AppendLine("{");
-            sb.AppendLine($"    public partial class {sgHandler.HandlerTypeName}Tests");
+            sb.AppendLine($"    public class Generated{sgHandler.HandlerTypeName}Tests");
             sb.AppendLine("    {");
             AppendInstantiateConstructor(sb, sgHandler, usedInterfacesInConstructor);
             if (sgHandler.HasParametersOrRequestBody)
@@ -346,7 +356,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             sb.AppendLine("// ReSharper disable once CheckNamespace");
             sb.AppendLine($"namespace {nsTest}.Tests");
             sb.AppendLine("{");
-            sb.AppendLine($"    public partial class {sgHandler.HandlerTypeName}Tests");
+            sb.AppendLine($"    public class {sgHandler.HandlerTypeName}Tests");
             sb.AppendLine("    {");
             sb.AppendLine("        [Fact(Skip=\"Change this to a real test\")]");
             sb.AppendLine("        public void Sample()");
@@ -388,7 +398,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             TextFileHelper.Save(file, codeAsString);
         }
 
-        private static SyntaxNode ReadCsFileTo(DomainProjectOptions domainProjectOptions, string area, SyntaxGeneratorHandler sgHandler)
+        private static SyntaxNode ReadCsFile(DomainProjectOptions domainProjectOptions, string area, SyntaxGeneratorHandler sgHandler)
         {
             var csSrcFile = Util.GetCsFileNameForHandler(domainProjectOptions.PathForSrcHandlers!, area, sgHandler.HandlerTypeName);
             var csSrcCode = File.ReadAllText(csSrcFile);
@@ -454,6 +464,12 @@ namespace Atc.Rest.ApiGenerator.Generators
                     .Select(x => x.Identifier.Text)
                     .ToArray();
 
+                var interfaceGenericNames = parameterListSyntax
+                    .DescendantNodes()
+                    .OfType<GenericNameSyntax>()
+                    .Select(x => x.GetText().ToString().Trim())
+                    .ToArray();
+
                 var names = parameterListSyntax
                     .DescendantNodes()
                     .OfType<ParameterSyntax>()
@@ -462,9 +478,23 @@ namespace Atc.Rest.ApiGenerator.Generators
 
                 if (interfaceNames.Length > 0 && interfaceNames.Length == names.Length)
                 {
-                    return interfaceNames
-                        .Select((t, i) => new Tuple<string, string>(t, names[i]))
-                        .ToList();
+                    if (interfaceGenericNames.Length == 0)
+                    {
+                        return interfaceNames
+                            .Select((t, i) => new Tuple<string, string>(t, names[i]))
+                            .ToList();
+                    }
+
+                    var list = new List<Tuple<string, string>>();
+                    for (int i = 0; i < interfaceNames.Length; i++)
+                    {
+                        var interfaceGenericName = interfaceGenericNames.FirstOrDefault(x => x.Contains($"<{interfaceNames[i]}>", StringComparison.Ordinal));
+                        list.Add(string.IsNullOrEmpty(interfaceGenericName)
+                            ? new Tuple<string, string>(interfaceNames[i], names[i])
+                            : new Tuple<string, string>(interfaceGenericName, names[i]));
+                    }
+
+                    return list;
                 }
             }
 
