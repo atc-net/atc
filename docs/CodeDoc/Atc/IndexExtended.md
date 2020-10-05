@@ -503,6 +503,10 @@
      - TryGetAttribute(this Type type)
      - TryGetEnumType(this Type type, out Type enumType)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
+- [VersionExtensions](System.md#versionextensions)
+  -  Static Methods
+     - CompareTo(this Version version, Version otherVersion, int significantParts)
+     - GreaterThan(this Version version, Version otherVersion)
 
 ## [System.Data](System.Data.md)
 

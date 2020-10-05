@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 // ReSharper disable InvertIf
 namespace Atc.Rest.ApiGenerator.Helpers
@@ -8,7 +9,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
     {
         public static List<Tuple<string, string, string?>> CreateForHostProject(bool useRestExtended)
         {
-            const string? atcVersion = "1.0.133";
+            string atcVersion = GetAtcVersion();
 
             var packageReference = new List<Tuple<string, string, string?>>
             {
@@ -45,6 +46,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
             };
 
             return packageReference;
+        }
+
+        private static string GetAtcVersion()
+        {
+            var defaultVersion = new Version(1, 0, 135);
+            var assembly = Assembly.GetEntryAssembly();
+            if (assembly == null)
+            {
+                assembly = Assembly.GetExecutingAssembly();
+            }
+
+            if (assembly.GetName().Version.GreaterThan(defaultVersion))
+            {
+                defaultVersion = assembly.GetName().Version;
+            }
+
+            var atcVersion = $"{defaultVersion.Major}.{defaultVersion.Minor}.{defaultVersion.Build}";
+            return atcVersion;
         }
     }
 }

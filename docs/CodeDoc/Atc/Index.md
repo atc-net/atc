@@ -102,6 +102,7 @@
 - [TimeSpanExtensions](System.md#timespanextensions)
 - [TypeExtensions](System.md#typeextensions)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
+- [VersionExtensions](System.md#versionextensions)
 
 ## [System.Data](System.Data.md)
 
