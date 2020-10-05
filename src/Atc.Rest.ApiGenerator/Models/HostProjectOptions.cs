@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Helpers;
@@ -9,6 +10,7 @@ namespace Atc.Rest.ApiGenerator.Models
 {
     public class HostProjectOptions : BaseProjectOptions
     {
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         public HostProjectOptions(
             DirectoryInfo projectSrcGeneratePath,
             DirectoryInfo? projectTestGeneratePath,
@@ -41,6 +43,7 @@ namespace Atc.Rest.ApiGenerator.Models
 
         public bool UseRestExtended { get; set; } = true;
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
         {
             var logItems = new List<LogKeyValueItem>();

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -10,7 +9,6 @@ using Demo.Api.Generated.Contracts.Orders;
 
 namespace Demo.Domain.Handlers.Orders
 {
-    [ExcludeFromCodeCoverage]
     public class GetOrdersHandler : IGetOrdersHandler
     {
         public Task<GetOrdersResult> ExecuteAsync(GetOrdersParameters parameters, CancellationToken cancellationToken = default)

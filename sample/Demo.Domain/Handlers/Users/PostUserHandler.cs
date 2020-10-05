@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Users;
 
 namespace Demo.Domain.Handlers.Users
 {
-    [ExcludeFromCodeCoverage]
     public class PostUserHandler : IPostUserHandler
     {
         public Task<PostUserResult> ExecuteAsync(PostUserParameters parameters, CancellationToken cancellationToken = default)

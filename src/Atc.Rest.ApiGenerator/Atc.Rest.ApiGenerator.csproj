@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
     <Title>Atc.Rest.ApiGenerator</Title>
     <Authors>Atc-net</Authors>
     <Description>Atc.Rest.ApiGenerator is a WebApi C# code generator using a OpenApi 3.0.x specification YAML file.</Description>

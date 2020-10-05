@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Users;
@@ -7,7 +6,6 @@ using Demo.Api.Generated.Contracts.Users;
 // ReSharper disable ConvertIfStatementToReturnStatement
 namespace Demo.Domain.Handlers.Users
 {
-    [ExcludeFromCodeCoverage]
     public class GetUserByEmailHandler : IGetUserByEmailHandler
     {
         public Task<GetUserByEmailResult> ExecuteAsync(GetUserByEmailParameters parameters, CancellationToken cancellationToken = default)

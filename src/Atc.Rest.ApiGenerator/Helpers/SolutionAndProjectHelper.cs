@@ -12,6 +12,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class SolutionAndProjectHelper
     {
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static LogKeyValueItem ScaffoldProjFile(
             FileInfo projectCsProjFile,
@@ -129,6 +130,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return TextFileHelper.Save(projectCsProjFile, sb.ToString());
         }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         public static LogKeyValueItem ScaffoldSlnFile(
             FileInfo slnFile,
             string projectName,

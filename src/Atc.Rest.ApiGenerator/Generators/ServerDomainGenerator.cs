@@ -219,7 +219,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                     var nsTest = $"{domainProjectOptions.ProjectName}.Api.Generated.{NameConstants.Handlers}";
 
                     var codeForGenerated = CreateGeneratedTestFile(domainProjectOptions, sgHandler, nsSrc, nsTest);
-                    var fileGenerated = new FileInfo(Path.Combine(pathGenerated, $"Generated{sgHandler.HandlerTypeName}Tests.cs"));
+                    var fileGenerated = new FileInfo(Path.Combine(pathGenerated, $"{sgHandler.HandlerTypeName}GeneratedTests.cs"));
                     logItems.Add(TextFileHelper.Save(fileGenerated, codeForGenerated));
 
                     var codeForCustom = CreateCustomTestFile(sgHandler, nsSrc, nsTest);
@@ -262,7 +262,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             sb.AppendLine("// ReSharper disable once CheckNamespace");
             sb.AppendLine($"namespace {nsTest}.Tests");
             sb.AppendLine("{");
-            sb.AppendLine($"    public class Generated{sgHandler.HandlerTypeName}Tests");
+            sb.AppendLine($"    public class {sgHandler.HandlerTypeName}GeneratedTests");
             sb.AppendLine("    {");
             AppendInstantiateConstructor(sb, sgHandler, usedInterfacesInConstructor);
             if (sgHandler.HasParametersOrRequestBody)

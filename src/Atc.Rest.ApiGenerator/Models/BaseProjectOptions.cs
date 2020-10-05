@@ -38,8 +38,13 @@ namespace Atc.Rest.ApiGenerator.Models
             Document = openApiDocument ?? throw new ArgumentNullException(nameof(openApiDocument));
             DocumentFile = openApiDocumentFile ?? throw new ArgumentNullException(nameof(openApiDocumentFile));
 
-            var executingAssembly = Assembly.GetExecutingAssembly();
-            ToolNameAndProjectVersion = $"ApiGenerator {executingAssembly.GetName().Version}";
+            var assembly = Assembly.GetEntryAssembly();
+            if (assembly == null)
+            {
+                assembly = Assembly.GetExecutingAssembly();
+            }
+
+            ToolNameAndProjectVersion = $"ApiGenerator {assembly.GetName().Version}";
             ApiOptions = apiOptions;
 
             ApiVersion = GetApiVersion(openApiDocument);
