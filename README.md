@@ -1,9 +1,16 @@
+### General Project Info
+[![Github top language](https://img.shields.io/github/languages/top/atc-net/atc)](https://github.com/atc-net/atc)
+[![Github stars](https://img.shields.io/github/stars/atc-net/atc?style=flat)](https://github.com/atc-net/atc)
+[![Github forks](https://img.shields.io/github/forks/atc-net/atc?style=flat)](https://github.com/atc-net/atc)
+[![Github size](https://img.shields.io/github/repo-size/atc-net/atc?style=flat)](https://github.com/atc-net/atc)
+[![NuGet Version](https://img.shields.io/nuget/v/atc.svg?style=flat-square)](https://www.nuget.org/profiles/atc-net)
+[![Issues Open](https://img.shields.io/github/issues/atc-net/atc.svg?style=flat-square&logo=github)](https://github.com/atc-net/atc/issues)
+
+### Build Status
 ![.NET Core](https://github.com/atc-net/atc/workflows/.NET%20Core/badge.svg)
 [![Build Status](https://dev.azure.com/atc-net/ATC.NET/_apis/build/status/atc-net.atc?branchName=master)](https://dev.azure.com/atc-net/ATC.NET/_build/latest?definitionId=1&branchName=master)
-[![Issues Open](https://img.shields.io/github/issues/atc-net/atc.svg?style=flat-square&logo=github)](https://github.com/atc-net/atc/issues)
-[![NuGet](https://img.shields.io/nuget/v/atc.svg?style=flat-square)](https://www.nuget.org/profiles/atc-net)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=alert_status)](https://sonarcloud.io/dashboard?id=atc-net_atc)
+### Code Quality
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=atc-net_atc&metric=security_rating)](https://sonarcloud.io/dashboard?id=atc-net_atc)
