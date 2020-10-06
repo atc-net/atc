@@ -30,6 +30,12 @@ steps:
     inputs:
       command: restore
       projects: 'Atc.sln'
+  - task: bleddynrichards.Assembly-Info-Task.Assembly-Info-NetCore.Assembly-Info-NetCore@2
+    displayName: 'Set Assembly Manifest Data'
+    inputs:
+      VersionNumber: '$(build.buildnumber)'
+      FileVersionNumber: '$(build.buildnumber)'
+      InformationalVersion: '$(build.buildnumber)'
   - task: DotNetCoreCLI@2
     displayName: 'Running dotnet build'
     inputs:
