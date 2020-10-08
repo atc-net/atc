@@ -10,7 +10,7 @@ using McMaster.Extensions.CommandLineUtils;
 namespace Atc.Rest.ApiGenerator.CLI.Commands
 {
     [Command("api", Description = "Create API project.")]
-    public class GenerateServerApiCommand : BaseGenerateCommandOptions
+    public class GenerateServerApiCommand : ServerApiCommandOptions
     {
         private const string CommandArea = "Server-API";
 
