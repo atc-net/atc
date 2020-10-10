@@ -62,6 +62,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
             // Create class
             var classDeclaration = SyntaxClassDeclarationFactory.Create(parameterTypeName)
+                .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameters(ApiOperation, FocusOnSegmentName));
 
             // Add properties to the class

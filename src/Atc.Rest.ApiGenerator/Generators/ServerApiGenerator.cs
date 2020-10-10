@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Xml.Linq;
+using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -582,10 +583,14 @@ namespace Atc.Rest.ApiGenerator.Generators
             var @namespace = SyntaxProjectFactory.CreateNamespace(apiProjectOptions);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.Create("ApiRegistration");
+            var classDeclaration = SyntaxClassDeclarationFactory.Create("ApiRegistration")
+                .AddGeneratedCodeAttribute(apiProjectOptions.ToolName, apiProjectOptions.ToolVersion.ToString());
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
+
+            // Add using statement to compilationUnit
+            compilationUnit = compilationUnit.AddUsingStatements(new[] { "System.CodeDom.Compiler" });
 
             // Add namespace to compilationUnit
             compilationUnit = compilationUnit.AddMembers(@namespace);
@@ -607,7 +612,8 @@ namespace Atc.Rest.ApiGenerator.Generators
             var @namespace = SyntaxProjectFactory.CreateNamespace(apiProjectOptions);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.CreateAsInternalStatic("ResultFactory");
+            var classDeclaration = SyntaxClassDeclarationFactory.CreateAsInternalStatic("ResultFactory")
+                .AddGeneratedCodeAttribute(apiProjectOptions.ToolName, apiProjectOptions.ToolVersion.ToString());
 
             // Add using statement to compilationUnit
             compilationUnit = compilationUnit.AddUsingStatements(ProjectScaffoldFactory.CreateUsingListForResultFactory());
@@ -657,6 +663,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             // Create class
             var classDeclaration = SyntaxFactory
                 .ClassDeclaration(Microsoft.OpenApi.Models.NameConstants.Pagination)
+                .AddGeneratedCodeAttribute(apiProjectOptions.ToolName, apiProjectOptions.ToolVersion.ToString())
                 .WithModifiers(SyntaxFactory.TokenList(SyntaxTokenFactory.PublicKeyword()))
                 .WithTypeParameterList(
                     SyntaxFactory.TypeParameterList(

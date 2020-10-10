@@ -32,12 +32,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .Where(x => x.IsInterface)
                 .ToArray();
 
+            var domainTypes = domainAssembly
+                .DefinedTypes
+                .ToArray();
+
             foreach (var apiInterface in apiInterfaces)
             {
-                var domainTypes = domainAssembly
-                    .DefinedTypes
-                    .ToArray();
-
                 foreach (var domainType in domainTypes)
                 {
                     if (domainType

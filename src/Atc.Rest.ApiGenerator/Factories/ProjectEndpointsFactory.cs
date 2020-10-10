@@ -20,6 +20,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             var list = new List<string>
             {
                 "System",
+                "System.CodeDom.Compiler",
                 "System.Threading",
                 "System.Threading.Tasks",
                 $"{apiProjectOptions.ProjectName}.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",

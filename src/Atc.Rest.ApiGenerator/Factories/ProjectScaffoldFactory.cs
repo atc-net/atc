@@ -6,6 +6,7 @@
         {
             return new[]
             {
+                "System.CodeDom.Compiler",
                 "System.Net",
                 "System.Text.Json",
                 "Microsoft.AspNetCore.Mvc",
@@ -17,6 +18,7 @@
             return new[]
             {
                 "System",
+                "System.CodeDom.Compiler",
                 "System.Collections.Generic",
             };
         }

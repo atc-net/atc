@@ -6,6 +6,7 @@
         {
             return new[]
             {
+                "System.CodeDom.Compiler",
                 "System.Threading",
                 "System.Threading.Tasks",
             };

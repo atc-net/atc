@@ -17,6 +17,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             var list = new List<string>
             {
                 "System",
+                "System.CodeDom.Compiler",
                 "System.Diagnostics.CodeAnalysis",
                 "Microsoft.AspNetCore.Mvc",
             };

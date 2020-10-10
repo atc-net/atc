@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -54,6 +55,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
             // Create interface
             var interfaceDeclaration = SyntaxInterfaceDeclarationFactory.Create(interfaceTypeName)
+                .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForInterface(ApiOperation, FocusOnSegmentName));
 
             // Create interface-method

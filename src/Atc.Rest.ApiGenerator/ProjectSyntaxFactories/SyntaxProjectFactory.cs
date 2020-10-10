@@ -16,7 +16,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             if (withAutoGen)
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
-                    baseProjectOptions.ToolNameAndProjectVersion,
+                    baseProjectOptions.ToolNameAndVersion,
                     baseProjectOptions.ProjectName);
             }
 
@@ -39,7 +39,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             if (withAutoGen)
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
-                    baseProjectOptions.ToolNameAndProjectVersion,
+                    baseProjectOptions.ToolNameAndVersion,
                     $"{baseProjectOptions.ProjectName}.{namespacePart}");
             }
 
@@ -67,7 +67,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             if (withAutoGen)
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
-                    baseProjectOptions.ToolNameAndProjectVersion,
+                    baseProjectOptions.ToolNameAndVersion,
                     $"{baseProjectOptions.ProjectName}.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
             }
 

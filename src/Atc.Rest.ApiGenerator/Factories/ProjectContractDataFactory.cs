@@ -25,6 +25,8 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("System");
             }
 
+            list.Add("System.CodeDom.Compiler");
+
             if (apiSchema.Type == OpenApiDataTypeConstants.Array ||
                 schemasToCheck.HasDataTypeFromSystemCollectionGenericNamespace())
             {

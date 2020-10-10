@@ -44,7 +44,8 @@ namespace Atc.Rest.ApiGenerator.Models
                 assembly = Assembly.GetExecutingAssembly();
             }
 
-            ToolNameAndProjectVersion = $"ApiGenerator {assembly.GetName().Version}";
+            ToolName = "ApiGenerator";
+            ToolVersion = assembly.GetName().Version;
             ApiOptions = apiOptions;
 
             ApiVersion = GetApiVersion(openApiDocument);
@@ -63,7 +64,11 @@ namespace Atc.Rest.ApiGenerator.Models
             BasePathSegmentNames = OpenApiDocumentHelper.GetBasePathSegmentNames(openApiDocument);
         }
 
-        public string ToolNameAndProjectVersion { get; }
+        public string ToolName { get; }
+
+        public Version ToolVersion { get; }
+
+        public string ToolNameAndVersion => $"{ToolName} {ToolVersion}";
 
         public ApiOptions.ApiOptions ApiOptions { get; }
 

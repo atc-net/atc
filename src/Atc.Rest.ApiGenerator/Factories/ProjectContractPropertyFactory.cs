@@ -17,6 +17,8 @@ namespace Atc.Rest.ApiGenerator.Factories
                     list.Add("System");
                 }
 
+                list.Add("System.CodeDom.Compiler");
+
                 if (parameters.Any(x => x.Required))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");

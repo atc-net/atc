@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -95,6 +96,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
                 // Create class
                 var classDeclaration = SyntaxClassDeclarationFactory.Create(ApiSchemaKey.EnsureFirstCharacterToUpper())
+                    .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
                     .WithLeadingTrivia(SyntaxDocumentationFactory.Create(ApiSchema));
 
                 // Create class-properties and add to class

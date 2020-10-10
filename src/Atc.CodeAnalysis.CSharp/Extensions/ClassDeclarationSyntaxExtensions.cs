@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Microsoft.CodeAnalysis.CSharp;
@@ -39,6 +40,33 @@ namespace Atc.CodeAnalysis.CSharp
 
             return classDeclaration
                 .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(SuppressMessageAttribute), attributeArgumentList));
+        }
+
+        public static ClassDeclarationSyntax AddGeneratedCodeAttribute(this ClassDeclarationSyntax classDeclaration, string toolName, string version)
+        {
+            if (classDeclaration == null)
+            {
+                throw new ArgumentNullException(nameof(classDeclaration));
+            }
+
+            if (toolName == null)
+            {
+                throw new ArgumentNullException(nameof(toolName));
+            }
+
+            if (version == null)
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
+
+            var attributeArgumentList = SyntaxFactory.AttributeArgumentList(
+                SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(SyntaxFactory.NodeOrTokenList(
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(toolName)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(version)))));
+
+            return classDeclaration
+                .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(GeneratedCodeAttribute), attributeArgumentList));
         }
     }
 }
