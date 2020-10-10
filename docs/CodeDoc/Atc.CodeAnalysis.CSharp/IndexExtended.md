@@ -12,7 +12,11 @@
 - [AtcCodeAnalysisCSharpTypeInitializer](Atc.CodeAnalysis.CSharp.md#atccodeanalysiscsharptypeinitializer)
 - [ClassDeclarationSyntaxExtensions](Atc.CodeAnalysis.CSharp.md#classdeclarationsyntaxextensions)
   -  Static Methods
+     - AddGeneratedCodeAttribute(this ClassDeclarationSyntax classDeclaration, string toolName, string version)
      - AddSuppressMessageAttribute(this ClassDeclarationSyntax classDeclaration, SuppressMessageAttribute suppressMessage)
+- [InterfaceDeclarationSyntaxExtensions](Atc.CodeAnalysis.CSharp.md#interfacedeclarationsyntaxextensions)
+  -  Static Methods
+     - AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
 
 ## [Atc.CodeAnalysis.CSharp.Factories](Atc.CodeAnalysis.CSharp.Factories.md)
 

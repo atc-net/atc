@@ -157,7 +157,9 @@
      - ProjectName
      - ProjectSrcCsProj
      - ProjectTestCsProj
-     - ToolNameAndProjectVersion
+     - ToolName
+     - ToolNameAndVersion
+     - ToolVersion
 - [DomainProjectOptions](Atc.Rest.ApiGenerator.Models.md#domainprojectoptions)
   -  Properties
      - ApiProjectSrcCsProj

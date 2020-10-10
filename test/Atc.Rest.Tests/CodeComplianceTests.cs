@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Reflection;
 using Atc.Rest.Extensions;
 using Atc.XUnit;
@@ -20,6 +21,7 @@ namespace Atc.Rest.Tests
             // TODO: Add UnitTest and remove from this list!!
             typeof(Rest.Extensions.EndpointRouteBuilderExtensions),
             typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
+            typeof(HttpResponseMessageExtensions),
             typeof(Rest.Middleware.KeepAliveMiddleware),
             typeof(Rest.Middleware.RequestCorrelationMiddleware),
             typeof(AllowAnonymousAccessForDevelopmentHandler),

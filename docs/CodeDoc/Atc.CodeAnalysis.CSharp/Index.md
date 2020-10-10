@@ -11,6 +11,7 @@
 
 - [AtcCodeAnalysisCSharpTypeInitializer](Atc.CodeAnalysis.CSharp.md#atccodeanalysiscsharptypeinitializer)
 - [ClassDeclarationSyntaxExtensions](Atc.CodeAnalysis.CSharp.md#classdeclarationsyntaxextensions)
+- [InterfaceDeclarationSyntaxExtensions](Atc.CodeAnalysis.CSharp.md#interfacedeclarationsyntaxextensions)
 
 ## [Atc.CodeAnalysis.CSharp.Factories](Atc.CodeAnalysis.CSharp.Factories.md)
 

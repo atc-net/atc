@@ -161,6 +161,12 @@
   -  Static Methods
      - GetApiName(this Type type, bool removeLastVerb = False)
 
+## [System.Net.Http](System.Net.Http.md)
+
+- [HttpResponseMessageExtensions](System.Net.Http.md#httpresponsemessageextensions)
+  -  Static Methods
+     - DeserializeAsync(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions jsonSerializerOptions = null)
+
 ## [System.Reflection](System.Reflection.md)
 
 - [AssemblyExtensions](System.Reflection.md#assemblyextensions)

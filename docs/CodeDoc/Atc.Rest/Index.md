@@ -62,6 +62,10 @@
 
 - [TypeExtensions](System.md#typeextensions)
 
+## [System.Net.Http](System.Net.Http.md)
+
+- [HttpResponseMessageExtensions](System.Net.Http.md#httpresponsemessageextensions)
+
 ## [System.Reflection](System.Reflection.md)
 
 - [AssemblyExtensions](System.Reflection.md#assemblyextensions)

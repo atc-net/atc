@@ -151,10 +151,20 @@ ProjectSrcCsProj
 ```csharp
 ProjectTestCsProj
 ```
-#### ToolNameAndProjectVersion
+#### ToolName
 
 ```csharp
-ToolNameAndProjectVersion
+ToolName
+```
+#### ToolNameAndVersion
+
+```csharp
+ToolNameAndVersion
+```
+#### ToolVersion
+
+```csharp
+ToolVersion
 ```
 
 <br />
