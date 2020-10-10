@@ -46,7 +46,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (response.Value.Content.Any(x => x.Value.Schema.Type == OpenApiDataTypeConstants.Array))
+                if (response.Value.Content.Any(x => x.Value.Schema?.Type == OpenApiDataTypeConstants.Array))
                 {
                     return true;
                 }

@@ -7,6 +7,7 @@ using System.Linq;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.Models.ApiOptions;
+using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.Readers;
 
@@ -78,6 +79,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             var logItems = new List<LogKeyValueItem>();
+            if (apiYamlDoc.Item2.SpecificationVersion == OpenApiSpecVersion.OpenApi2_0)
+            {
+                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, "#", "OpenApi 2.x is not supported."));
+                return logItems;
+            }
+
             foreach (var diagnosticError in apiYamlDoc.Item2.Errors)
             {
                 if (diagnosticError.Message.EndsWith("#/components/schemas", StringComparison.Ordinal))

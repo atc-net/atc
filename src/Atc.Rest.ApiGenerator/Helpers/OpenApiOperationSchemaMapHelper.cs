@@ -113,13 +113,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
         }
 
         private static void CollectSchema(
-            OpenApiSchema apiSchema,
+            OpenApiSchema? apiSchema,
             SchemaMapLocatedAreaType locatedArea,
             string apiPath,
             OperationType apiOperationType,
             string? parentApiSchema,
             List<ApiOperationSchemaMap> list)
         {
+            if (apiSchema == null)
+            {
+                return;
+            }
+
             var schemaKey = string.Empty;
             if (apiSchema.Reference?.Id != null)
             {

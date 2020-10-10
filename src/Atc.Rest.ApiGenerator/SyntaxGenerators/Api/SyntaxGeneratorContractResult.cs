@@ -282,6 +282,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                             ? CreateTypeRequestWithSpecifiedResultFactoryMethodWithMessageAllowNull("CreateContentResultWithProblemDetails", className, httpStatusCode, "error")
                             : CreateTypeRequestWithMessageAllowNull(className, httpStatusCode, nameof(ConflictObjectResult), "error");
                         break;
+                    case HttpStatusCode.MethodNotAllowed:
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotImplemented:
                     case HttpStatusCode.BadGateway:
