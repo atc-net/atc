@@ -1,4 +1,6 @@
-﻿// ReSharper disable once CheckNamespace
+﻿using System.Diagnostics.CodeAnalysis;
+
+// ReSharper disable once CheckNamespace
 namespace System
 {
     public static class VersionExtensions
@@ -12,6 +14,7 @@ namespace System
         /// <param name="significantParts">The significant parts.</param>
         /// <returns>-1, 0 or 1.</returns>
         /// <exception cref="ArgumentNullException">version.</exception>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static int CompareTo(this Version version, Version otherVersion, int significantParts)
         {
             if (version == null)
