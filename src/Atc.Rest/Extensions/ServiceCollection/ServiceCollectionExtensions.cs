@@ -9,47 +9,47 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AutoRegistrateServices(
             this IServiceCollection services,
-            Assembly apiAssembly,
-            Assembly domainAssembly)
+            Assembly interfaceAssembly,
+            Assembly implementationAssembly)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
-            if (apiAssembly == null)
+            if (interfaceAssembly == null)
             {
-                throw new ArgumentNullException(nameof(apiAssembly));
+                throw new ArgumentNullException(nameof(interfaceAssembly));
             }
 
-            if (domainAssembly == null)
+            if (implementationAssembly == null)
             {
-                throw new ArgumentNullException(nameof(domainAssembly));
+                throw new ArgumentNullException(nameof(implementationAssembly));
             }
 
-            var apiInterfaces = apiAssembly
+            var implementationInterfaces = interfaceAssembly
                 .DefinedTypes
                 .Where(x => x.IsInterface)
                 .ToArray();
 
-            var domainTypes = domainAssembly
+            var implementationTypes = implementationAssembly
                 .DefinedTypes
                 .ToArray();
 
-            foreach (var apiInterface in apiInterfaces)
+            foreach (var implementationInterface in implementationInterfaces)
             {
-                foreach (var domainType in domainTypes)
+                foreach (var implementationType in implementationTypes)
                 {
-                    if (domainType
+                    if (implementationType
                         .GetInterfaces()
-                        .FirstOrDefault(x => x.FullName == apiInterface.FullName) == null)
+                        .FirstOrDefault(x => x.FullName == implementationInterface.FullName) == null)
                     {
                         continue;
                     }
 
-                    if (!IsImplementationTypeRegistered(services, domainType))
+                    if (!IsImplementationTypeRegistered(services, implementationType))
                     {
-                        services.AddTransient(apiInterface, domainType);
+                        services.AddTransient(implementationInterface, implementationType);
                     }
 
                     break;
