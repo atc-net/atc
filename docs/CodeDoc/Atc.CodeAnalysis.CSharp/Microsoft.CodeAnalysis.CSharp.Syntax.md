@@ -8,6 +8,29 @@
 <br />
 
 
+## ClassDeclarationSyntaxExtensions
+
+```csharp
+public static class ClassDeclarationSyntaxExtensions
+```
+
+### Static Methods
+
+
+#### AddGeneratedCodeAttribute
+
+```csharp
+ClassDeclarationSyntax AddGeneratedCodeAttribute(this ClassDeclarationSyntax classDeclaration, string toolName, string version)
+```
+#### AddSuppressMessageAttribute
+
+```csharp
+ClassDeclarationSyntax AddSuppressMessageAttribute(this ClassDeclarationSyntax classDeclaration, SuppressMessageAttribute suppressMessage)
+```
+
+<br />
+
+
 ## CompilationUnitSyntaxExtensions
 
 ```csharp
@@ -21,6 +44,52 @@ public static class CompilationUnitSyntaxExtensions
 
 ```csharp
 CompilationUnitSyntax AddUsingStatements(this CompilationUnitSyntax compilationUnit, string[] usingStatements)
+```
+
+<br />
+
+
+## InterfaceDeclarationSyntaxExtensions
+
+```csharp
+public static class InterfaceDeclarationSyntaxExtensions
+```
+
+### Static Methods
+
+
+#### AddGeneratedCodeAttribute
+
+```csharp
+InterfaceDeclarationSyntax AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
+```
+
+<br />
+
+
+## SyntaxNodeExtensions
+
+```csharp
+public static class SyntaxNodeExtensions
+```
+
+### Static Methods
+
+
+#### GetUsedUsingStatements
+
+```csharp
+string[] GetUsedUsingStatements(this SyntaxNode syntaxNode)
+```
+#### Select
+
+```csharp
+IEnumerable<T> Select(this SyntaxNode syntaxNode)
+```
+#### SelectToArray
+
+```csharp
+T[] SelectToArray(this SyntaxNode syntaxNode)
 ```
 
 <br />

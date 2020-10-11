@@ -31,7 +31,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return packageReference;
         }
 
-        public static List<Tuple<string, string, string?>> CreateForTestProject()
+        public static List<Tuple<string, string, string?>> CreateForTestProject(bool useMvc)
         {
             var packageReference = new List<Tuple<string, string, string?>>
             {
@@ -39,18 +39,27 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 new Tuple<string, string, string?>("AutoFixture.AutoNSubstitute", "4.14.0", null),
                 new Tuple<string, string, string?>("AutoFixture.Xunit2", "4.14.0", null),
                 new Tuple<string, string, string?>("FluentAssertions", "5.10.3", null),
-                new Tuple<string, string, string?>("Microsoft.NET.Test.Sdk", "16.7.1", null),
-                new Tuple<string, string, string?>("NSubstitute", "4.2.1", null),
-                new Tuple<string, string, string?>("xunit", "2.4.1", null),
-                new Tuple<string, string, string?>("xunit.runner.visualstudio", "2.4.1", "<PrivateAssets>all</PrivateAssets>\n<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>"),
             };
+
+            if (useMvc)
+            {
+                packageReference.Add(new Tuple<string, string, string?>("Microsoft.AspNetCore.Mvc.Testing", "3.1.8", null));
+            }
+
+            packageReference.AddRange(new List<Tuple<string, string, string?>>
+            {
+                new Tuple<string, string, string?>("Microsoft.NET.Test.Sdk", "16.7.1", null),
+                new Tuple<string, string, string?>("NSubstitute", "4.2.2", null),
+                new Tuple<string, string, string?>("xunit", "2.4.1", null),
+                new Tuple<string, string, string?>("xunit.runner.visualstudio", "2.4.3", "<PrivateAssets>all</PrivateAssets>\n<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>")
+            });
 
             return packageReference;
         }
 
         private static string GetAtcVersion()
         {
-            var defaultVersion = new Version(1, 0, 135);
+            var defaultVersion = new Version(1, 0, 141);
             var assembly = Assembly.GetEntryAssembly();
             if (assembly == null)
             {

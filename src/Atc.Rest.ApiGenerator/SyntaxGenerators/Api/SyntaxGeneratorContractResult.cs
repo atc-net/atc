@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
-using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;

@@ -51,6 +51,8 @@
      - IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
 - [OpenApiParameterExtensions](Microsoft.OpenApi.Models.md#openapiparameterextensions)
   -  Static Methods
+     - GetAllFromQuery(this IList&lt;OpenApiParameter&gt; parameters)
+     - GetAllFromRoute(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfByte(this IList&lt;OpenApiParameter&gt; parameters)

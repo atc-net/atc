@@ -211,6 +211,72 @@ List<LogKeyValueItem> SetPropertiesAfterValidationsOfProjectReferencesPathAndFil
 <br />
 
 
+## EndpointMethodMetadata
+
+```csharp
+public class EndpointMethodMetadata
+```
+
+### Properties
+
+
+#### ContractInterfaceHandlerTypeName
+
+```csharp
+ContractInterfaceHandlerTypeName
+```
+#### ContractParameter
+
+```csharp
+ContractParameter
+```
+#### ContractParameterTypeName
+
+```csharp
+ContractParameterTypeName
+```
+#### ContractResultTypeName
+
+```csharp
+ContractResultTypeName
+```
+#### ContractReturnTypeNames
+
+```csharp
+ContractReturnTypeNames
+```
+#### HttpOperation
+
+```csharp
+HttpOperation
+```
+#### MethodName
+
+```csharp
+MethodName
+```
+#### Route
+
+```csharp
+Route
+```
+#### SegmentName
+
+```csharp
+SegmentName
+```
+### Methods
+
+
+#### ToString
+
+```csharp
+string ToString()
+```
+
+<br />
+
+
 ## HostProjectOptions
 
 ```csharp

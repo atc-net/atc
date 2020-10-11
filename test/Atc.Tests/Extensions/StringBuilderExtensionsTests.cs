@@ -35,5 +35,22 @@ namespace Atc.Tests.Extensions
             // Assert
             Assert.Equal(expected + Environment.NewLine, actual);
         }
+
+        [Theory]
+        [InlineData("Hallo", "Hallo", 0)]
+        [InlineData(" Hallo", "Hallo", 1)]
+        [InlineData("     Hallo", "Hallo", 5)]
+        public void AppendLine_IndentSpaces(string expected, string value, int indentSpaces)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+
+            // Act
+            sb.AppendLine(indentSpaces, value);
+            var actual = sb.ToString();
+
+            // Assert
+            Assert.Equal(expected + Environment.NewLine, actual);
+        }
     }
 }

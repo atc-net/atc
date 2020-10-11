@@ -59,5 +59,31 @@ namespace System.Text
 
             sb.AppendLine(string.Format(GlobalizationConstants.EnglishCultureInfo, format, args));
         }
+
+        /// <summary>
+        /// Appends a new line with indented spaces to the string builder.
+        /// </summary>
+        /// <param name="sb">The sb.</param>
+        /// <param name="indentSpaces">The indent spaces.</param>
+        /// <param name="value">The value.</param>
+        public static void AppendLine(this StringBuilder sb, int indentSpaces, string value)
+        {
+            if (sb == null)
+            {
+                throw new ArgumentNullException(nameof(sb));
+            }
+
+            if (indentSpaces < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            sb.AppendLine(value.PadLeft(value.Length + indentSpaces));
+        }
     }
 }

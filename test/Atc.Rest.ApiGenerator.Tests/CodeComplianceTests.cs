@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Atc.Rest.ApiGenerator.Generators;
 using Atc.Rest.ApiGenerator.Helpers;
+using Atc.Rest.ApiGenerator.Helpers.XunitTest;
 using Atc.Rest.ApiGenerator.Models;
 using Atc.Rest.ApiGenerator.SyntaxGenerators.Api;
 using Atc.Rest.ApiGenerator.SyntaxGenerators.Domain;
@@ -48,6 +49,9 @@ namespace Atc.Rest.ApiGenerator.Tests
             typeof(SyntaxGeneratorHandlers),
             typeof(ValidatePathsAndOperationsHelper),
             typeof(Util),
+            typeof(GenerateServerApiXunitTestEndpointHandlerStubHelper),
+            typeof(GenerateServerApiXunitTestEndpointTestHelper),
+            typeof(GenerateServerDomainXunitTestHelper),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

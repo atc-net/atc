@@ -66,7 +66,7 @@ public static class ServiceCollectionExtensions
 #### AutoRegistrateServices
 
 ```csharp
-void AutoRegistrateServices(this IServiceCollection services, Assembly apiAssembly, Assembly domainAssembly)
+void AutoRegistrateServices(this IServiceCollection services, Assembly interfaceAssembly, Assembly implementationAssembly)
 ```
 #### ValidateServiceRegistrations
 

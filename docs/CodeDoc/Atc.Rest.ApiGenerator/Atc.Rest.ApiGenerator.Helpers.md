@@ -94,7 +94,7 @@ List<Tuple<string, string, string>> CreateForHostProject(bool useRestExtended)
 #### CreateForTestProject
 
 ```csharp
-List<Tuple<string, string, string>> CreateForTestProject()
+List<Tuple<string, string, string>> CreateForTestProject(bool useMvc)
 ```
 
 <br />

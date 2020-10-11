@@ -574,6 +574,11 @@ FocusOnSegmentName
 ```csharp
 bool GenerateCode()
 ```
+#### GetMetadataForMethods
+
+```csharp
+List<EndpointMethodMetadata> GetMetadataForMethods()
+```
 #### ToCodeAsString
 
 ```csharp

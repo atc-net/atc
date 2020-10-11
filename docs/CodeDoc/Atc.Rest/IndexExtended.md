@@ -152,7 +152,7 @@
      - AddRestApi(this IServiceCollection services, RestApiOptions restApiOptions)
 - [ServiceCollectionExtensions](Microsoft.Extensions.DependencyInjection.md#servicecollectionextensions)
   -  Static Methods
-     - AutoRegistrateServices(this IServiceCollection services, Assembly apiAssembly, Assembly domainAssembly)
+     - AutoRegistrateServices(this IServiceCollection services, Assembly interfaceAssembly, Assembly implementationAssembly)
      - ValidateServiceRegistrations(this IServiceCollection services, Assembly apiAssembly)
 
 ## [System](System.md)

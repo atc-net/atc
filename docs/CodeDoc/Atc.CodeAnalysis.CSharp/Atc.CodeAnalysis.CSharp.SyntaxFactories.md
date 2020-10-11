@@ -509,6 +509,11 @@ public static class SyntaxTokenFactory
 ### Static Methods
 
 
+#### AbstractKeyword
+
+```csharp
+SyntaxToken AbstractKeyword(bool withTrailingSpace = True)
+```
 #### AsyncKeyword
 
 ```csharp

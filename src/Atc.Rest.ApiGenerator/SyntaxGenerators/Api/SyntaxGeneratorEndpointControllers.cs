@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -19,6 +19,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+// ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable UseDeconstruction
 namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
@@ -86,6 +88,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 }
             }
 
+            // Create private part for methods
             foreach (var (_, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
             {
                 foreach (var apiOperation in value.Operations)
@@ -146,6 +149,143 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             }
 
             TextFileHelper.Save(file, ToCodeAsString());
+        }
+
+        public List<EndpointMethodMetadata> GetMetadataForMethods()
+        {
+            var list = new List<EndpointMethodMetadata>();
+            foreach (var (key, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
+            {
+                var generatorParameters = new SyntaxGeneratorContractParameters(ApiProjectOptions, FocusOnSegmentName);
+                var generatedParameters = generatorParameters.GenerateSyntaxTrees();
+
+                string segmentName = FocusOnSegmentName.EnsureFirstCharacterToUpperAndPlural();
+                foreach (var apiOperation in value.Operations)
+                {
+                    var httpAttributeRoutePart = GetHttpAttributeRoutePart(key);
+                    var routePart = string.IsNullOrEmpty(httpAttributeRoutePart)
+                        ? $"/{FocusOnSegmentName}"
+                        : $"/{FocusOnSegmentName}/{httpAttributeRoutePart}";
+                    var operationName = apiOperation.Value.GetOperationName();
+
+                    string? contractParameterTypeName = null;
+                    if (apiOperation.Value.HasParametersOrRequestBody())
+                    {
+                        contractParameterTypeName = operationName + NameConstants.ContractParameters;
+                    }
+
+                    var responseTypeNames = GetResponseTypeNames(apiOperation.Value.Responses, segmentName, operationName);
+                    if (contractParameterTypeName != null &&
+                        responseTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.BadRequest) == null)
+                    {
+                        responseTypeNames.Add(
+                            new Tuple<HttpStatusCode, string>(
+                                HttpStatusCode.BadRequest,
+                                "Validation"));
+                    }
+
+                    var sgContractParameter = generatedParameters.FirstOrDefault(x => x.ApiOperation.GetOperationName() == operationName);
+                    var responseTypeNamesAndItemSchema = GetResponseTypeNamesAndItemSchema(responseTypeNames);
+
+                    var endpointMethodMetadata = new EndpointMethodMetadata(
+                        segmentName,
+                        $"/api/{ApiProjectOptions.ApiVersion}{routePart}",
+                        apiOperation.Key,
+                        operationName,
+                        "I" + operationName + NameConstants.ContractHandler,
+                        contractParameterTypeName,
+                        operationName + NameConstants.ContractResult,
+                        responseTypeNamesAndItemSchema,
+                        sgContractParameter);
+
+                    list.Add(endpointMethodMetadata);
+                }
+            }
+
+            return list;
+        }
+
+        private List<Tuple<HttpStatusCode, string, OpenApiSchema?>> GetResponseTypeNamesAndItemSchema(List<Tuple<HttpStatusCode, string>> responseTypeNames)
+        {
+            var list = new List<Tuple<HttpStatusCode, string, OpenApiSchema?>>();
+            foreach (var responseTypeName in responseTypeNames)
+            {
+                if (!string.IsNullOrEmpty(responseTypeName.Item2))
+                {
+                    var rtn = responseTypeName.Item2
+                        .Replace("List<", string.Empty, StringComparison.Ordinal)
+                        .Replace(">", string.Empty, StringComparison.Ordinal);
+
+                    KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtn, StringComparison.OrdinalIgnoreCase));
+                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, schema.Value));
+                }
+                else
+                {
+                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, null!));
+                }
+            }
+
+            return list;
+        }
+
+        private List<Tuple<HttpStatusCode, string>> GetResponseTypeNames(OpenApiResponses openApiResponses, string segmentName, string operationName)
+        {
+            var list = new List<Tuple<HttpStatusCode, string>>();
+
+            var httpStatusCodes = openApiResponses.GetHttpStatusCodes();
+            var producesResponseAttributeParts = openApiResponses.GetProducesResponseAttributeParts(
+                operationName + NameConstants.ContractResult,
+                false,
+                segmentName,
+                OperationSchemaMappings);
+
+            foreach (var producesResponseAttributePart in producesResponseAttributeParts)
+            {
+                var s = producesResponseAttributePart
+                    .Replace("ProducesResponseType(", string.Empty, StringComparison.Ordinal)
+                    .Replace("typeof(", string.Empty, StringComparison.Ordinal)
+                    .Replace("StatusCodes.Status", string.Empty, StringComparison.Ordinal)
+                    .Replace(")", string.Empty, StringComparison.Ordinal)
+                    .Replace(" ", string.Empty, StringComparison.Ordinal);
+                var sa = s.Split(',');
+
+                switch (sa.Length)
+                {
+                    case 1:
+                    {
+                        foreach (var httpStatusCode in httpStatusCodes)
+                        {
+                            if (sa[0].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            {
+                                list.Add(
+                                    new Tuple<HttpStatusCode, string>(
+                                        httpStatusCode,
+                                        string.Empty));
+                            }
+                        }
+
+                        break;
+                    }
+
+                    case 2:
+                    {
+                        foreach (var httpStatusCode in httpStatusCodes)
+                        {
+                            if (sa[1].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            {
+                                list.Add(
+                                    new Tuple<HttpStatusCode, string>(
+                                        httpStatusCode,
+                                        sa[0]));
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            return list;
         }
 
         private MethodDeclarationSyntax CreateMembersForEndpoints(

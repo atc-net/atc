@@ -215,6 +215,16 @@ public static class OpenApiParameterExtensions
 ### Static Methods
 
 
+#### GetAllFromQuery
+
+```csharp
+List<Tuple<string, string>> GetAllFromQuery(this IList<OpenApiParameter> parameters)
+```
+#### GetAllFromRoute
+
+```csharp
+List<Tuple<string, string>> GetAllFromRoute(this IList<OpenApiParameter> parameters)
+```
 #### HasFormatTypeFromDataAnnotationsNamespace
 
 ```csharp

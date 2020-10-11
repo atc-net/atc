@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Xml.Linq;
-using Atc.CodeAnalysis.CSharp;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -204,7 +203,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                     $"{apiProjectOptions.ProjectName}.Tests",
                     apiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
                     null,
-                    NugetPackageReferenceHelper.CreateForTestProject(),
+                    NugetPackageReferenceHelper.CreateForTestProject(false),
                     projectReferences,
                     true));
             }

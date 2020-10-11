@@ -62,5 +62,33 @@ namespace Microsoft.OpenApi.Models
             return parameters.HasFormatTypeOfEmail() ||
                    parameters.HasFormatTypeOfUri();
         }
+
+        public static List<Tuple<string, string>> GetAllFromRoute(this IList<OpenApiParameter> parameters)
+        {
+            if (parameters == null)
+            {
+                throw new ArgumentNullException(nameof(parameters));
+            }
+
+            return (from parameter
+                        in parameters
+                    where parameter.In == ParameterLocation.Path
+                    select new Tuple<string, string>(parameter.Name, parameter.Schema.GetDataType()))
+                .ToList();
+        }
+
+        public static List<Tuple<string, string>> GetAllFromQuery(this IList<OpenApiParameter> parameters)
+        {
+            if (parameters == null)
+            {
+                throw new ArgumentNullException(nameof(parameters));
+            }
+
+            return (from parameter
+                    in parameters
+                    where parameter.In == ParameterLocation.Query
+                    select new Tuple<string, string>(parameter.Name, parameter.Schema.GetDataType()))
+                .ToList();
+        }
     }
 }

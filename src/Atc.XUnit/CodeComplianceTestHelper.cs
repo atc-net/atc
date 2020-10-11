@@ -171,27 +171,27 @@ namespace Atc.XUnit
                 excludeSourceTypes);
 
             var sb = new StringBuilder();
-            sb.AppendLine("            var excludeTypes = new List<Type>");
-            sb.AppendLine("            {");
-            sb.AppendLine("            {    // TODO: Implement tests on the following types, and then remove the type from the exclude list.");
+            sb.AppendLine(12, "var excludeTypes = new List<Type>");
+            sb.AppendLine(12, "{");
+            sb.AppendLine(12, "{    // TODO: Implement tests on the following types, and then remove the type from the exclude list.");
             for (var i = 0; i < typesWithMissingTests.Length; i++)
             {
                 var type = typesWithMissingTests[i];
                 if (i == typesWithMissingTests.Length - 1)
                 {
-                    sb.AppendLine(useFullName
-                        ? $"                typeof(global::{type.BeautifyName(true)})"
-                        : $"                typeof({type.BeautifyName()})");
+                    sb.AppendLine(16, useFullName
+                        ? $"typeof(global::{type.BeautifyName(true)})"
+                        : $"typeof({type.BeautifyName()})");
                 }
                 else
                 {
-                    sb.AppendLine(useFullName
-                        ? $"                typeof(global::{type.BeautifyName(true)}),"
-                        : $"                typeof({type.BeautifyName()}),");
+                    sb.AppendLine(16, useFullName
+                        ? $"typeof(global::{type.BeautifyName(true)}),"
+                        : $"typeof({type.BeautifyName()}),");
                 }
             }
 
-            sb.AppendLine("            }");
+            sb.AppendLine(12, "}");
             return sb.ToString();
         }
 

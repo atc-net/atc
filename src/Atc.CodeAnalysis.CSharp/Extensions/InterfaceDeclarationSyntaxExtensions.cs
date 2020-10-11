@@ -1,11 +1,9 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-// ReSharper disable CheckNamespace
-namespace Atc.CodeAnalysis.CSharp
+// ReSharper disable once CheckNamespace
+namespace Microsoft.CodeAnalysis.CSharp.Syntax
 {
     public static class InterfaceDeclarationSyntaxExtensions
     {

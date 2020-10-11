@@ -37,5 +37,38 @@ namespace Atc.Rest.ApiGenerator.Factories
 
             return list.ToArray();
         }
+
+        public static string[] CreateUsingListForWebApiControllerBaseTest()
+        {
+            var list = new List<string>
+            {
+                "System.CodeDom.Compiler",
+                "System.Net.Http",
+                "System.Text.Json",
+                "Microsoft.Extensions.Configuration",
+                "Xunit"
+            };
+
+            return list.ToArray();
+        }
+
+        public static string[] CreateUsingListForWebApiStartupFactory(string projectName)
+        {
+            var name = projectName.Replace(".Api", string.Empty, StringComparison.Ordinal);
+
+            var list = new List<string>
+            {
+                "System.CodeDom.Compiler",
+                "System.Reflection",
+                "Microsoft.AspNetCore.Hosting",
+                "Microsoft.AspNetCore.Mvc.Testing",
+                "Microsoft.AspNetCore.TestHost",
+                "Microsoft.Extensions.Configuration",
+                "Microsoft.Extensions.DependencyInjection",
+                $"{name}.Api.Generated"
+            };
+
+            return list.ToArray();
+        }
     }
 }

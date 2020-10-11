@@ -32,12 +32,19 @@
 - [TextFileHelper](Atc.Rest.ApiGenerator.Helpers.md#textfilehelper)
 - [ValidatePathsAndOperationsHelper](Atc.Rest.ApiGenerator.Helpers.md#validatepathsandoperationshelper)
 
+## [Atc.Rest.ApiGenerator.Helpers.XunitTest](Atc.Rest.ApiGenerator.Helpers.XunitTest.md)
+
+- [GenerateServerApiXunitTestEndpointHandlerStubHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverapixunittestendpointhandlerstubhelper)
+- [GenerateServerApiXunitTestEndpointTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverapixunittestendpointtesthelper)
+- [GenerateServerDomainXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverdomainxunittesthelper)
+
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 
 - [ApiOperationSchemaMap](Atc.Rest.ApiGenerator.Models.md#apioperationschemamap)
 - [ApiProjectOptions](Atc.Rest.ApiGenerator.Models.md#apiprojectoptions)
 - [BaseProjectOptions](Atc.Rest.ApiGenerator.Models.md#baseprojectoptions)
 - [DomainProjectOptions](Atc.Rest.ApiGenerator.Models.md#domainprojectoptions)
+- [EndpointMethodMetadata](Atc.Rest.ApiGenerator.Models.md#endpointmethodmetadata)
 - [HostProjectOptions](Atc.Rest.ApiGenerator.Models.md#hostprojectoptions)
 - [SchemaMapLocatedAreaType](Atc.Rest.ApiGenerator.Models.md#schemamaplocatedareatype)
 

@@ -5,6 +5,11 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 {
     public static partial class SyntaxTokenFactory
     {
+        public static SyntaxToken AbstractKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.AbstractKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
+
         public static SyntaxToken PublicKeyword(bool withTrailingSpace = true)
         {
             return TokenWithTrailing(SyntaxKind.PublicKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);

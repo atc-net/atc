@@ -122,7 +122,6 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 
             if (apiRequestBody?.Content != null)
             {
-
                 foreach (var mediaType in apiRequestBody.Content.Values)
                 {
                     if (!dictionary.ContainsKey(NameConstants.Request))

@@ -95,7 +95,7 @@
 - [NugetPackageReferenceHelper](Atc.Rest.ApiGenerator.Helpers.md#nugetpackagereferencehelper)
   -  Static Methods
      - CreateForHostProject(bool useRestExtended)
-     - CreateForTestProject()
+     - CreateForTestProject(bool useMvc)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)
   -  Static Methods
      - CombineAndGetApiYamlDoc(string specificationPath)
@@ -126,6 +126,19 @@
      - ValidateGlobalParameters(ApiOptionsValidation validationOptions, IEnumerable&lt;string&gt; globalPathParameterNames, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
      - ValidateMissingOperationParameters(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
      - ValidateOperationsWithParametersNotPresentInPath(ApiOptionsValidation validationOptions, KeyValuePair&lt;string, OpenApiPathItem&gt; path)
+
+## [Atc.Rest.ApiGenerator.Helpers.XunitTest](Atc.Rest.ApiGenerator.Helpers.XunitTest.md)
+
+- [GenerateServerApiXunitTestEndpointHandlerStubHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverapixunittestendpointhandlerstubhelper)
+  -  Static Methods
+     - Generate(HostProjectOptions hostProjectOptions, EndpointMethodMetadata endpointMethodMetadata)
+- [GenerateServerApiXunitTestEndpointTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverapixunittestendpointtesthelper)
+  -  Static Methods
+     - Generate(HostProjectOptions hostProjectOptions, EndpointMethodMetadata endpointMethodMetadata)
+- [GenerateServerDomainXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverdomainxunittesthelper)
+  -  Static Methods
+     - GenerateCustomTests(DomainProjectOptions domainProjectOptions, SyntaxGeneratorHandler sgHandler)
+     - GenerateGeneratedTests(DomainProjectOptions domainProjectOptions, SyntaxGeneratorHandler sgHandler)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 
@@ -168,6 +181,19 @@
      - PathForTestHandlers
   -  Methods
      - SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
+- [EndpointMethodMetadata](Atc.Rest.ApiGenerator.Models.md#endpointmethodmetadata)
+  -  Properties
+     - ContractInterfaceHandlerTypeName
+     - ContractParameter
+     - ContractParameterTypeName
+     - ContractResultTypeName
+     - ContractReturnTypeNames
+     - HttpOperation
+     - MethodName
+     - Route
+     - SegmentName
+  -  Methods
+     - ToString()
 - [HostProjectOptions](Atc.Rest.ApiGenerator.Models.md#hostprojectoptions)
   -  Properties
      - ApiProjectSrcCsProj
@@ -328,6 +354,7 @@
      - FocusOnSegmentName
   -  Methods
      - GenerateCode()
+     - GetMetadataForMethods()
      - ToCodeAsString()
      - ToFile()
      - ToFile(FileInfo file)

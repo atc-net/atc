@@ -35,94 +35,94 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 ? "<Project Sdk=\"Microsoft.NET.Sdk.Web\">"
                 : "<Project Sdk=\"Microsoft.NET.Sdk\">");
             sb.AppendLine();
-            sb.AppendLine(" <PropertyGroup>");
-            sb.AppendLine("     <TargetFramework>netcoreapp3.1</TargetFramework>");
+            sb.AppendLine(2, "<PropertyGroup>");
+            sb.AppendLine(4, "<TargetFramework>netcoreapp3.1</TargetFramework>");
             if (!createAsTestProject)
             {
-                sb.AppendLine("     <IsPackable>false</IsPackable>");
+                sb.AppendLine(4, "<IsPackable>false</IsPackable>");
             }
 
-            sb.AppendLine(" </PropertyGroup>");
+            sb.AppendLine(2, "</PropertyGroup>");
             sb.AppendLine();
             if (!createAsTestProject)
             {
-                sb.AppendLine(" <PropertyGroup>");
+                sb.AppendLine(2, "<PropertyGroup>");
                 if (useNullableReferenceTypes)
                 {
-                    sb.AppendLine("     <Nullable>enable</Nullable>");
+                    sb.AppendLine(4, "<Nullable>enable</Nullable>");
                 }
 
-                sb.AppendLine("     <LangVersion>8.0</LangVersion>");
-                sb.AppendLine(" </PropertyGroup>");
+                sb.AppendLine(4, "<LangVersion>8.0</LangVersion>");
+                sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
-                sb.AppendLine(" <PropertyGroup>");
-                sb.AppendLine("     <GenerateDocumentationFile>true</GenerateDocumentationFile>");
-                sb.AppendLine(" </PropertyGroup>");
+                sb.AppendLine(2, "<PropertyGroup>");
+                sb.AppendLine(4, "<GenerateDocumentationFile>true</GenerateDocumentationFile>");
+                sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
-                sb.AppendLine(" <PropertyGroup>");
-                sb.AppendLine($"     <DocumentationFile>bin\\Debug\\netcoreapp3.1\\{projectName}.xml</DocumentationFile>");
-                sb.AppendLine("     <NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
-                sb.AppendLine(" </PropertyGroup>");
+                sb.AppendLine(2, "<PropertyGroup>");
+                sb.AppendLine(4, $"<DocumentationFile>bin\\Debug\\netcoreapp3.1\\{projectName}.xml</DocumentationFile>");
+                sb.AppendLine(4, "<NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
+                sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
 
                 if (includeApiSpecification)
                 {
-                    sb.AppendLine(" <ItemGroup>");
-                    sb.AppendLine("     <None Remove=\"Resources\\ApiSpecification.yaml\" />");
-                    sb.AppendLine("     <EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
-                    sb.AppendLine(" </ItemGroup>");
+                    sb.AppendLine(2, "<ItemGroup>");
+                    sb.AppendLine(4, "<None Remove=\"Resources\\ApiSpecification.yaml\" />");
+                    sb.AppendLine(4, "<EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
+                    sb.AppendLine(2, "</ItemGroup>");
                     sb.AppendLine();
                 }
             }
 
             if (frameworkReferences != null && frameworkReferences.Count > 0)
             {
-                sb.AppendLine(" <ItemGroup>");
+                sb.AppendLine(2, "<ItemGroup>");
                 foreach (var frameworkReference in frameworkReferences.OrderBy(x => x))
                 {
-                    sb.AppendLine($"     <FrameworkReference Include=\"{frameworkReference}\" />");
+                    sb.AppendLine(4, $"<FrameworkReference Include=\"{frameworkReference}\" />");
                 }
 
-                sb.AppendLine(" </ItemGroup>");
+                sb.AppendLine(2, "</ItemGroup>");
                 sb.AppendLine();
             }
 
             if (packageReferences != null && packageReferences.Count > 0)
             {
-                sb.AppendLine(" <ItemGroup>");
+                sb.AppendLine(2, "<ItemGroup>");
                 foreach (var (package, version, extra) in packageReferences.OrderBy(x => x.Item1))
                 {
                     if (extra == null)
                     {
-                        sb.AppendLine($"     <PackageReference Include=\"{package}\" Version=\"{version}\" />");
+                        sb.AppendLine(4, $"<PackageReference Include=\"{package}\" Version=\"{version}\" />");
                     }
                     else
                     {
-                        sb.AppendLine($"     <PackageReference Include=\"{package}\" Version=\"{version}\">");
+                        sb.AppendLine(4, $"<PackageReference Include=\"{package}\" Version=\"{version}\">");
                         var sa = extra.Split('\n');
                         foreach (var s in sa)
                         {
-                            sb.AppendLine($"       {s}");
+                            sb.AppendLine(6, $"{s}");
                         }
 
-                        sb.AppendLine("     </PackageReference>");
+                        sb.AppendLine(4, "</PackageReference>");
                     }
                 }
 
-                sb.AppendLine(" </ItemGroup>");
+                sb.AppendLine(2, "</ItemGroup>");
                 sb.AppendLine();
             }
 
             if (projectReferences != null && projectReferences.Count > 0)
             {
-                sb.AppendLine(" <ItemGroup>");
+                sb.AppendLine(2, "<ItemGroup>");
                 foreach (var projectReference in projectReferences.OrderBy(x => x.Name))
                 {
                     var packageReferenceValue = GetProjectReference(projectCsProjFile, projectReference);
-                    sb.AppendLine($"     <ProjectReference Include=\"{packageReferenceValue}\" />");
+                    sb.AppendLine(4, $"<ProjectReference Include=\"{packageReferenceValue}\" />");
                 }
 
-                sb.AppendLine(" </ItemGroup>");
+                sb.AppendLine(2, "</ItemGroup>");
                 sb.AppendLine();
             }
 
