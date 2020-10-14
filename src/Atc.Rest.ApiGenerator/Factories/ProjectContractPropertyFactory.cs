@@ -7,9 +7,18 @@ namespace Atc.Rest.ApiGenerator.Factories
 {
     internal static class ProjectContractPropertyFactory
     {
-        public static string[] CreateUsingList(IList<OpenApiParameter>? parameters, OpenApiRequestBody? requestBody)
+        public static string[] CreateUsingList(
+            IList<OpenApiParameter>? globalParameters,
+            IList<OpenApiParameter>? parameters,
+            OpenApiRequestBody? requestBody)
         {
             var list = new List<string>();
+
+            if (globalParameters != null && ShouldUseDataAnnotationsNamespace(globalParameters))
+            {
+                list.Add("System.ComponentModel.DataAnnotations");
+            }
+
             if (parameters != null)
             {
                 if (parameters.HasFormatTypeFromSystemNamespace())
@@ -19,11 +28,8 @@ namespace Atc.Rest.ApiGenerator.Factories
 
                 list.Add("System.CodeDom.Compiler");
 
-                if (parameters.Any(x => x.Required))
-                {
-                    list.Add("System.ComponentModel.DataAnnotations");
-                }
-                else if (parameters.HasFormatTypeFromDataAnnotationsNamespace())
+                if (ShouldUseDataAnnotationsNamespace(parameters) &&
+                    list.All(x => x != "System.ComponentModel.DataAnnotations"))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");
                 }
@@ -31,12 +37,16 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("Microsoft.AspNetCore.Mvc");
             }
 
-            if (requestBody != null && list.All(x => x != "System.ComponentModel.DataAnnotations"))
+            if (requestBody != null &&
+                list.All(x => x != "System.ComponentModel.DataAnnotations"))
             {
                 list.Add("System.ComponentModel.DataAnnotations");
             }
 
             return list.ToArray();
         }
+
+        private static bool ShouldUseDataAnnotationsNamespace(IList<OpenApiParameter> parameters)
+            => parameters.Any(x => x.Required) || parameters.HasFormatTypeFromDataAnnotationsNamespace();
     }
 }

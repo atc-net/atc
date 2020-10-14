@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts.Orders;
@@ -21,6 +22,7 @@ namespace Demo.Api.Generated.Endpoints
     /// </summary>
     [ApiController]
     [Route("api/v1/orders")]
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class OrdersController : ControllerBase
     {
         /// <summary>
@@ -33,7 +35,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public Task<ActionResult> GetOrdersAsync(GetOrdersParameters parameters, [FromServices] IGetOrdersHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -51,7 +53,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public Task<ActionResult> GetOrderByIdAsync(GetOrderByIdParameters parameters, [FromServices] IGetOrderByIdHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -71,7 +73,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status502BadGateway)]
         public Task<ActionResult> PatchOrdersIdAsync(PatchOrdersIdParameters parameters, [FromServices] IPatchOrdersIdHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }

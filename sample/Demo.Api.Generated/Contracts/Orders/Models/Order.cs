@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,6 +21,7 @@ namespace Demo.Api.Generated.Contracts.Orders
     /// id: 123
     /// name: Hallo world.
     /// </example>
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class Order
     {
         public string Id { get; set; }

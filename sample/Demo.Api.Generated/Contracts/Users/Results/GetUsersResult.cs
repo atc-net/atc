@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
@@ -21,6 +22,7 @@ namespace Demo.Api.Generated.Contracts.Users
     /// Area: Users.
     /// </summary>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Should not throw ArgumentNullExceptions from implicit operators.")]
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class GetUsersResult
     {
         private readonly ActionResult result;

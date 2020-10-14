@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.CodeDom.Compiler;
+using System.Threading;
 using System.Threading.Tasks;
 
 //------------------------------------------------------------------------------
@@ -17,6 +18,7 @@ namespace Demo.Api.Generated.Contracts.Users
     /// Operation: GetUsers.
     /// Area: Users.
     /// </summary>
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public interface IGetUsersHandler
     {
         /// <summary>

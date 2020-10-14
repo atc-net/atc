@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Demo.Api.Generated.Endpoints
     /// </summary>
     [ApiController]
     [Route("api/v1/users")]
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class UsersController : ControllerBase
     {
         /// <summary>
@@ -34,7 +36,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUsersAsync([FromServices] IGetUsersHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -53,7 +55,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> PostUserAsync(PostUserParameters parameters, [FromServices] IPostUserHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -72,7 +74,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUserByIdAsync(GetUserByIdParameters parameters, [FromServices] IGetUserByIdHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -92,7 +94,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> UpdateUserByIdAsync(UpdateUserByIdParameters parameters, [FromServices] IUpdateUserByIdHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -111,7 +113,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> DeleteUserByIdAsync(DeleteUserByIdParameters parameters, [FromServices] IDeleteUserByIdHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -131,7 +133,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> UpdateMyTestGenderAsync(UpdateMyTestGenderParameters parameters, [FromServices] IUpdateMyTestGenderHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
@@ -151,7 +153,7 @@ namespace Demo.Api.Generated.Endpoints
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public Task<ActionResult> GetUserByEmailAsync(GetUserByEmailParameters parameters, [FromServices] IGetUserByEmailHandler handler, CancellationToken cancellationToken)
         {
-            if (handler == null)
+            if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
@@ -12,21 +13,21 @@ using Microsoft.AspNetCore.Mvc;
 //------------------------------------------------------------------------------
 //
 // ReSharper disable once CheckNamespace
-namespace Demo.Api.Generated.Contracts.Orders
+namespace Demo.Api.Generated.Contracts.Addresses
 {
     /// <summary>
     /// Results for operation request.
-    /// Description: Get orders.
-    /// Operation: GetOrders.
-    /// Area: Orders.
+    /// Description: Get addresses by postal code.
+    /// Operation: GetAddressesByPostalCodes.
+    /// Area: Addresses.
     /// </summary>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Should not throw ArgumentNullExceptions from implicit operators.")]
     [GeneratedCode("ApiGenerator", "1.0.0.0")]
-    public class GetOrdersResult
+    public class GetAddressesByPostalCodesResult
     {
         private readonly ActionResult result;
 
-        private GetOrdersResult(ActionResult result)
+        private GetAddressesByPostalCodesResult(ActionResult result)
         {
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
@@ -34,21 +35,21 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// <summary>
         /// 200 - Ok response.
         /// </summary>
-        public static GetOrdersResult Ok(Pagination<Order> response) => new GetOrdersResult(new OkObjectResult(response));
+        public static GetAddressesByPostalCodesResult Ok(List<Address> response) => new GetAddressesByPostalCodesResult(new OkObjectResult(response));
 
         /// <summary>
         /// 404 - NotFound response.
         /// </summary>
-        public static GetOrdersResult NotFound(string? message = null) => new GetOrdersResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.NotFound, message));
+        public static GetAddressesByPostalCodesResult NotFound(string? message = null) => new GetAddressesByPostalCodesResult(ResultFactory.CreateContentResultWithProblemDetails(HttpStatusCode.NotFound, message));
 
         /// <summary>
-        /// Performs an implicit conversion from GetOrdersResult to ActionResult.
+        /// Performs an implicit conversion from GetAddressesByPostalCodesResult to ActionResult.
         /// </summary>
-        public static implicit operator ActionResult(GetOrdersResult x) => x.result;
+        public static implicit operator ActionResult(GetAddressesByPostalCodesResult x) => x.result;
 
         /// <summary>
-        /// Performs an implicit conversion from GetOrdersResult to ActionResult.
+        /// Performs an implicit conversion from GetAddressesByPostalCodesResult to ActionResult.
         /// </summary>
-        public static implicit operator GetOrdersResult(Pagination<Order> x) => Ok(x);
+        public static implicit operator GetAddressesByPostalCodesResult(List<Address> x) => Ok(x);
     }
 }

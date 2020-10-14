@@ -119,7 +119,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             }
 
             // Add using statement to compilationUnit
-            compilationUnit = compilationUnit.AddUsingStatements(ProjectContractPropertyFactory.CreateUsingList(ApiOperation.Parameters, ApiOperation.RequestBody));
+            compilationUnit = compilationUnit.AddUsingStatements(ProjectContractPropertyFactory.CreateUsingList(GlobalPathParameters, ApiOperation.Parameters, ApiOperation.RequestBody));
 
             // Add the class to the namespace.
             @namespace = @namespace.AddMembers(classDeclaration);

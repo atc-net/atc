@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace Demo.Api.Generated.Contracts.Orders
     /// Area: Orders.
     /// </summary>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Should not throw ArgumentNullExceptions from implicit operators.")]
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class PatchOrdersIdResult
     {
         private readonly ActionResult result;

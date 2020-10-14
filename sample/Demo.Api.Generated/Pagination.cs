@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 
 //------------------------------------------------------------------------------
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 namespace Demo.Api.Generated
 {
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class Pagination<T>
     {
         public Pagination()
@@ -20,7 +22,7 @@ namespace Demo.Api.Generated
 
         public Pagination(List<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
         {
-            if (items == null)
+            if (items is null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
@@ -35,7 +37,7 @@ namespace Demo.Api.Generated
 
         public Pagination(List<T> items, int pageSize, string? queryString, string? continuationToken)
         {
-            if (items == null)
+            if (items is null)
             {
                 throw new ArgumentNullException(nameof(items));
             }

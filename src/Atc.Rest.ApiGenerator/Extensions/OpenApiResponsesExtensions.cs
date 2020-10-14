@@ -48,6 +48,7 @@ namespace Microsoft.OpenApi.Models
                 switch (httpStatusCode)
                 {
                     case HttpStatusCode.OK:
+                    case HttpStatusCode.Created:
                         if (string.IsNullOrEmpty(modelName))
                         {
                             typeResponseName = "string";
@@ -68,7 +69,6 @@ namespace Microsoft.OpenApi.Models
                         }
 
                         break;
-                    case HttpStatusCode.Created:
                     case HttpStatusCode.Accepted:
                     case HttpStatusCode.NoContent:
                     case HttpStatusCode.NotModified:
@@ -122,7 +122,9 @@ namespace Microsoft.OpenApi.Models
                     : $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}";
             }
 
-            return modelName;
+            return isShared
+                ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{modelName}"
+                : modelName;
         }
     }
 }

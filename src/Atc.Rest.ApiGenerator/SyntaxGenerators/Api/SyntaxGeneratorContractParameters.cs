@@ -33,7 +33,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
                 foreach (var apiOperation in urlPath.Value.Operations)
                 {
-                    if (!apiOperation.Value.HasParametersOrRequestBody())
+                    if (!apiOperation.Value.HasParametersOrRequestBody() && !urlPath.Value.HasParameters())
                     {
                         continue;
                     }

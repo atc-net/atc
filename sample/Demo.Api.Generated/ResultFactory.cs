@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.CodeDom.Compiler;
+using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 // ReSharper disable once CheckNamespace
 namespace Demo.Api.Generated
 {
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     internal static class ResultFactory
     {
         internal static ProblemDetails CreateProblemDetails(HttpStatusCode statusCode, string? message)

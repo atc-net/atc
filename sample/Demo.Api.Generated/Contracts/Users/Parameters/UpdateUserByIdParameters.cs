@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.CodeDom.Compiler;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 //------------------------------------------------------------------------------
@@ -17,6 +18,7 @@ namespace Demo.Api.Generated.Contracts.Users
     /// Operation: UpdateUserById.
     /// Area: Users.
     /// </summary>
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class UpdateUserByIdParameters
     {
         /// <summary>

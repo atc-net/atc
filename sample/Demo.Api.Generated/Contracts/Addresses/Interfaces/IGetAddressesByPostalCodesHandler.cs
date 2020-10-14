@@ -10,22 +10,21 @@ using System.Threading.Tasks;
 //------------------------------------------------------------------------------
 //
 // ReSharper disable once CheckNamespace
-namespace Demo.Api.Generated.Contracts.Orders
+namespace Demo.Api.Generated.Contracts.Addresses
 {
     /// <summary>
     /// Domain Interface for RequestHandler.
-    /// Description: Get orders.
-    /// Operation: GetOrders.
-    /// Area: Orders.
+    /// Description: Get addresses by postal code.
+    /// Operation: GetAddressesByPostalCodes.
+    /// Area: Addresses.
     /// </summary>
     [GeneratedCode("ApiGenerator", "1.0.0.0")]
-    public interface IGetOrdersHandler
+    public interface IGetAddressesByPostalCodesHandler
     {
         /// <summary>
         /// Execute method.
         /// </summary>
-        /// <param name="parameters">The parameters.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        Task<GetOrdersResult> ExecuteAsync(GetOrdersParameters parameters, CancellationToken cancellationToken = default);
+        Task<GetAddressesByPostalCodesResult> ExecuteAsync(CancellationToken cancellationToken = default);
     }
 }

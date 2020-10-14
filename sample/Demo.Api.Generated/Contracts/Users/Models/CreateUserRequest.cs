@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.ComponentModel.DataAnnotations;
 
 //------------------------------------------------------------------------------
@@ -14,6 +15,7 @@ namespace Demo.Api.Generated.Contracts.Users
     /// <summary>
     /// Request to create a user.
     /// </summary>
+    [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class CreateUserRequest
     {
         [Required]

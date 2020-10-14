@@ -253,6 +253,29 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
+  '/addresses/{postalCode}':
+    get:
+      summary: Get addresses by postal code
+      description: Get addresses by postal code
+      operationId: getAddressesByPostalCodes
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+        '404':
+          description: Not Found
+    parameters:
+      - schema:
+          type: string
+        name: postalCode
+        in: path
+        required: true
 components:
   parameters:
     pagingPageSize:
@@ -371,7 +394,7 @@ components:
           default: a@a.com
         myNullableDateTime:
           type: string
-          format: date-time          
+          format: date-time
           nullable: true
         myDateTime:
           type: string
