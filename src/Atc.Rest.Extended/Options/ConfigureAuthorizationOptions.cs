@@ -67,14 +67,22 @@ namespace Atc.Rest.Extended.Options
                 ValidAudiences = apiOptions.Authorization.ValidAudiences,
             };
 
-            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+            if (!apiOptions.Authorization.ValidIssuers.Any())
             {
-                options.TokenValidationParameters.ValidateIssuer = true;
-                options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
+                apiOptions.Authorization.ValidIssuers = new List<string>
+                {
+                    apiOptions.Authorization.Issuer
+                };
             }
-            else
+
+            options.TokenValidationParameters.ValidateIssuer =
+                !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
+                apiOptions.Authorization.ValidIssuers.Any();
+
+            if (options.TokenValidationParameters.ValidateIssuer)
             {
-                options.TokenValidationParameters.ValidateIssuer = false;
+                options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
+                options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers;
             }
         }
 
