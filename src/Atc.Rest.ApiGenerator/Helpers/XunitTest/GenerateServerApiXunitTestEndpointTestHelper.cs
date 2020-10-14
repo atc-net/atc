@@ -395,6 +395,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return renderRelativeRefs;
             }
 
+            // TO-DO: DKA is working on this.
             ////var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
             ////var combinationOfQueryParameters = new List<List<OpenApiParameter>>();
 

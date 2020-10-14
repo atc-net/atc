@@ -72,9 +72,15 @@ namespace Atc.Rest.ApiGenerator.Models
 
         public List<OpenApiParameter> GetRouteParameters()
         {
-            return ContractParameter == null
-                ? new List<OpenApiParameter>()
-                : ContractParameter.ApiOperation.Parameters.GetAllFromRoute();
+            var list = new List<OpenApiParameter>();
+            if (ContractParameter == null)
+            {
+                return list;
+            }
+
+            list.AddRange(ContractParameter.ApiOperation.Parameters.GetAllFromRoute());
+            list.AddRange(ContractParameter.GlobalPathParameters.GetAllFromRoute());
+            return list;
         }
 
         public List<OpenApiParameter> GetHeaderParameters()
