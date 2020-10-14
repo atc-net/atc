@@ -429,7 +429,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return $"{relativeRefPath}{relativeRefQuery}";
         }
 
-        private static string RenderRelativeRefPath(string route, List<OpenApiParameter> routeParameters, IDictionary<string, OpenApiSchema> componentsSchemas, bool useForBadRequest)
+        private static string RenderRelativeRefPath(string route, IList<OpenApiParameter> routeParameters, IDictionary<string, OpenApiSchema> componentsSchemas, bool useForBadRequest)
         {
             var sa = route.Split('/');
             for (int i = 0; i < sa.Length; i++)
@@ -443,7 +443,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     .Replace("{", string.Empty, StringComparison.Ordinal)
                     .Replace("}", string.Empty, StringComparison.Ordinal);
 
-                var fromRoute = routeParameters.Find(x => x.Name == pn);
+                var fromRoute = routeParameters.First(x => x.Name == pn);
                 sa[i] = PropertyValueGenerator(fromRoute, componentsSchemas, useForBadRequest, null);
             }
 

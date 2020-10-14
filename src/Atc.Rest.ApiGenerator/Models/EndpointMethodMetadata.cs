@@ -70,11 +70,11 @@ namespace Atc.Rest.ApiGenerator.Models
             return GetHeaderRequiredParameters().Count > 0;
         }
 
-        public List<OpenApiParameter> GetRouteParameters()
+        public IList<OpenApiParameter> GetRouteParameters()
         {
             return ContractParameter == null
                 ? new List<OpenApiParameter>()
-                : ContractParameter.ApiOperation.Parameters.GetAllFromRoute();
+                : ContractParameter.GlobalPathParameters;
         }
 
         public List<OpenApiParameter> GetHeaderParameters()
