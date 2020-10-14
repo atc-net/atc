@@ -14,20 +14,6 @@ namespace Atc.Rest.ApiGenerator.CLI
         {
             var builder = new HostBuilder();
 
-            args = new[]
-            {
-                "generate",
-                "server",
-                "api",
-                "--validate-strictMode", "true",
-                "--specificationPath", @"C:\Code\atc-net\ATC\sample\Demo.ApiDesign\SingleFileVersion\Api.v1.yaml",
-                "-p", "Demo",
-                "-o", @"C:\Code\atc-net\ATC\sample",
-                "--optionsPath", @"C:\Code\atc-net\atc\sample\Demo.ApiDesign\ApiGeneratorOptions.json",
-                "-v", "true",
-                ////"-?",
-            };
-
             try
             {
                 return builder
