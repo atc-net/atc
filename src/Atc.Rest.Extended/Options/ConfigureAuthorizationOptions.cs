@@ -50,7 +50,7 @@ namespace Atc.Rest.Extended.Options
                     $"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings and ensure that the ClientId or Audience is specified");
             }
 
-            if (!apiOptions.Authorization.ValidAudiences.Any())
+            if (apiOptions.Authorization.ValidAudiences?.Any() == false)
             {
                 apiOptions.Authorization.ValidAudiences = new List<string>
                 {
