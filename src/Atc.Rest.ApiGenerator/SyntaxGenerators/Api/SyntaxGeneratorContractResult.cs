@@ -599,7 +599,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             string? genericListTypeName = null;
             if (asGenericList)
             {
-                genericListTypeName = "List";
+                genericListTypeName = Microsoft.OpenApi.Models.NameConstants.List;
             }
             else if (asGenericPagination)
             {
@@ -696,7 +696,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             string? genericListTypeName = null;
             if (asGenericList)
             {
-                genericListTypeName = "List";
+                genericListTypeName = Microsoft.OpenApi.Models.NameConstants.List;
             }
             else if (asGenericPagination)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Atc.Rest.ApiGenerator.SyntaxGenerators.Api;
 using Microsoft.OpenApi.Models;
@@ -17,7 +18,8 @@ namespace Atc.Rest.ApiGenerator.Models
             string? contractParameterTypeName,
             string? contractResultTypeName,
             List<Tuple<HttpStatusCode, string, OpenApiSchema?>> contractReturnTypeNames,
-            SyntaxGeneratorContractParameter? sgContractParameter)
+            SyntaxGeneratorContractParameter? sgContractParameter,
+            IDictionary<string, OpenApiSchema> componentsSchemas)
         {
             SegmentName = segmentName;
             Route = route;
@@ -28,6 +30,7 @@ namespace Atc.Rest.ApiGenerator.Models
             ContractResultTypeName = contractResultTypeName;
             ContractReturnTypeNames = contractReturnTypeNames;
             ContractParameter = sgContractParameter;
+            ComponentsSchemas = componentsSchemas;
         }
 
         public string SegmentName { get; private set; }
@@ -47,6 +50,60 @@ namespace Atc.Rest.ApiGenerator.Models
         public List<Tuple<HttpStatusCode, string, OpenApiSchema?>> ContractReturnTypeNames { get; private set; }
 
         public SyntaxGeneratorContractParameter? ContractParameter { get; private set; }
+
+        public IDictionary<string, OpenApiSchema> ComponentsSchemas { get; private set; }
+
+        public bool IsPaginationUsed()
+        {
+            var returnType = ContractReturnTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.OK)?.Item2;
+            return returnType != null &&
+                   returnType.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal);
+        }
+
+        public bool HasContractParameterRequestBody()
+        {
+            return ContractParameter?.ApiOperation.RequestBody?.Content.GetSchema() != null;
+        }
+
+        public bool HasContractParameterRequiredHeader()
+        {
+            return GetHeaderRequiredParameters().Count > 0;
+        }
+
+        public List<OpenApiParameter> GetRouteParameters()
+        {
+            return ContractParameter == null
+                ? new List<OpenApiParameter>()
+                : ContractParameter.ApiOperation.Parameters.GetAllFromRoute();
+        }
+
+        public List<OpenApiParameter> GetHeaderParameters()
+        {
+            return ContractParameter == null
+                ? new List<OpenApiParameter>()
+                : ContractParameter.ApiOperation.Parameters.GetAllFromHeader();
+        }
+
+        public List<OpenApiParameter> GetHeaderRequiredParameters()
+        {
+            return GetHeaderParameters()
+                .Where(parameter => parameter.Required)
+                .ToList();
+        }
+
+        public List<OpenApiParameter> GetQueryParameters()
+        {
+            return ContractParameter == null
+                ? new List<OpenApiParameter>()
+                : ContractParameter.ApiOperation.Parameters.GetAllFromQuery();
+        }
+
+        public List<OpenApiParameter> GetQueryRequiredParameters()
+        {
+            return GetQueryParameters()
+                .Where(parameter => parameter.Required)
+                .ToList();
+        }
 
         public override string ToString()
         {

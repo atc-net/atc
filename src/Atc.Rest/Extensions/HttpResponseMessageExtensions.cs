@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 // ReSharper disable once CheckNamespace
@@ -23,7 +25,16 @@ namespace System.Net.Http
                 PropertyNameCaseInsensitive = true
             };
 
-            return JsonSerializer.Deserialize<T>(await httpResponseMessage.Content.ReadAsStringAsync(), jsonSerializerOptions);
+            var content = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            try
+            {
+                return JsonSerializer.Deserialize<T>(content, jsonSerializerOptions);
+            }
+            catch (Exception ex)
+            {
+                throw new SerializationException(content, ex);
+            }
         }
     }
 }

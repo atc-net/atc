@@ -139,6 +139,19 @@
   -  Static Methods
      - GenerateCustomTests(DomainProjectOptions domainProjectOptions, SyntaxGeneratorHandler sgHandler)
      - GenerateGeneratedTests(DomainProjectOptions domainProjectOptions, SyntaxGeneratorHandler sgHandler)
+- [GenerateXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generatexunittesthelper)
+  -  Static Methods
+     - AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, string variableName = data)
+- [ValueTypeTestPropertiesHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#valuetypetestpropertieshelper)
+  -  Static Methods
+     - CreateValueBool()
+     - CreateValueDateTimeOffset(bool useForBadRequest)
+     - CreateValueDouble()
+     - CreateValueEnum(string name, KeyValuePair&lt;string, OpenApiSchema&gt; schemaForEnum, bool useForBadRequest)
+     - CreateValueGuid(bool useForBadRequest, int itemNumber = 0)
+     - CreateValueString(string name, string format, bool useForBadRequest, int itemNumber = 0, string customValue = null)
+     - CreateValueUri(bool useForBadRequest)
+     - Number(string name, bool useForBadRequest)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 
@@ -183,6 +196,7 @@
      - SetPropertiesAfterValidationsOfProjectReferencesPathAndFiles()
 - [EndpointMethodMetadata](Atc.Rest.ApiGenerator.Models.md#endpointmethodmetadata)
   -  Properties
+     - ComponentsSchemas
      - ContractInterfaceHandlerTypeName
      - ContractParameter
      - ContractParameterTypeName
@@ -193,6 +207,14 @@
      - Route
      - SegmentName
   -  Methods
+     - GetHeaderParameters()
+     - GetHeaderRequiredParameters()
+     - GetQueryParameters()
+     - GetQueryRequiredParameters()
+     - GetRouteParameters()
+     - HasContractParameterRequestBody()
+     - HasContractParameterRequiredHeader()
+     - IsPaginationUsed()
      - ToString()
 - [HostProjectOptions](Atc.Rest.ApiGenerator.Models.md#hostprojectoptions)
   -  Properties

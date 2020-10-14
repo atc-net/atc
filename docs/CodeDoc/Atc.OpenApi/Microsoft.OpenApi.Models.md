@@ -17,6 +17,11 @@ public static class NameConstants
 ### Static Fields
 
 
+#### List
+
+```csharp
+string List
+```
 #### Pagination
 
 ```csharp
@@ -215,15 +220,20 @@ public static class OpenApiParameterExtensions
 ### Static Methods
 
 
+#### GetAllFromHeader
+
+```csharp
+List<OpenApiParameter> GetAllFromHeader(this IList<OpenApiParameter> parameters)
+```
 #### GetAllFromQuery
 
 ```csharp
-List<Tuple<string, string>> GetAllFromQuery(this IList<OpenApiParameter> parameters)
+List<OpenApiParameter> GetAllFromQuery(this IList<OpenApiParameter> parameters)
 ```
 #### GetAllFromRoute
 
 ```csharp
-List<Tuple<string, string>> GetAllFromRoute(this IList<OpenApiParameter> parameters)
+List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)
 ```
 #### HasFormatTypeFromDataAnnotationsNamespace
 

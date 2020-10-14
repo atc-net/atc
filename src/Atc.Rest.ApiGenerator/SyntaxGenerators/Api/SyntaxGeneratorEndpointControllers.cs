@@ -196,7 +196,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         contractParameterTypeName,
                         operationName + NameConstants.ContractResult,
                         responseTypeNamesAndItemSchema,
-                        sgContractParameter);
+                        sgContractParameter,
+                        ApiProjectOptions.Document.Components.Schemas);
 
                     list.Add(endpointMethodMetadata);
                 }
@@ -210,18 +211,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var list = new List<Tuple<HttpStatusCode, string, OpenApiSchema?>>();
             foreach (var responseTypeName in responseTypeNames)
             {
-                if (!string.IsNullOrEmpty(responseTypeName.Item2))
+                if (string.IsNullOrEmpty(responseTypeName.Item2))
+                {
+                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, null!));
+                }
+                else
                 {
                     var rtn = responseTypeName.Item2
-                        .Replace("List<", string.Empty, StringComparison.Ordinal)
+                        .Replace($"{Microsoft.OpenApi.Models.NameConstants.List}<", string.Empty, StringComparison.Ordinal)
                         .Replace(">", string.Empty, StringComparison.Ordinal);
 
                     KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtn, StringComparison.OrdinalIgnoreCase));
                     list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, schema.Value));
-                }
-                else
-                {
-                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, null!));
                 }
             }
 

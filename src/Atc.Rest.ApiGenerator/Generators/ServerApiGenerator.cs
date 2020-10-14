@@ -689,7 +689,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                             new SyntaxNodeOrToken[]
                                             {
                                                 SyntaxFactory.Parameter(SyntaxFactory.Identifier("items"))
-                                                    .WithType(SyntaxFactory.GenericName(SyntaxFactory.Identifier("List"))
+                                                    .WithType(SyntaxFactory.GenericName(SyntaxFactory.Identifier(Microsoft.OpenApi.Models.NameConstants.List))
                                                         .WithTypeArgumentList(
                                                             SyntaxFactory.TypeArgumentList(
                                                                 SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
@@ -714,7 +714,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                         SyntaxFactory.AssignmentExpression(
                                             SyntaxKind.SimpleAssignmentExpression,
                                             SyntaxFactory.IdentifierName("Items"),
-                                            SyntaxFactory.ObjectCreationExpression(SyntaxFactory.GenericName(SyntaxFactory.Identifier("List"))
+                                            SyntaxFactory.ObjectCreationExpression(SyntaxFactory.GenericName(SyntaxFactory.Identifier(Microsoft.OpenApi.Models.NameConstants.List))
                                                 .WithTypeArgumentList(SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName("T")))))
                                             .WithArgumentList(SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName("items"))))))),
                                     SyntaxFactory.ExpressionStatement(SyntaxAssignmentExpressionFactory.CreateSimple("PageSize", "pageSize")),
@@ -752,7 +752,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                             {
                                                 SyntaxFactory.Parameter(SyntaxFactory.Identifier("items"))
                                                     .WithType(
-                                                        SyntaxFactory.GenericName(SyntaxFactory.Identifier("List"))
+                                                        SyntaxFactory.GenericName(SyntaxFactory.Identifier(Microsoft.OpenApi.Models.NameConstants.List))
                                                         .WithTypeArgumentList(
                                                             SyntaxFactory.TypeArgumentList(
                                                                 SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
@@ -775,7 +775,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                             SyntaxKind.SimpleAssignmentExpression,
                                             SyntaxFactory.IdentifierName("Items"),
                                             SyntaxFactory.ObjectCreationExpression(
-                                                SyntaxFactory.GenericName(SyntaxFactory.Identifier("List"))
+                                                SyntaxFactory.GenericName(SyntaxFactory.Identifier(Microsoft.OpenApi.Models.NameConstants.List))
                                                 .WithTypeArgumentList(
                                                     SyntaxFactory.TypeArgumentList(
                                                         SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName("T")))))

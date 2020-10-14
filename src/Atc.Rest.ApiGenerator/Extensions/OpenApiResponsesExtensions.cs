@@ -56,7 +56,7 @@ namespace Microsoft.OpenApi.Models
                         {
                             if (isList)
                             {
-                                typeResponseName = $"List<{modelName}>";
+                                typeResponseName = $"{NameConstants.List}<{modelName}>";
                             }
                             else
                             {
@@ -69,8 +69,6 @@ namespace Microsoft.OpenApi.Models
 
                         break;
                     case HttpStatusCode.Created:
-                        typeResponseName = "string";
-                        break;
                     case HttpStatusCode.Accepted:
                     case HttpStatusCode.NoContent:
                     case HttpStatusCode.NotModified:

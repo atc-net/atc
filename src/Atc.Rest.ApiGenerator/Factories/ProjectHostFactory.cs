@@ -44,7 +44,9 @@ namespace Atc.Rest.ApiGenerator.Factories
             {
                 "System.CodeDom.Compiler",
                 "System.Net.Http",
+                "System.Text",
                 "System.Text.Json",
+                "System.Text.Json.Serialization",
                 "Microsoft.Extensions.Configuration",
                 "Xunit"
             };

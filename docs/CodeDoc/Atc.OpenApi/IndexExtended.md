@@ -15,6 +15,7 @@
 
 - [NameConstants](Microsoft.OpenApi.Models.md#nameconstants)
   -  Static Fields
+     - string List
      - string Pagination
 - [OpenApiDataTypeConstants](Microsoft.OpenApi.Models.md#openapidatatypeconstants)
   -  Static Fields
@@ -51,6 +52,7 @@
      - IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
 - [OpenApiParameterExtensions](Microsoft.OpenApi.Models.md#openapiparameterextensions)
   -  Static Methods
+     - GetAllFromHeader(this IList&lt;OpenApiParameter&gt; parameters)
      - GetAllFromQuery(this IList&lt;OpenApiParameter&gt; parameters)
      - GetAllFromRoute(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiParameter&gt; parameters)

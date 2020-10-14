@@ -220,6 +220,11 @@ public class EndpointMethodMetadata
 ### Properties
 
 
+#### ComponentsSchemas
+
+```csharp
+ComponentsSchemas
+```
 #### ContractInterfaceHandlerTypeName
 
 ```csharp
@@ -268,6 +273,46 @@ SegmentName
 ### Methods
 
 
+#### GetHeaderParameters
+
+```csharp
+List<OpenApiParameter> GetHeaderParameters()
+```
+#### GetHeaderRequiredParameters
+
+```csharp
+List<OpenApiParameter> GetHeaderRequiredParameters()
+```
+#### GetQueryParameters
+
+```csharp
+List<OpenApiParameter> GetQueryParameters()
+```
+#### GetQueryRequiredParameters
+
+```csharp
+List<OpenApiParameter> GetQueryRequiredParameters()
+```
+#### GetRouteParameters
+
+```csharp
+List<OpenApiParameter> GetRouteParameters()
+```
+#### HasContractParameterRequestBody
+
+```csharp
+bool HasContractParameterRequestBody()
+```
+#### HasContractParameterRequiredHeader
+
+```csharp
+bool HasContractParameterRequiredHeader()
+```
+#### IsPaginationUsed
+
+```csharp
+bool IsPaginationUsed()
+```
 #### ToString
 
 ```csharp

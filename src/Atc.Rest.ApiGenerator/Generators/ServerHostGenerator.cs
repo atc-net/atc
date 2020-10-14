@@ -397,6 +397,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             var memberDeclarationConfiguration = CreateWebApiControllerBaseTestConfiguration();
             var memberDeclarationJsonSerializerOptions = CreateWebApiControllerBaseTestJsonSerializerOptions();
             var memberDeclarationConstructor = CreateWebApiControllerBaseTestConstructor();
+            var memberDeclarationToJson = CreateWebApiControllerBaseTestToJson();
 
             // Add member to class
             classDeclaration = classDeclaration.AddMembers(memberDeclarationFactory);
@@ -404,6 +405,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             classDeclaration = classDeclaration.AddMembers(memberDeclarationConfiguration);
             classDeclaration = classDeclaration.AddMembers(memberDeclarationJsonSerializerOptions);
             classDeclaration = classDeclaration.AddMembers(memberDeclarationConstructor);
+            classDeclaration = classDeclaration.AddMembers(memberDeclarationToJson);
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -954,15 +956,75 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 SyntaxFactory.IdentifierName("JsonSerializerOptions")),
                             SyntaxFactory.ObjectCreationExpression(
                                 SyntaxFactory.IdentifierName("JsonSerializerOptions"))
-                            .WithInitializer(
-                                SyntaxFactory.InitializerExpression(
-                                    SyntaxKind.ObjectInitializerExpression,
-                                    SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
-                                        SyntaxFactory.AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            SyntaxFactory.IdentifierName("PropertyNameCaseInsensitive"),
-                                            SyntaxFactory.LiteralExpression(
-                                                SyntaxKind.TrueLiteralExpression)))))))));
+                                .WithInitializer(
+                                    SyntaxFactory.InitializerExpression(
+                                        SyntaxKind.ObjectInitializerExpression,
+                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                            new SyntaxNodeOrToken[]
+                                            {
+                                                SyntaxFactory.AssignmentExpression(
+                                                    SyntaxKind.SimpleAssignmentExpression,
+                                                    SyntaxFactory.IdentifierName("PropertyNameCaseInsensitive"),
+                                                    SyntaxFactory.LiteralExpression(SyntaxKind.TrueLiteralExpression)),
+                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                SyntaxFactory.AssignmentExpression(
+                                                    SyntaxKind.SimpleAssignmentExpression,
+                                                    SyntaxFactory.IdentifierName("Converters"),
+                                                    SyntaxFactory.InitializerExpression(
+                                                        SyntaxKind.CollectionInitializerExpression,
+                                                        SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+                                                            SyntaxFactory.ObjectCreationExpression(
+                                                                    SyntaxFactory.IdentifierName("JsonStringEnumConverter"))
+                                                                .WithArgumentList(SyntaxFactory.ArgumentList())))),
+                                                SyntaxFactory.Token(SyntaxKind.CommaToken)
+                                            })))))));
+        }
+
+        private static MemberDeclarationSyntax CreateWebApiControllerBaseTestToJson()
+        {
+            return SyntaxFactory.MethodDeclaration(
+                SyntaxFactory.IdentifierName("StringContent"),
+                SyntaxFactory.Identifier("ToJson"))
+            .WithModifiers(
+                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
+            .WithParameterList(
+                SyntaxFactory.ParameterList(
+                    SyntaxFactory.SingletonSeparatedList(
+                        SyntaxFactory.Parameter(SyntaxFactory.Identifier("data"))
+                        .WithType(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.ObjectKeyword))))))
+            .WithExpressionBody(
+                SyntaxFactory.ArrowExpressionClause(
+                    SyntaxFactory.ObjectCreationExpression(
+                        SyntaxFactory.IdentifierName("StringContent"))
+                    .WithArgumentList(
+                        SyntaxFactory.ArgumentList(
+                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                new SyntaxNodeOrToken[]
+                                {
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.InvocationExpression(
+                                            SyntaxFactory.MemberAccessExpression(
+                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                SyntaxFactory.IdentifierName("JsonSerializer"),
+                                                SyntaxFactory.IdentifierName("Serialize")))
+                                        .WithArgumentList(
+                                            SyntaxFactory.ArgumentList(
+                                                SyntaxFactory.SingletonSeparatedList(
+                                                    SyntaxFactory.Argument(
+                                                        SyntaxFactory.IdentifierName("data")))))),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.MemberAccessExpression(
+                                            SyntaxKind.SimpleMemberAccessExpression,
+                                            SyntaxFactory.IdentifierName("Encoding"),
+                                            SyntaxFactory.IdentifierName("UTF8"))),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.LiteralExpression(
+                                            SyntaxKind.StringLiteralExpression,
+                                            SyntaxFactory.Literal("application/json")))
+                                })))))
+            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
         }
     }
 }

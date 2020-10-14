@@ -23,9 +23,11 @@ namespace Atc.Rest.ApiGenerator.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(EndpointMethodMetadata),
             typeof(DomainProjectOptions),
             typeof(HostProjectOptions),
             typeof(GenerateHelper),
+            typeof(ValueTypeTestPropertiesHelper),
             typeof(SolutionAndProjectHelper),
             typeof(ServerApiGenerator),
             typeof(ServerDomainGenerator),
@@ -49,6 +51,7 @@ namespace Atc.Rest.ApiGenerator.Tests
             typeof(SyntaxGeneratorHandlers),
             typeof(ValidatePathsAndOperationsHelper),
             typeof(Util),
+            typeof(GenerateXunitTestHelper),
             typeof(GenerateServerApiXunitTestEndpointHandlerStubHelper),
             typeof(GenerateServerApiXunitTestEndpointTestHelper),
             typeof(GenerateServerDomainXunitTestHelper),
