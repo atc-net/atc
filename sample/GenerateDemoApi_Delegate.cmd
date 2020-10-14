@@ -11,4 +11,4 @@ SET specFile=%currentDirectory%\Demo.ApiDesign\SingleFileVersion\Api.v1.yaml
 SET generatedDirectory=%currentDirectory%
 SET optionsFile=%currentDirectory%\\Demo.ApiDesign\DelegateApiGeneratorOptions.json
 
-%generatorFile% generate server api -p %projectName% -s %specFile% -o %generatedDirectory% --optionsPath %optionsFile%
+%generatorFile% generate server all -p %projectName% -s %specFile% --outputSlnPath %generatedDirectory% --outputSrcPath %generatedDirectory% --outputTestPath %generatedDirectory% --optionsPath %optionsFile% -v true

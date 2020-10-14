@@ -81,7 +81,10 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             var returnTypeName = contractReturnTypeName.Item2;
             if (returnTypeName == "string")
             {
-                sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(\"Hallo world\"));");
+                sb.AppendLine(12,
+                    httpStatusCode == HttpStatusCode.Created
+                        ? $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());"
+                        : $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(\"Hallo world\"));");
             }
             else
             {

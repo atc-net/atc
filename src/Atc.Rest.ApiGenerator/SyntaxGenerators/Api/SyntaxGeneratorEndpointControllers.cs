@@ -217,12 +217,25 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 }
                 else
                 {
-                    var rtn = responseTypeName.Item2
-                        .Replace($"{Microsoft.OpenApi.Models.NameConstants.List}<", string.Empty, StringComparison.Ordinal)
-                        .Replace(">", string.Empty, StringComparison.Ordinal);
+                    var rtnSimple = responseTypeName.Item2;
+                    var rtnFull = responseTypeName.Item2;
+                    if (rtnSimple.Contains('.', StringComparison.Ordinal))
+                    {
+                        bool hasList = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
 
-                    KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtn, StringComparison.OrdinalIgnoreCase));
-                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, responseTypeName.Item2, schema.Value));
+                        rtnSimple = rtnSimple
+                            .Replace($"{Microsoft.OpenApi.Models.NameConstants.List}<", string.Empty, StringComparison.Ordinal)
+                            .Replace(">", string.Empty, StringComparison.Ordinal)
+                            .Split('.')
+                            .Last();
+
+                        rtnFull = hasList
+                            ? $"{Microsoft.OpenApi.Models.NameConstants.List}<{rtnSimple}>"
+                            : rtnSimple;
+                    }
+
+                    KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtnSimple, StringComparison.OrdinalIgnoreCase));
+                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, rtnFull, schema.Value));
                 }
             }
 

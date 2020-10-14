@@ -180,11 +180,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     return ValueTypeTestPropertiesHelper.CreateValueEnum(name, schemaForDataType, useForBadRequest);
                 }
 
-                if (schema.Value.GetDataType() == "Address")
-                {
-                    // TO-DO: Imp. this.
-                    return $"new {schemaForDataType.Key}()";
-                }
+                return $"new {schemaForDataType.Key}()";
             }
 
             if (schema.Value.Type == "array")
@@ -193,7 +189,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return "null";
             }
 
-            throw new NotSupportedException($"PropertyValueGenerator: {name} - {schema.Value.GetDataType()}");
+            return "null";
         }
     }
 }

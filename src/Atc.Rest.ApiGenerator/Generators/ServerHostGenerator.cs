@@ -799,48 +799,63 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                 SyntaxFactory.Identifier("services")))
                                         .WithBlock(
                                             SyntaxFactory.Block(
-                                                SyntaxFactory.SingletonList<StatementSyntax>(
-                                                    SyntaxFactory.ExpressionStatement(
-                                                        SyntaxFactory.InvocationExpression(
-                                                            SyntaxFactory.MemberAccessExpression(
-                                                                SyntaxKind.SimpleMemberAccessExpression,
-                                                                SyntaxFactory.IdentifierName("services"),
-                                                                SyntaxFactory.IdentifierName("AutoRegistrateServices")))
-                                                        .WithArgumentList(
-                                                            SyntaxFactory.ArgumentList(
-                                                                SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                                                                    new SyntaxNodeOrToken[]
-                                                                    {
-                                                                        SyntaxFactory.Argument(
-                                                                            SyntaxFactory.PostfixUnaryExpression(
-                                                                                SyntaxKind.SuppressNullableWarningExpression,
-                                                                                SyntaxFactory.InvocationExpression(
-                                                                                    SyntaxFactory.MemberAccessExpression(
-                                                                                        SyntaxKind.SimpleMemberAccessExpression,
-                                                                                        SyntaxFactory.IdentifierName("Assembly"),
-                                                                                        SyntaxFactory.IdentifierName("GetAssembly")))
-                                                                                .WithArgumentList(
-                                                                                    SyntaxFactory.ArgumentList(
-                                                                                        SyntaxFactory.SingletonSeparatedList(
-                                                                                            SyntaxFactory.Argument(
-                                                                                                SyntaxFactory.TypeOfExpression(
-                                                                                                    SyntaxFactory.IdentifierName("ApiRegistration")))))))),
-                                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                                        SyntaxFactory.Argument(
-                                                                            SyntaxFactory.PostfixUnaryExpression(
-                                                                                SyntaxKind.SuppressNullableWarningExpression,
-                                                                                SyntaxFactory.InvocationExpression(
-                                                                                    SyntaxFactory.MemberAccessExpression(
-                                                                                        SyntaxKind.SimpleMemberAccessExpression,
-                                                                                        SyntaxFactory.IdentifierName("Assembly"),
-                                                                                        SyntaxFactory.IdentifierName("GetAssembly")))
-                                                                                .WithArgumentList(
-                                                                                    SyntaxFactory.ArgumentList(
-                                                                                        SyntaxFactory.SingletonSeparatedList(
-                                                                                            SyntaxFactory.Argument(
-                                                                                                SyntaxFactory.TypeOfExpression(
-                                                                                                    SyntaxFactory.IdentifierName("WebApiStartupFactory"))))))))
-                                                                    }))))))))))))));
+                                                SyntaxFactory.ExpressionStatement(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.IdentifierName("services"),
+                                                            SyntaxFactory.GenericName(
+                                                                    SyntaxFactory.Identifier("AddSingleton"))
+                                                                .WithTypeArgumentList(
+                                                                    SyntaxFactory.TypeArgumentList(
+                                                                        SyntaxFactory.SeparatedList<TypeSyntax>(
+                                                                            new SyntaxNodeOrToken[]
+                                                                            {
+                                                                                SyntaxFactory.IdentifierName("RestApiOptions"),
+                                                                                SyntaxTokenFactory.Comma(),
+                                                                                SyntaxFactory.IdentifierName("RestApiOptions")
+                                                                            })))))),
+                                                SyntaxFactory.ExpressionStatement(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.IdentifierName("services"),
+                                                            SyntaxFactory.IdentifierName("AutoRegistrateServices")))
+                                                    .WithArgumentList(
+                                                        SyntaxFactory.ArgumentList(
+                                                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                                new SyntaxNodeOrToken[]
+                                                                {
+                                                                    SyntaxFactory.Argument(
+                                                                        SyntaxFactory.PostfixUnaryExpression(
+                                                                            SyntaxKind.SuppressNullableWarningExpression,
+                                                                            SyntaxFactory.InvocationExpression(
+                                                                                SyntaxFactory.MemberAccessExpression(
+                                                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                                                    SyntaxFactory.IdentifierName("Assembly"),
+                                                                                    SyntaxFactory.IdentifierName("GetAssembly")))
+                                                                            .WithArgumentList(
+                                                                                SyntaxFactory.ArgumentList(
+                                                                                    SyntaxFactory.SingletonSeparatedList(
+                                                                                        SyntaxFactory.Argument(
+                                                                                            SyntaxFactory.TypeOfExpression(
+                                                                                                SyntaxFactory.IdentifierName("ApiRegistration")))))))),
+                                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                                    SyntaxFactory.Argument(
+                                                                        SyntaxFactory.PostfixUnaryExpression(
+                                                                            SyntaxKind.SuppressNullableWarningExpression,
+                                                                            SyntaxFactory.InvocationExpression(
+                                                                                SyntaxFactory.MemberAccessExpression(
+                                                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                                                    SyntaxFactory.IdentifierName("Assembly"),
+                                                                                    SyntaxFactory.IdentifierName("GetAssembly")))
+                                                                            .WithArgumentList(
+                                                                                SyntaxFactory.ArgumentList(
+                                                                                    SyntaxFactory.SingletonSeparatedList(
+                                                                                        SyntaxFactory.Argument(
+                                                                                            SyntaxFactory.TypeOfExpression(
+                                                                                                SyntaxFactory.IdentifierName("WebApiStartupFactory"))))))))
+                                                                })))))))))))));
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestFactory()

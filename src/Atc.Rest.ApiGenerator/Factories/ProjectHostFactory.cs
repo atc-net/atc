@@ -62,6 +62,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             {
                 "System.CodeDom.Compiler",
                 "System.Reflection",
+                "Atc.Rest.Options",
                 "Microsoft.AspNetCore.Hosting",
                 "Microsoft.AspNetCore.Mvc.Testing",
                 "Microsoft.AspNetCore.TestHost",
