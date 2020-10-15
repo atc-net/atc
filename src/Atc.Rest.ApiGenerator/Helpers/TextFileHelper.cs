@@ -39,6 +39,13 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 Directory.CreateDirectory(fileInfo.Directory.FullName);
             }
 
+            // Trim last NewLine in in *.cs files
+            if (fileInfo.Extension.Equals(".cs", StringComparison.OrdinalIgnoreCase) &&
+                text.EndsWith("}" + Environment.NewLine, StringComparison.Ordinal))
+            {
+                text = text.Substring(0, text.Length - 2);
+            }
+
             if (File.Exists(fileInfo.FullName))
             {
                 if (!overrideIfExist)
