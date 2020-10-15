@@ -8,6 +8,7 @@ using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable UseDeconstruction
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
@@ -116,13 +117,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 }
 
                 sb.AppendLine();
-                sb.AppendLine(12, "// Act");
-                sb.AppendLine(12, $"var response = await HttpClient.{endpointMethodMetadata.HttpOperation}Async(relativeRef, ToJson(data));");
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
             }
             else
             {
-                sb.AppendLine(12, "// Act");
-                sb.AppendLine(12, $"var response = await HttpClient.{endpointMethodMetadata.HttpOperation}Async(relativeRef);");
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation);
             }
 
             sb.AppendLine();
@@ -161,16 +160,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 sb.AppendLine(12, "// Arrange");
                 AppendNewRequestModel(12, sb, endpointMethodMetadata, HttpStatusCode.Created);
                 sb.AppendLine();
-                sb.AppendLine(12, "// Act");
-                sb.AppendLine(12, "var response = await HttpClient.PostAsync(relativeRef, ToJson(data));");
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
             }
             else
             {
-                sb.AppendLine(12, "// Arrange");
-                sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                sb.AppendLine();
-                sb.AppendLine(12, "// Act");
-                sb.AppendLine(12, "var response = await HttpClient.PostAsync(relativeRef, stringContent);");
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation);
             }
 
             sb.AppendLine();
@@ -204,41 +198,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InPath(string relativeRef)");
             sb.AppendLine(8, "{");
-            switch (operationType)
-            {
-                case OperationType.Get:
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.GetAsync(relativeRef);");
-                    break;
-                case OperationType.Put:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PutAsync(relativeRef, stringContent);");
-                    break;
-                case OperationType.Post:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PostAsync(relativeRef, stringContent);");
-                    break;
-                case OperationType.Delete:
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.DeleteAsync(relativeRef);");
-                    break;
-                case OperationType.Patch:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PatchAsync(relativeRef, stringContent);");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null);
-            }
-
+            AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
             sb.AppendLine();
             sb.AppendLine(12, "// Assert");
             sb.AppendLine(12, "response.Should().NotBeNull();");
@@ -273,41 +233,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InQuery(string relativeRef)");
             sb.AppendLine(8, "{");
-            switch (operationType)
-            {
-                case OperationType.Get:
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.GetAsync(relativeRef);");
-                    break;
-                case OperationType.Put:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PutAsync(relativeRef, stringContent);");
-                    break;
-                case OperationType.Post:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PostAsync(relativeRef, stringContent);");
-                    break;
-                case OperationType.Delete:
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.DeleteAsync(relativeRef);");
-                    break;
-                case OperationType.Patch:
-                    sb.AppendLine(12, "// Arrange");
-                    sb.AppendLine(12, "var stringContent = new StringContent(\"\");");
-                    sb.AppendLine();
-                    sb.AppendLine(12, "// Act");
-                    sb.AppendLine(12, "var response = await HttpClient.PatchAsync(relativeRef, stringContent);");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null);
-            }
-
+            AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation);
             sb.AppendLine();
             sb.AppendLine(12, "// Assert");
             sb.AppendLine(12, "response.Should().NotBeNull();");
@@ -318,6 +244,29 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         private static void AppendTest400BadRequestInBody(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OperationType operationType)
         {
             // TO-DO: Imp this.
+        }
+
+        private static void AppendActHttpClientOperation(int indentSpaces, StringBuilder sb, OperationType operationType, bool useData = false)
+        {
+            sb.AppendLine(indentSpaces, "// Act");
+            switch (operationType)
+            {
+                case OperationType.Get:
+                case OperationType.Delete:
+                    sb.AppendLine(12, $"var response = await HttpClient.{operationType}Async(relativeRef);");
+                    break;
+                case OperationType.Post:
+                case OperationType.Put:
+                case OperationType.Patch:
+                    sb.AppendLine(
+                        indentSpaces,
+                        useData
+                            ? $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(data));"
+                            : $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(new {{}}));");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null);
+            }
         }
 
         private static void AppendNewRequestModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, HttpStatusCode httpStatusCode, string variableName = "data")
