@@ -34,8 +34,8 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var data = await response.DeserializeAsync<List<Address>>(JsonSerializerOptions);
-            data.Should().NotBeNull();
+            var responseData = await response.DeserializeAsync<List<Address>>(JsonSerializerOptions);
+            responseData.Should().NotBeNull();
         }
     }
 }

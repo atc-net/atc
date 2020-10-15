@@ -34,8 +34,8 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var data = await response.DeserializeAsync<Order>(JsonSerializerOptions);
-            data.Should().NotBeNull();
+            var responseData = await response.DeserializeAsync<Order>(JsonSerializerOptions);
+            responseData.Should().NotBeNull();
         }
     }
 }

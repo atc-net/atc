@@ -42,8 +42,20 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var data = await response.DeserializeAsync<Pagination<Order>>(JsonSerializerOptions);
-            data.Should().NotBeNull();
+            var responseData = await response.DeserializeAsync<Pagination<Order>>(JsonSerializerOptions);
+            responseData.Should().NotBeNull();
+        }
+
+        [Theory]
+        [InlineData("/api/v1/orders?pageSize=@")]
+        public async Task GetOrders_BadRequest_InQuery(string relativeRef)
+        {
+            // Act
+            var response = await HttpClient.GetAsync(relativeRef);
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

@@ -34,8 +34,20 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var data = await response.DeserializeAsync<User>(JsonSerializerOptions);
-            data.Should().NotBeNull();
+            var responseData = await response.DeserializeAsync<User>(JsonSerializerOptions);
+            responseData.Should().NotBeNull();
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users/email?email=john.doe_example.com")]
+        public async Task GetUserByEmail_BadRequest_InQuery(string relativeRef)
+        {
+            // Act
+            var response = await HttpClient.GetAsync(relativeRef);
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

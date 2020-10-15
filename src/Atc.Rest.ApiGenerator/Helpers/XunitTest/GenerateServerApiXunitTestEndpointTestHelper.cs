@@ -62,10 +62,10 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                         AppendTest201Created(sb, endpointMethodMetadata, contractReturnTypeName!);
                         break;
                     case HttpStatusCode.BadRequest:
-                        AppendTest400BadRequestInPath(sb, endpointMethodMetadata, endpointMethodMetadata.HttpOperation);
-                        AppendTest400BadRequestInHeader(sb, endpointMethodMetadata, endpointMethodMetadata.HttpOperation);
-                        AppendTest400BadRequestInQuery(sb, endpointMethodMetadata, endpointMethodMetadata.HttpOperation);
-                        AppendTest400BadRequestInBody(sb, endpointMethodMetadata, endpointMethodMetadata.HttpOperation);
+                        AppendTest400BadRequestInPath(sb, endpointMethodMetadata, contractReturnTypeName!);
+                        AppendTest400BadRequestInHeader(sb, endpointMethodMetadata, contractReturnTypeName!);
+                        AppendTest400BadRequestInQuery(sb, endpointMethodMetadata, contractReturnTypeName!);
+                        AppendTest400BadRequestInBody(sb, endpointMethodMetadata, contractReturnTypeName!);
                         break;
                 }
             }
@@ -83,7 +83,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         private static void AppendTest200Ok(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
         {
-            var renderRelativeRefs = RenderRelativeRefs(endpointMethodMetadata);
+            var renderRelativeRefs = RenderRelativeRefsForQuery(endpointMethodMetadata);
             if (renderRelativeRefs.Count == 0)
             {
                 return;
@@ -97,11 +97,87 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_Ok(string relativeRef)");
+            AppendTextContent(sb, endpointMethodMetadata, HttpStatusCode.OK, contractReturnTypeName);
+        }
+
+        private static void AppendTest201Created(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
+            var renderRelativeRefs = RenderRelativeRefsForQuery(endpointMethodMetadata);
+            if (renderRelativeRefs.Count == 0)
+            {
+                return;
+            }
+
+            sb.AppendLine();
+            sb.AppendLine(8, "[Theory]");
+            foreach (var renderRelativeRef in renderRelativeRefs)
+            {
+                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
+            }
+
+            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_Created(string relativeRef)");
+            AppendTextContent(sb, endpointMethodMetadata, HttpStatusCode.Created, contractReturnTypeName);
+        }
+
+        private static void AppendTest400BadRequestInPath(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
+            var renderRelativeRefs = RenderRelativeRefsForPath(endpointMethodMetadata, true);
+            if (renderRelativeRefs.Count == 0)
+            {
+                return;
+            }
+
+            sb.AppendLine();
+            sb.AppendLine(8, "[Theory]");
+            foreach (var renderRelativeRef in renderRelativeRefs)
+            {
+                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
+            }
+
+            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InPath(string relativeRef)");
+            AppendTextContent(sb, endpointMethodMetadata, HttpStatusCode.BadRequest, contractReturnTypeName);
+        }
+
+        private static void AppendTest400BadRequestInHeader(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
+            // TO-DO: Imp this.
+        }
+
+        private static void AppendTest400BadRequestInQuery(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
+            var renderRelativeRefs = RenderRelativeRefsForQuery(endpointMethodMetadata, true);
+            if (renderRelativeRefs.Count == 0)
+            {
+                return;
+            }
+
+            sb.AppendLine();
+            sb.AppendLine(8, "[Theory]");
+            foreach (var renderRelativeRef in renderRelativeRefs)
+            {
+                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
+            }
+
+            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InQuery(string relativeRef)");
+            AppendTextContent(sb, endpointMethodMetadata, HttpStatusCode.BadRequest, contractReturnTypeName);
+        }
+
+        private static void AppendTest400BadRequestInBody(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
+            // TO-DO: Imp this.
+        }
+
+        private static void AppendTextContent(
+            StringBuilder sb,
+            EndpointMethodMetadata endpointMethodMetadata,
+            HttpStatusCode testExpectedHttpStatusCode,
+            Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
+        {
             sb.AppendLine(8, "{");
             if (endpointMethodMetadata.HasContractParameterRequestBody())
             {
                 sb.AppendLine(12, "// Arrange");
-                AppendNewRequestModel(12, sb, endpointMethodMetadata, HttpStatusCode.OK);
+                AppendNewRequestModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item1);
 
                 var headerParameters = endpointMethodMetadata.GetHeaderParameters();
                 if (headerParameters.Count > 0)
@@ -127,123 +203,17 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine();
             sb.AppendLine(12, "// Assert");
             sb.AppendLine(12, "response.Should().NotBeNull();");
-            sb.AppendLine(12, "response.StatusCode.Should().Be(HttpStatusCode.OK);");
-            if (!string.IsNullOrEmpty(contractReturnTypeName.Item2) && contractReturnTypeName.Item2 != "string")
+            sb.AppendLine(12, $"response.StatusCode.Should().Be(HttpStatusCode.{testExpectedHttpStatusCode});");
+            if (testExpectedHttpStatusCode == HttpStatusCode.OK &&
+                !string.IsNullOrEmpty(contractReturnTypeName.Item2) &&
+                contractReturnTypeName.Item2 != "string")
             {
                 sb.AppendLine();
-                sb.AppendLine(12, $"var data = await response.DeserializeAsync<{contractReturnTypeName.Item2}>(JsonSerializerOptions);");
-                sb.AppendLine(12, "data.Should().NotBeNull();");
+                sb.AppendLine(12, $"var responseData = await response.DeserializeAsync<{contractReturnTypeName.Item2}>(JsonSerializerOptions);");
+                sb.AppendLine(12, "responseData.Should().NotBeNull();");
             }
 
             sb.AppendLine(8, "}");
-        }
-
-        private static void AppendTest201Created(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
-        {
-            var renderRelativeRefs = RenderRelativeRefs(endpointMethodMetadata);
-            if (renderRelativeRefs.Count == 0)
-            {
-                return;
-            }
-
-            sb.AppendLine();
-            sb.AppendLine(8, "[Theory]");
-            foreach (var renderRelativeRef in renderRelativeRefs)
-            {
-                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
-            }
-
-            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_Created(string relativeRef)");
-            sb.AppendLine(8, "{");
-            if (endpointMethodMetadata.HasContractParameterRequestBody())
-            {
-                sb.AppendLine(12, "// Arrange");
-                AppendNewRequestModel(12, sb, endpointMethodMetadata, HttpStatusCode.Created);
-                sb.AppendLine();
-                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
-            }
-            else
-            {
-                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation);
-            }
-
-            sb.AppendLine();
-            sb.AppendLine(12, "// Assert");
-            sb.AppendLine(12, "response.Should().NotBeNull();");
-            sb.AppendLine(12, "response.StatusCode.Should().Be(HttpStatusCode.Created);");
-            if (!string.IsNullOrEmpty(contractReturnTypeName.Item2) && contractReturnTypeName.Item2 != "string")
-            {
-                sb.AppendLine();
-                sb.AppendLine(12, $"var data = await response.DeserializeAsync<{contractReturnTypeName.Item2}>(JsonSerializerOptions);");
-                sb.AppendLine(12, "data.Should().NotBeNull();");
-            }
-
-            sb.AppendLine(8, "}");
-        }
-
-        private static void AppendTest400BadRequestInPath(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OperationType operationType)
-        {
-            var renderRelativeRefs = RenderRelativeRefsForPath(endpointMethodMetadata, true);
-            if (renderRelativeRefs.Count == 0)
-            {
-                return;
-            }
-
-            sb.AppendLine();
-            sb.AppendLine(8, "[Theory]");
-            foreach (var renderRelativeRef in renderRelativeRefs)
-            {
-                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
-            }
-
-            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InPath(string relativeRef)");
-            sb.AppendLine(8, "{");
-            AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
-            sb.AppendLine();
-            sb.AppendLine(12, "// Assert");
-            sb.AppendLine(12, "response.Should().NotBeNull();");
-            sb.AppendLine(12, "response.StatusCode.Should().Be(HttpStatusCode.BadRequest);");
-            sb.AppendLine(8, "}");
-        }
-
-        private static void AppendTest400BadRequestInHeader(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OperationType operationType)
-        {
-            // TO-DO: Imp this.
-        }
-
-        private static void AppendTest400BadRequestInQuery(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OperationType operationType)
-        {
-            if (endpointMethodMetadata.GetQueryParameters().Count == 0)
-            {
-                return;
-            }
-
-            var renderRelativeRefs = RenderRelativeRefsForQuery(endpointMethodMetadata, true);
-            if (renderRelativeRefs.Count == 0)
-            {
-                return;
-            }
-
-            sb.AppendLine();
-            sb.AppendLine(8, "[Theory]");
-            foreach (var renderRelativeRef in renderRelativeRefs)
-            {
-                sb.AppendLine(8, $"[InlineData(\"{renderRelativeRef}\")]");
-            }
-
-            sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InQuery(string relativeRef)");
-            sb.AppendLine(8, "{");
-            AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation);
-            sb.AppendLine();
-            sb.AppendLine(12, "// Assert");
-            sb.AppendLine(12, "response.Should().NotBeNull();");
-            sb.AppendLine(12, "response.StatusCode.Should().Be(HttpStatusCode.BadRequest);");
-            sb.AppendLine(8, "}");
-        }
-
-        private static void AppendTest400BadRequestInBody(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OperationType operationType)
-        {
-            // TO-DO: Imp this.
         }
 
         private static void AppendActHttpClientOperation(int indentSpaces, StringBuilder sb, OperationType operationType, bool useData = false)
@@ -280,52 +250,23 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             GenerateXunitTestHelper.AppendNewModelOrListOfModel(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, variableName);
         }
 
-        private static List<string> RenderRelativeRefs(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
-        {
-            var renderRelativeRefs = new List<string>();
-
-            var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
-            if (queryRequiredParameters.Count == 0)
-            {
-                // Create without queryParameters
-                renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, null, useForBadRequest));
-            }
-            else
-            {
-                var queryParameters = endpointMethodMetadata.GetQueryParameters();
-                var combinationOfQueryParameters = ParameterCombinationHelper.GetCombination(queryParameters, useForBadRequest);
-                foreach (var combination in combinationOfQueryParameters)
-                {
-                    renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, combination, useForBadRequest));
-                }
-            }
-
-            return renderRelativeRefs;
-        }
-
         private static List<string> RenderRelativeRefsForPath(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
         {
             var renderRelativeRefs = new List<string>();
 
-            ////var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
-            ////if (queryRequiredParameters.Count == 0)
-            ////{
-            ////    // Create without queryParameters
-            ////    renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, null, useForBadRequest));
-            ////}
-            ////else
-            ////{
-            ////    var queryParameters = endpointMethodMetadata.GetQueryParameters();
-            ////    var combinationOfQueryParameters = new List<List<OpenApiParameter>>();
+            var routeParameters = endpointMethodMetadata.GetRouteParameters()
+                .Where(x=>x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
+                .ToList();
+            if (routeParameters.Count <= 0)
+            {
+                return renderRelativeRefs;
+            }
 
-            ////    // Add all
-            ////    combinationOfQueryParameters.Add(queryParameters);
-
-            ////    foreach (var combination in combinationOfQueryParameters)
-            ////    {
-            ////        renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, combination, useForBadRequest));
-            ////    }
-            ////}
+            var combinationOfRouteParameters = ParameterCombinationHelper.GetCombination(routeParameters, useForBadRequest);
+            foreach (var parameters in combinationOfRouteParameters)
+            {
+                renderRelativeRefs.Add(RenderRelativeRefsForPathHelper(endpointMethodMetadata, parameters, useForBadRequest));
+            }
 
             return renderRelativeRefs;
         }
@@ -334,28 +275,54 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var renderRelativeRefs = new List<string>();
 
-            var queryParameters = endpointMethodMetadata.GetQueryParameters();
-            if (queryParameters.Count == 0)
+            var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
+            if (queryRequiredParameters.Count == 0)
             {
-                return renderRelativeRefs;
+                if (!useForBadRequest)
+                {
+                    // Create without queryParameters
+                    renderRelativeRefs.Add(RenderRelativeRefsForQueryHelper(endpointMethodMetadata, null, useForBadRequest));
+                }
             }
-
-            // TO-DO: DKA is working on this.
-            ////var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
-            ////var combinationOfQueryParameters = new List<List<OpenApiParameter>>();
-
-            ////// Add all
-            ////combinationOfQueryParameters.Add(queryParameters);
-
-            ////foreach (var combination in combinationOfQueryParameters)
-            ////{
-            ////    renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, combination, useForBadRequest));
-            ////}
+            else
+            {
+                var queryParameters = endpointMethodMetadata.GetQueryParameters();
+                var combinationOfQueryParameters = ParameterCombinationHelper.GetCombination(queryParameters, useForBadRequest);
+                foreach (var parameters in combinationOfQueryParameters)
+                {
+                    renderRelativeRefs.Add(RenderRelativeRefsForQueryHelper(endpointMethodMetadata, parameters, useForBadRequest));
+                }
+            }
 
             return renderRelativeRefs;
         }
 
-        private static string RenderRelativeRef(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter>? queryParameters, bool useForBadRequest)
+        private static string RenderRelativeRefsForPathHelper(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter> routeParameters, bool useForBadRequest)
+        {
+            var route = endpointMethodMetadata.Route;
+            if (endpointMethodMetadata.ContractParameter == null)
+            {
+                return route;
+            }
+
+            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, endpointMethodMetadata.ComponentsSchemas, useForBadRequest);
+
+            if (routeParameters.Count == 0)
+            {
+                return relativeRefPath;
+            }
+
+            var queryRequiredParameters = endpointMethodMetadata.GetQueryRequiredParameters();
+            if (queryRequiredParameters.Count == 0)
+            {
+                return relativeRefPath;
+            }
+
+            string relativeRefQuery = RenderRelativeRefQuery(queryRequiredParameters, endpointMethodMetadata.ComponentsSchemas, false);
+            return $"{relativeRefPath}{relativeRefQuery}";
+        }
+
+        private static string RenderRelativeRefsForQueryHelper(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter>? queryParameters, bool useForBadRequest)
         {
             var route = endpointMethodMetadata.Route;
             if (endpointMethodMetadata.ContractParameter == null)
@@ -364,7 +331,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             var routeParameters = endpointMethodMetadata.GetRouteParameters();
-            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, endpointMethodMetadata.ComponentsSchemas, useForBadRequest);
+            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, endpointMethodMetadata.ComponentsSchemas, false);
 
             if (queryParameters == null || queryParameters.Count == 0)
             {

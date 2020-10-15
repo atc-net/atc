@@ -29,44 +29,49 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             {
                 if (useForBadRequest)
                 {
+                    var requiredCombinationNames = requiredNames.GetUniqueCombinations();
+                    list.AddRange(GetCombinationParameters(parameters, requiredCombinationNames));
                 }
                 else
                 {
                     var filteredCombinationNames = GetFilteredCombinationNames(totalCombinationNames, requiredNames);
-                    foreach (var item in filteredCombinationNames)
-                    {
-                        var localParameters = item
-                            .Select(name => parameters.Find(x => x.Name.Equals(name, StringComparison.Ordinal)))
-                            .ToList();
-                        list.Add(localParameters);
-                    }
+                    list.AddRange(GetCombinationParameters(parameters, filteredCombinationNames));
                 }
             }
             else
             {
                 if (useForBadRequest)
                 {
+                    // TO-DO: ?
                 }
                 else
                 {
-                    foreach (var item in totalCombinationNames)
-                    {
-                        var localParameters = item
-                            .Select(name => parameters.Find(x => x.Name.Equals(name, StringComparison.Ordinal)))
-                            .ToList();
-                        list.Add(localParameters);
-                    }
+                    list.AddRange(GetCombinationParameters(parameters, totalCombinationNames));
                 }
             }
 
             return list;
         }
 
-        private static List<List<string>> GetFilteredCombinationNames(IEnumerable<IEnumerable<string>> totalCombinationNames, List<string> requiredNames)
+        private static List<List<OpenApiParameter>> GetCombinationParameters(List<OpenApiParameter> parameters, IEnumerable<IEnumerable<string>> combinationNames)
         {
-            return totalCombinationNames
-                .Select(totalCombinationName => totalCombinationName.ToList())
-                .Where(item => requiredNames.Any(item.Contains))
+            var list = new List<List<OpenApiParameter>>();
+            foreach (var item in combinationNames)
+            {
+                var localParameters = item
+                    .Select(name => parameters.Find(x => x.Name.Equals(name, StringComparison.Ordinal)))
+                    .ToList();
+                list.Add(localParameters);
+            }
+
+            return list;
+        }
+
+        private static List<List<string>> GetFilteredCombinationNames(IEnumerable<IEnumerable<string>> combinationNames, List<string> requiredNames)
+        {
+            return combinationNames
+                .Select(x => x.ToList())
+                .Where(x => requiredNames.Any(x.Contains))
                 .ToList();
         }
 

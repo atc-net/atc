@@ -60,8 +60,15 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             if (name.Equals("Id", StringComparison.OrdinalIgnoreCase) || name.EndsWith("Id", StringComparison.Ordinal))
             {
-                return itemNumber > 0
-                    ? customValue ?? "27" + itemNumber
+                if (itemNumber > 0)
+                {
+                    return useForBadRequest
+                        ? customValue ?? "27@" + itemNumber
+                        : customValue ?? "27" + itemNumber;
+                }
+
+                return useForBadRequest
+                    ? customValue ?? "27@"
                     : customValue ?? "27";
             }
 
