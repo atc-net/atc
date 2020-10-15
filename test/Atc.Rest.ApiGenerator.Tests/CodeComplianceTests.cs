@@ -55,6 +55,7 @@ namespace Atc.Rest.ApiGenerator.Tests
             typeof(GenerateServerApiXunitTestEndpointHandlerStubHelper),
             typeof(GenerateServerApiXunitTestEndpointTestHelper),
             typeof(GenerateServerDomainXunitTestHelper),
+            typeof(ParameterCombinationHelper),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
