@@ -25,6 +25,13 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
         public GetOrdersTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
+        [InlineData("/api/v1/orders?pageSize=42")]
+        [InlineData("/api/v1/orders?pageSize=42&pageIndex=42")]
+        [InlineData("/api/v1/orders?pageSize=42&queryString=Hallo")]
+        [InlineData("/api/v1/orders?pageSize=42&pageIndex=42&queryString=Hallo")]
+        [InlineData("/api/v1/orders?pageSize=42&continuationToken=Hallo")]
+        [InlineData("/api/v1/orders?pageSize=42&pageIndex=42&continuationToken=Hallo")]
+        [InlineData("/api/v1/orders?pageSize=42&queryString=Hallo&continuationToken=Hallo")]
         [InlineData("/api/v1/orders?pageSize=42&pageIndex=42&queryString=Hallo&continuationToken=Hallo")]
         public async Task GetOrders_Ok(string relativeRef)
         {

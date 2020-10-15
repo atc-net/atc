@@ -344,11 +344,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             else
             {
                 var queryParameters = endpointMethodMetadata.GetQueryParameters();
-                var combinationOfQueryParameters = new List<List<OpenApiParameter>>();
-
-                // Add all
-                combinationOfQueryParameters.Add(queryParameters);
-
+                var combinationOfQueryParameters = ParameterCombinationHelper.GetCombination(queryParameters, useForBadRequest);
                 foreach (var combination in combinationOfQueryParameters)
                 {
                     renderRelativeRefs.Add(RenderRelativeRef(endpointMethodMetadata, combination, useForBadRequest));

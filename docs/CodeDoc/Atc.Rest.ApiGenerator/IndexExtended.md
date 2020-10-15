@@ -142,6 +142,9 @@
 - [GenerateXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generatexunittesthelper)
   -  Static Methods
      - AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, string variableName = data)
+- [ParameterCombinationHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#parametercombinationhelper)
+  -  Static Methods
+     - GetCombination(List&lt;OpenApiParameter&gt; parameters, bool useForBadRequest)
 - [ValueTypeTestPropertiesHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#valuetypetestpropertieshelper)
   -  Static Methods
      - CreateValueBool()

@@ -104,6 +104,10 @@
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
 - [VersionExtensions](System.md#versionextensions)
 
+## [System.Collections.Generic](System.Collections.Generic.md)
+
+- [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
+
 ## [System.Data](System.Data.md)
 
 - [DataTableExtensions](System.Data.md#datatableextensions)

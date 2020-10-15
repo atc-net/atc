@@ -508,6 +508,14 @@
      - CompareTo(this Version version, Version otherVersion, int significantParts)
      - GreaterThan(this Version version, Version otherVersion)
 
+## [System.Collections.Generic](System.Collections.Generic.md)
+
+- [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
+  -  Static Methods
+     - GetPowerSet(this IReadOnlyList&lt;T&gt; list)
+     - GetUniqueCombinations(this IReadOnlyList&lt;string&gt; list)
+     - GetUniqueCombinationsAsCommaSeparated(this IReadOnlyList&lt;string&gt; list)
+
 ## [System.Data](System.Data.md)
 
 - [DataTableExtensions](System.Data.md#datatableextensions)

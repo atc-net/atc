@@ -38,6 +38,7 @@
 - [GenerateServerApiXunitTestEndpointTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverapixunittestendpointtesthelper)
 - [GenerateServerDomainXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generateserverdomainxunittesthelper)
 - [GenerateXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generatexunittesthelper)
+- [ParameterCombinationHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#parametercombinationhelper)
 - [ValueTypeTestPropertiesHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#valuetypetestpropertieshelper)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)

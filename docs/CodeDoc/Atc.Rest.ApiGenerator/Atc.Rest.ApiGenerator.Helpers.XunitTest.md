@@ -85,6 +85,24 @@ void AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMet
 <br />
 
 
+## ParameterCombinationHelper
+
+```csharp
+public static class ParameterCombinationHelper
+```
+
+### Static Methods
+
+
+#### GetCombination
+
+```csharp
+List<List<OpenApiParameter>> GetCombination(List<OpenApiParameter> parameters, bool useForBadRequest)
+```
+
+<br />
+
+
 ## ValueTypeTestPropertiesHelper
 
 ```csharp
