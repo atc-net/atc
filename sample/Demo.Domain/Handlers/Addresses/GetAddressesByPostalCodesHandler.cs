@@ -12,7 +12,17 @@ namespace Demo.Domain.Handlers.Addresses
     /// </summary>
     public class GetAddressesByPostalCodesHandler : IGetAddressesByPostalCodesHandler
     {
-        public Task<GetAddressesByPostalCodesResult> ExecuteAsync(CancellationToken cancellationToken = default)
+        public Task<GetAddressesByPostalCodesResult> ExecuteAsync(GetAddressesByPostalCodesParameters parameters, CancellationToken cancellationToken = default)
+        {
+            if (parameters is null)
+            {
+                throw new System.ArgumentNullException(nameof(parameters));
+            }
+
+            return InvokeExecuteAsync(parameters, cancellationToken);
+        }
+
+        public async Task<GetAddressesByPostalCodesResult> InvokeExecuteAsync(GetAddressesByPostalCodesParameters parameters, CancellationToken cancellationToken = default)
         {
             throw new System.NotImplementedException();
         }

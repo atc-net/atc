@@ -18,7 +18,7 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
     [GeneratedCode("ApiGenerator", "1.0.0.0")]
     public class GetAddressesByPostalCodesHandlerStub : IGetAddressesByPostalCodesHandler
     {
-        public Task<GetAddressesByPostalCodesResult> ExecuteAsync(CancellationToken cancellationToken = default)
+        public Task<GetAddressesByPostalCodesResult> ExecuteAsync(GetAddressesByPostalCodesParameters parameters, CancellationToken cancellationToken = default)
         {
             var data = new List<Address>
             {

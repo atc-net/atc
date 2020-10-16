@@ -1,4 +1,4 @@
-﻿using Demo.Domain.Handlers.Addresses;
+﻿using Demo.Domain.Handlers.Accounts;
 using System;
 using System.CodeDom.Compiler;
 using Xunit;
@@ -14,13 +14,13 @@ using Xunit;
 namespace Demo.Domain.Api.Generated.Handlers.Tests
 {
     [GeneratedCode("ApiGenerator", "1.0.0.0")]
-    public class GetAddressesByPostalCodesHandlerGeneratedTests
+    public class UpdateAccountNameHandlerGeneratedTests
     {
         [Fact]
         public void InstantiateConstructor()
         {
             // Act
-            var actual = new GetAddressesByPostalCodesHandler();
+            var actual = new UpdateAccountNameHandler();
 
             // Assert
             Assert.NotNull(actual);
@@ -30,7 +30,7 @@ namespace Demo.Domain.Api.Generated.Handlers.Tests
         public void ParameterArgumentNullCheck()
         {
             // Arrange
-            var sut = new GetAddressesByPostalCodesHandler();
+            var sut = new UpdateAccountNameHandler();
 
             // Act & Assert
             Assert.ThrowsAsync<ArgumentException>(() => sut.ExecuteAsync(null!));

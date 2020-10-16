@@ -253,6 +253,29 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
+  '/accounts/{accountId}/name':
+    put:
+      operationId: updateAccountName
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      description: Update name of account.
+    post:
+      operationId: setAccountName
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      description: Set name of account.
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
   '/addresses/{postalCode}':
     get:
       summary: Get addresses by postal code
@@ -271,11 +294,11 @@ paths:
         '404':
           description: Not Found
     parameters:
-      - schema:
-          type: string
-        name: postalCode
+      - name: postalCode
         in: path
         required: true
+        schema:
+          type: string
 components:
   parameters:
     pagingPageSize:

@@ -302,6 +302,7 @@
      - ApiProjectOptions
      - Code
      - FocusOnSegmentName
+     - HasParametersOrRequestBody
   -  Methods
      - GenerateCode()
      - ToCodeAsString()

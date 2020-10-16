@@ -78,9 +78,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var usedApiOperations = new List<OpenApiOperation>();
             foreach (var (key, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
             {
+                var hasRouteParameters = value.HasParameters();
                 foreach (var apiOperation in value.Operations)
                 {
-                    var methodDeclaration = CreateMembersForEndpoints(apiOperation, key, FocusOnSegmentName)
+                    var methodDeclaration = CreateMembersForEndpoints(apiOperation, key, FocusOnSegmentName, hasRouteParameters)
                         .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForEndpointMethods(apiOperation, FocusOnSegmentName));
                     classDeclaration = classDeclaration.AddMembers(methodDeclaration);
 
@@ -91,9 +92,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             // Create private part for methods
             foreach (var (_, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
             {
+                var hasRouteParameters = value.HasParameters();
                 foreach (var apiOperation in value.Operations)
                 {
-                    var methodDeclaration = CreateMembersForEndpointsPrivateHelper(apiOperation);
+                    var methodDeclaration = CreateMembersForEndpointsPrivateHelper(apiOperation, hasRouteParameters);
                     classDeclaration = classDeclaration.AddMembers(methodDeclaration);
 
                     usedApiOperations.Add(apiOperation.Value);
@@ -169,7 +171,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var operationName = apiOperation.Value.GetOperationName();
 
                     string? contractParameterTypeName = null;
-                    if (apiOperation.Value.HasParametersOrRequestBody())
+                    if (apiOperation.Value.HasParametersOrRequestBody() || value.HasParameters())
                     {
                         contractParameterTypeName = operationName + NameConstants.ContractParameters;
                     }
@@ -266,36 +268,36 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 switch (sa.Length)
                 {
                     case 1:
-                    {
-                        foreach (var httpStatusCode in httpStatusCodes)
                         {
-                            if (sa[0].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            foreach (var httpStatusCode in httpStatusCodes)
                             {
-                                list.Add(
-                                    new Tuple<HttpStatusCode, string>(
-                                        httpStatusCode,
-                                        string.Empty));
+                                if (sa[0].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                                {
+                                    list.Add(
+                                        new Tuple<HttpStatusCode, string>(
+                                            httpStatusCode,
+                                            string.Empty));
+                                }
                             }
-                        }
 
-                        break;
-                    }
+                            break;
+                        }
 
                     case 2:
-                    {
-                        foreach (var httpStatusCode in httpStatusCodes)
                         {
-                            if (sa[1].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            foreach (var httpStatusCode in httpStatusCodes)
                             {
-                                list.Add(
-                                    new Tuple<HttpStatusCode, string>(
-                                        httpStatusCode,
-                                        sa[0]));
+                                if (sa[1].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                                {
+                                    list.Add(
+                                        new Tuple<HttpStatusCode, string>(
+                                            httpStatusCode,
+                                            sa[0]));
+                                }
                             }
-                        }
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
 
@@ -305,7 +307,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         private MethodDeclarationSyntax CreateMembersForEndpoints(
             KeyValuePair<OperationType, OpenApiOperation> apiOperation,
             string urlPath,
-            string area)
+            string area,
+            bool hasRouteParameters)
         {
             var operationName = apiOperation.Value.GetOperationName();
             var interfaceName = "I" + operationName + NameConstants.ContractHandler;
@@ -320,11 +323,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(nameof(ActionResult))),
                     SyntaxFactory.Identifier(methodName))
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName, true))
+                .WithParameterList(CreateParameterList(apiOperation.Value.HasParametersOrRequestBody() || hasRouteParameters, parameterTypeName, interfaceName, true))
                 .WithBody(
                     SyntaxFactory.Block(
                         SyntaxIfStatementFactory.CreateParameterArgumentNullCheck("handler", false),
-                        CreateCodeBlockReturnStatement(helperMethodName, apiOperation.Value.HasParametersOrRequestBody())));
+                        CreateCodeBlockReturnStatement(helperMethodName, apiOperation.Value.HasParametersOrRequestBody() || hasRouteParameters)));
 
             // Create and add Http-method-attribute
             var httpAttributeRoutePart = GetHttpAttributeRoutePart(urlPath);
@@ -351,7 +354,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         }
 
         private static MethodDeclarationSyntax CreateMembersForEndpointsPrivateHelper(
-            KeyValuePair<OperationType, OpenApiOperation> apiOperation)
+            KeyValuePair<OperationType, OpenApiOperation> apiOperation,
+            bool hasRouteParameters)
         {
             var operationName = apiOperation.Value.GetOperationName();
             var interfaceName = "I" + operationName + NameConstants.ContractHandler;
@@ -359,6 +363,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var parameterTypeName = operationName + NameConstants.ContractParameters;
 
             // Create method # use CreateParameterList & CreateCodeBlockReturnStatement
+            var hasParametersOrRequestBody = apiOperation.Value.HasParametersOrRequestBody() || hasRouteParameters;
             var methodDeclaration = SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(SyntaxFactory.Identifier(nameof(Task)))
                         .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(nameof(ActionResult))),
@@ -366,10 +371,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .AddModifiers(SyntaxTokenFactory.PrivateKeyword())
                 .AddModifiers(SyntaxTokenFactory.StaticKeyword())
                 .AddModifiers(SyntaxTokenFactory.AsyncKeyword())
-                .WithParameterList(CreateParameterList(apiOperation, parameterTypeName, interfaceName, false))
+                .WithParameterList(CreateParameterList(hasParametersOrRequestBody, parameterTypeName, interfaceName, false))
                 .WithBody(
                     SyntaxFactory.Block(
-                        CreateCodeBlockReturnStatementForHelper(apiOperation.Value.HasParametersOrRequestBody())));
+                        CreateCodeBlockReturnStatementForHelper(hasParametersOrRequestBody)));
 
             return methodDeclaration;
         }
@@ -397,13 +402,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         }
 
         private static ParameterListSyntax CreateParameterList(
-            KeyValuePair<OperationType, OpenApiOperation> apiOperation,
+            bool hasParametersOrRequestBody,
             string parameterTypeName,
             string interfaceName,
             bool useFromServicesAttributeOnInterface)
         {
             ParameterListSyntax parameterList;
-            if (apiOperation.Value.HasParametersOrRequestBody())
+            if (hasParametersOrRequestBody)
             {
                 if (useFromServicesAttributeOnInterface)
                 {

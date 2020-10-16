@@ -23,12 +23,14 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
             DomainProjectOptions domainProjectOptions,
             OperationType apiOperationType,
             OpenApiOperation apiOperation,
-            string focusOnSegmentName)
+            string focusOnSegmentName,
+            bool hasParametersOrRequestBody)
         {
             this.DomainProjectOptions = domainProjectOptions ?? throw new ArgumentNullException(nameof(domainProjectOptions));
             this.ApiOperationType = apiOperationType;
             this.ApiOperation = apiOperation ?? throw new ArgumentNullException(nameof(apiOperation));
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
+            this.HasParametersOrRequestBody = hasParametersOrRequestBody;
         }
 
         public DomainProjectOptions DomainProjectOptions { get; }
@@ -49,7 +51,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
 
         public string HandlerTypeName => ApiOperation.GetOperationName() + NameConstants.Handler;
 
-        public bool HasParametersOrRequestBody => ApiOperation.HasParametersOrRequestBody();
+        public bool HasParametersOrRequestBody { get; }
 
         public bool GenerateCode()
         {
