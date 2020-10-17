@@ -104,7 +104,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             }
 
             return SyntaxFactory.TokenList(
-                SyntaxTokenFactory.InternalKeyword(),
+                SyntaxTokenFactory.ProtectedKeyword(),
                 SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
         }
 

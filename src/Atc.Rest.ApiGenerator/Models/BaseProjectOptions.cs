@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Atc.Rest.ApiGenerator.Helpers;
 using Microsoft.OpenApi.Models;
 
@@ -38,14 +37,8 @@ namespace Atc.Rest.ApiGenerator.Models
             Document = openApiDocument ?? throw new ArgumentNullException(nameof(openApiDocument));
             DocumentFile = openApiDocumentFile ?? throw new ArgumentNullException(nameof(openApiDocumentFile));
 
-            var assembly = Assembly.GetEntryAssembly();
-            if (assembly == null)
-            {
-                assembly = Assembly.GetExecutingAssembly();
-            }
-
             ToolName = "ApiGenerator";
-            ToolVersion = assembly.GetName().Version;
+            ToolVersion = GenerateHelper.GetAtcToolVersion();
             ApiOptions = apiOptions;
 
             ApiVersion = GetApiVersion(openApiDocument);

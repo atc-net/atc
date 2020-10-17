@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Generators;
 using Atc.Rest.ApiGenerator.Models;
@@ -13,6 +14,32 @@ namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class GenerateHelper
     {
+        public static Version GetAtcToolVersion()
+        {
+            var defaultVersion = new Version(1, 0, 147, 0);
+            var assembly = Assembly.GetEntryAssembly();
+            if (assembly == null)
+            {
+                assembly = Assembly.GetExecutingAssembly();
+            }
+
+            return assembly.GetName().Version.GreaterThan(defaultVersion)
+                ? assembly.GetName().Version
+                : defaultVersion;
+        }
+
+        public static string GetAtcToolVersionAsString3()
+        {
+            var atcVersion = GetAtcToolVersion();
+            return $"{atcVersion.Major}.{atcVersion.Minor}.{atcVersion.Build}";
+        }
+
+        public static string GetAtcToolVersionAsString4()
+        {
+            var atcVersion = GetAtcToolVersion();
+            return $"{atcVersion.Major}.{atcVersion.Minor}.{atcVersion.Build}.{atcVersion.Revision}";
+        }
+
         public static List<LogKeyValueItem> GenerateServerApi(
             string projectPrefixName,
             DirectoryInfo outputPath,

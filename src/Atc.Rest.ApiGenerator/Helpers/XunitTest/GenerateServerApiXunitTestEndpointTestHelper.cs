@@ -510,6 +510,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             foreach (var queryParameter in queryParameters)
             {
                 var val = PropertyValueGenerator(queryParameter, componentsSchemas, useForBadRequest, null);
+                if ("null".Equals(val, StringComparison.Ordinal))
+                {
+                    val = string.Empty;
+                }
+
                 sb.Append($"&{queryParameter.Name}={val}");
             }
 

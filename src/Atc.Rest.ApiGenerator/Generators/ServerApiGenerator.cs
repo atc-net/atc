@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Xml.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
@@ -77,9 +76,8 @@ namespace Atc.Rest.ApiGenerator.Generators
 
             var lines = File.ReadLines(apiGeneratedFile).ToList();
 
-            var executingAssembly = Assembly.GetExecutingAssembly();
             const string toolName = "ApiGenerator";
-            var newVersion = executingAssembly.GetName().Version;
+            var newVersion = GenerateHelper.GetAtcToolVersion();
 
             foreach (var line in lines)
             {
