@@ -183,6 +183,11 @@ Code
 ```csharp
 FocusOnSegmentName
 ```
+#### HasParametersOrRequestBody
+
+```csharp
+HasParametersOrRequestBody
+```
 ### Methods
 
 

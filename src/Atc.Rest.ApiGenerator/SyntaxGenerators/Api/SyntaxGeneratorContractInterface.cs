@@ -19,12 +19,14 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             ApiProjectOptions apiProjectOptions,
             OperationType apiOperationType,
             OpenApiOperation apiOperation,
-            string focusOnSegmentName)
+            string focusOnSegmentName,
+            bool hasParametersOrRequestBody)
         {
             this.ApiProjectOptions = apiProjectOptions ?? throw new ArgumentNullException(nameof(apiProjectOptions));
             this.ApiOperationType = apiOperationType;
             this.ApiOperation = apiOperation ?? throw new ArgumentNullException(nameof(apiOperation));
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
+            this.HasParametersOrRequestBody = hasParametersOrRequestBody;
         }
 
         public ApiProjectOptions ApiProjectOptions { get; }
@@ -34,6 +36,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         public OpenApiOperation ApiOperation { get; }
 
         public string FocusOnSegmentName { get; }
+
+        public bool HasParametersOrRequestBody { get; }
 
         public CompilationUnitSyntax? Code { get; private set; }
 
@@ -58,7 +62,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForInterface(ApiOperation, FocusOnSegmentName));
 
             // Create interface-method
-            var methodDeclaration = SyntaxMethodDeclarationFactory.CreateInterfaceMethod(parameterTypeName, resultTypeName, ApiOperation.HasParametersOrRequestBody())
+            var methodDeclaration = SyntaxMethodDeclarationFactory.CreateInterfaceMethod(parameterTypeName, resultTypeName, HasParametersOrRequestBody)
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForInterfaceMethod(ApiOperation.HasParametersOrRequestBody()));
 
             // Add using statement to compilationUnit

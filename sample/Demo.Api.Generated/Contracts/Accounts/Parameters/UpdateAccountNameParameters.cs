@@ -10,22 +10,22 @@ using Microsoft.AspNetCore.Mvc;
 //------------------------------------------------------------------------------
 //
 // ReSharper disable once CheckNamespace
-namespace Demo.Api.Generated.Contracts.Addresses
+namespace Demo.Api.Generated.Contracts.Accounts
 {
     /// <summary>
     /// Parameters for operation request.
-    /// Description: Get addresses by postal code.
-    /// Operation: GetAddressesByPostalCodes.
-    /// Area: Addresses.
+    /// Description: Update name of account.
+    /// Operation: UpdateAccountName.
+    /// Area: Accounts.
     /// </summary>
     [GeneratedCode("ApiGenerator", "1.0.0.0")]
-    public class GetAddressesByPostalCodesParameters
+    public class UpdateAccountNameParameters
     {
         /// <summary>
-        /// The postalCode to limit addresses on.
+        /// The accountId.
         /// </summary>
-        [FromRoute(Name = "postalCode")]
+        [FromRoute(Name = "accountId")]
         [Required]
-        public string PostalCode { get; set; }
+        public string AccountId { get; set; }
     }
 }

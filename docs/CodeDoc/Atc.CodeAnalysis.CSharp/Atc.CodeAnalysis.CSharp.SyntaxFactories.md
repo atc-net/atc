@@ -589,6 +589,11 @@ SyntaxToken OverrideKeyword(bool withTrailingSpace = True)
 ```csharp
 SyntaxToken PrivateKeyword(bool withTrailingSpace = True)
 ```
+#### ProtectedKeyword
+
+```csharp
+SyntaxToken ProtectedKeyword(bool withTrailingSpace = True)
+```
 #### PublicKeyword
 
 ```csharp
@@ -651,6 +656,16 @@ SyntaxTokenList InternalStaticKeyword(bool withLeadingLineFeed = False, bool wit
 
 ```csharp
 SyntaxTokenList PrivateReadonlyKeyword(bool withTrailingSpace = True)
+```
+#### ProtectedReadOnlyKeyword
+
+```csharp
+SyntaxTokenList ProtectedReadOnlyKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+```
+#### ProtectedStaticKeyword
+
+```csharp
+SyntaxTokenList ProtectedStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
 ```
 #### PublicAsyncKeyword
 

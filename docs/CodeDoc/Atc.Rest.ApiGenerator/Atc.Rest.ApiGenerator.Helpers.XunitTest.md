@@ -81,6 +81,11 @@ public static class GenerateXunitTestHelper
 ```csharp
 void AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, string variableName = data)
 ```
+#### AppendNewModelOrListOfModelForBadRequest
+
+```csharp
+void AppendNewModelOrListOfModelForBadRequest(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, KeyValuePair<string, OpenApiSchema> badPropertySchema, string variableName = data)
+```
 
 <br />
 
@@ -115,7 +120,7 @@ public static class ValueTypeTestPropertiesHelper
 #### CreateValueBool
 
 ```csharp
-string CreateValueBool()
+string CreateValueBool(bool useForBadRequest)
 ```
 #### CreateValueDateTimeOffset
 

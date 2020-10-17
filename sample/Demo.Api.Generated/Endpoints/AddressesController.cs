@@ -34,19 +34,19 @@ namespace Demo.Api.Generated.Endpoints
         [HttpGet("{postalCode}")]
         [ProducesResponseType(typeof(List<Contracts.Address>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        public Task<ActionResult> GetAddressesByPostalCodesAsync([FromServices] IGetAddressesByPostalCodesHandler handler, CancellationToken cancellationToken)
+        public Task<ActionResult> GetAddressesByPostalCodesAsync(GetAddressesByPostalCodesParameters parameters, [FromServices] IGetAddressesByPostalCodesHandler handler, CancellationToken cancellationToken)
         {
             if (handler is null)
             {
                 throw new ArgumentNullException(nameof(handler));
             }
 
-            return InvokeGetAddressesByPostalCodesAsync(handler, cancellationToken);
+            return InvokeGetAddressesByPostalCodesAsync(parameters, handler, cancellationToken);
         }
 
-        private static async Task<ActionResult> InvokeGetAddressesByPostalCodesAsync([FromServices] IGetAddressesByPostalCodesHandler handler, CancellationToken cancellationToken)
+        private static async Task<ActionResult> InvokeGetAddressesByPostalCodesAsync(GetAddressesByPostalCodesParameters parameters, IGetAddressesByPostalCodesHandler handler, CancellationToken cancellationToken)
         {
-            return await handler.ExecuteAsync(cancellationToken);
+            return await handler.ExecuteAsync(parameters, cancellationToken);
         }
     }
 }

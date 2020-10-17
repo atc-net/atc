@@ -34,7 +34,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
                 list.AddRange(
                     urlPath.Value.Operations
-                        .Select(x => new SyntaxGeneratorContractInterface(ApiProjectOptions, x.Key, x.Value, FocusOnSegmentName))
+                        .Select(x => new SyntaxGeneratorContractInterface(
+                            ApiProjectOptions,
+                            x.Key,
+                            x.Value,
+                            FocusOnSegmentName,
+                            urlPath.Value.HasParameters() || x.Value.HasParametersOrRequestBody()))
                         .Where(item => item.GenerateCode()));
             }
 

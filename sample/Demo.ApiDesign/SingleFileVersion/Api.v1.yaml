@@ -265,6 +265,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
+  '/accounts/{accountId}/name':
+    put:
+      summary: Update name of account
+      description: Update name of account
+      operationId: updateAccountName
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Set name of account
+      description: Set name of account
+      operationId: setAccountName
+      responses:
+        '200':
+          description: OK
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The accountId
+        schema:
+          type: string
   '/addresses/{postalCode}':
     get:
       summary: Get addresses by postal code
@@ -286,6 +308,7 @@ paths:
       - name: postalCode
         in: path
         required: true
+        description: The postalCode to limit addresses on
         schema:
           type: string
 components:

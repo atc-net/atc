@@ -123,6 +123,7 @@
      - OperatorKeyword(bool withTrailingSpace = True)
      - OverrideKeyword(bool withTrailingSpace = True)
      - PrivateKeyword(bool withTrailingSpace = True)
+     - ProtectedKeyword(bool withTrailingSpace = True)
      - PublicKeyword(bool withTrailingSpace = True)
      - ReadOnlyKeyword(bool withTrailingSpace = True)
      - Semicolon(bool withTrailingSpace = False)
@@ -135,6 +136,8 @@
   -  Static Methods
      - InternalStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PrivateReadonlyKeyword(bool withTrailingSpace = True)
+     - ProtectedReadOnlyKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+     - ProtectedStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PublicAsyncKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PublicKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PublicOverrideKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)

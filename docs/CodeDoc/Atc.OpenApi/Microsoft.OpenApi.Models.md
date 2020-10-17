@@ -437,6 +437,11 @@ bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> s
 ```csharp
 bool HasDataTypeOfList(this IList<OpenApiSchema> schemas)
 ```
+#### HasFormatType
+
+```csharp
+bool HasFormatType(this OpenApiSchema schema)
+```
 #### HasFormatTypeFromDataAnnotationsNamespace
 
 ```csharp
@@ -496,6 +501,56 @@ bool HasFormatTypeOfUri(this IList<OpenApiSchema> schemas)
 
 ```csharp
 bool HasFormatTypeOfUuid(this IList<OpenApiSchema> schemas)
+```
+#### IsFormatTypeOfByte
+
+```csharp
+bool IsFormatTypeOfByte(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfDate
+
+```csharp
+bool IsFormatTypeOfDate(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfDateTime
+
+```csharp
+bool IsFormatTypeOfDateTime(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfEmail
+
+```csharp
+bool IsFormatTypeOfEmail(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfInt32
+
+```csharp
+bool IsFormatTypeOfInt32(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfInt64
+
+```csharp
+bool IsFormatTypeOfInt64(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfTime
+
+```csharp
+bool IsFormatTypeOfTime(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfTimestamp
+
+```csharp
+bool IsFormatTypeOfTimestamp(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfUri
+
+```csharp
+bool IsFormatTypeOfUri(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfUuid
+
+```csharp
+bool IsFormatTypeOfUuid(this OpenApiSchema schema)
 ```
 #### IsHttpStatusCodeModelReference
 

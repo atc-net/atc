@@ -265,6 +265,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
+  '/accounts/{accountId}/name':
+    put:
+      summary: Update name of account
+      description: Update name of account
+      operationId: updateAccountName
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Set name of account
+      description: Set name of account
+      operationId: setAccountName
+      responses:
+        '200':
+          description: OK
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The accountId
+        schema:
+          type: string
   '/addresses/{postalCode}':
     get:
       summary: Get addresses by postal code
@@ -283,16 +305,17 @@ paths:
         '404':
           description: Not Found
     parameters:
-      - schema:
-          type: string
-        name: postalCode
+      - name: postalCode
         in: path
         required: true
+        description: The postalCode to limit addresses on
+        schema:
+          type: string
 components:
   parameters:
     pagingPageSize:
-      in: query
       name: pageSize
+      in: query
       required: true
       schema:
         type: integer
@@ -301,8 +324,8 @@ components:
         default: 10
       description: The numbers of items to return.
     pagingPageIndex:
-      in: query
       name: pageIndex
+      in: query
       required: false
       schema:
         type: integer
@@ -310,16 +333,16 @@ components:
         default: 0
       description: The number of items to skip before starting to collect the result set.
     queryString:
-      in: query
       name: queryString
+      in: query
       required: false
       schema:
         type: string
         nullable: true
       description: The query string.
     continuationToken:
-      in: query
       name: continuationToken
+      in: query
       required: false
       schema:
         type: string
