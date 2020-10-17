@@ -9,42 +9,42 @@ namespace Microsoft.OpenApi.Models
     {
         public static bool HasFormatTypeOfUuid(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Uuid, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x=> x.Schema.IsFormatTypeOfUuid());
         }
 
         public static bool HasFormatTypeOfDate(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Date, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfDate());
         }
 
         public static bool HasFormatTypeOfTime(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Time, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfTime());
         }
 
         public static bool HasFormatTypeOfTimestamp(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Timestamp, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfTimestamp());
         }
 
         public static bool HasFormatTypeOfDateTime(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.DateTime, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfDateTime());
         }
 
         public static bool HasFormatTypeOfEmail(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Email, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfEmail());
         }
 
         public static bool HasFormatTypeOfUri(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfUri());
         }
 
         public static bool HasFormatTypeOfByte(this IList<OpenApiParameter> parameters)
         {
-            return parameters.Any(x => !string.IsNullOrEmpty(x.Schema.Format) && x.Schema.Format.Equals(OpenApiFormatTypeConstants.Byte, StringComparison.OrdinalIgnoreCase));
+            return parameters.Any(x => x.Schema.IsFormatTypeOfByte());
         }
 
         public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)

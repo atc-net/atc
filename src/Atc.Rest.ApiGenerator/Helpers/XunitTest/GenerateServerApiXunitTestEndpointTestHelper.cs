@@ -33,6 +33,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine("using System.Collections.Generic;");
             sb.AppendLine("using System.Net;");
             sb.AppendLine("using System.Net.Http;");
+            sb.AppendLine("using System.Text;");
             sb.AppendLine("using System.Threading.Tasks;");
             sb.AppendLine("using FluentAssertions;");
             if (endpointMethodMetadata.IsPaginationUsed())
@@ -140,7 +141,47 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         private static void AppendTest400BadRequestInHeader(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
         {
-            // TO-DO: Imp this.
+            var headerRequiredParameters = endpointMethodMetadata.GetHeaderRequiredParameters();
+            var testForParameters = headerRequiredParameters
+                .Where(x => x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
+                .ToList();
+            if (headerRequiredParameters.Count == 0)
+            {
+                return;
+            }
+
+            var relativeRef = RenderRelativeRef(endpointMethodMetadata);
+            foreach (var testForParameter in testForParameters)
+            {
+                sb.AppendLine();
+                sb.AppendLine(8, "[Theory]");
+                sb.AppendLine(8, $"[InlineData(\"{relativeRef}\")]");
+                sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InHeader_{testForParameter.Name.EnsureFirstCharacterToUpper()}(string relativeRef)");
+                sb.AppendLine(8, "{");
+                sb.AppendLine(12, "// Arrange");
+                if (headerRequiredParameters.Count > 0)
+                {
+                    foreach (var headerParameter in headerRequiredParameters)
+                    {
+                        var useInvalidData = headerParameter.Name == testForParameter.Name;
+                        string propertyValueGenerated = PropertyValueGenerator(headerParameter, endpointMethodMetadata.ComponentsSchemas, useInvalidData, null);
+                        sb.AppendLine(
+                            12,
+                            $"HttpClient.DefaultRequestHeaders.Add(\"{headerParameter.Name}\", \"{propertyValueGenerated}\");");
+                    }
+
+                    sb.AppendLine();
+                }
+
+                AppendNewRequestModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item1);
+                sb.AppendLine();
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
+                sb.AppendLine();
+                sb.AppendLine(12, "// Assert");
+                sb.AppendLine(12, "response.Should().NotBeNull();");
+                sb.AppendLine(12, $"response.StatusCode.Should().Be(HttpStatusCode.{HttpStatusCode.BadRequest});");
+                sb.AppendLine(8, "}");
+            }
         }
 
         private static void AppendTest400BadRequestInQuery(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
@@ -164,7 +205,66 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         private static void AppendTest400BadRequestInBody(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
         {
-            // TO-DO: Imp this.
+            if (!endpointMethodMetadata.HasContractParameterRequestBody())
+            {
+                return;
+            }
+
+            var schema = endpointMethodMetadata.ContractParameter?.ApiOperation.RequestBody?.Content.GetSchema();
+            if (schema == null)
+            {
+                return;
+            }
+
+            var modelSchema = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == schema.GetModelName()).Value;
+
+            var headerRequiredParameters = endpointMethodMetadata.GetHeaderRequiredParameters();
+
+            var relevantSchemas = new List<KeyValuePair<string, OpenApiSchema>>();
+            foreach (var schemaProperty in modelSchema.Properties)
+            {
+                if (modelSchema.Required.Contains(schemaProperty.Key) ||
+                    schemaProperty.Value.IsFormatTypeOfEmail() ||
+                    schemaProperty.Value.IsFormatTypeOfDate() ||
+                    schemaProperty.Value.IsFormatTypeOfDateTime() ||
+                    schemaProperty.Value.IsFormatTypeOfTime() ||
+                    schemaProperty.Value.IsFormatTypeOfTimestamp())
+                {
+                    relevantSchemas.Add(schemaProperty);
+                }
+            }
+
+            var relativeRef = RenderRelativeRef(endpointMethodMetadata);
+            foreach (var testForSchema in relevantSchemas)
+            {
+                sb.AppendLine();
+                sb.AppendLine(8, "[Theory]");
+                sb.AppendLine(8, $"[InlineData(\"{relativeRef}\")]");
+                sb.AppendLine(8, $"public async Task {endpointMethodMetadata.MethodName}_BadRequest_InBody_{testForSchema.Key.EnsureFirstCharacterToUpper()}(string relativeRef)");
+                sb.AppendLine(8, "{");
+                sb.AppendLine(12, "// Arrange");
+                if (headerRequiredParameters.Count > 0)
+                {
+                    foreach (var headerParameter in headerRequiredParameters)
+                    {
+                        string propertyValueGenerated = PropertyValueGenerator(headerParameter, endpointMethodMetadata.ComponentsSchemas, false, null);
+                        sb.AppendLine(
+                            12,
+                            $"HttpClient.DefaultRequestHeaders.Add(\"{headerParameter.Name}\", \"{propertyValueGenerated}\");");
+                    }
+
+                    sb.AppendLine();
+                }
+
+                AppendNewRequestModelForBadRequest(12, sb, endpointMethodMetadata, contractReturnTypeName.Item1, testForSchema);
+                sb.AppendLine();
+                AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true, true);
+                sb.AppendLine();
+                sb.AppendLine(12, "// Assert");
+                sb.AppendLine(12, "response.Should().NotBeNull();");
+                sb.AppendLine(12, $"response.StatusCode.Should().Be(HttpStatusCode.{HttpStatusCode.BadRequest});");
+                sb.AppendLine(8, "}");
+            }
         }
 
         private static void AppendTextContent(
@@ -177,12 +277,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             if (endpointMethodMetadata.HasContractParameterRequestBody())
             {
                 sb.AppendLine(12, "// Arrange");
-                AppendNewRequestModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item1);
-
                 var headerParameters = endpointMethodMetadata.GetHeaderParameters();
                 if (headerParameters.Count > 0)
                 {
-                    sb.AppendLine();
                     foreach (var headerParameter in headerParameters)
                     {
                         string propertyValueGenerated = PropertyValueGenerator(headerParameter, endpointMethodMetadata.ComponentsSchemas, false, null);
@@ -190,8 +287,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                             12,
                             $"HttpClient.DefaultRequestHeaders.Add(\"{headerParameter.Name}\", \"{propertyValueGenerated}\");");
                     }
+
+                    sb.AppendLine();
                 }
 
+                AppendNewRequestModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item1);
                 sb.AppendLine();
                 AppendActHttpClientOperation(12, sb, endpointMethodMetadata.HttpOperation, true);
             }
@@ -216,7 +316,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine(8, "}");
         }
 
-        private static void AppendActHttpClientOperation(int indentSpaces, StringBuilder sb, OperationType operationType, bool useData = false)
+        private static void AppendActHttpClientOperation(int indentSpaces, StringBuilder sb, OperationType operationType, bool useData = false, bool isDataJson = false)
         {
             sb.AppendLine(indentSpaces, "// Act");
             switch (operationType)
@@ -228,18 +328,35 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 case OperationType.Post:
                 case OperationType.Put:
                 case OperationType.Patch:
-                    sb.AppendLine(
-                        indentSpaces,
-                        useData
-                            ? $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(data));"
-                            : $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(new {{}}));");
+                    if (isDataJson)
+                    {
+                        sb.AppendLine(
+                            indentSpaces,
+                            useData
+                                ? $"var response = await HttpClient.{operationType}Async(relativeRef, Json(data));"
+                                : $"var response = await HttpClient.{operationType}Async(relativeRef, Json(\"{{}}\"));");
+                    }
+                    else
+                    {
+                        sb.AppendLine(
+                            indentSpaces,
+                            useData
+                                ? $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(data));"
+                                : $"var response = await HttpClient.{operationType}Async(relativeRef, ToJson(new {{}}));");
+                    }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null);
             }
         }
 
-        private static void AppendNewRequestModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, HttpStatusCode httpStatusCode, string variableName = "data")
+        private static void AppendNewRequestModel(
+            int indentSpaces,
+            StringBuilder sb,
+            EndpointMethodMetadata endpointMethodMetadata,
+            HttpStatusCode httpStatusCode,
+            string variableName = "data")
         {
             var schema = endpointMethodMetadata.ContractParameter?.ApiOperation.RequestBody?.Content.GetSchema();
             if (schema == null)
@@ -250,12 +367,29 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             GenerateXunitTestHelper.AppendNewModelOrListOfModel(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, variableName);
         }
 
+        private static void AppendNewRequestModelForBadRequest(
+            int indentSpaces,
+            StringBuilder sb,
+            EndpointMethodMetadata endpointMethodMetadata,
+            HttpStatusCode httpStatusCode,
+            KeyValuePair<string, OpenApiSchema> badPropertySchema,
+            string variableName = "data")
+        {
+            var schema = endpointMethodMetadata.ContractParameter?.ApiOperation.RequestBody?.Content.GetSchema();
+            if (schema == null)
+            {
+                return;
+            }
+
+            GenerateXunitTestHelper.AppendNewModelOrListOfModelForBadRequest(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, badPropertySchema, variableName);
+        }
+
         private static List<string> RenderRelativeRefsForPath(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
         {
             var renderRelativeRefs = new List<string>();
 
             var routeParameters = endpointMethodMetadata.GetRouteParameters()
-                .Where(x=>x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
+                .Where(x => x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
                 .ToList();
             if (routeParameters.Count <= 0)
             {
@@ -322,6 +456,12 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return $"{relativeRefPath}{relativeRefQuery}";
         }
 
+        private static string RenderRelativeRef(EndpointMethodMetadata endpointMethodMetadata)
+        {
+            var queryParameters = endpointMethodMetadata.GetQueryParameters();
+            return RenderRelativeRefsForQueryHelper(endpointMethodMetadata, queryParameters, false);
+        }
+
         private static string RenderRelativeRefsForQueryHelper(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter>? queryParameters, bool useForBadRequest)
         {
             var route = endpointMethodMetadata.Route;
@@ -384,7 +524,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "double" => ValueTypeTestPropertiesHelper.CreateValueDouble(),
                 "long" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
-                "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(),
+                "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
                 "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema.Format, useForBadRequest, 0, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest),

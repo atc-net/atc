@@ -30,6 +30,11 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             return TokenWithTrailing(SyntaxKind.InternalKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
         }
 
+        public static SyntaxToken ProtectedKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.ProtectedKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
+
         public static SyntaxToken StaticKeyword(bool withTrailingSpace = true)
         {
             return TokenWithTrailing(SyntaxKind.StaticKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);

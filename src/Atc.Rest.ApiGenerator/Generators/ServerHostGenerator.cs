@@ -398,6 +398,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             var memberDeclarationJsonSerializerOptions = CreateWebApiControllerBaseTestJsonSerializerOptions();
             var memberDeclarationConstructor = CreateWebApiControllerBaseTestConstructor();
             var memberDeclarationToJson = CreateWebApiControllerBaseTestToJson();
+            var memberDeclarationJson = CreateWebApiControllerBaseTestJson();
 
             // Add member to class
             classDeclaration = classDeclaration.AddMembers(memberDeclarationFactory);
@@ -406,6 +407,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             classDeclaration = classDeclaration.AddMembers(memberDeclarationJsonSerializerOptions);
             classDeclaration = classDeclaration.AddMembers(memberDeclarationConstructor);
             classDeclaration = classDeclaration.AddMembers(memberDeclarationToJson);
+            classDeclaration = classDeclaration.AddMembers(memberDeclarationJson);
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -598,7 +600,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                     SyntaxFactory.Argument(
                                                         SyntaxFactory.TypeOfExpression(
                                                             SyntaxFactory.IdentifierName("ApiRegistration"))))))),
-                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxTokenFactory.Comma(),
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.InvocationExpression(
                                             SyntaxFactory.MemberAccessExpression(
@@ -705,7 +707,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         {
                             SyntaxFactory.Parameter(SyntaxFactory.Identifier("app"))
                                 .WithType(SyntaxFactory.IdentifierName("IApplicationBuilder")),
-                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                            SyntaxTokenFactory.Comma(),
                             SyntaxFactory.Parameter(SyntaxFactory.Identifier("env"))
                                 .WithType(SyntaxFactory.IdentifierName("IWebHostEnvironment"))
                         })))
@@ -736,7 +738,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                 SyntaxFactory.Identifier("ConfigureWebHost"))
             .WithModifiers(
                 SyntaxFactory.TokenList(
-                    SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
+                    SyntaxTokenFactory.ProtectedKeyword(),
                     SyntaxFactory.Token(SyntaxKind.OverrideKeyword)))
             .WithParameterList(
                 SyntaxFactory.ParameterList(
@@ -840,7 +842,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                                                         SyntaxFactory.Argument(
                                                                                             SyntaxFactory.TypeOfExpression(
                                                                                                 SyntaxFactory.IdentifierName("ApiRegistration")))))))),
-                                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                                    SyntaxTokenFactory.Comma(),
                                                                     SyntaxFactory.Argument(
                                                                         SyntaxFactory.PostfixUnaryExpression(
                                                                             SyntaxKind.SuppressNullableWarningExpression,
@@ -867,8 +869,8 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier("Factory")))))
                 .WithModifiers(
                     SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
-                        SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+                        SyntaxTokenFactory.ProtectedKeyword(),
+                        SyntaxTokenFactory.ReadOnlyKeyword()));
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestHttpClient()
@@ -880,8 +882,8 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier("HttpClient")))))
                 .WithModifiers(
                     SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
-                        SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+                        SyntaxTokenFactory.ProtectedKeyword(),
+                        SyntaxTokenFactory.ReadOnlyKeyword()));
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestConfiguration()
@@ -891,10 +893,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         .WithVariables(
                             SyntaxFactory.SingletonSeparatedList(
                                 SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier("Configuration")))))
-                .WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
-                        SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+                .WithModifiers(SyntaxTokenListFactory.ProtectedReadOnlyKeyword());
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestJsonSerializerOptions()
@@ -904,10 +903,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         .WithVariables(
                             SyntaxFactory.SingletonSeparatedList(
                                 SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier("JsonSerializerOptions")))))
-                .WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
-                        SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+                .WithModifiers(SyntaxTokenListFactory.ProtectedReadOnlyKeyword());
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestConstructor()
@@ -916,7 +912,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                 SyntaxFactory.IdentifierName("WebApiControllerBaseTest"),
                 SyntaxFactory.MissingToken(SyntaxKind.IdentifierToken))
             .WithModifiers(
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword)))
+                SyntaxFactory.TokenList(SyntaxTokenFactory.ProtectedKeyword()))
             .WithParameterList(
                 SyntaxFactory.ParameterList(
                     SyntaxFactory.SingletonSeparatedList(
@@ -981,7 +977,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                     SyntaxKind.SimpleAssignmentExpression,
                                                     SyntaxFactory.IdentifierName("PropertyNameCaseInsensitive"),
                                                     SyntaxFactory.LiteralExpression(SyntaxKind.TrueLiteralExpression)),
-                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                SyntaxTokenFactory.Comma(),
                                                 SyntaxFactory.AssignmentExpression(
                                                     SyntaxKind.SimpleAssignmentExpression,
                                                     SyntaxFactory.IdentifierName("Converters"),
@@ -991,7 +987,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                             SyntaxFactory.ObjectCreationExpression(
                                                                     SyntaxFactory.IdentifierName("JsonStringEnumConverter"))
                                                                 .WithArgumentList(SyntaxFactory.ArgumentList())))),
-                                                SyntaxFactory.Token(SyntaxKind.CommaToken)
+                                                SyntaxTokenFactory.Comma()
                                             })))))));
         }
 
@@ -1000,8 +996,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             return SyntaxFactory.MethodDeclaration(
                 SyntaxFactory.IdentifierName("StringContent"),
                 SyntaxFactory.Identifier("ToJson"))
-            .WithModifiers(
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
+            .WithModifiers(SyntaxTokenListFactory.ProtectedStaticKeyword())
             .WithParameterList(
                 SyntaxFactory.ParameterList(
                     SyntaxFactory.SingletonSeparatedList(
@@ -1027,19 +1022,56 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                 SyntaxFactory.SingletonSeparatedList(
                                                     SyntaxFactory.Argument(
                                                         SyntaxFactory.IdentifierName("data")))))),
-                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxTokenFactory.Comma(),
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.MemberAccessExpression(
                                             SyntaxKind.SimpleMemberAccessExpression,
                                             SyntaxFactory.IdentifierName("Encoding"),
                                             SyntaxFactory.IdentifierName("UTF8"))),
-                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxTokenFactory.Comma(),
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
                                             SyntaxFactory.Literal("application/json")))
                                 })))))
-            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+            .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
+        }
+
+        private static MemberDeclarationSyntax CreateWebApiControllerBaseTestJson()
+        {
+            return SyntaxFactory.MethodDeclaration(
+                SyntaxFactory.IdentifierName("StringContent"),
+                SyntaxFactory.Identifier("Json"))
+            .WithModifiers(SyntaxTokenListFactory.ProtectedStaticKeyword())
+            .WithParameterList(
+                SyntaxFactory.ParameterList(
+                    SyntaxFactory.SingletonSeparatedList(
+                        SyntaxFactory.Parameter(SyntaxFactory.Identifier("data"))
+                        .WithType(SyntaxFactory.PredefinedType(SyntaxTokenFactory.StringKeyword())))))
+            .WithExpressionBody(
+                SyntaxFactory.ArrowExpressionClause(
+                    SyntaxFactory.ObjectCreationExpression(
+                        SyntaxFactory.IdentifierName("StringContent"))
+                    .WithArgumentList(
+                        SyntaxFactory.ArgumentList(
+                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                new SyntaxNodeOrToken[]
+                                {
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.IdentifierName("data")),
+                                    SyntaxTokenFactory.Comma(),
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.MemberAccessExpression(
+                                            SyntaxKind.SimpleMemberAccessExpression,
+                                            SyntaxFactory.IdentifierName("Encoding"),
+                                            SyntaxFactory.IdentifierName("UTF8"))),
+                                    SyntaxTokenFactory.Comma(),
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.LiteralExpression(
+                                            SyntaxKind.StringLiteralExpression,
+                                            SyntaxFactory.Literal("application/json")))
+                                })))))
+            .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
     }
 }

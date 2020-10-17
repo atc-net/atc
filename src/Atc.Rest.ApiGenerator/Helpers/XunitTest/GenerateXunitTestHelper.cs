@@ -51,18 +51,55 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 sb.AppendLine(indentSpaces, "{");
                 for (int i = 0; i < 3; i++)
                 {
-                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata.ComponentsSchemas, schema, i + 1, null);
+                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata.ComponentsSchemas, schema, null, i + 1, null);
                 }
 
                 sb.AppendLine(indentSpaces, "};");
             }
             else
             {
-                AppendNewModel(indentSpaces, sb, endpointMethodMetadata.ComponentsSchemas, schema, 0, variableName);
+                AppendNewModel(indentSpaces, sb, endpointMethodMetadata.ComponentsSchemas, schema, null, 0, variableName);
             }
         }
 
-        private static void AppendNewModel(int indentSpaces, StringBuilder sb, IDictionary<string, OpenApiSchema> componentsSchemas, OpenApiSchema schema, int itemNumber, string? variableName)
+        public static void AppendNewModelOrListOfModelForBadRequest(
+            int indentSpaces,
+            StringBuilder sb,
+            EndpointMethodMetadata endpointMethodMetadata,
+            OpenApiSchema schema,
+            HttpStatusCode httpStatusCode,
+            KeyValuePair<string, OpenApiSchema> badPropertySchema,
+            string variableName = "data")
+        {
+            if (sb == null)
+            {
+                throw new ArgumentNullException(nameof(sb));
+            }
+
+            if (endpointMethodMetadata == null)
+            {
+                throw new ArgumentNullException(nameof(endpointMethodMetadata));
+            }
+
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
+            if (!string.IsNullOrEmpty(contractReturnTypeName.Item2) && (
+                contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
+                contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal)))
+            {
+                // TO-DO: Imp this.
+            }
+            else
+            {
+                AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata.ComponentsSchemas, schema, badPropertySchema.Key, 0, variableName);
+            }
+        }
+
+        private static void AppendNewModel(int indentSpaces, StringBuilder sb, IDictionary<string, OpenApiSchema> componentsSchemas, OpenApiSchema schema, string? badRequestPropertyName, int itemNumber, string? variableName)
         {
             if (sb == null)
             {
@@ -89,12 +126,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine(indentSpaces, "{");
             foreach (var schemaProperty in schema.Properties)
             {
+                var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
+                                       schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
-                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, false, itemNumber, null);
+                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, useForBadRequest, itemNumber, null);
                 switch (dataType)
                 {
                     case "string":
-                        if (schemaProperty.Value.Format != OpenApiFormatTypeConstants.Email)
+                        if (!schemaProperty.Value.IsFormatTypeOfEmail())
                         {
                             if (countString > 0)
                             {
@@ -127,9 +166,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                         string? enumDataType = GetDataTypeIfEnum(schemaProperty, componentsSchemas);
                         sb.AppendLine(
                             indentSpaces + 4,
-                            enumDataType != null
-                                ? $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},"
-                                : $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},");
+                            enumDataType == null
+                                ? $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},"
+                                : $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},");
 
                         break;
                 }
@@ -140,6 +179,69 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 variableName == null
                     ? "},"
                     : "};");
+        }
+
+        private static void AppendNewModelAsJson(int indentSpaces, StringBuilder sb, IDictionary<string, OpenApiSchema> componentsSchemas, OpenApiSchema schema, string? badRequestPropertyName, int itemNumber, string? variableName)
+        {
+            if (sb == null)
+            {
+                throw new ArgumentNullException(nameof(sb));
+            }
+
+            if (componentsSchemas == null)
+            {
+                throw new ArgumentNullException(nameof(componentsSchemas));
+            }
+
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            int countString = 0;
+            sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
+            sb.AppendLine(indentSpaces, "sb.AppendLine(\"{\");");
+            foreach (var schemaProperty in schema.Properties)
+            {
+                var trailingChar = ",";
+                if (schema.Properties.Last().Key == schemaProperty.Key)
+                {
+                    trailingChar = string.Empty;
+                }
+
+                var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
+                                       schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
+                string dataType = schemaProperty.Value.GetDataType();
+                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, useForBadRequest, itemNumber, null);
+                switch (dataType)
+                {
+                    case "string":
+                        if (!schemaProperty.Value.IsFormatTypeOfEmail())
+                        {
+                            if (countString > 0 && !propertyValueGenerated.Equals("null", StringComparison.Ordinal))
+                            {
+                                propertyValueGenerated = $"{propertyValueGenerated}{countString}";
+                            }
+
+                            countString++;
+                        }
+
+                        sb.AppendLine(
+                            indentSpaces,
+                            propertyValueGenerated.Equals("null", StringComparison.Ordinal)
+                                ? $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}\");"
+                                : $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                        break;
+                    default:
+                        sb.AppendLine(
+                            indentSpaces,
+                            $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                        break;
+                }
+            }
+
+            sb.AppendLine(indentSpaces, "sb.AppendLine(\"}\");");
+            sb.AppendLine(indentSpaces, $"var {variableName} = sb.ToString();");
         }
 
         private static string? GetDataTypeIfEnum(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentsSchemas)
@@ -160,7 +262,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "double" => ValueTypeTestPropertiesHelper.CreateValueDouble(),
                 "long" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
-                "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(),
+                "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
                 "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value.Format, useForBadRequest, itemNumber, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest, itemNumber),

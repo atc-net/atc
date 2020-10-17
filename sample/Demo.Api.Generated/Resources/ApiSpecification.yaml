@@ -73,12 +73,24 @@ paths:
           description: The id of the order to retrieve
           schema:
             type: string
-        - schema:
-            type: string
+        - name: myTestHeader
           in: header
-          name: myTestHeader
-          description: The myTestHeader special key
           required: true
+          description: The myTestHeader special key
+          schema:
+            type: string
+        - name: myTestHeaderBool
+          in: header
+          required: true
+          description: The myTestHeaderBool special key
+          schema:
+            type: boolean
+        - name: myTestHeaderInt
+          in: header
+          required: true
+          description: The myTestHeaderInt special key
+          schema:
+            type: integer
       requestBody:
         content:
           application/json:

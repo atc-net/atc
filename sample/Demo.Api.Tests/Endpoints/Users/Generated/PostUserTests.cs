@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Demo.Api.Generated.Contracts;
@@ -44,6 +45,150 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.Created);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_FirstName(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": null,");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_LastName(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": null,");
+            sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_MyNullableDateTime(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"MyNullableDateTime\": \"x2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_MyDateTime(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"x2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_Email(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe_example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users")]
+        public async Task PostUser_BadRequest_InBody_Gender(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
+            sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
+            sb.AppendLine("  \"Gender\": \"@\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PostAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             return useForBadRequest
-                ? "Hallo" + openApiString.Value
+                ? "@"
                 : openApiString.Value;
         }
 
@@ -48,8 +48,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return "42";
         }
 
-        [SuppressMessage("Minor Code Smell", "S3400:Methods should not return constants", Justification = "OK.")]
-        public static string CreateValueBool() => "true";
+        public static string CreateValueBool(bool useForBadRequest) => useForBadRequest ? "@" : "true";
 
         public static string CreateValueString(string name, string format, bool useForBadRequest, int itemNumber = 0, string? customValue = null)
         {
@@ -86,8 +85,15 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     : "john.doe@example.com";
             }
 
-            return itemNumber > 0
-                ? customValue ?? "Hallo" + itemNumber
+            if (itemNumber > 0)
+            {
+                return useForBadRequest
+                    ? customValue ?? "null"
+                    : customValue ?? "Hallo" + itemNumber;
+            }
+
+            return useForBadRequest
+                ? customValue ?? "null"
                 : customValue ?? "Hallo";
         }
 

@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Demo.Api.Generated.Contracts;
@@ -28,12 +29,14 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
         public async Task PatchOrdersId_Ok(string relativeRef)
         {
             // Arrange
+            HttpClient.DefaultRequestHeaders.Add("myTestHeader", "Hallo");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderBool", "true");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderInt", "42");
+
             var data = new UpdateOrderRequest
             {
                 MyEmail = "john.doe@example.com",
             };
-
-            HttpClient.DefaultRequestHeaders.Add("myTestHeader", "Hallo");
 
             // Act
             var response = await HttpClient.PatchAsync(relativeRef, ToJson(data));
@@ -41,6 +44,73 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/orders/27")]
+        public async Task PatchOrdersId_BadRequest_InHeader_MyTestHeaderBool(string relativeRef)
+        {
+            // Arrange
+            HttpClient.DefaultRequestHeaders.Add("myTestHeader", "Hallo");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderBool", "@");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderInt", "42");
+
+            var data = new UpdateOrderRequest
+            {
+                MyEmail = "john.doe@example.com",
+            };
+
+            // Act
+            var response = await HttpClient.PatchAsync(relativeRef, ToJson(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/orders/27")]
+        public async Task PatchOrdersId_BadRequest_InHeader_MyTestHeaderInt(string relativeRef)
+        {
+            // Arrange
+            HttpClient.DefaultRequestHeaders.Add("myTestHeader", "Hallo");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderBool", "true");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderInt", "@");
+
+            var data = new UpdateOrderRequest
+            {
+                MyEmail = "john.doe@example.com",
+            };
+
+            // Act
+            var response = await HttpClient.PatchAsync(relativeRef, ToJson(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/orders/27")]
+        public async Task PatchOrdersId_BadRequest_InBody_MyEmail(string relativeRef)
+        {
+            // Arrange
+            HttpClient.DefaultRequestHeaders.Add("myTestHeader", "Hallo");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderBool", "true");
+            HttpClient.DefaultRequestHeaders.Add("myTestHeaderInt", "42");
+
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"MyEmail\": \"john.doe_example.com\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PatchAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

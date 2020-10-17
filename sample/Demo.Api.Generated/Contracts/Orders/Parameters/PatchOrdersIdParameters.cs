@@ -36,6 +36,20 @@ namespace Demo.Api.Generated.Contracts.Orders
         public string MyTestHeader { get; set; }
 
         /// <summary>
+        /// The myTestHeaderBool special key.
+        /// </summary>
+        [FromHeader(Name = "myTestHeaderBool")]
+        [Required]
+        public bool MyTestHeaderBool { get; set; }
+
+        /// <summary>
+        /// The myTestHeaderInt special key.
+        /// </summary>
+        [FromHeader(Name = "myTestHeaderInt")]
+        [Required]
+        public int MyTestHeaderInt { get; set; }
+
+        /// <summary>
         /// Request to update an order.
         /// </summary>
         [FromBody]
@@ -47,7 +61,7 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// </summary>
         public override string ToString()
         {
-            return $"{nameof(Id)}: {Id}, {nameof(MyTestHeader)}: {MyTestHeader}, {nameof(Request)}: ({Request})";
+            return $"{nameof(Id)}: {Id}, {nameof(MyTestHeader)}: {MyTestHeader}, {nameof(MyTestHeaderBool)}: {MyTestHeaderBool}, {nameof(MyTestHeaderInt)}: {MyTestHeaderInt}, {nameof(Request)}: ({Request})";
         }
     }
 }

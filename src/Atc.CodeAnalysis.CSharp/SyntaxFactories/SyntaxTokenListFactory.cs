@@ -78,6 +78,36 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
         }
 
+        public static SyntaxTokenList ProtectedStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+        {
+            if (withLeadingLineFeed)
+            {
+                return SyntaxFactory.TokenList(
+                    SyntaxTokenFactory.CarriageReturnLineFeed(),
+                    SyntaxTokenFactory.ProtectedKeyword(),
+                    SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
+            }
+
+            return SyntaxFactory.TokenList(
+                SyntaxTokenFactory.ProtectedKeyword(),
+                SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
+        }
+
+        public static SyntaxTokenList ProtectedReadOnlyKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+        {
+            if (withLeadingLineFeed)
+            {
+                return SyntaxFactory.TokenList(
+                    SyntaxTokenFactory.CarriageReturnLineFeed(),
+                    SyntaxTokenFactory.ProtectedKeyword(),
+                    SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
+            }
+
+            return SyntaxFactory.TokenList(
+                SyntaxTokenFactory.InternalKeyword(),
+                SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
+        }
+
         public static SyntaxTokenList PrivateReadonlyKeyword(bool withTrailingSpace = true)
         {
             return SyntaxFactory.TokenList(

@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Demo.Api.Generated.Contracts;
@@ -42,6 +43,28 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users/27")]
+        public async Task UpdateUserById_BadRequest_InBody_Email(string relativeRef)
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            sb.AppendLine("{");
+            sb.AppendLine("  \"FirstName\": \"Hallo\",");
+            sb.AppendLine("  \"LastName\": \"Hallo1\",");
+            sb.AppendLine("  \"Email\": \"john.doe_example.com\",");
+            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("}");
+            var data = sb.ToString();
+
+            // Act
+            var response = await HttpClient.PutAsync(relativeRef, Json(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

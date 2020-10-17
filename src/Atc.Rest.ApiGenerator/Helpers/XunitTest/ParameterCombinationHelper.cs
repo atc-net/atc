@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OpenApi.Models;
+
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable LoopCanBeConvertedToQuery
-
 namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 {
     public static class ParameterCombinationHelper
@@ -40,11 +40,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
             else
             {
-                if (useForBadRequest)
-                {
-                    // TO-DO: ?
-                }
-                else
+                if (!useForBadRequest)
                 {
                     list.AddRange(GetCombinationParameters(parameters, totalCombinationNames));
                 }
