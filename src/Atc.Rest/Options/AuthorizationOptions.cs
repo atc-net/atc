@@ -49,5 +49,7 @@ namespace Atc.Rest.Options
         public string Issuer { get; set; } = string.Empty;
 
         public List<string> ValidAudiences { get; set; } = new List<string>();
+
+        public List<string> ValidIssuers { get; set; } = new List<string>();
     }
 }

@@ -50,7 +50,7 @@ namespace Atc.Rest.Extended.Options
                     $"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings and ensure that the ClientId or Audience is specified");
             }
 
-            if (!apiOptions.Authorization.ValidAudiences.Any())
+            if (apiOptions.Authorization.ValidAudiences?.Any() == false)
             {
                 apiOptions.Authorization.ValidAudiences = new List<string>
                 {
@@ -67,14 +67,14 @@ namespace Atc.Rest.Extended.Options
                 ValidAudiences = apiOptions.Authorization.ValidAudiences,
             };
 
-            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+            options.TokenValidationParameters.ValidateIssuer =
+                !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
+                apiOptions.Authorization.ValidIssuers?.Any() == true;
+
+            if (options.TokenValidationParameters.ValidateIssuer)
             {
-                options.TokenValidationParameters.ValidateIssuer = true;
                 options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
-            }
-            else
-            {
-                options.TokenValidationParameters.ValidateIssuer = false;
+                options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
             }
         }
 
