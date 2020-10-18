@@ -50,7 +50,12 @@ namespace Atc.Rest.Extended.Options
                 };
             }
 
-            options.Authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/";
+            if (!string.IsNullOrEmpty(apiOptions.Authorization.Instance) &&
+                !string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
+            {
+                options.Authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/";
+            }
+
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = true,
@@ -68,39 +73,10 @@ namespace Atc.Rest.Extended.Options
             }
 
             options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
-            options.TokenValidationParameters.ValidIssuers =
-                apiOptions.Authorization.ValidIssuers ?? new List<string>();
+            options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
 
-            var issuerSigningKeys = new List<SecurityKey>();
-
-            if (!string.IsNullOrEmpty(apiOptions.Authorization.Instance) &&
-                !string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
-            {
-                issuerSigningKeys.AddRange(
-                    GetIssuerSigningKeys(options.Authority)
-                        .GetAwaiter()
-                        .GetResult());
-            }
-
-            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
-            {
-                issuerSigningKeys.AddRange(
-                    GetIssuerSigningKeys(apiOptions.Authorization.Issuer)
-                        .GetAwaiter()
-                        .GetResult());
-            }
-
-            foreach (var issuer in options.TokenValidationParameters.ValidIssuers)
-            {
-                issuerSigningKeys.AddRange(
-                    GetIssuerSigningKeys(issuer)
-                        .GetAwaiter()
-                        .GetResult());
-            }
-
-            options.TokenValidationParameters.ValidateIssuerSigningKey = true;
-            options.TokenValidationParameters.IssuerSigningKeys = issuerSigningKeys;
-            options.RequireHttpsMetadata = false;
+            options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeys(options).GetAwaiter().GetResult();
+            options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
         }
 
         public void PostConfigure(string name, AuthenticationOptions options)
@@ -111,6 +87,34 @@ namespace Atc.Rest.Extended.Options
             }
 
             options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        }
+
+        private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeys(JwtBearerOptions options)
+        {
+            var issuerSigningKeys = new List<SecurityKey>();
+
+            if (!string.IsNullOrEmpty(options.Authority))
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeys(
+                        options.Authority));
+            }
+
+            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeys(
+                        apiOptions.Authorization.Issuer));
+            }
+
+            foreach (var issuer in options.TokenValidationParameters.ValidIssuers)
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeys(
+                        issuer));
+            }
+
+            return issuerSigningKeys;
         }
 
         [SuppressMessage(
@@ -140,13 +144,6 @@ namespace Atc.Rest.Extended.Options
             if (options == null)
             {
                 throw new ArgumentNullException(nameof(options));
-            }
-
-            if (string.IsNullOrEmpty(apiOptions.Authorization.Instance) &&
-                string.IsNullOrEmpty(apiOptions.Authorization.TenantId))
-            {
-                throw new InvalidOperationException(
-                    $"Missing Instance and TenantId. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings");
             }
 
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
