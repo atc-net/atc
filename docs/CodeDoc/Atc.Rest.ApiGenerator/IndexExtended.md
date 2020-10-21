@@ -86,6 +86,9 @@
      - GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
      - GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
      - GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
+     - GetAtcToolVersion()
+     - GetAtcToolVersionAsString3()
+     - GetAtcToolVersionAsString4()
 - [HttpClientHelper](Atc.Rest.ApiGenerator.Helpers.md#httpclienthelper)
   -  Static Methods
      - DownloadToTempFile(string apiDesignPath)

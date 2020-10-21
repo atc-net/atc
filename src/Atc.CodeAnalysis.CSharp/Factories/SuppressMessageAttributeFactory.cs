@@ -24,6 +24,7 @@ namespace Atc.CodeAnalysis.CSharp.Factories
             {
                 // TODO: Add all rules
                 1062 => new SuppressMessageAttribute("Design", "CA1062:Validate arguments of public methods") { Justification = justification },
+                1720 => new SuppressMessageAttribute("Naming", "CA1720:Identifiers should not contain type names") { Justification = justification },
                 _ => throw new NotImplementedException($"Rule for CA{checkId} must be implemented.")
             };
         }

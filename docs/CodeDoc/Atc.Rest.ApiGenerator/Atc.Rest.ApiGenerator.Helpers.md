@@ -37,6 +37,21 @@ List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo
 ```csharp
 LogKeyValueItem GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
 ```
+#### GetAtcToolVersion
+
+```csharp
+Version GetAtcToolVersion()
+```
+#### GetAtcToolVersionAsString3
+
+```csharp
+string GetAtcToolVersionAsString3()
+```
+#### GetAtcToolVersionAsString4
+
+```csharp
+string GetAtcToolVersionAsString4()
+```
 
 <br />
 

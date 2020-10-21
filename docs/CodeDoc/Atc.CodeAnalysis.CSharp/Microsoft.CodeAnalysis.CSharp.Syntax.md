@@ -49,6 +49,29 @@ CompilationUnitSyntax AddUsingStatements(this CompilationUnitSyntax compilationU
 <br />
 
 
+## EnumDeclarationSyntaxExtensions
+
+```csharp
+public static class EnumDeclarationSyntaxExtensions
+```
+
+### Static Methods
+
+
+#### AddSuppressMessageAttribute
+
+```csharp
+EnumDeclarationSyntax AddSuppressMessageAttribute(this EnumDeclarationSyntax enumDeclaration, SuppressMessageAttribute suppressMessage)
+```
+#### HasAttributeOfAttributeType
+
+```csharp
+bool HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
+```
+
+<br />
+
+
 ## InterfaceDeclarationSyntaxExtensions
 
 ```csharp
@@ -80,6 +103,11 @@ public static class SyntaxNodeExtensions
 
 ```csharp
 string[] GetUsedUsingStatements(this SyntaxNode syntaxNode)
+```
+#### GetUsedUsingStatementsWithoutAlias
+
+```csharp
+string[] GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
 ```
 #### Select
 

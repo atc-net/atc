@@ -158,12 +158,17 @@
 - [CompilationUnitSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#compilationunitsyntaxextensions)
   -  Static Methods
      - AddUsingStatements(this CompilationUnitSyntax compilationUnit, string[] usingStatements)
+- [EnumDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#enumdeclarationsyntaxextensions)
+  -  Static Methods
+     - AddSuppressMessageAttribute(this EnumDeclarationSyntax enumDeclaration, SuppressMessageAttribute suppressMessage)
+     - HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
 - [InterfaceDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#interfacedeclarationsyntaxextensions)
   -  Static Methods
      - AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
 - [SyntaxNodeExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#syntaxnodeextensions)
   -  Static Methods
      - GetUsedUsingStatements(this SyntaxNode syntaxNode)
+     - GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
      - Select(this SyntaxNode syntaxNode)
      - SelectToArray(this SyntaxNode syntaxNode)
 - [UsingDirectiveSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#usingdirectivesyntaxextensions)

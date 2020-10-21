@@ -135,7 +135,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine(12, "// Act");
             if (usedInterfacesInConstructor.Count > 0)
             {
-                var parameters = string.Join("', ", usedInterfacesInConstructor.Select(x => x.Item2));
+                var parameters = string.Join(", ", usedInterfacesInConstructor.Select(x => x.Item2));
                 sb.AppendLine(12, $"var actual = new {sgHandler.HandlerTypeName}({parameters});");
             }
             else
@@ -203,7 +203,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             {
                 list.Add("NSubstitute");
 
-                var usingDirective = root.GetUsedUsingStatements();
+                var usingDirective = root.GetUsedUsingStatementsWithoutAlias();
                 foreach (var item in usingDirective)
                 {
                     if (item.StartsWith("System", StringComparison.Ordinal))
@@ -224,50 +224,63 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var constructorDeclarations = root.SelectToArray<ConstructorDeclarationSyntax>();
 
-            if (constructorDeclarations.Length > 0)
+            if (constructorDeclarations.Length <= 0)
             {
-                var parameterListSyntax = constructorDeclarations
-                    .First()
-                    .ParameterList;
-
-                var interfaceNames = parameterListSyntax
-                    .Select<IdentifierNameSyntax>()
-                    .Select(x => x.Identifier.Text)
-                    .ToArray();
-
-                var interfaceGenericNames = parameterListSyntax
-                    .Select<GenericNameSyntax>()
-                    .Select(x => x.GetText().ToString().Trim())
-                    .ToArray();
-
-                var names = parameterListSyntax
-                    .Select<ParameterSyntax>()
-                    .Select(x => x.Identifier.Text)
-                    .ToArray();
-
-                if (interfaceNames.Length > 0 && interfaceNames.Length == names.Length)
-                {
-                    if (interfaceGenericNames.Length == 0)
-                    {
-                        return interfaceNames
-                            .Select((t, i) => new Tuple<string, string>(t, names[i]))
-                            .ToList();
-                    }
-
-                    var list = new List<Tuple<string, string>>();
-                    for (int i = 0; i < interfaceNames.Length; i++)
-                    {
-                        var interfaceGenericName = interfaceGenericNames.FirstOrDefault(x => x.Contains($"<{interfaceNames[i]}>", StringComparison.Ordinal));
-                        list.Add(string.IsNullOrEmpty(interfaceGenericName)
-                            ? new Tuple<string, string>(interfaceNames[i], names[i])
-                            : new Tuple<string, string>(interfaceGenericName, names[i]));
-                    }
-
-                    return list;
-                }
+                return new List<Tuple<string, string>>();
             }
 
-            return new List<Tuple<string, string>>();
+            var parameterListSyntax = constructorDeclarations
+                .First()
+                .ParameterList;
+
+            var parametersSyntax = parameterListSyntax
+                .Select<ParameterSyntax>()
+                .ToList();
+
+            var interfaceNames = new List<string>();
+            if (parametersSyntax.Count > 0)
+            {
+                interfaceNames.AddRange(parametersSyntax
+                    .Select(p => p.Select<IdentifierNameSyntax>()
+                        .Select(x => x.Identifier.Text)
+                        .ToArray())
+                    .Select(sa => sa.Length == 1
+                        ? sa[0]
+                        : string.Join('.', sa)));
+            }
+
+            var interfaceGenericNames = parameterListSyntax
+                .Select<GenericNameSyntax>()
+                .Select(x => x.GetText().ToString().Trim())
+                .ToArray();
+
+            var names = parameterListSyntax
+                .Select<ParameterSyntax>()
+                .Select(x => x.Identifier.Text)
+                .ToArray();
+
+            if (interfaceNames.Count <= 0 || interfaceNames.Count != names.Length)
+            {
+                return new List<Tuple<string, string>>();
+            }
+
+            if (interfaceGenericNames.Length == 0)
+            {
+                return interfaceNames
+                    .Select((t, i) => new Tuple<string, string>(t, names[i]))
+                    .ToList();
+            }
+
+            var list = new List<Tuple<string, string>>();
+            for (int i = 0; i < interfaceNames.Count; i++)
+            {
+                var interfaceGenericName = interfaceGenericNames.FirstOrDefault(x => x.Contains($"<{interfaceNames[i]}>", StringComparison.Ordinal));
+                list.Add(string.IsNullOrEmpty(interfaceGenericName)
+                    ? new Tuple<string, string>(interfaceNames[i], names[i])
+                    : new Tuple<string, string>(interfaceGenericName, names[i]));
+            }
+
+            return list;
         }
     }
 }

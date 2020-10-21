@@ -20,6 +20,7 @@ namespace Atc.CodeAnalysis.CSharp.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(ClassDeclarationSyntaxExtensions),
+            typeof(EnumDeclarationSyntaxExtensions),
             typeof(SyntaxNodeExtensions),
             typeof(InterfaceDeclarationSyntaxExtensions),
             typeof(CompilationUnitSyntaxExtensions),

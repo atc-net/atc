@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Atc.CodeAnalysis.CSharp.Factories;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -42,6 +43,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword());
 
             // Add values to the enum
+            var containTypeName = false;
             foreach (var item in apiSchemaEnums)
             {
                 if (!(item is OpenApiString openApiString))
@@ -50,6 +52,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 }
 
                 enumDeclaration = enumDeclaration.AddMembers(SyntaxFactory.EnumMemberDeclaration(openApiString.Value));
+
+                var sa = openApiString.Value.Split(' ');
+                if (sa.Length > 0 && sa[0].Equals("Object", StringComparison.Ordinal))
+                {
+                    containTypeName = true;
+                }
+            }
+
+            if (containTypeName)
+            {
+                enumDeclaration = enumDeclaration
+                    .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.Create(1720, null));
             }
 
             return enumDeclaration;

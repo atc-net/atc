@@ -64,6 +64,7 @@
      - Issuer
      - TenantId
      - ValidAudiences
+     - ValidIssuers
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
   -  Methods
      - Configure(ApiBehaviorOptions options)

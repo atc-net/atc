@@ -39,5 +39,18 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
                 .Select(x => x.Name.ToFullString())
                 .ToArray();
         }
+
+        public static string[] GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
+        {
+            if (syntaxNode == null)
+            {
+                throw new ArgumentNullException(nameof(syntaxNode));
+            }
+
+            return syntaxNode.Select<UsingDirectiveSyntax>()
+                .Where(x => x.Alias == null)
+                .Select(x => x.Name.ToFullString())
+                .ToArray();
+        }
     }
 }

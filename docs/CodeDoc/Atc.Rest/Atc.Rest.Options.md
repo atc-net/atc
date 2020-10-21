@@ -117,6 +117,11 @@ TenantId
 ```csharp
 ValidAudiences
 ```
+#### ValidIssuers
+
+```csharp
+ValidIssuers
+```
 
 <br />
 
