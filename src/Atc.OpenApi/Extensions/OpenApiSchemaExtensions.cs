@@ -78,7 +78,8 @@ namespace Microsoft.OpenApi.Models
                    schemas.HasFormatTypeOfDate() ||
                    schemas.HasFormatTypeOfTime() ||
                    schemas.HasFormatTypeOfTimestamp() ||
-                   schemas.HasFormatTypeOfDateTime();
+                   schemas.HasFormatTypeOfDateTime() ||
+                   schemas.HasFormatTypeOfUri();
         }
 
         public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
