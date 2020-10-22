@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Atc;
-using Atc.Rest.Extended.Options;
 using Atc.Rest.Options;
 using Demo.Api.Configuration;
 using Demo.Api.Generated;
@@ -17,7 +16,7 @@ namespace Demo.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            restApiOptions = new RestApiExtendedOptions
+            restApiOptions = new RestApiOptions
             {
                 AllowAnonymousAccessForDevelopment = true,
                 UseApplicationInsights = true,
@@ -42,7 +41,7 @@ namespace Demo.Api
 
         public IConfiguration Configuration { get; }
 
-        private readonly RestApiExtendedOptions restApiOptions;
+        private readonly RestApiOptions restApiOptions;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -52,7 +51,7 @@ namespace Demo.Api
                 services.ConfigureServices();
             }
 
-            services.AddRestApi<Startup>(restApiOptions, Configuration);
+            services.AddRestApi<Startup>(restApiOptions);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
