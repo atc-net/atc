@@ -86,9 +86,32 @@ namespace Atc.Rest.ApiGenerator.Helpers
                                     logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema08, $"Nullable property '{key}' must not be present in required property list in type '{schema.Reference.ReferenceV3}'."));
                                 }
 
-                                if (value.Type == OpenApiDataTypeConstants.Array && !value.IsReferenceTypeDeclared() && !value.IsItemsOfSimpleDataType())
+                                switch (value.Type)
                                 {
-                                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema05, $"Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported."));
+                                    case OpenApiDataTypeConstants.Object:
+                                        {
+                                            if (!value.IsObjectReferenceTypeDeclared())
+                                            {
+                                                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Schema10, $"Implicit object definition on property '{key}' in type '{schema.Reference.ReferenceV3}' is not supported."));
+                                            }
+
+                                            break;
+                                        }
+
+                                    case OpenApiDataTypeConstants.Array:
+                                        {
+                                            if (value.Items.Type == null)
+                                            {
+                                                logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Schema09, $"Not specifying a data type for array property '{key}' in type '{schema.Reference.ReferenceV3}' is not supported."));
+                                            }
+
+                                            if (value.Items.Type != null && !value.IsArrayReferenceTypeDeclared() && !value.IsItemsOfSimpleDataType())
+                                            {
+                                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Schema05, $"Implicit object definition on property '{key}' in array type '{schema.Reference.ReferenceV3}' is not supported."));
+                                            }
+
+                                            break;
+                                        }
                                 }
 
                                 logItems.AddRange(ValidateSchemaModelPropertyNameCasing(validationOptions, key, schema));

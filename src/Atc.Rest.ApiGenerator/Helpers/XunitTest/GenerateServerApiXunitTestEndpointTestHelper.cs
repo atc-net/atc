@@ -542,12 +542,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var name = parameter.Name.EnsureFirstCharacterToUpper();
             var schemaForDataType = componentsSchemas.FirstOrDefault(x => x.Key.Equals(parameter.Schema.GetDataType(), StringComparison.OrdinalIgnoreCase));
-            if (schemaForDataType.Key != null)
+            if (schemaForDataType.Key != null && schemaForDataType.Value.IsSchemaEnumOrPropertyEnum())
             {
-                if (schemaForDataType.Value.IsSchemaEnumOrPropertyEnum())
-                {
-                    return ValueTypeTestPropertiesHelper.CreateValueEnum(name, schemaForDataType, useForBadRequest);
-                }
+                return ValueTypeTestPropertiesHelper.CreateValueEnum(name, schemaForDataType, useForBadRequest);
             }
 
             throw new NotSupportedException($"PropertyValueGenerator: {parameter.Name} - {parameter.Schema.GetDataType()}");

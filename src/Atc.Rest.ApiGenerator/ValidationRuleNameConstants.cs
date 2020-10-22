@@ -12,6 +12,8 @@
         public const string Schema06 = "CR0106";
         public const string Schema07 = "CR0107";
         public const string Schema08 = "CR0108";
+        public const string Schema09 = "CR0109";
+        public const string Schema10 = "CR0110";
 
         public const string Operation01 = "CR0201";
         public const string Operation02 = "CR0202";

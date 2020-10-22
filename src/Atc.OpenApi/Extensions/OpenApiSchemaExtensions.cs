@@ -227,6 +227,11 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
+            if (schema.Type == null)
+            {
+                return false;
+            }
+
             var dataType = schema.GetDataType();
 
             return dataType == OpenApiDataTypeConstants.Boolean ||
@@ -235,7 +240,17 @@ namespace Microsoft.OpenApi.Models
                    dataType == OpenApiDataTypeConstants.String;
         }
 
-        public static bool IsReferenceTypeDeclared(this OpenApiSchema schema)
+        public static bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.Reference != null;
+        }
+
+        public static bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
         {
             if (schema == null)
             {
