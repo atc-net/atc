@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Atc.Rest.Extended\Atc.Rest.Extended.csproj" />
     <ProjectReference Include="..\..\src\Atc.Rest\Atc.Rest.csproj" />
     <ProjectReference Include="..\..\src\Atc\Atc.csproj" />
     <ProjectReference Include="..\Demo.Api.Generated\Demo.Api.Generated.csproj" />
