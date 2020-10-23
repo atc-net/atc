@@ -502,6 +502,11 @@ bool HasFormatTypeOfUri(this IList<OpenApiSchema> schemas)
 ```csharp
 bool HasFormatTypeOfUuid(this IList<OpenApiSchema> schemas)
 ```
+#### IsArrayReferenceTypeDeclared
+
+```csharp
+bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
+```
 #### IsFormatTypeOfByte
 
 ```csharp
@@ -562,10 +567,10 @@ bool IsHttpStatusCodeModelReference(this OpenApiSchema schema)
 ```csharp
 bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
 ```
-#### IsReferenceTypeDeclared
+#### IsObjectReferenceTypeDeclared
 
 ```csharp
-bool IsReferenceTypeDeclared(this OpenApiSchema schema)
+bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
 ```
 #### IsSchemaEnum
 

@@ -72,6 +72,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 // Create an enum
                 var enumDeclaration = SyntaxEnumFactory.Create(apiEnumSchema.Item1.EnsureFirstCharacterToUpper(), apiEnumSchema.Item2);
 
+                if (enumDeclaration.HasAttributeOfAttributeType(typeof(FlagsAttribute)))
+                {
+                    // Add using statement to compilationUnit
+                    compilationUnit = compilationUnit.AddUsingStatements(new[] { "System" });
+                }
+
                 if (enumDeclaration.HasAttributeOfAttributeType(typeof(SuppressMessageAttribute)))
                 {
                     // Add using statement to compilationUnit

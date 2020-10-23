@@ -6,6 +6,18 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 {
     public static class SyntaxAttributeListFactory
     {
+        public static AttributeListSyntax Create(string attributeName)
+        {
+            if (attributeName == null)
+            {
+                throw new ArgumentNullException(nameof(attributeName));
+            }
+
+            return SyntaxFactory.AttributeList(
+                SyntaxFactory.SingletonSeparatedList(
+                    SyntaxAttributeFactory.Create(attributeName)));
+        }
+
         public static AttributeListSyntax Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
         {
             if (attributeName == null)
@@ -17,18 +29,6 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 SyntaxFactory.SingletonSeparatedList(
                     SyntaxAttributeFactory.Create(attributeName)
                     .WithArgumentList(attributeArgumentList)));
-        }
-
-        public static AttributeListSyntax CreateWithOneItem(string attributeName)
-        {
-            if (attributeName == null)
-            {
-                throw new ArgumentNullException(nameof(attributeName));
-            }
-
-            return SyntaxFactory.AttributeList(
-                SyntaxFactory.SingletonSeparatedList(
-                    SyntaxAttributeFactory.Create(attributeName)));
         }
 
         public static AttributeListSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)

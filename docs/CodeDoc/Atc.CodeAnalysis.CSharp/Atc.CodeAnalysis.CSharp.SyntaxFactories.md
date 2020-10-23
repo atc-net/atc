@@ -206,12 +206,12 @@ public static class SyntaxAttributeListFactory
 #### Create
 
 ```csharp
-AttributeListSyntax Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
+AttributeListSyntax Create(string attributeName)
 ```
-#### CreateWithOneItem
+#### Create
 
 ```csharp
-AttributeListSyntax CreateWithOneItem(string attributeName)
+AttributeListSyntax Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
 ```
 #### CreateWithOneItemWithOneArgument
 

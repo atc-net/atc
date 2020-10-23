@@ -27,6 +27,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                 FirstName = "Hallo",
                 LastName = "Hallo1",
                 Email = "john.doe@example.com",
+                Color = ColorType.Red,
                 HomeAddress = new Address(),
                 CompanyAddress = new Address(),
             };

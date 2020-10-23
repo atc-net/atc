@@ -81,7 +81,7 @@ namespace Atc.CodeAnalysis.CSharp
                 throw new ArgumentNullException(nameof(propertyDeclaration));
             }
 
-            return propertyDeclaration.AddAttributeLists(SyntaxAttributeListFactory.CreateWithOneItem(nameof(FromBodyAttribute)));
+            return propertyDeclaration.AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(FromBodyAttribute)));
         }
 
         public static PropertyDeclarationSyntax AddValidationAttribute(this PropertyDeclarationSyntax propertyDeclaration, ValidationAttribute validationAttribute)

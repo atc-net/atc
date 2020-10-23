@@ -48,7 +48,6 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine(8, endpointMethodMetadata.ContractParameterTypeName == null
                 ? $"public Task<{endpointMethodMetadata.ContractResultTypeName}> ExecuteAsync(CancellationToken cancellationToken = default)"
                 : $"public Task<{endpointMethodMetadata.ContractResultTypeName}> ExecuteAsync({endpointMethodMetadata.ContractParameterTypeName} parameters, CancellationToken cancellationToken = default)");
-
             sb.AppendLine(8, "{");
             if (endpointMethodMetadata.ContractReturnTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.OK) != null)
             {

@@ -486,6 +486,22 @@ components:
             - Female
       required:
         - gender
+    ColorType:
+      title: ColorType
+      description: ''
+      type: object
+      properties:
+        color:
+          type: string
+          description: The users color type
+          enum:
+            - Unknown = 0
+            - Black = 1
+            - White = 2
+            - Yellow = 4
+            - Red = 8
+      required:
+        - color
     User:
       title: User
       description: A single user.
@@ -505,6 +521,8 @@ components:
           type: string
           format: email
           example: email@email.dk
+        color:
+          $ref: '#/components/schemas/ColorType'
         homeAddress:
           $ref: '#/components/schemas/Address'
         companyAddress:

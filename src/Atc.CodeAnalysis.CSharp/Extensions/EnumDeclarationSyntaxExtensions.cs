@@ -40,6 +40,17 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
                 .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(SuppressMessageAttribute), attributeArgumentList));
         }
 
+        public static EnumDeclarationSyntax AddFlagAttribute(this EnumDeclarationSyntax enumDeclaration)
+        {
+            if (enumDeclaration == null)
+            {
+                throw new ArgumentNullException(nameof(enumDeclaration));
+            }
+
+            return enumDeclaration
+                .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(FlagsAttribute)));
+        }
+
         public static bool HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
         {
             if (attributeType == null)

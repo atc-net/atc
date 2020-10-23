@@ -39,6 +39,11 @@ namespace Demo.Api.Generated.Contracts.Users
         public string Email { get; set; }
 
         /// <summary>
+        /// ColorType.
+        /// </summary>
+        public ColorType Color { get; set; }
+
+        /// <summary>
         /// Address.
         /// </summary>
         public Address HomeAddress { get; set; }
@@ -53,7 +58,7 @@ namespace Demo.Api.Generated.Contracts.Users
         /// </summary>
         public override string ToString()
         {
-            return $"{nameof(Id)}: {Id}, {nameof(Gender)}: ({Gender}), {nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Email)}: {Email}, {nameof(HomeAddress)}: ({HomeAddress}), {nameof(CompanyAddress)}: ({CompanyAddress})";
+            return $"{nameof(Id)}: {Id}, {nameof(Gender)}: ({Gender}), {nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Email)}: {Email}, {nameof(Color)}: ({Color}), {nameof(HomeAddress)}: ({HomeAddress}), {nameof(CompanyAddress)}: ({CompanyAddress})";
         }
     }
 }

@@ -53,8 +53,8 @@
      - RemoveSuffix(string attributeName)
 - [SyntaxAttributeListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxattributelistfactory)
   -  Static Methods
+     - Create(string attributeName)
      - Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
-     - CreateWithOneItem(string attributeName)
      - CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
      - CreateWithOneItemWithOneArgumentWithNameEquals(string attributeName, string argumentName, string argumentValue)
 - [SyntaxClassDeclarationFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxclassdeclarationfactory)
@@ -160,6 +160,7 @@
      - AddUsingStatements(this CompilationUnitSyntax compilationUnit, string[] usingStatements)
 - [EnumDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#enumdeclarationsyntaxextensions)
   -  Static Methods
+     - AddFlagAttribute(this EnumDeclarationSyntax enumDeclaration)
      - AddSuppressMessageAttribute(this EnumDeclarationSyntax enumDeclaration, SuppressMessageAttribute suppressMessage)
      - HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
 - [InterfaceDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#interfacedeclarationsyntaxextensions)

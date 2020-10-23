@@ -164,11 +164,23 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                         break;
                     default:
                         string? enumDataType = GetDataTypeIfEnum(schemaProperty, componentsSchemas);
-                        sb.AppendLine(
-                            indentSpaces + 4,
-                            enumDataType == null
-                                ? $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},"
-                                : $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},");
+                        if (enumDataType == null)
+                        {
+                            sb.AppendLine(
+                                indentSpaces + 4,
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},");
+                        }
+                        else
+                        {
+                            if (propertyValueGenerated.Contains("=", StringComparison.Ordinal))
+                            {
+                                propertyValueGenerated = propertyValueGenerated.Split('=').First().Trim();
+                            }
+
+                            sb.AppendLine(
+                                indentSpaces + 4,
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},");
+                        }
 
                         break;
                 }

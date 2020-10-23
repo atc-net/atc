@@ -63,12 +63,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             {
                 classDeclaration =
                     classDeclaration.AddAttributeLists(
-                        SyntaxAttributeListFactory.CreateWithOneItem(nameof(AuthorizeAttribute)));
+                        SyntaxAttributeListFactory.Create(nameof(AuthorizeAttribute)));
             }
 
             classDeclaration =
                 classDeclaration.AddAttributeLists(
-                    SyntaxAttributeListFactory.CreateWithOneItem(nameof(ApiControllerAttribute)),
+                    SyntaxAttributeListFactory.Create(nameof(ApiControllerAttribute)),
                     SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{FocusOnSegmentName}"))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(nameof(ControllerBase))))
                 .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
@@ -333,7 +333,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var httpAttributeRoutePart = GetHttpAttributeRoutePart(urlPath);
             methodDeclaration = string.IsNullOrEmpty(httpAttributeRoutePart)
                 ? methodDeclaration.AddAttributeLists(
-                    SyntaxAttributeListFactory.CreateWithOneItem($"Http{apiOperation.Key}"))
+                    SyntaxAttributeListFactory.Create($"Http{apiOperation.Key}"))
                 : methodDeclaration.AddAttributeLists(
                     SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(
                         $"Http{apiOperation.Key}",
@@ -350,7 +350,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .Aggregate(
                     methodDeclaration,
                     (current, producesResponseAttributePart) => current.AddAttributeLists(
-                        SyntaxAttributeListFactory.CreateWithOneItem(producesResponseAttributePart)));
+                        SyntaxAttributeListFactory.Create(producesResponseAttributePart)));
         }
 
         private static MethodDeclarationSyntax CreateMembersForEndpointsPrivateHelper(

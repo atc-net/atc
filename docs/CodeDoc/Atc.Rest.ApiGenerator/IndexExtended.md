@@ -65,6 +65,8 @@
      - string Schema06
      - string Schema07
      - string Schema08
+     - string Schema09
+     - string Schema10
 
 ## [Atc.Rest.ApiGenerator.Generators](Atc.Rest.ApiGenerator.Generators.md)
 

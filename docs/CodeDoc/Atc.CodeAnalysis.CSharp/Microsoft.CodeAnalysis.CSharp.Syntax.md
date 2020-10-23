@@ -58,6 +58,11 @@ public static class EnumDeclarationSyntaxExtensions
 ### Static Methods
 
 
+#### AddFlagAttribute
+
+```csharp
+EnumDeclarationSyntax AddFlagAttribute(this EnumDeclarationSyntax enumDeclaration)
+```
 #### AddSuppressMessageAttribute
 
 ```csharp
