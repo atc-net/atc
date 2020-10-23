@@ -89,7 +89,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                     .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.Create(1720, null));
             }
 
-            // Add SuppressMessageAttribute
+            // Add FlagAttribute
             if (intValues.Count > 0)
             {
                 bool isAllValidBinarySequence = intValues
