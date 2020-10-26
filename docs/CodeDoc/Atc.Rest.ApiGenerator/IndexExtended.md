@@ -308,6 +308,7 @@
      - ApiProjectOptions
      - Code
      - FocusOnSegmentName
+     - GlobalPathParameters
      - HasParametersOrRequestBody
   -  Methods
      - GenerateCode()

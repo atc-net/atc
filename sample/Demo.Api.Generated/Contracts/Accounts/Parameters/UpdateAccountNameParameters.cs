@@ -1,4 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,14 @@ namespace Demo.Api.Generated.Contracts.Accounts
         /// </summary>
         [FromRoute(Name = "accountId")]
         [Required]
-        public string AccountId { get; set; }
+        public Guid AccountId { get; set; }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{nameof(AccountId)}: {AccountId}";
+        }
     }
 }

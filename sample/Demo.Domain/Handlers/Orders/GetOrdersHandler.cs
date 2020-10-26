@@ -30,7 +30,7 @@ namespace Demo.Domain.Handlers.Orders
                 allItems.Add(
                     new Order
                     {
-                        Id = (i + 1).ToString(CultureInfo.CurrentCulture),
+                        Id = Guid.NewGuid(),
                         Description = $"Test order {i + 1}"
                     });
             }

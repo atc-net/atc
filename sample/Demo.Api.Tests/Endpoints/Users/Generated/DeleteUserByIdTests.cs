@@ -25,7 +25,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
         public DeleteUserByIdTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
-        [InlineData("/api/v1/users/27")]
+        [InlineData("/api/v1/users/77a33260-0000-441f-ba60-b0a833803fab")]
         public async Task DeleteUserById_Ok(string relativeRef)
         {
             // Act
@@ -34,6 +34,18 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users/x77a33260-0000-441f-ba60-b0a833803fab")]
+        public async Task DeleteUserById_BadRequest_InPath(string relativeRef)
+        {
+            // Act
+            var response = await HttpClient.DeleteAsync(relativeRef);
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

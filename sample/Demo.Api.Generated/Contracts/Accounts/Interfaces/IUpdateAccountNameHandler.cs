@@ -24,6 +24,7 @@ namespace Demo.Api.Generated.Contracts.Accounts
         /// <summary>
         /// Execute method.
         /// </summary>
+        /// <param name="parameters">The parameters.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         Task<UpdateAccountNameResult> ExecuteAsync(UpdateAccountNameParameters parameters, CancellationToken cancellationToken = default);
     }

@@ -108,10 +108,19 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
         }
 
         public static MemberDeclarationSyntax? CreateToStringMethod(
+            IList<OpenApiParameter>? globalPathParameters,
             IList<OpenApiParameter>? apiParameters,
             OpenApiRequestBody? apiRequestBody)
         {
             var dictionary = new Dictionary<string, OpenApiSchema>();
+            if (globalPathParameters != null)
+            {
+                foreach (var pathParameter in globalPathParameters)
+                {
+                    dictionary.Add(pathParameter.Name, pathParameter.Schema);
+                }
+            }
+
             if (apiParameters != null)
             {
                 foreach (var apiParameter in apiParameters)

@@ -15,13 +15,13 @@ namespace Demo.Domain.Handlers.Orders
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Id switch
+            return parameters.Id.ToString() switch
             {
-                "7" => await Task.FromResult(GetOrderByIdResult.NotFound($"Could not find order with id={parameters.Id}")),
-                "8" => throw new Exception("Crash! Boom! Bang! # " + parameters.Id),
-                "9" => throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id),
-                "10" => throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id),
-                "11" => throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id),
+                "77a33260-0007-441f-ba60-b0a833803fab" => await Task.FromResult(GetOrderByIdResult.NotFound($"Could not find order with id={parameters.Id}")),
+                "77a33260-0008-441f-ba60-b0a833803fab" => throw new Exception("Crash! Boom! Bang! # " + parameters.Id),
+                "77a33260-0009-441f-ba60-b0a833803fab" => throw new InvalidOperationException("Crash! Boom! Bang! # " + parameters.Id),
+                "77a33260-0010-441f-ba60-b0a833803fab" => throw new UnauthorizedAccessException("Crash! Boom! Bang! # " + parameters.Id),
+                "77a33260-0011-441f-ba60-b0a833803fab" => throw new NotImplementedException("Crash! Boom! Bang! # " + parameters.Id),
                 _ => await InvokeExecuteAsync(parameters, cancellationToken)
             };
         }

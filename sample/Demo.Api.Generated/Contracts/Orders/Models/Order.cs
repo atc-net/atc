@@ -24,7 +24,7 @@ namespace Demo.Api.Generated.Contracts.Orders
     [GeneratedCode("ApiGenerator", "1.0.155.0")]
     public class Order
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Description { get; set; }
 

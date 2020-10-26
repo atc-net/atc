@@ -36,6 +36,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     urlPath.Value.Operations
                         .Select(x => new SyntaxGeneratorContractInterface(
                             ApiProjectOptions,
+                            urlPath.Value.Parameters,
                             x.Key,
                             x.Value,
                             FocusOnSegmentName,

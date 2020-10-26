@@ -15,7 +15,7 @@ namespace Demo.Domain.Handlers.Users
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            if (parameters.Id == "7")
+            if (parameters.Id == Guid.Parse("77a33260-0007-441f-ba60-b0a833803fab"))
             {
                 return Task.FromResult(DeleteUserByIdResult.NotFound($"Can't find user with id={parameters.Id}"));
             }

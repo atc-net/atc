@@ -24,6 +24,7 @@ namespace Demo.Api.Generated.Contracts.Addresses
         /// <summary>
         /// Execute method.
         /// </summary>
+        /// <param name="parameters">The parameters.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         Task<GetAddressesByPostalCodesResult> ExecuteAsync(GetAddressesByPostalCodesParameters parameters, CancellationToken cancellationToken = default);
     }

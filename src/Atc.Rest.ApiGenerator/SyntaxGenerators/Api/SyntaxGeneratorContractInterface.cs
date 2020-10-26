@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
 using Atc.Rest.ApiGenerator.Factories;
@@ -17,12 +19,14 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
     {
         public SyntaxGeneratorContractInterface(
             ApiProjectOptions apiProjectOptions,
+            IList<OpenApiParameter> globalPathParameters,
             OperationType apiOperationType,
             OpenApiOperation apiOperation,
             string focusOnSegmentName,
             bool hasParametersOrRequestBody)
         {
             this.ApiProjectOptions = apiProjectOptions ?? throw new ArgumentNullException(nameof(apiProjectOptions));
+            this.GlobalPathParameters = globalPathParameters ?? throw new ArgumentNullException(nameof(globalPathParameters));
             this.ApiOperationType = apiOperationType;
             this.ApiOperation = apiOperation ?? throw new ArgumentNullException(nameof(apiOperation));
             this.FocusOnSegmentName = focusOnSegmentName ?? throw new ArgumentNullException(nameof(focusOnSegmentName));
@@ -30,6 +34,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         }
 
         public ApiProjectOptions ApiProjectOptions { get; }
+
+        public IList<OpenApiParameter> GlobalPathParameters { get; }
 
         public OperationType ApiOperationType { get; }
 
@@ -63,7 +69,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
 
             // Create interface-method
             var methodDeclaration = SyntaxMethodDeclarationFactory.CreateInterfaceMethod(parameterTypeName, resultTypeName, HasParametersOrRequestBody)
-                .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForInterfaceMethod(ApiOperation.HasParametersOrRequestBody()));
+                .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForInterfaceMethod(GlobalPathParameters.Any() || ApiOperation.HasParametersOrRequestBody()));
 
             // Add using statement to compilationUnit
             compilationUnit = compilationUnit.AddUsingStatements(ProjectContractInterfaceFactory.CreateUsingList());

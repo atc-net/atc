@@ -25,7 +25,7 @@ namespace Demo.Api.Tests.Endpoints.Accounts.Generated
         public UpdateAccountNameTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
-        [InlineData("/api/v1/accounts/27/name")]
+        [InlineData("/api/v1/accounts/77a33260-0000-441f-ba60-b0a833803fab/name")]
         public async Task UpdateAccountName_Ok(string relativeRef)
         {
             // Act
@@ -34,6 +34,18 @@ namespace Demo.Api.Tests.Endpoints.Accounts.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/accounts/x77a33260-0000-441f-ba60-b0a833803fab/name")]
+        public async Task UpdateAccountName_BadRequest_InPath(string relativeRef)
+        {
+            // Act
+            var response = await HttpClient.PutAsync(relativeRef, ToJson(new {}));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

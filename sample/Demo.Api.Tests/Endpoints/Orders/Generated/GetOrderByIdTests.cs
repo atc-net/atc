@@ -25,7 +25,7 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
         public GetOrderByIdTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
-        [InlineData("/api/v1/orders/27")]
+        [InlineData("/api/v1/orders/77a33260-0000-441f-ba60-b0a833803fab")]
         public async Task GetOrderById_Ok(string relativeRef)
         {
             // Act
@@ -37,6 +37,18 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
 
             var responseData = await response.DeserializeAsync<Order>(JsonSerializerOptions);
             responseData.Should().NotBeNull();
+        }
+
+        [Theory]
+        [InlineData("/api/v1/orders/x77a33260-0000-441f-ba60-b0a833803fab")]
+        public async Task GetOrderById_BadRequest_InPath(string relativeRef)
+        {
+            // Act
+            var response = await HttpClient.GetAsync(relativeRef);
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

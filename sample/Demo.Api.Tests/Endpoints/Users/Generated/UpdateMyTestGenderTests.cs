@@ -25,7 +25,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
         public UpdateMyTestGenderTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
-        [InlineData("/api/v1/users/27/gender")]
+        [InlineData("/api/v1/users/77a33260-0000-441f-ba60-b0a833803fab/gender")]
         public async Task UpdateMyTestGender_Ok(string relativeRef)
         {
             // Arrange
@@ -40,6 +40,24 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             // Assert
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users/x77a33260-0000-441f-ba60-b0a833803fab/gender")]
+        public async Task UpdateMyTestGender_BadRequest_InPath(string relativeRef)
+        {
+            // Arrange
+            var data = new UpdateTestGenderRequest
+            {
+                Gender = GenderType.Female,
+            };
+
+            // Act
+            var response = await HttpClient.PutAsync(relativeRef, ToJson(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
         {
             var data = new Order
             {
-                Id = "27",
-                Description = "Hallo1",
+                Id = Guid.Parse("77a33260-0000-441f-ba60-b0a833803fab"),
+                Description = "Hallo",
                 MyTime = DateTimeOffset.Parse("2020-10-12T21:22:23"),
                 MyEmail = "john.doe@example.com",
                 MyNullableDateTime = DateTimeOffset.Parse("2020-10-12T21:22:23"),
@@ -32,7 +32,7 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
                 MyInteger = 42,
                 MyBool = true,
                 MyUri = new Uri("http://www.dr.dk"),
-                MyByte = "Hallo2",
+                MyByte = "Hallo1",
                 MyStringList = null,
                 MyLong = 42,
                 DeliveryAddress = new Address(),

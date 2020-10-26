@@ -40,12 +40,6 @@ paths:
       description: Get order by id
       operationId: getOrderById
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the order to retrieve
-          schema:
-            type: string
         - name: myEmail
           in: query
           description: The email for filter orders to retrieve
@@ -67,12 +61,6 @@ paths:
       description: Update part of order by id
       operationId: patchOrdersId
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the order to retrieve
-          schema:
-            type: string
         - name: myTestHeader
           in: header
           required: true
@@ -109,6 +97,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    parameters:
+      - name: id
+        in: path
+        description: 'The id of the order'
+        required: true
+        schema:
+          type: string
+          format: uuid
   /users/email:
     get:
       tags:
@@ -142,13 +138,6 @@ paths:
       summary: Get user by id
       description: Get user by id
       operationId: getUserById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the user to retrieve
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -164,13 +153,6 @@ paths:
       summary: Update user by id
       description: Update user by id
       operationId: updateUserById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the user to update
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -189,13 +171,6 @@ paths:
       summary: Delete user by id
       description: Delete user by id
       operationId: deleteUserById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the user to delete
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -203,6 +178,13 @@ paths:
           description: Not Found
         '409':
           description: Conflict
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
   /users:
     get:
       summary: Get all users
@@ -240,12 +222,6 @@ paths:
       description: Update gender on a user
       operationId: updateMyTestGender
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: The id of the user to update
-          schema:
-            type: string
         - name: genderParam
           in: query
           description: The gender to set on the user
@@ -265,6 +241,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
   '/accounts/{accountId}/name':
     put:
       summary: Update name of account
@@ -287,6 +270,7 @@ paths:
         description: The accountId
         schema:
           type: string
+          format: uuid
   '/addresses/{postalCode}':
     get:
       summary: Get addresses by postal code
@@ -418,6 +402,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         description:
           type: string
         myTime:

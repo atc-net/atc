@@ -111,7 +111,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 }
             }
 
-            var methodDeclaration = SyntaxMethodDeclarationFactory.CreateToStringMethod(ApiOperation.Parameters, ApiOperation.RequestBody);
+            var methodDeclaration = SyntaxMethodDeclarationFactory.CreateToStringMethod(GlobalPathParameters, ApiOperation.Parameters, ApiOperation.RequestBody);
             if (methodDeclaration != null)
             {
                 methodDeclaration = methodDeclaration.WithLeadingTrivia(SyntaxDocumentationFactory.CreateForOverrideToString());

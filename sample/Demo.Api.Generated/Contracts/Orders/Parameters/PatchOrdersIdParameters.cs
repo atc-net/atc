@@ -1,4 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,11 +23,11 @@ namespace Demo.Api.Generated.Contracts.Orders
     public class PatchOrdersIdParameters
     {
         /// <summary>
-        /// The id of the order to retrieve.
+        /// The id of the order.
         /// </summary>
         [FromRoute(Name = "id")]
         [Required]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// The myTestHeader special key.

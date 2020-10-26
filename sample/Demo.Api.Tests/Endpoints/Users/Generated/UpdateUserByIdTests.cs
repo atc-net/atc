@@ -25,7 +25,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
         public UpdateUserByIdTests(WebApiStartupFactory fixture) : base(fixture) { }
 
         [Theory]
-        [InlineData("/api/v1/users/27")]
+        [InlineData("/api/v1/users/77a33260-0000-441f-ba60-b0a833803fab")]
         public async Task UpdateUserById_Ok(string relativeRef)
         {
             // Arrange
@@ -46,7 +46,28 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
         }
 
         [Theory]
-        [InlineData("/api/v1/users/27")]
+        [InlineData("/api/v1/users/x77a33260-0000-441f-ba60-b0a833803fab")]
+        public async Task UpdateUserById_BadRequest_InPath(string relativeRef)
+        {
+            // Arrange
+            var data = new UpdateUserRequest
+            {
+                FirstName = "Hallo",
+                LastName = "Hallo1",
+                Email = "john.doe@example.com",
+                Gender = GenderType.Female,
+            };
+
+            // Act
+            var response = await HttpClient.PutAsync(relativeRef, ToJson(data));
+
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Theory]
+        [InlineData("/api/v1/users/77a33260-0000-441f-ba60-b0a833803fab")]
         public async Task UpdateUserById_BadRequest_InBody_Email(string relativeRef)
         {
             // Arrange

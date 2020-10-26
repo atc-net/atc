@@ -183,6 +183,11 @@ Code
 ```csharp
 FocusOnSegmentName
 ```
+#### GlobalPathParameters
+
+```csharp
+GlobalPathParameters
+```
 #### HasParametersOrRequestBody
 
 ```csharp

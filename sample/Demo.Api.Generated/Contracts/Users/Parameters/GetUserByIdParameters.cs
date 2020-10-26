@@ -1,4 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +22,9 @@ namespace Demo.Api.Generated.Contracts.Users
     [GeneratedCode("ApiGenerator", "1.0.155.0")]
     public class GetUserByIdParameters
     {
-        /// <summary>
-        /// The id of the user to retrieve.
-        /// </summary>
         [FromRoute(Name = "id")]
         [Required]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Converts to string.

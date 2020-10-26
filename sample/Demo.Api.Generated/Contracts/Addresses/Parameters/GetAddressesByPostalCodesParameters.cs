@@ -27,5 +27,13 @@ namespace Demo.Api.Generated.Contracts.Addresses
         [FromRoute(Name = "postalCode")]
         [Required]
         public string PostalCode { get; set; }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{nameof(PostalCode)}: {PostalCode}";
+        }
     }
 }

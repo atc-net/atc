@@ -14,22 +14,31 @@ namespace Atc.Rest.ApiGenerator.Factories
         {
             var list = new List<string>();
 
-            if (globalParameters != null && ShouldUseDataAnnotationsNamespace(globalParameters))
+            if (globalParameters != null)
             {
-                list.Add("System.ComponentModel.DataAnnotations");
+                if (globalParameters.HasFormatTypeFromSystemNamespace())
+                {
+                    list.Add("System");
+                }
+
+                if (ShouldUseDataAnnotationsNamespace(globalParameters))
+                {
+                    list.Add("System.ComponentModel.DataAnnotations");
+                }
             }
 
             if (parameters != null)
             {
-                if (parameters.HasFormatTypeFromSystemNamespace())
+                if (list.All(x => x != "System") &&
+                    parameters.HasFormatTypeFromSystemNamespace())
                 {
                     list.Add("System");
                 }
 
                 list.Add("System.CodeDom.Compiler");
 
-                if (ShouldUseDataAnnotationsNamespace(parameters) &&
-                    list.All(x => x != "System.ComponentModel.DataAnnotations"))
+                if (list.All(x => x != "System.ComponentModel.DataAnnotations") &&
+                    ShouldUseDataAnnotationsNamespace(parameters))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");
                 }
@@ -37,10 +46,17 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("Microsoft.AspNetCore.Mvc");
             }
 
-            if (requestBody != null &&
-                list.All(x => x != "System.ComponentModel.DataAnnotations"))
+            if (requestBody != null)
             {
-                list.Add("System.ComponentModel.DataAnnotations");
+                if (list.All(x => x != "System") /* TO-DO: && HasFormatTypeFromSystemNamespace */)
+                {
+                    list.Add("System");
+                }
+
+                if (list.All(x => x != "System.ComponentModel.DataAnnotations") /* TO-DO: && ShouldUseDataAnnotationsNamespace */)
+                {
+                    list.Add("System.ComponentModel.DataAnnotations");
+                }
             }
 
             return list.ToArray();
