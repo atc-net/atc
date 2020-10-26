@@ -82,13 +82,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
         {
             string[] sa = text.Split(Environment.NewLine.ToCharArray());
             var sb = new StringBuilder();
-            bool isRemoved = false;
+            bool isRemovedComment = false;
+            bool isRemovedAttribute = false;
             int lastIndex = sa.Length - 1;
             for (int i = 0; i < sa.Length; i++)
             {
-                if (!isRemoved && sa[i].Contains("ApiGenerator", StringComparison.Ordinal))
+                if (!isRemovedComment &&
+                    sa[i].Contains("auto-generated", StringComparison.Ordinal) &&
+                    sa[i].Contains("ApiGenerator", StringComparison.Ordinal))
                 {
-                    isRemoved = true;
+                    isRemovedComment = true;
+                    continue;
+                }
+
+                if (!isRemovedAttribute &&
+                    sa[i].Contains("GeneratedCode", StringComparison.Ordinal) &&
+                    sa[i].Contains("ApiGenerator", StringComparison.Ordinal))
+                {
+                    isRemovedAttribute = true;
                     continue;
                 }
 
