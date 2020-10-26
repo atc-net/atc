@@ -14,8 +14,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var enumSchema = schemaForEnum.Value.GetEnumSchema();
             var enumValues = enumSchema.Item2.Enum.ToArray();
-            var openApiString = enumValues.Last() as OpenApiString;
-            if (openApiString == null)
+            if (!(enumValues.Last() is OpenApiString openApiString))
             {
                 throw new NotSupportedException($"PropertyValueGeneratorEnum: {name}");
             }
@@ -50,41 +49,41 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         public static string CreateValueBool(bool useForBadRequest) => useForBadRequest ? "@" : "true";
 
-        public static string CreateValueString(string name, string format, bool useForBadRequest, int itemNumber = 0, string? customValue = null)
+        public static string CreateValueString(string name, string? format, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string? customValue = null)
         {
             if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));
             }
 
+            if (!string.IsNullOrEmpty(format))
+            {
+                if (format.Equals(OpenApiFormatTypeConstants.Email, StringComparison.OrdinalIgnoreCase))
+                {
+                    return CreateValueEmail(useForBadRequest, itemNumber);
+                }
+
+                if (format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase))
+                {
+                    return CreateValueUri(useForBadRequest);
+                }
+            }
+
+            if (useForBadRequest && parameterLocation == ParameterLocation.Query)
+            {
+                return string.Empty;
+            }
+
             if (name.Equals("Id", StringComparison.OrdinalIgnoreCase) || name.EndsWith("Id", StringComparison.Ordinal))
             {
-                if (itemNumber > 0)
-                {
-                    return useForBadRequest
-                        ? customValue ?? "27@" + itemNumber
-                        : customValue ?? "27" + itemNumber;
-                }
-
-                return useForBadRequest
-                    ? customValue ?? "27@"
-                    : customValue ?? "27";
+                return CreateValueStringId(useForBadRequest, itemNumber, customValue);
             }
 
-            if (!string.IsNullOrEmpty(format) && format == OpenApiFormatTypeConstants.Email)
-            {
-                if (itemNumber > 0)
-                {
-                    return useForBadRequest
-                        ? $"john{itemNumber}.doe_example.com"
-                        : $"john{itemNumber}.doe@example.com";
-                }
+            return CreateValueStringDefault(useForBadRequest, itemNumber, customValue);
+        }
 
-                return useForBadRequest
-                    ? "john.doe_example.com"
-                    : "john.doe@example.com";
-            }
-
+        private static string CreateValueStringDefault(bool useForBadRequest, int itemNumber, string? customValue)
+        {
             if (itemNumber > 0)
             {
                 return useForBadRequest
@@ -95,6 +94,20 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return useForBadRequest
                 ? customValue ?? "null"
                 : customValue ?? "Hallo";
+        }
+
+        private static string CreateValueStringId(bool useForBadRequest, int itemNumber, string? customValue)
+        {
+            if (itemNumber > 0)
+            {
+                return useForBadRequest
+                    ? customValue ?? "27@" + itemNumber
+                    : customValue ?? "27" + itemNumber;
+            }
+
+            return useForBadRequest
+                ? customValue ?? "27@"
+                : customValue ?? "27";
         }
 
         public static string CreateValueDateTimeOffset(bool useForBadRequest)
@@ -119,6 +132,20 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return useForBadRequest
                 ? "http_www_dr_dk"
                 : "http://www.dr.dk";
+        }
+
+        public static string CreateValueEmail(bool useForBadRequest, int itemNumber = 0)
+        {
+            if (itemNumber > 0)
+            {
+                return useForBadRequest
+                    ? $"john{itemNumber}.doe_example.com"
+                    : $"john{itemNumber}.doe@example.com";
+            }
+
+            return useForBadRequest
+                ? "john.doe_example.com"
+                : "john.doe@example.com";
         }
     }
 }

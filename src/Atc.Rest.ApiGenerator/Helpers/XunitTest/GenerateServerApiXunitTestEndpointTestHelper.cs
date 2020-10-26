@@ -399,7 +399,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             var combinationOfRouteParameters = ParameterCombinationHelper.GetCombination(routeParameters, useForBadRequest);
             foreach (var parameters in combinationOfRouteParameters)
             {
-                renderRelativeRefs.Add(RenderRelativeRefsForPathHelper(endpointMethodMetadata, parameters, useForBadRequest));
+                renderRelativeRefs.Add(RenderRelativeRefsForPathHelper(endpointMethodMetadata, routeParameters, parameters, useForBadRequest));
             }
 
             return renderRelativeRefs;
@@ -431,7 +431,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return renderRelativeRefs;
         }
 
-        private static string RenderRelativeRefsForPathHelper(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter> routeParameters, bool useForBadRequest)
+        private static string RenderRelativeRefsForPathHelper(EndpointMethodMetadata endpointMethodMetadata, List<OpenApiParameter> allRouteParameters, List<OpenApiParameter> badRouteParameters, bool useForBadRequest)
         {
             var route = endpointMethodMetadata.Route;
             if (endpointMethodMetadata.ContractParameter == null)
@@ -439,9 +439,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return route;
             }
 
-            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, endpointMethodMetadata.ComponentsSchemas, useForBadRequest);
+            string relativeRefPath = RenderRelativeRefPath(route, allRouteParameters, badRouteParameters, endpointMethodMetadata.ComponentsSchemas, useForBadRequest);
 
-            if (routeParameters.Count == 0)
+            if (allRouteParameters.Count == 0)
             {
                 return relativeRefPath;
             }
@@ -471,7 +471,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             var routeParameters = endpointMethodMetadata.GetRouteParameters();
-            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, endpointMethodMetadata.ComponentsSchemas, false);
+            string relativeRefPath = RenderRelativeRefPath(route, routeParameters, routeParameters, endpointMethodMetadata.ComponentsSchemas, false);
 
             if (queryParameters == null || queryParameters.Count == 0)
             {
@@ -482,7 +482,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return $"{relativeRefPath}{relativeRefQuery}";
         }
 
-        private static string RenderRelativeRefPath(string route, List<OpenApiParameter> routeParameters, IDictionary<string, OpenApiSchema> componentsSchemas, bool useForBadRequest)
+        private static string RenderRelativeRefPath(string route, List<OpenApiParameter> allRouteParameters, List<OpenApiParameter> badRouteParameters, IDictionary<string, OpenApiSchema> componentsSchemas, bool useForBadRequest)
         {
             var sa = route.Split('/');
             for (int i = 0; i < sa.Length; i++)
@@ -496,8 +496,16 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     .Replace("{", string.Empty, StringComparison.Ordinal)
                     .Replace("}", string.Empty, StringComparison.Ordinal);
 
-                var fromRoute = routeParameters.Find(x => x.Name == pn);
-                sa[i] = PropertyValueGenerator(fromRoute, componentsSchemas, useForBadRequest, null);
+                var fromRoute = badRouteParameters.Find(x => x.Name == pn);
+                if (fromRoute == null)
+                {
+                    fromRoute = allRouteParameters.Find(x => x.Name == pn);
+                    sa[i] = PropertyValueGenerator(fromRoute, componentsSchemas, false, null);
+                }
+                else
+                {
+                    sa[i] = PropertyValueGenerator(fromRoute, componentsSchemas, useForBadRequest, null);
+                }
             }
 
             return string.Join('/', sa);
@@ -530,10 +538,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "long" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
-                "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema.Format, useForBadRequest, 0, customValue),
+                "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema.Format, parameter.In, useForBadRequest, 0, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest),
                 "Uri" => ValueTypeTestPropertiesHelper.CreateValueUri(useForBadRequest),
+                "Email" => ValueTypeTestPropertiesHelper.CreateValueEmail(useForBadRequest),
                 _ => PropertyValueGeneratorTypeResolver(parameter, componentsSchemas, useForBadRequest)
             };
         }

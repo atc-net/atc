@@ -13,6 +13,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
     internal static class SyntaxPropertyDeclarationFactory
     {
         public static PropertyDeclarationSyntax CreateAuto(
+            ParameterLocation? parameterLocation,
             bool isNullable,
             bool isRequired,
             string dataType,
@@ -20,7 +21,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             bool useNullableReferenceTypes,
             IOpenApiAny? initializer)
         {
-            if (useNullableReferenceTypes && isNullable && !isRequired)
+            if (useNullableReferenceTypes && (isNullable || parameterLocation == ParameterLocation.Query) && !isRequired)
             {
                 dataType += "?";
             }
@@ -64,6 +65,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                     schema.Value.Items.GetDataType(),
                     schema.Key.EnsureFirstCharacterToUpper())
                 : CreateAuto(
+                    null,
                     isNullable,
                     isRequired,
                     schema.Value.GetDataType(),
@@ -90,6 +92,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 throw new ArgumentNullException(nameof(parameter));
             }
 
+            if (parameter.Name == "hest")
+            {
+            }
+
             if (parameter.In == ParameterLocation.Path)
             {
                 useNullableReferenceTypes = false;
@@ -102,6 +108,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
             }
 
             var propertyDeclaration = CreateAuto(
+                parameter.In,
                 parameter.Schema.Nullable,
                 parameter.Required,
                 parameter.Schema.GetDataType(),

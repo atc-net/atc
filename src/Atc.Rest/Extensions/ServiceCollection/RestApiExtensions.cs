@@ -44,8 +44,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IRequestContext, RequestContext>();
+            if (restApiOptions.UseHttpContextAccessor)
+            {
+                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+                services.AddTransient<IRequestContext, RequestContext>();
+            }
+
             services.ConfigureOptions<ConfigureApiBehaviorOptions>();
 
             if (restApiOptions.UseApplicationInsights)

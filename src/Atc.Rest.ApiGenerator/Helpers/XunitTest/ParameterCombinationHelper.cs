@@ -67,7 +67,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             return combinationNames
                 .Select(x => x.ToList())
-                .Where(x => requiredNames.Any(x.Contains))
+                .Where(x => requiredNames.All(x.Contains))
                 .ToList();
         }
 

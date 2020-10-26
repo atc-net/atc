@@ -98,6 +98,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var requestBodyType = item.Schema.Reference.Id.EnsureFirstCharacterToUpper();
 
                     var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
+                            null,
                             false,
                             true,
                             requestBodyType,

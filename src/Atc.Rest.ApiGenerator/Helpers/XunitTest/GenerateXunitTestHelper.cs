@@ -275,10 +275,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "long" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
-                "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value.Format, useForBadRequest, itemNumber, customValue),
+                "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value.Format, null, useForBadRequest, itemNumber, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest, itemNumber),
                 "Uri" => ValueTypeTestPropertiesHelper.CreateValueUri(useForBadRequest),
+                "Email" => ValueTypeTestPropertiesHelper.CreateValueEmail(useForBadRequest),
                 _ => PropertyValueGeneratorTypeResolver(schema, componentsSchemas, useForBadRequest)
             };
         }

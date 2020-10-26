@@ -22,6 +22,7 @@ namespace Demo.Api
                 UseApplicationInsights = true,
                 UseAutoRegistrateServices = true,
                 UseEnumAsStringInSerialization = true,
+                UseHttpContextAccessor = true,
                 ErrorHandlingExceptionFilter = new RestApiOptionsErrorHandlingExceptionFilter
                 {
                     Enable = true,

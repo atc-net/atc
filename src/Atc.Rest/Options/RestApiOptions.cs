@@ -17,6 +17,8 @@ namespace Atc.Rest.Options
 
         public bool UseEnumAsStringInSerialization { get; set; } = true;
 
+        public bool UseHttpContextAccessor { get; set; } = true;
+
         public RestApiOptionsErrorHandlingExceptionFilter ErrorHandlingExceptionFilter { get; set; } = new RestApiOptionsErrorHandlingExceptionFilter();
 
         public bool UseRequireHttpsPermanent { get; set; } = true;
