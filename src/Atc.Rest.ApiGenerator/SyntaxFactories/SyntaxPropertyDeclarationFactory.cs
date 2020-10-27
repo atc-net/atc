@@ -92,10 +92,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                 throw new ArgumentNullException(nameof(parameter));
             }
 
-            if (parameter.Name == "hest")
-            {
-            }
-
             if (parameter.In == ParameterLocation.Path)
             {
                 useNullableReferenceTypes = false;

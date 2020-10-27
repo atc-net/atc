@@ -132,6 +132,11 @@ string CreateValueDateTimeOffset(bool useForBadRequest)
 ```csharp
 string CreateValueDouble()
 ```
+#### CreateValueEmail
+
+```csharp
+string CreateValueEmail(bool useForBadRequest, int itemNumber = 0)
+```
 #### CreateValueEnum
 
 ```csharp
@@ -145,7 +150,7 @@ string CreateValueGuid(bool useForBadRequest, int itemNumber = 0)
 #### CreateValueString
 
 ```csharp
-string CreateValueString(string name, string format, bool useForBadRequest, int itemNumber = 0, string customValue = null)
+string CreateValueString(string name, string format, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string customValue = null)
 ```
 #### CreateValueUri
 

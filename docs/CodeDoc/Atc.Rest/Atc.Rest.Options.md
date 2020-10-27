@@ -193,6 +193,11 @@ UseAutoRegistrateServices
 ```csharp
 UseEnumAsStringInSerialization
 ```
+#### UseHttpContextAccessor
+
+```csharp
+UseHttpContextAccessor
+```
 #### UseJsonSerializerOptionsIgnoreNullValues
 
 ```csharp

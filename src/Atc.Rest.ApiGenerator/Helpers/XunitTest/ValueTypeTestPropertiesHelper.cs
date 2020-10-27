@@ -106,7 +106,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             return useForBadRequest
-                ? customValue ?? "27@"
+                ? customValue ?? "null"
                 : customValue ?? "27";
         }
 

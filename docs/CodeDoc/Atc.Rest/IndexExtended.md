@@ -78,6 +78,7 @@
      - UseApplicationInsights
      - UseAutoRegistrateServices
      - UseEnumAsStringInSerialization
+     - UseHttpContextAccessor
      - UseJsonSerializerOptionsIgnoreNullValues
      - UseRequireHttpsPermanent
      - UseValidateServiceRegistrations
