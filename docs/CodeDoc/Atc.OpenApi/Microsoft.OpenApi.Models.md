@@ -430,6 +430,11 @@ bool HasAnyProperties(this OpenApiSchema schema)
 #### HasDataTypeFromSystemCollectionGenericNamespace
 
 ```csharp
+bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
+```
+#### HasDataTypeFromSystemCollectionGenericNamespace
+
+```csharp
 bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
 ```
 #### HasDataTypeOfList
@@ -445,7 +450,17 @@ bool HasFormatType(this OpenApiSchema schema)
 #### HasFormatTypeFromDataAnnotationsNamespace
 
 ```csharp
+bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
+```
+#### HasFormatTypeFromDataAnnotationsNamespace
+
+```csharp
 bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
+```
+#### HasFormatTypeFromSystemNamespace
+
+```csharp
+bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
 ```
 #### HasFormatTypeFromSystemNamespace
 
@@ -506,6 +521,11 @@ bool HasFormatTypeOfUuid(this IList<OpenApiSchema> schemas)
 
 ```csharp
 bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
+```
+#### IsDataTypeOfList
+
+```csharp
+bool IsDataTypeOfList(this OpenApiSchema schema)
 ```
 #### IsFormatTypeOfByte
 
