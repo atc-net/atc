@@ -22,6 +22,11 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
 
+            if (openApiOperation.OperationId == null)
+            {
+                return string.Empty;
+            }
+
             return openApiOperation
                 .OperationId
                 .PascalCase(true)

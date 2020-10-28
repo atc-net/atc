@@ -95,7 +95,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         .Select(x => x.Item1)
                         .ToList();
 
-                    logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation12, $"The operations '{string.Join(',', operationsWithMissingParameter)}' in path '{path.Key}' does not define a parameter named '{parameterName}'."));
+                    logItems.Add(operationsWithMissingParameter.Count == 0
+                        ? LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation12, $"The operations in path '{path.Key}' does not define a parameter named '{parameterName}'.")
+                        : LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation12, $"The operations '{string.Join(',', operationsWithMissingParameter)}' in path '{path.Key}' does not define a parameter named '{parameterName}'."));
                 }
             }
 

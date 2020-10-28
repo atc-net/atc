@@ -32,7 +32,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
             var logItems = new List<LogKeyValueItem>();
             logItems.AddRange(ValidateSchemas(validationOptions, apiDocument.Components.Schemas.Values));
-            logItems.AddRange(ValidateOperations(validationOptions, apiDocument.Paths.Values, apiDocument.Components.Schemas));
+            logItems.AddRange(ValidateOperations(validationOptions, apiDocument.Paths, apiDocument.Components.Schemas));
             logItems.AddRange(ValidatePathsAndOperations(validationOptions, apiDocument.Paths));
             logItems.AddRange(ValidateOperationsParametersAndResponses(validationOptions, apiDocument.Paths.Values));
 
@@ -129,7 +129,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static List<LogKeyValueItem> ValidateOperations(
             ApiOptionsValidation validationOptions,
-            Dictionary<string, OpenApiPathItem>.ValueCollection paths,
+            OpenApiPaths paths,
             IDictionary<string, OpenApiSchema> modelSchemas)
         {
             var logItems = new List<LogKeyValueItem>();
@@ -137,61 +137,61 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 ? LogCategoryType.Error
                 : LogCategoryType.Warning;
 
-            foreach (var path in paths)
+            foreach (var (pathKey, pathValue) in paths)
             {
-                foreach (var (key, value) in path.Operations)
+                foreach (var (operationKey, operationValue) in pathValue.Operations)
                 {
-                    if (string.IsNullOrEmpty(value.OperationId))
+                    if (string.IsNullOrEmpty(operationValue.OperationId))
                     {
-                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation01, $"Missing OperationId in path '{key} # {path}'."));
+                        logItems.Add(LogItemHelper.Create(LogCategoryType.Error, ValidationRuleNameConstants.Operation01, $"Missing OperationId in path '{operationKey} # {pathKey}'."));
                     }
                     else
                     {
-                        if (!value.OperationId.IsCasingStyleValid(validationOptions.OperationIdCasingStyle))
+                        if (!operationValue.OperationId.IsCasingStyleValid(validationOptions.OperationIdCasingStyle))
                         {
-                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation02, $"OperationId '{value.OperationId}' is not using {validationOptions.OperationIdCasingStyle}."));
+                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation02, $"OperationId '{operationValue.OperationId}' is not using {validationOptions.OperationIdCasingStyle}."));
                         }
 
-                        if (key == OperationType.Get)
+                        if (operationKey == OperationType.Get)
                         {
-                            if (!value.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase) &&
-                                !value.OperationId.StartsWith("List", StringComparison.OrdinalIgnoreCase))
+                            if (!operationValue.OperationId.StartsWith("Get", StringComparison.OrdinalIgnoreCase) &&
+                                !operationValue.OperationId.StartsWith("List", StringComparison.OrdinalIgnoreCase))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation03, $"OperationId should start with the prefix 'Get' or 'List' for operation '{value.GetOperationName()}'."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation03, $"OperationId should start with the prefix 'Get' or 'List' for operation '{operationValue.GetOperationName()}'."));
                             }
                         }
-                        else if (key == OperationType.Post)
+                        else if (operationKey == OperationType.Post)
                         {
-                            if (value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase))
+                            if (operationValue.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation04, $"OperationId should not start with the prefix 'Delete' for operation '{value.GetOperationName()}'."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation04, $"OperationId should not start with the prefix 'Delete' for operation '{operationValue.GetOperationName()}'."));
                             }
                         }
-                        else if (key == OperationType.Put)
+                        else if (operationKey == OperationType.Put)
                         {
-                            if (!value.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
+                            if (!operationValue.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation05, $"OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation05, $"OperationId should start with the prefix 'Update' for operation '{operationValue.GetOperationName()}'."));
                             }
                         }
-                        else if (key == OperationType.Patch)
+                        else if (operationKey == OperationType.Patch)
                         {
-                            if (!value.OperationId.StartsWith("Patch", StringComparison.OrdinalIgnoreCase) &&
-                                !value.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
+                            if (!operationValue.OperationId.StartsWith("Patch", StringComparison.OrdinalIgnoreCase) &&
+                                !operationValue.OperationId.StartsWith("Update", StringComparison.OrdinalIgnoreCase))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation06, $"OperationId should start with the prefix 'Update' for operation '{value.GetOperationName()}'."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation06, $"OperationId should start with the prefix 'Update' for operation '{operationValue.GetOperationName()}'."));
                             }
                         }
-                        else if (key == OperationType.Delete &&
-                                 !value.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase) &&
-                                 !value.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
+                        else if (operationKey == OperationType.Delete &&
+                                 !operationValue.OperationId.StartsWith("Delete", StringComparison.OrdinalIgnoreCase) &&
+                                 !operationValue.OperationId.StartsWith("Remove", StringComparison.OrdinalIgnoreCase))
                         {
-                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation07, $"OperationId should start with the prefix 'Delete' for operation '{value.GetOperationName()}'."));
+                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation07, $"OperationId should start with the prefix 'Delete' for operation '{operationValue.GetOperationName()}'."));
                         }
                     }
                 }
 
-                foreach (var (_, value) in path.Operations)
+                foreach (var (_, value) in pathValue.Operations)
                 {
                     var modelSchema = value.GetModelSchema();
                     if (modelSchema != null)
