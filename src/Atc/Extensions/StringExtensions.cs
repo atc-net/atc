@@ -736,32 +736,48 @@ namespace System
 
             if (separators.Length <= 0)
             {
-                return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1);
+                return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1).ToLowerInvariant();
             }
 
             if (separators.Length == 1 && value.IndexOfAny(separators) == -1)
             {
-                return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1);
+                return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1).ToLowerInvariant();
             }
 
-            foreach (var charSeparator in separators)
+            var strArray = value.Split(separators);
+            for (int i = 0; i < strArray.Length; i++)
             {
-                var strArray = value.Split(charSeparator);
-                var sb = new StringBuilder(value.Length + 1);
-                foreach (var t in strArray)
+                var tmp = strArray[i].Substring(0, 1).ToUpperInvariant() + strArray[i].Substring(1).ToLowerInvariant();
+                for (int j = 1; j < strArray[i].Length - 1; j++)
                 {
-                    sb.Append(t.Substring(0, 1).ToUpperInvariant() + t.Substring(1) + charSeparator);
+                    char c1 = strArray[i][j - 1];
+                    char c2 = strArray[i][j];
+                    char c3 = strArray[i][j + 1];
+                    if (char.IsLower(c1) && char.IsUpper(c2) && char.IsLower(c3))
+                    {
+                        tmp = tmp.ReplaceAt(j, c2);
+                    }
                 }
 
-                value = sb.ToString().TrimEnd(charSeparator);
+                strArray[i] = tmp;
             }
 
-            if (removeSeparators)
+            var sb = new StringBuilder();
+            for (int i = 0; i < strArray.Length; i++)
             {
-                value = separators.Aggregate(value, (current, charSeparator) => current.Replace(charSeparator.ToString(), string.Empty, StringComparison.Ordinal));
+                sb.Append(strArray[i]);
+                if (removeSeparators)
+                {
+                    continue;
+                }
+
+                if (i != strArray.Length - 1)
+                {
+                    sb.Append(value.Substring(sb.Length, 1));
+                }
             }
 
-            return value;
+            return sb.ToString();
         }
 
         /// <summary>
