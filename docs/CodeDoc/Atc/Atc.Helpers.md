@@ -450,14 +450,14 @@ List<Culture> GetCultures(int displayLanguageLcid, List<int> includeOnlyLcids)
 #### GetCultures
 
 ```csharp
-List<Culture> GetCultures(int displayLanguageLcid)
+List<Culture> GetCultures(int displayLanguageLcid, List<string> includeOnlyCultureNames)
 ```
 <p><b>Summary:</b> Gets cultures.</p>
 
 #### GetCultures
 
 ```csharp
-List<Culture> GetCultures(int displayLanguageLcid, List<string> includeOnlyCultureNames)
+List<Culture> GetCultures(int displayLanguageLcid)
 ```
 <p><b>Summary:</b> Gets cultures.</p>
 
