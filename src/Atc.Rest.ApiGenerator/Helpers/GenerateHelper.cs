@@ -44,7 +44,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             string projectPrefixName,
             DirectoryInfo outputPath,
             DirectoryInfo? outputTestPath,
-            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument,
             ApiOptions apiOptions)
         {
             if (projectPrefixName == null)
@@ -57,9 +57,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(outputPath));
             }
 
-            if (apiYamlDoc == null)
+            if (apiDocument == null)
             {
-                throw new ArgumentNullException(nameof(apiYamlDoc));
+                throw new ArgumentNullException(nameof(apiDocument));
             }
 
             if (apiOptions == null)
@@ -67,7 +67,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(apiOptions));
             }
 
-            var projectOptions = new ApiProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions);
+            var projectOptions = new ApiProjectOptions(outputPath, outputTestPath, apiDocument.Item1, apiDocument.Item3, projectPrefixName, apiOptions);
             var serverApiGenerator = new ServerApiGenerator(projectOptions);
             return serverApiGenerator.Generate();
         }
@@ -76,7 +76,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             string projectPrefixName,
             DirectoryInfo outputPath,
             DirectoryInfo? outputTestPath,
-            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument,
             ApiOptions apiOptions,
             DirectoryInfo apiPath)
         {
@@ -90,9 +90,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(outputPath));
             }
 
-            if (apiYamlDoc == null)
+            if (apiDocument == null)
             {
-                throw new ArgumentNullException(nameof(apiYamlDoc));
+                throw new ArgumentNullException(nameof(apiDocument));
             }
 
             if (apiOptions == null)
@@ -105,7 +105,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(apiPath));
             }
 
-            var domainProjectOptions = new DomainProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions, apiPath);
+            var domainProjectOptions = new DomainProjectOptions(outputPath, outputTestPath, apiDocument.Item1, apiDocument.Item3, projectPrefixName, apiOptions, apiPath);
             var serverDomainGenerator = new ServerDomainGenerator(domainProjectOptions);
             return serverDomainGenerator.Generate();
         }
@@ -114,7 +114,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             string projectPrefixName,
             DirectoryInfo outputPath,
             DirectoryInfo? outputTestPath,
-            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc,
+            Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument,
             ApiOptions apiOptions,
             DirectoryInfo apiPath,
             DirectoryInfo domainPath)
@@ -129,9 +129,9 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(outputPath));
             }
 
-            if (apiYamlDoc == null)
+            if (apiDocument == null)
             {
-                throw new ArgumentNullException(nameof(apiYamlDoc));
+                throw new ArgumentNullException(nameof(apiDocument));
             }
 
             if (apiOptions == null)
@@ -149,7 +149,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(domainPath));
             }
 
-            var hostProjectOptions = new HostProjectOptions(outputPath, outputTestPath, apiYamlDoc.Item1, apiYamlDoc.Item3, projectPrefixName, apiOptions, apiPath, domainPath);
+            var hostProjectOptions = new HostProjectOptions(outputPath, outputTestPath, apiDocument.Item1, apiDocument.Item3, projectPrefixName, apiOptions, apiPath, domainPath);
             var serverHostGenerator = new ServerHostGenerator(hostProjectOptions);
             return serverHostGenerator.Generate();
         }

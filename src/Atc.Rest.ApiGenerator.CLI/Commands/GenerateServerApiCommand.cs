@@ -25,10 +25,10 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
             ApiOptionsHelper.ApplyGeneratorOverrides(apiOptions, configCmd);
 
             var specificationPath = CommandLineApplicationHelper.GetSpecificationPath(configCmd);
-            var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(specificationPath);
+            var apiDocument = OpenApiDocumentHelper.CombineAndGetApiDocument(specificationPath);
 
             var logItems = new List<LogKeyValueItem>();
-            logItems.AddRange(OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation));
+            logItems.AddRange(OpenApiDocumentHelper.Validate(apiDocument, apiOptions.Validation));
 
             if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {
@@ -43,7 +43,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
                 projectPrefixName,
                 outputPath,
                 outputTestPath,
-                apiYamlDoc,
+                apiDocument,
                 apiOptions));
 
             return ConsoleHelper.WriteLogItemsAndExit(logItems, verboseMode, CommandArea);

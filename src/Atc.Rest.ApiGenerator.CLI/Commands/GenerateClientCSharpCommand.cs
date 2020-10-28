@@ -26,10 +26,10 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
             ApiOptionsHelper.ApplyValidationOverrides(apiOptions, configCmd);
 
             var specificationPath = CommandLineApplicationHelper.GetSpecificationPath(configCmd);
-            var apiYamlDoc = OpenApiDocumentHelper.CombineAndGetApiYamlDoc(specificationPath);
+            var apiDocument = OpenApiDocumentHelper.CombineAndGetApiDocument(specificationPath);
 
             var logItems = new List<LogKeyValueItem>();
-            logItems.AddRange(OpenApiDocumentHelper.Validate(apiYamlDoc, apiOptions.Validation));
+            logItems.AddRange(OpenApiDocumentHelper.Validate(apiDocument, apiOptions.Validation));
 
             if (logItems.Any(x => x.LogCategory == LogCategoryType.Error))
             {

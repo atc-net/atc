@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.OpenApi.Writers;
 
 // ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable ReturnTypeCanBeEnumerable.Local
@@ -228,7 +229,15 @@ namespace Atc.Rest.ApiGenerator.Generators
                 File.Delete(resourceFile.FullName);
             }
 
-            File.Copy(apiProjectOptions.DocumentFile.FullName, resourceFile.FullName);
+            if (apiProjectOptions.DocumentFile.Extension.Equals(".json", StringComparison.OrdinalIgnoreCase))
+            {
+                using var writeFile = new StreamWriter(resourceFile.FullName);
+                apiProjectOptions.Document.SerializeAsV3(new OpenApiYamlWriter(writeFile));
+            }
+            else
+            {
+                File.Copy(apiProjectOptions.DocumentFile.FullName, resourceFile.FullName);
+            }
         }
 
         private static List<LogKeyValueItem> GenerateContracts(ApiProjectOptions apiProjectOptions, List<ApiOperationSchemaMap> operationSchemaMappings)

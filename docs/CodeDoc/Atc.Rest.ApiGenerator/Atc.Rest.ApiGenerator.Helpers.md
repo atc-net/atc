@@ -20,17 +20,17 @@ public static class GenerateHelper
 #### GenerateServerApi
 
 ```csharp
-List<LogKeyValueItem> GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions)
+List<LogKeyValueItem> GenerateServerApi(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument, ApiOptions apiOptions)
 ```
 #### GenerateServerDomain
 
 ```csharp
-List<LogKeyValueItem> GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath)
+List<LogKeyValueItem> GenerateServerDomain(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument, ApiOptions apiOptions, DirectoryInfo apiPath)
 ```
 #### GenerateServerHost
 
 ```csharp
-List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
+List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo outputPath, DirectoryInfo outputTestPath, Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument, ApiOptions apiOptions, DirectoryInfo apiPath, DirectoryInfo domainPath)
 ```
 #### GenerateServerSln
 
@@ -124,20 +124,20 @@ public static class OpenApiDocumentHelper
 ### Static Methods
 
 
-#### CombineAndGetApiYamlDoc
+#### CombineAndGetApiDocument
 
 ```csharp
-Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiYamlDoc(string specificationPath)
+Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> CombineAndGetApiDocument(string specificationPath)
 ```
 #### GetBasePathSegmentNames
 
 ```csharp
-List<string> GetBasePathSegmentNames(OpenApiDocument openApiYamlDoc)
+List<string> GetBasePathSegmentNames(OpenApiDocument openApiDocument)
 ```
 #### Validate
 
 ```csharp
-List<LogKeyValueItem> Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiYamlDoc, ApiOptionsValidation validationOptions)
+List<LogKeyValueItem> Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInfo> apiDocument, ApiOptionsValidation validationOptions)
 ```
 
 <br />
