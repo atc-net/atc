@@ -349,6 +349,51 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Parameters.Single(x => x.Name == "limit")));
         }
 
+        public static OpenApiPathItem CreatePathItemWithOperationResponseOkPet()
+        {
+            return JsonConvert.DeserializeObject<OpenApiPathItem>(
+                JsonConvert.SerializeObject(
+                    new OpenApiPathItem
+                    {
+                        Summary = "Get a pet",
+                        Operations = new Dictionary<OperationType, OpenApiOperation>
+                        {
+                            [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                        },
+                    }));
+        }
+
+        public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(string path)
+        {
+            return JsonConvert.DeserializeObject<KeyValuePair<string, OpenApiPathItem>>(
+                JsonConvert.SerializeObject(
+                    new KeyValuePair<string, OpenApiPathItem>(
+                        path,
+                        new OpenApiPathItem
+                        {
+                            Summary = "Get a pet",
+                            Operations = new Dictionary<OperationType, OpenApiOperation>
+                            {
+                                [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                            },
+                        })));
+        }
+
+        public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(List<OpenApiParameter> parameters)
+        {
+            return JsonConvert.DeserializeObject<OpenApiPathItem>(
+                JsonConvert.SerializeObject(
+                    new OpenApiPathItem
+                    {
+                        Summary = "Get a pet",
+                        Parameters = parameters,
+                        Operations = new Dictionary<OperationType, OpenApiOperation>
+                        {
+                            [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                        },
+                    }));
+        }
+
         public static OpenApiSchema CreateSchemaAddress()
         {
             return JsonConvert.DeserializeObject<OpenApiSchema>(
