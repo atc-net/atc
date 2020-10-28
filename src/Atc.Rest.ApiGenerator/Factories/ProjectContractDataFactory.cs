@@ -33,11 +33,8 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("System.Collections.Generic");
             }
 
-            if (apiSchema.Required.Count > 0)
-            {
-                list.Add("System.ComponentModel.DataAnnotations");
-            }
-            else if (schemasToCheck.HasFormatTypeFromDataAnnotationsNamespace())
+            if (apiSchema.Required.Any() ||
+                schemasToCheck.HasFormatTypeFromDataAnnotationsNamespace())
             {
                 list.Add("System.ComponentModel.DataAnnotations");
             }

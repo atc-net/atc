@@ -46,14 +46,23 @@ namespace Atc.Rest.ApiGenerator.Factories
                 list.Add("Microsoft.AspNetCore.Mvc");
             }
 
-            if (requestBody != null)
+            var contentSchema = requestBody?.Content?.GetSchema();
+            if (contentSchema != null && contentSchema.HasAnyProperties())
             {
-                if (list.All(x => x != "System") /* TO-DO: && HasFormatTypeFromSystemNamespace */)
+                if (list.All(x => x != "System") &&
+                    contentSchema.HasFormatTypeFromSystemNamespace())
                 {
                     list.Add("System");
                 }
 
-                if (list.All(x => x != "System.ComponentModel.DataAnnotations") /* TO-DO: && ShouldUseDataAnnotationsNamespace */)
+                if (list.All(x => x != "System.Collections.Generic") &&
+                    (contentSchema.Type == OpenApiDataTypeConstants.Array || contentSchema.HasDataTypeFromSystemCollectionGenericNamespace()))
+                {
+                    list.Add("System");
+                }
+
+                if (list.All(x => x != "System.ComponentModel.DataAnnotations") &&
+                    ShouldUseDataAnnotationsNamespace(contentSchema))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");
                 }
@@ -61,6 +70,9 @@ namespace Atc.Rest.ApiGenerator.Factories
 
             return list.ToArray();
         }
+
+        private static bool ShouldUseDataAnnotationsNamespace(OpenApiSchema schema)
+            => schema.Required.Any() || schema.HasFormatTypeFromDataAnnotationsNamespace();
 
         private static bool ShouldUseDataAnnotationsNamespace(IList<OpenApiParameter> parameters)
             => parameters.Any(x => x.Required) || parameters.HasFormatTypeFromDataAnnotationsNamespace();
