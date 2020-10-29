@@ -18,7 +18,6 @@ namespace Atc.OpenApi.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(OpenApiParameterExtensions),
             typeof(OpenApiResponsesExtensions),
             typeof(OpenApiSchemaExtensions),
         };

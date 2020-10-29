@@ -61,6 +61,8 @@
      - HasFormatTypeOfDate(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfDateTime(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfEmail(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfInt32(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfInt64(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfTime(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfTimestamp(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfUri(this IList&lt;OpenApiParameter&gt; parameters)

@@ -135,10 +135,13 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.IsFormatTypeOfUuid() ||
+                   schema.IsFormatTypeOfByte() ||
                    schema.IsFormatTypeOfDate() ||
+                   schema.IsFormatTypeOfDateTime() ||
                    schema.IsFormatTypeOfTime() ||
                    schema.IsFormatTypeOfTimestamp() ||
-                   schema.IsFormatTypeOfDateTime() ||
+                   schema.IsFormatTypeOfInt32() ||
+                   schema.IsFormatTypeOfInt64() ||
                    schema.IsFormatTypeOfUri();
         }
 

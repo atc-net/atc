@@ -265,6 +265,16 @@ bool HasFormatTypeOfDateTime(this IList<OpenApiParameter> parameters)
 ```csharp
 bool HasFormatTypeOfEmail(this IList<OpenApiParameter> parameters)
 ```
+#### HasFormatTypeOfInt32
+
+```csharp
+bool HasFormatTypeOfInt32(this IList<OpenApiParameter> parameters)
+```
+#### HasFormatTypeOfInt64
+
+```csharp
+bool HasFormatTypeOfInt64(this IList<OpenApiParameter> parameters)
+```
 #### HasFormatTypeOfTime
 
 ```csharp
