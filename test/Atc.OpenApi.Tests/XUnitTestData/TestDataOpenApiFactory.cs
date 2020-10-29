@@ -72,6 +72,24 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         "name",
                     },
                 },
+                ["pets"] = new OpenApiSchema
+                {
+                    Type = "array",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.Schema,
+                        Id = "pets",
+                    },
+                    Items = new OpenApiSchema
+                    {
+                        Type = "object",
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.Schema,
+                            Id = "pet",
+                        },
+                    },
+                },
                 ["newPet"] = new OpenApiSchema
                 {
                     Type = "object",
@@ -335,6 +353,29 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     }));
         }
 
+        public static OpenApiOperation CreateOperationWithResponseOkPets()
+        {
+            return JsonConvert.DeserializeObject<OpenApiOperation>(
+                JsonConvert.SerializeObject(
+                    new OpenApiOperation
+                    {
+                        Responses = new OpenApiResponses
+                        {
+                            ["200"] = new OpenApiResponse
+                            {
+                                Description = "Ok",
+                                Content = new Dictionary<string, OpenApiMediaType>
+                                {
+                                    ["application/json"] = new OpenApiMediaType
+                                    {
+                                        Schema = CreateSchemaPets(),
+                                    },
+                                },
+                            },
+                        },
+                    }));
+        }
+
         public static OpenApiParameter CreateParameterTags()
         {
             return JsonConvert.DeserializeObject<OpenApiParameter>(
@@ -347,6 +388,29 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             return JsonConvert.DeserializeObject<OpenApiParameter>(
                 JsonConvert.SerializeObject(
                     Parameters.Single(x => x.Name == "limit")));
+        }
+
+        public static OpenApiPaths CreatePaths()
+        {
+            return JsonConvert.DeserializeObject<OpenApiPaths>(
+                JsonConvert.SerializeObject(
+                    new OpenApiPaths
+                    {
+                        ["/pets"] = new OpenApiPathItem
+                        {
+                            Operations = new Dictionary<OperationType, OpenApiOperation>
+                            {
+                                [OperationType.Get] = CreateOperationWithResponseOkPets(),
+                            },
+                        },
+                        ["/pets/{petId}"] = new OpenApiPathItem
+                        {
+                            Operations = new Dictionary<OperationType, OpenApiOperation>
+                            {
+                                [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                            },
+                        },
+                    }));
         }
 
         public static OpenApiPathItem CreatePathItemWithOperationResponseOkPet()
@@ -413,6 +477,13 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             return JsonConvert.DeserializeObject<OpenApiSchema>(
                 JsonConvert.SerializeObject(
                     Components.Schemas["pet"]));
+        }
+
+        public static OpenApiSchema CreateSchemaPets()
+        {
+            return JsonConvert.DeserializeObject<OpenApiSchema>(
+                JsonConvert.SerializeObject(
+                    Components.Schemas["pets"]));
         }
 
         public static OpenApiSchema CreateSchemaNewPet()

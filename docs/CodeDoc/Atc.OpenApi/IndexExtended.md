@@ -71,7 +71,7 @@
      - IsPathStartingSegmentName(this KeyValuePair&lt;string, OpenApiPathItem&gt; urlPath, string segmentName)
 - [OpenApiPathsExtensions](Microsoft.OpenApi.Models.md#openapipathsextensions)
   -  Static Methods
-     - GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
+     - GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
 - [OpenApiResponsesExtensions](Microsoft.OpenApi.Models.md#openapiresponsesextensions)
   -  Static Methods
      - GetHttpStatusCodes(this OpenApiResponses responses)

@@ -19,7 +19,6 @@ namespace Atc.OpenApi.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(OpenApiParameterExtensions),
-            typeof(OpenApiPathsExtensions),
             typeof(OpenApiResponsesExtensions),
             typeof(OpenApiSchemaExtensions),
         };

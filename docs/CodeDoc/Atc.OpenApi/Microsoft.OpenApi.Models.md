@@ -324,7 +324,7 @@ public static class OpenApiPathsExtensions
 #### GetPathsStartingWithSegmentName
 
 ```csharp
-List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
+List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
 ```
 
 <br />
