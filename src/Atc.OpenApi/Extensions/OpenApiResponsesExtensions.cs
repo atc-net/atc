@@ -72,6 +72,7 @@ namespace Microsoft.OpenApi.Models
                     case HttpStatusCode.BadGateway:
                     case HttpStatusCode.ServiceUnavailable:
                     case HttpStatusCode.GatewayTimeout:
+                    case HttpStatusCode.BadRequest:
                         return true;
                 }
             }
