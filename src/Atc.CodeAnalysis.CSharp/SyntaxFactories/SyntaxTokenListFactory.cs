@@ -114,5 +114,20 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 SyntaxTokenFactory.PrivateKeyword(),
                 SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
         }
+
+        public static SyntaxTokenList PrivateAsyncKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+        {
+            if (withLeadingLineFeed)
+            {
+                return SyntaxFactory.TokenList(
+                    SyntaxTokenFactory.CarriageReturnLineFeed(),
+                    SyntaxTokenFactory.PrivateKeyword(),
+                    SyntaxTokenFactory.AsyncKeyword(withTrailingSpace));
+            }
+
+            return SyntaxFactory.TokenList(
+                SyntaxTokenFactory.PrivateKeyword(),
+                SyntaxTokenFactory.AsyncKeyword(withTrailingSpace));
+        }
     }
 }
