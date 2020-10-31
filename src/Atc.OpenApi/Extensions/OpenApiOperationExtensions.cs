@@ -132,14 +132,19 @@ namespace Microsoft.OpenApi.Models
 
                     foreach (var mediaType in response.Value.Content)
                     {
+                        if (mediaType.Value.Schema == null)
+                        {
+                            continue;
+                        }
+
+                        if (mediaType.Value.Schema.Reference?.Id == schemaKey)
+                        {
+                            return true;
+                        }
+
                         foreach (var property in mediaType.Value.Schema.Properties)
                         {
-                            if (property.Value.Reference == null)
-                            {
-                                continue;
-                            }
-
-                            if (property.Value.Reference.Id == schemaKey)
+                            if (property.Value.Reference?.Id == schemaKey)
                             {
                                 return true;
                             }
@@ -157,14 +162,22 @@ namespace Microsoft.OpenApi.Models
             {
                 foreach (var item in openApiOperation.RequestBody.Content)
                 {
-                    if (item.Value.Schema?.Title == null)
+                    if (item.Value.Schema == null)
                     {
                         continue;
                     }
 
-                    if (schemaKey == item.Value.Schema.Title.PascalCase(true))
+                    if (item.Value.Schema.Reference?.Id == schemaKey)
                     {
                         return true;
+                    }
+
+                    foreach (var property in item.Value.Schema.Properties)
+                    {
+                        if (property.Value.Reference?.Id == schemaKey)
+                        {
+                            return true;
+                        }
                     }
                 }
             }

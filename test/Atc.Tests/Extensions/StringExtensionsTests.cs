@@ -219,6 +219,7 @@ namespace Atc.Tests.Extensions
         [InlineData("HalloWorld", "halloWorld")]
         [InlineData("Hallo World", "hallo World")]
         [InlineData("Hallo World", "hallo world")]
+        [InlineData("Hallo World-Yea", "HALLO WORLD-YeA")]
         public void PascalCase(string expected, string input)
             => Assert.Equal(expected, input.PascalCase());
 
@@ -226,9 +227,11 @@ namespace Atc.Tests.Extensions
         [InlineData("HalloWorld", "halloWorld", false)]
         [InlineData("Hallo World", "hallo World", false)]
         [InlineData("Hallo World", "hallo world", false)]
+        [InlineData("Hallo World-Yea", "HALLO WORLD-YeA", false)]
         [InlineData("HalloWorld", "halloWorld", true)]
         [InlineData("HalloWorld", "hallo World", true)]
         [InlineData("HalloWorld", "hallo world", true)]
+        [InlineData("HalloWorldYea", "HALLO WORLD-YeA", true)]
         public void PascalCase_RemoveSeparators(string expected, string input, bool removeSeparators)
             => Assert.Equal(expected, input.PascalCase(removeSeparators));
 

@@ -265,6 +265,16 @@ bool HasFormatTypeOfDateTime(this IList<OpenApiParameter> parameters)
 ```csharp
 bool HasFormatTypeOfEmail(this IList<OpenApiParameter> parameters)
 ```
+#### HasFormatTypeOfInt32
+
+```csharp
+bool HasFormatTypeOfInt32(this IList<OpenApiParameter> parameters)
+```
+#### HasFormatTypeOfInt64
+
+```csharp
+bool HasFormatTypeOfInt64(this IList<OpenApiParameter> parameters)
+```
 #### HasFormatTypeOfTime
 
 ```csharp
@@ -324,7 +334,7 @@ public static class OpenApiPathsExtensions
 #### GetPathsStartingWithSegmentName
 
 ```csharp
-List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
+List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
 ```
 
 <br />
@@ -576,11 +586,6 @@ bool IsFormatTypeOfUri(this OpenApiSchema schema)
 
 ```csharp
 bool IsFormatTypeOfUuid(this OpenApiSchema schema)
-```
-#### IsHttpStatusCodeModelReference
-
-```csharp
-bool IsHttpStatusCodeModelReference(this OpenApiSchema schema)
 ```
 #### IsItemsOfSimpleDataType
 

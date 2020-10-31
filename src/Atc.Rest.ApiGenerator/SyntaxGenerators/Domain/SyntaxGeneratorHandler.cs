@@ -214,7 +214,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                     SyntaxFactory.GenericName(SyntaxFactory.Identifier(nameof(Task)))
                         .WithTypeArgumentList(SyntaxTypeArgumentListFactory.CreateWithOneItem(resultTypeName)),
                     SyntaxFactory.Identifier("InvokeExecuteAsync"))
-                .WithModifiers(SyntaxTokenListFactory.PublicAsyncKeyword())
+                .WithModifiers(SyntaxTokenListFactory.PrivateAsyncKeyword())
                 .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(arguments)))
                 .WithBody(SyntaxFactory.Block(SyntaxThrowStatementFactory.CreateNotImplementedException()));
         }

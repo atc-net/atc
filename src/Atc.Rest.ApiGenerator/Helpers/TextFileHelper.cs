@@ -64,7 +64,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         return new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", fileInfo.FullName);
                     }
 
-                    if (RemoveApiGeneratorVersionLine(orgText) == RemoveApiGeneratorVersionLine(text))
+                    if (RemoveApiGeneratorVersionLine(orgText, true) == RemoveApiGeneratorVersionLine(text, true))
                     {
                         return new LogKeyValueItem(LogCategoryType.Debug, "FileSkip", "#", fileInfo.FullName);
                     }
@@ -78,7 +78,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return new LogKeyValueItem(LogCategoryType.Debug, "FileCreate", "#", fileInfo.FullName);
         }
 
-        private static string RemoveApiGeneratorVersionLine(string text)
+        private static string RemoveApiGeneratorVersionLine(string text, bool removeNewLines = false)
         {
             string[] sa = text.Split(Environment.NewLine.ToCharArray());
             var sb = new StringBuilder();
@@ -103,13 +103,20 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     continue;
                 }
 
-                if (i == lastIndex)
+                if (removeNewLines)
                 {
                     sb.Append(sa[i]);
                 }
                 else
                 {
-                    sb.AppendLine(sa[i]);
+                    if (i == lastIndex)
+                    {
+                        sb.Append(sa[i]);
+                    }
+                    else
+                    {
+                        sb.AppendLine(sa[i]);
+                    }
                 }
             }
 

@@ -136,9 +136,9 @@ namespace Microsoft.OpenApi.Models
 
             return schema.IsFormatTypeOfUuid() ||
                    schema.IsFormatTypeOfDate() ||
+                   schema.IsFormatTypeOfDateTime() ||
                    schema.IsFormatTypeOfTime() ||
                    schema.IsFormatTypeOfTimestamp() ||
-                   schema.IsFormatTypeOfDateTime() ||
                    schema.IsFormatTypeOfUri();
         }
 
@@ -346,6 +346,10 @@ namespace Microsoft.OpenApi.Models
 
             return dataType == OpenApiDataTypeConstants.Boolean ||
                    dataType == OpenApiDataTypeConstants.Integer ||
+                   dataType == "int" ||
+                   dataType == "long" ||
+                   dataType == "double" ||
+                   dataType == "float" ||
                    dataType == OpenApiDataTypeConstants.Number ||
                    dataType == OpenApiDataTypeConstants.String;
         }
@@ -367,7 +371,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Reference != null || schema.Items.Reference != null;
+            return schema.Reference != null || schema.Items?.Reference != null;
         }
 
         public static bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
@@ -378,16 +382,6 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.Items != null && schema.Items.IsSimpleDataType();
-        }
-
-        public static bool IsHttpStatusCodeModelReference(this OpenApiSchema schema)
-        {
-            if (schema == null)
-            {
-                throw new ArgumentNullException(nameof(schema));
-            }
-
-            return schema.Reference != null && !string.IsNullOrEmpty(schema.Reference.Id) && int.TryParse(schema.Reference.Id, out var _);
         }
 
         public static bool IsSchemaEnum(this OpenApiSchema schema)

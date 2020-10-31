@@ -67,12 +67,12 @@ namespace Microsoft.OpenApi.Models
             {
                 switch (httpStatusCode)
                 {
+                    case HttpStatusCode.BadRequest:
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotImplemented:
                     case HttpStatusCode.BadGateway:
                     case HttpStatusCode.ServiceUnavailable:
                     case HttpStatusCode.GatewayTimeout:
-                    case HttpStatusCode.BadRequest:
                         return true;
                 }
             }

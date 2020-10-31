@@ -61,6 +61,8 @@
      - HasFormatTypeOfDate(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfDateTime(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfEmail(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfInt32(this IList&lt;OpenApiParameter&gt; parameters)
+     - HasFormatTypeOfInt64(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfTime(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfTimestamp(this IList&lt;OpenApiParameter&gt; parameters)
      - HasFormatTypeOfUri(this IList&lt;OpenApiParameter&gt; parameters)
@@ -71,7 +73,7 @@
      - IsPathStartingSegmentName(this KeyValuePair&lt;string, OpenApiPathItem&gt; urlPath, string segmentName)
 - [OpenApiPathsExtensions](Microsoft.OpenApi.Models.md#openapipathsextensions)
   -  Static Methods
-     - GetPathsStartingWithSegmentName(this OpenApiPaths paths, string segmentName)
+     - GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
 - [OpenApiResponsesExtensions](Microsoft.OpenApi.Models.md#openapiresponsesextensions)
   -  Static Methods
      - GetHttpStatusCodes(this OpenApiResponses responses)
@@ -121,7 +123,6 @@
      - IsFormatTypeOfTimestamp(this OpenApiSchema schema)
      - IsFormatTypeOfUri(this OpenApiSchema schema)
      - IsFormatTypeOfUuid(this OpenApiSchema schema)
-     - IsHttpStatusCodeModelReference(this OpenApiSchema schema)
      - IsItemsOfSimpleDataType(this OpenApiSchema schema)
      - IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
      - IsSchemaEnum(this OpenApiSchema schema)
