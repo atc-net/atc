@@ -123,7 +123,6 @@
      - IsFormatTypeOfTimestamp(this OpenApiSchema schema)
      - IsFormatTypeOfUri(this OpenApiSchema schema)
      - IsFormatTypeOfUuid(this OpenApiSchema schema)
-     - IsHttpStatusCodeModelReference(this OpenApiSchema schema)
      - IsItemsOfSimpleDataType(this OpenApiSchema schema)
      - IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
      - IsSchemaEnum(this OpenApiSchema schema)

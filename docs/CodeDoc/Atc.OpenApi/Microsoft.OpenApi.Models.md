@@ -587,11 +587,6 @@ bool IsFormatTypeOfUri(this OpenApiSchema schema)
 ```csharp
 bool IsFormatTypeOfUuid(this OpenApiSchema schema)
 ```
-#### IsHttpStatusCodeModelReference
-
-```csharp
-bool IsHttpStatusCodeModelReference(this OpenApiSchema schema)
-```
 #### IsItemsOfSimpleDataType
 
 ```csharp

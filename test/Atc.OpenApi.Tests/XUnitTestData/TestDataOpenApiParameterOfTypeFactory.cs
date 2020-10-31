@@ -8,10 +8,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
             };
         }
 
@@ -19,11 +16,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "integer",
-                    Format = "int32",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
             };
         }
 
@@ -31,11 +24,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "integer",
-                    Format = "int64",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt64(),
             };
         }
 
@@ -43,11 +32,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "number",
-                    Format = "float",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat(),
             };
         }
 
@@ -55,11 +40,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "byte",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringByte(),
             };
         }
 
@@ -67,11 +48,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "date",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDate(),
             };
         }
 
@@ -79,11 +56,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "date-time",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime(),
             };
         }
 
@@ -91,11 +64,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "email",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail(),
             };
         }
 
@@ -103,11 +72,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "time",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTime(),
             };
         }
 
@@ -115,11 +80,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "timestamp",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp(),
             };
         }
 
@@ -127,11 +88,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "uri",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUri(),
             };
         }
 
@@ -139,11 +96,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         {
             return new OpenApiParameter
             {
-                Schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "uuid",
-                },
+                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid(),
             };
         }
 

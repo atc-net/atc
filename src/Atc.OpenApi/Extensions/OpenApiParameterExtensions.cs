@@ -115,13 +115,10 @@ namespace Microsoft.OpenApi.Models
             }
 
             return parameters.HasFormatTypeOfUuid() ||
-                   parameters.HasFormatTypeOfByte() ||
                    parameters.HasFormatTypeOfDate() ||
                    parameters.HasFormatTypeOfDateTime() ||
                    parameters.HasFormatTypeOfTime() ||
                    parameters.HasFormatTypeOfTimestamp() ||
-                   parameters.HasFormatTypeOfInt32() ||
-                   parameters.HasFormatTypeOfInt64() ||
                    parameters.HasFormatTypeOfUri();
         }
 
