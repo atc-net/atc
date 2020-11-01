@@ -39,7 +39,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                                         SyntaxFactory.Comment("//"));
             if (generateResharperSuppressions)
             {
-                SyntaxFactory.Comment("// ReSharper disable once CheckNamespace");
+                leading = leading.Add(SyntaxFactory.Comment("// ReSharper disable once CheckNamespace"));
             }
 
             return SyntaxFactory.NamespaceDeclaration(
