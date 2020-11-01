@@ -246,6 +246,7 @@
      - Validation
 - [ApiOptionsGenerator](Atc.Rest.ApiGenerator.Models.ApiOptions.md#apioptionsgenerator)
   -  Properties
+     - GenerateResharperSuppressions
      - Request
      - Response
      - UseAuthorization

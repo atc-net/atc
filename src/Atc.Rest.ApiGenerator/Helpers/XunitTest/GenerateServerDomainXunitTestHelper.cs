@@ -48,7 +48,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             sb.AppendLine();
             GenerateCodeHelper.AppendNamespaceComment(sb, domainProjectOptions.ToolNameAndVersion);
-            sb.AppendLine("// ReSharper disable once CheckNamespace");
+            if (domainProjectOptions.ApiOptions.Generator.GenerateResharperSuppressions)
+            {
+                sb.AppendLine("// ReSharper disable once CheckNamespace");
+            }
+
             sb.AppendLine($"namespace {nsTest}.Tests");
             sb.AppendLine("{");
             GenerateCodeHelper.AppendGeneratedCodeAttribute(sb, domainProjectOptions.ToolName, domainProjectOptions.ToolVersion);
@@ -91,7 +95,11 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine($"using {nsSrc};");
             sb.AppendLine("using Xunit;");
             sb.AppendLine();
-            sb.AppendLine("// ReSharper disable once CheckNamespace");
+            if (domainProjectOptions.ApiOptions.Generator.GenerateResharperSuppressions)
+            {
+                sb.AppendLine("// ReSharper disable once CheckNamespace");
+            }
+
             sb.AppendLine($"namespace {nsTest}.Tests");
             sb.AppendLine("{");
             sb.AppendLine(4, $"public class {sgHandler.HandlerTypeName}Tests");

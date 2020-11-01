@@ -40,6 +40,11 @@ public class ApiOptionsGenerator
 ### Properties
 
 
+#### GenerateResharperSuppressions
+
+```csharp
+GenerateResharperSuppressions
+```
 #### Request
 
 ```csharp

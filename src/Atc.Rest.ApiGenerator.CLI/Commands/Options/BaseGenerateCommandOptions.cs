@@ -26,5 +26,8 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands.Options
 
         [Option("--useAuthorization", "Use authorization", CommandOptionType.SingleValue)]
         public bool UseAuthorization { get; set; } = true;
+
+        [Option("--generateResharperSuppressions", "Generate Resharper suppressions (default: true).", CommandOptionType.SingleValue)]
+        public bool GenerateResharperSuppressions { get; set; } = true;
     }
 }

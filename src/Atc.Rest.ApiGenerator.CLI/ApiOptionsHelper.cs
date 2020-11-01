@@ -122,6 +122,14 @@ namespace Atc.Rest.ApiGenerator.CLI
             {
                 apiOptions.Generator.UseAuthorization = bool.Parse(cmdOptionUseAuthorization.Value()!);
             }
+
+            var cmdOptionGenerateResharperSuppressions = configCmd
+                .GetOptions()
+                .FirstOrDefault(x => x.LongName!.EndsWith("generateResharperSuppressions", StringComparison.OrdinalIgnoreCase));
+            if (cmdOptionGenerateResharperSuppressions != null && !string.IsNullOrEmpty(cmdOptionGenerateResharperSuppressions.Value()))
+            {
+                apiOptions.Generator.GenerateResharperSuppressions = bool.Parse(cmdOptionGenerateResharperSuppressions.Value()!);
+            }
         }
     }
 }

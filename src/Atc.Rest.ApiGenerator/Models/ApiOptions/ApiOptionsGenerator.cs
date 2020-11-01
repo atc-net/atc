@@ -8,6 +8,8 @@ namespace Atc.Rest.ApiGenerator.Models.ApiOptions
 
         public bool UseAuthorization { get; set; }
 
+        public bool GenerateResharperSuppressions { get; set; }
+
         public ApiOptionsGeneratorRequest Request { get; set; } = new ApiOptionsGeneratorRequest();
 
         public ApiOptionsGeneratorResponse Response { get; set; } = new ApiOptionsGeneratorResponse();

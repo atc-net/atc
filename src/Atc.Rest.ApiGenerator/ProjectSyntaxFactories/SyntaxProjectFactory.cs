@@ -17,7 +17,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
                     baseProjectOptions.ToolNameAndVersion,
-                    baseProjectOptions.ProjectName);
+                    baseProjectOptions.ProjectName,
+                    baseProjectOptions.ApiOptions.Generator.GenerateResharperSuppressions);
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
@@ -40,7 +41,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
                     baseProjectOptions.ToolNameAndVersion,
-                    $"{baseProjectOptions.ProjectName}.{namespacePart}");
+                    $"{baseProjectOptions.ProjectName}.{namespacePart}",
+                    baseProjectOptions.ApiOptions.Generator.GenerateResharperSuppressions);
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
@@ -68,7 +70,8 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             {
                 return SyntaxNamespaceDeclarationFactory.Create(
                     baseProjectOptions.ToolNameAndVersion,
-                    $"{baseProjectOptions.ProjectName}.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
+                    $"{baseProjectOptions.ProjectName}.{namespacePart}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",
+                    baseProjectOptions.ApiOptions.Generator.GenerateResharperSuppressions);
             }
 
             return SyntaxNamespaceDeclarationFactory.Create(
