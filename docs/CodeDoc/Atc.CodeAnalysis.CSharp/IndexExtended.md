@@ -135,6 +135,7 @@
 - [SyntaxTokenListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenlistfactory)
   -  Static Methods
      - InternalStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+     - PrivateAsyncKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - PrivateReadonlyKeyword(bool withTrailingSpace = True)
      - ProtectedReadOnlyKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
      - ProtectedStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
