@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -16,16 +17,19 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
             if (syntaxKind == SyntaxKind.NumericLiteralExpression)
             {
-                if (int.TryParse(value, out var parsedInt))
+                if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedInt))
                 {
                     return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedInt));
                 }
 
-                value = value.Replace(".", ",", StringComparison.Ordinal);
-                if (double.TryParse(value, out var parsedDouble))
+                value = value.Replace(",", ".", StringComparison.Ordinal);
+                if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedDouble))
                 {
                     return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedDouble));
                 }
+
+                // Value cannot be parsed as number.
+                throw new ArgumentOutOfRangeException(nameof(value), "Cannot parse value as number");
             }
 
             return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(value));

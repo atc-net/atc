@@ -37,7 +37,6 @@ namespace Atc.CodeAnalysis.CSharp.Tests
             typeof(SyntaxIfStatementFactory),
             typeof(SyntaxInterfaceDeclarationFactory),
             typeof(SyntaxInterpolatedFactory),
-            typeof(SyntaxLiteralExpressionFactory),
             typeof(SyntaxMemberAccessExpressionFactory),
             typeof(SyntaxNameEqualsFactory),
             typeof(SyntaxObjectCreationExpressionFactory),

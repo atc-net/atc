@@ -652,6 +652,11 @@ public static class SyntaxTokenListFactory
 ```csharp
 SyntaxTokenList InternalStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
 ```
+#### PrivateAsyncKeyword
+
+```csharp
+SyntaxTokenList PrivateAsyncKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
+```
 #### PrivateReadonlyKeyword
 
 ```csharp
