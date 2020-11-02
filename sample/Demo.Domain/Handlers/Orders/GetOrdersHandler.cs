@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Demo.Api.Generated;
+using Atc.Rest.Results;
 using Demo.Api.Generated.Contracts.Orders;
 
 namespace Demo.Domain.Handlers.Orders

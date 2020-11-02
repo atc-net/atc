@@ -29,4 +29,8 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Atc.Rest\Atc.Rest.csproj" />
+  </ItemGroup>
+
 </Project>

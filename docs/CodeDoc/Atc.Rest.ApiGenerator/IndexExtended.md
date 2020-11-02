@@ -100,6 +100,7 @@
      - Create(LogCategoryType logCategoryType, string ruleName, string description)
 - [NugetPackageReferenceHelper](Atc.Rest.ApiGenerator.Helpers.md#nugetpackagereferencehelper)
   -  Static Methods
+     - CreateForApiProject()
      - CreateForHostProject(bool useRestExtended)
      - CreateForTestProject(bool useMvc)
 - [OpenApiDocumentHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumenthelper)

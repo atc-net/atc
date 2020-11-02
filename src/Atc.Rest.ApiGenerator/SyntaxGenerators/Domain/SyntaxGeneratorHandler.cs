@@ -78,9 +78,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                 (current, memberDeclaration) => current.AddMembers(memberDeclaration));
 
             // Add using statement to compilationUnit
-            compilationUnit = compilationUnit.AddUsingStatements(ProjectHandlerFactory.CreateUsingList(
-                DomainProjectOptions,
-                FocusOnSegmentName));
+            compilationUnit = compilationUnit.AddUsingStatements(
+                ProjectHandlerFactory.CreateUsingList(
+                    DomainProjectOptions,
+                    FocusOnSegmentName));
 
             // Add the class to the namespace.
             @namespace = @namespace.AddMembers(classDeclaration);

@@ -19,7 +19,7 @@ namespace Atc.Rest.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(Rest.Extensions.EndpointRouteBuilderExtensions),
+            typeof(EndpointRouteBuilderExtensions),
             typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
             typeof(HttpResponseMessageExtensions),
             typeof(Rest.Middleware.KeepAliveMiddleware),

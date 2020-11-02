@@ -30,6 +30,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             if (useProblemDetailsAsDefaultResponseBody)
             {
                 list.Add("System.Net");
+                list.Add("Atc.Rest.Results");
             }
             else
             {
@@ -37,6 +38,8 @@ namespace Atc.Rest.ApiGenerator.Factories
                 {
                     list.Add("System.Net");
                 }
+
+                list.Add("Atc.Rest.Results");
 
                 if (responses.HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp())
                 {

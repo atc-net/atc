@@ -30,6 +30,19 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return packageReference;
         }
 
+        public static List<Tuple<string, string, string?>>? CreateForApiProject()
+        {
+            string atcVersion = GenerateHelper.GetAtcToolVersionAsString3();
+
+            var packageReference = new List<Tuple<string, string, string?>>
+            {
+                new Tuple<string, string, string?>("Atc", atcVersion, null),
+                new Tuple<string, string, string?>("Atc.Rest", atcVersion, null),
+            };
+
+            return packageReference;
+        }
+
         public static List<Tuple<string, string, string?>> CreateForTestProject(bool useMvc)
         {
             var packageReference = new List<Tuple<string, string, string?>>

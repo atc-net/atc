@@ -106,10 +106,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             @namespace = @namespace.AddMembers(classDeclaration);
 
             // Add using statement to compilationUnit
-            compilationUnit = compilationUnit.AddUsingStatements(ProjectEndpointsFactory.CreateUsingList(
-                ApiProjectOptions,
-                FocusOnSegmentName,
-                usedApiOperations));
+            var includeRestResults = classDeclaration
+                .Select<IdentifierNameSyntax>()
+                .Any(x => x.Identifier.ValueText.Contains($"({Microsoft.OpenApi.Models.NameConstants.Pagination}<", StringComparison.Ordinal));
+
+            compilationUnit = compilationUnit.AddUsingStatements(
+                ProjectEndpointsFactory.CreateUsingList(
+                    ApiProjectOptions,
+                    FocusOnSegmentName,
+                    usedApiOperations,
+                    includeRestResults));
 
             // Add namespace to compilationUnit
             compilationUnit = compilationUnit.AddMembers(@namespace);
@@ -268,36 +274,36 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 switch (sa.Length)
                 {
                     case 1:
-                    {
-                        foreach (var httpStatusCode in httpStatusCodes)
                         {
-                            if (sa[0].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            foreach (var httpStatusCode in httpStatusCodes)
                             {
-                                list.Add(
-                                    new Tuple<HttpStatusCode, string>(
-                                        httpStatusCode,
-                                        string.Empty));
+                                if (sa[0].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                                {
+                                    list.Add(
+                                        new Tuple<HttpStatusCode, string>(
+                                            httpStatusCode,
+                                            string.Empty));
+                                }
                             }
-                        }
 
-                        break;
-                    }
+                            break;
+                        }
 
                     case 2:
-                    {
-                        foreach (var httpStatusCode in httpStatusCodes)
                         {
-                            if (sa[1].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                            foreach (var httpStatusCode in httpStatusCodes)
                             {
-                                list.Add(
-                                    new Tuple<HttpStatusCode, string>(
-                                        httpStatusCode,
-                                        sa[0]));
+                                if (sa[1].IndexOf(((int)httpStatusCode).ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal) != -1)
+                                {
+                                    list.Add(
+                                        new Tuple<HttpStatusCode, string>(
+                                            httpStatusCode,
+                                            sa[0]));
+                                }
                             }
-                        }
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
 

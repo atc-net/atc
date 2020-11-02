@@ -62,8 +62,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 FocusOnSegmentName);
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.CreateWithSuppressMessageAttributeByCheckId(
+            var classDeclaration = SyntaxClassDeclarationFactory.CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId(
                 resultTypeName,
+                "ResultBase",
                 1062,
                 "Should not throw ArgumentNullExceptions from implicit operators.")
                 .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
@@ -78,7 +79,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 (current, memberDeclaration) => current.AddMembers(memberDeclaration));
 
             // Add using statement to compilationUnit
-            compilationUnit = compilationUnit.AddUsingStatements(ProjectContractResultFactory.CreateUsingList(ApiOperation.Responses, ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody));
+            compilationUnit = compilationUnit.AddUsingStatements(
+                ProjectContractResultFactory.CreateUsingList(
+                    ApiOperation.Responses,
+                    ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody));
 
             // Add the class to the namespace.
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -108,7 +112,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .ToFullString()
                 .FormatPublicPrivateLines()
                 .FormatDoubleLines()
-                .FormatBracketSpacing();
+                .FormatBracketSpacing()
+                .FormatConstructorWithInheritResult();
         }
 
         public LogKeyValueItem ToFile()
@@ -139,18 +144,18 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             var result = new List<MemberDeclarationSyntax>();
 
             // Add Field
-            result.Add(CreateActionResultField());
+            ////result.Add(CreateActionResultField());
 
             // Add Constructor
-            result.Add(CreateConstructor(className, "result"));
+            result.AddRange(CreateConstructor(className, "result"));
 
             // Methods
             result.AddRange(CreateMethods(className));
 
             // Add Implicit Operator for ActionResult
-            result.Add(
-                CreateImplicitOperatorForActionResult(className)
-                    .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForResultsImplicitOperator(className)));
+            ////result.Add(
+            ////    CreateImplicitOperatorForActionResult(className)
+            ////        .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForResultsImplicitOperator(className)));
 
             // Add Implicit Operator
             var implicitOperator = CreateImplicitOperator(className, ApiOperation.Responses);
@@ -171,35 +176,39 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 .WithModifiers(SyntaxTokenListFactory.PrivateReadonlyKeyword());
         }
 
-        private static ConstructorDeclarationSyntax CreateConstructor(
+        private static List<MemberDeclarationSyntax> CreateConstructor(
             string className,
             string parameterName)
         {
-            return SyntaxFactory.ConstructorDeclaration(SyntaxFactory.Identifier(className))
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxTokenFactory.PrivateKeyword()))
-                .WithParameterList(SyntaxParameterListFactory.CreateWithOneItem(nameof(ActionResult), parameterName))
-                .WithBody(
-                    SyntaxFactory.Block(
-                        SyntaxFactory.SingletonList<StatementSyntax>(
-                            SyntaxFactory.ExpressionStatement(
-                                SyntaxFactory.AssignmentExpression(
-                                    SyntaxKind.SimpleAssignmentExpression,
-                                    SyntaxFactory.MemberAccessExpression(
-                                        SyntaxKind.SimpleMemberAccessExpression,
-                                        SyntaxFactory.ThisExpression(),
-                                        SyntaxFactory.IdentifierName(parameterName)),
-                                    SyntaxFactory.BinaryExpression(
-                                        SyntaxKind.CoalesceExpression,
-                                        SyntaxFactory.IdentifierName(parameterName),
-                                        SyntaxFactory.ThrowExpression(
-                                            SyntaxObjectCreationExpressionFactory.Create(nameof(ArgumentNullException))
-                                                .WithArgumentList(
-                                                    SyntaxFactory.ArgumentList(
-                                                        SyntaxFactory.SingletonSeparatedList(
-                                                            SyntaxFactory.Argument(
-                                                                SyntaxFactory.InvocationExpression(SyntaxFactory.IdentifierName("nameof"))
-                                                                    .WithArgumentList(
-                                                                        SyntaxArgumentListFactory.CreateWithOneItem(parameterName)))))))))))));
+            return new MemberDeclarationSyntax[]
+                {
+                    SyntaxFactory.GlobalStatement(
+                        SyntaxFactory.LocalFunctionStatement(
+                            SyntaxFactory.IdentifierName(className),
+                            SyntaxFactory.MissingToken(SyntaxKind.IdentifierToken))
+                        .WithModifiers(SyntaxFactory.TokenList(SyntaxTokenFactory.PrivateKeyword()))
+                        .WithParameterList(SyntaxParameterListFactory.CreateWithOneItem(nameof(ActionResult), parameterName))
+                        .WithSemicolonToken(
+                            SyntaxFactory.MissingToken(
+                                SyntaxFactory.TriviaList(),
+                                SyntaxKind.SemicolonToken,
+                                SyntaxFactory.TriviaList(
+                                    SyntaxFactory.Trivia(
+                                        SyntaxFactory.SkippedTokensTrivia()
+                                        .WithTokens(
+                                            SyntaxFactory.TokenList(
+                                                SyntaxTokenFactory.Colon()))))))),
+                    SyntaxFactory.GlobalStatement(
+                        SyntaxFactory.ExpressionStatement(
+                            SyntaxFactory.InvocationExpression(
+                                SyntaxFactory.BaseExpression())
+                            .WithArgumentList(
+                                SyntaxFactory.ArgumentList(
+                                    SyntaxFactory.SingletonSeparatedList(
+                                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName))))))
+                        .WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken))),
+                    SyntaxFactory.GlobalStatement(SyntaxFactory.Block())
+                }.ToList();
         }
 
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]

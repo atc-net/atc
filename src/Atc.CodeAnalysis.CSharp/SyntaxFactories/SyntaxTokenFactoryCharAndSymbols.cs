@@ -20,6 +20,11 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             return TokenWithTrailing(SyntaxKind.CommaToken, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
         }
 
+        public static SyntaxToken Colon(bool withTrailingSpace = false)
+        {
+            return TokenWithTrailing(SyntaxKind.ColonToken, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
+
         public static SyntaxToken Semicolon(bool withTrailingSpace = false)
         {
             return TokenWithTrailing(SyntaxKind.SemicolonToken, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);

@@ -16,6 +16,7 @@ namespace System
         private static readonly Regex AutoCommentLinesRegex = new Regex(@"\s*;\s*/// \s*");
         private static readonly Regex AutoBracketSpacingStartRegex = new Regex(@"(\S)({)(\S)");
         private static readonly Regex AutoBracketSpacingEndRegex = new Regex(@"(\S)(})(\S)");
+        private static readonly Regex ConstructorWithInheritResultRegex = new Regex(@":\s*base\(result\)\s*\{\s*\}");
 
         public static string FormatAutoPropertiesOnOneLine(this string value)
         {
@@ -64,6 +65,17 @@ namespace System
 
             value = AutoBracketSpacingStartRegex.Replace(value, "$1 { $3");
             value = AutoBracketSpacingEndRegex.Replace(value, "$1 } $3");
+            return value;
+        }
+
+        public static string FormatConstructorWithInheritResult(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            value = ConstructorWithInheritResultRegex.Replace(value, ": base(result) { }");
             return value;
         }
     }

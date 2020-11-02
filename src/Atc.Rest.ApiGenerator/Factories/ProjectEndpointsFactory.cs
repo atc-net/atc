@@ -10,7 +10,8 @@ namespace Atc.Rest.ApiGenerator.Factories
         public static string[] CreateUsingList(
             ApiProjectOptions apiProjectOptions,
             string focusOnSegmentName,
-            List<OpenApiOperation> apiOperations)
+            List<OpenApiOperation> apiOperations,
+            bool includeRestResults)
         {
             if (apiOperations == null)
             {
@@ -23,10 +24,16 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "System.CodeDom.Compiler",
                 "System.Threading",
                 "System.Threading.Tasks",
-                $"{apiProjectOptions.ProjectName}.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}",
-                "Microsoft.AspNetCore.Http",
-                "Microsoft.AspNetCore.Mvc",
             };
+
+            if (includeRestResults)
+            {
+                list.Add("Atc.Rest.Results");
+            }
+
+            list.Add($"{apiProjectOptions.ProjectName}.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
+            list.Add("Microsoft.AspNetCore.Http");
+            list.Add("Microsoft.AspNetCore.Mvc");
 
             if (apiOperations.HasDataTypeFromSystemCollectionGenericNamespace())
             {

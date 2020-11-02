@@ -101,6 +101,11 @@ public static class NugetPackageReferenceHelper
 ### Static Methods
 
 
+#### CreateForApiProject
+
+```csharp
+List<Tuple<string, string, string>> CreateForApiProject()
+```
 #### CreateForHostProject
 
 ```csharp

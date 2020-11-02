@@ -32,6 +32,12 @@
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
 - [RestApiOptionsErrorHandlingExceptionFilter](Atc.Rest.Options.md#restapioptionserrorhandlingexceptionfilter)
 
+## [Atc.Rest.Results](Atc.Rest.Results.md)
+
+- [Pagination&lt;T&gt;](Atc.Rest.Results.md#pagination&lt;t&gt;)
+- [ResultBase](Atc.Rest.Results.md#resultbase)
+- [ResultFactory](Atc.Rest.Results.md#resultfactory)
+
 ## [Microsoft.ApplicationInsights.Extensibility](Microsoft.ApplicationInsights.Extensibility.md)
 
 - [Accept4xxResponseAsSuccessInitializer](Microsoft.ApplicationInsights.Extensibility.md#accept4xxresponseassuccessinitializer)

@@ -90,6 +90,27 @@
      - IncludeExceptionDetails
      - UseProblemDetailsAsResponseBody
 
+## [Atc.Rest.Results](Atc.Rest.Results.md)
+
+- [Pagination&lt;T&gt;](Atc.Rest.Results.md#pagination&lt;t&gt;)
+  -  Properties
+     - ContinuationToken
+     - Count
+     - Items
+     - PageIndex
+     - PageSize
+     - QueryString
+     - TotalCount
+     - TotalPages
+  -  Methods
+     - ToString()
+- [ResultBase](Atc.Rest.Results.md#resultbase)
+- [ResultFactory](Atc.Rest.Results.md#resultfactory)
+  -  Static Methods
+     - CreateContentResult(HttpStatusCode statusCode, string message, string contentType = application/json)
+     - CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
+     - CreateProblemDetails(HttpStatusCode statusCode, string message)
+
 ## [Microsoft.ApplicationInsights.Extensibility](Microsoft.ApplicationInsights.Extensibility.md)
 
 - [Accept4xxResponseAsSuccessInitializer](Microsoft.ApplicationInsights.Extensibility.md#accept4xxresponseassuccessinitializer)

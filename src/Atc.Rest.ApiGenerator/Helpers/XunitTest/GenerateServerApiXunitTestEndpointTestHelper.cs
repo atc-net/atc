@@ -38,7 +38,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine("using FluentAssertions;");
             if (endpointMethodMetadata.IsPaginationUsed())
             {
-                sb.AppendLine($"using {hostProjectOptions.ProjectName}.Generated;");
+                sb.AppendLine("using Atc.Rest.Results;");
             }
 
             sb.AppendLine($"using {hostProjectOptions.ProjectName}.Generated.Contracts;");

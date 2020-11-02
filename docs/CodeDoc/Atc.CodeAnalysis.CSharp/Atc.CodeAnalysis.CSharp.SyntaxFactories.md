@@ -251,6 +251,16 @@ ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
 ```csharp
 ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
 ```
+#### CreateWithInheritClassType
+
+```csharp
+ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
+```
+#### CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId
+
+```csharp
+ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
+```
 #### CreateWithInterface
 
 ```csharp
@@ -523,6 +533,11 @@ SyntaxToken AsyncKeyword(bool withTrailingSpace = True)
 
 ```csharp
 SyntaxToken CarriageReturnLineFeed()
+```
+#### Colon
+
+```csharp
+SyntaxToken Colon(bool withTrailingSpace = False)
 ```
 #### Comma
 
