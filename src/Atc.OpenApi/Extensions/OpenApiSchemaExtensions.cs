@@ -472,6 +472,11 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
+            if (schema.Items == null && schema.Reference == null)
+            {
+                return string.Empty;
+            }
+
             if (ensureFirstCharacterToUpper)
             {
                 return schema.Items == null

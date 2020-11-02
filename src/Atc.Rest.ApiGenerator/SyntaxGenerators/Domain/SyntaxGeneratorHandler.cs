@@ -200,14 +200,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                     SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
                     SyntaxTokenFactory.Comma(),
                     SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
-                        .WithDefault(SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
                 }
                 : new SyntaxNodeOrToken[]
                 {
                     SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
-                        .WithDefault(SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
                 };
 
             return SyntaxFactory.MethodDeclaration(
