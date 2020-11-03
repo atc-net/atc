@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Atc.XUnit.Rest.Tests
+namespace Atc.Rest.FluentAssertions.Tests
 {
     public class CodeComplianceTests
     {
         // ReSharper disable once NotAccessedField.Local
         private readonly ITestOutputHelper testOutputHelper;
-        private readonly Assembly sourceAssembly = typeof(AtcXUnitRestAssemblyTypeInitializer).Assembly;
+        private readonly Assembly sourceAssembly = typeof(AtcRestFluentAssertionsAssemblyTypeInitializer).Assembly;
         private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
