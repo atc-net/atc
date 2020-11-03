@@ -7,6 +7,7 @@ using System.Text;
 using System.Xml.Linq;
 using Atc.Data.Models;
 
+// ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.Rest.ApiGenerator.Helpers
 {
@@ -247,10 +248,21 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 codeInspectionExcludeProjects,
                 codeInspectionExcludeProjectsFolders);
 
+            bool slnDotSettingsFileOverrideIfExist = true;
+            if (slnDotSettingsFile.Exists)
+            {
+                var lines = File.ReadAllLines(slnDotSettingsFile.FullName);
+                if (lines.Any(line => !line.Contains("ResourceDictionary", StringComparison.Ordinal) &&
+                                      !line.Contains("/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2", StringComparison.Ordinal)))
+                {
+                    slnDotSettingsFileOverrideIfExist = false;
+                }
+            }
+
             var logItems = new List<LogKeyValueItem>
             {
                 TextFileHelper.Save(slnFile, slnFileContent, false),
-                TextFileHelper.Save(slnDotSettingsFile, slnDotSettingsFileContent),
+                TextFileHelper.Save(slnDotSettingsFile, slnDotSettingsFileContent, slnDotSettingsFileOverrideIfExist),
             };
 
             return logItems;
@@ -394,12 +406,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
         {
             var sb = new StringBuilder();
             sb.AppendLine("<wpf:ResourceDictionary xml:space=\"preserve\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" xmlns:s=\"clr-namespace:System;assembly=mscorlib\" xmlns:ss=\"urn:shemas-jetbrains-com:settings-storage-xaml\" xmlns:wpf=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\">");
-            foreach (var item in codeInspectionExcludeProjectsFolders)
+            foreach (var (projectId, rootDirectory, directories) in codeInspectionExcludeProjectsFolders)
             {
-                foreach (var directoryInfo in item.Item3)
+                foreach (var directoryInfo in directories)
                 {
-                    var pathPart = directoryInfo.FullName.Replace(item.Item2.FullName, string.Empty, StringComparison.Ordinal);
-                    var skipPath = ReSharperFormatGuidAndPath(new Tuple<Guid, string>(item.Item1, pathPart));
+                    var pathPart = directoryInfo.FullName.Replace(rootDirectory.FullName, string.Empty, StringComparison.Ordinal);
+                    var skipPath = ReSharperFormatGuidAndPath(new Tuple<Guid, string>(projectId, pathPart));
                     if (string.IsNullOrEmpty(skipPath))
                     {
                         continue;
@@ -446,26 +458,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
         private static string ReSharperFormatGuidAndPath(Tuple<Guid, string> data)
         {
             var (projectId, pathPart) = data;
-            var sa = projectId.ToString().Split('-');
             var sb = new StringBuilder();
-            for (int i = 0; i < sa.Length; i++)
-            {
-                var s = sa[i].ToUpper(GlobalizationConstants.EnglishCultureInfo);
-                if (i == 0)
-                {
-                    sb.Append(s);
-                }
-                else
-                {
-                    sb.Append("002D" + s);
-                }
-
-                if (i != sa.Length - 1)
-                {
-                    sb.Append('_');
-                }
-            }
-
+            sb.Append(ReSharperFormatGuid(projectId));
             sb.Append(pathPart.Replace("\\", "_002Fd_003A", StringComparison.Ordinal));
             return sb.ToString();
         }

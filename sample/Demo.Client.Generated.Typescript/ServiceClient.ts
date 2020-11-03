@@ -29,7 +29,7 @@ export class Client {
      * @param continuationToken (optional) The continuation token.
      * @return Expected response to a valid request
      */
-    getOrders(pageSize: number, pageIndex: number | undefined, queryString: string | undefined, continuationToken: string | undefined , cancelToken?: CancelToken | undefined): Promise<Anonymous> {
+    getOrders(pageSize: number, pageIndex: number | undefined, queryString: string | null | undefined, continuationToken: string | null | undefined , cancelToken?: CancelToken | undefined): Promise<Anonymous> {
         let url_ = this.baseUrl + "/orders?";
         if (pageSize === undefined || pageSize === null)
             throw new Error("The parameter 'pageSize' must be defined and cannot be null.");
@@ -39,13 +39,9 @@ export class Client {
             throw new Error("The parameter 'pageIndex' cannot be null.");
         else if (pageIndex !== undefined)
             url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
-        if (queryString === null)
-            throw new Error("The parameter 'queryString' cannot be null.");
-        else if (queryString !== undefined)
+        if (queryString !== undefined && queryString !== null)
             url_ += "queryString=" + encodeURIComponent("" + queryString) + "&";
-        if (continuationToken === null)
-            throw new Error("The parameter 'continuationToken' cannot be null.");
-        else if (continuationToken !== undefined)
+        if (continuationToken !== undefined && continuationToken !== null)
             url_ += "continuationToken=" + encodeURIComponent("" + continuationToken) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -97,18 +93,16 @@ export class Client {
 
     /**
      * Get order by id
-     * @param id The id of the order to retrieve
      * @param myEmail (optional) The email for filter orders to retrieve
+     * @param id The id of the order
      * @return Expected response to a valid request
      */
-    getOrderById(id: string, myEmail: string | undefined , cancelToken?: CancelToken | undefined): Promise<Order> {
+    getOrderById(myEmail: string | null | undefined, id: string , cancelToken?: CancelToken | undefined): Promise<Order> {
         let url_ = this.baseUrl + "/orders/{id}?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
-        if (myEmail === null)
-            throw new Error("The parameter 'myEmail' cannot be null.");
-        else if (myEmail !== undefined)
+        if (myEmail !== undefined && myEmail !== null)
             url_ += "myEmail=" + encodeURIComponent("" + myEmail) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -160,12 +154,14 @@ export class Client {
 
     /**
      * Update part of order by id
-     * @param id The id of the order to retrieve
      * @param myTestHeader The myTestHeader special key
+     * @param myTestHeaderBool The myTestHeaderBool special key
+     * @param myTestHeaderInt The myTestHeaderInt special key
      * @param body (optional) 
+     * @param id The id of the order
      * @return OK
      */
-    patchOrdersId(id: string, myTestHeader: string, body: UpdateOrderRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    patchOrdersId(myTestHeader: string, myTestHeaderBool: boolean, myTestHeaderInt: number, body: UpdateOrderRequest | undefined, id: string , cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/orders/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -180,6 +176,8 @@ export class Client {
             url: url_,
             headers: {
                 "myTestHeader": myTestHeader !== undefined && myTestHeader !== null ? "" + myTestHeader : "",
+                "myTestHeaderBool": myTestHeaderBool !== undefined && myTestHeaderBool !== null ? "" + myTestHeaderBool : "",
+                "myTestHeaderInt": myTestHeaderInt !== undefined && myTestHeaderInt !== null ? "" + myTestHeaderInt : "",
                 "Content-Type": "application/json",
             },
             cancelToken
@@ -295,7 +293,6 @@ export class Client {
 
     /**
      * Get user by id
-     * @param id The id of the user to retrieve
      * @return OK
      */
     getUserById(id: string , cancelToken?: CancelToken | undefined): Promise<User> {
@@ -356,11 +353,10 @@ export class Client {
 
     /**
      * Update user by id
-     * @param id The id of the user to update
      * @param body (optional) 
      * @return OK
      */
-    updateUserById(id: string, body: UpdateUserRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    updateUserById(body: UpdateUserRequest | undefined, id: string , cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/users/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -421,7 +417,6 @@ export class Client {
 
     /**
      * Delete user by id
-     * @param id The id of the user to delete
      * @return OK
      */
     deleteUserById(id: string , cancelToken?: CancelToken | undefined): Promise<void> {
@@ -539,7 +534,7 @@ export class Client {
      * @param body (optional) 
      * @return Created
      */
-    postUsers(body: CreateUserRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    postUser(body: CreateUserRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/users";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -562,11 +557,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processPostUsers(_response);
+            return this.processPostUser(_response);
         });
     }
 
-    protected processPostUsers(response: AxiosResponse): Promise<void> {
+    protected processPostUser(response: AxiosResponse): Promise<void> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -594,12 +589,11 @@ export class Client {
 
     /**
      * Update gender on a user
-     * @param id The id of the user to update
      * @param genderParam (optional) The gender to set on the user
      * @param body (optional) 
      * @return OK
      */
-    updateMyTestGender(id: string, genderParam: GenderType | undefined, body: UpdateTestGenderRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    updateMyTestGender(genderParam: GenderType | undefined, body: UpdateTestGenderRequest | undefined, id: string , cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/users/{id}/gender?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -661,6 +655,170 @@ export class Client {
         }
         return Promise.resolve<void>(<any>null);
     }
+
+    /**
+     * Update name of account
+     * @param accountId The accountId
+     * @return OK
+     */
+    updateAccountName(accountId: string , cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/accounts/{accountId}/name";
+        if (accountId === undefined || accountId === null)
+            throw new Error("The parameter 'accountId' must be defined.");
+        url_ = url_.replace("{accountId}", encodeURIComponent("" + accountId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "PUT",
+            url: url_,
+            headers: {
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processUpdateAccountName(_response);
+        });
+    }
+
+    protected processUpdateAccountName(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(<any>null);
+    }
+
+    /**
+     * Set name of account
+     * @param accountId The accountId
+     * @return OK
+     */
+    setAccountName(accountId: string , cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/accounts/{accountId}/name";
+        if (accountId === undefined || accountId === null)
+            throw new Error("The parameter 'accountId' must be defined.");
+        url_ = url_.replace("{accountId}", encodeURIComponent("" + accountId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processSetAccountName(_response);
+        });
+    }
+
+    protected processSetAccountName(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(<any>null);
+    }
+
+    /**
+     * Get addresses by postal code
+     * @param postalCode The postalCode to limit addresses on
+     * @return OK
+     */
+    getAddressesByPostalCodes(postalCode: string , cancelToken?: CancelToken | undefined): Promise<Address[]> {
+        let url_ = this.baseUrl + "/addresses/{postalCode}";
+        if (postalCode === undefined || postalCode === null)
+            throw new Error("The parameter 'postalCode' must be defined.");
+        url_ = url_.replace("{postalCode}", encodeURIComponent("" + postalCode));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetAddressesByPostalCodes(_response);
+        });
+    }
+
+    protected processGetAddressesByPostalCodes(response: AxiosResponse): Promise<Address[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(Address.fromJS(item));
+            }
+            return result200;
+        } else if (status === 404) {
+            const _responseText = response.data;
+            return throwException("Not Found", status, _responseText, _headers);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Address[]>(<any>null);
+    }
 }
 
 /** A item result subset of a data query. */
@@ -668,17 +826,17 @@ export class Pagination implements IPagination {
     /** The number of items to request. */
     pageSize!: number;
     /** The given page index starting with 0. */
-    pageIndex?: number;
+    pageIndex?: number | undefined;
     /** The query to filter items by. */
-    queryString?: string;
+    queryString?: string | undefined;
     /** Token to indicate next result set. */
-    continuationToken?: string;
+    continuationToken?: string | undefined;
     /** Items count in result set. */
     count!: number;
     /** Total items count. */
-    totalCount?: number;
+    totalCount?: number | undefined;
     /** Total pages. */
-    totalPages?: number;
+    totalPages?: number | undefined;
 
     constructor(data?: IPagination) {
         if (data) {
@@ -726,17 +884,17 @@ export interface IPagination {
     /** The number of items to request. */
     pageSize: number;
     /** The given page index starting with 0. */
-    pageIndex?: number;
+    pageIndex?: number | undefined;
     /** The query to filter items by. */
-    queryString?: string;
+    queryString?: string | undefined;
     /** Token to indicate next result set. */
-    continuationToken?: string;
+    continuationToken?: string | undefined;
     /** Items count in result set. */
     count: number;
     /** Total items count. */
-    totalCount?: number;
+    totalCount?: number | undefined;
     /** Total pages. */
-    totalPages?: number;
+    totalPages?: number | undefined;
 }
 
 /** A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807. */
@@ -809,6 +967,7 @@ export class Order implements IOrder {
     description?: string;
     myTime?: string;
     myEmail?: string;
+    myNullableDateTime?: Date | undefined;
     myDateTime?: Date;
     myNumber?: number;
     myInteger?: number;
@@ -841,6 +1000,7 @@ export class Order implements IOrder {
             this.description = _data["description"];
             this.myTime = _data["myTime"];
             this.myEmail = _data["myEmail"] !== undefined ? _data["myEmail"] : "a@a.com";
+            this.myNullableDateTime = _data["myNullableDateTime"] ? new Date(_data["myNullableDateTime"].toString()) : <any>undefined;
             this.myDateTime = _data["myDateTime"] ? new Date(_data["myDateTime"].toString()) : <any>undefined;
             this.myNumber = _data["myNumber"];
             this.myInteger = _data["myInteger"] !== undefined ? _data["myInteger"] : 15;
@@ -870,6 +1030,7 @@ export class Order implements IOrder {
         data["description"] = this.description;
         data["myTime"] = this.myTime;
         data["myEmail"] = this.myEmail;
+        data["myNullableDateTime"] = this.myNullableDateTime ? this.myNullableDateTime.toISOString() : <any>undefined;
         data["myDateTime"] = this.myDateTime ? this.myDateTime.toISOString() : <any>undefined;
         data["myNumber"] = this.myNumber;
         data["myInteger"] = this.myInteger;
@@ -893,6 +1054,7 @@ export interface IOrder {
     description?: string;
     myTime?: string;
     myEmail?: string;
+    myNullableDateTime?: Date | undefined;
     myDateTime?: Date;
     myNumber?: number;
     myInteger?: number;
@@ -945,6 +1107,44 @@ export interface IGenderType {
     gender: GenderTypeGender;
 }
 
+export class ColorType implements IColorType {
+    /** The users color type */
+    color!: ColorTypeColor;
+
+    constructor(data?: IColorType) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.color = _data["color"];
+        }
+    }
+
+    static fromJS(data: any): ColorType {
+        data = typeof data === 'object' ? data : {};
+        let result = new ColorType();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["color"] = this.color;
+        return data; 
+    }
+}
+
+export interface IColorType {
+    /** The users color type */
+    color: ColorTypeColor;
+}
+
 /** A single user. */
 export class User implements IUser {
     id?: string;
@@ -952,6 +1152,7 @@ export class User implements IUser {
     firstName?: string;
     lastName?: string;
     email?: string;
+    color?: ColorType;
     homeAddress?: Address;
     companyAddress?: Address;
 
@@ -971,6 +1172,7 @@ export class User implements IUser {
             this.firstName = _data["firstName"];
             this.lastName = _data["lastName"];
             this.email = _data["email"];
+            this.color = _data["color"] ? ColorType.fromJS(_data["color"]) : <any>undefined;
             this.homeAddress = _data["homeAddress"] ? Address.fromJS(_data["homeAddress"]) : <any>undefined;
             this.companyAddress = _data["companyAddress"] ? Address.fromJS(_data["companyAddress"]) : <any>undefined;
         }
@@ -990,6 +1192,7 @@ export class User implements IUser {
         data["firstName"] = this.firstName;
         data["lastName"] = this.lastName;
         data["email"] = this.email;
+        data["color"] = this.color ? this.color.toJSON() : <any>undefined;
         data["homeAddress"] = this.homeAddress ? this.homeAddress.toJSON() : <any>undefined;
         data["companyAddress"] = this.companyAddress ? this.companyAddress.toJSON() : <any>undefined;
         return data; 
@@ -1003,6 +1206,7 @@ export interface IUser {
     firstName?: string;
     lastName?: string;
     email?: string;
+    color?: ColorType;
     homeAddress?: Address;
     companyAddress?: Address;
 }
@@ -1011,6 +1215,8 @@ export interface IUser {
 export class CreateUserRequest implements ICreateUserRequest {
     firstName!: string;
     lastName!: string;
+    myNullableDateTime?: Date | undefined;
+    myDateTime!: Date;
     email!: string;
     gender!: GenderType;
 
@@ -1030,6 +1236,8 @@ export class CreateUserRequest implements ICreateUserRequest {
         if (_data) {
             this.firstName = _data["firstName"];
             this.lastName = _data["lastName"];
+            this.myNullableDateTime = _data["myNullableDateTime"] ? new Date(_data["myNullableDateTime"].toString()) : <any>undefined;
+            this.myDateTime = _data["myDateTime"] ? new Date(_data["myDateTime"].toString()) : <any>undefined;
             this.email = _data["email"];
             this.gender = _data["gender"] ? GenderType.fromJS(_data["gender"]) : new GenderType();
         }
@@ -1046,6 +1254,8 @@ export class CreateUserRequest implements ICreateUserRequest {
         data = typeof data === 'object' ? data : {};
         data["firstName"] = this.firstName;
         data["lastName"] = this.lastName;
+        data["myNullableDateTime"] = this.myNullableDateTime ? this.myNullableDateTime.toISOString() : <any>undefined;
+        data["myDateTime"] = this.myDateTime ? this.myDateTime.toISOString() : <any>undefined;
         data["email"] = this.email;
         data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
         return data; 
@@ -1056,6 +1266,8 @@ export class CreateUserRequest implements ICreateUserRequest {
 export interface ICreateUserRequest {
     firstName: string;
     lastName: string;
+    myNullableDateTime?: Date | undefined;
+    myDateTime: Date;
     email: string;
     gender: GenderType;
 }
@@ -1312,6 +1524,14 @@ export enum GenderTypeGender {
     NonBinary = "NonBinary",
     Male = "Male",
     Female = "Female",
+}
+
+export enum ColorTypeColor {
+    Unknown___0 = "Unknown = 0",
+    Black___1 = "Black = 1",
+    White___2 = "White = 2",
+    Yellow___4 = "Yellow = 4",
+    Red___8 = "Red = 8",
 }
 
 export class ApiException extends Error {

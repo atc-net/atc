@@ -149,22 +149,22 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Get order by id</summary>
-        /// <param name="id">The id of the order to retrieve</param>
         /// <param name="myEmail">The email for filter orders to retrieve</param>
+        /// <param name="id">The id of the order</param>
         /// <returns>Expected response to a valid request</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Order> GetOrderByIdAsync(string id, string myEmail)
+        public System.Threading.Tasks.Task<Order> GetOrderByIdAsync(string myEmail, System.Guid id)
         {
-            return GetOrderByIdAsync(id, myEmail, System.Threading.CancellationToken.None);
+            return GetOrderByIdAsync(myEmail, id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Get order by id</summary>
-        /// <param name="id">The id of the order to retrieve</param>
         /// <param name="myEmail">The email for filter orders to retrieve</param>
+        /// <param name="id">The id of the order</param>
         /// <returns>Expected response to a valid request</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<Order> GetOrderByIdAsync(string id, string myEmail, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Order> GetOrderByIdAsync(string myEmail, System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -238,22 +238,26 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Update part of order by id</summary>
-        /// <param name="id">The id of the order to retrieve</param>
         /// <param name="myTestHeader">The myTestHeader special key</param>
+        /// <param name="myTestHeaderBool">The myTestHeaderBool special key</param>
+        /// <param name="myTestHeaderInt">The myTestHeaderInt special key</param>
+        /// <param name="id">The id of the order</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task PatchOrdersIdAsync(string id, string myTestHeader, UpdateOrderRequest body)
+        public System.Threading.Tasks.Task PatchOrdersIdAsync(string myTestHeader, bool myTestHeaderBool, int myTestHeaderInt, UpdateOrderRequest body, System.Guid id)
         {
-            return PatchOrdersIdAsync(id, myTestHeader, body, System.Threading.CancellationToken.None);
+            return PatchOrdersIdAsync(myTestHeader, myTestHeaderBool, myTestHeaderInt, body, id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Update part of order by id</summary>
-        /// <param name="id">The id of the order to retrieve</param>
         /// <param name="myTestHeader">The myTestHeader special key</param>
+        /// <param name="myTestHeaderBool">The myTestHeaderBool special key</param>
+        /// <param name="myTestHeaderInt">The myTestHeaderInt special key</param>
+        /// <param name="id">The id of the order</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task PatchOrdersIdAsync(string id, string myTestHeader, UpdateOrderRequest body, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task PatchOrdersIdAsync(string myTestHeader, bool myTestHeaderBool, int myTestHeaderInt, UpdateOrderRequest body, System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -270,6 +274,12 @@ namespace Demo.Client.Generated
                     if (myTestHeader == null)
                         throw new System.ArgumentNullException("myTestHeader");
                     request_.Headers.TryAddWithoutValidation("myTestHeader", ConvertToString(myTestHeader, System.Globalization.CultureInfo.InvariantCulture));
+                    if (myTestHeaderBool == null)
+                        throw new System.ArgumentNullException("myTestHeaderBool");
+                    request_.Headers.TryAddWithoutValidation("myTestHeaderBool", ConvertToString(myTestHeaderBool, System.Globalization.CultureInfo.InvariantCulture));
+                    if (myTestHeaderInt == null)
+                        throw new System.ArgumentNullException("myTestHeaderInt");
+                    request_.Headers.TryAddWithoutValidation("myTestHeaderInt", ConvertToString(myTestHeaderInt, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -433,20 +443,18 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Get user by id</summary>
-        /// <param name="id">The id of the user to retrieve</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<User> GetUserByIdAsync(string id)
+        public System.Threading.Tasks.Task<User> GetUserByIdAsync(System.Guid id)
         {
             return GetUserByIdAsync(id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Get user by id</summary>
-        /// <param name="id">The id of the user to retrieve</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<User> GetUserByIdAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<User> GetUserByIdAsync(System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -521,20 +529,18 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Update user by id</summary>
-        /// <param name="id">The id of the user to update</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task UpdateUserByIdAsync(string id, UpdateUserRequest body)
+        public System.Threading.Tasks.Task UpdateUserByIdAsync(UpdateUserRequest body, System.Guid id)
         {
-            return UpdateUserByIdAsync(id, body, System.Threading.CancellationToken.None);
+            return UpdateUserByIdAsync(body, id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Update user by id</summary>
-        /// <param name="id">The id of the user to update</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task UpdateUserByIdAsync(string id, UpdateUserRequest body, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task UpdateUserByIdAsync(UpdateUserRequest body, System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -612,20 +618,18 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Delete user by id</summary>
-        /// <param name="id">The id of the user to delete</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task DeleteUserByIdAsync(string id)
+        public System.Threading.Tasks.Task DeleteUserByIdAsync(System.Guid id)
         {
             return DeleteUserByIdAsync(id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Delete user by id</summary>
-        /// <param name="id">The id of the user to delete</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task DeleteUserByIdAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteUserByIdAsync(System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -772,16 +776,16 @@ namespace Demo.Client.Generated
         /// <summary>Create a new user</summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task PostUsersAsync(CreateUserRequest body)
+        public System.Threading.Tasks.Task PostUserAsync(CreateUserRequest body)
         {
-            return PostUsersAsync(body, System.Threading.CancellationToken.None);
+            return PostUserAsync(body, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Create a new user</summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task PostUsersAsync(CreateUserRequest body, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task PostUserAsync(CreateUserRequest body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/users");
@@ -849,22 +853,20 @@ namespace Demo.Client.Generated
         }
     
         /// <summary>Update gender on a user</summary>
-        /// <param name="id">The id of the user to update</param>
         /// <param name="genderParam">The gender to set on the user</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task UpdateMyTestGenderAsync(string id, GenderType genderParam, UpdateTestGenderRequest body)
+        public System.Threading.Tasks.Task UpdateMyTestGenderAsync(GenderType genderParam, UpdateTestGenderRequest body, System.Guid id)
         {
-            return UpdateMyTestGenderAsync(id, genderParam, body, System.Threading.CancellationToken.None);
+            return UpdateMyTestGenderAsync(genderParam, body, id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Update gender on a user</summary>
-        /// <param name="id">The id of the user to update</param>
         /// <param name="genderParam">The gender to set on the user</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task UpdateMyTestGenderAsync(string id, GenderType genderParam, UpdateTestGenderRequest body, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task UpdateMyTestGenderAsync(GenderType genderParam, UpdateTestGenderRequest body, System.Guid id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -927,6 +929,230 @@ namespace Demo.Client.Generated
                         {
                             string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("Conflict", status_, responseText_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <summary>Update name of account</summary>
+        /// <param name="accountId">The accountId</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task UpdateAccountNameAsync(System.Guid accountId)
+        {
+            return UpdateAccountNameAsync(accountId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Update name of account</summary>
+        /// <param name="accountId">The accountId</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task UpdateAccountNameAsync(System.Guid accountId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (accountId == null)
+                throw new System.ArgumentNullException("accountId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/accounts/{accountId}/name");
+            urlBuilder_.Replace("{accountId}", System.Uri.EscapeDataString(ConvertToString(accountId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <summary>Set name of account</summary>
+        /// <param name="accountId">The accountId</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task SetAccountNameAsync(System.Guid accountId)
+        {
+            return SetAccountNameAsync(accountId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Set name of account</summary>
+        /// <param name="accountId">The accountId</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task SetAccountNameAsync(System.Guid accountId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (accountId == null)
+                throw new System.ArgumentNullException("accountId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/accounts/{accountId}/name");
+            urlBuilder_.Replace("{accountId}", System.Uri.EscapeDataString(ConvertToString(accountId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <summary>Get addresses by postal code</summary>
+        /// <param name="postalCode">The postalCode to limit addresses on</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Address>> GetAddressesByPostalCodesAsync(string postalCode)
+        {
+            return GetAddressesByPostalCodesAsync(postalCode, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Get addresses by postal code</summary>
+        /// <param name="postalCode">The postalCode to limit addresses on</param>
+        /// <returns>OK</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Address>> GetAddressesByPostalCodesAsync(string postalCode, System.Threading.CancellationToken cancellationToken)
+        {
+            if (postalCode == null)
+                throw new System.ArgumentNullException("postalCode");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/addresses/{postalCode}");
+            urlBuilder_.Replace("{postalCode}", System.Uri.EscapeDataString(ConvertToString(postalCode, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<Address>>(response_, headers_).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 404)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Not Found", status_, responseText_, headers_, null);
                         }
                         else
                         {
@@ -1057,15 +1283,15 @@ namespace Demo.Client.Generated
         public double PageSize { get; set; }
     
         /// <summary>The given page index starting with 0.</summary>
-        [Newtonsoft.Json.JsonProperty("pageIndex", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double PageIndex { get; set; }
+        [Newtonsoft.Json.JsonProperty("pageIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PageIndex { get; set; }
     
         /// <summary>The query to filter items by.</summary>
-        [Newtonsoft.Json.JsonProperty("queryString", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("queryString", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string QueryString { get; set; }
     
         /// <summary>Token to indicate next result set.</summary>
-        [Newtonsoft.Json.JsonProperty("continuationToken", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("continuationToken", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ContinuationToken { get; set; }
     
         /// <summary>Items count in result set.</summary>
@@ -1073,12 +1299,12 @@ namespace Demo.Client.Generated
         public double Count { get; set; }
     
         /// <summary>Total items count.</summary>
-        [Newtonsoft.Json.JsonProperty("totalCount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double TotalCount { get; set; }
+        [Newtonsoft.Json.JsonProperty("totalCount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? TotalCount { get; set; }
     
         /// <summary>Total pages.</summary>
-        [Newtonsoft.Json.JsonProperty("totalPages", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double TotalPages { get; set; }
+        [Newtonsoft.Json.JsonProperty("totalPages", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? TotalPages { get; set; }
     
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
     
@@ -1134,7 +1360,7 @@ namespace Demo.Client.Generated
     public partial class Order 
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Id { get; set; }
+        public System.Guid Id { get; set; }
     
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
@@ -1144,6 +1370,9 @@ namespace Demo.Client.Generated
     
         [Newtonsoft.Json.JsonProperty("myEmail", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MyEmail { get; set; } = "a@a.com";
+    
+        [Newtonsoft.Json.JsonProperty("myNullableDateTime", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? MyNullableDateTime { get; set; }
     
         [Newtonsoft.Json.JsonProperty("myDateTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset MyDateTime { get; set; }
@@ -1217,6 +1446,27 @@ namespace Demo.Client.Generated
     
     }
     
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.24.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class ColorType 
+    {
+        /// <summary>The users color type</summary>
+        [Newtonsoft.Json.JsonProperty("color", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public ColorTypeColor Color { get; set; }
+    
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+    
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+    
+    
+    }
+    
     /// <summary>A single user.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.24.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class User 
@@ -1235,6 +1485,9 @@ namespace Demo.Client.Generated
     
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("color", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public ColorType Color { get; set; }
     
         [Newtonsoft.Json.JsonProperty("homeAddress", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Address HomeAddress { get; set; }
@@ -1273,6 +1526,13 @@ namespace Demo.Client.Generated
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string LastName { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("myNullableDateTime", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? MyNullableDateTime { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("myDateTime", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.DateTimeOffset MyDateTime { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Email { get; set; }
@@ -1290,6 +1550,13 @@ namespace Demo.Client.Generated
             set { _additionalProperties = value; }
         }
     
+    
+    }
+    
+    /// <summary>A list of users.</summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.24.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class CreateUsersRequest : System.Collections.ObjectModel.Collection<CreateUserRequest>
+    {
     
     }
     
@@ -1449,6 +1716,26 @@ namespace Demo.Client.Generated
     
         [System.Runtime.Serialization.EnumMember(Value = @"Female")]
         Female = 3,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.24.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum ColorTypeColor
+    {
+        [System.Runtime.Serialization.EnumMember(Value = @"Unknown = 0")]
+        Unknown___0 = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Black = 1")]
+        Black___1 = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"White = 2")]
+        White___2 = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Yellow = 4")]
+        Yellow___4 = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Red = 8")]
+        Red___8 = 4,
     
     }
 

@@ -35,7 +35,7 @@ List<LogKeyValueItem> GenerateServerHost(string projectPrefixName, DirectoryInfo
 #### GenerateServerSln
 
 ```csharp
-LogKeyValueItem GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
+List<LogKeyValueItem> GenerateServerSln(string projectPrefixName, string outputSlnPath, DirectoryInfo outputSrcPath, DirectoryInfo outputTestPath)
 ```
 #### GetAtcToolVersion
 
@@ -221,7 +221,7 @@ LogKeyValueItem ScaffoldProjFile(FileInfo projectCsProjFile, bool createAsWeb, b
 #### ScaffoldSlnFile
 
 ```csharp
-LogKeyValueItem ScaffoldSlnFile(FileInfo slnFile, string projectName, DirectoryInfo apiPath, DirectoryInfo domainPath, DirectoryInfo hostPath, DirectoryInfo apiTestPath = null, DirectoryInfo domainTestPath = null, DirectoryInfo hostTestPath = null)
+List<LogKeyValueItem> ScaffoldSlnFile(FileInfo slnFile, string projectName, DirectoryInfo apiPath, DirectoryInfo domainPath, DirectoryInfo hostPath, DirectoryInfo apiTestPath = null, DirectoryInfo domainTestPath = null, DirectoryInfo hostTestPath = null)
 ```
 #### SetNullableValueForProject
 
