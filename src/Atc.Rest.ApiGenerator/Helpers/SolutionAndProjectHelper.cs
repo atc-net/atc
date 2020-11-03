@@ -131,7 +131,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         }
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
-        public static LogKeyValueItem ScaffoldSlnFile(
+        public static List<LogKeyValueItem> ScaffoldSlnFile(
             FileInfo slnFile,
             string projectName,
             DirectoryInfo apiPath,
@@ -161,18 +161,147 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(hostPath));
             }
 
-            var slnId = Guid.NewGuid().ToString();
-            var apiId = Guid.NewGuid().ToString();
-            var domainId = Guid.NewGuid().ToString();
-            var hostId = Guid.NewGuid().ToString();
-            var apiTestId = Guid.NewGuid().ToString();
-            var domainTestId = Guid.NewGuid().ToString();
-            var hostTestId = Guid.NewGuid().ToString();
+            var slnId = Guid.NewGuid();
+            var apiId = Guid.NewGuid();
+            var domainId = Guid.NewGuid();
+            var hostId = Guid.NewGuid();
+            var apiTestId = Guid.NewGuid();
+            var domainTestId = Guid.NewGuid();
+            var hostTestId = Guid.NewGuid();
 
             var apiPrefixPath = GetProjectReference(slnFile, apiPath, projectName);
             var domainPrefixPath = GetProjectReference(slnFile, domainPath, projectName);
             var hostPrefixPath = GetProjectReference(slnFile, hostPath, projectName);
 
+            var codeInspectionExcludeProjects = new List<Guid>();
+            var codeInspectionExcludeProjectsFolders = new List<Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>>();
+            if (slnFile.Exists)
+            {
+                var lines = File.ReadAllLines(slnFile.FullName);
+                if (TryGetGuidByProject(lines, "Api.Generated.csproj", out Guid idApiGenerated))
+                {
+                    codeInspectionExcludeProjects.Add(idApiGenerated);
+                }
+
+                if (TryGetGuidByProject(lines, "Api.Generated.Tests.csproj", out Guid idApiGeneratedTest))
+                {
+                    codeInspectionExcludeProjects.Add(idApiGeneratedTest);
+                }
+
+                if (hostTestPath != null && TryGetGuidByProject(lines, "Api.Tests.csproj", out Guid idHostTest))
+                {
+                    var hostTestDirectory = new DirectoryInfo(hostTestPath.FullName + ".Tests");
+                    var generatedDirectories = hostTestDirectory.GetDirectories("Generated", SearchOption.AllDirectories).ToList();
+                    codeInspectionExcludeProjectsFolders.Add(new Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>(idHostTest, hostTestDirectory, generatedDirectories));
+                }
+
+                if (domainTestPath != null && TryGetGuidByProject(lines, "Domain.Tests.csproj", out Guid idDomainTest))
+                {
+                    var domainTestDirectory = new DirectoryInfo(domainTestPath.FullName + ".Tests");
+                    var generatedDirectories = domainTestDirectory.GetDirectories("Generated", SearchOption.AllDirectories).ToList();
+                    codeInspectionExcludeProjectsFolders.Add(new Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>(idDomainTest, domainTestDirectory, generatedDirectories));
+                }
+            }
+            else
+            {
+                codeInspectionExcludeProjects.Add(apiId);
+                if (apiTestPath != null)
+                {
+                    codeInspectionExcludeProjects.Add(apiTestId);
+                }
+
+                if (hostTestPath != null)
+                {
+                    var hostTestDirectory = new DirectoryInfo(hostTestPath.FullName + ".Tests");
+                    var generatedDirectories = hostTestDirectory.GetDirectories("Generated", SearchOption.AllDirectories).ToList();
+                    codeInspectionExcludeProjectsFolders.Add(new Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>(hostTestId, hostTestDirectory, generatedDirectories));
+                }
+
+                if (domainTestPath != null)
+                {
+                    var domainTestDirectory = new DirectoryInfo(domainTestPath.FullName + ".Tests");
+                    var generatedDirectories = domainTestDirectory.GetDirectories("Generated", SearchOption.AllDirectories).ToList();
+                    codeInspectionExcludeProjectsFolders.Add(new Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>(domainTestId, domainTestDirectory, generatedDirectories));
+                }
+            }
+
+            var slnFileContent = CreateSlnFileContent(
+                slnFile,
+                projectName,
+                apiTestPath,
+                domainTestPath,
+                hostTestPath,
+                apiPrefixPath,
+                apiId,
+                domainPrefixPath,
+                domainId,
+                hostPrefixPath,
+                hostId,
+                hostTestId,
+                apiTestId,
+                domainTestId,
+                slnId);
+
+            var slnDotSettingsFile = new FileInfo(slnFile + ".DotSettings");
+            var slnDotSettingsFileContent = CreateSlnDotSettingsFileContent(
+                codeInspectionExcludeProjects,
+                codeInspectionExcludeProjectsFolders);
+
+            var logItems = new List<LogKeyValueItem>
+            {
+                TextFileHelper.Save(slnFile, slnFileContent, false),
+                TextFileHelper.Save(slnDotSettingsFile, slnDotSettingsFileContent),
+            };
+
+            return logItems;
+        }
+
+        private static bool TryGetGuidByProject(IEnumerable<string> lines, string csProjectEndPart, out Guid id)
+        {
+            id = Guid.NewGuid();
+            foreach (var line in lines)
+            {
+                var index = line.IndexOf(csProjectEndPart, StringComparison.Ordinal);
+                if (index == -1)
+                {
+                    continue;
+                }
+
+                var s = line.Substring(index + csProjectEndPart.Length)
+                    .Replace("\"", string.Empty, StringComparison.Ordinal)
+                    .Replace(",", string.Empty, StringComparison.Ordinal)
+                    .Replace(" ", string.Empty, StringComparison.Ordinal)
+                    .Replace("{", string.Empty, StringComparison.Ordinal)
+                    .Replace("}", string.Empty, StringComparison.Ordinal);
+                if (Guid.TryParse(s, out Guid projId))
+                {
+                    id = projId;
+                    return true;
+                }
+
+                return false;
+            }
+
+            return false;
+        }
+
+        private static string CreateSlnFileContent(
+            FileInfo slnFile,
+            string projectName,
+            DirectoryInfo? apiTestPath,
+            DirectoryInfo? domainTestPath,
+            DirectoryInfo? hostTestPath,
+            string apiPrefixPath,
+            Guid apiId,
+            string domainPrefixPath,
+            Guid domainId,
+            string hostPrefixPath,
+            Guid hostId,
+            Guid hostTestId,
+            Guid apiTestId,
+            Guid domainTestId,
+            Guid slnId)
+        {
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.AppendLine("Microsoft Visual Studio Solution File, Format Version 12.00");
@@ -256,7 +385,89 @@ namespace Atc.Rest.ApiGenerator.Helpers
             sb.AppendLine($"\t\tSolutionGuid = {{{slnId}}}");
             sb.AppendLine("\tEndGlobalSection");
             sb.AppendLine("EndGlobal");
-            return TextFileHelper.Save(slnFile, sb.ToString(), false);
+            return sb.ToString();
+        }
+
+        private static string CreateSlnDotSettingsFileContent(
+            IEnumerable<Guid> codeInspectionExcludeProjects,
+            IEnumerable<Tuple<Guid, DirectoryInfo, List<DirectoryInfo>>> codeInspectionExcludeProjectsFolders)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("<wpf:ResourceDictionary xml:space=\"preserve\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" xmlns:s=\"clr-namespace:System;assembly=mscorlib\" xmlns:ss=\"urn:shemas-jetbrains-com:settings-storage-xaml\" xmlns:wpf=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\">");
+            foreach (var item in codeInspectionExcludeProjectsFolders)
+            {
+                foreach (var directoryInfo in item.Item3)
+                {
+                    var pathPart = directoryInfo.FullName.Replace(item.Item2.FullName, string.Empty, StringComparison.Ordinal);
+                    var skipPath = ReSharperFormatGuidAndPath(new Tuple<Guid, string>(item.Item1, pathPart));
+                    if (string.IsNullOrEmpty(skipPath))
+                    {
+                        continue;
+                    }
+
+                    sb.AppendLine($"\t<s:String x:Key=\"/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/={skipPath}/@EntryIndexedValue\">ExplicitlyExcluded</s:String>");
+                }
+            }
+
+            foreach (string skipPath in codeInspectionExcludeProjects.Select(ReSharperFormatGuid))
+            {
+                sb.AppendLine($"\t<s:String x:Key=\"/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/={skipPath}/@EntryIndexedValue\">ExplicitlyExcluded</s:String>");
+            }
+
+            sb.AppendLine("</wpf:ResourceDictionary>");
+            return sb.ToString();
+        }
+
+        private static string ReSharperFormatGuid(Guid projectId)
+        {
+            var sa = projectId.ToString().Split('-');
+            var sb = new StringBuilder();
+            for (int i = 0; i < sa.Length; i++)
+            {
+                var s = sa[i].ToUpper(GlobalizationConstants.EnglishCultureInfo);
+                if (i == 0)
+                {
+                    sb.Append(s);
+                }
+                else
+                {
+                    sb.Append("002D" + s);
+                }
+
+                if (i != sa.Length - 1)
+                {
+                    sb.Append('_');
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        private static string ReSharperFormatGuidAndPath(Tuple<Guid, string> data)
+        {
+            var (projectId, pathPart) = data;
+            var sa = projectId.ToString().Split('-');
+            var sb = new StringBuilder();
+            for (int i = 0; i < sa.Length; i++)
+            {
+                var s = sa[i].ToUpper(GlobalizationConstants.EnglishCultureInfo);
+                if (i == 0)
+                {
+                    sb.Append(s);
+                }
+                else
+                {
+                    sb.Append("002D" + s);
+                }
+
+                if (i != sa.Length - 1)
+                {
+                    sb.Append('_');
+                }
+            }
+
+            sb.Append(pathPart.Replace("\\", "_002Fd_003A", StringComparison.Ordinal));
+            return sb.ToString();
         }
 
         private static string GetProjectReference(FileSystemInfo source, FileSystemInfo destination, string projectName)

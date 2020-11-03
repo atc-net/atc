@@ -17,7 +17,6 @@ using Xunit;
 // Changes to this file may cause incorrect behavior and will be lost if
 // the code is regenerated.
 //------------------------------------------------------------------------------
-//--
 namespace Demo.Api.Tests.Endpoints.Orders.Generated
 {
     [GeneratedCode("ApiGenerator", "1.0.181.0")]

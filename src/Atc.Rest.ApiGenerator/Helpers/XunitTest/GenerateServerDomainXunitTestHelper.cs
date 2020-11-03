@@ -30,7 +30,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             var area = sgHandler.FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var nsSrc = $"{domainProjectOptions.ProjectName}.{NameConstants.Handlers}.{area}";
-            var nsTest = $"{domainProjectOptions.ProjectName}.Api.Generated.{NameConstants.Handlers}";
+            var nsTest = $"{domainProjectOptions.ProjectName}.Tests.{NameConstants.Handlers}.{area}.Generated";
 
             var srcSyntaxNodeRoot = ReadCsFile(domainProjectOptions, sgHandler.FocusOnSegmentName, sgHandler);
             var usedInterfacesInConstructor = GetUsedInterfacesInConstructor(srcSyntaxNodeRoot);
@@ -48,8 +48,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             sb.AppendLine();
             GenerateCodeHelper.AppendNamespaceComment(sb, domainProjectOptions.ToolNameAndVersion);
-            sb.AppendLine("// ReSharper disable once CheckNamespace");
-            sb.AppendLine($"namespace {nsTest}.Tests");
+            sb.AppendLine($"namespace {nsTest}");
             sb.AppendLine("{");
             GenerateCodeHelper.AppendGeneratedCodeAttribute(sb, domainProjectOptions.ToolName, domainProjectOptions.ToolVersion);
             sb.AppendLine(4, $"public class {sgHandler.HandlerTypeName}GeneratedTests");
@@ -85,14 +84,13 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             var area = sgHandler.FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var nsSrc = $"{domainProjectOptions.ProjectName}.{NameConstants.Handlers}.{area}";
-            var nsTest = $"{domainProjectOptions.ProjectName}.Api.Generated.{NameConstants.Handlers}";
+            var nsTest = $"{domainProjectOptions.ProjectName}.Tests.{NameConstants.Handlers}.{area}.Generated";
 
             var sb = new StringBuilder();
             sb.AppendLine($"using {nsSrc};");
             sb.AppendLine("using Xunit;");
             sb.AppendLine();
-            sb.AppendLine("// ReSharper disable once CheckNamespace");
-            sb.AppendLine($"namespace {nsTest}.Tests");
+            sb.AppendLine($"namespace {nsTest}");
             sb.AppendLine("{");
             sb.AppendLine(4, $"public class {sgHandler.HandlerTypeName}Tests");
             sb.AppendLine(4, "{");

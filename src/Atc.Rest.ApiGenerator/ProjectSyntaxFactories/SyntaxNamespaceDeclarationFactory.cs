@@ -39,9 +39,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                             SyntaxFactory.Comment("//"),
                             SyntaxFactory.Comment("// Changes to this file may cause incorrect behavior and will be lost if"),
                             SyntaxFactory.Comment("// the code is regenerated."),
-                            SyntaxFactory.Comment("//------------------------------------------------------------------------------"),
-                            SyntaxFactory.Comment("//"),
-                            SyntaxFactory.Comment("// ReSharper disable once CheckNamespace")),
+                            SyntaxFactory.Comment("//------------------------------------------------------------------------------")),
                         SyntaxKind.NamespaceKeyword,
                         SyntaxFactory.TriviaList()));
         }

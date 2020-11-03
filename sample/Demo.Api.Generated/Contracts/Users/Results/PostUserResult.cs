@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 // Changes to this file may cause incorrect behavior and will be lost if
 // the code is regenerated.
 //------------------------------------------------------------------------------
-//
-// ReSharper disable once CheckNamespace
 namespace Demo.Api.Generated.Contracts.Users
 {
     /// <summary>

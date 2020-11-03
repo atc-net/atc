@@ -154,7 +154,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return serverHostGenerator.Generate();
         }
 
-        public static LogKeyValueItem GenerateServerSln(
+        public static List<LogKeyValueItem> GenerateServerSln(
             string projectPrefixName,
             string outputSlnPath,
             DirectoryInfo outputSrcPath,

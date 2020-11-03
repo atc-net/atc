@@ -1,8 +1,7 @@
 ﻿using Demo.Domain.Handlers.Users;
 using Xunit;
 
-// ReSharper disable once CheckNamespace
-namespace Demo.Domain.Api.Generated.Handlers.Tests
+namespace Demo.Domain.Tests.Handlers.Users
 {
     public class GetUsersHandlerTests
     {

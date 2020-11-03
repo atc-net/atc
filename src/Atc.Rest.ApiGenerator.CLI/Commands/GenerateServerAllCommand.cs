@@ -75,7 +75,7 @@ namespace Atc.Rest.ApiGenerator.CLI.Commands
                 outputSrcPath,
                 outputSrcPath));
 
-            logItems.Add(GenerateHelper.GenerateServerSln(
+            logItems.AddRange(GenerateHelper.GenerateServerSln(
                 projectPrefixName,
                 outputSlnPath,
                 outputSrcPath,

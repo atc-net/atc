@@ -13,7 +13,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
             sb.AppendLine("// Changes to this file may cause incorrect behavior and will be lost if");
             sb.AppendLine("// the code is regenerated.");
             sb.AppendLine("//------------------------------------------------------------------------------");
-            sb.AppendLine("//--");
         }
 
         internal static void AppendGeneratedCodeAttribute(StringBuilder sb, string toolName, Version toolVersion)

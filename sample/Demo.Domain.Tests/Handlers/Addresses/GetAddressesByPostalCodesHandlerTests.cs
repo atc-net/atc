@@ -1,8 +1,7 @@
 ﻿using Demo.Domain.Handlers.Addresses;
 using Xunit;
 
-// ReSharper disable once CheckNamespace
-namespace Demo.Domain.Api.Generated.Handlers.Tests
+namespace Demo.Domain.Tests.Handlers.Addresses
 {
     public class GetAddressesByPostalCodesHandlerTests
     {
