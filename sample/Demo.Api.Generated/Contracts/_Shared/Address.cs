@@ -14,6 +14,7 @@ namespace Demo.Api.Generated.Contracts
     [GeneratedCode("ApiGenerator", "1.0.181.0")]
     public class Address
     {
+        [StringLength(255)]
         public string StreetName { get; set; }
 
         public string StreetNumber { get; set; }
