@@ -218,5 +218,29 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 Items = CreateStringUuid(),
             };
         }
+
+        public static OpenApiSchema WithMaxLength(OpenApiSchema schema)
+        {
+            schema.MaxLength = 255;
+            return schema;
+        }
+
+        public static OpenApiSchema WithMinLength(OpenApiSchema schema)
+        {
+            schema.MinLength = 2;
+            return schema;
+        }
+
+        public static OpenApiSchema WithMaximum(OpenApiSchema schema)
+        {
+            schema.Maximum = 10;
+            return schema;
+        }
+
+        public static OpenApiSchema WithMinimum(OpenApiSchema schema)
+        {
+            schema.Minimum = 2;
+            return schema;
+        }
     }
 }

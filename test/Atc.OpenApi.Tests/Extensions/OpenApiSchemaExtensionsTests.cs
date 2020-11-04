@@ -481,5 +481,27 @@ namespace Atc.OpenApi.Tests.Extensions
             Assert.Equal(expected.Item1, actual.Item1);
             Assert.Equal(expected.Item2, actual.Item2.Enum.Count);
         }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatStringValidation), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatStringValidation(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsFormatStringValidation();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatIntegerValidation), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatIntegerValidation(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsFormatIntegerValidation();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
