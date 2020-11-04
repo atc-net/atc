@@ -12,6 +12,22 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             };
         }
 
+        public static OpenApiSchema CreateInteger()
+        {
+            return new OpenApiSchema
+            {
+                Type = "integer",
+            };
+        }
+
+        public static OpenApiSchema CreateNumber()
+        {
+            return new OpenApiSchema
+            {
+                Type = "number",
+            };
+        }
+
         public static OpenApiSchema CreateInt32()
         {
             return new OpenApiSchema
@@ -120,6 +136,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             };
         }
 
+        public static OpenApiSchema CreateListInteger()
+        {
+            return new OpenApiSchema
+            {
+                Type = "array",
+                Items = CreateInteger(),
+            };
+        }
+
         public static OpenApiSchema CreateListInt32()
         {
             return new OpenApiSchema
@@ -135,6 +160,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 Type = "array",
                 Items = CreateInt64(),
+            };
+        }
+
+        public static OpenApiSchema CreateListNumber()
+        {
+            return new OpenApiSchema
+            {
+                Type = "array",
+                Items = CreateNumber(),
             };
         }
 
