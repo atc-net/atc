@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Title>Atc.Rest.FluentAssertions</Title>
+    <Authors>Atc-net</Authors>
+    <Description>Atc.Rest.FluentAssertions is a collection of assertion helpers for writing tests of Atc types.</Description>
+    <PackageProjectUrl>https://github.com/atc-net/atc/tree/master/src/Atc.Rest.FluentAssertions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atc.Rest\Atc.Rest.csproj" />
+  </ItemGroup>
+
+</Project>

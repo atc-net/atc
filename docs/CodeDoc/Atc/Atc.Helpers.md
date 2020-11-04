@@ -443,6 +443,13 @@ List<Culture> GetCultures(List<string> includeOnlyCultureNames)
 #### GetCultures
 
 ```csharp
+List<Culture> GetCultures(int displayLanguageLcid)
+```
+<p><b>Summary:</b> Gets cultures.</p>
+
+#### GetCultures
+
+```csharp
 List<Culture> GetCultures(int displayLanguageLcid, List<int> includeOnlyLcids)
 ```
 <p><b>Summary:</b> Gets cultures.</p>
@@ -451,13 +458,6 @@ List<Culture> GetCultures(int displayLanguageLcid, List<int> includeOnlyLcids)
 
 ```csharp
 List<Culture> GetCultures(int displayLanguageLcid, List<string> includeOnlyCultureNames)
-```
-<p><b>Summary:</b> Gets cultures.</p>
-
-#### GetCultures
-
-```csharp
-List<Culture> GetCultures(int displayLanguageLcid)
 ```
 <p><b>Summary:</b> Gets cultures.</p>
 
