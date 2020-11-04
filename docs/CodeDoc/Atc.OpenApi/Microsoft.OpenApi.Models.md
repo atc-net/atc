@@ -537,16 +537,6 @@ bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
 ```csharp
 bool IsDataTypeOfList(this OpenApiSchema schema)
 ```
-#### IsFormatIntegerValidation
-
-```csharp
-bool IsFormatIntegerValidation(this OpenApiSchema schema)
-```
-#### IsFormatStringValidation
-
-```csharp
-bool IsFormatStringValidation(this OpenApiSchema schema)
-```
 #### IsFormatTypeOfByte
 
 ```csharp
@@ -606,6 +596,16 @@ bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
 
 ```csharp
 bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
+```
+#### IsRuleValidationNumber
+
+```csharp
+bool IsRuleValidationNumber(this OpenApiSchema schema)
+```
+#### IsRuleValidationString
+
+```csharp
+bool IsRuleValidationString(this OpenApiSchema schema)
 ```
 #### IsSchemaEnum
 

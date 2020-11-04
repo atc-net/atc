@@ -181,8 +181,8 @@ namespace Microsoft.OpenApi.Models
 
             return schema.IsFormatTypeOfEmail() ||
                    schema.IsFormatTypeOfUri() ||
-                   schema.IsFormatStringValidation() ||
-                   schema.IsFormatIntegerValidation();
+                   schema.IsRuleValidationString() ||
+                   schema.IsRuleValidationNumber();
         }
 
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
@@ -332,18 +332,18 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatStringValidation(this OpenApiSchema schema)
+        public static bool IsRuleValidationString(this OpenApiSchema schema)
         {
             if (schema == null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.MaxLength != null ||
-                   schema.MinLength != null;
+            return schema.MinLength != null ||
+                   schema.MaxLength != null;
         }
 
-        public static bool IsFormatIntegerValidation(this OpenApiSchema schema)
+        public static bool IsRuleValidationNumber(this OpenApiSchema schema)
         {
             if (schema == null)
             {

@@ -730,7 +730,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatStringValidation =>
+        public static IEnumerable<object[]> IsRuleValidationStringItemData =>
             new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -747,7 +747,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat()) },
             };
 
-        public static IEnumerable<object[]> IsFormatIntegerValidation =>
+        public static IEnumerable<object[]> IsRuleValidationNumberItemData =>
             new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },

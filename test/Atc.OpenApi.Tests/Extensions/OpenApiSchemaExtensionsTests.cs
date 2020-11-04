@@ -483,22 +483,22 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatStringValidation), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatStringValidation(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationStringItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsRuleValidationString(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatStringValidation();
+            var actual = openApiSchema.IsRuleValidationString();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatIntegerValidation), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatIntegerValidation(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationNumberItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsRuleValidationNumber(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatIntegerValidation();
+            var actual = openApiSchema.IsRuleValidationNumber();
 
             // Assert
             Assert.Equal(expected, actual);
