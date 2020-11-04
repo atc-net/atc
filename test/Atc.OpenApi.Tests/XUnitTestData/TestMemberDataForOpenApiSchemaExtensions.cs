@@ -739,12 +739,12 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMaxLength(TestDataOpenApiSchemaOfTypeFactory.CreateString()) },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMinLength(TestDataOpenApiSchemaOfTypeFactory.CreateString()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateInt32()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateInt32()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateInt64()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateInt64()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat()) },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateInt32()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateInt32()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateInt64()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateInt64()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMaximum(TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat()) },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.WithMinimum(TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat()) },
             };
 
         public static IEnumerable<object[]> IsFormatIntegerValidation =>
