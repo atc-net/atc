@@ -125,6 +125,8 @@
      - IsFormatTypeOfUuid(this OpenApiSchema schema)
      - IsItemsOfSimpleDataType(this OpenApiSchema schema)
      - IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
+     - IsRuleValidationNumber(this OpenApiSchema schema)
+     - IsRuleValidationString(this OpenApiSchema schema)
      - IsSchemaEnum(this OpenApiSchema schema)
      - IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
      - IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)

@@ -584,6 +584,7 @@ components:
       properties:
         streetName:
           type: string
+          maxLength: 255
         streetNumber:
           type: string
         postalCode:

@@ -597,6 +597,16 @@ bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
 ```csharp
 bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
 ```
+#### IsRuleValidationNumber
+
+```csharp
+bool IsRuleValidationNumber(this OpenApiSchema schema)
+```
+#### IsRuleValidationString
+
+```csharp
+bool IsRuleValidationString(this OpenApiSchema schema)
+```
 #### IsSchemaEnum
 
 ```csharp

@@ -481,5 +481,27 @@ namespace Atc.OpenApi.Tests.Extensions
             Assert.Equal(expected.Item1, actual.Item1);
             Assert.Equal(expected.Item2, actual.Item2.Enum.Count);
         }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationStringItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsRuleValidationString(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsRuleValidationString();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationNumberItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsRuleValidationNumber(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsRuleValidationNumber();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
