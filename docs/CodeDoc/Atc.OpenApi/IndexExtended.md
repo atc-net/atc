@@ -113,6 +113,8 @@
      - HasFormatTypeOfUuid(this IList&lt;OpenApiSchema&gt; schemas)
      - IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
      - IsDataTypeOfList(this OpenApiSchema schema)
+     - IsFormatIntegerValidation(this OpenApiSchema schema)
+     - IsFormatStringValidation(this OpenApiSchema schema)
      - IsFormatTypeOfByte(this OpenApiSchema schema)
      - IsFormatTypeOfDate(this OpenApiSchema schema)
      - IsFormatTypeOfDateTime(this OpenApiSchema schema)

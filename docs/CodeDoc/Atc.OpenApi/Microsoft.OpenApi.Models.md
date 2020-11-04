@@ -537,6 +537,16 @@ bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
 ```csharp
 bool IsDataTypeOfList(this OpenApiSchema schema)
 ```
+#### IsFormatIntegerValidation
+
+```csharp
+bool IsFormatIntegerValidation(this OpenApiSchema schema)
+```
+#### IsFormatStringValidation
+
+```csharp
+bool IsFormatStringValidation(this OpenApiSchema schema)
+```
 #### IsFormatTypeOfByte
 
 ```csharp
