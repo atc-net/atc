@@ -6,13 +6,13 @@ using Atc.CodeDocumentation.Markdown;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Atc.XUnit.Rest.Tests
+namespace Atc.Rest.FluentAssertions.Tests
 {
     public class CodeDocumentationTests
     {
         // ReSharper disable once NotAccessedField.Local
         private readonly ITestOutputHelper testOutputHelper;
-        private readonly Assembly sourceAssembly = typeof(AtcXUnitRestAssemblyTypeInitializer).Assembly;
+        private readonly Assembly sourceAssembly = typeof(AtcRestFluentAssertionsAssemblyTypeInitializer).Assembly;
 
         public CodeDocumentationTests(ITestOutputHelper testOutputHelper)
         {
