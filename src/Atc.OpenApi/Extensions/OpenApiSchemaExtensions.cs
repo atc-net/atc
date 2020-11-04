@@ -180,7 +180,9 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.IsFormatTypeOfEmail() ||
-                   schema.IsFormatTypeOfUri();
+                   schema.IsFormatTypeOfUri() ||
+                   schema.HasFormatStringValidation() ||
+                   schema.HasFormatIntegerValidation();
         }
 
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
@@ -328,6 +330,28 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool HasFormatStringValidation(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.MaxLength != null ||
+                   schema.MinLength != null;
+        }
+
+        public static bool HasFormatIntegerValidation(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.Minimum != null ||
+                   schema.Maximum != null;
         }
 
         public static bool IsSimpleDataType(this OpenApiSchema schema)
