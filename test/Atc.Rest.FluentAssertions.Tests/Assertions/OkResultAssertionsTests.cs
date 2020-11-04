@@ -11,10 +11,12 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected()
         {
+            // Arrange
             var target = new OkObjectResult("FOO");
             target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
             var sut = new OkResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.WithContent("BAR"))
                 .Should()
                 .Throw<XunitException>()
@@ -24,9 +26,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact(Skip = "Skipped until issue #18 is fixed.")]
         public void WithContent_Throws_When_ContentTypes_Isnt_Json()
         {
+            // Arrange
             var target = new OkObjectResult("FOO");
             var sut = new OkResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
                 .Throw<XunitException>()
@@ -36,10 +40,12 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void WithContent_Does_Not_Throw_When_Expected_Match()
         {
+            // Arrange
             var target = new OkObjectResult("FOO");
             target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
             var sut = new OkResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
                 .NotThrow();

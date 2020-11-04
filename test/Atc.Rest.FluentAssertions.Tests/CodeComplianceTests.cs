@@ -1,5 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Atc.XUnit;
+using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -11,6 +14,15 @@ namespace Atc.Rest.FluentAssertions.Tests
         private readonly ITestOutputHelper testOutputHelper;
         private readonly Assembly sourceAssembly = typeof(AtcRestFluentAssertionsAssemblyTypeInitializer).Assembly;
         private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
+
+        private readonly List<Type> excludeTypes = new List<Type>
+        {
+            // TODO: Add UnitTest and remove from this list!!
+            typeof(OkResultAssertions),
+            typeof(ResultAssertions),
+            typeof(NotFoundResultAssertions),
+            typeof(ResultBaseExtensions),
+        };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
         {
@@ -24,7 +36,8 @@ namespace Atc.Rest.FluentAssertions.Tests
             CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
                 DecompilerType.AbstractSyntaxTree,
                 sourceAssembly,
-                testAssembly);
+                testAssembly,
+                excludeTypes);
         }
 
         [Fact]
@@ -34,7 +47,8 @@ namespace Atc.Rest.FluentAssertions.Tests
             CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
                 DecompilerType.MonoReflection,
                 sourceAssembly,
-                testAssembly);
+                testAssembly,
+                excludeTypes);
         }
 
         [Fact]

@@ -20,10 +20,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Extensions
         [Fact]
         public void Should_Returns_ResultAssertion_With_Subject_Set_To_Subject()
         {
+            // Arrange
             var target = new AtcDummyResult();
 
+            // Act
             var actual = target.Should();
 
+            // Assert
             actual.Invoking(x => x.BeOkResult())
                 .Should()
                 .Throw<XunitException>()

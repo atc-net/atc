@@ -12,9 +12,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeOkResult_Throws_When_Subject_Isnt_OkObjectResult()
         {
+            // Arrange
             var target = new DummyResult();
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeOkResult())
                 .Should()
                 .Throw<XunitException>()
@@ -24,9 +26,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeOkResult_Throws_When_OkObjectResult_StatusCode_Isnt_200()
         {
+            // Arrange
             var target = new OkObjectResult(string.Empty) { StatusCode = 201 };
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeOkResult())
                 .Should()
                 .Throw<XunitException>()
@@ -36,9 +40,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeOkResult_Passes_When_Subject_Is_OkObjectResult_With_StatusCode_200()
         {
+            // Arrange
             var target = new OkObjectResult(string.Empty);
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeOkResult())
                 .Should()
                 .NotThrow();
@@ -47,9 +53,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeNotFoundResult_Throws_When_Subject_Isnt_ContentResult()
         {
+            // Arrange
             var target = new DummyResult();
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeNotFoundResult())
                 .Should()
                 .Throw<XunitException>()
@@ -59,9 +67,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeNotFoundResult_Throws_When_ContentResult_StatusCode_Isnt_404()
         {
+            // Arrange
             var target = new ContentResult() { StatusCode = 400 };
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeNotFoundResult())
                 .Should()
                 .Throw<XunitException>()
@@ -71,9 +81,11 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void BeNotFoundResult_Passes_When_Subject_Is_OkObjectResult_With_StatusCode_200()
         {
+            // Arrange
             var target = new ContentResult() { StatusCode = 404 };
             var sut = new ResultAssertions(target);
 
+            // Act & Assert
             sut.Invoking(x => x.BeNotFoundResult())
                 .Should()
                 .NotThrow();

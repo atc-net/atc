@@ -27,7 +27,7 @@
 
 ## [FluentAssertions](FluentAssertions.md)
 
-- [ResultShouldExtensions](FluentAssertions.md#resultshouldextensions)
+- [ResultBaseExtensions](FluentAssertions.md#resultbaseextensions)
   -  Static Methods
      - Should(this ResultBase subject)
 

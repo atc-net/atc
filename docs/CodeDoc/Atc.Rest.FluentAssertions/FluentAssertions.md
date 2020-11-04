@@ -8,12 +8,12 @@
 <br />
 
 
-## ResultShouldExtensions
+## ResultBaseExtensions
 Extensions for FluentAssertions that make testing Atc Rest handlers easier.
 
 
 ```csharp
-public static class ResultShouldExtensions
+public static class ResultBaseExtensions
 ```
 
 ### Static Methods
