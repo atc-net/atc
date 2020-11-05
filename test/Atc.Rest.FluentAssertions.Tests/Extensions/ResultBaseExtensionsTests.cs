@@ -6,11 +6,11 @@ using Xunit.Sdk;
 
 namespace Atc.Rest.FluentAssertions.Tests.Extensions
 {
-    public class ResultShouldExtensionsTests
+    public class ResultBaseExtensionsTests
     {
-        class DummyResult : ActionResult { }
+        private class DummyResult : ActionResult { }
 
-        class AtcDummyResult : ResultBase
+        private class AtcDummyResult : ResultBase
         {
             public AtcDummyResult() : base(new DummyResult())
             {

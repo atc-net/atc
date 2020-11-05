@@ -7,7 +7,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
 {
     public class ResultAssertionsTests
     {
-        class DummyResult : ActionResult { }
+        private class DummyResult : ActionResult { }
 
         [Fact]
         public void BeOkResult_Throws_When_Subject_Isnt_OkObjectResult()
@@ -68,7 +68,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         public void BeNotFoundResult_Throws_When_ContentResult_StatusCode_Isnt_404()
         {
             // Arrange
-            var target = new ContentResult() { StatusCode = 400 };
+            var target = new ContentResult { StatusCode = 400 };
             var sut = new ResultAssertions(target);
 
             // Act & Assert
@@ -82,7 +82,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         public void BeNotFoundResult_Passes_When_Subject_Is_OkObjectResult_With_StatusCode_200()
         {
             // Arrange
-            var target = new ContentResult() { StatusCode = 404 };
+            var target = new ContentResult { StatusCode = 404 };
             var sut = new ResultAssertions(target);
 
             // Act & Assert

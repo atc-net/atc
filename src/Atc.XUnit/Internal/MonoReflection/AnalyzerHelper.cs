@@ -139,7 +139,9 @@ namespace Atc.XUnit.Internal.MonoReflection
             }
 
             var methodParameters = method.GetParameters();
-            var usedMethodsByDeclaredType = usedSourceMethods.Where(x => x.DeclaringType!.BeautifyName(false, false, true) == method.DeclaringType!.BeautifyName(false, false, true)).ToList();
+            var usedMethodsByDeclaredType = usedSourceMethods
+                .Where(x => x.DeclaringType!.BeautifyName(false, false, true) == method.DeclaringType!.BeautifyName(false, false, true))
+                .ToList();
             if (usedMethodsByDeclaredType.Count == 0)
             {
                 return false;

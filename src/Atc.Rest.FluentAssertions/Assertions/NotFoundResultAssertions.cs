@@ -4,6 +4,8 @@ using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
+// ReSharper disable ConstantConditionalAccessQualifier
+// ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
     public class NotFoundResultAssertions : ReferenceTypeAssertions<ContentResult, NotFoundResultAssertions>

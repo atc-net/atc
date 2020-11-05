@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Atc.XUnit;
-using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -17,11 +16,11 @@ namespace Atc.Rest.FluentAssertions.Tests
 
         private readonly List<Type> excludeTypes = new List<Type>
         {
-            // TODO: Add UnitTest and remove from this list!!
+            // Ok to exclude Assertions types, because they are a kind of extensions types, and the
+            // Decompiler for AST & Mono way in CodeCompliance-helper, don't support this yet.
+            typeof(NotFoundResultAssertions),
             typeof(OkResultAssertions),
             typeof(ResultAssertions),
-            typeof(NotFoundResultAssertions),
-            typeof(ResultBaseExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

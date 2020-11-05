@@ -1,8 +1,7 @@
-﻿using Atc.Rest.FluentAssertions;
-using Atc.Rest.Results;
+﻿using Atc.Rest.Results;
 
 // ReSharper disable once CheckNamespace
-namespace FluentAssertions
+namespace Atc.Rest.FluentAssertions
 {
     /// <summary>
     /// Extensions for FluentAssertions that make testing Atc Rest handlers easier.

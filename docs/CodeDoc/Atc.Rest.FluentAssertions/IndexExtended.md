@@ -24,10 +24,7 @@
   -  Methods
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)
-
-## [FluentAssertions](FluentAssertions.md)
-
-- [ResultBaseExtensions](FluentAssertions.md#resultbaseextensions)
+- [ResultBaseExtensions](Atc.Rest.FluentAssertions.md#resultbaseextensions)
   -  Static Methods
      - Should(this ResultBase subject)
 

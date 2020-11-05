@@ -3,6 +3,7 @@ using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
+// ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
     public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResultAssertions>
@@ -27,9 +28,6 @@ namespace Atc.Rest.FluentAssertions
                     .Subject
                     .Should()
                     .BeEquivalentTo(expectedContent, because, becauseArgs);
-
-                // TO-DO: Uncomment when issue https://github.com/atc-net/atc/issues/18 is fixed
-                //// subject.ContentTypes.Should().OnlyContain(x => x == "application/json", because, becauseArgs);
             }
 
             return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, subject);

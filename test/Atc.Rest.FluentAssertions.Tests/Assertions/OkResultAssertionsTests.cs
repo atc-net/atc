@@ -23,18 +23,19 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 .WithMessage(@"Expected OK result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
-        [Fact(Skip = "Skipped until issue #18 is fixed.")]
-        public void WithContent_Throws_When_ContentTypes_Isnt_Json()
+        [Fact]
+        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected_WithBecauseMessage()
         {
             // Arrange
             var target = new OkObjectResult("FOO");
+            target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
             var sut = new OkResultAssertions(target);
 
             // Act & Assert
-            sut.Invoking(x => x.WithContent("FOO"))
+            sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected OK result to contain only items matching (x == ""application/json""), but the collection is empty.");
+                .WithMessage(@"Expected OK result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
