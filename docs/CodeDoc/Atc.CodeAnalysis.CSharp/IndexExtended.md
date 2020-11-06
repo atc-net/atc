@@ -61,6 +61,7 @@
   -  Static Methods
      - Create(string classTypeName)
      - CreateAsInternalStatic(string classTypeName)
+     - CreateAsPublicPartial(string classTypeName)
      - CreateAsPublicStatic(string classTypeName)
      - CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
      - CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
@@ -125,6 +126,7 @@
      - NewKeyword(bool withTrailingSpace = True)
      - OperatorKeyword(bool withTrailingSpace = True)
      - OverrideKeyword(bool withTrailingSpace = True)
+     - PartialKeyword(bool withTrailingSpace = True)
      - PrivateKeyword(bool withTrailingSpace = True)
      - ProtectedKeyword(bool withTrailingSpace = True)
      - PublicKeyword(bool withTrailingSpace = True)

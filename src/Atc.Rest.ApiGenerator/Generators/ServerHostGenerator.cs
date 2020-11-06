@@ -331,7 +331,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             var @namespace = SyntaxProjectFactory.CreateNamespace(hostProjectOptions, "Tests");
 
             // Create class
-            var classDeclaration = SyntaxClassDeclarationFactory.Create("WebApiStartupFactory")
+            var classDeclaration = SyntaxClassDeclarationFactory.CreateAsPublicPartial("WebApiStartupFactory")
                 .AddGeneratedCodeAttribute(hostProjectOptions.ToolName, hostProjectOptions.ToolVersion.ToString())
                 .WithBaseList(
                     SyntaxFactory.BaseList(
@@ -344,11 +344,12 @@ namespace Atc.Rest.ApiGenerator.Generators
                                             SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
                                                 SyntaxFactory.IdentifierName("Startup"))))))));
 
-            // Create member
+            // Create members
             var memberDeclarationConfigureWebHost = CreateWebApplicationFactoryConfigureWebHost();
+            var memberDeclarationModifyConfiguration = CreateWebApplicationFactoryModifyConfiguration();
 
             // Add member to class
-            classDeclaration = classDeclaration.AddMembers(memberDeclarationConfigureWebHost);
+            classDeclaration = classDeclaration.AddMembers(memberDeclarationConfigureWebHost, memberDeclarationModifyConfiguration);
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -761,6 +762,14 @@ namespace Atc.Rest.ApiGenerator.Generators
                                             SyntaxFactory.Parameter(SyntaxFactory.Identifier("config")))
                                         .WithBlock(
                                             SyntaxFactory.Block(
+                                                SyntaxFactory.ExpressionStatement(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.IdentifierName("ModifyConfiguration"))
+                                                    .WithArgumentList(
+                                                        SyntaxFactory.ArgumentList(
+                                                            SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
+                                                                SyntaxFactory.Argument(
+                                                                    SyntaxFactory.IdentifierName("config")))))),
                                                 SyntaxFactory.LocalDeclarationStatement(
                                                     SyntaxFactory.VariableDeclaration(SyntaxFactory.IdentifierName("var"))
                                                     .WithVariables(
@@ -858,6 +867,26 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                                                             SyntaxFactory.TypeOfExpression(
                                                                                                 SyntaxFactory.IdentifierName("WebApiStartupFactory"))))))))
                                                                 })))))))))))));
+        }
+
+        private static MemberDeclarationSyntax CreateWebApplicationFactoryModifyConfiguration()
+        {
+            return SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.PredefinedType(
+                        SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                    SyntaxFactory.Identifier("ModifyConfiguration"))
+                .WithModifiers(
+                    SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(SyntaxKind.PartialKeyword)))
+                .WithParameterList(
+                    SyntaxFactory.ParameterList(
+                        SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
+                            SyntaxFactory.Parameter(
+                                SyntaxFactory.Identifier("config"))
+                            .WithType(
+                                SyntaxFactory.IdentifierName("IConfigurationBuilder")))))
+                .WithSemicolonToken(
+                    SyntaxFactory.Token(SyntaxKind.SemicolonToken));
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestFactory()

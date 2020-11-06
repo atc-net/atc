@@ -47,6 +47,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                                 SyntaxFactory.IdentifierName(interfaceTypeName)))));
         }
 
+        public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
+        {
+            if (classTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(classTypeName));
+            }
+
+            return SyntaxFactory.ClassDeclaration(classTypeName)
+                .AddModifiers(SyntaxTokenFactory.PublicKeyword(), SyntaxTokenFactory.PartialKeyword());
+        }
+
         public static ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
         {
             if (classTypeName == null)
