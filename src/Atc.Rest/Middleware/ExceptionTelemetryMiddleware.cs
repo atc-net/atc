@@ -41,6 +41,11 @@ namespace Atc.Rest.Middleware
             {
                 client.TrackException(ex);
 
+                if (context.Response.HasStarted)
+                {
+                    throw;
+                }
+
                 requestFailed = true;
             }
 
