@@ -117,11 +117,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             int countString = 0;
-            sb.AppendLine(
-                indentSpaces,
-                variableName == null
-                    ? $"new {schema.GetModelName()}"
-                    : $"var {variableName} = new {schema.GetModelName()}");
+            if (itemNumber != -1 || variableName != null)
+            {
+                sb.AppendLine(
+                    indentSpaces,
+                    variableName == null
+                        ? $"new {schema.GetModelName()}"
+                        : $"var {variableName} = new {schema.GetModelName()}");
+            }
 
             sb.AppendLine(indentSpaces, "{");
             foreach (var schemaProperty in schema.Properties)
@@ -130,59 +133,71 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                                        schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
                 string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, useForBadRequest, itemNumber, null);
-                switch (dataType)
+                if ("NEW-INSTANCE".Equals(propertyValueGenerated, StringComparison.Ordinal))
                 {
-                    case "string":
-                        if (!schemaProperty.Value.IsFormatTypeOfEmail())
-                        {
-                            if (countString > 0)
+                    var schemaForDataType = componentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
+                    sb.AppendLine(
+                        indentSpaces + 4,
+                        $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = new {schemaForDataType.Value.GetModelName()}");
+                    AppendNewModel(indentSpaces + 4, sb, componentsSchemas, schemaForDataType.Value, badRequestPropertyName, -1, null);
+                }
+                else
+                {
+                    switch (dataType)
+                    {
+                        case "string":
+                            if (!schemaProperty.Value.IsFormatTypeOfEmail() &&
+                                !schemaProperty.Value.IsRuleValidationString())
                             {
-                                propertyValueGenerated = $"{propertyValueGenerated}{countString}";
-                            }
+                                if (countString > 0)
+                                {
+                                    propertyValueGenerated = $"{propertyValueGenerated}{countString}";
+                                }
 
-                            countString++;
-                        }
-
-                        sb.AppendLine(
-                            indentSpaces + 4,
-                            $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = \"{propertyValueGenerated}\",");
-                        break;
-                    case "DateTimeOffset":
-                        sb.AppendLine(
-                            indentSpaces + 4,
-                            $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = DateTimeOffset.Parse(\"{propertyValueGenerated}\"),");
-                        break;
-                    case "Guid":
-                        sb.AppendLine(
-                            indentSpaces + 4,
-                            $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = Guid.Parse(\"{propertyValueGenerated}\"),");
-                        break;
-                    case "Uri":
-                        sb.AppendLine(
-                            indentSpaces + 4,
-                            $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = new Uri(\"{propertyValueGenerated}\"),");
-                        break;
-                    default:
-                        string? enumDataType = GetDataTypeIfEnum(schemaProperty, componentsSchemas);
-                        if (enumDataType == null)
-                        {
-                            sb.AppendLine(
-                                indentSpaces + 4,
-                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},");
-                        }
-                        else
-                        {
-                            if (propertyValueGenerated.Contains("=", StringComparison.Ordinal))
-                            {
-                                propertyValueGenerated = propertyValueGenerated.Split('=').First().Trim();
+                                countString++;
                             }
 
                             sb.AppendLine(
                                 indentSpaces + 4,
-                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},");
-                        }
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = \"{propertyValueGenerated}\",");
+                            break;
+                        case "DateTimeOffset":
+                            sb.AppendLine(
+                                indentSpaces + 4,
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = DateTimeOffset.Parse(\"{propertyValueGenerated}\"),");
+                            break;
+                        case "Guid":
+                            sb.AppendLine(
+                                indentSpaces + 4,
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = Guid.Parse(\"{propertyValueGenerated}\"),");
+                            break;
+                        case "Uri":
+                            sb.AppendLine(
+                                indentSpaces + 4,
+                                $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = new Uri(\"{propertyValueGenerated}\"),");
+                            break;
+                        default:
+                            string? enumDataType = GetDataTypeIfEnum(schemaProperty, componentsSchemas);
+                            if (enumDataType == null)
+                            {
+                                sb.AppendLine(
+                                    indentSpaces + 4,
+                                    $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {propertyValueGenerated},");
+                            }
+                            else
+                            {
+                                if (propertyValueGenerated.Contains("=", StringComparison.Ordinal))
+                                {
+                                    propertyValueGenerated = propertyValueGenerated.Split('=').First().Trim();
+                                }
 
-                        break;
+                                sb.AppendLine(
+                                    indentSpaces + 4,
+                                    $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = {enumDataType}.{propertyValueGenerated},");
+                            }
+
+                            break;
+                    }
                 }
             }
 
@@ -275,7 +290,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "long" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
-                "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value.Format, null, useForBadRequest, itemNumber, customValue),
+                "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value, null, useForBadRequest, itemNumber, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest, itemNumber),
                 "Uri" => ValueTypeTestPropertiesHelper.CreateValueUri(useForBadRequest),
@@ -295,7 +310,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     return ValueTypeTestPropertiesHelper.CreateValueEnum(name, schemaForDataType, useForBadRequest);
                 }
 
-                return $"new {schemaForDataType.Key}()";
+                return "NEW-INSTANCE";
             }
 
             if (schema.Value.Type == "array")

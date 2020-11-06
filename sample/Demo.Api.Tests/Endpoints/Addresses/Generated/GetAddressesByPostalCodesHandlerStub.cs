@@ -24,26 +24,41 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
                 new Address
                 {
                     StreetName = "Hallo1",
-                    StreetNumber = "Hallo11",
-                    PostalCode = "Hallo12",
-                    CityName = "Hallo13",
-                    MyCountry = new Country(),
+                    StreetNumber = "Hallo1",
+                    PostalCode = "Hallo11",
+                    CityName = "Hallo12",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
                 },
                 new Address
                 {
                     StreetName = "Hallo2",
-                    StreetNumber = "Hallo21",
-                    PostalCode = "Hallo22",
-                    CityName = "Hallo23",
-                    MyCountry = new Country(),
+                    StreetNumber = "Hallo2",
+                    PostalCode = "Hallo21",
+                    CityName = "Hallo22",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
                 },
                 new Address
                 {
                     StreetName = "Hallo3",
-                    StreetNumber = "Hallo31",
-                    PostalCode = "Hallo32",
-                    CityName = "Hallo33",
-                    MyCountry = new Country(),
+                    StreetNumber = "Hallo3",
+                    PostalCode = "Hallo31",
+                    CityName = "Hallo32",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
                 },
             };
 

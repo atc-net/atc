@@ -37,7 +37,19 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
                     MyByte = "Hallo11",
                     MyStringList = null,
                     MyLong = 42,
-                    DeliveryAddress = new Address(),
+                    DeliveryAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
                 new Order
                 {
@@ -54,7 +66,19 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
                     MyByte = "Hallo21",
                     MyStringList = null,
                     MyLong = 42,
-                    DeliveryAddress = new Address(),
+                    DeliveryAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
                 new Order
                 {
@@ -71,7 +95,19 @@ namespace Demo.Api.Tests.Endpoints.Orders.Generated
                     MyByte = "Hallo31",
                     MyStringList = null,
                     MyLong = 42,
-                    DeliveryAddress = new Address(),
+                    DeliveryAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
             };
 

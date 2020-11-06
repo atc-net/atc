@@ -37,7 +37,19 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                 MyDateTime = DateTimeOffset.Parse("2020-10-12T21:22:23"),
                 Email = "john.doe@example.com",
                 Gender = GenderType.Female,
-                MyNullableAddress = new Address(),
+                MyNullableAddress = new Address
+                {
+                    StreetName = "Hallo",
+                    StreetNumber = "Hallo",
+                    PostalCode = "Hallo1",
+                    CityName = "Hallo2",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
+                },
             };
 
             // Act
@@ -61,7 +73,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
             sb.AppendLine("  \"Gender\": \"Female\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -86,7 +98,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
             sb.AppendLine("  \"Gender\": \"Female\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -111,7 +123,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
             sb.AppendLine("  \"Gender\": \"Female\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -136,7 +148,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"x2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
             sb.AppendLine("  \"Gender\": \"Female\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -161,7 +173,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe_example.com\",");
             sb.AppendLine("  \"Gender\": \"Female\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -186,7 +198,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
             sb.AppendLine("  \"Gender\": \"@\",");
-            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
+            sb.AppendLine("  \"MyNullableAddress\": \"NEW-INSTANCE\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 

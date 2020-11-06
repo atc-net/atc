@@ -49,21 +49,26 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         public static string CreateValueBool(bool useForBadRequest) => useForBadRequest ? "@" : "true";
 
-        public static string CreateValueString(string name, string? format, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string? customValue = null)
+        public static string CreateValueString(string name, OpenApiSchema schema, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string? customValue = null)
         {
             if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));
             }
 
-            if (!string.IsNullOrEmpty(format))
+            if (schema == null)
             {
-                if (format.Equals(OpenApiFormatTypeConstants.Email, StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (!string.IsNullOrEmpty(schema.Format))
+            {
+                if (schema.Format.Equals(OpenApiFormatTypeConstants.Email, StringComparison.OrdinalIgnoreCase))
                 {
                     return CreateValueEmail(useForBadRequest, itemNumber);
                 }
 
-                if (format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase))
+                if (schema.Format.Equals(OpenApiFormatTypeConstants.Uri, StringComparison.OrdinalIgnoreCase))
                 {
                     return CreateValueUri(useForBadRequest);
                 }
@@ -79,7 +84,25 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return CreateValueStringId(useForBadRequest, itemNumber, customValue);
             }
 
-            return CreateValueStringDefault(useForBadRequest, itemNumber, customValue);
+            var val = CreateValueStringDefault(useForBadRequest, itemNumber, customValue);
+            if (schema.IsRuleValidationString())
+            {
+                int min = schema.MinLength ?? 0;
+                if (val.Length < min)
+                {
+                    val = val.PadRight(min, 'X');
+                }
+                else
+                {
+                    int max = schema.MaxLength ?? 20;
+                    if (val.Length > max)
+                    {
+                        val = val.Substring(0, max);
+                    }
+                }
+            }
+
+            return val;
         }
 
         private static string CreateValueStringDefault(bool useForBadRequest, int itemNumber, string? customValue)

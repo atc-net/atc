@@ -27,8 +27,32 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                 LastName = "Hallo1",
                 Email = "john.doe@example.com",
                 Color = ColorType.Red,
-                HomeAddress = new Address(),
-                CompanyAddress = new Address(),
+                HomeAddress = new Address
+                {
+                    StreetName = "Hallo",
+                    StreetNumber = "Hallo",
+                    PostalCode = "Hallo1",
+                    CityName = "Hallo2",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
+                },
+                CompanyAddress = new Address
+                {
+                    StreetName = "Hallo",
+                    StreetNumber = "Hallo",
+                    PostalCode = "Hallo1",
+                    CityName = "Hallo2",
+                    MyCountry = new Country
+                    {
+                        Name = "Hallo",
+                        Alpha2Code = "Ha",
+                        Alpha3Code = "Hal",
+                    },
+                },
             };
 
             return Task.FromResult(GetUserByEmailResult.Ok(data));

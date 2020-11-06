@@ -539,7 +539,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 "long" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
                 "int" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
-                "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema.Format, parameter.In, useForBadRequest, 0, customValue),
+                "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema, parameter.In, useForBadRequest, 0, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
                 "Guid" => ValueTypeTestPropertiesHelper.CreateValueGuid(useForBadRequest),
                 "Uri" => ValueTypeTestPropertiesHelper.CreateValueUri(useForBadRequest),

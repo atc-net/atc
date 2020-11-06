@@ -767,7 +767,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                         SyntaxFactory.IdentifierName("ModifyConfiguration"))
                                                     .WithArgumentList(
                                                         SyntaxFactory.ArgumentList(
-                                                            SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
+                                                            SyntaxFactory.SingletonSeparatedList(
                                                                 SyntaxFactory.Argument(
                                                                     SyntaxFactory.IdentifierName("config")))))),
                                                 SyntaxFactory.LocalDeclarationStatement(
@@ -880,7 +880,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         SyntaxFactory.Token(SyntaxKind.PartialKeyword)))
                 .WithParameterList(
                     SyntaxFactory.ParameterList(
-                        SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
+                        SyntaxFactory.SingletonSeparatedList(
                             SyntaxFactory.Parameter(
                                 SyntaxFactory.Identifier("config"))
                             .WithType(
@@ -932,7 +932,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         .WithVariables(
                             SyntaxFactory.SingletonSeparatedList(
                                 SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier("JsonSerializerOptions")))))
-                .WithModifiers(SyntaxTokenListFactory.ProtectedReadOnlyKeyword());
+                .WithModifiers(SyntaxTokenListFactory.ProtectedStaticKeyword());
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestConstructor()
@@ -990,10 +990,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                     SyntaxFactory.ExpressionStatement(
                         SyntaxFactory.AssignmentExpression(
                             SyntaxKind.SimpleAssignmentExpression,
-                            SyntaxFactory.MemberAccessExpression(
-                                SyntaxKind.SimpleMemberAccessExpression,
-                                SyntaxFactory.ThisExpression(),
-                                SyntaxFactory.IdentifierName("JsonSerializerOptions")),
+                            SyntaxFactory.IdentifierName("JsonSerializerOptions"),
                             SyntaxFactory.ObjectCreationExpression(
                                 SyntaxFactory.IdentifierName("JsonSerializerOptions"))
                                 .WithInitializer(
@@ -1048,9 +1045,13 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                 SyntaxFactory.IdentifierName("Serialize")))
                                         .WithArgumentList(
                                             SyntaxFactory.ArgumentList(
-                                                SyntaxFactory.SingletonSeparatedList(
-                                                    SyntaxFactory.Argument(
-                                                        SyntaxFactory.IdentifierName("data")))))),
+                                                SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                    new SyntaxNodeOrToken[]
+                                                    {
+                                                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName("data")),
+                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName("JsonSerializerOptions"))
+                                                    })))),
                                     SyntaxTokenFactory.Comma(),
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.MemberAccessExpression(

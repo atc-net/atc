@@ -150,7 +150,7 @@ string CreateValueGuid(bool useForBadRequest, int itemNumber = 0)
 #### CreateValueString
 
 ```csharp
-string CreateValueString(string name, string format, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string customValue = null)
+string CreateValueString(string name, OpenApiSchema schema, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string customValue = null)
 ```
 #### CreateValueUri
 

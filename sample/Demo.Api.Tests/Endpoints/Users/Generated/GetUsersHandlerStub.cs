@@ -29,8 +29,32 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                     LastName = "Hallo11",
                     Email = "john1.doe@example.com",
                     Color = ColorType.Red,
-                    HomeAddress = new Address(),
-                    CompanyAddress = new Address(),
+                    HomeAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
+                    CompanyAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
                 new User
                 {
@@ -40,8 +64,32 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                     LastName = "Hallo21",
                     Email = "john2.doe@example.com",
                     Color = ColorType.Red,
-                    HomeAddress = new Address(),
-                    CompanyAddress = new Address(),
+                    HomeAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
+                    CompanyAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
                 new User
                 {
@@ -51,8 +99,32 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                     LastName = "Hallo31",
                     Email = "john3.doe@example.com",
                     Color = ColorType.Red,
-                    HomeAddress = new Address(),
-                    CompanyAddress = new Address(),
+                    HomeAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
+                    CompanyAddress = new Address
+                    {
+                        StreetName = "Hallo",
+                        StreetNumber = "Hallo",
+                        PostalCode = "Hallo1",
+                        CityName = "Hallo2",
+                        MyCountry = new Country
+                        {
+                            Name = "Hallo",
+                            Alpha2Code = "Ha",
+                            Alpha3Code = "Hal",
+                        },
+                    },
                 },
             };
 
