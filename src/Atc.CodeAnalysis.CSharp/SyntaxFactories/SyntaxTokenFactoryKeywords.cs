@@ -20,6 +20,11 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             return TokenWithTrailing(SyntaxKind.PrivateKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
         }
 
+        public static SyntaxToken PartialKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.PartialKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
+
         public static SyntaxToken OverrideKeyword(bool withTrailingSpace = true)
         {
             return TokenWithTrailing(SyntaxKind.OverrideKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
