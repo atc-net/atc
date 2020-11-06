@@ -44,11 +44,16 @@ namespace Demo.Api.Generated.Contracts.Users
         public GenderType Gender { get; set; }
 
         /// <summary>
+        /// Address.
+        /// </summary>
+        public Address? MyNullableAddress { get; set; }
+
+        /// <summary>
         /// Converts to string.
         /// </summary>
         public override string ToString()
         {
-            return $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(MyNullableDateTime)}: {MyNullableDateTime}, {nameof(MyDateTime)}: {MyDateTime}, {nameof(Email)}: {Email}, {nameof(Gender)}: ({Gender})";
+            return $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(MyNullableDateTime)}: {MyNullableDateTime}, {nameof(MyDateTime)}: {MyDateTime}, {nameof(Email)}: {Email}, {nameof(Gender)}: ({Gender}), {nameof(MyNullableAddress)}: ({MyNullableAddress})";
         }
     }
 }

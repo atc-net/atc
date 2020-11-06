@@ -37,6 +37,7 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
                 MyDateTime = DateTimeOffset.Parse("2020-10-12T21:22:23"),
                 Email = "john.doe@example.com",
                 Gender = GenderType.Female,
+                MyNullableAddress = new Address(),
             };
 
             // Act
@@ -59,7 +60,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
-            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("  \"Gender\": \"Female\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -83,7 +85,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
-            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("  \"Gender\": \"Female\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -107,7 +110,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"x2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
-            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("  \"Gender\": \"Female\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -131,7 +135,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"x2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
-            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("  \"Gender\": \"Female\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -155,7 +160,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe_example.com\",");
-            sb.AppendLine("  \"Gender\": \"Female\"");
+            sb.AppendLine("  \"Gender\": \"Female\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
@@ -179,7 +185,8 @@ namespace Demo.Api.Tests.Endpoints.Users.Generated
             sb.AppendLine("  \"MyNullableDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"MyDateTime\": \"2020-10-12T21:22:23\",");
             sb.AppendLine("  \"Email\": \"john.doe@example.com\",");
-            sb.AppendLine("  \"Gender\": \"@\"");
+            sb.AppendLine("  \"Gender\": \"@\",");
+            sb.AppendLine("  \"MyNullableAddress\": \"new Address()\"");
             sb.AppendLine("}");
             var data = sb.ToString();
 
