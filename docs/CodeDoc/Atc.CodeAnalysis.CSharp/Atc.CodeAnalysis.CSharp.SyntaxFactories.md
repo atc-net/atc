@@ -246,6 +246,11 @@ ClassDeclarationSyntax Create(string classTypeName)
 ```csharp
 ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
 ```
+#### CreateAsPublicPartial
+
+```csharp
+ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
+```
 #### CreateAsPublicStatic
 
 ```csharp
@@ -598,6 +603,11 @@ SyntaxToken OperatorKeyword(bool withTrailingSpace = True)
 
 ```csharp
 SyntaxToken OverrideKeyword(bool withTrailingSpace = True)
+```
+#### PartialKeyword
+
+```csharp
+SyntaxToken PartialKeyword(bool withTrailingSpace = True)
 ```
 #### PrivateKeyword
 

@@ -17,12 +17,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Demo.Api.Tests
 {
     [GeneratedCode("ApiGenerator", "1.0.181.0")]
-    public class WebApiStartupFactory : WebApplicationFactory<Startup>
+    public partial class WebApiStartupFactory : WebApplicationFactory<Startup>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureAppConfiguration(config =>
             {
+                ModifyConfiguration(config);
                 var integrationConfig = new ConfigurationBuilder().Build();
                 config.AddConfiguration(integrationConfig);
             }
@@ -36,5 +37,7 @@ namespace Demo.Api.Tests
 
             );
         }
+
+        partial void ModifyConfiguration(IConfigurationBuilder config);
     }
 }
