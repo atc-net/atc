@@ -47,7 +47,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             }
 
             var contentSchema = requestBody?.Content?.GetSchema();
-            if (contentSchema != null && contentSchema.HasAnyProperties())
+            if (contentSchema != null)
             {
                 if (list.All(x => x != "System") &&
                     contentSchema.HasFormatTypeFromSystemNamespace())
@@ -58,7 +58,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 if (list.All(x => x != "System.Collections.Generic") &&
                     (contentSchema.Type == OpenApiDataTypeConstants.Array || contentSchema.HasDataTypeFromSystemCollectionGenericNamespace()))
                 {
-                    list.Add("System");
+                    list.Add("System.Collections.Generic");
                 }
 
                 if (list.All(x => x != "System.ComponentModel.DataAnnotations") &&

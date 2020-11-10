@@ -90,24 +90,40 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             {
                 foreach (var item in ApiOperation.RequestBody.Content.Values)
                 {
-                    if (item.Schema.Reference == null)
+                    if (item.Schema.Reference == null && item.Schema.Type != OpenApiDataTypeConstants.Array)
                     {
                         continue;
                     }
 
-                    var requestBodyType = item.Schema.Reference.Id.EnsureFirstCharacterToUpper();
+                    var requestBodyType = item.Schema.Reference != null
+                        ? item.Schema.Reference.Id.EnsureFirstCharacterToUpper()
+                        : item.Schema.Items.Reference.Id.EnsureFirstCharacterToUpper();
 
-                    var propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
-                            null,
-                            false,
-                            true,
+                    PropertyDeclarationSyntax propertyDeclaration;
+                    if (item.Schema.Type == OpenApiDataTypeConstants.Array)
+                    {
+                        propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateListAuto(
                             requestBodyType,
-                            NameConstants.Request,
-                            ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                            null)
-                        .AddFromBodyAttribute()
-                        .AddValidationAttribute(new RequiredAttribute())
-                        .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
+                            NameConstants.Request)
+                            .AddFromBodyAttribute()
+                            .AddValidationAttribute(new RequiredAttribute())
+                            .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
+                    }
+                    else
+                    {
+                        propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
+                                null,
+                                false,
+                                true,
+                                requestBodyType,
+                                NameConstants.Request,
+                                ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                                null)
+                            .AddFromBodyAttribute()
+                            .AddValidationAttribute(new RequiredAttribute())
+                            .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
+                    }
+
                     classDeclaration = classDeclaration.AddMembers(propertyDeclaration);
                 }
             }
