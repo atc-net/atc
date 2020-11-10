@@ -350,7 +350,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         private static bool IsModelOfTypeArray(OpenApiSchema schema, IDictionary<string, OpenApiSchema> modelSchemas)
         {
             var modelType = schema.GetModelType();
-            if (modelType == null && schema.Reference.Id != null)
+            if (modelType == null && schema.Reference?.Id != null)
             {
                 var (key, value) = modelSchemas.FirstOrDefault(x => x.Key.Equals(schema.Reference.Id, StringComparison.OrdinalIgnoreCase));
                 if (key != null)
