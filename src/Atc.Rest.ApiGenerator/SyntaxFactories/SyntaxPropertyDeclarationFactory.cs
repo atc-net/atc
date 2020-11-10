@@ -40,6 +40,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                             SyntaxFactory.EqualsValueClause(SyntaxFactory.LiteralExpression(
                                 SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(apiString!.Value))))
                         .WithSemicolonToken(SyntaxTokenFactory.Semicolon()),
+                    OpenApiBoolean apiBoolean when apiBoolean.Value => propertyDeclaration.WithInitializer(
+                        SyntaxFactory.EqualsValueClause(SyntaxFactory.LiteralExpression(SyntaxKind.TrueLiteralExpression)))
+                            .WithSemicolonToken(SyntaxTokenFactory.Semicolon()),
+                    OpenApiBoolean apiBoolean when !apiBoolean.Value => propertyDeclaration.WithInitializer(
+                        SyntaxFactory.EqualsValueClause(SyntaxFactory.LiteralExpression(SyntaxKind.FalseLiteralExpression)))
+                            .WithSemicolonToken(SyntaxTokenFactory.Semicolon()),
                     _ => throw new NotImplementedException("Property initializer: " + initializer.GetType())
                 };
             }
