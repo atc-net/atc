@@ -42,12 +42,27 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> GetModelSchemaItemData =>
+        public static IEnumerable<object[]> GetModelSchemaFromResponseItemData =>
             new List<object[]>
             {
                 new object[]
                 {
                     TestDataOpenApiFactory.CreateSchemaPet(),
+                    TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
+                },
+                new object[]
+                {
+                    null,
+                    TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
+                },
+            };
+
+        public static IEnumerable<object[]> GetModelSchemaFromRequestItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    null,
                     TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
                 },
                 new object[]

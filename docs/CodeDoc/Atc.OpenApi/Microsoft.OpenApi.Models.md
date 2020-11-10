@@ -182,10 +182,15 @@ public static class OpenApiOperationExtensions
 ### Static Methods
 
 
-#### GetModelSchema
+#### GetModelSchemaFromRequest
 
 ```csharp
-OpenApiSchema GetModelSchema(this OpenApiOperation openApiOperation)
+OpenApiSchema GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
+```
+#### GetModelSchemaFromResponse
+
+```csharp
+OpenApiSchema GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
 ```
 #### GetOperationName
 

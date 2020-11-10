@@ -45,7 +45,8 @@
      - GetSchema(this IDictionary&lt;string, OpenApiMediaType&gt; content, string contentType = application/json)
 - [OpenApiOperationExtensions](Microsoft.OpenApi.Models.md#openapioperationextensions)
   -  Static Methods
-     - GetModelSchema(this OpenApiOperation openApiOperation)
+     - GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
+     - GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
      - GetOperationName(this OpenApiOperation openApiOperation)
      - HasDataTypeFromSystemCollectionGenericNamespace(this List&lt;OpenApiOperation&gt; apiOperations)
      - HasParametersOrRequestBody(this OpenApiOperation openApiOperation)

@@ -33,7 +33,7 @@ namespace Microsoft.OpenApi.Models
                 .EnsureFirstCharacterToUpper();
         }
 
-        public static OpenApiSchema? GetModelSchema(this OpenApiOperation openApiOperation)
+        public static OpenApiSchema? GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
         {
             if (openApiOperation == null)
             {
@@ -52,6 +52,16 @@ namespace Microsoft.OpenApi.Models
                         return modelSchema;
                     }
                 }
+            }
+
+            return null;
+        }
+
+        public static OpenApiSchema? GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
+        {
+            if (openApiOperation == null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
             }
 
             return openApiOperation.RequestBody?.Content?.GetSchema();

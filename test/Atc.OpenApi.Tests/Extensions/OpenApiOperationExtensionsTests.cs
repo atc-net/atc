@@ -21,16 +21,45 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-        public void GetModelSchema(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromResponseItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void GetModelSchemaFromResponse(OpenApiSchema expected, OpenApiOperation openApiOperation)
         {
             // Act
-            var actual = openApiOperation.GetModelSchema();
+            var actual = openApiOperation.GetModelSchemaFromResponse();
 
             // Assert
-            expected.Should()
-                .NotBeNull()
-                .And.BeEquivalentTo(actual);
+            if (expected == null)
+            {
+                actual.Should()
+                    .BeNull();
+            }
+            else
+            {
+                actual.Should()
+                    .NotBeNull()
+                    .And.BeEquivalentTo(expected);
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromRequestItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void GetModelSchemaFromRequest(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        {
+            // Act
+            var actual = openApiOperation.GetModelSchemaFromRequest();
+
+            // Assert
+            if (expected == null)
+            {
+                actual.Should()
+                    .BeNull();
+            }
+            else
+            {
+                actual.Should()
+                    .NotBeNull()
+                    .And.BeEquivalentTo(expected);
+            }
         }
 
         [Theory]

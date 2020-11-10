@@ -200,19 +200,20 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
                 foreach (var (_, value) in pathValue.Operations)
                 {
-                    var modelSchema = value.GetModelSchema();
-                    if (modelSchema != null)
+                    // Validate Response Schema
+                    var responseModelSchema = value.GetModelSchemaFromResponse();
+                    if (responseModelSchema != null)
                     {
                         if (value.OperationId.EndsWith("s", StringComparison.Ordinal))
                         {
-                            if (!IsModelOfTypeArray(modelSchema, modelSchemas))
+                            if (!IsModelOfTypeArray(responseModelSchema, modelSchemas))
                             {
                                 logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation08, $"OperationId '{value.GetOperationName()}' is not singular - Response model is defined as a single item."));
                             }
                         }
                         else
                         {
-                            if (IsModelOfTypeArray(modelSchema, modelSchemas))
+                            if (IsModelOfTypeArray(responseModelSchema, modelSchemas))
                             {
                                 logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation09, $"OperationId '{value.GetOperationName()}' is not pluralized - Response model is defined as an array."));
                             }
