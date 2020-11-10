@@ -89,21 +89,10 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             }
             else
             {
-                if (IsSharedContract)
-                {
-                    IsSharedContract = true;
-                    @namespace = SyntaxProjectFactory.CreateNamespace(
-                        ApiProjectOptions,
-                        NameConstants.Contracts);
-                }
-                else
-                {
-                    // Create a namespace
-                    @namespace = SyntaxProjectFactory.CreateNamespace(
-                        ApiProjectOptions,
-                        NameConstants.Contracts,
-                        FocusOnSegmentName);
-                }
+                // Create a namespace
+                @namespace = IsSharedContract
+                    ? SyntaxProjectFactory.CreateNamespace(ApiProjectOptions, NameConstants.Contracts)
+                    : SyntaxProjectFactory.CreateNamespace(ApiProjectOptions, NameConstants.Contracts, FocusOnSegmentName);
 
                 // Create class
                 var classDeclaration = SyntaxClassDeclarationFactory.Create(ApiSchemaKey.EnsureFirstCharacterToUpper())

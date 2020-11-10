@@ -10,13 +10,6 @@ namespace Atc.Rest.ApiGenerator.Extensions
         {
             var maps = apiOperationSchemaMaps.Where(x => x.SchemaKey == schemaKey).ToList();
 
-            // Across LocatedArea
-            if (maps.Select(x => x.LocatedArea).Distinct().Count() > 1)
-            {
-                return true;
-            }
-
-            // Across SegmentNames
             var segmentNames = new List<string>();
             foreach (var s in maps
                 .Select(map => map.SegmentName)
