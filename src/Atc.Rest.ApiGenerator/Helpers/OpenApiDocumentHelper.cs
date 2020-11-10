@@ -144,6 +144,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             return names
+                .Select(x => x.PascalCase(true))
                 .OrderBy(x => x)
                 .ToList()!;
         }

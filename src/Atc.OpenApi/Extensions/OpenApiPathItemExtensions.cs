@@ -15,8 +15,10 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(segmentName));
             }
 
-            return urlPath.Key.StartsWith(segmentName, StringComparison.OrdinalIgnoreCase) ||
-                   urlPath.Key.StartsWith($"/{segmentName}", StringComparison.OrdinalIgnoreCase);
+            var urlPathKey = urlPath.Key.Replace("-", string.Empty, StringComparison.Ordinal);
+
+            return urlPathKey.StartsWith(segmentName, StringComparison.OrdinalIgnoreCase) ||
+                   urlPathKey.StartsWith($"/{segmentName}", StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool HasParameters(this OpenApiPathItem openApiOperation)

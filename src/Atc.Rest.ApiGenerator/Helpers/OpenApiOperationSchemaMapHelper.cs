@@ -22,7 +22,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return path
                 .Split('/', StringSplitOptions.RemoveEmptyEntries)
                 .First()
-                .EnsureFirstCharacterToUpper();
+                .PascalCase(true);
         }
 
         public static List<ApiOperationSchemaMap> CollectMappings(OpenApiDocument apiDocument)
