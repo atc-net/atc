@@ -69,7 +69,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             classDeclaration =
                 classDeclaration.AddAttributeLists(
                     SyntaxAttributeListFactory.Create(nameof(ApiControllerAttribute)),
-                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{FocusOnSegmentName}"))
+                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{GetRouteSegment()}"))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(nameof(ControllerBase))))
                 .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForEndpoints(FocusOnSegmentName));
@@ -125,6 +125,17 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             return true;
         }
 
+        private string GetRouteSegment()
+        {
+            var (key, _) = ApiProjectOptions.Document.Paths
+                .FirstOrDefault(x => x.IsPathStartingSegmentName(FocusOnSegmentName));
+
+            return key?
+                .Split('/', StringSplitOptions.RemoveEmptyEntries)?
+                .FirstOrDefault()
+                   ?? throw new NotSupportedException("SegmentName was not found in any route.");
+        }
+
         public string ToCodeAsString()
         {
             if (Code == null)
@@ -167,13 +178,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 var generatorParameters = new SyntaxGeneratorContractParameters(ApiProjectOptions, FocusOnSegmentName);
                 var generatedParameters = generatorParameters.GenerateSyntaxTrees();
 
-                string segmentName = FocusOnSegmentName.EnsureFirstCharacterToUpperAndPlural();
                 foreach (var apiOperation in value.Operations)
                 {
                     var httpAttributeRoutePart = GetHttpAttributeRoutePart(key);
                     var routePart = string.IsNullOrEmpty(httpAttributeRoutePart)
-                        ? $"/{FocusOnSegmentName}"
-                        : $"/{FocusOnSegmentName}/{httpAttributeRoutePart}";
+                        ? $"/{GetRouteSegment()}"
+                        : $"/{GetRouteSegment()}/{httpAttributeRoutePart}";
                     var operationName = apiOperation.Value.GetOperationName();
 
                     string? contractParameterTypeName = null;
@@ -182,7 +192,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         contractParameterTypeName = operationName + NameConstants.ContractParameters;
                     }
 
-                    var responseTypeNames = GetResponseTypeNames(apiOperation.Value.Responses, segmentName, operationName);
+                    var responseTypeNames = GetResponseTypeNames(apiOperation.Value.Responses, FocusOnSegmentName, operationName);
                     if (contractParameterTypeName != null &&
                         responseTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.BadRequest) == null)
                     {
@@ -196,7 +206,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var responseTypeNamesAndItemSchema = GetResponseTypeNamesAndItemSchema(responseTypeNames);
 
                     var endpointMethodMetadata = new EndpointMethodMetadata(
-                        segmentName,
+                        FocusOnSegmentName,
                         $"/api/{ApiProjectOptions.ApiVersion}{routePart}",
                         apiOperation.Key,
                         operationName,

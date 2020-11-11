@@ -99,14 +99,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                             .Replace("<", string.Empty, StringComparison.Ordinal)
                             .Replace(">", string.Empty, StringComparison.Ordinal);
                         var schemaPair = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == singleReturnTypeName);
-                        GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, schemaPair.Value, httpStatusCode);
+                        GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, schemaPair.Value, httpStatusCode, SchemaMapLocatedAreaType.Response);
                         sb.AppendLine();
                         if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
                         {
                             if (endpointMethodMetadata.ContractParameter != null)
                             {
                                 var queryParameters = endpointMethodMetadata.ContractParameter.ApiOperation.Parameters.GetAllFromQuery();
-                                var sPageSize = "null";
+                                var sPageSize = "10";
                                 if (queryParameters.FirstOrDefault(x => x.Name.Equals("PageSize", StringComparison.OrdinalIgnoreCase)) != null)
                                 {
                                     sPageSize = "parameters.PageSize";
@@ -146,7 +146,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 }
                 else
                 {
-                    GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item3, httpStatusCode);
+                    GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, contractReturnTypeName.Item3, httpStatusCode, SchemaMapLocatedAreaType.Response);
                     sb.AppendLine();
                     sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(data));");
                 }

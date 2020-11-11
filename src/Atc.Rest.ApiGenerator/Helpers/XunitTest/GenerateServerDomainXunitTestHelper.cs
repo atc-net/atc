@@ -84,7 +84,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             var area = sgHandler.FocusOnSegmentName.EnsureFirstCharacterToUpper();
             var nsSrc = $"{domainProjectOptions.ProjectName}.{NameConstants.Handlers}.{area}";
-            var nsTest = $"{domainProjectOptions.ProjectName}.Tests.{NameConstants.Handlers}.{area}.Generated";
+            var nsTest = $"{domainProjectOptions.ProjectName}.Tests.{NameConstants.Handlers}.{area}";
 
             var sb = new StringBuilder();
             sb.AppendLine($"using {nsSrc};");

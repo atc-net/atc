@@ -295,6 +295,14 @@ paths:
         description: The postalCode to limit addresses on
         schema:
           type: string
+  /route-with-dash/:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: getRouteWithDash
 components:
   parameters:
     pagingPageSize:
