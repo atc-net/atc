@@ -486,7 +486,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         private static string RenderRelativeRefPath(string route, List<OpenApiParameter> allRouteParameters, List<OpenApiParameter> badRouteParameters, IDictionary<string, OpenApiSchema> componentsSchemas, bool useForBadRequest)
         {
             var sa = route.Split('/');
-            for (int i = 0; i < sa.Length; i++)
+            for (var i = 0; i < sa.Length; i++)
             {
                 if (!sa[i].Contains("{", StringComparison.Ordinal))
                 {
@@ -497,10 +497,10 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     .Replace("{", string.Empty, StringComparison.Ordinal)
                     .Replace("}", string.Empty, StringComparison.Ordinal);
 
-                var fromRoute = badRouteParameters.Find(x => x.Name == pn);
+                var fromRoute = badRouteParameters.Find(x => x.Name.Equals(pn, StringComparison.OrdinalIgnoreCase));
                 if (fromRoute == null)
                 {
-                    fromRoute = allRouteParameters.Find(x => x.Name == pn);
+                    fromRoute = allRouteParameters.Find(x => x.Name.Equals(pn, StringComparison.OrdinalIgnoreCase));
                     sa[i] = PropertyValueGenerator(fromRoute, componentsSchemas, false, null);
                 }
                 else
