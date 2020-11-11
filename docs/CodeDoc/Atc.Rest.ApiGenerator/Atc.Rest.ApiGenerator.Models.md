@@ -255,10 +255,20 @@ ContractReturnTypeNames
 ```csharp
 HttpOperation
 ```
+#### IsSharedResponseModel
+
+```csharp
+IsSharedResponseModel
+```
 #### MethodName
 
 ```csharp
 MethodName
+```
+#### ProjectName
+
+```csharp
+ProjectName
 ```
 #### Route
 

@@ -516,6 +516,17 @@
      - GetUniqueCombinations(this IReadOnlyList&lt;string&gt; list)
      - GetUniqueCombinationsAsCommaSeparated(this IReadOnlyList&lt;string&gt; list)
 
+## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
+
+- [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
+  -  Properties
+     - AllowFile
+     - AllowFtp
+     - AllowHttp
+     - AllowHttps
+  -  Methods
+     - IsValid(object value)
+
 ## [System.Data](System.Data.md)
 
 - [DataTableExtensions](System.Data.md#datatableextensions)

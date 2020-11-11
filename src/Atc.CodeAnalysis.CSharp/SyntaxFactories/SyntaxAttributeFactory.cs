@@ -93,7 +93,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 RegularExpressionAttribute attribute => CreateWithOneItemWithOneArgument(nameof(RegularExpressionAttribute), attribute.Pattern),
                 RequiredAttribute _ => Create(nameof(RequiredAttribute)),
                 StringLengthAttribute attribute => CreateWithOneItemWithOneArgument(nameof(StringLengthAttribute), attribute.MaximumLength),
-                UrlAttribute _ => Create(nameof(UrlAttribute)),
+                UriAttribute _ => Create(nameof(UriAttribute)),
                 _ => throw new NotImplementedException($"{nameof(ValidationAttribute)} {validationAttribute.GetType()} must be implemented.")
             };
 

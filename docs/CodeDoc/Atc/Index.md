@@ -108,6 +108,10 @@
 
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
 
+## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
+
+- [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
+
 ## [System.Data](System.Data.md)
 
 - [DataTableExtensions](System.Data.md#datatableextensions)

@@ -135,11 +135,6 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     {
                         sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(data));");
                     }
-                    //}
-                    //else
-                    //{
-                    //    sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());");
-                    //}
                 }
                 else
                 {

@@ -126,7 +126,7 @@ namespace Atc.CodeAnalysis.CSharp
                     OpenApiFormatTypeConstants.Int64 => propertyDeclaration,
 
                     OpenApiFormatTypeConstants.Email => propertyDeclaration.AddValidationAttributeEmail(schema),
-                    OpenApiFormatTypeConstants.Uri => propertyDeclaration.AddValidationAttribute(new UrlAttribute()),
+                    OpenApiFormatTypeConstants.Uri => propertyDeclaration.AddValidationAttribute(new UriAttribute()),
 
                     _ => throw new NotImplementedException($"Schema Format '{schema.Format}' must be implemented.")
                 };

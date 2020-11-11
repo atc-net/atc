@@ -515,6 +515,9 @@ components:
           type: string
           format: email
           example: email@email.dk
+        homepage:
+          type: string
+          format: uri
         color:
           $ref: '#/components/schemas/ColorType'
         homeAddress:
@@ -549,6 +552,9 @@ components:
           type: string
           format: email
           example: email@email.dk
+        homepage:
+          type: string
+          format: uri
         gender:
           $ref: '#/components/schemas/GenderType'
         myNullableAddress:
