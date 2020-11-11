@@ -49,6 +49,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 ? $"public Task<{endpointMethodMetadata.ContractResultTypeName}> ExecuteAsync(CancellationToken cancellationToken = default)"
                 : $"public Task<{endpointMethodMetadata.ContractResultTypeName}> ExecuteAsync({endpointMethodMetadata.ContractParameterTypeName} parameters, CancellationToken cancellationToken = default)");
             sb.AppendLine(8, "{");
+
             if (endpointMethodMetadata.ContractReturnTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.OK) != null)
             {
                 AppendContentForExecuteAsync(sb, endpointMethodMetadata, HttpStatusCode.OK);
@@ -78,6 +79,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
             var returnTypeName = contractReturnTypeName.Item2;
+
             if (returnTypeName == "string")
             {
                 sb.AppendLine(
@@ -88,60 +90,50 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
             else
             {
-                if (contractReturnTypeName.Item3 == null)
+                if (contractReturnTypeName.Item3 == null ||
+                    returnTypeName.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
+                    returnTypeName.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal))
                 {
-                    if (returnTypeName.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
-                        returnTypeName.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal))
+                    var singleReturnTypeName = OpenApiDocumentSchemaModelNameHelper.GetRawModelName(returnTypeName);
+                    var schemaPair = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == singleReturnTypeName);
+                    GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, schemaPair.Value, httpStatusCode, SchemaMapLocatedAreaType.Response);
+                    sb.AppendLine();
+                    if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
                     {
-                        var singleReturnTypeName = returnTypeName
-                            .Replace(Microsoft.OpenApi.Models.NameConstants.Pagination, string.Empty, StringComparison.Ordinal)
-                            .Replace(Microsoft.OpenApi.Models.NameConstants.List, string.Empty, StringComparison.Ordinal)
-                            .Replace("<", string.Empty, StringComparison.Ordinal)
-                            .Replace(">", string.Empty, StringComparison.Ordinal);
-                        var schemaPair = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == singleReturnTypeName);
-                        GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, schemaPair.Value, httpStatusCode, SchemaMapLocatedAreaType.Response);
-                        sb.AppendLine();
-                        if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
+                        if (endpointMethodMetadata.ContractParameter != null)
                         {
-                            if (endpointMethodMetadata.ContractParameter != null)
+                            var queryParameters = endpointMethodMetadata.ContractParameter.ApiOperation.Parameters.GetAllFromQuery();
+                            var sPageSize = "10";
+                            if (queryParameters.FirstOrDefault(x => x.Name.Equals("PageSize", StringComparison.OrdinalIgnoreCase)) != null)
                             {
-                                var queryParameters = endpointMethodMetadata.ContractParameter.ApiOperation.Parameters.GetAllFromQuery();
-                                var sPageSize = "10";
-                                if (queryParameters.FirstOrDefault(x => x.Name.Equals("PageSize", StringComparison.OrdinalIgnoreCase)) != null)
-                                {
-                                    sPageSize = "parameters.PageSize";
-                                }
-
-                                var sQueryString = "null";
-                                if (queryParameters.FirstOrDefault(x => x.Name.Equals("QueryString", StringComparison.OrdinalIgnoreCase)) != null)
-                                {
-                                    sQueryString = "\"parameters.QueryString\"";
-                                }
-
-                                var sContinuationToken = "null";
-                                if (queryParameters.FirstOrDefault(x => x.Name.Equals("ContinuationToken", StringComparison.OrdinalIgnoreCase)) != null)
-                                {
-                                    sContinuationToken = "\"parameters.ContinuationToken\"";
-                                }
-
-                                sb.AppendLine(12, $"var paginationData = new {contractReturnTypeName.Item2}(data, {sPageSize}, {sQueryString}, {sContinuationToken});");
-                            }
-                            else
-                            {
-                                sb.AppendLine(12, $"var paginationData = new {contractReturnTypeName.Item2}(data, 10, null, null);");
+                                sPageSize = "parameters.PageSize";
                             }
 
-                            sb.AppendLine();
-                            sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(paginationData));");
+                            var sQueryString = "null";
+                            if (queryParameters.FirstOrDefault(x => x.Name.Equals("QueryString", StringComparison.OrdinalIgnoreCase)) != null)
+                            {
+                                sQueryString = "parameters.QueryString";
+                            }
+
+                            var sContinuationToken = "null";
+                            if (queryParameters.FirstOrDefault(x => x.Name.Equals("ContinuationToken", StringComparison.OrdinalIgnoreCase)) != null)
+                            {
+                                sContinuationToken = "parameters.ContinuationToken";
+                            }
+
+                            sb.AppendLine(12, $"var paginationData = new {contractReturnTypeName.Item2}(data, {sPageSize}, {sQueryString}, {sContinuationToken});");
                         }
                         else
                         {
-                            sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(data));");
+                            sb.AppendLine(12, $"var paginationData = new {contractReturnTypeName.Item2}(data, 10, null, null);");
                         }
+
+                        sb.AppendLine();
+                        sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(paginationData));");
                     }
                     else
                     {
-                        sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());");
+                        sb.AppendLine(12, $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(data));");
                     }
                 }
                 else

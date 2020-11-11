@@ -52,14 +52,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 sb.AppendLine(indentSpaces, "{");
                 for (var i = 0; i < 3; i++)
                 {
-                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata.ComponentsSchemas, schema, null, i + 1, null);
+                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata, schema, null, i + 1, null);
                 }
 
                 sb.AppendLine(indentSpaces, "};");
             }
             else
             {
-                AppendNewModel(indentSpaces, sb, endpointMethodMetadata.ComponentsSchemas, schema, null, 0, variableName);
+                AppendNewModel(indentSpaces, sb, endpointMethodMetadata, schema, null, 0, variableName);
             }
         }
 
@@ -96,20 +96,22 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
             else
             {
-                AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata.ComponentsSchemas, schema, badPropertySchema.Key, 0, variableName);
+                AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata, schema, badPropertySchema.Key, 0, variableName);
             }
         }
 
-        private static void AppendNewModel(int indentSpaces, StringBuilder sb, IDictionary<string, OpenApiSchema> componentsSchemas, OpenApiSchema schema, string? badRequestPropertyName, int itemNumber, string? variableName)
+        private static void AppendNewModel(
+            int indentSpaces,
+            StringBuilder sb,
+            EndpointMethodMetadata endpointMethodMetadata,
+            OpenApiSchema schema,
+            string? badRequestPropertyName,
+            int itemNumber,
+            string? variableName)
         {
             if (sb == null)
             {
                 throw new ArgumentNullException(nameof(sb));
-            }
-
-            if (componentsSchemas == null)
-            {
-                throw new ArgumentNullException(nameof(componentsSchemas));
             }
 
             if (schema == null)
@@ -117,14 +119,16 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            int countString = 0;
+            var countString = 0;
             if (itemNumber != -1 || variableName != null)
             {
+                var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(endpointMethodMetadata, schema.GetModelName());
+
                 sb.AppendLine(
                     indentSpaces,
                     variableName == null
-                        ? $"new {schema.GetModelName()}"
-                        : $"var {variableName} = new {schema.GetModelName()}");
+                        ? $"new {modelName}"
+                        : $"var {variableName} = new {modelName}");
             }
 
             sb.AppendLine(indentSpaces, "{");
@@ -133,14 +137,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
                                        schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
-                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, useForBadRequest, itemNumber, null);
+                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, endpointMethodMetadata.ComponentsSchemas, useForBadRequest, itemNumber, null);
                 if ("NEW-INSTANCE".Equals(propertyValueGenerated, StringComparison.Ordinal))
                 {
-                    var schemaForDataType = componentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
+                    var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
                     sb.AppendLine(
                         indentSpaces + 4,
                         $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = new {schemaForDataType.Value.GetModelName()}");
-                    AppendNewModel(indentSpaces + 4, sb, componentsSchemas, schemaForDataType.Value, badRequestPropertyName, -1, null);
+                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata, schemaForDataType.Value, badRequestPropertyName, -1, null);
                 }
                 else
                 {
@@ -178,7 +182,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                                 $"{schemaProperty.Key.EnsureFirstCharacterToUpper()} = new Uri(\"{propertyValueGenerated}\"),");
                             break;
                         default:
-                            string? enumDataType = GetDataTypeIfEnum(schemaProperty, componentsSchemas);
+                            var enumDataType = GetDataTypeIfEnum(schemaProperty, endpointMethodMetadata.ComponentsSchemas);
                             if (enumDataType == null)
                             {
                                 sb.AppendLine(
@@ -209,16 +213,16 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     : "};");
         }
 
-        private static void AppendNewModelAsJson(int indentSpaces, StringBuilder sb, IDictionary<string, OpenApiSchema> componentsSchemas, OpenApiSchema schema, string? badRequestPropertyName, int itemNumber, string? variableName)
+        private static void AppendNewModelAsJson(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, string? badRequestPropertyName, int itemNumber, string? variableName, int jsonIndentLevel = 0)
         {
             if (sb == null)
             {
                 throw new ArgumentNullException(nameof(sb));
             }
 
-            if (componentsSchemas == null)
+            if (endpointMethodMetadata == null)
             {
-                throw new ArgumentNullException(nameof(componentsSchemas));
+                throw new ArgumentNullException(nameof(endpointMethodMetadata));
             }
 
             if (schema == null)
@@ -226,9 +230,18 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            int countString = 0;
-            sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
-            sb.AppendLine(indentSpaces, "sb.AppendLine(\"{\");");
+            var countString = 0;
+            var jsonSpaces = string.Empty.PadLeft(jsonIndentLevel * 2);
+            if (jsonIndentLevel == 0)
+            {
+                sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
+                sb.AppendLine(indentSpaces, "sb.AppendLine(\"{\");");
+            }
+            else
+            {
+                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "{\");");
+            }
+
             foreach (var schemaProperty in schema.Properties)
             {
                 var trailingChar = ",";
@@ -240,36 +253,54 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
                                        schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
-                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, componentsSchemas, useForBadRequest, itemNumber, null);
-                switch (dataType)
+                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, endpointMethodMetadata.ComponentsSchemas, useForBadRequest, itemNumber, null);
+                if ("NEW-INSTANCE".Equals(propertyValueGenerated, StringComparison.Ordinal))
                 {
-                    case "string":
-                        if (!schemaProperty.Value.IsFormatTypeOfEmail())
-                        {
-                            if (countString > 0 && !propertyValueGenerated.Equals("null", StringComparison.Ordinal))
+                    var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
+                    sb.AppendLine(
+                        indentSpaces,
+                        $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{schemaForDataType.Value.GetModelName()}\\\"\");");
+                    AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata, schemaForDataType.Value, badRequestPropertyName, -1, null, jsonIndentLevel + 1);
+                }
+                else
+                {
+                    switch (dataType)
+                    {
+                        case "string":
+                            if (!schemaProperty.Value.IsFormatTypeOfEmail())
                             {
-                                propertyValueGenerated = $"{propertyValueGenerated}{countString}";
+                                if (countString > 0 && !propertyValueGenerated.Equals("null", StringComparison.Ordinal))
+                                {
+                                    propertyValueGenerated = $"{propertyValueGenerated}{countString}";
+                                }
+
+                                countString++;
                             }
 
-                            countString++;
-                        }
-
-                        sb.AppendLine(
-                            indentSpaces,
-                            propertyValueGenerated.Equals("null", StringComparison.Ordinal)
-                                ? $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}\");"
-                                : $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
-                        break;
-                    default:
-                        sb.AppendLine(
-                            indentSpaces,
-                            $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
-                        break;
+                            sb.AppendLine(
+                                indentSpaces,
+                                propertyValueGenerated.Equals("null", StringComparison.Ordinal)
+                                    ? $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}\");"
+                                    : $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                            break;
+                        default:
+                            sb.AppendLine(
+                                indentSpaces,
+                                $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                            break;
+                    }
                 }
             }
 
-            sb.AppendLine(indentSpaces, "sb.AppendLine(\"}\");");
-            sb.AppendLine(indentSpaces, $"var {variableName} = sb.ToString();");
+            if (jsonIndentLevel == 0)
+            {
+                sb.AppendLine(indentSpaces, "sb.AppendLine(\"}\");");
+                sb.AppendLine(indentSpaces, $"var {variableName} = sb.ToString();");
+            }
+            else
+            {
+                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "}\");");
+            }
         }
 
         private static string? GetDataTypeIfEnum(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentsSchemas)

@@ -79,7 +79,7 @@ public static class GenerateXunitTestHelper
 #### AppendNewModelOrListOfModel
 
 ```csharp
-void AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, string variableName = data)
+void AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, SchemaMapLocatedAreaType locatedArea, string variableName = data)
 ```
 #### AppendNewModelOrListOfModelForBadRequest
 

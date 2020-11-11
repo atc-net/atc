@@ -305,12 +305,15 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             sb.AppendLine(12, "// Assert");
             sb.AppendLine(12, "response.Should().NotBeNull();");
             sb.AppendLine(12, $"response.StatusCode.Should().Be(HttpStatusCode.{testExpectedHttpStatusCode});");
+
             if (testExpectedHttpStatusCode == HttpStatusCode.OK &&
                 !string.IsNullOrEmpty(contractReturnTypeName.Item2) &&
                 contractReturnTypeName.Item2 != "string")
             {
+                var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(endpointMethodMetadata, contractReturnTypeName.Item2);
+
                 sb.AppendLine();
-                sb.AppendLine(12, $"var responseData = await response.DeserializeAsync<{contractReturnTypeName.Item2}>(JsonSerializerOptions);");
+                sb.AppendLine(12, $"var responseData = await response.DeserializeAsync<{modelName}>(JsonSerializerOptions);");
                 sb.AppendLine(12, "responseData.Should().NotBeNull();");
             }
 

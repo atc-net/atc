@@ -295,9 +295,10 @@ paths:
         description: The postalCode to limit addresses on
         schema:
           type: string
-  /route-with-dash/:
+  /route-with-dash:
     get:
       summary: Your GET endpoint
+      description: Your GET endpoint
       tags: []
       responses:
         '200':
@@ -429,10 +430,11 @@ components:
           format: date-time
         myNumber:
           type: number
-        myInteger:
-          type: integer
           minimum: 1.1
           maximum: 20.2
+        myInteger:
+          type: integer
+          maximum: 50
           default: 15
         myBool:
           type: boolean
@@ -514,6 +516,9 @@ components:
           type: string
           format: email
           example: email@email.dk
+        homepage:
+          type: string
+          format: uri
         color:
           $ref: '#/components/schemas/ColorType'
         homeAddress:
@@ -548,6 +553,9 @@ components:
           type: string
           format: email
           example: email@email.dk
+        homepage:
+          type: string
+          format: uri
         gender:
           $ref: '#/components/schemas/GenderType'
         myNullableAddress:

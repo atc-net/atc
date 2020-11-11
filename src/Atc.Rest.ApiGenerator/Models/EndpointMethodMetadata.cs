@@ -10,10 +10,12 @@ namespace Atc.Rest.ApiGenerator.Models
     public class EndpointMethodMetadata
     {
         public EndpointMethodMetadata(
+            string projectName,
             string segmentName,
             string route,
             OperationType httpOperation,
             string methodName,
+            bool isSharedResponseModel,
             string contractInterfaceHandlerTypeName,
             string? contractParameterTypeName,
             string? contractResultTypeName,
@@ -21,10 +23,12 @@ namespace Atc.Rest.ApiGenerator.Models
             SyntaxGeneratorContractParameter? sgContractParameter,
             IDictionary<string, OpenApiSchema> componentsSchemas)
         {
+            ProjectName = projectName;
             SegmentName = segmentName;
             Route = route;
             HttpOperation = httpOperation;
             MethodName = methodName;
+            IsSharedResponseModel = isSharedResponseModel;
             ContractInterfaceHandlerTypeName = contractInterfaceHandlerTypeName;
             ContractParameterTypeName = contractParameterTypeName;
             ContractResultTypeName = contractResultTypeName;
@@ -33,6 +37,8 @@ namespace Atc.Rest.ApiGenerator.Models
             ComponentsSchemas = componentsSchemas;
         }
 
+        public string ProjectName { get; private set; }
+
         public string SegmentName { get; private set; }
 
         public string Route { get; private set; }
@@ -40,6 +46,8 @@ namespace Atc.Rest.ApiGenerator.Models
         public OperationType HttpOperation { get; private set; }
 
         public string MethodName { get; private set; }
+
+        public bool IsSharedResponseModel { get; private set; }
 
         public string ContractInterfaceHandlerTypeName { get; private set; }
 

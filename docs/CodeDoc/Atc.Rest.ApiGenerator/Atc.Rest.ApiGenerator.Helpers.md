@@ -148,6 +148,34 @@ List<LogKeyValueItem> Validate(Tuple<OpenApiDocument, OpenApiDiagnostic, FileInf
 <br />
 
 
+## OpenApiDocumentSchemaModelNameHelper
+
+```csharp
+public static class OpenApiDocumentSchemaModelNameHelper
+```
+
+### Static Methods
+
+
+#### EnsureModelNameWithNamespaceIfNeeded
+
+```csharp
+string EnsureModelNameWithNamespaceIfNeeded(EndpointMethodMetadata endpointMethodMetadata, string modelName)
+```
+#### EnsureModelNameWithNamespaceIfNeeded
+
+```csharp
+string EnsureModelNameWithNamespaceIfNeeded(string projectName, string segmentName, string modelName, bool isShared = False)
+```
+#### GetRawModelName
+
+```csharp
+string GetRawModelName(string modelName)
+```
+
+<br />
+
+
 ## OpenApiDocumentValidationHelper
 
 ```csharp

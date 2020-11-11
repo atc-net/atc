@@ -108,6 +108,11 @@
      - CombineAndGetApiDocument(string specificationPath)
      - GetBasePathSegmentNames(OpenApiDocument openApiDocument)
      - Validate(Tuple&lt;OpenApiDocument, OpenApiDiagnostic, FileInfo&gt; apiDocument, ApiOptionsValidation validationOptions)
+- [OpenApiDocumentSchemaModelNameHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentschemamodelnamehelper)
+  -  Static Methods
+     - EnsureModelNameWithNamespaceIfNeeded(EndpointMethodMetadata endpointMethodMetadata, string modelName)
+     - EnsureModelNameWithNamespaceIfNeeded(string projectName, string segmentName, string modelName, bool isShared = False)
+     - GetRawModelName(string modelName)
 - [OpenApiDocumentValidationHelper](Atc.Rest.ApiGenerator.Helpers.md#openapidocumentvalidationhelper)
   -  Static Methods
      - ValidateDocument(OpenApiDocument apiDocument, ApiOptionsValidation validationOptions)
@@ -148,7 +153,7 @@
      - GenerateGeneratedTests(DomainProjectOptions domainProjectOptions, SyntaxGeneratorHandler sgHandler)
 - [GenerateXunitTestHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#generatexunittesthelper)
   -  Static Methods
-     - AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, string variableName = data)
+     - AppendNewModelOrListOfModel(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, SchemaMapLocatedAreaType locatedArea, string variableName = data)
      - AppendNewModelOrListOfModelForBadRequest(int indentSpaces, StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, OpenApiSchema schema, HttpStatusCode httpStatusCode, KeyValuePair&lt;string, OpenApiSchema&gt; badPropertySchema, string variableName = data)
 - [ParameterCombinationHelper](Atc.Rest.ApiGenerator.Helpers.XunitTest.md#parametercombinationhelper)
   -  Static Methods
@@ -215,7 +220,9 @@
      - ContractResultTypeName
      - ContractReturnTypeNames
      - HttpOperation
+     - IsSharedResponseModel
      - MethodName
+     - ProjectName
      - Route
      - SegmentName
   -  Methods
