@@ -41,9 +41,10 @@ namespace Demo.Api.Generated.Contracts.Orders
 
         public DateTimeOffset MyDateTime { get; set; }
 
+        [Range(1.1, 20.2)]
         public double MyNumber { get; set; }
 
-        [Range(1.1, 20.2)]
+        [Range(-2147483648, 50)]
         public int MyInteger { get; set; } = 15;
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Demo.Api.Generated.Contracts.Orders
         /// </summary>
         public List<string> MyStringList { get; set; } = new List<string>();
 
-        [Range(10, 10)]
+        [Range(10, 9.223372036854776E+18)]
         public long MyLong { get; set; }
 
         /// <summary>

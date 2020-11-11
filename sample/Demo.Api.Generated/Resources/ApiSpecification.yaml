@@ -430,10 +430,11 @@ components:
           format: date-time
         myNumber:
           type: number
-        myInteger:
-          type: integer
           minimum: 1.1
           maximum: 20.2
+        myInteger:
+          type: integer
+          maximum: 50
           default: 15
         myBool:
           type: boolean

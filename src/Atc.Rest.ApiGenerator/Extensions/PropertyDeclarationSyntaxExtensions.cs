@@ -47,10 +47,10 @@ namespace Atc.CodeAnalysis.CSharp
             }
 
             return propertyDeclaration.AddAttributeLists(
-                SyntaxAttributeListFactory.CreateWithOneItemWithOneArgumentWithNameEquals(
-                    nameof(FromRouteAttribute),
-                    nameof(FromRouteAttribute.Name),
-                    nameProperty))
+                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgumentWithNameEquals(
+                        nameof(FromRouteAttribute),
+                        nameof(FromRouteAttribute.Name),
+                        nameProperty))
                 .AddValidationAttributeFromSchemaFormatIfRequired(schema);
         }
 
@@ -67,10 +67,10 @@ namespace Atc.CodeAnalysis.CSharp
             }
 
             return propertyDeclaration.AddAttributeLists(
-                SyntaxAttributeListFactory.CreateWithOneItemWithOneArgumentWithNameEquals(
-                    nameof(FromQueryAttribute),
-                    nameof(FromQueryAttribute.Name),
-                    nameProperty))
+                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgumentWithNameEquals(
+                        nameof(FromQueryAttribute),
+                        nameof(FromQueryAttribute.Name),
+                        nameProperty))
                 .AddValidationAttributeFromSchemaFormatIfRequired(schema);
         }
 
@@ -177,28 +177,118 @@ namespace Atc.CodeAnalysis.CSharp
                     propertyDeclaration = propertyDeclaration.AddValidationAttribute(new MaxLengthAttribute(schema.MaxLength.Value));
                 }
 
-                if (schema.Minimum != null || schema.Maximum != null)
+                if (schema.Minimum == null && schema.Maximum == null)
                 {
-                    var min = schema.Minimum ?? 0;
-                    var max = schema.Maximum ?? 0;
-                    if (max < min)
-                    {
-                        max = min;
-                    }
-
-                    var chars = new[] { ',', '.' };
-                    if (min.ToString(CultureInfo.CurrentCulture).IndexOfAny(chars) != -1 ||
-                        max.ToString(CultureInfo.CurrentCulture).IndexOfAny(chars) != -1)
-                    {
-                        propertyDeclaration = propertyDeclaration.AddValidationAttribute(new RangeAttribute((double)min, (double)max));
-                    }
-                    else
-                    {
-                        propertyDeclaration = propertyDeclaration.AddValidationAttribute(new RangeAttribute((int)min, (int)max));
-                    }
+                    return propertyDeclaration;
                 }
+
+                propertyDeclaration = schema.Type switch
+                {
+                    OpenApiDataTypeConstants.Number when !schema.HasFormatType() => RangeAttributeDouble(propertyDeclaration, schema),
+                    OpenApiDataTypeConstants.Integer when schema.HasFormatType() && schema.IsFormatTypeOfInt64() => RangeAttributeLong(propertyDeclaration, schema),
+                    _ => RangeAttributeInt(propertyDeclaration, schema)
+                };
             }
 
+            return propertyDeclaration;
+        }
+
+        private static PropertyDeclarationSyntax RangeAttributeInt(
+            PropertyDeclarationSyntax propertyDeclaration,
+            OpenApiSchema schema)
+        {
+            int min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (int) schema.Minimum.Value;
+            }
+            else
+            {
+                min = int.MinValue;
+            }
+
+            int max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (int) schema.Maximum.Value;
+            }
+            else
+            {
+                max = int.MaxValue;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            propertyDeclaration = propertyDeclaration.AddValidationAttribute(new RangeAttribute(min, max));
+            return propertyDeclaration;
+        }
+
+        private static PropertyDeclarationSyntax RangeAttributeLong(
+            PropertyDeclarationSyntax propertyDeclaration,
+            OpenApiSchema schema)
+        {
+            long min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (long)schema.Minimum.Value;
+            }
+            else
+            {
+                min = int.MinValue;
+            }
+
+            long max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (long)schema.Maximum.Value;
+            }
+            else
+            {
+                max = long.MaxValue;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            propertyDeclaration = propertyDeclaration.AddValidationAttribute(new RangeAttribute(min, max));
+            return propertyDeclaration;
+        }
+
+        private static PropertyDeclarationSyntax RangeAttributeDouble(
+            PropertyDeclarationSyntax propertyDeclaration,
+            OpenApiSchema schema)
+        {
+            double min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (double)schema.Minimum.Value;
+            }
+            else
+            {
+                min = double.NegativeInfinity;
+            }
+
+            double max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (double)schema.Maximum.Value;
+            }
+            else
+            {
+                max = double.PositiveInfinity;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            propertyDeclaration = propertyDeclaration.AddValidationAttribute(new RangeAttribute(min, max));
             return propertyDeclaration;
         }
     }
