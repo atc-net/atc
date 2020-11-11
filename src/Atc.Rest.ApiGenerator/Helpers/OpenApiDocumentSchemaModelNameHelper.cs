@@ -1,74 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Atc.Rest.ApiGenerator.Models;
 
 namespace Atc.Rest.ApiGenerator.Helpers
 {
     public static class OpenApiDocumentSchemaModelNameHelper
     {
-        public static string EnsureModelNameNamespaceIfNeeded(
-            string projectNamespace,
-            string modelName,
-            string contractArea,
-            bool isShared)
+        public static string GetRawModelName(string modelName)
         {
             if (string.IsNullOrEmpty(modelName))
             {
-                return modelName;
+                return string.Empty;
             }
 
-            var reservedModelNames = new List<string>
-            {
-                nameof(Task),
-                "Event",
-            };
+            var strippedModelName = modelName
+                .Replace(Microsoft.OpenApi.Models.NameConstants.Pagination, string.Empty, StringComparison.Ordinal)
+                .Replace(Microsoft.OpenApi.Models.NameConstants.List, string.Empty, StringComparison.Ordinal)
+                .Replace("<", string.Empty, StringComparison.Ordinal)
+                .Replace(">", string.Empty, StringComparison.Ordinal);
 
-            if (reservedModelNames.Contains(modelName))
+            if (strippedModelName.Contains('.', StringComparison.Ordinal))
             {
-                return isShared
-                    ? $"{NameConstants.Contracts}.{modelName}"
-                    : $"{NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}";
+                strippedModelName = strippedModelName.Split('.', StringSplitOptions.RemoveEmptyEntries).Last();
             }
 
-            if (isShared)
-            {
-                return $"{NameConstants.Contracts}.{modelName}";
-            }
-
-            if (string.IsNullOrEmpty(projectNamespace))
-            {
-                return modelName;
-            }
-
-            var sa = projectNamespace.Split('.', StringSplitOptions.RemoveEmptyEntries);
-            return sa.Any(s => s.Equals(modelName, StringComparison.Ordinal))
-                ? $"{NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}"
-                : modelName;
+            return strippedModelName;
         }
 
-        public static string EnsureModelNameNamespaceIfNeeded(EndpointMethodMetadata endpointMethodMetadata, string modelName)
+        public static string EnsureModelNameWithNamespaceIfNeeded(EndpointMethodMetadata endpointMethodMetadata, string modelName)
         {
             if (endpointMethodMetadata == null)
             {
                 throw new ArgumentNullException(nameof(endpointMethodMetadata));
             }
 
-            if (modelName == null)
+            return EnsureModelNameWithNamespaceIfNeeded(
+                endpointMethodMetadata.ProjectName,
+                endpointMethodMetadata.SegmentName,
+                modelName);
+        }
+
+        public static string EnsureModelNameWithNamespaceIfNeeded(string projectName, string segmentName, string modelName, bool isShared = false)
+        {
+            if (string.IsNullOrEmpty(modelName))
             {
-                throw new ArgumentNullException(nameof(modelName));
+                return string.Empty;
             }
 
-            var resultModelName = EnsureModelNameNamespaceIfNeeded(
-                endpointMethodMetadata.ProjectNamespace,
-                modelName,
-                endpointMethodMetadata.SegmentName,
-                endpointMethodMetadata.IsSharedResponseModel);
+            var isModelNameInNamespace = HasNamespaceRawModelName($"{projectName}.{segmentName}", modelName);
 
-            return resultModelName.Equals(modelName, StringComparison.Ordinal)
-                ? modelName
-                : $"{endpointMethodMetadata.ProjectNamespace}.{resultModelName}";
+            if (isModelNameInNamespace)
+            {
+                return $"{projectName}.{NameConstants.Contracts}.{segmentName}.{modelName}";
+            }
+
+            if (isShared)
+            {
+                // TO-DO: Maybe use it?..
+            }
+
+            return modelName;
+        }
+
+        private static bool HasNamespaceRawModelName(string namespacePart, string rawModelName)
+        {
+            return namespacePart
+                .Split('.', StringSplitOptions.RemoveEmptyEntries)
+                .Any(s => s.Equals(rawModelName, StringComparison.Ordinal));
         }
     }
 }

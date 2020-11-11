@@ -116,7 +116,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     ApiProjectOptions,
                     FocusOnSegmentName,
                     usedApiOperations,
-                    includeRestResults));
+                    includeRestResults,
+                    HasSharedResponseContract()));
 
             // Add namespace to compilationUnit
             compilationUnit = compilationUnit.AddMembers(@namespace);
@@ -124,17 +125,6 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             // Set code property
             Code = compilationUnit;
             return true;
-        }
-
-        private string GetRouteSegment()
-        {
-            var (key, _) = ApiProjectOptions.Document.Paths
-                .FirstOrDefault(x => x.IsPathStartingSegmentName(FocusOnSegmentName));
-
-            return key?
-                .Split('/', StringSplitOptions.RemoveEmptyEntries)?
-                .FirstOrDefault()
-                   ?? throw new NotSupportedException("SegmentName was not found in any route.");
         }
 
         public string ToCodeAsString()
@@ -174,6 +164,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         public List<EndpointMethodMetadata> GetMetadataForMethods()
         {
             var list = new List<EndpointMethodMetadata>();
+            var hasSharedResponseContract = HasSharedResponseContract();
             foreach (var (key, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
             {
                 var generatorParameters = new SyntaxGeneratorContractParameters(ApiProjectOptions, FocusOnSegmentName);
@@ -187,16 +178,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         : $"/{GetRouteSegment()}/{httpAttributeRoutePart}";
                     var operationName = apiOperation.Value.GetOperationName();
 
-                    var responseModelName = apiOperation.Value.Responses.GetModelNameForStatusCode(HttpStatusCode.OK);
-                    var isSharedResponseModel = !string.IsNullOrEmpty(responseModelName) && OperationSchemaMappings.IsShared(responseModelName);
-
                     string? contractParameterTypeName = null;
                     if (apiOperation.Value.HasParametersOrRequestBody() || value.HasParameters())
                     {
                         contractParameterTypeName = operationName + NameConstants.ContractParameters;
                     }
 
+                    var sgContractParameter = generatedParameters.FirstOrDefault(x => x.ApiOperation.GetOperationName() == operationName);
+
                     var responseTypeNames = GetResponseTypeNames(apiOperation.Value.Responses, FocusOnSegmentName, operationName);
+
                     if (contractParameterTypeName != null &&
                         responseTypeNames.FirstOrDefault(x => x.Item1 == HttpStatusCode.BadRequest) == null)
                     {
@@ -206,22 +197,15 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                 "Validation"));
                     }
 
-
-                    if (apiOperation.Value.OperationId == "queryRecipes" ||
-                        apiOperation.Value.OperationId == "getOrders")
-                    {
-                    }
-
-                    var sgContractParameter = generatedParameters.FirstOrDefault(x => x.ApiOperation.GetOperationName() == operationName);
                     var responseTypeNamesAndItemSchema = GetResponseTypeNamesAndItemSchema(responseTypeNames);
 
                     var endpointMethodMetadata = new EndpointMethodMetadata(
-                        $"{ApiProjectOptions.ProjectName}",
+                        ApiProjectOptions.ProjectName,
                         FocusOnSegmentName,
                         $"/api/{ApiProjectOptions.ApiVersion}{routePart}",
                         apiOperation.Key,
                         operationName,
-                        isSharedResponseModel,
+                        hasSharedResponseContract,
                         "I" + operationName + NameConstants.ContractHandler,
                         contractParameterTypeName,
                         operationName + NameConstants.ContractResult,
@@ -236,6 +220,40 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             return list;
         }
 
+        private string GetRouteSegment()
+        {
+            var (key, _) = ApiProjectOptions.Document.Paths
+                .FirstOrDefault(x => x.IsPathStartingSegmentName(FocusOnSegmentName));
+
+            return key?
+                       .Split('/', StringSplitOptions.RemoveEmptyEntries)?
+                       .FirstOrDefault()
+                   ?? throw new NotSupportedException("SegmentName was not found in any route.");
+        }
+
+        private bool HasSharedResponseContract()
+        {
+            foreach (var (_, value) in ApiProjectOptions.Document.GetPathsByBasePathSegmentName(FocusOnSegmentName))
+            {
+                foreach (var apiOperation in value.Operations)
+                {
+                    if (apiOperation.Value.Responses == null)
+                    {
+                        continue;
+                    }
+
+                    var responseModelName = apiOperation.Value.Responses.GetModelNameForStatusCode(HttpStatusCode.OK);
+                    var isSharedResponseModel = !string.IsNullOrEmpty(responseModelName) && OperationSchemaMappings.IsShared(responseModelName);
+                    if (isSharedResponseModel)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private List<Tuple<HttpStatusCode, string, OpenApiSchema?>> GetResponseTypeNamesAndItemSchema(List<Tuple<HttpStatusCode, string>> responseTypeNames)
         {
             var list = new List<Tuple<HttpStatusCode, string, OpenApiSchema?>>();
@@ -247,35 +265,15 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 }
                 else
                 {
-                    var rtnSimple = responseTypeName.Item2;
-                    var rtnFull = responseTypeName.Item2;
-                    if (rtnSimple.Contains('.', StringComparison.Ordinal))
-                    {
-                        var hasList = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
-                        var hasPagination = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal);
+                    var rawModelName = OpenApiDocumentSchemaModelNameHelper.GetRawModelName(responseTypeName.Item2);
 
-                        // TODO: xxx...
-                        var simpleWithNamespace = rtnSimple
-                            .Replace($"{Microsoft.OpenApi.Models.NameConstants.List}<", string.Empty, StringComparison.Ordinal)
-                            .Replace($"{Microsoft.OpenApi.Models.NameConstants.Pagination}<", string.Empty, StringComparison.Ordinal)
-                            .Replace(">", string.Empty, StringComparison.Ordinal);
+                    var fullModelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(
+                        ApiProjectOptions.ProjectName,
+                        FocusOnSegmentName,
+                        responseTypeName.Item2);
 
-                        rtnSimple = simpleWithNamespace
-                            .Split('.')
-                            .Last();
-
-                        if (hasList)
-                        {
-                            rtnFull = $"{Microsoft.OpenApi.Models.NameConstants.List}<{simpleWithNamespace}>";
-                        }
-                        else if (hasPagination)
-                        {
-                            rtnFull = $"{Microsoft.OpenApi.Models.NameConstants.Pagination}<{simpleWithNamespace}>";
-                        }
-                    }
-
-                    KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtnSimple, StringComparison.OrdinalIgnoreCase));
-                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, rtnFull, schema.Value));
+                    var schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rawModelName, StringComparison.OrdinalIgnoreCase));
+                    list.Add(new Tuple<HttpStatusCode, string, OpenApiSchema?>(responseTypeName.Item1, fullModelName, schema.Value));
                 }
             }
 
@@ -292,7 +290,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 false,
                 segmentName,
                 OperationSchemaMappings,
-                $"{ApiProjectOptions.ProjectName}.{NameConstants.Endpoints}");
+                ApiProjectOptions.ProjectName);
 
             foreach (var producesResponseAttributePart in producesResponseAttributeParts)
             {
@@ -384,7 +382,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody,
                 area,
                 OperationSchemaMappings,
-                $"{ApiProjectOptions.ProjectName}.{NameConstants.Endpoints}");
+                ApiProjectOptions.ProjectName);
 
             return producesResponseAttributeParts
                 .Aggregate(

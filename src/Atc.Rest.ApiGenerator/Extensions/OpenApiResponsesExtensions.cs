@@ -22,7 +22,7 @@ namespace Microsoft.OpenApi.Models
             bool useProblemDetailsAsDefaultResponseBody,
             string contractArea,
             List<ApiOperationSchemaMap> apiOperationSchemaMappings,
-            string projectNamespace)
+            string projectName)
         {
             var result = new List<string>();
             foreach (var response in responses.OrderBy(x => x.Key))
@@ -38,7 +38,7 @@ namespace Microsoft.OpenApi.Models
                 var modelName = responses.GetModelNameForStatusCode(httpStatusCode);
 
                 var isShared = apiOperationSchemaMappings.IsShared(modelName);
-                modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameNamespaceIfNeeded(projectNamespace, modelName, contractArea, isShared);
+                modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(projectName, contractArea, modelName, isShared);
 
                 var useProblemDetails = responses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
                 if (!useProblemDetails && useProblemDetailsAsDefaultResponseBody)

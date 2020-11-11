@@ -19,9 +19,9 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
     {
         public Task<GetAddressesByPostalCodesResult> ExecuteAsync(GetAddressesByPostalCodesParameters parameters, CancellationToken cancellationToken = default)
         {
-            var data = new List<Contracts.Address>
+            var data = new List<Address>
             {
-                new Demo.Api.Generated.Contracts.Address
+                new Address
                 {
                     StreetName = "Hallo1",
                     StreetNumber = "Hallo1",
@@ -34,7 +34,7 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
                         Alpha3Code = "Hal",
                     },
                 },
-                new Demo.Api.Generated.Contracts.Address
+                new Address
                 {
                     StreetName = "Hallo2",
                     StreetNumber = "Hallo2",
@@ -47,7 +47,7 @@ namespace Demo.Api.Tests.Endpoints.Addresses.Generated
                         Alpha3Code = "Hal",
                     },
                 },
-                new Demo.Api.Generated.Contracts.Address
+                new Address
                 {
                     StreetName = "Hallo3",
                     StreetNumber = "Hallo3",

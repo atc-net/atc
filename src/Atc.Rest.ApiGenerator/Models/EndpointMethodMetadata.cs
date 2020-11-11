@@ -10,7 +10,7 @@ namespace Atc.Rest.ApiGenerator.Models
     public class EndpointMethodMetadata
     {
         public EndpointMethodMetadata(
-            string projectNamespace,
+            string projectName,
             string segmentName,
             string route,
             OperationType httpOperation,
@@ -23,7 +23,7 @@ namespace Atc.Rest.ApiGenerator.Models
             SyntaxGeneratorContractParameter? sgContractParameter,
             IDictionary<string, OpenApiSchema> componentsSchemas)
         {
-            ProjectNamespace = projectNamespace;
+            ProjectName = projectName;
             SegmentName = segmentName;
             Route = route;
             HttpOperation = httpOperation;
@@ -37,7 +37,7 @@ namespace Atc.Rest.ApiGenerator.Models
             ComponentsSchemas = componentsSchemas;
         }
 
-        public string ProjectNamespace { get; private set; }
+        public string ProjectName { get; private set; }
 
         public string SegmentName { get; private set; }
 

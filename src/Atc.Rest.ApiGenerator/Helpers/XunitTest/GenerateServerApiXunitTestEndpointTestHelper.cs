@@ -310,7 +310,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 !string.IsNullOrEmpty(contractReturnTypeName.Item2) &&
                 contractReturnTypeName.Item2 != "string")
             {
-                var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameNamespaceIfNeeded(endpointMethodMetadata, contractReturnTypeName.Item2);
+                var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(endpointMethodMetadata, contractReturnTypeName.Item2);
 
                 sb.AppendLine();
                 sb.AppendLine(12, $"var responseData = await response.DeserializeAsync<{modelName}>(JsonSerializerOptions);");

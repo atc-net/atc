@@ -11,7 +11,8 @@ namespace Atc.Rest.ApiGenerator.Factories
             ApiProjectOptions apiProjectOptions,
             string focusOnSegmentName,
             List<OpenApiOperation> apiOperations,
-            bool includeRestResults)
+            bool includeRestResults,
+            bool hasSharedModel)
         {
             if (apiOperations == null)
             {
@@ -29,6 +30,11 @@ namespace Atc.Rest.ApiGenerator.Factories
             if (includeRestResults)
             {
                 list.Add("Atc.Rest.Results");
+            }
+
+            if (hasSharedModel)
+            {
+                list.Add($"{apiProjectOptions.ProjectName}.{NameConstants.Contracts}");
             }
 
             list.Add($"{apiProjectOptions.ProjectName}.{NameConstants.Contracts}.{focusOnSegmentName.EnsureFirstCharacterToUpper()}");
