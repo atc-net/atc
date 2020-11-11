@@ -206,6 +206,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                 "Validation"));
                     }
 
+
+                    if (apiOperation.Value.OperationId == "queryRecipes" ||
+                        apiOperation.Value.OperationId == "getOrders")
+                    {
+                    }
+
                     var sgContractParameter = generatedParameters.FirstOrDefault(x => x.ApiOperation.GetOperationName() == operationName);
                     var responseTypeNamesAndItemSchema = GetResponseTypeNamesAndItemSchema(responseTypeNames);
 
@@ -245,17 +251,27 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var rtnFull = responseTypeName.Item2;
                     if (rtnSimple.Contains('.', StringComparison.Ordinal))
                     {
-                        bool hasList = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
+                        var hasList = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
+                        var hasPagination = rtnSimple.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal);
 
-                        rtnSimple = rtnSimple
+                        // TODO: xxx...
+                        var simpleWithNamespace = rtnSimple
                             .Replace($"{Microsoft.OpenApi.Models.NameConstants.List}<", string.Empty, StringComparison.Ordinal)
-                            .Replace(">", string.Empty, StringComparison.Ordinal)
+                            .Replace($"{Microsoft.OpenApi.Models.NameConstants.Pagination}<", string.Empty, StringComparison.Ordinal)
+                            .Replace(">", string.Empty, StringComparison.Ordinal);
+
+                        rtnSimple = simpleWithNamespace
                             .Split('.')
                             .Last();
 
-                        rtnFull = hasList
-                            ? $"{Microsoft.OpenApi.Models.NameConstants.List}<{rtnSimple}>"
-                            : rtnSimple;
+                        if (hasList)
+                        {
+                            rtnFull = $"{Microsoft.OpenApi.Models.NameConstants.List}<{simpleWithNamespace}>";
+                        }
+                        else if (hasPagination)
+                        {
+                            rtnFull = $"{Microsoft.OpenApi.Models.NameConstants.Pagination}<{simpleWithNamespace}>";
+                        }
                     }
 
                     KeyValuePair<string, OpenApiSchema> schema = ApiProjectOptions.Document.Components.Schemas.FirstOrDefault(x => x.Key.Equals(rtnSimple, StringComparison.OrdinalIgnoreCase));

@@ -12,6 +12,37 @@ namespace Atc.Rest.ApiGenerator.CLI
     {
         public static int Main(string[] args)
         {
+            args = new[]
+            {
+                "generate",
+                "server",
+                "all",
+                "--validate-strictMode", "false",
+                "--specificationPath", @"C:\Temp\shit\Api.v1.yaml",
+                "--projectPrefixName", "Common.Recipe",
+                "--outputSlnPath", @"C:\Temp\shit",
+                "--outputSrcPath", @"C:\Temp\shit",
+                "--outputTestPath", @"C:\Temp\shit",
+                "--optionsPath", @"C:\Code\atc-net\ATC\sample\Demo.ApiDesign\ApiGeneratorOptions.json",
+                "-v", "true",
+            };
+
+            //// ATC-DEMO
+            ////args = new[]
+            ////{
+            ////    "generate",
+            ////    "server",
+            ////    "all",
+            ////    "--validate-strictMode", "false",
+            ////    "--specificationPath", @"C:\Code\atc-net\ATC\sample\Demo.ApiDesign\SingleFileVersion\Api.v1.yaml",
+            ////    "--projectPrefixName", "Demo",
+            ////    "--outputSlnPath", @"C:\Code\atc-net\ATC\sample",
+            ////    "--outputSrcPath", @"C:\Code\atc-net\ATC\sample",
+            ////    "--outputTestPath", @"C:\Code\atc-net\ATC\sample",
+            ////    "--optionsPath", @"C:\Code\atc-net\ATC\sample\Demo.ApiDesign\ApiGeneratorOptions.json",
+            ////    "-v", "true",
+            ////};
+
             var builder = new HostBuilder();
 
             try

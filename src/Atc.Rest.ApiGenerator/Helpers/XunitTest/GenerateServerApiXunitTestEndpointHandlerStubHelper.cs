@@ -79,6 +79,12 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
         {
             var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
             var returnTypeName = contractReturnTypeName.Item2;
+
+            if (endpointMethodMetadata.MethodName == "QueryRecipes" ||
+                endpointMethodMetadata.MethodName == "GetOrders")
+            {
+            }
+
             if (returnTypeName == "string")
             {
                 sb.AppendLine(
@@ -116,13 +122,13 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                                 var sQueryString = "null";
                                 if (queryParameters.FirstOrDefault(x => x.Name.Equals("QueryString", StringComparison.OrdinalIgnoreCase)) != null)
                                 {
-                                    sQueryString = "\"parameters.QueryString\"";
+                                    sQueryString = "parameters.QueryString";
                                 }
 
                                 var sContinuationToken = "null";
                                 if (queryParameters.FirstOrDefault(x => x.Name.Equals("ContinuationToken", StringComparison.OrdinalIgnoreCase)) != null)
                                 {
-                                    sContinuationToken = "\"parameters.ContinuationToken\"";
+                                    sContinuationToken = "parameters.ContinuationToken";
                                 }
 
                                 sb.AppendLine(12, $"var paginationData = new {contractReturnTypeName.Item2}(data, {sPageSize}, {sQueryString}, {sContinuationToken});");
