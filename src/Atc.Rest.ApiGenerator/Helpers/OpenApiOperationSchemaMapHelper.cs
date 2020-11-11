@@ -148,6 +148,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     schemaKey = apiSchema.AllOf[1].GetModelName();
                 }
             }
+            else if (apiSchema.OneOf.Any() && apiSchema.OneOf.First().Reference?.Id != null)
+            {
+                schemaKey = apiSchema.OneOf.First().Reference.Id.EnsureFirstCharacterToUpper();
+                apiSchema = apiSchema.OneOf.First();
+            }
 
             if (schemaKey.Length == 0 ||
                 schemaKey == nameof(ProblemDetails) ||
