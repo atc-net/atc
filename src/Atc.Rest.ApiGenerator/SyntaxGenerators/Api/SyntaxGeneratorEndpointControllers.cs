@@ -269,7 +269,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 operationName + NameConstants.ContractResult,
                 false,
                 segmentName,
-                OperationSchemaMappings);
+                OperationSchemaMappings,
+                $"{ApiProjectOptions.ProjectName}.{NameConstants.Endpoints}");
 
             foreach (var producesResponseAttributePart in producesResponseAttributeParts)
             {
@@ -360,7 +361,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 resultTypeName,
                 ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody,
                 area,
-                OperationSchemaMappings);
+                OperationSchemaMappings,
+                $"{ApiProjectOptions.ProjectName}.{NameConstants.Endpoints}");
 
             return producesResponseAttributeParts
                 .Aggregate(
