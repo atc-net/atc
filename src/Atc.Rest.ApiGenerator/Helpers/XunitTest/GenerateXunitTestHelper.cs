@@ -16,6 +16,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             EndpointMethodMetadata endpointMethodMetadata,
             OpenApiSchema schema,
             HttpStatusCode httpStatusCode,
+            SchemaMapLocatedAreaType locatedArea,
             string variableName = "data")
         {
             if (sb == null)
@@ -34,7 +35,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
-            if (!string.IsNullOrEmpty(contractReturnTypeName.Item2) && (
+            if (locatedArea == SchemaMapLocatedAreaType.Response && !string.IsNullOrEmpty(contractReturnTypeName.Item2) && (
                 contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
                 contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal)))
             {
@@ -49,7 +50,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 }
 
                 sb.AppendLine(indentSpaces, "{");
-                for (int i = 0; i < 3; i++)
+                for (var i = 0; i < 3; i++)
                 {
                     AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata.ComponentsSchemas, schema, null, i + 1, null);
                 }

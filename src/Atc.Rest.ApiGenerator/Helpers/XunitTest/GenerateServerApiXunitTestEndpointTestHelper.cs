@@ -365,7 +365,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return;
             }
 
-            GenerateXunitTestHelper.AppendNewModelOrListOfModel(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, variableName);
+            GenerateXunitTestHelper.AppendNewModelOrListOfModel(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, SchemaMapLocatedAreaType.RequestBody, variableName);
         }
 
         private static void AppendNewRequestModelForBadRequest(
