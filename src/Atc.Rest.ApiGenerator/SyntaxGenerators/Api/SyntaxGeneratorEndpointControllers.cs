@@ -69,7 +69,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             classDeclaration =
                 classDeclaration.AddAttributeLists(
                     SyntaxAttributeListFactory.Create(nameof(ApiControllerAttribute)),
-                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{FocusOnSegmentName}"))
+                    SyntaxAttributeListFactory.CreateWithOneItemWithOneArgument(nameof(RouteAttribute), $"api/{ApiProjectOptions.ApiVersion}/{FocusOnSegmentName.ToLower()}"))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(nameof(ControllerBase))))
                 .AddGeneratedCodeAttribute(ApiProjectOptions.ToolName, ApiProjectOptions.ToolVersion.ToString())
                 .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForEndpoints(FocusOnSegmentName));
@@ -172,8 +172,8 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 {
                     var httpAttributeRoutePart = GetHttpAttributeRoutePart(key);
                     var routePart = string.IsNullOrEmpty(httpAttributeRoutePart)
-                        ? $"/{FocusOnSegmentName}"
-                        : $"/{FocusOnSegmentName}/{httpAttributeRoutePart}";
+                        ? $"/{FocusOnSegmentName.ToLower()}"
+                        : $"/{FocusOnSegmentName.ToLower()}/{httpAttributeRoutePart}";
                     var operationName = apiOperation.Value.GetOperationName();
 
                     string? contractParameterTypeName = null;
