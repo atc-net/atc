@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
+using Atc.Rest.ApiGenerator.Extensions;
 using Atc.Rest.ApiGenerator.Factories;
 using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
@@ -186,6 +187,9 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         : $"/{GetRouteSegment()}/{httpAttributeRoutePart}";
                     var operationName = apiOperation.Value.GetOperationName();
 
+                    var responseModelName = apiOperation.Value.Responses.GetModelNameForStatusCode(HttpStatusCode.OK);
+                    var isSharedResponseModel = !string.IsNullOrEmpty(responseModelName) && OperationSchemaMappings.IsShared(responseModelName);
+
                     string? contractParameterTypeName = null;
                     if (apiOperation.Value.HasParametersOrRequestBody() || value.HasParameters())
                     {
@@ -206,10 +210,12 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                     var responseTypeNamesAndItemSchema = GetResponseTypeNamesAndItemSchema(responseTypeNames);
 
                     var endpointMethodMetadata = new EndpointMethodMetadata(
+                        $"{ApiProjectOptions.ProjectName}",
                         FocusOnSegmentName,
                         $"/api/{ApiProjectOptions.ApiVersion}{routePart}",
                         apiOperation.Key,
                         operationName,
+                        isSharedResponseModel,
                         "I" + operationName + NameConstants.ContractHandler,
                         contractParameterTypeName,
                         operationName + NameConstants.ContractResult,

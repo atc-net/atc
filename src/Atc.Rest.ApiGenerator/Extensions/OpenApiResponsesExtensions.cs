@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Atc.Rest.ApiGenerator.Extensions;
+using Atc.Rest.ApiGenerator.Helpers;
 using Atc.Rest.ApiGenerator.Models;
 
 // ReSharper disable ReturnTypeCanBeEnumerable.Global
@@ -38,7 +38,7 @@ namespace Microsoft.OpenApi.Models
                 var modelName = responses.GetModelNameForStatusCode(httpStatusCode);
 
                 var isShared = apiOperationSchemaMappings.IsShared(modelName);
-                modelName = EnsureModelNameNamespaceIfNeeded(projectNamespace, modelName, contractArea, isShared);
+                modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameNamespaceIfNeeded(projectNamespace, modelName, contractArea, isShared);
 
                 var useProblemDetails = responses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
                 if (!useProblemDetails && useProblemDetailsAsDefaultResponseBody)
@@ -102,41 +102,6 @@ namespace Microsoft.OpenApi.Models
             }
 
             return result;
-        }
-
-        private static string EnsureModelNameNamespaceIfNeeded(
-            string projectNamespace,
-            string modelName,
-            string contractArea,
-            bool isShared)
-        {
-            if (string.IsNullOrEmpty(modelName))
-            {
-                return modelName;
-            }
-
-            var reservedModelNames = new List<string>
-            {
-                nameof(Task),
-                "Event",
-            };
-
-            if (reservedModelNames.Contains(modelName))
-            {
-                return isShared
-                    ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{modelName}"
-                    : $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}";
-            }
-
-            if (isShared)
-            {
-                return $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{modelName}";
-            }
-
-            var sa = projectNamespace.Split('.', StringSplitOptions.RemoveEmptyEntries);
-            return sa.Any(s => s.Equals(modelName, StringComparison.Ordinal))
-                ? $"{Atc.Rest.ApiGenerator.NameConstants.Contracts}.{contractArea.EnsureFirstCharacterToUpper()}.{modelName}"
-                : modelName;
         }
     }
 }
