@@ -1082,6 +1082,16 @@ List<string> GetStringFormatParameterTemplatePlaceholders(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### GetValueBetweenLessAndGreaterThanCharsIfExist
+
+```csharp
+string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
+```
+<p><b>Summary:</b> Gets the value between less and greater than chars if exist.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### Humanize
 
 ```csharp

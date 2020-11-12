@@ -415,6 +415,7 @@
      - GetStringFormatParameterLiteralCount(this string value)
      - GetStringFormatParameterNumericCount(this string value)
      - GetStringFormatParameterTemplatePlaceholders(this string value)
+     - GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
      - Humanize(this string value)
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
      - JavaScriptDecode(this string javaScript, bool htmlDecode)

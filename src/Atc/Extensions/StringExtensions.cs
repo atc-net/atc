@@ -1260,6 +1260,30 @@ namespace System
             return stream;
         }
 
+        /// <summary>
+        /// Gets the value between less and greater than chars if exist.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
+            var indexStart = value.IndexOf('<', StringComparison.Ordinal);
+            if (indexStart == -1)
+            {
+                return value;
+            }
+
+            indexStart++;
+            var indexEnd = value.IndexOf('>', StringComparison.Ordinal);
+            return indexEnd > indexStart
+                ? value.Substring(indexStart, indexEnd - indexStart)
+                : value;
+        }
+
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static string NormalizeAccentsHelper(string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
         {

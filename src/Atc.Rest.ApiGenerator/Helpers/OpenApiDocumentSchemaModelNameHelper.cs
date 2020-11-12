@@ -13,11 +13,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 return string.Empty;
             }
 
-            var strippedModelName = modelName
-                .Replace(Microsoft.OpenApi.Models.NameConstants.Pagination, string.Empty, StringComparison.Ordinal)
-                .Replace(Microsoft.OpenApi.Models.NameConstants.List, string.Empty, StringComparison.Ordinal)
-                .Replace("<", string.Empty, StringComparison.Ordinal)
-                .Replace(">", string.Empty, StringComparison.Ordinal);
+            var strippedModelName = modelName;
+            if (strippedModelName.Contains(Microsoft.OpenApi.Models.NameConstants.Pagination + "<", StringComparison.Ordinal) ||
+                strippedModelName.Contains(Microsoft.OpenApi.Models.NameConstants.List + "<", StringComparison.Ordinal))
+            {
+                strippedModelName = strippedModelName.GetValueBetweenLessAndGreaterThanCharsIfExist();
+            }
 
             if (strippedModelName.Contains('.', StringComparison.Ordinal))
             {

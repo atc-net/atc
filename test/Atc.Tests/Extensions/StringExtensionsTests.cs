@@ -406,6 +406,15 @@ namespace Atc.Tests.Extensions
         public void ToLines(string[] expected, string input)
             => Assert.Equal(expected, input.ToLines());
 
+        [Theory]
+        [InlineData("MyData", "MyData")]
+        [InlineData("MyData", "List<MyData>")]
+        [InlineData("MyData", "Hallo world List<MyData> HalloFoo")]
+        [InlineData("MyData Foo", "MyData Foo")]
+        [InlineData("MyDataListFoo", "MyDataListFoo")]
+        public void GetValueBetweenLessAndGreaterThanCharsIfExist(string expected, string input)
+            => Assert.Equal(expected, input.GetValueBetweenLessAndGreaterThanCharsIfExist());
+
         [Fact]
         public void ToStream()
         {
