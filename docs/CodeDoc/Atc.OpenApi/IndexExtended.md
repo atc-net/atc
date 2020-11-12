@@ -92,6 +92,7 @@
      - GetEnumSchema(this OpenApiSchema schema)
      - GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
      - GetModelType(this OpenApiSchema schema)
+     - GetSchemaByModelName(this IDictionary&lt;string, OpenApiSchema&gt; componentSchemas, string modelName)
      - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
      - HasAnyProperties(this OpenApiSchema schema)
      - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Atc.OpenApi.Tests.XUnitTestData;
+using FluentAssertions;
 using Microsoft.OpenApi.Models;
 using Xunit;
 
@@ -502,6 +503,21 @@ namespace Atc.OpenApi.Tests.Extensions
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSchemaByModelNameItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void GetSchemaByModelName(OpenApiSchema expected, IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+        {
+            // Act
+            var actual = componentSchemas.GetSchemaByModelName(modelName);
+
+            // Assert
+            actual
+                .Should()
+                .NotBeNull()
+                .And
+                .BeEquivalentTo(expected);
         }
     }
 }

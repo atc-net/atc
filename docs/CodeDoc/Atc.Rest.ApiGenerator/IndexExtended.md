@@ -162,13 +162,12 @@
   -  Static Methods
      - CreateValueBool(bool useForBadRequest)
      - CreateValueDateTimeOffset(bool useForBadRequest)
-     - CreateValueDouble()
      - CreateValueEmail(bool useForBadRequest, int itemNumber = 0)
      - CreateValueEnum(string name, KeyValuePair&lt;string, OpenApiSchema&gt; schemaForEnum, bool useForBadRequest)
      - CreateValueGuid(bool useForBadRequest, int itemNumber = 0)
      - CreateValueString(string name, OpenApiSchema schema, ParameterLocation? parameterLocation, bool useForBadRequest, int itemNumber = 0, string customValue = null)
      - CreateValueUri(bool useForBadRequest)
-     - Number(string name, bool useForBadRequest)
+     - Number(string name, OpenApiSchema schema, bool useForBadRequest)
 
 ## [Atc.Rest.ApiGenerator.Models](Atc.Rest.ApiGenerator.Models.md)
 

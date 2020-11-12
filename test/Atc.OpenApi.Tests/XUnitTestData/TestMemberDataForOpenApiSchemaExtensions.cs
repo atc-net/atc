@@ -1010,5 +1010,21 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     TestDataOpenApiFactory.CreateSchemaColorType(),
                 },
             };
+
+        public static IEnumerable<object[]> GetSchemaByModelNameItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    TestDataOpenApiFactory.CreateSchemaColorType(),
+                    new Dictionary<string, OpenApiSchema>
+                    {
+                        ["pets"] = TestDataOpenApiFactory.CreateSchemaPets(),
+                        ["colorType"] = TestDataOpenApiFactory.CreateSchemaColorType(),
+                        ["newPet"] = TestDataOpenApiFactory.CreateSchemaNewPet(),
+                    },
+                    "colorType",
+                },
+            };
     }
 }
