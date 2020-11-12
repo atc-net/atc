@@ -6,6 +6,7 @@ using System.Text;
 using Atc.Rest.ApiGenerator.Models;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 {
     public static class GenerateXunitTestHelper
@@ -34,32 +35,60 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
-            if (locatedArea == SchemaMapLocatedAreaType.Response && !string.IsNullOrEmpty(contractReturnTypeName.Item2) && (
-                contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
-                contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal)))
+            switch (locatedArea)
             {
-                if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
+                case SchemaMapLocatedAreaType.Response:
                 {
-                    var listDataType = contractReturnTypeName.Item2.Replace(Microsoft.OpenApi.Models.NameConstants.Pagination, Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
-                    sb.AppendLine(indentSpaces, $"var {variableName} = new {listDataType}");
-                }
-                else
-                {
-                    sb.AppendLine(indentSpaces, $"var {variableName} = new {contractReturnTypeName.Item2}");
+                    var contractReturnTypeName = endpointMethodMetadata.ContractReturnTypeNames.First(x => x.Item1 == httpStatusCode);
+                    if (!string.IsNullOrEmpty(contractReturnTypeName.Item2) && (
+                        contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal) ||
+                        contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal)))
+                    {
+                        if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
+                        {
+                            var listDataType = contractReturnTypeName.Item2.Replace(Microsoft.OpenApi.Models.NameConstants.Pagination, Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal);
+                            sb.AppendLine(indentSpaces, $"var {variableName} = new {listDataType}");
+                        }
+                        else
+                        {
+                            sb.AppendLine(indentSpaces, $"var {variableName} = new {contractReturnTypeName.Item2}");
+                        }
+
+                        sb.AppendLine(indentSpaces, "{");
+                        for (var i = 0; i < 3; i++)
+                        {
+                            AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata, schema, null, i + 1, null);
+                        }
+
+                        sb.AppendLine(indentSpaces, "};");
+                    }
+                    else
+                    {
+                        AppendNewModel(indentSpaces, sb, endpointMethodMetadata, schema, null, 0, variableName);
+                    }
+
+                    break;
                 }
 
-                sb.AppendLine(indentSpaces, "{");
-                for (var i = 0; i < 3; i++)
+                case SchemaMapLocatedAreaType.RequestBody when schema.Type == OpenApiDataTypeConstants.Array:
                 {
-                    AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata, schema, null, i + 1, null);
+                    var modelName = schema.GetModelName();
+                    var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(modelName);
+                    sb.AppendLine(indentSpaces, $"var {variableName} = new List<{modelName}>");
+
+                    sb.AppendLine(indentSpaces, "{");
+                    for (var i = 0; i < 3; i++)
+                    {
+                        AppendNewModel(indentSpaces + 4, sb, endpointMethodMetadata, modelSchema, null, i + 1, null);
+                    }
+
+                    sb.AppendLine(indentSpaces, "};");
+                    break;
                 }
 
-                sb.AppendLine(indentSpaces, "};");
-            }
-            else
-            {
-                AppendNewModel(indentSpaces, sb, endpointMethodMetadata, schema, null, 0, variableName);
+                case SchemaMapLocatedAreaType.RequestBody:
+                    AppendNewModel(indentSpaces, sb, endpointMethodMetadata, schema, null, 0, variableName);
+                    break;
             }
         }
 
@@ -132,12 +161,14 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             }
 
             sb.AppendLine(indentSpaces, "{");
+
             foreach (var schemaProperty in schema.Properties)
             {
                 var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
                                        schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
                 string propertyValueGenerated = PropertyValueGenerator(schemaProperty, endpointMethodMetadata.ComponentsSchemas, useForBadRequest, itemNumber, null);
+
                 if ("NEW-INSTANCE".Equals(propertyValueGenerated, StringComparison.Ordinal))
                 {
                     var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
@@ -318,9 +349,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             // Match on OpenApiSchemaExtensions->GetDataType
             return schema.Value.GetDataType() switch
             {
-                "double" => ValueTypeTestPropertiesHelper.CreateValueDouble(),
-                "long" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
-                "int" => ValueTypeTestPropertiesHelper.Number(name, useForBadRequest),
+                "double" => ValueTypeTestPropertiesHelper.Number(name, schema.Value, useForBadRequest),
+                "long" => ValueTypeTestPropertiesHelper.Number(name, schema.Value, useForBadRequest),
+                "int" => ValueTypeTestPropertiesHelper.Number(name, schema.Value, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
                 "string" => ValueTypeTestPropertiesHelper.CreateValueString(name, schema.Value, null, useForBadRequest, itemNumber, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),

@@ -95,8 +95,8 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     returnTypeName.StartsWith(Microsoft.OpenApi.Models.NameConstants.List, StringComparison.Ordinal))
                 {
                     var singleReturnTypeName = OpenApiDocumentSchemaModelNameHelper.GetRawModelName(returnTypeName);
-                    var schemaPair = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == singleReturnTypeName);
-                    GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, schemaPair.Value, httpStatusCode, SchemaMapLocatedAreaType.Response);
+                    var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(singleReturnTypeName);
+                    GenerateXunitTestHelper.AppendNewModelOrListOfModel(12, sb, endpointMethodMetadata, modelSchema, httpStatusCode, SchemaMapLocatedAreaType.Response);
                     sb.AppendLine();
                     if (contractReturnTypeName.Item2.StartsWith(Microsoft.OpenApi.Models.NameConstants.Pagination, StringComparison.Ordinal))
                     {

@@ -432,6 +432,11 @@ string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper 
 ```csharp
 string GetModelType(this OpenApiSchema schema)
 ```
+#### GetSchemaByModelName
+
+```csharp
+OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+```
 #### GetTitleFromPropertyByPropertyKey
 
 ```csharp

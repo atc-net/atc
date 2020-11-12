@@ -217,7 +217,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return;
             }
 
-            var modelSchema = endpointMethodMetadata.ComponentsSchemas.First(x => x.Key == schema.GetModelName()).Value;
+            var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(schema.GetModelName());
 
             var headerRequiredParameters = endpointMethodMetadata.GetHeaderRequiredParameters();
 
@@ -538,9 +538,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             // Match on OpenApiSchemaExtensions->GetDataType
             return parameter.Schema.GetDataType() switch
             {
-                "double" => ValueTypeTestPropertiesHelper.CreateValueDouble(),
-                "long" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
-                "int" => ValueTypeTestPropertiesHelper.Number(parameter.Name, useForBadRequest),
+                "double" => ValueTypeTestPropertiesHelper.Number(parameter.Name, parameter.Schema, useForBadRequest),
+                "long" => ValueTypeTestPropertiesHelper.Number(parameter.Name, parameter.Schema, useForBadRequest),
+                "int" => ValueTypeTestPropertiesHelper.Number(parameter.Name, parameter.Schema, useForBadRequest),
                 "bool" => ValueTypeTestPropertiesHelper.CreateValueBool(useForBadRequest),
                 "string" => ValueTypeTestPropertiesHelper.CreateValueString(parameter.Name, parameter.Schema, parameter.In, useForBadRequest, 0, customValue),
                 "DateTimeOffset" => ValueTypeTestPropertiesHelper.CreateValueDateTimeOffset(useForBadRequest),
