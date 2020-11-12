@@ -645,5 +645,8 @@ namespace Microsoft.OpenApi.Models
 
             throw new ItemNotFoundException("Schema does not contain an enum!");
         }
+
+        public static OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+            => componentSchemas.First(x => x.Key.Equals(modelName, StringComparison.OrdinalIgnoreCase)).Value;
     }
 }

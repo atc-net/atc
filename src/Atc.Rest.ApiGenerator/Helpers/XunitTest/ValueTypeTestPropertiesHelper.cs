@@ -24,14 +24,16 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 : openApiString.Value;
         }
 
-        [SuppressMessage("Minor Code Smell", "S3400:Methods should not return constants", Justification = "OK.")]
-        public static string CreateValueDouble() => "42.2";
-
-        public static string Number(string name, bool useForBadRequest)
+        public static string Number(string name, OpenApiSchema schema, bool useForBadRequest)
         {
             if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));
+            }
+
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
             }
 
             if (useForBadRequest)
@@ -44,7 +46,12 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return "27";
             }
 
-            return "42";
+            return schema.Type switch
+            {
+                OpenApiDataTypeConstants.Number when !schema.HasFormatType() => CreateNumberDouble(schema),
+                OpenApiDataTypeConstants.Integer when schema.HasFormatType() && schema.IsFormatTypeOfInt64() => CreateNumberLong(schema),
+                _ => CreateNumberInt(schema)
+            };
         }
 
         public static string CreateValueBool(bool useForBadRequest) => useForBadRequest ? "@" : "true";
@@ -105,34 +112,6 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return val;
         }
 
-        private static string CreateValueStringDefault(bool useForBadRequest, int itemNumber, string? customValue)
-        {
-            if (itemNumber > 0)
-            {
-                return useForBadRequest
-                    ? customValue ?? "null"
-                    : customValue ?? "Hallo" + itemNumber;
-            }
-
-            return useForBadRequest
-                ? customValue ?? "null"
-                : customValue ?? "Hallo";
-        }
-
-        private static string CreateValueStringId(bool useForBadRequest, int itemNumber, string? customValue)
-        {
-            if (itemNumber > 0)
-            {
-                return useForBadRequest
-                    ? customValue ?? "27@" + itemNumber
-                    : customValue ?? "27" + itemNumber;
-            }
-
-            return useForBadRequest
-                ? customValue ?? "null"
-                : customValue ?? "27";
-        }
-
         public static string CreateValueDateTimeOffset(bool useForBadRequest)
         {
             return useForBadRequest
@@ -169,6 +148,154 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             return useForBadRequest
                 ? "john.doe_example.com"
                 : "john.doe@example.com";
+        }
+
+        private static string CreateValueStringDefault(bool useForBadRequest, int itemNumber, string? customValue)
+        {
+            if (itemNumber > 0)
+            {
+                return useForBadRequest
+                    ? customValue ?? "null"
+                    : customValue ?? "Hallo" + itemNumber;
+            }
+
+            return useForBadRequest
+                ? customValue ?? "null"
+                : customValue ?? "Hallo";
+        }
+
+        private static string CreateValueStringId(bool useForBadRequest, int itemNumber, string? customValue)
+        {
+            if (itemNumber > 0)
+            {
+                return useForBadRequest
+                    ? customValue ?? "27@" + itemNumber
+                    : customValue ?? "27" + itemNumber;
+            }
+
+            return useForBadRequest
+                ? customValue ?? "null"
+                : customValue ?? "27";
+        }
+
+        private static string CreateNumberInt(OpenApiSchema schema)
+        {
+            int min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (int)schema.Minimum.Value;
+            }
+            else
+            {
+                min = int.MinValue;
+            }
+
+            int max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (int)schema.Maximum.Value;
+            }
+            else
+            {
+                max = int.MaxValue;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            if (min > 42)
+            {
+                return min.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            if (max < 42)
+            {
+                return max.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            return "42";
+        }
+
+        private static string CreateNumberLong(OpenApiSchema schema)
+        {
+            long min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (long)schema.Minimum.Value;
+            }
+            else
+            {
+                min = int.MinValue;
+            }
+
+            long max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (long)schema.Maximum.Value;
+            }
+            else
+            {
+                max = long.MaxValue;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            if (min > 42)
+            {
+                return min.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            if (max < 42)
+            {
+                return max.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            return "42";
+        }
+
+        private static string CreateNumberDouble(OpenApiSchema schema)
+        {
+            double min;
+            if (schema.Minimum.HasValue)
+            {
+                min = (double)schema.Minimum.Value;
+            }
+            else
+            {
+                min = double.NegativeInfinity;
+            }
+
+            double max;
+            if (schema.Maximum.HasValue)
+            {
+                max = (double)schema.Maximum.Value;
+            }
+            else
+            {
+                max = double.PositiveInfinity;
+            }
+
+            if (max < min)
+            {
+                max = min;
+            }
+
+            if (min > 42.2)
+            {
+                return min.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            if (max < 42.2)
+            {
+                return max.ToString(GlobalizationConstants.EnglishCultureInfo);
+            }
+
+            return "42.2";
         }
     }
 }
