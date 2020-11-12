@@ -27,23 +27,13 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(endpointMethodMetadata));
             }
 
+            var usingStatements = GetUsingStatements(hostProjectOptions, endpointMethodMetadata);
             var sb = new StringBuilder();
-            sb.AppendLine("using System;");
-            sb.AppendLine("using System.CodeDom.Compiler;");
-            sb.AppendLine("using System.Collections.Generic;");
-            sb.AppendLine("using System.Net;");
-            sb.AppendLine("using System.Net.Http;");
-            sb.AppendLine("using System.Text;");
-            sb.AppendLine("using System.Threading.Tasks;");
-            sb.AppendLine("using FluentAssertions;");
-            if (endpointMethodMetadata.IsPaginationUsed())
+            foreach (var statement in usingStatements)
             {
-                sb.AppendLine("using Atc.Rest.Results;");
+                sb.AppendLine($"using {statement};");
             }
 
-            sb.AppendLine($"using {hostProjectOptions.ProjectName}.Generated.Contracts;");
-            sb.AppendLine($"using {hostProjectOptions.ProjectName}.Generated.Contracts.{endpointMethodMetadata.SegmentName};");
-            sb.AppendLine("using Xunit;");
             sb.AppendLine();
             GenerateCodeHelper.AppendNamespaceComment(sb, hostProjectOptions.ToolNameAndVersion);
             sb.AppendLine($"namespace {hostProjectOptions.ProjectName}.Tests.Endpoints.{endpointMethodMetadata.SegmentName}.Generated");
@@ -81,6 +71,38 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             var fileName = $"{endpointMethodMetadata.MethodName}Tests.cs";
             var file = new FileInfo(Path.Combine(pathC, fileName));
             return TextFileHelper.Save(file, sb.ToString());
+        }
+
+        private static List<string> GetUsingStatements(HostProjectOptions hostProjectOptions, EndpointMethodMetadata endpointMethodMetadata)
+        {
+            var systemList = new List<string>
+            {
+                "System",
+                "System.CodeDom.Compiler",
+                "System.Collections.Generic",
+                "System.Net",
+                "System.Net.Http",
+                "System.Text",
+                "System.Threading.Tasks",
+            }.OrderBy(x => x);
+
+            var generalList = new List<string>
+            {
+                "FluentAssertions",
+                "Xunit",
+                $"{hostProjectOptions.ProjectName}.Generated.Contracts",
+                $"{hostProjectOptions.ProjectName}.Generated.Contracts.{endpointMethodMetadata.SegmentName}",
+            };
+            if (endpointMethodMetadata.IsPaginationUsed())
+            {
+                generalList.Add("Atc.Rest.Results");
+            }
+
+            return systemList
+                .OrderBy(x => x)
+                .Concat(generalList
+                    .OrderBy(x => x))
+                .ToList();
         }
 
         private static void AppendTest200Ok(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
