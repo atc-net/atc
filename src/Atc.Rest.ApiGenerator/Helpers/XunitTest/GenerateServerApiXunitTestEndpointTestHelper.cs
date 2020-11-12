@@ -27,9 +27,8 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(endpointMethodMetadata));
             }
 
-            var usingStatements = GetUsingStatements(hostProjectOptions, endpointMethodMetadata);
             var sb = new StringBuilder();
-            foreach (var statement in usingStatements)
+            foreach (var statement in GetUsingStatements(hostProjectOptions, endpointMethodMetadata))
             {
                 sb.AppendLine($"using {statement};");
             }
