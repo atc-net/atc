@@ -261,16 +261,18 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 throw new ArgumentNullException(nameof(schema));
             }
 
+            static string WrapAppendLine(string str) => $"sb.AppendLine(\"{str}\");";
+
             var countString = 0;
             var jsonSpaces = string.Empty.PadLeft(jsonIndentLevel * 2);
             if (jsonIndentLevel == 0)
             {
                 sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"{\");");
+                sb.AppendLine(indentSpaces, WrapAppendLine("{"));
             }
             else
             {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "{\");");
+                sb.AppendLine(indentSpaces, WrapAppendLine($"{jsonSpaces}  {{"));
             }
 
             foreach (var schemaProperty in schema.Properties)
@@ -290,7 +292,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
                     sb.AppendLine(
                         indentSpaces,
-                        $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{schemaForDataType.Value.GetModelName()}\\\"\");");
+                        WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\":"));
                     AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata, schemaForDataType.Value, badRequestPropertyName, -1, null, jsonIndentLevel + 1);
                 }
                 else
@@ -311,13 +313,13 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                             sb.AppendLine(
                                 indentSpaces,
                                 propertyValueGenerated.Equals("null", StringComparison.Ordinal)
-                                    ? $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}\");"
-                                    : $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                                    ? WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}")
+                                    : WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}"));
                             break;
                         default:
                             sb.AppendLine(
                                 indentSpaces,
-                                $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
+                                WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}"));
                             break;
                     }
                 }
@@ -325,12 +327,12 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             if (jsonIndentLevel == 0)
             {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"}\");");
+                sb.AppendLine(indentSpaces, WrapAppendLine($"}}"));
                 sb.AppendLine(indentSpaces, $"var {variableName} = sb.ToString();");
             }
             else
             {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "}\");");
+                sb.AppendLine(indentSpaces, WrapAppendLine($"{jsonSpaces}}}"));
             }
         }
 
