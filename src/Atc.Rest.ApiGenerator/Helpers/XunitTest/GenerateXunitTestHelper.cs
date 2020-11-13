@@ -270,10 +270,6 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
                 sb.AppendLine(indentSpaces, WrapAppendLine("{"));
             }
-            else
-            {
-                sb.AppendLine(indentSpaces, WrapAppendLine($"{jsonSpaces}  {{"));
-            }
 
             foreach (var schemaProperty in schema.Properties)
             {
@@ -292,7 +288,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
                     sb.AppendLine(
                         indentSpaces,
-                        WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\":"));
+                        WrapAppendLine($"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {{"));
                     AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata, schemaForDataType.Value, badRequestPropertyName, -1, null, jsonIndentLevel + 1);
                 }
                 else
