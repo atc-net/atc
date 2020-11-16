@@ -266,11 +266,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             if (jsonIndentLevel == 0)
             {
                 sb.AppendLine(indentSpaces, "var sb = new StringBuilder();");
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"{\");");
-            }
-            else
-            {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "{\");");
+                sb.AppendLine(indentSpaces, WrapInAppendLine("{"));
             }
 
             foreach (var schemaProperty in schema.Properties)
@@ -284,53 +280,44 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 var useForBadRequest = !string.IsNullOrEmpty(badRequestPropertyName) &&
                                        schemaProperty.Key.Equals(badRequestPropertyName, StringComparison.Ordinal);
                 string dataType = schemaProperty.Value.GetDataType();
-                string propertyValueGenerated = PropertyValueGenerator(schemaProperty, endpointMethodMetadata.ComponentsSchemas, useForBadRequest, itemNumber, null);
+                string propertyValueGenerated =
+                    WrapInQuotes(
+                        PropertyValueGenerator(schemaProperty, endpointMethodMetadata.ComponentsSchemas, useForBadRequest, itemNumber, null),
+                        schemaProperty);
                 if ("NEW-INSTANCE".Equals(propertyValueGenerated, StringComparison.Ordinal))
                 {
                     var schemaForDataType = endpointMethodMetadata.ComponentsSchemas.FirstOrDefault(x => x.Key.Equals(dataType, StringComparison.OrdinalIgnoreCase));
                     sb.AppendLine(
                         indentSpaces,
-                        $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{schemaForDataType.Value.GetModelName()}\\\"\");");
+                        WrapInAppendLine($"{jsonSpaces}  {WrapInQuotes(schemaProperty.Key.EnsureFirstCharacterToUpper())}: {{"));
                     AppendNewModelAsJson(indentSpaces, sb, endpointMethodMetadata, schemaForDataType.Value, badRequestPropertyName, -1, null, jsonIndentLevel + 1);
                 }
                 else
                 {
-                    switch (dataType)
+                    if (dataType == "string" && !schemaProperty.Value.IsFormatTypeOfEmail())
                     {
-                        case "string":
-                            if (!schemaProperty.Value.IsFormatTypeOfEmail())
-                            {
-                                if (countString > 0 && !propertyValueGenerated.Equals("null", StringComparison.Ordinal))
-                                {
-                                    propertyValueGenerated = $"{propertyValueGenerated}{countString}";
-                                }
+                        if (countString > 0 && !propertyValueGenerated.Equals("null", StringComparison.Ordinal))
+                        {
+                            propertyValueGenerated = $"{propertyValueGenerated}{countString}";
+                        }
 
-                                countString++;
-                            }
-
-                            sb.AppendLine(
-                                indentSpaces,
-                                propertyValueGenerated.Equals("null", StringComparison.Ordinal)
-                                    ? $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": {propertyValueGenerated}{trailingChar}\");"
-                                    : $"sb.AppendLine(\"{jsonSpaces}  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
-                            break;
-                        default:
-                            sb.AppendLine(
-                                indentSpaces,
-                                $"sb.AppendLine(\"  \\\"{schemaProperty.Key.EnsureFirstCharacterToUpper()}\\\": \\\"{propertyValueGenerated}\\\"{trailingChar}\");");
-                            break;
+                        countString++;
                     }
+
+                    sb.AppendLine(
+                               indentSpaces,
+                               WrapInAppendLine($"{jsonSpaces}  {WrapInQuotes(schemaProperty.Key.EnsureFirstCharacterToUpper())}: {propertyValueGenerated}{trailingChar}"));
                 }
             }
 
             if (jsonIndentLevel == 0)
             {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"}\");");
+                sb.AppendLine(indentSpaces, WrapInAppendLine($"}}"));
                 sb.AppendLine(indentSpaces, $"var {variableName} = sb.ToString();");
             }
             else
             {
-                sb.AppendLine(indentSpaces, "sb.AppendLine(\"" + jsonSpaces + "}\");");
+                sb.AppendLine(indentSpaces, WrapInAppendLine($"{jsonSpaces}}}"));
             }
         }
 
@@ -376,7 +363,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return "NEW-INSTANCE";
             }
 
-            if (schema.Value.Type == "array")
+            if (schema.Value.GetDataType() == "array")
             {
                 // TO-DO: Imp. this.
                 return "null";
@@ -384,5 +371,23 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             return "null";
         }
+
+        private static string WrapInQuotes(string typeTestValue, KeyValuePair<string, OpenApiSchema> schema)
+        {
+            var dataType = schema.Value.GetDataType();
+            return (typeTestValue, dataType) switch
+            {
+                (_, "double") => typeTestValue,
+                (_, "long") => typeTestValue,
+                (_, "int") => typeTestValue,
+                ("null", _) => typeTestValue,
+                ("NEW-INSTANCE", _) => typeTestValue,
+                _ => WrapInQuotes(typeTestValue)
+            };
+        }
+
+        private static string WrapInQuotes(string str) => $"\\\"{str}\\\"";
+
+        private static string WrapInAppendLine(string str) => $"sb.AppendLine(\"{str}\");";
     }
 }
