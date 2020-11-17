@@ -238,7 +238,13 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 return;
             }
 
-            var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(schema.GetModelName());
+            var modelName = schema.GetModelName();
+            if (string.IsNullOrEmpty(modelName))
+            {
+                return;
+            }
+
+            var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(modelName);
 
             var headerRequiredParameters = endpointMethodMetadata.GetHeaderRequiredParameters();
 

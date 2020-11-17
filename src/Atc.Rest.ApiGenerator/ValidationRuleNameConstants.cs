@@ -32,6 +32,7 @@
         public const string Operation14 = "CR0214";
         public const string Operation15 = "CR0215";
         public const string Operation16 = "CR0216";
+        public const string Operation17 = "CR0217";
 
         public const string Path01 = "CR0301";
 

@@ -285,6 +285,15 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
                     }
 
+                    if (value.HasParametersOrRequestBody())
+                    {
+                        var schema = value.RequestBody?.Content.GetSchema();
+                        if (schema != null && string.IsNullOrEmpty(schema.GetModelName()))
+                        {
+                            logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation17, $"RequestBody is defined without model for operation '{value.GetOperationName()}'."));
+                        }
+                    }
+
                     foreach (var parameter in value.Parameters)
                     {
                         switch (parameter.In)
