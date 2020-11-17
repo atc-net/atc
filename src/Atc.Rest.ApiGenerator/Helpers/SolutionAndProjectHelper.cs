@@ -61,7 +61,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
                 sb.AppendLine(2, "<PropertyGroup>");
-                sb.AppendLine(4, $"<DocumentationFile>bin\\Debug\\netcoreapp3.1\\{projectName}.xml</DocumentationFile>");
+                sb.AppendLine(4, $"<DocumentationFile>bin{Path.DirectorySeparatorChar}Debug{Path.DirectorySeparatorChar}netcoreapp3.1{Path.DirectorySeparatorChar}{projectName}.xml</DocumentationFile>");
                 sb.AppendLine(4, "<NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
                 sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
@@ -69,8 +69,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 if (includeApiSpecification)
                 {
                     sb.AppendLine(2, "<ItemGroup>");
-                    sb.AppendLine(4, "<None Remove=\"Resources\\ApiSpecification.yaml\" />");
-                    sb.AppendLine(4, "<EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
+                    sb.AppendLine(4, $"<None Remove=\"Resources{Path.DirectorySeparatorChar}ApiSpecification.yaml\" />");
+                    sb.AppendLine(4, $"<EmbeddedResource Include=\"Resources{Path.DirectorySeparatorChar}ApiSpecification.yaml\" />");
                     sb.AppendLine(2, "</ItemGroup>");
                     sb.AppendLine();
                 }
@@ -460,14 +460,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var (projectId, pathPart) = data;
             var sb = new StringBuilder();
             sb.Append(ReSharperFormatGuid(projectId));
-            sb.Append(pathPart.Replace("\\", "_002Fd_003A", StringComparison.Ordinal));
+            sb.Append(pathPart.Replace(Path.DirectorySeparatorChar.ToString(), "_002Fd_003A", StringComparison.Ordinal));
             return sb.ToString();
         }
 
         private static string GetProjectReference(FileSystemInfo source, FileSystemInfo destination, string projectName)
         {
-            var sa1 = source.FullName.Split('\\');
-            var sa2 = destination.FullName.Split('\\');
+            var sa1 = source.FullName.Split(Path.DirectorySeparatorChar);
+            var sa2 = destination.FullName.Split(Path.DirectorySeparatorChar);
             int diffIndex = sa1.Where((t, i) => i < sa2.Length && t == sa2[i]).Count();
 
             int goForward = 0;
@@ -492,8 +492,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         private static string GetProjectReference(FileInfo source, FileInfo destination)
         {
-            var sa1 = source.FullName.Split('\\');
-            var sa2 = destination.FullName.Split('\\');
+            var sa1 = source.FullName.Split(Path.DirectorySeparatorChar);
+            var sa2 = destination.FullName.Split(Path.DirectorySeparatorChar);
             int diffIndex = sa1.Where((t, i) => i < sa2.Length && t == sa2[i]).Count();
 
             int goBack = 0;
@@ -510,7 +510,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var sb1 = new StringBuilder();
             for (int i = 0; i < goBack; i++)
             {
-                sb1.Append(@"..\");
+                sb1.Append($"..{Path.DirectorySeparatorChar}");
             }
 
             var sb2 = new StringBuilder();
@@ -518,7 +518,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 if (sb2.Length != 0)
                 {
-                    sb2.Append('\\');
+                    sb2.Append(Path.DirectorySeparatorChar);
                 }
 
                 sb2.Append(sa2[i]);
