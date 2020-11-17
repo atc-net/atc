@@ -43,7 +43,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
             if (fileInfo.Extension.Equals(".cs", StringComparison.OrdinalIgnoreCase) &&
                 text.EndsWith("}" + Environment.NewLine, StringComparison.Ordinal))
             {
-                text = text.Substring(0, text.Length - 2);
+                var index = text.LastIndexOf(Environment.NewLine, StringComparison.Ordinal);
+                text = text.Remove(index);
             }
 
             if (File.Exists(fileInfo.FullName))
