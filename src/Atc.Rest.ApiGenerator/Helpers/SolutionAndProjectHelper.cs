@@ -336,14 +336,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
             if (domainTestPath != null)
             {
                 var domainTestPrefixPath = GetProjectReference(slnFile, domainTestPath, projectName);
-                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Domain.Tests\", \"{domainTestPrefixPath}{projectName}.Domain.Tests\\{projectName}.Domain.Tests.csproj\", \"{{{hostTestId}}}\"");
+                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Domain.Tests\", \"{domainTestPrefixPath}{projectName}.Domain.Tests\\{projectName}.Domain.Tests.csproj\", \"{{{domainTestId}}}\"");
                 sb.AppendLine("EndProject");
             }
 
             if (hostTestPath != null)
             {
                 var hostTestPrefixPath = GetProjectReference(slnFile, hostTestPath, projectName);
-                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Api.Tests\", \"{hostTestPrefixPath}{projectName}.Api.Tests\\{projectName}.Api.Tests.csproj\", \"{{{hostTestId}}}\"");
+                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Api.Tests\", \"{hostTestPrefixPath}{projectName}.Api.Tests\\{projectName}.Api.Tests.csproj\", \"{{{apiTestId}}}\"");
                 sb.AppendLine("EndProject");
             }
 
@@ -353,40 +353,41 @@ namespace Atc.Rest.ApiGenerator.Helpers
             sb.AppendLine("\t\tRelease|Any CPU = Release|Any CPU");
             sb.AppendLine("\tEndGlobalSection");
             sb.AppendLine("\tGlobalSection(ProjectConfigurationPlatforms) = postSolution");
-            sb.AppendLine($"\t\t{{{apiId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            if (apiTestPath != null)
+            sb.AppendLine($"\t\t{{{apiId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+
+            if (hostTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
             if (domainTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
-            if (hostTestPath != null)
+            if (apiTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
             sb.AppendLine("\tEndGlobalSection");
