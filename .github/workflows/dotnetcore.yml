@@ -3,8 +3,10 @@ name: .NET Core
 on: [push]
 
 jobs:
+
   build:
 
+    name: Build on Ubuntu Linux
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +19,93 @@ jobs:
       run: dotnet restore Atc.sln
     - name: Build with dotnet
       run: dotnet build Atc.sln
+
+  windows-smoke-tests:
+
+    name: CLI Smoke Test on Windows
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1
+
+    - name: Download Swagger Petstore v3 spec
+      run: Invoke-WebRequest -Uri https://petstore3.swagger.io/api/v3/openapi.yaml -OutFile openapi.yaml
+
+    - name: Restore packages with dotnet
+      run: dotnet restore Atc.sln
+
+    - name: Build with dotnet
+      run: dotnet build Atc.sln
+
+    - name: Generate Code
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore/ --outputSrcPath ../../petstore/src --outputTestPath ../../petstore/test -v true
+      working-directory: src/Atc.Rest.ApiGenerator.CLI
+
+    - name: Build Generated Code
+      run: dotnet build Atc.sln
+      working-directory: petstore
+
+  macos-smoke-tests:
+
+    name: CLI Smoke Test on MacOS
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1
+
+    - name: Download Swagger Petstore v3 spec
+      run: curl -O https://petstore3.swagger.io/api/v3/openapi.yaml
+
+    - name: Restore packages with dotnet
+      run: dotnet restore Atc.sln
+
+    - name: Build with dotnet
+      run: dotnet build Atc.sln
+
+    - name: Generate Code
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore/ --outputSrcPath ../../petstore/src --outputTestPath ../../petstore/test -v true
+      working-directory: src/Atc.Rest.ApiGenerator.CLI
+
+    - name: Build Generated Code
+      run: dotnet build
+      working-directory: petstore
+
+  ubuntu-smoke-tests:
+
+    name: CLI Smoke Test on Ubuntu Linux
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1
+
+    - name: Download Swagger Petstore v3 spec
+      run: curl -O https://petstore3.swagger.io/api/v3/openapi.yaml
+
+    - name: Restore packages with dotnet
+      run: dotnet restore Atc.sln
+
+    - name: Build with dotnet
+      run: dotnet build Atc.sln
+
+    - name: Generate Code
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore/ --outputSrcPath ../../petstore/src --outputTestPath ../../petstore/test -v true
+      working-directory: src/Atc.Rest.ApiGenerator.CLI
+
+    - name: Build Generated Code
+      run: dotnet build
+      working-directory: petstore
