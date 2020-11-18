@@ -64,8 +64,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                     list.Add("System.Collections.Generic");
                 }
 
-                if (list.All(x => x != "System.ComponentModel.DataAnnotations") &&
-                    ShouldUseDataAnnotationsNamespace(contentSchema))
+                if (list.All(x => x != "System.ComponentModel.DataAnnotations"))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");
                 }
