@@ -87,7 +87,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             }
 
             var requestSchema = ApiOperation.RequestBody?.Content?.GetSchema();
-            if (ApiOperation.RequestBody != null && requestSchema?.Reference != null && requestSchema.Type != OpenApiDataTypeConstants.Array)
+            if (ApiOperation.RequestBody != null && requestSchema != null)
             {
                 var requestBodyType = requestSchema.Reference != null
                     ? requestSchema.Reference.Id.EnsureFirstCharacterToUpper()
