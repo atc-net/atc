@@ -30,7 +30,7 @@ jobs:
       run: Invoke-WebRequest -Uri https://petstore3.swagger.io/api/v3/openapi.yaml -OutFile openapi.yaml
 
     - name: Generate Code for Swagger Petstore v3
-      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
     - name: Build Generated Code
@@ -38,7 +38,7 @@ jobs:
       working-directory: petstore3
 
     - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
   macos-smoke-tests:
@@ -67,7 +67,7 @@ jobs:
       run: curl -O https://petstore.swagger.io/v2/swagger.yaml
 
     - name: Generate Code
-      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
     - name: Build Generated Code
@@ -75,7 +75,7 @@ jobs:
       working-directory: petstore3
 
     - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
     - name: Build Generated Code
@@ -108,7 +108,7 @@ jobs:
       run: curl -O https://petstore.swagger.io/v2/swagger.yaml
 
     - name: Generate Code
-      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
     - name: Build Generated Code
@@ -116,7 +116,7 @@ jobs:
       working-directory: petstore3
 
     - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test -v true
+      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/DelegateApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
 
     - name: Build Generated Code
