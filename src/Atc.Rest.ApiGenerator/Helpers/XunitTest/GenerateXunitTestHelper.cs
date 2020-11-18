@@ -361,7 +361,9 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                     return ValueTypeTestPropertiesHelper.CreateValueEnum(name, schemaForDataType, useForBadRequest);
                 }
 
-                return "NEW-INSTANCE";
+                return useForBadRequest
+                    ? "null"
+                    : "NEW-INSTANCE";
             }
 
             if (schema.Value.GetDataType() == "array")
