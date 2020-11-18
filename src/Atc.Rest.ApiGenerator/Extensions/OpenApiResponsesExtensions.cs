@@ -82,6 +82,7 @@ namespace Microsoft.OpenApi.Models
                             : null;
                         break;
                     case HttpStatusCode.NotFound:
+                    case HttpStatusCode.MethodNotAllowed:
                     case HttpStatusCode.Conflict:
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotImplemented:
