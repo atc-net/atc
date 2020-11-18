@@ -7,7 +7,8 @@
 [![Issues Open](https://img.shields.io/github/issues/atc-net/atc.svg?style=flat-square&logo=github)](https://github.com/atc-net/atc/issues)
 
 ### Build Status
-![.NET Core](https://github.com/atc-net/atc/workflows/.NET%20Core/badge.svg)
+![Build](https://github.com/atc-net/atc/workflows/Build/badge.svg)
+![Smoke Tests](https://github.com/atc-net/atc/workflows/Smoke%20Tests/badge.svg)
 [![Build Status](https://dev.azure.com/atc-net/ATC.NET/_apis/build/status/atc-net.atc?branchName=master)](https://dev.azure.com/atc-net/ATC.NET/_build/latest?definitionId=1&branchName=master)
 
 ### Code Quality
