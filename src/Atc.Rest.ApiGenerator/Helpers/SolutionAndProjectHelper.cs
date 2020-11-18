@@ -61,7 +61,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
                 sb.AppendLine(2, "<PropertyGroup>");
-                sb.AppendLine(4, $"<DocumentationFile>bin\\Debug\\netcoreapp3.1\\{projectName}.xml</DocumentationFile>");
+                sb.AppendLine(4, $"<DocumentationFile>bin{Path.DirectorySeparatorChar}Debug{Path.DirectorySeparatorChar}netcoreapp3.1{Path.DirectorySeparatorChar}{projectName}.xml</DocumentationFile>");
                 sb.AppendLine(4, "<NoWarn>1573;1591;1701;1702;1712;8618</NoWarn>");
                 sb.AppendLine(2, "</PropertyGroup>");
                 sb.AppendLine();
@@ -69,8 +69,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 if (includeApiSpecification)
                 {
                     sb.AppendLine(2, "<ItemGroup>");
-                    sb.AppendLine(4, "<None Remove=\"Resources\\ApiSpecification.yaml\" />");
-                    sb.AppendLine(4, "<EmbeddedResource Include=\"Resources\\ApiSpecification.yaml\" />");
+                    sb.AppendLine(4, $"<None Remove=\"Resources{Path.DirectorySeparatorChar}ApiSpecification.yaml\" />");
+                    sb.AppendLine(4, $"<EmbeddedResource Include=\"Resources{Path.DirectorySeparatorChar}ApiSpecification.yaml\" />");
                     sb.AppendLine(2, "</ItemGroup>");
                     sb.AppendLine();
                 }
@@ -336,14 +336,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
             if (domainTestPath != null)
             {
                 var domainTestPrefixPath = GetProjectReference(slnFile, domainTestPath, projectName);
-                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Domain.Tests\", \"{domainTestPrefixPath}{projectName}.Domain.Tests\\{projectName}.Domain.Tests.csproj\", \"{{{hostTestId}}}\"");
+                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Domain.Tests\", \"{domainTestPrefixPath}{projectName}.Domain.Tests\\{projectName}.Domain.Tests.csproj\", \"{{{domainTestId}}}\"");
                 sb.AppendLine("EndProject");
             }
 
             if (hostTestPath != null)
             {
                 var hostTestPrefixPath = GetProjectReference(slnFile, hostTestPath, projectName);
-                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Api.Tests\", \"{hostTestPrefixPath}{projectName}.Api.Tests\\{projectName}.Api.Tests.csproj\", \"{{{hostTestId}}}\"");
+                sb.AppendLine($"Project(\"{{9A19103F-16F7-4668-BE54-9A1E7A4F7556}}\") = \"{projectName}.Api.Tests\", \"{hostTestPrefixPath}{projectName}.Api.Tests\\{projectName}.Api.Tests.csproj\", \"{{{apiTestId}}}\"");
                 sb.AppendLine("EndProject");
             }
 
@@ -353,40 +353,41 @@ namespace Atc.Rest.ApiGenerator.Helpers
             sb.AppendLine("\t\tRelease|Any CPU = Release|Any CPU");
             sb.AppendLine("\tEndGlobalSection");
             sb.AppendLine("\tGlobalSection(ProjectConfigurationPlatforms) = postSolution");
-            sb.AppendLine($"\t\t{{{apiId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{apiId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{domainId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-            sb.AppendLine($"\t\t{{{hostId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
-            if (apiTestPath != null)
+            sb.AppendLine($"\t\t{{{apiId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{apiId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{domainId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+            sb.AppendLine($"\t\t{{{hostId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
+
+            if (hostTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{apiTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{hostTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
             if (domainTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{domainTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{domainTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
-            if (hostTestPath != null)
+            if (apiTestPath != null)
             {
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug | Any CPU.ActiveCfg = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Debug | Any CPU.Build.0 = Debug | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Release | Any CPU.ActiveCfg = Release | Any CPU");
-                sb.AppendLine($"\t\t{{{hostTestId}}}.Release | Any CPU.Build.0 = Release | Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Release|Any CPU.ActiveCfg = Release|Any CPU");
+                sb.AppendLine($"\t\t{{{apiTestId}}}.Release|Any CPU.Build.0 = Release|Any CPU");
             }
 
             sb.AppendLine("\tEndGlobalSection");
@@ -460,14 +461,14 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var (projectId, pathPart) = data;
             var sb = new StringBuilder();
             sb.Append(ReSharperFormatGuid(projectId));
-            sb.Append(pathPart.Replace("\\", "_002Fd_003A", StringComparison.Ordinal));
+            sb.Append(pathPart.Replace(Path.DirectorySeparatorChar.ToString(), "_002Fd_003A", StringComparison.Ordinal));
             return sb.ToString();
         }
 
         private static string GetProjectReference(FileSystemInfo source, FileSystemInfo destination, string projectName)
         {
-            var sa1 = source.FullName.Split('\\');
-            var sa2 = destination.FullName.Split('\\');
+            var sa1 = source.FullName.Split(Path.DirectorySeparatorChar);
+            var sa2 = destination.FullName.Split(Path.DirectorySeparatorChar);
             int diffIndex = sa1.Where((t, i) => i < sa2.Length && t == sa2[i]).Count();
 
             int goForward = 0;
@@ -492,8 +493,8 @@ namespace Atc.Rest.ApiGenerator.Helpers
 
         private static string GetProjectReference(FileInfo source, FileInfo destination)
         {
-            var sa1 = source.FullName.Split('\\');
-            var sa2 = destination.FullName.Split('\\');
+            var sa1 = source.FullName.Split(Path.DirectorySeparatorChar);
+            var sa2 = destination.FullName.Split(Path.DirectorySeparatorChar);
             int diffIndex = sa1.Where((t, i) => i < sa2.Length && t == sa2[i]).Count();
 
             int goBack = 0;
@@ -510,7 +511,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var sb1 = new StringBuilder();
             for (int i = 0; i < goBack; i++)
             {
-                sb1.Append(@"..\");
+                sb1.Append($"..{Path.DirectorySeparatorChar}");
             }
 
             var sb2 = new StringBuilder();
@@ -518,7 +519,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             {
                 if (sb2.Length != 0)
                 {
-                    sb2.Append('\\');
+                    sb2.Append(Path.DirectorySeparatorChar);
                 }
 
                 sb2.Append(sa2[i]);
