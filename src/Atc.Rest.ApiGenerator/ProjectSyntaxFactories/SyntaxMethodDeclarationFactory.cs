@@ -129,15 +129,10 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 }
             }
 
-            if (apiRequestBody?.Content != null)
+            var schema = apiRequestBody?.Content?.GetSchema();
+            if (schema != null && !dictionary.ContainsKey(NameConstants.Request))
             {
-                foreach (var mediaType in apiRequestBody.Content.Values)
-                {
-                    if (!dictionary.ContainsKey(NameConstants.Request))
-                    {
-                        dictionary.Add(NameConstants.Request, mediaType.Schema);
-                    }
-                }
+                dictionary.Add(NameConstants.Request, schema);
             }
 
             return CreateToStringMethod(dictionary);
