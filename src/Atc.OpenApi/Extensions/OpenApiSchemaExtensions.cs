@@ -558,7 +558,7 @@ namespace Microsoft.OpenApi.Models
                 case OpenApiDataTypeConstants.Boolean:
                     return "bool";
                 case OpenApiDataTypeConstants.Array:
-                    return "array";
+                    return "Array";
             }
 
             if (!string.IsNullOrEmpty(schema.Format))
