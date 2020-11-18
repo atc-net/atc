@@ -24,7 +24,7 @@ jobs:
       run: dotnet build Atc.sln
 
     - name: Generate Demo Code
-      run: GenerateDemoApi.cmd
+      run: ./GenerateDemoApi.cmd
       working-directory: sample
 
     - name: Build Demo.sln
