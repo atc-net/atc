@@ -20,8 +20,16 @@ jobs:
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
 
-    - name: Build with dotnet
+    - name: Build Atc.sln
       run: dotnet build Atc.sln
+
+    - name: Generate Demo Code
+      run: GenerateDemoApi.cmd
+      working-directory: sample
+
+    - name: Build Demo.sln
+      run: dotnet build Demo.sln
+      working-directory: sample
 
     - name: Download Swagger Petstore v3 spec
       run: Invoke-WebRequest -Uri https://petstore3.swagger.io/api/v3/openapi.yaml -OutFile openapi.yaml
