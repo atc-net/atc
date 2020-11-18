@@ -23,9 +23,6 @@ jobs:
     - name: Build with dotnet
       run: dotnet build Atc.sln
 
-    - name: Download Swagger Petstore v2 spec
-      run: Invoke-WebRequest -Uri https://petstore.swagger.io/v2/swagger.yaml -OutFile swagger.yaml
-
     - name: Download Swagger Petstore v3 spec
       run: Invoke-WebRequest -Uri https://petstore3.swagger.io/api/v3/openapi.yaml -OutFile openapi.yaml
 
@@ -36,10 +33,6 @@ jobs:
     - name: Build Generated Code
       run: dotnet build
       working-directory: petstore3
-
-    - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/ApiGeneratorOptions.json -v true
-      working-directory: src/Atc.Rest.ApiGenerator.CLI
 
   macos-smoke-tests:
 
@@ -63,9 +56,6 @@ jobs:
     - name: Download Swagger Petstore v3 spec
       run: curl -O https://petstore3.swagger.io/api/v3/openapi.yaml
 
-    - name: Download Swagger Petstore v2 spec
-      run: curl -O https://petstore.swagger.io/v2/swagger.yaml
-
     - name: Generate Code
       run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test --optionsPath ../../sample/Demo.ApiDesign/ApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
@@ -73,14 +63,6 @@ jobs:
     - name: Build Generated Code
       run: dotnet build
       working-directory: petstore3
-
-    - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/ApiGeneratorOptions.json -v true
-      working-directory: src/Atc.Rest.ApiGenerator.CLI
-
-    - name: Build Generated Code
-      run: dotnet build
-      working-directory: petstore2
 
   ubuntu-smoke-tests:
 
@@ -104,9 +86,6 @@ jobs:
     - name: Download Swagger Petstore v3 spec
       run: curl -O https://petstore3.swagger.io/api/v3/openapi.yaml
 
-    - name: Download Swagger Petstore v2 spec
-      run: curl -O https://petstore.swagger.io/v2/swagger.yaml
-
     - name: Generate Code
       run: dotnet run -- generate server all -p "Swagger Petstore v3" -s ../../openapi.yaml --outputSlnPath ../../petstore3/ --outputSrcPath ../../petstore3/src --outputTestPath ../../petstore3/test --optionsPath ../../sample/Demo.ApiDesign/ApiGeneratorOptions.json -v true
       working-directory: src/Atc.Rest.ApiGenerator.CLI
@@ -114,11 +93,3 @@ jobs:
     - name: Build Generated Code
       run: dotnet build
       working-directory: petstore3
-
-    - name: Generate Code for Swagger Petstore v2
-      run: dotnet run -- generate server all -p "Swagger Petstore v2" -s ../../swagger.yaml --outputSlnPath ../../petstore2/ --outputSrcPath ../../petstore2/src --outputTestPath ../../petstore2/test --optionsPath ../../sample/Demo.ApiDesign/ApiGeneratorOptions.json -v true
-      working-directory: src/Atc.Rest.ApiGenerator.CLI
-
-    - name: Build Generated Code
-      run: dotnet build
-      working-directory: petstore2
