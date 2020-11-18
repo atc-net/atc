@@ -126,33 +126,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             var schemaKey = string.Empty;
-            if (apiSchema.Reference?.Id != null)
-            {
-                schemaKey = apiSchema.Reference.Id.EnsureFirstCharacterToUpper();
-            }
-            else if (apiSchema.Items?.Reference?.Id != null)
-            {
-                schemaKey = apiSchema.Items.Reference.Id.EnsureFirstCharacterToUpper();
-            }
-            else if (apiSchema.AllOf.Count == 2 &&
-                     (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
-                      Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
-            {
-                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                {
-                    schemaKey = apiSchema.AllOf[0].GetModelName();
-                }
-
-                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
-                {
-                    schemaKey = apiSchema.AllOf[1].GetModelName();
-                }
-            }
-            else if (apiSchema.OneOf.Any() && apiSchema.OneOf.First().Reference?.Id != null)
-            {
-                schemaKey = apiSchema.OneOf.First().Reference.Id.EnsureFirstCharacterToUpper();
-                apiSchema = apiSchema.OneOf.First();
-            }
+            (schemaKey, apiSchema) = ConsolidateSchemaObjectTypes(apiSchema);
 
             if (schemaKey.Length == 0 ||
                 schemaKey == nameof(ProblemDetails) ||
@@ -169,21 +143,6 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 apiOperationType,
                 schemaKey,
                 list);
-
-            if (apiSchema.Items != null &&
-                apiSchema.Type == OpenApiDataTypeConstants.Array &&
-                apiSchema.Items.Reference?.Id != null &&
-                schemaKey != apiSchema.Items.Reference.Id)
-            {
-                list.Add(new ApiOperationSchemaMap(apiSchema.Items.Reference.Id, locatedArea, apiPath, apiOperationType, schemaKey));
-                Collect(
-                    apiSchema.Items.Properties.ToList(),
-                    locatedArea,
-                    apiPath,
-                    apiOperationType,
-                    apiSchema.Items.Reference.Id,
-                    list);
-            }
         }
 
         private static void Collect(
@@ -204,6 +163,42 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     parentApiSchema,
                     list);
             }
+        }
+
+        private static (string, OpenApiSchema) ConsolidateSchemaObjectTypes(OpenApiSchema apiSchema)
+        {
+            var schemaKey = string.Empty;
+            if (apiSchema.Reference?.Id != null)
+            {
+                schemaKey = apiSchema.Reference.Id.EnsureFirstCharacterToUpper();
+            }
+            else if (apiSchema.Type == OpenApiDataTypeConstants.Array &&
+                     apiSchema.Items?.Reference?.Id != null)
+            {
+                schemaKey = apiSchema.Items.Reference.Id.EnsureFirstCharacterToUpper();
+                apiSchema = apiSchema.Items;
+            }
+            else if (apiSchema.OneOf.Any() && apiSchema.OneOf.First().Reference?.Id != null)
+            {
+                schemaKey = apiSchema.OneOf.First().Reference.Id.EnsureFirstCharacterToUpper();
+                apiSchema = apiSchema.OneOf.First();
+            }
+            else if (apiSchema.AllOf.Count == 2 &&
+                     (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                      Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    schemaKey = apiSchema.AllOf[0].GetModelName();
+                }
+
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    schemaKey = apiSchema.AllOf[1].GetModelName();
+                }
+            }
+
+            return (schemaKey, apiSchema);
         }
     }
 }
