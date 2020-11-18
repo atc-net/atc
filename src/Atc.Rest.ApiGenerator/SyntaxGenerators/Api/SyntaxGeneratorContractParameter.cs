@@ -86,46 +86,39 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                 }
             }
 
-            if (ApiOperation.RequestBody?.Content != null)
+            var requestSchema = ApiOperation.RequestBody?.Content?.GetSchema();
+            if (ApiOperation.RequestBody != null && requestSchema != null)
             {
-                foreach (var item in ApiOperation.RequestBody.Content.Values)
+                var requestBodyType = requestSchema.Reference != null
+                    ? requestSchema.Reference.Id.EnsureFirstCharacterToUpper()
+                    : requestSchema.Items.Reference.Id.EnsureFirstCharacterToUpper();
+
+                PropertyDeclarationSyntax propertyDeclaration;
+                if (requestSchema.Type == OpenApiDataTypeConstants.Array)
                 {
-                    if (item.Schema.Reference == null && item.Schema.Type != OpenApiDataTypeConstants.Array)
-                    {
-                        continue;
-                    }
-
-                    var requestBodyType = item.Schema.Reference != null
-                        ? item.Schema.Reference.Id.EnsureFirstCharacterToUpper()
-                        : item.Schema.Items.Reference.Id.EnsureFirstCharacterToUpper();
-
-                    PropertyDeclarationSyntax propertyDeclaration;
-                    if (item.Schema.Type == OpenApiDataTypeConstants.Array)
-                    {
-                        propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateListAuto(
-                            requestBodyType,
-                            NameConstants.Request)
-                            .AddFromBodyAttribute()
-                            .AddValidationAttribute(new RequiredAttribute())
-                            .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
-                    }
-                    else
-                    {
-                        propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
-                                null,
-                                false,
-                                true,
-                                requestBodyType,
-                                NameConstants.Request,
-                                ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
-                                null)
-                            .AddFromBodyAttribute()
-                            .AddValidationAttribute(new RequiredAttribute())
-                            .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
-                    }
-
-                    classDeclaration = classDeclaration.AddMembers(propertyDeclaration);
+                    propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateListAuto(
+                        requestBodyType,
+                        NameConstants.Request)
+                        .AddFromBodyAttribute()
+                        .AddValidationAttribute(new RequiredAttribute())
+                        .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
                 }
+                else
+                {
+                    propertyDeclaration = SyntaxPropertyDeclarationFactory.CreateAuto(
+                            null,
+                            false,
+                            true,
+                            requestBodyType,
+                            NameConstants.Request,
+                            ApiProjectOptions.ApiOptions.Generator.UseNullableReferenceTypes,
+                            null)
+                        .AddFromBodyAttribute()
+                        .AddValidationAttribute(new RequiredAttribute())
+                        .WithLeadingTrivia(SyntaxDocumentationFactory.CreateForParameter(ApiOperation.RequestBody));
+                }
+
+                classDeclaration = classDeclaration.AddMembers(propertyDeclaration);
             }
 
             var methodDeclaration = SyntaxMethodDeclarationFactory.CreateToStringMethod(GlobalPathParameters, ApiOperation.Parameters, ApiOperation.RequestBody);

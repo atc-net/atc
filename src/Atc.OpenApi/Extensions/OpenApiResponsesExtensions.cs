@@ -68,6 +68,7 @@ namespace Microsoft.OpenApi.Models
                 switch (httpStatusCode)
                 {
                     case HttpStatusCode.BadRequest:
+                    case HttpStatusCode.MethodNotAllowed:
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotImplemented:
                     case HttpStatusCode.BadGateway:

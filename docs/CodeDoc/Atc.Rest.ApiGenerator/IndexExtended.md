@@ -37,6 +37,7 @@
      - string Operation14
      - string Operation15
      - string Operation16
+     - string Operation17
      - string Path01
      - string ProjectApiGenerated01
      - string ProjectApiGenerated02

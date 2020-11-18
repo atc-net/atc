@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OpenApi.Models;
 
@@ -16,7 +17,8 @@ namespace Atc.Rest.ApiGenerator.Factories
 
             if (globalParameters != null)
             {
-                if (globalParameters.HasFormatTypeFromSystemNamespace())
+                if (globalParameters.HasFormatTypeFromSystemNamespace() ||
+                    globalParameters.Any(x => x.Schema.GetDataType().Equals(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase)))
                 {
                     list.Add("System");
                 }
@@ -30,7 +32,8 @@ namespace Atc.Rest.ApiGenerator.Factories
             if (parameters != null)
             {
                 if (list.All(x => x != "System") &&
-                    parameters.HasFormatTypeFromSystemNamespace())
+                    (parameters.HasFormatTypeFromSystemNamespace() ||
+                    parameters.Any(x => x.Schema.GetDataType().Equals(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase))))
                 {
                     list.Add("System");
                 }
@@ -61,8 +64,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                     list.Add("System.Collections.Generic");
                 }
 
-                if (list.All(x => x != "System.ComponentModel.DataAnnotations") &&
-                    ShouldUseDataAnnotationsNamespace(contentSchema))
+                if (list.All(x => x != "System.ComponentModel.DataAnnotations"))
                 {
                     list.Add("System.ComponentModel.DataAnnotations");
                 }
