@@ -304,6 +304,38 @@ paths:
         '200':
           description: OK
       operationId: getRouteWithDash
+  '/items':
+    post:
+      summary: 'Create a new item'
+      operationId: createItem
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateItemRequest'
+  '/items/{id}':
+    put:
+      summary: ''
+      operationId: updateItem
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemRequest'
+      parameters:
+        - name: id
+          in: path
+          description: The id of the order
+          required: true
+          schema:
+            type: string
+            format: uuid
 components:
   parameters:
     pagingPageSize:
@@ -643,3 +675,27 @@ components:
           format: email
       required:
         - myEmail
+    Item:
+      title: Item
+      type: object
+      properties:
+        name: 
+          type: string
+      required:
+        - name
+    CreateItemRequest:
+      title: CreateItemRequest
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+      required:
+        - item
+    UpdateItemRequest:
+      title: UpdateItemRequest
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+      required:
+        - item
