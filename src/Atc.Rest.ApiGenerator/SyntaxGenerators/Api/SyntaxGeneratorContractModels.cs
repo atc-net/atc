@@ -32,12 +32,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
         {
             var list = new List<SyntaxGeneratorContractModel>();
 
-            var apiOperationSchemaResponseMaps = OperationSchemaMappings
-                .Where(x => x.LocatedArea == SchemaMapLocatedAreaType.Response &&
-                            x.SegmentName.Equals(FocusOnSegmentName, StringComparison.OrdinalIgnoreCase))
+            var apiOperationSchemaMaps = OperationSchemaMappings
+                .Where(x => (x.LocatedArea == SchemaMapLocatedAreaType.Response ||
+                             x.LocatedArea == SchemaMapLocatedAreaType.RequestBody) &&
+                             x.SegmentName.Equals(FocusOnSegmentName, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            var schemaKeys = apiOperationSchemaResponseMaps
+            var schemaKeys = apiOperationSchemaMaps
                 .Select(x => x.SchemaKey)
                 .Distinct()
                 .OrderBy(x => x)
