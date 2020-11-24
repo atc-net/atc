@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Models
 {
-    public class ApiOperationSchemaMap
+    public sealed class ApiOperationSchemaMap
     {
         public ApiOperationSchemaMap(string schemaKey, SchemaMapLocatedAreaType locatedArea, string path, OperationType operationType, string? parentSchemaKey)
         {
@@ -34,7 +34,7 @@ namespace Atc.Rest.ApiGenerator.Models
             return $"{nameof(SchemaKey)}: {SchemaKey}, {nameof(LocatedArea)}: {LocatedArea}, {nameof(SegmentName)}: {SegmentName}, {nameof(Path)}: {Path}, {nameof(OperationType)}: {OperationType}, {nameof(ParentSchemaKey)}: {ParentSchemaKey}";
         }
 
-        protected bool Equals(ApiOperationSchemaMap other)
+        private bool Equals(ApiOperationSchemaMap other)
         {
             return SchemaKey == other.SchemaKey &&
                    LocatedArea == other.LocatedArea &&
@@ -47,7 +47,7 @@ namespace Atc.Rest.ApiGenerator.Models
         public override bool Equals(object? obj)
         {
             return !ReferenceEquals(null, obj) &&
-                   (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() && Equals((ApiOperationSchemaMap)obj));
+                   (ReferenceEquals(this, obj) || (obj.GetType() == this.GetType() && Equals((ApiOperationSchemaMap)obj)));
         }
 
         public override int GetHashCode()
