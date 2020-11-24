@@ -347,9 +347,10 @@ namespace Atc.Rest.ApiGenerator.Generators
             // Create members
             var memberDeclarationConfigureWebHost = CreateWebApplicationFactoryConfigureWebHost();
             var memberDeclarationModifyConfiguration = CreateWebApplicationFactoryModifyConfiguration();
+            var memberDeclarationModifyServices = CreateWebApplicationFactoryModifyServices();
 
             // Add member to class
-            classDeclaration = classDeclaration.AddMembers(memberDeclarationConfigureWebHost, memberDeclarationModifyConfiguration);
+            classDeclaration = classDeclaration.AddMembers(memberDeclarationConfigureWebHost, memberDeclarationModifyConfiguration, memberDeclarationModifyServices);
 
             // Add class to namespace
             @namespace = @namespace.AddMembers(classDeclaration);
@@ -811,6 +812,14 @@ namespace Atc.Rest.ApiGenerator.Generators
                                         .WithBlock(
                                             SyntaxFactory.Block(
                                                 SyntaxFactory.ExpressionStatement(
+                                                   SyntaxFactory.InvocationExpression(
+                                                       SyntaxFactory.IdentifierName("ModifyServices"))
+                                                   .WithArgumentList(
+                                                       SyntaxFactory.ArgumentList(
+                                                           SyntaxFactory.SingletonSeparatedList(
+                                                               SyntaxFactory.Argument(
+                                                                   SyntaxFactory.IdentifierName("services")))))),
+                                                SyntaxFactory.ExpressionStatement(
                                                     SyntaxFactory.InvocationExpression(
                                                         SyntaxFactory.MemberAccessExpression(
                                                             SyntaxKind.SimpleMemberAccessExpression,
@@ -885,6 +894,26 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 SyntaxFactory.Identifier("config"))
                             .WithType(
                                 SyntaxFactory.IdentifierName("IConfigurationBuilder")))))
+                .WithSemicolonToken(
+                    SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+        }
+
+        private static MemberDeclarationSyntax CreateWebApplicationFactoryModifyServices()
+        {
+            return SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.PredefinedType(
+                        SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                    SyntaxFactory.Identifier("ModifyServices"))
+                .WithModifiers(
+                    SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(SyntaxKind.PartialKeyword)))
+                .WithParameterList(
+                    SyntaxFactory.ParameterList(
+                        SyntaxFactory.SingletonSeparatedList(
+                            SyntaxFactory.Parameter(
+                                SyntaxFactory.Identifier("services"))
+                            .WithType(
+                                SyntaxFactory.IdentifierName("IServiceCollection")))))
                 .WithSemicolonToken(
                     SyntaxFactory.Token(SyntaxKind.SemicolonToken));
         }
