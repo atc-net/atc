@@ -6,14 +6,14 @@ using Xunit.Sdk;
 
 namespace Atc.Rest.FluentAssertions.Tests.Assertions
 {
-    public class NotFoundResultAssertionsTests
+    public class BadRequestResultAssertionsTests
     {
         [Fact]
         public void Ctor_Sets_Subject_On_Subject_Property()
         {
             var expected = new ContentResult();
 
-            var sut = new NotFoundResultAssertions(expected);
+            var sut = new BadRequestResultAssertions(expected);
 
             sut.Subject.Should().Be(expected);
         }
@@ -28,13 +28,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 ContentType = "application/json",
             };
 
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected not found result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected bad request result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -47,13 +47,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 ContentType = "application/json",
             };
 
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected not found result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected bad request result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -66,13 +66,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 ContentType = "BAZ",
             };
 
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected not found result to be ""application/json"" with a length of 16, but ""BAZ"" has a length of 3, differs near ""BAZ"" (index 0).");
+                .WithMessage(@"Expected bad request result to be ""application/json"" with a length of 16, but ""BAZ"" has a length of 3, differs near ""BAZ"" (index 0).");
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 ContentType = "application/json",
             };
 
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
@@ -99,13 +99,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         {
             // Arrange
             var target = new ContentResult { Content = content };
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithErrorMessage("BAR"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected error message of ""not found result"" to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected error message of ""bad request result"" to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Theory]
@@ -114,7 +114,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         {
             // Arrange
             var target = new ContentResult { Content = content };
-            var sut = new NotFoundResultAssertions(target);
+            var sut = new BadRequestResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithErrorMessage("FOO"))

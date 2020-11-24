@@ -8,29 +8,25 @@ namespace Atc.Rest.FluentAssertions
 {
     public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResultAssertions>
     {
-        private readonly OkObjectResult subject;
-
-        public OkResultAssertions(OkObjectResult subject)
-        {
-            this.subject = subject;
-        }
-
         protected override string Identifier => "OK result";
+
+        public OkResultAssertions(OkObjectResult subject) : base(subject) { }
+
+        public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
+            => Subject.Value.Should().BeOfType<T>(because, becauseArgs);
 
         public AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            using (new AssertionScope(Identifier))
+            using (new AssertionScope($"{Identifier} value"))
             {
-                subject.Value
-                    .Should()
-                    .BeOfType<T>()
+                WithContentOfType<T>(because, becauseArgs)
                     .And
                     .Subject
                     .Should()
                     .BeEquivalentTo(expectedContent, because, becauseArgs);
-            }
 
-            return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, subject);
+                return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, Subject);
+            }
         }
     }
 }

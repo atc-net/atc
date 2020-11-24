@@ -8,10 +8,30 @@
 <br />
 
 
-## NotFoundResultAssertions
+## AcceptedResultAssertions
 
 ```csharp
-public class NotFoundResultAssertions : ReferenceTypeAssertions<ContentResult, NotFoundResultAssertions>
+public class AcceptedResultAssertions : ContentResultAssertions<AcceptedResultAssertions>
+```
+
+
+<br />
+
+
+## BadRequestResultAssertions
+
+```csharp
+public class BadRequestResultAssertions : ErrorContentResultAssertions<BadRequestResultAssertions>
+```
+
+
+<br />
+
+
+## ContentResultAssertions&lt;TAssertions&gt;
+
+```csharp
+public abstract class ContentResultAssertions&lt;TAssertions&gt; : ReferenceTypeAssertions<ContentResult, ContentResultAssertions<TAssertions>>
 ```
 
 ### Methods
@@ -20,13 +40,46 @@ public class NotFoundResultAssertions : ReferenceTypeAssertions<ContentResult, N
 #### WithContent
 
 ```csharp
-AndWhichConstraint<NotFoundResultAssertions, ContentResult> WithContent(T expectedContent, string because = , object[] becauseArgs)
+AndWhichConstraint<TAssertions, ContentResult> WithContent(T expectedContent, string because = , object[] becauseArgs)
 ```
+
+<br />
+
+
+## ErrorContentResultAssertions&lt;TAssertions&gt;
+
+```csharp
+public abstract class ErrorContentResultAssertions&lt;TAssertions&gt; : ContentResultAssertions<TAssertions>
+```
+
+### Methods
+
+
 #### WithErrorMessage
 
 ```csharp
-AndWhichConstraint<NotFoundResultAssertions, ContentResult> WithErrorMessage(string expectedErrorMessage, string because = , object[] becauseArgs)
+AndWhichConstraint<TAssertions, ContentResult> WithErrorMessage(string expectedErrorMessage, string because = , object[] becauseArgs)
 ```
+
+<br />
+
+
+## NoContentResultAssertions
+
+```csharp
+public class NoContentResultAssertions : ContentResultAssertions<NoContentResultAssertions>
+```
+
+
+<br />
+
+
+## NotFoundResultAssertions
+
+```csharp
+public class NotFoundResultAssertions : ErrorContentResultAssertions<NotFoundResultAssertions>
+```
+
 
 <br />
 
@@ -45,6 +98,11 @@ public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResu
 ```csharp
 AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent(T expectedContent, string because = , object[] becauseArgs)
 ```
+#### WithContentOfType
+
+```csharp
+AndWhichConstraint<ObjectAssertions, T> WithContentOfType(string because = , object[] becauseArgs)
+```
 
 <br />
 
@@ -58,6 +116,21 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
 ### Methods
 
 
+#### BeAcceptedResult
+
+```csharp
+AcceptedResultAssertions BeAcceptedResult(string because = , object[] becauseArgs)
+```
+#### BeBadRequestResult
+
+```csharp
+BadRequestResultAssertions BeBadRequestResult(string because = , object[] becauseArgs)
+```
+#### BeNoContentResult
+
+```csharp
+NoContentResultAssertions BeNoContentResult(string because = , object[] becauseArgs)
+```
 #### BeNotFoundResult
 
 ```csharp

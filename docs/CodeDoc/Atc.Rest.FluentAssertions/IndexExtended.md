@@ -13,15 +13,25 @@
 
 ## [Atc.Rest.FluentAssertions](Atc.Rest.FluentAssertions.md)
 
-- [NotFoundResultAssertions](Atc.Rest.FluentAssertions.md#notfoundresultassertions)
+- [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
+- [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
+- [ContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertions&lt;tassertions&gt;)
   -  Methods
      - WithContent(T expectedContent, string because = , object[] becauseArgs)
+- [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
+  -  Methods
      - WithErrorMessage(string expectedErrorMessage, string because = , object[] becauseArgs)
+- [NoContentResultAssertions](Atc.Rest.FluentAssertions.md#nocontentresultassertions)
+- [NotFoundResultAssertions](Atc.Rest.FluentAssertions.md#notfoundresultassertions)
 - [OkResultAssertions](Atc.Rest.FluentAssertions.md#okresultassertions)
   -  Methods
      - WithContent(T expectedContent, string because = , object[] becauseArgs)
+     - WithContentOfType(string because = , object[] becauseArgs)
 - [ResultAssertions](Atc.Rest.FluentAssertions.md#resultassertions)
   -  Methods
+     - BeAcceptedResult(string because = , object[] becauseArgs)
+     - BeBadRequestResult(string because = , object[] becauseArgs)
+     - BeNoContentResult(string because = , object[] becauseArgs)
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)
 - [ResultBaseExtensions](Atc.Rest.FluentAssertions.md#resultbaseextensions)

@@ -23,6 +23,27 @@ namespace Atc.Rest.FluentAssertions
             return new OkResultAssertions(okSubject);
         }
 
+        public AcceptedResultAssertions BeAcceptedResult(string because = "", params object[] becauseArgs)
+        {
+            AssertIsResultTypeWithStatusCode<ContentResult>(202, because, becauseArgs);
+            var okSubject = (ContentResult)subject;
+            return new AcceptedResultAssertions(okSubject);
+        }
+
+        public NoContentResultAssertions BeNoContentResult(string because = "", params object[] becauseArgs)
+        {
+            AssertIsResultTypeWithStatusCode<ContentResult>(204, because, becauseArgs);
+            var okSubject = (ContentResult)subject;
+            return new NoContentResultAssertions(okSubject);
+        }
+
+        public BadRequestResultAssertions BeBadRequestResult(string because = "", params object[] becauseArgs)
+        {
+            AssertIsResultTypeWithStatusCode<ContentResult>(400, because, becauseArgs);
+            var okSubject = (ContentResult)subject;
+            return new BadRequestResultAssertions(okSubject);
+        }
+
         public NotFoundResultAssertions BeNotFoundResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(404, because, becauseArgs);
