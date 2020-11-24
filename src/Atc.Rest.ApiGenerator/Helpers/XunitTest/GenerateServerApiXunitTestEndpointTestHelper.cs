@@ -144,7 +144,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
         private static void AppendTest400BadRequestInPath(StringBuilder sb, EndpointMethodMetadata endpointMethodMetadata, Tuple<HttpStatusCode, string, OpenApiSchema> contractReturnTypeName)
         {
-            var renderRelativeRefs = RenderRelativeRefsForPath(endpointMethodMetadata, true);
+            var renderRelativeRefs = RenderRelativeRefsForBadRequestInPath(endpointMethodMetadata, true);
             if (renderRelativeRefs.Count == 0)
             {
                 return;
@@ -415,25 +415,32 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
             GenerateXunitTestHelper.AppendNewModelOrListOfModelForBadRequest(indentSpaces, sb, endpointMethodMetadata, schema, httpStatusCode, badPropertySchema, variableName);
         }
 
-        private static List<string> RenderRelativeRefsForPath(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
+        private static List<string> RenderRelativeRefsForBadRequestInPath(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
         {
             var renderRelativeRefs = new List<string>();
 
-            var routeParameters = endpointMethodMetadata.GetRouteParameters()
-                .Where(x => x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
-                .ToList();
-            if (routeParameters.Count <= 0)
+            var allRouteParameters = endpointMethodMetadata.GetRouteParameters();
+            var badRequestRouteParameters = FindBadRequestRouteParameters(allRouteParameters);
+
+            if (badRequestRouteParameters.Count <= 0)
             {
                 return renderRelativeRefs;
             }
 
-            var combinationOfRouteParameters = ParameterCombinationHelper.GetCombination(routeParameters, useForBadRequest);
+            var combinationOfRouteParameters = ParameterCombinationHelper.GetCombination(badRequestRouteParameters, useForBadRequest);
             foreach (var parameters in combinationOfRouteParameters)
             {
-                renderRelativeRefs.Add(RenderRelativeRefsForPathHelper(endpointMethodMetadata, routeParameters, parameters, useForBadRequest));
+                renderRelativeRefs.Add(RenderRelativeRefsForPathHelper(endpointMethodMetadata, allRouteParameters, parameters, useForBadRequest));
             }
 
             return renderRelativeRefs;
+        }
+
+        private static List<OpenApiParameter> FindBadRequestRouteParameters(List<OpenApiParameter> parameters)
+        {
+            return parameters
+                .Where(x => x.Schema.GetDataType() != OpenApiDataTypeConstants.String)
+                .ToList();
         }
 
         private static List<string> RenderRelativeRefsForQuery(EndpointMethodMetadata endpointMethodMetadata, bool useForBadRequest = false)
