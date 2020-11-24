@@ -1,4 +1,5 @@
-﻿using Atc.Rest.ApiGenerator.Helpers;
+﻿using System;
+using Atc.Rest.ApiGenerator.Helpers;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.Rest.ApiGenerator.Models
@@ -31,6 +32,27 @@ namespace Atc.Rest.ApiGenerator.Models
         public override string ToString()
         {
             return $"{nameof(SchemaKey)}: {SchemaKey}, {nameof(LocatedArea)}: {LocatedArea}, {nameof(SegmentName)}: {SegmentName}, {nameof(Path)}: {Path}, {nameof(OperationType)}: {OperationType}, {nameof(ParentSchemaKey)}: {ParentSchemaKey}";
+        }
+
+        protected bool Equals(ApiOperationSchemaMap other)
+        {
+            return SchemaKey == other.SchemaKey &&
+                   LocatedArea == other.LocatedArea &&
+                   SegmentName == other.SegmentName &&
+                   Path == other.Path &&
+                   OperationType == other.OperationType &&
+                   ParentSchemaKey == other.ParentSchemaKey;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return !ReferenceEquals(null, obj) &&
+                   (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() && Equals((ApiOperationSchemaMap)obj));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(SchemaKey, (int)LocatedArea, SegmentName, Path, (int)OperationType, ParentSchemaKey);
         }
     }
 }

@@ -125,7 +125,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 return;
             }
 
-            var schemaKey = string.Empty;
+            string schemaKey;
             (schemaKey, apiSchema) = ConsolidateSchemaObjectTypes(apiSchema);
 
             if (schemaKey.Length == 0 ||
@@ -135,7 +135,13 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 return;
             }
 
-            list.Add(new ApiOperationSchemaMap(schemaKey, locatedArea, apiPath, apiOperationType, parentApiSchema));
+            var apiOperationSchemaMap = new ApiOperationSchemaMap(schemaKey, locatedArea, apiPath, apiOperationType, parentApiSchema);
+            if (list.Any(x => x.Equals(apiOperationSchemaMap)))
+            {
+                return;
+            }
+
+            list.Add(apiOperationSchemaMap);
             Collect(
                 apiSchema.Properties.ToList(),
                 locatedArea,
