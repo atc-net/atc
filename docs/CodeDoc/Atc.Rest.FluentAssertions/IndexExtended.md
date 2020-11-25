@@ -15,6 +15,7 @@
 
 - [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
 - [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
+- [ConflictResultAssertions](Atc.Rest.FluentAssertions.md#conflictresultassertions)
 - [ContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertions&lt;tassertions&gt;)
   -  Methods
      - WithContent(T expectedContent, string because = , object[] becauseArgs)
@@ -31,6 +32,7 @@
   -  Methods
      - BeAcceptedResult(string because = , object[] becauseArgs)
      - BeBadRequestResult(string because = , object[] becauseArgs)
+     - BeConflictResult(string because = , object[] becauseArgs)
      - BeNoContentResult(string because = , object[] becauseArgs)
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)

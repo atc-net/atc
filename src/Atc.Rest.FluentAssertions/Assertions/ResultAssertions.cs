@@ -27,29 +27,36 @@ namespace Atc.Rest.FluentAssertions
         public AcceptedResultAssertions BeAcceptedResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Accepted, because, becauseArgs);
-            var okSubject = (ContentResult)subject;
-            return new AcceptedResultAssertions(okSubject);
+            var accepted = (ContentResult)subject;
+            return new AcceptedResultAssertions(accepted);
         }
 
         public NoContentResultAssertions BeNoContentResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NoContent, because, becauseArgs);
-            var okSubject = (ContentResult)subject;
-            return new NoContentResultAssertions(okSubject);
+            var noContent = (ContentResult)subject;
+            return new NoContentResultAssertions(noContent);
         }
 
         public BadRequestResultAssertions BeBadRequestResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.BadRequest, because, becauseArgs);
-            var okSubject = (ContentResult)subject;
-            return new BadRequestResultAssertions(okSubject);
+            var badRequest = (ContentResult)subject;
+            return new BadRequestResultAssertions(badRequest);
         }
 
         public NotFoundResultAssertions BeNotFoundResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NotFound, because, becauseArgs);
-            var notFoundSubject = (ContentResult)subject;
-            return new NotFoundResultAssertions(notFoundSubject);
+            var notFound = (ContentResult)subject;
+            return new NotFoundResultAssertions(notFound);
+        }
+
+        public ConflictResultAssertions BeConflictResult(string because = "", params object[] becauseArgs)
+        {
+            AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Conflict, because, becauseArgs);
+            var conflict = (ContentResult)subject;
+            return new ConflictResultAssertions(conflict);
         }
 
         private void AssertIsResultTypeWithStatusCode<T>(HttpStatusCode expectedStatusCode, string because, object[] becauseArgs) where T : class, IStatusCodeActionResult

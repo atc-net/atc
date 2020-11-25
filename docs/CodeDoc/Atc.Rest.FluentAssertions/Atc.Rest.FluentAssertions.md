@@ -28,6 +28,16 @@ public class BadRequestResultAssertions : ErrorContentResultAssertions<BadReques
 <br />
 
 
+## ConflictResultAssertions
+
+```csharp
+public class ConflictResultAssertions : ErrorContentResultAssertions<ConflictResultAssertions>
+```
+
+
+<br />
+
+
 ## ContentResultAssertions&lt;TAssertions&gt;
 
 ```csharp
@@ -125,6 +135,11 @@ AcceptedResultAssertions BeAcceptedResult(string because = , object[] becauseArg
 
 ```csharp
 BadRequestResultAssertions BeBadRequestResult(string because = , object[] becauseArgs)
+```
+#### BeConflictResult
+
+```csharp
+ConflictResultAssertions BeConflictResult(string because = , object[] becauseArgs)
 ```
 #### BeNoContentResult
 

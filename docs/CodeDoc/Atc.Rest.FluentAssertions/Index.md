@@ -15,6 +15,7 @@
 
 - [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
 - [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
+- [ConflictResultAssertions](Atc.Rest.FluentAssertions.md#conflictresultassertions)
 - [ContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertions&lt;tassertions&gt;)
 - [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
 - [NoContentResultAssertions](Atc.Rest.FluentAssertions.md#nocontentresultassertions)
