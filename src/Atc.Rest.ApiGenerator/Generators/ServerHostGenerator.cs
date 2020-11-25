@@ -450,7 +450,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 SyntaxFactory.IdentifierName("Run"))))));
 
             return SyntaxFactory.MethodDeclaration(
-                    SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                    SyntaxFactory.PredefinedType(SyntaxTokenFactory.VoidKeyword()),
                     SyntaxFactory.Identifier("Main"))
                 .WithModifiers(SyntaxTokenListFactory.PublicStaticKeyword())
                 .WithParameterList(
@@ -638,7 +638,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                     SyntaxFactory.Identifier("Configuration"))
                 .WithModifiers(
                     SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                        SyntaxTokenFactory.PublicKeyword()))
                 .WithAccessorList(
                     SyntaxFactory.AccessorList(
                         SyntaxFactory.SingletonList(
@@ -671,7 +671,7 @@ namespace Atc.Rest.ApiGenerator.Generators
             }
 
             return SyntaxFactory.MethodDeclaration(
-                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                SyntaxFactory.PredefinedType(SyntaxTokenFactory.VoidKeyword()),
                 SyntaxFactory.Identifier("ConfigureServices"))
             .WithModifiers(
                 SyntaxFactory.TokenList(SyntaxTokenFactory.PublicKeyword()))
@@ -699,7 +699,7 @@ namespace Atc.Rest.ApiGenerator.Generators
         private static MemberDeclarationSyntax CreateStartupConfigure()
         {
             return SyntaxFactory.MethodDeclaration(
-                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                SyntaxFactory.PredefinedType(SyntaxTokenFactory.VoidKeyword()),
                 SyntaxFactory.Identifier("Configure"))
             .WithModifiers(SyntaxTokenList.Create(SyntaxTokenFactory.PublicKeyword()))
             .WithParameterList(
@@ -736,12 +736,12 @@ namespace Atc.Rest.ApiGenerator.Generators
         private static MemberDeclarationSyntax CreateWebApplicationFactoryConfigureWebHost()
         {
             return SyntaxFactory.MethodDeclaration(
-                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                SyntaxFactory.PredefinedType(SyntaxTokenFactory.VoidKeyword()),
                 SyntaxFactory.Identifier("ConfigureWebHost"))
             .WithModifiers(
                 SyntaxFactory.TokenList(
                     SyntaxTokenFactory.ProtectedKeyword(),
-                    SyntaxFactory.Token(SyntaxKind.OverrideKeyword)))
+                    SyntaxTokenFactory.OverrideKeyword()))
             .WithParameterList(
                 SyntaxFactory.ParameterList(
                     SyntaxFactory.SingletonSeparatedList(
@@ -767,10 +767,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                     SyntaxFactory.InvocationExpression(
                                                         SyntaxFactory.IdentifierName("ModifyConfiguration"))
                                                     .WithArgumentList(
-                                                        SyntaxFactory.ArgumentList(
-                                                            SyntaxFactory.SingletonSeparatedList(
-                                                                SyntaxFactory.Argument(
-                                                                    SyntaxFactory.IdentifierName("config")))))),
+                                                        SyntaxArgumentListFactory.CreateWithOneItem("config"))),
                                                 SyntaxFactory.LocalDeclarationStatement(
                                                     SyntaxFactory.VariableDeclaration(SyntaxFactory.IdentifierName("var"))
                                                     .WithVariables(
@@ -815,10 +812,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                    SyntaxFactory.InvocationExpression(
                                                        SyntaxFactory.IdentifierName("ModifyServices"))
                                                    .WithArgumentList(
-                                                       SyntaxFactory.ArgumentList(
-                                                           SyntaxFactory.SingletonSeparatedList(
-                                                               SyntaxFactory.Argument(
-                                                                   SyntaxFactory.IdentifierName("services")))))),
+                                                       SyntaxArgumentListFactory.CreateWithOneItem("services"))),
                                                 SyntaxFactory.ExpressionStatement(
                                                     SyntaxFactory.InvocationExpression(
                                                         SyntaxFactory.MemberAccessExpression(
@@ -882,40 +876,34 @@ namespace Atc.Rest.ApiGenerator.Generators
         {
             return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.PredefinedType(
-                        SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                        SyntaxTokenFactory.VoidKeyword()),
                     SyntaxFactory.Identifier("ModifyConfiguration"))
                 .WithModifiers(
                     SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PartialKeyword)))
+                        SyntaxTokenFactory.PartialKeyword()))
                 .WithParameterList(
                     SyntaxFactory.ParameterList(
                         SyntaxFactory.SingletonSeparatedList(
-                            SyntaxFactory.Parameter(
-                                SyntaxFactory.Identifier("config"))
-                            .WithType(
-                                SyntaxFactory.IdentifierName("IConfigurationBuilder")))))
-                .WithSemicolonToken(
-                    SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                            SyntaxFactory.Parameter(SyntaxFactory.Identifier("config"))
+                            .WithType(SyntaxFactory.IdentifierName("IConfigurationBuilder")))))
+                .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
 
         private static MemberDeclarationSyntax CreateWebApplicationFactoryModifyServices()
         {
             return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.PredefinedType(
-                        SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                        SyntaxTokenFactory.VoidKeyword()),
                     SyntaxFactory.Identifier("ModifyServices"))
                 .WithModifiers(
                     SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PartialKeyword)))
+                        SyntaxTokenFactory.PartialKeyword()))
                 .WithParameterList(
                     SyntaxFactory.ParameterList(
                         SyntaxFactory.SingletonSeparatedList(
-                            SyntaxFactory.Parameter(
-                                SyntaxFactory.Identifier("services"))
-                            .WithType(
-                                SyntaxFactory.IdentifierName("IServiceCollection")))))
-                .WithSemicolonToken(
-                    SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                            SyntaxFactory.Parameter(SyntaxFactory.Identifier("services"))
+                            .WithType(SyntaxFactory.IdentifierName("IServiceCollection")))))
+                .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
 
         private static MemberDeclarationSyntax CreateWebApiControllerBaseTestFactory()
@@ -1056,7 +1044,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                 SyntaxFactory.ParameterList(
                     SyntaxFactory.SingletonSeparatedList(
                         SyntaxFactory.Parameter(SyntaxFactory.Identifier("data"))
-                        .WithType(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.ObjectKeyword))))))
+                        .WithType(SyntaxFactory.PredefinedType(SyntaxTokenFactory.ObjectKeyword())))))
             .WithExpressionBody(
                 SyntaxFactory.ArrowExpressionClause(
                     SyntaxFactory.ObjectCreationExpression(
@@ -1078,7 +1066,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                     new SyntaxNodeOrToken[]
                                                     {
                                                         SyntaxFactory.Argument(SyntaxFactory.IdentifierName("data")),
-                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxTokenFactory.Comma(),
                                                         SyntaxFactory.Argument(SyntaxFactory.IdentifierName("JsonSerializerOptions"))
                                                     })))),
                                     SyntaxTokenFactory.Comma(),
