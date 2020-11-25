@@ -220,6 +220,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             {
                 var isList = ApiOperation.Responses.IsSchemaTypeArrayForStatusCode(httpStatusCode);
                 var modelName = ApiOperation.Responses.GetModelNameForStatusCode(httpStatusCode);
+                var schema = ApiOperation.Responses.GetSchemaForStatusCode(httpStatusCode);
                 var useProblemDetails = ApiOperation.Responses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
                 if (!useProblemDetails && ApiProjectOptions.ApiOptions.Generator.Response.UseProblemDetailsAsDefaultBody)
                 {
@@ -233,15 +234,39 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                         var isPagination = ApiOperation.Responses.IsSchemaTypePaginationForStatusCode(httpStatusCode);
                         if (useProblemDetails)
                         {
-                            methodDeclaration = string.IsNullOrEmpty(modelName)
-                                ? CreateTypeRequestWithSpecifiedResultFactoryMethodWithMessageAllowNull("CreateContentResult", className, httpStatusCode)
-                                : CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), modelName, "response", isList, isPagination);
+                            if (string.IsNullOrEmpty(modelName))
+                            {
+                                if (schema != null && schema.IsSimpleDataType())
+                                {
+                                    methodDeclaration = CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), schema.GetDataType(), "response", isList, isPagination);
+                                }
+                                else
+                                {
+                                    methodDeclaration = CreateTypeRequestWithSpecifiedResultFactoryMethodWithMessageAllowNull("CreateContentResult", className, httpStatusCode);
+                                }
+                            }
+                            else
+                            {
+                                methodDeclaration = CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), modelName, "response", isList, isPagination);
+                            }
                         }
                         else
                         {
-                            methodDeclaration = string.IsNullOrEmpty(modelName)
-                                ? CreateTypeRequestWithMessageAllowNull(className, httpStatusCode, nameof(OkObjectResult))
-                                : CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), modelName, "response", isList, isPagination);
+                            if (string.IsNullOrEmpty(modelName))
+                            {
+                                if (schema != null && schema.IsSimpleDataType())
+                                {
+                                    methodDeclaration = CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), schema.GetDataType(), "response", isList, isPagination);
+                                }
+                                else
+                                {
+                                    methodDeclaration = CreateTypeRequestWithMessageAllowNull(className, httpStatusCode, nameof(OkObjectResult));
+                                }
+                            }
+                            else
+                            {
+                                methodDeclaration = CreateTypeRequestObjectResult(className, httpStatusCode.ToNormalizedString(), modelName, "response", isList, isPagination);
+                            }
                         }
 
                         break;
@@ -689,6 +714,16 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
             if (httpStatusCodes.Contains(HttpStatusCode.OK))
             {
                 var isPagination = responses.IsSchemaTypePaginationForStatusCode(httpStatusCode);
+
+                if (string.IsNullOrEmpty(modelName))
+                {
+                    var schema = responses.GetSchemaForStatusCode(HttpStatusCode.OK);
+                    if (schema != null && schema.IsSimpleDataType())
+                    {
+                        return CreateImplicitOperator(className, schema.GetDataType(), httpStatusCode, isList, isPagination);
+                    }
+                }
+
                 return CreateImplicitOperator(className, modelName, httpStatusCode, isList, isPagination);
             }
 

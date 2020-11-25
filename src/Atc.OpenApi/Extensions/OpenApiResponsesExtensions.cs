@@ -130,6 +130,14 @@ namespace Microsoft.OpenApi.Models
                 : responseSchema.GetModelName();
         }
 
+        public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+        {
+            var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
+            return responseSchema == null
+                ? string.Empty
+                : responseSchema.GetDataType();
+        }
+
         public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
             return responses.GetSchemaForStatusCode(httpStatusCode)?.Type == OpenApiDataTypeConstants.Array;

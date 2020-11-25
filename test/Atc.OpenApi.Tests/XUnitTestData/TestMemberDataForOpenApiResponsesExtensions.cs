@@ -132,6 +132,17 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
+        public static IEnumerable<object[]> GetDataTypeForStatusCodeItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    "Pet",
+                    TestDataOpenApiFactory.CreateResponsesOkPet(),
+                    HttpStatusCode.OK,
+                },
+            };
+
         public static IEnumerable<object[]> IsSchemaTypeArrayForStatusCodeItemData =>
             new List<object[]>
             {

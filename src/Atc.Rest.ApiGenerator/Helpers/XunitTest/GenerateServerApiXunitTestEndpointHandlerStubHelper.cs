@@ -88,6 +88,30 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                         ? $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());"
                         : $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(\"Hallo world\"));");
             }
+            else if (returnTypeName == "bool")
+            {
+                sb.AppendLine(
+                    12,
+                    httpStatusCode == HttpStatusCode.Created
+                        ? $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());"
+                        : $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(true));");
+            }
+            else if (returnTypeName == "int" || returnTypeName == "long")
+            {
+                sb.AppendLine(
+                    12,
+                    httpStatusCode == HttpStatusCode.Created
+                        ? $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());"
+                        : $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(42));");
+            }
+            else if (returnTypeName == "float" || returnTypeName == "double")
+            {
+                sb.AppendLine(
+                    12,
+                    httpStatusCode == HttpStatusCode.Created
+                        ? $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}());"
+                        : $"return Task.FromResult({endpointMethodMetadata.ContractResultTypeName}.{httpStatusCode.ToNormalizedString()}(42.2));");
+            }
             else
             {
                 if (contractReturnTypeName.Item3 == null ||

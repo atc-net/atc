@@ -72,8 +72,8 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
                 case SchemaMapLocatedAreaType.RequestBody when schema.Type == OpenApiDataTypeConstants.Array:
                 {
-                    var modelSchameName = schema.GetModelName();
-                    var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(modelSchameName);
+                    var modelSchemaName = schema.GetModelName();
+                    var modelSchema = endpointMethodMetadata.ComponentsSchemas.GetSchemaByModelName(modelSchemaName);
                     var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(endpointMethodMetadata, schema.GetModelName());
                     sb.AppendLine(indentSpaces, $"var {variableName} = new List<{modelName}>");
 

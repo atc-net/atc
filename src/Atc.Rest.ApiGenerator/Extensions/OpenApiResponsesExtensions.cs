@@ -37,8 +37,11 @@ namespace Microsoft.OpenApi.Models
                 var isList = responses.IsSchemaTypeArrayForStatusCode(httpStatusCode);
                 var modelName = responses.GetModelNameForStatusCode(httpStatusCode);
 
-                var isShared = apiOperationSchemaMappings.IsShared(modelName);
-                modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(projectName, contractArea, modelName, isShared);
+                if (!string.IsNullOrEmpty(modelName))
+                {
+                    var isShared = apiOperationSchemaMappings.IsShared(modelName);
+                    modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(projectName, contractArea, modelName, isShared);
+                }
 
                 var useProblemDetails = responses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
                 if (!useProblemDetails && useProblemDetailsAsDefaultResponseBody)
@@ -51,23 +54,31 @@ namespace Microsoft.OpenApi.Models
                 {
                     case HttpStatusCode.OK:
                     case HttpStatusCode.Created:
+                        var dataType = modelName;
+
                         if (string.IsNullOrEmpty(modelName))
                         {
-                            typeResponseName = "string";
-                        }
-                        else
-                        {
-                            if (isList)
+                            var schema = responses.GetSchemaForStatusCode(httpStatusCode);
+                            if (schema != null && schema.IsSimpleDataType())
                             {
-                                typeResponseName = $"{NameConstants.List}<{modelName}>";
+                                dataType = schema.GetDataType();
                             }
                             else
                             {
-                                var isPagination = responses.IsSchemaTypePaginationForStatusCode(httpStatusCode);
-                                typeResponseName = isPagination
-                                    ? $"{NameConstants.Pagination}<{modelName}>"
-                                    : modelName;
+                                dataType = "string";
                             }
+                        }
+
+                        if (isList)
+                        {
+                            typeResponseName = $"{NameConstants.List}<{dataType}>";
+                        }
+                        else
+                        {
+                            var isPagination = responses.IsSchemaTypePaginationForStatusCode(httpStatusCode);
+                            typeResponseName = isPagination
+                                ? $"{NameConstants.Pagination}<{dataType}>"
+                                : dataType;
                         }
 
                         break;

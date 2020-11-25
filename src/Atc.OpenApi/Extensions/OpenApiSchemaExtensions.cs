@@ -369,6 +369,7 @@ namespace Microsoft.OpenApi.Models
             var dataType = schema.GetDataType();
 
             return dataType == OpenApiDataTypeConstants.Boolean ||
+                   dataType == "bool" ||
                    dataType == OpenApiDataTypeConstants.Integer ||
                    dataType == "int" ||
                    dataType == "long" ||

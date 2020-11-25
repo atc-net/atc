@@ -89,6 +89,17 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.GetDataTypeForStatusCodeItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
+        public void GetDataTypeForStatusCode(string expected, OpenApiResponses openApiResponses, HttpStatusCode httpStatusCode)
+        {
+            // Act
+            var actual = openApiResponses.GetDataTypeForStatusCode(httpStatusCode);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.IsSchemaTypeArrayForStatusCodeItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
         public void IsSchemaTypeArrayForStatusCode(bool expected, OpenApiResponses openApiResponses, HttpStatusCode httpStatusCode)
         {

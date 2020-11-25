@@ -77,6 +77,7 @@
      - GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
 - [OpenApiResponsesExtensions](Microsoft.OpenApi.Models.md#openapiresponsesextensions)
   -  Static Methods
+     - GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - GetHttpStatusCodes(this OpenApiResponses responses)
      - GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
      - GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)

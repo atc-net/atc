@@ -50,6 +50,16 @@ SegmentName
 ### Methods
 
 
+#### Equals
+
+```csharp
+bool Equals(object obj)
+```
+#### GetHashCode
+
+```csharp
+int GetHashCode()
+```
 #### ToString
 
 ```csharp

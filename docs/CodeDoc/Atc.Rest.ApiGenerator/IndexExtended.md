@@ -181,6 +181,8 @@
      - SchemaKey
      - SegmentName
   -  Methods
+     - Equals(object obj)
+     - GetHashCode()
      - ToString()
 - [ApiProjectOptions](Atc.Rest.ApiGenerator.Models.md#apiprojectoptions)
   -  Properties

@@ -335,7 +335,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
 
             if (testExpectedHttpStatusCode == HttpStatusCode.OK &&
                 !string.IsNullOrEmpty(contractReturnTypeName.Item2) &&
-                contractReturnTypeName.Item2 != "string")
+                contractReturnTypeName.Item3 != null && !contractReturnTypeName.Item3.IsSimpleDataType())
             {
                 var modelName = OpenApiDocumentSchemaModelNameHelper.EnsureModelNameWithNamespaceIfNeeded(endpointMethodMetadata, contractReturnTypeName.Item2);
 

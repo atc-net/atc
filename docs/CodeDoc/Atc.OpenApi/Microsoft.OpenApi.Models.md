@@ -354,6 +354,11 @@ public static class OpenApiResponsesExtensions
 ### Static Methods
 
 
+#### GetDataTypeForStatusCode
+
+```csharp
+string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+```
 #### GetHttpStatusCodes
 
 ```csharp
