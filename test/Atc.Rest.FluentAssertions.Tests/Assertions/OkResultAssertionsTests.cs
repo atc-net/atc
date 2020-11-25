@@ -11,10 +11,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         [Fact]
         public void Ctor_Sets_Subject_On_Subject_Property()
         {
+            // Arrange
             var expected = new OkObjectResult("FOO");
 
+            // Act
             var sut = new OkResultAssertions(expected);
 
+            // Assert
             sut.Subject.Should().Be(expected);
         }
 

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 // ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
-
     public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultAssertions<TAssertions>
     {
         protected ErrorContentResultAssertions(ContentResult subject) : base(subject) { }
@@ -15,8 +14,8 @@ namespace Atc.Rest.FluentAssertions
         {
             using (new AssertionScope($"error message of \"{Identifier}\""))
             {
-                var problemDetail = GetContentValueAs<ProblemDetails>()?.Detail ?? GetContentValueAs<string>();
-                problemDetail.Should().Be(expectedErrorMessage, because, becauseArgs);
+                var problemDetails = GetContentValueAs<ProblemDetails>()?.Detail ?? GetContentValueAs<string>();
+                problemDetails.Should().Be(expectedErrorMessage, because, becauseArgs);
             }
 
             return CreateAndWhichConstraint();
