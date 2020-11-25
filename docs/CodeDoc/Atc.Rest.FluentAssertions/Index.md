@@ -13,6 +13,11 @@
 
 ## [Atc.Rest.FluentAssertions](Atc.Rest.FluentAssertions.md)
 
+- [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
+- [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
+- [ContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertions&lt;tassertions&gt;)
+- [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
+- [NoContentResultAssertions](Atc.Rest.FluentAssertions.md#nocontentresultassertions)
 - [NotFoundResultAssertions](Atc.Rest.FluentAssertions.md#notfoundresultassertions)
 - [OkResultAssertions](Atc.Rest.FluentAssertions.md#okresultassertions)
 - [ResultAssertions](Atc.Rest.FluentAssertions.md#resultassertions)

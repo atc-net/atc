@@ -51,6 +51,129 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         }
 
         [Fact]
+        public void BeAcceptedResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeAcceptedResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeAcceptedResult_Throws_When_ContentResult_StatusCode_Isnt_202()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 1337 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeAcceptedResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected status code from result to be 202, but found {target.StatusCode}.");
+        }
+
+        [Fact]
+        public void BeAcceptedResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_202()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 202 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeAcceptedResult())
+                .Should()
+                .NotThrow();
+        }
+
+        [Fact]
+        public void BeNoContentResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeNoContentResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeNoContentResult_Throws_When_ContentResult_StatusCode_Isnt_204()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 1337 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeNoContentResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected status code from result to be 204, but found {target.StatusCode}.");
+        }
+
+        [Fact]
+        public void BeNoContentResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_204()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 204 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeNoContentResult())
+                .Should()
+                .NotThrow();
+        }
+
+        [Fact]
+        public void BeBadRequestResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeBadRequestResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeBadRequestResult_Throws_When_ContentResult_StatusCode_Isnt_400()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 1337 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeBadRequestResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected status code from result to be 400, but found {target.StatusCode}.");
+        }
+
+        [Fact]
+        public void BeBadRequestResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_400()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 400 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeBadRequestResult())
+                .Should()
+                .NotThrow();
+        }
+
+        [Fact]
         public void BeNotFoundResult_Throws_When_Subject_Isnt_ContentResult()
         {
             // Arrange
@@ -68,7 +191,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         public void BeNotFoundResult_Throws_When_ContentResult_StatusCode_Isnt_404()
         {
             // Arrange
-            var target = new ContentResult { StatusCode = 400 };
+            var target = new ContentResult { StatusCode = 1337 };
             var sut = new ResultAssertions(target);
 
             // Act & Assert
@@ -79,7 +202,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         }
 
         [Fact]
-        public void BeNotFoundResult_Passes_When_Subject_Is_OkObjectResult_With_StatusCode_200()
+        public void BeNotFoundResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_404()
         {
             // Arrange
             var target = new ContentResult { StatusCode = 404 };
