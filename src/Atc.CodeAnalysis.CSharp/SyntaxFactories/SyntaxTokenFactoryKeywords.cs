@@ -89,5 +89,15 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
         {
             return TokenWithTrailing(SyntaxKind.DoubleKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
         }
+
+        public static SyntaxToken VoidKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.VoidKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
+
+        public static SyntaxToken ObjectKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.ObjectKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
     }
 }
