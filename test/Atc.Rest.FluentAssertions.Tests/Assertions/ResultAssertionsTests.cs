@@ -213,5 +213,46 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 .Should()
                 .NotThrow();
         }
+
+        [Fact]
+        public void BeConflictResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeConflictResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeConflictResult_Throws_When_ContentResult_StatusCode_Isnt_409()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 1337 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeConflictResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected status code from result to be 409, but found {target.StatusCode}.");
+        }
+
+        [Fact]
+        public void BeConflictResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_404()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 409 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeConflictResult())
+                .Should()
+                .NotThrow();
+        }
     }
 }
