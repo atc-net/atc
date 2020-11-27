@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.OpenApi.Any;
@@ -323,7 +324,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
             return SyntaxFactory.TriviaList(comments);
         }
 
-        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody, string contentType = "application/json")
+        private static SyntaxTriviaList CreateSummaryForParameter(OpenApiRequestBody apiRequestBody, string contentType = MediaTypeNames.Application.Json)
         {
             var comments = new List<SyntaxTrivia>();
 

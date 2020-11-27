@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System.Net;
+using System.Net.Mime;
 using Atc.Rest.Results;
 using Xunit;
 
@@ -39,15 +40,15 @@ namespace Atc.Rest.Tests.Results
             if (message != null)
             {
                 Assert.NotNull(actual.Content);
-                Assert.Equal("application/json", actual.ContentType);
+                Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
                 Assert.Equal($"{{\"status\":{(int)statusCode},\"detail\":\"{message}\"}}", actual.Content);
             }
         }
 
         [Theory]
-        [InlineData(HttpStatusCode.OK, null, "application/json")]
-        [InlineData(HttpStatusCode.OK, "Hallo World", "application/json")]
-        [InlineData(HttpStatusCode.OK, "Hallo World", "text/html")]
+        [InlineData(HttpStatusCode.OK, null, MediaTypeNames.Application.Json)]
+        [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Application.Json)]
+        [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Text.Html)]
         public void CreateContentResultWithProblemDetails_Message_ContentType(HttpStatusCode statusCode, string? message, string contentType)
         {
             // Act
@@ -82,10 +83,16 @@ namespace Atc.Rest.Tests.Results
             }
         }
 
+        /// <summary>
+        /// Creates the type of the content result message content.
+        /// </summary>
+        /// <param name="statusCode">The status code.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="contentType">Type of the content.</param>
         [Theory]
-        [InlineData(HttpStatusCode.OK, null, "application/json")]
-        [InlineData(HttpStatusCode.OK, "Hallo World", "application/json")]
-        [InlineData(HttpStatusCode.OK, "Hallo World", "text/html")]
+        [InlineData(HttpStatusCode.OK, null, MediaTypeNames.Application.Json)]
+        [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Application.Json)]
+        [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Text.Html)]
         public void CreateContentResult_Message_ContentType(HttpStatusCode statusCode, string? message, string contentType)
         {
             // Act

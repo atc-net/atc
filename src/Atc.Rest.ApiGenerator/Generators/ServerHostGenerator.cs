@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Xml.Linq;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 using Atc.Data.Models;
@@ -1079,7 +1080,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
-                                            SyntaxFactory.Literal("application/json")))
+                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json)))
                                 })))))
             .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
@@ -1116,7 +1117,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
-                                            SyntaxFactory.Literal("application/json")))
+                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json)))
                                 })))))
             .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }

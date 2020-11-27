@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Net.Mime;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using Xunit.Sdk;
@@ -27,7 +28,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new AcceptedResultAssertions(target);
@@ -46,7 +47,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new AcceptedResultAssertions(target);
@@ -84,7 +85,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new AcceptedResultAssertions(target);

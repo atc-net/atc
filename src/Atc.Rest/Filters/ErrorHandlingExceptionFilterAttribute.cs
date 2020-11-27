@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -37,7 +38,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
         {
             context.Result = new ContentResult
             {
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
                 StatusCode = (int)HttpStatusCode.InternalServerError,
                 Content = useProblemDetailsAsResponseBody
                     ? JsonSerializer.Serialize(CreateProblemDetails(context))

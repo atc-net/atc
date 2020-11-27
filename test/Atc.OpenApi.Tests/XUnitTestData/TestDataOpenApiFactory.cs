@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -31,7 +32,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 {
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = CreateSchemaAddress(),
                         },
@@ -48,7 +49,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 {
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = CreateSchemaCountry(),
                         },
@@ -65,7 +66,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 {
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = CreateSchemaPet(),
                         },
@@ -85,7 +86,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         Description = "Ok",
                         Content = new Dictionary<string, OpenApiMediaType>
                         {
-                            ["application/json"] = new OpenApiMediaType
+                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
                             {
                                 Schema = CreateSchemaAddress(),
                             },
@@ -106,7 +107,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         Description = "Ok",
                         Content = new Dictionary<string, OpenApiMediaType>
                         {
-                            ["application/json"] = new OpenApiMediaType
+                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
                             {
                                 Schema = CreateSchemaCountry(),
                             },
@@ -229,7 +230,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Description = "Ok",
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = CreateSchemaPet(),
                         },
@@ -247,7 +248,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Description = "Ok",
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = CreateSchemaPets(),
                         },

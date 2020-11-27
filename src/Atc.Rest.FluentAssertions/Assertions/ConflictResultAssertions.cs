@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 // ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
-
     public class ConflictResultAssertions : ErrorContentResultAssertions<ConflictResultAssertions>
     {
         public ConflictResultAssertions(ContentResult subject) : base(subject) { }

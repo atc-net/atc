@@ -4,6 +4,7 @@ using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
+// ReSharper disable CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
     public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAssertions>

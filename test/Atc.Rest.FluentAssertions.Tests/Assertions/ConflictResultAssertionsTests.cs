@@ -1,4 +1,5 @@
-﻿using Atc.Rest.FluentAssertions.Tests.XUnitTestData;
+﻿using System.Net.Mime;
+using Atc.Rest.FluentAssertions.Tests.XUnitTestData;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -28,7 +29,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new ConflictResultAssertions(target);
@@ -47,7 +48,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new ConflictResultAssertions(target);
@@ -85,7 +86,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var target = new ContentResult
             {
                 Content = "FOO",
-                ContentType = "application/json",
+                ContentType = MediaTypeNames.Application.Json,
             };
 
             var sut = new ConflictResultAssertions(target);

@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Net.Mime;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Xunit;
@@ -26,7 +27,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         {
             // Arrange
             var target = new OkObjectResult("FOO");
-            target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
+            target.ContentTypes.Add(MediaTypeHeaderValue.Parse(MediaTypeNames.Application.Json));
             var sut = new OkResultAssertions(target);
 
             // Act & Assert
@@ -41,7 +42,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         {
             // Arrange
             var target = new OkObjectResult("FOO");
-            target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
+            target.ContentTypes.Add(MediaTypeHeaderValue.Parse(MediaTypeNames.Application.Json));
             var sut = new OkResultAssertions(target);
 
             // Act & Assert
@@ -70,7 +71,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         {
             // Arrange
             var target = new OkObjectResult("FOO");
-            target.ContentTypes.Add(MediaTypeHeaderValue.Parse("application/json"));
+            target.ContentTypes.Add(MediaTypeHeaderValue.Parse(MediaTypeNames.Application.Json));
             var sut = new OkResultAssertions(target);
 
             // Act & Assert

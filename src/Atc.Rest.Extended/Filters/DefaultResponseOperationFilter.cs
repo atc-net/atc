@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -39,7 +40,7 @@ namespace Atc.Rest.Extended.Filters
                     Description = "Problem response",
                     Content = new Dictionary<string, OpenApiMediaType>
                     {
-                        ["application/json"] = new OpenApiMediaType
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
                             Schema = context.SchemaGenerator.GenerateSchema(typeof(ProblemDetails), context.SchemaRepository),
                         },

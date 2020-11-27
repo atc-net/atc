@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
@@ -14,7 +15,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         public static IEnumerable<object[]> GetSchemaContentTypeItemData =>
             new List<object[]>
             {
-                new object[] { OpenApiDataTypeConstants.Array, "application/json", CreateContent(OpenApiDataTypeConstants.Array) },
+                new object[] { OpenApiDataTypeConstants.Array, MediaTypeNames.Application.Json, CreateContent(OpenApiDataTypeConstants.Array) },
             };
 
         private static IDictionary<string, OpenApiMediaType> CreateContent(string typeName)
@@ -22,7 +23,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             return new Dictionary<string, OpenApiMediaType>
             {
                 {
-                    "application/json",
+                    MediaTypeNames.Application.Json,
                     new OpenApiMediaType
                     {
                         Schema = new OpenApiSchema

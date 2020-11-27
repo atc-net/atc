@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable LoopCanBeConvertedToQuery
@@ -101,7 +102,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = "application/json")
+        public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = MediaTypeNames.Application.Json)
         {
             foreach (var (key, value) in responses.OrderBy(x => x.Key))
             {

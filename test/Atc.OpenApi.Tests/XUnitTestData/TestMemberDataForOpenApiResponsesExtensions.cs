@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using System.Net.Mime;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
@@ -27,7 +28,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                             Description = "Ok",
                             Content = new Dictionary<string, OpenApiMediaType>
                             {
-                                ["application/json"] = new OpenApiMediaType
+                                [MediaTypeNames.Application.Json] = new OpenApiMediaType
                                 {
                                     Schema = TestDataOpenApiFactory.CreateSchemaAddress(),
                                 },
@@ -49,7 +50,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                             Description = "Ok",
                             Content = new Dictionary<string, OpenApiMediaType>
                             {
-                                ["application/json"] = new OpenApiMediaType
+                                [MediaTypeNames.Application.Json] = new OpenApiMediaType
                                 {
                                     Schema = TestDataOpenApiFactory.CreateSchemaAddress(),
                                 },
@@ -117,7 +118,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     TestDataOpenApiFactory.CreateSchemaPet(),
                     TestDataOpenApiFactory.CreateResponsesOkPet(),
                     HttpStatusCode.OK,
-                    "application/json",
+                    MediaTypeNames.Application.Json,
                 },
             };
 

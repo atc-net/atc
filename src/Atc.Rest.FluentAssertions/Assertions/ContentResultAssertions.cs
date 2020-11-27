@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Net.Mime;
+using System.Text.Json;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
@@ -16,7 +17,7 @@ namespace Atc.Rest.FluentAssertions
         {
             using (new AssertionScope(Identifier))
             {
-                Subject.ContentType.Should().Be("application/json");
+                Subject.ContentType.Should().Be(MediaTypeNames.Application.Json);
                 var content = GetContentValueAs<T>();
                 content.Should().BeEquivalentTo(expectedContent, because, becauseArgs);
             }
