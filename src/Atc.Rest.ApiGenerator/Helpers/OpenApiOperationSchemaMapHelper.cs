@@ -32,26 +32,32 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 throw new ArgumentNullException(nameof(apiDocument));
             }
 
+            var componentsSchemas = apiDocument.Components.Schemas;
+
             var list = new List<ApiOperationSchemaMap>();
             foreach (var apiPath in apiDocument.Paths)
             {
                 foreach (var apiOperation in apiPath.Value.Operations)
                 {
                     // Parameters
-                    CollectMappingsForParameters(apiOperation, apiPath, list);
+                    CollectMappingsForParameters(componentsSchemas, apiOperation, apiPath, list);
 
                     // RequestBody
-                    CollectMappingsForRequestBody(apiOperation, apiPath, list);
+                    CollectMappingsForRequestBody(componentsSchemas, apiOperation, apiPath, list);
 
                     // Responses
-                    CollectMappingsForResponses(apiOperation, apiPath, list);
+                    CollectMappingsForResponses(componentsSchemas, apiOperation, apiPath, list);
                 }
             }
 
             return list;
         }
 
-        private static void CollectMappingsForParameters(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        private static void CollectMappingsForParameters(
+            IDictionary<string, OpenApiSchema> componentsSchemas,
+            KeyValuePair<OperationType, OpenApiOperation> apiOperation,
+            KeyValuePair<string, OpenApiPathItem> apiPath,
+            List<ApiOperationSchemaMap> list)
         {
             foreach (var apiParameter in apiOperation.Value.Parameters)
             {
@@ -63,6 +69,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 foreach (var apiMediaType in apiParameter.Content)
                 {
                     CollectSchema(
+                        componentsSchemas,
                         apiMediaType.Value.Schema,
                         SchemaMapLocatedAreaType.Parameter,
                         apiPath.Key,
@@ -73,13 +80,18 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
         }
 
-        private static void CollectMappingsForRequestBody(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        private static void CollectMappingsForRequestBody(
+            IDictionary<string, OpenApiSchema> componentsSchemas,
+            KeyValuePair<OperationType, OpenApiOperation> apiOperation,
+            KeyValuePair<string, OpenApiPathItem> apiPath,
+            List<ApiOperationSchemaMap> list)
         {
             if (apiOperation.Value.RequestBody?.Content != null)
             {
                 foreach (var apiMediaType in apiOperation.Value.RequestBody.Content)
                 {
                     CollectSchema(
+                        componentsSchemas,
                         apiMediaType.Value.Schema,
                         SchemaMapLocatedAreaType.RequestBody,
                         apiPath.Key,
@@ -90,7 +102,11 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
         }
 
-        private static void CollectMappingsForResponses(KeyValuePair<OperationType, OpenApiOperation> apiOperation, KeyValuePair<string, OpenApiPathItem> apiPath, List<ApiOperationSchemaMap> list)
+        private static void CollectMappingsForResponses(
+            IDictionary<string, OpenApiSchema> componentsSchemas,
+            KeyValuePair<OperationType, OpenApiOperation> apiOperation,
+            KeyValuePair<string, OpenApiPathItem> apiPath,
+            List<ApiOperationSchemaMap> list)
         {
             foreach (var apiResponse in apiOperation.Value.Responses)
             {
@@ -102,6 +118,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 foreach (var apiMediaType in apiResponse.Value.Content)
                 {
                     CollectSchema(
+                        componentsSchemas,
                         apiMediaType.Value.Schema,
                         SchemaMapLocatedAreaType.Response,
                         apiPath.Key,
@@ -113,6 +130,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
         }
 
         private static void CollectSchema(
+            IDictionary<string, OpenApiSchema> componentsSchemas,
             OpenApiSchema? apiSchema,
             SchemaMapLocatedAreaType locatedArea,
             string apiPath,
@@ -142,27 +160,61 @@ namespace Atc.Rest.ApiGenerator.Helpers
             }
 
             list.Add(apiOperationSchemaMap);
-            Collect(
-                apiSchema.Properties.ToList(),
-                locatedArea,
-                apiPath,
-                apiOperationType,
-                schemaKey,
-                list);
+            if (apiSchema.Properties.Any())
+            {
+                Collect(
+                    componentsSchemas,
+                    apiSchema.Properties.ToList(),
+                    locatedArea,
+                    apiPath,
+                    apiOperationType,
+                    schemaKey,
+                    list);
+            }
+            else if (apiSchema.AllOf.Count == 2 &&
+                  (Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                   Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
+            {
+                string? subSchemaKey = null;
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    subSchemaKey = apiSchema.AllOf[0].GetModelName();
+                }
+
+                if (!Microsoft.OpenApi.Models.NameConstants.Pagination.Equals(apiSchema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    subSchemaKey = apiSchema.AllOf[1].GetModelName();
+                }
+
+                if (subSchemaKey != null)
+                {
+                    var subApiSchema = componentsSchemas.Single(x => x.Key.Equals(schemaKey, StringComparison.OrdinalIgnoreCase)).Value;
+                    Collect(
+                        componentsSchemas,
+                        subApiSchema.Properties.ToList(),
+                        locatedArea,
+                        apiPath,
+                        apiOperationType,
+                        subSchemaKey,
+                        list);
+                }
+            }
         }
 
         private static void Collect(
-            IEnumerable<KeyValuePair<string, OpenApiSchema>> apiSchemas,
+            IDictionary<string, OpenApiSchema> componentsSchemas,
+            IEnumerable<KeyValuePair<string, OpenApiSchema>> propertySchemas,
             SchemaMapLocatedAreaType areaType,
             string apiPath,
             OperationType apiOperationType,
             string parentApiSchema,
             List<ApiOperationSchemaMap> list)
         {
-            foreach (var apiSchema in apiSchemas)
+            foreach (var propertySchema in propertySchemas)
             {
                 CollectSchema(
-                    apiSchema.Value,
+                    componentsSchemas,
+                    propertySchema.Value,
                     areaType,
                     apiPath,
                     apiOperationType,
