@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 // ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
-    public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultAssertions<TAssertions>
+    public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultAssertionsBase<TAssertions>
     {
         protected ErrorContentResultAssertions(ContentResult subject) : base(subject) { }
 

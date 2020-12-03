@@ -16,7 +16,11 @@
 - [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
 - [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
 - [ConflictResultAssertions](Atc.Rest.FluentAssertions.md#conflictresultassertions)
-- [ContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertions&lt;tassertions&gt;)
+- [ContentResultAssertions](Atc.Rest.FluentAssertions.md#contentresultassertions)
+  -  Methods
+     - WithStatusCode(HttpStatusCode expectedStatusCode, string because = , object[] becauseArgs)
+     - WithStatusCode(int expectedStatusCode, string because = , object[] becauseArgs)
+- [ContentResultAssertionsBase&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertionsbase&lt;tassertions&gt;)
   -  Methods
      - WithContent(T expectedContent, string because = , object[] becauseArgs)
 - [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
@@ -33,6 +37,7 @@
      - BeAcceptedResult(string because = , object[] becauseArgs)
      - BeBadRequestResult(string because = , object[] becauseArgs)
      - BeConflictResult(string because = , object[] becauseArgs)
+     - BeContentResult(string because = , object[] becauseArgs)
      - BeNoContentResult(string because = , object[] becauseArgs)
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)

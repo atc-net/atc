@@ -1,42 +1,33 @@
-﻿using System.Net.Mime;
-using System.Text.Json;
+﻿using System.Net;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable ConstantConditionalAccessQualifier
 // ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
 {
-    public abstract class ContentResultAssertions<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertions<TAssertions>>
+    public class ContentResultAssertions : ContentResultAssertionsBase<ContentResultAssertions>
     {
-        protected ContentResultAssertions(ContentResult subject) : base(subject) { }
+        public ContentResultAssertions(ContentResult subject) : base(subject) { }
 
-        public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
+        protected override string Identifier { get; } = "content result";
+
+        protected override AndWhichConstraint<ContentResultAssertions, ContentResult> CreateAndWhichConstraint()
+            => new AndWhichConstraint<ContentResultAssertions, ContentResult>(this, Subject);
+
+        public AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = "", params object[] becauseArgs)
+            => WithStatusCode((int)expectedStatusCode, because, becauseArgs);
+
+        public AndConstraint<ContentResultAssertions> WithStatusCode(int expectedStatusCode, string because = "", params object[] becauseArgs)
         {
-            using (new AssertionScope(Identifier))
-            {
-                Subject.ContentType.Should().Be(MediaTypeNames.Application.Json);
-                var content = GetContentValueAs<T>();
-                content.Should().BeEquivalentTo(expectedContent, because, becauseArgs);
-            }
+            Execute.Assertion
+                .BecauseOf(because, becauseArgs)
+                .Given(() => Subject.StatusCode)
+                .ForCondition(x => x == expectedStatusCode)
+                .FailWith("Expected status code to be {0}{reason}, but found {1}.", expectedStatusCode, Subject.StatusCode);
 
-            return CreateAndWhichConstraint();
-        }
-
-        protected abstract AndWhichConstraint<TAssertions, ContentResult> CreateAndWhichConstraint();
-
-        protected T GetContentValueAs<T>()
-        {
-            try
-            {
-                return JsonSerializer.Deserialize<T>(Subject.Content);
-            }
-            catch (JsonException)
-            {
-                return Subject.Content.As<T>();
-            }
+            return new AndConstraint<ContentResultAssertions>(this);
         }
     }
 }

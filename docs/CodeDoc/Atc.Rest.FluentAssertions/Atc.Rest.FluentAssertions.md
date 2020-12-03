@@ -11,7 +11,7 @@
 ## AcceptedResultAssertions
 
 ```csharp
-public class AcceptedResultAssertions : ContentResultAssertions<AcceptedResultAssertions>
+public class AcceptedResultAssertions : ContentResultAssertionsBase<AcceptedResultAssertions>
 ```
 
 
@@ -38,10 +38,33 @@ public class ConflictResultAssertions : ErrorContentResultAssertions<ConflictRes
 <br />
 
 
-## ContentResultAssertions&lt;TAssertions&gt;
+## ContentResultAssertions
 
 ```csharp
-public abstract class ContentResultAssertions&lt;TAssertions&gt; : ReferenceTypeAssertions<ContentResult, ContentResultAssertions<TAssertions>>
+public class ContentResultAssertions : ContentResultAssertionsBase<ContentResultAssertions>
+```
+
+### Methods
+
+
+#### WithStatusCode
+
+```csharp
+AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = , object[] becauseArgs)
+```
+#### WithStatusCode
+
+```csharp
+AndConstraint<ContentResultAssertions> WithStatusCode(int expectedStatusCode, string because = , object[] becauseArgs)
+```
+
+<br />
+
+
+## ContentResultAssertionsBase&lt;TAssertions&gt;
+
+```csharp
+public abstract class ContentResultAssertionsBase&lt;TAssertions&gt; : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
 ```
 
 ### Methods
@@ -59,7 +82,7 @@ AndWhichConstraint<TAssertions, ContentResult> WithContent(T expectedContent, st
 ## ErrorContentResultAssertions&lt;TAssertions&gt;
 
 ```csharp
-public abstract class ErrorContentResultAssertions&lt;TAssertions&gt; : ContentResultAssertions<TAssertions>
+public abstract class ErrorContentResultAssertions&lt;TAssertions&gt; : ContentResultAssertionsBase<TAssertions>
 ```
 
 ### Methods
@@ -77,7 +100,7 @@ AndWhichConstraint<TAssertions, ContentResult> WithErrorMessage(string expectedE
 ## NoContentResultAssertions
 
 ```csharp
-public class NoContentResultAssertions : ContentResultAssertions<NoContentResultAssertions>
+public class NoContentResultAssertions : ContentResultAssertionsBase<NoContentResultAssertions>
 ```
 
 
@@ -140,6 +163,11 @@ BadRequestResultAssertions BeBadRequestResult(string because = , object[] becaus
 
 ```csharp
 ConflictResultAssertions BeConflictResult(string because = , object[] becauseArgs)
+```
+#### BeContentResult
+
+```csharp
+ContentResultAssertions BeContentResult(string because = , object[] becauseArgs)
 ```
 #### BeNoContentResult
 

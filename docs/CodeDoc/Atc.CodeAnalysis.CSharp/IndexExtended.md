@@ -124,6 +124,7 @@
      - IntKeyword(bool withTrailingSpace = True)
      - LineFeed()
      - NewKeyword(bool withTrailingSpace = True)
+     - ObjectKeyword(bool withTrailingSpace = True)
      - OperatorKeyword(bool withTrailingSpace = True)
      - OverrideKeyword(bool withTrailingSpace = True)
      - PartialKeyword(bool withTrailingSpace = True)
@@ -137,6 +138,7 @@
      - Token(SyntaxKind syntaxKind)
      - TokenWithTrailing(SyntaxKind syntaxKind, SyntaxTrivia syntaxTrivia)
      - TokenWithTrailingSpace(SyntaxKind syntaxKind)
+     - VoidKeyword(bool withTrailingSpace = True)
 - [SyntaxTokenListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenlistfactory)
   -  Static Methods
      - InternalStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
