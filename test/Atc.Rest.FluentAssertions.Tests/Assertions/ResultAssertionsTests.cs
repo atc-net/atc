@@ -10,6 +10,33 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         private class DummyResult : ActionResult { }
 
         [Fact]
+        public void BeContentResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeContentResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected type to be Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeContentResult_Passes_When_Subject_Is_ContentResult()
+        {
+            // Arrange
+            var target = new ContentResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeContentResult())
+                .Should()
+                .NotThrow();
+        }
+
+        [Fact]
         public void BeOkResult_Throws_When_Subject_Isnt_OkObjectResult()
         {
             // Arrange

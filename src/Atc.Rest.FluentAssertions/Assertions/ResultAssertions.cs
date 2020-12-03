@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,12 @@ namespace Atc.Rest.FluentAssertions
         }
 
         protected override string Identifier => "result";
+
+        public ContentResultAssertions BeContentResult(string because = "", params object[] becauseArgs)
+        {
+            var contentResult = subject.Should().BeOfType<ContentResult>(because, becauseArgs).Subject;
+            return new ContentResultAssertions(contentResult);
+        }
 
         public OkResultAssertions BeOkResult(string because = "", params object[] becauseArgs)
         {

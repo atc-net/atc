@@ -19,6 +19,7 @@ namespace Atc.Rest.FluentAssertions.Tests
             // Ok to exclude Assertions types, because they are a kind of extensions types, and the
             // Decompiler for AST & Mono way in CodeCompliance-helper, don't support this yet.
             typeof(NotFoundResultAssertions),
+            typeof(ContentResultAssertions),
             typeof(OkResultAssertions),
             typeof(ResultAssertions),
         };

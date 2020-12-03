@@ -594,6 +594,11 @@ SyntaxToken LineFeed()
 ```csharp
 SyntaxToken NewKeyword(bool withTrailingSpace = True)
 ```
+#### ObjectKeyword
+
+```csharp
+SyntaxToken ObjectKeyword(bool withTrailingSpace = True)
+```
 #### OperatorKeyword
 
 ```csharp
@@ -658,6 +663,11 @@ SyntaxToken TokenWithTrailing(SyntaxKind syntaxKind, SyntaxTrivia syntaxTrivia)
 
 ```csharp
 SyntaxToken TokenWithTrailingSpace(SyntaxKind syntaxKind)
+```
+#### VoidKeyword
+
+```csharp
+SyntaxToken VoidKeyword(bool withTrailingSpace = True)
 ```
 
 <br />
