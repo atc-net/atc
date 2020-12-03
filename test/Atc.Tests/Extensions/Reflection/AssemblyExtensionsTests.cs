@@ -13,7 +13,11 @@ namespace Atc.Tests.Extensions.Reflection
             var actual = Assembly.GetExecutingAssembly().IsDebugBuild();
 
             // Assert
+#if DEBUG
             Assert.True(actual);
+#else
+            Assert.False(actual);
+#endif
         }
 
         [Theory]
