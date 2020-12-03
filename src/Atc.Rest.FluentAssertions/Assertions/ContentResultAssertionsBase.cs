@@ -1,5 +1,7 @@
-﻿using System.Net.Mime;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Mime;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
@@ -11,6 +13,13 @@ namespace Atc.Rest.FluentAssertions
 {
     public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
     {
+        [SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "This can safely be shared by all inherited types")]
+        private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() },
+        };
+
         protected ContentResultAssertionsBase(ContentResult subject) : base(subject) { }
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
@@ -31,7 +40,7 @@ namespace Atc.Rest.FluentAssertions
         {
             try
             {
-                return JsonSerializer.Deserialize<T>(Subject.Content);
+                return JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions);
             }
             catch (JsonException)
             {
