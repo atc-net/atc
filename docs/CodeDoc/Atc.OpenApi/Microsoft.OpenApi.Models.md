@@ -207,6 +207,16 @@ bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation>
 ```csharp
 bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
 ```
+#### IsOperationIdPluralized
+
+```csharp
+bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+```
+#### IsOperationNamePluralized
+
+```csharp
+bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+```
 #### IsOperationReferencingSchema
 
 ```csharp

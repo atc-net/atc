@@ -129,8 +129,8 @@ namespace Microsoft.OpenApi.Models
                 // Test for last-term
                 var termWord = sa.Last();
                 if (termWord.EndsWith("s", StringComparison.Ordinal) &&
-                    (!termWord.Equals("Ids", StringComparison.Ordinal) ||
-                     !termWord.Equals("Identifiers", StringComparison.Ordinal)))
+                    !(termWord.Equals("Ids", StringComparison.Ordinal) ||
+                      termWord.Equals("Identifiers", StringComparison.Ordinal)))
                 {
                     return true;
                 }

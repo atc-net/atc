@@ -157,24 +157,6 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     true,
                     new OpenApiOperation
                     {
-                        OperationId = "getOrders",
-                    },
-                    OperationType.Get,
-                },
-                new object[]
-                {
-                    false,
-                    new OpenApiOperation
-                    {
-                        OperationId = "getOrderById",
-                    },
-                    OperationType.Get,
-                },
-                new object[]
-                {
-                    true,
-                    new OpenApiOperation
-                    {
                         OperationId = "getOrdersById",
                     },
                     OperationType.Get,

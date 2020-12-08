@@ -50,6 +50,8 @@
      - GetOperationName(this OpenApiOperation openApiOperation)
      - HasDataTypeFromSystemCollectionGenericNamespace(this List&lt;OpenApiOperation&gt; apiOperations)
      - HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
+     - IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+     - IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
      - IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
 - [OpenApiParameterExtensions](Microsoft.OpenApi.Models.md#openapiparameterextensions)
   -  Static Methods
