@@ -198,24 +198,24 @@ namespace Atc.Rest.ApiGenerator.Helpers
                     }
                 }
 
-                foreach (var (_, value) in pathValue.Operations)
+                foreach (var (operationKey, operationValue) in pathValue.Operations)
                 {
                     // Validate Response Schema
-                    var responseModelSchema = value.GetModelSchemaFromResponse();
+                    var responseModelSchema = operationValue.GetModelSchemaFromResponse();
                     if (responseModelSchema != null)
                     {
-                        if (value.OperationId.EndsWith("s", StringComparison.Ordinal))
+                        if (operationValue.IsOperationIdPluralized(operationKey))
                         {
                             if (!IsModelOfTypeArray(responseModelSchema, modelSchemas))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation08, $"OperationId '{value.GetOperationName()}' is not singular - Response model is defined as a single item."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation08, $"OperationId '{operationValue.GetOperationName()}' is not singular - Response model is defined as a single item."));
                             }
                         }
                         else
                         {
                             if (IsModelOfTypeArray(responseModelSchema, modelSchemas))
                             {
-                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation09, $"OperationId '{value.GetOperationName()}' is not pluralized - Response model is defined as an array."));
+                                logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation09, $"OperationId '{operationValue.GetOperationName()}' is not pluralized - Response model is defined as an array."));
                             }
                         }
                     }

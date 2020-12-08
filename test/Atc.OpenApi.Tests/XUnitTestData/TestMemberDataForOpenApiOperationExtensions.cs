@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
+// ReSharper disable StringLiteralTypo
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiOperationExtensions
@@ -136,6 +137,155 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     true,
                     TestDataOpenApiFactory.CreateOperationWithResponseOkAddress(),
                     "country",
+                },
+            };
+
+        public static IEnumerable<object[]> IsOperationNamePluralizedItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getOrder",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getOrders",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getOrderById",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getOrdersById",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "Order",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "Orders",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "gettOrders",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getOrderByMachineIds",
+                    },
+                    OperationType.Get,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deleteOrder",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deleteOrders",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deleteOrderById",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deleteOrdersById",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "Order",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "Orders",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deletetOrders",
+                    },
+                    OperationType.Delete,
+                },
+                new object[]
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "deleteOrderByMachineIds",
+                    },
+                    OperationType.Delete,
                 },
             };
 

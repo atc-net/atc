@@ -84,6 +84,28 @@ namespace Atc.OpenApi.Tests.Extensions
             Assert.Equal(expected, actual);
         }
 
+        [Theory] // Same test-data-set as IsOperationNamePluralizedItemData
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.IsOperationNamePluralizedItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void IsOperationIdPluralized(bool expected, OpenApiOperation openApiOperation, OperationType operationType)
+        {
+            // Act
+            var actual = openApiOperation.IsOperationIdPluralized(operationType);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.IsOperationNamePluralizedItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void IsOperationNamePluralized(bool expected, OpenApiOperation openApiOperation, OperationType operationType)
+        {
+            // Act
+            var actual = openApiOperation.IsOperationNamePluralized(operationType);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
         public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, List<OpenApiOperation> openApiOperations)

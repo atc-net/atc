@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable ConvertIfStatementToReturnStatement
@@ -15,6 +16,8 @@ namespace Microsoft.OpenApi.Models
 {
     public static class OpenApiOperationExtensions
     {
+        private const string RegexPatternUppercase = @"(?<!^)(?=[A-Z])";
+
         public static string GetOperationName(this OpenApiOperation openApiOperation)
         {
             if (openApiOperation == null)
@@ -102,6 +105,50 @@ namespace Microsoft.OpenApi.Models
             }
 
             return false;
+        }
+
+        public static bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+        {
+            if (openApiOperation == null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
+            string operationName = openApiOperation.GetOperationName();
+
+            // Remove Http-verb
+            if (operationName.StartsWith(operationType.ToString(), StringComparison.Ordinal))
+            {
+                operationName = operationName.Substring(operationType.ToString().Length);
+            }
+
+            // Split by uppercase
+            var sa = Regex.Split(operationName, RegexPatternUppercase);
+            if (sa.Length > 0)
+            {
+                // Test for last-term
+                var termWord = sa.Last();
+                if (termWord.EndsWith("s", StringComparison.Ordinal) &&
+                    (!termWord.Equals("Ids", StringComparison.Ordinal) ||
+                     !termWord.Equals("Identifiers", StringComparison.Ordinal)))
+                {
+                    return true;
+                }
+
+                // Test for first-term
+                termWord = sa.First();
+                if (termWord.EndsWith("s", StringComparison.Ordinal))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+        {
+            return IsOperationNamePluralized(openApiOperation, operationType);
         }
 
         public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
