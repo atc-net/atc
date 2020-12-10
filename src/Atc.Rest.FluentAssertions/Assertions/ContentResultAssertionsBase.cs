@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -24,28 +26,86 @@ namespace Atc.Rest.FluentAssertions
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            using (new AssertionScope(Identifier))
+            var expectedType = WithContentOfType<T>();
+            using (new AssertionScope($"content of {Identifier}"))
             {
-                Subject.ContentType.Should().Be(MediaTypeNames.Application.Json);
-                var content = GetContentValueAs<T>();
-                content.Should().BeEquivalentTo(expectedContent, because, becauseArgs);
+                expectedType.And.BeEquivalentTo(expectedContent, because, becauseArgs);
+                return CreateAndWhichConstraint();
             }
+        }
 
-            return CreateAndWhichConstraint();
+        public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
+        {
+            var expectedType = typeof(T);
+
+            Execute.Assertion
+                .ForCondition(Subject.Content != null)
+                .BecauseOf(because, becauseArgs)
+                .WithDefaultIdentifier($"type of content in {Identifier}")
+                .FailWith("Expected {context} to be {0}{reason}, but found <null>.", expectedType);
+
+            Execute.Assertion
+                .BecauseOf(because, becauseArgs)
+                .WithDefaultIdentifier($"content type of {Identifier}")
+                .Given(() => Subject.ContentType)
+                .ForCondition(contentType => contentType.Equals(MediaTypeNames.Application.Json, StringComparison.Ordinal))
+                .FailWith("Expected {context} to be {0}{reason}, but found {1}.", _ => MediaTypeNames.Application.Json, x => x);
+
+            var parseSuccess = TryContentValueAs<T>(out var content);
+
+            Execute.Assertion
+                .ForCondition(parseSuccess)
+                .BecauseOf(because, becauseArgs)
+                .WithDefaultIdentifier($"type of content in {Identifier}")
+                .FailWith("Expected {context} to be {0}{reason}, but found {1}.", expectedType, Subject.Content);
+
+            return new AndWhichConstraint<ObjectAssertions, T>(new ObjectAssertions(content), content!);
         }
 
         protected abstract AndWhichConstraint<TAssertions, ContentResult> CreateAndWhichConstraint();
 
-        protected T GetContentValueAs<T>()
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By design.")]
+        protected bool TryContentValueAs<T>(out T? content)
         {
-            try
+            content = default;
+
+            if (Subject.Content is null)
             {
-                return JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions);
+                return false;
             }
-            catch (JsonException)
+
+            var type = typeof(T);
+
+            if (type.IsPrimitive)
             {
-                return Subject.Content.As<T>();
+                try
+                {
+                    var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, jsonSerializerOptions);
+                    if (Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture) is T convertedContent)
+                    {
+                        content = convertedContent;
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
             }
+            else
+            {
+                try
+                {
+                    content = JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions);
+                    return true;
+                }
+                catch (JsonException)
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
     }
 }

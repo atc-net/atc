@@ -17,7 +17,7 @@ namespace Atc.Rest.FluentAssertions
 
         public AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            using (new AssertionScope($"{Identifier} value"))
+            using (new AssertionScope($"content of {Identifier}"))
             {
                 WithContentOfType<T>(because, becauseArgs)
                     .And

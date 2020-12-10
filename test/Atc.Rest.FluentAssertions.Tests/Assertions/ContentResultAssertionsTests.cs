@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Net.Mime;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ using Xunit.Sdk;
 
 namespace Atc.Rest.FluentAssertions.Tests.Assertions
 {
-    public class ContentResultAssertionsTests
+    public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
     {
         [Fact]
         public void Ctor_Sets_Subject_On_Subject_Property()
@@ -27,11 +26,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected()
         {
             // Arrange
-            var target = new ContentResult
-            {
-                Content = "FOO",
-                ContentType = MediaTypeNames.Application.Json,
-            };
+            var target = CreateWithJsonContent("FOO");
 
             var sut = new ContentResultAssertions(target);
 
@@ -39,18 +34,14 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithContent("BAR"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of content result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
         public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected_WithBecauseMessage()
         {
             // Arrange
-            var target = new ContentResult
-            {
-                Content = "FOO",
-                ContentType = MediaTypeNames.Application.Json,
-            };
+            var target = CreateWithJsonContent("FOO");
 
             var sut = new ContentResultAssertions(target);
 
@@ -58,7 +49,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -77,18 +68,14 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content result to be ""application/json"" with a length of 16, but ""BAZ"" has a length of 3, differs near ""BAZ"" (index 0).");
+                .WithMessage(@"Expected content type of content result to be ""application/json"", but found ""BAZ"".");
         }
 
         [Fact]
         public void WithContent_Does_Not_Throw_When_Expected_Match()
         {
             // Arrange
-            var target = new ContentResult
-            {
-                Content = "FOO",
-                ContentType = MediaTypeNames.Application.Json,
-            };
+            var target = CreateWithJsonContent("FOO");
 
             var sut = new ContentResultAssertions(target);
 
@@ -140,6 +127,33 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithStatusCode(HttpStatusCode.OK, "FOO", "BAR"))
                 .Should()
                 .NotThrow();
+        }
+
+        [Fact]
+        public void WithContentOfType_Throws_When_Content_Is_Not_Expected_Type_With_BecauseMessage()
+        {
+            // Arrange
+            var target = CreateWithJsonContent("FOO");
+
+            var sut = new ContentResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.WithContentOfType<int>("Because of something"))
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage(@"Expected type of content in content result to be System.Int32 Because of something, but found """"FOO"""".");
+        }
+
+        [Fact]
+        public void WithContentOfType_Throws_When_Content_Is_Expected()
+        {
+            // Arrange
+            var target = CreateWithJsonContent("FOO");
+
+            var sut = new ContentResultAssertions(target);
+
+            // Act & Assert
+            sut.WithContentOfType<string>().Subject.Should().Be("FOO");
         }
     }
 }
