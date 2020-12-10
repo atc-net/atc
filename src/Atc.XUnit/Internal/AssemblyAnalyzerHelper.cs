@@ -15,7 +15,7 @@ namespace Atc.XUnit.Internal
             "EventHandlerExtensions",
             "NullableExtensions",
             "ObjectExtensions",
-            "TypeExtensions"
+            "TypeExtensions",
         };
 
         private static readonly List<string> AllowedNamesForCollectionExtensions = new List<string>
@@ -24,18 +24,18 @@ namespace Atc.XUnit.Internal
             "IEnumerable",
             "IQueryable",
             "IOrderedQueryable",
-            "ObservableCollection"
+            "ObservableCollection",
         };
 
         private static readonly List<string> AllowedNamesForEnumerableExtensions = new List<string>
         {
-            "IEnumerable"
+            "IEnumerable",
         };
 
         private static readonly List<string> AllowedNamesForQueryableExtensions = new List<string>
         {
             "IQueryable",
-            "IOrderedQueryable"
+            "IOrderedQueryable",
         };
 
         internal static Dictionary<MethodInfo, string> CollectExportedMethodsWithWrongNaming(
@@ -45,7 +45,7 @@ namespace Atc.XUnit.Internal
             var types = CollectFilteredAssemblyTypes(assembly, excludeTypes);
             var listModuleScopeNamesToExclude = new List<string>
             {
-                typeof(Exception).Module.ScopeName
+                typeof(Exception).Module.ScopeName,
             };
 
             var list = new Dictionary<MethodInfo, string>();

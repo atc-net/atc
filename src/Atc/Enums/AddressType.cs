@@ -81,6 +81,6 @@ namespace Atc
         /// All
         /// </summary>
         [LocalizedDescription("All", typeof(EnumResources))]
-        All = Address | AccessAddress | PreliminaryAddress | PreliminaryAccessAddress
+        All = Address | AccessAddress | PreliminaryAddress | PreliminaryAccessAddress,
     }
 }

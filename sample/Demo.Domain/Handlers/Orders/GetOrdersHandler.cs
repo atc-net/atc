@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,9 +21,10 @@ namespace Demo.Domain.Handlers.Orders
             return InvokeExecuteAsync(parameters, cancellationToken);
         }
 
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed to show as an example.")]
+        [SuppressMessage("Usage", "CA1801:Review unused parameters", Justification = "Needed to show as an example.")]
         private async Task<GetOrdersResult> InvokeExecuteAsync(GetOrdersParameters parameters, CancellationToken cancellationToken)
         {
-
             var allItems = new List<Order>();
             for (var i = 0; i < 347; i++)
             {
@@ -30,7 +32,7 @@ namespace Demo.Domain.Handlers.Orders
                     new Order
                     {
                         Id = Guid.NewGuid(),
-                        Description = $"Test order {i + 1}"
+                        Description = $"Test order {i + 1}",
                     });
             }
 

@@ -13,6 +13,6 @@
         /// <summary>
         /// The mono reflection
         /// </summary>
-        MonoReflection
+        MonoReflection,
     }
 }

@@ -24,6 +24,6 @@ namespace Atc
         /// Yes.
         /// </summary>
         [LocalizedDescription("YesNoTypeYes", typeof(EnumResources))]
-        Yes = 2
+        Yes = 2,
     }
 }

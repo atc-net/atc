@@ -24,6 +24,6 @@ namespace Atc
         /// Right
         /// </summary>
         [LocalizedDescription("LeftRightTypeRight", typeof(EnumResources))]
-        Right = 2
+        Right = 2,
     }
 }

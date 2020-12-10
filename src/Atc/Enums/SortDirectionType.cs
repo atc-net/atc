@@ -24,6 +24,6 @@ namespace Atc
         /// Descending.
         /// </summary>
         [LocalizedDescription("SortDirectionTypeDescending", typeof(EnumResources))]
-        Descending
+        Descending,
     }
 }

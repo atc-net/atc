@@ -23,7 +23,7 @@ namespace Atc.Data
         {
             var dt = new DataTable
             {
-                Locale = CultureInfo.InvariantCulture
+                Locale = CultureInfo.InvariantCulture,
             };
 
             dt.Columns.Add("key", typeof(int));
@@ -72,7 +72,7 @@ namespace Atc.Data
         {
             var dt = new DataTable
             {
-                Locale = CultureInfo.InvariantCulture
+                Locale = CultureInfo.InvariantCulture,
             };
 
             dt.Columns.Add("key", typeof(Guid));

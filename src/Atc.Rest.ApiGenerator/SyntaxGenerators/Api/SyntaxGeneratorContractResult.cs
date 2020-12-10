@@ -207,7 +207,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                     SyntaxFactory.SingletonSeparatedList(
                                         SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName))))))
                         .WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken))),
-                    SyntaxFactory.GlobalStatement(SyntaxFactory.Block())
+                    SyntaxFactory.GlobalStatement(SyntaxFactory.Block()),
                 }.ToList();
         }
 
@@ -489,7 +489,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                                                 SyntaxFactory.AssignmentExpression(
                                                                     SyntaxKind.SimpleAssignmentExpression,
                                                                     SyntaxFactory.IdentifierName("Content"),
-                                                                    SyntaxFactory.IdentifierName(parameterName))
+                                                                    SyntaxFactory.IdentifierName(parameterName)),
                                                             })))))))))
                 .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
@@ -527,7 +527,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                                                         SyntaxFactory.IdentifierName(nameof(HttpStatusCode)),
                                                                         SyntaxFactory.IdentifierName(httpStatusCode.ToString()))),
                                                                 SyntaxTokenFactory.Comma(),
-                                                                SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression))
+                                                                SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression)),
                                                             })))))))))
                 .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
@@ -570,7 +570,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                                                         SyntaxFactory.IdentifierName(nameof(HttpStatusCode)),
                                                                         SyntaxFactory.IdentifierName(httpStatusCode.ToString()))),
                                                                 SyntaxTokenFactory.Comma(),
-                                                                SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName))
+                                                                SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName)),
                                                             })))))))))
                 .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
@@ -617,7 +617,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Api
                                                                         SyntaxFactory.IdentifierName(nameof(HttpStatusCode)),
                                                                         SyntaxFactory.IdentifierName(httpStatusCode.ToString()))),
                                                                 SyntaxTokenFactory.Comma(),
-                                                                SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName))
+                                                                SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameterName)),
                                                             })))))))))
                 .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }

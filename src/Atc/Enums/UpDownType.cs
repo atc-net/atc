@@ -24,6 +24,6 @@ namespace Atc
         /// Down.
         /// </summary>
         [LocalizedDescription("UpDownTypeDown", typeof(EnumResources))]
-        Down = 2
+        Down = 2,
     }
 }

@@ -42,7 +42,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
                 StatusCode = (int)HttpStatusCode.InternalServerError,
                 Content = useProblemDetailsAsResponseBody
                     ? JsonSerializer.Serialize(CreateProblemDetails(context))
-                    : CreateMessage(context)
+                    : CreateMessage(context),
             };
         }
 
@@ -74,7 +74,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             {
                 Status = (int)statusCode,
                 Title = title,
-                Detail = CreateMessage(context)
+                Detail = CreateMessage(context),
             };
         }
 

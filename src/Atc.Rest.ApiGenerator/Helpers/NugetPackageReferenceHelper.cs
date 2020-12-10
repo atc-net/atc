@@ -13,7 +13,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             var packageReference = new List<Tuple<string, string, string?>>
             {
                 new Tuple<string, string, string?>("Atc", atcVersion, null),
-                new Tuple<string, string, string?>("Atc.Rest", atcVersion, null)
+                new Tuple<string, string, string?>("Atc.Rest", atcVersion, null),
             };
 
             if (useRestExtended)
@@ -30,7 +30,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
             return packageReference;
         }
 
-        public static List<Tuple<string, string, string?>>? CreateForApiProject()
+        public static List<Tuple<string, string, string?>> CreateForApiProject()
         {
             string atcVersion = GenerateHelper.GetAtcToolVersionAsString3();
 
@@ -63,7 +63,7 @@ namespace Atc.Rest.ApiGenerator.Helpers
                 new Tuple<string, string, string?>("Microsoft.NET.Test.Sdk", "16.7.1", null),
                 new Tuple<string, string, string?>("NSubstitute", "4.2.2", null),
                 new Tuple<string, string, string?>("xunit", "2.4.1", null),
-                new Tuple<string, string, string?>("xunit.runner.visualstudio", "2.4.3", "<PrivateAssets>all</PrivateAssets>\n<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>")
+                new Tuple<string, string, string?>("xunit.runner.visualstudio", "2.4.3", "<PrivateAssets>all</PrivateAssets>\n<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>"),
             });
 
             return packageReference;

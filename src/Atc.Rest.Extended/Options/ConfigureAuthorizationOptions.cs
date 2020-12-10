@@ -46,7 +46,7 @@ namespace Atc.Rest.Extended.Options
                 apiOptions.Authorization.ValidAudiences = new List<string>
                 {
                     apiOptions.Authorization.ClientId,
-                    $"api://{apiOptions.Authorization.ClientId}"
+                    $"api://{apiOptions.Authorization.ClientId}",
                 };
             }
 

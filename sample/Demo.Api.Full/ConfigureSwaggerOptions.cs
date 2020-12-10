@@ -43,8 +43,8 @@ namespace Demo.Api.Full
                 AuthorizationUrl = new Uri(authorizationUrl),
                 Scopes = new Dictionary<string, string>
                 {
-                    {$"{apiOptions.Authorization.Audience}/.default", "Default"}
-                }
+                    { $"{apiOptions.Authorization.Audience}/.default", "Default" },
+                },
             };
 
             options.AddSecurityDefinition(
@@ -55,8 +55,8 @@ namespace Demo.Api.Full
                     Flows = new OpenApiOAuthFlows
                     {
                         Implicit = authFlow,
-                        AuthorizationCode = authFlow
-                    }
+                        AuthorizationCode = authFlow,
+                    },
                 });
 
             options.AddSecurityRequirement(
@@ -68,11 +68,11 @@ namespace Demo.Api.Full
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = SecuritySchemeType.OAuth2.ToString()
-                            }
+                                Id = SecuritySchemeType.OAuth2.ToString(),
+                            },
                         },
                         Array.Empty<string>()
-                    }
+                    },
                 });
         }
 

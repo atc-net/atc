@@ -24,6 +24,6 @@ namespace Atc
         /// Reverse.
         /// </summary>
         [LocalizedDescription("ForwardReverseTypeReverse", typeof(EnumResources))]
-        Reverse = 2
+        Reverse = 2,
     }
 }

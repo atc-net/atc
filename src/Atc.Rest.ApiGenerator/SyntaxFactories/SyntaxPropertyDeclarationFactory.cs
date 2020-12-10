@@ -159,7 +159,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxFactories
                             new[]
                             {
                                 SyntaxAccessorDeclarationFactory.Get(),
-                                SyntaxAccessorDeclarationFactory.Set()
+                                SyntaxAccessorDeclarationFactory.Set(),
                             })));
 
             if (initializeList)

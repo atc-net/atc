@@ -30,7 +30,7 @@ namespace Demo.Domain.Handlers.Users
                 Id = Guid.NewGuid(),
                 FirstName = "John",
                 LastName = "Doe",
-                Email = parameters.Email
+                Email = parameters.Email,
             };
 
             return await Task.FromResult(data);

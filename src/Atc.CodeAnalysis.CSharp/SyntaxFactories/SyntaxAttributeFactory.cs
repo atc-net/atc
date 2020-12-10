@@ -73,7 +73,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                             {
                                 SyntaxAttributeArgumentFactory.Create(argumentValue1),
                                 SyntaxTokenFactory.Comma(),
-                                SyntaxAttributeArgumentFactory.Create(argumentValue2)
+                                SyntaxAttributeArgumentFactory.Create(argumentValue2),
                             })));
         }
 

@@ -48,6 +48,6 @@ namespace Atc
         /// Loaded.
         /// </summary>
         [LocalizedDescription("CollectionActionTypeLoaded", typeof(EnumResources))]
-        Loaded
+        Loaded,
     }
 }

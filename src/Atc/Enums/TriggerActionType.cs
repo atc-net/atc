@@ -30,6 +30,6 @@ namespace Atc
         /// Delete.
         /// </summary>
         [LocalizedDescription("TriggerActionTypeDelete", typeof(EnumResources))]
-        Delete = 3
+        Delete = 3,
     }
 }

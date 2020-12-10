@@ -9,8 +9,6 @@ namespace Atc
     /// <summary>
     /// Extension methods for enums.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "OK.")]
-    [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", Justification = "OK.")]
     public static class Enum<T> where T : Enum
     {
         /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>

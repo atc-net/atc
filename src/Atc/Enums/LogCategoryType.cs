@@ -67,6 +67,6 @@ namespace Atc
         /// Trace.
         /// </summary>
         [LocalizedDescription("LogCategoryTypeTrace", typeof(EnumResources))]
-        Trace
+        Trace,
     }
 }

@@ -189,7 +189,7 @@ namespace Atc.Rest.ApiGenerator.Generators
 
                 var projectReferences = new List<FileInfo>
                 {
-                    apiProjectOptions.ProjectSrcCsProj
+                    apiProjectOptions.ProjectSrcCsProj,
                 };
 
                 logItems.Add(SolutionAndProjectHelper.ScaffoldProjFile(

@@ -137,7 +137,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
         {
             var result = new List<MemberDeclarationSyntax>
             {
-                CreateExecuteAsyncMethod(ParameterTypeName, ResultTypeName, HasParametersOrRequestBody)
+                CreateExecuteAsyncMethod(ParameterTypeName, ResultTypeName, HasParametersOrRequestBody),
             };
 
             if (HasParametersOrRequestBody)
@@ -157,13 +157,13 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                     SyntaxTokenFactory.Comma(),
                     SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         .WithDefault(SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
+                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword()))),
                 }
                 : new SyntaxNodeOrToken[]
                 {
                     SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
                         .WithDefault(SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword())))
+                            SyntaxFactory.LiteralExpression(SyntaxKind.DefaultLiteralExpression, SyntaxTokenFactory.DefaultKeyword()))),
                 };
 
             var codeBody = hasParameters
@@ -179,7 +179,7 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                                         {
                                             SyntaxFactory.Argument(SyntaxFactory.IdentifierName("parameters")),
                                             SyntaxTokenFactory.Comma(),
-                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName(nameof(CancellationToken).EnsureFirstCharacterToLower()))
+                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName(nameof(CancellationToken).EnsureFirstCharacterToLower())),
                                         })))))
                 : SyntaxFactory.Block(
                     SyntaxThrowStatementFactory.CreateNotImplementedException());
@@ -200,11 +200,11 @@ namespace Atc.Rest.ApiGenerator.SyntaxGenerators.Domain
                 {
                     SyntaxParameterFactory.Create(parameterTypeName, "parameters"),
                     SyntaxTokenFactory.Comma(),
-                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
+                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower()),
                 }
                 : new SyntaxNodeOrToken[]
                 {
-                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower())
+                    SyntaxParameterFactory.Create(nameof(CancellationToken), nameof(CancellationToken).EnsureFirstCharacterToLower()),
                 };
 
             return SyntaxFactory.MethodDeclaration(

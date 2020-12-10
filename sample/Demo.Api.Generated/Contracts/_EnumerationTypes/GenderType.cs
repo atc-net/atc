@@ -11,6 +11,6 @@ namespace Demo.Api.Generated.Contracts
         Unknown,
         NonBinary,
         Male,
-        Female
+        Female,
     }
 }

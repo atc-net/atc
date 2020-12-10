@@ -11,7 +11,7 @@ namespace Atc.Rest.ApiGenerator.Factories
             var list = new List<string>
             {
                 "Microsoft.AspNetCore.Hosting",
-                "Microsoft.Extensions.Hosting"
+                "Microsoft.Extensions.Hosting",
             };
 
             return list.ToArray();
@@ -32,7 +32,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "Microsoft.Extensions.Configuration",
                 "Microsoft.Extensions.DependencyInjection",
                 $"{name}.Api.Generated",
-                $"{name}.Domain"
+                $"{name}.Domain",
             };
 
             return list.ToArray();
@@ -48,7 +48,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "System.Text.Json",
                 "System.Text.Json.Serialization",
                 "Microsoft.Extensions.Configuration",
-                "Xunit"
+                "Xunit",
             };
 
             return list.ToArray();
@@ -68,7 +68,7 @@ namespace Atc.Rest.ApiGenerator.Factories
                 "Microsoft.AspNetCore.TestHost",
                 "Microsoft.Extensions.Configuration",
                 "Microsoft.Extensions.DependencyInjection",
-                $"{name}.Api.Generated"
+                $"{name}.Api.Generated",
             };
 
             return list.ToArray();

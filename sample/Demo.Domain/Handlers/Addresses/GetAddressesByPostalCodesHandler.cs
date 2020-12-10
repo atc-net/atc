@@ -36,9 +36,9 @@ namespace Demo.Domain.Handlers.Addresses
                     {
                         Name = "Denmark",
                         Alpha2Code = "DK",
-                        Alpha3Code = "DNK"
-                    }
-                }
+                        Alpha3Code = "DNK",
+                    },
+                },
             };
 
             return await Task.FromResult(data);

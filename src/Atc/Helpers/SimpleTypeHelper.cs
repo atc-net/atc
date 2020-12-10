@@ -114,7 +114,7 @@ namespace Atc.Helpers
             { typeof(short?), "short?" },
             { typeof(uint?), "uint?" },
             { typeof(ulong?), "ulong?" },
-            { typeof(ushort?), "ushort?" }
+            { typeof(ushort?), "ushort?" },
         };
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Atc.Helpers
             { typeof(string[]), "string[]" },
             { typeof(uint[]), "uint[]" },
             { typeof(ulong[]), "ulong[]" },
-            { typeof(ushort[]), "ushort[]" }
+            { typeof(ushort[]), "ushort[]" },
         };
 
         /// <summary>

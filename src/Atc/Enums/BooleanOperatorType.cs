@@ -42,6 +42,6 @@ namespace Atc
         /// </summary>
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "NEAR", Justification = "OK.")]
         [LocalizedDescription("BooleanOperatorTypeNear", typeof(EnumResources))]
-        NEAR
+        NEAR,
     }
 }

@@ -235,7 +235,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 
             var comments = new List<SyntaxTrivia>
             {
-                CreateComment("<summary>")
+                CreateComment("<summary>"),
             };
 
             if (!string.IsNullOrEmpty(apiSchema.Description))
@@ -291,7 +291,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 CreateComment($"Description: {description}", true),
                 CreateComment($"Operation: {operationId}."),
                 CreateComment($"Area: {area.EnsureFirstCharacterToUpper()}."),
-                CreateComment("</summary>")
+                CreateComment("</summary>"),
             };
         }
 
@@ -357,7 +357,7 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
 
             var comments = new List<SyntaxTrivia>
             {
-                CreateComment("<example>")
+                CreateComment("<example>"),
             };
 
             foreach (var pair in list)
@@ -414,19 +414,19 @@ namespace Atc.Rest.ApiGenerator.ProjectSyntaxFactories
                 {
                     CreateComment("<remarks>"),
                     CreateComment("This string should be base64-encoded."),
-                    CreateComment("</remarks>")
+                    CreateComment("</remarks>"),
                 },
                 OpenApiFormatTypeConstants.Email => new List<SyntaxTrivia>
                 {
                     CreateComment("<remarks>"),
                     CreateComment("Email validation being enforced."),
-                    CreateComment("</remarks>")
+                    CreateComment("</remarks>"),
                 },
                 OpenApiFormatTypeConstants.Uri => new List<SyntaxTrivia>
                 {
                     CreateComment("<remarks>"),
                     CreateComment("Url validation being enforced."),
-                    CreateComment("</remarks>")
+                    CreateComment("</remarks>"),
                 },
                 _ => SyntaxFactory.TriviaList()
             };

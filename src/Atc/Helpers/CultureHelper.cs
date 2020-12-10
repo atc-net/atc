@@ -53,7 +53,7 @@ namespace Atc.Helpers
                         CurrencySymbol = regionInfo.CurrencySymbol,
                         NumberDecimalSeparator = cultureInfo.NumberFormat.NumberDecimalSeparator,
                         ShortDatePattern = cultureInfo.DateTimeFormat.ShortDatePattern,
-                        LongTimePattern = cultureInfo.DateTimeFormat.LongTimePattern
+                        LongTimePattern = cultureInfo.DateTimeFormat.LongTimePattern,
                     };
 
                     culture.CountryDisplayName = TryTranslateCountryEnglishName(culture.CountryEnglishName);
@@ -156,7 +156,7 @@ namespace Atc.Helpers
             var data = new List<Culture>
             {
                 // Ensure en-US
-                GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates }).First()
+                GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates }).First(),
             };
 
             foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName))

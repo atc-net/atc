@@ -26,7 +26,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         {
             return new DecompilerSettings
             {
-                ThrowOnAssemblyResolveErrors = false
+                ThrowOnAssemblyResolveErrors = false,
             };
         }
 

@@ -27,7 +27,7 @@ namespace Demo.Api
                 {
                     Enable = true,
                     UseProblemDetailsAsResponseBody = true,
-                    IncludeExceptionDetails = true
+                    IncludeExceptionDetails = true,
                 },
                 UseRequireHttpsPermanent = true,
                 UseJsonSerializerOptionsIgnoreNullValues = true,

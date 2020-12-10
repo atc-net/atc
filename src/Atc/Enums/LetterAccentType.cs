@@ -45,6 +45,6 @@ namespace Atc
         /// <summary>
         /// All.
         /// </summary>
-        All = Grave | Acute | Circumflex | Tilde | Umlaut
+        All = Grave | Acute | Circumflex | Tilde | Umlaut,
     }
 }

@@ -47,6 +47,6 @@ namespace Atc
         /// Indicates that the identity role is super administrator.
         /// </summary>
         [LocalizedDescription("IdentityRoleTypeSuperAdmin", typeof(EnumResources))]
-        SuperAdmin = 0x10
+        SuperAdmin = 0x10,
     }
 }

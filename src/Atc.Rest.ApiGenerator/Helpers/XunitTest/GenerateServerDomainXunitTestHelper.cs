@@ -194,7 +194,7 @@ namespace Atc.Rest.ApiGenerator.Helpers.XunitTest
                 nsSrc,
                 "System",
                 "System.CodeDom.Compiler",
-                "Xunit"
+                "Xunit",
             };
 
             if (useExtra)

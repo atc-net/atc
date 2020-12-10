@@ -11,7 +11,7 @@ namespace Atc.Rest.Results
             => new ProblemDetails
             {
                 Status = (int)statusCode,
-                Detail = message
+                Detail = message,
             };
 
         public static ContentResult CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string? message, string contentType = MediaTypeNames.Application.Json)
@@ -19,7 +19,7 @@ namespace Atc.Rest.Results
             {
                 ContentType = contentType,
                 StatusCode = (int)statusCode,
-                Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message))
+                Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message)),
             };
 
         public static ContentResult CreateContentResult(HttpStatusCode statusCode, string? message, string contentType = MediaTypeNames.Application.Json)
@@ -27,7 +27,7 @@ namespace Atc.Rest.Results
             {
                 ContentType = contentType,
                 StatusCode = (int)statusCode,
-                Content = JsonSerializer.Serialize(message)
+                Content = JsonSerializer.Serialize(message),
             };
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Demo.Api.Generated.Contracts;
@@ -26,6 +27,8 @@ namespace Demo.Domain.Handlers.Orders
             };
         }
 
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed to show as an example.")]
+        [SuppressMessage("Usage", "CA1801:Review unused parameters", Justification = "Needed to show as an example.")]
         private async Task<GetOrderByIdResult> InvokeExecuteAsync(GetOrderByIdParameters parameters, CancellationToken cancellationToken)
         {
             var data = new Order
@@ -40,9 +43,9 @@ namespace Demo.Domain.Handlers.Orders
                     {
                         Name = "Denmark",
                         Alpha2Code = "DK",
-                        Alpha3Code = "DNK"
-                    }
-                }
+                        Alpha3Code = "DNK",
+                    },
+                },
             };
 
             return await Task.FromResult(data);

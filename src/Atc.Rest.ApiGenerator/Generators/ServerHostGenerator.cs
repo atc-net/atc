@@ -615,7 +615,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                 SyntaxFactory.SingletonSeparatedList(
                                                     SyntaxFactory.Argument(
                                                         SyntaxFactory.TypeOfExpression(
-                                                            SyntaxFactory.IdentifierName("DomainRegistration")))))))
+                                                            SyntaxFactory.IdentifierName("DomainRegistration"))))))),
                                 })))));
 
             return SyntaxFactory.MethodDeclaration(
@@ -660,7 +660,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                         {
                             SyntaxFactory.Argument(SyntaxFactory.IdentifierName("restApiOptions")),
                             SyntaxTokenFactory.Comma(),
-                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName("Configuration"))
+                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName("Configuration")),
                         }));
             }
             else
@@ -712,7 +712,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                 .WithType(SyntaxFactory.IdentifierName("IApplicationBuilder")),
                             SyntaxTokenFactory.Comma(),
                             SyntaxFactory.Parameter(SyntaxFactory.Identifier("env"))
-                                .WithType(SyntaxFactory.IdentifierName("IWebHostEnvironment"))
+                                .WithType(SyntaxFactory.IdentifierName("IWebHostEnvironment")),
                         })))
             .WithBody(
                 SyntaxFactory.Block(
@@ -730,7 +730,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                         {
                                             SyntaxFactory.Argument(SyntaxFactory.IdentifierName("env")),
                                             SyntaxTokenFactory.Comma(),
-                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName("restApiOptions"))
+                                            SyntaxFactory.Argument(SyntaxFactory.IdentifierName("restApiOptions")),
                                         })))))));
         }
 
@@ -828,7 +828,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                                             {
                                                                                 SyntaxFactory.IdentifierName("RestApiOptions"),
                                                                                 SyntaxTokenFactory.Comma(),
-                                                                                SyntaxFactory.IdentifierName("RestApiOptions")
+                                                                                SyntaxFactory.IdentifierName("RestApiOptions"),
                                                                             })))))),
                                                 SyntaxFactory.ExpressionStatement(
                                                     SyntaxFactory.InvocationExpression(
@@ -869,7 +869,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                                                     SyntaxFactory.SingletonSeparatedList(
                                                                                         SyntaxFactory.Argument(
                                                                                             SyntaxFactory.TypeOfExpression(
-                                                                                                SyntaxFactory.IdentifierName("WebApiStartupFactory"))))))))
+                                                                                                SyntaxFactory.IdentifierName("WebApiStartupFactory")))))))),
                                                                 })))))))))))));
         }
 
@@ -1031,7 +1031,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                             SyntaxFactory.ObjectCreationExpression(
                                                                     SyntaxFactory.IdentifierName("JsonStringEnumConverter"))
                                                                 .WithArgumentList(SyntaxFactory.ArgumentList())))),
-                                                SyntaxTokenFactory.Comma()
+                                                SyntaxTokenFactory.Comma(),
                                             })))))));
         }
 
@@ -1068,7 +1068,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                                     {
                                                         SyntaxFactory.Argument(SyntaxFactory.IdentifierName("data")),
                                                         SyntaxTokenFactory.Comma(),
-                                                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName("JsonSerializerOptions"))
+                                                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName("JsonSerializerOptions")),
                                                     })))),
                                     SyntaxTokenFactory.Comma(),
                                     SyntaxFactory.Argument(
@@ -1080,7 +1080,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
-                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json)))
+                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json))),
                                 })))))
             .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }
@@ -1117,7 +1117,7 @@ namespace Atc.Rest.ApiGenerator.Generators
                                     SyntaxFactory.Argument(
                                         SyntaxFactory.LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
-                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json)))
+                                            SyntaxFactory.Literal(MediaTypeNames.Application.Json))),
                                 })))))
             .WithSemicolonToken(SyntaxTokenFactory.Semicolon());
         }

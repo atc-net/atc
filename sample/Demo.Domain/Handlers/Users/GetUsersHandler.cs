@@ -15,14 +15,14 @@ namespace Demo.Domain.Handlers.Users
                 {
                     FirstName = "John",
                     LastName = "Doe",
-                    Email = "John.Doe@jd.com"
+                    Email = "John.Doe@jd.com",
                 },
                 new User
                 {
                     FirstName = "John",
                     LastName = "Doe2",
-                    Email = "John.Doe2@jd.com"
-                }
+                    Email = "John.Doe2@jd.com",
+                },
             };
 
             return await Task.FromResult(data);

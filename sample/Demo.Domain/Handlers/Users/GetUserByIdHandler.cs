@@ -29,7 +29,7 @@ namespace Demo.Domain.Handlers.Users
             {
                 FirstName = "John",
                 LastName = "Doe",
-                Email = "John.Doe@jd.com"
+                Email = "John.Doe@jd.com",
             };
 
             return await Task.FromResult(data);

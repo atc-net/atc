@@ -20,7 +20,7 @@ namespace Atc.Helpers
             {
                 return new ParallelOptions
                 {
-                    MaxDegreeOfParallelism = Environment.ProcessorCount - exemptProcessorCount
+                    MaxDegreeOfParallelism = Environment.ProcessorCount - exemptProcessorCount,
                 };
             }
 

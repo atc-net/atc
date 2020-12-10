@@ -29,7 +29,7 @@ namespace Demo.Api.Full
                 {
                     Enable = true,
                     UseProblemDetailsAsResponseBody = true,
-                    IncludeExceptionDetails = true
+                    IncludeExceptionDetails = true,
                 },
                 UseRequireHttpsPermanent = true,
                 UseJsonSerializerOptionsIgnoreNullValues = true,
@@ -39,7 +39,7 @@ namespace Demo.Api.Full
                 // Extended
                 UseApiVersioning = true,
                 UseFluentValidation = true,
-                UseOpenApiSpec = true
+                UseOpenApiSpec = true,
             };
 
             restApiOptions.AddAssemblyPairs(

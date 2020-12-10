@@ -49,7 +49,7 @@ namespace Atc.Helpers
                 { DayOfWeek.Wednesday, GetDescription(DayOfWeek.Wednesday, culture) },
                 { DayOfWeek.Thursday, GetDescription(DayOfWeek.Thursday, culture) },
                 { DayOfWeek.Friday, GetDescription(DayOfWeek.Friday, culture) },
-                { DayOfWeek.Saturday, GetDescription(DayOfWeek.Saturday, culture) }
+                { DayOfWeek.Saturday, GetDescription(DayOfWeek.Saturday, culture) },
             };
             return list;
         }

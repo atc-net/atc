@@ -4,6 +4,6 @@
     {
         Parameter,
         RequestBody,
-        Response
+        Response,
     }
 }

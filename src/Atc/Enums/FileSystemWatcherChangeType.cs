@@ -47,6 +47,6 @@ namespace Atc
         /// All = Added | Deleted | Renamed | Changed.
         /// </summary>
         [LocalizedDescription("All", typeof(EnumResources))]
-        All = Added | Deleted | Renamed | Changed
+        All = Added | Deleted | Renamed | Changed,
     }
 }

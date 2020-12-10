@@ -13,7 +13,7 @@ namespace Atc.XUnit.Internal
     {
         private static readonly List<string> ListModuleScopeNamesToExclude = new List<string>
         {
-            typeof(Exception).Module.ScopeName
+            typeof(Exception).Module.ScopeName,
         };
 
         internal static Type[] DebugFilterTypeNames(DebugLimitData debugLimitData, Type[] sourceTypes)

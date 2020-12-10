@@ -21,7 +21,7 @@ namespace System.Net.Http
         {
             jsonSerializerOptions ??= new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
             };
 
             var content = await httpResponseMessage.Content.ReadAsStringAsync();

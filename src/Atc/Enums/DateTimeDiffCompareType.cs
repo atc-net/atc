@@ -56,6 +56,6 @@ namespace Atc
         /// </summary>
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Quartal", Justification = "OK.")]
         [LocalizedDescription("DateTimeDiffCompareTypeQuartal", typeof(EnumResources))]
-        Quartal
+        Quartal,
     }
 }

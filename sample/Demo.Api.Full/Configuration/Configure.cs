@@ -16,7 +16,6 @@ namespace Demo.Api.Full.Configuration
             services.AddTransient<IGetOrderByIdHandler, GetOrderByIdHandler>();
             services.AddTransient<IGetOrdersHandler, GetOrdersHandler>();
             services.AddTransient<IPatchOrdersIdHandler, PatchOrdersIdHandler>();
-            
             services.AddTransient<IDeleteUserByIdHandler, DeleteUserByIdHandler>();
             services.AddTransient<IGetUserByEmailHandler, GetUserByEmailHandler>();
             services.AddTransient<IGetUserByIdHandler, GetUserByIdHandler>();

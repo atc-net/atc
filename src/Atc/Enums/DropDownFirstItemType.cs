@@ -36,6 +36,6 @@ namespace Atc
         /// </summary>
         [EnumGuid("1FAFFE9E-4C72-44A3-A234-B71DCBE8BAF0")]
         [LocalizedDescription("DropDownFirstItemTypeIncludeAll", typeof(EnumResources))]
-        IncludeAll = -4
+        IncludeAll = -4,
     }
 }

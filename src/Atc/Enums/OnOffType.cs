@@ -24,6 +24,6 @@ namespace Atc
         /// ON.
         /// </summary>
         [LocalizedDescription("OnOffTypeOn", typeof(EnumResources))]
-        On = 2
+        On = 2,
     }
 }
