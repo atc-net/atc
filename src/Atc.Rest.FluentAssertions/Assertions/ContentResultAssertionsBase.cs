@@ -25,6 +25,7 @@ namespace Atc.Rest.FluentAssertions
         protected ContentResultAssertionsBase(ContentResult subject) : base(subject) { }
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
+            where T : notnull
         {
             var expectedType = WithContentOfType<T>();
             using (new AssertionScope($"content of {Identifier}"))
@@ -35,6 +36,7 @@ namespace Atc.Rest.FluentAssertions
         }
 
         public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
+            where T : notnull
         {
             var expectedType = typeof(T);
 
@@ -65,9 +67,10 @@ namespace Atc.Rest.FluentAssertions
         protected abstract AndWhichConstraint<TAssertions, ContentResult> CreateAndWhichConstraint();
 
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By design.")]
-        protected bool TryContentValueAs<T>(out T? content)
+        protected bool TryContentValueAs<T>([NotNullWhen(true)] out T? content)
+            where T : notnull
         {
-            content = default;
+            content = default!;
 
             if (Subject.Content is null)
             {
@@ -96,10 +99,10 @@ namespace Atc.Rest.FluentAssertions
             {
                 try
                 {
-                    content = JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions);
+                    content = JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions)!;
                     return true;
                 }
-                catch (JsonException)
+                catch
                 {
                     return false;
                 }

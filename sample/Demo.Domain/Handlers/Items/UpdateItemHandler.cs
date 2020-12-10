@@ -22,7 +22,7 @@ namespace Demo.Domain.Handlers.Items
             return InvokeExecuteAsync(parameters, cancellationToken);
         }
 
-        private async Task<UpdateItemResult> InvokeExecuteAsync(UpdateItemParameters parameters, CancellationToken cancellationToken)
+        private Task<UpdateItemResult> InvokeExecuteAsync(UpdateItemParameters parameters, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();
         }
