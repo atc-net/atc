@@ -20,11 +20,6 @@
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <LangVersion>9.0</LangVersion>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
   </ItemGroup>
