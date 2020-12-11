@@ -25,7 +25,6 @@ namespace Atc.Rest.FluentAssertions
         protected ContentResultAssertionsBase(ContentResult subject) : base(subject) { }
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
-            where T : notnull
         {
             var expectedType = WithContentOfType<T>();
             using (new AssertionScope($"content of {Identifier}"))
@@ -36,7 +35,6 @@ namespace Atc.Rest.FluentAssertions
         }
 
         public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
-            where T : notnull
         {
             var expectedType = typeof(T);
 
@@ -53,7 +51,7 @@ namespace Atc.Rest.FluentAssertions
                 .ForCondition(contentType => contentType.Equals(MediaTypeNames.Application.Json, StringComparison.Ordinal))
                 .FailWith("Expected {context} to be {0}{reason}, but found {1}.", _ => MediaTypeNames.Application.Json, x => x);
 
-            var parseSuccess = TryContentValueAs<T>(out var content);
+            var parseSuccess = TryContentValueAs<T>(out var result);
 
             Execute.Assertion
                 .ForCondition(parseSuccess)
@@ -61,54 +59,74 @@ namespace Atc.Rest.FluentAssertions
                 .WithDefaultIdentifier($"type of content in {Identifier}")
                 .FailWith("Expected {context} to be {0}{reason}, but found {1}.", expectedType, Subject.Content);
 
-            return new AndWhichConstraint<ObjectAssertions, T>(new ObjectAssertions(content), content!);
+            // Its safe to ! BANG the result variable as the previous Exceute.Assertion will throw if
+            // result is null and the parsing failed.
+            return new AndWhichConstraint<ObjectAssertions, T>(new ObjectAssertions(result), result!);
         }
 
         protected abstract AndWhichConstraint<TAssertions, ContentResult> CreateAndWhichConstraint();
 
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By design.")]
-        protected bool TryContentValueAs<T>([NotNullWhen(true)] out T? content)
-            where T : notnull
+        protected bool TryContentValueAs<T>([NotNullWhen(true)] out T content)
         {
             content = default!;
 
-            if (Subject.Content is null)
+            if (TryContentValueAs(typeof(T), out var result) && result is T castResult)
             {
-                return false;
-            }
-
-            var type = typeof(T);
-
-            if (type.IsPrimitive)
-            {
-                try
-                {
-                    var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, jsonSerializerOptions);
-                    if (Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture) is T convertedContent)
-                    {
-                        content = convertedContent;
-                        return true;
-                    }
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                try
-                {
-                    content = JsonSerializer.Deserialize<T>(Subject.Content, jsonSerializerOptions)!;
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                content = castResult;
+                return true;
             }
 
             return false;
+        }
+
+        private bool TryContentValueAs(Type type, [NotNullWhen(true)] out object content)
+        {
+            if (type is null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
+            if (Subject.Content is null)
+            {
+                content = default!;
+                return false;
+            }
+
+            return type.IsPrimitive
+                ? TryGetPrimitiveContent(type, out content)
+                : TryGetObjectContent(type, out content);
+        }
+
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "On purpose")]
+        private bool TryGetObjectContent(Type type, out object content)
+        {
+            content = default!;
+            try
+            {
+                content = JsonSerializer.Deserialize(Subject.Content, type, jsonSerializerOptions);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "On purpose")]
+        private bool TryGetPrimitiveContent(Type type, out object content)
+        {
+            content = default!;
+
+            try
+            {
+                var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, jsonSerializerOptions);
+                content = Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

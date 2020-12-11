@@ -6,7 +6,7 @@
     <TreatWarningsAsErrors Condition=" '$(Configuration)' == 'Release' ">true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <nullable Condition="'$(IsTestFolder)' == 'false'">enable</nullable>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <CodeAnalysisRuleSet Condition="'$(IsTestFolder)' == 'false'">$(MSBuildThisFileDirectory)code-analysis.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(IsTestFolder)' == 'true'">$(MSBuildThisFileDirectory)code-analysis-test.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
