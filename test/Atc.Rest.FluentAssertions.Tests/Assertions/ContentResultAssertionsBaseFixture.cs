@@ -7,12 +7,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
     public abstract class ContentResultAssertionsBaseFixture
     {
         protected ContentResult CreateWithJsonContent<T>(T content)
-        {
-            return new ContentResult
+            => new ContentResult
             {
                 Content = TestJsonSerializer.Serialize(content),
                 ContentType = MediaTypeNames.Application.Json,
             };
-        }
     }
 }
