@@ -78,6 +78,47 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
         }
 
         [Fact]
+        public void BeCreatedResult_Throws_When_Subject_Isnt_ContentResult()
+        {
+            // Arrange
+            var target = new DummyResult();
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeCreatedResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
+        }
+
+        [Fact]
+        public void BeCreatedResult_Throws_When_ContentResult_StatusCode_Isnt_202()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 1337 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeCreatedResult())
+                .Should()
+                .Throw<XunitException>()
+                .WithMessage($"Expected status code from result to be 201, but found {target.StatusCode}.");
+        }
+
+        [Fact]
+        public void BeCreatedResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_202()
+        {
+            // Arrange
+            var target = new ContentResult { StatusCode = 201 };
+            var sut = new ResultAssertions(target);
+
+            // Act & Assert
+            sut.Invoking(x => x.BeCreatedResult())
+                .Should()
+                .NotThrow();
+        }
+
+        [Fact]
         public void BeAcceptedResult_Throws_When_Subject_Isnt_ContentResult()
         {
             // Arrange

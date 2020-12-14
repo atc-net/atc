@@ -5,7 +5,7 @@ using Xunit.Sdk;
 
 namespace Atc.Rest.FluentAssertions.Tests.Assertions
 {
-    public class AcceptedResultAssertionsTests : ContentResultAssertionsBaseFixture
+    public class CreatedResultAssertionsTests : ContentResultAssertionsBaseFixture
     {
         [Fact]
         public void Ctor_Sets_Subject_On_Subject_Property()
@@ -14,7 +14,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var expected = new ContentResult();
 
             // Act
-            var sut = new AcceptedResultAssertions(expected);
+            var sut = new CreatedResultAssertions(expected);
 
             // Assert
             sut.Subject.Should().Be(expected);
@@ -26,13 +26,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Arrange
             var target = CreateWithJsonContent("FOO");
 
-            var sut = new AcceptedResultAssertions(target);
+            var sut = new CreatedResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content of accepted result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of created result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -41,13 +41,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Arrange
             var target = CreateWithJsonContent("FOO");
 
-            var sut = new AcceptedResultAssertions(target);
+            var sut = new CreatedResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content of accepted result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of created result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -60,13 +60,13 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
                 ContentType = "BAZ",
             };
 
-            var sut = new AcceptedResultAssertions(target);
+            var sut = new CreatedResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected content type of accepted result to be ""application/json"", but found ""BAZ"".");
+                .WithMessage(@"Expected content type of created result to be ""application/json"", but found ""BAZ"".");
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Arrange
             var target = CreateWithJsonContent("FOO");
 
-            var sut = new AcceptedResultAssertions(target);
+            var sut = new CreatedResultAssertions(target);
 
             // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))

@@ -32,6 +32,13 @@ namespace Atc.Rest.FluentAssertions
             return new OkResultAssertions(okSubject);
         }
 
+        public CreatedResultAssertions BeCreatedResult(string because = "", params object[] becauseArgs)
+        {
+            AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Created, because, becauseArgs);
+            var created = (ContentResult)subject;
+            return new CreatedResultAssertions(created);
+        }
+
         public AcceptedResultAssertions BeAcceptedResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Accepted, because, becauseArgs);

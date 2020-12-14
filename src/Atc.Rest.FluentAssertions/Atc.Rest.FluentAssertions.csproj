@@ -11,6 +11,11 @@
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Properties\" />
     <None Include="..\..\images\icon.png" Pack="true" PackagePath="\" />
@@ -18,11 +23,6 @@
 
   <PropertyGroup>
     <IsTestProject>false</IsTestProject>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

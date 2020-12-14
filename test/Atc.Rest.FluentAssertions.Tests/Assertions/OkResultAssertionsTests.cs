@@ -1,4 +1,5 @@
-﻿using System.Net.Mime;
+﻿using System.Collections.Generic;
+using System.Net.Mime;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
@@ -34,7 +35,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithContent("BAR"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected OK result value to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of OK result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -49,7 +50,7 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected OK result value to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .WithMessage(@"Expected content of OK result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -60,10 +61,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var sut = new OkResultAssertions(target);
 
             // Act & Assert
-            sut.Invoking(x => x.WithContentOfType<int>("Because of something"))
+            sut.Invoking(x => x.WithContentOfType<List<string>>("Because of something"))
                 .Should()
                 .Throw<XunitException>()
-                .WithMessage(@"Expected type to be System.Int32 Because of something, but found System.String.");
+                .WithMessage(@$"Expected type to be {typeof(List<string>).FullName} Because of something, but found {typeof(string).FullName}.");
         }
 
         [Fact]

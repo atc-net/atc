@@ -75,6 +75,21 @@ public abstract class ContentResultAssertionsBase&lt;TAssertions&gt; : Reference
 ```csharp
 AndWhichConstraint<TAssertions, ContentResult> WithContent(T expectedContent, string because = , object[] becauseArgs)
 ```
+#### WithContentOfType
+
+```csharp
+AndWhichConstraint<ObjectAssertions, T> WithContentOfType(string because = , object[] becauseArgs)
+```
+
+<br />
+
+
+## CreatedResultAssertions
+
+```csharp
+public class CreatedResultAssertions : ContentResultAssertionsBase<CreatedResultAssertions>
+```
+
 
 <br />
 
@@ -168,6 +183,11 @@ ConflictResultAssertions BeConflictResult(string because = , object[] becauseArg
 
 ```csharp
 ContentResultAssertions BeContentResult(string because = , object[] becauseArgs)
+```
+#### BeCreatedResult
+
+```csharp
+CreatedResultAssertions BeCreatedResult(string because = , object[] becauseArgs)
 ```
 #### BeNoContentResult
 

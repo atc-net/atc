@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1
+        dotnet-version: "3.1.x"
 
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
@@ -53,7 +53,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1
+        dotnet-version: "3.1.x"
 
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
@@ -83,7 +83,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1
+        dotnet-version: "3.1.x"
 
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
