@@ -41,7 +41,7 @@ namespace Demo.Api.Generated.Endpoints
         }
 
         /// <summary>
-        /// Description: Undefined description.
+        /// Description: Updates an item.
         /// Operation: UpdateItem.
         /// Area: Items.
         /// </summary>

@@ -181,6 +181,7 @@ paths:
     parameters:
       - name: id
         in: path
+        description: Id of the user
         required: true
         schema:
           type: string
@@ -243,6 +244,7 @@ paths:
               $ref: '#/components/schemas/UpdateTestGenderRequest'
     parameters:
       - name: id
+        description: Id of the user
         in: path
         required: true
         schema:
@@ -307,6 +309,7 @@ paths:
   '/items':
     post:
       summary: 'Create a new item'
+      description: 'Create a new item'
       operationId: createItem
       responses:
         '200':
@@ -318,7 +321,8 @@ paths:
               $ref: '#/components/schemas/CreateItemRequest'
   '/items/{id}':
     put:
-      summary: ''
+      summary: 'Updates an item'
+      description: 'Updates an item'
       operationId: updateItem
       responses:
         '200':

@@ -285,6 +285,12 @@ namespace Atc.Rest.ApiGenerator.Helpers
                         logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation10, $"Contains BadRequest response type for operation '{value.GetOperationName()}', but has no parameters."));
                     }
 
+                    if (httpStatusCodes.Contains(HttpStatusCode.OK) && httpStatusCodes.Contains(HttpStatusCode.Created))
+                    {
+                        // We do not support both 200 and 201, since our ActionResult - implicit operators only supports 1 type.
+                        logItems.Add(LogItemHelper.Create(logCategory, ValidationRuleNameConstants.Operation18, $"The operation '{value.GetOperationName()}' contains both 200 and 201, which is not supported."));
+                    }
+
                     if (value.HasParametersOrRequestBody())
                     {
                         var schema = value.RequestBody?.Content.GetSchema();

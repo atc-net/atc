@@ -12,7 +12,7 @@ namespace Demo.Api.Generated.Contracts.Items
 {
     /// <summary>
     /// Domain Interface for RequestHandler.
-    /// Description: .
+    /// Description: Updates an item.
     /// Operation: UpdateItem.
     /// Area: Items.
     /// </summary>
