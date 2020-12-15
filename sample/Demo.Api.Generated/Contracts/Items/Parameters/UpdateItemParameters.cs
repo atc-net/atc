@@ -13,7 +13,7 @@ namespace Demo.Api.Generated.Contracts.Items
 {
     /// <summary>
     /// Parameters for operation request.
-    /// Description: .
+    /// Description: Updates an item.
     /// Operation: UpdateItem.
     /// Area: Items.
     /// </summary>
