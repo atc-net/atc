@@ -34,8 +34,8 @@ namespace Atc.Rest.Extended.Filters
                 return;
             }
 
-            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized - Request was valid but the calling user does not have the required role" });
-            operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden - The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource" });
+            operation.Responses["401"] = new OpenApiResponse { Description = "Unauthorized - Request was valid but the calling user does not have the required role" };
+            operation.Responses["403"] = new OpenApiResponse { Description = "Forbidden - The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource" };
 
             var oAuthScheme = new OpenApiSecurityScheme
             {
