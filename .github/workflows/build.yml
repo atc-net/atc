@@ -1,6 +1,10 @@
 name: Build
 
-on: [push]
+on:
+  push:
+    branches [ master ]
+  pull_request:
+    branches [ master ]
 
 jobs:
 
@@ -11,12 +15,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "3.1.x"
+
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
+
     - name: Build with dotnet
       run: dotnet build Atc.sln
 
@@ -27,12 +34,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "3.1.x"
+
+    - name: Clean packages with dotnet
+      run: |
+        dotnet clean Atc.sln
+        dotnet nuget locals all --clear
+
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
+
     - name: Build with dotnet
       run: dotnet build Atc.sln
 
@@ -43,11 +58,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "3.1.x"
+
     - name: Restore packages with dotnet
       run: dotnet restore Atc.sln
+
     - name: Build with dotnet
       run: dotnet build Atc.sln
