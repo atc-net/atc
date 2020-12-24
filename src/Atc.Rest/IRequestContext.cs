@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 
 namespace Atc.Rest
 {
@@ -10,7 +10,7 @@ namespace Atc.Rest
         string CallingIdentity { get; }
 
         /// <summary>
-        /// Identity of original caller when running as core service, otherwise its the same Identity.
+        /// Gets the identity of original caller when running as core service, otherwise its the same Identity.
         /// </summary>
         string OnBehalfOfIdentity { get; }
 

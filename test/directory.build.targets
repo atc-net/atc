@@ -4,17 +4,18 @@
   <PropertyGroup Label="Common" Condition=" '$(MSBuildProjectExtension)' != '.deployproj' ">
     <LangVersion>latest</LangVersion>
 	<NoWarn>$(NoWarn);1591</NoWarn>
-	
-    <!-- 
+
+    <!--
     Make sure documentation XML is also included when publishing (not only when testing)
     see https://github.com/Azure/service-fabric-issues/issues/190
     -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <DocumentationFile Condition=" '$(DocumentationFile)' == '' " >bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<!-- Used by code coverage -->
+
+    <!-- Used by code coverage -->
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-	
+
   </PropertyGroup>
 
   <Target Name="GetTargetPath" Outputs="$(TargetPath)" />

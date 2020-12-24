@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System;
 using Xunit;
 
 // ReSharper disable LocalizableElement
@@ -9,11 +8,11 @@ namespace Atc.Tests.Extensions
     public class ExceptionExtensionsTests
     {
         [Fact]
-        [SuppressMessage("Usage", "CA2208:Instantiate argument exceptions correctly", Justification = "OK.")]
         public void GetMessage_ArgumentException()
         {
             const string defaultMessage = "Value does not fall within the expected range.";
             const string defaultMessageWithExceptionName = "Argument: Value does not fall within the expected range.";
+
             // 1 parameter
             Assert.Equal(
                 defaultMessage,
@@ -33,6 +32,7 @@ namespace Atc.Tests.Extensions
             Assert.Equal(
                 "Argument: Test",
                 new ArgumentException("Test").GetMessage(true, true));
+
             // 2 parameter
             Assert.Equal(
                 "Test",
@@ -52,6 +52,7 @@ namespace Atc.Tests.Extensions
             Assert.Equal(
                 "Argument: Test # Argument: Test2",
                 new ArgumentException("Test", new ArgumentException("Test2")).GetMessage(true, true));
+
             // 3 parameter
             Assert.Equal(
                 "Test (Parameter 'paramName')",
@@ -182,8 +183,10 @@ namespace Atc.Tests.Extensions
             var exception1 = new ArrayTypeMismatchException(message1);
             var exception2 = new ArgumentException(message2, exception1);
             var input = new Exception(message3, exception2);
+
             // Act
             var actual = input.Flatten(message0);
+
             // Assert
             Assert.Equal(expected, actual);
         }

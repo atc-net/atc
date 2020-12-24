@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace Atc.Helpers
                 }
             }
 
-            throw new ArgumentException("Enumeration '" + dropDownFirstItemType + "' has no EnumGuid defined.");
+            throw new UnexpectedTypeException("Enumeration '" + dropDownFirstItemType + "' has no EnumGuid defined.");
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Atc.Helpers
                 return item;
             }
 
-            throw new ArgumentException("The key '" + key + "' is not defined as a DropDownFirstItemType.");
+            throw new ArgumentException("The key '" + key + "' is not defined as a DropDownFirstItemType.", nameof(key));
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Atc.Helpers
                     list.Insert(0, string.Empty);
                     break;
                 case DropDownFirstItemType.PleaseSelect:
-                    s = list.FirstOrDefault(x => x == EnumResources.DropDownFirstItemTypePleaseSelect);
+                    s = list.FirstOrDefault(x => string.Equals(x, EnumResources.DropDownFirstItemTypePleaseSelect, StringComparison.Ordinal));
                     if (s != null)
                     {
                         list.Remove(s);
@@ -106,7 +106,7 @@ namespace Atc.Helpers
                     list.Insert(0, EnumResources.DropDownFirstItemTypePleaseSelect);
                     break;
                 case DropDownFirstItemType.IncludeAll:
-                    s = list.FirstOrDefault(x => x == EnumResources.DropDownFirstItemTypeIncludeAll);
+                    s = list.FirstOrDefault(x => string.Equals(x, EnumResources.DropDownFirstItemTypeIncludeAll, StringComparison.Ordinal));
                     if (s != null)
                     {
                         list.Remove(s);

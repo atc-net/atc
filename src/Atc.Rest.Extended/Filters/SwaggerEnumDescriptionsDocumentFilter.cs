@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -45,8 +45,7 @@ namespace Atc.Rest.Extended.Filters
 
         [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
         private static void DescribeEnumParameters(
-            IDictionary<OperationType,
-            OpenApiOperation> operations,
+            IDictionary<OperationType, OpenApiOperation>? operations,
             OpenApiDocument document,
             IEnumerable<ApiDescription> apiDescriptions,
             string path)
@@ -57,13 +56,13 @@ namespace Atc.Rest.Extended.Filters
                 return;
             }
 
-            var pathDescriptions = apiDescriptions.Where(a => a.RelativePath == path).ToList();
+            var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
             foreach (var operation in operations)
             {
                 var operationDescription = pathDescriptions.FirstOrDefault(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
                 foreach (var param in operation.Value.Parameters)
                 {
-                    var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => a.Name == param.Name);
+                    var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
 
                     if (parameterDescription?.Type == null)
                     {
@@ -75,7 +74,7 @@ namespace Atc.Rest.Extended.Filters
                         continue;
                     }
 
-                    var paramEnum = document.Components.Schemas.FirstOrDefault(x => x.Key == enumType.Name);
+                    var paramEnum = document.Components.Schemas.FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
                     if (paramEnum.Value != null)
                     {
                         param.Description += DescribeEnum(paramEnum.Value.Enum, paramEnum.Key);
@@ -118,12 +117,12 @@ namespace Atc.Rest.Extended.Filters
             return string.Join("<br />", enumDescriptions.ToArray());
         }
 
-        private static Type GetEnumTypeByName(string enumTypeName)
+        private static Type? GetEnumTypeByName(string enumTypeName)
         {
             return AppDomain.CurrentDomain
                 .GetAssemblies()
                 .SelectMany(x => x.GetTypes())
-                .FirstOrDefault(x => x.Name == enumTypeName);
+                .FirstOrDefault(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Linq;
 using Atc;
 
@@ -57,7 +57,7 @@ namespace System.Reflection
             var attributeValue = GetAttributeValue<DisplayNameAttribute, string>(propertyInfo, arg => arg.DisplayName);
             if (string.IsNullOrEmpty(attributeValue))
             {
-                attributeValue= GetAttributeValue<ComponentModel.DataAnnotations.DisplayAttribute, string>(propertyInfo, arg => arg.Name);
+                attributeValue = GetAttributeValue<ComponentModel.DataAnnotations.DisplayAttribute, string>(propertyInfo, arg => arg.Name);
             }
 
             if (string.IsNullOrEmpty(attributeValue))
@@ -110,7 +110,8 @@ namespace System.Reflection
         }
 
         // ReSharper disable once SuggestBaseTypeForParameter
-        private static TExpected GetAttributeValue<T, TExpected>(this PropertyInfo propertyInfo, Func<T, TExpected> expression) where T : Attribute
+        private static TExpected GetAttributeValue<T, TExpected>(this PropertyInfo propertyInfo, Func<T, TExpected> expression)
+            where T : Attribute
         {
             var attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
             return (attribute == null

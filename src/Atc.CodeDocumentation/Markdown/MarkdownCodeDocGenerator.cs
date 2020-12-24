@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -84,7 +84,7 @@ namespace Atc.CodeDocumentation.Markdown
             homeExtendedBuilder.Header(1, "References extended");
             homeExtendedBuilder.AppendLine();
 
-            foreach (var g in typeComments.GroupBy(x => x.Namespace).OrderBy(x => x.Key))
+            foreach (var g in typeComments.GroupBy(x => x.Namespace, StringComparer.Ordinal).OrderBy(x => x.Key))
             {
                 homeBuilder.HeaderWithLink(2, g.Key, g.Key + ".md");
                 homeBuilder.AppendLine();

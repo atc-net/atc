@@ -339,8 +339,8 @@
      - ToInt(this bool? source)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
   -  Static Methods
-     - ToIso8601Date(this DateTimeOffset value)
-     - ToUnixTime(this DateTimeOffset value)
+     - ToIso8601Date(this DateTimeOffset dateTimeOffset)
+     - ToUnixTime(this DateTimeOffset dateTimeOffset)
 - [DecimalExtensions](System.md#decimalextensions)
   -  Static Methods
      - CurrencyRounding(this decimal value)

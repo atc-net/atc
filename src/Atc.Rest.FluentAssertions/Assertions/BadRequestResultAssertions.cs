@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable ConstantConditionalAccessQualifier
@@ -7,7 +7,10 @@ namespace Atc.Rest.FluentAssertions
 {
     public class BadRequestResultAssertions : ErrorContentResultAssertions<BadRequestResultAssertions>
     {
-        public BadRequestResultAssertions(ContentResult subject) : base(subject) { }
+        public BadRequestResultAssertions(ContentResult subject)
+            : base(subject)
+        {
+        }
 
         protected override string Identifier { get; } = "bad request result";
 

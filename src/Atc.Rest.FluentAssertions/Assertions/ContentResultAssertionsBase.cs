@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Net.Mime;
@@ -16,13 +16,16 @@ namespace Atc.Rest.FluentAssertions
     public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
     {
         [SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "This can safely be shared by all inherited types")]
-        private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() },
         };
 
-        protected ContentResultAssertionsBase(ContentResult subject) : base(subject) { }
+        protected ContentResultAssertionsBase(ContentResult subject)
+            : base(subject)
+        {
+        }
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
@@ -103,7 +106,7 @@ namespace Atc.Rest.FluentAssertions
             content = default!;
             try
             {
-                content = JsonSerializer.Deserialize(Subject.Content, type, jsonSerializerOptions);
+                content = JsonSerializer.Deserialize(Subject.Content, type, JsonSerializerOptions);
                 return true;
             }
             catch
@@ -119,7 +122,7 @@ namespace Atc.Rest.FluentAssertions
 
             try
             {
-                var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, jsonSerializerOptions);
+                var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, JsonSerializerOptions);
                 content = Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture);
                 return true;
             }

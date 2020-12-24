@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -46,7 +46,7 @@ namespace Atc.XUnit
                 assembly,
                 excludeTypes)
                 .OrderBy(x => x.Type.FullName)
-                .GroupBy(x => x.Type.BeautifyName(true))
+                .GroupBy(x => x.Type.BeautifyName(true), StringComparer.Ordinal)
                 .ToArray();
 
             var testResults = new List<TestResult>

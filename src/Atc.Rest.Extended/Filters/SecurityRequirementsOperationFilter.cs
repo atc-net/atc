@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
@@ -26,7 +26,7 @@ namespace Atc.Rest.Extended.Filters
                 .GetCustomAttributes(true)
                 .OfType<AuthorizeAttribute>()
                 .Select(attr => attr.Policy)
-                .Distinct()
+                .Distinct(StringComparer.Ordinal)
                 .ToList();
 
             if (!requiredScopes.Any())

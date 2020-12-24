@@ -179,15 +179,17 @@ namespace Atc.XUnit
                 var type = typesWithMissingTests[i];
                 if (i == typesWithMissingTests.Length - 1)
                 {
-                    sb.AppendLine(16, useFullName
+                    var text = useFullName
                         ? $"typeof(global::{type.BeautifyName(true)})"
-                        : $"typeof({type.BeautifyName()})");
+                        : $"typeof({type.BeautifyName()})";
+                    sb.AppendLine(16, text);
                 }
                 else
                 {
-                    sb.AppendLine(16, useFullName
+                    var text = useFullName
                         ? $"typeof(global::{type.BeautifyName(true)}),"
-                        : $"typeof({type.BeautifyName()}),");
+                        : $"typeof({type.BeautifyName()}),";
+                    sb.AppendLine(16, text);
                 }
             }
 

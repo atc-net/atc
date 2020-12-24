@@ -1,4 +1,4 @@
-﻿// ReSharper disable ConvertIfStatementToReturnStatement
+// ReSharper disable ConvertIfStatementToReturnStatement
 // ReSharper disable InvertIf
 // ReSharper disable UseDeconstructionOnParameter
 
@@ -253,7 +253,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                         if (astNodeForParameter != null)
                         {
                             var tmp = astNodeForParameter.Parent.FirstChild.ToString();
-                            if (tmp == parameterName)
+                            if (string.Equals(tmp, parameterName, StringComparison.Ordinal))
                             {
                                 tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString();
                             }
@@ -280,14 +280,15 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         private static string? FindTypeNameForIdentifierExpressionOutsideMethodScope(AstNode astNode, string parameterName)
         {
             var foundAstNode = astNode.Descendants
-                .FirstOrDefault(x => x.IsType(typeof(VariableInitializer)) &&
-                                     (x as VariableInitializer)?.Name == parameterName);
+                .FirstOrDefault(x =>
+                    x.IsType(typeof(VariableInitializer)) &&
+                    string.Equals((x as VariableInitializer)?.Name, parameterName, StringComparison.Ordinal));
             if (foundAstNode?.Parent != null)
             {
                 var sa = foundAstNode.Parent.Children.Select(x => x.ToString()).ToArray();
                 for (var i = 1; i < sa.Length; i++)
                 {
-                    if (sa[i] == parameterName)
+                    if (string.Equals(sa[i], parameterName, StringComparison.Ordinal))
                     {
                         return sa[i - 1];
                     }

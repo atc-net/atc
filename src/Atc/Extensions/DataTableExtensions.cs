@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.XPath;
@@ -93,7 +93,7 @@ namespace System.Data
                 throw new ArgumentNullOrDefaultException(nameof(countOnColumn));
             }
 
-            var list = new Dictionary<string, int>();
+            var list = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (var key in
                     from DataRow dr
                     in dataTable.Rows
@@ -136,7 +136,7 @@ namespace System.Data
                 var cn = (T)Activator.CreateInstance(typeClass);
                 foreach (var propertyInfo in
                     from pc in propertyInfos
-                    let d = dataColumns.Find(c => c.ColumnName == pc.Name)
+                    let d = dataColumns.Find(c => string.Equals(c.ColumnName, pc.Name, StringComparison.Ordinal))
                     where d != null
                     select pc)
                 {

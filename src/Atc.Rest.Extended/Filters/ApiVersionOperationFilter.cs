@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Atc.Rest.Extended.Versioning;
@@ -24,7 +24,7 @@ namespace Atc.Rest.Extended.Filters
 
             var apiVersionParameter = operation
                 .Parameters
-                .FirstOrDefault(p => p.Name == ApiVersionConstants.ApiVersionQueryParameter);
+                .FirstOrDefault(p => string.Equals(p.Name, ApiVersionConstants.ApiVersionQueryParameter, StringComparison.Ordinal));
 
             if (apiVersionParameter != null)
             {
@@ -46,7 +46,7 @@ namespace Atc.Rest.Extended.Filters
 
             var description = context.ApiDescription
                 .ParameterDescriptions
-                .First(p => p.Name == apiVersionParameter.Name);
+                .First(p => string.Equals(p.Name, apiVersionParameter.Name, StringComparison.Ordinal));
 
             if (apiVersionParameter.Description == null)
             {

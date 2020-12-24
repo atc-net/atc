@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -94,7 +94,7 @@ namespace System.Reflection
                 var typeName = x.ParameterType.BeautifyName(useFullName, useHtmlFormat);
 
                 // ReSharper disable once InvertIf
-                if (x.ParameterType.Name.EndsWith("&", StringComparison.Ordinal))
+                if (x.ParameterType.Name.EndsWith('&'))
                 {
                     if (x.IsIn)
                     {
@@ -106,7 +106,7 @@ namespace System.Reflection
                     }
                     else
                     {
-                        typeName = "ref " +typeName.Replace("&", string.Empty, StringComparison.Ordinal);
+                        typeName = "ref " + typeName.Replace("&", string.Empty, StringComparison.Ordinal);
                     }
                 }
 

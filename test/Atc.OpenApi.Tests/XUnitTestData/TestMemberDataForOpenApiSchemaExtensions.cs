@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
@@ -1017,7 +1017,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[]
                 {
                     TestDataOpenApiFactory.CreateSchemaColorType(),
-                    new Dictionary<string, OpenApiSchema>
+                    new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                     {
                         ["pets"] = TestDataOpenApiFactory.CreateSchemaPets(),
                         ["colorType"] = TestDataOpenApiFactory.CreateSchemaColorType(),

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using Microsoft.OpenApi.Models;
 
@@ -20,7 +21,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
 
         private static IDictionary<string, OpenApiMediaType> CreateContent(string typeName)
         {
-            return new Dictionary<string, OpenApiMediaType>
+            return new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
             {
                 {
                     MediaTypeNames.Application.Json,

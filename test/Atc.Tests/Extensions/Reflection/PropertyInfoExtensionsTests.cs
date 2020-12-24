@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using Xunit;
@@ -12,7 +12,7 @@ namespace Atc.Tests.Extensions.Reflection
         public void BeautifyName(string expected, Type type)
         {
             // Arrange
-            var propertyInfo = type.GetProperties().First(x => x.Name == "Message");
+            var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
             // Act
             var actual = propertyInfo.BeautifyName();
@@ -26,7 +26,7 @@ namespace Atc.Tests.Extensions.Reflection
         public void GetName(string expected, Type type)
         {
             // Arrange
-            var propertyInfo = type.GetProperties().First(x => x.Name == "Message");
+            var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
             // Act
             var actual = propertyInfo.GetName();
@@ -40,7 +40,7 @@ namespace Atc.Tests.Extensions.Reflection
         public void GetDescription(string expected, Type type)
         {
             // Arrange
-            var propertyInfo = type.GetProperties().First(x => x.Name == "Message");
+            var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
             // Act
             var actual = propertyInfo.GetDescription();
@@ -55,7 +55,7 @@ namespace Atc.Tests.Extensions.Reflection
         public void GetDescription_UseLocalizedIfPossible(string expected, Type type, bool useLocalizedIfPossible)
         {
             // Arrange
-            var propertyInfo = type.GetProperties().First(x => x.Name == "Message");
+            var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
             // Act
             var actual = propertyInfo.GetDescription(useLocalizedIfPossible);

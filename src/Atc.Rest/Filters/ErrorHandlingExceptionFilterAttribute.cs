@@ -34,6 +34,35 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             context.ExceptionHandled = true;
         }
 
+        private static HttpStatusCode GetHttpStatusCodeByExceptionType(ExceptionContext context)
+        {
+            var statusCode = HttpStatusCode.InternalServerError;
+            if (context.Exception == null)
+            {
+                return statusCode;
+            }
+
+            var exceptionType = context.Exception.GetType();
+            if (exceptionType == typeof(ValidationException))
+            {
+                statusCode = HttpStatusCode.BadRequest;
+            }
+            else if (exceptionType == typeof(UnauthorizedAccessException))
+            {
+                statusCode = HttpStatusCode.Unauthorized;
+            }
+            else if (exceptionType == typeof(InvalidOperationException))
+            {
+                statusCode = HttpStatusCode.Conflict;
+            }
+            else if (exceptionType == typeof(NotImplementedException))
+            {
+                statusCode = HttpStatusCode.NotImplemented;
+            }
+
+            return statusCode;
+        }
+
         private void HandleException(ExceptionContext context)
         {
             context.Result = new ContentResult
@@ -76,35 +105,6 @@ namespace Microsoft.AspNetCore.Mvc.Filters
                 Title = title,
                 Detail = CreateMessage(context),
             };
-        }
-
-        private static HttpStatusCode GetHttpStatusCodeByExceptionType(ExceptionContext context)
-        {
-            var statusCode = HttpStatusCode.InternalServerError;
-            if (context.Exception == null)
-            {
-                return statusCode;
-            }
-
-            var exceptionType = context.Exception.GetType();
-            if (exceptionType == typeof(ValidationException))
-            {
-                statusCode = HttpStatusCode.BadRequest;
-            }
-            else if (exceptionType == typeof(UnauthorizedAccessException))
-            {
-                statusCode = HttpStatusCode.Unauthorized;
-            }
-            else if (exceptionType == typeof(InvalidOperationException))
-            {
-                statusCode = HttpStatusCode.Conflict;
-            }
-            else if (exceptionType == typeof(NotImplementedException))
-            {
-                statusCode = HttpStatusCode.NotImplemented;
-            }
-
-            return statusCode;
         }
     }
 }

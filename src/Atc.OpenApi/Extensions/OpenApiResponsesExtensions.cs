@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -47,7 +47,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (response.Value.Content.Any(x => x.Value.Schema?.Type == OpenApiDataTypeConstants.Array))
+                if (response.Value.Content.Any(x => string.Equals(x.Value.Schema?.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal)))
                 {
                     return true;
                 }
@@ -141,7 +141,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
-            return responses.GetSchemaForStatusCode(httpStatusCode)?.Type == OpenApiDataTypeConstants.Array;
+            return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal);
         }
 
         public static bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
@@ -155,7 +155,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
-            return responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id == nameof(ProblemDetails);
+            return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, nameof(ProblemDetails), StringComparison.Ordinal);
         }
     }
 }

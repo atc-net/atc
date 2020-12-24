@@ -516,6 +516,8 @@ ThrowStatementSyntax CreateNotImplementedException(bool includeSystem = True)
 
 
 ## SyntaxTokenFactory
+SyntaxTokenFactory - for base methods.
+
 
 ```csharp
 public static class SyntaxTokenFactory

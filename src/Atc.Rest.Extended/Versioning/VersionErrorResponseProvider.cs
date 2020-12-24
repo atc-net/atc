@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Microsoft.ApplicationInsights;
@@ -24,14 +24,14 @@ namespace Atc.Rest.Extended.Versioning
             }
 
             var detail = new ValidationProblemDetails(
-                new Dictionary<string, string[]>
+                new Dictionary<string, string[]>(StringComparer.Ordinal)
                 {
                     { context.ErrorCode, new[] { context.Message } },
                 });
 
             telemetry?.TrackTrace(
                 "BadVersion",
-                new Dictionary<string, string>
+                new Dictionary<string, string>(StringComparer.Ordinal)
                 {
                     { "Response.Body", JsonSerializer.Serialize(detail) },
                 });

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -62,7 +62,7 @@ namespace Atc.CodeDocumentation
                     var parameters = x.Elements("param")
                         .Select(e => Tuple.Create(e.Attribute("name")?.Value ?? "Unknown", e))
                         .Distinct(new TupleEqualityComparer<string, XElement>())
-                        .ToDictionary(e => e.Item1, e => e.Item2.Value);
+                        .ToDictionary(e => e.Item1, e => e.Item2.Value, StringComparer.Ordinal);
 
                     var className = (memberType == MemberType.Type)
                         ? match.Groups[2].Value + "." + match.Groups[3].Value

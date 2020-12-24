@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -149,7 +149,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         {
             return astNode.Descendants
                 .Where(x => x.IsType(typeof(InvocationExpression)))
-                .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && x.ToString() == methodName))
+                .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && string.Equals(x.ToString(), methodName, StringComparison.Ordinal)))
                 .FirstOrDefault(x => x != null);
         }
 
@@ -159,7 +159,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                 .Where(x => x.IsType(typeof(ParameterDeclaration)) ||
                             x.IsType(typeof(VariableInitializer)) ||
                             x.IsType(typeof(MemberReferenceExpression)))
-                .Select(node => node.Descendants.FirstOrDefault(x => x.ToString() == parameterName))
+                .Select(node => node.Descendants.FirstOrDefault(x => string.Equals(x.ToString(), parameterName, StringComparison.Ordinal)))
                 .FirstOrDefault(x => x != null);
         }
 

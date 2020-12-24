@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -226,8 +226,8 @@ namespace System
             {
                 var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
                          pair.Key.EndsWith("}}", StringComparison.Ordinal)
-                    ? placeholders.FirstOrDefault(x => x == pair.Key)
-                    : placeholders.FirstOrDefault(x => x == "{{" + pair.Key + "}}"))!;
+                    ? placeholders.FirstOrDefault(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
+                    : placeholders.FirstOrDefault(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
 
                 if (!string.IsNullOrEmpty(s))
                 {
@@ -1176,7 +1176,7 @@ namespace System
             value = value.TrimExtended();
 
             value = RemoveDataCrap(value);
-            if (value == "\n")
+            if (string.Equals(value, "\n", StringComparison.Ordinal))
             {
                 value = string.Empty;
             }

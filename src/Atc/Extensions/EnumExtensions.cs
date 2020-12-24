@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Linq;
 using Atc;
 
@@ -113,7 +113,8 @@ namespace System
         /// <param name="enumeration">The enumeration.</param>
         /// <param name="expression">The expression.</param>
         /// <returns>The string attribute value of the enumeration.</returns>
-        private static TExpected GetAttributeValue<T, TExpected>(this Enum enumeration, Func<T, TExpected> expression) where T : Attribute
+        private static TExpected GetAttributeValue<T, TExpected>(this Enum enumeration, Func<T, TExpected> expression)
+            where T : Attribute
         {
             if (enumeration == null)
             {

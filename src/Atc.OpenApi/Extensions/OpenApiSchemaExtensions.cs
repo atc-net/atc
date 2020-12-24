@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -368,15 +368,15 @@ namespace Microsoft.OpenApi.Models
 
             var dataType = schema.GetDataType();
 
-            return dataType == OpenApiDataTypeConstants.Boolean ||
-                   dataType == "bool" ||
-                   dataType == OpenApiDataTypeConstants.Integer ||
-                   dataType == "int" ||
-                   dataType == "long" ||
-                   dataType == "double" ||
-                   dataType == "float" ||
-                   dataType == OpenApiDataTypeConstants.Number ||
-                   dataType == OpenApiDataTypeConstants.String;
+            return string.Equals(dataType, OpenApiDataTypeConstants.Boolean, StringComparison.Ordinal) ||
+                   string.Equals(dataType, "bool", StringComparison.Ordinal) ||
+                   string.Equals(dataType, OpenApiDataTypeConstants.Integer, StringComparison.Ordinal) ||
+                   string.Equals(dataType, "int", StringComparison.Ordinal) ||
+                   string.Equals(dataType, "long", StringComparison.Ordinal) ||
+                   string.Equals(dataType, "double", StringComparison.Ordinal) ||
+                   string.Equals(dataType, "float", StringComparison.Ordinal) ||
+                   string.Equals(dataType, OpenApiDataTypeConstants.Number, StringComparison.Ordinal) ||
+                   string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal);
         }
 
         public static bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
@@ -455,17 +455,17 @@ namespace Microsoft.OpenApi.Models
                     }
 
                     var schemaReference = itemPropertySchema.Reference.Id;
-                    if (schema.Title != schemaReference || itemPropertySchema.IsSchemaEnum())
+                    if (!string.Equals(schema.Title, schemaReference, StringComparison.Ordinal) || itemPropertySchema.IsSchemaEnum())
                     {
                         continue;
                     }
 
-                    if (!referencedSchemaSet.Any(x => x.Item1 == itemSchema.Title && x.Item2 == schemaReference))
+                    if (!referencedSchemaSet.Any(x => string.Equals(x.Item1, itemSchema.Title, StringComparison.Ordinal) && string.Equals(x.Item2, schemaReference, StringComparison.Ordinal)))
                     {
                         referencedSchemaSet.Add(Tuple.Create(itemSchema.Title, schemaReference));
                     }
 
-                    if (referencedSchemaSet.Any(x => x.Item1 != itemSchema.Title && x.Item2 == schemaReference))
+                    if (referencedSchemaSet.Any(x => !string.Equals(x.Item1, itemSchema.Title, StringComparison.Ordinal) && string.Equals(x.Item2, schemaReference, StringComparison.Ordinal)))
                     {
                         return true;
                     }
@@ -553,7 +553,7 @@ namespace Microsoft.OpenApi.Models
                 case OpenApiDataTypeConstants.Number:
                     return "double";
                 case OpenApiDataTypeConstants.Integer:
-                    return schema.Format == OpenApiFormatTypeConstants.Int64
+                    return string.Equals(schema.Format, OpenApiFormatTypeConstants.Int64, StringComparison.Ordinal)
                         ? "long"
                         : "int";
                 case OpenApiDataTypeConstants.Boolean:
@@ -595,7 +595,7 @@ namespace Microsoft.OpenApi.Models
                 dataType = schema.OneOf.First().Reference.Id;
             }
 
-            return dataType == OpenApiDataTypeConstants.String
+            return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
                 ? dataType
                 : dataType.EnsureFirstCharacterToUpper();
         }
@@ -614,7 +614,7 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var property in schema.Properties)
             {
-                if (property.Key == propertyKey)
+                if (string.Equals(property.Key, propertyKey, StringComparison.Ordinal))
                 {
                     return property.Value.Title;
                 }

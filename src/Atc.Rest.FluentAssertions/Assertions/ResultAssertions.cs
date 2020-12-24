@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
@@ -74,7 +74,8 @@ namespace Atc.Rest.FluentAssertions
             return new ConflictResultAssertions(conflict);
         }
 
-        private void AssertIsResultTypeWithStatusCode<T>(HttpStatusCode expectedStatusCode, string because, object[] becauseArgs) where T : class, IStatusCodeActionResult
+        private void AssertIsResultTypeWithStatusCode<T>(HttpStatusCode expectedStatusCode, string because, object[] becauseArgs)
+            where T : class, IStatusCodeActionResult
         {
             Execute.Assertion
                 .BecauseOf(because, becauseArgs)

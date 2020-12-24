@@ -692,7 +692,7 @@ public struct GridCell : ICloneable, IEquatable<GridCell>
 ```csharp
 IsDefault
 ```
-<p><b>Summary:</b> Determines whether this instance is default.</p>
+<p><b>Summary:</b> Gets a value indicating whether this instance is default.</p>
 
 <p><b>Returns:</b> true if this instance is default; otherwise, false.</p>
 
@@ -701,14 +701,14 @@ IsDefault
 ```csharp
 X
 ```
-<p><b>Summary:</b> Gets or sets the X.</p>
+<p><b>Summary:</b> Gets the X.</p>
 
 #### Y
 
 ```csharp
 Y
 ```
-<p><b>Summary:</b> Gets or sets the Y.</p>
+<p><b>Summary:</b> Gets the Y.</p>
 
 ### Methods
 
@@ -974,14 +974,14 @@ IsDefault
 ```csharp
 X
 ```
-<p><b>Summary:</b> Gets or sets the X.</p>
+<p><b>Summary:</b> Gets the X.</p>
 
 #### Y
 
 ```csharp
 Y
 ```
-<p><b>Summary:</b> Gets or sets the Y.</p>
+<p><b>Summary:</b> Gets the Y.</p>
 
 ### Methods
 
@@ -1043,21 +1043,21 @@ IsDefault
 ```csharp
 X
 ```
-<p><b>Summary:</b> Gets or sets the X.</p>
+<p><b>Summary:</b> Gets the X.</p>
 
 #### Y
 
 ```csharp
 Y
 ```
-<p><b>Summary:</b> Gets or sets the Y.</p>
+<p><b>Summary:</b> Gets the Y.</p>
 
 #### Z
 
 ```csharp
 Z
 ```
-<p><b>Summary:</b> Gets or sets the Z.</p>
+<p><b>Summary:</b> Gets the Z.</p>
 
 ### Methods
 

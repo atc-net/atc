@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -161,7 +161,7 @@ namespace Atc.Helpers
 
             foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName))
             {
-                if (data.FirstOrDefault(x => x.CountryCodeA2 == culture.CountryCodeA2) == null)
+                if (data.FirstOrDefault(x => string.Equals(x.CountryCodeA2, culture.CountryCodeA2, StringComparison.Ordinal)) == null)
                 {
                     data.Add(culture);
                 }
@@ -575,7 +575,7 @@ namespace Atc.Helpers
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
 
-            var countryDisplayNameCount = new Dictionary<string, int>();
+            var countryDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (var culture in cultures)
             {
                 if (includeOnlyCultureNames != null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name))
@@ -604,11 +604,10 @@ namespace Atc.Helpers
                     includeOnlyCultureNames.Count == 0 ||
                     includeOnlyCultureNames.Contains(culture.Name))
                 {
-                    data.Add(
-                        culture.Lcid,
-                        countryDisplayNameCount[culture.CountryDisplayName] > 1
-                            ? $"{culture.CountryDisplayName} ({culture.LanguageDisplayName})"
-                            : culture.CountryDisplayName);
+                    var text = countryDisplayNameCount[culture.CountryDisplayName] > 1
+                        ? $"{culture.CountryDisplayName} ({culture.LanguageDisplayName})"
+                        : culture.CountryDisplayName;
+                    data.Add(culture.Lcid, text);
                 }
             }
 
@@ -707,7 +706,7 @@ namespace Atc.Helpers
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
 
-            var languageDisplayNameCount = new Dictionary<string, int>();
+            var languageDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (var culture in cultures)
             {
                 if (includeOnlyCultureNames != null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name))
@@ -736,11 +735,10 @@ namespace Atc.Helpers
                     includeOnlyCultureNames.Count == 0 ||
                     includeOnlyCultureNames.Contains(culture.Name))
                 {
-                    data.Add(
-                        culture.Lcid,
-                        languageDisplayNameCount[culture.LanguageDisplayName] > 1
-                            ? $"{culture.LanguageDisplayName} ({culture.CountryDisplayName})"
-                            : culture.LanguageDisplayName);
+                    var text = languageDisplayNameCount[culture.LanguageDisplayName] > 1
+                        ? $"{culture.LanguageDisplayName} ({culture.CountryDisplayName})"
+                        : culture.LanguageDisplayName;
+                    data.Add(culture.Lcid, text);
                 }
             }
 

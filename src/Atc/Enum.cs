@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -9,7 +9,10 @@ namespace Atc
     /// <summary>
     /// Extension methods for enums.
     /// </summary>
-    public static class Enum<T> where T : Enum
+    /// <typeparam name="T">The generic enum type.</typeparam>
+    [SuppressMessage("Design", "MA0018:Do not declare static members on generic types", Justification = "OK.")]
+    public static class Enum<T>
+        where T : Enum
     {
         /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>
         /// <param name="value">A string containing the name or value to convert.</param>
@@ -20,7 +23,6 @@ namespace Atc
         /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("Monday"));
         /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("MONDAY"));
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static T GetEnumValue(string value, bool ignoreCase = true)
         {
             if (value == null)
@@ -55,7 +57,6 @@ namespace Atc
         /// Assert.True(isParsed);
         /// Assert.Equal(expectedOut, dayOfWeek);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static bool TryGetEnumValue(string value, bool ignoreCase, out T returnedValue)
         {
             if (!string.IsNullOrEmpty(value))
@@ -78,8 +79,7 @@ namespace Atc
         /// Assert.True(isParsed);
         /// Assert.Equal(expectedOut, dayOfWeek);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
-        public static bool TryGetEnumValue(Enum value, out T returnedValue)
+        public static bool TryGetEnumValue(Enum? value, out T returnedValue)
         {
             returnedValue = default!;
             return value != null && TryGetEnumValue(value.ToString(), false, out returnedValue);
@@ -93,7 +93,6 @@ namespace Atc
         /// <example><![CDATA[
         /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.Parse("Monday"));
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static T Parse(string value, bool ignoreCase = true)
         {
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
@@ -110,7 +109,6 @@ namespace Atc
         /// Assert.True(isParsed);
         /// Assert.Equal(expectedOut, dayOfWeek);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static bool TryParse(string value, out T returnedValue)
         {
             return TryParse(value, true, out returnedValue);
@@ -128,7 +126,6 @@ namespace Atc
         /// Assert.True(isParsed);
         /// Assert.Equal(expectedOut, dayOfWeek);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
         public static bool TryParse(string value, bool ignoreCase, out T returnedValue)
         {
@@ -157,7 +154,6 @@ namespace Atc
         /// Array array = Enum<DayOfWeek>.ToArray();
         /// Assert.Equal(7, array.Length);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static Array ToArray(
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
             bool useDescriptionAttribute = true,
@@ -192,7 +188,6 @@ namespace Atc
         /// Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();
         /// Assert.Equal(7, dictionary.Count);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static Dictionary<int, string> ToDictionary(
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
             bool useDescriptionAttribute = true,
@@ -224,7 +219,6 @@ namespace Atc
         /// Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();
         /// Assert.Equal(7, dictionary.Count);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static Dictionary<string, string> ToDictionaryWithStringKey(
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
             bool useDescriptionAttribute = true,
@@ -256,7 +250,6 @@ namespace Atc
         /// List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();
         /// Assert.Equal(7, list.Count);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static List<KeyValuePair<int, string>> ToKeyValuePairs(
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
             bool useDescriptionAttribute = true,
@@ -291,7 +284,6 @@ namespace Atc
         /// List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
         /// Assert.Equal(7, list.Count);
         /// ]]></example>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "OK.")]
         public static List<KeyValuePair<string, string>> ToKeyValuePairsWithStringKey(
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
             bool useDescriptionAttribute = true,

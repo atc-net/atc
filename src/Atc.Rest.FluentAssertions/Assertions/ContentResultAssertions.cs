@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +9,12 @@ namespace Atc.Rest.FluentAssertions
 {
     public class ContentResultAssertions : ContentResultAssertionsBase<ContentResultAssertions>
     {
-        public ContentResultAssertions(ContentResult subject) : base(subject) { }
+        public ContentResultAssertions(ContentResult subject)
+            : base(subject)
+        {
+        }
 
         protected override string Identifier { get; } = "content result";
-
-        protected override AndWhichConstraint<ContentResultAssertions, ContentResult> CreateAndWhichConstraint()
-            => new AndWhichConstraint<ContentResultAssertions, ContentResult>(this, Subject);
 
         public AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = "", params object[] becauseArgs)
             => WithStatusCode((int)expectedStatusCode, because, becauseArgs);
@@ -29,5 +29,8 @@ namespace Atc.Rest.FluentAssertions
 
             return new AndConstraint<ContentResultAssertions>(this);
         }
+
+        protected override AndWhichConstraint<ContentResultAssertions, ContentResult> CreateAndWhichConstraint()
+            => new AndWhichConstraint<ContentResultAssertions, ContentResult>(this, Subject);
     }
 }

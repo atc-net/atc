@@ -227,20 +227,23 @@ public static class DateTimeOffsetExtensions
 #### ToIso8601Date
 
 ```csharp
-string ToIso8601Date(this DateTimeOffset value)
+string ToIso8601Date(this DateTimeOffset dateTimeOffset)
 ```
 <p><b>Summary:</b> Converts to ISO 8601 date.</p>
 
 <b>Parameters</b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
 #### ToUnixTime
 
 ```csharp
-long ToUnixTime(this DateTimeOffset value)
+long ToUnixTime(this DateTimeOffset dateTimeOffset)
 ```
 <p><b>Summary:</b> Converts the DateTimeOffset to a unix time - seconds stating from 1-1-1970.</p>
 
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
 <p><b>Returns:</b> The long value from a DateTimeOffset.</p>
 
 <b>Code usage:</b>

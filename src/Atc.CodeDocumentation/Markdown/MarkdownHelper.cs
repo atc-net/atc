@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -368,7 +368,7 @@ namespace Atc.CodeDocumentation.Markdown
                 string[] head = { "Value", "Name", "Description", "Summary" };
                 var data = seq.Select(item =>
                 {
-                    var summary = docs.FirstOrDefault(x => x.MemberName == name(item) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
                     return new[]
                     {
                         xType(item),
@@ -388,7 +388,7 @@ namespace Atc.CodeDocumentation.Markdown
 
                 var data = seq.Select(item =>
                 {
-                    var summary = docs.FirstOrDefault(x => x.MemberName == name(item) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
                     return new[]
                     {
                         xType(item),
@@ -430,7 +430,7 @@ namespace Atc.CodeDocumentation.Markdown
 
                     // ReSharper disable once PossibleMultipleEnumeration
                     var commentForMember = docs.FirstOrDefault(x =>
-                        x.MemberName == name(item) ||
+                        string.Equals(x.MemberName, name(item), StringComparison.Ordinal) ||
                         x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal));
 
                     if (commentForMember == null || string.IsNullOrEmpty(commentForMember.Summary))
@@ -438,7 +438,7 @@ namespace Atc.CodeDocumentation.Markdown
                         continue;
                     }
 
-                    if (commentForMember.Summary != name(item) + ".")
+                    if (!string.Equals(commentForMember.Summary, name(item) + ".", StringComparison.Ordinal))
                     {
                         mb.AppendLine($"<p><b>Summary:</b> {commentForMember.Summary}</p>");
                     }

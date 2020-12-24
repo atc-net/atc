@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Threading.Tasks;
 using Atc.Rest.Middleware;
 using Microsoft.ApplicationInsights;
@@ -11,7 +11,7 @@ namespace Atc.Rest.Tests.Middleware
     public class ExceptionTelemetryMiddlewareTests
     {
         [Fact]
-        public async Task Invoke()
+        public async Task InvokeAsync()
         {
             // Arrange
             using var telemetryConfiguration = new TelemetryConfiguration();
@@ -25,7 +25,7 @@ namespace Atc.Rest.Tests.Middleware
             var defaultHttpContext = new DefaultHttpContext();
 
             // Act
-            await middleware.Invoke(defaultHttpContext);
+            await middleware.InvokeAsync(defaultHttpContext);
 
             // Assert
             Assert.Equal((int)HttpStatusCode.OK, defaultHttpContext.Response.StatusCode);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -164,7 +164,7 @@ namespace Microsoft.OpenApi.Models
                 {
                     foreach (var mediaType in response.Content.Values)
                     {
-                        if (mediaType.Schema.Type == OpenApiDataTypeConstants.Array)
+                        if (string.Equals(mediaType.Schema.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal))
                         {
                             return true;
                         }
@@ -194,14 +194,14 @@ namespace Microsoft.OpenApi.Models
                             continue;
                         }
 
-                        if (mediaType.Value.Schema.Reference?.Id == schemaKey)
+                        if (string.Equals(mediaType.Value.Schema.Reference?.Id, schemaKey, StringComparison.Ordinal))
                         {
                             return true;
                         }
 
                         foreach (var property in mediaType.Value.Schema.Properties)
                         {
-                            if (property.Value.Reference?.Id == schemaKey)
+                            if (string.Equals(property.Value.Reference?.Id, schemaKey, StringComparison.Ordinal))
                             {
                                 return true;
                             }
@@ -224,14 +224,14 @@ namespace Microsoft.OpenApi.Models
                         continue;
                     }
 
-                    if (item.Value.Schema.Reference?.Id == schemaKey)
+                    if (string.Equals(item.Value.Schema.Reference?.Id, schemaKey, StringComparison.Ordinal))
                     {
                         return true;
                     }
 
                     foreach (var property in item.Value.Schema.Properties)
                     {
-                        if (property.Value.Reference?.Id == schemaKey)
+                        if (string.Equals(property.Value.Reference?.Id, schemaKey, StringComparison.Ordinal))
                         {
                             return true;
                         }

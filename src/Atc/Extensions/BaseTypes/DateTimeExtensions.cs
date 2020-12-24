@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
@@ -115,6 +115,7 @@ namespace Atc.Extensions.BaseTypes
         /// <summary>
         /// To the iso8601 date.
         /// </summary>
+        /// <param name="dateTime">The date time.</param>
         /// <example>
         /// string isoDate = DateTime.UtcNow.ToIso8601Date();.
         /// </example>

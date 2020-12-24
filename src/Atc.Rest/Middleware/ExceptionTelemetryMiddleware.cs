@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace Atc.Rest.Middleware
 {
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
     public class ExceptionTelemetryMiddleware
     {
         private readonly RequestDelegate next;
@@ -19,7 +17,7 @@ namespace Atc.Rest.Middleware
             this.client = client;
         }
 
-        public Task Invoke(HttpContext context)
+        public Task InvokeAsync(HttpContext context)
         {
             if (context == null)
             {

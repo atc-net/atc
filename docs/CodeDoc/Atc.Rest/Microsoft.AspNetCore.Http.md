@@ -52,6 +52,9 @@ string GetOrAddCorrelationId(this IHeaderDictionary headers)
 ```
 <p><b>Summary:</b> Gets the correlation id from header , if not found a new is added to the header and returned.</p>
 
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`headers`&nbsp;&nbsp;-&nbsp;&nbsp;The headers.<br />
 <p><b>Returns:</b> Correlation id for request.</p>
 
 #### GetOrAddRequestId

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using Atc.Tests.XUnitTestData;
@@ -25,7 +25,8 @@ namespace Atc.Tests
         [MemberData(nameof(TestMemberDataForEnumTranslation.TriggerActionTypeData), MemberType = typeof(TestMemberDataForEnumTranslation))]
         [MemberData(nameof(TestMemberDataForEnumTranslation.UpDownTypeData), MemberType = typeof(TestMemberDataForEnumTranslation))]
         [MemberData(nameof(TestMemberDataForEnumTranslation.YesNoTypeData), MemberType = typeof(TestMemberDataForEnumTranslation))]
-        public void ToDictionary<T>(T dummyForT, int arrangeUiLcid, List<KeyValuePair<int, string>> expectedKeyValues) where T : System.Enum
+        public void ToDictionary<T>(T dummyForT, int arrangeUiLcid, List<KeyValuePair<int, string>> expectedKeyValues)
+            where T : System.Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;

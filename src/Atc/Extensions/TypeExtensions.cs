@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -136,7 +136,7 @@ namespace System
 
             if (!type.BaseType.IsGenericType && !inheritType.IsGenericType)
             {
-                return type.BaseType.FullName == inheritType.FullName || type.BaseType.IsInheritedFrom(inheritType);
+                return string.Equals(type.BaseType.FullName, inheritType.FullName, StringComparison.Ordinal) || type.BaseType.IsInheritedFrom(inheritType);
             }
 
             var baseTypeFullName = type.BaseType.FullName;
@@ -161,7 +161,7 @@ namespace System
                 inheritTypeFullName = inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
             }
 
-            return baseTypeFullName == inheritTypeFullName || type.BaseType.IsInheritedFrom(inheritType);
+            return string.Equals(baseTypeFullName, inheritTypeFullName, StringComparison.OrdinalIgnoreCase) || type.BaseType.IsInheritedFrom(inheritType);
         }
 
         /// <summary>
@@ -270,7 +270,8 @@ namespace System
         /// </summary>
         /// <typeparam name="T">The attribute type.</typeparam>
         /// <param name="type">The type.</param>
-        public static T? GetAttribute<T>(this Type type) where T : Attribute
+        public static T? GetAttribute<T>(this Type type)
+            where T : Attribute
         {
             return GetAttributes<T>(type).FirstOrDefault();
         }
@@ -281,7 +282,8 @@ namespace System
         /// <typeparam name="T">The attribute type.</typeparam>
         /// <param name="type">The type.</param>
         [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-        public static T? TryGetAttribute<T>(this Type type) where T : Attribute
+        public static T? TryGetAttribute<T>(this Type type)
+            where T : Attribute
         {
             T? attribute = null;
             try
@@ -301,7 +303,8 @@ namespace System
         /// </summary>
         /// <typeparam name="T">The attribute type.</typeparam>
         /// <param name="type">The type.</param>
-        public static IEnumerable<T> GetAttributes<T>(this Type type) where T : Attribute
+        public static IEnumerable<T> GetAttributes<T>(this Type type)
+            where T : Attribute
         {
             return CustomAttributeExtensions.GetCustomAttributes(type.GetTypeInfo(), typeof(T), false).Cast<T>();
         }
@@ -617,8 +620,9 @@ namespace System
                     inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
             }
 
-            if (type.BaseType == null || !type.BaseType.IsGenericType ||
-                baseTypeFullName != inheritTypeFullName)
+            if (type.BaseType == null ||
+                !type.BaseType.IsGenericType ||
+                !string.Equals(baseTypeFullName, inheritTypeFullName, StringComparison.Ordinal))
             {
                 return false;
             }
@@ -637,12 +641,12 @@ namespace System
                 }
 
                 var interfaces = argumentType.GetInterfaces();
-                if (interfaces.FirstOrDefault(x => x.FullName == baseTypeGenericArgumentType.FullName) != null)
+                if (interfaces.FirstOrDefault(x => string.Equals(x.FullName, baseTypeGenericArgumentType.FullName, StringComparison.Ordinal)) != null)
                 {
                     return true;
                 }
             }
-            else if (baseTypeGenericArgumentType.FullName == argumentType.FullName)
+            else if (string.Equals(baseTypeGenericArgumentType.FullName, argumentType.FullName, StringComparison.Ordinal))
             {
                 return true;
             }

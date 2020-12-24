@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -95,7 +95,7 @@ namespace Atc.XUnit
 
             var methodsWithMissingTestsGroups = methodsWithMissingTests
                 .OrderBy(x => x.DeclaringType?.FullName)
-                .GroupBy(x => x.DeclaringType?.BeautifyName(true))
+                .GroupBy(x => x.DeclaringType?.BeautifyName(true), StringComparer.Ordinal)
                 .ToArray();
 
             var testResults = new List<TestResult>
@@ -130,7 +130,7 @@ namespace Atc.XUnit
 
             var methodsWithMissingTestsGroups = methodsWithMissingTests
                 .OrderBy(x => x.ReflectedType?.FullName)
-                .GroupBy(x => x.ReflectedType?.BeautifyName(true))
+                .GroupBy(x => x.ReflectedType?.BeautifyName(true), StringComparer.Ordinal)
                 .ToArray();
 
             var file = new FileInfo(Path.Combine(reportDirectory.FullName, $"TestResultsFromMethodsWithMissingTestsFor_{assemblyName}.xlsx"));
@@ -175,7 +175,7 @@ namespace Atc.XUnit
 
             var methodsWithWrongNamingGroups = methodsWithWrongNaming
                 .OrderBy(x => x.Key.ReflectedType?.FullName)
-                .GroupBy(x => x.Key.ReflectedType?.BeautifyName(true))
+                .GroupBy(x => x.Key.ReflectedType?.BeautifyName(true), StringComparer.Ordinal)
                 .ToArray();
 
             var testResults = new List<TestResult>

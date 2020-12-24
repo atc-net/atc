@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 // ReSharper disable once CheckNamespace
@@ -9,6 +9,7 @@ namespace Microsoft.AspNetCore.Http
         /// <summary>
         /// Gets the correlation id from header , if not found a new is added to the header and returned.
         /// </summary>
+        /// <param name="headers">The headers.</param>
         /// <returns>Correlation id for request.</returns>
         public static string GetOrAddCorrelationId(this IHeaderDictionary headers)
         {

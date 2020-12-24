@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Atc.Tests.XUnitTestData;
 using FluentAssertions;
@@ -98,7 +98,8 @@ namespace Atc.Tests
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;
@@ -121,7 +122,8 @@ namespace Atc.Tests
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;
@@ -144,7 +146,8 @@ namespace Atc.Tests
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;
@@ -167,7 +170,8 @@ namespace Atc.Tests
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;
@@ -190,7 +194,8 @@ namespace Atc.Tests
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;

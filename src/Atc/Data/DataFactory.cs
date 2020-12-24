@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -191,7 +191,7 @@ namespace Atc.Data
         /// </returns>
         public static Dictionary<string, string> CreateKeyValueDictionaryOfStringString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
         {
-            var dictionary = new Dictionary<string, string>();
+            var dictionary = new Dictionary<string, string>(StringComparer.Ordinal);
             switch (dropDownFirstItemType)
             {
                 case DropDownFirstItemType.None:

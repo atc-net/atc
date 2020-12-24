@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Atc.Extensions.BaseTypes;
@@ -74,7 +74,7 @@ namespace Atc.Tests.Extensions
         public void SetStringFormatParameterTemplatePlaceholders(string expected, string input, string[] data)
         {
             // Arrange
-            var replacements = new Dictionary<string, string>();
+            var replacements = new Dictionary<string, string>(StringComparer.Ordinal);
             for (var i = 0; i < data.Length; i += 2)
             {
                 replacements.Add(data[i], data[i + 1]);
@@ -327,7 +327,7 @@ namespace Atc.Tests.Extensions
         public void ReplaceMany_ReplacementsKeyValue(string expected, string input, string[] data)
         {
             // Arrange
-            var replacements = new Dictionary<string, string>();
+            var replacements = new Dictionary<string, string>(StringComparer.Ordinal);
             for (var i = 0; i < data.Length; i += 2)
             {
                 replacements.Add(data[i], data[i + 1]);

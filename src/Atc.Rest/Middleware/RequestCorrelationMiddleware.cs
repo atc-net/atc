@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
@@ -16,7 +16,7 @@ namespace Atc.Rest.Middleware
             this.next = next;
         }
 
-        public Task Invoke(HttpContext context)
+        public Task InvokeAsync(HttpContext context)
         {
             if (context == null)
             {

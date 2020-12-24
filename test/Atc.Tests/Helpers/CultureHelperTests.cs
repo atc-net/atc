@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Atc.Data.Models;
 using Atc.Helpers;
@@ -138,7 +138,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expected, actual.CountryCodeA2);
+            Assert.Equal(expected, actual!.CountryCodeA2);
         }
 
         [Theory]
@@ -151,7 +151,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expectedCountryName, actual.CountryDisplayName);
+            Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
             Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
         }
 
@@ -168,7 +168,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expected, actual.Lcid);
+            Assert.Equal(expected, actual!.Lcid);
         }
 
         [Theory]
@@ -181,7 +181,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expectedCountryName, actual.CountryDisplayName);
+            Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
             Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
         }
 
@@ -228,7 +228,7 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByLanguageCodeA2(input);
 
             // Assert
-            if (input == "en")
+            if (string.Equals(input, "en", System.StringComparison.Ordinal))
             {
                 actual.Should().NotBeNull()
                     .And.BeOfType<List<Culture>>()
@@ -253,7 +253,7 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByLanguageCodeA2(displayLanguageLcid, input);
 
             // Assert
-            if (input == "en")
+            if (string.Equals(input, "en", System.StringComparison.Ordinal))
             {
                 actual.Should().NotBeNull()
                     .And.BeOfType<List<Culture>>()
@@ -280,7 +280,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expected, actual.Lcid);
+            Assert.Equal(expected, actual!.Lcid);
         }
 
         [Theory]
@@ -293,7 +293,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expectedCountryName, actual.CountryDisplayName);
+            Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
             Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
         }
 
@@ -310,7 +310,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Culture>();
-            Assert.Equal(expectedCountryName, actual.CountryDisplayName);
+            Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
             Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
         }
 

@@ -207,7 +207,7 @@ CardinalDirectionType GetWhenRotate180(CardinalDirectionType cardinalDirectionTy
 #### GetWhenRotateLeft
 
 ```csharp
-CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
 ```
 <p><b>Summary:</b> Gets the when rotate left.</p>
 
@@ -219,7 +219,7 @@ CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionT
 #### GetWhenRotateLeft
 
 ```csharp
-CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
 ```
 <p><b>Summary:</b> Gets the when rotate left.</p>
 
@@ -231,7 +231,7 @@ CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionT
 #### GetWhenRotateRight
 
 ```csharp
-CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
 ```
 <p><b>Summary:</b> Gets the when rotate right.</p>
 
@@ -243,7 +243,7 @@ CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirection
 #### GetWhenRotateRight
 
 ```csharp
-CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
 ```
 <p><b>Summary:</b> Gets the when rotate right.</p>
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,50 +8,6 @@ namespace Atc.XUnit.Internal.MonoReflection
 {
     internal static class AnalyzerHelper
     {
-        internal static MethodInfo[] GetUsedSourceMethods(
-            Type[] sourceTypes,
-            Tuple<Type, MethodInfo[]>[] testTypeMethods)
-        {
-            var list = new List<MethodInfo>();
-            foreach (var tuple in testTypeMethods)
-            {
-                foreach (var method in tuple.Item2)
-                {
-                    var instructions = method.GetInstructions();
-                    foreach (var instruction in instructions)
-                    {
-                        var usedMethodInTest = instruction.Operand as MethodInfo;
-                        if (usedMethodInTest == null)
-                        {
-                            continue;
-                        }
-
-                        var type = usedMethodInTest.DeclaringType;
-                        if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(false, false, true), StringComparison.Ordinal)) == null)
-                        {
-                            continue;
-                        }
-
-                        if (usedMethodInTest.Name.StartsWith("get_", StringComparison.Ordinal) ||
-                            usedMethodInTest.Name.StartsWith("set_", StringComparison.Ordinal))
-                        {
-                            continue;
-                        }
-
-                        if (!list.Contains(usedMethodInTest))
-                        {
-                            list.Add(usedMethodInTest);
-                        }
-                    }
-                }
-            }
-
-            return list
-                .OrderBy(x => x.DeclaringType?.Name)
-                .ThenBy(x => x.Name)
-                .ToArray();
-        }
-
         public static MethodInfo[] GetSourceMethodsWithMissingTest(
             Type[] sourceTypes,
             MethodInfo[] usedSourceMethods,
@@ -112,6 +68,50 @@ namespace Atc.XUnit.Internal.MonoReflection
             return TypeAndMethodAndParameterHelper.FilterMethodsWithMissingTests(sourceTypes, methodsToExclude, methodsWithTest);
         }
 
+        internal static MethodInfo[] GetUsedSourceMethods(
+            Type[] sourceTypes,
+            Tuple<Type, MethodInfo[]>[] testTypeMethods)
+        {
+            var list = new List<MethodInfo>();
+            foreach (var tuple in testTypeMethods)
+            {
+                foreach (var method in tuple.Item2)
+                {
+                    var instructions = method.GetInstructions();
+                    foreach (var instruction in instructions)
+                    {
+                        var usedMethodInTest = instruction.Operand as MethodInfo;
+                        if (usedMethodInTest == null)
+                        {
+                            continue;
+                        }
+
+                        var type = usedMethodInTest.DeclaringType;
+                        if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(false, false, true), StringComparison.Ordinal)) == null)
+                        {
+                            continue;
+                        }
+
+                        if (usedMethodInTest.Name.StartsWith("get_", StringComparison.Ordinal) ||
+                            usedMethodInTest.Name.StartsWith("set_", StringComparison.Ordinal))
+                        {
+                            continue;
+                        }
+
+                        if (!list.Contains(usedMethodInTest))
+                        {
+                            list.Add(usedMethodInTest);
+                        }
+                    }
+                }
+            }
+
+            return list
+                .OrderBy(x => x.DeclaringType?.Name)
+                .ThenBy(x => x.Name)
+                .ToArray();
+        }
+
         private static bool IsMethodUsed(
             MethodInfo method,
             MethodInfo[] usedSourceMethods,
@@ -140,7 +140,7 @@ namespace Atc.XUnit.Internal.MonoReflection
 
             var methodParameters = method.GetParameters();
             var usedMethodsByDeclaredType = usedSourceMethods
-                .Where(x => x.DeclaringType!.BeautifyName(false, false, true) == method.DeclaringType!.BeautifyName(false, false, true))
+                .Where(x => string.Equals(x.DeclaringType!.BeautifyName(false, false, true), method.DeclaringType!.BeautifyName(false, false, true), StringComparison.Ordinal))
                 .ToList();
             if (usedMethodsByDeclaredType.Count == 0)
             {

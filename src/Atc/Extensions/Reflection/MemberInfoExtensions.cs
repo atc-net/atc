@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Atc;
@@ -98,7 +98,7 @@ namespace System.Reflection
                 MemberTypes.Field => ((FieldInfo)member).FieldType,
                 MemberTypes.Method => ((MethodInfo)member).ReturnType,
                 MemberTypes.Property => ((PropertyInfo)member).PropertyType,
-                _ => throw new ArgumentException("Input MemberInfo must be if type EventInfo, FieldInfo, MethodInfo, or PropertyInfo"),
+                _ => throw new UnexpectedTypeException("Input MemberInfo must be if type EventInfo, FieldInfo, MethodInfo, or PropertyInfo"),
             };
         }
     }

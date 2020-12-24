@@ -38,13 +38,13 @@
 
 - [ExceptionTelemetryMiddleware](Atc.Rest.Middleware.md#exceptiontelemetrymiddleware)
   -  Methods
-     - Invoke(HttpContext context)
+     - InvokeAsync(HttpContext context)
 - [KeepAliveMiddleware](Atc.Rest.Middleware.md#keepalivemiddleware)
   -  Methods
-     - Invoke(HttpContext context)
+     - InvokeAsync(HttpContext context)
 - [RequestCorrelationMiddleware](Atc.Rest.Middleware.md#requestcorrelationmiddleware)
   -  Methods
-     - Invoke(HttpContext context)
+     - InvokeAsync(HttpContext context)
 
 ## [Atc.Rest.Options](Atc.Rest.Options.md)
 

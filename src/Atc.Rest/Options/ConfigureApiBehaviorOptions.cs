@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Microsoft.ApplicationInsights;
@@ -32,7 +32,7 @@ namespace Atc.Rest.Options
 
                 telemetry?.TrackTrace(
                     "BadRequest",
-                    new Dictionary<string, string>
+                    new Dictionary<string, string>(StringComparer.Ordinal)
                     {
                         { "Response.Body", JsonSerializer.Serialize(error) },
                     });

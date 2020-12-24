@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -119,25 +119,21 @@ namespace System
 
             if (exception.StackTrace != null)
             {
-                root.Add(
-                    new XElement(
-                        "StackTrace",
-                        from frame
-                            in exception.StackTrace.Split('\n')
-                        let prettierFrame = frame.Substring(6).Trim()
-                        select new XElement("Frame", prettierFrame)));
+                var xElements = from frame
+                                    in exception.StackTrace.Split('\n')
+                                let prettierFrame = frame.Substring(6).Trim()
+                                select new XElement("Frame", prettierFrame);
+                root.Add(new XElement("StackTrace", xElements));
             }
 
             if (exception.Data.Count > 0)
             {
-                root.Add(
-                    new XElement(
-                        "Data",
-                        from entry
-                            in exception.Data.Cast<DictionaryEntry>()
-                        let key = entry.Key.ToString()
-                        let value = entry.Value?.ToString() ?? "null"
-                        select new XElement(key, value)));
+                var xElements = from entry
+                                    in exception.Data.Cast<DictionaryEntry>()
+                                let key = entry.Key.ToString()
+                                let value = entry.Value?.ToString() ?? "null"
+                                select new XElement(key, value);
+                root.Add(new XElement("Data", xElements));
             }
 
             // ReSharper disable once InvertIf

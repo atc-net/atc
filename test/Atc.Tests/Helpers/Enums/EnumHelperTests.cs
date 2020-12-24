@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Threading;
 using Atc.Helpers;
@@ -89,7 +89,8 @@ namespace Atc.Tests.Helpers.Enums
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // Arrange
             var enumType = dummyForT.GetType();
@@ -118,7 +119,8 @@ namespace Atc.Tests.Helpers.Enums
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // Arrange
             var enumType = dummyForT.GetType();
@@ -147,7 +149,8 @@ namespace Atc.Tests.Helpers.Enums
             bool includeDefault,
             SortDirectionType sortDirectionType,
             bool byFlagIncludeBase,
-            bool byFlagIncludeCombined) where T : Enum
+            bool byFlagIncludeCombined)
+            where T : Enum
         {
             // Arrange
             var enumType = dummyForT.GetType();

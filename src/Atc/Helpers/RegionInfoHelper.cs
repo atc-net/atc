@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -17,9 +17,7 @@ namespace Atc.Helpers
         /// <summary>
         /// Gets all region infos.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "OK.")]
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Infos", Justification = "OK.")]
         public static List<RegionInfo> GetAllRegionInfos()
         {
             lock (Lock)
@@ -73,7 +71,7 @@ namespace Atc.Helpers
             }
 
             return GetAllRegionInfos()
-                .FirstOrDefault(x => x.ThreeLetterISORegionName.Equals(isoAlpha3Code, StringComparison.OrdinalIgnoreCase));
+                .Find(x => x.ThreeLetterISORegionName.Equals(isoAlpha3Code, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>
@@ -81,7 +79,6 @@ namespace Atc.Helpers
         /// </summary>
         /// <param name="isoAlpha3Code">The iso alpha3 code.</param>
         /// <exception cref="ArgumentNullException">isoAlpha3Code.</exception>
-        [SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "OK.")]
         public static CultureInfo? GetCultureInfoByIsoAlpha3(string isoAlpha3Code)
         {
             if (isoAlpha3Code == null)
@@ -109,7 +106,7 @@ namespace Atc.Helpers
                            .OrderBy(x => x.LCID)
                            .FirstOrDefault(x =>
                                x.Name.EndsWith(regionInfo.TwoLetterISORegionName, StringComparison.OrdinalIgnoreCase) &&
-                               x.EnglishName.Contains($"({regionInfo.EnglishName})"));
+                               x.EnglishName.Contains($"({regionInfo.EnglishName})", StringComparison.Ordinal));
         }
 
         /// <summary>
@@ -125,7 +122,7 @@ namespace Atc.Helpers
             }
 
             var cultures = CultureHelper.GetCultures();
-            var culture = cultures.FirstOrDefault(x => x.CountryCodeA3.Equals(regionInfo.ThreeLetterISORegionName, StringComparison.Ordinal));
+            var culture = cultures.Find(x => x.CountryCodeA3.Equals(regionInfo.ThreeLetterISORegionName, StringComparison.Ordinal));
             if (culture == null)
             {
                 return -1;
@@ -143,9 +140,7 @@ namespace Atc.Helpers
         /// <summary>
         /// Gets all region infos as lcids.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "OK.")]
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Infos", Justification = "OK.")]
         public static List<int> GetAllRegionInfosAsLcids()
         {
             lock (Lock)

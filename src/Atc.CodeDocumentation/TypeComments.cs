@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +10,22 @@ namespace Atc.CodeDocumentation
     /// </summary>
     public class TypeComments
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypeComments"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="commentLookup">The comment lookup.</param>
+        [SuppressMessage("Microsoft.Security", "CA2208:Instantiate argument exceptions correctly", Justification = "OK.")]
+        public TypeComments(Type type, ILookup<string, XmlDocumentComment>? commentLookup)
+        {
+            this.Type = type ?? throw new ArgumentNullException(nameof(type));
+            this.CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
+            if (type.FullName == null)
+            {
+                throw new ArgumentNullOrDefaultPropertyException(nameof(type.FullName));
+            }
+        }
+
         /// <summary>
         /// Gets the type.
         /// </summary>
@@ -65,22 +81,6 @@ namespace Atc.CodeDocumentation
         ///   <c>true</c> if this instance has comments; otherwise, <c>false</c>.
         /// </value>
         public bool HasComments => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException());
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TypeComments"/> class.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <param name="commentLookup">The comment lookup.</param>
-        [SuppressMessage("Microsoft.Security", "CA2208:Instantiate argument exceptions correctly", Justification = "OK.")]
-        public TypeComments(Type type, ILookup<string, XmlDocumentComment>? commentLookup)
-        {
-            this.Type = type ?? throw new ArgumentNullException(nameof(type));
-            this.CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
-            if (type.FullName == null)
-            {
-                throw new ArgumentNullOrDefaultPropertyException(nameof(type.FullName));
-            }
-        }
 
         /// <summary>
         /// Gets the XML document comments.

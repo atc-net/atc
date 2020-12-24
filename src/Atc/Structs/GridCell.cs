@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 // ReSharper disable once CheckNamespace
 namespace Atc
@@ -22,7 +22,7 @@ namespace Atc
         }
 
         /// <summary>
-        /// Gets or sets the X.
+        /// Gets the X.
         /// </summary>
         /// <value>
         /// The X.
@@ -30,7 +30,7 @@ namespace Atc
         public int X { get; }
 
         /// <summary>
-        /// Gets or sets the Y.
+        /// Gets the Y.
         /// </summary>
         /// <value>
         /// The Y.
@@ -38,7 +38,7 @@ namespace Atc
         public int Y { get; }
 
         /// <summary>
-        /// Determines whether this instance is default.
+        /// Gets a value indicating whether this instance is default.
         /// </summary>
         /// <returns>
         ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -31,7 +31,8 @@ namespace Atc.Helpers
         /// <param name="value">The value.</param>
         /// <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
         /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</returns>
-        public static T GetEnumValue<T>(string value, bool ignoreCase = true) where T : Enum
+        public static T GetEnumValue<T>(string value, bool ignoreCase = true)
+            where T : Enum
         {
             if (value == null)
             {
@@ -314,7 +315,7 @@ namespace Atc.Helpers
                 throw new UnexpectedTypeException($"Type {enumType.FullName} is not a enumerated type");
             }
 
-            var list = new Dictionary<string, string>();
+            var list = new Dictionary<string, string>(StringComparer.Ordinal);
             var enums = Enum.GetValues(enumType);
             var hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), false);
             foreach (var e in enums)
@@ -358,7 +359,7 @@ namespace Atc.Helpers
 
             if (dropDownFirstItemType == DropDownFirstItemType.None || enumType == typeof(DropDownFirstItemType))
             {
-                return orderList.ToDictionary(x => x.Key, x => x.Value);
+                return orderList.ToDictionary(x => x.Key, x => x.Value, StringComparer.Ordinal);
             }
 
             if (useDescriptionAttribute)
@@ -400,7 +401,7 @@ namespace Atc.Helpers
                 }
             }
 
-            return orderList.ToDictionary(x => x.Key, x => x.Value);
+            return orderList.ToDictionary(x => x.Key, x => x.Value, StringComparer.Ordinal);
         }
 
         internal static bool ShouldEnumValueBeSkipped(

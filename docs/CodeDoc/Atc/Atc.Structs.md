@@ -31,14 +31,14 @@ IsDefault
 ```csharp
 Latitude
 ```
-<p><b>Summary:</b> Gets or sets the latitude (also know as Y or Easting).</p>
+<p><b>Summary:</b> Gets latitude (also know as Y or Easting).</p>
 
 #### Longitude
 
 ```csharp
 Longitude
 ```
-<p><b>Summary:</b> Gets or sets the longitude (also know as X or Northing).</p>
+<p><b>Summary:</b> Gets the longitude (also know as X or Northing).</p>
 
 ### Methods
 

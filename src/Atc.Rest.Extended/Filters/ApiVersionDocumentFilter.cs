@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Atc.Rest.Extended.Versioning;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -35,8 +35,9 @@ namespace Atc.Rest.Extended.Filters
             foreach (var apiDescription in context.ApiDescriptions)
             {
                 var apiParameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(
-                    x => x.Source == parameterBindingSource &&
-                         x.Name == parameterName);
+                    x =>
+                        x.Source == parameterBindingSource &&
+                        string.Equals(x.Name, parameterName, StringComparison.Ordinal));
                 if (apiParameterDescription != null)
                 {
                     apiDescription.ParameterDescriptions.Remove(apiParameterDescription);
@@ -47,7 +48,7 @@ namespace Atc.Rest.Extended.Filters
             {
                 foreach (var openApiOperation in swaggerDocPath.Value.Operations)
                 {
-                    var operation = openApiOperation.Value.Parameters.FirstOrDefault(x => x.Name == parameterName);
+                    var operation = openApiOperation.Value.Parameters.FirstOrDefault(x => string.Equals(x.Name, parameterName, StringComparison.Ordinal));
                     if (operation != null)
                     {
                         openApiOperation.Value.Parameters.Remove(operation);

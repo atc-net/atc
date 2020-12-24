@@ -1,4 +1,4 @@
-﻿using Atc.Rest.Results;
+using Atc.Rest.Results;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -8,15 +8,6 @@ namespace Atc.Rest.FluentAssertions.Tests.Extensions
 {
     public class ResultBaseExtensionsTests
     {
-        private class DummyResult : ActionResult { }
-
-        private class AtcDummyResult : ResultBase
-        {
-            public AtcDummyResult() : base(new DummyResult())
-            {
-            }
-        }
-
         [Fact]
         public void Should_Returns_ResultAssertion_With_Subject_Set_To_Subject()
         {
@@ -31,6 +22,18 @@ namespace Atc.Rest.FluentAssertions.Tests.Extensions
                 .Should()
                 .Throw<XunitException>()
                 .WithMessage($"*{typeof(DummyResult).FullName}*");
+        }
+
+        private class DummyResult : ActionResult
+        {
+        }
+
+        private class AtcDummyResult : ResultBase
+        {
+            public AtcDummyResult()
+                : base(new DummyResult())
+            {
+            }
         }
     }
 }

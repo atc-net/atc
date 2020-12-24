@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
@@ -22,7 +22,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
             if (string.IsNullOrEmpty(suppressMessage.Justification))
             {
-                throw new ArgumentException(nameof(suppressMessage.Justification));
+                throw new ArgumentPropertyNullException(nameof(suppressMessage), "Justification is invalid.");
             }
 
             var attributeArgumentList = SyntaxFactory.AttributeArgumentList(

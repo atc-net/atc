@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
@@ -15,7 +15,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var (key, value) = content.FirstOrDefault(x => x.Key == contentType);
+            var (key, value) = content.FirstOrDefault(x => string.Equals(x.Key, contentType, StringComparison.Ordinal));
             return key == null
                 ? null
                 : value.Schema;

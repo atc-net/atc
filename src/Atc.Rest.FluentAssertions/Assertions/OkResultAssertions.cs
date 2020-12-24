@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +8,12 @@ namespace Atc.Rest.FluentAssertions
 {
     public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResultAssertions>
     {
-        protected override string Identifier => "OK result";
+        public OkResultAssertions(OkObjectResult subject)
+            : base(subject)
+        {
+        }
 
-        public OkResultAssertions(OkObjectResult subject) : base(subject) { }
+        protected override string Identifier => "OK result";
 
         public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
             => Subject.Value.Should().BeOfType<T>(because, becauseArgs);

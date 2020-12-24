@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -127,7 +127,7 @@ namespace Atc.XUnit.Internal
             if (excludeSourceTypes != null && excludeSourceTypes.Count > 0)
             {
                 sourceTypes = sourceTypes
-                    .Where(sourceType => excludeSourceTypes.FirstOrDefault(x => x.BeautifyName(true, false, true) == sourceType.BeautifyName(true, false, true)) == null)
+                    .Where(sourceType => excludeSourceTypes.FirstOrDefault(x => string.Equals(x.BeautifyName(true, false, true), sourceType.BeautifyName(true, false, true), StringComparison.Ordinal)) == null)
                     .OrderBy(x => x.Name)
                     .ToArray();
             }

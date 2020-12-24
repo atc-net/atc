@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +18,7 @@ namespace Atc.Rest.Middleware
             this.next = next;
         }
 
-        public Task Invoke(HttpContext context)
+        public Task InvokeAsync(HttpContext context)
         {
             if (context == null)
             {
@@ -26,6 +26,13 @@ namespace Atc.Rest.Middleware
             }
 
             return InternalInvokeAsync(context);
+        }
+
+        private static bool IsKeepAlivePing(HttpRequest request)
+        {
+            return request.Path == "/" &&
+                   string.Equals(request.Method, "GET", StringComparison.Ordinal) &&
+                   !request.PathBase.HasValue;
         }
 
         private async Task InternalInvokeAsync(HttpContext context)
@@ -38,11 +45,6 @@ namespace Atc.Rest.Middleware
             }
 
             await next(context);
-        }
-
-        private static bool IsKeepAlivePing(HttpRequest request)
-        {
-            return request.Path == "/" && request.Method == "GET" && !request.PathBase.HasValue;
         }
     }
 }

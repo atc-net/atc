@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atc.Rest.Results
@@ -19,7 +18,7 @@ namespace Atc.Rest.Results
         /// <summary>
         /// Performs an implicit conversion from result to ActionResult.
         /// </summary>
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Ok.")]
+        /// <param name="x">The resultBase.</param>
         public static implicit operator ActionResult(ResultBase x) => x.result;
     }
 }

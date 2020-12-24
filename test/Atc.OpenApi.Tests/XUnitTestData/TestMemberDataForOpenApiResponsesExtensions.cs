@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mime;
 using Microsoft.OpenApi.Models;
@@ -26,7 +27,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         ["200"] = new OpenApiResponse
                         {
                             Description = "Ok",
-                            Content = new Dictionary<string, OpenApiMediaType>
+                            Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                             {
                                 [MediaTypeNames.Application.Json] = new OpenApiMediaType
                                 {
@@ -48,7 +49,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         ["200"] = new OpenApiResponse
                         {
                             Description = "Ok",
-                            Content = new Dictionary<string, OpenApiMediaType>
+                            Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                             {
                                 [MediaTypeNames.Application.Json] = new OpenApiMediaType
                                 {

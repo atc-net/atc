@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -30,7 +31,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 RequestBody = new OpenApiRequestBody
                 {
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
@@ -47,7 +48,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 RequestBody = new OpenApiRequestBody
                 {
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
@@ -64,7 +65,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 RequestBody = new OpenApiRequestBody
                 {
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
@@ -84,7 +85,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     ["200"] = new OpenApiResponse
                     {
                         Description = "Ok",
-                        Content = new Dictionary<string, OpenApiMediaType>
+                        Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                         {
                             [MediaTypeNames.Application.Json] = new OpenApiMediaType
                             {
@@ -105,7 +106,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     ["200"] = new OpenApiResponse
                     {
                         Description = "Ok",
-                        Content = new Dictionary<string, OpenApiMediaType>
+                        Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                         {
                             [MediaTypeNames.Application.Json] = new OpenApiMediaType
                             {
@@ -228,7 +229,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 ["200"] = new OpenApiResponse
                 {
                     Description = "Ok",
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
@@ -246,7 +247,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 ["200"] = new OpenApiResponse
                 {
                     Description = "Ok",
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {
@@ -268,7 +269,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Id = "address",
                 },
                 Title = "Address",
-                Properties = new Dictionary<string, OpenApiSchema>
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                 {
                     ["streetName"] = new OpenApiSchema
                     {
@@ -296,7 +297,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         },
                     },
                 },
-                Required = new HashSet<string>
+                Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "name",
                     "alpha2Code",
@@ -316,7 +317,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Id = "country",
                 },
                 Title = "Country",
-                Properties = new Dictionary<string, OpenApiSchema>
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                 {
                     ["name"] = new OpenApiSchema
                     {
@@ -335,7 +336,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         MaxLength = 3,
                     },
                 },
-                Required = new HashSet<string>
+                Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "name",
                     "alpha2Code",
@@ -355,7 +356,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Id = "pet",
                 },
                 Title = "MyPet",
-                Properties = new Dictionary<string, OpenApiSchema>
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                 {
                     ["id"] = new OpenApiSchema
                     {
@@ -372,7 +373,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         Title = "MyTag",
                     },
                 },
-                Required = new HashSet<string>
+                Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "id",
                     "name",
@@ -412,7 +413,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Type = ReferenceType.Schema,
                     Id = "newPet",
                 },
-                Properties = new Dictionary<string, OpenApiSchema>
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                 {
                     ["id"] = new OpenApiSchema
                     {
@@ -428,7 +429,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         Type = "string",
                     },
                 },
-                Required = new HashSet<string>
+                Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "name",
                 },
@@ -480,7 +481,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Type = ReferenceType.Schema,
                     Id = "errorModel",
                 },
-                Properties = new Dictionary<string, OpenApiSchema>
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
                 {
                     ["code"] = new OpenApiSchema
                     {
@@ -492,7 +493,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         Type = "string",
                     },
                 },
-                Required = new HashSet<string>
+                Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "code",
                     "message",

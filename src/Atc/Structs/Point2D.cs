@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 // ReSharper disable once CheckNamespace
 namespace Atc
@@ -14,14 +14,15 @@ namespace Atc
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        public Point2D(double x, double y) : this()
+        public Point2D(double x, double y)
+            : this()
         {
             this.X = x;
             this.Y = y;
         }
 
         /// <summary>
-        /// Gets or sets the X.
+        /// Gets the X.
         /// </summary>
         /// <value>
         /// The X.
@@ -29,7 +30,7 @@ namespace Atc
         public double X { get; }
 
         /// <summary>
-        /// Gets or sets the Y.
+        /// Gets the Y.
         /// </summary>
         /// <value>
         /// The Y.

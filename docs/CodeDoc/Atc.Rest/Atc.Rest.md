@@ -44,7 +44,7 @@ CorrelationId
 ```csharp
 OnBehalfOfIdentity
 ```
-<p><b>Summary:</b> Identity of original caller when running as core service, otherwise its the same Identity.</p>
+<p><b>Summary:</b> Gets the identity of original caller when running as core service, otherwise its the same Identity.</p>
 
 #### RequestCancellationToken
 

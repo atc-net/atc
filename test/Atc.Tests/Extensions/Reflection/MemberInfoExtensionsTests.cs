@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -87,6 +87,7 @@ namespace Atc.Tests.Extensions.Reflection
     }
 
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
+    [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK.")]
     internal class TestItem
     {
         public string Hallo { get; set; }

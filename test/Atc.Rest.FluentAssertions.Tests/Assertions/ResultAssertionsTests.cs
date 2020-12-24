@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using Xunit.Sdk;
@@ -7,8 +7,6 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
 {
     public class ResultAssertionsTests
     {
-        private class DummyResult : ActionResult { }
-
         [Fact]
         public void BeContentResult_Throws_When_Subject_Isnt_ContentResult()
         {
@@ -321,6 +319,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Invoking(x => x.BeConflictResult())
                 .Should()
                 .NotThrow();
+        }
+
+        private class DummyResult : ActionResult
+        {
         }
     }
 }

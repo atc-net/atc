@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Atc.Structs
 {
@@ -13,14 +13,15 @@ namespace Atc.Structs
         /// </summary>
         /// <param name="latitude">The latitude (also know as Y or Easting).</param>
         /// <param name="longitude">The longitude (also know as X or Northing).</param>
-        public CartesianCoordinate(double latitude, double longitude) : this()
+        public CartesianCoordinate(double latitude, double longitude)
+            : this()
         {
             this.Latitude = latitude;
             this.Longitude = longitude;
         }
 
         /// <summary>
-        /// Gets or sets the latitude (also know as Y or Easting).
+        /// Gets latitude (also know as Y or Easting).
         /// </summary>
         /// <value>
         /// The latitude.
@@ -28,7 +29,7 @@ namespace Atc.Structs
         public double Latitude { get; }
 
         /// <summary>
-        /// Gets or sets the longitude (also know as X or Northing).
+        /// Gets the longitude (also know as X or Northing).
         /// </summary>
         /// <value>
         /// The longitude.

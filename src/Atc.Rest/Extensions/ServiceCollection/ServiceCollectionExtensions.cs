@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -42,7 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     if (implementationType
                         .GetInterfaces()
-                        .FirstOrDefault(x => x.FullName == implementationInterface.FullName) == null)
+                        .FirstOrDefault(x => string.Equals(x.FullName, implementationInterface.FullName, StringComparison.Ordinal)) == null)
                     {
                         continue;
                     }

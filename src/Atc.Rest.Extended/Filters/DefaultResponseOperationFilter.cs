@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +38,7 @@ namespace Atc.Rest.Extended.Filters
                 operation.Responses.Add("default", new OpenApiResponse
                 {
                     Description = "Problem response",
-                    Content = new Dictionary<string, OpenApiMediaType>
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
                         {

@@ -4,24 +4,18 @@
   <PropertyGroup Label="Code Analysis">
     <Features>IOperation</Features>
     <TreatWarningsAsErrors Condition=" '$(Configuration)' == 'Release' ">true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <nullable Condition="'$(IsTestFolder)' == 'false'">enable</nullable>
-    <LangVersion>8.0</LangVersion>
-    <CodeAnalysisRuleSet Condition="'$(IsTestFolder)' == 'false'">$(MSBuildThisFileDirectory)code-analysis.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSet Condition="'$(IsTestFolder)' == 'true'">$(MSBuildThisFileDirectory)code-analysis-test.ruleset</CodeAnalysisRuleSet>
+    <Nullable Condition="'$(IsTestFolder)' == 'false'">enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup Label="Code Analysis">
-    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)custom-dictionary.xml" Link="custom-dictionary.xml" />
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" Visible="false" />
-  </ItemGroup>
-
   <ItemGroup Label="NuGet">
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
     <PackageReference Include="AsyncFixer" Version="1.3.0" PrivateAssets="All" />
+    <PackageReference Include="Asyncify" Version="0.9.7" PrivateAssets="all" />
+    <PackageReference Include="Meziantou.Analyzer" Version="1.0.606" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.55" PrivateAssets="all" />
     <PackageReference Include="SecurityCodeScan" Version="3.5.3" PrivateAssets="all" />
-	<PackageReference Include="SonarAnalyzer.CSharp" Version="8.13.1.21947" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.15.0.24505" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

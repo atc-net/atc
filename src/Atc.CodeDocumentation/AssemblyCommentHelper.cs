@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -27,7 +27,7 @@ namespace Atc.CodeDocumentation
             }
 
             return CollectExportedTypesWithComments(type.Assembly, xmlFile, null, null)
-                .FirstOrDefault(x => x.FullName == type.FullName);
+                .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
         }
 
         public static TypeComments[] CollectExportedTypesWithMissingComments(Assembly assembly, string? namespaceMatch = null, List<Type>? excludeSourceTypes = null)
@@ -118,7 +118,7 @@ namespace Atc.CodeDocumentation
             var text = File.ReadAllText(xmlPath.FullName);
             var xDocument = XDocument.Parse(text);
             var comments = XmlDocumentCommentParser.ParseXmlComment(xDocument, namespaceMatch);
-            var commentsLookup = comments.ToLookup(x => x!.ClassName);
+            var commentsLookup = comments.ToLookup(x => x!.ClassName, StringComparer.Ordinal);
 
             var namespaceRegex = !string.IsNullOrEmpty(namespaceMatch)
                 ? new Regex(namespaceMatch)

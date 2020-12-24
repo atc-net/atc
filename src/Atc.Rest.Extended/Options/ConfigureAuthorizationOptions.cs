@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -21,7 +21,7 @@ namespace Atc.Rest.Extended.Options
         IPostConfigureOptions<AuthenticationOptions>
     {
         private const string WellKnownOpenidConfiguration = ".well-known/openid-configuration";
-        private readonly IWebHostEnvironment environment;
+        private readonly IWebHostEnvironment? environment;
         private readonly RestApiExtendedOptions apiOptions;
 
         public ConfigureAuthorizationOptions(
@@ -32,6 +32,7 @@ namespace Atc.Rest.Extended.Options
             apiOptions = options ?? throw new ArgumentNullException(nameof(options));
         }
 
+        [SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "OK.")]
         public void PostConfigure(string name, JwtBearerOptions options)
         {
             if (apiOptions.AllowAnonymousAccessForDevelopment && environment?.IsDevelopment() == true)
@@ -61,11 +62,9 @@ namespace Atc.Rest.Extended.Options
                 ValidateAudience = true,
                 ValidAudience = apiOptions.Authorization.Audience,
                 ValidAudiences = apiOptions.Authorization.ValidAudiences,
+                ValidateIssuer = !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
+                                 apiOptions.Authorization.ValidIssuers?.Any() == true,
             };
-
-            options.TokenValidationParameters.ValidateIssuer =
-                !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
-                apiOptions.Authorization.ValidIssuers?.Any() == true;
 
             if (!options.TokenValidationParameters.ValidateIssuer)
             {
@@ -75,7 +74,7 @@ namespace Atc.Rest.Extended.Options
             options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
             options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
 
-            options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeys(options).GetAwaiter().GetResult();
+            options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeysAsync(options).GetAwaiter().GetResult();
             options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
         }
 
@@ -89,39 +88,8 @@ namespace Atc.Rest.Extended.Options
             options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
         }
 
-        private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeys(JwtBearerOptions options)
-        {
-            var issuerSigningKeys = new List<SecurityKey>();
-
-            if (!string.IsNullOrEmpty(options.Authority))
-            {
-                issuerSigningKeys.AddRange(
-                    await GetIssuerSigningKeys(
-                        options.Authority));
-            }
-
-            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
-            {
-                issuerSigningKeys.AddRange(
-                    await GetIssuerSigningKeys(
-                        apiOptions.Authorization.Issuer));
-            }
-
-            foreach (var issuer in options.TokenValidationParameters.ValidIssuers)
-            {
-                issuerSigningKeys.AddRange(
-                    await GetIssuerSigningKeys(
-                        issuer));
-            }
-
-            return issuerSigningKeys;
-        }
-
-        [SuppressMessage(
-            "Design",
-            "CA1031:Do not catch general exception types",
-            Justification = "Not all issuers are used as the base URL for the well known OpenID configuration")]
-        private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeys(string issuer)
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not all issuers are used as the base URL for the well known OpenID configuration")]
+        private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(string issuer)
         {
             try
             {
@@ -139,6 +107,34 @@ namespace Atc.Rest.Extended.Options
             }
         }
 
+        private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(JwtBearerOptions options)
+        {
+            var issuerSigningKeys = new List<SecurityKey>();
+
+            if (!string.IsNullOrEmpty(options.Authority))
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeysAsync(
+                        options.Authority));
+            }
+
+            if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeysAsync(
+                        apiOptions.Authorization.Issuer));
+            }
+
+            foreach (var issuer in options.TokenValidationParameters.ValidIssuers)
+            {
+                issuerSigningKeys.AddRange(
+                    await GetIssuerSigningKeysAsync(
+                        issuer));
+            }
+
+            return issuerSigningKeys;
+        }
+
         private void SanityCheck(JwtBearerOptions options)
         {
             if (options == null)
@@ -149,8 +145,7 @@ namespace Atc.Rest.Extended.Options
             if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
                 string.IsNullOrEmpty(apiOptions.Authorization.Audience))
             {
-                throw new InvalidOperationException(
-                    $"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appsettings and ensure that the ClientId or Audience is specified");
+                throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
             }
         }
     }

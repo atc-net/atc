@@ -1,8 +1,13 @@
-﻿using Microsoft.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 {
+    /// <summary>
+    /// SyntaxTokenFactory - for keyword methods.
+    /// </summary>
+    [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK. Partial class.")]
     public static partial class SyntaxTokenFactory
     {
         public static SyntaxToken AbstractKeyword(bool withTrailingSpace = true)
