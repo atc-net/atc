@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Atc.Rest.Results
@@ -10,7 +10,7 @@ namespace Atc.Rest.Results
             // Dummy for serialization.
         }
 
-        public Pagination(List<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
+        public Pagination(IEnumerable<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
         {
             if (items is null)
             {
@@ -25,7 +25,7 @@ namespace Atc.Rest.Results
             TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
         }
 
-        public Pagination(List<T> items, int pageSize, string? queryString, string? continuationToken)
+        public Pagination(IEnumerable<T> items, int pageSize, string? queryString, string? continuationToken)
         {
             if (items is null)
             {
@@ -52,7 +52,7 @@ namespace Atc.Rest.Results
 
         public int? TotalPages { get; set; }
 
-        public List<T> Items { get; set; } = new List<T>();
+        public IReadOnlyCollection<T> Items { get; set; } = Array.Empty<T>();
 
         public override string ToString()
         {
