@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Atc.Rest.Results
 {
+    [Serializable]
     public class Pagination<T>
     {
         public Pagination()
@@ -10,7 +11,7 @@ namespace Atc.Rest.Results
             // Dummy for serialization.
         }
 
-        public Pagination(List<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
+        public Pagination(IEnumerable<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
         {
             if (items is null)
             {
@@ -22,10 +23,9 @@ namespace Atc.Rest.Results
             QueryString = queryString;
             PageIndex = pageIndex;
             TotalCount = totalCount;
-            TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
         }
 
-        public Pagination(List<T> items, int pageSize, string? queryString, string? continuationToken)
+        public Pagination(IEnumerable<T> items, int pageSize, string? queryString, string? continuationToken)
         {
             if (items is null)
             {
@@ -50,13 +50,13 @@ namespace Atc.Rest.Results
 
         public int? TotalCount { get; set; }
 
-        public int? TotalPages { get; set; }
+        public int? TotalPages => TotalCount is null
+            ? null
+            : (int)Math.Ceiling((double)(TotalCount / PageSize));
 
-        public List<T> Items { get; set; } = new List<T>();
+        public IReadOnlyList<T>? Items { get; set; } = Array.Empty<T>();
 
         public override string ToString()
-        {
-            return $"{nameof(Items)}.Count: {Items.Count}, {nameof(PageSize)}: {PageSize}, {nameof(PageIndex)}: {PageIndex}, {nameof(QueryString)}: {QueryString}, , {nameof(ContinuationToken)}: {ContinuationToken}, {nameof(TotalCount)}: {TotalCount}, {nameof(TotalPages)}: {TotalPages}";
-        }
+            => FormattableString.Invariant($"{nameof(PageIndex)}: {PageIndex}, {nameof(PageSize)}: {PageSize}, {nameof(QueryString)}: {QueryString}, {nameof(ContinuationToken)}: {ContinuationToken}, {nameof(Count)}: {Count}, {nameof(TotalCount)}: {TotalCount}, {nameof(TotalPages)}: {TotalPages}");
     }
 }
