@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Atc.Rest.Results
 {
-    [Serializable]
     public class Pagination<T>
     {
         public Pagination()
