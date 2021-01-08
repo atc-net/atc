@@ -3,7 +3,7 @@ name: "Post-Integration"
 on:
   push:
     branches:
-      - main
+      - master
       - '!stable'
       - '!release'
 
