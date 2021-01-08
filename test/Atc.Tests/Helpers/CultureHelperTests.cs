@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Atc.Data.Models;
 using Atc.Helpers;
 using Atc.Tests.XUnitTestData;
@@ -11,6 +12,12 @@ namespace Atc.Tests.Helpers
 {
     public class CultureHelperTests
     {
+        public CultureHelperTests()
+        {
+            Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
+            Thread.CurrentThread.CurrentUICulture = GlobalizationConstants.EnglishCultureInfo;
+        }
+
         [Theory]
         [InlineData(200)]
         public void GetCultures(int expectedAtLeast)
