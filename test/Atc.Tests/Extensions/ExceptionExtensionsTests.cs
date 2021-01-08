@@ -160,10 +160,11 @@ namespace Atc.Tests.Extensions
         }
 
         [Theory]
-        [InlineData("mySuper\r\nmyArg\r\nmyArray\r\n", "myArray", "myArg", "mySuper")]
+        [InlineData("mySuper#myArg#myArray#", "myArray", "myArg", "mySuper")]
         public void Flatten(string expected, string message1, string message2, string message3)
         {
             // Arrange
+            expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
             var exception1 = new ArrayTypeMismatchException(message1);
             var exception2 = new ArgumentException(message2, exception1);
             var input = new Exception(message3, exception2);
@@ -176,10 +177,11 @@ namespace Atc.Tests.Extensions
         }
 
         [Theory]
-        [InlineData("Hallo\r\nmySuper\r\nmyArg\r\nmyArray\r\n", "Hallo", "myArray", "myArg", "mySuper")]
+        [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper")]
         public void Flatten_Message(string expected, string message0, string message1, string message2, string message3)
         {
             // Arrange
+            expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
             var exception1 = new ArrayTypeMismatchException(message1);
             var exception2 = new ArgumentException(message2, exception1);
             var input = new Exception(message3, exception2);
@@ -192,11 +194,12 @@ namespace Atc.Tests.Extensions
         }
 
         [Theory]
-        [InlineData("Hallo\r\nmySuper\r\nmyArg\r\nmyArray\r\n", "Hallo", "myArray", "myArg", "mySuper", false)]
-        [InlineData("Hallo\r\nmySuper\r\nmyArg\r\nmyArray\r\n", "Hallo", "myArray", "myArg", "mySuper", true)]
+        [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper", false)]
+        [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper", true)]
         public void Flatten_Message_IncludeStackTrace(string expected, string message0, string message1, string message2, string message3, bool includeStackTrace)
         {
             // Arrange
+            expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
             var exception1 = new ArrayTypeMismatchException(message1);
             var exception2 = new ArgumentException(message2, exception1);
             var input = new Exception(message3, exception2);

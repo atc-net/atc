@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Tests.XUnitTestData;
 using Xunit;
 
@@ -24,8 +24,6 @@ namespace Atc.Tests.Extensions
         [InlineData(false, "John Doe", "John DOE", StringComparison.Ordinal)]
         [InlineData(true, "John Doe", "John DOE", StringComparison.OrdinalIgnoreCase)]
         [InlineData(false, "Strasse", "Straße", StringComparison.OrdinalIgnoreCase)]
-        [InlineData(true, "Strasse", "Straße", StringComparison.InvariantCultureIgnoreCase)]
-        [InlineData(true, "Strasse", "Straße", StringComparison.CurrentCultureIgnoreCase)]
         public void IsEqual_StringComparison(bool expected, string inputA, string inputB, StringComparison comparison)
             => Assert.Equal(expected, inputA.IsEqual(inputB, comparison));
 

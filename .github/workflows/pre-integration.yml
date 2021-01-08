@@ -75,8 +75,11 @@ jobs:
         with:
           dotnet-version: '5.0.x'
 
-      - name: Running unit tests
+      - name: Prepare build for unit tests
         run: |
+          dotnet clean -c Debug
           dotnet restore
           dotnet build -c Debug /p:UseSourceLink=true --no-restore
-          dotnet test -c Debug --no-build
+
+      - name: Run unit tests
+        run: dotnet test -c Debug --no-build

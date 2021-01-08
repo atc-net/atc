@@ -341,7 +341,7 @@ namespace Atc.Helpers
 
             if (!includeLcids.Contains(displayLanguageLcid))
             {
-                throw new ArgumentPropertyException("Display language must be included in include-lcid-list.", nameof(displayLanguageLcid));
+                throw new ArgumentPropertyException($"Display language (LCID={displayLanguageLcid}) must be included in include-lcid-list of {includeLcids.Count} items.", nameof(displayLanguageLcid));
             }
 
             var cultures = GetCultures(displayLanguageLcid, includeLcids);
