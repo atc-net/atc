@@ -284,7 +284,7 @@ namespace Atc.Tests.Helpers
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper))]
+        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
         public void GetCultureFromValue_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, string input, int displayLanguageLcid)
         {
             // Act
@@ -298,7 +298,7 @@ namespace Atc.Tests.Helpers
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidIncludeLcidsData), MemberType = typeof(TestMemberDataForCultureHelper))]
+        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidIncludeLcidsData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
         public void GetCultureFromValue_DisplayLanguageLcid_IncludeLcids(string expectedCountryName, string expectedLanguageName, string input, int[] includeLcids, int displayLanguageLcid)
         {
             // Arrange

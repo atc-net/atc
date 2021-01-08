@@ -80,7 +80,7 @@ namespace Atc.Tests.Helpers.Enums
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         public void ConvertEnumToArray<T>(
             T dummyForT,
             int expectedCount,
@@ -110,7 +110,7 @@ namespace Atc.Tests.Helpers.Enums
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         public void ConvertEnumToDictionary<T>(
             T dummyForT,
             int expectedCount,
@@ -140,7 +140,7 @@ namespace Atc.Tests.Helpers.Enums
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         public void ConvertEnumToDictionaryWithStringKey<T>(
             T dummyForT,
             int expectedCount,
