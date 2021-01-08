@@ -28,7 +28,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterThan(expectedAtLeast - 1);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -117,7 +117,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterThan(expectedAtLeast - 1);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -350,7 +350,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Dictionary<int, string>>()
-                .And.HaveCountGreaterThan(expectedAtLeast - 1);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -477,7 +477,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Dictionary<int, string>>()
-                .And.HaveCountGreaterThan(expectedAtLeast - 1);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
