@@ -6,11 +6,6 @@ on:
       - opened
       - synchronize
       - reopened
-  push:
-    branches-ignore:
-      - 'master'
-      - 'stable'
-      - 'release'
 
 jobs:
   dotnetcore31-build:
@@ -82,8 +77,6 @@ jobs:
 
       - name: Running unit tests
         run: |
-          dotnet clean -c Debug
-          dotnet nuget locals all --clear
           dotnet restore
           dotnet build -c Debug /p:UseSourceLink=true --no-restore
           dotnet test -c Debug --no-build
