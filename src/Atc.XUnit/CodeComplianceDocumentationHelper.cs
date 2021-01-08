@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Atc.CodeDocumentation;
 
 namespace Atc.XUnit
@@ -40,6 +41,12 @@ namespace Atc.XUnit
             if (assembly == null)
             {
                 throw new ArgumentNullException(nameof(assembly));
+            }
+
+            // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return;
             }
 
             var typesWithMissingCommentsGroups = DocumentationHelper.CollectExportedTypesWithMissingCommentsFromAssembly(
