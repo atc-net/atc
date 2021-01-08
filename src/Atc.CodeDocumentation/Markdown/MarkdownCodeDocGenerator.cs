@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Atc.CodeDocumentation.Markdown
@@ -21,6 +22,12 @@ namespace Atc.CodeDocumentation.Markdown
         /// <example><![CDATA[MarkdownCodeDocGenerator.Run(Assembly.GetAssembly(typeof(LocalizedDescriptionAttribute)));]]></example>
         public static void Run(Assembly assemblyToCodeDoc, DirectoryInfo? outputPath = null)
         {
+            // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return;
+            }
+
             var typeComments = AssemblyCommentHelper.CollectExportedTypesWithComments(assemblyToCodeDoc);
             if (!typeComments.Any())
             {
