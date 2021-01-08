@@ -21,11 +21,6 @@ namespace Atc.CodeDocumentation
             }
 
             var xmlFile = GetXmlFileForAssembly(type.Assembly);
-            if (xmlFile == null)
-            {
-                throw new IOException($"No xml document found for the assembly: {type.Assembly.FullName}");
-            }
-
             return CollectExportedTypesWithComments(type.Assembly, xmlFile, null, null)
                 .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
         }
@@ -38,11 +33,6 @@ namespace Atc.CodeDocumentation
             }
 
             var xmlFile = GetXmlFileForAssembly(assembly);
-            if (xmlFile == null)
-            {
-                throw new IOException($"No xml document found for the assembly: {assembly.FullName}");
-            }
-
             return CollectExportedTypesWithMissingComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
         }
 
@@ -54,11 +44,6 @@ namespace Atc.CodeDocumentation
             }
 
             var xmlFile = GetXmlFileForAssembly(assembly);
-            if (xmlFile == null)
-            {
-                throw new IOException($"No xml document found for the assembly: {assembly.FullName}");
-            }
-
             return CollectExportedTypesWithComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
         }
 
@@ -73,10 +58,15 @@ namespace Atc.CodeDocumentation
             return sb.ToString();
         }
 
-        private static FileInfo? GetXmlFileForAssembly(Assembly assembly)
+        private static FileInfo GetXmlFileForAssembly(Assembly assembly)
         {
             var xmlFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly.GetName().Name + ".xml");
-            return File.Exists(xmlFile) ? new FileInfo(xmlFile) : null;
+            if (File.Exists(xmlFile))
+            {
+                return new FileInfo(xmlFile);
+            }
+
+            throw new IOException($"No xml document found for the assembly: {assembly.FullName}, expected file: {xmlFile}");
         }
 
         private static bool IsRequiredNamespace(Type type, Regex? regex)

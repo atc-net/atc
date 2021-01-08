@@ -4,6 +4,8 @@ using Atc.Tests.XUnitTestData;
 using FluentAssertions;
 using Xunit;
 
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly)]
+
 namespace Atc.Tests
 {
     public class EnumTests
@@ -89,7 +91,7 @@ namespace Atc.Tests
 
         [Theory]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK.")]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         public void ToArray<T>(
             T dummyForT,
             int expectedCount,
@@ -112,7 +114,7 @@ namespace Atc.Tests
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK.")]
         public void ToDictionary<T>(
             T dummyForT,
@@ -136,7 +138,7 @@ namespace Atc.Tests
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK.")]
         public void ToDictionaryWithStringKey<T>(
             T dummyForT,
@@ -160,7 +162,7 @@ namespace Atc.Tests
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK.")]
         public void ToKeyValuePairs<T>(
             T dummyForT,
@@ -184,7 +186,7 @@ namespace Atc.Tests
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum))]
+        [MemberData(nameof(TestMemberDataForEnum.DayOfWeekData), MemberType = typeof(TestMemberDataForEnum), DisableDiscoveryEnumeration = true)]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK.")]
         public void ToKeyValuePairsWithStringKey<T>(
             T dummyForT,

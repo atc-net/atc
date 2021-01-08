@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Atc.Data.Models;
 using Atc.Helpers;
 using Atc.Tests.XUnitTestData;
@@ -10,6 +12,12 @@ namespace Atc.Tests.Helpers
 {
     public class CultureHelperTests
     {
+        public CultureHelperTests()
+        {
+            Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
+            Thread.CurrentThread.CurrentUICulture = GlobalizationConstants.EnglishCultureInfo;
+        }
+
         [Theory]
         [InlineData(200)]
         public void GetCultures(int expectedAtLeast)
@@ -20,7 +28,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterThan(expectedAtLeast);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -109,7 +117,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterThan(expectedAtLeast);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -196,9 +204,18 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByCountryCodeA2(input);
 
             // Assert
-            actual.Should().NotBeNull()
-                .And.BeOfType<List<Culture>>()
-                .And.HaveCount(expected);
+            if ("us".Equals(input, StringComparison.Ordinal))
+            {
+                actual.Should().NotBeNull()
+                    .And.BeOfType<List<Culture>>()
+                    .And.HaveCountGreaterOrEqualTo(expected - 1);
+            }
+            else
+            {
+                actual.Should().NotBeNull()
+                    .And.BeOfType<List<Culture>>()
+                    .And.HaveCount(expected);
+            }
         }
 
         [Theory]
@@ -212,9 +229,18 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByCountryCodeA2(displayLanguageLcid, input);
 
             // Assert
-            actual.Should().NotBeNull()
-                .And.BeOfType<List<Culture>>()
-                .And.HaveCount(expected);
+            if ("us".Equals(input, StringComparison.Ordinal))
+            {
+                actual.Should().NotBeNull()
+                    .And.BeOfType<List<Culture>>()
+                    .And.HaveCountGreaterOrEqualTo(expected - 1);
+            }
+            else
+            {
+                actual.Should().NotBeNull()
+                    .And.BeOfType<List<Culture>>()
+                    .And.HaveCount(expected);
+            }
         }
 
         [Theory]
@@ -228,11 +254,11 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByLanguageCodeA2(input);
 
             // Assert
-            if (string.Equals(input, "en", System.StringComparison.Ordinal))
+            if (string.Equals(input, "en", StringComparison.Ordinal))
             {
                 actual.Should().NotBeNull()
                     .And.BeOfType<List<Culture>>()
-                    .And.HaveCountGreaterOrEqualTo(expected);
+                    .And.HaveCountGreaterOrEqualTo(expected - 1);
             }
             else
             {
@@ -253,11 +279,11 @@ namespace Atc.Tests.Helpers
             var actual = CultureHelper.GetCulturesByLanguageCodeA2(displayLanguageLcid, input);
 
             // Assert
-            if (string.Equals(input, "en", System.StringComparison.Ordinal))
+            if (string.Equals(input, "en", StringComparison.Ordinal))
             {
                 actual.Should().NotBeNull()
                     .And.BeOfType<List<Culture>>()
-                    .And.HaveCountGreaterOrEqualTo(expected);
+                    .And.HaveCountGreaterOrEqualTo(expected - 1);
             }
             else
             {
@@ -284,7 +310,7 @@ namespace Atc.Tests.Helpers
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper))]
+        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
         public void GetCultureFromValue_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, string input, int displayLanguageLcid)
         {
             // Act
@@ -298,7 +324,7 @@ namespace Atc.Tests.Helpers
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidIncludeLcidsData), MemberType = typeof(TestMemberDataForCultureHelper))]
+        [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidIncludeLcidsData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
         public void GetCultureFromValue_DisplayLanguageLcid_IncludeLcids(string expectedCountryName, string expectedLanguageName, string input, int[] includeLcids, int displayLanguageLcid)
         {
             // Arrange
@@ -324,7 +350,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Dictionary<int, string>>()
-                .And.HaveCountGreaterThan(expectedAtLeast);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
@@ -451,7 +477,7 @@ namespace Atc.Tests.Helpers
             // Assert
             actual.Should().NotBeNull()
                 .And.BeOfType<Dictionary<int, string>>()
-                .And.HaveCountGreaterThan(expectedAtLeast);
+                .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
         }
 
         [Theory]
