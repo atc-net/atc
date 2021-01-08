@@ -17,13 +17,16 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PAT_WORKFLOWS }}
 
-      - uses: nelonoel/branch-name@v1.0.1
+      - name: Sets environment variables - branch-name
+        uses: nelonoel/branch-name@v1.0.1
 
-      - uses: dotnet/nbgv@master
+      - name: Sets environment variables - Nerdbank.GitVersioning
+        uses: dotnet/nbgv@master
         with:
           setAllVars: true
 
-      - uses: actions/setup-dotnet@v1
+      - name: Setup dotnet 5.0.x
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.x'
 
