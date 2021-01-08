@@ -49,7 +49,7 @@ jobs:
           git config --local user.email "atcnet.org@gmail.com"
           git config --local user.name "Atc-Net"
           git checkout stable
-          git merge --ff-only main
+          git merge --ff-only master
           git push origin stable
 
       - name: Creating library package for pre-release
