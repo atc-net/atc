@@ -28,6 +28,9 @@ jobs:
         with:
           dotnet-version: '3.1.x'
 
+      - name: Clean
+        run: dotnet clean -c Release && dotnet nuget locals all --clear
+
       - name: Restore packages
         run: dotnet restore
 
@@ -48,6 +51,9 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.x'
+
+      - name: Clean
+        run: dotnet clean -c Release && dotnet nuget locals all --clear
 
       - name: Restore packages
         run: dotnet restore
@@ -76,6 +82,7 @@ jobs:
 
       - name: Running unit tests
         run: |
+          dotnet clean -c Debug && dotnet nuget locals all --clear
           dotnet restore
           dotnet build -c Debug /p:UseSourceLink=true --no-restore
           dotnet test -c Debug --no-build
