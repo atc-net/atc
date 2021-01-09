@@ -53,7 +53,7 @@ jobs:
           git push origin stable
 
       - name: Creating library package for pre-release
-        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME -p:ContinuousIntegrationBuild=true -Version=${NBGV_NuGetPackageVersion}
+        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME -p:ContinuousIntegrationBuild=true -p:Version=${NBGV_NuGetPackageVersion}
 
       - name: Push packages to GitHub Package Registry
         run: |

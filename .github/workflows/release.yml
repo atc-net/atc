@@ -45,7 +45,7 @@ jobs:
           git push origin release
 
       - name: Creating library package for release
-        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME -p:ContinuousIntegrationBuild=true /p:PublicRelease=true -Version=${NBGV_SimpleVersion}
+        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME -p:ContinuousIntegrationBuild=true -p:Version=${NBGV_SimpleVersion}
 
       # - name: Push packages to NuGet
       #   run: |
