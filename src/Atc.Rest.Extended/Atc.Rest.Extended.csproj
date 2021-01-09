@@ -1,7 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
     <Title>Atc.Rest.Extended</Title>
     <Authors>Atc-net</Authors>
     <Description>Atc.Rest.Extended is a collection of classes and extension methods for Atc.Rest, that contains SwaggerUI, FluentValidation Versioning etc.</Description>
@@ -9,6 +11,19 @@
     <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/atc-net/atc/master/images/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/atc-net/atc</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageId>Atc.Rest.Extended</PackageId>
+    <AssemblyName>Atc.Rest.Extended</AssemblyName>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>false</PackAsTool>
+    <TieredCompilation>true</TieredCompilation>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugType>embedded</DebugType>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +34,7 @@
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
