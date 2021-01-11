@@ -10,9 +10,9 @@
 [![NuGet Version](https://img.shields.io/nuget/v/atc.svg?logo=nuget)](https://www.nuget.org/profiles/atc-net)
 
 ### Build Status
-![Build](https://github.com/atc-net/atc/workflows/Pre-Integration/badge.svg)
-![Build](https://github.com/atc-net/atc/workflows/Post-Integration/badge.svg)
-![Build](https://github.com/atc-net/atc/workflows/Release/badge.svg)
+![Pre-Integration](https://github.com/atc-net/atc/workflows/Pre-Integration/badge.svg)
+![Post-Integration](https://github.com/atc-net/atc/workflows/Post-Integration/badge.svg)
+![Release](https://github.com/atc-net/atc/workflows/Release/badge.svg)
 
 ### Code Quality
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=atc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=atc)
