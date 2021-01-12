@@ -502,6 +502,12 @@ namespace Microsoft.OpenApi.Models
                 return string.Empty;
             }
 
+            if (schema.Items != null &&
+                !OpenApiDataTypeConstants.Object.Equals(schema.Items.Type, StringComparison.Ordinal))
+            {
+                return string.Empty;
+            }
+
             if (ensureFirstCharacterToUpper)
             {
                 return schema.Items == null
