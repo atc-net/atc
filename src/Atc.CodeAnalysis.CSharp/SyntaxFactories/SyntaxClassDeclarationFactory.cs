@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp.Factories;
 using Microsoft.CodeAnalysis.CSharp;
@@ -96,7 +96,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 .AddSuppressMessageAttribute(suppressMessage);
         }
 
-        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCheckId(string classTypeName, int checkId, string justification = "")
+        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, int checkId, string justification = "")
         {
             if (classTypeName == null)
             {
@@ -104,10 +104,10 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             }
 
             return Create(classTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.Create(checkId, justification));
+                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalyzer(checkId, justification));
         }
 
-        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
         {
             if (classTypeName == null)
             {
@@ -120,7 +120,34 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             }
 
             return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.Create(checkId, justification));
+                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalyzer(checkId, justification));
+        }
+
+        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, int checkId, string justification = "")
+        {
+            if (classTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(classTypeName));
+            }
+
+            return Create(classTypeName)
+                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopAnalyzer(checkId, justification));
+        }
+
+        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+        {
+            if (classTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(classTypeName));
+            }
+
+            if (inheritClassTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(inheritClassTypeName));
+            }
+
+            return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
+                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopAnalyzer(checkId, justification));
         }
     }
 }

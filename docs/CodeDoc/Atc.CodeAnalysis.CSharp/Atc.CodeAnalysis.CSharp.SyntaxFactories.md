@@ -261,10 +261,15 @@ ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
 ```csharp
 ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
 ```
-#### CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId
+#### CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalyzerCheckId
 
 ```csharp
-ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
+ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
+```
+#### CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopAnalyzerCheckId
+
+```csharp
+ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
 ```
 #### CreateWithInterface
 
@@ -276,10 +281,15 @@ ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfac
 ```csharp
 ClassDeclarationSyntax CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
 ```
-#### CreateWithSuppressMessageAttributeByCheckId
+#### CreateWithSuppressMessageAttributeByCodeAnalyzerCheckId
 
 ```csharp
-ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCheckId(string classTypeName, int checkId, string justification = )
+ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, int checkId, string justification = )
+```
+#### CreateWithSuppressMessageAttributeByStyleCopAnalyzerCheckId
+
+```csharp
+ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, int checkId, string justification = )
 ```
 
 <br />
