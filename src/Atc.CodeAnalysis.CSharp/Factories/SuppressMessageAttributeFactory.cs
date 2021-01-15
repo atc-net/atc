@@ -13,7 +13,7 @@ namespace Atc.CodeAnalysis.CSharp.Factories
     public static class SuppressMessageAttributeFactory
     {
         [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
-        public static SuppressMessageAttribute CreateCodeAnalyzer(int checkId, string? justification)
+        public static SuppressMessageAttribute CreateCodeAnalysisSuppression(int checkId, string? justification)
         {
             if (string.IsNullOrEmpty(justification))
             {
@@ -30,7 +30,23 @@ namespace Atc.CodeAnalysis.CSharp.Factories
         }
 
         [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
-        public static SuppressMessageAttribute CreateStyleCopAnalyzer(int checkId, string? justification)
+        public static SuppressMessageAttribute CreateCodeStyleSuppression(int checkId, string? justification)
+        {
+            if (string.IsNullOrEmpty(justification))
+            {
+                justification = "OK.";
+            }
+
+            return checkId switch
+            {
+                // TODO: Add all rules
+                1998 => new SuppressMessageAttribute("?", "CS1998:This async method lacks ‘await’ operators and will run synchronously") { Justification = justification },
+                _ => throw new NotImplementedException($"Rule for CS{checkId} must be implemented.")
+            };
+        }
+
+        [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
+        public static SuppressMessageAttribute CreateStyleCopSuppression(int checkId, string? justification)
         {
             if (string.IsNullOrEmpty(justification))
             {
