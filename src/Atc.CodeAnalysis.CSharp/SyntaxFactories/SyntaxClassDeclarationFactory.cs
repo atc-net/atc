@@ -123,33 +123,6 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalysisSuppression(checkId, justification));
         }
 
-        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeStyleCheckId(string classTypeName, int checkId, string justification = "")
-        {
-            if (classTypeName == null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            return Create(classTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeStyleSuppression(checkId, justification));
-        }
-
-        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeStyleCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
-        {
-            if (classTypeName == null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (inheritClassTypeName == null)
-            {
-                throw new ArgumentNullException(nameof(inheritClassTypeName));
-            }
-
-            return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeStyleSuppression(checkId, justification));
-        }
-
         public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = "")
         {
             if (classTypeName == null)
