@@ -15,8 +15,8 @@
 
 - [SuppressMessageAttributeFactory](Atc.CodeAnalysis.CSharp.Factories.md#suppressmessageattributefactory)
   -  Static Methods
-     - CreateCodeAnalyzer(int checkId, string justification)
-     - CreateStyleCopAnalyzer(int checkId, string justification)
+     - CreateCodeAnalysisSuppression(int checkId, string justification)
+     - CreateStyleCopSuppression(int checkId, string justification)
 
 ## [Atc.CodeAnalysis.CSharp.SyntaxFactories](Atc.CodeAnalysis.CSharp.SyntaxFactories.md)
 
@@ -65,12 +65,12 @@
      - CreateAsPublicPartial(string classTypeName)
      - CreateAsPublicStatic(string classTypeName)
      - CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
-     - CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
-     - CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
+     - CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
+     - CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
      - CreateWithInterface(string classTypeName, string interfaceTypeName)
      - CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
-     - CreateWithSuppressMessageAttributeByCodeAnalyzerCheckId(string classTypeName, int checkId, string justification = )
-     - CreateWithSuppressMessageAttributeByStyleCopAnalyzerCheckId(string classTypeName, int checkId, string justification = )
+     - CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, int checkId, string justification = )
+     - CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = )
 - [SyntaxIfStatementFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxifstatementfactory)
   -  Static Methods
      - CreateParameterArgumentNullCheck(string parameterName, bool includeSystem = True)
@@ -177,6 +177,9 @@
 - [InterfaceDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#interfacedeclarationsyntaxextensions)
   -  Static Methods
      - AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
+- [MethodDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#methoddeclarationsyntaxextensions)
+  -  Static Methods
+     - AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
 - [SyntaxNodeExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#syntaxnodeextensions)
   -  Static Methods
      - GetUsedUsingStatements(this SyntaxNode syntaxNode)

@@ -47,6 +47,7 @@
 - [CompilationUnitSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#compilationunitsyntaxextensions)
 - [EnumDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#enumdeclarationsyntaxextensions)
 - [InterfaceDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#interfacedeclarationsyntaxextensions)
+- [MethodDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#methoddeclarationsyntaxextensions)
 - [SyntaxNodeExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#syntaxnodeextensions)
 - [UsingDirectiveSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#usingdirectivesyntaxextensions)
 

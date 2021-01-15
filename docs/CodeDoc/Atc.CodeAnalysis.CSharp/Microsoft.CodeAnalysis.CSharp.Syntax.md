@@ -95,6 +95,24 @@ InterfaceDeclarationSyntax AddGeneratedCodeAttribute(this InterfaceDeclarationSy
 <br />
 
 
+## MethodDeclarationSyntaxExtensions
+
+```csharp
+public static class MethodDeclarationSyntaxExtensions
+```
+
+### Static Methods
+
+
+#### AddSuppressMessageAttribute
+
+```csharp
+MethodDeclarationSyntax AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
+```
+
+<br />
+
+
 ## SyntaxNodeExtensions
 
 ```csharp
