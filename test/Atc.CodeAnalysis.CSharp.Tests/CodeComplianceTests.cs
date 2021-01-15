@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
@@ -21,6 +21,7 @@ namespace Atc.CodeAnalysis.CSharp.Tests
             // TODO: Add UnitTest and remove from this list!!
             typeof(ClassDeclarationSyntaxExtensions),
             typeof(EnumDeclarationSyntaxExtensions),
+            typeof(MethodDeclarationSyntaxExtensions),
             typeof(SyntaxNodeExtensions),
             typeof(InterfaceDeclarationSyntaxExtensions),
             typeof(CompilationUnitSyntaxExtensions),

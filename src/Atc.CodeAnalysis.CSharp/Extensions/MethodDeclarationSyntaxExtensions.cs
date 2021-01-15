@@ -1,10 +1,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Atc.CodeAnalysis.CSharp.Extensions
+// ReSharper disable once CheckNamespace
+namespace Microsoft.CodeAnalysis.CSharp.Syntax
 {
     public static class MethodDeclarationSyntaxExtensions
     {
