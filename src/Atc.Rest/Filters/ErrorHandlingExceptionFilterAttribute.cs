@@ -5,6 +5,8 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using Atc.Rest.Options;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
 
 // ReSharper disable InvertIf
@@ -13,14 +15,20 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 {
     public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttribute
     {
+        private readonly TelemetryClient telemetryClient;
         private readonly bool includeException;
         private readonly bool useProblemDetailsAsResponseBody;
-        private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex = new Regex("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
 
-        public ErrorHandlingExceptionFilterAttribute(bool includeException = false, bool useProblemDetailsAsResponseBody = true)
+        private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex =
+            new Regex("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
+
+        public ErrorHandlingExceptionFilterAttribute(
+            TelemetryClient telemetryClient,
+            RestApiOptions options)
         {
-            this.includeException = includeException;
-            this.useProblemDetailsAsResponseBody = useProblemDetailsAsResponseBody;
+            this.telemetryClient = telemetryClient;
+            this.includeException = options.ErrorHandlingExceptionFilter.IncludeExceptionDetails;
+            this.useProblemDetailsAsResponseBody = options.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody;
         }
 
         public override void OnException(ExceptionContext context)
@@ -32,6 +40,8 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 
             HandleException(context);
             context.ExceptionHandled = true;
+
+            telemetryClient.TrackException(context.Exception);
         }
 
         private static HttpStatusCode GetHttpStatusCodeByExceptionType(ExceptionContext context)
@@ -99,12 +109,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             var statusCode = GetHttpStatusCodeByExceptionType(context);
             var title = ensurePascalCaseAndSpacesBetweenWordsRegex.Replace(statusCode.ToString(), " $1");
 
-            return new ProblemDetails
-            {
-                Status = (int)statusCode,
-                Title = title,
-                Detail = CreateMessage(context),
-            };
+            return new ProblemDetails {Status = (int)statusCode, Title = title, Detail = CreateMessage(context),};
         }
     }
 }
