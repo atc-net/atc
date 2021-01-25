@@ -5,25 +5,25 @@
 
 ## Introduction
 
-ATC-Net organisation have a list of [repositories](https://github.com/atc-net).
-All these repositories are split up and manages by people from the core tema, referred as `ATC-team`.
+The ATC-Net organisation has a list of [repositories](https://github.com/atc-net).
+All these repositories are split up and managed by people from the core tema, referred to as `ATC-team`.
 
-* All repositories is free for use and contribute to - ATC-Net use `MIT license`.
+* All repositories are free for use and possible to contribute to - ATC-Net use `MIT license`.
 
-* Each repository is manage by one or more person from the ATC-team, referred as `Repo-Admin` (GitHub Role is Admin).
+* Each repository is managed by one or more people from the ATC-team, referred to as `Repo-Admin` (GitHub Role is Admin).
 
-* Everyone can contribute to a repository by making a pull-request, referred as `PR`.
+* Everyone can contribute to a repository by making a pull-request, referred to as `PR`.
 
-The process for creating a new repository, must go through the ATC-team. In the process there are important steps that have to be defined, like repository naming, purpose and who should be Repo-Admins. Then the repository setup should follow a ATC repository template with some settings.
-This process is under 'construction', but for now som parts can be found under [snippets for atc-github-setup](https://github.com/atc-net/atc-snippets/tree/main/atc-github-setup).
+The process for creating a new repository, must go through the ATC-team. In this process there are important steps that have to be defined, like repository naming, purpose and who should be Repo-Admins. The repository setup should follow a ATC repository template with some settings.
+This process and repository template is under 'construction', but for now som parts can be found under [snippets for atc-github-setup](https://github.com/atc-net/atc-snippets/tree/main/atc-github-setup).
 
 
 ## What does it mean to be a Repo-Admin
 
-The meaning of a Repo-Admin, is just that the person takes responsibility to drive the repository and ensure the common ATC-Rules, settings and git-workflows are in a acceptable form / in sync with the ATC-team `knowledge and attitudes`.
+The meaning of a Repo-Admin, is just that the person(s) takes responsibility for driving the repository and ensuring the common ATC-Rules, settings and git-workflows are in a acceptable form / in sync with the ATC-team `knowledge and attitudes`.
 
-Few basic rules is:
-* Ensure a process enable, like `PR`
+A few basic rules are:
+* Ensure a process is enabled, like `PR`
 * Ensure `beta` Nuget-packages is stored in [GitHub Packages-Repository](https://github.com/orgs/atc-net/packages)
 * Ensure `release` Nuget-packages is stored in [Nuget.org Packages-Repository](https://www.nuget.org/packages?q=atc-net)
 
