@@ -65,10 +65,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     if (restApiOptions.ErrorHandlingExceptionFilter.Enable)
                     {
-                        mvcOptions.Filters.Add(
-                            new ErrorHandlingExceptionFilterAttribute(
-                                restApiOptions.ErrorHandlingExceptionFilter.IncludeExceptionDetails,
-                                restApiOptions.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody));
+                        services.AddSingleton<ErrorHandlingExceptionFilterAttribute>();
+                        mvcOptions.Filters.AddService<ErrorHandlingExceptionFilterAttribute>();
                     }
 
                     mvcOptions.OutputFormatters.RemoveType<StringOutputFormatter>();
