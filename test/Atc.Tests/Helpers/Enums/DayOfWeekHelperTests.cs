@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Atc.Helpers;
@@ -63,7 +63,7 @@ namespace Atc.Tests.Helpers.Enums
         public void GetDescriptions(int arrangeUiLcid, int expected)
         {
             // Arrange
-            CultureInfo culture = null;
+            CultureInfo? culture = null;
             if (arrangeUiLcid > 0)
             {
                 culture = new CultureInfo(arrangeUiLcid);

@@ -26,6 +26,11 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             TelemetryClient telemetryClient,
             RestApiOptions options)
         {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
             this.telemetryClient = telemetryClient;
             includeException = options.ErrorHandlingExceptionFilter.IncludeExceptionDetails;
             useProblemDetailsAsResponseBody = options.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody;

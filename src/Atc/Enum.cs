@@ -11,6 +11,8 @@ namespace Atc
     /// </summary>
     /// <typeparam name="T">The generic enum type.</typeparam>
     [SuppressMessage("Design", "MA0018:Do not declare static members on generic types", Justification = "OK.")]
+    [SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "OK.")]
+    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "OK.")]
     public static class Enum<T>
         where T : Enum
     {
