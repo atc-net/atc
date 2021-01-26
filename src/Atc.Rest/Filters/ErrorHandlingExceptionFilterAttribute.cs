@@ -109,7 +109,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             var statusCode = GetHttpStatusCodeByExceptionType(context);
             var title = ensurePascalCaseAndSpacesBetweenWordsRegex.Replace(statusCode.ToString(), " $1");
 
-            return new ProblemDetails {Status = (int)statusCode, Title = title, Detail = CreateMessage(context),};
+            return new ProblemDetails { Status = (int)statusCode, Title = title, Detail = CreateMessage(context) };
         }
     }
 }
