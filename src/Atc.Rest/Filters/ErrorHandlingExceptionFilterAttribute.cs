@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Mime;
@@ -27,8 +27,8 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             RestApiOptions options)
         {
             this.telemetryClient = telemetryClient;
-            this.includeException = options.ErrorHandlingExceptionFilter.IncludeExceptionDetails;
-            this.useProblemDetailsAsResponseBody = options.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody;
+            includeException = options.ErrorHandlingExceptionFilter.IncludeExceptionDetails;
+            useProblemDetailsAsResponseBody = options.ErrorHandlingExceptionFilter.UseProblemDetailsAsResponseBody;
         }
 
         public override void OnException(ExceptionContext context)

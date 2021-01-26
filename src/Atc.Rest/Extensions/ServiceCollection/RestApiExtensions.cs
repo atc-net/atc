@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -60,12 +60,16 @@ namespace Microsoft.Extensions.DependencyInjection
 
             HandleAssemblyPairs(services, restApiOptions);
 
+            if (restApiOptions.ErrorHandlingExceptionFilter.Enable)
+            {
+                services.AddSingleton<ErrorHandlingExceptionFilterAttribute>();
+            }
+
             var mvc = services
                 .AddControllers(mvcOptions =>
                 {
                     if (restApiOptions.ErrorHandlingExceptionFilter.Enable)
                     {
-                        services.AddSingleton<ErrorHandlingExceptionFilterAttribute>();
                         mvcOptions.Filters.AddService<ErrorHandlingExceptionFilterAttribute>();
                     }
 
