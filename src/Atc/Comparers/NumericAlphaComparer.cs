@@ -80,7 +80,7 @@ namespace Atc
 
             if (tupleA.Item1 == tupleB.Item1)
             {
-                return string.Compare(tupleA.Item2, tupleB.Item2, StringComparison.CurrentCultureIgnoreCase);
+                return string.Compare(tupleA.Item2, tupleB.Item2, StringComparison.OrdinalIgnoreCase);
             }
 
             return 0;

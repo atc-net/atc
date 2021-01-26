@@ -442,10 +442,6 @@ dotnet_diagnostic.MA0026.severity = suggestion      # https://github.com/atc-net
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
 
 
-# Microsoft - Threading
-# https://github.com/microsoft/vs-threading/blob/master/doc/analyzers/index.md
-
-
 # SecurityCodeScan
 # https://security-code-scan.github.io/
 
@@ -473,6 +469,27 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 
 
 # Fix later
+dotnet_diagnostic.CA1000.severity = none
+dotnet_diagnostic.CA1002.severity = none
+dotnet_diagnostic.CA1014.severity = none
+dotnet_diagnostic.CA1019.severity = none
+dotnet_diagnostic.CA1031.severity = none
+dotnet_diagnostic.CA1062.severity = none
+dotnet_diagnostic.CA1304.severity = none
+dotnet_diagnostic.CA1508.severity = none
+dotnet_diagnostic.CA1812.severity = none
+dotnet_diagnostic.CA1822.severity = none
+dotnet_diagnostic.CA2007.severity = none
+dotnet_diagnostic.CA2201.severity = none
+dotnet_diagnostic.CA2225.severity = none
+dotnet_diagnostic.CA2227.severity = none
+
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8601.severity = none
+dotnet_diagnostic.CS8602.severity = none
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.CS8625.severity = none
+
 dotnet_diagnostic.MA0004.severity = none
 dotnet_diagnostic.MA0008.severity = none
 dotnet_diagnostic.MA0009.severity = none

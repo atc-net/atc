@@ -34,13 +34,14 @@ A few basic rules are:
 
 | Repository | Repo-Admins |
 | ---------- | ----------- |
-| [atc](https://github.com/atc-net/atc) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-autoformatter](https://github.com/atc-net/atc-autoformatter) | [Ricky](https://github.com/orgs/atc-net/people/rickykaare) |
-| [atc-coding-rules](https://github.com/atc-net/atc-coding-rules) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-coding-rules-updater](https://github.com/atc-net/atc-coding-rules-updater) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-cosmos](https://github.com/atc-net/atc-cosmos) | [Ricky](https://github.com/orgs/atc-net/people/rickykaare) |
-| [atc-cosmos-eventstore](https://github.com/atc-net/atc-cosmos-eventstore) | [Lars](https://github.com/orgs/atc-net/people/LarsSkovslund) |
-| [atc-cosmos-sql-api-repository](https://github.com/atc-net/atc-cosmos-sql-api-repository) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-rest-api-generator](https://github.com/atc-net/atc-rest-api-generator) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-snippets](https://github.com/atc-net/atc-snippets) | [David](https://github.com/orgs/atc-net/people/davidkallesen), [Per](https://github.com/orgs/atc-net/people/perkops) |
-| [atc-test](https://github.com/atc-net/atc-test) | [Ricky](https://github.com/orgs/atc-net/people/rickykaare) |
+| [atc](https://github.com/atc-net/atc) | @davidkallesen, @perkops |
+| [atc-autoformatter](https://github.com/atc-net/atc-autoformatter) | @rickykaare |
+| [atc-coding-rules](https://github.com/atc-net/atc-coding-rules) | @davidkallesen, @perkops |
+| [atc-coding-rules-updater](https://github.com/atc-net/atc-coding-rules-updater) | @davidkallesen, @perkops |
+| [atc-cosmos](https://github.com/atc-net/atc-cosmos) | @rickykaare |
+| [atc-cosmos-eventstore](https://github.com/atc-net/atc-cosmos-eventstore) | @LarsSkovslund |
+| [atc-cosmos-sql-api-repository](https://github.com/atc-net/atc-cosmos-sql-api-repository) | @davidkallesen, @perkops |
+| [atc-rest-api-generator](https://github.com/atc-net/atc-rest-api-generator) | @davidkallesen, @perkops |
+| [atc-rest-client](https://github.com/atc-net/atc-rest-api-generator) | @davidkallesen, @perkops, @LarsSkovslund, @egil  |
+| [atc-snippets](https://github.com/atc-net/atc-snippets) | @davidkallesen, @perkops |
+| [atc-test](https://github.com/atc-net/atc-test) | @rickykaare |
