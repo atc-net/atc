@@ -13,7 +13,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Atc.Rest.Extended.Options
 {
-    public sealed class ConfigureSwaggerOptions :
+    internal class ConfigureSwaggerOptions :
         IConfigureOptions<SwaggerUIOptions>,
         IConfigureOptions<SwaggerGenOptions>
     {
@@ -41,23 +41,6 @@ namespace Atc.Rest.Extended.Options
             options.ShowCommonExtensions();
             options.InjectStylesheet("/swagger-ui/style.css");
             options.InjectJavascript("/swagger-ui/main.js");
-        }
-
-        private void ConfigureSwaggerEndpointPerApiVersion(SwaggerUIOptions options)
-        {
-            if (restApiOptions.UseApiVersioning)
-            {
-                foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint(
-                        $"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant());
-                }
-            }
-            else
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
-            }
         }
 
         public void Configure(SwaggerGenOptions options)
@@ -120,6 +103,23 @@ namespace Atc.Rest.Extended.Options
             foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
             {
                 options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
+            }
+        }
+
+        private void ConfigureSwaggerEndpointPerApiVersion(SwaggerUIOptions options)
+        {
+            if (restApiOptions.UseApiVersioning)
+            {
+                foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint(
+                        $"/swagger/{description.GroupName}/swagger.json",
+                        description.GroupName.ToUpperInvariant());
+                }
+            }
+            else
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
             }
         }
     }
