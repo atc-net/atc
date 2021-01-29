@@ -13,7 +13,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Atc.Rest.Extended.Options
 {
-    internal class ConfigureSwaggerOptions :
+    public sealed class ConfigureSwaggerOptions :
         IConfigureOptions<SwaggerUIOptions>,
         IConfigureOptions<SwaggerGenOptions>
     {
@@ -102,7 +102,7 @@ namespace Atc.Rest.Extended.Options
                             description.GroupName,
                             new OpenApiInfo
                             {
-                                Title = Assembly.GetEntryAssembly().GetApiName(),
+                                Title = Assembly.GetEntryAssembly()!.GetApiName(),
                                 Version = description.ApiVersion.ToString(),
                             });
                     }

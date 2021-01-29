@@ -30,7 +30,6 @@ namespace Atc.Rest.Extended.Tests
             typeof(Microsoft.AspNetCore.Builder.OpenApiBuilderExtensions),
             typeof(Microsoft.AspNetCore.Builder.RestApiExtendedBuilderExtensions),
             typeof(Microsoft.Extensions.DependencyInjection.FluentValidationExtensions),
-            typeof(Microsoft.Extensions.DependencyInjection.OpenApiExtensions),
             typeof(Microsoft.Extensions.DependencyInjection.RestApiExtendedExtensions),
             typeof(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptionsExtensions),
         };
