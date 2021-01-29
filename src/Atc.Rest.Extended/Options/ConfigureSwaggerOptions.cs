@@ -1,12 +1,20 @@
-﻿using System;
+using System;
+using System.IO;
+using Atc.Rest.Extended.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Atc.Rest.Extended.Options
 {
-    internal class ConfigureSwaggerOptions : IConfigureOptions<SwaggerUIOptions>
+    internal class ConfigureSwaggerOptions :
+        IConfigureOptions<SwaggerUIOptions>,
+        IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider versionDescriptionProvider;
         private readonly RestApiExtendedOptions restApiOptions;
@@ -48,6 +56,69 @@ namespace Atc.Rest.Extended.Options
             else
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
+            }
+        }
+
+        public void Configure(SwaggerGenOptions options)
+        {
+            options.TagActionsBy(api =>
+            {
+                if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
+                {
+                    return new[] { controllerActionDescriptor.ControllerName };
+                }
+
+                if (api.HttpMethod != null)
+                {
+                    return new[] { api.HttpMethod };
+                }
+
+                throw new InvalidOperationException("Unable to determine tag for endpoint.");
+            });
+
+            options.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
+            options.IgnoreObsoleteActions();
+            options.IgnoreObsoleteProperties();
+            options.DefaultResponseForSecuredOperations();
+            options.TreatBadRequestAsDefaultResponse();
+
+            if (!restApiOptions.AllowAnonymousAccessForDevelopment)
+            {
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+            }
+
+            options.DocumentFilter<SwaggerEnumDescriptionsDocumentFilter>();
+
+            if (restApiOptions.UseApiVersioning)
+            {
+                options.ApplyApiVersioningFilters();
+
+                foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
+                {
+                    try
+                    {
+                        options.SwaggerDoc(
+                            description.GroupName,
+                            new OpenApiInfo
+                            {
+                                Title = "API",
+                                Version = description.ApiVersion.ToString(),
+                            });
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Ignore - This is here for backwards compatibility
+                        // Newer generated API's will have its own implementation of
+                        // IConfigureOptions<SwaggerGenOptions> that will use
+                        // use the Info metadata specified in the
+                        // OpenAPI specifications document
+                    }
+                }
+            }
+
+            foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
+            {
+                options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
             }
         }
     }
