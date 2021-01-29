@@ -32,24 +32,6 @@ void AddFluentValidation(this IServiceCollection services, bool useAutoRegistrat
 public static class OpenApiExtensions
 ```
 
-### Static Methods
-
-
-#### AddOpenApiSpec
-
-```csharp
-IServiceCollection AddOpenApiSpec(this IServiceCollection services)
-```
-#### AddOpenApiSpec
-
-```csharp
-IServiceCollection AddOpenApiSpec(this IServiceCollection services, RestApiExtendedOptions restApiOptions)
-```
-#### AddOpenApiSpec
-
-```csharp
-IServiceCollection AddOpenApiSpec(this IServiceCollection services, RestApiExtendedOptions restApiOptions, Action<SwaggerGenOptions> setupAction)
-```
 
 <br />
 

@@ -22,11 +22,6 @@ public static class SwaggerGenOptionsExtensions
 ```csharp
 void ApplyApiVersioningFilters(this SwaggerGenOptions options)
 ```
-#### ApplyApiVersioningSwaggerDocuments
-
-```csharp
-void ApplyApiVersioningSwaggerDocuments(this SwaggerGenOptions options, IServiceCollection services, string title)
-```
 #### DefaultResponseForSecuredOperations
 
 ```csharp
