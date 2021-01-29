@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using Atc.Rest.Extended.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -101,7 +102,7 @@ namespace Atc.Rest.Extended.Options
                             description.GroupName,
                             new OpenApiInfo
                             {
-                                Title = "API",
+                                Title = Assembly.GetEntryAssembly().GetApiName(),
                                 Version = description.ApiVersion.ToString(),
                             });
                     }
