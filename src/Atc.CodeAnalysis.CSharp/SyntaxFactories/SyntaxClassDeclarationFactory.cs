@@ -26,9 +26,14 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
+            if (inheritClassTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(inheritClassTypeName));
+            }
+
             return SyntaxFactory.ClassDeclaration(classTypeName)
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(inheritClassTypeName)));
+                .AddBaseListTypes(SyntaxSimpleBaseTypeFactory.Create(inheritClassTypeName));
         }
 
         public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
@@ -38,13 +43,36 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
+            if (interfaceTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(interfaceTypeName));
+            }
+
             return SyntaxFactory.ClassDeclaration(classTypeName)
                 .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .WithBaseList(
-                    SyntaxFactory.BaseList(
-                        SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(
-                            SyntaxFactory.SimpleBaseType(
-                                SyntaxFactory.IdentifierName(interfaceTypeName)))));
+                .WithBaseList(SyntaxBaseListFactory.CreateOneSimpleBaseType(interfaceTypeName));
+        }
+
+        public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
+        {
+            if (classTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(classTypeName));
+            }
+
+            if (inheritClassTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(inheritClassTypeName));
+            }
+
+            if (interfaceTypeName == null)
+            {
+                throw new ArgumentNullException(nameof(interfaceTypeName));
+            }
+
+            return SyntaxFactory.ClassDeclaration(classTypeName)
+                .AddModifiers(SyntaxTokenFactory.PublicKeyword())
+                .WithBaseList(SyntaxBaseListFactory.CreateTwoSimpleBaseTypes(inheritClassTypeName, interfaceTypeName));
         }
 
         public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)

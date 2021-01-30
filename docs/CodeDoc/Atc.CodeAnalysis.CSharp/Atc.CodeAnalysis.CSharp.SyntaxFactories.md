@@ -227,6 +227,29 @@ AttributeListSyntax CreateWithOneItemWithOneArgumentWithNameEquals(string attrib
 <br />
 
 
+## SyntaxBaseListFactory
+
+```csharp
+public static class SyntaxBaseListFactory
+```
+
+### Static Methods
+
+
+#### CreateOneSimpleBaseType
+
+```csharp
+BaseListSyntax CreateOneSimpleBaseType(string typeName)
+```
+#### CreateTwoSimpleBaseTypes
+
+```csharp
+BaseListSyntax CreateTwoSimpleBaseTypes(string typeName1, string typeName2)
+```
+
+<br />
+
+
 ## SyntaxClassDeclarationFactory
 
 ```csharp
@@ -255,6 +278,11 @@ ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
 
 ```csharp
 ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
+```
+#### CreateWithInheritClassAndInterface
+
+```csharp
+ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
 ```
 #### CreateWithInheritClassType
 
@@ -497,6 +525,24 @@ public static class SyntaxParameterListFactory
 
 ```csharp
 ParameterListSyntax CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
+```
+
+<br />
+
+
+## SyntaxSimpleBaseTypeFactory
+
+```csharp
+public static class SyntaxSimpleBaseTypeFactory
+```
+
+### Static Methods
+
+
+#### Create
+
+```csharp
+SimpleBaseTypeSyntax Create(string typeName)
 ```
 
 <br />
