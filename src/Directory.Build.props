@@ -24,7 +24,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37" PrivateAssets="All" />
+
+    <!-- Disable PackageReference->Nerdbank.GitVersioning, because it overrules
+         "-p:Version=${NBGV_SimpleVersion}" in release.yml, and the the version will be wrong.
+         We need version format "1.x.x" for nuget.org and "1.x.x.[git-hash]" for GitHub nuget-registry.
+    <!-- <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37" PrivateAssets="All" /> -->
   </ItemGroup>
 
 </Project>
