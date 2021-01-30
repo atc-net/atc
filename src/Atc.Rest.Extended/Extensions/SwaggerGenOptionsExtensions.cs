@@ -22,21 +22,6 @@ namespace Swashbuckle.AspNetCore.SwaggerGen
             options.DocumentFilter<ApiVersionDocumentFilter>();
         }
 
-        public static void ApplyApiVersioningSwaggerDocuments(this SwaggerGenOptions options, IServiceCollection services, string title)
-        {
-            var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
-            foreach (var description in provider.ApiVersionDescriptions)
-            {
-                var info = new OpenApiInfo
-                {
-                    Title = title,
-                    Version = description.ApiVersion.ToString(),
-                };
-
-                options.SwaggerDoc(description.GroupName, info);
-            }
-        }
-
         public static void DefaultResponseForSecuredOperations(this SwaggerGenOptions options)
         {
             options.OperationFilter<AuthorizeResponseOperationFilter>();

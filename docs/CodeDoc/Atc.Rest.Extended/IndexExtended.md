@@ -77,10 +77,6 @@
   -  Static Methods
      - AddFluentValidation(this IServiceCollection services, bool useAutoRegistrateServices, List&lt;AssemblyPairOptions&gt; assemblyPairs)
 - [OpenApiExtensions](Microsoft.Extensions.DependencyInjection.md#openapiextensions)
-  -  Static Methods
-     - AddOpenApiSpec(this IServiceCollection services)
-     - AddOpenApiSpec(this IServiceCollection services, RestApiExtendedOptions restApiOptions)
-     - AddOpenApiSpec(this IServiceCollection services, RestApiExtendedOptions restApiOptions, Action&lt;SwaggerGenOptions&gt; setupAction)
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
   -  Static Methods
      - AddRestApi(this IServiceCollection services)
@@ -92,7 +88,6 @@
 - [SwaggerGenOptionsExtensions](Swashbuckle.AspNetCore.SwaggerGen.md#swaggergenoptionsextensions)
   -  Static Methods
      - ApplyApiVersioningFilters(this SwaggerGenOptions options)
-     - ApplyApiVersioningSwaggerDocuments(this SwaggerGenOptions options, IServiceCollection services, string title)
      - DefaultResponseForSecuredOperations(this SwaggerGenOptions options)
      - TreatBadRequestAsDefaultResponse(this SwaggerGenOptions options)
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Rest.Extended.Options;
 using Atc.Rest.Options;
 using Microsoft.Extensions.Configuration;
@@ -56,7 +56,7 @@ namespace Microsoft.Extensions.DependencyInjection
             if (restApiOptions.UseOpenApiSpec)
             {
                 services.ConfigureOptions<ConfigureSwaggerOptions>();
-                services.AddOpenApiSpec<TStartup>(restApiOptions);
+                services.AddSwaggerGen();
             }
 
             services.AddRestApi<TStartup>(setupMvcAction, restApiOptions);
