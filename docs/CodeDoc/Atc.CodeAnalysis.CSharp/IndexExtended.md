@@ -58,12 +58,17 @@
      - Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
      - CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
      - CreateWithOneItemWithOneArgumentWithNameEquals(string attributeName, string argumentName, string argumentValue)
+- [SyntaxBaseListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxbaselistfactory)
+  -  Static Methods
+     - CreateOneSimpleBaseType(string typeName)
+     - CreateTwoSimpleBaseTypes(string typeName1, string typeName2)
 - [SyntaxClassDeclarationFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxclassdeclarationfactory)
   -  Static Methods
      - Create(string classTypeName)
      - CreateAsInternalStatic(string classTypeName)
      - CreateAsPublicPartial(string classTypeName)
      - CreateAsPublicStatic(string classTypeName)
+     - CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
      - CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
      - CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
      - CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = )
@@ -107,6 +112,9 @@
 - [SyntaxParameterListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterlistfactory)
   -  Static Methods
      - CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
+- [SyntaxSimpleBaseTypeFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxsimplebasetypefactory)
+  -  Static Methods
+     - Create(string typeName)
 - [SyntaxThrowStatementFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxthrowstatementfactory)
   -  Static Methods
      - CreateArgumentNullException(string parameterName, bool includeSystem = True)
