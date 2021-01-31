@@ -26,16 +26,6 @@ void AddFluentValidation(this IServiceCollection services, bool useAutoRegistrat
 <br />
 
 
-## OpenApiExtensions
-
-```csharp
-public static class OpenApiExtensions
-```
-
-
-<br />
-
-
 ## RestApiExtendedExtensions
 
 ```csharp

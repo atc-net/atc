@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -13,7 +13,8 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 throw new ArgumentNullException(nameof(argumentName));
             }
 
-            return SyntaxFactory.Argument(SyntaxFactory.IdentifierName(argumentName));
+            return SyntaxFactory.Argument(
+                SyntaxFactory.IdentifierName(argumentName));
         }
     }
 }

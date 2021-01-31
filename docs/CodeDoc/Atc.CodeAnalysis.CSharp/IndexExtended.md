@@ -29,7 +29,14 @@
      - Create(string argumentName)
 - [SyntaxArgumentListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxargumentlistfactory)
   -  Static Methods
+     - CreateWithOneArgumentItem(ArgumentSyntax argument)
+     - CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
      - CreateWithOneItem(string argumentName)
+     - CreateWithThreeArgumentItems(ArgumentSyntax argument1, ArgumentSyntax argument2, ArgumentSyntax argument3)
+     - CreateWithThreeExpressionItems(ExpressionSyntax argumentExpression1, ExpressionSyntax argumentExpression2, ExpressionSyntax argumentExpression3)
+     - CreateWithTwoArgumentItems(ArgumentSyntax argument1, ArgumentSyntax argument2)
+     - CreateWithTwoExpressionItems(ExpressionSyntax argumentExpression1, ExpressionSyntax argumentExpression2)
+     - CreateWithTwoItems(string argumentName1, string argumentName2)
 - [SyntaxAssignmentExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxassignmentexpressionfactory)
   -  Static Methods
      - CreateSimple(string toIdentifierName, string fromIdentifierName)
@@ -112,6 +119,9 @@
 - [SyntaxParameterListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterlistfactory)
   -  Static Methods
      - CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
+     - CreateWithOneParameterItem(ParameterSyntax parameter)
+     - CreateWithThreeParameterItems(ParameterSyntax parameter1, ParameterSyntax parameter2, ParameterSyntax parameter3)
+     - CreateWithTwoParameterItems(ParameterSyntax parameter1, ParameterSyntax parameter2)
 - [SyntaxSimpleBaseTypeFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxsimplebasetypefactory)
   -  Static Methods
      - Create(string typeName)
@@ -163,7 +173,8 @@
      - PublicStaticKeyword(bool withLeadingLineFeed = False, bool withTrailingSpace = True)
 - [SyntaxTypeArgumentListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtypeargumentlistfactory)
   -  Static Methods
-     - CreateWithOneItem(string dataType)
+     - CreateWithOneItem(string typeName)
+     - CreateWithTwoItems(string typeName1, string typeName2)
 - [SyntaxVariableDeclarationFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxvariabledeclarationfactory)
   -  Static Methods
      - Create(string identifierTypeName, string identifierName)

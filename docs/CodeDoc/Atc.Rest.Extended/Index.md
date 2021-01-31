@@ -39,7 +39,6 @@
 ## [Microsoft.Extensions.DependencyInjection](Microsoft.Extensions.DependencyInjection.md)
 
 - [FluentValidationExtensions](Microsoft.Extensions.DependencyInjection.md#fluentvalidationextensions)
-- [OpenApiExtensions](Microsoft.Extensions.DependencyInjection.md#openapiextensions)
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
 
 ## [Swashbuckle.AspNetCore.SwaggerGen](Swashbuckle.AspNetCore.SwaggerGen.md)
