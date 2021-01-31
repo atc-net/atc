@@ -76,7 +76,6 @@
 - [FluentValidationExtensions](Microsoft.Extensions.DependencyInjection.md#fluentvalidationextensions)
   -  Static Methods
      - AddFluentValidation(this IServiceCollection services, bool useAutoRegistrateServices, List&lt;AssemblyPairOptions&gt; assemblyPairs)
-- [OpenApiExtensions](Microsoft.Extensions.DependencyInjection.md#openapiextensions)
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
   -  Static Methods
      - AddRestApi(this IServiceCollection services)

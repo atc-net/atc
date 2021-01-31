@@ -13,7 +13,9 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                     SyntaxSimpleBaseTypeFactory.Create(typeName)));
         }
 
-        public static BaseListSyntax CreateTwoSimpleBaseTypes(string typeName1, string typeName2)
+        public static BaseListSyntax CreateTwoSimpleBaseTypes(
+            string typeName1,
+            string typeName2)
         {
             return SyntaxFactory.BaseList(
                 SyntaxFactory.SeparatedList<BaseTypeSyntax>(

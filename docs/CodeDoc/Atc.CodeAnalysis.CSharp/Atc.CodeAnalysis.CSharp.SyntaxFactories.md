@@ -58,10 +58,45 @@ public static class SyntaxArgumentListFactory
 ### Static Methods
 
 
+#### CreateWithOneArgumentItem
+
+```csharp
+ArgumentListSyntax CreateWithOneArgumentItem(ArgumentSyntax argument)
+```
+#### CreateWithOneExpressionItem
+
+```csharp
+ArgumentListSyntax CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
+```
 #### CreateWithOneItem
 
 ```csharp
 ArgumentListSyntax CreateWithOneItem(string argumentName)
+```
+#### CreateWithThreeArgumentItems
+
+```csharp
+ArgumentListSyntax CreateWithThreeArgumentItems(ArgumentSyntax argument1, ArgumentSyntax argument2, ArgumentSyntax argument3)
+```
+#### CreateWithThreeExpressionItems
+
+```csharp
+ArgumentListSyntax CreateWithThreeExpressionItems(ExpressionSyntax argumentExpression1, ExpressionSyntax argumentExpression2, ExpressionSyntax argumentExpression3)
+```
+#### CreateWithTwoArgumentItems
+
+```csharp
+ArgumentListSyntax CreateWithTwoArgumentItems(ArgumentSyntax argument1, ArgumentSyntax argument2)
+```
+#### CreateWithTwoExpressionItems
+
+```csharp
+ArgumentListSyntax CreateWithTwoExpressionItems(ExpressionSyntax argumentExpression1, ExpressionSyntax argumentExpression2)
+```
+#### CreateWithTwoItems
+
+```csharp
+ArgumentListSyntax CreateWithTwoItems(string argumentName1, string argumentName2)
 ```
 
 <br />
@@ -526,6 +561,21 @@ public static class SyntaxParameterListFactory
 ```csharp
 ParameterListSyntax CreateWithOneItem(string parameterTypeName, string parameterName, string genericListTypeName = null)
 ```
+#### CreateWithOneParameterItem
+
+```csharp
+ParameterListSyntax CreateWithOneParameterItem(ParameterSyntax parameter)
+```
+#### CreateWithThreeParameterItems
+
+```csharp
+ParameterListSyntax CreateWithThreeParameterItems(ParameterSyntax parameter1, ParameterSyntax parameter2, ParameterSyntax parameter3)
+```
+#### CreateWithTwoParameterItems
+
+```csharp
+ParameterListSyntax CreateWithTwoParameterItems(ParameterSyntax parameter1, ParameterSyntax parameter2)
+```
 
 <br />
 
@@ -801,7 +851,12 @@ public static class SyntaxTypeArgumentListFactory
 #### CreateWithOneItem
 
 ```csharp
-TypeArgumentListSyntax CreateWithOneItem(string dataType)
+TypeArgumentListSyntax CreateWithOneItem(string typeName)
+```
+#### CreateWithTwoItems
+
+```csharp
+TypeArgumentListSyntax CreateWithTwoItems(string typeName1, string typeName2)
 ```
 
 <br />
