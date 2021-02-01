@@ -109,7 +109,10 @@
   -  Static Methods
      - CreateContentResult(HttpStatusCode statusCode, string message, string contentType = application/json)
      - CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
+     - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message, string contentType = application/json)
+     - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
      - CreateProblemDetails(HttpStatusCode statusCode, string message)
+     - CreateProblemValidationDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message)
 
 ## [Microsoft.ApplicationInsights.Extensibility](Microsoft.ApplicationInsights.Extensibility.md)
 
