@@ -45,7 +45,6 @@ namespace Atc.Rest.Tests.Results
             }
         }
 
-
         [Theory]
         [InlineData(HttpStatusCode.OK, null)]
         [InlineData(HttpStatusCode.OK, "Hallo World")]
