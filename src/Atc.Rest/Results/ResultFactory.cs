@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mime;
@@ -15,14 +16,20 @@ namespace Atc.Rest.Results
                 Detail = message,
             };
 
-        public static ValidationProblemDetails CreateProblemValidationDetails(HttpStatusCode statusCode, Dictionary<string, string[]> errors, string? message)
+        public static ValidationProblemDetails CreateValidationProblemDetails(
+            HttpStatusCode statusCode,
+            Dictionary<string, string[]> errors,
+            string? message)
             => new ValidationProblemDetails(errors)
             {
                 Status = (int)statusCode,
                 Detail = message,
             };
 
-        public static ContentResult CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string? message, string contentType = MediaTypeNames.Application.Json)
+        public static ContentResult CreateContentResultWithProblemDetails(
+            HttpStatusCode statusCode,
+            string? message,
+            string contentType = MediaTypeNames.Application.Json)
             => new ContentResult
             {
                 ContentType = contentType,
@@ -30,23 +37,33 @@ namespace Atc.Rest.Results
                 Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message)),
             };
 
-        public static ContentResult CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string? message, string contentType = MediaTypeNames.Application.Json)
+        public static ContentResult CreateContentResultWithValidationProblemDetails(
+            HttpStatusCode statusCode,
+            string? message,
+            string contentType = MediaTypeNames.Application.Json)
             => new ContentResult
             {
                 ContentType = contentType,
                 StatusCode = (int)statusCode,
-                Content = JsonSerializer.Serialize(CreateProblemValidationDetails(statusCode, new Dictionary<string, string[]>(System.StringComparer.Ordinal), message)),
+                Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message)),
             };
 
-        public static ContentResult CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary<string, string[]> errors, string? message, string contentType = MediaTypeNames.Application.Json)
+        public static ContentResult CreateContentResultWithValidationProblemDetails(
+            HttpStatusCode statusCode,
+            Dictionary<string, string[]> errors,
+            string? message,
+            string contentType = MediaTypeNames.Application.Json)
             => new ContentResult
             {
                 ContentType = contentType,
                 StatusCode = (int)statusCode,
-                Content = JsonSerializer.Serialize(CreateProblemValidationDetails(statusCode, errors, message)),
+                Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, errors, message)),
             };
 
-        public static ContentResult CreateContentResult(HttpStatusCode statusCode, string? message, string contentType = MediaTypeNames.Application.Json)
+        public static ContentResult CreateContentResult(
+            HttpStatusCode statusCode,
+            string? message,
+            string contentType = MediaTypeNames.Application.Json)
             => new ContentResult
             {
                 ContentType = contentType,

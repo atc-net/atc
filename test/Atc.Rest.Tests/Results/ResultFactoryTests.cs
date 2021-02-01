@@ -30,10 +30,10 @@ namespace Atc.Rest.Tests.Results
         [Theory]
         [InlineData(HttpStatusCode.OK, null)]
         [InlineData(HttpStatusCode.OK, "Hallo World")]
-        public void CreateProblemValidationDetails_Message(HttpStatusCode statusCode, string? message)
+        public void CreateValidationProblemDetails_Message(HttpStatusCode statusCode, string? message)
         {
             // Act
-            var actual = ResultFactory.CreateProblemValidationDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message);
+            var actual = ResultFactory.CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message);
 
             // Assert
             Assert.NotNull(actual);
