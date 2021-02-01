@@ -1,4 +1,5 @@
-﻿#nullable enable
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mime;
 using Atc.Rest.Results;
@@ -29,6 +30,24 @@ namespace Atc.Rest.Tests.Results
         [Theory]
         [InlineData(HttpStatusCode.OK, null)]
         [InlineData(HttpStatusCode.OK, "Hallo World")]
+        public void CreateProblemValidationDetails_Message(HttpStatusCode statusCode, string? message)
+        {
+            // Act
+            var actual = ResultFactory.CreateProblemValidationDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message);
+
+            // Assert
+            Assert.NotNull(actual);
+            Assert.Equal((int)statusCode, actual.Status);
+            if (message != null)
+            {
+                Assert.NotNull(actual.Detail);
+                Assert.Equal(message, actual.Detail);
+            }
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK, null)]
+        [InlineData(HttpStatusCode.OK, "Hallo World")]
         public void CreateContentResultWithProblemDetails_Message(HttpStatusCode statusCode, string? message)
         {
             // Act
@@ -42,6 +61,47 @@ namespace Atc.Rest.Tests.Results
                 Assert.NotNull(actual.Content);
                 Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
                 Assert.Equal($"{{\"status\":{(int)statusCode},\"detail\":\"{message}\"}}", actual.Content);
+            }
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK, null)]
+        [InlineData(HttpStatusCode.OK, "Hallo World")]
+        public void CreateContentResultWithValidationProblemDetails_Message(HttpStatusCode statusCode, string? message)
+        {
+            // Act
+            var actual = ResultFactory.CreateContentResultWithValidationProblemDetails(statusCode, message);
+
+            // Assert
+            Assert.NotNull(actual);
+            Assert.Equal((int)statusCode, actual.StatusCode);
+            if (message != null)
+            {
+                Assert.NotNull(actual.Content);
+                Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
+                Assert.Equal($"{{\"title\":\"One or more validation errors occurred.\",\"status\":{(int)statusCode},\"detail\":\"{message}\",\"errors\":{{}}}}", actual.Content);
+            }
+        }
+
+        [Theory]
+        [InlineData(HttpStatusCode.OK, null)]
+        [InlineData(HttpStatusCode.OK, "Hallo World")]
+        public void CreateContentResultWithValidationProblemDetails_Message_Errors(HttpStatusCode statusCode, string? message)
+        {
+            // Arrange
+            var errors = new Dictionary<string, string[]>(StringComparer.Ordinal) { { "firstName", new[] { "length" } } };
+
+            // Act
+            var actual = ResultFactory.CreateContentResultWithValidationProblemDetails(statusCode, errors, message);
+
+            // Assert
+            Assert.NotNull(actual);
+            Assert.Equal((int)statusCode, actual.StatusCode);
+            if (message != null)
+            {
+                Assert.NotNull(actual.Content);
+                Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
+                Assert.Equal($"{{\"title\":\"One or more validation errors occurred.\",\"status\":{(int)statusCode},\"detail\":\"{message}\",\"errors\":{{\"firstName\":[\"length\"]}}}}", actual.Content);
             }
         }
 
@@ -83,12 +143,6 @@ namespace Atc.Rest.Tests.Results
             }
         }
 
-        /// <summary>
-        /// Creates the type of the content result message content.
-        /// </summary>
-        /// <param name="statusCode">The status code.</param>
-        /// <param name="message">The message.</param>
-        /// <param name="contentType">Type of the content.</param>
         [Theory]
         [InlineData(HttpStatusCode.OK, null, MediaTypeNames.Application.Json)]
         [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Application.Json)]

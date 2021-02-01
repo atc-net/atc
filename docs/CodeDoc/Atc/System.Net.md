@@ -17,6 +17,36 @@ public static class HttpStatusCodeExtensions
 ### Static Methods
 
 
+#### IsClientError
+
+```csharp
+bool IsClientError(this HttpStatusCode httpStatusCode)
+```
+#### IsClientOrServerError
+
+```csharp
+bool IsClientOrServerError(this HttpStatusCode httpStatusCode)
+```
+#### IsInformational
+
+```csharp
+bool IsInformational(this HttpStatusCode httpStatusCode)
+```
+#### IsRedirect
+
+```csharp
+bool IsRedirect(this HttpStatusCode httpStatusCode)
+```
+#### IsServerError
+
+```csharp
+bool IsServerError(this HttpStatusCode httpStatusCode)
+```
+#### IsSuccessful
+
+```csharp
+bool IsSuccessful(this HttpStatusCode httpStatusCode)
+```
 #### ToNormalizedString
 
 ```csharp

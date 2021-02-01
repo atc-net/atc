@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 using Atc.Rest.Extensions;
+using Atc.Rest.Results;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -35,6 +36,7 @@ namespace Atc.Rest.Tests
             typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilterAttribute),
             typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
             typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
+            typeof(ResultFactory),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
