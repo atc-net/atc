@@ -36,8 +36,8 @@ namespace Atc.Tests.Extensions
         [InlineData(true, HttpStatusCode.Ambiguous)]
         [InlineData(false, HttpStatusCode.BadRequest)]
         [InlineData(false, HttpStatusCode.InternalServerError)]
-        public void IsRedirects(bool expected, HttpStatusCode httpStatusCode)
-            => Assert.Equal(expected, httpStatusCode.IsRedirects());
+        public void IsRedirect(bool expected, HttpStatusCode httpStatusCode)
+            => Assert.Equal(expected, httpStatusCode.IsRedirect());
 
         [Theory]
         [InlineData(false, HttpStatusCode.Continue)]
@@ -45,8 +45,8 @@ namespace Atc.Tests.Extensions
         [InlineData(false, HttpStatusCode.Ambiguous)]
         [InlineData(true, HttpStatusCode.BadRequest)]
         [InlineData(false, HttpStatusCode.InternalServerError)]
-        public void IsClientErrors(bool expected, HttpStatusCode httpStatusCode)
-            => Assert.Equal(expected, httpStatusCode.IsClientErrors());
+        public void IsClientError(bool expected, HttpStatusCode httpStatusCode)
+            => Assert.Equal(expected, httpStatusCode.IsClientError());
 
         [Theory]
         [InlineData(false, HttpStatusCode.Continue)]
@@ -54,7 +54,16 @@ namespace Atc.Tests.Extensions
         [InlineData(false, HttpStatusCode.Ambiguous)]
         [InlineData(false, HttpStatusCode.BadRequest)]
         [InlineData(true, HttpStatusCode.InternalServerError)]
-        public void IsServerErrors(bool expected, HttpStatusCode httpStatusCode)
-            => Assert.Equal(expected, httpStatusCode.IsServerErrors());
+        public void IsServerError(bool expected, HttpStatusCode httpStatusCode)
+            => Assert.Equal(expected, httpStatusCode.IsServerError());
+
+        [Theory]
+        [InlineData(false, HttpStatusCode.Continue)]
+        [InlineData(false, HttpStatusCode.OK)]
+        [InlineData(false, HttpStatusCode.Ambiguous)]
+        [InlineData(true, HttpStatusCode.BadRequest)]
+        [InlineData(true, HttpStatusCode.InternalServerError)]
+        public void IsClientOrServerError(bool expected, HttpStatusCode httpStatusCode)
+            => Assert.Equal(expected, httpStatusCode.IsClientOrServerError());
     }
 }

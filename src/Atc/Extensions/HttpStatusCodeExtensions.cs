@@ -19,13 +19,16 @@ namespace System.Net
         public static bool IsSuccessful(this HttpStatusCode httpStatusCode)
             => (int)httpStatusCode >= 200 && (int)httpStatusCode < 300;
 
-        public static bool IsRedirects(this HttpStatusCode httpStatusCode)
+        public static bool IsRedirect(this HttpStatusCode httpStatusCode)
             => (int)httpStatusCode >= 300 && (int)httpStatusCode < 400;
 
-        public static bool IsClientErrors(this HttpStatusCode httpStatusCode)
+        public static bool IsClientError(this HttpStatusCode httpStatusCode)
             => (int)httpStatusCode >= 400 && (int)httpStatusCode < 500;
 
-        public static bool IsServerErrors(this HttpStatusCode httpStatusCode)
+        public static bool IsServerError(this HttpStatusCode httpStatusCode)
             => (int)httpStatusCode >= 500 && (int)httpStatusCode < 600;
+
+        public static bool IsClientOrServerError(this HttpStatusCode httpStatusCode)
+            => httpStatusCode.IsClientError() || httpStatusCode.IsServerError();
     }
 }

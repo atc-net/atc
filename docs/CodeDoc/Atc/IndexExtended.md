@@ -553,10 +553,11 @@
 
 - [HttpStatusCodeExtensions](System.Net.md#httpstatuscodeextensions)
   -  Static Methods
-     - IsClientErrors(this HttpStatusCode httpStatusCode)
+     - IsClientError(this HttpStatusCode httpStatusCode)
+     - IsClientOrServerError(this HttpStatusCode httpStatusCode)
      - IsInformational(this HttpStatusCode httpStatusCode)
-     - IsRedirects(this HttpStatusCode httpStatusCode)
-     - IsServerErrors(this HttpStatusCode httpStatusCode)
+     - IsRedirect(this HttpStatusCode httpStatusCode)
+     - IsServerError(this HttpStatusCode httpStatusCode)
      - IsSuccessful(this HttpStatusCode httpStatusCode)
      - ToNormalizedString(this HttpStatusCode httpStatusCode)
 
