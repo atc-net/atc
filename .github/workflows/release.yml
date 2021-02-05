@@ -32,11 +32,14 @@ jobs:
         with:
           dotnet-version: '5.0.x'
 
-      - name: 📋 Prepare build for release
-        run: |
-          dotnet clean -c Release
-          dotnet restore
-          dotnet build -c Release /p:UseSourceLink=true --no-restore
+      - name: 🧹 Clean
+        run: dotnet clean -c Release && dotnet nuget locals all --clear
+
+      - name: 🔁 Restore packages
+        run: dotnet restore
+
+      - name: 🛠️ Building library in release mode
+        run: dotnet build -c Release --no-restore /p:UseSourceLink=true
 
       - name: ⏩ Merge to release-branch
         run: |
@@ -47,15 +50,15 @@ jobs:
           git push origin release
 
       - name: 🗳️ Creating library package for release
-        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME -p:ContinuousIntegrationBuild=true -p:Version=${NBGV_SimpleVersion}
+        run: dotnet pack -c Release --no-restore -o ${GITHUB_WORKSPACE}/packages -p:RepositoryBranch=$BRANCH_NAME /p:PublicRelease=true
 
       - name: 📦 Push packages to NuGet
         run: |
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeAnalysis.CSharp.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeDocumentation.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.OpenApi.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.Extended.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.FluentAssertions.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.XUnit.'${NBGV_SimpleVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeAnalysis.CSharp.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeDocumentation.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.OpenApi.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.Extended.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.FluentAssertions.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.XUnit.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols true
