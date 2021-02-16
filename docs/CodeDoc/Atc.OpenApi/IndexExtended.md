@@ -33,7 +33,9 @@
      - string Byte
      - string Date
      - string DateTime
+     - string Double
      - string Email
+     - string Float
      - string Int32
      - string Int64
      - string Time

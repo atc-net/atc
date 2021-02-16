@@ -339,6 +339,7 @@
      - ToInt(this bool? source)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
   -  Static Methods
+     - IsBetween(this DateTimeOffset date, DateTimeOffset startDate, DateTimeOffset endDate)
      - ToIso8601Date(this DateTimeOffset dateTimeOffset)
      - ToUnixTime(this DateTimeOffset dateTimeOffset)
 - [DecimalExtensions](System.md#decimalextensions)
