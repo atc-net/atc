@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models
@@ -19,5 +19,8 @@ namespace Microsoft.OpenApi.Models
 
         public const string Email = "email";
         public const string Uri = "uri";
+
+        public const string Float = "float";
+        public const string Double = "double";
     }
 }
