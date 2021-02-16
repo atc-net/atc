@@ -224,6 +224,20 @@ public static class DateTimeOffsetExtensions
 ### Static Methods
 
 
+#### IsBetween
+
+```csharp
+bool IsBetween(this DateTimeOffset date, DateTimeOffset startDate, DateTimeOffset endDate)
+```
+<p><b>Summary:</b> Returns true if the date time offset is between or equal to one of the two values.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;DateTime Base, from where the calculation will be preformed.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;Start date to check for.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;End date to check for.<br />
+<p><b>Returns:</b> boolean value indicating if the date is between or equal to one of the two values.</p>
+
 #### ToIso8601Date
 
 ```csharp

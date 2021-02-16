@@ -116,10 +116,20 @@ string Date
 ```csharp
 string DateTime
 ```
+#### Double
+
+```csharp
+string Double
+```
 #### Email
 
 ```csharp
 string Email
+```
+#### Float
+
+```csharp
+string Float
 ```
 #### Int32
 
