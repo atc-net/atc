@@ -21,8 +21,8 @@ namespace Atc.XUnit.Internal
             ////    // Add debug stuff....
             ////    new Tuple<string, List<string>>("DummyClassToFocusOn", new List<string>
             ////    {
-            ////        "DummyMethodToFocusOn"
-            ////    })
+            ////        "DummyMethodToFocusOn",
+            ////    }),
             ////};
 
             ////DebugLimitData = new DebugLimitData(classMethodNames);
