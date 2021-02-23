@@ -339,7 +339,9 @@
      - ToInt(this bool? source)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
   -  Static Methods
-     - IsBetween(this DateTimeOffset date, DateTimeOffset startDate, DateTimeOffset endDate)
+     - IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
+     - ResetToStartOfCurrentHour(this DateTimeOffset dateTimeOffset)
+     - SetHourAndMinutes(this DateTimeOffset dateTimeOffset, int hour, int minutes)
      - ToIso8601Date(this DateTimeOffset dateTimeOffset)
      - ToUnixTime(this DateTimeOffset dateTimeOffset)
 - [DecimalExtensions](System.md#decimalextensions)
