@@ -227,16 +227,42 @@ public static class DateTimeOffsetExtensions
 #### IsBetween
 
 ```csharp
-bool IsBetween(this DateTimeOffset date, DateTimeOffset startDate, DateTimeOffset endDate)
+bool IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
 ```
 <p><b>Summary:</b> Returns true if the date time offset is between or equal to one of the two values.</p>
 
 <b>Parameters</b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;DateTime Base, from where the calculation will be preformed.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;DateTime Base, from where the calculation will be preformed.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;Start date to check for.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;End date to check for.<br />
 <p><b>Returns:</b> boolean value indicating if the date is between or equal to one of the two values.</p>
+
+#### ResetToStartOfCurrentHour
+
+```csharp
+DateTimeOffset ResetToStartOfCurrentHour(this DateTimeOffset dateTimeOffset)
+```
+<p><b>Summary:</b> Resets to start of current hour.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
+<p><b>Returns:</b> The dateTimeOffset with the seconds and milliseconds as 0.</p>
+
+#### SetHourAndMinutes
+
+```csharp
+DateTimeOffset SetHourAndMinutes(this DateTimeOffset dateTimeOffset, int hour, int minutes)
+```
+<p><b>Summary:</b> Sets the hour and minutes.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`hour`&nbsp;&nbsp;-&nbsp;&nbsp;The hour.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`minutes`&nbsp;&nbsp;-&nbsp;&nbsp;The minutes.<br />
+<p><b>Returns:</b> The dateTimeOffset with the specified hour and minutes.</p>
 
 #### ToIso8601Date
 

@@ -252,10 +252,15 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                         var astNodeForParameter = DecompilerMethodHelper.GetAstNodeForParameter(astNode, parameterName);
                         if (astNodeForParameter != null)
                         {
-                            var tmp = astNodeForParameter.Parent.FirstChild.ToString();
-                            if (string.Equals(tmp, parameterName, StringComparison.Ordinal))
+                            var tmp = astNodeForParameter.Parent.FirstChild.ToString().Trim();
+                            if (tmp.StartsWith('[') && tmp.EndsWith(']'))
                             {
-                                tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString();
+                                // FirstChild is a DataAnnotation attribute, then take the next one
+                                tmp = astNodeForParameter.Parent.Children.ToArray()[1].ToString().Trim();
+                            }
+                            else if (string.Equals(tmp, parameterName, StringComparison.Ordinal))
+                            {
+                                tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString().Trim();
                             }
 
                             return tmp;

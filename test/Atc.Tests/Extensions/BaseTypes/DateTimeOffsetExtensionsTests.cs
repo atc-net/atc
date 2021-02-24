@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using AutoFixture.Xunit2;
 using Xunit;
 
 namespace Atc.Tests.Extensions.BaseTypes
@@ -22,6 +24,46 @@ namespace Atc.Tests.Extensions.BaseTypes
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Theory, AutoData]
+        public void ResetToStartOfCurrentHour(DateTimeOffset input)
+        {
+            // Act
+            var actual = input.ResetToStartOfCurrentHour();
+
+            // Assert
+            Assert.Equal(input.Year, actual.Year);
+            Assert.Equal(input.Month, actual.Month);
+            Assert.Equal(input.Day, actual.Day);
+            Assert.Equal(input.Hour, actual.Hour);
+
+            Assert.Equal(0, actual.Minute);
+            Assert.Equal(0, actual.Second);
+            Assert.Equal(0, actual.Millisecond);
+            Assert.Equal(TimeSpan.Zero, actual.Offset);
+        }
+
+        [Theory, AutoData]
+        public void SetHourAndMinutes(
+            DateTimeOffset input,
+            [Range(0, 23)] int inputHour,
+            [Range(0, 59)] int inputMinutes)
+        {
+            // Act
+            var actual = input.SetHourAndMinutes(inputHour, inputMinutes);
+
+            // Assert
+            Assert.Equal(input.Year, actual.Year);
+            Assert.Equal(input.Month, actual.Month);
+            Assert.Equal(input.Day, actual.Day);
+
+            Assert.Equal(inputHour, actual.Hour);
+            Assert.Equal(inputMinutes, actual.Minute);
+
+            Assert.Equal(0, actual.Second);
+            Assert.Equal(0, actual.Millisecond);
+            Assert.Equal(TimeSpan.Zero, actual.Offset);
         }
 
         [Theory]
