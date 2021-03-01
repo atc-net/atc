@@ -122,6 +122,14 @@ ValidAudiences
 ```csharp
 ValidIssuers
 ```
+### Methods
+
+
+#### IsSecurityEnabled
+
+```csharp
+bool IsSecurityEnabled()
+```
 
 <br />
 

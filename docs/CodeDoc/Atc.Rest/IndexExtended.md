@@ -65,6 +65,8 @@
      - TenantId
      - ValidAudiences
      - ValidIssuers
+  -  Methods
+     - IsSecurityEnabled()
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
   -  Methods
      - Configure(ApiBehaviorOptions options)
