@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 using Atc.Rest.Extensions;
+using Atc.Rest.Options;
 using Atc.Rest.Results;
 using Atc.XUnit;
 using Xunit;
@@ -37,6 +38,7 @@ namespace Atc.Rest.Tests
             typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
             typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
             typeof(ResultFactory),
+            typeof(AuthorizationOptions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

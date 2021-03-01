@@ -35,6 +35,11 @@ namespace Atc.Rest.Extended.Options
         [SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "OK.")]
         public void PostConfigure(string name, JwtBearerOptions options)
         {
+            if (!apiOptions.Authorization.IsSecurityEnabled())
+            {
+                return;
+            }
+
             if (apiOptions.AllowAnonymousAccessForDevelopment && environment?.IsDevelopment() == true)
             {
                 return;
