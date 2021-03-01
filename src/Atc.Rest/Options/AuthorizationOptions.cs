@@ -1,5 +1,5 @@
-﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atc.Rest.Options
 {
@@ -51,5 +51,14 @@ namespace Atc.Rest.Options
         public List<string> ValidAudiences { get; set; } = new List<string>();
 
         public List<string> ValidIssuers { get; set; } = new List<string>();
+
+        public bool IsSecurityEnabled()
+            => !string.IsNullOrEmpty(ClientId) ||
+               !string.IsNullOrEmpty(TenantId) ||
+               !string.IsNullOrEmpty(Instance) ||
+               !string.IsNullOrEmpty(Audience) ||
+               !string.IsNullOrEmpty(Issuer) ||
+               ValidAudiences.Any() ||
+               ValidIssuers.Any();
     }
 }
