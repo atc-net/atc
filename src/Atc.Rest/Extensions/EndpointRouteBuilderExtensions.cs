@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Atc.Rest.Options;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -74,7 +75,7 @@ namespace Atc.Rest.Extensions
                         .ToList();
                     var response = JsonSerializer.Serialize(links);
                     await context.Response.WriteAsync(response);
-                });
+                }).WithMetadata(new AllowAnonymousAttribute());
             }
         }
     }
