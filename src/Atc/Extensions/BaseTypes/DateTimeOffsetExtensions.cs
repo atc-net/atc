@@ -35,7 +35,7 @@ namespace System
                 dateTimeOffset.Hour,
                 0,
                 0,
-                TimeSpan.Zero);
+                dateTimeOffset.Offset);
         }
 
         /// <summary>
