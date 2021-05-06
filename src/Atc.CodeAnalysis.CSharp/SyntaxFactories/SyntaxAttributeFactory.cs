@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -94,6 +94,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
                 RequiredAttribute _ => Create(nameof(RequiredAttribute)),
                 StringLengthAttribute attribute => CreateWithOneItemWithOneArgument(nameof(StringLengthAttribute), attribute.MaximumLength),
                 UriAttribute _ => Create(nameof(UriAttribute)),
+                UrlAttribute _ => Create(nameof(UrlAttribute)),
                 _ => throw new NotImplementedException($"{nameof(ValidationAttribute)} {validationAttribute.GetType()} must be implemented.")
             };
 
