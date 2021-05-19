@@ -83,7 +83,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             context.Result = new ContentResult
             {
                 ContentType = MediaTypeNames.Application.Json,
-                StatusCode = (int)HttpStatusCode.InternalServerError,
+                StatusCode = (int)GetHttpStatusCodeByExceptionType(context),
                 Content = useProblemDetailsAsResponseBody
                     ? JsonSerializer.Serialize(CreateProblemDetails(context))
                     : CreateMessage(context),
