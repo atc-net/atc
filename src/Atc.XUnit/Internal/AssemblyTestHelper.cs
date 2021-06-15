@@ -69,7 +69,7 @@ namespace Atc.XUnit.Internal
                     var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceTypes, testTypeMethods);
                     return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, null);
+                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, message: null);
             }
         }
 
@@ -99,10 +99,11 @@ namespace Atc.XUnit.Internal
                     var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceTypes, testTypeMethods);
                     return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, null);
+                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, message: null);
             }
         }
 
+        [SuppressMessage("Performance", "MA0020:Use direct methods instead of LINQ methods", Justification = "OK.")]
         internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type>? excludeSourceTypes)
         {
             if (sourceAssembly == null)
@@ -124,10 +125,10 @@ namespace Atc.XUnit.Internal
                 .OrderBy(x => x.Name)
                 .ToArray();
 
-            if (excludeSourceTypes != null && excludeSourceTypes.Count > 0)
+            if (excludeSourceTypes is { Count: > 0 })
             {
                 sourceTypes = sourceTypes
-                    .Where(sourceType => excludeSourceTypes.FirstOrDefault(x => string.Equals(x.BeautifyName(true, false, true), sourceType.BeautifyName(true, false, true), StringComparison.Ordinal)) == null)
+                    .Where(sourceType => excludeSourceTypes.FirstOrDefault(x => string.Equals(x.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), sourceType.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), StringComparison.Ordinal)) == null)
                     .OrderBy(x => x.Name)
                     .ToArray();
             }
@@ -144,7 +145,7 @@ namespace Atc.XUnit.Internal
                     var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceAssembly.ExportedTypes.ToArray(), testTypeMethods);
                     return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, null);
+                    throw new ArgumentOutOfRangeException(nameof(decompilerType), decompilerType, message: null);
             }
         }
 

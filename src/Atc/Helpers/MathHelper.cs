@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,7 +45,7 @@ namespace Atc.Helpers
             double p = 0;
             if (value < totalValue)
             {
-                p = Math.Round(100 - (value / totalValue * 100), digits, MidpointRounding.AwayFromZero);
+                p = System.Math.Round(100 - (value / totalValue * 100), digits, MidpointRounding.AwayFromZero);
             }
 
             return p;
@@ -75,7 +75,7 @@ namespace Atc.Helpers
         /// <param name="degrees">An angle, measured in degrees.</param>
         public static double DegreesToRadians(double degrees)
         {
-            return Math.PI / 180 * degrees;
+            return System.Math.PI / 180 * degrees;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Atc.Helpers
         /// <param name="radians">An angle, measured in radians.</param>
         public static double RadiansToDegrees(double radians)
         {
-            return 180 / Math.PI * radians;
+            return 180 / System.Math.PI * radians;
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Atc.Helpers
         /// <param name="degrees">An angle, measured in degrees.</param>
         public static double Sin(double degrees)
         {
-            return Math.Sin(DegreesToRadians(degrees));
+            return System.Math.Sin(DegreesToRadians(degrees));
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Atc.Helpers
         /// <param name="degrees">An angle, measured in degrees.</param>
         public static double Cos(double degrees)
         {
-            return Math.Cos(DegreesToRadians(degrees));
+            return System.Math.Cos(DegreesToRadians(degrees));
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Atc.Helpers
         /// <param name="degrees">An angle, measured in degrees.</param>
         public static double Tan(double degrees)
         {
-            return Math.Tan(DegreesToRadians(degrees));
+            return System.Math.Tan(DegreesToRadians(degrees));
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Atc.Helpers
         /// <param name="value">A number representing a sine, where -1 ≤d≤ 1.</param>
         public static double Asin(double value)
         {
-            return RadiansToDegrees(Math.Asin(value));
+            return RadiansToDegrees(System.Math.Asin(value));
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Atc.Helpers
         /// <param name="value">A number representing a cosine, where -1 ≤d≤ 1.</param>
         public static double Acos(double value)
         {
-            return RadiansToDegrees(Math.Acos(value));
+            return RadiansToDegrees(System.Math.Acos(value));
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace Atc.Helpers
         /// <param name="value">A number representing a tangent.</param>
         public static double Atan(double value)
         {
-            return RadiansToDegrees(Math.Atan(value));
+            return RadiansToDegrees(System.Math.Atan(value));
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace Atc.Helpers
         /// </returns>
         public static bool IsEqualToZero(double value)
         {
-            return Math.Abs(value) <= 0.0000001;
+            return System.Math.Abs(value) <= 0.0000001;
         }
 
         /// <summary>
