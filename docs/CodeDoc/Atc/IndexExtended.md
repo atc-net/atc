@@ -302,6 +302,104 @@
   -  Static Methods
      - GetParallelOptions(int exemptProcessorCount = 2)
 
+## [Atc.Math](Atc.Math.md)
+
+- [MathEx](Atc.Math.md#mathex)
+  -  Static Methods
+     - Ceiling(Func&lt;int, int&gt; f, int period)
+     - Ceiling(int x, int period)
+     - Compose(Func&lt;int, int&gt; f, Func&lt;int, int&gt; g)
+     - Floor(Func&lt;int, int&gt; f, int period)
+     - Floor(int x, int period)
+     - GetDivisorsLessThanOrEqual(int value, int max)
+     - GreatestCommonDivisor(double v1, double v2)
+     - GreatestCommonDivisor(int v1, int v2)
+     - Hysteron(ref int state, int x, int width = 1, int height = 1)
+     - Modulate(Func&lt;int, int&gt; carrier, Func&lt;int, int&gt; cellFunction, int period)
+     - Multiply(Func&lt;int, int&gt; f, Func&lt;int, int&gt; g)
+     - Periodic(Func&lt;int, int&gt; f, int period)
+     - Rect(int x, int width = 1, int height = 1)
+     - SawTooth(int x, int period)
+     - Step(int x)
+
+## [Atc.Math.Geometry](Atc.Math.Geometry.md)
+
+- [CircleHelper](Atc.Math.Geometry.md#circlehelper)
+  -  Static Methods
+     - ArcLength(double radius, double angle)
+     - Area(double radius)
+     - ChordLength(double radius, double angle)
+     - Circumference(double radius)
+- [TriangleHelper](Atc.Math.Geometry.md#trianglehelper)
+  -  Static Methods
+     - IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
+     - IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
+     - Pythagorean(double? sideA, double? sideB, double? sideC)
+
+## [Atc.Math.Geometry.CoordinateSystem](Atc.Math.Geometry.CoordinateSystem.md)
+
+- [CartesianHelper](Atc.Math.Geometry.CoordinateSystem.md#cartesianhelper)
+  -  Static Methods
+     - ComputeCoordinateFromPolar(double angle, double radius)
+     - DistanceBetweenTwoPoints(CartesianCoordinate coordinateA, CartesianCoordinate coordinateB)
+     - DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
+     - DistanceBetweenTwoPoints(double x1, double y1, double z1, double x2, double y2, double z2)
+     - DistanceBetweenTwoPoints(Point2D pointA, Point2D pointB)
+     - DistanceBetweenTwoPoints(Point3D pointA, Point3D pointB)
+
+## [Atc.Math.GeoSpatial](Atc.Math.GeoSpatial.md)
+
+- [DistanceMeasurementType](Atc.Math.GeoSpatial.md#distancemeasurementtype)
+- [GeoSpatialHelper](Atc.Math.GeoSpatial.md#geospatialhelper)
+  -  Static Methods
+     - Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
+     - Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
+- [ReferenceEllipsoidType](Atc.Math.GeoSpatial.md#referenceellipsoidtype)
+- [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
+  -  Methods
+     - ToUtm(CartesianCoordinate coordinate)
+     - ToUtm(double latitude, double longitude)
+     - ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
+- [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
+  -  Properties
+     - FormattedUtm
+     - UtmEasting
+     - UtmNorthing
+     - Zone
+     - ZoneLetter
+     - ZoneNumber
+  -  Methods
+     - ToString()
+
+## [Atc.Math.InternationalSystemOfUnits](Atc.Math.InternationalSystemOfUnits.md)
+
+- [BaseUnitType](Atc.Math.InternationalSystemOfUnits.md#baseunittype)
+- [InternationalSystemOfUnitsHelper](Atc.Math.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
+  -  Static Methods
+     - Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
+- [OtherUnitType](Atc.Math.InternationalSystemOfUnits.md#otherunittype)
+- [PrefixType](Atc.Math.InternationalSystemOfUnits.md#prefixtype)
+- [PrefixTypeHelper](Atc.Math.InternationalSystemOfUnits.md#prefixtypehelper)
+  -  Static Methods
+     - GetSymbol(PrefixType prefixType)
+     - GetSymbolForMeter(PrefixType prefixType)
+
+## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
+
+- [TriangleData](Atc.Math.Trigonometry.md#triangledata)
+  -  Fields
+     - double a
+     - double A
+     - double b
+     - double B
+     - double c
+     - double C
+  -  Methods
+     - ToString()
+- [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
+  -  Static Methods
+     - SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
+
 ## [Atc.Structs](Atc.Structs.md)
 
 - [CartesianCoordinate](Atc.Structs.md#cartesiancoordinate)

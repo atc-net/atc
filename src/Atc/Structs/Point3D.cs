@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace Atc
@@ -116,9 +117,10 @@ namespace Atc
         }
 
         /// <inheritdoc />
+        [SuppressMessage("Design", "MA0076:Do not use implicit culture-sensitive ToString in interpolated strings", Justification = "OK.")]
         public override string ToString()
         {
-            return $"{nameof(this.X)}: {this.X}, {nameof(this.Y)}: {this.Y}, {nameof(this.Z)}: {this.Z}";
+            return $"{nameof(X)}: {this.X}, {nameof(Y)}: {this.Y}, {nameof(Z)}: {this.Z}";
         }
     }
 }

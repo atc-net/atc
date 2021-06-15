@@ -51,7 +51,7 @@ namespace Atc.Rest.Results
 
         public int? TotalPages => TotalCount is null
             ? default(int?)
-            : (int)Math.Ceiling((double)(TotalCount / PageSize));
+            : (int)System.Math.Ceiling((double)(TotalCount / PageSize));
 
         public IReadOnlyList<T>? Items { get; set; } = Array.Empty<T>();
 
