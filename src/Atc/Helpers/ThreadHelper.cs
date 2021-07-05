@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
@@ -10,6 +10,11 @@ namespace Atc.Helpers
     [ExcludeFromCodeCoverage]
     public static class ThreadHelper
     {
+        /// <summary>
+        /// Gets the processor count.
+        /// </summary>
+        public static int ProcessorCount => Environment.ProcessorCount;
+
         /// <summary>
         /// Gets the parallel options.
         /// </summary>
