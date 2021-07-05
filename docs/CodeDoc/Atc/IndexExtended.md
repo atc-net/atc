@@ -299,6 +299,8 @@
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
+  -  Static Properties
+     - ProcessorCount
   -  Static Methods
      - GetParallelOptions(int exemptProcessorCount = 2)
 
@@ -576,6 +578,10 @@
      - IsTrue(this string value)
      - IsWord(this string value)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
+- [TaskExtensions](System.md#taskextensions)
+  -  Static Methods
+     - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
+     - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
 - [TimeSpanExtensions](System.md#timespanextensions)
   -  Static Methods
      - Max(this TimeSpan t1, TimeSpan t2)

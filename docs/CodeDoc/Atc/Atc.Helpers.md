@@ -1272,6 +1272,16 @@ ThreadHelper.
 public static class ThreadHelper
 ```
 
+### Static Properties
+
+
+#### ProcessorCount
+
+```csharp
+ProcessorCount
+```
+<p><b>Summary:</b> Gets the processor count.</p>
+
 ### Static Methods
 
 

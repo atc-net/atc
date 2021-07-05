@@ -18,6 +18,7 @@ namespace Atc.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(TaskExtensions),
             typeof(MathEx),
         };
 
