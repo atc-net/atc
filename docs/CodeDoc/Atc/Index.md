@@ -133,6 +133,7 @@
 - [StringExtensions](System.md#stringextensions)
 - [StringHasIsExtensions](System.md#stringhasisextensions)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
+- [TaskExtensions](System.md#taskextensions)
 - [TimeSpanExtensions](System.md#timespanextensions)
 - [TypeExtensions](System.md#typeextensions)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
