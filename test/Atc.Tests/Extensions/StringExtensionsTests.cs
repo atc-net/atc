@@ -346,6 +346,23 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.ReplaceMany(chars, replacement));
 
         [Theory]
+        [InlineData("Hallo World", "Hallo\r\nWorld", " ")]
+        [InlineData("Hallo World", "Hallo\nWorld", " ")]
+        [InlineData("Hallo World", "Hallo\rWorld", " ")]
+        [InlineData("Hallo World John Doe", "Hallo\r\nWorld\nJohn\rDoe", " ")]
+        [InlineData("Hallo-World-John-Doe", "Hallo\r\nWorld\nJohn\rDoe", "-")]
+        public void ReplaceNewLines(string expected, string input, string newValue)
+            => Assert.Equal(expected, input.ReplaceNewLines(newValue));
+
+        [Theory]
+        [InlineData("HalloWorld", "Hallo\r\nWorld")]
+        [InlineData("HalloWorld", "Hallo\nWorld")]
+        [InlineData("HalloWorld", "Hallo\rWorld")]
+        [InlineData("HalloWorldJohnDoe", "Hallo\r\nWorld\nJohn\rDoe")]
+        public void RemoveNewLines(string expected, string input)
+            => Assert.Equal(expected, input.RemoveNewLines());
+
+        [Theory]
         [InlineData("llo World", "Hallo World", "Ha")]
         public void RemoveStart(string expected, string input, string startValue)
             => Assert.Equal(expected, input.RemoveStart(startValue));

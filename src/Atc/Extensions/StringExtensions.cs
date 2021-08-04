@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Atc;
 
+// ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
 namespace System
 {
@@ -15,8 +16,18 @@ namespace System
     /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// The regex expression for split lines.
+        /// </summary>
+        /// <remarks>
+        /// This regex don't use the platform dependent System.Environment.Newline
+        /// but instead works for all platforms as Windows, Unix and Mac.
+        /// "\r\n" (\u000D\u000A) for Windows
+        /// "\n" (\u000A) for Unix
+        /// "\r" (\u000D) for Mac
+        /// </remarks>
+        private static readonly Lazy<Regex> RxSplitLines = new Lazy<Regex>(() => new Regex("\r\n|\n|\r", RegexOptions.Multiline));
         private static readonly Lazy<Regex> RxStringFormatParameterTemplatePlaceholder = new Lazy<Regex>(() => new Regex("{{.*?}}", RegexOptions.Multiline));
-        private static readonly Lazy<Regex> RxSplitLines = new Lazy<Regex>(() => new Regex("\r\n|\r|\n", RegexOptions.Multiline));
         private static readonly Lazy<Regex> RxUnderscore = new Lazy<Regex>(() => new Regex(@"_", RegexOptions.Multiline));
         private static readonly Lazy<Regex> RxCamelCase = new Lazy<Regex>(() => new Regex(@"[a-z][A-Z]", RegexOptions.Multiline));
         private static readonly Lazy<MatchEvaluator> SplitCamelCaseString = new Lazy<MatchEvaluator>(() => m =>
@@ -154,7 +165,6 @@ namespace System
 
             // ReSharper disable once NotAccessedVariable
             // ReSharper disable once LoopCanBeConvertedToQuery
-            int x;
             foreach (var s in sa)
             {
                 if (!s.Contains("}", StringComparison.Ordinal))
@@ -165,7 +175,7 @@ namespace System
                 var sas = s.Split('}');
 
                 // ReSharper disable once InvertIf
-                if (sas.Length > 0 && !int.TryParse(sas[0], out x))
+                if (sas.Length > 0 && !int.TryParse(sas[0], out _))
                 {
                     if (!parameterLiterals.Contains(sas[0]))
                     {
@@ -688,7 +698,7 @@ namespace System
         /// <param name="value">The string to work on.</param>
         /// <returns>The string with camel-case format.</returns>
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
-        public static string? CamelCase(this string value)
+        public static string CamelCase(this string value)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -980,6 +990,52 @@ namespace System
             }
 
             return chars.Aggregate(value, (current, c) => current.Replace(c, replacement));
+        }
+
+        /// <summary>
+        /// Replace the newline characters with the newValue.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="newValue">The new value for NewLine.</param>
+        /// <remarks>
+        /// This method don't use the platform dependent System.Environment.Newline
+        /// but instead works for all platforms as Windows, Unix and Mac.
+        /// "\r\n" (\u000D\u000A) for Windows
+        /// "\n" (\u000A) for Unix
+        /// "\r" (\u000D) for Mac
+        /// </remarks>
+        public static string ReplaceNewLines(this string value, string newValue)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return value
+                .Replace("\r\n", newValue, StringComparison.Ordinal)
+                .Replace("\n", newValue, StringComparison.Ordinal)
+                .Replace("\r", newValue, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// Remove the newline characters with the string.Empty.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <remarks>
+        /// This method don't use the platform dependent System.Environment.Newline
+        /// but instead works for all platforms as Windows, Unix and Mac.
+        /// "\r\n" (\u000D\u000A) for Windows
+        /// "\n" (\u000A) for Unix
+        /// "\r" (\u000D) for Mac
+        /// </remarks>
+        public static string RemoveNewLines(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return value.ReplaceNewLines(string.Empty);
         }
 
         /// <summary>
