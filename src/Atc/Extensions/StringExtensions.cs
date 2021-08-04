@@ -165,7 +165,6 @@ namespace System
 
             // ReSharper disable once NotAccessedVariable
             // ReSharper disable once LoopCanBeConvertedToQuery
-            int x;
             foreach (var s in sa)
             {
                 if (!s.Contains("}", StringComparison.Ordinal))
@@ -176,7 +175,7 @@ namespace System
                 var sas = s.Split('}');
 
                 // ReSharper disable once InvertIf
-                if (sas.Length > 0 && !int.TryParse(sas[0], out x))
+                if (sas.Length > 0 && !int.TryParse(sas[0], out _))
                 {
                     if (!parameterLiterals.Contains(sas[0]))
                     {
@@ -845,7 +844,7 @@ namespace System
                 return value;
             }
 
-            return value.EndsWith("s", StringComparison.Ordinal)
+            return value.EndsWith('s')
                 ? value.Substring(0, value.Length - 1)
                 : value;
         }
@@ -866,7 +865,7 @@ namespace System
                 return value;
             }
 
-            return value.EndsWith("s", StringComparison.Ordinal)
+            return value.EndsWith('s')
                 ? value
                 : value + "s";
         }
@@ -1097,7 +1096,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return value.EndsWith("/", StringComparison.Ordinal)
+            return value.EndsWith('/')
                        ? value.Substring(0, value.Length - 1)
                        : value;
         }
