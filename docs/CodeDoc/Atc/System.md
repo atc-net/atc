@@ -1290,6 +1290,22 @@ string RemoveEndingSlashIfExist(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### RemoveNewLines
+
+```csharp
+string RemoveNewLines(this string value)
+```
+<p><b>Summary:</b> Remove the newline characters with the string.Empty.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline
+            but instead works for all platforms as Windows, Unix and Mac.
+            "\r\n" (\u000D\u000A) for Windows
+            "\n" (\u000A) for Unix
+            "\r" (\u000D) for Mac</p>
+
 #### RemoveStart
 
 ```csharp
@@ -1341,6 +1357,23 @@ string ReplaceMany(this string value, char[] chars, char replacement)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to filter.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;The replacements definition.<br />
 <p><b>Returns:</b> The filtered string.</p>
+
+#### ReplaceNewLines
+
+```csharp
+string ReplaceNewLines(this string value, string newValue)
+```
+<p><b>Summary:</b> Replace the newline characters with the newValue.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`newValue`&nbsp;&nbsp;-&nbsp;&nbsp;The new value for NewLine.<br />
+<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline
+            but instead works for all platforms as Windows, Unix and Mac.
+            "\r\n" (\u000D\u000A) for Windows
+            "\n" (\u000A) for Unix
+            "\r" (\u000D) for Mac</p>
 
 #### SetStringFormatParameterTemplatePlaceholders
 
@@ -1837,7 +1870,7 @@ public class SwitchCaseDefaultException : Exception, ISerializable
 
 
 ## TaskExtensions
-TaskHelper.
+Extensions for the `System.Threading.Tasks.Task` class.
 
 
 ```csharp
