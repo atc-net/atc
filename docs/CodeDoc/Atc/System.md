@@ -1035,6 +1035,22 @@ string Cut(this string value, int maxLength, string appendValue = ...)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appendValue`&nbsp;&nbsp;-&nbsp;&nbsp;The append value.<br />
 <p><b>Returns:</b> The string that is cutoff by the max-length and appended with the appendValue.</p>
 
+#### EnsureEnvironmentNewLines
+
+```csharp
+string EnsureEnvironmentNewLines(this string value)
+```
+<p><b>Summary:</b> Ensure the newline characters are the platform dependent System.Environment.Newline.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+<p><b>Remarks:</b> This method transform Windows, Unix, Mac newline characters to
+            the platform dependent System.Environment.Newline.
+            "\r\n" (\u000D\u000A) for Windows
+            "\n" (\u000A) for Unix
+            "\r" (\u000D) for Mac</p>
+
 #### EnsureFirstCharacterToLower
 
 ```csharp
