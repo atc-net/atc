@@ -791,6 +791,51 @@ namespace System
         }
 
         /// <summary>
+        /// Ensure the newline characters are the platform dependent System.Environment.Newline.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <remarks>
+        /// This method transform Windows, Unix, Mac newline characters to
+        /// the platform dependent System.Environment.Newline.
+        /// "\r\n" (\u000D\u000A) for Windows
+        /// "\n" (\u000A) for Unix
+        /// "\r" (\u000D) for Mac
+        /// </remarks>
+        public static string EnsureEnvironmentNewLines(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            switch (Environment.NewLine)
+            {
+                case "\r\n":
+                    // Windows - Streamline to '\n' and then to '\r\n'
+                    value = value
+                        .Replace("\r\n", "\n", StringComparison.Ordinal)
+                        .Replace("\r", "\n", StringComparison.Ordinal);
+                    value = value
+                        .Replace("\n", "\r\n", StringComparison.Ordinal);
+                    break;
+                case "\n":
+                    // Unix
+                    value = value
+                        .Replace("\r\n", "\n", StringComparison.Ordinal)
+                        .Replace("\r", "\n", StringComparison.Ordinal);
+                    break;
+                case "\r":
+                    // Mac
+                    value = value
+                        .Replace("\r\n", "\r", StringComparison.Ordinal)
+                        .Replace("\n", "\r", StringComparison.Ordinal);
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// Ensures the first character to upper.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -844,7 +889,7 @@ namespace System
                 return value;
             }
 
-            return value.EndsWith("s", StringComparison.Ordinal)
+            return value.EndsWith('s')
                 ? value.Substring(0, value.Length - 1)
                 : value;
         }
@@ -865,7 +910,7 @@ namespace System
                 return value;
             }
 
-            return value.EndsWith("s", StringComparison.Ordinal)
+            return value.EndsWith('s')
                 ? value
                 : value + "s";
         }
@@ -1096,7 +1141,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return value.EndsWith("/", StringComparison.Ordinal)
+            return value.EndsWith('/')
                        ? value.Substring(0, value.Length - 1)
                        : value;
         }

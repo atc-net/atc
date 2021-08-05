@@ -509,6 +509,7 @@
      - CamelCase(this string value)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
+     - EnsureEnvironmentNewLines(this string value)
      - EnsureFirstCharacterToLower(this string value)
      - EnsureFirstCharacterToUpper(this string value)
      - EnsureFirstCharacterToUpperAndPlural(this string value)

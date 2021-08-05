@@ -259,6 +259,14 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.PascalCase(separators, removeSeparators));
 
         [Theory]
+        [InlineData("Hallo{{NEWLINE}}World", "Hallo\r\nWorld")]
+        [InlineData("Hallo{{NEWLINE}}World", "Hallo\nWorld")]
+        [InlineData("Hallo{{NEWLINE}}World", "Hallo\rWorld")]
+        [InlineData("Hallo{{NEWLINE}}World{{NEWLINE}}John{{NEWLINE}}Doe", "Hallo\r\nWorld\nJohn\rDoe")]
+        public void EnsureEnvironmentNewLines(string expected, string input)
+            => Assert.Equal(expected.Replace("{{NEWLINE}}", Environment.NewLine, StringComparison.Ordinal), input.EnsureEnvironmentNewLines());
+
+        [Theory]
         [InlineData("Hallo", "hallo")]
         public void EnsureFirstCharacterToUpper(string expected, string input)
             => Assert.Equal(expected, input.EnsureFirstCharacterToUpper());
