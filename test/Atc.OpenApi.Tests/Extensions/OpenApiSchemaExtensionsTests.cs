@@ -284,7 +284,6 @@ namespace Atc.OpenApi.Tests.Extensions
             Assert.Equal(expected, actual);
         }
 
-
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsDataTypeOfListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void IsDataTypeOfList(bool expected, OpenApiSchema openApiSchema)
