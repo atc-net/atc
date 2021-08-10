@@ -14,6 +14,7 @@ namespace Microsoft.OpenApi.Models
         public const string DateTime = "date-time";
 
         public const string Byte = "byte";
+        public const string Binary = "binary";
         public const string Int32 = "int32";
         public const string Int64 = "int64";
 
