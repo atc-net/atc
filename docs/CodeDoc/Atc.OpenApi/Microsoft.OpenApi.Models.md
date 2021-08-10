@@ -101,6 +101,11 @@ public static class OpenApiFormatTypeConstants
 ### Static Fields
 
 
+#### Binary
+
+```csharp
+string Binary
+```
 #### Byte
 
 ```csharp
@@ -178,6 +183,11 @@ public static class OpenApiMediaTypeExtensions
 
 ```csharp
 OpenApiSchema GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = application/json)
+```
+#### GetSchemaByFirstMediaType
+
+```csharp
+OpenApiSchema GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
 ```
 
 <br />
@@ -477,6 +487,11 @@ bool HasAnyProperties(this OpenApiSchema schema)
 ```csharp
 bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
 ```
+#### HasAnyPropertiesFormatTypeBinary
+
+```csharp
+bool HasAnyPropertiesFormatTypeBinary(this OpenApiSchema schema)
+```
 #### HasAnyPropertiesFormatTypeFromSystemNamespace
 
 ```csharp
@@ -506,6 +521,16 @@ bool HasDataTypeOfList(this IList<OpenApiSchema> schemas)
 
 ```csharp
 bool HasFormatType(this OpenApiSchema schema)
+```
+#### HasFormatTypeFromAspNetCoreHttpNamespace
+
+```csharp
+bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
+```
+#### HasFormatTypeFromAspNetCoreHttpNamespace
+
+```csharp
+bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
 ```
 #### HasFormatTypeFromDataAnnotationsNamespace
 
@@ -586,6 +611,11 @@ bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
 
 ```csharp
 bool IsDataTypeOfList(this OpenApiSchema schema)
+```
+#### IsFormatTypeOfBinary
+
+```csharp
+bool IsFormatTypeOfBinary(this OpenApiSchema schema)
 ```
 #### IsFormatTypeOfByte
 
