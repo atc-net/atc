@@ -9,8 +9,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
     public static class TestDataOpenApiFactory
     {
         public static OpenApiComponents CreateComponents()
-        {
-            return new OpenApiComponents
+            => new OpenApiComponents
             {
                 Schemas =
                 {
@@ -23,11 +22,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     ["ErrorModel"] = CreateSchemaErrorModel(),
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithRequestBodyAddress()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 RequestBody = new OpenApiRequestBody
                 {
@@ -40,11 +37,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithRequestBodyCountry()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 RequestBody = new OpenApiRequestBody
                 {
@@ -57,11 +52,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithRequestBodyPet()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 RequestBody = new OpenApiRequestBody
                 {
@@ -74,11 +67,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithResponseOkAddress()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 Responses = new OpenApiResponses
                 {
@@ -95,11 +86,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithResponseOkCountry()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 Responses = new OpenApiResponses
                 {
@@ -116,27 +105,21 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiOperation CreateOperationWithResponseOkPet()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 Responses = CreateResponsesOkPet(),
             };
-        }
 
         public static OpenApiOperation CreateOperationWithResponseOkPets()
-        {
-            return new OpenApiOperation
+            => new OpenApiOperation
             {
                 Responses = CreateResponsesOkPets(),
             };
-        }
 
         public static OpenApiParameter CreateParameterTags()
-        {
-            return new OpenApiParameter
+            => new OpenApiParameter
             {
                 Name = "tags",
                 In = ParameterLocation.Query,
@@ -148,11 +131,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Items = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
                 },
             };
-        }
 
         public static OpenApiParameter CreateParameterLimit()
-        {
-            return new OpenApiParameter
+            => new OpenApiParameter
             {
                 Name = "limit",
                 In = ParameterLocation.Query,
@@ -160,11 +141,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 Required = false,
                 Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
             };
-        }
 
         public static OpenApiPaths CreatePaths()
-        {
-            return new OpenApiPaths
+            => new OpenApiPaths
             {
                 ["/pets"] = new OpenApiPathItem
                 {
@@ -181,11 +160,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiPathItem CreatePathItemWithOperationResponseOkPet()
-        {
-            return new OpenApiPathItem
+            => new OpenApiPathItem
             {
                 Summary = "Get a pet",
                 Operations = new Dictionary<OperationType, OpenApiOperation>
@@ -193,25 +170,21 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     [OperationType.Get] = CreateOperationWithResponseOkPet(),
                 },
             };
-        }
 
         public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(string path)
-        {
-            return new KeyValuePair<string, OpenApiPathItem>(
-                        path,
-                        new OpenApiPathItem
-                        {
-                            Summary = "Get a pet",
-                            Operations = new Dictionary<OperationType, OpenApiOperation>
-                            {
-                                [OperationType.Get] = CreateOperationWithResponseOkPet(),
-                            },
-                        });
-        }
+            => new KeyValuePair<string, OpenApiPathItem>(
+                path,
+                new OpenApiPathItem
+                {
+                    Summary = "Get a pet",
+                    Operations = new Dictionary<OperationType, OpenApiOperation>
+                    {
+                        [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                    },
+                });
 
         public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(List<OpenApiParameter> parameters)
-        {
-            return new OpenApiPathItem
+            => new OpenApiPathItem
             {
                 Summary = "Get a pet",
                 Parameters = parameters,
@@ -220,11 +193,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     [OperationType.Get] = CreateOperationWithResponseOkPet(),
                 },
             };
-        }
 
         public static OpenApiResponses CreateResponsesOkPet()
-        {
-            return new OpenApiResponses
+            => new OpenApiResponses
             {
                 ["200"] = new OpenApiResponse
                 {
@@ -238,11 +209,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiResponses CreateResponsesOkPets()
-        {
-            return new OpenApiResponses
+            => new OpenApiResponses
             {
                 ["200"] = new OpenApiResponse
                 {
@@ -256,11 +225,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaAddress()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -304,11 +271,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "alpha3Code",
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaCountry()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -343,11 +308,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "alpha3Code",
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaPet()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -379,11 +342,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "name",
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaNewPet()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -412,11 +373,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "name",
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaPetWithGuid()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -470,11 +429,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaPetsAsObjectWithArray()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -495,11 +452,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaColorType()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -513,11 +468,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     ["color"] = CreateSchemaColorEnum(),
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaColorEnum()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "string",
                 Description = "The color type",
@@ -530,11 +483,9 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     new OpenApiString("red = 8"),
                 },
             };
-        }
 
         public static OpenApiSchema CreateSchemaErrorModel()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -560,23 +511,18 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "message",
                 },
             };
-        }
 
         public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
-        {
-            return new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {
                 ["Pet"] = CreateSchemaPet(),
             };
-        }
 
         public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithDifferentPets()
-        {
-            return new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {
                 ["Pet"] = CreateSchemaPet(),
                 ["PetWithGuid"] = CreateSchemaPetWithGuid(),
             };
-        }
     }
 }
