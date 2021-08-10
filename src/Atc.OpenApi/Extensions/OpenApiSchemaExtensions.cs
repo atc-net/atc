@@ -222,6 +222,92 @@ namespace Microsoft.OpenApi.Models
             return schema.Properties.Count > 0;
         }
 
+        public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
+        {
+            return schema.HasAnyProperties() &&
+                   schema.Properties.Any(x => x.Value.HasFormatTypeFromSystemNamespace());
+        }
+
+        public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            if (!schema.HasAnyProperties())
+            {
+                return false;
+            }
+
+            foreach (var schemaProperty in schema.Properties)
+            {
+                if (schemaProperty.Value.HasFormatTypeFromSystemNamespace())
+                {
+                    return true;
+                }
+
+                if (!schemaProperty.Value.IsObjectReferenceTypeDeclared())
+                {
+                    continue;
+                }
+
+                var childModelName = schemaProperty.Value.GetModelName();
+                if (string.IsNullOrEmpty(childModelName))
+                {
+                    continue;
+                }
+
+                var childSchema = componentSchemas.FirstOrDefault(x => x.Key == childModelName);
+                if (string.IsNullOrEmpty(childSchema.Key))
+                {
+                    continue;
+                }
+
+                if (childSchema.Value.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            if (!schema.HasAnyProperties())
+            {
+                return false;
+            }
+
+            foreach (var schemaProperty in schema.Properties)
+            {
+                if (schemaProperty.Value.HasDataTypeFromSystemCollectionGenericNamespace())
+                {
+                    return true;
+                }
+
+                if (!schemaProperty.Value.IsObjectReferenceTypeDeclared())
+                {
+                    continue;
+                }
+
+                var childModelName = schemaProperty.Value.GetModelName();
+                if (string.IsNullOrEmpty(childModelName))
+                {
+                    continue;
+                }
+
+                var childSchema = componentSchemas.FirstOrDefault(x => x.Key == childModelName);
+                if (string.IsNullOrEmpty(childSchema.Key))
+                {
+                    continue;
+                }
+
+                if (childSchema.Value.HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(componentSchemas))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static bool IsDataTypeOfList(this OpenApiSchema schema)
         {
             if (schema == null)
@@ -396,7 +482,8 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Reference != null || schema.Items?.Reference != null;
+            return schema.Type == OpenApiDataTypeConstants.Array &&
+                   schema.Items?.Reference != null;
         }
 
         public static bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
