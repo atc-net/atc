@@ -222,6 +222,29 @@ namespace Microsoft.OpenApi.Models
             return schema.Properties.Count > 0;
         }
 
+        public static bool HasAnyPropertiesFormatTypeBinary(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (!schema.HasAnyProperties())
+            {
+                return false;
+            }
+
+            foreach (var schemaProperty in schema.Properties)
+            {
+                if (schemaProperty.Value.IsFormatTypeOfBinary())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
         {
             return schema.HasAnyProperties() &&
@@ -308,6 +331,26 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.IsFormatTypeOfBinary();
+        }
+
+        public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
+        {
+            if (schemas == null)
+            {
+                throw new ArgumentNullException(nameof(schemas));
+            }
+
+            return schemas.Any(x => x.HasFormatTypeFromAspNetCoreHttpNamespace());
+        }
+
         public static bool IsDataTypeOfList(this OpenApiSchema schema)
         {
             if (schema == null)
@@ -376,6 +419,16 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Byte, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool IsFormatTypeOfBinary(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Binary, StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool IsFormatTypeOfInt32(this OpenApiSchema schema)
@@ -668,6 +721,8 @@ namespace Microsoft.OpenApi.Models
                         return "DateTimeOffset";
                     case OpenApiFormatTypeConstants.Byte:
                         return "string";
+                    case OpenApiFormatTypeConstants.Binary:
+                        return "IFormFile";
                     case OpenApiFormatTypeConstants.Int32:
                         return "int";
                     case OpenApiFormatTypeConstants.Int64:

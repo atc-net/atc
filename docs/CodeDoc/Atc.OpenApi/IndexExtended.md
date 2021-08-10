@@ -30,6 +30,7 @@
      - GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
 - [OpenApiFormatTypeConstants](Microsoft.OpenApi.Models.md#openapiformattypeconstants)
   -  Static Fields
+     - string Binary
      - string Byte
      - string Date
      - string DateTime
@@ -45,6 +46,7 @@
 - [OpenApiMediaTypeExtensions](Microsoft.OpenApi.Models.md#openapimediatypeextensions)
   -  Static Methods
      - GetSchema(this IDictionary&lt;string, OpenApiMediaType&gt; content, string contentType = application/json)
+     - GetSchemaByFirstMediaType(this IDictionary&lt;string, OpenApiMediaType&gt; content)
 - [OpenApiOperationExtensions](Microsoft.OpenApi.Models.md#openapioperationextensions)
   -  Static Methods
      - GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
@@ -101,12 +103,15 @@
      - GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
      - HasAnyProperties(this OpenApiSchema schema)
      - HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary&lt;string, OpenApiSchema&gt; componentSchemas)
+     - HasAnyPropertiesFormatTypeBinary(this OpenApiSchema schema)
      - HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
      - HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary&lt;string, OpenApiSchema&gt; componentSchemas)
      - HasDataTypeFromSystemCollectionGenericNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
      - HasDataTypeOfList(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatType(this OpenApiSchema schema)
+     - HasFormatTypeFromAspNetCoreHttpNamespace(this IList&lt;OpenApiSchema&gt; schemas)
+     - HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
      - HasFormatTypeFromDataAnnotationsNamespace(this IList&lt;OpenApiSchema&gt; schemas)
      - HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
      - HasFormatTypeFromSystemNamespace(this IList&lt;OpenApiSchema&gt; schemas)
@@ -123,6 +128,7 @@
      - HasFormatTypeOfUuid(this IList&lt;OpenApiSchema&gt; schemas)
      - IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
      - IsDataTypeOfList(this OpenApiSchema schema)
+     - IsFormatTypeOfBinary(this OpenApiSchema schema)
      - IsFormatTypeOfByte(this OpenApiSchema schema)
      - IsFormatTypeOfDate(this OpenApiSchema schema)
      - IsFormatTypeOfDateTime(this OpenApiSchema schema)

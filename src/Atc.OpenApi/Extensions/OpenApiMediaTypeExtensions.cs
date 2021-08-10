@@ -20,5 +20,18 @@ namespace Microsoft.OpenApi.Models
                 ? null
                 : value.Schema;
         }
+
+        public static OpenApiSchema? GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
+        {
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            var (key, value) = content.FirstOrDefault();
+            return key == null
+                ? null
+                : value.Schema;
+        }
     }
 }
