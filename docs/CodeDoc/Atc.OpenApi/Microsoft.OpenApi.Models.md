@@ -472,6 +472,21 @@ string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string prope
 ```csharp
 bool HasAnyProperties(this OpenApiSchema schema)
 ```
+#### HasAnyPropertiesFormatFromSystemCollectionGenericNamespace
+
+```csharp
+bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+```
+#### HasAnyPropertiesFormatTypeFromSystemNamespace
+
+```csharp
+bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
+```
+#### HasAnyPropertiesFormatTypeFromSystemNamespace
+
+```csharp
+bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 
 ```csharp
