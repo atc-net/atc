@@ -13,6 +13,12 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { OpenApiDataTypeConstants.Array, CreateContent(OpenApiDataTypeConstants.Array) },
             };
 
+        public static IEnumerable<object[]> GetSchemaByFirstMediaTypeItemData =>
+            new List<object[]>
+            {
+                new object[] { OpenApiDataTypeConstants.Array, CreateMultipleContents(OpenApiDataTypeConstants.Array, OpenApiDataTypeConstants.Object) },
+            };
+
         public static IEnumerable<object[]> GetSchemaContentTypeItemData =>
             new List<object[]>
             {
@@ -20,8 +26,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             };
 
         private static IDictionary<string, OpenApiMediaType> CreateContent(string typeName)
-        {
-            return new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+            => new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
             {
                 {
                     MediaTypeNames.Application.Json,
@@ -34,6 +39,30 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     }
                 },
             };
-        }
+
+        private static IDictionary<string, OpenApiMediaType> CreateMultipleContents(string typeName1, string typeName2)
+            => new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+            {
+                {
+                    MediaTypeNames.Application.Json,
+                    new OpenApiMediaType
+                    {
+                        Schema = new OpenApiSchema
+                        {
+                            Type = typeName1,
+                        },
+                    }
+                },
+                {
+                    MediaTypeNames.Application.Octet,
+                    new OpenApiMediaType
+                    {
+                        Schema = new OpenApiSchema
+                        {
+                            Type = typeName2,
+                        },
+                    }
+                },
+            };
     }
 }

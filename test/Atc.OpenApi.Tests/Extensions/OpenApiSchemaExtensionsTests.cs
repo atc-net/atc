@@ -219,6 +219,17 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasAnyPropertiesFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasAnyPropertiesFormatTypeFromSystemNamespace(bool expected, OpenApiSchema openApiSchema)
         {
@@ -250,6 +261,29 @@ namespace Atc.OpenApi.Tests.Extensions
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromAspNetCoreHttpNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeFromAspNetCoreHttpNamespace(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasFormatTypeFromAspNetCoreHttpNamespace();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromAspNetCoreHttpNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeFromAspNetCoreHttpNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+        {
+            // Act
+            var actual = openApiSchemas.HasFormatTypeFromAspNetCoreHttpNamespace();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsDataTypeOfListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
@@ -323,6 +357,17 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.IsFormatTypeOfByte();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeOfBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsFormatTypeOfBinary();
 
             // Assert
             Assert.Equal(expected, actual);

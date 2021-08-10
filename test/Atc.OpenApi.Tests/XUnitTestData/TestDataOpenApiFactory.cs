@@ -407,11 +407,44 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "name",
                 },
             };
-        }
+
+        public static OpenApiSchema CreateSchemaPetWithBinary()
+            => new OpenApiSchema
+            {
+                Type = "object",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.Schema,
+                    Id = "petWithBinary",
+                },
+                Title = "MyPet",
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                {
+                    ["id"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Format = "uuid",
+                    },
+                    ["name"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Format = "binary",
+                    },
+                    ["tag"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Title = "MyTag",
+                    },
+                },
+                Required = new HashSet<string>(StringComparer.Ordinal)
+                {
+                    "id",
+                    "name",
+                },
+            };
 
         public static OpenApiSchema CreateSchemaPets()
-        {
-            return new OpenApiSchema
+            => new OpenApiSchema
             {
                 Type = "array",
                 Reference = new OpenApiReference

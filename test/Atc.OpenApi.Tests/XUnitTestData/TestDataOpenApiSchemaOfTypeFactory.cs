@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Models;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
@@ -61,6 +61,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 Type = "string",
                 Format = "byte",
+            };
+        }
+
+        public static OpenApiSchema CreateStringBinary()
+        {
+            return new OpenApiSchema
+            {
+                Type = "string",
+                Format = "binary",
             };
         }
 
@@ -187,6 +196,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 Type = "array",
                 Items = CreateStringByte(),
+            };
+        }
+
+        public static OpenApiSchema CreateListStringBinary()
+        {
+            return new OpenApiSchema
+            {
+                Type = "array",
+                Items = CreateStringBinary(),
             };
         }
 
