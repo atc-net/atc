@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Atc.OpenApi.Tests.XUnitTestData;
 using FluentAssertions;
@@ -213,6 +213,39 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.HasAnyProperties();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesFormatTypeFromSystemNamespace(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemNamespace();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemasItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemas(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            // Act
+            var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            // Act
+            var actual = openApiSchema.HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(componentSchemas);
 
             // Assert
             Assert.Equal(expected, actual);

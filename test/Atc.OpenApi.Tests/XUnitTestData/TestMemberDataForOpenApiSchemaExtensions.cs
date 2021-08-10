@@ -537,6 +537,27 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPet() },
             };
 
+        public static IEnumerable<object[]> HasAnyPropertiesFormatTypeFromSystemNamespaceItemData =>
+            new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithGuid() },
+            };
+
+        public static IEnumerable<object[]> HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemasItemData =>
+            new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), TestDataOpenApiFactory.CreateComponentSchemasWithOnePet() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithGuid(), TestDataOpenApiFactory.CreateComponentSchemasWithDifferentPets() },
+            };
+
+        public static IEnumerable<object[]> HasAnyPropertiesFormatFromSystemCollectionGenericNamespaceItemData =>
+            new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), TestDataOpenApiFactory.CreateComponentSchemasWithOnePet() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray(), TestDataOpenApiFactory.CreateComponentSchemasWithDifferentPets() },
+            };
+
         public static IEnumerable<object[]> IsDataTypeOfListItemData =>
             new List<object[]>
             {
