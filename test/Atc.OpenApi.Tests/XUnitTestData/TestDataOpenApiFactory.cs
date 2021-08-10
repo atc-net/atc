@@ -381,28 +381,6 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             };
         }
 
-        public static OpenApiSchema CreateSchemaPets()
-        {
-            return new OpenApiSchema
-            {
-                Type = "array",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "pets",
-                },
-                Items = new OpenApiSchema
-                {
-                    Type = "object",
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.Schema,
-                        Id = "pet",
-                    },
-                },
-            };
-        }
-
         public static OpenApiSchema CreateSchemaNewPet()
         {
             return new OpenApiSchema
@@ -432,6 +410,89 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 Required = new HashSet<string>(StringComparer.Ordinal)
                 {
                     "name",
+                },
+            };
+        }
+
+        public static OpenApiSchema CreateSchemaPetWithGuid()
+        {
+            return new OpenApiSchema
+            {
+                Type = "object",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.Schema,
+                    Id = "petWithGuid",
+                },
+                Title = "MyPet",
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                {
+                    ["id"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Format = "uuid",
+                    },
+                    ["name"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                    },
+                    ["tag"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Title = "MyTag",
+                    },
+                },
+                Required = new HashSet<string>(StringComparer.Ordinal)
+                {
+                    "id",
+                    "name",
+                },
+            };
+        }
+
+        public static OpenApiSchema CreateSchemaPets()
+        {
+            return new OpenApiSchema
+            {
+                Type = "array",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.Schema,
+                    Id = "pets",
+                },
+                Items = new OpenApiSchema
+                {
+                    Type = "object",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.Schema,
+                        Id = "pet",
+                    },
+                },
+            };
+        }
+
+        public static OpenApiSchema CreateSchemaPetsAsObjectWithArray()
+        {
+            return new OpenApiSchema
+            {
+                Type = "object",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.Schema,
+                    Id = "animals",
+                },
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                {
+                    ["pets"] = new OpenApiSchema
+                    {
+                        Type = "array",
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.Schema,
+                            Id = "pet",
+                        },
+                    },
                 },
             };
         }
@@ -498,6 +559,23 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     "code",
                     "message",
                 },
+            };
+        }
+
+        public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
+        {
+            return new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["Pet"] = CreateSchemaPet(),
+            };
+        }
+
+        public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithDifferentPets()
+        {
+            return new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["Pet"] = CreateSchemaPet(),
+                ["PetWithGuid"] = CreateSchemaPetWithGuid(),
             };
         }
     }
