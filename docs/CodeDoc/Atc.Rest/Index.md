@@ -50,6 +50,7 @@
 ## [Microsoft.AspNetCore.Http](Microsoft.AspNetCore.Http.md)
 
 - [AnonymousAccessExtensions](Microsoft.AspNetCore.Http.md#anonymousaccessextensions)
+- [FormFileExtensions](Microsoft.AspNetCore.Http.md#formfileextensions)
 - [HeaderDictionaryExtensions](Microsoft.AspNetCore.Http.md#headerdictionaryextensions)
 - [HttpContextExtensions](Microsoft.AspNetCore.Http.md#httpcontextextensions)
 - [WellKnownHttpHeaders](Microsoft.AspNetCore.Http.md#wellknownhttpheaders)

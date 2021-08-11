@@ -138,6 +138,9 @@
 - [AnonymousAccessExtensions](Microsoft.AspNetCore.Http.md#anonymousaccessextensions)
   -  Static Methods
      - AddAnonymousAccessForDevelopment(this IServiceCollection services)
+- [FormFileExtensions](Microsoft.AspNetCore.Http.md#formfileextensions)
+  -  Static Methods
+     - GetBytes(this IFormFile formFile)
 - [HeaderDictionaryExtensions](Microsoft.AspNetCore.Http.md#headerdictionaryextensions)
   -  Static Methods
      - AddCorrelationId(this IHeaderDictionary headers, string correlationId)
