@@ -26,6 +26,24 @@ IServiceCollection AddAnonymousAccessForDevelopment(this IServiceCollection serv
 <br />
 
 
+## FormFileExtensions
+
+```csharp
+public static class FormFileExtensions
+```
+
+### Static Methods
+
+
+#### GetBytes
+
+```csharp
+Task<byte[]> GetBytes(this IFormFile formFile)
+```
+
+<br />
+
+
 ## HeaderDictionaryExtensions
 
 ```csharp
