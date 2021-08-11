@@ -6,6 +6,7 @@ using Atc.Rest.Extensions;
 using Atc.Rest.Options;
 using Atc.Rest.Results;
 using Atc.XUnit;
+using Microsoft.AspNetCore.Http;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -39,6 +40,9 @@ namespace Atc.Rest.Tests
             typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
             typeof(ResultFactory),
             typeof(AuthorizationOptions),
+
+            // UnitTests is made, but CodeCompliance test cannot detect this
+            typeof(FormFileExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
