@@ -52,31 +52,23 @@ namespace Atc.Math
         /// <param name="v2">The v2.</param>
         public static double GreatestCommonDivisor(double v1, double v2)
         {
-            // Take absolute values
-            if (v1 < 0)
+            var maxDecimalPoints = System.Math.Max(
+                v1.CountDecimalPoints(),
+                v2.CountDecimalPoints());
+
+            var v1Int = (int)v1;
+            var v2Int = (int)v2;
+
+            if (maxDecimalPoints > 0)
             {
-                v1 = -v1;
+                v1Int = (int)(v1 * maxDecimalPoints * 10);
+                v2Int = (int)(v2 * maxDecimalPoints * 10);
             }
 
-            if (v2 < 0)
-            {
-                v2 = -v2;
-            }
-
-            do
-            {
-                if (v1 < v2)
-                {
-                    v2 = Interlocked.Exchange(ref v1, v2); // swap the two operands
-                }
-
-                v1 %= v2;
-            }
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            while (v1 != 0);
-
-            return v2;
+            var greatestCommonIntDivisor = (double)GreatestCommonDivisor(v1Int, v2Int);
+            return maxDecimalPoints > 0
+                ? greatestCommonIntDivisor / (maxDecimalPoints * 10)
+                : greatestCommonIntDivisor;
         }
 
         /// <summary>
