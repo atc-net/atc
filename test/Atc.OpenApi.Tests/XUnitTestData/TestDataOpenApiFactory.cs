@@ -210,6 +210,26 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
+        public static OpenApiResponses CreateResponsesOkWithBinary()
+            => new OpenApiResponses
+            {
+                ["200"] = new OpenApiResponse
+                {
+                    Description = "Ok",
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    {
+                        [MediaTypeNames.Application.Octet] = new OpenApiMediaType
+                        {
+                            Schema = new OpenApiSchema
+                            {
+                                Type = OpenApiDataTypeConstants.String,
+                                Format = OpenApiFormatTypeConstants.Binary,
+                            },
+                        },
+                    },
+                },
+            };
+
         public static OpenApiResponses CreateResponsesOkPets()
             => new OpenApiResponses
             {

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Net;
 using Atc.OpenApi.Tests.XUnitTestData;
 using FluentAssertions;
@@ -127,6 +127,17 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiResponses.IsSchemaTypeProblemDetailsForStatusCode(httpStatusCode);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.IsSchemaUsingBinaryFormatForOkResponseItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
+        public void IsSchemaUsingBinaryFormatForOkResponse(bool expected, OpenApiResponses openApiResponses)
+        {
+            // Act
+            var actual = openApiResponses.IsSchemaUsingBinaryFormatForOkResponse();
 
             // Assert
             Assert.Equal(expected, actual);

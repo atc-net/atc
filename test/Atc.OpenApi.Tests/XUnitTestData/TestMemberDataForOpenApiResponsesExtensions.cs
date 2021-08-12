@@ -183,5 +183,20 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     HttpStatusCode.OK,
                 },
             };
+
+        public static IEnumerable<object[]> IsSchemaUsingBinaryFormatForOkResponseItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    true,
+                    TestDataOpenApiFactory.CreateResponsesOkWithBinary(),
+                },
+                new object[]
+                {
+                    false,
+                    TestDataOpenApiFactory.CreateResponsesOkPet(),
+                },
+            };
     }
 }
