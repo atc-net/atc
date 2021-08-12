@@ -60,5 +60,19 @@ namespace Atc.Tests.Math
         [InlineData(10, 0)]
         public void GetDivisorsLessThanOrEqual_Expected_ArgumentOutOfRangeException(int value, int max)
             => Assert.Throws<ArgumentOutOfRangeException>(() => MathEx.GetDivisorsLessThanOrEqual(value, max));
+
+        [Theory]
+        [InlineData(0, int.MinValue)]
+        [InlineData(0, -1)]
+        [InlineData(1, 0)]
+        [InlineData(1, 1)]
+        [InlineData(1, int.MaxValue)]
+        public void Step(int expected, int x)
+        {
+            // Act
+            var actual = MathEx.Step(x);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
