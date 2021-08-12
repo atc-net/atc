@@ -70,5 +70,14 @@ namespace Atc.Rest.Results
                 StatusCode = (int)statusCode,
                 Content = JsonSerializer.Serialize(message),
             };
+
+        public static FileResult CreateFileContentResult(
+            byte[] bytes,
+            string fileName,
+            string contentType = MediaTypeNames.Application.Octet)
+            => new FileContentResult(bytes, contentType)
+            {
+                FileDownloadName = fileName,
+            };
     }
 }
