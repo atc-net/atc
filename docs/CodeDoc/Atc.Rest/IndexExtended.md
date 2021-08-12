@@ -113,6 +113,7 @@
      - CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message, string contentType = application/json)
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
+     - CreateFileContentResult(byte[] bytes, string fileName, string contentType = application/octet-stream)
      - CreateProblemDetails(HttpStatusCode statusCode, string message)
      - CreateValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message)
 

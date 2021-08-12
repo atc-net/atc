@@ -110,6 +110,11 @@ ContentResult CreateContentResultWithValidationProblemDetails(HttpStatusCode sta
 ```csharp
 ContentResult CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary<string, string[]> errors, string message, string contentType = application/json)
 ```
+#### CreateFileContentResult
+
+```csharp
+FileResult CreateFileContentResult(byte[] bytes, string fileName, string contentType = application/octet-stream)
+```
 #### CreateProblemDetails
 
 ```csharp
