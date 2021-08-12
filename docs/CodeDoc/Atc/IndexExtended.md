@@ -462,6 +462,7 @@
      - double DoubleEpsilon
   -  Static Methods
      - AreClose(this double value1, double value2)
+     - CountDecimalPoints(this double value)
      - CurrencyRounding(this double value)
      - CurrencyRounding(this double value, int digits)
      - CurrencyRoundingAsInteger(this double value)

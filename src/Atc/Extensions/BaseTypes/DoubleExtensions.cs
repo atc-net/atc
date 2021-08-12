@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 
 // ReSharper disable once CheckNamespace
 namespace System
@@ -178,6 +178,22 @@ namespace System
         public static double RoundOffPercent(this double percent)
         {
             return RoundOff(percent, 2);
+        }
+
+        /// <summary>
+        /// Returns the numbers of decimal points in the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static int CountDecimalPoints(this double value)
+        {
+            var precision = 0;
+
+            while (value * Math.Pow(10, precision) != Math.Round(value * Math.Pow(10, precision)))
+            {
+                precision++;
+            }
+
+            return precision;
         }
     }
 }

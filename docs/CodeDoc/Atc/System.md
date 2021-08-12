@@ -471,6 +471,16 @@ bool AreClose(this double value1, double value2)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+#### CountDecimalPoints
+
+```csharp
+int CountDecimalPoints(this double value)
+```
+<p><b>Summary:</b> Returns the numbers of decimal points in the value.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### CurrencyRounding
 
 ```csharp

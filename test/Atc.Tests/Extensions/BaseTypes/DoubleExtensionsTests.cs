@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 
 namespace Atc.Tests.Extensions.BaseTypes
@@ -271,6 +271,23 @@ namespace Atc.Tests.Extensions.BaseTypes
         {
             // Act
             var actual = input.RoundOffPercent();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, 9)]
+        [InlineData(1, 9.9)]
+        [InlineData(2, 9.99)]
+        [InlineData(3, 9.999)]
+        [InlineData(4, 9.9999000000)]
+        [InlineData(15, 9.1234567891012345)]
+        [InlineData(30, 5.821e-27)]
+        public void CountDecimalPoints(int expected, double input)
+        {
+            // Act
+            var actual = input.CountDecimalPoints();
 
             // Assert
             Assert.Equal(expected, actual);
