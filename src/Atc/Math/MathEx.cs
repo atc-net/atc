@@ -72,21 +72,42 @@ namespace Atc.Math
         }
 
         /// <summary>
-        /// Gets the divisors less than or equal.
+        /// Gets divisors for <paramref name="value"/> that is less than or equal to the specified <paramref name="max"/> value.
         /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="max">The maximum.</param>
+        /// <param name="value">The value to get divisors of.</param>
+        /// <param name="max">The maximum divisor threshold.</param>
         public static IEnumerable<int> GetDivisorsLessThanOrEqual(int value, int max)
         {
-            max = System.Math.Min(max, System.Math.Abs(value / 2));
-            yield return 1;
-            for (int i = 2; i <= max; ++i)
+            if (value < 1)
             {
-                if (value % i == 0)
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(value)} cannot be less than 1.");
+            }
+
+            if (max < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(max), max, $"{nameof(max)} cannot be less than 1.");
+            }
+
+            IEnumerable<int> Iterator()
+            {
+                int halfMax = System.Math.Min(max, System.Math.Abs(value / 2));
+                yield return 1;
+
+                for (int i = 2; i <= halfMax; ++i)
                 {
-                    yield return i;
+                    if (value % i == 0)
+                    {
+                        yield return i;
+                    }
+                }
+
+                if (max != 1 && max >= value)
+                {
+                    yield return value;
                 }
             }
+
+            return Iterator();
         }
 
         /// <summary>
