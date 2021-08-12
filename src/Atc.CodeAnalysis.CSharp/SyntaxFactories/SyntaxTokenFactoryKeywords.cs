@@ -104,5 +104,10 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
         {
             return TokenWithTrailing(SyntaxKind.ObjectKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
         }
+
+        public static SyntaxToken ByteKeyword(bool withTrailingSpace = true)
+        {
+            return TokenWithTrailing(SyntaxKind.ByteKeyword, withTrailingSpace ? SyntaxFactory.Space : SyntaxFactory.ElasticMarker);
+        }
     }
 }

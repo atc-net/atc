@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
@@ -156,6 +157,27 @@ namespace Microsoft.OpenApi.Models
         public static bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
             return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, nameof(ProblemDetails), StringComparison.Ordinal);
+        }
+
+        public static bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
+        {
+            foreach (var (key, value) in responses.OrderBy(x => x.Key))
+            {
+                if (!key.Equals(((int)HttpStatusCode.OK).ToString(CultureInfo.CurrentCulture), StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                if (value == null)
+                {
+                    continue;
+                }
+
+                var schema = value.Content.GetSchemaByFirstMediaType();
+                return schema is not null && schema.IsFormatTypeOfBinary();
+            }
+
+            return false;
         }
     }
 }
