@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mime;
+using System.Text;
 using Atc.Rest.Results;
+using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace Atc.Rest.Tests.Results
@@ -161,6 +163,26 @@ namespace Atc.Rest.Tests.Results
                 Assert.Equal(contentType, actual.ContentType);
                 Assert.Equal($"\"{message}\"", actual.Content);
             }
+        }
+
+        [Theory]
+        [InlineData("Hallo World", "dummy.txt")]
+        public void CreateFileContentResult(string data, string fileName)
+        {
+            // Arrange
+            var bytes = Encoding.UTF8.GetBytes(data);
+
+            // Act
+            var actual = ResultFactory.CreateFileContentResult(bytes, fileName);
+
+            // Assert
+            Assert.NotNull(actual);
+            Assert.Equal(fileName, actual.FileDownloadName);
+
+            var fileContentResult = actual as FileContentResult;
+            Assert.NotNull(fileContentResult);
+            Assert.Equal(bytes.Length, fileContentResult.FileContents.Length);
+            Assert.Equal(data, Encoding.UTF8.GetString(fileContentResult.FileContents));
         }
     }
 }
