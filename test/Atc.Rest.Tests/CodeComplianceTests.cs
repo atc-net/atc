@@ -41,7 +41,7 @@ namespace Atc.Rest.Tests
             typeof(ResultFactory),
             typeof(AuthorizationOptions),
 
-            // UnitTests is made, but CodeCompliance test cannot detect this
+            // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(FormFileExtensions),
         };
 
