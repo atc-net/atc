@@ -79,12 +79,12 @@ Func<int, int> Floor(Func<int, int> f, int period)
 ```csharp
 IEnumerable<int> GetDivisorsLessThanOrEqual(int value, int max)
 ```
-<p><b>Summary:</b> Gets the divisors less than or equal.</p>
+<p><b>Summary:</b> Gets divisors for `value` that is less than or equal to the specified `max` value.</p>
 
 <b>Parameters</b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to get divisors of.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum divisor threshold.<br />
 #### GreatestCommonDivisor
 
 ```csharp
@@ -112,7 +112,7 @@ double GreatestCommonDivisor(double v1, double v2)
 ```csharp
 int Hysteron(ref int state, int x, int width = 1, int height = 1)
 ```
-<p><b>Summary:</b> Associates the input with the result of an operator that takes the path of a loop,  and its next state depends on its past state.</p>
+<p><b>Summary:</b> Associates the input with the result of an operator that takes the path of a loop, and its next state depends on its past state.</p>
 
 <b>Parameters</b>
 

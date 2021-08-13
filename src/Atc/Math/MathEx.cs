@@ -52,49 +52,62 @@ namespace Atc.Math
         /// <param name="v2">The v2.</param>
         public static double GreatestCommonDivisor(double v1, double v2)
         {
-            // Take absolute values
-            if (v1 < 0)
+            var maxDecimalPoints = System.Math.Max(
+                v1.CountDecimalPoints(),
+                v2.CountDecimalPoints());
+
+            var v1Int = (int)v1;
+            var v2Int = (int)v2;
+
+            if (maxDecimalPoints > 0)
             {
-                v1 = -v1;
+                v1Int = (int)(v1 * maxDecimalPoints * 10);
+                v2Int = (int)(v2 * maxDecimalPoints * 10);
             }
 
-            if (v2 < 0)
-            {
-                v2 = -v2;
-            }
-
-            do
-            {
-                if (v1 < v2)
-                {
-                    v2 = Interlocked.Exchange(ref v1, v2); // swap the two operands
-                }
-
-                v1 %= v2;
-            }
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            while (v1 != 0);
-
-            return v2;
+            var greatestCommonIntDivisor = (double)GreatestCommonDivisor(v1Int, v2Int);
+            return maxDecimalPoints > 0
+                ? greatestCommonIntDivisor / (maxDecimalPoints * 10)
+                : greatestCommonIntDivisor;
         }
 
         /// <summary>
-        /// Gets the divisors less than or equal.
+        /// Gets divisors for <paramref name="value"/> that is less than or equal to the specified <paramref name="max"/> value.
         /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="max">The maximum.</param>
+        /// <param name="value">The value to get divisors of.</param>
+        /// <param name="max">The maximum divisor threshold.</param>
         public static IEnumerable<int> GetDivisorsLessThanOrEqual(int value, int max)
         {
-            max = System.Math.Min(max, System.Math.Abs(value / 2));
-            yield return 1;
-            for (int i = 2; i <= max; ++i)
+            if (value < 1)
             {
-                if (value % i == 0)
+                throw new ArgumentOutOfRangeException(nameof(value), value, $"{nameof(value)} cannot be less than 1.");
+            }
+
+            if (max < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(max), max, $"{nameof(max)} cannot be less than 1.");
+            }
+
+            IEnumerable<int> Iterator()
+            {
+                int halfMax = System.Math.Min(max, System.Math.Abs(value / 2));
+                yield return 1;
+
+                for (int i = 2; i <= halfMax; ++i)
                 {
-                    yield return i;
+                    if (value % i == 0)
+                    {
+                        yield return i;
+                    }
+                }
+
+                if (max != 1 && max >= value)
+                {
+                    yield return value;
                 }
             }
+
+            return Iterator();
         }
 
         /// <summary>

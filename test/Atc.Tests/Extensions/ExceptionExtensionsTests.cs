@@ -236,7 +236,7 @@ namespace Atc.Tests.Extensions
             var actual = input.ToXml();
 
             // Assert
-            Assert.Equal(expected.Replace(Environment.NewLine, string.Empty, StringComparison.Ordinal), actual.ToString().Replace(Environment.NewLine, string.Empty, StringComparison.Ordinal));
+            Assert.Equal(expected.EnsureEnvironmentNewLines(), actual.ToString().EnsureEnvironmentNewLines());
         }
     }
 }

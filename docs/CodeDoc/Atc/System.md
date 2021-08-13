@@ -471,6 +471,16 @@ bool AreClose(this double value1, double value2)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+#### CountDecimalPoints
+
+```csharp
+int CountDecimalPoints(this double value)
+```
+<p><b>Summary:</b> Returns the numbers of decimal points in the value.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### CurrencyRounding
 
 ```csharp
@@ -1156,7 +1166,7 @@ string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
 ```csharp
 string Humanize(this string value)
 ```
-<p><b>Summary:</b> Humanizes (make more human-readable) an identifier-style string  in either camel case or snake case. For example, CamelCase will be converted to  Camel Case and Snake_Case will be converted to Snake Case.</p>
+<p><b>Summary:</b> Humanizes (make more human-readable) an identifier-style string in either camel case or snake case. For example, CamelCase will be converted to Camel Case and Snake_Case will be converted to Snake Case.</p>
 
 <b>Parameters</b>
 
@@ -1440,7 +1450,7 @@ Stream ToStreamFromBase64(this string base64Data)
 ```csharp
 string TrimExtended(this string value)
 ```
-<p><b>Summary:</b> TrimExtended removes all leading and trailing white-space.  and multi-space characters from the current System.String object.</p>
+<p><b>Summary:</b> TrimExtended removes all leading and trailing white-space. and multi-space characters from the current System.String object.</p>
 
 <b>Parameters</b>
 
@@ -1901,7 +1911,7 @@ public static class TaskExtensions
 ```csharp
 void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
 ```
-<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel.  <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
+<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
 
 <b>Parameters</b>
 
@@ -1913,7 +1923,7 @@ void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToR
 ```csharp
 void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
 ```
-<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel.  <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
+<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
 
 <b>Parameters</b>
 
@@ -2255,7 +2265,7 @@ public static class VersionExtensions
 ```csharp
 int CompareTo(this Version version, Version otherVersion, int significantParts)
 ```
-<p><b>Summary:</b> Is 'version' greater then the 'otherVersion', where the significantParts is the stop part.  Example significantParts=2, then only Major and Minor wil be taken into consideration.</p>
+<p><b>Summary:</b> Is 'version' greater then the 'otherVersion', where the significantParts is the stop part. Example significantParts=2, then only Major and Minor wil be taken into consideration.</p>
 
 <b>Parameters</b>
 

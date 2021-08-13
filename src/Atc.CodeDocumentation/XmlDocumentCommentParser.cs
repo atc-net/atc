@@ -39,11 +39,13 @@ namespace Atc.CodeDocumentation
                     summaryXml = Regex.Replace(summaryXml, @"<para\s*/>", Environment.NewLine);
                     summaryXml = Regex.Replace(summaryXml, @"<see cref=""\w:([^\""]*)""\s*\/>", m => ResolveSeeElement(m, namespaceMatch));
 
-                    var summary = Regex.Replace(summaryXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[1].Value}`");
+                    var summary = Regex.Replace(summaryXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[2].Value}`");
                     if (summary.Length > 0)
                     {
                         summary = string.Join("  ", summary.Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim()));
                     }
+
+                    summary = summary.TrimExtended();
 
                     var returns = ((string)x.Element("returns")) ?? string.Empty;
                     var remarks = ((string)x.Element("remarks")) ?? string.Empty;

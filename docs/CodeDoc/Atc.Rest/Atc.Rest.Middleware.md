@@ -27,7 +27,7 @@ Task InvokeAsync(HttpContext context)
 
 
 ## KeepAliveMiddleware
-Middleware responsible for handling the App service keep alive ping on http://{host-endpoint}.  If not enabled the application insights will report a failed request as the goes to http and not https.
+Middleware responsible for handling the App service keep alive ping on http://{host-endpoint}. If not enabled the application insights will report a failed request as the goes to http and not https.
 
 
 ```csharp

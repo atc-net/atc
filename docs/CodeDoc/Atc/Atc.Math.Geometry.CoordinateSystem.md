@@ -35,7 +35,7 @@ Point2D ComputeCoordinateFromPolar(double angle, double radius)
 ```csharp
 double DistanceBetweenTwoPoints(Point2D pointA, Point2D pointB)
 ```
-<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).  d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
+<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2). d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
 
 <b>Parameters</b>
 
@@ -48,7 +48,7 @@ double DistanceBetweenTwoPoints(Point2D pointA, Point2D pointB)
 ```csharp
 double DistanceBetweenTwoPoints(Point3D pointA, Point3D pointB)
 ```
-<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).  d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
+<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2). d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
 
 <b>Parameters</b>
 
@@ -61,7 +61,7 @@ double DistanceBetweenTwoPoints(Point3D pointA, Point3D pointB)
 ```csharp
 double DistanceBetweenTwoPoints(CartesianCoordinate coordinateA, CartesianCoordinate coordinateB)
 ```
-<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).  d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
+<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2). d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
 
 <b>Parameters</b>
 
@@ -74,7 +74,7 @@ double DistanceBetweenTwoPoints(CartesianCoordinate coordinateA, CartesianCoordi
 ```csharp
 double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
 ```
-<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).  d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
+<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2). d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
 
 <b>Parameters</b>
 
@@ -87,7 +87,7 @@ double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
 ```csharp
 double DistanceBetweenTwoPoints(double x1, double y1, double z1, double x2, double y2, double z2)
 ```
-<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).  d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
+<p><b>Summary:</b> The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2). d = Sqrt((x2-x1)^2 + (y2-y1)^2)</p>
 
 <b>Parameters</b>
 

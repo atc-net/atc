@@ -18,8 +18,10 @@ namespace Atc.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(TaskExtensions),
             typeof(MathEx),
+
+            // UnitTests are made, but CodeCompliance test cannot detect this
+            typeof(TaskExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
