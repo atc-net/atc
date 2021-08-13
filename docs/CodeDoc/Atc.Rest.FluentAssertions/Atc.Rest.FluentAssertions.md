@@ -224,7 +224,7 @@ public static class ResultBaseExtensions
 ```csharp
 ResultAssertions Should(this ResultBase subject)
 ```
-<p><b>Summary:</b> Returns an `Atc.Rest.FluentAssertions.ResultAssertions` object that can be used  to assert the current ``.</p>
+<p><b>Summary:</b> Returns an `Atc.Rest.FluentAssertions.ResultAssertions` object that can be used  to assert the current `subject`.</p>
 
 <b>Parameters</b>
 

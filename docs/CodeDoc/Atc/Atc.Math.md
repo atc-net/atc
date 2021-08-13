@@ -79,7 +79,7 @@ Func<int, int> Floor(Func<int, int> f, int period)
 ```csharp
 IEnumerable<int> GetDivisorsLessThanOrEqual(int value, int max)
 ```
-<p><b>Summary:</b> Gets divisors for `` that is less than or equal to the specified `` value.</p>
+<p><b>Summary:</b> Gets divisors for `value` that is less than or equal to the specified `max` value.</p>
 
 <b>Parameters</b>
 
