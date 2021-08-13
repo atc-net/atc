@@ -20,15 +20,15 @@ public enum AddressType
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
 | 0 | None | None | Default None. | 
-| 1 | Address | Address | The address indicates that the returned result is a precise geocode for which we have  location information accurate down to street address precision. - With floor and door, if specified. | 
-| 2 | AccessAddress | Access Address | The access address indicates that the returned result is a precise geocode for which we have  location information accurate down to street address precision. - No floor and door. | 
+| 1 | Address | Address | The address indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision. - With floor and door, if specified. | 
+| 2 | AccessAddress | Access Address | The access address indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision. - No floor and door. | 
 | 3 | AllRegularly | All Regularly | All regularly | 
 | 4 | PreliminaryAddress | Preliminary Address | The preliminary address - same as AccessAddress, but preliminary. | 
 | 8 | PreliminaryAccessAddress | Preliminary Access Address | The preliminary access address - same as Address, but preliminary. | 
 | 12 | AllPreliminary | All Preliminary | All preliminary | 
 | 15 | All | All | All | 
-| 16 | RangeInterpolated | Range Interpolated | The range interpolated indicates that the returned result reflects an approximation (usually on a road)  interpolated between two precise points (such as intersections).  Interpolated results are generally returned when rooftop geocodes are unavailable for a street address. | 
-| 32 | GeometricCenter | Geometric Center | The geometric center indicates that the returned result is the geometric center  of a result such as a polyline (for example, a street) or polygon (region). | 
+| 16 | RangeInterpolated | Range Interpolated | The range interpolated indicates that the returned result reflects an approximation (usually on a road) interpolated between two precise points (such as intersections). Interpolated results are generally returned when rooftop geocodes are unavailable for a street address. | 
+| 32 | GeometricCenter | Geometric Center | The geometric center indicates that the returned result is the geometric center of a result such as a polyline (for example, a street) or polygon (region). | 
 | 64 | Approximate | Approximate | The approximate indicates that the returned result is approximate. | 
 | 128 | Partial | Partial | The partial indicates that this not an full-validated-address, but a more approximate address - based on country and city. | 
 

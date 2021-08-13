@@ -112,7 +112,7 @@ double GreatestCommonDivisor(double v1, double v2)
 ```csharp
 int Hysteron(ref int state, int x, int width = 1, int height = 1)
 ```
-<p><b>Summary:</b> Associates the input with the result of an operator that takes the path of a loop,  and its next state depends on its past state.</p>
+<p><b>Summary:</b> Associates the input with the result of an operator that takes the path of a loop, and its next state depends on its past state.</p>
 
 <b>Parameters</b>
 

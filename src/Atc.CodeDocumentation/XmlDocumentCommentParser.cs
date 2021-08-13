@@ -45,6 +45,8 @@ namespace Atc.CodeDocumentation
                         summary = string.Join("  ", summary.Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim()));
                     }
 
+                    summary = summary.TrimExtended();
+
                     var returns = ((string)x.Element("returns")) ?? string.Empty;
                     var remarks = ((string)x.Element("remarks")) ?? string.Empty;
                     var code = (string)x.Element("code") ?? string.Empty;
