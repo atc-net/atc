@@ -72,6 +72,7 @@ namespace Atc.Tests.Math
             // Act
             var actual = MathEx.Step(x);
 
+            // Assert
             Assert.Equal(expected, actual);
         }
     }
