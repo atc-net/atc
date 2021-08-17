@@ -338,7 +338,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsFormatTypeOfBinary();
+            return schema.IsFormatTypeOfBinary() || schema.IsItemsOfFormatTypeBinary();
         }
 
         public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
