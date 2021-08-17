@@ -556,6 +556,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
             };
 
+        public static IEnumerable<object[]> HasAnyPropertiesOfArrayWithFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithBinaryArray() },
+            };
+
         public static IEnumerable<object[]> HasAnyPropertiesFormatTypeFromSystemNamespaceItemData
             => new List<object[]>
             {
@@ -996,6 +1005,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
@@ -1011,6 +1021,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
@@ -1022,6 +1033,17 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+            };
+
+        public static IEnumerable<object[]> IsItemsOfFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPets() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
             };
 
         public static IEnumerable<object[]> IsSchemaEnumItemData
@@ -1138,6 +1160,21 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         ["newPet"] = TestDataOpenApiFactory.CreateSchemaNewPet(),
                     },
                     "colorType",
+                },
+            };
+
+        public static IEnumerable<object[]> ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[]
+                {
+                    "Pets",
+                    TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray(),
+                },
+                new object[]
+                {
+                    string.Empty,
+                    TestDataOpenApiFactory.CreateSchemaPet(),
                 },
             };
     }
