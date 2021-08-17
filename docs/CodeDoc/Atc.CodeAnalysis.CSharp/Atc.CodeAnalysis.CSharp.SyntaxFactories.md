@@ -642,6 +642,11 @@ SyntaxToken AbstractKeyword(bool withTrailingSpace = True)
 ```csharp
 SyntaxToken AsyncKeyword(bool withTrailingSpace = True)
 ```
+#### ByteKeyword
+
+```csharp
+SyntaxToken ByteKeyword(bool withTrailingSpace = True)
+```
 #### CarriageReturnLineFeed
 
 ```csharp
