@@ -549,6 +549,16 @@ namespace Microsoft.OpenApi.Models
             return schema.Items != null && schema.Items.IsSimpleDataType();
         }
 
+        public static bool IsItemsOfFormatTypeBinary(this OpenApiSchema schema)
+        {
+            if (schema == null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.Items != null && schema.Items.IsFormatTypeOfBinary();
+        }
+
         public static bool IsSchemaEnum(this OpenApiSchema schema)
         {
             if (schema == null)
