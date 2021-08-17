@@ -133,6 +133,7 @@
   -  Static Methods
      - AbstractKeyword(bool withTrailingSpace = True)
      - AsyncKeyword(bool withTrailingSpace = True)
+     - ByteKeyword(bool withTrailingSpace = True)
      - CarriageReturnLineFeed()
      - Colon(bool withTrailingSpace = False)
      - Comma(bool withTrailingSpace = True)

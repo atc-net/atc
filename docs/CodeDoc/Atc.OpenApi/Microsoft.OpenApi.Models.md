@@ -434,6 +434,11 @@ bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpSt
 ```csharp
 bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
 ```
+#### IsSchemaUsingBinaryFormatForOkResponse
+
+```csharp
+bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
+```
 
 <br />
 
@@ -447,6 +452,11 @@ public static class OpenApiSchemaExtensions
 ### Static Methods
 
 
+#### ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary
+
+```csharp
+string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema apiSchema)
+```
 #### GetDataType
 
 ```csharp
@@ -501,6 +511,11 @@ bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
 
 ```csharp
 bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+```
+#### HasAnyPropertiesOfArrayWithFormatTypeBinary
+
+```csharp
+bool HasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema schema)
 ```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 
@@ -666,6 +681,11 @@ bool IsFormatTypeOfUri(this OpenApiSchema schema)
 
 ```csharp
 bool IsFormatTypeOfUuid(this OpenApiSchema schema)
+```
+#### IsItemsOfFormatTypeBinary
+
+```csharp
+bool IsItemsOfFormatTypeBinary(this OpenApiSchema schema)
 ```
 #### IsItemsOfSimpleDataType
 

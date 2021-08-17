@@ -230,6 +230,17 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesOfArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesOfArrayWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasAnyPropertiesOfArrayWithFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasAnyPropertiesFormatTypeFromSystemNamespace(bool expected, OpenApiSchema openApiSchema)
         {
@@ -461,6 +472,17 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsItemsOfFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsItemsOfFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsItemsOfFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsSchemaEnumItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void IsSchemaEnum(bool expected, OpenApiSchema openApiSchema)
         {
@@ -595,6 +617,17 @@ namespace Atc.OpenApi.Tests.Extensions
                 .NotBeNull()
                 .And
                 .BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(string expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
         }
     }
 }

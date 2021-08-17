@@ -483,6 +483,17 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
+        public static OpenApiSchema CreateSchemaPetsWithBinaryArray()
+            => new OpenApiSchema
+            {
+                Type = "array",
+                Items = new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "binary",
+                },
+            };
+
         public static OpenApiSchema CreateSchemaPetsAsObjectWithArray()
             => new OpenApiSchema
             {
@@ -501,6 +512,29 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         {
                             Type = ReferenceType.Schema,
                             Id = "pet",
+                        },
+                    },
+                },
+            };
+
+        public static OpenApiSchema CreateSchemaPetsAsObjectWithBinaryArray()
+            => new OpenApiSchema
+            {
+                Type = "object",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.Schema,
+                    Id = "animals",
+                },
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                {
+                    ["petFiles"] = new OpenApiSchema
+                    {
+                        Type = "array",
+                        Items = new OpenApiSchema
+                        {
+                            Type = "string",
+                            Format = "binary",
                         },
                     },
                 },
