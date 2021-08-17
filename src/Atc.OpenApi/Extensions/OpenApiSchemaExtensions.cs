@@ -245,6 +245,27 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        public static bool HasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema schema)
+        {
+            if (schema.Items is null && schema.HasAnyProperties())
+            {
+                foreach (var (_, value) in schema.Properties)
+                {
+                    if (value.Type != OpenApiDataTypeConstants.Array)
+                    {
+                        continue;
+                    }
+
+                    if (value.IsItemsOfFormatTypeBinary())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
         {
             return schema.HasAnyProperties() &&
@@ -809,5 +830,18 @@ namespace Microsoft.OpenApi.Models
 
         public static OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
             => componentSchemas.First(x => x.Key.Equals(modelName, StringComparison.OrdinalIgnoreCase)).Value;
+
+        public static string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema apiSchema)
+        {
+            foreach (var (key, value) in apiSchema.Properties)
+            {
+                if (value.Type == OpenApiDataTypeConstants.Array)
+                {
+                    return key.EnsureFirstCharacterToUpper();
+                }
+            }
+
+            return string.Empty;
+        }
     }
 }
