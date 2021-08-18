@@ -22,7 +22,7 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromResponseItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-        public void GetModelSchemaFromResponse(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        public void GetModelSchemaFromResponse(OpenApiSchema? expected, OpenApiOperation openApiOperation)
         {
             // Act
             var actual = openApiOperation.GetModelSchemaFromResponse();
@@ -43,7 +43,7 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromRequestItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-        public void GetModelSchemaFromRequest(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        public void GetModelSchemaFromRequest(OpenApiSchema? expected, OpenApiOperation openApiOperation)
         {
             // Act
             var actual = openApiOperation.GetModelSchemaFromRequest();
