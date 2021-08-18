@@ -635,7 +635,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithGuid(), TestDataOpenApiFactory.CreateComponentSchemasWithDifferentPets() },
             };
 
-        public static IEnumerable<object[]> HasAnyPropertiesFormatFromSystemCollectionGenericNamespaceItemData
+        public static IEnumerable<object[]> HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), TestDataOpenApiFactory.CreateComponentSchemasWithOnePet() },

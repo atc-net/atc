@@ -320,24 +320,7 @@ namespace Microsoft.OpenApi.Models
                     return true;
                 }
 
-                if (!schemaProperty.Value.IsObjectReferenceTypeDeclared())
-                {
-                    continue;
-                }
-
-                var childModelName = schemaProperty.Value.GetModelName();
-                if (string.IsNullOrEmpty(childModelName))
-                {
-                    continue;
-                }
-
-                var childSchema = componentSchemas.FirstOrDefault(x => x.Key == childModelName);
-                if (string.IsNullOrEmpty(childSchema.Key))
-                {
-                    continue;
-                }
-
-                if (childSchema.Value.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas))
+                if (HasAnyPropertiesFormatTypeFromSystemNamespaceHelper(schemaProperty, componentSchemas))
                 {
                     return true;
                 }
@@ -346,7 +329,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+        public static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
         {
             if (!schema.HasAnyProperties())
             {
@@ -360,24 +343,7 @@ namespace Microsoft.OpenApi.Models
                     return true;
                 }
 
-                if (!schemaProperty.Value.IsObjectReferenceTypeDeclared())
-                {
-                    continue;
-                }
-
-                var childModelName = schemaProperty.Value.GetModelName();
-                if (string.IsNullOrEmpty(childModelName))
-                {
-                    continue;
-                }
-
-                var childSchema = componentSchemas.FirstOrDefault(x => x.Key == childModelName);
-                if (string.IsNullOrEmpty(childSchema.Key))
-                {
-                    continue;
-                }
-
-                if (childSchema.Value.HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(componentSchemas))
+                if (HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(schemaProperty, componentSchemas))
                 {
                     return true;
                 }
@@ -856,6 +822,32 @@ namespace Microsoft.OpenApi.Models
             }
 
             return string.Empty;
+        }
+
+        private static bool HasAnyPropertiesFormatTypeFromSystemNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            var modelName = schema.Value?.GetModelName();
+            if (string.IsNullOrEmpty(modelName))
+            {
+                return false;
+            }
+
+            var componentSchema = componentSchemas.FirstOrDefault(x => x.Key == modelName);
+            return !string.IsNullOrEmpty(componentSchema.Key) &&
+                   componentSchema.Value.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
+        }
+
+        private static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
+        {
+            var modelName = schema.Value?.GetModelName();
+            if (string.IsNullOrEmpty(modelName))
+            {
+                return false;
+            }
+
+            var componentSchema = componentSchemas.FirstOrDefault(x => x.Key == modelName);
+            return !string.IsNullOrEmpty(componentSchema.Key) &&
+                   componentSchema.Value.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas);
         }
     }
 }

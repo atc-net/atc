@@ -296,11 +296,11 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
         {
             // Act
-            var actual = openApiSchema.HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(componentSchemas);
+            var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas);
 
             // Assert
             Assert.Equal(expected, actual);
