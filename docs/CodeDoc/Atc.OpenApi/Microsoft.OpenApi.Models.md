@@ -230,7 +230,7 @@ bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
 #### HasRequestBodyWithAnythingAsFormatTypeBinary
 
 ```csharp
-bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation operation)
+bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
 ```
 #### IsOperationIdPluralized
 
@@ -502,10 +502,10 @@ bool HasAnyProperties(this OpenApiSchema schema)
 ```csharp
 bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
 ```
-#### HasAnyPropertiesFormatFromSystemCollectionGenericNamespace
+#### HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace
 
 ```csharp
-bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
 ```
 #### HasAnyPropertiesFormatTypeFromSystemNamespace
 
