@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Atc.OpenApi.Tests.XUnitTestData;
 using FluentAssertions;
 using Microsoft.OpenApi.Models;
@@ -68,6 +68,17 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiOperation.HasParametersOrRequestBody();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasRequestBodyWithAnythingAsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void HasRequestBodyWithAnythingAsFormatTypeBinary(bool expected, OpenApiOperation openApiOperation)
+        {
+            // Act
+            var actual = openApiOperation.HasRequestBodyWithAnythingAsFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);

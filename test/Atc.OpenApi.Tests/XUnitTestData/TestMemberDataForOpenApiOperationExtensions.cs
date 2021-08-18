@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable StringLiteralTypo
@@ -97,6 +97,18 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     true,
                     TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
                 },
+            };
+
+        public static IEnumerable<object[]> HasRequestBodyWithAnythingAsFormatTypeBinaryItemData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    false,
+                    TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress(),
+                },
+
+                // TODO:...
             };
 
         public static IEnumerable<object[]> IsOperationReferencingSchemaItemData =>
