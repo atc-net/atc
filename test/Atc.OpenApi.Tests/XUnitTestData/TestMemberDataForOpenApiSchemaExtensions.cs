@@ -612,6 +612,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithBinaryArray() },
             };
 
+        public static IEnumerable<object[]> HasAnythingAsFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithBinaryArray() },
+            };
+
         public static IEnumerable<object[]> HasAnyPropertiesFormatTypeFromSystemNamespaceItemData
             => new List<object[]>
             {
