@@ -17,134 +17,134 @@ namespace Microsoft.OpenApi.Models
 
     public static class OpenApiSchemaExtensions
     {
-        public static bool HasDataTypeOfList(this IList<OpenApiSchema> schemas)
+        public static bool HasDataTypeList(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsDataTypeOfList());
+            return schemas.Any(x => x.IsTypeArray());
         }
 
-        public static bool HasFormatTypeOfUuid(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfUuid());
+            return schemas.Any(x => x.IsFormatTypeUuid());
         }
 
-        public static bool HasFormatTypeOfDate(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeDate(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfDate());
+            return schemas.Any(x => x.IsFormatTypeDate());
         }
 
-        public static bool HasFormatTypeOfTime(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeTime(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfTime());
+            return schemas.Any(x => x.IsFormatTypeTime());
         }
 
-        public static bool HasFormatTypeOfTimestamp(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeTimestamp(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfTimestamp());
+            return schemas.Any(x => x.IsFormatTypeTimestamp());
         }
 
-        public static bool HasFormatTypeOfDateTime(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeDateTime(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfDateTime());
+            return schemas.Any(x => x.IsFormatTypeDateTime());
         }
 
-        public static bool HasFormatTypeOfByte(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeByte(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfByte());
+            return schemas.Any(x => x.IsFormatTypeByte());
         }
 
-        public static bool HasFormatTypeOfInt32(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeInt32(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfInt32());
+            return schemas.Any(x => x.IsFormatTypeInt32());
         }
 
-        public static bool HasFormatTypeOfInt64(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeInt64(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfInt64());
+            return schemas.Any(x => x.IsFormatTypeInt64());
         }
 
-        public static bool HasFormatTypeOfEmail(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeEmail(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfEmail());
+            return schemas.Any(x => x.IsFormatTypeEmail());
         }
 
-        public static bool HasFormatTypeOfUri(this IList<OpenApiSchema> schemas)
+        public static bool HasFormatTypeUri(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.IsFormatTypeOfUri());
+            return schemas.Any(x => x.IsFormatTypeUri());
         }
 
         public static bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsFormatTypeOfUuid() ||
-                   schema.IsFormatTypeOfDate() ||
-                   schema.IsFormatTypeOfDateTime() ||
-                   schema.IsFormatTypeOfTime() ||
-                   schema.IsFormatTypeOfTimestamp() ||
-                   schema.IsFormatTypeOfUri();
+            return schema.IsFormatTypeUuid() ||
+                   schema.IsFormatTypeDate() ||
+                   schema.IsFormatTypeDateTime() ||
+                   schema.IsFormatTypeTime() ||
+                   schema.IsFormatTypeTimestamp() ||
+                   schema.IsFormatTypeUri();
         }
 
         public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
@@ -154,17 +154,17 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsDataTypeOfList();
+            return schema.IsTypeArray();
         }
 
         public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
@@ -174,20 +174,20 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsFormatTypeOfEmail() ||
-                   schema.IsFormatTypeOfUri() ||
+            return schema.IsFormatTypeEmail() ||
+                   schema.IsFormatTypeUri() ||
                    schema.IsRuleValidationString() ||
                    schema.IsRuleValidationNumber();
         }
 
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
@@ -197,7 +197,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatType(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -205,9 +205,29 @@ namespace Microsoft.OpenApi.Models
             return !string.IsNullOrEmpty(schema.Format);
         }
 
+        public static bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.Items != null && schema.Items.IsSimpleDataType();
+        }
+
+        public static bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.Items != null && schema.Items.IsFormatTypeBinary();
+        }
+
         public static bool HasAnyProperties(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -222,9 +242,9 @@ namespace Microsoft.OpenApi.Models
             return schema.Properties.Count > 0;
         }
 
-        public static bool HasAnyPropertiesFormatTypeBinary(this OpenApiSchema schema)
+        public static bool HasAnyPropertiesWithFormatTypeBinary(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -236,7 +256,7 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var schemaProperty in schema.Properties)
             {
-                if (schemaProperty.Value.IsFormatTypeOfBinary())
+                if (schemaProperty.Value.IsFormatTypeBinary())
                 {
                     return true;
                 }
@@ -245,7 +265,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static bool HasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema schema)
+        public static bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
         {
             if (schema.Items is null && schema.HasAnyProperties())
             {
@@ -256,7 +276,7 @@ namespace Microsoft.OpenApi.Models
                         continue;
                     }
 
-                    if (value.IsItemsOfFormatTypeBinary())
+                    if (value.HasItemsWithFormatTypeBinary())
                     {
                         return true;
                     }
@@ -264,6 +284,20 @@ namespace Microsoft.OpenApi.Models
             }
 
             return false;
+        }
+
+        public static bool HasAnythingAsFormatTypeBinary(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return
+                schema.IsFormatTypeBinary() ||
+                schema.HasItemsWithFormatTypeBinary() ||
+                schema.HasAnyPropertiesWithFormatTypeBinary() ||
+                schema.HasAnyPropertiesAsArrayWithFormatTypeBinary();
         }
 
         public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
@@ -354,17 +388,17 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsFormatTypeOfBinary() || schema.IsItemsOfFormatTypeBinary();
+            return schema.IsFormatTypeBinary() || schema.HasItemsWithFormatTypeBinary();
         }
 
         public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
         {
-            if (schemas == null)
+            if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
@@ -372,9 +406,9 @@ namespace Microsoft.OpenApi.Models
             return schemas.Any(x => x.HasFormatTypeFromAspNetCoreHttpNamespace());
         }
 
-        public static bool IsDataTypeOfList(this OpenApiSchema schema)
+        public static bool IsTypeArray(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -382,9 +416,9 @@ namespace Microsoft.OpenApi.Models
             return !string.IsNullOrEmpty(schema.Type) && schema.Type.Equals(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfUuid(this OpenApiSchema schema)
+        public static bool IsFormatTypeUuid(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -392,9 +426,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Uuid, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfDate(this OpenApiSchema schema)
+        public static bool IsFormatTypeDate(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -402,9 +436,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Date, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfTime(this OpenApiSchema schema)
+        public static bool IsFormatTypeTime(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -412,9 +446,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Time, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfTimestamp(this OpenApiSchema schema)
+        public static bool IsFormatTypeTimestamp(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -422,9 +456,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Timestamp, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfDateTime(this OpenApiSchema schema)
+        public static bool IsFormatTypeDateTime(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -432,9 +466,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.DateTime, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfByte(this OpenApiSchema schema)
+        public static bool IsFormatTypeByte(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -442,9 +476,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Byte, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfBinary(this OpenApiSchema schema)
+        public static bool IsFormatTypeBinary(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -452,9 +486,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Binary, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfInt32(this OpenApiSchema schema)
+        public static bool IsFormatTypeInt32(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -462,9 +496,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Int32, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfInt64(this OpenApiSchema schema)
+        public static bool IsFormatTypeInt64(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -472,9 +506,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Int64, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfEmail(this OpenApiSchema schema)
+        public static bool IsFormatTypeEmail(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -482,9 +516,9 @@ namespace Microsoft.OpenApi.Models
             return schema.HasFormatType() && schema.Format.Equals(OpenApiFormatTypeConstants.Email, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static bool IsFormatTypeOfUri(this OpenApiSchema schema)
+        public static bool IsFormatTypeUri(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -494,7 +528,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsRuleValidationString(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -505,7 +539,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsRuleValidationNumber(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -516,12 +550,12 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsSimpleDataType(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (schema.Type == null)
+            if (schema.Type is null)
             {
                 return false;
             }
@@ -541,7 +575,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -551,7 +585,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -560,29 +594,9 @@ namespace Microsoft.OpenApi.Models
                    schema.Items?.Reference != null;
         }
 
-        public static bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
-        {
-            if (schema == null)
-            {
-                throw new ArgumentNullException(nameof(schema));
-            }
-
-            return schema.Items != null && schema.Items.IsSimpleDataType();
-        }
-
-        public static bool IsItemsOfFormatTypeBinary(this OpenApiSchema schema)
-        {
-            if (schema == null)
-            {
-                throw new ArgumentNullException(nameof(schema));
-            }
-
-            return schema.Items != null && schema.Items.IsFormatTypeOfBinary();
-        }
-
         public static bool IsSchemaEnum(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -592,7 +606,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -604,12 +618,12 @@ namespace Microsoft.OpenApi.Models
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (openApiComponents == null)
+            if (openApiComponents is null)
             {
                 throw new ArgumentNullException(nameof(openApiComponents));
             }
@@ -620,7 +634,7 @@ namespace Microsoft.OpenApi.Models
             {
                 foreach (var itemPropertySchema in itemSchema.Properties.Values)
                 {
-                    if (itemPropertySchema.Reference == null)
+                    if (itemPropertySchema.Reference is null)
                     {
                         continue;
                     }
@@ -648,7 +662,7 @@ namespace Microsoft.OpenApi.Models
 
         public static string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = true)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -668,7 +682,7 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
-            if (schema.Items == null && schema.Reference == null)
+            if (schema.Items == null && schema.Reference is null)
             {
                 return string.Empty;
             }
@@ -693,7 +707,7 @@ namespace Microsoft.OpenApi.Models
 
         public static string? GetModelType(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -718,7 +732,7 @@ namespace Microsoft.OpenApi.Models
 
         public static string GetDataType(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
@@ -781,12 +795,12 @@ namespace Microsoft.OpenApi.Models
 
         public static string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (propertyKey == null)
+            if (propertyKey is null)
             {
                 throw new ArgumentNullException(nameof(propertyKey));
             }
@@ -804,7 +818,7 @@ namespace Microsoft.OpenApi.Models
 
         public static Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
         {
-            if (schema == null)
+            if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }

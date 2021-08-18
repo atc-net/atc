@@ -20,12 +20,12 @@ namespace Microsoft.OpenApi.Models
 
         public static string GetOperationName(this OpenApiOperation openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
 
-            if (openApiOperation.OperationId == null)
+            if (openApiOperation.OperationId is null)
             {
                 return string.Empty;
             }
@@ -38,7 +38,7 @@ namespace Microsoft.OpenApi.Models
 
         public static OpenApiSchema? GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
@@ -62,7 +62,7 @@ namespace Microsoft.OpenApi.Models
 
         public static OpenApiSchema? GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
@@ -72,7 +72,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
@@ -80,14 +80,25 @@ namespace Microsoft.OpenApi.Models
             return openApiOperation.Parameters.Any() || openApiOperation.RequestBody != null;
         }
 
-        public static bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
+        public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
 
-            if (schemaKey == null)
+            var schema = openApiOperation.RequestBody?.Content?.GetSchemaByFirstMediaType();
+            return schema is not null && schema.HasAnythingAsFormatTypeBinary();
+        }
+
+        public static bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
+        {
+            if (openApiOperation is null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
+            if (schemaKey is null)
             {
                 throw new ArgumentNullException(nameof(schemaKey));
             }
@@ -109,7 +120,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
@@ -148,12 +159,17 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
         {
+            if (openApiOperation is null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
             return IsOperationNamePluralized(openApiOperation, operationType);
         }
 
         public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
         {
-            if (apiOperations == null)
+            if (apiOperations is null)
             {
                 throw new ArgumentNullException(nameof(apiOperations));
             }
@@ -178,6 +194,16 @@ namespace Microsoft.OpenApi.Models
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static bool IsOperationReferencingSchemaCheckResponses(OpenApiOperation openApiOperation, string schemaKey)
         {
+            if (openApiOperation is null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
+            if (string.IsNullOrEmpty(schemaKey))
+            {
+                throw new ArgumentNullException(nameof(schemaKey));
+            }
+
             if (openApiOperation.Responses != null && openApiOperation.Responses.Any())
             {
                 foreach (var response in openApiOperation.Responses)
@@ -189,7 +215,7 @@ namespace Microsoft.OpenApi.Models
 
                     foreach (var mediaType in response.Value.Content)
                     {
-                        if (mediaType.Value.Schema == null)
+                        if (mediaType.Value.Schema is null)
                         {
                             continue;
                         }
@@ -215,11 +241,21 @@ namespace Microsoft.OpenApi.Models
 
         private static bool IsOperationReferencingSchemaCheckRequestBody(OpenApiOperation openApiOperation, string schemaKey)
         {
+            if (openApiOperation is null)
+            {
+                throw new ArgumentNullException(nameof(openApiOperation));
+            }
+
+            if (string.IsNullOrEmpty(schemaKey))
+            {
+                throw new ArgumentNullException(nameof(schemaKey));
+            }
+
             if (openApiOperation.RequestBody?.Content != null)
             {
                 foreach (var item in openApiOperation.RequestBody.Content)
                 {
-                    if (item.Value.Schema == null)
+                    if (item.Value.Schema is null)
                     {
                         continue;
                     }

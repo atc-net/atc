@@ -6,7 +6,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiSchemaExtensions
     {
-        public static IEnumerable<object[]> HasDataTypeOfListItemData
+        public static IEnumerable<object[]> HasDataTypeListItemData
             => new List<object[]>
             {
                 new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
@@ -40,7 +40,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() } },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfUuidItemData
+        public static IEnumerable<object[]> HasFormatTypeUuidItemData
             => new List<object[]>
             {
                 new object[]
@@ -68,7 +68,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfByteItemData
+        public static IEnumerable<object[]> HasFormatTypeByteItemData
             => new List<object[]>
             {
                 new object[]
@@ -96,7 +96,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfDateItemData
+        public static IEnumerable<object[]> HasFormatTypeDateItemData
             => new List<object[]>
             {
                 new object[]
@@ -124,7 +124,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfDateTimeItemData
+        public static IEnumerable<object[]> HasFormatTypeDateTimeItemData
             => new List<object[]>
             {
                 new object[]
@@ -152,7 +152,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfTimeItemData
+        public static IEnumerable<object[]> HasFormatTypeTimeItemData
             => new List<object[]>
             {
                 new object[]
@@ -180,7 +180,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfTimestampItemData
+        public static IEnumerable<object[]> HasFormatTypeTimestampItemData
             => new List<object[]>
             {
                 new object[]
@@ -208,7 +208,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfInt32ItemData
+        public static IEnumerable<object[]> HasFormatTypeInt32ItemData
             => new List<object[]>
             {
                 new object[]
@@ -236,7 +236,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfInt64ItemData
+        public static IEnumerable<object[]> HasFormatTypeInt64ItemData
             => new List<object[]>
             {
                 new object[]
@@ -264,7 +264,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfEmailItemData
+        public static IEnumerable<object[]> HasFormatTypeEmailItemData
             => new List<object[]>
             {
                 new object[]
@@ -292,7 +292,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfUriItemData
+        public static IEnumerable<object[]> HasFormatTypeUriItemData
             => new List<object[]>
             {
                 new object[]
@@ -542,6 +542,53 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
             };
 
+        public static IEnumerable<object[]> HasItemsWithSimpleDataTypeItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+            };
+
+        public static IEnumerable<object[]> HasItemsWithFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray() },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPets() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
+            };
+
         public static IEnumerable<object[]> HasAnyPropertiesItemData
             => new List<object[]>
             {
@@ -549,19 +596,28 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPet() },
             };
 
-        public static IEnumerable<object[]> HasAnyPropertiesFormatTypeBinaryItemData
+        public static IEnumerable<object[]> HasAnyPropertiesWithFormatTypeBinaryItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
             };
 
-        public static IEnumerable<object[]> HasAnyPropertiesOfArrayWithFormatTypeBinaryItemData
+        public static IEnumerable<object[]> HasAnyPropertiesAsArrayWithFormatTypeBinaryItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
                 new object[] { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
                 new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithBinaryArray() },
+            };
+
+        public static IEnumerable<object[]> HasAnythingAsFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
                 new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithBinaryArray() },
             };
 
@@ -627,7 +683,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() } },
             };
 
-        public static IEnumerable<object[]> IsDataTypeOfListItemData
+        public static IEnumerable<object[]> IsTypeArrayItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -663,7 +719,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfUuidItemData
+        public static IEnumerable<object[]> IsFormatTypeUuidItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -683,7 +739,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfDateItemData
+        public static IEnumerable<object[]> IsFormatTypeDateItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -703,7 +759,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfTimeItemData
+        public static IEnumerable<object[]> IsFormatTypeTimeItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -723,7 +779,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfTimestampItemData
+        public static IEnumerable<object[]> IsFormatTypeTimestampItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -743,7 +799,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfDateTimeItemData
+        public static IEnumerable<object[]> IsFormatTypeDateTimeItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -763,7 +819,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfByteItemData
+        public static IEnumerable<object[]> IsFormatTypeByteItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -783,7 +839,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfBinaryItemData
+        public static IEnumerable<object[]> IsFormatTypeBinaryItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -803,7 +859,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfInt32ItemData
+        public static IEnumerable<object[]> IsFormatTypeInt32ItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -823,7 +879,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfInt64ItemData
+        public static IEnumerable<object[]> IsFormatTypeInt64ItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -843,7 +899,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfEmailItemData
+        public static IEnumerable<object[]> IsFormatTypeEmailItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -863,7 +919,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
             };
 
-        public static IEnumerable<object[]> IsFormatTypeOfUriItemData
+        public static IEnumerable<object[]> IsFormatTypeUriItemData
             => new List<object[]>
             {
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -997,53 +1053,6 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
-            };
-
-        public static IEnumerable<object[]> IsItemsOfSimpleDataTypeItemData
-            => new List<object[]>
-            {
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
-
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
-            };
-
-        public static IEnumerable<object[]> IsItemsOfFormatTypeBinaryItemData
-            => new List<object[]>
-            {
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
-                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
-                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray() },
-                new object[] { false, TestDataOpenApiFactory.CreateSchemaPets() },
-                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsWithBinaryArray() },
             };
 
         public static IEnumerable<object[]> IsSchemaEnumItemData

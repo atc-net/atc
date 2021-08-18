@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Atc.OpenApi.Tests.XUnitTestData;
 using FluentAssertions;
 using Microsoft.OpenApi.Models;
@@ -22,7 +22,7 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromResponseItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-        public void GetModelSchemaFromResponse(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        public void GetModelSchemaFromResponse(OpenApiSchema? expected, OpenApiOperation openApiOperation)
         {
             // Act
             var actual = openApiOperation.GetModelSchemaFromResponse();
@@ -43,7 +43,7 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromRequestItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-        public void GetModelSchemaFromRequest(OpenApiSchema expected, OpenApiOperation openApiOperation)
+        public void GetModelSchemaFromRequest(OpenApiSchema? expected, OpenApiOperation openApiOperation)
         {
             // Act
             var actual = openApiOperation.GetModelSchemaFromRequest();
@@ -68,6 +68,17 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiOperation.HasParametersOrRequestBody();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasRequestBodyWithAnythingAsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
+        public void HasRequestBodyWithAnythingAsFormatTypeBinary(bool expected, OpenApiOperation openApiOperation)
+        {
+            // Act
+            var actual = openApiOperation.HasRequestBodyWithAnythingAsFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);

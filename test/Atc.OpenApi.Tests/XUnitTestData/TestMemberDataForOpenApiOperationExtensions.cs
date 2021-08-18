@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
 // ReSharper disable StringLiteralTypo
@@ -6,8 +6,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiOperationExtensions
     {
-        public static IEnumerable<object[]> GetOperationNameItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> GetOperationNameItemData
+            => new List<object[]>
             {
                 new object[]
                 {
@@ -43,44 +43,24 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> GetModelSchemaFromResponseItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> GetModelSchemaFromResponseItemData
+            => new List<object[]>
             {
-                new object[]
-                {
-                    TestDataOpenApiFactory.CreateSchemaPet(),
-                    TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
-                },
-                new object[]
-                {
-                    null,
-                    TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
-                },
+                new object[] { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
+                new object[] { null, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> GetModelSchemaFromRequestItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> GetModelSchemaFromRequestItemData
+            => new List<object[]>
             {
-                new object[]
-                {
-                    null,
-                    TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
-                },
-                new object[]
-                {
-                    TestDataOpenApiFactory.CreateSchemaPet(),
-                    TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
-                },
+                new object[] { null, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
+                new object[] { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> HasParametersOrRequestBodyItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> HasParametersOrRequestBodyItemData
+            => new List<object[]>
             {
-                new object[]
-                {
-                    false,
-                    TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
-                },
+                new object[] { false, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
                 new object[]
                 {
                     true,
@@ -92,15 +72,20 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         },
                     },
                 },
-                new object[]
-                {
-                    true,
-                    TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
-                },
+                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> IsOperationReferencingSchemaItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> HasRequestBodyWithAnythingAsFormatTypeBinaryItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress() },
+                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetWithBinary() },
+                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsWithBinaryArray() },
+                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray() },
+            };
+
+        public static IEnumerable<object[]> IsOperationReferencingSchemaItemData
+            => new List<object[]>
             {
                 new object[]
                 {
@@ -140,8 +125,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> IsOperationNamePluralizedItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> IsOperationNamePluralizedItemData
+            => new List<object[]>
             {
                 new object[]
                 {
@@ -271,8 +256,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceItemData =>
-            new List<object[]>
+        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceItemData
+            => new List<object[]>
             {
                 new object[]
                 {

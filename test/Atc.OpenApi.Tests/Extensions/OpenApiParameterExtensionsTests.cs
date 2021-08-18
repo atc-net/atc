@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Atc.OpenApi.Tests.XUnitTestData;
 using Microsoft.OpenApi.Models;
 using Xunit;
@@ -8,110 +8,110 @@ namespace Atc.OpenApi.Tests.Extensions
     public class OpenApiParameterExtensionsTests
     {
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfUuidItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfUuid(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeUuid(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfUuid();
+            var actual = openApiParameters.HasFormatTypeUuid();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfByteItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfByte(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeByteItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeByte(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfByte();
+            var actual = openApiParameters.HasFormatTypeByte();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfDateItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfDate(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeDateItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeDate(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfDate();
+            var actual = openApiParameters.HasFormatTypeDate();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfDateTime(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeDateTime(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfDateTime();
+            var actual = openApiParameters.HasFormatTypeDateTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfTimeItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfTime(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeTimeItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeTime(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfTime();
+            var actual = openApiParameters.HasFormatTypeTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfTimestamp(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeTimestamp(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfTimestamp();
+            var actual = openApiParameters.HasFormatTypeTimestamp();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfInt32(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeInt32(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfInt32();
+            var actual = openApiParameters.HasFormatTypeInt32();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfInt64(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeInt64(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfInt64();
+            var actual = openApiParameters.HasFormatTypeInt64();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfEmailItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfEmail(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeEmailItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeEmail(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfEmail();
+            var actual = openApiParameters.HasFormatTypeEmail();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeOfUriItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
-        public void HasFormatTypeOfUri(bool expected, IList<OpenApiParameter> openApiParameters)
+        [MemberData(nameof(TestMemberDataForOpenApiParameterExtensions.HasFormatTypeUriItemData), MemberType = typeof(TestMemberDataForOpenApiParameterExtensions))]
+        public void HasFormatTypeUri(bool expected, IList<OpenApiParameter> openApiParameters)
         {
             // Act
-            var actual = openApiParameters.HasFormatTypeOfUri();
+            var actual = openApiParameters.HasFormatTypeUri();
 
             // Assert
             Assert.Equal(expected, actual);

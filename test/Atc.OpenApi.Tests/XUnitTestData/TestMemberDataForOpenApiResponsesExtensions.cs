@@ -65,7 +65,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasSchemaTypeOfArrayItemData =>
+        public static IEnumerable<object[]> HasSchemaTypeArrayItemData =>
             new List<object[]>
             {
                 new object[]
@@ -80,7 +80,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasSchemaTypeOfHttpStatusCodeUsingSystemNetItemData =>
+        public static IEnumerable<object[]> HasSchemaHttpStatusCodeUsingSystemNetItemData =>
             new List<object[]>
             {
                 new object[]
@@ -90,7 +90,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttpItemData =>
+        public static IEnumerable<object[]> HasSchemaHttpStatusCodeUsingAspNetCoreHttpItemData =>
             new List<object[]>
             {
                 new object[]

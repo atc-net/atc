@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiParameterExtensions
     {
-        public static IEnumerable<object[]> HasFormatTypeOfUuidItemData =>
+        public static IEnumerable<object[]> HasFormatTypeUuidItemData =>
             new List<object[]>
             {
                 new object[]
@@ -33,7 +33,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfByteItemData =>
+        public static IEnumerable<object[]> HasFormatTypeByteItemData =>
             new List<object[]>
             {
                 new object[]
@@ -61,7 +61,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfDateItemData =>
+        public static IEnumerable<object[]> HasFormatTypeDateItemData =>
             new List<object[]>
             {
                 new object[]
@@ -89,7 +89,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfDateTimeItemData =>
+        public static IEnumerable<object[]> HasFormatTypeDateTimeItemData =>
             new List<object[]>
             {
                 new object[]
@@ -117,7 +117,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfTimeItemData =>
+        public static IEnumerable<object[]> HasFormatTypeTimeItemData =>
             new List<object[]>
             {
                 new object[]
@@ -145,7 +145,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfTimestampItemData =>
+        public static IEnumerable<object[]> HasFormatTypeTimestampItemData =>
             new List<object[]>
             {
                 new object[]
@@ -173,7 +173,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfInt32ItemData =>
+        public static IEnumerable<object[]> HasFormatTypeInt32ItemData =>
             new List<object[]>
             {
                 new object[]
@@ -201,7 +201,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfInt64ItemData =>
+        public static IEnumerable<object[]> HasFormatTypeInt64ItemData =>
             new List<object[]>
             {
                 new object[]
@@ -229,7 +229,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfEmailItemData =>
+        public static IEnumerable<object[]> HasFormatTypeEmailItemData =>
             new List<object[]>
             {
                 new object[]
@@ -257,7 +257,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeOfUriItemData =>
+        public static IEnumerable<object[]> HasFormatTypeUriItemData =>
             new List<object[]>
             {
                 new object[]

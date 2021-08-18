@@ -10,121 +10,121 @@ namespace Atc.OpenApi.Tests.Extensions
     public class OpenApiSchemaExtensionsTests
     {
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeOfListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasDataTypeOfList(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasDataTypeList(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasDataTypeOfList();
+            var actual = openApiSchemas.HasDataTypeList();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfUuid(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeUuid(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfUuid();
+            var actual = openApiSchemas.HasFormatTypeUuid();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfByte(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeByte(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfByte();
+            var actual = openApiSchemas.HasFormatTypeByte();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfDate(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeDate(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfDate();
+            var actual = openApiSchemas.HasFormatTypeDate();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfDateTime(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeDateTime(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfDateTime();
+            var actual = openApiSchemas.HasFormatTypeDateTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfTime(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeTime(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfTime();
+            var actual = openApiSchemas.HasFormatTypeTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfTimestamp(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeTimestamp(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfTimestamp();
+            var actual = openApiSchemas.HasFormatTypeTimestamp();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfInt32(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeInt32(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfInt32();
+            var actual = openApiSchemas.HasFormatTypeInt32();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfInt64(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeInt64(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfInt64();
+            var actual = openApiSchemas.HasFormatTypeInt64();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfEmail(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeEmail(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfEmail();
+            var actual = openApiSchemas.HasFormatTypeEmail();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeOfUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasFormatTypeOfUri(bool expected, IList<OpenApiSchema> openApiSchemas)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasFormatTypeUri(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasFormatTypeOfUri();
+            var actual = openApiSchemas.HasFormatTypeUri();
 
             // Assert
             Assert.Equal(expected, actual);
@@ -208,6 +208,28 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasItemsWithSimpleDataType();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasItemsWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasItemsWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasItemsWithFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasAnyProperties(bool expected, OpenApiSchema openApiSchema)
         {
@@ -219,22 +241,33 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasAnyPropertiesFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.HasAnyPropertiesFormatTypeBinary();
+            var actual = openApiSchema.HasAnyPropertiesWithFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesOfArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasAnyPropertiesOfArrayWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesAsArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnyPropertiesAsArrayWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.HasAnyPropertiesOfArrayWithFormatTypeBinary();
+            var actual = openApiSchema.HasAnyPropertiesAsArrayWithFormatTypeBinary();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnythingAsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasAnythingAsFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasAnythingAsFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);
@@ -296,132 +329,132 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsDataTypeOfListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsDataTypeOfList(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypeArrayItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsTypeArray(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsDataTypeOfList();
+            var actual = openApiSchema.IsTypeArray();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfUuid(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeUuid(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfUuid();
+            var actual = openApiSchema.IsFormatTypeUuid();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfDate(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeDate(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfDate();
+            var actual = openApiSchema.IsFormatTypeDate();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfTime(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeTime(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfTime();
+            var actual = openApiSchema.IsFormatTypeTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfTimestamp(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeTimestamp(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfTimestamp();
+            var actual = openApiSchema.IsFormatTypeTimestamp();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfDateTime(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeDateTime(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfDateTime();
+            var actual = openApiSchema.IsFormatTypeDateTime();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfByte(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeByte(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfByte();
+            var actual = openApiSchema.IsFormatTypeByte();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfBinary(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfBinary();
+            var actual = openApiSchema.IsFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfInt32(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeInt32(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfInt32();
+            var actual = openApiSchema.IsFormatTypeInt32();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfInt64(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeInt64(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfInt64();
+            var actual = openApiSchema.IsFormatTypeInt64();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfEmail(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeEmail(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfEmail();
+            var actual = openApiSchema.IsFormatTypeEmail();
 
             // Assert
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeOfUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsFormatTypeOfUri(bool expected, OpenApiSchema openApiSchema)
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsFormatTypeUri(bool expected, OpenApiSchema openApiSchema)
         {
             // Act
-            var actual = openApiSchema.IsFormatTypeOfUri();
+            var actual = openApiSchema.IsFormatTypeUri();
 
             // Assert
             Assert.Equal(expected, actual);
@@ -455,28 +488,6 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.IsArrayReferenceTypeDeclared();
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsItemsOfSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsItemsOfSimpleDataType(bool expected, OpenApiSchema openApiSchema)
-        {
-            // Act
-            var actual = openApiSchema.IsItemsOfSimpleDataType();
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsItemsOfFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void IsItemsOfFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
-        {
-            // Act
-            var actual = openApiSchema.IsItemsOfFormatTypeBinary();
 
             // Assert
             Assert.Equal(expected, actual);

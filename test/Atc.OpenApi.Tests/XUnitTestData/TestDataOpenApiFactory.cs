@@ -68,6 +68,51 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
+        public static OpenApiOperation CreateOperationWithRequestBodyPetWithBinary()
+            => new OpenApiOperation
+            {
+                RequestBody = new OpenApiRequestBody
+                {
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    {
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                        {
+                            Schema = CreateSchemaPetWithBinary(),
+                        },
+                    },
+                },
+            };
+
+        public static OpenApiOperation CreateOperationWithRequestBodyPetsWithBinaryArray()
+            => new OpenApiOperation
+            {
+                RequestBody = new OpenApiRequestBody
+                {
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    {
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                        {
+                            Schema = CreateSchemaPetsWithBinaryArray(),
+                        },
+                    },
+                },
+            };
+
+        public static OpenApiOperation CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray()
+            => new OpenApiOperation
+            {
+                RequestBody = new OpenApiRequestBody
+                {
+                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    {
+                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                        {
+                            Schema = CreateSchemaPetsAsObjectWithBinaryArray(),
+                        },
+                    },
+                },
+            };
+
         public static OpenApiOperation CreateOperationWithResponseOkAddress()
             => new OpenApiOperation
             {
