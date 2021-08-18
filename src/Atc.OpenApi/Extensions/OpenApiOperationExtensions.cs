@@ -80,6 +80,12 @@ namespace Microsoft.OpenApi.Models
             return openApiOperation.Parameters.Any() || openApiOperation.RequestBody != null;
         }
 
+        public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation operation)
+        {
+            var schema = operation.RequestBody?.Content?.GetSchemaByFirstMediaType();
+            return schema is not null && schema.HasAnythingAsFormatTypeBinary();
+        }
+
         public static bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
         {
             if (openApiOperation == null)
