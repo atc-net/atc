@@ -227,6 +227,11 @@ bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation>
 ```csharp
 bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
 ```
+#### HasRequestBodyWithAnythingAsFormatTypeBinary
+
+```csharp
+bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation operation)
+```
 #### IsOperationIdPluralized
 
 ```csharp
@@ -270,6 +275,26 @@ List<OpenApiParameter> GetAllFromQuery(this IList<OpenApiParameter> parameters)
 ```csharp
 List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)
 ```
+#### HasFormatTypeByte
+
+```csharp
+bool HasFormatTypeByte(this IList<OpenApiParameter> parameters)
+```
+#### HasFormatTypeDate
+
+```csharp
+bool HasFormatTypeDate(this IList<OpenApiParameter> parameters)
+```
+#### HasFormatTypeDateTime
+
+```csharp
+bool HasFormatTypeDateTime(this IList<OpenApiParameter> parameters)
+```
+#### HasFormatTypeEmail
+
+```csharp
+bool HasFormatTypeEmail(this IList<OpenApiParameter> parameters)
+```
 #### HasFormatTypeFromDataAnnotationsNamespace
 
 ```csharp
@@ -280,55 +305,35 @@ bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiParameter> para
 ```csharp
 bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfByte
+#### HasFormatTypeInt32
 
 ```csharp
-bool HasFormatTypeOfByte(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeInt32(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfDate
+#### HasFormatTypeInt64
 
 ```csharp
-bool HasFormatTypeOfDate(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeInt64(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfDateTime
+#### HasFormatTypeTime
 
 ```csharp
-bool HasFormatTypeOfDateTime(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeTime(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfEmail
+#### HasFormatTypeTimestamp
 
 ```csharp
-bool HasFormatTypeOfEmail(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeTimestamp(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfInt32
+#### HasFormatTypeUri
 
 ```csharp
-bool HasFormatTypeOfInt32(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeUri(this IList<OpenApiParameter> parameters)
 ```
-#### HasFormatTypeOfInt64
+#### HasFormatTypeUuid
 
 ```csharp
-bool HasFormatTypeOfInt64(this IList<OpenApiParameter> parameters)
-```
-#### HasFormatTypeOfTime
-
-```csharp
-bool HasFormatTypeOfTime(this IList<OpenApiParameter> parameters)
-```
-#### HasFormatTypeOfTimestamp
-
-```csharp
-bool HasFormatTypeOfTimestamp(this IList<OpenApiParameter> parameters)
-```
-#### HasFormatTypeOfUri
-
-```csharp
-bool HasFormatTypeOfUri(this IList<OpenApiParameter> parameters)
-```
-#### HasFormatTypeOfUuid
-
-```csharp
-bool HasFormatTypeOfUuid(this IList<OpenApiParameter> parameters)
+bool HasFormatTypeUuid(this IList<OpenApiParameter> parameters)
 ```
 
 <br />
@@ -404,20 +409,20 @@ string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode
 ```csharp
 OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
 ```
-#### HasSchemaTypeOfArray
+#### HasSchemaHttpStatusCodeUsingAspNetCoreHttp
 
 ```csharp
-bool HasSchemaTypeOfArray(this OpenApiResponses responses)
+bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
 ```
-#### HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp
+#### HasSchemaHttpStatusCodeUsingSystemNet
 
 ```csharp
-bool HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
 ```
-#### HasSchemaTypeOfHttpStatusCodeUsingSystemNet
+#### HasSchemaTypeArray
 
 ```csharp
-bool HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+bool HasSchemaTypeArray(this OpenApiResponses responses)
 ```
 #### IsSchemaTypeArrayForStatusCode
 
@@ -492,15 +497,15 @@ string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string prope
 ```csharp
 bool HasAnyProperties(this OpenApiSchema schema)
 ```
+#### HasAnyPropertiesAsArrayWithFormatTypeBinary
+
+```csharp
+bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
+```
 #### HasAnyPropertiesFormatFromSystemCollectionGenericNamespace
 
 ```csharp
 bool HasAnyPropertiesFormatFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
-```
-#### HasAnyPropertiesFormatTypeBinary
-
-```csharp
-bool HasAnyPropertiesFormatTypeBinary(this OpenApiSchema schema)
 ```
 #### HasAnyPropertiesFormatTypeFromSystemNamespace
 
@@ -512,10 +517,15 @@ bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
 ```csharp
 bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
 ```
-#### HasAnyPropertiesOfArrayWithFormatTypeBinary
+#### HasAnyPropertiesWithFormatTypeBinary
 
 ```csharp
-bool HasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema schema)
+bool HasAnyPropertiesWithFormatTypeBinary(this OpenApiSchema schema)
+```
+#### HasAnythingAsFormatTypeBinary
+
+```csharp
+bool HasAnythingAsFormatTypeBinary(this OpenApiSchema schema)
 ```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 
@@ -527,15 +537,35 @@ bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
 ```csharp
 bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
 ```
-#### HasDataTypeOfList
+#### HasDataTypeList
 
 ```csharp
-bool HasDataTypeOfList(this IList<OpenApiSchema> schemas)
+bool HasDataTypeList(this IList<OpenApiSchema> schemas)
 ```
 #### HasFormatType
 
 ```csharp
 bool HasFormatType(this OpenApiSchema schema)
+```
+#### HasFormatTypeByte
+
+```csharp
+bool HasFormatTypeByte(this IList<OpenApiSchema> schemas)
+```
+#### HasFormatTypeDate
+
+```csharp
+bool HasFormatTypeDate(this IList<OpenApiSchema> schemas)
+```
+#### HasFormatTypeDateTime
+
+```csharp
+bool HasFormatTypeDateTime(this IList<OpenApiSchema> schemas)
+```
+#### HasFormatTypeEmail
+
+```csharp
+bool HasFormatTypeEmail(this IList<OpenApiSchema> schemas)
 ```
 #### HasFormatTypeFromAspNetCoreHttpNamespace
 
@@ -567,130 +597,105 @@ bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
 ```csharp
 bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfByte
+#### HasFormatTypeInt32
 
 ```csharp
-bool HasFormatTypeOfByte(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeInt32(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfDate
+#### HasFormatTypeInt64
 
 ```csharp
-bool HasFormatTypeOfDate(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeInt64(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfDateTime
+#### HasFormatTypeTime
 
 ```csharp
-bool HasFormatTypeOfDateTime(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeTime(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfEmail
+#### HasFormatTypeTimestamp
 
 ```csharp
-bool HasFormatTypeOfEmail(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeTimestamp(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfInt32
+#### HasFormatTypeUri
 
 ```csharp
-bool HasFormatTypeOfInt32(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeUri(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfInt64
+#### HasFormatTypeUuid
 
 ```csharp
-bool HasFormatTypeOfInt64(this IList<OpenApiSchema> schemas)
+bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
 ```
-#### HasFormatTypeOfTime
+#### HasItemsWithFormatTypeBinary
 
 ```csharp
-bool HasFormatTypeOfTime(this IList<OpenApiSchema> schemas)
+bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
 ```
-#### HasFormatTypeOfTimestamp
+#### HasItemsWithSimpleDataType
 
 ```csharp
-bool HasFormatTypeOfTimestamp(this IList<OpenApiSchema> schemas)
-```
-#### HasFormatTypeOfUri
-
-```csharp
-bool HasFormatTypeOfUri(this IList<OpenApiSchema> schemas)
-```
-#### HasFormatTypeOfUuid
-
-```csharp
-bool HasFormatTypeOfUuid(this IList<OpenApiSchema> schemas)
+bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
 ```
 #### IsArrayReferenceTypeDeclared
 
 ```csharp
 bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
 ```
-#### IsDataTypeOfList
+#### IsFormatTypeBinary
 
 ```csharp
-bool IsDataTypeOfList(this OpenApiSchema schema)
+bool IsFormatTypeBinary(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfBinary
+#### IsFormatTypeByte
 
 ```csharp
-bool IsFormatTypeOfBinary(this OpenApiSchema schema)
+bool IsFormatTypeByte(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfByte
+#### IsFormatTypeDate
 
 ```csharp
-bool IsFormatTypeOfByte(this OpenApiSchema schema)
+bool IsFormatTypeDate(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfDate
+#### IsFormatTypeDateTime
 
 ```csharp
-bool IsFormatTypeOfDate(this OpenApiSchema schema)
+bool IsFormatTypeDateTime(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfDateTime
+#### IsFormatTypeEmail
 
 ```csharp
-bool IsFormatTypeOfDateTime(this OpenApiSchema schema)
+bool IsFormatTypeEmail(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfEmail
+#### IsFormatTypeInt32
 
 ```csharp
-bool IsFormatTypeOfEmail(this OpenApiSchema schema)
+bool IsFormatTypeInt32(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfInt32
+#### IsFormatTypeInt64
 
 ```csharp
-bool IsFormatTypeOfInt32(this OpenApiSchema schema)
+bool IsFormatTypeInt64(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfInt64
+#### IsFormatTypeTime
 
 ```csharp
-bool IsFormatTypeOfInt64(this OpenApiSchema schema)
+bool IsFormatTypeTime(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfTime
+#### IsFormatTypeTimestamp
 
 ```csharp
-bool IsFormatTypeOfTime(this OpenApiSchema schema)
+bool IsFormatTypeTimestamp(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfTimestamp
+#### IsFormatTypeUri
 
 ```csharp
-bool IsFormatTypeOfTimestamp(this OpenApiSchema schema)
+bool IsFormatTypeUri(this OpenApiSchema schema)
 ```
-#### IsFormatTypeOfUri
+#### IsFormatTypeUuid
 
 ```csharp
-bool IsFormatTypeOfUri(this OpenApiSchema schema)
-```
-#### IsFormatTypeOfUuid
-
-```csharp
-bool IsFormatTypeOfUuid(this OpenApiSchema schema)
-```
-#### IsItemsOfFormatTypeBinary
-
-```csharp
-bool IsItemsOfFormatTypeBinary(this OpenApiSchema schema)
-```
-#### IsItemsOfSimpleDataType
-
-```csharp
-bool IsItemsOfSimpleDataType(this OpenApiSchema schema)
+bool IsFormatTypeUuid(this OpenApiSchema schema)
 ```
 #### IsObjectReferenceTypeDeclared
 
@@ -726,5 +731,10 @@ bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiCompon
 
 ```csharp
 bool IsSimpleDataType(this OpenApiSchema schema)
+```
+#### IsTypeArray
+
+```csharp
+bool IsTypeArray(this OpenApiSchema schema)
 ```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>
