@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,104 +7,104 @@ namespace Microsoft.OpenApi.Models
 {
     public static class OpenApiParameterExtensions
     {
-        public static bool HasFormatTypeOfUuid(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeUuid(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfUuid());
+            return parameters.Any(x => x.Schema.IsFormatTypeUuid());
         }
 
-        public static bool HasFormatTypeOfByte(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeByte(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfByte());
+            return parameters.Any(x => x.Schema.IsFormatTypeByte());
         }
 
-        public static bool HasFormatTypeOfDate(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeDate(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfDate());
+            return parameters.Any(x => x.Schema.IsFormatTypeDate());
         }
 
-        public static bool HasFormatTypeOfDateTime(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeDateTime(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfDateTime());
+            return parameters.Any(x => x.Schema.IsFormatTypeDateTime());
         }
 
-        public static bool HasFormatTypeOfTime(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeTime(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfTime());
+            return parameters.Any(x => x.Schema.IsFormatTypeTime());
         }
 
-        public static bool HasFormatTypeOfTimestamp(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeTimestamp(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfTimestamp());
+            return parameters.Any(x => x.Schema.IsFormatTypeTimestamp());
         }
 
-        public static bool HasFormatTypeOfInt32(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeInt32(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfInt32());
+            return parameters.Any(x => x.Schema.IsFormatTypeInt32());
         }
 
-        public static bool HasFormatTypeOfInt64(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeInt64(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfInt64());
+            return parameters.Any(x => x.Schema.IsFormatTypeInt64());
         }
 
-        public static bool HasFormatTypeOfEmail(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeEmail(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfEmail());
+            return parameters.Any(x => x.Schema.IsFormatTypeEmail());
         }
 
-        public static bool HasFormatTypeOfUri(this IList<OpenApiParameter> parameters)
+        public static bool HasFormatTypeUri(this IList<OpenApiParameter> parameters)
         {
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.Any(x => x.Schema.IsFormatTypeOfUri());
+            return parameters.Any(x => x.Schema.IsFormatTypeUri());
         }
 
         public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)
@@ -114,18 +114,18 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            return parameters.HasFormatTypeOfUuid() ||
-                   parameters.HasFormatTypeOfDate() ||
-                   parameters.HasFormatTypeOfDateTime() ||
-                   parameters.HasFormatTypeOfTime() ||
-                   parameters.HasFormatTypeOfTimestamp() ||
-                   parameters.HasFormatTypeOfUri();
+            return parameters.HasFormatTypeUuid() ||
+                   parameters.HasFormatTypeDate() ||
+                   parameters.HasFormatTypeDateTime() ||
+                   parameters.HasFormatTypeTime() ||
+                   parameters.HasFormatTypeTimestamp() ||
+                   parameters.HasFormatTypeUri();
         }
 
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiParameter> parameters)
         {
-            return parameters.HasFormatTypeOfEmail() ||
-                   parameters.HasFormatTypeOfUri();
+            return parameters.HasFormatTypeEmail() ||
+                   parameters.HasFormatTypeUri();
         }
 
         public static List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)

@@ -34,7 +34,7 @@ namespace Microsoft.OpenApi.Models
             return result;
         }
 
-        public static bool HasSchemaTypeOfArray(this OpenApiResponses responses)
+        public static bool HasSchemaTypeArray(this OpenApiResponses responses)
         {
             if (responses == null)
             {
@@ -48,7 +48,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (response.Value.Content.Any(x => string.Equals(x.Value.Schema?.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal)))
+                if (response.Value.Content.Any(x => x.Value.Schema is not null && x.Value.Schema.IsTypeArray()))
                 {
                     return true;
                 }
@@ -57,7 +57,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static bool HasSchemaTypeOfHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+        public static bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
         {
             if (responses == null)
             {
@@ -83,7 +83,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static bool HasSchemaTypeOfHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+        public static bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
         {
             if (responses == null)
             {
@@ -103,7 +103,10 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
-        public static OpenApiSchema? GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = MediaTypeNames.Application.Json)
+        public static OpenApiSchema? GetSchemaForStatusCode(
+            this OpenApiResponses responses,
+            HttpStatusCode httpStatusCode,
+            string contentType = MediaTypeNames.Application.Json)
         {
             foreach (var (key, value) in responses.OrderBy(x => x.Key))
             {
@@ -142,7 +145,8 @@ namespace Microsoft.OpenApi.Models
 
         public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
-            return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal);
+            var schema = responses.GetSchemaForStatusCode(httpStatusCode);
+            return schema is not null && schema.IsTypeArray();
         }
 
         public static bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
@@ -174,7 +178,7 @@ namespace Microsoft.OpenApi.Models
                 }
 
                 var schema = value.Content.GetSchemaByFirstMediaType();
-                return schema is not null && schema.IsFormatTypeOfBinary();
+                return schema is not null && schema.IsFormatTypeBinary();
             }
 
             return false;
