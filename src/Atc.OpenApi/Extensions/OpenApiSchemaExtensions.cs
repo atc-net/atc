@@ -380,6 +380,11 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var schemaProperty in schema.Properties)
             {
+                if (schemaProperty.Value.IsTypeArray())
+                {
+                    return true;
+                }
+
                 if (schema.GetModelName() == schemaProperty.Value.GetModelName())
                 {
                     continue;
