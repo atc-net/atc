@@ -21,6 +21,28 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasDataTypeFromSystemCollectionGenericNamespace();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasDataTypeFromSystemCollectionGenericNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+        {
+            // Act
+            var actual = openApiSchemas.HasDataTypeFromSystemCollectionGenericNamespace();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasFormatTypeUuid(bool expected, IList<OpenApiSchema> openApiSchemas)
         {
@@ -153,28 +175,6 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema)
-        {
-            // Act
-            var actual = openApiSchema.HasDataTypeFromSystemCollectionGenericNamespace();
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasDataTypeFromSystemCollectionGenericNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
-        {
-            // Act
-            var actual = openApiSchemas.HasDataTypeFromSystemCollectionGenericNamespace();
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromDataAnnotationsNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasFormatTypeFromDataAnnotationsNamespace(bool expected, OpenApiSchema openApiSchema)
         {
@@ -202,6 +202,17 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.HasFormatType();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasModelNameOrAnyPropertiesWithModelNameItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasModelNameOrAnyPropertiesWithModelName(bool expected, OpenApiSchema openApiSchema, string modelName)
+        {
+            // Act
+            var actual = openApiSchema.HasModelNameOrAnyPropertiesWithModelName(modelName);
 
             // Assert
             Assert.Equal(expected, actual);

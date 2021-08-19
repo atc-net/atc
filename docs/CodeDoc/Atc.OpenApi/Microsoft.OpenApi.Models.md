@@ -637,6 +637,11 @@ bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
 ```csharp
 bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
 ```
+#### HasModelNameOrAnyPropertiesWithModelName
+
+```csharp
+bool HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
+```
 #### IsArrayReferenceTypeDeclared
 
 ```csharp
