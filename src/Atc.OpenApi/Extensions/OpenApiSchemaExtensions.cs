@@ -308,7 +308,7 @@ namespace Microsoft.OpenApi.Models
             {
                 foreach (var (_, value) in schema.Properties)
                 {
-                    if (value.Type != OpenApiDataTypeConstants.Array)
+                    if (!value.IsTypeArray())
                     {
                         continue;
                     }
@@ -380,6 +380,11 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var schemaProperty in schema.Properties)
             {
+                if (schemaProperty.Value.IsTypeArray())
+                {
+                    return true;
+                }
+
                 if (schema.GetModelName() == schemaProperty.Value.GetModelName())
                 {
                     continue;
@@ -603,7 +608,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Type == OpenApiDataTypeConstants.Array &&
+            return schema.IsTypeArray() &&
                    schema.Items?.Reference != null;
         }
 
@@ -862,7 +867,7 @@ namespace Microsoft.OpenApi.Models
         {
             foreach (var (key, value) in apiSchema.Properties)
             {
-                if (value.Type == OpenApiDataTypeConstants.Array)
+                if (value.IsTypeArray())
                 {
                     return key.EnsureFirstCharacterToUpper();
                 }

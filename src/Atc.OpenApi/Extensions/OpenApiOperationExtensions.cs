@@ -180,7 +180,7 @@ namespace Microsoft.OpenApi.Models
                 {
                     foreach (var mediaType in response.Content.Values)
                     {
-                        if (string.Equals(mediaType.Schema.Type, OpenApiDataTypeConstants.Array, StringComparison.Ordinal))
+                        if (mediaType.Schema.IsTypeArray())
                         {
                             return true;
                         }
