@@ -27,6 +27,26 @@ namespace Microsoft.OpenApi.Models
             return schemas.Any(x => x.IsTypeArray());
         }
 
+        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.IsTypeArray();
+        }
+
+        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
+        {
+            if (schemas is null)
+            {
+                throw new ArgumentNullException(nameof(schemas));
+            }
+
+            return schemas.Any(x => x.HasDataTypeFromSystemCollectionGenericNamespace());
+        }
+
         public static bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
         {
             if (schemas is null)
@@ -152,26 +172,6 @@ namespace Microsoft.OpenApi.Models
             return schemas.Any(x => x.HasFormatTypeFromSystemNamespace());
         }
 
-        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
-        {
-            if (schema is null)
-            {
-                throw new ArgumentNullException(nameof(schema));
-            }
-
-            return schema.IsTypeArray();
-        }
-
-        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
-        {
-            if (schemas is null)
-            {
-                throw new ArgumentNullException(nameof(schemas));
-            }
-
-            return schemas.Any(x => x.HasDataTypeFromSystemCollectionGenericNamespace());
-        }
-
         public static bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
         {
             if (schema is null)
@@ -203,6 +203,43 @@ namespace Microsoft.OpenApi.Models
             }
 
             return !string.IsNullOrEmpty(schema.Format);
+        }
+
+        public static bool HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
+        {
+            var name = schema.GetModelName();
+            if (!string.IsNullOrEmpty(name) &&
+                modelName.Equals(name, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if (!schema.HasAnyProperties())
+            {
+                return false;
+            }
+
+            foreach (var schemaProperty in schema.Properties)
+            {
+                if (name == schemaProperty.Value.GetModelName())
+                {
+                    continue;
+                }
+
+                if (schemaProperty.Value.HasModelNameOrAnyPropertiesWithModelName(modelName))
+                {
+                    return true;
+                }
+
+                if (schemaProperty.Value.OneOf is not null &&
+                    schemaProperty.Value.OneOf.Count > 0 &&
+                    schemaProperty.Value.OneOf.Any(x => x.HasModelNameOrAnyPropertiesWithModelName(modelName)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
@@ -315,6 +352,11 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var schemaProperty in schema.Properties)
             {
+                if (schema.GetModelName() == schemaProperty.Value.GetModelName())
+                {
+                    continue;
+                }
+
                 if (schemaProperty.Value.HasFormatTypeFromSystemNamespace())
                 {
                     return true;
@@ -338,6 +380,11 @@ namespace Microsoft.OpenApi.Models
 
             foreach (var schemaProperty in schema.Properties)
             {
+                if (schema.GetModelName() == schemaProperty.Value.GetModelName())
+                {
+                    continue;
+                }
+
                 if (schemaProperty.Value.HasDataTypeFromSystemCollectionGenericNamespace())
                 {
                     return true;

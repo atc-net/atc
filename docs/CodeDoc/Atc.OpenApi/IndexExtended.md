@@ -133,6 +133,7 @@
      - HasFormatTypeUuid(this IList&lt;OpenApiSchema&gt; schemas)
      - HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
      - HasItemsWithSimpleDataType(this OpenApiSchema schema)
+     - HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
      - IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
      - IsFormatTypeBinary(this OpenApiSchema schema)
      - IsFormatTypeByte(this OpenApiSchema schema)

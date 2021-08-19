@@ -40,6 +40,78 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() } },
             };
 
+        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+            };
+
+        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceListItemData
+            => new List<object[]>
+            {
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInteger() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInt32() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInt64() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateNumber() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() } },
+                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() } },
+
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListString() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() } },
+                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() } },
+            };
+
         public static IEnumerable<object[]> HasFormatTypeUuidItemData
             => new List<object[]>
             {
@@ -393,78 +465,6 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() } },
             };
 
-        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceItemData
-            => new List<object[]>
-            {
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
-                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
-
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
-                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
-            };
-
-        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceListItemData
-            => new List<object[]>
-            {
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInteger() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInt32() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateInt64() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateNumber() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() } },
-                new object[] { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() } },
-
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListString() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() } },
-                new object[] { true, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() } },
-            };
-
         public static IEnumerable<object[]> HasFormatTypeFromDataAnnotationsNamespaceItemData
             => new List<object[]>
             {
@@ -540,6 +540,15 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+            };
+
+        public static IEnumerable<object[]> HasModelNameOrAnyPropertiesWithModelNameItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPet(), "MyPet" },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPet(), "Pet" },
+                new object[] { false, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray(), "MyPet" },
+                new object[] { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray(), "Pet" },
             };
 
         public static IEnumerable<object[]> HasItemsWithSimpleDataTypeItemData
@@ -1085,11 +1094,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         public static IEnumerable<object[]> GetModelNameItemData
             => new List<object[]>
             {
-                new object[]
-                {
-                    "Pet",
-                    TestDataOpenApiFactory.CreateSchemaPet(),
-                },
+                new object[] { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
             };
 
         public static IEnumerable<object[]> GetModelNameEnsureFirstCharacterToUpperItemData
