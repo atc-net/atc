@@ -213,6 +213,108 @@ int ToInt(this bool? source)
 <br />
 
 
+## DateTimeExtensions
+Extensions for the `System.DateTime` class.
+
+
+```csharp
+public static class DateTimeExtensions
+```
+
+### Static Methods
+
+
+#### DateTimeDiff
+
+```csharp
+double DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
+```
+<p><b>Summary:</b> Find the diff between to DateTimes.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;The end date.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`howToCompare`&nbsp;&nbsp;-&nbsp;&nbsp;The how to compare.<br />
+<p><b>Returns:</b> The number between start date and end date, depend on the DiffCompareType.</p>
+
+#### GetPrettyTimeDiff
+
+```csharp
+string GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
+```
+<p><b>Summary:</b> Gets the pretty time difference.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
+#### GetPrettyTimeDiff
+
+```csharp
+string GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
+```
+<p><b>Summary:</b> Gets the pretty time difference.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
+#### GetWeekNumber
+
+```csharp
+int GetWeekNumber(this DateTime date)
+```
+<p><b>Summary:</b> Gets the week number from a given date.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
+<p><b>Returns:</b> The week number from the given date.</p>
+
+#### IsBetween
+
+```csharp
+bool IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
+```
+<p><b>Summary:</b> Returns true if the date is between or equal to one of the two values.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;DateTime Base, from where the calculation will be preformed.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;Start date to check for.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;End date to check for.<br />
+<p><b>Returns:</b> boolean value indicating if the date is between or equal to one of the two values.</p>
+
+#### ToIso8601Date
+
+```csharp
+string ToIso8601Date(this DateTime dateTime)
+```
+<p><b>Summary:</b> To the iso8601 date.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+<b>Code example:</b>
+
+```csharp
+string isoDate = DateTime.UtcNow.ToIso8601Date()
+```
+#### ToIso8601UtcDate
+
+```csharp
+string ToIso8601UtcDate(this DateTime dateTime)
+```
+<p><b>Summary:</b> To the iso8601 UTC date.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+
+<br />
+
+
 ## DateTimeOffsetExtensions
 Extensions for the `System.DateTimeOffset` class.
 
@@ -1945,6 +2047,17 @@ public static class TimeSpanExtensions
 ### Static Methods
 
 
+#### GetPrettyTime
+
+```csharp
+string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
+```
+<p><b>Summary:</b> Gets the pretty time.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
 #### Max
 
 ```csharp
@@ -1970,23 +2083,23 @@ TimeSpan Min(this TimeSpan t1, TimeSpan t2)
 #### RemoveMilliseconds
 
 ```csharp
-TimeSpan RemoveMilliseconds(this TimeSpan timespan)
+TimeSpan RemoveMilliseconds(this TimeSpan timeSpan)
 ```
-<p><b>Summary:</b> Removes the millisecond part of the timespan.</p>
+<p><b>Summary:</b> Removes the millisecond part of the timeSpan.</p>
 
 <b>Parameters</b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timespan`&nbsp;&nbsp;-&nbsp;&nbsp;The timespan.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
 #### SecondsNotZero
 
 ```csharp
-bool SecondsNotZero(this TimeSpan timespan)
+bool SecondsNotZero(this TimeSpan timeSpan)
 ```
 <p><b>Summary:</b> Determines whether the seconds part of the datetime is zero.</p>
 
 <b>Parameters</b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timespan`&nbsp;&nbsp;-&nbsp;&nbsp;The timespan.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
 <p><b>Returns:</b> true if [is seconds is zero] otherwise, false.</p>
 
 
