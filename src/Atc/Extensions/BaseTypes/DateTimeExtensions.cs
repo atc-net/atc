@@ -1,9 +1,9 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Threading;
+using Atc;
 
-namespace Atc.Extensions.BaseTypes
+// ReSharper disable once CheckNamespace
+namespace System
 {
     /// <summary>
     /// Extensions for the <see cref="DateTime"/> class.
@@ -39,32 +39,10 @@ namespace Atc.Extensions.BaseTypes
         /// <param name="startDate">The start date.</param>
         /// <param name="endDate">The end date.</param>
         /// <param name="decimalPrecision">The decimal precision.</param>
-        [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
         public static string GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
         {
             var timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
-            if ((int)timeSpan.TotalDays > 0)
-            {
-                return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} days";
-            }
-
-            if ((int)timeSpan.TotalHours > 0)
-            {
-                return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} hours";
-            }
-
-            if ((int)timeSpan.TotalMinutes > 0)
-            {
-                return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} min";
-            }
-
-            // ReSharper disable once ConvertIfStatementToReturnStatement
-            if ((int)timeSpan.TotalSeconds > 0)
-            {
-                return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} sec";
-            }
-
-            return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} ms";
+            return timeSpan.GetPrettyTime(decimalPrecision);
         }
 
         /// <summary>

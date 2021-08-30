@@ -160,18 +160,6 @@
   -  Methods
      - ToString()
 
-## [Atc.Extensions.BaseTypes](Atc.Extensions.BaseTypes.md)
-
-- [DateTimeExtensions](Atc.Extensions.BaseTypes.md#datetimeextensions)
-  -  Static Methods
-     - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
-     - GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
-     - GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
-     - GetWeekNumber(this DateTime date)
-     - IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
-     - ToIso8601Date(this DateTime dateTime)
-     - ToIso8601UtcDate(this DateTime dateTime)
-
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
@@ -437,6 +425,15 @@
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+- [DateTimeExtensions](System.md#datetimeextensions)
+  -  Static Methods
+     - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
+     - GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
+     - GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
+     - GetWeekNumber(this DateTime date)
+     - IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
+     - ToIso8601Date(this DateTime dateTime)
+     - ToIso8601UtcDate(this DateTime dateTime)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
   -  Static Methods
      - IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
@@ -588,10 +585,11 @@
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
 - [TimeSpanExtensions](System.md#timespanextensions)
   -  Static Methods
+     - GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
      - Max(this TimeSpan t1, TimeSpan t2)
      - Min(this TimeSpan t1, TimeSpan t2)
-     - RemoveMilliseconds(this TimeSpan timespan)
-     - SecondsNotZero(this TimeSpan timespan)
+     - RemoveMilliseconds(this TimeSpan timeSpan)
+     - SecondsNotZero(this TimeSpan timeSpan)
 - [TypeExtensions](System.md#typeextensions)
   -  Static Methods
      - BeautifyName(this Type type, bool useFullName = False, bool useHtmlFormat = False, bool useGenericParameterNamesAsT = False, bool useSuffixQuestionMarkForGeneric = False)

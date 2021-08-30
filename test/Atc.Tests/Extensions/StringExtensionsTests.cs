@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Atc.Extensions.BaseTypes;
 using Xunit;
 
 namespace Atc.Tests.Extensions

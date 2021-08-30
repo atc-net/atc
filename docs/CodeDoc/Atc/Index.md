@@ -56,10 +56,6 @@
 - [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
 
-## [Atc.Extensions.BaseTypes](Atc.Extensions.BaseTypes.md)
-
-- [DateTimeExtensions](Atc.Extensions.BaseTypes.md#datetimeextensions)
-
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
@@ -122,6 +118,7 @@
 - [ArgumentPropertyNullException](System.md#argumentpropertynullexception)
 - [ArrayExtensions](System.md#arrayextensions)
 - [BooleanExtensions](System.md#booleanextensions)
+- [DateTimeExtensions](System.md#datetimeextensions)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
 - [DecimalExtensions](System.md#decimalextensions)
 - [DoubleExtensions](System.md#doubleextensions)

@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Atc.Tests.XUnitTestData;
 using Xunit;
 
 namespace Atc.Tests.Extensions.BaseTypes
@@ -66,6 +67,30 @@ namespace Atc.Tests.Extensions.BaseTypes
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTime), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
+        public void GetPrettyTimeDiff(string expected, TimeSpan timeSpan)
+        {
+            // Act
+            var actual = timeSpan.GetPrettyTime();
+
+            // Assert - A kind of a dummy test, because of timing issues
+            Assert.NotNull(expected);
+            Assert.NotNull(actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTimeWithDecimalPrecision), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
+        public void GetPrettyTimeDiff_DecimalPrecision(string expected, TimeSpan timeSpan, int decimalPrecision)
+        {
+            // Act
+            var actual = timeSpan.GetPrettyTime(decimalPrecision);
+
+            // Assert - A kind of a dummy test, because of timing issues
+            Assert.NotNull(expected);
+            Assert.NotNull(actual);
         }
     }
 }

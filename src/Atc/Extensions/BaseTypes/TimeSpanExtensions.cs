@@ -1,4 +1,7 @@
-﻿// ReSharper disable once CheckNamespace
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
+
+// ReSharper disable once CheckNamespace
 namespace System
 {
     /// <summary>
@@ -27,24 +30,56 @@ namespace System
         }
 
         /// <summary>
-        /// Removes the millisecond part of the timespan.
+        /// Removes the millisecond part of the timeSpan.
         /// </summary>
-        /// <param name="timespan">The timespan.</param>
-        public static TimeSpan RemoveMilliseconds(this TimeSpan timespan)
+        /// <param name="timeSpan">The timeSpan.</param>
+        public static TimeSpan RemoveMilliseconds(this TimeSpan timeSpan)
         {
-            return timespan.Subtract(TimeSpan.FromMilliseconds(timespan.Milliseconds));
+            return timeSpan.Subtract(TimeSpan.FromMilliseconds(timeSpan.Milliseconds));
         }
 
         /// <summary>
         /// Determines whether the seconds part of the datetime is zero.
         /// </summary>
-        /// <param name="timespan">The timespan.</param>
+        /// <param name="timeSpan">The timeSpan.</param>
         /// <returns>
         ///   <c>true</c> if [is seconds is zero] otherwise, <c>false</c>.
         /// </returns>
-        public static bool SecondsNotZero(this TimeSpan timespan)
+        public static bool SecondsNotZero(this TimeSpan timeSpan)
         {
-            return timespan.TotalSeconds > 0;
+            return timeSpan.TotalSeconds > 0;
+        }
+
+        /// <summary>
+        /// Gets the pretty time.
+        /// </summary>
+        /// <param name="timeSpan">The timeSpan.</param>
+        /// <param name="decimalPrecision">The decimal precision.</param>
+        [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
+        public static string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
+        {
+            if ((int)timeSpan.TotalDays > 0)
+            {
+                return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} days";
+            }
+
+            if ((int)timeSpan.TotalHours > 0)
+            {
+                return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} hours";
+            }
+
+            if ((int)timeSpan.TotalMinutes > 0)
+            {
+                return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} min";
+            }
+
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if ((int)timeSpan.TotalSeconds > 0)
+            {
+                return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} sec";
+            }
+
+            return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} ms";
         }
     }
 }
