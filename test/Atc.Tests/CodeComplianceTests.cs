@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using Atc.Math;
 using Atc.XUnit;
 using Xunit;
@@ -22,6 +23,7 @@ namespace Atc.Tests
 
             // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(TaskExtensions),
+            typeof(ThreadExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
