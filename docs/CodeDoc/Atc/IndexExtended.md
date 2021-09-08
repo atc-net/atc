@@ -16,6 +16,10 @@
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
 - [CollectionActionType](Atc.md#collectionactiontype)
+- [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
+  -  Static Fields
+     - int Failure
+     - int Success
 - [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)
 - [DropDownFirstItemType](Atc.md#dropdownfirstitemtype)
 - [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
@@ -117,13 +121,6 @@
      - TryAdd(T item)
      - TryRemove(T item)
 
-## [Atc.Console](Atc.Console.md)
-
-- [ExitStatusCodes](Atc.Console.md#exitstatuscodes)
-  -  Static Fields
-     - int Failure
-     - int Success
-
 ## [Atc.Data](Atc.Data.md)
 
 - [DataFactory](Atc.Data.md#datafactory)
@@ -165,6 +162,7 @@
      - Description
      - LogCategory
   -  Methods
+     - GetLogMessage(bool includeKey = True, bool includeDescription = True)
      - ToString()
 
 ## [Atc.Helpers](Atc.Helpers.md)

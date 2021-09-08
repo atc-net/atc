@@ -97,29 +97,6 @@ string ToString()
 <br />
 
 
-## ConsoleLoggerHelper
-
-```csharp
-public static class ConsoleLoggerHelper
-```
-
-### Static Methods
-
-
-#### Output
-
-```csharp
-void Output(ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
-```
-#### Output
-
-```csharp
-void Output(ILogger logger, List<LogKeyValueItem> logKeyValueItems, bool includeKey = True, bool includeDescription = True)
-```
-
-<br />
-
-
 ## ConsoleLoggerProvider
 
 ```csharp

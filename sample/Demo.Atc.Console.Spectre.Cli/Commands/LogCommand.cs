@@ -1,6 +1,5 @@
 using System;
 using Atc;
-using Atc.Console;
 using Demo.Atc.Console.Spectre.Cli.Settings;
 using Microsoft.Extensions.Logging;
 using Spectre.Console.Cli;
@@ -44,7 +43,7 @@ namespace Demo.Atc.Console.Spectre.Cli.Commands
                     throw new SwitchCaseDefaultException(logLevel);
             }
 
-            return ExitStatusCodes.Success;
+            return ConsoleExitStatusCodes.Success;
         }
     }
 }

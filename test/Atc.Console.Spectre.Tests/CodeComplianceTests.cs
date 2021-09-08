@@ -26,7 +26,7 @@ namespace Atc.Console.Spectre.Tests
             typeof(TypeRegistrar),
             typeof(TypeResolver),
             typeof(ServiceCollectionFactory),
-            typeof(ConsoleLoggerHelper),
+            typeof(LoggerExtensions),
             typeof(ConsoleLogger),
             typeof(ConsoleLoggerProvider),
         };

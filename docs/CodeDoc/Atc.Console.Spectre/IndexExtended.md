@@ -10,6 +10,10 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
+- [LoggerExtensions](Atc.Console.Spectre.md#loggerextensions)
+  -  Static Methods
+     - LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
+     - LogKeyValueItems(this ILogger logger, List&lt;LogKeyValueItem&gt; logKeyValueItems, bool includeKey = True, bool includeDescription = True)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
@@ -23,6 +27,7 @@
 
 - [CommandAppFactory](Atc.Console.Spectre.Factories.md#commandappfactory)
   -  Static Methods
+     - Create(ServiceCollection serviceCollection, Encoding encoding)
      - Create(ServiceCollection serviceCollection)
 - [ServiceCollectionFactory](Atc.Console.Spectre.Factories.md#servicecollectionfactory)
   -  Static Methods
@@ -61,10 +66,6 @@
      - UseShortNameForLogLevel
   -  Methods
      - ToString()
-- [ConsoleLoggerHelper](Atc.Console.Spectre.Logging.md#consoleloggerhelper)
-  -  Static Methods
-     - Output(ILogger logger, List&lt;LogKeyValueItem&gt; logKeyValueItems, bool includeKey = True, bool includeDescription = True)
-     - Output(ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
 - [ConsoleLoggerProvider](Atc.Console.Spectre.Logging.md#consoleloggerprovider)
   -  Methods
      - CreateLogger(string categoryName)

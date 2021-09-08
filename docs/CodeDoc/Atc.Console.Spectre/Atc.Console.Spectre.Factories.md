@@ -22,6 +22,11 @@ public static class CommandAppFactory
 ```csharp
 CommandApp Create(ServiceCollection serviceCollection)
 ```
+#### Create
+
+```csharp
+CommandApp Create(ServiceCollection serviceCollection, Encoding encoding)
+```
 
 <br />
 
