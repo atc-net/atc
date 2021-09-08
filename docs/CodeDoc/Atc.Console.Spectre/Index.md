@@ -10,6 +10,7 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
+- [LoggerExtensions](Atc.Console.Spectre.md#loggerextensions)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
@@ -29,7 +30,6 @@
 
 - [ConsoleLogger](Atc.Console.Spectre.Logging.md#consolelogger)
 - [ConsoleLoggerConfiguration](Atc.Console.Spectre.Logging.md#consoleloggerconfiguration)
-- [ConsoleLoggerHelper](Atc.Console.Spectre.Logging.md#consoleloggerhelper)
 - [ConsoleLoggerProvider](Atc.Console.Spectre.Logging.md#consoleloggerprovider)
 - [ConsoleRenderType](Atc.Console.Spectre.Logging.md#consolerendertype)
 

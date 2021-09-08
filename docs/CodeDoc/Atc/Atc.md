@@ -177,6 +177,29 @@ public enum CollectionActionType
 <br />
 
 
+## ConsoleExitStatusCodes
+
+```csharp
+public static class ConsoleExitStatusCodes
+```
+
+### Static Fields
+
+
+#### Failure
+
+```csharp
+int Failure
+```
+#### Success
+
+```csharp
+int Success
+```
+
+<br />
+
+
 ## DateTimeDiffCompareType
 Enumeration: DateTimeDiffCompareType.
 

@@ -16,6 +16,7 @@
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
 - [CollectionActionType](Atc.md#collectionactiontype)
+- [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
 - [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)
 - [DropDownFirstItemType](Atc.md#dropdownfirstitemtype)
 - [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
@@ -45,10 +46,6 @@
 ## [Atc.Collections](Atc.Collections.md)
 
 - [ConcurrentHashSet&lt;T&gt;](Atc.Collections.md#concurrenthashset&lt;t&gt;)
-
-## [Atc.Console](Atc.Console.md)
-
-- [ExitStatusCodes](Atc.Console.md#exitstatuscodes)
 
 ## [Atc.Data](Atc.Data.md)
 

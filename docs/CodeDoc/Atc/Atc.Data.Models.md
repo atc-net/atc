@@ -194,6 +194,17 @@ LogCategory
 ### Methods
 
 
+#### GetLogMessage
+
+```csharp
+string GetLogMessage(bool includeKey = True, bool includeDescription = True)
+```
+<p><b>Summary:</b> Gets the log message.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
 #### ToString
 
 ```csharp
