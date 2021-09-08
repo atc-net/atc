@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="5.5.5" />
-    <PackageReference Include="ICSharpCode.Decompiler" Version="6.2.1.6137" />
+    <PackageReference Include="EPPlus" Version="5.7.4" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="7.1.0.6543" />
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
