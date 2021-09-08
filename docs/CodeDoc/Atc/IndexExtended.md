@@ -415,6 +415,7 @@
 - [AppDomainExtensions](System.md#appdomainextensions)
   -  Static Methods
      - GetAllExportedTypes(this AppDomain appDomain)
+     - GetCustomAssemblies(this AppDomain appDomain)
      - GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
      - GetExportedTypeByName(this AppDomain appDomain, string typeName)
 - [ArgumentNullOrDefaultException](System.md#argumentnullordefaultexception)
@@ -683,6 +684,7 @@
   -  Static Methods
      - GetBeautifiedName(this Assembly assembly)
      - GetExportedTypeByName(this Assembly assembly, string typeName)
+     - GetTypesInheritingFromType(this Assembly assembly, Type type)
      - IsDebugBuild(this Assembly assembly)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)
   -  Static Methods

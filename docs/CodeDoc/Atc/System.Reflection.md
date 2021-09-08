@@ -40,6 +40,17 @@ Type GetExportedTypeByName(this Assembly assembly, string typeName)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
+#### GetTypesInheritingFromType
+
+```csharp
+Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)
+```
+<p><b>Summary:</b> Gets the types inheriting from a specific type.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type from which other types are inheriting.<br />
 #### IsDebugBuild
 
 ```csharp

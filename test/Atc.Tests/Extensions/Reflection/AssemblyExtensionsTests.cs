@@ -1,5 +1,7 @@
-﻿using System;
+using System;
 using System.Reflection;
+using Atc.Data.Models;
+using FluentAssertions;
 using Xunit;
 
 namespace Atc.Tests.Extensions.Reflection
@@ -7,7 +9,7 @@ namespace Atc.Tests.Extensions.Reflection
     public class AssemblyExtensionsTests
     {
         [Fact]
-        public void IsAssemblyDebugBuild()
+        public void IsDebugBuild()
         {
             // Act
             var actual = Assembly.GetExecutingAssembly().IsDebugBuild();
@@ -44,7 +46,7 @@ namespace Atc.Tests.Extensions.Reflection
         }
 
         [Fact]
-        public void GetPrettyName()
+        public void GetBeautifiedName()
         {
             // Act
             var actual = Assembly.GetExecutingAssembly().GetBeautifiedName();
@@ -52,6 +54,24 @@ namespace Atc.Tests.Extensions.Reflection
             // Assert
             Assert.NotNull(actual);
             Assert.Equal("Atc Tests", actual);
+        }
+
+        [Fact]
+        public void GetTypesInheritingFromType()
+        {
+            // Arrange
+            var assembly = typeof(KeyValueItem).Assembly;
+            var type = typeof(KeyValueItem);
+
+            // Act
+            var types = assembly.GetTypesInheritingFromType(type);
+
+            // Assert
+            types
+                .Should()
+                .NotBeNull()
+                .And
+                .HaveCountGreaterOrEqualTo(1);
         }
     }
 }

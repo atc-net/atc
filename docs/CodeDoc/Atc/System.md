@@ -29,6 +29,16 @@ Type[] GetAllExportedTypes(this AppDomain appDomain)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+#### GetCustomAssemblies
+
+```csharp
+Assembly[] GetCustomAssemblies(this AppDomain appDomain)
+```
+<p><b>Summary:</b> Gets the custom assemblies - excluding System, Microsoft etc.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
 #### GetExportedPropertyTypeByName
 
 ```csharp
