@@ -59,8 +59,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Math\Geometry\" />
-  </ItemGroup>
-
 </Project>
