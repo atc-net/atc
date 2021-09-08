@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Atc.Data.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Atc.Console.Spectre.Logging
+// ReSharper disable once CheckNamespace
+namespace Atc.Console.Spectre
 {
-    public static class ConsoleLoggerHelper
+    public static class LoggerExtensions
     {
-        public static void Output(
-            ILogger logger,
+        public static void LogKeyValueItem(
+            this ILogger logger,
             LogKeyValueItem logKeyValueItem,
             bool includeKey = true,
             bool includeDescription = true)
@@ -24,7 +24,7 @@ namespace Atc.Console.Spectre.Logging
                 throw new ArgumentNullException(nameof(logKeyValueItem));
             }
 
-            var message = GetMessage(logKeyValueItem, includeKey, includeDescription);
+            var message = logKeyValueItem.GetLogMessage(includeKey, includeDescription);
 
             switch (logKeyValueItem.LogCategory)
             {
@@ -55,8 +55,8 @@ namespace Atc.Console.Spectre.Logging
             }
         }
 
-        public static void Output(
-            ILogger logger,
+        public static void LogKeyValueItems(
+            this ILogger logger,
             List<LogKeyValueItem> logKeyValueItems,
             bool includeKey = true,
             bool includeDescription = true)
@@ -73,23 +73,8 @@ namespace Atc.Console.Spectre.Logging
 
             foreach (var item in logKeyValueItems)
             {
-                Output(logger, item, includeKey, includeDescription);
+                logger.LogKeyValueItem(item, includeKey, includeDescription);
             }
         }
-
-        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-        private static string GetMessage(LogKeyValueItem logKeyValueItem, bool includeKey, bool includeDescription)
-            => includeKey switch
-            {
-                true when includeDescription => string.IsNullOrEmpty(logKeyValueItem.Description)
-                    ? $"{logKeyValueItem.Key}: {logKeyValueItem.Value}"
-                    : $"{logKeyValueItem.Key}: {logKeyValueItem.Value} - {logKeyValueItem.Description}",
-                true => $"{logKeyValueItem.Key}: {logKeyValueItem.Value}",
-                _ => includeDescription
-                    ? string.IsNullOrEmpty(logKeyValueItem.Description)
-                        ? $"{logKeyValueItem.Value}"
-                        : $"{logKeyValueItem.Value} - {logKeyValueItem.Description}"
-                    : $"{logKeyValueItem.Value}"
-            };
     }
 }
