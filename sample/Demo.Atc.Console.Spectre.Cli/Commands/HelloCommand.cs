@@ -1,4 +1,4 @@
-using Atc.Console;
+using Atc;
 using Demo.Atc.Console.Spectre.Cli.Settings;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -13,7 +13,7 @@ namespace Demo.Atc.Console.Spectre.Cli.Commands
                 ? $"Hello, [blue]{Markup.Escape(settings.Name)}[/] - [red]{settings.Count}[/]"
                 : $"Hello, [blue]{Markup.Escape(settings.Name)}[/]");
 
-            return ExitStatusCodes.Success;
+            return ConsoleExitStatusCodes.Success;
         }
     }
 }
