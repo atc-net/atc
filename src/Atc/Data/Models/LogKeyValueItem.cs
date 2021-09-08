@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Atc.Data.Models
 {
@@ -55,6 +56,26 @@ namespace Atc.Data.Models
         /// The description.
         /// </value>
         public string? Description { get; set; }
+
+        /// <summary>
+        /// Gets the log message.
+        /// </summary>
+        /// <param name="includeKey">if set to <c>true</c> [include key].</param>
+        /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+        public string GetLogMessage(bool includeKey = true, bool includeDescription = true)
+            => includeKey switch
+            {
+                true when includeDescription => string.IsNullOrEmpty(this.Description)
+                    ? $"{this.Key}: {this.Value}"
+                    : $"{this.Key}: {this.Value} - {this.Description}",
+                true => $"{this.Key}: {this.Value}",
+                _ => includeDescription
+                    ? string.IsNullOrEmpty(this.Description)
+                        ? $"{this.Value}"
+                        : $"{this.Value} - {this.Description}"
+                    : $"{this.Value}"
+            };
 
         /// <inheritdoc />
         public override string ToString()
