@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -16,7 +16,7 @@ namespace System
         /// <param name="appDomain">The application domain.</param>
         public static Type[] GetAllExportedTypes(this AppDomain appDomain)
         {
-            if (appDomain == null)
+            if (appDomain is null)
             {
                 throw new ArgumentNullException(nameof(appDomain));
             }
@@ -39,12 +39,12 @@ namespace System
         /// <param name="typeName">Name of the type.</param>
         public static Type? GetExportedTypeByName(this AppDomain appDomain, string typeName)
         {
-            if (appDomain == null)
+            if (appDomain is null)
             {
                 throw new ArgumentNullException(nameof(appDomain));
             }
 
-            if (typeName == null)
+            if (typeName is null)
             {
                 throw new ArgumentNullException(nameof(typeName));
             }
@@ -72,27 +72,44 @@ namespace System
         /// <param name="propertyName">Name of the property.</param>
         public static Type? GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
         {
-            if (appDomain == null)
+            if (appDomain is null)
             {
                 throw new ArgumentNullException(nameof(appDomain));
             }
 
-            if (typeName == null)
+            if (typeName is null)
             {
                 throw new ArgumentNullException(nameof(typeName));
             }
 
-            if (propertyName == null)
+            if (propertyName is null)
             {
                 throw new ArgumentNullException(nameof(propertyName));
             }
 
             var type = GetExportedTypeByName(appDomain, typeName);
-            return type == null
-                ? null
-                : type
-                    .GetProperties()
-                    .FirstOrDefault(x => x.Name.Equals(propertyName, StringComparison.Ordinal))?.PropertyType;
+            return type?.GetProperties()
+                .FirstOrDefault(x => x.Name.Equals(propertyName, StringComparison.Ordinal))
+                ?.PropertyType;
+        }
+
+        /// <summary>
+        /// Gets the custom assemblies - excluding System, Microsoft etc.
+        /// </summary>
+        /// <param name="appDomain">The application domain.</param>
+        public static Assembly[] GetCustomAssemblies(this AppDomain appDomain)
+        {
+            if (appDomain is null)
+            {
+                throw new ArgumentNullException(nameof(appDomain));
+            }
+
+            return appDomain
+                .GetAssemblies()
+                .Where(x => !x.FullName.StartsWith("System", StringComparison.Ordinal) &&
+                            !x.FullName.StartsWith("Microsoft", StringComparison.Ordinal) &&
+                            !x.FullName.StartsWith("netstandard", StringComparison.Ordinal))
+                .ToArray();
         }
     }
 }

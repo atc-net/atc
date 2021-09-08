@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using FluentAssertions;
 using Xunit;
 
 namespace Atc.Tests.Extensions
@@ -34,6 +35,22 @@ namespace Atc.Tests.Extensions
 
             // Assert
             Assert.NotNull(actual);
+        }
+
+        [Fact]
+        public void GetCustomAssemblies()
+        {
+            // Act
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            var customAssemblies = AppDomain.CurrentDomain.GetCustomAssemblies();
+
+            // Assert
+            Assert.NotNull(assemblies);
+            Assert.NotNull(customAssemblies);
+
+            assemblies
+                .Should()
+                .HaveCountGreaterThan(customAssemblies.Length);
         }
     }
 }

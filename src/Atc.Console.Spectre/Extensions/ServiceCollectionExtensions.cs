@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Reflection;
 using Atc.Console.Spectre.Logging;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,15 +37,14 @@ namespace Atc.Console.Spectre.Extensions
 
         public static void AutoRegisterCliCommandSettings(this IServiceCollection serviceCollection)
         {
-            var commandSettingTypes = Assembly
-                .GetExecutingAssembly()
-                .GetTypes()
-                .Where(x => x.IsInheritedFrom(typeof(CommandSettings)))
-                .ToArray();
-
-            foreach (var commandSettingType in commandSettingTypes)
+            var assemblies = AppDomain.CurrentDomain.GetCustomAssemblies();
+            foreach (var assembly in assemblies)
             {
-                serviceCollection.AddSingleton(commandSettingType);
+                var commandSettingTypes = assembly.GetTypesInheritingFromType(typeof(CommandSettings));
+                foreach (var commandSettingType in commandSettingTypes)
+                {
+                    serviceCollection.AddSingleton(commandSettingType);
+                }
             }
         }
     }
