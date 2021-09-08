@@ -86,6 +86,7 @@ jobs:
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeAnalysis.CSharp.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeDocumentation.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Console.Spectre.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.OpenApi.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.Extended.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.GITHUB_TOKEN }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate
