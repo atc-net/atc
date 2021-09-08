@@ -10,8 +10,8 @@ namespace Demo.Atc.Console.Spectre.Cli.Commands
         public override int Execute(CommandContext context, HelloCommandSettings settings)
         {
             AnsiConsole.MarkupLine(settings.Count > 0
-                ? $"Hello, [blue]{settings.Name}[/] - [red]{settings.Count}[/]"
-                : $"Hello, [blue]{settings.Name}[/]");
+                ? $"Hello, [blue]{Markup.Escape(settings.Name)}[/] - [red]{settings.Count}[/]"
+                : $"Hello, [blue]{Markup.Escape(settings.Name)}[/]");
 
             return ExitStatusCodes.Success;
         }
