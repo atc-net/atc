@@ -36,7 +36,7 @@ namespace System
         [SuppressMessage("Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK.")]
         public static void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = default)
         {
-            if (tasksToRun == null)
+            if (tasksToRun is null)
             {
                 throw new ArgumentNullException(nameof(tasksToRun));
             }
