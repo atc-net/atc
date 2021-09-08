@@ -27,12 +27,13 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
         }
 
         [Theory]
-        [InlineData("Hallo", "log Hallo")]
-        [InlineData("Hallo", "log --logLevel Information Hallo")]
-        [InlineData("Hallo", "log --logLevel Warning Hallo")]
-        [InlineData("Hallo", "log --logLevel Error Hallo")]
-        [InlineData("Hallo", "log --logLevel Critical Hallo")]
+        [InlineData("Hello", "log Hello")]
+        [InlineData("Hello", "log --logLevel Information Hello")]
+        [InlineData("Hello", "log --logLevel Warning Hello")]
+        [InlineData("Hello", "log --logLevel Error Hello")]
+        [InlineData("Hello", "log --logLevel Critical Hello")]
         [InlineData("ns=2;s=CTT/SecurityAccess/AccessLevel_CurrentRead_NotUser", "log ns=2;s=CTT/SecurityAccess/AccessLevel_CurrentRead_NotUser")]
+        [InlineData("{x:[]}", "log {x:[]}")]
         public async Task Log_Command(string expected, string arguments)
         {
             // Arrange & Act

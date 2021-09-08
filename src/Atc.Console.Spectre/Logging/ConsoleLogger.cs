@@ -50,10 +50,14 @@ namespace Atc.Console.Spectre.Logging
                 return;
             }
 
-            var message = state.ToString();
+            var message = Markup.Escape(state.ToString());
             var exceptionMessage = exception?.GetMessage(
                 includeInnerMessage: config.IncludeInnerMessageForException,
                 includeExceptionName: config.IncludeInnerMessageForException);
+            if (!string.IsNullOrEmpty(exceptionMessage))
+            {
+                exceptionMessage = Markup.Escape(exceptionMessage);
+            }
 
             switch (config.ConsoleRender)
             {

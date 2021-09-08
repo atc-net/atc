@@ -19,13 +19,13 @@ namespace Demo.Atc.Console.Spectre.Cli
 
                 config.AddCommand<LogCommand>("log")
                     .WithDescription("Write a log message")
-                    .WithExample(new[] { "log Hallo world" })
-                    .WithExample(new[] { "log Hallo world --logLevel Trace" })
-                    .WithExample(new[] { "log Hallo world --logLevel Debug" })
-                    .WithExample(new[] { "log Hallo world --logLevel Information" })
-                    .WithExample(new[] { "log Hallo world --logLevel Warning" })
-                    .WithExample(new[] { "log Hallo world --logLevel Error" })
-                    .WithExample(new[] { "log Hallo world --logLevel Critical" });
+                    .WithExample(new[] { "log Hello world" })
+                    .WithExample(new[] { "log Hello world --logLevel Trace" })
+                    .WithExample(new[] { "log Hello world --logLevel Debug" })
+                    .WithExample(new[] { "log Hello world --logLevel Information" })
+                    .WithExample(new[] { "log Hello world --logLevel Warning" })
+                    .WithExample(new[] { "log Hello world --logLevel Error" })
+                    .WithExample(new[] { "log Hello world --logLevel Critical" });
             });
 
             return app.RunAsync(args);
