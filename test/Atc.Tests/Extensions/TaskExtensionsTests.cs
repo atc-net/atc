@@ -20,6 +20,12 @@ namespace Atc.Tests.Extensions
         [InlineData(3, 7, 3, 1)]
         public void StartAndWaitAllThrottled(int expectedSeconds, int numberOfTasksToRun, int maxTasksToRunInParallel, int jobRunningForSeconds)
         {
+            if (numberOfTasksToRun > Environment.ProcessorCount)
+            {
+                // Only run the test if we have enough logical processors available.
+                return;
+            }
+
             // Arrange
             var listOfTasks = new List<Task>();
             var timer = Stopwatch.StartNew();
@@ -50,6 +56,12 @@ namespace Atc.Tests.Extensions
         [InlineData(3, 7, 3, 1)]
         public void StartAndWaitAllThrottledWithTimeout(int expectedSeconds, int numberOfTasksToRun, int maxTasksToRunInParallel, int jobRunningForSeconds)
         {
+            if (numberOfTasksToRun > Environment.ProcessorCount)
+            {
+                // Only run the test if we have enough logical processors available.
+                return;
+            }
+
             // Arrange
             var listOfTasks = new List<Task>();
             var timer = Stopwatch.StartNew();
