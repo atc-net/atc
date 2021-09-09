@@ -1,6 +1,6 @@
 namespace Atc.Console.Spectre.Logging
 {
-    public enum ConsoleRenderType
+    public enum ConsoleRenderingMode
     {
         Default,
         LogLevel,

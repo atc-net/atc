@@ -59,15 +59,15 @@ namespace Atc.Console.Spectre.Logging
                 exceptionMessage = Markup.Escape(exceptionMessage);
             }
 
-            switch (config.ConsoleRender)
+            switch (config.RenderingMode)
             {
-                case ConsoleRenderType.LogLevelAndCategoryName:
+                case ConsoleRenderingMode.LogLevelAndCategoryName:
                     OutputWithLogLevelAndCategoryName(logLevel, message, exceptionMessage);
                     return;
-                case ConsoleRenderType.LogLevel:
+                case ConsoleRenderingMode.LogLevel:
                     OutputWithLogLevel(logLevel, message, exceptionMessage);
                     return;
-                case ConsoleRenderType.CategoryName:
+                case ConsoleRenderingMode.CategoryName:
                     OutputWithCategoryName(logLevel, message, exceptionMessage);
                     return;
                 default:

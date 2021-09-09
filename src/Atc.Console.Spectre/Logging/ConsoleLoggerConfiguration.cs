@@ -12,7 +12,7 @@ namespace Atc.Console.Spectre.Logging
             ConsoleConfiguration = null;
             ConsoleSettings = null;
             MinimumLogLevel = LogLevel.Information;
-            ConsoleRender = ConsoleRenderType.Default;
+            RenderingMode = ConsoleRenderingMode.Default;
             UseShortNameForLogLevel = true;
             UseFixedWidthSpacing = true;
             IncludeInnerMessageForException = true;
@@ -25,7 +25,7 @@ namespace Atc.Console.Spectre.Logging
 
         public LogLevel MinimumLogLevel { get; set; }
 
-        public ConsoleRenderType ConsoleRender { get; set; }
+        public ConsoleRenderingMode RenderingMode { get; set; }
 
         public bool UseShortNameForLogLevel { get; set; }
 
@@ -37,7 +37,7 @@ namespace Atc.Console.Spectre.Logging
 
         public override string ToString()
         {
-            return $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(ConsoleRender)}: {ConsoleRender}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(UseFixedWidthSpacing)}: {UseFixedWidthSpacing}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}";
+            return $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(UseFixedWidthSpacing)}: {UseFixedWidthSpacing}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}";
         }
     }
 }
