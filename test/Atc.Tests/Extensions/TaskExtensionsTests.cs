@@ -7,6 +7,7 @@ using Xunit;
 
 namespace Atc.Tests.Extensions
 {
+    [Trait("Category", "SkipWhenLiveUnitTesting")]
     public class TaskExtensionsTests
     {
         [Theory]
