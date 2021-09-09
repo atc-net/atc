@@ -60,4 +60,4 @@ jobs:
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true
 
       - name: 🧪 Run unit tests
-        run: dotnet test -c Release --no-build --filter "FullyQualifiedName!~CommandTests&FullyQualifiedName!~TaskExtensionsTests"
+        run: dotnet test -c Release --no-build --filter "FullyQualifiedName!~CommandTests"
