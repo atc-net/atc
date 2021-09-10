@@ -45,7 +45,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" PrivateAssets="All" />
     <PackageReference Include="SecurityCodeScan.VS2019" Version="5.0.0" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.18.0.27296" PrivateAssets="All" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.28.0.36354" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
