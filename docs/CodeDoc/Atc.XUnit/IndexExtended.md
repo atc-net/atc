@@ -31,6 +31,14 @@
      - CollectExportedTypesWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List&lt;Type&gt; excludeSourceTypes = null)
      - CollectExportedTypesWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List&lt;Type&gt; excludeSourceTypes = null, bool useFullName = False)
 - [DecompilerType](Atc.XUnit.md#decompilertype)
+- [IntegrationTestCliBase](Atc.XUnit.md#integrationtestclibase)
+  -  Methods
+     - GetAppSettingsFileForCli(Type programTypeForCliExe)
+     - GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+     - GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+     - GetExecutableFileForCli(Type programTypeForCliExe)
+     - GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+     - GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
 - [TestResult](Atc.XUnit.md#testresult)
   -  Properties
      - IndentLevel

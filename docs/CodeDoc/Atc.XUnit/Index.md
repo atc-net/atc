@@ -14,6 +14,7 @@
 - [CodeComplianceHelper](Atc.XUnit.md#codecompliancehelper)
 - [CodeComplianceTestHelper](Atc.XUnit.md#codecompliancetesthelper)
 - [DecompilerType](Atc.XUnit.md#decompilertype)
+- [IntegrationTestCliBase](Atc.XUnit.md#integrationtestclibase)
 - [TestResult](Atc.XUnit.md#testresult)
 - [TestResultHelper](Atc.XUnit.md#testresulthelper)
 

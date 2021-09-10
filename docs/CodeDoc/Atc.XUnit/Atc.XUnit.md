@@ -258,6 +258,175 @@ public enum DecompilerType
 <br />
 
 
+## IntegrationTestCliBase
+
+```csharp
+public abstract class IntegrationTestCliBase
+```
+
+### Methods
+
+
+#### GetAppSettingsFileForCli
+
+```csharp
+FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+#### GetAppSettingsFileForCli
+
+```csharp
+FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+#### GetAppSettingsFileForCli
+
+```csharp
+FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+#### GetExecutableFileForCli
+
+```csharp
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+#### GetExecutableFileForCli
+
+```csharp
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+#### GetExecutableFileForCli
+
+```csharp
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+```
+<p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+<p><b>Returns:</b> The filePath to CLI-Exe file.</p>
+
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
+            find too many locations. In case of "too many", please narrow down
+            by using a more specific "searchFrom" path.</p>
+
+<b>Code usage:</b>
+
+```csharp
+FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe);
+```
+<b>Code example:</b>
+
+```csharp
+var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
+```
+
+<br />
+
+
 ## TestResult
 TestResult.
 
