@@ -103,7 +103,7 @@ namespace Atc.Console.Spectre.Logging
             }
             else
             {
-                var padLength = GetShortLogLevelCharCount(logLevel, config.UseShortNameForLogLevel) + 2;
+                const int padLength = 7;
                 var spaces = string.Empty.PadRight(padLength);
 
                 console.MarkupLine($"{logLevelMarkup}{GetCategoryNameWithMarkup()}");
