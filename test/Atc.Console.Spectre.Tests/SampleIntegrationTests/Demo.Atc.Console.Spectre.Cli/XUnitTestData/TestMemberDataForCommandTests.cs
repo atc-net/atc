@@ -287,12 +287,12 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
         private static List<Tuple<string, string>> LogLevelNames
             => new List<Tuple<string, string>>
             {
-                Tuple.Create("Trace", "trace"),
-                Tuple.Create("Debug", "debug"),
-                Tuple.Create("Information", "info"),
-                Tuple.Create("Warning", "warn"),
-                Tuple.Create("Error", "error"),
-                Tuple.Create("Critical", "critical"),
+                Tuple.Create(nameof(LogLevel.Trace), "trace"),
+                Tuple.Create(nameof(LogLevel.Debug), "debug"),
+                Tuple.Create(nameof(LogLevel.Information), "info"),
+                Tuple.Create(nameof(LogLevel.Warning), "warn"),
+                Tuple.Create(nameof(LogLevel.Error), "error"),
+                Tuple.Create(nameof(LogLevel.Critical), "critical"),
             };
     }
 }
