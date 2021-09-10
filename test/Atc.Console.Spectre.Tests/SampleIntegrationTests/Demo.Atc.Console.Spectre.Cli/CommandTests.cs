@@ -1,7 +1,8 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Atc.Console.Spectre.Logging;
+using Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spectre.Cli.XUnitTestData;
 using Xunit;
 using Xunit.Sdk;
 
@@ -9,7 +10,6 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
 {
     [Collection(nameof(TestCollection))]
     [Trait("Category", "SkipWhenLiveUnitTesting")]
-    [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "OK.")]
     public class CommandTests : SampleIntegrationTestBase
     {
         [Theory]
@@ -27,22 +27,22 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
         }
 
         [Theory]
-        [InlineData("Hello", "log Hello")]
-        [InlineData("Hello", "log --logLevel Information Hello")]
-        [InlineData("Hello", "log --logLevel Warning Hello")]
-        [InlineData("Hello", "log --logLevel Error Hello")]
-        [InlineData("Hello", "log --logLevel Critical Hello")]
-        [InlineData("ns=2;s=CTT/SecurityAccess/AccessLevel_CurrentRead_NotUser", "log ns=2;s=CTT/SecurityAccess/AccessLevel_CurrentRead_NotUser")]
-        [InlineData("{x:[]}", "log {x:[]}")]
-        public async Task Log_Command(string expected, string arguments)
+        [MemberData(nameof(TestMemberDataForCommandTests.LogCommand), MemberType = typeof(TestMemberDataForCommandTests))]
+        public async Task Log_Command(string[] expectedList, string arguments, ConsoleLoggerConfiguration config)
         {
-            // Arrange & Act
+            // Arrange
+            PrepareCliAppSettings(config);
+
+            // Act
             var (isCliExecutedCorrectly, output) = await ExecuteCli(arguments);
             var outputLines = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             // Assert
             Assert.True(isCliExecutedCorrectly);
-            Assert.True(outputLines.Contains(expected, StringComparer.Ordinal));
+            foreach (var expected in expectedList)
+            {
+                Assert.True(outputLines.Contains(expected, StringComparer.Ordinal));
+            }
         }
     }
 }

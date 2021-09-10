@@ -270,6 +270,9 @@
      - Sin(double degrees)
      - Tan(double degrees)
      - TruncateToMaxPrecision(double value, int decimalPrecision)
+- [ProcessHelper](Atc.Helpers.md#processhelper)
+  -  Static Methods
+     - Execute(FileInfo fileInfo, string arguments)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
      - SetPrivateField(object target, string fieldName, object value)
@@ -394,6 +397,19 @@
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
   -  Static Methods
      - SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
+
+## [Atc.Serialization](Atc.Serialization.md)
+
+- [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
+  -  Static Methods
+     - Create(bool useCamelCase = True, bool ignoreNullValues = True, bool propertyNameCaseInsensitive = True, bool writeIndented = True)
+
+## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
+
+- [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
 
 ## [Atc.Structs](Atc.Structs.md)
 

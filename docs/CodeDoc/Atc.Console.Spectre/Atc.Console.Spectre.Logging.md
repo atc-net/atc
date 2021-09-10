@@ -50,11 +50,6 @@ public class ConsoleLoggerConfiguration
 ```csharp
 ConsoleConfiguration
 ```
-#### ConsoleRender
-
-```csharp
-ConsoleRender
-```
 #### ConsoleSettings
 
 ```csharp
@@ -74,6 +69,11 @@ IncludeInnerMessageForException
 
 ```csharp
 MinimumLogLevel
+```
+#### RenderingMode
+
+```csharp
+RenderingMode
 ```
 #### UseFixedWidthSpacing
 
@@ -120,10 +120,10 @@ void Dispose()
 <br />
 
 
-## ConsoleRenderType
+## ConsoleRenderingMode
 
 ```csharp
-public enum ConsoleRenderType
+public enum ConsoleRenderingMode
 ```
 
 

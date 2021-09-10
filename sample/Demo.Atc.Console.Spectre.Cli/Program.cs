@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Atc.Console.Spectre.Factories;
+using Atc.Console.Spectre.Logging;
 using Demo.Atc.Console.Spectre.Cli.Commands;
+using Microsoft.Extensions.Configuration;
 
 namespace Demo.Atc.Console.Spectre.Cli
 {
@@ -8,7 +10,14 @@ namespace Demo.Atc.Console.Spectre.Cli
     {
         public static Task<int> Main(string[] args)
         {
-            var serviceCollection = ServiceCollectionFactory.Create();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            var consoleLoggerConfiguration = new ConsoleLoggerConfiguration();
+            configuration.GetSection("ConsoleLogger").Bind(consoleLoggerConfiguration);
+
+            var serviceCollection = ServiceCollectionFactory.Create(consoleLoggerConfiguration);
             var app = CommandAppFactory.Create(serviceCollection);
             app.Configure(config =>
             {

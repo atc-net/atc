@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using Atc.Math;
+using Atc.Serialization;
+using Atc.Serialization.JsonConverters;
 using Atc.XUnit;
 using Xunit;
 using Xunit.Abstractions;
@@ -20,6 +22,8 @@ namespace Atc.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(MathEx),
+            typeof(JsonSerializerOptionsFactory),
+            typeof(JsonTimeSpanConverter),
 
             // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(TaskExtensions),

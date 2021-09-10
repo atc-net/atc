@@ -1092,6 +1092,24 @@ double TruncateToMaxPrecision(double value, int decimalPrecision)
 <br />
 
 
+## ProcessHelper
+
+```csharp
+public static class ProcessHelper
+```
+
+### Static Methods
+
+
+#### Execute
+
+```csharp
+Task<Tuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
+```
+
+<br />
+
+
 ## ReflectionHelper
 ReflectionHelper.
 

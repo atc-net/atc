@@ -59,15 +59,15 @@ namespace Atc.Console.Spectre.Logging
                 exceptionMessage = Markup.Escape(exceptionMessage);
             }
 
-            switch (config.ConsoleRender)
+            switch (config.RenderingMode)
             {
-                case ConsoleRenderType.LogLevelAndCategoryName:
+                case ConsoleRenderingMode.LogLevelAndCategoryName:
                     OutputWithLogLevelAndCategoryName(logLevel, message, exceptionMessage);
                     return;
-                case ConsoleRenderType.LogLevel:
+                case ConsoleRenderingMode.LogLevel:
                     OutputWithLogLevel(logLevel, message, exceptionMessage);
                     return;
-                case ConsoleRenderType.CategoryName:
+                case ConsoleRenderingMode.CategoryName:
                     OutputWithCategoryName(logLevel, message, exceptionMessage);
                     return;
                 default:
@@ -103,7 +103,7 @@ namespace Atc.Console.Spectre.Logging
             }
             else
             {
-                var padLength = GetShortLogLevelCharCount(logLevel, config.UseShortNameForLogLevel) + 2;
+                const int padLength = 7;
                 var spaces = string.Empty.PadRight(padLength);
 
                 console.MarkupLine($"{logLevelMarkup}{GetCategoryNameWithMarkup()}");
