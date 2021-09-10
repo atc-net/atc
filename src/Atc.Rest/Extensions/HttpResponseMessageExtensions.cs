@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -28,7 +28,7 @@ namespace System.Net.Http
 
             try
             {
-                return JsonSerializer.Deserialize<T>(content, jsonSerializerOptions);
+                return JsonSerializer.Deserialize<T>(content, jsonSerializerOptions)!;
             }
             catch (Exception ex)
             {
