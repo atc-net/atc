@@ -9,7 +9,7 @@ namespace Atc.Helpers
     [ExcludeFromCodeCoverage]
     public static class ProcessHelper
     {
-        public static Task<Tuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
+        public static Task<(bool isSuccessful, string output)> Execute(FileInfo fileInfo, string arguments)
         {
             if (fileInfo is null)
             {
@@ -24,7 +24,8 @@ namespace Atc.Helpers
             return InvokeExecute(fileInfo, arguments);
         }
 
-        private static async Task<Tuple<bool, string>> InvokeExecute(FileSystemInfo fileInfo, string arguments)
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+        private static async Task<(bool isSuccessful, string output)> InvokeExecute(FileSystemInfo fileInfo, string arguments)
         {
             using var process = new Process
             {
@@ -42,18 +43,22 @@ namespace Atc.Helpers
             try
             {
                 process.Start();
+
                 var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
                 var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
+
                 var message = string.IsNullOrEmpty(standardError)
                     ? standardOutput
-                    : standardError;
+                    : string.IsNullOrEmpty(standardOutput)
+                        ? standardError
+                        : $"{standardOutput}{Environment.NewLine}{standardError}";
 
-                return Tuple.Create(string.IsNullOrEmpty(standardError), message);
+                return (string.IsNullOrEmpty(standardError), message);
             }
             catch (Exception ex)
             {
-                return Tuple.Create(
-                    false,
+                return (
+                    isSuccessful: false,
                     ex.GetMessage(
                         includeInnerMessage: true,
                         includeExceptionName: true));
