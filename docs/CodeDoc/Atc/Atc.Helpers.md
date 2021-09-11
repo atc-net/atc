@@ -1104,7 +1104,7 @@ public static class ProcessHelper
 #### Execute
 
 ```csharp
-Task<Tuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
+Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
 ```
 
 <br />
