@@ -280,7 +280,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe)
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
@@ -306,7 +306,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSu
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
@@ -332,7 +332,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searc
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
@@ -358,7 +358,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe)
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
@@ -384,7 +384,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSub
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
@@ -410,7 +410,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo search
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            find too many locations. In case of "too many", please narrow down
+            finds too many locations. In case of "too many", please narrow down
             by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>

@@ -20,7 +20,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file's 'appsettings.json'.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe);]]></code>
@@ -49,7 +49,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file's 'appsettings.json'.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe, searchFromSubFolderName);]]></code>
@@ -77,7 +77,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file's 'appsettings.json'.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo appSettingsFile = GetAppSettingsFileForCli(programTypeForCliExe, searchFromPath);]]></code>
@@ -105,7 +105,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe);]]></code>
@@ -133,7 +133,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe, searchFromSubFolderName);]]></code>
@@ -172,7 +172,7 @@ namespace Atc.XUnit
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
-        /// find too many locations. In case of "too many", please narrow down
+        /// finds too many locations. In case of "too many", please narrow down
         /// by using a more specific "searchFrom" path.
         /// </remarks>
         /// <code><![CDATA[FileInfo cliFile = GetExecutableFileForCli(programTypeForCliExe, searchFromPath);]]></code>
