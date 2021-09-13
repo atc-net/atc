@@ -33,12 +33,12 @@
 - [DecompilerType](Atc.XUnit.md#decompilertype)
 - [IntegrationTestCliBase](Atc.XUnit.md#integrationtestclibase)
   -  Methods
-     - GetAppSettingsFileForCli(Type programTypeForCliExe)
      - GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
-     - GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
-     - GetExecutableFileForCli(Type programTypeForCliExe)
-     - GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
-     - GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+     - GetAppSettingsFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
+     - GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)
+     - GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string pathFolderNameFilter)
+     - GetExecutableFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
+     - GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)
 - [TestResult](Atc.XUnit.md#testresult)
   -  Properties
      - IndentLevel

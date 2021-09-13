@@ -270,13 +270,14 @@ public abstract class IntegrationTestCliBase
 #### GetAppSettingsFileForCli
 
 ```csharp
-FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe)
+FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
 ```
 <p><b>Summary:</b> Gets the filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
@@ -296,13 +297,14 @@ var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.S
 #### GetAppSettingsFileForCli
 
 ```csharp
-FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)
 ```
 <p><b>Summary:</b> Gets the filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
@@ -329,6 +331,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searc
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
@@ -348,13 +351,14 @@ var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.S
 #### GetExecutableFileForCli
 
 ```csharp
-FileInfo GetExecutableFileForCli(Type programTypeForCliExe)
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
 ```
 <p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
@@ -374,13 +378,14 @@ var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cl
 #### GetExecutableFileForCli
 
 ```csharp
-FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)
 ```
 <p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
@@ -400,13 +405,14 @@ var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cl
 #### GetExecutableFileForCli
 
 ```csharp
-FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string pathFolderNameFilter)
 ```
 <p><b>Summary:</b> Gets the filePath to CLI-Exe file.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`programTypeForCliExe`&nbsp;&nbsp;-&nbsp;&nbsp;The program type for the cli executable.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
 <p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
