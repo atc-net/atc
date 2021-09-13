@@ -17,6 +17,7 @@ namespace Atc.XUnit
         /// Gets the filePath to CLI-Exe file's 'appsettings.json'.
         /// </summary>
         /// <param name="programTypeForCliExe">The program type for the cli executable.</param>
+        /// <param name="pathFolderNameFilter">Path should include this folder name.</param>
         /// <returns>The filePath to CLI-Exe file's 'appsettings.json'.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
@@ -27,7 +28,7 @@ namespace Atc.XUnit
         /// <example><![CDATA[
         /// var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
         /// ]]></example>
-        public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe)
+        public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
         {
             if (programTypeForCliExe is null)
             {
@@ -35,7 +36,7 @@ namespace Atc.XUnit
             }
 
             var (cliFileNameExe, searchFromPath) = GetCliFileExeAndSearchFromPath(programTypeForCliExe);
-            var cliFileExe = FindOneAndOnlyCliFileExe(searchFromPath, cliFileNameExe);
+            var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter);
             var cliFileAppSettings = GetAppSettingsFilePathFromCliFileExe(cliFileExe);
 
             return cliFileAppSettings;
@@ -46,6 +47,7 @@ namespace Atc.XUnit
         /// </summary>
         /// <param name="programTypeForCliExe">The program type for the cli executable.</param>
         /// <param name="searchFromSubFolderName">The subfolder to search from.</param>
+        /// <param name="pathFolderNameFilter">Path should include this folder name.</param>
         /// <returns>The filePath to CLI-Exe file's 'appsettings.json'.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
@@ -56,14 +58,14 @@ namespace Atc.XUnit
         /// <example><![CDATA[
         /// var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
         /// ]]></example>
-        public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+        public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
         {
             if (programTypeForCliExe is null)
             {
                 throw new ArgumentNullException(nameof(programTypeForCliExe));
             }
 
-            var cliFileExe = GetExecutableFileForCli(programTypeForCliExe, searchFromSubFolderName);
+            var cliFileExe = GetExecutableFileForCli(programTypeForCliExe, searchFromSubFolderName, pathFolderNameFilter);
             var cliFileAppSettings = GetAppSettingsFilePathFromCliFileExe(cliFileExe);
 
             return cliFileAppSettings;
@@ -92,7 +94,7 @@ namespace Atc.XUnit
             }
 
             var cliFileNameExe = GetCliFileName(programTypeForCliExe);
-            var cliFileExe = FindOneAndOnlyCliFileExe(searchFromPath, cliFileNameExe);
+            var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter: null);
             var cliFileAppSettings = GetAppSettingsFilePathFromCliFileExe(cliFileExe);
 
             return cliFileAppSettings;
@@ -102,6 +104,7 @@ namespace Atc.XUnit
         /// Gets the filePath to CLI-Exe file.
         /// </summary>
         /// <param name="programTypeForCliExe">The program type for the cli executable.</param>
+        /// <param name="pathFolderNameFilter">Path should include this folder name.</param>
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
@@ -112,7 +115,7 @@ namespace Atc.XUnit
         /// <example><![CDATA[
         /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
         /// ]]></example>
-        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe)
+        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
         {
             if (programTypeForCliExe is null)
             {
@@ -120,7 +123,7 @@ namespace Atc.XUnit
             }
 
             var (cliFileNameExe, searchFromPath) = GetCliFileExeAndSearchFromPath(programTypeForCliExe);
-            var cliFileExe = FindOneAndOnlyCliFileExe(searchFromPath, cliFileNameExe);
+            var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter);
 
             return cliFileExe;
         }
@@ -130,6 +133,7 @@ namespace Atc.XUnit
         /// </summary>
         /// <param name="programTypeForCliExe">The program type for the cli executable.</param>
         /// <param name="searchFromSubFolderName">The subfolder to search from.</param>
+        /// <param name="pathFolderNameFilter">Path should include this folder name.</param>
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
@@ -140,7 +144,7 @@ namespace Atc.XUnit
         /// <example><![CDATA[
         /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
         /// ]]></example>
-        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName)
+        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
         {
             if (programTypeForCliExe is null)
             {
@@ -159,7 +163,7 @@ namespace Atc.XUnit
 
             var (cliFileNameExe, searchFromPath) = GetCliFileExeAndSearchFromPath(programTypeForCliExe);
             searchFromPath = new DirectoryInfo(Path.Combine(searchFromPath.FullName, searchFromSubFolderName));
-            var cliFileExe = FindOneAndOnlyCliFileExe(searchFromPath, cliFileNameExe);
+            var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter);
 
             return cliFileExe;
         }
@@ -169,6 +173,7 @@ namespace Atc.XUnit
         /// </summary>
         /// <param name="programTypeForCliExe">The program type for the cli executable.</param>
         /// <param name="searchFromPath">The path to search from.</param>
+        /// <param name="pathFolderNameFilter">Path should include this folder name.</param>
         /// <returns>The filePath to CLI-Exe file.</returns>
         /// <remarks>
         /// This method will throw exceptions if the CLI-Exe file don't exist or
@@ -179,7 +184,7 @@ namespace Atc.XUnit
         /// <example><![CDATA[
         /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), new DirectoryInfo(@"C:\Code\atc-net\atc"));
         /// ]]></example>
-        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+        public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string? pathFolderNameFilter)
         {
             if (programTypeForCliExe is null)
             {
@@ -187,20 +192,24 @@ namespace Atc.XUnit
             }
 
             var cliFileNameExe = GetCliFileName(programTypeForCliExe);
-            var cliFileExe = FindOneAndOnlyCliFileExe(searchFromPath, cliFileNameExe);
+            var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter: pathFolderNameFilter);
 
             return cliFileExe;
         }
 
         private static string? GetTestAssemblyName()
         {
+            var testAssembly = GetTestAssembly();
+            return testAssembly?.GetName().Name;
+        }
+
+        private static Assembly? GetTestAssembly()
+        {
             var stackFrames = new StackTrace().GetFrames();
             if (stackFrames is null)
             {
                 return Assembly
-                    .GetCallingAssembly()
-                    .GetName()
-                    .Name;
+                    .GetCallingAssembly();
             }
 
             var executingAssemblyFullName = Assembly.GetExecutingAssembly().FullName;
@@ -209,7 +218,7 @@ namespace Atc.XUnit
                     select frame.GetMethod().DeclaringType.Assembly
                     into assembly
                     where !executingAssemblyFullName.Equals(assembly.FullName, StringComparison.Ordinal)
-                    select assembly.GetName().Name)
+                    select assembly)
                 .FirstOrDefault();
         }
 
@@ -247,7 +256,7 @@ namespace Atc.XUnit
                     cliFileExe.Directory!.FullName,
                     "appsettings.json"));
 
-        private static FileInfo FindOneAndOnlyCliFileExe(DirectoryInfo searchFromPath, string cliFileNameExe)
+        private static FileInfo FindOneAndOnlyOneCliFileExe(DirectoryInfo searchFromPath, string cliFileNameExe, string? pathFolderNameFilter)
         {
             var files = Directory.GetFiles(
                 searchFromPath.FullName,
@@ -256,6 +265,30 @@ namespace Atc.XUnit
                 {
                     RecurseSubdirectories = true,
                 });
+
+            if (files.Length > 1)
+            {
+                if (!string.IsNullOrEmpty(pathFolderNameFilter))
+                {
+                    files = files
+                        .Where(x => x.Contains(pathFolderNameFilter, StringComparison.CurrentCultureIgnoreCase))
+                        .ToArray();
+                }
+                else
+                {
+                    var testAssembly = GetTestAssembly();
+                    if (testAssembly is not null)
+                    {
+                        var filter = testAssembly.IsDebugBuild()
+                            ? "debug"
+                            : "release";
+
+                        files = files
+                            .Where(x => x.Contains(filter, StringComparison.CurrentCultureIgnoreCase))
+                            .ToArray();
+                    }
+                }
+            }
 
             switch (files.Length)
             {
