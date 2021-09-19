@@ -52,6 +52,46 @@ namespace Atc.Helpers
             return InvokeExecuteWithTimeout(fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
+        public static Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+        {
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecuteAndIgnoreOutput(fileInfo, arguments);
+        }
+
+        public static Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = default)
+        {
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecuteWithTimeoutAndIgnoreOutput(fileInfo, arguments, timeoutInSec, cancellationToken);
+        }
+
         public static (bool isSuccessful, string output) KillEntryCaller(int timeoutInSec = 30)
         {
             var processName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()!.Location);
@@ -160,49 +200,6 @@ namespace Atc.Helpers
             }
         }
 
-        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-        private static async Task<(bool isSuccessful, string output)> InvokeExecute(FileSystemInfo fileInfo, string arguments)
-        {
-            using var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = fileInfo.FullName,
-                    Arguments = arguments,
-                    UseShellExecute = false,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true,
-                },
-            };
-
-            try
-            {
-                process.Start();
-
-                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
-                var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
-
-                var message = string.IsNullOrEmpty(standardError)
-                    ? standardOutput
-                    : string.IsNullOrEmpty(standardOutput)
-                        ? standardError
-                        : $"{standardOutput}{Environment.NewLine}{standardError}";
-
-                return (
-                    isSuccessful: string.IsNullOrEmpty(standardError),
-                    output: message);
-            }
-            catch (Exception ex)
-            {
-                return (
-                    isSuccessful: false,
-                    output: ex.GetMessage(
-                        includeInnerMessage: true,
-                        includeExceptionName: true));
-            }
-        }
-
         private static async Task<(bool isSuccessful, string output)> InvokeExecuteWithTimeout(FileSystemInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken)
         {
             var resultOutput = string.Empty;
@@ -237,9 +234,107 @@ namespace Atc.Helpers
 
                 return await Task
                     .FromResult((
-                        isSuccessful: true,
+                        isSuccessful: false,
                         output: resultOutput))
                     .ConfigureAwait(false);
+            }
+        }
+
+        [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+        private static async Task<(bool isSuccessful, string output)> InvokeExecute(FileSystemInfo fileInfo, string arguments)
+        {
+            using var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = fileInfo.FullName,
+                    Arguments = arguments,
+                    UseShellExecute = false,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                },
+            };
+
+            try
+            {
+                process.Start();
+
+                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
+                var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
+
+                var message = string.IsNullOrEmpty(standardError)
+                    ? standardOutput
+                    : string.IsNullOrEmpty(standardOutput)
+                        ? standardError
+                        : $"{standardOutput}{Environment.NewLine}{standardError}";
+
+                return (
+                    isSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                    output: message);
+            }
+            catch (Exception ex)
+            {
+                return (
+                    isSuccessful: false,
+                    output: ex.GetMessage(
+                        includeInnerMessage: true,
+                        includeExceptionName: true));
+            }
+        }
+
+        private static async Task<bool> InvokeExecuteWithTimeoutAndIgnoreOutput(FileSystemInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken)
+        {
+            var processName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
+
+            try
+            {
+                var result = await TaskHelper
+                    .Execute(
+                        _ =>
+                        InvokeExecuteAndIgnoreOutput(fileInfo, arguments),
+                        TimeSpan.FromSeconds(timeoutInSec),
+                        cancellationToken)
+                    .ConfigureAwait(false);
+
+                KillByName(processName);
+
+                return result;
+            }
+            catch (TimeoutException)
+            {
+                KillByName(processName);
+
+                return await Task
+                    .FromResult(true)
+                    .ConfigureAwait(false);
+            }
+        }
+
+        private static Task<bool> InvokeExecuteAndIgnoreOutput(FileSystemInfo fileInfo, string arguments)
+        {
+            using var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = fileInfo.FullName,
+                    Arguments = arguments,
+                    UseShellExecute = false,
+                    RedirectStandardError = false,
+                    RedirectStandardOutput = false,
+                    CreateNoWindow = true,
+                },
+            };
+
+            try
+            {
+                process.Start();
+
+                return Task.FromResult(process.ExitCode == ConsoleExitStatusCodes.Success);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(false);
             }
         }
     }

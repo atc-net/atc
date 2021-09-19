@@ -274,6 +274,8 @@
   -  Static Methods
      - Execute(FileInfo fileInfo, string arguments)
      - Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+     - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+     - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
      - KillEntryCaller(int timeoutInSec = 30)

@@ -1111,6 +1111,16 @@ Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
 ```csharp
 Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
 ```
+#### ExecuteAndIgnoreOutput
+
+```csharp
+Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+```
+#### ExecuteAndIgnoreOutput
+
+```csharp
+Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+```
 #### KillById
 
 ```csharp
