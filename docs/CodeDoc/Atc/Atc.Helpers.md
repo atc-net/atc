@@ -1106,6 +1106,26 @@ public static class ProcessHelper
 ```csharp
 Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
 ```
+#### Execute
+
+```csharp
+Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+```
+#### KillById
+
+```csharp
+ValueTuple<bool, string> KillById(int processId, int timeoutInSec = 30)
+```
+#### KillByName
+
+```csharp
+ValueTuple<bool, string> KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
+```
+#### KillEntryCaller
+
+```csharp
+ValueTuple<bool, string> KillEntryCaller(int timeoutInSec = 30)
+```
 
 <br />
 
@@ -1278,6 +1298,33 @@ string GetBeautifyTypeNameByRef(Type type)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+
+<br />
+
+
+## TaskHelper
+TaskHelper.
+
+
+```csharp
+public static class TaskHelper
+```
+
+### Static Methods
+
+
+#### Execute
+
+```csharp
+Task<TResult> Execute(Func<CancellationToken, Task<TResult>> taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
+```
+<p><b>Summary:</b> Executes the specified task with a timeout.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taskToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The task to run.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeout`&nbsp;&nbsp;-&nbsp;&nbsp;The timeout.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
 
 <br />
 

@@ -273,6 +273,10 @@
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(FileInfo fileInfo, string arguments)
+     - Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+     - KillById(int processId, int timeoutInSec = 30)
+     - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
+     - KillEntryCaller(int timeoutInSec = 30)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
      - SetPrivateField(object target, string fieldName, object value)
@@ -294,6 +298,9 @@
      - GetBeautifyArrayTypeName(Type type)
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
+- [TaskHelper](Atc.Helpers.md#taskhelper)
+  -  Static Methods
+     - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
   -  Static Properties
      - ProcessorCount
@@ -398,6 +405,35 @@
   -  Static Methods
      - SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
 
+## [Atc.Math.UnitOfDigitalInformation](Atc.Math.UnitOfDigitalInformation.md)
+
+- [ByteSize](Atc.Math.UnitOfDigitalInformation.md#bytesize)
+  -  Properties
+     - Value
+  -  Methods
+     - Equals(ByteSize other)
+     - Equals(object obj)
+     - Format()
+     - Format(ByteSizeFormatter formatter)
+     - GetHashCode()
+     - ToString()
+     - ToString(ByteSizeFormatter formatter)
+- [ByteSizeFormatter](Atc.Math.UnitOfDigitalInformation.md#bytesizeformatter)
+  -  Static Properties
+     - Default
+  -  Properties
+     - MaxUnit
+     - MinUnit
+     - NumberFormatInfo
+     - NumberOfDecimals
+     - RoundingRule
+     - SuffixFormat
+  -  Methods
+     - Format(long size)
+- [ByteSizeRoundingRuleType](Atc.Math.UnitOfDigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Math.UnitOfDigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Math.UnitOfDigitalInformation.md#bytesizeunittype)
+
 ## [Atc.Serialization](Atc.Serialization.md)
 
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
@@ -447,6 +483,15 @@
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+- [ByteSizeExtensions](System.md#bytesizeextensions)
+  -  Static Methods
+     - Bytes(this decimal value)
+     - Bytes(this double value)
+     - Bytes(this float value)
+     - Bytes(this int value)
+     - Bytes(this long value)
+     - Bytes(this uint value)
+     - Bytes(this ulong value)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)

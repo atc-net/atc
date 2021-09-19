@@ -223,6 +223,103 @@ int ToInt(this bool? source)
 <br />
 
 
+## ByteSizeExtensions
+
+```csharp
+public static class ByteSizeExtensions
+```
+
+### Static Methods
+
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this decimal value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this double value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this float value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this int value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this uint value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this long value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+#### Bytes
+
+```csharp
+ByteSize Bytes(this ulong value)
+```
+<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
+<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+
+
+<br />
+
+
 ## DateTimeExtensions
 Extensions for the `System.DateTime` class.
 

@@ -70,6 +70,7 @@
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
 - [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
 - [SimpleTypeHelper](Atc.Helpers.md#simpletypehelper)
+- [TaskHelper](Atc.Helpers.md#taskhelper)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
 
 ## [Atc.Math](Atc.Math.md)
@@ -106,6 +107,14 @@
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
 
+## [Atc.Math.UnitOfDigitalInformation](Atc.Math.UnitOfDigitalInformation.md)
+
+- [ByteSize](Atc.Math.UnitOfDigitalInformation.md#bytesize)
+- [ByteSizeFormatter](Atc.Math.UnitOfDigitalInformation.md#bytesizeformatter)
+- [ByteSizeRoundingRuleType](Atc.Math.UnitOfDigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Math.UnitOfDigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Math.UnitOfDigitalInformation.md#bytesizeunittype)
+
 ## [Atc.Serialization](Atc.Serialization.md)
 
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
@@ -128,6 +137,7 @@
 - [ArgumentPropertyNullException](System.md#argumentpropertynullexception)
 - [ArrayExtensions](System.md#arrayextensions)
 - [BooleanExtensions](System.md#booleanextensions)
+- [ByteSizeExtensions](System.md#bytesizeextensions)
 - [DateTimeExtensions](System.md#datetimeextensions)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
 - [DecimalExtensions](System.md#decimalextensions)
