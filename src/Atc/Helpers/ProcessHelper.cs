@@ -24,6 +24,11 @@ namespace Atc.Helpers
                 throw new ArgumentNullException(nameof(arguments));
             }
 
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
             return InvokeExecute(fileInfo, arguments);
         }
 
@@ -37,6 +42,11 @@ namespace Atc.Helpers
             if (arguments is null)
             {
                 throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
             }
 
             return InvokeExecuteWithTimeout(fileInfo, arguments, timeoutInSec, cancellationToken);
