@@ -29,7 +29,7 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests
             }
 
             var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
-            return ProcessHelper.Execute(cliFile, arguments);
+            return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
         }
 
         public void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
