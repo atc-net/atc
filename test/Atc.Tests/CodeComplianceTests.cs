@@ -68,9 +68,15 @@ namespace Atc.Tests
         [Fact]
         public void AssertExportedTypesWithWrongNaming()
         {
+            var excludeTypesForNaming = new List<Type>
+            {
+                typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.
+            };
+
             // Act & Assert
             CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
-                sourceAssembly);
+                sourceAssembly,
+                excludeTypesForNaming);
         }
     }
 }
