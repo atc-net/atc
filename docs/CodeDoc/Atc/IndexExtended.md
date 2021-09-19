@@ -716,6 +716,13 @@
 
 ## [System.IO](System.IO.md)
 
+- [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
+  -  Static Methods
+     - GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
+     - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
   -  Static Methods
      - ToString(this MemoryStream stream, Encoding encoding = null)
