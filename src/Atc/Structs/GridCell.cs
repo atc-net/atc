@@ -54,9 +54,7 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator ==(GridCell gridCell1, GridCell gridCell2)
-        {
-            return gridCell1.Equals(gridCell2);
-        }
+            => gridCell1.Equals(gridCell2);
 
         /// <summary>
         /// Implements the operator !=.
@@ -67,24 +65,18 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator !=(GridCell gridCell1, GridCell gridCell2)
-        {
-            return !gridCell1.Equals(gridCell2);
-        }
+            => !gridCell1.Equals(gridCell2);
 
         /// <summary>
         /// Equals the specified other.
         /// </summary>
         /// <param name="other">The other.</param>
         public bool Equals(GridCell other)
-        {
-            return this.X == other.X && this.Y == other.Y;
-        }
+            => this.X == other.X && this.Y == other.Y;
 
         /// <inheritdoc />
         public override bool Equals(object obj)
-        {
-            return obj is GridCell cell && this.Equals(cell);
-        }
+            => obj is GridCell x && this.Equals(x);
 
         /// <inheritdoc />
         public override int GetHashCode()

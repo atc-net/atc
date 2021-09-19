@@ -78,9 +78,7 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator ==(Point3D point1, Point3D point2)
-        {
-            return point1.Equals(point2);
-        }
+            => point1.Equals(point2);
 
         /// <summary>
         /// Implements the operator !=.
@@ -91,30 +89,22 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator !=(Point3D point1, Point3D point2)
-        {
-            return !point1.Equals(point2);
-        }
+            => !point1.Equals(point2);
 
         /// <summary>
         /// Equals the specified other.
         /// </summary>
         /// <param name="other">The other.</param>
         public bool Equals(Point3D other)
-        {
-            return this.X.AreClose(other.X) && this.Y.AreClose(other.Y) && this.Z.AreClose(other.Z);
-        }
+            => this.X.AreClose(other.X) && this.Y.AreClose(other.Y) && this.Z.AreClose(other.Z);
 
         /// <inheritdoc />
         public override bool Equals(object obj)
-        {
-            return obj is Point3D d && this.Equals(d);
-        }
+            => obj is Point3D x && this.Equals(x);
 
         /// <inheritdoc />
         public override int GetHashCode()
-        {
-            return this.X.GetHashCode() ^ this.Y.GetHashCode() ^ this.Z.GetHashCode();
-        }
+            => this.X.GetHashCode() ^ this.Y.GetHashCode() ^ this.Z.GetHashCode();
 
         /// <inheritdoc />
         [SuppressMessage("Design", "MA0076:Do not use implicit culture-sensitive ToString in interpolated strings", Justification = "OK.")]

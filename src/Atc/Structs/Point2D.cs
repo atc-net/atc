@@ -55,9 +55,7 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator ==(Point2D point1, Point2D point2)
-        {
-            return point1.Equals(point2);
-        }
+            => point1.Equals(point2);
 
         /// <summary>
         /// Implements the operator !=.
@@ -68,30 +66,22 @@ namespace Atc
         /// The result of the operator.
         /// </returns>
         public static bool operator !=(Point2D point1, Point2D point2)
-        {
-            return !point1.Equals(point2);
-        }
+            => !point1.Equals(point2);
 
         /// <summary>
         /// Equals the specified other.
         /// </summary>
         /// <param name="other">The other.</param>
         public bool Equals(Point2D other)
-        {
-            return this.X.AreClose(other.X) && this.Y.AreClose(other.Y);
-        }
+            => this.X.AreClose(other.X) && this.Y.AreClose(other.Y);
 
         /// <inheritdoc />
         public override bool Equals(object obj)
-        {
-            return obj is Point2D d && this.Equals(d);
-        }
+            => obj is Point2D x && this.Equals(x);
 
         /// <inheritdoc />
         public override int GetHashCode()
-        {
-            return this.X.GetHashCode() ^ this.Y.GetHashCode();
-        }
+            => this.X.GetHashCode() ^ this.Y.GetHashCode();
 
         /// <inheritdoc />
         [SuppressMessage("Design", "MA0076:Do not use implicit culture-sensitive ToString in interpolated strings", Justification = "OK.")]

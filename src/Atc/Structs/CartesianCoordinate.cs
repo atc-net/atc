@@ -53,9 +53,7 @@ namespace Atc.Structs
         /// The result of the operator.
         /// </returns>
         public static bool operator ==(CartesianCoordinate cartesianCoordinate1, CartesianCoordinate cartesianCoordinate2)
-        {
-            return cartesianCoordinate1.Equals(cartesianCoordinate2);
-        }
+            => cartesianCoordinate1.Equals(cartesianCoordinate2);
 
         /// <summary>
         /// Implements the operator !=.
@@ -66,31 +64,23 @@ namespace Atc.Structs
         /// The result of the operator.
         /// </returns>
         public static bool operator !=(CartesianCoordinate cartesianCoordinate1, CartesianCoordinate cartesianCoordinate2)
-        {
-            return !cartesianCoordinate1.Equals(cartesianCoordinate2);
-        }
+            => !cartesianCoordinate1.Equals(cartesianCoordinate2);
 
         /// <summary>
         /// Equals the specified other.
         /// </summary>
         /// <param name="other">The other.</param>
-        public bool Equals(CartesianCoordinate other)
-        {
-            return this.Latitude.AreClose(other.Latitude) &&
-                   this.Longitude.AreClose(other.Longitude);
-        }
+        public bool Equals(CartesianCoordinate other) =>
+            this.Latitude.AreClose(other.Latitude) &&
+            this.Longitude.AreClose(other.Longitude);
 
         /// <inheritdoc />
         public override bool Equals(object obj)
-        {
-            return obj is CartesianCoordinate d && this.Equals(d);
-        }
+            => obj is CartesianCoordinate x && this.Equals(x);
 
         /// <inheritdoc />
         public override int GetHashCode()
-        {
-            return this.Latitude.GetHashCode() ^ this.Longitude.GetHashCode();
-        }
+            => this.Latitude.GetHashCode() ^ this.Longitude.GetHashCode();
 
         /// <inheritdoc />
         public override string ToString()
