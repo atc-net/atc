@@ -6,20 +6,13 @@ namespace Atc.Serialization
 {
     public static class JsonSerializerOptionsFactory
     {
-        private static JsonSerializerOptions? jsonSerializerOptions;
-
         public static JsonSerializerOptions Create(
             bool useCamelCase = true,
             bool ignoreNullValues = true,
             bool propertyNameCaseInsensitive = true,
             bool writeIndented = true)
         {
-            if (jsonSerializerOptions is not null)
-            {
-                return jsonSerializerOptions;
-            }
-
-            jsonSerializerOptions = new JsonSerializerOptions
+            var jsonSerializerOptions = new JsonSerializerOptions
             {
                 IgnoreNullValues = ignoreNullValues,
                 PropertyNameCaseInsensitive = propertyNameCaseInsensitive,

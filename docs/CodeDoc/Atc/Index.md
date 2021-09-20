@@ -70,6 +70,7 @@
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
 - [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
 - [SimpleTypeHelper](Atc.Helpers.md#simpletypehelper)
+- [TaskHelper](Atc.Helpers.md#taskhelper)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
 
 ## [Atc.Math](Atc.Math.md)
@@ -93,14 +94,6 @@
 - [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
 - [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
 
-## [Atc.Math.InternationalSystemOfUnits](Atc.Math.InternationalSystemOfUnits.md)
-
-- [BaseUnitType](Atc.Math.InternationalSystemOfUnits.md#baseunittype)
-- [InternationalSystemOfUnitsHelper](Atc.Math.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
-- [OtherUnitType](Atc.Math.InternationalSystemOfUnits.md#otherunittype)
-- [PrefixType](Atc.Math.InternationalSystemOfUnits.md#prefixtype)
-- [PrefixTypeHelper](Atc.Math.InternationalSystemOfUnits.md#prefixtypehelper)
-
 ## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
@@ -112,11 +105,29 @@
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
+- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
+- [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
 
 ## [Atc.Structs](Atc.Structs.md)
 
 - [CartesianCoordinate](Atc.Structs.md#cartesiancoordinate)
+
+## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
+
+- [ByteSize](Atc.Units.DigitalInformation.md#bytesize)
+- [ByteSizeFormatter](Atc.Units.DigitalInformation.md#bytesizeformatter)
+- [ByteSizeRoundingRuleType](Atc.Units.DigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Units.DigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Units.DigitalInformation.md#bytesizeunittype)
+
+## [Atc.Units.InternationalSystemOfUnits](Atc.Units.InternationalSystemOfUnits.md)
+
+- [BaseUnitType](Atc.Units.InternationalSystemOfUnits.md#baseunittype)
+- [InternationalSystemOfUnitsHelper](Atc.Units.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
+- [OtherUnitType](Atc.Units.InternationalSystemOfUnits.md#otherunittype)
+- [PrefixType](Atc.Units.InternationalSystemOfUnits.md#prefixtype)
+- [PrefixTypeHelper](Atc.Units.InternationalSystemOfUnits.md#prefixtypehelper)
 
 ## [System](System.md)
 
@@ -128,6 +139,7 @@
 - [ArgumentPropertyNullException](System.md#argumentpropertynullexception)
 - [ArrayExtensions](System.md#arrayextensions)
 - [BooleanExtensions](System.md#booleanextensions)
+- [ByteSizeExtensions](System.md#bytesizeextensions)
 - [DateTimeExtensions](System.md#datetimeextensions)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
 - [DecimalExtensions](System.md#decimalextensions)
@@ -160,6 +172,7 @@
 
 ## [System.IO](System.IO.md)
 
+- [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
 - [StreamExtensions](System.IO.md#streamextensions)
 

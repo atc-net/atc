@@ -22,6 +22,7 @@ namespace Atc.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(MathEx),
+            typeof(JsonTypeDiscriminatorConverter<>),
             typeof(JsonSerializerOptionsFactory),
             typeof(JsonTimeSpanConverter),
 
@@ -68,9 +69,15 @@ namespace Atc.Tests
         [Fact]
         public void AssertExportedTypesWithWrongNaming()
         {
+            var excludeTypesForNaming = new List<Type>
+            {
+                typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.
+            };
+
             // Act & Assert
             CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
-                sourceAssembly);
+                sourceAssembly,
+                excludeTypesForNaming);
         }
     }
 }

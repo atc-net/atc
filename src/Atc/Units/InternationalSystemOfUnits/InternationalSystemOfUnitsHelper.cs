@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-namespace Atc.Math.InternationalSystemOfUnits
+namespace Atc.Units.InternationalSystemOfUnits
 {
     /// <summary>
     /// Convert Util
@@ -30,7 +30,7 @@ namespace Atc.Math.InternationalSystemOfUnits
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "OK. For now.")]
         public static double Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
         {
-            double d = double.NaN;
+            var d = double.NaN;
 
             switch (prefixTypeFrom)
             {

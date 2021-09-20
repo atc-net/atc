@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace Atc.Math.InternationalSystemOfUnits
+namespace Atc.Units.InternationalSystemOfUnits
 {
     /// <summary>
     /// Enumeration: OtherUnitType

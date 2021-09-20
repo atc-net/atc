@@ -266,27 +266,25 @@ namespace Atc.XUnit
                     RecurseSubdirectories = true,
                 });
 
+            if (files.Length > 1 && !string.IsNullOrEmpty(pathFolderNameFilter))
+            {
+                files = files
+                    .Where(x => x.Contains(pathFolderNameFilter, StringComparison.CurrentCultureIgnoreCase))
+                    .ToArray();
+            }
+
             if (files.Length > 1)
             {
-                if (!string.IsNullOrEmpty(pathFolderNameFilter))
+                var testAssembly = GetTestAssembly();
+                if (testAssembly is not null)
                 {
-                    files = files
-                        .Where(x => x.Contains(pathFolderNameFilter, StringComparison.CurrentCultureIgnoreCase))
-                        .ToArray();
-                }
-                else
-                {
-                    var testAssembly = GetTestAssembly();
-                    if (testAssembly is not null)
-                    {
-                        var filter = testAssembly.IsDebugBuild()
-                            ? "debug"
-                            : "release";
+                    var filter = testAssembly.IsDebugBuild()
+                        ? "debug"
+                        : "release";
 
-                        files = files
-                            .Where(x => x.Contains(filter, StringComparison.CurrentCultureIgnoreCase))
-                            .ToArray();
-                    }
+                    files = files
+                        .Where(x => x.Contains(filter, StringComparison.CurrentCultureIgnoreCase))
+                        .ToArray();
                 }
             }
 

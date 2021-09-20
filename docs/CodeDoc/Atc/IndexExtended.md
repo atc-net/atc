@@ -273,6 +273,12 @@
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(FileInfo fileInfo, string arguments)
+     - Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+     - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+     - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+     - KillById(int processId, int timeoutInSec = 30)
+     - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
+     - KillEntryCaller(int timeoutInSec = 30)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
      - SetPrivateField(object target, string fieldName, object value)
@@ -294,6 +300,10 @@
      - GetBeautifyArrayTypeName(Type type)
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
+- [TaskHelper](Atc.Helpers.md#taskhelper)
+  -  Static Methods
+     - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
+     - WhenAll(Task`1[] tasks)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
   -  Static Properties
      - ProcessorCount
@@ -369,19 +379,6 @@
   -  Methods
      - ToString()
 
-## [Atc.Math.InternationalSystemOfUnits](Atc.Math.InternationalSystemOfUnits.md)
-
-- [BaseUnitType](Atc.Math.InternationalSystemOfUnits.md#baseunittype)
-- [InternationalSystemOfUnitsHelper](Atc.Math.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
-  -  Static Methods
-     - Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
-- [OtherUnitType](Atc.Math.InternationalSystemOfUnits.md#otherunittype)
-- [PrefixType](Atc.Math.InternationalSystemOfUnits.md#prefixtype)
-- [PrefixTypeHelper](Atc.Math.InternationalSystemOfUnits.md#prefixtypehelper)
-  -  Static Methods
-     - GetSymbol(PrefixType prefixType)
-     - GetSymbolForMeter(PrefixType prefixType)
-
 ## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
@@ -406,10 +403,17 @@
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
+- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
+  -  Properties
+     - TypeDiscriminator
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
+- [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
 
 ## [Atc.Structs](Atc.Structs.md)
 
@@ -423,6 +427,48 @@
      - Equals(object obj)
      - GetHashCode()
      - ToString()
+
+## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
+
+- [ByteSize](Atc.Units.DigitalInformation.md#bytesize)
+  -  Properties
+     - Value
+  -  Methods
+     - Equals(ByteSize other)
+     - Equals(object obj)
+     - Format()
+     - Format(ByteSizeFormatter formatter)
+     - GetHashCode()
+     - ToString()
+     - ToString(ByteSizeFormatter formatter)
+- [ByteSizeFormatter](Atc.Units.DigitalInformation.md#bytesizeformatter)
+  -  Static Properties
+     - Default
+  -  Properties
+     - MaxUnit
+     - MinUnit
+     - NumberFormatInfo
+     - NumberOfDecimals
+     - RoundingRule
+     - SuffixFormat
+  -  Methods
+     - Format(long size)
+- [ByteSizeRoundingRuleType](Atc.Units.DigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Units.DigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Units.DigitalInformation.md#bytesizeunittype)
+
+## [Atc.Units.InternationalSystemOfUnits](Atc.Units.InternationalSystemOfUnits.md)
+
+- [BaseUnitType](Atc.Units.InternationalSystemOfUnits.md#baseunittype)
+- [InternationalSystemOfUnitsHelper](Atc.Units.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
+  -  Static Methods
+     - Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
+- [OtherUnitType](Atc.Units.InternationalSystemOfUnits.md#otherunittype)
+- [PrefixType](Atc.Units.InternationalSystemOfUnits.md#prefixtype)
+- [PrefixTypeHelper](Atc.Units.InternationalSystemOfUnits.md#prefixtypehelper)
+  -  Static Methods
+     - GetSymbol(PrefixType prefixType)
+     - GetSymbolForMeter(PrefixType prefixType)
 
 ## [System](System.md)
 
@@ -447,6 +493,15 @@
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+- [ByteSizeExtensions](System.md#bytesizeextensions)
+  -  Static Methods
+     - Bytes(this decimal value)
+     - Bytes(this double value)
+     - Bytes(this float value)
+     - Bytes(this int value)
+     - Bytes(this long value)
+     - Bytes(this uint value)
+     - Bytes(this ulong value)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
@@ -671,6 +726,13 @@
 
 ## [System.IO](System.IO.md)
 
+- [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
+  -  Static Methods
+     - GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
+     - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
   -  Static Methods
      - ToString(this MemoryStream stream, Encoding encoding = null)

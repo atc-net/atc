@@ -8,6 +8,79 @@
 <br />
 
 
+## DirectoryInfoExtensions
+
+```csharp
+public static class DirectoryInfoExtensions
+```
+
+### Static Methods
+
+
+#### GetByteSize
+
+```csharp
+long GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+```
+<p><b>Summary:</b> Gets the byte size.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+#### GetFilesCount
+
+```csharp
+long GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+```
+<p><b>Summary:</b> Gets the files count.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+#### GetFoldersCount
+
+```csharp
+long GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
+```
+<p><b>Summary:</b> Gets the folders count.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+#### GetPrettyByteSize
+
+```csharp
+string GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+```
+<p><b>Summary:</b> Gets the byte size as pretty formatted text like '1.933.212.103 bytes'.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+#### GetPrettySize
+
+```csharp
+string GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+```
+<p><b>Summary:</b> Gets the byte size as pretty formatted text like '1.82 GB'.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+
+<br />
+
+
 ## MemoryStreamExtensions
 Extensions for the `System.IO.Stream` class.
 
