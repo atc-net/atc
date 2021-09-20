@@ -303,6 +303,7 @@
 - [TaskHelper](Atc.Helpers.md#taskhelper)
   -  Static Methods
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
+     - WhenAll(Task`1[] tasks)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
   -  Static Properties
      - ProcessorCount

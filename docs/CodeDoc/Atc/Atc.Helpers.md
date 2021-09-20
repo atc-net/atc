@@ -1335,6 +1335,19 @@ Task<TResult> Execute(Func<CancellationToken, Task<TResult>> taskToRun, TimeSpan
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taskToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The task to run.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeout`&nbsp;&nbsp;-&nbsp;&nbsp;The timeout.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+#### WhenAll
+
+```csharp
+Task<IEnumerable<T>> WhenAll(Task`1[] tasks)
+```
+<p><b>Summary:</b> This method wraps the built-in Task.WhenAll method, but correctly await`s tasks and gets an AggregateException back.</p>
+
+<b>Parameters</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tasks`&nbsp;&nbsp;-&nbsp;&nbsp;The tasks.<br />
+<p><b>Remarks:</b> This method gives us an AggregateException and not only the first exception occurrence,
+            in case of an exception thrown from one of the tasks.</p>
+
 
 <br />
 
