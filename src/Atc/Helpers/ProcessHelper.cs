@@ -32,7 +32,11 @@ namespace Atc.Helpers
             return InvokeExecute(fileInfo, arguments);
         }
 
-        public static Task<(bool isSuccessful, string output)> Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = default)
+        public static Task<(bool isSuccessful, string output)> Execute(
+            FileInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken = default)
         {
             if (fileInfo is null)
             {
@@ -72,7 +76,11 @@ namespace Atc.Helpers
             return InvokeExecuteAndIgnoreOutput(fileInfo, arguments);
         }
 
-        public static Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = default)
+        public static Task<bool> ExecuteAndIgnoreOutput(
+            FileInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken = default)
         {
             if (fileInfo is null)
             {
@@ -128,9 +136,12 @@ namespace Atc.Helpers
             }
         }
 
-        public static (bool isSuccessful, string output) KillByName(string processName, bool allowMultiKill = true, int timeoutInSec = 30)
+        public static (bool isSuccessful, string output) KillByName(
+            string processName,
+            bool allowMultiKill = true,
+            int timeoutInSec = 30)
         {
-            if (processName == null)
+            if (processName is null)
             {
                 throw new ArgumentNullException(nameof(processName));
             }
@@ -200,7 +211,11 @@ namespace Atc.Helpers
             }
         }
 
-        private static async Task<(bool isSuccessful, string output)> InvokeExecuteWithTimeout(FileSystemInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken)
+        private static async Task<(bool isSuccessful, string output)> InvokeExecuteWithTimeout(
+            FileSystemInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken)
         {
             var resultOutput = string.Empty;
             var processName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
@@ -283,7 +298,11 @@ namespace Atc.Helpers
             }
         }
 
-        private static async Task<bool> InvokeExecuteWithTimeoutAndIgnoreOutput(FileSystemInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken)
+        private static async Task<bool> InvokeExecuteWithTimeoutAndIgnoreOutput(
+            FileSystemInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken)
         {
             var processName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
 
