@@ -1,7 +1,7 @@
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
 // ReSharper disable once CheckNamespace
-namespace Atc.Math.InternationalSystemOfUnits
+namespace Atc.Units.InternationalSystemOfUnits
 {
     /// <summary>
     /// Enumeration: PrefixType

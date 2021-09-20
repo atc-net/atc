@@ -1,8 +1,8 @@
-using Atc.Math.UnitOfDigitalInformation;
+using Atc.Units.DigitalInformation;
 using Xunit;
 
 // ReSharper disable StringLiteralTypo
-namespace Atc.Tests.Math.UnitOfDigitalInformation
+namespace Atc.Tests.Units.DigitalInformation
 {
     public class ByteSizeFormatterTests
     {
@@ -172,7 +172,6 @@ namespace Atc.Tests.Math.UnitOfDigitalInformation
         [InlineData("378,630,729,272 B", 378630729272, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
         public void Format_MinMax(string expected, long size, int numberOfDecimals, ByteSizeUnitType minUnit, ByteSizeUnitType maxUnit, int lcid)
         {
-
             // Arrange
             var formatter = new ByteSizeFormatter
             {

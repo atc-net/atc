@@ -1,6 +1,6 @@
 using System;
 
-namespace Atc.Math.UnitOfDigitalInformation
+namespace Atc.Units.DigitalInformation
 {
     /// <summary>
     /// Represents a size in bytes.

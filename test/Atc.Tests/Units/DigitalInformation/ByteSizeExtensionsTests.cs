@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Atc.Tests.Math.UnitOfDigitalInformation
+namespace Atc.Tests.Units.DigitalInformation
 {
     public class ByteSizeExtensionsTests
     {

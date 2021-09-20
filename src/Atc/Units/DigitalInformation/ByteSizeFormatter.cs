@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Threading;
 
 // ReSharper disable InvertIf
-namespace Atc.Math.UnitOfDigitalInformation
+namespace Atc.Units.DigitalInformation
 {
     /// <summary>
     /// A formatter that converts a byte size to a human readable string.

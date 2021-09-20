@@ -1,4 +1,4 @@
-using Atc.Math.UnitOfDigitalInformation;
+using Atc.Units.DigitalInformation;
 
 // ReSharper disable once CheckNamespace
 namespace System

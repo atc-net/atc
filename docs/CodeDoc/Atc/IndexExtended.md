@@ -379,19 +379,6 @@
   -  Methods
      - ToString()
 
-## [Atc.Math.InternationalSystemOfUnits](Atc.Math.InternationalSystemOfUnits.md)
-
-- [BaseUnitType](Atc.Math.InternationalSystemOfUnits.md#baseunittype)
-- [InternationalSystemOfUnitsHelper](Atc.Math.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
-  -  Static Methods
-     - Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
-- [OtherUnitType](Atc.Math.InternationalSystemOfUnits.md#otherunittype)
-- [PrefixType](Atc.Math.InternationalSystemOfUnits.md#prefixtype)
-- [PrefixTypeHelper](Atc.Math.InternationalSystemOfUnits.md#prefixtypehelper)
-  -  Static Methods
-     - GetSymbol(PrefixType prefixType)
-     - GetSymbolForMeter(PrefixType prefixType)
-
 ## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
@@ -407,35 +394,6 @@
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
   -  Static Methods
      - SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
-
-## [Atc.Math.UnitOfDigitalInformation](Atc.Math.UnitOfDigitalInformation.md)
-
-- [ByteSize](Atc.Math.UnitOfDigitalInformation.md#bytesize)
-  -  Properties
-     - Value
-  -  Methods
-     - Equals(ByteSize other)
-     - Equals(object obj)
-     - Format()
-     - Format(ByteSizeFormatter formatter)
-     - GetHashCode()
-     - ToString()
-     - ToString(ByteSizeFormatter formatter)
-- [ByteSizeFormatter](Atc.Math.UnitOfDigitalInformation.md#bytesizeformatter)
-  -  Static Properties
-     - Default
-  -  Properties
-     - MaxUnit
-     - MinUnit
-     - NumberFormatInfo
-     - NumberOfDecimals
-     - RoundingRule
-     - SuffixFormat
-  -  Methods
-     - Format(long size)
-- [ByteSizeRoundingRuleType](Atc.Math.UnitOfDigitalInformation.md#bytesizeroundingruletype)
-- [ByteSizeSuffixType](Atc.Math.UnitOfDigitalInformation.md#bytesizesuffixtype)
-- [ByteSizeUnitType](Atc.Math.UnitOfDigitalInformation.md#bytesizeunittype)
 
 ## [Atc.Serialization](Atc.Serialization.md)
 
@@ -462,6 +420,48 @@
      - Equals(object obj)
      - GetHashCode()
      - ToString()
+
+## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
+
+- [ByteSize](Atc.Units.DigitalInformation.md#bytesize)
+  -  Properties
+     - Value
+  -  Methods
+     - Equals(ByteSize other)
+     - Equals(object obj)
+     - Format()
+     - Format(ByteSizeFormatter formatter)
+     - GetHashCode()
+     - ToString()
+     - ToString(ByteSizeFormatter formatter)
+- [ByteSizeFormatter](Atc.Units.DigitalInformation.md#bytesizeformatter)
+  -  Static Properties
+     - Default
+  -  Properties
+     - MaxUnit
+     - MinUnit
+     - NumberFormatInfo
+     - NumberOfDecimals
+     - RoundingRule
+     - SuffixFormat
+  -  Methods
+     - Format(long size)
+- [ByteSizeRoundingRuleType](Atc.Units.DigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Units.DigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Units.DigitalInformation.md#bytesizeunittype)
+
+## [Atc.Units.InternationalSystemOfUnits](Atc.Units.InternationalSystemOfUnits.md)
+
+- [BaseUnitType](Atc.Units.InternationalSystemOfUnits.md#baseunittype)
+- [InternationalSystemOfUnitsHelper](Atc.Units.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
+  -  Static Methods
+     - Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
+- [OtherUnitType](Atc.Units.InternationalSystemOfUnits.md#otherunittype)
+- [PrefixType](Atc.Units.InternationalSystemOfUnits.md#prefixtype)
+- [PrefixTypeHelper](Atc.Units.InternationalSystemOfUnits.md#prefixtypehelper)
+  -  Static Methods
+     - GetSymbol(PrefixType prefixType)
+     - GetSymbolForMeter(PrefixType prefixType)
 
 ## [System](System.md)
 

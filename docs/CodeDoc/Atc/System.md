@@ -237,7 +237,7 @@ public static class ByteSizeExtensions
 ```csharp
 ByteSize Bytes(this decimal value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -249,7 +249,7 @@ ByteSize Bytes(this decimal value)
 ```csharp
 ByteSize Bytes(this double value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -261,7 +261,7 @@ ByteSize Bytes(this double value)
 ```csharp
 ByteSize Bytes(this float value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -273,7 +273,7 @@ ByteSize Bytes(this float value)
 ```csharp
 ByteSize Bytes(this int value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -285,7 +285,7 @@ ByteSize Bytes(this int value)
 ```csharp
 ByteSize Bytes(this uint value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -297,7 +297,7 @@ ByteSize Bytes(this uint value)
 ```csharp
 ByteSize Bytes(this long value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 
@@ -309,7 +309,7 @@ ByteSize Bytes(this long value)
 ```csharp
 ByteSize Bytes(this ulong value)
 ```
-<p><b>Summary:</b> Returns an instance of `Atc.Math.UnitOfDigitalInformation.ByteSize` that represents the specified size.</p>
+<p><b>Summary:</b> Returns an instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 <b>Parameters</b>
 

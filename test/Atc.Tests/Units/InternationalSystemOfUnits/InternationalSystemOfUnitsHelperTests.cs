@@ -1,7 +1,7 @@
-using Atc.Math.InternationalSystemOfUnits;
+using Atc.Units.InternationalSystemOfUnits;
 using Xunit;
 
-namespace Atc.Tests.Math.InternationalSystemOfUnits
+namespace Atc.Tests.Units.InternationalSystemOfUnits
 {
     public class InternationalSystemOfUnitsHelperTests
     {

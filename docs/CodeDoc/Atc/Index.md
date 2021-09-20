@@ -94,26 +94,10 @@
 - [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
 - [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
 
-## [Atc.Math.InternationalSystemOfUnits](Atc.Math.InternationalSystemOfUnits.md)
-
-- [BaseUnitType](Atc.Math.InternationalSystemOfUnits.md#baseunittype)
-- [InternationalSystemOfUnitsHelper](Atc.Math.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
-- [OtherUnitType](Atc.Math.InternationalSystemOfUnits.md#otherunittype)
-- [PrefixType](Atc.Math.InternationalSystemOfUnits.md#prefixtype)
-- [PrefixTypeHelper](Atc.Math.InternationalSystemOfUnits.md#prefixtypehelper)
-
 ## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
-
-## [Atc.Math.UnitOfDigitalInformation](Atc.Math.UnitOfDigitalInformation.md)
-
-- [ByteSize](Atc.Math.UnitOfDigitalInformation.md#bytesize)
-- [ByteSizeFormatter](Atc.Math.UnitOfDigitalInformation.md#bytesizeformatter)
-- [ByteSizeRoundingRuleType](Atc.Math.UnitOfDigitalInformation.md#bytesizeroundingruletype)
-- [ByteSizeSuffixType](Atc.Math.UnitOfDigitalInformation.md#bytesizesuffixtype)
-- [ByteSizeUnitType](Atc.Math.UnitOfDigitalInformation.md#bytesizeunittype)
 
 ## [Atc.Serialization](Atc.Serialization.md)
 
@@ -126,6 +110,22 @@
 ## [Atc.Structs](Atc.Structs.md)
 
 - [CartesianCoordinate](Atc.Structs.md#cartesiancoordinate)
+
+## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
+
+- [ByteSize](Atc.Units.DigitalInformation.md#bytesize)
+- [ByteSizeFormatter](Atc.Units.DigitalInformation.md#bytesizeformatter)
+- [ByteSizeRoundingRuleType](Atc.Units.DigitalInformation.md#bytesizeroundingruletype)
+- [ByteSizeSuffixType](Atc.Units.DigitalInformation.md#bytesizesuffixtype)
+- [ByteSizeUnitType](Atc.Units.DigitalInformation.md#bytesizeunittype)
+
+## [Atc.Units.InternationalSystemOfUnits](Atc.Units.InternationalSystemOfUnits.md)
+
+- [BaseUnitType](Atc.Units.InternationalSystemOfUnits.md#baseunittype)
+- [InternationalSystemOfUnitsHelper](Atc.Units.InternationalSystemOfUnits.md#internationalsystemofunitshelper)
+- [OtherUnitType](Atc.Units.InternationalSystemOfUnits.md#otherunittype)
+- [PrefixType](Atc.Units.InternationalSystemOfUnits.md#prefixtype)
+- [PrefixTypeHelper](Atc.Units.InternationalSystemOfUnits.md#prefixtypehelper)
 
 ## [System](System.md)
 

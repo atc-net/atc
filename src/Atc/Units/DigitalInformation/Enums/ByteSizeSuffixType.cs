@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Atc.Math.UnitOfDigitalInformation
+// ReSharper disable once CheckNamespace
+namespace Atc.Units.DigitalInformation
 {
     /// <summary>
     /// Enumeration: Format the suffix word.

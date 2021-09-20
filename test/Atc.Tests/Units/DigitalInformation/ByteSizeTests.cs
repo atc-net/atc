@@ -1,8 +1,7 @@
-using System;
-using Atc.Math.UnitOfDigitalInformation;
+using Atc.Units.DigitalInformation;
 using Xunit;
 
-namespace Atc.Tests.Math.UnitOfDigitalInformation
+namespace Atc.Tests.Units.DigitalInformation
 {
     public class ByteSizeTests
     {

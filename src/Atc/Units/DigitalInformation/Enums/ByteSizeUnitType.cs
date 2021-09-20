@@ -1,6 +1,7 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
-namespace Atc.Math.UnitOfDigitalInformation
+// ReSharper disable once CheckNamespace
+namespace Atc.Units.DigitalInformation
 {
     /// <summary>
     /// Enumeration: Defines units for byte sizes.

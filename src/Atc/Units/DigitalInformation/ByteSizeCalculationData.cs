@@ -1,4 +1,4 @@
-namespace Atc.Math.UnitOfDigitalInformation
+namespace Atc.Units.DigitalInformation
 {
     internal static class ByteSizeCalculationData
     {
