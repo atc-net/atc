@@ -22,7 +22,7 @@ namespace Atc.Console.Spectre.Factories
             var commandApp = new CommandApp(registrar);
 
             var appName = Assembly
-                .GetExecutingAssembly()
+                .GetEntryAssembly()!
                 .GetName()
                 .Name;
 
