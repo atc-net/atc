@@ -403,10 +403,17 @@
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
+- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
+  -  Properties
+     - TypeDiscriminator
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
+- [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
 
 ## [Atc.Structs](Atc.Structs.md)
 

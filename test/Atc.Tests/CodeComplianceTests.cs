@@ -22,6 +22,7 @@ namespace Atc.Tests
         {
             // TODO: Add UnitTest and remove from this list!!
             typeof(MathEx),
+            typeof(JsonTypeDiscriminatorConverter<>),
             typeof(JsonSerializerOptionsFactory),
             typeof(JsonTimeSpanConverter),
 

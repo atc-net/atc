@@ -105,7 +105,9 @@
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
+- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
+- [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
 
 ## [Atc.Structs](Atc.Structs.md)
 
