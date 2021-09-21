@@ -1109,7 +1109,17 @@ Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
 #### Execute
 
 ```csharp
+Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+```
+#### Execute
+
+```csharp
 Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+```
+#### Execute
+
+```csharp
+Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
 ```
 #### ExecuteAndIgnoreOutput
 
@@ -1119,7 +1129,17 @@ Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
 #### ExecuteAndIgnoreOutput
 
 ```csharp
+Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+```
+#### ExecuteAndIgnoreOutput
+
+```csharp
 Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+```
+#### ExecuteAndIgnoreOutput
+
+```csharp
+Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
 ```
 #### KillById
 

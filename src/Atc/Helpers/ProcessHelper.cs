@@ -29,7 +29,32 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
-            return InvokeExecute(fileInfo, arguments);
+            return InvokeExecute(workingDirectory: null, fileInfo, arguments);
+        }
+
+        public static Task<(bool isSuccessful, string output)> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+        {
+            if (workingDirectory is null)
+            {
+                throw new ArgumentNullException(nameof(workingDirectory));
+            }
+
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecute(workingDirectory, fileInfo, arguments);
         }
 
         public static Task<(bool isSuccessful, string output)> Execute(
@@ -53,7 +78,37 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
-            return InvokeExecuteWithTimeout(fileInfo, arguments, timeoutInSec, cancellationToken);
+            return InvokeExecuteWithTimeout(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
+        }
+
+        public static Task<(bool isSuccessful, string output)> Execute(
+            DirectoryInfo workingDirectory,
+            FileInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken = default)
+        {
+            if (workingDirectory is null)
+            {
+                throw new ArgumentNullException(nameof(workingDirectory));
+            }
+
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecuteWithTimeout(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
         public static Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
@@ -73,7 +128,32 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
-            return InvokeExecuteAndIgnoreOutput(fileInfo, arguments);
+            return InvokeExecuteAndIgnoreOutput(workingDirectory: null, fileInfo, arguments);
+        }
+
+        public static Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+        {
+            if (workingDirectory is null)
+            {
+                throw new ArgumentNullException(nameof(workingDirectory));
+            }
+
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecuteAndIgnoreOutput(workingDirectory, fileInfo, arguments);
         }
 
         public static Task<bool> ExecuteAndIgnoreOutput(
@@ -97,7 +177,37 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
-            return InvokeExecuteWithTimeoutAndIgnoreOutput(fileInfo, arguments, timeoutInSec, cancellationToken);
+            return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
+        }
+
+        public static Task<bool> ExecuteAndIgnoreOutput(
+            DirectoryInfo workingDirectory,
+            FileInfo fileInfo,
+            string arguments,
+            int timeoutInSec,
+            CancellationToken cancellationToken = default)
+        {
+            if (workingDirectory is null)
+            {
+                throw new ArgumentNullException(nameof(workingDirectory));
+            }
+
+            if (fileInfo is null)
+            {
+                throw new ArgumentNullException(nameof(fileInfo));
+            }
+
+            if (arguments is null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
+            }
+
+            if (!File.Exists(fileInfo.FullName))
+            {
+                throw new FileNotFoundException(nameof(fileInfo));
+            }
+
+            return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
         public static (bool isSuccessful, string output) KillEntryCaller(int timeoutInSec = 30)
@@ -212,7 +322,8 @@ namespace Atc.Helpers
         }
 
         private static async Task<(bool isSuccessful, string output)> InvokeExecuteWithTimeout(
-            FileSystemInfo fileInfo,
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
             string arguments,
             int timeoutInSec,
             CancellationToken cancellationToken)
@@ -225,7 +336,7 @@ namespace Atc.Helpers
                 var result = await TaskHelper
                     .Execute(
                         _ =>
-                        InvokeExecute(fileInfo, arguments),
+                        InvokeExecute(workingDirectory, fileInfo, arguments),
                         TimeSpan.FromSeconds(timeoutInSec),
                         cancellationToken)
                     .ConfigureAwait(false);
@@ -256,20 +367,9 @@ namespace Atc.Helpers
         }
 
         [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-        private static async Task<(bool isSuccessful, string output)> InvokeExecute(FileSystemInfo fileInfo, string arguments)
+        private static async Task<(bool isSuccessful, string output)> InvokeExecute(DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
         {
-            using var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = fileInfo.FullName,
-                    Arguments = arguments,
-                    UseShellExecute = false,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true,
-                },
-            };
+            using var process = CreateProcess(redirectStandard: true, workingDirectory, fileInfo, arguments);
 
             try
             {
@@ -299,7 +399,8 @@ namespace Atc.Helpers
         }
 
         private static async Task<bool> InvokeExecuteWithTimeoutAndIgnoreOutput(
-            FileSystemInfo fileInfo,
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
             string arguments,
             int timeoutInSec,
             CancellationToken cancellationToken)
@@ -311,7 +412,7 @@ namespace Atc.Helpers
                 var result = await TaskHelper
                     .Execute(
                         _ =>
-                        InvokeExecuteAndIgnoreOutput(fileInfo, arguments),
+                        InvokeExecuteAndIgnoreOutput(workingDirectory, fileInfo, arguments),
                         TimeSpan.FromSeconds(timeoutInSec),
                         cancellationToken)
                     .ConfigureAwait(false);
@@ -330,20 +431,9 @@ namespace Atc.Helpers
             }
         }
 
-        private static Task<bool> InvokeExecuteAndIgnoreOutput(FileSystemInfo fileInfo, string arguments)
+        private static Task<bool> InvokeExecuteAndIgnoreOutput(DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
         {
-            using var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = fileInfo.FullName,
-                    Arguments = arguments,
-                    UseShellExecute = false,
-                    RedirectStandardError = false,
-                    RedirectStandardOutput = false,
-                    CreateNoWindow = true,
-                },
-            };
+            using var process = CreateProcess(redirectStandard: false, workingDirectory, fileInfo, arguments);
 
             try
             {
@@ -355,6 +445,28 @@ namespace Atc.Helpers
             {
                 return Task.FromResult(false);
             }
+        }
+
+        private static Process CreateProcess(bool redirectStandard, DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
+        {
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = fileInfo.FullName,
+                    Arguments = arguments,
+                    UseShellExecute = false,
+                    RedirectStandardError = redirectStandard,
+                    RedirectStandardOutput = redirectStandard,
+                    CreateNoWindow = true,
+                },
+            };
+
+            process.StartInfo.WorkingDirectory = workingDirectory is not null && workingDirectory.Exists
+                ? workingDirectory.FullName
+                : fileInfo.Directory!.FullName;
+
+            return process;
         }
     }
 }
