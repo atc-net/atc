@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageId>Atc.DotNet</PackageId>
+    <PackageTags>dotnet,build</PackageTags>
+    <Description>Atc.DotNet is a collection of helper method for working with dotnet.exe.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+</Project>
