@@ -18,7 +18,7 @@ namespace Atc.DotNet
             ILogger logger,
             DirectoryInfo rootPath,
             int runNumber,
-            FileInfo? buildFile,
+            FileInfo? buildFile = null,
             bool useNugetRestore = true,
             bool useConfigurationReleaseMode = true,
             CancellationToken cancellationToken = default)
@@ -41,9 +41,9 @@ namespace Atc.DotNet
             DirectoryInfo rootPath,
             int runNumber,
             FileInfo? buildFile,
-            bool useNugetRestore = true,
-            bool useConfigurationReleaseMode = true,
-            CancellationToken cancellationToken = default)
+            bool useNugetRestore,
+            bool useConfigurationReleaseMode,
+            CancellationToken cancellationToken)
         {
             logger.LogInformation(runNumber < 0
                 ? "Working on Build"
@@ -76,9 +76,9 @@ namespace Atc.DotNet
         private static async Task<(bool isSuccessful, string output)> RunBuildCommand(
             DirectoryInfo rootPath,
             FileInfo? buildFile,
-            bool useNugetRestore = true,
-            bool useConfigurationReleaseMode = true,
-            CancellationToken cancellationToken = default)
+            bool useNugetRestore,
+            bool useConfigurationReleaseMode,
+            CancellationToken cancellationToken)
         {
             var argumentNugetRestore = useNugetRestore
                 ? string.Empty
