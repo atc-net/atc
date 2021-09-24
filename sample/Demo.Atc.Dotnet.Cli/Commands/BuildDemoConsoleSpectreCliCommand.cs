@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Atc;
 using Atc.DotNet;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
+// ReSharper disable StringLiteralTypo
 namespace Demo.Atc.Dotnet.Cli.Commands
 {
     public class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConsoleSpectreCliCommandSettings>
@@ -35,13 +35,18 @@ namespace Demo.Atc.Dotnet.Cli.Commands
             var demoCsproj = new FileInfo(Path.Combine(demoDirectory.FullName, "Demo.Atc.Console.Spectre.Cli.csproj"));
 
             var buildAndCollectErrors = Task.Run(async () =>
-                await DotnetBuildHelper.BuildAndCollectErrors(logger, demoDirectory, 1, demoCsproj, CancellationToken.None)
+                await DotnetBuildHelper.BuildAndCollectErrors(
+                        logger,
+                        demoDirectory,
+                        1,
+                        demoCsproj)
                     .ConfigureAwait(false))
                     .Result;
 
+            AnsiConsole.MarkupLine(string.Empty);
             if (buildAndCollectErrors.Any())
             {
-                AnsiConsole.MarkupLine($"[red]{Markup.Escape($"Problem with the project build for {demoCsproj.Name}")}[/]");
+                AnsiConsole.MarkupLine($"[red]{Markup.Escape($"Encountered the following errors when building project '{demoCsproj.Name}'")}[/]");
                 foreach (var (errorCode, errorCount) in buildAndCollectErrors)
                 {
                     AnsiConsole.MarkupLine($"- [yellow]{Markup.Escape(errorCode)}[/] - [blue]{errorCount}[/]");
