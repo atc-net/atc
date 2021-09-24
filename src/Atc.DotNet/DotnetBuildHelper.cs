@@ -115,22 +115,10 @@ namespace Atc.DotNet
                 }
             }
 
-            var dotnetFilePath = string.Empty;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                dotnetFilePath = @"C:\Program Files\dotnet\dotnet.exe";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                throw new PlatformNotSupportedException(nameof(OSPlatform.Linux));
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                throw new PlatformNotSupportedException(nameof(OSPlatform.OSX));
-            }
+            var dotnetFile = DotnetHelper.GetDotnetExecutable();
 
             return await ProcessHelper
-                .Execute(rootPath, new FileInfo(dotnetFilePath), arguments, timeoutInSec: 5 * 60, cancellationToken)
+                .Execute(rootPath, dotnetFile, arguments, timeoutInSec: 5 * 60, cancellationToken)
                 .ConfigureAwait(false);
         }
 
