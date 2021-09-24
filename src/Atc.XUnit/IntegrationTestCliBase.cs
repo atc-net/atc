@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 // ReSharper disable CommentTypo
 // ReSharper disable MemberCanBeMadeStatic.Global
@@ -229,7 +230,9 @@ namespace Atc.XUnit
                 .GetName()
                 .Name;
 
-            return $"{cliProjectName}.exe";
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? cliProjectName + ".exe"
+                : cliProjectName;
         }
 
         private static (string cliFileNameExe, DirectoryInfo searchFromPath) GetCliFileExeAndSearchFromPath(Type programTypeForCliExe)
