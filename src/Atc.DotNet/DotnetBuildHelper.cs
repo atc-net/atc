@@ -19,7 +19,9 @@ namespace Atc.DotNet
             DirectoryInfo rootPath,
             int runNumber,
             FileInfo? buildFile,
-            CancellationToken cancellationToken)
+            bool useNugetRestore = true,
+            bool useConfigurationReleaseMode = true,
+            CancellationToken cancellationToken = default)
         {
             if (logger is null)
             {
@@ -31,7 +33,7 @@ namespace Atc.DotNet
                 throw new ArgumentNullException(nameof(rootPath));
             }
 
-            return InvokeBuildAndCollectErrors(logger, rootPath, runNumber, buildFile, cancellationToken);
+            return InvokeBuildAndCollectErrors(logger, rootPath, runNumber, buildFile, useNugetRestore, useConfigurationReleaseMode, cancellationToken);
         }
 
         private static async Task<Dictionary<string, int>> InvokeBuildAndCollectErrors(
@@ -39,36 +41,61 @@ namespace Atc.DotNet
             DirectoryInfo rootPath,
             int runNumber,
             FileInfo? buildFile,
-            CancellationToken cancellationToken)
+            bool useNugetRestore = true,
+            bool useConfigurationReleaseMode = true,
+            CancellationToken cancellationToken = default)
         {
-            logger.LogInformation($"Working on Build ({runNumber})");
+            logger.LogInformation(runNumber < 0
+                ? "Working on Build"
+                : $"Working on Build ({runNumber})");
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            (_, string output) = await RunBuildCommand(rootPath, buildFile, cancellationToken).ConfigureAwait(false);
+            (_, string output) = await RunBuildCommand(rootPath, buildFile, useNugetRestore, useConfigurationReleaseMode, cancellationToken).ConfigureAwait(false);
 
             var parsedErrors = ParseBuildOutput(output);
             int totalErrors = parsedErrors.Sum(parsedError => parsedError.Value);
-            if (totalErrors > 0)
-            {
-                logger.LogInformation($"{totalErrors} errors found spread out on {parsedErrors.Count} rules");
-            }
 
             stopwatch.Stop();
-            logger.LogInformation($"Build ({runNumber}) is done in {stopwatch.Elapsed.GetPrettyTime()}");
+
+            logger.LogInformation(runNumber < 0
+                ? $"Build is done in {stopwatch.Elapsed.GetPrettyTime()}"
+                : $"Build ({runNumber}) is done in {stopwatch.Elapsed.GetPrettyTime()}");
+
+            if (totalErrors > 0)
+            {
+                logger.LogError(runNumber < 0
+                    ? $"Found {totalErrors} errors divided into {parsedErrors.Count} rules"
+                    : $"Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})");
+            }
 
             return parsedErrors;
         }
 
-        private static async Task<(bool isSuccessful, string output)> RunBuildCommand(DirectoryInfo rootPath, FileInfo? buildFile, CancellationToken cancellationToken)
+        private static async Task<(bool isSuccessful, string output)> RunBuildCommand(
+            DirectoryInfo rootPath,
+            FileInfo? buildFile,
+            bool useNugetRestore = true,
+            bool useConfigurationReleaseMode = true,
+            CancellationToken cancellationToken = default)
         {
-            var arguments = "build --no-restore -c Release -v q -clp:NoSummary";
+            var argumentNugetRestore = useNugetRestore
+                ? string.Empty
+                : " --no-restore";
+
+            var argumentConfigurationReleaseMode = useConfigurationReleaseMode
+                ? " -c Release"
+                : " -c Debug";
+
+            string arguments;
             if (buildFile is not null && buildFile.Exists)
             {
-                arguments = $"build {buildFile.FullName} --no-restore -c Release -v q -clp:NoSummary";
+                arguments = $"build {buildFile.FullName}{argumentNugetRestore}{argumentConfigurationReleaseMode} -v q -clp:NoSummary";
             }
             else
             {
+                arguments = $"build{argumentNugetRestore}{argumentConfigurationReleaseMode} -v q -clp:NoSummary";
                 var slnFiles = Directory.GetFiles(rootPath.FullName, "*.sln");
                 if (slnFiles.Length > 1)
                 {
