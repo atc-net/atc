@@ -29,7 +29,8 @@ namespace Demo.Atc.Dotnet.Cli.Commands
             do
             {
                 directory = new DirectoryInfo(directory.Parent.FullName);
-            } while (!directory.Name.Equals("sample", StringComparison.OrdinalIgnoreCase));
+            }
+            while (!directory.Name.Equals("sample", StringComparison.OrdinalIgnoreCase));
 
             var demoDirectory = directory.GetDirectories("Demo.Atc.Console.Spectre.Cli", SearchOption.AllDirectories).Single();
             var demoCsproj = new FileInfo(Path.Combine(demoDirectory.FullName, "Demo.Atc.Console.Spectre.Cli.csproj"));
