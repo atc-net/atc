@@ -272,8 +272,12 @@
      - TruncateToMaxPrecision(double value, int decimalPrecision)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
+     - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+     - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
      - Execute(FileInfo fileInfo, string arguments)
      - Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+     - ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+     - ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
      - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
      - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
      - KillById(int processId, int timeoutInSec = 30)
