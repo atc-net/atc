@@ -375,10 +375,10 @@ namespace Atc.Helpers
             {
                 process.Start();
 
-                process.WaitForExit();
-
                 var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
                 var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
+
+                process.WaitForExit();
 
                 var message = string.IsNullOrEmpty(standardError)
                     ? standardOutput
