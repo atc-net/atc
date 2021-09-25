@@ -44,17 +44,18 @@ namespace Atc.DotNet
         {
             var dotnetDirectory = GetDotnetDirectory();
 
-            var executableFile = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            var dotnetFilename = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                 ? "dotnet.exe"
                 : "dotnet";
 
-            var files = Directory.GetFiles(dotnetDirectory.FullName, executableFile);
-            return files.Length switch
+            var dotnetFullName = Path.Combine(dotnetDirectory.FullName, dotnetFilename);
+
+            if (!File.Exists(dotnetFullName))
             {
-                0 => throw new FileNotFoundException($"Could not find a dotnet file in path '{dotnetDirectory.FullName}'."),
-                > 1 => throw new NotSupportedException($"Too many files matching dotnet* found in path '{dotnetDirectory.FullName}'."),
-                _ => new FileInfo(files[0]),
-            };
+                throw new FileNotFoundException($"No '{dotnetFilename}' file found in dotnet directory '{dotnetDirectory}'");
+            }
+
+            return new FileInfo(dotnetFullName);
         }
 
         private static bool IsDefaultDotnetDirectoryName(string value)
