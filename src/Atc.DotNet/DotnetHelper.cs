@@ -10,7 +10,10 @@ namespace Atc.DotNet
         /// Get the directory of the .NET runtime.
         /// </summary>
         /// <remarks>
-        /// This method is platform independent.
+        /// <para>This method is platform independent.</para>
+        /// <para>The default location on Windows is C:\Program Files\dotnet.</para>
+        /// <para>The default location on Linux and macOS is /usr/share/dotnet.</para>
+        /// <para>On Linux it varies from distribution to distribution and method of installation.</para>
         /// </remarks>
         public static DirectoryInfo GetDotnetDirectory()
         {
@@ -26,7 +29,9 @@ namespace Atc.DotNet
                 return directory;
             }
 
-            if (TryGetDotnetDirectoryFromEnv("DOTNET_ROOT", out var result))
+            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtimes,
+            // if they are not installed in the default location.
+            if (TryGetDirectoryFromEnvVariable("DOTNET_ROOT", out var result))
             {
                 return result!;
             }
@@ -44,32 +49,36 @@ namespace Atc.DotNet
         {
             var dotnetDirectory = GetDotnetDirectory();
 
-            var executableFile = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            var dotnetFilename = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                 ? "dotnet.exe"
                 : "dotnet";
 
-            var files = Directory.GetFiles(dotnetDirectory.FullName, executableFile);
-            return files.Length switch
+            var dotnetFullName = Path.Combine(dotnetDirectory.FullName, dotnetFilename);
+
+            if (!File.Exists(dotnetFullName))
             {
-                0 => throw new FileNotFoundException($"Could not find a dotnet file in path '{dotnetDirectory.FullName}'."),
-                > 1 => throw new NotSupportedException($"Too many files matching dotnet* found in path '{dotnetDirectory.FullName}'."),
-                _ => new FileInfo(files[0]),
-            };
+                throw new FileNotFoundException($"No '{dotnetFilename}' file found in dotnet directory '{dotnetDirectory}'");
+            }
+
+            return new FileInfo(dotnetFullName);
         }
 
+        /// <remarks>
+        /// "dotnet" is the default name, but Github Actions installs to ".dotnet" ("/home/runner/.dotnet")
+        /// </remarks>
         private static bool IsDefaultDotnetDirectoryName(string value)
         {
             return value.Equals("dotnet", StringComparison.Ordinal) ||
                    value.Equals(".dotnet", StringComparison.Ordinal);
         }
 
-        private static bool TryGetDotnetDirectoryFromEnv(string envVariable, out DirectoryInfo? dotnetDirectory)
+        private static bool TryGetDirectoryFromEnvVariable(string envVariable, out DirectoryInfo? directory)
         {
-            dotnetDirectory = null;
-            var dotnetRootEnv = Environment.GetEnvironmentVariable(envVariable);
-            if (!string.IsNullOrEmpty(dotnetRootEnv) && Directory.Exists(dotnetRootEnv))
+            directory = null;
+            var value = Environment.GetEnvironmentVariable(envVariable);
+            if (!string.IsNullOrEmpty(value) && Directory.Exists(value))
             {
-                dotnetDirectory = new DirectoryInfo(dotnetRootEnv);
+                directory = new DirectoryInfo(value);
                 return true;
             }
 
