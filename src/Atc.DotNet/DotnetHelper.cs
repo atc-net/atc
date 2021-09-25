@@ -10,7 +10,10 @@ namespace Atc.DotNet
         /// Get the directory of the .NET runtime.
         /// </summary>
         /// <remarks>
-        /// This method is platform independent.
+        /// <para>This method is platform independent.</para>
+        /// <para>The default location on Windows is C:\Program Files\dotnet.</para>
+        /// <para>The default location on Linux and macOS is /usr/share/dotnet.</para>
+        /// <para>On Linux it varies from distribution to distribution and method of installation.</para>
         /// </remarks>
         public static DirectoryInfo GetDotnetDirectory()
         {
@@ -26,6 +29,8 @@ namespace Atc.DotNet
                 return directory;
             }
 
+            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtimes,
+            // if they are not installed in the default location.
             if (TryGetDotnetDirectoryFromEnv("DOTNET_ROOT", out var result))
             {
                 return result!;
@@ -58,6 +63,9 @@ namespace Atc.DotNet
             return new FileInfo(dotnetFullName);
         }
 
+        /// <remarks>
+        /// "dotnet" is the default name, but Github Actions installs to ".dotnet" ("/home/runner/.dotnet")
+        /// </remarks>
         private static bool IsDefaultDotnetDirectoryName(string value)
         {
             return value.Equals("dotnet", StringComparison.Ordinal) ||

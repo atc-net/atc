@@ -52,7 +52,7 @@ DirectoryInfo GetDotnetDirectory()
 ```
 <p><b>Summary:</b> Get the directory of the .NET runtime.</p>
 
-<p><b>Remarks:</b> This method is platform independent.</p>
+<p><b>Remarks:</b> This method is platform independent.The default location on Windows is C:\Program Files\dotnet.The default location on Linux and macOS is /usr/share/dotnet.On Linux it varies from distribution to distribution and method of installation.</p>
 
 #### GetDotnetExecutable
 
