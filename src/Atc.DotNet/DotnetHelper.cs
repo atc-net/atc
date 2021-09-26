@@ -29,7 +29,7 @@ namespace Atc.DotNet
                 return directory;
             }
 
-            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtimes,
+            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtime,
             // if they are not installed in the default location.
             if (TryGetDirectoryFromEnvVariable("DOTNET_ROOT", out var result))
             {
@@ -76,13 +76,13 @@ namespace Atc.DotNet
         {
             directory = null;
             var value = Environment.GetEnvironmentVariable(envVariable);
-            if (!string.IsNullOrEmpty(value) && Directory.Exists(value))
+            if (string.IsNullOrEmpty(value) || !Directory.Exists(value))
             {
-                directory = new DirectoryInfo(value);
-                return true;
+                return false;
             }
 
-            return false;
+            directory = new DirectoryInfo(value);
+            return true;
         }
     }
 }
