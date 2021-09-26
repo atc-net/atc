@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using Atc.Math;
@@ -27,6 +28,7 @@ namespace Atc.Tests
             typeof(JsonTimeSpanConverter),
 
             // UnitTests are made, but CodeCompliance test cannot detect this
+            typeof(ProcessExtensions),
             typeof(TaskExtensions),
             typeof(ThreadExtensions),
         };

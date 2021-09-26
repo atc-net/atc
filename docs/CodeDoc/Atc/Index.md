@@ -170,6 +170,10 @@
 
 - [DataTableExtensions](System.Data.md#datatableextensions)
 
+## [System.Diagnostics](System.Diagnostics.md)
+
+- [ProcessExtensions](System.Diagnostics.md#processextensions)
+
 ## [System.IO](System.IO.md)
 
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)

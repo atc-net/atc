@@ -30,7 +30,7 @@ public static class DotnetBuildHelper
 #### BuildAndCollectErrors
 
 ```csharp
-Task<Dictionary<string, int>> BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int runNumber, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, CancellationToken cancellationToken = null)
+Task<Dictionary<string, int>> BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, CancellationToken cancellationToken = null)
 ```
 
 <br />
