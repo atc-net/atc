@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Atc.Console.Spectre.Logging;
 using Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spectre.Cli.XUnitTestData;
@@ -19,11 +21,11 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
         {
             // Arrange & Act
             var (isCliExecutedCorrectly, output) = await ExecuteCli(arguments);
-            var outputLines = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = CleanConsoleMarkupAndSplitLines(output);
 
             // Assert
-            Assert.True(isCliExecutedCorrectly);
-            Assert.True(outputLines.Contains(expected, StringComparer.Ordinal));
+            Assert.True(isCliExecutedCorrectly, "isCliExecutedCorrectly");
+            AssertInLines(expected, outputLines);
         }
 
         [Theory]
@@ -35,14 +37,45 @@ namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spec
 
             // Act
             var (isCliExecutedCorrectly, output) = await ExecuteCli(arguments);
-            var outputLines = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = CleanConsoleMarkupAndSplitLines(output);
 
             // Assert
-            Assert.True(isCliExecutedCorrectly);
+            Assert.True(isCliExecutedCorrectly, "isCliExecutedCorrectly");
             foreach (var expected in expectedList)
             {
-                Assert.True(outputLines.Contains(expected, StringComparer.Ordinal));
+                AssertInLines(expected, outputLines);
             }
+        }
+
+        private static void AssertInLines(string expected, string[] lines)
+        {
+            var found = lines.Any(x => x.Equals(expected, StringComparison.Ordinal));
+            Assert.True(found, $"\nExpectedLine:  '{expected}'\nin ActualData: '{string.Join('\n', lines)}'");
+        }
+
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:Code should not contain multiple whitespace in a row", Justification = "OK.")]
+        private static string[] CleanConsoleMarkupAndSplitLines(string output)
+        {
+            var s = JsonSerializer.Serialize(output);
+
+            var value = s.Substring(1, s.Length - 2);   // Remove first and last " from Serialization
+            value = value
+                .Replace("\\r\\n", "\n", StringComparison.Ordinal)
+                .Replace("\\r", "\n", StringComparison.Ordinal)
+                .Replace("\\n", "\n", StringComparison.Ordinal);
+
+            var lines = value
+                .Replace("\\u001B[38;5;9m", string.Empty, StringComparison.Ordinal)         // Red
+                .Replace("\\u001B[38;5;9;48;5;15m", string.Empty, StringComparison.Ordinal) // Red on White
+                .Replace("\\u001B[38;5;214m", string.Empty, StringComparison.Ordinal)       // Orange1
+                .Replace("\\u001B[38;5;39m", string.Empty, StringComparison.Ordinal)        // Deepskyblue1
+                .Replace("\\u001B[38;5;2m", string.Empty, StringComparison.Ordinal)         // Green
+                .Replace("\\u001B[38;5;12m", string.Empty, StringComparison.Ordinal)        // Blue
+                .Replace("\\u001B[38;5;8m", string.Empty, StringComparison.Ordinal)         // Gray
+                .Replace("\\u001B[0m", string.Empty, StringComparison.Ordinal)              // "End"
+                .Split("\n", StringSplitOptions.RemoveEmptyEntries);
+
+            return lines;
         }
     }
 }
