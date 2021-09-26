@@ -7,12 +7,18 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
+// ReSharper disable RedundantExplicitTupleComponentName
+// ReSharper disable LocalizableElement
 namespace Atc.Helpers
 {
     [ExcludeFromCodeCoverage]
     public static class ProcessHelper
     {
-        public static Task<(bool isSuccessful, string output)> Execute(FileInfo fileInfo, string arguments)
+        private const int DefaultKillTimeoutInSec = 30;
+
+        public static Task<(bool isSuccessful, string output)> Execute(
+            FileInfo fileInfo,
+            string arguments)
         {
             if (fileInfo is null)
             {
@@ -32,7 +38,10 @@ namespace Atc.Helpers
             return InvokeExecute(workingDirectory: null, fileInfo, arguments);
         }
 
-        public static Task<(bool isSuccessful, string output)> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+        public static Task<(bool isSuccessful, string output)> Execute(
+            DirectoryInfo workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
         {
             if (workingDirectory is null)
             {
@@ -111,7 +120,9 @@ namespace Atc.Helpers
             return InvokeExecuteWithTimeout(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
-        public static Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+        public static Task<bool> ExecuteAndIgnoreOutput(
+            FileInfo fileInfo,
+            string arguments)
         {
             if (fileInfo is null)
             {
@@ -131,7 +142,10 @@ namespace Atc.Helpers
             return InvokeExecuteAndIgnoreOutput(workingDirectory: null, fileInfo, arguments);
         }
 
-        public static Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+        public static Task<bool> ExecuteAndIgnoreOutput(
+            DirectoryInfo workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
         {
             if (workingDirectory is null)
             {
@@ -177,6 +191,11 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
+            if (timeoutInSec < 1)
+            {
+                throw new ArgumentException("Timeout should be greater then 1 seconds", nameof(timeoutInSec));
+            }
+
             return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
@@ -207,16 +226,24 @@ namespace Atc.Helpers
                 throw new FileNotFoundException(nameof(fileInfo));
             }
 
+            if (timeoutInSec < 1)
+            {
+                throw new ArgumentException("Timeout should be greater then 1 seconds", nameof(timeoutInSec));
+            }
+
             return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
         }
 
-        public static (bool isSuccessful, string output) KillEntryCaller(int timeoutInSec = 30)
+        public static (bool isSuccessful, string output) KillEntryCaller(
+            int timeoutInSec = DefaultKillTimeoutInSec)
         {
             var processName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()!.Location);
             return KillByName(processName, allowMultiKill: true, timeoutInSec);
         }
 
-        public static (bool isSuccessful, string output) KillById(int processId, int timeoutInSec = 30)
+        public static (bool isSuccessful, string output) KillById(
+            int processId,
+            int timeoutInSec = DefaultKillTimeoutInSec)
         {
             try
             {
@@ -230,8 +257,9 @@ namespace Atc.Helpers
                         output: $"No process found by pid '{processId}'");
                 }
 
-                process.Kill();
+                process.KillTree();
                 process.WaitForExit(timeoutInSec * 1000);
+
                 return (
                     isSuccessful: true,
                     output: $"Process found by pid '{processId}' is now terminated");
@@ -249,11 +277,16 @@ namespace Atc.Helpers
         public static (bool isSuccessful, string output) KillByName(
             string processName,
             bool allowMultiKill = true,
-            int timeoutInSec = 30)
+            int timeoutInSec = DefaultKillTimeoutInSec)
         {
             if (processName is null)
             {
                 throw new ArgumentNullException(nameof(processName));
+            }
+
+            if (timeoutInSec < 1)
+            {
+                throw new ArgumentException("Timeout should be greater then 1 seconds", nameof(timeoutInSec));
             }
 
             var processes = Process.GetProcessesByName(processName);
@@ -270,7 +303,7 @@ namespace Atc.Helpers
                 {
                     foreach (var process in processes)
                     {
-                        process.Kill();
+                        process.KillTree();
                         process.WaitForExit(timeoutInSec * 1000);
                     }
 
@@ -303,8 +336,9 @@ namespace Atc.Helpers
                     var process = processes.First();
                     try
                     {
-                        process.Kill();
+                        process.KillTree();
                         process.WaitForExit(timeoutInSec * 1000);
+
                         return (
                             isSuccessful: true,
                             output: $"Process found by name '{processName}' is now terminated");
@@ -328,34 +362,33 @@ namespace Atc.Helpers
             int timeoutInSec,
             CancellationToken cancellationToken)
         {
+            var processId = -1;
             var resultOutput = string.Empty;
-            var processName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
 
             try
             {
                 var result = await TaskHelper
                     .Execute(
                         _ =>
-                        InvokeExecute(workingDirectory, fileInfo, arguments),
+                        InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments),
                         TimeSpan.FromSeconds(timeoutInSec),
                         cancellationToken)
                     .ConfigureAwait(false);
 
+                processId = result.processId;
                 resultOutput = result.output;
 
-                KillByName(processName);
-
-                return result;
+                return (result.isSuccessful, result.output);
             }
             catch (TimeoutException)
             {
-                var (killIsSuccessful, _) = KillByName(processName);
+                var (killIsSuccessful, _) = KillById(processId);
 
                 if (string.IsNullOrEmpty(resultOutput))
                 {
                     resultOutput = killIsSuccessful
-                        ? $"Process has been running for {timeoutInSec}sec. before terminated."
-                        : $"Process has been running for {timeoutInSec}sec.";
+                        ? $"Process has been running for {timeoutInSec} seconds. before terminated."
+                        : $"Process has been running for {timeoutInSec} seconds.";
                 }
 
                 return await Task
@@ -366,19 +399,41 @@ namespace Atc.Helpers
             }
         }
 
+        private static async Task<(bool isSuccessful, string output)> InvokeExecute(
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
+        {
+            var (isSuccessful, output, _) = await InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments);
+            return (isSuccessful, output);
+        }
+
         [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-        private static async Task<(bool isSuccessful, string output)> InvokeExecute(DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
+        private static async Task<(bool isSuccessful, string output, int processId)> InvokeExecuteWithProcessId(
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
         {
             using var process = CreateProcess(redirectStandard: true, workingDirectory, fileInfo, arguments);
-
+            var processId = -1;
             try
             {
                 process.Start();
+                processId = process.Id;
 
-                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
-                var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
+                var standardOutput = await process
+                    .StandardOutput
+                    .ReadToEndAsync()
+                    .ConfigureAwait(false);
 
-                process.WaitForExit();
+                var standardError = await process
+                    .StandardError
+                    .ReadToEndAsync()
+                    .ConfigureAwait(false);
+
+                await process
+                    .WaitForExitAsync()
+                    .ConfigureAwait(false);
 
                 var message = string.IsNullOrEmpty(standardError)
                     ? standardOutput
@@ -388,7 +443,8 @@ namespace Atc.Helpers
 
                 return (
                     isSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
-                    output: message);
+                    output: message,
+                    processId: processId);
             }
             catch (Exception ex)
             {
@@ -396,7 +452,8 @@ namespace Atc.Helpers
                     isSuccessful: false,
                     output: ex.GetMessage(
                         includeInnerMessage: true,
-                        includeExceptionName: true));
+                        includeExceptionName: true),
+                    processId: processId);
             }
         }
 
@@ -419,8 +476,6 @@ namespace Atc.Helpers
                         cancellationToken)
                     .ConfigureAwait(false);
 
-                KillByName(processName);
-
                 return result;
             }
             catch (TimeoutException)
@@ -433,23 +488,33 @@ namespace Atc.Helpers
             }
         }
 
-        private static Task<bool> InvokeExecuteAndIgnoreOutput(DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
+        private static async Task<bool> InvokeExecuteAndIgnoreOutput(
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
         {
             using var process = CreateProcess(redirectStandard: false, workingDirectory, fileInfo, arguments);
 
             try
             {
                 process.Start();
+                await process
+                    .WaitForExitAsync()
+                    .ConfigureAwait(false);
 
-                return Task.FromResult(process.ExitCode == ConsoleExitStatusCodes.Success);
+                return process.ExitCode == ConsoleExitStatusCodes.Success;
             }
             catch (Exception)
             {
-                return Task.FromResult(false);
+                return false;
             }
         }
 
-        private static Process CreateProcess(bool redirectStandard, DirectoryInfo? workingDirectory, FileInfo fileInfo, string arguments)
+        private static Process CreateProcess(
+            bool redirectStandard,
+            DirectoryInfo? workingDirectory,
+            FileInfo fileInfo,
+            string arguments)
         {
             var process = new Process
             {
