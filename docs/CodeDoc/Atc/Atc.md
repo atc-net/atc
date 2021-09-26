@@ -717,7 +717,7 @@ IsDefault
 ```
 <p><b>Summary:</b> Gets a value indicating whether this instance is default.</p>
 
-<p><b>Returns:</b> true if this instance is default; otherwise, false.</p>
+<p><b>Returns:</b> `true` if this instance is default; otherwise, `false`.</p>
 
 #### X
 

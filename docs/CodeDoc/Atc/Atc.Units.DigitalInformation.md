@@ -56,9 +56,9 @@ string Format()
 ```
 <p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
 
-<p><b>Returns:</b> A  that represents this instance.</p>
+<p><b>Returns:</b> A `System.String` that represents this instance.</p>
 
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter ().</p>
+<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
 
 #### Format
 
@@ -67,9 +67,9 @@ string Format(ByteSizeFormatter formatter)
 ```
 <p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
 
-<p><b>Returns:</b> A  that represents this instance.</p>
+<p><b>Returns:</b> A `System.String` that represents this instance.</p>
 
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter ().</p>
+<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
 
 #### GetHashCode
 
@@ -83,9 +83,9 @@ string ToString()
 ```
 <p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
 
-<p><b>Returns:</b> A  that represents this instance.</p>
+<p><b>Returns:</b> A `System.String` that represents this instance.</p>
 
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter ().</p>
+<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
 
 #### ToString
 
@@ -94,9 +94,9 @@ string ToString(ByteSizeFormatter formatter)
 ```
 <p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
 
-<p><b>Returns:</b> A  that represents this instance.</p>
+<p><b>Returns:</b> A `System.String` that represents this instance.</p>
 
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter ().</p>
+<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
 
 
 <br />

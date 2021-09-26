@@ -29,7 +29,7 @@ DataTable CreateKeyValueDataTableOfGuidString(DropDownFirstItemType dropDownFirs
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-<p><b>Returns:</b> The .</p>
+<p><b>Returns:</b> The `System.Data.DataTable`.</p>
 
 #### CreateKeyValueDataTableOfIntString
 
@@ -41,7 +41,7 @@ DataTable CreateKeyValueDataTableOfIntString(DropDownFirstItemType dropDownFirst
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-<p><b>Returns:</b> The .</p>
+<p><b>Returns:</b> The `System.Data.DataTable`.</p>
 
 #### CreateKeyValueDictionaryOfGuidString
 

@@ -41,7 +41,7 @@ bool IsValidAsin(string asin)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`asin`&nbsp;&nbsp;-&nbsp;&nbsp;The asin.<br />
-<p><b>Returns:</b> true if [is valid asin] [the specified asin]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid asin] [the specified asin]; otherwise, `false`.</p>
 
 #### IsValidEan
 
@@ -53,7 +53,7 @@ bool IsValidEan(string code)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
-<p><b>Returns:</b> true if [is valid ean] [the specified code]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid ean] [the specified code]; otherwise, `false`.</p>
 
 #### IsValidGtin
 
@@ -65,7 +65,7 @@ bool IsValidGtin(string code)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
-<p><b>Returns:</b> true if [is valid gtin] [the specified code]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid gtin] [the specified code]; otherwise, `false`.</p>
 
 #### IsValidIsbn10
 
@@ -77,7 +77,7 @@ bool IsValidIsbn10(string isbn10)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isbn10`&nbsp;&nbsp;-&nbsp;&nbsp;The isbn10.<br />
-<p><b>Returns:</b> true if [is valid isbn10] [the specified isbn10]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid isbn10] [the specified isbn10]; otherwise, `false`.</p>
 
 #### IsValidIsbn13
 
@@ -89,7 +89,7 @@ bool IsValidIsbn13(string isbn13)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isbn13`&nbsp;&nbsp;-&nbsp;&nbsp;The isbn13.<br />
-<p><b>Returns:</b> true if [is valid isbn13] [the specified isbn13]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid isbn13] [the specified isbn13]; otherwise, `false`.</p>
 
 #### IsValidIssn
 
@@ -101,7 +101,7 @@ bool IsValidIssn(string code)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
-<p><b>Returns:</b> true if [is valid issn] [the specified code]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid issn] [the specified code]; otherwise, `false`.</p>
 
 #### IsValidUpc
 
@@ -113,7 +113,7 @@ bool IsValidUpc(string code)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
-<p><b>Returns:</b> true if [is valid upc] [the specified code]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is valid upc] [the specified code]; otherwise, `false`.</p>
 
 #### TryConvertToGtin
 
@@ -151,14 +151,7 @@ CardinalDirectionType GetByRotationNumberClockwiseUsingMedium(int rotationNumber
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`rotationNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The rotation number.<br />
-<p><b>Remarks:</b> 0 => North
-            1 => NorthEast
-            2 => East
-            3 => SouthEast
-            4 => South
-            5 => SouthWest
-            6 => West
-            7 => NorthWest.</p>
+<p><b>Remarks:</b> 0 =&gt; North 1 =&gt; NorthEast 2 =&gt; East 3 =&gt; SouthEast 4 =&gt; South 5 =&gt; SouthWest 6 =&gt; West 7 =&gt; NorthWest.</p>
 
 #### GetTargetCardinalDirectionByGridCells
 
@@ -652,7 +645,7 @@ Guid GetEnumGuid(DropDownFirstItemType dropDownFirstItemType)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-<p><b>Returns:</b> The .</p>
+<p><b>Returns:</b> The `System.Guid`.</p>
 
 #### GetItemFromEnumGuid
 
@@ -666,7 +659,7 @@ DropDownFirstItemType GetItemFromEnumGuid(Guid key)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;
             The key.
             <br />
-<p><b>Returns:</b> The .</p>
+<p><b>Returns:</b> The `Atc.DropDownFirstItemType`.</p>
 
 
 <br />
@@ -902,7 +895,7 @@ bool IsEquals(double value1, double value2)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
-<p><b>Returns:</b> true if the specified value1 is equals; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value1 is equals; otherwise, `false`.</p>
 
 #### IsEqualToZero
 
@@ -914,7 +907,7 @@ bool IsEqualToZero(double value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [is equal to zero] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is equal to zero] [the specified value]; otherwise, `false`.</p>
 
 #### Max
 
@@ -1365,8 +1358,7 @@ Task<IEnumerable<T>> WhenAll(Task`1[] tasks)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tasks`&nbsp;&nbsp;-&nbsp;&nbsp;The tasks.<br />
-<p><b>Remarks:</b> This method gives us an AggregateException and not only the first exception occurrence,
-            in case of an exception thrown from one of the tasks.</p>
+<p><b>Remarks:</b> This method gives us an AggregateException and not only the first exception occurrence, in case of an exception thrown from one of the tasks.</p>
 
 
 <br />

@@ -88,7 +88,7 @@ bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
-<p><b>Returns:</b> true if [is sum of the angles A triangle] [the specified angle A]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.</p>
 
 #### IsSumOfTheAnglesATriangle
 
@@ -102,7 +102,7 @@ bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
-<p><b>Returns:</b> true if [is sum of the angles A triangle] [the specified angle A]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.</p>
 
 #### Pythagorean
 

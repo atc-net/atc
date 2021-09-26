@@ -197,7 +197,7 @@ bool IsEqual(this bool? a, bool? b)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
-<p><b>Returns:</b> true if the specified a is equal; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified a is equal; otherwise, `false`.</p>
 
 #### ToInt
 
@@ -242,7 +242,7 @@ ByteSize Bytes(this decimal value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -254,7 +254,7 @@ ByteSize Bytes(this double value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -266,7 +266,7 @@ ByteSize Bytes(this float value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -278,7 +278,7 @@ ByteSize Bytes(this int value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -290,7 +290,7 @@ ByteSize Bytes(this uint value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -302,7 +302,7 @@ ByteSize Bytes(this long value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 #### Bytes
 
@@ -314,7 +314,7 @@ ByteSize Bytes(this ulong value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The size in bytes.<br />
-<p><b>Returns:</b> An instance of  that represents the specified size.</p>
+<p><b>Returns:</b> An instance of `Atc.Units.DigitalInformation.ByteSize` that represents the specified size.</p>
 
 
 <br />
@@ -556,52 +556,52 @@ int CurrencyRoundingAsInteger(this decimal value)
 ```csharp
 bool IsEqual(this decimal a, decimal b)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this decimal? a, decimal? b)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this decimal a, decimal b, int decimalPrecision)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### RoundOff
 
@@ -736,52 +736,52 @@ bool GreaterThanOrClose(this double value1, double value2)
 ```csharp
 bool IsEqual(this double a, double b)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this double? a, double? b)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this double a, double b, int decimalPrecision)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsEqual
 
 ```csharp
 bool IsEqual(this double? a, double? b, int decimalPrecision)
 ```
-<p><b>Summary:</b> Compare two values. Return <c>true</c> if they are equals.</p>
+<p><b>Summary:</b> Compare two values. Return `true` if they are equals.</p>
 
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
-<p><b>Returns:</b> true if the two values are equals, false otherwise.</p>
+<p><b>Returns:</b> `true` if the two values are equals, `false` otherwise.</p>
 
 #### IsZero
 
@@ -1055,7 +1055,7 @@ bool IsBinarySequence(this int number)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
-<p><b>Returns:</b> true if [is binary sequence] [the specified number]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is binary sequence] [the specified number]; otherwise, `false`.</p>
 
 <b>Code usage:</b>
 
@@ -1079,7 +1079,7 @@ bool IsEqual(this int? a, int? b)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
-<p><b>Returns:</b> true if the specified a is equal; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified a is equal; otherwise, `false`.</p>
 
 #### IsEven
 
@@ -1091,7 +1091,7 @@ bool IsEven(this int number)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
-<p><b>Returns:</b> true if the specified number is even; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified number is even; otherwise, `false`.</p>
 
 #### IsOdd
 
@@ -1103,7 +1103,7 @@ bool IsOdd(this int number)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
-<p><b>Returns:</b> true if the specified number is odd; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified number is odd; otherwise, `false`.</p>
 
 #### IsPrime
 
@@ -1115,7 +1115,7 @@ bool IsPrime(this int number)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
-<p><b>Returns:</b> true if the specified number is prime; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified number is prime; otherwise, `false`.</p>
 
 
 <br />
@@ -1238,7 +1238,7 @@ bool Contains(this string value, string containsValue, bool ignoreCaseSensitive 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
-<p><b>Returns:</b> true if a string contains a specified value; otherwise, false.</p>
+<p><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.</p>
 
 #### Cut
 
@@ -1264,11 +1264,7 @@ string EnsureEnvironmentNewLines(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Remarks:</b> This method transform Windows, Unix, Mac newline characters to
-            the platform dependent System.Environment.Newline.
-            "\r\n" (\u000D\u000A) for Windows
-            "\n" (\u000A) for Unix
-            "\r" (\u000D) for Mac</p>
+<p><b>Remarks:</b> This method transform Windows, Unix, Mac newline characters to the platform dependent System.Environment.Newline. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac</p>
 
 #### EnsureFirstCharacterToLower
 
@@ -1380,7 +1376,7 @@ string Humanize(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The identifier-style string.<br />
-<p><b>Returns:</b> A  humanized.</p>
+<p><b>Returns:</b> A `System.String` humanized.</p>
 
 #### IndexersOf
 
@@ -1535,11 +1531,7 @@ string RemoveNewLines(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline
-            but instead works for all platforms as Windows, Unix and Mac.
-            "\r\n" (\u000D\u000A) for Windows
-            "\n" (\u000A) for Unix
-            "\r" (\u000D) for Mac</p>
+<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline but instead works for all platforms as Windows, Unix and Mac. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac</p>
 
 #### RemoveStart
 
@@ -1604,11 +1596,7 @@ string ReplaceNewLines(this string value, string newValue)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`newValue`&nbsp;&nbsp;-&nbsp;&nbsp;The new value for NewLine.<br />
-<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline
-            but instead works for all platforms as Windows, Unix and Mac.
-            "\r\n" (\u000D\u000A) for Windows
-            "\n" (\u000A) for Unix
-            "\r" (\u000D) for Mac</p>
+<p><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline but instead works for all platforms as Windows, Unix and Mac. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac</p>
 
 #### SetStringFormatParameterTemplatePlaceholders
 
@@ -1631,8 +1619,7 @@ string[] ToLines(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> An array whose elements contain the substrings from this instance
-            that are delimited by one or more characters in separator.</p>
+<p><b>Returns:</b> An array whose elements contain the substrings from this instance that are delimited by one or more characters in separator.</p>
 
 #### ToStream
 
@@ -1664,9 +1651,7 @@ string TrimExtended(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> The string that remains after all white-space characters.
-            are removed from the start and end and multi-space characters  of the current string.
-            If no characters can be trimmed from the current instance, the method returns the current instance unchanged.</p>
+<p><b>Returns:</b> The string that remains after all white-space characters. are removed from the start and end and multi-space characters of the current string. If no characters can be trimmed from the current instance, the method returns the current instance unchanged.</p>
 
 #### TrimSpecial
 
@@ -1782,7 +1767,7 @@ bool HasHtmlTags(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [has HTML tags] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has HTML tags] [the specified value]; otherwise, `false`.</p>
 
 #### IsAlphaNumericOnly
 
@@ -1794,7 +1779,7 @@ bool IsAlphaNumericOnly(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, `false`.</p>
 
 #### IsAlphaOnly
 
@@ -1806,7 +1791,7 @@ bool IsAlphaOnly(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is alpha [a-zA-Z]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is alpha [a-zA-Z]; otherwise, `false`.</p>
 
 #### IsCasingStyleValid
 
@@ -1819,7 +1804,7 @@ bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`casingStyle`&nbsp;&nbsp;-&nbsp;&nbsp;The casing style.<br />
-<p><b>Returns:</b> true if [is casing style valid] [the specified casing style]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is casing style valid] [the specified casing style]; otherwise, `false`.</p>
 
 #### IsCompanyCvrNumber
 
@@ -1831,7 +1816,7 @@ bool IsCompanyCvrNumber(this string cvrNumber)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cvrNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The CVR number.<br />
-<p><b>Returns:</b> true if the specified company CVR number is a valid number; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified company CVR number is a valid number; otherwise, `false`.</p>
 
 <p><b>Remarks:</b> This works only for Danish companies.</p>
 
@@ -1845,7 +1830,7 @@ bool IsCompanyPNumber(this string pNumber)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The p number.<br />
-<p><b>Returns:</b> true if the specified company P number is a valid number; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified company P number is a valid number; otherwise, `false`.</p>
 
 #### IsDate
 
@@ -1857,7 +1842,7 @@ bool IsDate(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is a date; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is a date; otherwise, `false`.</p>
 
 #### IsDate
 
@@ -1869,7 +1854,7 @@ bool IsDate(this string value, CultureInfo cultureInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is a date; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is a date; otherwise, `false`.</p>
 
 #### IsDigitOnly
 
@@ -1881,7 +1866,7 @@ bool IsDigitOnly(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is digit [0-9]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is digit [0-9]; otherwise, `false`.</p>
 
 #### IsEmailAddress
 
@@ -1893,7 +1878,7 @@ bool IsEmailAddress(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is a valid email address; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is a valid email address; otherwise, `false`.</p>
 
 #### IsEqual
 
@@ -1909,7 +1894,7 @@ bool IsEqual(this string a, string b, StringComparison stringComparison = Ordina
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stringComparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`treatNullAsEmpty`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [treat null as empty].<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNormalizeAccents`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use normalize accents].<br />
-<p><b>Returns:</b> true if the specified b is equal; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified b is equal; otherwise, `false`.</p>
 
 #### IsFalse
 
@@ -1931,7 +1916,7 @@ bool IsFirstCharacterLowerCase(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [is first character lower case] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is first character lower case] [the specified value]; otherwise, `false`.</p>
 
 #### IsFirstCharacterUpperCase
 
@@ -1943,7 +1928,7 @@ bool IsFirstCharacterUpperCase(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [is first character upper case] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is first character upper case] [the specified value]; otherwise, `false`.</p>
 
 #### IsFormatJson
 
@@ -1955,7 +1940,7 @@ bool IsFormatJson(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [is format json] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is format json] [the specified value]; otherwise, `false`.</p>
 
 #### IsFormatXml
 
@@ -1967,7 +1952,7 @@ bool IsFormatXml(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if [is format XML] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is format XML] [the specified value]; otherwise, `false`.</p>
 
 #### IsGuid
 
@@ -1979,7 +1964,7 @@ bool IsGuid(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified string is a System.Guid; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified string is a System.Guid; otherwise, `false`.</p>
 
 #### IsGuid
 
@@ -1991,7 +1976,7 @@ bool IsGuid(this string value, out Guid output)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified string is a System.Guid; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified string is a System.Guid; otherwise, `false`.</p>
 
 #### IsKey
 
@@ -2003,7 +1988,7 @@ bool IsKey(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if the specified value is key; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is key; otherwise, `false`.</p>
 
 #### IsLengthEven
 
@@ -2015,7 +2000,7 @@ bool IsLengthEven(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified string length is even; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified string length is even; otherwise, `false`.</p>
 
 #### IsNumericOnly
 
@@ -2027,7 +2012,7 @@ bool IsNumericOnly(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
-<p><b>Returns:</b> true if the specified value is numeric [0-9]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is numeric [0-9]; otherwise, `false`.</p>
 
 #### IsPersonCprNumber
 
@@ -2039,7 +2024,7 @@ bool IsPersonCprNumber(this string cprNumber)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cprNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The CPR number.<br />
-<p><b>Returns:</b> true if the specified person CPR number is a valid number; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified person CPR number is a valid number; otherwise, `false`.</p>
 
 #### IsSentence
 
@@ -2051,7 +2036,7 @@ bool IsSentence(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if the specified value is sentence; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is sentence; otherwise, `false`.</p>
 
 #### IsStringFormatParametersBalanced
 
@@ -2064,7 +2049,7 @@ bool IsStringFormatParametersBalanced(this string value, bool isNumeric = True)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isNumeric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [is numeric].<br />
-<p><b>Returns:</b> true if [is string format parameters balanced] [the specified value]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is string format parameters balanced] [the specified value]; otherwise, `false`.</p>
 
 #### IsTrue
 
@@ -2086,7 +2071,7 @@ bool IsWord(this string value)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-<p><b>Returns:</b> true if the specified value is word; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified value is word; otherwise, `false`.</p>
 
 
 <br />
@@ -2120,7 +2105,7 @@ public static class TaskExtensions
 ```csharp
 void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
 ```
-<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
+<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. NOTE: If one of the given tasks has already been started, an exception will be thrown.</p>
 
 <b>Parameters</b>
 
@@ -2132,7 +2117,7 @@ void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToR
 ```csharp
 void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
 ```
-<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. <para>NOTE: If one of the given tasks has already been started, an exception will be thrown.</para></p>
+<p><b>Summary:</b> Starts the given tasks and waits for them to complete. This will run, at most, the specified number of tasks in parallel. NOTE: If one of the given tasks has already been started, an exception will be thrown.</p>
 
 <b>Parameters</b>
 
@@ -2207,7 +2192,7 @@ bool SecondsNotZero(this TimeSpan timeSpan)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
-<p><b>Returns:</b> true if [is seconds is zero] otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is seconds is zero] otherwise, `false`.</p>
 
 
 <br />
@@ -2355,7 +2340,7 @@ bool HasValidationAttributes(this Type type)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if [has validation attributes] [the specified type]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has validation attributes] [the specified type]; otherwise, `false`.</p>
 
 #### IsDelegate
 
@@ -2367,7 +2352,7 @@ bool IsDelegate(this Type type)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is delegate; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified type is delegate; otherwise, `false`.</p>
 
 #### IsInheritedFrom
 
@@ -2380,7 +2365,7 @@ bool IsInheritedFrom(this Type type, Type inheritType)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
-<p><b>Returns:</b> true if [is inherited from] [the specified inherit type]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is inherited from] [the specified inherit type]; otherwise, `false`.</p>
 
 #### IsInheritedFromGenericWithArgumentType
 
@@ -2395,7 +2380,7 @@ bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Ty
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argumentType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the argument.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchAlsoOnArgumentTypeInterface`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [match also on argument type interface].<br />
-<p><b>Returns:</b> true if [is inherited from generic with argument type] [the specified inherit type]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is inherited from generic with argument type] [the specified inherit type]; otherwise, `false`.</p>
 
 #### IsNullable
 
@@ -2407,7 +2392,7 @@ bool IsNullable(this Type type)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is nullable; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified type is nullable; otherwise, `false`.</p>
 
 #### IsSimple
 
@@ -2419,7 +2404,7 @@ bool IsSimple(this Type type)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
-<p><b>Returns:</b> true if the specified type is simple; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified type is simple; otherwise, `false`.</p>
 
 #### IsSubClassOfRawGeneric
 
@@ -2432,7 +2417,7 @@ bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`baseType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the base.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`derivedType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the derived.<br />
-<p><b>Returns:</b> true if [is sub class of raw generic] [the specified derived type]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [is sub class of raw generic] [the specified derived type]; otherwise, `false`.</p>
 
 #### TryGetAttribute
 
@@ -2505,6 +2490,6 @@ bool GreaterThan(this Version version, Version otherVersion)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
-<p><b>Returns:</b> true if 'otherVersion' is greater then the current 'version'; otherwise, false.</p>
+<p><b>Returns:</b> `true` if 'otherVersion' is greater then the current 'version'; otherwise, `false`.</p>
 
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>
