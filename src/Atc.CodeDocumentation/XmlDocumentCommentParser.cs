@@ -63,11 +63,11 @@ namespace Atc.CodeDocumentation
                         ClassName = className,
                         MemberName = match.Groups[3].Value,
                         Summary = summary,
-                        Remarks = remarks.Trim(),
+                        Remarks = remarks,
                         Code = code,
                         Example = example,
                         Parameters = parameters,
-                        Returns = returns.Trim(),
+                        Returns = returns,
                     };
                 })
                 .Where(x => x != null)
