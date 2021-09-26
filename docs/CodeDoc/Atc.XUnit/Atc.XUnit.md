@@ -280,9 +280,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string pathFolderNa
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 
@@ -307,9 +305,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSu
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 
@@ -334,9 +330,7 @@ FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searc
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file's 'appsettings.json'.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 
@@ -361,9 +355,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string pathFolderNam
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 
@@ -388,9 +380,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSub
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 
@@ -415,9 +405,7 @@ FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo search
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pathFolderNameFilter`&nbsp;&nbsp;-&nbsp;&nbsp;Path should include this folder name.<br />
 <p><b>Returns:</b> The filePath to CLI-Exe file.</p>
 
-<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or
-            finds too many locations. In case of "too many", please narrow down
-            by using a more specific "searchFrom" path.</p>
+<p><b>Remarks:</b> This method will throw exceptions if the CLI-Exe file don't exist or finds too many locations. In case of "too many", please narrow down by using a more specific "searchFrom" path.</p>
 
 <b>Code usage:</b>
 

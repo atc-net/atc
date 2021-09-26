@@ -46,7 +46,7 @@ bool Contains(T item)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`item`&nbsp;&nbsp;-&nbsp;&nbsp;The item.<br />
-<p><b>Returns:</b> true if [contains] [the specified item]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [contains] [the specified item]; otherwise, `false`.</p>
 
 #### Dispose
 

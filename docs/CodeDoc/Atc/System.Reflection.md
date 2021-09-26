@@ -61,7 +61,7 @@ bool IsDebugBuild(this Assembly assembly)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
-<p><b>Returns:</b> true if assembly is a debug compilation, false if the assembly is a release compilation.</p>
+<p><b>Returns:</b> `true` if assembly is a debug compilation, `false` if the assembly is a release compilation.</p>
 
 
 <br />
@@ -126,7 +126,7 @@ bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
-<p><b>Returns:</b> true if [has exclude from code coverage attribute] [the specified member information]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has exclude from code coverage attribute] [the specified member information]; otherwise, `false`.</p>
 
 #### HasIgnoreDisplayAttribute
 
@@ -138,7 +138,7 @@ bool HasIgnoreDisplayAttribute(this MemberInfo memberInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
-<p><b>Returns:</b> true if [has ignore display attribute] [the specified member information]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has ignore display attribute] [the specified member information]; otherwise, `false`.</p>
 
 #### HasRequiredAttribute
 
@@ -150,7 +150,7 @@ bool HasRequiredAttribute(this MemberInfo memberInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
-<p><b>Returns:</b> true if [has required attribute] [the specified member information]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has required attribute] [the specified member information]; otherwise, `false`.</p>
 
 #### IsPropertyWithSetter
 
@@ -200,7 +200,7 @@ bool HasDeclaringTypeValidationAttributes(this MethodInfo methodInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
-<p><b>Returns:</b> true if [has declaring type validation attributes] [the specified method information]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has declaring type validation attributes] [the specified method information]; otherwise, `false`.</p>
 
 #### HasGenericParameters
 
@@ -212,7 +212,7 @@ bool HasGenericParameters(this MethodInfo methodInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
-<p><b>Returns:</b> true if [has generic parameters] [the specified method information]; otherwise, false.</p>
+<p><b>Returns:</b> `true` if [has generic parameters] [the specified method information]; otherwise, `false`.</p>
 
 #### IsOverride
 
@@ -224,7 +224,7 @@ bool IsOverride(this MethodInfo methodInfo)
 <b>Parameters</b>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
-<p><b>Returns:</b> true if the specified method information is override; otherwise, false.</p>
+<p><b>Returns:</b> `true` if the specified method information is override; otherwise, `false`.</p>
 
 
 <br />
