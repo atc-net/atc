@@ -253,12 +253,12 @@ namespace Atc.CodeDocumentation.Markdown
             var summary = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Summary ?? string.Empty;
             if (summary.Length > 0)
             {
-                mb.AppendLine(summary);
+                mb.AppendLine(summary.Replace("  ", "<br>", StringComparison.Ordinal));
 
                 var remarks = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Remarks ?? string.Empty;
                 if (!string.IsNullOrEmpty(remarks))
                 {
-                    mb.AppendLine($"<p><b>Remarks:</b> {remarks}</p>");
+                    mb.AppendLine($"<p><b>Remarks:</b> {remarks.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
                 }
 
                 var code = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Code ?? string.Empty;
@@ -440,7 +440,7 @@ namespace Atc.CodeDocumentation.Markdown
 
                     if (!string.Equals(commentForMember.Summary, name(item) + ".", StringComparison.Ordinal))
                     {
-                        mb.AppendLine($"<p><b>Summary:</b> {commentForMember.Summary}</p>");
+                        mb.AppendLine($"<p><b>Summary:</b> {commentForMember.Summary.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
                     }
 
                     if (commentForMember.Parameters != null && commentForMember.Parameters.Count > 0)
@@ -454,12 +454,12 @@ namespace Atc.CodeDocumentation.Markdown
 
                     if (!string.IsNullOrEmpty(commentForMember.Returns))
                     {
-                        mb.AppendLine($"<p><b>Returns:</b> {commentForMember.Returns}</p>");
+                        mb.AppendLine($"<p><b>Returns:</b> {commentForMember.Returns.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Remarks))
                     {
-                        mb.AppendLine($"<p><b>Remarks:</b> {commentForMember.Remarks}</p>");
+                        mb.AppendLine($"<p><b>Remarks:</b> {commentForMember.Remarks.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Code))

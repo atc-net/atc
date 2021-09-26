@@ -32,23 +32,14 @@ namespace Atc.CodeDocumentation
                         return null;
                     }
 
-                    var summaryXml = x.Elements("summary").FirstOrDefault()?.ToString()
-                        ?? x.Element("summary")?.ToString()
-                        ?? string.Empty;
-                    summaryXml = Regex.Replace(summaryXml, @"<\/?summary>", string.Empty);
-                    summaryXml = Regex.Replace(summaryXml, @"<para\s*/>", Environment.NewLine);
-                    summaryXml = Regex.Replace(summaryXml, @"<see cref=""\w:([^\""]*)""\s*\/>", m => ResolveSeeElement(m, namespaceMatch));
+                    var className = (memberType == MemberType.Type)
+                        ? match.Groups[2].Value + "." + match.Groups[3].Value
+                        : match.Groups[2].Value;
 
-                    var summary = Regex.Replace(summaryXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[2].Value}`");
-                    if (summary.Length > 0)
-                    {
-                        summary = string.Join("  ", summary.Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim()));
-                    }
+                    var summary = x.ParseElementText("summary", namespaceMatch);
+                    var returns = x.ParseElementText("returns", namespaceMatch);
+                    var remarks = x.ParseElementText("remarks", namespaceMatch);
 
-                    summary = summary.TrimExtended();
-
-                    var returns = ((string)x.Element("returns")) ?? string.Empty;
-                    var remarks = ((string)x.Element("remarks")) ?? string.Empty;
                     var code = (string)x.Element("code") ?? string.Empty;
                     if (code.Length > 0)
                     {
@@ -66,16 +57,12 @@ namespace Atc.CodeDocumentation
                         .Distinct(new TupleEqualityComparer<string, XElement>())
                         .ToDictionary(e => e.Item1, e => e.Item2.Value, StringComparer.Ordinal);
 
-                    var className = (memberType == MemberType.Type)
-                        ? match.Groups[2].Value + "." + match.Groups[3].Value
-                        : match.Groups[2].Value;
-
                     return new XmlDocumentComment
                     {
                         MemberType = memberType,
                         ClassName = className,
                         MemberName = match.Groups[3].Value,
-                        Summary = summary.Trim(),
+                        Summary = summary,
                         Remarks = remarks.Trim(),
                         Code = code,
                         Example = example,
@@ -146,6 +133,25 @@ namespace Atc.CodeDocumentation
             return typeName.StartsWith(ns, StringComparison.Ordinal)
                 ? $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace(".", "#", StringComparison.Ordinal).ToLower(GlobalizationConstants.EnglishCultureInfo))})"
                 : $"`{typeName}`";
+        }
+
+        private static string ParseElementText(this XElement x, string name, string? @namespace)
+        {
+            var innerXml = x.Element(name)?.ToString();
+            if (string.IsNullOrEmpty(innerXml))
+            {
+                return string.Empty;
+            }
+
+            innerXml = innerXml.Replace("<para>", string.Empty, StringComparison.Ordinal);
+            innerXml = innerXml.Replace(Environment.NewLine, " ", StringComparison.Ordinal);
+            innerXml = Regex.Replace(innerXml, @$"<\/?{name}>", string.Empty).Trim();
+            innerXml = Regex.Replace(innerXml, @"<para\s*\/>|<\/para>", Environment.NewLine);
+            innerXml = Regex.Replace(innerXml, @"<see cref=""\w:([^\""]*)""\s*\/>", m => ResolveSeeElement(m, @namespace));
+            innerXml = Regex.Replace(innerXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[2].Value}`");
+            innerXml = Regex.Replace(innerXml, @"<c\b[^>]*>(.*?)<\/c>", e => $"`{e.Groups[1].Value}`");
+            innerXml = innerXml.TrimExtended();
+            return string.Join("  ", innerXml.Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim()));
         }
     }
 }
