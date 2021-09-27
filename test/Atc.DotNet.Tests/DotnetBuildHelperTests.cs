@@ -38,7 +38,7 @@ namespace Atc.DotNet.Tests
             await CreateCsprojFile(WorkingDirectory);
             await CreateProgramFile(WorkingDirectory, withError: false);
 
-            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(NullLogger.Instance, WorkingDirectory);
+            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
 
             Assert.Empty(buildErrors);
         }
@@ -49,7 +49,7 @@ namespace Atc.DotNet.Tests
             await CreateCsprojFile(WorkingDirectory);
             await CreateProgramFile(WorkingDirectory, withError: true);
 
-            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(NullLogger.Instance, WorkingDirectory);
+            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
 
             Assert.Single(buildErrors);
         }
