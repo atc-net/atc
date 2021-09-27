@@ -10,12 +10,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static EnumDeclarationSyntax AddSuppressMessageAttribute(this EnumDeclarationSyntax enumDeclaration, SuppressMessageAttribute suppressMessage)
         {
-            if (enumDeclaration == null)
+            if (enumDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(enumDeclaration));
             }
 
-            if (suppressMessage == null)
+            if (suppressMessage is null)
             {
                 throw new ArgumentNullException(nameof(suppressMessage));
             }
@@ -42,7 +42,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static EnumDeclarationSyntax AddFlagAttribute(this EnumDeclarationSyntax enumDeclaration)
         {
-            if (enumDeclaration == null)
+            if (enumDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(enumDeclaration));
             }
@@ -53,7 +53,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static bool HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
         {
-            if (attributeType == null)
+            if (attributeType is null)
             {
                 throw new ArgumentNullException(nameof(attributeType));
             }

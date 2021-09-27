@@ -28,7 +28,6 @@ namespace Atc.Tests
         public void ToDictionary<T>(T dummyForT, int arrangeUiLcid, List<KeyValuePair<int, string>> expectedKeyValues)
             where T : System.Enum
         {
-            // ReSharper disable once UnusedVariable
             object dummyAssignment = dummyForT;
 
             // Arrange
@@ -39,7 +38,7 @@ namespace Atc.Tests
                 type == typeof(LogCategoryType);
 
             // Act
-            var actual = Enum<T>.ToDictionary(DropDownFirstItemType.None, true, includeDefault);
+            var actual = Enum<T>.ToDictionary(DropDownFirstItemType.None, useDescriptionAttribute: true, includeDefault: includeDefault);
 
             // Assert
             actual.Should()

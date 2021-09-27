@@ -8,7 +8,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static ArgumentSyntax Create(string argumentName)
         {
-            if (argumentName == null)
+            if (argumentName is null)
             {
                 throw new ArgumentNullException(nameof(argumentName));
             }

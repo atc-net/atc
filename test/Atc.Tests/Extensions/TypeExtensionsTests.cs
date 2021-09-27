@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -123,7 +123,7 @@ namespace Atc.Tests.Extensions
             var actual = type.GetBaseTypeGenericArgumentTypes();
 
             // Assert
-            if (expected == 0)
+            if (expected == default)
             {
                 Assert.Null(actual);
             }

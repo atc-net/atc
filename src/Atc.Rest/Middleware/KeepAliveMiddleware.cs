@@ -20,7 +20,7 @@ namespace Atc.Rest.Middleware
 
         public Task InvokeAsync(HttpContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

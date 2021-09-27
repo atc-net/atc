@@ -14,7 +14,7 @@ namespace Microsoft.OpenApi.Models
     {
         public static List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
         {
-            if (responses == null)
+            if (responses is null)
             {
                 throw new ArgumentNullException(nameof(responses));
             }
@@ -36,19 +36,19 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasSchemaTypeArray(this OpenApiResponses responses)
         {
-            if (responses == null)
+            if (responses is null)
             {
                 throw new ArgumentNullException(nameof(responses));
             }
 
-            foreach (var response in responses)
+            foreach (var (_, value) in responses)
             {
-                if (response.Value?.Content == null)
+                if (value?.Content is null)
                 {
                     continue;
                 }
 
-                if (response.Value.Content.Any(x => x.Value.Schema is not null && x.Value.Schema.IsTypeArray()))
+                if (value.Content.Any(x => x.Value.Schema is not null && x.Value.Schema.IsTypeArray()))
                 {
                     return true;
                 }
@@ -59,7 +59,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
         {
-            if (responses == null)
+            if (responses is null)
             {
                 throw new ArgumentNullException(nameof(responses));
             }
@@ -85,7 +85,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
         {
-            if (responses == null)
+            if (responses is null)
             {
                 throw new ArgumentNullException(nameof(responses));
             }
@@ -116,7 +116,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (value == null)
+                if (value is null)
                 {
                     continue;
                 }
@@ -130,7 +130,7 @@ namespace Microsoft.OpenApi.Models
         public static string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
             var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
-            return responseSchema == null
+            return responseSchema is null
                 ? string.Empty
                 : responseSchema.GetModelName();
         }
@@ -138,7 +138,7 @@ namespace Microsoft.OpenApi.Models
         public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
             var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
-            return responseSchema == null
+            return responseSchema is null
                 ? string.Empty
                 : responseSchema.GetDataType();
         }
@@ -152,7 +152,7 @@ namespace Microsoft.OpenApi.Models
         public static bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
         {
             var schema = responses.GetSchemaForStatusCode(httpStatusCode);
-            return schema != null &&
+            return schema is not null &&
                    schema.AllOf.Count == 2 &&
                    (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
                     NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase));
@@ -172,7 +172,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (value == null)
+                if (value is null)
                 {
                     continue;
                 }

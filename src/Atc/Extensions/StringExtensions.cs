@@ -50,12 +50,12 @@ namespace System
         /// </exception>
         public static int[] IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = true, bool useEndOfPatternToMatch = false)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (pattern == null)
+            if (pattern is null)
             {
                 throw new ArgumentNullException(nameof(pattern));
             }
@@ -177,7 +177,7 @@ namespace System
                 // ReSharper disable once InvertIf
                 if (sas.Length > 0 && !int.TryParse(sas[0], out _))
                 {
-                    if (!parameterLiterals.Contains(sas[0]))
+                    if (!parameterLiterals.Contains(sas[0], StringComparer.Ordinal))
                     {
                         parameterLiterals.Add(sas[0]);
                     }
@@ -198,7 +198,7 @@ namespace System
         /// <exception cref="ArgumentNullException">value.</exception>
         public static List<string> GetStringFormatParameterTemplatePlaceholders(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -221,12 +221,12 @@ namespace System
         /// </exception>
         public static string SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary<string, string> replacements)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (replacements == null)
+            if (replacements is null)
             {
                 throw new ArgumentNullException(nameof(replacements));
             }
@@ -236,8 +236,8 @@ namespace System
             {
                 var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
                          pair.Key.EndsWith("}}", StringComparison.Ordinal)
-                    ? placeholders.FirstOrDefault(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
-                    : placeholders.FirstOrDefault(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
+                    ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
+                    : placeholders.Find(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
 
                 if (!string.IsNullOrEmpty(s))
                 {
@@ -256,7 +256,7 @@ namespace System
         /// <exception cref="FormatException">Invalid ISO8601 format.</exception>
         public static DateTime ParseDateFromIso8601(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -277,7 +277,7 @@ namespace System
         /// <exception cref="ArgumentNullException">value.</exception>
         public static bool TryParseDateFromIso8601(this string value, out DateTime dateTime)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -309,7 +309,7 @@ namespace System
         /// <param name="dateTimeStyles">The date time styles.</param>
         public static bool TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = DateTimeStyles.None)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -739,7 +739,7 @@ namespace System
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
         public static string PascalCase(this string value, char[]? separators, bool removeSeparators = false)
         {
-            if (string.IsNullOrEmpty(value) || separators == null)
+            if (string.IsNullOrEmpty(value) || separators is null)
             {
                 return value;
             }
@@ -755,14 +755,14 @@ namespace System
             }
 
             var strArray = value.Split(separators);
-            for (int i = 0; i < strArray.Length; i++)
+            for (var i = 0; i < strArray.Length; i++)
             {
                 var tmp = strArray[i].Substring(0, 1).ToUpperInvariant() + strArray[i].Substring(1).ToLowerInvariant();
-                for (int j = 1; j < strArray[i].Length - 1; j++)
+                for (var j = 1; j < strArray[i].Length - 1; j++)
                 {
-                    char c1 = strArray[i][j - 1];
-                    char c2 = strArray[i][j];
-                    char c3 = strArray[i][j + 1];
+                    var c1 = strArray[i][j - 1];
+                    var c2 = strArray[i][j];
+                    var c3 = strArray[i][j + 1];
                     if (char.IsLower(c1) && char.IsUpper(c2) && char.IsLower(c3))
                     {
                         tmp = tmp.ReplaceAt(j, c2);
@@ -773,7 +773,7 @@ namespace System
             }
 
             var sb = new StringBuilder();
-            for (int i = 0; i < strArray.Length; i++)
+            for (var i = 0; i < strArray.Length; i++)
             {
                 sb.Append(strArray[i]);
                 if (removeSeparators)
@@ -803,7 +803,7 @@ namespace System
         /// </remarks>
         public static string EnsureEnvironmentNewLines(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -841,7 +841,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsureFirstCharacterToUpper(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -860,7 +860,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsureFirstCharacterToLower(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -879,7 +879,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsureSingular(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -900,7 +900,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsurePlural(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -921,7 +921,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsureFirstCharacterToUpperAndSingular(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -935,7 +935,7 @@ namespace System
         /// <param name="value">The value.</param>
         public static string EnsureFirstCharacterToUpperAndPlural(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -984,7 +984,7 @@ namespace System
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "char", Justification = "OK.")]
         public static string ReplaceAt(this string value, int index, char newChar)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -1002,12 +1002,12 @@ namespace System
         /// <returns>The filtered string.</returns>
         public static string ReplaceMany(this string value, IDictionary<string, string> replacements)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (replacements == null)
+            if (replacements is null)
             {
                 throw new ArgumentNullException(nameof(replacements));
             }
@@ -1024,12 +1024,12 @@ namespace System
         /// <returns>The filtered string.</returns>
         public static string ReplaceMany(this string value, char[] chars, char replacement)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (chars == null)
+            if (chars is null)
             {
                 throw new ArgumentNullException(nameof(chars));
             }
@@ -1051,7 +1051,7 @@ namespace System
         /// </remarks>
         public static string ReplaceNewLines(this string value, string newValue)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -1075,7 +1075,7 @@ namespace System
         /// </remarks>
         public static string RemoveNewLines(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -1136,7 +1136,7 @@ namespace System
         /// <exception cref="System.ArgumentNullException">value.</exception>
         public static string RemoveEndingSlashIfExist(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -1297,7 +1297,7 @@ namespace System
         /// </returns>
         public static string TrimExtended(this string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }

@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace System.IO
 {
     /// <summary>
@@ -13,7 +13,7 @@ namespace System.IO
         /// <param name="bufferSize">Size of the buffer.</param>
         public static Stream CopyToStream(this Stream stream, int bufferSize = 4096)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -37,7 +37,7 @@ namespace System.IO
         /// <param name="stream">The stream.</param>
         public static byte[] ToBytes(this Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
@@ -63,7 +63,7 @@ namespace System.IO
         /// <param name="stream">The stream.</param>
         public static string ToStringData(this Stream stream)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }

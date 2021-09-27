@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,7 @@ namespace Microsoft.OpenApi.Models
     {
         public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
         {
-            if (segmentName == null)
+            if (segmentName is null)
             {
                 throw new ArgumentNullException(nameof(segmentName));
             }

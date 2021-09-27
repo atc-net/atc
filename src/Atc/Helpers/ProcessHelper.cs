@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -333,7 +332,8 @@ namespace Atc.Helpers
                         output: $"Too many processes found by name '{processName}'");
                 default:
                 {
-                    var process = processes.First();
+                    var process = processes[0];
+
                     try
                     {
                         process.KillTree();
@@ -367,18 +367,18 @@ namespace Atc.Helpers
 
             try
             {
-                var result = await TaskHelper
+                var (isSuccessful, output, assignedProcessId) = await TaskHelper
                     .Execute(
                         _ =>
-                        InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments),
+                            InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments),
                         TimeSpan.FromSeconds(timeoutInSec),
                         cancellationToken)
                     .ConfigureAwait(false);
 
-                processId = result.processId;
-                resultOutput = result.output;
+                processId = assignedProcessId;
+                resultOutput = output;
 
-                return (result.isSuccessful, result.output);
+                return (isSuccessful: isSuccessful, output: output);
             }
             catch (TimeoutException)
             {

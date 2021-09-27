@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace System
@@ -15,14 +15,14 @@ namespace System
         /// <returns>-1, 0 or 1.</returns>
         /// <exception cref="ArgumentNullException">version.</exception>
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-        public static int CompareTo(this Version version, Version otherVersion, int significantParts)
+        public static int CompareTo(this Version version, Version? otherVersion, int significantParts)
         {
-            if (version == null)
+            if (version is null)
             {
                 throw new ArgumentNullException(nameof(version));
             }
 
-            if (otherVersion == null)
+            if (otherVersion is null)
             {
                 return 1;
             }
@@ -59,14 +59,14 @@ namespace System
         ///   <c>true</c> if 'otherVersion' is greater then the current 'version'; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">version.</exception>
-        public static bool GreaterThan(this Version version, Version otherVersion)
+        public static bool GreaterThan(this Version version, Version? otherVersion)
         {
-            if (version == null)
+            if (version is null)
             {
                 throw new ArgumentNullException(nameof(version));
             }
 
-            if (otherVersion == null)
+            if (otherVersion is null)
             {
                 return true;
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 // ReSharper disable once CheckNamespace
@@ -16,7 +16,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         private static int Compare(UsingDirectiveSyntax directive)
         {
-            var alternativeComparison = directive.Alias == null
+            var alternativeComparison = directive.Alias is null
                 ? 0
                 : 2;
 

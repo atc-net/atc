@@ -18,17 +18,17 @@ namespace Atc.Math.Geometry
         /// </returns>
         public static bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
         {
-            if (angleA == null)
+            if (angleA is null)
             {
                 throw new ArgumentNullException(nameof(angleA));
             }
 
-            if (angleB == null)
+            if (angleB is null)
             {
                 throw new ArgumentNullException(nameof(angleB));
             }
 
-            if (angleC == null)
+            if (angleC is null)
             {
                 throw new ArgumentNullException(nameof(angleC));
             }
@@ -58,26 +58,26 @@ namespace Atc.Math.Geometry
         /// <param name="sideC">The side C.</param>
         public static double Pythagorean(double? sideA, double? sideB, double? sideC)
         {
-            int i = Convert.ToInt32(sideA.HasValue) + Convert.ToInt32(sideB.HasValue) + Convert.ToInt32(sideC.HasValue);
+            var i = Convert.ToInt32(sideA.HasValue) + Convert.ToInt32(sideB.HasValue) + Convert.ToInt32(sideC.HasValue);
 
             if (i != 2)
             {
                 throw new ArithmeticException("One and only one argument have to be null.");
             }
 
-            if (sideA == null && sideB != null && sideC != null)
+            if (sideA is null && sideB is not null && sideC is not null)
             {
                 // Calc sideA
                 return System.Math.Sqrt(System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideB, 2));
             }
 
-            if (sideA != null && sideB == null && sideC != null)
+            if (sideA is not null && sideB is null && sideC is not null)
             {
                 // Calc sideB
                 return System.Math.Sqrt(System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideA, 2));
             }
 
-            if (sideA != null && sideB != null && sideC == null)
+            if (sideA is not null && sideB is not null && sideC is null)
             {
                 // Calc sideC
                 return System.Math.Sqrt(System.Math.Pow((double)sideA, 2) + System.Math.Pow((double)sideB, 2));

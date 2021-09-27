@@ -55,7 +55,7 @@ namespace System
                 .Where(x => !x.IsDynamic))
             {
                 var type = assembly.GetExportedTypeByName(typeName);
-                if (type != null)
+                if (type is not null)
                 {
                     return type;
                 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -8,7 +8,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static AttributeListSyntax Create(string attributeName)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -20,7 +20,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeListSyntax Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -33,7 +33,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeListSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -49,7 +49,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeListSyntax CreateWithOneItemWithOneArgumentWithNameEquals(string attributeName, string argumentName, string argumentValue)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }

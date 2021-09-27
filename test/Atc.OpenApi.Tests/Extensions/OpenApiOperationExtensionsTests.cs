@@ -28,7 +28,7 @@ namespace Atc.OpenApi.Tests.Extensions
             var actual = openApiOperation.GetModelSchemaFromResponse();
 
             // Assert
-            if (expected == null)
+            if (expected is null)
             {
                 actual.Should()
                     .BeNull();
@@ -49,7 +49,7 @@ namespace Atc.OpenApi.Tests.Extensions
             var actual = openApiOperation.GetModelSchemaFromRequest();
 
             // Assert
-            if (expected == null)
+            if (expected is null)
             {
                 actual.Should()
                     .BeNull();

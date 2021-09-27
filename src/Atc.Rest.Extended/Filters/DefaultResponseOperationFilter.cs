@@ -18,20 +18,17 @@ namespace Atc.Rest.Extended.Filters
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation == null)
+            if (operation is null)
             {
                 throw new ArgumentNullException(nameof(operation));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (operation.Responses == null)
-            {
-                operation.Responses = new OpenApiResponses();
-            }
+            operation.Responses ??= new OpenApiResponses();
 
             if (!operation.Responses.ContainsKey("default"))
             {

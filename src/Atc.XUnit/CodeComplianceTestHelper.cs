@@ -25,12 +25,12 @@ namespace Atc.XUnit
             Type testType,
             bool useFullName = false)
         {
-            if (sourceType == null)
+            if (sourceType is null)
             {
                 throw new ArgumentNullException(nameof(sourceType));
             }
 
-            if (testType == null)
+            if (testType is null)
             {
                 throw new ArgumentNullException(nameof(testType));
             }
@@ -58,7 +58,7 @@ namespace Atc.XUnit
             Assembly testAssembly,
             bool useFullName = false)
         {
-            if (sourceType == null)
+            if (sourceType is null)
             {
                 throw new ArgumentNullException(nameof(sourceType));
             }
@@ -88,12 +88,12 @@ namespace Atc.XUnit
             List<Type>? excludeSourceTypes = null,
             bool useFullName = false)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -122,12 +122,12 @@ namespace Atc.XUnit
             Assembly testAssembly,
             List<Type>? excludeSourceTypes = null)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -154,12 +154,12 @@ namespace Atc.XUnit
             List<Type>? excludeSourceTypes = null,
             bool useFullName = false)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -210,12 +210,12 @@ namespace Atc.XUnit
             Assembly testAssembly,
             List<Type>? excludeSourceTypes = null)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -238,12 +238,12 @@ namespace Atc.XUnit
             List<Type>? excludeSourceTypes = null,
             bool useFullName = false)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -267,12 +267,12 @@ namespace Atc.XUnit
             List<Type>? excludeSourceTypes = null,
             bool useFullName = false)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -294,12 +294,12 @@ namespace Atc.XUnit
             Assembly testAssembly,
             List<Type>? excludeSourceTypes = null)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -328,17 +328,17 @@ namespace Atc.XUnit
             Assembly testAssembly,
             List<Type>? excludeSourceTypes = null)
         {
-            if (reportDirectory == null)
+            if (reportDirectory is null)
             {
                 throw new ArgumentNullException(nameof(reportDirectory));
             }
 
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }

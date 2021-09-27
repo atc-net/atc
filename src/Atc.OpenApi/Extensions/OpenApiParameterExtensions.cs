@@ -9,7 +9,7 @@ namespace Microsoft.OpenApi.Models
     {
         public static bool HasFormatTypeUuid(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -19,7 +19,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeByte(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -29,7 +29,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeDate(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -39,7 +39,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeDateTime(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -49,7 +49,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeTime(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -59,7 +59,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeTimestamp(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -69,7 +69,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeInt32(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -79,7 +79,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeInt64(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -89,7 +89,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeEmail(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -99,7 +99,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeUri(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -109,7 +109,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -130,7 +130,7 @@ namespace Microsoft.OpenApi.Models
 
         public static List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -140,7 +140,7 @@ namespace Microsoft.OpenApi.Models
 
         public static List<OpenApiParameter> GetAllFromHeader(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }
@@ -150,7 +150,7 @@ namespace Microsoft.OpenApi.Models
 
         public static List<OpenApiParameter> GetAllFromQuery(this IList<OpenApiParameter> parameters)
         {
-            if (parameters == null)
+            if (parameters is null)
             {
                 throw new ArgumentNullException(nameof(parameters));
             }

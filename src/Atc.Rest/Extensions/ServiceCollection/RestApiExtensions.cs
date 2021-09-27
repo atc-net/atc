@@ -34,12 +34,12 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<IMvcBuilder> setupMvcAction,
             RestApiOptions restApiOptions)
         {
-            if (setupMvcAction == null)
+            if (setupMvcAction is null)
             {
                 throw new ArgumentNullException(nameof(setupMvcAction));
             }
 
-            if (restApiOptions == null)
+            if (restApiOptions is null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
@@ -112,7 +112,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static void HandleAssemblyPairs(IServiceCollection services, RestApiOptions restApiOptions)
         {
-            if (restApiOptions == null)
+            if (restApiOptions is null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
             }

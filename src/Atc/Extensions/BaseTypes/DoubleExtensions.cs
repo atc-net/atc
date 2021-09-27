@@ -36,9 +36,9 @@ namespace System
         /// </returns>
         public static bool IsEqual(this double? a, double? b)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return IsEqual((double)a, (double)b);
@@ -66,9 +66,9 @@ namespace System
         /// <param name="decimalPrecision">The decimal precision.</param>
         public static bool IsEqual(this double? a, double? b, int decimalPrecision)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return ((decimal)a).IsEqual((decimal)b, decimalPrecision);

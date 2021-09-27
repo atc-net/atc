@@ -15,7 +15,7 @@ namespace Atc.CodeDocumentation
     {
         public static TypeComments? CollectExportedTypeWithComments(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -27,7 +27,7 @@ namespace Atc.CodeDocumentation
 
         public static TypeComments[] CollectExportedTypesWithMissingComments(Assembly assembly, string? namespaceMatch = null, List<Type>? excludeSourceTypes = null)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
@@ -38,7 +38,7 @@ namespace Atc.CodeDocumentation
 
         public static TypeComments[] CollectExportedTypesWithComments(Assembly assembly, string? namespaceMatch = null, List<Type>? excludeSourceTypes = null)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
@@ -71,17 +71,17 @@ namespace Atc.CodeDocumentation
 
         private static bool IsRequiredNamespace(Type type, Regex? regex)
         {
-            return regex == null || regex.IsMatch(type.Namespace ?? string.Empty);
+            return regex is null || regex.IsMatch(type.Namespace ?? string.Empty);
         }
 
         private static TypeComments[] CollectExportedTypesWithMissingComments(Assembly assembly, FileSystemInfo xmlPath, string? namespaceMatch, List<Type>? excludeSourceTypes)
         {
-            if (xmlPath == null)
+            if (xmlPath is null)
             {
                 throw new ArgumentNullException(nameof(xmlPath));
             }
 
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
@@ -135,14 +135,14 @@ namespace Atc.CodeDocumentation
                     }
                     catch (ReflectionTypeLoadException ex)
                     {
-                        return ex.Types.Where(t => t != null);
+                        return ex.Types.Where(t => t is not null);
                     }
                     catch
                     {
                         return Type.EmptyTypes;
                     }
                 })
-                .Where(x => x != null
+                .Where(x => x is not null
                             && x.IsPublic
                             && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
                             && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()

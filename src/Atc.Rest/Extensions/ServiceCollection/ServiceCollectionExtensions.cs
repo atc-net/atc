@@ -12,17 +12,17 @@ namespace Microsoft.Extensions.DependencyInjection
             Assembly interfaceAssembly,
             Assembly implementationAssembly)
         {
-            if (services == null)
+            if (services is null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
-            if (interfaceAssembly == null)
+            if (interfaceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(interfaceAssembly));
             }
 
-            if (implementationAssembly == null)
+            if (implementationAssembly is null)
             {
                 throw new ArgumentNullException(nameof(implementationAssembly));
             }
@@ -42,7 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     if (implementationType
                         .GetInterfaces()
-                        .FirstOrDefault(x => string.Equals(x.FullName, implementationInterface.FullName, StringComparison.Ordinal)) == null)
+                        .FirstOrDefault(x => string.Equals(x.FullName, implementationInterface.FullName, StringComparison.Ordinal)) is null)
                     {
                         continue;
                     }
@@ -61,12 +61,12 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Assembly apiAssembly)
         {
-            if (services == null)
+            if (services is null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
-            if (apiAssembly == null)
+            if (apiAssembly is null)
             {
                 throw new ArgumentNullException(nameof(apiAssembly));
             }

@@ -1,11 +1,11 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
     public static class AssemblyExtensions
     {
         public static string GetApiName(this Assembly assembly, bool removeLastVerb = false)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }

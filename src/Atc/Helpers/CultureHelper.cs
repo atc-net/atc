@@ -28,7 +28,7 @@ namespace Atc.Helpers
         {
             lock (Lock)
             {
-                if (allCultures != null && allCultures.ContainsKey(Thread.CurrentThread.CurrentUICulture.LCID))
+                if (allCultures is not null && allCultures.ContainsKey(Thread.CurrentThread.CurrentUICulture.LCID))
                 {
                     return allCultures[Thread.CurrentThread.CurrentUICulture.LCID];
                 }
@@ -103,7 +103,7 @@ namespace Atc.Helpers
         /// <param name="includeOnlyLcids">The include only lcids.</param>
         public static List<Culture> GetCultures(int displayLanguageLcid, List<int>? includeOnlyLcids)
         {
-            if (includeOnlyLcids == null || includeOnlyLcids.Count == 0)
+            if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
             {
                 return GetCultures(displayLanguageLcid, new List<string>());
             }
@@ -127,7 +127,7 @@ namespace Atc.Helpers
             }
 
             var cultures = GetCultures();
-            if (backupCultureInfo != null)
+            if (backupCultureInfo is not null)
             {
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
@@ -135,11 +135,11 @@ namespace Atc.Helpers
             var data = new List<Culture>();
             foreach (var culture in cultures)
             {
-                if (includeOnlyCultureNames == null || includeOnlyCultureNames.Count == 0)
+                if (includeOnlyCultureNames is null || includeOnlyCultureNames.Count == 0)
                 {
                     data.Add(culture);
                 }
-                else if (includeOnlyCultureNames.Contains(culture.Name))
+                else if (includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     data.Add(culture);
                 }
@@ -156,12 +156,12 @@ namespace Atc.Helpers
             var data = new List<Culture>
             {
                 // Ensure en-US
-                GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates }).First(),
+                GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates })[0],
             };
 
             foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName))
             {
-                if (data.FirstOrDefault(x => string.Equals(x.CountryCodeA2, culture.CountryCodeA2, StringComparison.Ordinal)) == null)
+                if (data.Find(x => string.Equals(x.CountryCodeA2, culture.CountryCodeA2, StringComparison.Ordinal)) is null)
                 {
                     data.Add(culture);
                 }
@@ -208,7 +208,7 @@ namespace Atc.Helpers
         /// <param name="value">The value.</param>
         public static Culture? GetCultureByCountryCodeA2(int displayLanguageLcid, string value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -242,7 +242,7 @@ namespace Atc.Helpers
                 throw new ArgumentOutOfRangeException(nameof(displayLanguageLcid));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -274,12 +274,12 @@ namespace Atc.Helpers
         /// <param name="value">The value.</param>
         public static List<Culture> GetCulturesByLanguageCodeA2(int displayLanguageLcid, string value)
         {
-            if (displayLanguageLcid == 0)
+            if (displayLanguageLcid == default)
             {
                 throw new ArgumentOutOfRangeException(nameof(displayLanguageLcid));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -324,17 +324,17 @@ namespace Atc.Helpers
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static Culture? GetCultureFromValue(int displayLanguageLcid, List<int> includeLcids, string value)
         {
-            if (displayLanguageLcid == 0)
+            if (displayLanguageLcid == default)
             {
                 throw new ArgumentOutOfRangeException(nameof(displayLanguageLcid));
             }
 
-            if (includeLcids == null)
+            if (includeLcids is null)
             {
                 throw new ArgumentNullException(nameof(includeLcids));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -354,29 +354,29 @@ namespace Atc.Helpers
                         if ("EN".Equals(tmp, StringComparison.Ordinal) ||
                             "US".Equals(tmp, StringComparison.Ordinal))
                         {
-                            culture = cultures.FirstOrDefault(x => x.Lcid == GlobalizationLcidConstants.UnitedStates);
-                            if (culture != null)
+                            culture = cultures.Find(x => x.Lcid == GlobalizationLcidConstants.UnitedStates);
+                            if (culture is not null)
                             {
                                 return culture;
                             }
                         }
                         else if ("GB".Equals(tmp, StringComparison.Ordinal))
                         {
-                            culture = cultures.FirstOrDefault(x => x.Lcid == GlobalizationLcidConstants.GreatBritain);
-                            if (culture != null)
+                            culture = cultures.Find(x => x.Lcid == GlobalizationLcidConstants.GreatBritain);
+                            if (culture is not null)
                             {
                                 return culture;
                             }
                         }
 
-                        culture = cultures.FirstOrDefault(x => x.CountryCodeA2.Equals(tmp, StringComparison.Ordinal));
-                        if (culture != null)
+                        culture = cultures.Find(x => x.CountryCodeA2.Equals(tmp, StringComparison.Ordinal));
+                        if (culture is not null)
                         {
                             return culture;
                         }
 
-                        culture = cultures.FirstOrDefault(x => x.LanguageCodeA2.Equals(tmp, StringComparison.Ordinal));
-                        if (culture != null)
+                        culture = cultures.Find(x => x.LanguageCodeA2.Equals(tmp, StringComparison.Ordinal));
+                        if (culture is not null)
                         {
                             return culture;
                         }
@@ -387,14 +387,14 @@ namespace Atc.Helpers
                 case 3:
                     {
                         var tmp = value.ToUpperInvariant();
-                        culture = cultures.FirstOrDefault(x => x.CountryCodeA3.Equals(tmp, StringComparison.Ordinal));
-                        if (culture != null)
+                        culture = cultures.Find(x => x.CountryCodeA3.Equals(tmp, StringComparison.Ordinal));
+                        if (culture is not null)
                         {
                             return culture;
                         }
 
-                        culture = cultures.FirstOrDefault(x => x.LanguageCodeA3.Equals(tmp, StringComparison.Ordinal));
-                        if (culture != null)
+                        culture = cultures.Find(x => x.LanguageCodeA3.Equals(tmp, StringComparison.Ordinal));
+                        if (culture is not null)
                         {
                             return culture;
                         }
@@ -404,8 +404,8 @@ namespace Atc.Helpers
 
                 case 5 when value.IndexOf("-", StringComparison.Ordinal) != -1:
                     {
-                        culture = cultures.FirstOrDefault(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
-                        if (culture != null)
+                        culture = cultures.Find(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
+                        if (culture is not null)
                         {
                             return culture;
                         }
@@ -416,50 +416,50 @@ namespace Atc.Helpers
 
             if (value.IsDigitOnly())
             {
-                culture = cultures.FirstOrDefault(x => x.Lcid == int.Parse(value, GlobalizationConstants.EnglishCultureInfo));
-                if (culture != null)
+                culture = cultures.Find(x => x.Lcid == int.Parse(value, GlobalizationConstants.EnglishCultureInfo));
+                if (culture is not null)
                 {
                     return culture;
                 }
             }
 
             // Try exact match
-            culture = cultures.FirstOrDefault(x => x.CountryDisplayName.Equals(value, StringComparison.OrdinalIgnoreCase));
-            if (culture != null)
+            culture = cultures.Find(x => x.CountryDisplayName.Equals(value, StringComparison.OrdinalIgnoreCase));
+            if (culture is not null)
             {
                 return culture;
             }
 
-            culture = cultures.FirstOrDefault(x => x.LanguageDisplayName.Equals(value, StringComparison.OrdinalIgnoreCase));
-            if (culture != null)
+            culture = cultures.Find(x => x.LanguageDisplayName.Equals(value, StringComparison.OrdinalIgnoreCase));
+            if (culture is not null)
             {
                 return culture;
             }
 
             if (displayLanguageLcid != GlobalizationLcidConstants.UnitedStates)
             {
-                culture = cultures.FirstOrDefault(x => x.CountryEnglishName.Equals(value, StringComparison.OrdinalIgnoreCase));
-                if (culture != null)
+                culture = cultures.Find(x => x.CountryEnglishName.Equals(value, StringComparison.OrdinalIgnoreCase));
+                if (culture is not null)
                 {
                     return culture;
                 }
 
-                culture = cultures.FirstOrDefault(x => x.LanguageEnglishName.Equals(value, StringComparison.OrdinalIgnoreCase));
-                if (culture != null)
+                culture = cultures.Find(x => x.LanguageEnglishName.Equals(value, StringComparison.OrdinalIgnoreCase));
+                if (culture is not null)
                 {
                     return culture;
                 }
             }
 
             // Try start match
-            culture = cultures.FirstOrDefault(x => x.CountryDisplayName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
-            if (culture != null)
+            culture = cultures.Find(x => x.CountryDisplayName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
+            if (culture is not null)
             {
                 return culture;
             }
 
-            culture = cultures.FirstOrDefault(x => x.LanguageDisplayName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
-            if (culture != null)
+            culture = cultures.Find(x => x.LanguageDisplayName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
+            if (culture is not null)
             {
                 return culture;
             }
@@ -467,14 +467,14 @@ namespace Atc.Helpers
             // ReSharper disable once InvertIf
             if (displayLanguageLcid != GlobalizationLcidConstants.UnitedStates)
             {
-                culture = cultures.FirstOrDefault(x => x.CountryEnglishName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
-                if (culture != null)
+                culture = cultures.Find(x => x.CountryEnglishName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
+                if (culture is not null)
                 {
                     return culture;
                 }
 
-                culture = cultures.FirstOrDefault(x => x.LanguageEnglishName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
-                if (culture != null)
+                culture = cultures.Find(x => x.LanguageEnglishName.StartsWith(value, StringComparison.OrdinalIgnoreCase));
+                if (culture is not null)
                 {
                     return culture;
                 }
@@ -528,7 +528,7 @@ namespace Atc.Helpers
             List<int>? includeOnlyLcids,
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
         {
-            if (includeOnlyLcids == null || includeOnlyLcids.Count == 0)
+            if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
             {
                 return GetCountryNames(displayLanguageLcid, dropDownFirstItemType);
             }
@@ -570,7 +570,7 @@ namespace Atc.Helpers
 
             var cultures = GetCultures();
             var data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
-            if (backupCultureInfo != null)
+            if (backupCultureInfo is not null)
             {
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
@@ -578,7 +578,7 @@ namespace Atc.Helpers
             var countryDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (var culture in cultures)
             {
-                if (includeOnlyCultureNames != null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name))
+                if (includeOnlyCultureNames is not null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -600,9 +600,9 @@ namespace Atc.Helpers
                     continue;
                 }
 
-                if (includeOnlyCultureNames == null ||
+                if (includeOnlyCultureNames is null ||
                     includeOnlyCultureNames.Count == 0 ||
-                    includeOnlyCultureNames.Contains(culture.Name))
+                    includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     var text = countryDisplayNameCount[culture.CountryDisplayName] > 1
                         ? $"{culture.CountryDisplayName} ({culture.LanguageDisplayName})"
@@ -659,7 +659,7 @@ namespace Atc.Helpers
             List<int>? includeOnlyLcids,
             DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
         {
-            if (includeOnlyLcids == null || includeOnlyLcids.Count == 0)
+            if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
             {
                 return GetLanguageNames(displayLanguageLcid, dropDownFirstItemType);
             }
@@ -701,7 +701,7 @@ namespace Atc.Helpers
 
             var cultures = GetCultures();
             var data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
-            if (backupCultureInfo != null)
+            if (backupCultureInfo is not null)
             {
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
@@ -709,7 +709,7 @@ namespace Atc.Helpers
             var languageDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (var culture in cultures)
             {
-                if (includeOnlyCultureNames != null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name))
+                if (includeOnlyCultureNames is not null && includeOnlyCultureNames.Count > 0 && !includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -731,9 +731,9 @@ namespace Atc.Helpers
                     continue;
                 }
 
-                if (includeOnlyCultureNames == null ||
+                if (includeOnlyCultureNames is null ||
                     includeOnlyCultureNames.Count == 0 ||
-                    includeOnlyCultureNames.Contains(culture.Name))
+                    includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     var text = languageDisplayNameCount[culture.LanguageDisplayName] > 1
                         ? $"{culture.LanguageDisplayName} ({culture.CountryDisplayName})"
@@ -766,17 +766,17 @@ namespace Atc.Helpers
                 from cultureInfo
                 in culturesFromPlatform
                 let countryEnglishName = ExtractCountryEnglishName(cultureInfo)
-                let countryDisplayName = TryTranslateCountryEnglishName(countryEnglishName, false)
-                where countryDisplayName == null
+                let countryDisplayName = TryTranslateCountryEnglishName(countryEnglishName, useValueAsDefault: false)
+                where countryDisplayName is null
                 select cultureInfo.LCID)
                 .ToList();
 
-            if (backupCultureInfo != null)
+            if (backupCultureInfo is not null)
             {
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
 
-            if (includeOnlyLcids == null || includeOnlyLcids.Count <= 0)
+            if (includeOnlyLcids is null || includeOnlyLcids.Count <= 0)
             {
                 return data;
             }
@@ -805,17 +805,17 @@ namespace Atc.Helpers
                 from cultureInfo
                 in culturesFromPlatform
                 let languageEnglishName = ExtractLanguageEnglishName(cultureInfo)
-                let languageDisplayName = TryTranslateLanguageEnglishName(languageEnglishName, false)
-                where languageDisplayName == null
+                let languageDisplayName = TryTranslateLanguageEnglishName(languageEnglishName, useValueAsDefault: false)
+                where languageDisplayName is null
                 select cultureInfo.LCID)
                 .ToList();
 
-            if (backupCultureInfo != null)
+            if (backupCultureInfo is not null)
             {
                 Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
             }
 
-            if (includeOnlyLcids == null || includeOnlyLcids.Count <= 0)
+            if (includeOnlyLcids is null || includeOnlyLcids.Count <= 0)
             {
                 return data;
             }
@@ -881,7 +881,7 @@ namespace Atc.Helpers
         [SuppressMessage("Microsoft.Globalization", "CA1304:SpecifyCultureInfo", Justification = "OK.")]
         private static string TryTranslateCountryEnglishName(string value, bool useValueAsDefault = true)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }

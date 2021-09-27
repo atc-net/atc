@@ -25,7 +25,7 @@ namespace System
         /// <exception cref="ArgumentNullException">type.</exception>
         public static bool HasValidationAttributes(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -44,7 +44,7 @@ namespace System
         /// </returns>
         public static bool IsDelegate(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -62,7 +62,7 @@ namespace System
         /// <exception cref="ArgumentNullException">type.</exception>
         public static bool IsNullable(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -91,7 +91,7 @@ namespace System
         /// <exception cref="ArgumentNullException">type.</exception>
         public static bool IsSimple(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -119,17 +119,17 @@ namespace System
         /// </returns>
         public static bool IsInheritedFrom(this Type type, Type inheritType)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            if (inheritType == null)
+            if (inheritType is null)
             {
                 throw new ArgumentNullException(nameof(inheritType));
             }
 
-            if (type.BaseType == null)
+            if (type.BaseType is null)
             {
                 return false;
             }
@@ -140,7 +140,7 @@ namespace System
             }
 
             var baseTypeFullName = type.BaseType.FullName;
-            if (baseTypeFullName == null)
+            if (baseTypeFullName is null)
             {
                 return false;
             }
@@ -151,7 +151,7 @@ namespace System
             }
 
             var inheritTypeFullName = inheritType.FullName;
-            if (inheritTypeFullName == null)
+            if (inheritTypeFullName is null)
             {
                 return false;
             }
@@ -176,22 +176,22 @@ namespace System
         /// </returns>
         public static bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = true)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            if (inheritType == null)
+            if (inheritType is null)
             {
                 throw new ArgumentNullException(nameof(inheritType));
             }
 
-            if (argumentType == null)
+            if (argumentType is null)
             {
                 throw new ArgumentNullException(nameof(argumentType));
             }
 
-            if (type.BaseType == null)
+            if (type.BaseType is null)
             {
                 return false;
             }
@@ -202,7 +202,7 @@ namespace System
             }
 
             var baseTypeFullName = type.BaseType.FullName;
-            if (baseTypeFullName == null)
+            if (baseTypeFullName is null)
             {
                 return false;
             }
@@ -213,7 +213,7 @@ namespace System
             }
 
             var inheritTypeFullName = inheritType.FullName;
-            if (inheritTypeFullName == null)
+            if (inheritTypeFullName is null)
             {
                 return false;
             }
@@ -236,7 +236,7 @@ namespace System
         public static Type? GetBaseTypeGenericArgumentType(this Type type)
         {
             var types = GetBaseTypeGenericArgumentTypes(type);
-            if (types != null && types.Length == 1)
+            if (types is not null && types.Length == 1)
             {
                 return types.First();
             }
@@ -252,12 +252,12 @@ namespace System
         [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         public static Type[]? GetBaseTypeGenericArgumentTypes(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
 
-            return type.BaseType == null
+            return type.BaseType is null
                 ? null
                 : type.BaseType.IsGenericType &&
                   type.BaseType.GetGenericArguments().Length == 1
@@ -317,7 +317,7 @@ namespace System
         /// <remarks>Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
         public static MethodInfo[] GetPublicDeclaredOnlyMethods(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -333,7 +333,7 @@ namespace System
         [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
         public static MethodInfo[] GetPrivateDeclaredOnlyMethods(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -349,7 +349,7 @@ namespace System
         /// <exception cref="ArgumentNullException">type.</exception>
         public static MethodInfo? GetPrivateDeclaredOnlyMethod(this Type type, string name)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -365,7 +365,7 @@ namespace System
         /// <exception cref="ArgumentNullException">type.</exception>
         public static string? GetNameWithoutGenericType(this Type type, bool useFullName = false)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -373,7 +373,7 @@ namespace System
             // ReSharper disable once InvertIf
             if (type.IsGenericType)
             {
-                if (useFullName && type.FullName != null)
+                if (useFullName && type.FullName is not null)
                 {
                     var indexOfGeneric = type.FullName.IndexOf(GenericSign, StringComparison.Ordinal);
                     return type.FullName.Substring(0, indexOfGeneric);
@@ -413,7 +413,7 @@ namespace System
         [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
         public static string BeautifyName(this Type type, bool useFullName = false, bool useHtmlFormat = false, bool useGenericParameterNamesAsT = false, bool useSuffixQuestionMarkForGeneric = false)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -460,9 +460,9 @@ namespace System
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
-        public static string BeautifyTypeName(this Type type, bool useFullName = false)
+        public static string BeautifyTypeName(this Type? type, bool useFullName = false)
         {
-            if (type == null || "Object".Equals(type.Name, StringComparison.OrdinalIgnoreCase))
+            if (type is null || "Object".Equals(type.Name, StringComparison.Ordinal))
             {
                 return "object";
             }
@@ -521,7 +521,7 @@ namespace System
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool TryGetEnumType(this Type type, out Type enumType)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -535,7 +535,7 @@ namespace System
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 var underlyingType = Nullable.GetUnderlyingType(type);
-                if (underlyingType != null && underlyingType.IsEnum)
+                if (underlyingType is { IsEnum: true })
                 {
                     enumType = underlyingType;
                     return true;
@@ -544,7 +544,7 @@ namespace System
             else
             {
                 var underlyingType = type.GetIEnumerableType();
-                if (underlyingType != null && underlyingType.IsEnum)
+                if (underlyingType is { IsEnum: true })
                 {
                     enumType = underlyingType;
                     return true;
@@ -554,7 +554,7 @@ namespace System
                 foreach (var interfaceType in interfaces)
                 {
                     underlyingType = interfaceType.GetIEnumerableType();
-                    if (underlyingType == null || !underlyingType.IsEnum)
+                    if (underlyingType is not { IsEnum: true })
                     {
                         continue;
                     }
@@ -578,7 +578,7 @@ namespace System
         /// </returns>
         public static bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
         {
-            while (derivedType != null && derivedType != typeof(object))
+            while (derivedType is not null && derivedType != typeof(object))
             {
                 var currentType = derivedType.IsGenericType
                     ? derivedType.GetGenericTypeDefinition()
@@ -596,7 +596,7 @@ namespace System
 
         private static Type GetIEnumerableType(this Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -620,7 +620,7 @@ namespace System
                     inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
             }
 
-            if (type.BaseType == null ||
+            if (type.BaseType is null ||
                 !type.BaseType.IsGenericType ||
                 !string.Equals(baseTypeFullName, inheritTypeFullName, StringComparison.Ordinal))
             {
@@ -628,7 +628,7 @@ namespace System
             }
 
             var baseTypeGenericArgumentType = type.GetBaseTypeGenericArgumentType();
-            if (baseTypeGenericArgumentType == null)
+            if (baseTypeGenericArgumentType is null)
             {
                 return false;
             }
@@ -641,7 +641,7 @@ namespace System
                 }
 
                 var interfaces = argumentType.GetInterfaces();
-                if (interfaces.FirstOrDefault(x => string.Equals(x.FullName, baseTypeGenericArgumentType.FullName, StringComparison.Ordinal)) != null)
+                if (interfaces.FirstOrDefault(x => string.Equals(x.FullName, baseTypeGenericArgumentType.FullName, StringComparison.Ordinal)) is not null)
                 {
                     return true;
                 }

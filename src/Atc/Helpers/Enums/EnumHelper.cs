@@ -34,7 +34,7 @@ namespace Atc.Helpers
         public static T GetEnumValue<T>(string value, bool ignoreCase = true)
             where T : Enum
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -78,12 +78,12 @@ namespace Atc.Helpers
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static T GetValueFromDescription<T>(string description)
         {
-            if (description == null)
+            if (description is null)
             {
                 throw new ArgumentNullException(nameof(description));
             }
 
-            if (description.Length == 0)
+            if (description.Length == default)
             {
                 throw new ArgumentOutOfRangeException(nameof(description));
             }
@@ -102,28 +102,28 @@ namespace Atc.Helpers
                 }
 
                 var localizedDescriptionAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(LocalizedDescriptionAttribute)) as LocalizedDescriptionAttribute;
-                if (localizedDescriptionAttribute?.Description != null &&
+                if (localizedDescriptionAttribute?.Description is not null &&
                     localizedDescriptionAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
                 var descriptionAttributeOrg = Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
-                if (descriptionAttributeOrg?.Description != null &&
+                if (descriptionAttributeOrg?.Description is not null &&
                     descriptionAttributeOrg.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
                 var displayNameAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
-                if (displayNameAttribute?.DisplayName != null &&
+                if (displayNameAttribute?.DisplayName is not null &&
                     displayNameAttribute.DisplayName.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
                 }
 
                 var displayAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayAttribute)) as DisplayAttribute;
-                if (displayAttribute?.Description != null &&
+                if (displayAttribute?.Description is not null &&
                     displayAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
                 {
                     return (T)fieldInfo.GetValue(null);
@@ -186,7 +186,7 @@ namespace Atc.Helpers
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            if (enumType == null)
+            if (enumType is null)
             {
                 throw new ArgumentNullException(nameof(enumType));
             }
@@ -305,7 +305,7 @@ namespace Atc.Helpers
             bool byFlagIncludeBase = true,
             bool byFlagIncludeCombined = true)
         {
-            if (enumType == null)
+            if (enumType is null)
             {
                 throw new ArgumentNullException(nameof(enumType));
             }

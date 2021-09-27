@@ -9,7 +9,7 @@ namespace Microsoft.AspNetCore.Http
     {
         public static Task<byte[]> GetBytes(this IFormFile formFile)
         {
-            if (formFile == null)
+            if (formFile is null)
             {
                 throw new ArgumentNullException(nameof(formFile));
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
@@ -21,12 +21,12 @@ namespace Atc
         /// </returns>
         public override bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
         {
-            if (x == null)
+            if (x is null)
             {
                 throw new ArgumentNullException(nameof(x));
             }
 
-            if (y == null)
+            if (y is null)
             {
                 throw new ArgumentNullException(nameof(y));
             }
@@ -43,7 +43,7 @@ namespace Atc
         /// </returns>
         public override int GetHashCode(Tuple<T1, T2> obj)
         {
-            if (obj == null)
+            if (obj is null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }

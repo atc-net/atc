@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Resources;
@@ -23,7 +23,7 @@ namespace Atc
         /// <param name="resourceType">Type of the resource.</param>
         public LocalizedDescriptionAttribute(string? resourceKey, Type resourceType)
         {
-            if (resourceType == null)
+            if (resourceType is null)
             {
                 throw new ArgumentNullException(nameof(resourceType));
             }
@@ -40,12 +40,12 @@ namespace Atc
         {
             get
             {
-                if (this.resourceKey == null)
+                if (this.resourceKey is null)
                 {
                     return null;
                 }
 
-                if (this.resourceKey.Length == 0)
+                if (this.resourceKey.Length == default)
                 {
                     return string.Empty;
                 }

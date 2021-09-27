@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Xunit;
 
 namespace Atc.Rest.Extended.Tests.Extensions
@@ -12,7 +12,7 @@ namespace Atc.Rest.Extended.Tests.Extensions
             var actual = Assembly.GetExecutingAssembly().GetValidationTypes();
 
             // Assert
-            Assert.True(actual.Length == 0);
+            Assert.True(actual.Length == default);
         }
     }
 }

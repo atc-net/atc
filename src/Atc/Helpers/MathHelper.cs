@@ -209,7 +209,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static int Min(int[] values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -223,7 +223,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static int Min(List<int> values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -237,7 +237,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static double Min(double[] values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -251,7 +251,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static double Min(List<double> values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -265,7 +265,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static int Max(int[] values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -279,7 +279,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static int Max(List<int> values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -293,7 +293,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static double Max(double[] values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }
@@ -307,7 +307,7 @@ namespace Atc.Helpers
         /// <param name="values">The values.</param>
         public static double Max(List<double> values)
         {
-            if (values == null)
+            if (values is null)
             {
                 throw new ArgumentNullException(nameof(values));
             }

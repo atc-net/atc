@@ -15,7 +15,7 @@ namespace Atc.CodeDocumentation
                 .Select(x =>
                 {
                     var attributeValue = x.Attribute("name")?.Value;
-                    if (attributeValue == null)
+                    if (attributeValue is null)
                     {
                         return null;
                     }
@@ -43,13 +43,13 @@ namespace Atc.CodeDocumentation
                     var code = (string)x.Element("code") ?? string.Empty;
                     if (code.Length > 0)
                     {
-                        code = TrimCode(code, true);
+                        code = TrimCode(code, trimEachLine: true);
                     }
 
                     var example = (string)x.Element("example") ?? string.Empty;
                     if (example.Length > 0)
                     {
-                        example = TrimCode(example, false);
+                        example = TrimCode(example, trimEachLine: false);
                     }
 
                     var parameters = x.Elements("param")
@@ -70,7 +70,7 @@ namespace Atc.CodeDocumentation
                         Returns = returns,
                     };
                 })
-                .Where(x => x != null)
+                .Where(x => x is not null)
                 .ToArray();
         }
 
@@ -112,7 +112,7 @@ namespace Atc.CodeDocumentation
                 charsToRemove += 2;
             }
 
-            if (s.EndsWith(".", StringComparison.Ordinal))
+            if (s.EndsWith('.'))
             {
                 charsToRemove++;
             }

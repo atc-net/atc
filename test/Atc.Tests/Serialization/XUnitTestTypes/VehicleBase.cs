@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Atc.Serialization.JsonConverters;
 
+// ReSharper disable MemberCanBeProtected.Global
 namespace Atc.Tests.Serialization.XUnitTestTypes
 {
     [JsonConverter(typeof(JsonTypeDiscriminatorConverter<VehicleBase>))]
@@ -17,6 +18,6 @@ namespace Atc.Tests.Serialization.XUnitTestTypes
 
         public int NumberOfWheels { get; set; }
 
-        public override string ToString() => $"{nameof(PlateNumber)}: {PlateNumber}, {nameof(NumberOfWheels)}: {NumberOfWheels}";
+        public new virtual string ToString() => $"{nameof(PlateNumber)}: {PlateNumber}, {nameof(NumberOfWheels)}: {NumberOfWheels}";
     }
 }

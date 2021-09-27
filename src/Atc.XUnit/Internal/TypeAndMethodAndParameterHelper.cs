@@ -1,4 +1,4 @@
-﻿// ReSharper disable ConvertIfStatementToReturnStatement
+// ReSharper disable ConvertIfStatementToReturnStatement
 
 using System;
 using System.Collections.Generic;
@@ -36,8 +36,8 @@ namespace Atc.XUnit.Internal
         internal static string GetDebugMethodInfo(MethodInfo method)
         {
             var debugMethodInfo = $"{method.DeclaringType?.BeautifyName()} # {method.BeautifyName(false, false, true)}";
-            var c1 = method.DeclaringType != null && method.DeclaringType.IsGenericType;
-            var c2 = method.DeclaringType != null && method.DeclaringType.IsGenericTypeDefinition;
+            var c1 = method.DeclaringType is not null && method.DeclaringType.IsGenericType;
+            var c2 = method.DeclaringType is not null && method.DeclaringType.IsGenericTypeDefinition;
             var m1 = method.IsGenericMethod;
             var m2 = method.IsGenericMethodDefinition;
             int p1C = 0, p2C = 0, p3C = 0, p4C = 0, p5C = 0, p6C = 0;
@@ -128,8 +128,8 @@ namespace Atc.XUnit.Internal
 
         internal static bool ShouldMethodBeExcluded(MethodInfo method)
         {
-            if (method.DeclaringType != null &&
-                ListModuleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName))
+            if (method.DeclaringType is not null &&
+                ListModuleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName, StringComparer.OrdinalIgnoreCase))
             {
                 return true;
             }

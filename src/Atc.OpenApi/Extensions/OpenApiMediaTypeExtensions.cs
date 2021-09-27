@@ -10,26 +10,26 @@ namespace Microsoft.OpenApi.Models
     {
         public static OpenApiSchema? GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = MediaTypeNames.Application.Json)
         {
-            if (content == null)
+            if (content is null)
             {
                 throw new ArgumentNullException(nameof(content));
             }
 
             var (key, value) = content.FirstOrDefault(x => string.Equals(x.Key, contentType, StringComparison.Ordinal));
-            return key == null
+            return key is null
                 ? null
                 : value.Schema;
         }
 
         public static OpenApiSchema? GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
         {
-            if (content == null)
+            if (content is null)
             {
                 throw new ArgumentNullException(nameof(content));
             }
 
             var (key, value) = content.FirstOrDefault();
-            return key == null
+            return key is null
                 ? null
                 : value.Schema;
         }

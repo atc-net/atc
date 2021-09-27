@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Atc.Tests.XUnitTestData;
 using FluentAssertions;
 using Xunit;
@@ -59,14 +60,14 @@ namespace Atc.Tests
         [InlineData(DayOfWeek.Monday, "Monday")]
         public void ParseWithCaseSensitive(DayOfWeek expected, string value)
         {
-            Assert.Equal(expected, Enum<DayOfWeek>.Parse(value, false));
+            Assert.Equal(expected, Enum<DayOfWeek>.Parse(value, ignoreCase: false));
         }
 
         [Theory]
         [InlineData("MONDAY")]
         public void ParseWithCaseSensitiveExpectedThrows(string value)
         {
-            Assert.Throws<ArgumentException>(() => Enum<DayOfWeek>.Parse(value, false));
+            Assert.Throws<ArgumentException>(() => Enum<DayOfWeek>.Parse(value, ignoreCase: false));
         }
 
         [Theory]
@@ -103,14 +104,13 @@ namespace Atc.Tests
             bool byFlagIncludeCombined)
             where T : Enum
         {
-            // ReSharper disable once UnusedVariable
-            object dummyAssignment = dummyForT;
+            _ = dummyForT;
 
             // Act
             var actual = Enum<T>.ToArray(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
             // Assert
-            actual.Should().NotBeNull().And.HaveCount(expectedCount);
+            actual.Cast<string>().Should().NotBeNull().And.HaveCount(expectedCount);
         }
 
         [Theory]
@@ -127,8 +127,7 @@ namespace Atc.Tests
             bool byFlagIncludeCombined)
             where T : Enum
         {
-            // ReSharper disable once UnusedVariable
-            object dummyAssignment = dummyForT;
+            _ = dummyForT;
 
             // Act
             var actual = Enum<T>.ToDictionary(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
@@ -151,8 +150,7 @@ namespace Atc.Tests
             bool byFlagIncludeCombined)
             where T : Enum
         {
-            // ReSharper disable once UnusedVariable
-            object dummyAssignment = dummyForT;
+            _ = dummyForT;
 
             // Act
             var actual = Enum<T>.ToDictionaryWithStringKey(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
@@ -175,8 +173,7 @@ namespace Atc.Tests
             bool byFlagIncludeCombined)
             where T : Enum
         {
-            // ReSharper disable once UnusedVariable
-            object dummyAssignment = dummyForT;
+            _ = dummyForT;
 
             // Act
             var actual = Enum<T>.ToKeyValuePairs(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
@@ -199,8 +196,7 @@ namespace Atc.Tests
             bool byFlagIncludeCombined)
             where T : Enum
         {
-            // ReSharper disable once UnusedVariable
-            object dummyAssignment = dummyForT;
+            _ = dummyForT;
 
             // Act
             var actual = Enum<T>.ToKeyValuePairsWithStringKey(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);

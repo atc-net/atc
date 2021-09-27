@@ -22,12 +22,12 @@ namespace System
             bool includeInnerMessage = false,
             bool includeExceptionName = false)
         {
-            if (exception == null)
+            if (exception is null)
             {
                 throw new ArgumentNullException(nameof(exception));
             }
 
-            if (includeInnerMessage && exception.InnerException != null)
+            if (includeInnerMessage && exception.InnerException is not null)
             {
                 return $"{GetExceptionMessageLine(exception, includeExceptionName)} # {GetMessage(exception.InnerException, true, includeExceptionName)}";
             }
@@ -44,12 +44,12 @@ namespace System
             this Exception exception,
             bool includeExceptionName = false)
         {
-            if (exception == null)
+            if (exception is null)
             {
                 throw new ArgumentNullException(nameof(exception));
             }
 
-            if (exception.InnerException != null && !string.IsNullOrEmpty(exception.InnerException.Message))
+            if (exception.InnerException is not null && !string.IsNullOrEmpty(exception.InnerException.Message))
             {
                 // ReSharper disable once TailRecursiveCall
                 return GetLastInnerMessage(exception.InnerException, includeExceptionName);
@@ -69,7 +69,7 @@ namespace System
         /// <returns>The flatten message.</returns>
         public static string Flatten(this Exception exception, string message = "", bool includeStackTrace = false)
         {
-            if (exception == null)
+            if (exception is null)
             {
                 throw new ArgumentNullException(nameof(exception));
             }
@@ -81,16 +81,16 @@ namespace System
             }
 
             var currentException = exception;
-            while (currentException != null)
+            while (currentException is not null)
             {
                 sb.AppendLine(currentException.Message);
-                if (includeStackTrace && exception.StackTrace != null)
+                if (includeStackTrace && exception.StackTrace is not null)
                 {
                     sb.Append(exception.StackTrace);
                 }
 
                 currentException = currentException.InnerException;
-                if (includeStackTrace && exception.StackTrace != null)
+                if (includeStackTrace && exception.StackTrace is not null)
                 {
                     sb.AppendLine();
                 }
@@ -105,7 +105,7 @@ namespace System
         /// <param name="exception">The exception.</param>
         public static XDocument ToXml(this Exception exception)
         {
-            if (exception == null)
+            if (exception is null)
             {
                 throw new ArgumentNullException(nameof(exception));
             }
@@ -117,7 +117,7 @@ namespace System
                 root.Add(new XElement("Message", exception.Message));
             }
 
-            if (exception.StackTrace != null)
+            if (exception.StackTrace is not null)
             {
                 var xElements = from frame
                                     in exception.StackTrace.Split('\n')
@@ -137,7 +137,7 @@ namespace System
             }
 
             // ReSharper disable once InvertIf
-            if (exception.InnerException != null)
+            if (exception.InnerException is not null)
             {
                 var xDocument = exception.InnerException.ToXml();
                 root.Add(xDocument.Root);

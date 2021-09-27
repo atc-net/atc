@@ -10,12 +10,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static ClassDeclarationSyntax AddSuppressMessageAttribute(this ClassDeclarationSyntax classDeclaration, SuppressMessageAttribute suppressMessage)
         {
-            if (classDeclaration == null)
+            if (classDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(classDeclaration));
             }
 
-            if (suppressMessage == null)
+            if (suppressMessage is null)
             {
                 throw new ArgumentNullException(nameof(suppressMessage));
             }
@@ -42,17 +42,17 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static ClassDeclarationSyntax AddGeneratedCodeAttribute(this ClassDeclarationSyntax classDeclaration, string toolName, string version)
         {
-            if (classDeclaration == null)
+            if (classDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(classDeclaration));
             }
 
-            if (toolName == null)
+            if (toolName is null)
             {
                 throw new ArgumentNullException(nameof(toolName));
             }
 
-            if (version == null)
+            if (version is null)
             {
                 throw new ArgumentNullException(nameof(version));
             }

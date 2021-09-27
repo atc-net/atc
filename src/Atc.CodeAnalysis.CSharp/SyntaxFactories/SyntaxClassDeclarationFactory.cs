@@ -10,7 +10,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static ClassDeclarationSyntax Create(string classTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -21,12 +21,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (inheritClassTypeName == null)
+            if (inheritClassTypeName is null)
             {
                 throw new ArgumentNullException(nameof(inheritClassTypeName));
             }
@@ -38,12 +38,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (interfaceTypeName == null)
+            if (interfaceTypeName is null)
             {
                 throw new ArgumentNullException(nameof(interfaceTypeName));
             }
@@ -55,17 +55,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (inheritClassTypeName == null)
+            if (inheritClassTypeName is null)
             {
                 throw new ArgumentNullException(nameof(inheritClassTypeName));
             }
 
-            if (interfaceTypeName == null)
+            if (interfaceTypeName is null)
             {
                 throw new ArgumentNullException(nameof(interfaceTypeName));
             }
@@ -77,7 +77,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -88,7 +88,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -99,7 +99,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -110,12 +110,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (suppressMessage == null)
+            if (suppressMessage is null)
             {
                 throw new ArgumentNullException(nameof(suppressMessage));
             }
@@ -126,7 +126,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, int checkId, string justification = "")
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -137,12 +137,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (inheritClassTypeName == null)
+            if (inheritClassTypeName is null)
             {
                 throw new ArgumentNullException(nameof(inheritClassTypeName));
             }
@@ -153,7 +153,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = "")
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
@@ -164,12 +164,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
         {
-            if (classTypeName == null)
+            if (classTypeName is null)
             {
                 throw new ArgumentNullException(nameof(classTypeName));
             }
 
-            if (inheritClassTypeName == null)
+            if (inheritClassTypeName is null)
             {
                 throw new ArgumentNullException(nameof(inheritClassTypeName));
             }

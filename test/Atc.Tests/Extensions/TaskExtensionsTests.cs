@@ -29,7 +29,7 @@ namespace Atc.Tests.Extensions
             // Arrange
             var listOfTasks = new List<Task>();
             var timer = Stopwatch.StartNew();
-            for (int i = 0; i < numberOfTasksToRun; i++)
+            for (var i = 0; i < numberOfTasksToRun; i++)
             {
                 listOfTasks.Add(new Task(
                     () =>
@@ -65,7 +65,7 @@ namespace Atc.Tests.Extensions
             // Arrange
             var listOfTasks = new List<Task>();
             var timer = Stopwatch.StartNew();
-            for (int i = 0; i < numberOfTasksToRun; i++)
+            for (var i = 0; i < numberOfTasksToRun; i++)
             {
                 listOfTasks.Add(new Task(
                     () =>

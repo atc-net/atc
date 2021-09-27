@@ -9,7 +9,7 @@ namespace System.Net.Http
     {
         public static Task<T> DeserializeAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            if (httpResponseMessage == null)
+            if (httpResponseMessage is null)
             {
                 throw new ArgumentNullException(nameof(httpResponseMessage));
             }

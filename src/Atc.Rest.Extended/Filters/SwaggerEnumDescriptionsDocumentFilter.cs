@@ -16,12 +16,12 @@ namespace Atc.Rest.Extended.Filters
         [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            if (swaggerDoc == null)
+            if (swaggerDoc is null)
             {
                 throw new ArgumentNullException(nameof(swaggerDoc));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -30,7 +30,7 @@ namespace Atc.Rest.Extended.Filters
             foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
             {
                 var propertyEnums = item.Value.Enum;
-                if (propertyEnums != null && propertyEnums.Count > 0)
+                if (propertyEnums is not null && propertyEnums.Count > 0)
                 {
                     item.Value.Description += DescribeEnum(propertyEnums, item.Key);
                 }
@@ -51,7 +51,7 @@ namespace Atc.Rest.Extended.Filters
             string path)
         {
             path = path.Trim('/');
-            if (operations == null)
+            if (operations is null)
             {
                 return;
             }
@@ -64,7 +64,7 @@ namespace Atc.Rest.Extended.Filters
                 {
                     var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
 
-                    if (parameterDescription?.Type == null)
+                    if (parameterDescription?.Type is null)
                     {
                         continue;
                     }
@@ -75,7 +75,7 @@ namespace Atc.Rest.Extended.Filters
                     }
 
                     var paramEnum = document.Components.Schemas.FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
-                    if (paramEnum.Value != null)
+                    if (paramEnum.Value is not null)
                     {
                         param.Description += DescribeEnum(paramEnum.Value.Enum, paramEnum.Key);
                     }
@@ -87,7 +87,7 @@ namespace Atc.Rest.Extended.Filters
         {
             var enumDescriptions = new List<string>();
             var enumType = GetEnumTypeByName(propertyTypeName);
-            if (enumType == null)
+            if (enumType is null)
             {
                 return null!;
             }

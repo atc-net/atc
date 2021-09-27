@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -8,7 +8,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static InterfaceDeclarationSyntax Create(string interfaceTypeName)
         {
-            if (interfaceTypeName == null)
+            if (interfaceTypeName is null)
             {
                 throw new ArgumentNullException(nameof(interfaceTypeName));
             }

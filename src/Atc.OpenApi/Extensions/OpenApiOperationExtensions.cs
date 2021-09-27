@@ -50,7 +50,7 @@ namespace Microsoft.OpenApi.Models
                     httpStatusCode == HttpStatusCode.Created)
                 {
                     var modelSchema = openApiOperation.Responses.GetSchemaForStatusCode(httpStatusCode);
-                    if (modelSchema != null)
+                    if (modelSchema is not null)
                     {
                         return modelSchema;
                     }
@@ -77,7 +77,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
 
-            return openApiOperation.Parameters.Any() || openApiOperation.RequestBody != null;
+            return openApiOperation.Parameters.Any() || openApiOperation.RequestBody is not null;
         }
 
         public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
@@ -204,11 +204,11 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schemaKey));
             }
 
-            if (openApiOperation.Responses != null && openApiOperation.Responses.Any())
+            if (openApiOperation.Responses is not null && openApiOperation.Responses.Any())
             {
                 foreach (var response in openApiOperation.Responses)
                 {
-                    if (response.Value?.Content == null || !response.Value.Content.Any())
+                    if (response.Value?.Content is null || !response.Value.Content.Any())
                     {
                         continue;
                     }
@@ -251,7 +251,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schemaKey));
             }
 
-            if (openApiOperation.RequestBody?.Content != null)
+            if (openApiOperation.RequestBody?.Content is not null)
             {
                 foreach (var item in openApiOperation.RequestBody.Content)
                 {

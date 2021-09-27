@@ -18,12 +18,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             string typeName1,
             string typeName2)
         {
-            if (typeName1 == null)
+            if (typeName1 is null)
             {
                 throw new ArgumentNullException(nameof(typeName1));
             }
 
-            if (typeName2 == null)
+            if (typeName2 is null)
             {
                 throw new ArgumentNullException(nameof(typeName2));
             }

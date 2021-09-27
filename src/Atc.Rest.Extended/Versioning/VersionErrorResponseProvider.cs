@@ -18,7 +18,7 @@ namespace Atc.Rest.Extended.Versioning
 
         public IActionResult CreateResponse(ErrorResponseContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -29,7 +29,7 @@ namespace Atc.Rest.Extended.Versioning
                     { context.ErrorCode, new[] { context.Message } },
                 });
 
-            telemetry?.TrackTrace(
+            telemetry.TrackTrace(
                 "BadVersion",
                 new Dictionary<string, string>(StringComparer.Ordinal)
                 {

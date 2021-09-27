@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -18,7 +18,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeArgumentSyntax Create(object attributeValue)
         {
-            if (attributeValue == null)
+            if (attributeValue is null)
             {
                 throw new ArgumentNullException(nameof(attributeValue));
             }

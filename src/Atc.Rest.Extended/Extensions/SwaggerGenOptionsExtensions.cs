@@ -1,8 +1,6 @@
-﻿using System;
+using System;
 using Atc.Rest.Extended.Filters;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 // ReSharper disable once CheckNamespace
 namespace Swashbuckle.AspNetCore.SwaggerGen
@@ -11,7 +9,7 @@ namespace Swashbuckle.AspNetCore.SwaggerGen
     {
         public static void ApplyApiVersioningFilters(this SwaggerGenOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }

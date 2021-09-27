@@ -28,17 +28,17 @@ namespace Microsoft.Extensions.DependencyInjection
             RestApiExtendedOptions restApiOptions,
             IConfiguration configuration)
         {
-            if (setupMvcAction == null)
+            if (setupMvcAction is null)
             {
                 throw new ArgumentNullException(nameof(setupMvcAction));
             }
 
-            if (restApiOptions == null)
+            if (restApiOptions is null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
 
-            if (configuration == null)
+            if (configuration is null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }

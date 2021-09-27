@@ -20,12 +20,12 @@ namespace System
         /// ]]></example>
         public static bool IsSet(this Enum enumeration, Enum matchTo)
         {
-            if (enumeration == null)
+            if (enumeration is null)
             {
                 throw new ArgumentNullException(nameof(enumeration));
             }
 
-            if (matchTo == null)
+            if (matchTo is null)
             {
                 throw new ArgumentNullException(nameof(matchTo));
             }
@@ -42,7 +42,7 @@ namespace System
         /// ]]></example>
         public static string GetName(this Enum enumeration)
         {
-            if (enumeration == null)
+            if (enumeration is null)
             {
                 throw new ArgumentNullException(nameof(enumeration));
             }
@@ -71,7 +71,7 @@ namespace System
         /// ]]></example>
         public static string GetDescription(this Enum enumeration, bool useLocalizedIfPossible = true)
         {
-            if (enumeration == null)
+            if (enumeration is null)
             {
                 throw new ArgumentNullException(nameof(enumeration));
             }
@@ -116,18 +116,18 @@ namespace System
         private static TExpected GetAttributeValue<T, TExpected>(this Enum enumeration, Func<T, TExpected> expression)
             where T : Attribute
         {
-            if (enumeration == null)
+            if (enumeration is null)
             {
                 throw new ArgumentNullException(nameof(enumeration));
             }
 
-            if (expression == null)
+            if (expression is null)
             {
                 throw new ArgumentNullException(nameof(expression));
             }
 
             var attribute = enumeration.GetType().GetMember(enumeration.ToString())[0].GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
-            return (attribute == null
+            return (attribute is null
                 ? default
                 : expression(attribute))!;
         }

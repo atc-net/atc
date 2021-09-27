@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 // ReSharper disable once CheckNamespace
@@ -8,12 +8,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static CompilationUnitSyntax AddUsingStatements(this CompilationUnitSyntax compilationUnit, string[] usingStatements)
         {
-            if (compilationUnit == null)
+            if (compilationUnit is null)
             {
                 throw new ArgumentNullException(nameof(compilationUnit));
             }
 
-            if (usingStatements == null)
+            if (usingStatements is null)
             {
                 throw new ArgumentNullException(nameof(usingStatements));
             }

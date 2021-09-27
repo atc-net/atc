@@ -10,67 +10,65 @@ namespace Atc.Rest.FluentAssertions
 {
     public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAssertions>
     {
-        private readonly ActionResult subject;
-
         public ResultAssertions(ActionResult subject)
+            : base(subject)
         {
-            this.subject = subject;
         }
 
         protected override string Identifier => "result";
 
         public ContentResultAssertions BeContentResult(string because = "", params object[] becauseArgs)
         {
-            var contentResult = subject.Should().BeOfType<ContentResult>(because, becauseArgs).Subject;
+            var contentResult = Subject.Should().BeOfType<ContentResult>(because, becauseArgs).Subject;
             return new ContentResultAssertions(contentResult);
         }
 
         public OkResultAssertions BeOkResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<OkObjectResult>(HttpStatusCode.OK, because, becauseArgs);
-            var okSubject = (OkObjectResult)subject;
+            var okSubject = (OkObjectResult)Subject;
             return new OkResultAssertions(okSubject);
         }
 
         public CreatedResultAssertions BeCreatedResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Created, because, becauseArgs);
-            var created = (ContentResult)subject;
+            var created = (ContentResult)Subject;
             return new CreatedResultAssertions(created);
         }
 
         public AcceptedResultAssertions BeAcceptedResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Accepted, because, becauseArgs);
-            var accepted = (ContentResult)subject;
+            var accepted = (ContentResult)Subject;
             return new AcceptedResultAssertions(accepted);
         }
 
         public NoContentResultAssertions BeNoContentResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NoContent, because, becauseArgs);
-            var noContent = (ContentResult)subject;
+            var noContent = (ContentResult)Subject;
             return new NoContentResultAssertions(noContent);
         }
 
         public BadRequestResultAssertions BeBadRequestResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.BadRequest, because, becauseArgs);
-            var badRequest = (ContentResult)subject;
+            var badRequest = (ContentResult)Subject;
             return new BadRequestResultAssertions(badRequest);
         }
 
         public NotFoundResultAssertions BeNotFoundResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NotFound, because, becauseArgs);
-            var notFound = (ContentResult)subject;
+            var notFound = (ContentResult)Subject;
             return new NotFoundResultAssertions(notFound);
         }
 
         public ConflictResultAssertions BeConflictResult(string because = "", params object[] becauseArgs)
         {
             AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Conflict, because, becauseArgs);
-            var conflict = (ContentResult)subject;
+            var conflict = (ContentResult)Subject;
             return new ConflictResultAssertions(conflict);
         }
 
@@ -79,9 +77,9 @@ namespace Atc.Rest.FluentAssertions
         {
             Execute.Assertion
                 .BecauseOf(because, becauseArgs)
-                .Given(() => subject as T)
+                .Given(() => Subject as T)
                 .ForCondition(x => !(x is null))
-                .FailWith("Expected {context:result} to be of type {0}{reason}, but found {1}.", _ => typeof(T), x => subject.GetType())
+                .FailWith("Expected {context:result} to be of type {0}{reason}, but found {1}.", _ => typeof(T), x => Subject.GetType())
                 .Then
                 .Given(x => x?.StatusCode)
                 .ForCondition(x => x == (int)expectedStatusCode)

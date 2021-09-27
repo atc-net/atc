@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
@@ -19,7 +19,7 @@ namespace Atc.Helpers
         [ExcludeFromCodeCoverage]
         public static void SetPrivateField(object target, string fieldName, object value)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -31,10 +31,10 @@ namespace Atc.Helpers
 
             var type = target.GetType();
             FieldInfo? fi = null;
-            while (type != null)
+            while (type is not null)
             {
                 fi = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-                if (fi != null)
+                if (fi is not null)
                 {
                     break;
                 }
@@ -42,7 +42,7 @@ namespace Atc.Helpers
                 type = type.BaseType!;
             }
 
-            if (fi == null)
+            if (fi is null)
             {
                 throw new ArgumentPropertyException($"Field '{fieldName}' not found in type hierarchy.");
             }

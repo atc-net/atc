@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Rest;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -21,13 +21,13 @@ namespace Microsoft.ApplicationInsights.Extensibility
 
         public void Initialize(ITelemetry telemetry)
         {
-            if (telemetry == null)
+            if (telemetry is null)
             {
                 throw new ArgumentNullException(nameof(telemetry));
             }
 
             telemetry.Context.User.AuthenticatedUserId = context.CallingIdentity;
-            if (!(telemetry is ISupportProperties sp))
+            if (telemetry is not ISupportProperties sp)
             {
                 return;
             }

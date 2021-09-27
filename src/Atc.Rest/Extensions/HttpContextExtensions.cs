@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 // ReSharper disable once CheckNamespace
@@ -8,7 +8,7 @@ namespace Microsoft.AspNetCore.Http
     {
         public static string? GetCorrelationId(this HttpContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Http
 
         public static string? GetRequestId(this HttpContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

@@ -35,7 +35,7 @@ namespace Atc.CodeDocumentation.Markdown
             }
 
             outputPath ??= GetOutputPath(assemblyToCodeDoc);
-            if (outputPath == null)
+            if (outputPath is null)
             {
                 throw new IOException($"No CodeDoc output path found for the assembly:  {assemblyToCodeDoc.FullName}");
             }

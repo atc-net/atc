@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -20,9 +20,9 @@ namespace Atc.Helpers
         public static string GetDescription(DayOfWeek dayOfWeek, CultureInfo? culture = null)
         {
             string? description = null;
-            if (culture == null)
+            if (culture is null)
             {
-                if (DateTimeFormatInfo.CurrentInfo != null)
+                if (DateTimeFormatInfo.CurrentInfo is not null)
                 {
                     description = DateTimeFormatInfo.CurrentInfo.GetDayName(dayOfWeek);
                 }

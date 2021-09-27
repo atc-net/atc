@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,12 +24,13 @@ namespace Atc.Tests.Extensions
 
             // Assert
             actual.Should().NotBeNull().And.BeOfType<DataTable>();
-            actual.Rows.Should().HaveCount(expected);
+            actual.Rows.Cast<DataRow>().Should().HaveCount(expected);
             var sortOnColumnArray = (
                 from DataRow row
                     in actual.Rows
                 select row[sortOnColumn].ToString())
                 .ToArray();
+
             if (sortDirection == SortDirectionType.Ascending)
             {
                 sortOnColumnArray.Should().Equal("Brian", "Christoff", "David", "Janet", "Melanie", "Sam");
@@ -57,7 +58,7 @@ namespace Atc.Tests.Extensions
 
             // Assert
             actual.Should().NotBeNull().And.BeOfType<DataTable>();
-            actual.Rows.Should().HaveCount(expected);
+            actual.Rows.Cast<DataRow>().Should().HaveCount(expected);
         }
 
         [Theory]

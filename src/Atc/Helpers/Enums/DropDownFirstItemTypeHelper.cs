@@ -72,13 +72,13 @@ namespace Atc.Helpers
         [SuppressMessage("Microsoft.Performance", "CA1820:TestForEmptyStringsUsingStringLength", Justification = "OK.")]
         public static List<string> EnsureFirstItemType(List<string> list, DropDownFirstItemType dropDownFirstItemType)
         {
-            if (list == null)
+            if (list is null)
             {
                 throw new ArgumentNullException(nameof(list));
             }
 
             var s = list.FirstOrDefault(x => x.Equals("None", StringComparison.Ordinal));
-            if (s != null)
+            if (s is not null)
             {
                 list.Remove(s);
             }
@@ -89,7 +89,7 @@ namespace Atc.Helpers
                     break;
                 case DropDownFirstItemType.Blank:
                     s = list.FirstOrDefault(x => x == string.Empty);
-                    if (s != null)
+                    if (s is not null)
                     {
                         list.Remove(s);
                     }
@@ -98,7 +98,7 @@ namespace Atc.Helpers
                     break;
                 case DropDownFirstItemType.PleaseSelect:
                     s = list.FirstOrDefault(x => string.Equals(x, EnumResources.DropDownFirstItemTypePleaseSelect, StringComparison.Ordinal));
-                    if (s != null)
+                    if (s is not null)
                     {
                         list.Remove(s);
                     }
@@ -107,7 +107,7 @@ namespace Atc.Helpers
                     break;
                 case DropDownFirstItemType.IncludeAll:
                     s = list.FirstOrDefault(x => string.Equals(x, EnumResources.DropDownFirstItemTypeIncludeAll, StringComparison.Ordinal));
-                    if (s != null)
+                    if (s is not null)
                     {
                         list.Remove(s);
                     }

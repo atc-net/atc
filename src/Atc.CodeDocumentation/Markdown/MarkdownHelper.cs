@@ -43,7 +43,7 @@ namespace Atc.CodeDocumentation.Markdown
                 mb.Append("  -  Static Fields");
                 mb.AppendLine();
                 var list = staticFields
-                    .Select(x => x.BeautifyName(false, true, true))
+                    .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true, includeReturnType: true))
                     .OrderBy(x => x)
                     .ToList();
                 AppendIndentedLines(mb, list);
@@ -79,7 +79,7 @@ namespace Atc.CodeDocumentation.Markdown
                 mb.Append("  -  Static Methods");
                 mb.AppendLine();
                 var list = staticMethods
-                    .Select(x => x.BeautifyName(false, true))
+                    .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true))
                     .OrderBy(x => x)
                     .ToList();
                 AppendIndentedLines(mb, list);
@@ -91,7 +91,7 @@ namespace Atc.CodeDocumentation.Markdown
                 mb.Append("  -  Fields");
                 mb.AppendLine();
                 var list = fields
-                    .Select(x => x.BeautifyName(false, true, true))
+                    .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true, includeReturnType: true))
                     .OrderBy(x => x)
                     .ToList();
                 AppendIndentedLines(mb, list);
@@ -127,7 +127,7 @@ namespace Atc.CodeDocumentation.Markdown
                 mb.Append("  -  Methods");
                 mb.AppendLine();
                 var list = methods
-                    .Select(x => x.BeautifyName(false, true))
+                    .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true))
                     .OrderBy(x => x)
                     .ToList();
                 AppendIndentedLines(mb, list);
@@ -154,23 +154,24 @@ namespace Atc.CodeDocumentation.Markdown
 
         private static PropertyInfo[] GetProperties(Type type)
         {
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            return type
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
-                    var get = y.GetGetMethod(true);
-                    var set = y.GetSetMethod(true);
-                    if (get != null && set != null)
+                    var get = y.GetGetMethod(nonPublic: true);
+                    var set = y.GetSetMethod(nonPublic: true);
+                    if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);
                     }
 
-                    if (get != null)
+                    if (get is not null)
                     {
                         return !get.IsPrivate;
                     }
 
-                    if (set != null)
+                    if (set is not null)
                     {
                         return !set.IsPrivate;
                     }
@@ -203,23 +204,24 @@ namespace Atc.CodeDocumentation.Markdown
 
         private static PropertyInfo[] GetStaticProperties(Type type)
         {
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            return type
+                .GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
-                    var get = y.GetGetMethod(true);
-                    var set = y.GetSetMethod(true);
-                    if (get != null && set != null)
+                    var get = y.GetGetMethod(nonPublic: true);
+                    var set = y.GetSetMethod(nonPublic: true);
+                    if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);
                     }
 
-                    if (get != null)
+                    if (get is not null)
                     {
                         return !get.IsPrivate;
                     }
 
-                    if (set != null)
+                    if (set is not null)
                     {
                         return !set.IsPrivate;
                     }
@@ -248,7 +250,7 @@ namespace Atc.CodeDocumentation.Markdown
             mb.AppendLine();
             mb.AppendLine("<br />");
             mb.AppendLine();
-            mb.Header(2, typeComments.Type.BeautifyName(false, true));
+            mb.Header(2, typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true));
 
             var summary = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Summary ?? string.Empty;
             if (summary.Length > 0)
@@ -305,7 +307,7 @@ namespace Atc.CodeDocumentation.Markdown
                     new[] { typeComments.Type.BaseType }
                         .Concat(typeComments.Type.GetInterfaces())
                         .Where(x =>
-                            x != null
+                            x is not null
                             && x != typeof(object)
                             && x != typeof(ValueType)
                             && !"System.Runtime.InteropServices".Equals(x.Namespace, StringComparison.Ordinal))
@@ -313,8 +315,8 @@ namespace Atc.CodeDocumentation.Markdown
             }
 
             sb.AppendLine(impl.Length > 0
-                ? $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(false, true)} : {impl}"
-                : $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(false, true)}");
+                ? $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true)} : {impl}"
+                : $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true)}");
 
             mb.Code("csharp", sb.ToString());
             mb.AppendLine();
@@ -332,20 +334,20 @@ namespace Atc.CodeDocumentation.Markdown
                 .OrderBy(x => x.Value)
                 .ToArray();
 
-            BuildTable(mb, typeComments, null, enums, typeComments.CommentLookup[typeComments.Type.FullName], x => x.Value.ToString(GlobalizationConstants.EnglishCultureInfo), x => x.Name, x => x.Description!);
+            BuildTable(mb, typeComments, label: null, enums, typeComments.CommentLookup[typeComments.Type.FullName], x => x.Value.ToString(GlobalizationConstants.EnglishCultureInfo), x => x.Name, x => x.Description!);
         }
 
         private static void AppendBodyForClass(MarkdownBuilder mb, TypeComments typeComments)
         {
-            Build(mb, typeComments, "Static Fields", GetStaticFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.FieldType.BeautifyName(), x => x.Name, x => x.BeautifyName(false, false, true));
+            Build(mb, typeComments, "Static Fields", GetStaticFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.FieldType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
             Build(mb, typeComments, "Static Properties", GetStaticProperties(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
             Build(mb, typeComments, "Static Events", GetStaticEvents(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.EventHandlerType.BeautifyName(), x => x.Name, x => x.Name);
-            Build(mb, typeComments, "Static Methods", GetStaticMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(false, false, true));
+            Build(mb, typeComments, "Static Methods", GetStaticMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
 
             Build(mb, typeComments, "Fields", GetFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.FieldType.BeautifyName(), x => x.Name, x => x.Name);
             Build(mb, typeComments, "Properties", GetProperties(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
             Build(mb, typeComments, "Events", GetEvents(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.EventHandlerType.BeautifyName(), x => x.Name, x => x.Name);
-            Build(mb, typeComments, "Methods", GetMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(false, false, true));
+            Build(mb, typeComments, "Methods", GetMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
         }
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
@@ -433,7 +435,7 @@ namespace Atc.CodeDocumentation.Markdown
                         string.Equals(x.MemberName, name(item), StringComparison.Ordinal) ||
                         x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal));
 
-                    if (commentForMember == null || string.IsNullOrEmpty(commentForMember.Summary))
+                    if (commentForMember is null || string.IsNullOrEmpty(commentForMember.Summary))
                     {
                         continue;
                     }
@@ -443,7 +445,7 @@ namespace Atc.CodeDocumentation.Markdown
                         mb.AppendLine($"<p><b>Summary:</b> {commentForMember.Summary.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
                     }
 
-                    if (commentForMember.Parameters != null && commentForMember.Parameters.Count > 0)
+                    if (commentForMember.Parameters is not null && commentForMember.Parameters.Count > 0)
                     {
                         mb.AppendLine("<b>Parameters</b>");
                         foreach (var parameter in commentForMember.Parameters)

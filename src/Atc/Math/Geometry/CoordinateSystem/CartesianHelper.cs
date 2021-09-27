@@ -71,13 +71,13 @@ namespace Atc.Math.Geometry.CoordinateSystem
         public static double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
         {
             // Take x2-x1, then square it
-            double part1 = System.Math.Pow(x2 - x1, 2);
+            var part1 = System.Math.Pow(x2 - x1, 2);
 
             // Take y2-y1, then square it
-            double part2 = System.Math.Pow(y2 - y1, 2);
+            var part2 = System.Math.Pow(y2 - y1, 2);
 
             // Add both of the parts together
-            double underRadical = part1 + part2;
+            var underRadical = part1 + part2;
 
             // Get the square root of the parts
             return System.Math.Sqrt(underRadical);
@@ -97,16 +97,16 @@ namespace Atc.Math.Geometry.CoordinateSystem
         public static double DistanceBetweenTwoPoints(double x1, double y1, double z1, double x2, double y2, double z2)
         {
             // Take x2-x1, then square it
-            double part1 = System.Math.Pow(x2 - x1, 2);
+            var part1 = System.Math.Pow(x2 - x1, 2);
 
             // Take y2-y1, then square it
-            double part2 = System.Math.Pow(y2 - y1, 2);
+            var part2 = System.Math.Pow(y2 - y1, 2);
 
             // Take z2-z1, then square it
-            double part3 = System.Math.Pow(z2 - z1, 2);
+            var part3 = System.Math.Pow(z2 - z1, 2);
 
             // Add both of the parts together
-            double underRadical = part1 + part2 + part3;
+            var underRadical = part1 + part2 + part3;
 
             // Get the square root of the parts
             return System.Math.Sqrt(underRadical);

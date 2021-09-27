@@ -9,12 +9,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static ParameterListSyntax CreateWithOneItem(string parameterTypeName, string parameterName, string? genericListTypeName = null)
         {
-            if (parameterTypeName == null)
+            if (parameterTypeName is null)
             {
                 throw new ArgumentNullException(nameof(parameterTypeName));
             }
 
-            if (parameterName == null)
+            if (parameterName is null)
             {
                 throw new ArgumentNullException(nameof(parameterName));
             }
@@ -26,7 +26,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ParameterListSyntax CreateWithOneParameterItem(ParameterSyntax parameter)
         {
-            if (parameter == null)
+            if (parameter is null)
             {
                 throw new ArgumentNullException(nameof(parameter));
             }
@@ -43,12 +43,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ParameterSyntax parameter1,
             ParameterSyntax parameter2)
         {
-            if (parameter1 == null)
+            if (parameter1 is null)
             {
                 throw new ArgumentNullException(nameof(parameter1));
             }
 
-            if (parameter2 == null)
+            if (parameter2 is null)
             {
                 throw new ArgumentNullException(nameof(parameter2));
             }
@@ -68,17 +68,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ParameterSyntax parameter2,
             ParameterSyntax parameter3)
         {
-            if (parameter1 == null)
+            if (parameter1 is null)
             {
                 throw new ArgumentNullException(nameof(parameter1));
             }
 
-            if (parameter2 == null)
+            if (parameter2 is null)
             {
                 throw new ArgumentNullException(nameof(parameter2));
             }
 
-            if (parameter3 == null)
+            if (parameter3 is null)
             {
                 throw new ArgumentNullException(nameof(parameter3));
             }

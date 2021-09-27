@@ -17,13 +17,13 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">propertyInfo.</exception>
         public static string BeautifyName(this PropertyInfo propertyInfo)
         {
-            if (propertyInfo == null)
+            if (propertyInfo is null)
             {
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
 
             var underlyingType = Nullable.GetUnderlyingType(propertyInfo.PropertyType)!;
-            if (underlyingType != null)
+            if (underlyingType is not null)
             {
                 return underlyingType.BeautifyTypeName() + "?";
             }
@@ -49,7 +49,7 @@ namespace System.Reflection
         /// <param name="propertyInfo">The property information.</param>
         public static string GetName(this PropertyInfo propertyInfo)
         {
-            if (propertyInfo == null)
+            if (propertyInfo is null)
             {
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
@@ -75,7 +75,7 @@ namespace System.Reflection
         /// <param name="useLocalizedIfPossible">if set to <c>true</c> [use localized if possible].</param>
         public static string GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = true)
         {
-            if (propertyInfo == null)
+            if (propertyInfo is null)
             {
                 throw new ArgumentNullException(nameof(propertyInfo));
             }
@@ -114,7 +114,7 @@ namespace System.Reflection
             where T : Attribute
         {
             var attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
-            return (attribute == null
+            return (attribute is null
                 ? default
                 : expression(attribute))!;
         }
