@@ -728,6 +728,14 @@
      - ToCollection(this DataTable dataTable)
      - ToXPathNodeIterator(this DataTable dataTable)
 
+## [System.Diagnostics](System.Diagnostics.md)
+
+- [ProcessExtensions](System.Diagnostics.md#processextensions)
+  -  Static Methods
+     - KillTree(this Process process)
+     - KillTree(this Process process, TimeSpan timeout)
+     - WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
+
 ## [System.IO](System.IO.md)
 
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)

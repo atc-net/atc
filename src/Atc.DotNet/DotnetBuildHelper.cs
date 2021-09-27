@@ -3,24 +3,52 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Atc.Helpers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Atc.DotNet
 {
     public static class DotnetBuildHelper
     {
+        private const int DefaultTimeoutInSec = 1200;
+
         public static Task<Dictionary<string, int>> BuildAndCollectErrors(
-            ILogger logger,
             DirectoryInfo rootPath,
-            int runNumber,
+            int? runNumber = null,
             FileInfo? buildFile = null,
             bool useNugetRestore = true,
             bool useConfigurationReleaseMode = true,
+            int timeoutInSec = DefaultTimeoutInSec,
+            CancellationToken cancellationToken = default)
+        {
+            if (rootPath is null)
+            {
+                throw new ArgumentNullException(nameof(rootPath));
+            }
+
+            return InvokeBuildAndCollectErrors(
+                NullLogger.Instance,
+                rootPath,
+                runNumber,
+                buildFile,
+                useNugetRestore,
+                useConfigurationReleaseMode,
+                timeoutInSec,
+                cancellationToken);
+        }
+
+        public static Task<Dictionary<string, int>> BuildAndCollectErrors(
+            ILogger logger,
+            DirectoryInfo rootPath,
+            int? runNumber = null,
+            FileInfo? buildFile = null,
+            bool useNugetRestore = true,
+            bool useConfigurationReleaseMode = true,
+            int timeoutInSec = DefaultTimeoutInSec,
             CancellationToken cancellationToken = default)
         {
             if (logger is null)
@@ -33,41 +61,57 @@ namespace Atc.DotNet
                 throw new ArgumentNullException(nameof(rootPath));
             }
 
-            return InvokeBuildAndCollectErrors(logger, rootPath, runNumber, buildFile, useNugetRestore, useConfigurationReleaseMode, cancellationToken);
+            return InvokeBuildAndCollectErrors(
+                logger,
+                rootPath,
+                runNumber,
+                buildFile,
+                useNugetRestore,
+                useConfigurationReleaseMode,
+                timeoutInSec,
+                cancellationToken);
         }
 
         private static async Task<Dictionary<string, int>> InvokeBuildAndCollectErrors(
             ILogger logger,
             DirectoryInfo rootPath,
-            int runNumber,
+            int? runNumber,
             FileInfo? buildFile,
             bool useNugetRestore,
             bool useConfigurationReleaseMode,
+            int timeoutInSec,
             CancellationToken cancellationToken)
         {
-            logger.LogInformation(runNumber < 0
-                ? "Working on Build"
-                : $"Working on Build ({runNumber})");
+            logger.LogInformation(runNumber is > 0
+                ? $"Working on Build ({runNumber})"
+                : "Working on Build");
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            (_, string output) = await RunBuildCommand(rootPath, buildFile, useNugetRestore, useConfigurationReleaseMode, cancellationToken).ConfigureAwait(false);
+            (_, string output) = await RunBuildCommand(
+                    rootPath,
+                    buildFile,
+                    useNugetRestore,
+                    useConfigurationReleaseMode,
+                    timeoutInSec,
+                    cancellationToken)
+                .ConfigureAwait(false);
 
             var parsedErrors = ParseBuildOutput(output);
             int totalErrors = parsedErrors.Sum(parsedError => parsedError.Value);
 
             stopwatch.Stop();
 
-            logger.LogInformation(runNumber < 0
-                ? $"Build is done in {stopwatch.Elapsed.GetPrettyTime()}"
-                : $"Build ({runNumber}) is done in {stopwatch.Elapsed.GetPrettyTime()}");
+            logger.LogInformation(runNumber is > 0
+                ? $"Build ({runNumber}) is done in {stopwatch.Elapsed.GetPrettyTime()}"
+                : $"Build is done in {stopwatch.Elapsed.GetPrettyTime()}");
 
             if (totalErrors > 0)
             {
-                logger.LogError(runNumber < 0
-                    ? $"Found {totalErrors} errors divided into {parsedErrors.Count} rules"
-                    : $"Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})");
+                logger.LogError(runNumber is > 0
+                    ? $"Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})"
+                    : $"Found {totalErrors} errors divided into {parsedErrors.Count} rules");
             }
 
             return parsedErrors;
@@ -78,6 +122,7 @@ namespace Atc.DotNet
             FileInfo? buildFile,
             bool useNugetRestore,
             bool useConfigurationReleaseMode,
+            int timeoutInSec,
             CancellationToken cancellationToken)
         {
             var argumentNugetRestore = useNugetRestore
@@ -118,15 +163,40 @@ namespace Atc.DotNet
             var dotnetFile = DotnetHelper.GetDotnetExecutable();
 
             return await ProcessHelper
-                .Execute(rootPath, dotnetFile, arguments, timeoutInSec: 5 * 60, cancellationToken)
+                .Execute(rootPath, dotnetFile, arguments, timeoutInSec, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         private static Dictionary<string, int> ParseBuildOutput(string buildResult)
         {
-            const string? regexPattern = @": error ([A-Z]\S+?): (.*) \[";
             var errors = new Dictionary<string, int>(StringComparer.Ordinal);
 
+            const string? regexPatternMsb = @": error MSB(\S+?): (.*)";
+            var regexMsb = new Regex(
+                regexPatternMsb,
+                RegexOptions.Multiline | RegexOptions.Compiled,
+                TimeSpan.FromMinutes(2));
+
+            var matchCollectionMsb = regexMsb.Matches(buildResult);
+            foreach (Match match in matchCollectionMsb)
+            {
+                if (match.Groups.Count != 3)
+                {
+                    continue;
+                }
+
+                var key = "MSB" + match.Groups[1].Value;
+                if (errors.ContainsKey(key))
+                {
+                    errors[key] += 1;
+                }
+                else
+                {
+                    errors.Add(key, 1);
+                }
+            }
+
+            const string? regexPattern = @": error ([A-Z]\S+?): (.*) \[";
             var regex = new Regex(
                 regexPattern,
                 RegexOptions.Multiline | RegexOptions.Compiled,
