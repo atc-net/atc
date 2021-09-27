@@ -110,7 +110,7 @@ namespace Atc.Tests
             var actual = Enum<T>.ToArray(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
             // Assert
-            actual.Should().NotBeNull().And.HaveCount(expectedCount);
+            actual.Cast<string>().Should().NotBeNull().And.HaveCount(expectedCount);
         }
 
         [Theory]

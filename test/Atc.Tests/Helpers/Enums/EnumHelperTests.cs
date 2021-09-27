@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using Atc.Helpers;
 using Atc.Tests.XUnitTestData;
@@ -106,7 +107,7 @@ namespace Atc.Tests.Helpers.Enums
                 byFlagIncludeCombined);
 
             // Assert
-            actual.Should().NotBeNull().And.HaveCount(expectedCount);
+            actual.Cast<string>().Should().NotBeNull().And.HaveCount(expectedCount);
         }
 
         [Theory]

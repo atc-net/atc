@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 
@@ -14,8 +15,8 @@ namespace Atc.Tests.Extensions
             var actual = input.RemoveDuplicates();
 
             // Assert
-            actual.Should().NotBeNull().And.HaveCount(expected.Length);
-            actual.Should()
+            actual.Cast<string>().Should().NotBeNull().And.HaveCount(expected.Length);
+            actual.Cast<string>().Should()
                 .NotBeNull()
                 .And.HaveCount(expected.Length)
                 .And.Contain(expected);
@@ -32,7 +33,9 @@ namespace Atc.Tests.Extensions
             var actual = input.ToArray(sortDirectionType, removeDuplicates);
 
             // Assert
-            actual.Should()
+            actual
+                .Cast<string>()
+                .Should()
                 .NotBeNull()
                 .And.HaveCount(expected.Length)
                 .And.Contain(expected);

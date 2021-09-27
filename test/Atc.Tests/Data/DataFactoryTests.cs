@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Atc.Data;
 using FluentAssertions;
 using Xunit;
@@ -25,7 +26,7 @@ namespace Atc.Tests.Data
             actual.Should()
                 .NotBeNull()
                 .And.BeOfType<DataTable>();
-            actual.Rows.Should().HaveCount(expectedCount);
+            actual.Rows.Cast<DataRow>().Should().HaveCount(expectedCount);
         }
 
         [Theory]
@@ -43,7 +44,7 @@ namespace Atc.Tests.Data
             actual.Should()
                 .NotBeNull()
                 .And.BeOfType<DataTable>();
-            actual.Rows.Should().HaveCount(expectedCount);
+            actual.Rows.Cast<DataRow>().Should().HaveCount(expectedCount);
         }
 
         [Theory]
