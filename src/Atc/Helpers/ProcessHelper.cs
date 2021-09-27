@@ -382,13 +382,23 @@ namespace Atc.Helpers
             }
             catch (TimeoutException)
             {
-                var (killIsSuccessful, _) = KillById(processId);
-
-                if (string.IsNullOrEmpty(resultOutput))
+                if (processId > 0)
                 {
-                    resultOutput = killIsSuccessful
-                        ? $"Process has been running for {timeoutInSec} seconds. before terminated."
-                        : $"Process has been running for {timeoutInSec} seconds.";
+                    var (killIsSuccessful, _) = KillById(processId);
+
+                    if (string.IsNullOrEmpty(resultOutput))
+                    {
+                        resultOutput = killIsSuccessful
+                            ? $"Process has been running for {timeoutInSec} seconds. before terminated."
+                            : $"Process has been running for {timeoutInSec} seconds.";
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(resultOutput))
+                    {
+                        resultOutput = $"Process has been running for {timeoutInSec} seconds.";
+                    }
                 }
 
                 return await Task
@@ -416,6 +426,7 @@ namespace Atc.Helpers
         {
             using var process = CreateProcess(redirectStandard: true, workingDirectory, fileInfo, arguments);
             var processId = -1;
+
             try
             {
                 process.Start();
