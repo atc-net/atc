@@ -1,7 +1,6 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
 namespace Atc.DotNet.Tests
