@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+// ReSharper disable CommentTypo
 namespace Atc.DotNet
 {
     public static class DotnetHelper
@@ -29,8 +30,9 @@ namespace Atc.DotNet
                 return directory;
             }
 
-            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtime,
+            // The environment variable 'DOTNET_ROOT' specifies the location of the .NET runtimes,
             // if they are not installed in the default location.
+            // https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-environment-variables
             if (TryGetDirectoryFromEnvVariable("DOTNET_ROOT", out var result))
             {
                 return result!;
