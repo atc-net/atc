@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Threading;
 
 // ReSharper disable once CheckNamespace
@@ -32,9 +32,9 @@ namespace System
         /// </returns>
         public static bool IsEqual(this decimal? a, decimal? b)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return ((double)a).IsEqual((double)b);
@@ -97,9 +97,9 @@ namespace System
         /// <param name="decimalPrecision">The decimal precision.</param>
         public static bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return IsEqual((decimal)a, (decimal)b, decimalPrecision);

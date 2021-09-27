@@ -45,12 +45,12 @@ namespace Atc.XUnit.Internal
 
         internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Type testType)
         {
-            if (sourceType == null)
+            if (sourceType is null)
             {
                 throw new ArgumentNullException(nameof(sourceType));
             }
 
-            if (testType == null)
+            if (testType is null)
             {
                 throw new ArgumentNullException(nameof(testType));
             }
@@ -75,12 +75,12 @@ namespace Atc.XUnit.Internal
 
         internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Assembly testAssembly)
         {
-            if (sourceType == null)
+            if (sourceType is null)
             {
                 throw new ArgumentNullException(nameof(sourceType));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -106,12 +106,12 @@ namespace Atc.XUnit.Internal
         [SuppressMessage("Performance", "MA0020:Use direct methods instead of LINQ methods", Justification = "OK.")]
         internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type>? excludeSourceTypes)
         {
-            if (sourceAssembly == null)
+            if (sourceAssembly is null)
             {
                 throw new ArgumentNullException(nameof(sourceAssembly));
             }
 
-            if (testAssembly == null)
+            if (testAssembly is null)
             {
                 throw new ArgumentNullException(nameof(testAssembly));
             }
@@ -128,7 +128,8 @@ namespace Atc.XUnit.Internal
             if (excludeSourceTypes is { Count: > 0 })
             {
                 sourceTypes = sourceTypes
-                    .Where(sourceType => excludeSourceTypes.FirstOrDefault(x => string.Equals(x.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), sourceType.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), StringComparison.Ordinal)) == null)
+                    .Where(sourceType => excludeSourceTypes
+                        .FirstOrDefault(x => string.Equals(x.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), sourceType.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), StringComparison.Ordinal)) is null)
                     .OrderBy(x => x.Name)
                     .ToArray();
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using ICSharpCode.Decompiler.CSharp.Syntax;
 
@@ -10,7 +10,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         {
             while (true)
             {
-                if (astNode.Parent == null)
+                if (astNode.Parent is null)
                 {
                     return astNode;
                 }
@@ -21,12 +21,12 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
 
         internal static bool IsType(this AstNode astNode, Type type)
         {
-            if (astNode == null)
+            if (astNode is null)
             {
                 throw new ArgumentNullException(nameof(astNode));
             }
 
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -36,17 +36,17 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
 
         internal static AstNode? GetFirstOrDefaultByExpressionType(this AstNode astNode, Type expressionType)
         {
-            if (astNode == null)
+            if (astNode is null)
             {
                 throw new ArgumentNullException(nameof(astNode));
             }
 
-            if (expressionType == null)
+            if (expressionType is null)
             {
                 throw new ArgumentNullException(nameof(expressionType));
             }
 
-            if (expressionType.BaseType == null)
+            if (expressionType.BaseType is null)
             {
                 throw new UnexpectedTypeException(typeof(Nullable), typeof(Expression));
             }

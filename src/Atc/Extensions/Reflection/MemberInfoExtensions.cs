@@ -21,13 +21,13 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">memberInfo.</exception>
         public static bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
         {
-            if (memberInfo == null)
+            if (memberInfo is null)
             {
                 throw new ArgumentNullException(nameof(memberInfo));
             }
 
             var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(ExcludeFromCodeCoverageAttribute));
-            return attributeData != null;
+            return attributeData is not null;
         }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">memberInfo.</exception>
         public static bool HasIgnoreDisplayAttribute(this MemberInfo memberInfo)
         {
-            if (memberInfo == null)
+            if (memberInfo is null)
             {
                 throw new ArgumentNullException(nameof(memberInfo));
             }
 
             var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(IgnoreDisplayAttribute));
-            return attributeData != null;
+            return attributeData is not null;
         }
 
         /// <summary>
@@ -59,13 +59,13 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">memberInfo.</exception>
         public static bool HasRequiredAttribute(this MemberInfo memberInfo)
         {
-            if (memberInfo == null)
+            if (memberInfo is null)
             {
                 throw new ArgumentNullException(nameof(memberInfo));
             }
 
             var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(RequiredAttribute));
-            return attributeData != null;
+            return attributeData is not null;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace System.Reflection
         {
             var property = member as PropertyInfo;
 
-            return property?.GetSetMethod(true) != null;
+            return property?.GetSetMethod(true) is not null;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace System.Reflection
         /// <exception cref="ArgumentException">Input MemberInfo must be if type EventInfo, FieldInfo, MethodInfo, or PropertyInfo.</exception>
         public static Type GetUnderlyingType(this MemberInfo member)
         {
-            if (member == null)
+            if (member is null)
             {
                 throw new ArgumentNullException(nameof(member));
             }

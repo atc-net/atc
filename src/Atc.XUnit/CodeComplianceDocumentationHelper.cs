@@ -21,7 +21,7 @@ namespace Atc.XUnit
             var typeComments = DocumentationHelper.CollectExportedTypeWithCommentsFromType(type);
 
             var testResults = new List<TestResult>();
-            if (typeComments != null && !typeComments.HasComments)
+            if (typeComments is not null && !typeComments.HasComments)
             {
                 testResults.Add(new TestResult(true, 0, $"Type: {typeComments.Type.BeautifyTypeName(true)}"));
             }
@@ -38,7 +38,7 @@ namespace Atc.XUnit
             Assembly assembly,
             List<Type>? excludeTypes = null)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }

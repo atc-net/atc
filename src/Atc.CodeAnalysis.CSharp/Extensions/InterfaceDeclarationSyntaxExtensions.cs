@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom.Compiler;
 using Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
@@ -9,17 +9,17 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static InterfaceDeclarationSyntax AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
         {
-            if (interfaceDeclaration == null)
+            if (interfaceDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(interfaceDeclaration));
             }
 
-            if (toolName == null)
+            if (toolName is null)
             {
                 throw new ArgumentNullException(nameof(toolName));
             }
 
-            if (version == null)
+            if (version is null)
             {
                 throw new ArgumentNullException(nameof(version));
             }

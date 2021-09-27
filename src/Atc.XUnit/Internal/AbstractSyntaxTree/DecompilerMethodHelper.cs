@@ -28,7 +28,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                         continue;
                     }
 
-                    if (classMethodNames.Item2 == null)
+                    if (classMethodNames.Item2 is null)
                     {
                         list.Add(testMethodWithDeclaration);
                     }
@@ -38,7 +38,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                         foreach (var methodName in classMethodNames.Item2)
                         {
                             var astNodeForMethod = GetAstNodeForMethod(testMethodWithDeclaration.Item2.Body, methodName);
-                            if (astNodeForMethod != null)
+                            if (astNodeForMethod is not null)
                             {
                                 list.Add(testMethodWithDeclaration);
                             }
@@ -70,7 +70,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                         continue;
                     }
 
-                    if (classMethodsNames.Item2 == null)
+                    if (classMethodsNames.Item2 is null)
                     {
                         list.Add(testMethodWithDeclaration);
                     }
@@ -87,7 +87,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                             var astNodeForMethod = GetAstNodeForMethod(testMethodWithDeclaration.Item2.Body, methodName);
 
                             // ReSharper disable once InvertIf
-                            if (astNodeForMethod != null)
+                            if (astNodeForMethod is not null)
                             {
                                 list.Add(testMethodWithDeclaration);
                             }
@@ -104,8 +104,8 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
         internal static Tuple<MethodInfo, MethodDeclaration>[]? FilterTestMethods(MethodInfo method, Tuple<MethodInfo, MethodDeclaration>[]? testMethodsWithDeclaration)
         {
-            if (method.DeclaringType == null ||
-                testMethodsWithDeclaration == null ||
+            if (method.DeclaringType is null ||
+                testMethodsWithDeclaration is null ||
                 testMethodsWithDeclaration.Length == 0)
             {
                 return null;
@@ -115,7 +115,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             if (method.HasDeclaringTypeValidationAttributes())
             {
                 tuples = testMethodsWithDeclaration
-                    .Where(x => x.Item1.DeclaringType != null &&
+                    .Where(x => x.Item1.DeclaringType is not null &&
                                 x.Item1.DeclaringType.Name.EndsWith("AttributesTests", StringComparison.Ordinal))
                     .ToArray();
             }
@@ -123,7 +123,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             {
                 var mn = method.DeclaringType.BeautifyName().Replace("<T>", string.Empty, StringComparison.Ordinal);
                 tuples = testMethodsWithDeclaration
-                    .Where(x => x.Item1.DeclaringType != null &&
+                    .Where(x => x.Item1.DeclaringType is not null &&
                                 x.Item1.DeclaringType.Name.StartsWith(mn, StringComparison.Ordinal))
                     .ToArray();
             }
@@ -134,7 +134,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         internal static Tuple<AstNode, List<AstNode>>? GetAstNodeForMethod(MethodInfo method, MethodDeclaration declaration)
         {
             var astNodeForMethodWithParameters = GetAstNodeForMethodWithParameters(declaration.Body, method.Name);
-            if (astNodeForMethodWithParameters == null)
+            if (astNodeForMethodWithParameters is null)
             {
                 return null;
             }
@@ -150,7 +150,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             return astNode.Descendants
                 .Where(x => x.IsType(typeof(InvocationExpression)))
                 .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && string.Equals(x.ToString(), methodName, StringComparison.Ordinal)))
-                .FirstOrDefault(x => x != null);
+                .FirstOrDefault(x => x is not null);
         }
 
         internal static AstNode? GetAstNodeForParameter(AstNode astNode, string parameterName)
@@ -160,7 +160,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                             x.IsType(typeof(VariableInitializer)) ||
                             x.IsType(typeof(MemberReferenceExpression)))
                 .Select(node => node.Descendants.FirstOrDefault(x => string.Equals(x.ToString(), parameterName, StringComparison.Ordinal)))
-                .FirstOrDefault(x => x != null);
+                .FirstOrDefault(x => x is not null);
         }
 
         internal static string? GetTestMethodCode(AstNode astNode)
@@ -171,7 +171,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         internal static AstNode? GetAstNodeForTestMethodCode(AstNode astNode)
         {
             var s = astNode.ToString();
-            var stopRecursive = astNode.Parent == null ||
+            var stopRecursive = astNode.Parent is null ||
                                 s.StartsWith("[Fact]", StringComparison.Ordinal) ||
                                 s.StartsWith("[Theory]", StringComparison.Ordinal);
             if (stopRecursive)
@@ -179,7 +179,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                 return astNode;
             }
 
-            return astNode.Parent == null
+            return astNode.Parent is null
                 ? null
                 : GetAstNodeForTestMethodCode(astNode.Parent);
         }

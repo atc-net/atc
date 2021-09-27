@@ -26,7 +26,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             TelemetryClient telemetryClient,
             RestApiOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }
@@ -38,7 +38,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
 
         public override void OnException(ExceptionContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -52,7 +52,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
         private static HttpStatusCode GetHttpStatusCodeByExceptionType(ExceptionContext context)
         {
             var statusCode = HttpStatusCode.InternalServerError;
-            if (context.Exception == null)
+            if (context.Exception is null)
             {
                 return statusCode;
             }
@@ -100,7 +100,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
                 sb.Append($"TraceId: {traceId}");
             }
 
-            if (includeException && context.Exception != null)
+            if (includeException && context.Exception is not null)
             {
                 sb.Append(" # ");
                 sb.Append(context.Exception.GetMessage(true, true));

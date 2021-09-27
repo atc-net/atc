@@ -52,7 +52,7 @@ namespace Atc.Rest.Extended.Options
                     return new[] { controllerActionDescriptor.ControllerName };
                 }
 
-                if (api.HttpMethod != null)
+                if (api.HttpMethod is not null)
                 {
                     return new[] { api.HttpMethod };
                 }

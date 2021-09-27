@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Atc.Rest.Options;
@@ -23,7 +23,7 @@ namespace Atc.Rest.Extensions
 
         public Task HandleAsync(AuthorizationHandlerContext context)
         {
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }

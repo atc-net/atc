@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -11,12 +11,12 @@ namespace Atc.Rest.Extended.Filters
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation == null)
+            if (operation is null)
             {
                 throw new ArgumentNullException(nameof(operation));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -41,11 +41,7 @@ namespace Atc.Rest.Extended.Filters
                 return;
             }
 
-            if (operation.Responses == null)
-            {
-                operation.Responses = new OpenApiResponses();
-            }
-
+            operation.Responses ??= new OpenApiResponses();
             operation.Responses["401"] = new OpenApiResponse { Description = "Request was valid but the calling user does not have the required role" };
             operation.Responses["403"] = new OpenApiResponse { Description = "The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource" };
         }

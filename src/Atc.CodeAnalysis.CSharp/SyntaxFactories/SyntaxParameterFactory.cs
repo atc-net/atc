@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -8,17 +8,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static ParameterSyntax Create(string parameterTypeName, string parameterName, string? genericListTypeName = null)
         {
-            if (parameterTypeName == null)
+            if (parameterTypeName is null)
             {
                 throw new ArgumentNullException(nameof(parameterTypeName));
             }
 
-            if (parameterName == null)
+            if (parameterName is null)
             {
                 throw new ArgumentNullException(nameof(parameterName));
             }
 
-            if (genericListTypeName != null)
+            if (genericListTypeName is not null)
             {
                 return SyntaxFactory
                     .Parameter(SyntaxFactory.Identifier(parameterName))
@@ -37,17 +37,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ParameterSyntax CreateWithAttribute(string attributeTypeName, string parameterTypeName, string parameterName)
         {
-            if (attributeTypeName == null)
+            if (attributeTypeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeTypeName));
             }
 
-            if (parameterTypeName == null)
+            if (parameterTypeName is null)
             {
                 throw new ArgumentNullException(nameof(parameterTypeName));
             }
 
-            if (parameterName == null)
+            if (parameterName is null)
             {
                 throw new ArgumentNullException(nameof(parameterName));
             }

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using Atc;
@@ -21,9 +21,9 @@ namespace System
         /// </returns>
         public static bool IsEqual(this int? a, int? b)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return a == b;

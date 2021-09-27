@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Atc.XUnit.Internal;
@@ -33,7 +33,7 @@ namespace Atc.XUnit
             List<Type>? excludeTypes = null,
             bool useFullName = false)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
@@ -41,6 +41,7 @@ namespace Atc.XUnit
             var methodsWithWrongNaming = AssemblyAnalyzerHelper.CollectExportedMethodsWithWrongNaming(
                 assembly,
                 excludeTypes);
+
             TestResultHelper.AssertOnTestResultsFromMethodsWithWrongDefinitions(
                 assembly.GetName().Name,
                 methodsWithWrongNaming,

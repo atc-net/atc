@@ -34,7 +34,7 @@ namespace Atc.Tests.Extensions.Reflection
             var actual = assembly.GetExportedTypeByName(typeName);
 
             // Assert
-            if (expected == null)
+            if (expected is null)
             {
                 Assert.Null(actual);
             }

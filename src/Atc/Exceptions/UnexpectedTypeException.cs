@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using Atc.Helpers;
 
@@ -36,12 +36,12 @@ namespace System
         [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public UnexpectedTypeException(Type actualType, Type expectedType)
         {
-            if (actualType == null)
+            if (actualType is null)
             {
                 throw new ArgumentNullException(nameof(actualType));
             }
 
-            if (expectedType == null)
+            if (expectedType is null)
             {
                 throw new ArgumentNullException(nameof(expectedType));
             }
@@ -70,17 +70,17 @@ namespace System
         [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
         public UnexpectedTypeException(Type actualType, Type expectedType, string message)
         {
-            if (actualType == null)
+            if (actualType is null)
             {
                 throw new ArgumentNullException(nameof(actualType));
             }
 
-            if (expectedType == null)
+            if (expectedType is null)
             {
                 throw new ArgumentNullException(nameof(expectedType));
             }
 
-            if (message == null)
+            if (message is null)
             {
                 throw new ArgumentNullException(nameof(message));
             }

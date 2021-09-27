@@ -19,7 +19,7 @@ namespace Atc.Rest.Extensions
         [SuppressMessage("Usage", "VSTHRD103:Call async methods when in an async method", Justification = "OK. The async method is a sub-method.")]
         public static void MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List<AssemblyPairOptions> assemblyPairs)
         {
-            if (assemblyPairs == null)
+            if (assemblyPairs is null)
             {
                 throw new ArgumentNullException(nameof(assemblyPairs));
             }
@@ -29,7 +29,7 @@ namespace Atc.Rest.Extensions
             {
                 var apiAssemblyName = assemblyPair.ApiAssembly.GetName().Name!;
                 var resourceStream = assemblyPair.ApiAssembly.GetManifestResourceStream($"{apiAssemblyName}.Resources.ApiSpecification.yaml");
-                if (resourceStream == null)
+                if (resourceStream is null)
                 {
                     continue;
                 }

@@ -20,7 +20,7 @@ namespace System.Data
         /// <param name="sortDirection">The sort direction.</param>
         public static DataTable SortTable(this DataTable dataTable, string sortOnColumn, SortDirectionType sortDirection)
         {
-            if (dataTable == null)
+            if (dataTable is null)
             {
                 throw new ArgumentNullException(nameof(dataTable));
             }
@@ -45,17 +45,17 @@ namespace System.Data
         /// <param name="sortExpression">The sort expression.</param>
         public static DataTable FilterTable(this DataTable dataTable, string filterExpression, string sortExpression)
         {
-            if (dataTable == null)
+            if (dataTable is null)
             {
                 throw new ArgumentNullException(nameof(dataTable));
             }
 
-            if (filterExpression == null)
+            if (filterExpression is null)
             {
                 throw new ArgumentNullException(nameof(filterExpression));
             }
 
-            if (sortExpression == null)
+            if (sortExpression is null)
             {
                 throw new ArgumentNullException(nameof(sortExpression));
             }
@@ -83,7 +83,7 @@ namespace System.Data
         /// <param name="countOnColumn">The count on column.</param>
         public static Dictionary<string, int> GetGroupCount(this DataTable dataTable, string countOnColumn)
         {
-            if (dataTable == null)
+            if (dataTable is null)
             {
                 throw new ArgumentNullException(nameof(dataTable));
             }
@@ -122,7 +122,7 @@ namespace System.Data
         /// <returns>The list of T.</returns>
         public static List<T> ToCollection<T>(this DataTable dataTable)
         {
-            if (dataTable == null)
+            if (dataTable is null)
             {
                 throw new ArgumentNullException(nameof(dataTable));
             }
@@ -137,7 +137,7 @@ namespace System.Data
                 foreach (var propertyInfo in
                     from pc in propertyInfos
                     let d = dataColumns.Find(c => string.Equals(c.ColumnName, pc.Name, StringComparison.Ordinal))
-                    where d != null
+                    where d is not null
                     select pc)
                 {
                     propertyInfo.SetValue(cn, item[propertyInfo.Name], null);
@@ -155,7 +155,7 @@ namespace System.Data
         /// <param name="dataTable">The data table.</param>
         public static XPathNodeIterator? ToXPathNodeIterator(this DataTable dataTable)
         {
-            if (dataTable == null)
+            if (dataTable is null)
             {
                 throw new ArgumentNullException(nameof(dataTable));
             }

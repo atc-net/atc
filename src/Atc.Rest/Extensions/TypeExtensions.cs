@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
 // ReSharper disable CheckNamespace
 namespace System
@@ -7,7 +7,7 @@ namespace System
     {
         public static string GetApiName(this Type type, bool removeLastVerb = false)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }

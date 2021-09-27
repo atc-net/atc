@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 // ReSharper disable once CheckNamespace
 namespace System.IO
@@ -15,7 +15,7 @@ namespace System.IO
         /// <param name="encoding">The encoding.</param>
         public static string ToString(this MemoryStream stream, Encoding? encoding = null)
         {
-            if (stream == null)
+            if (stream is null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }

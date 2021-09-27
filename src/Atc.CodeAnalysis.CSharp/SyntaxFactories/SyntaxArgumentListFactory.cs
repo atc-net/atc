@@ -9,7 +9,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static ArgumentListSyntax CreateWithOneItem(string argumentName)
         {
-            if (argumentName == null)
+            if (argumentName is null)
             {
                 throw new ArgumentNullException(nameof(argumentName));
             }
@@ -23,12 +23,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             string argumentName1,
             string argumentName2)
         {
-            if (argumentName1 == null)
+            if (argumentName1 is null)
             {
                 throw new ArgumentNullException(nameof(argumentName1));
             }
 
-            if (argumentName2 == null)
+            if (argumentName2 is null)
             {
                 throw new ArgumentNullException(nameof(argumentName2));
             }
@@ -40,7 +40,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ArgumentListSyntax CreateWithOneArgumentItem(ArgumentSyntax argument)
         {
-            if (argument == null)
+            if (argument is null)
             {
                 throw new ArgumentNullException(nameof(argument));
             }
@@ -57,12 +57,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ArgumentSyntax argument1,
             ArgumentSyntax argument2)
         {
-            if (argument1 == null)
+            if (argument1 is null)
             {
                 throw new ArgumentNullException(nameof(argument1));
             }
 
-            if (argument2 == null)
+            if (argument2 is null)
             {
                 throw new ArgumentNullException(nameof(argument2));
             }
@@ -82,17 +82,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ArgumentSyntax argument2,
             ArgumentSyntax argument3)
         {
-            if (argument1 == null)
+            if (argument1 is null)
             {
                 throw new ArgumentNullException(nameof(argument1));
             }
 
-            if (argument2 == null)
+            if (argument2 is null)
             {
                 throw new ArgumentNullException(nameof(argument2));
             }
 
-            if (argument3 == null)
+            if (argument3 is null)
             {
                 throw new ArgumentNullException(nameof(argument3));
             }
@@ -111,7 +111,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static ArgumentListSyntax CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
         {
-            if (argumentExpression1 == null)
+            if (argumentExpression1 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression1));
             }
@@ -124,12 +124,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ExpressionSyntax argumentExpression1,
             ExpressionSyntax argumentExpression2)
         {
-            if (argumentExpression1 == null)
+            if (argumentExpression1 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression1));
             }
 
-            if (argumentExpression2 == null)
+            if (argumentExpression2 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression2));
             }
@@ -144,17 +144,17 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
             ExpressionSyntax argumentExpression2,
             ExpressionSyntax argumentExpression3)
         {
-            if (argumentExpression1 == null)
+            if (argumentExpression1 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression1));
             }
 
-            if (argumentExpression2 == null)
+            if (argumentExpression2 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression2));
             }
 
-            if (argumentExpression3 == null)
+            if (argumentExpression3 is null)
             {
                 throw new ArgumentNullException(nameof(argumentExpression3));
             }

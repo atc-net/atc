@@ -27,12 +27,12 @@ namespace Atc
         /// ]]></example>
         public static T GetEnumValue(string value, bool ignoreCase = true)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (value.Length == 0)
+            if (value.Length == default)
             {
                 throw new ArgumentOutOfRangeException(nameof(value));
             }
@@ -84,7 +84,7 @@ namespace Atc
         public static bool TryGetEnumValue(Enum? value, out T returnedValue)
         {
             returnedValue = default!;
-            return value != null && TryGetEnumValue(value.ToString(), false, out returnedValue);
+            return value is not null && TryGetEnumValue(value.ToString(), false, out returnedValue);
         }
 
         /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>

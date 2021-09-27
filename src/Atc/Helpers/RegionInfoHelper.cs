@@ -22,7 +22,7 @@ namespace Atc.Helpers
         {
             lock (Lock)
             {
-                if (allRegionInfos != null)
+                if (allRegionInfos is not null)
                 {
                     return allRegionInfos;
                 }
@@ -65,7 +65,7 @@ namespace Atc.Helpers
         /// <exception cref="ArgumentNullException">isoAlpha3Code.</exception>
         public static RegionInfo? GetRegionInfoByIsoAlpha3(string isoAlpha3Code)
         {
-            if (isoAlpha3Code == null)
+            if (isoAlpha3Code is null)
             {
                 throw new ArgumentNullException(nameof(isoAlpha3Code));
             }
@@ -81,7 +81,7 @@ namespace Atc.Helpers
         /// <exception cref="ArgumentNullException">isoAlpha3Code.</exception>
         public static CultureInfo? GetCultureInfoByIsoAlpha3(string isoAlpha3Code)
         {
-            if (isoAlpha3Code == null)
+            if (isoAlpha3Code is null)
             {
                 throw new ArgumentNullException(nameof(isoAlpha3Code));
             }
@@ -99,7 +99,7 @@ namespace Atc.Helpers
             }
 
             var regionInfo = GetRegionInfoByIsoAlpha3(isoAlpha3Code);
-            return regionInfo == null
+            return regionInfo is null
                        ? null
                        : CultureInfo
                            .GetCultures(CultureTypes.SpecificCultures)
@@ -116,14 +116,14 @@ namespace Atc.Helpers
         /// <exception cref="ArgumentNullException">regionInfo.</exception>
         public static int GetLcidFromRegionInfo(RegionInfo regionInfo)
         {
-            if (regionInfo == null)
+            if (regionInfo is null)
             {
                 throw new ArgumentNullException(nameof(regionInfo));
             }
 
             var cultures = CultureHelper.GetCultures();
             var culture = cultures.Find(x => x.CountryCodeA3.Equals(regionInfo.ThreeLetterISORegionName, StringComparison.Ordinal));
-            if (culture == null)
+            if (culture is null)
             {
                 return -1;
             }

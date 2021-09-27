@@ -12,12 +12,12 @@ namespace Atc.Rest.Extended.Filters
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation == null)
+            if (operation is null)
             {
                 throw new ArgumentNullException(nameof(operation));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -26,7 +26,7 @@ namespace Atc.Rest.Extended.Filters
                 .Parameters
                 .FirstOrDefault(p => string.Equals(p.Name, ApiVersionConstants.ApiVersionQueryParameter, StringComparison.Ordinal));
 
-            if (apiVersionParameter != null)
+            if (apiVersionParameter is not null)
             {
                 ConfigureApiVersion(apiVersionParameter, context);
             }
@@ -34,12 +34,12 @@ namespace Atc.Rest.Extended.Filters
 
         protected void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
         {
-            if (apiVersionParameter == null)
+            if (apiVersionParameter is null)
             {
                 throw new ArgumentNullException(nameof(apiVersionParameter));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -48,12 +48,12 @@ namespace Atc.Rest.Extended.Filters
                 .ParameterDescriptions
                 .First(p => string.Equals(p.Name, apiVersionParameter.Name, StringComparison.Ordinal));
 
-            if (apiVersionParameter.Description == null)
+            if (apiVersionParameter.Description is null)
             {
                 apiVersionParameter.Description = description?.ModelMetadata?.Description;
             }
 
-            if (apiVersionParameter.Schema.Default == null && description != null)
+            if (apiVersionParameter.Schema.Default is null && description is not null)
             {
                 apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
 
@@ -61,7 +61,7 @@ namespace Atc.Rest.Extended.Filters
                 apiVersionParameter.Schema.Enum = openApiVersionList;
             }
 
-            if (description != null)
+            if (description is not null)
             {
                 apiVersionParameter.Required |= description.IsRequired;
             }

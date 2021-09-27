@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -33,12 +33,12 @@ namespace Atc.Rest.Options
 
         public void AddAssemblyPairs(Assembly? apiAssembly, Assembly? domainAssembly)
         {
-            if (apiAssembly == null)
+            if (apiAssembly is null)
             {
                 throw new ArgumentNullException(nameof(apiAssembly));
             }
 
-            if (domainAssembly == null)
+            if (domainAssembly is null)
             {
                 throw new ArgumentNullException(nameof(domainAssembly));
             }

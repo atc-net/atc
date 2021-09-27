@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -151,7 +151,7 @@ namespace Atc.Helpers
         /// <param name="type">The type.</param>
         public static string? GetBeautifyTypeName(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -168,7 +168,7 @@ namespace Atc.Helpers
         [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string? GetBeautifyTypeNameByRef(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -278,7 +278,7 @@ namespace Atc.Helpers
         /// <param name="type">The type.</param>
         public static string? GetBeautifyArrayTypeName(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }

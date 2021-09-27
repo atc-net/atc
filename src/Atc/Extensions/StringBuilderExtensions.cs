@@ -1,4 +1,4 @@
-﻿using Atc;
+using Atc;
 
 // ReSharper disable once CheckNamespace
 namespace System.Text
@@ -16,17 +16,17 @@ namespace System.Text
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         public static void Append(this StringBuilder sb, string format, params object[] args)
         {
-            if (sb == null)
+            if (sb is null)
             {
                 throw new ArgumentNullException(nameof(sb));
             }
 
-            if (format == null)
+            if (format is null)
             {
                 throw new ArgumentNullException(nameof(format));
             }
 
-            if (args == null)
+            if (args is null)
             {
                 throw new ArgumentNullException(nameof(args));
             }
@@ -42,17 +42,17 @@ namespace System.Text
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         public static void AppendLine(this StringBuilder sb, string format, params object[] args)
         {
-            if (sb == null)
+            if (sb is null)
             {
                 throw new ArgumentNullException(nameof(sb));
             }
 
-            if (format == null)
+            if (format is null)
             {
                 throw new ArgumentNullException(nameof(format));
             }
 
-            if (args == null)
+            if (args is null)
             {
                 throw new ArgumentNullException(nameof(args));
             }
@@ -68,7 +68,7 @@ namespace System.Text
         /// <param name="value">The value.</param>
         public static void AppendLine(this StringBuilder sb, int indentSpaces, string value)
         {
-            if (sb == null)
+            if (sb is null)
             {
                 throw new ArgumentNullException(nameof(sb));
             }
@@ -78,7 +78,7 @@ namespace System.Text
                 throw new ArgumentOutOfRangeException(nameof(value));
             }
 
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }

@@ -85,7 +85,7 @@ namespace Atc.Rest.Extended.Options
 
         public void PostConfigure(string name, AuthenticationOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }
@@ -142,7 +142,7 @@ namespace Atc.Rest.Extended.Options
 
         private void SanityCheck(JwtBearerOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }

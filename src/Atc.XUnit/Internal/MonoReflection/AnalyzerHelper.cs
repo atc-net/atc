@@ -13,7 +13,7 @@ namespace Atc.XUnit.Internal.MonoReflection
             MethodInfo[] usedSourceMethods,
             DebugLimitData? debugLimitData)
         {
-            if (debugLimitData != null)
+            if (debugLimitData is not null)
             {
                 sourceTypes = TypeAndMethodAndParameterHelper.DebugFilterTypeNames(debugLimitData, sourceTypes);
                 usedSourceMethods = DebugFilterTypeNames(debugLimitData, usedSourceMethods);
@@ -45,7 +45,7 @@ namespace Atc.XUnit.Internal.MonoReflection
                             {
                                 methodsWithTest.Add(method);
                             }
-                            else if (debugLimitData != null)
+                            else if (debugLimitData is not null)
                             {
                                 // Dummy for breakpoint
                                 throw new Exception("Ups..");
@@ -81,13 +81,13 @@ namespace Atc.XUnit.Internal.MonoReflection
                     foreach (var instruction in instructions)
                     {
                         var usedMethodInTest = instruction.Operand as MethodInfo;
-                        if (usedMethodInTest == null)
+                        if (usedMethodInTest is null)
                         {
                             continue;
                         }
 
                         var type = usedMethodInTest.DeclaringType;
-                        if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(false, false, true), StringComparison.Ordinal)) == null)
+                        if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(false, false, true), StringComparison.Ordinal)) is null)
                         {
                             continue;
                         }
@@ -118,10 +118,10 @@ namespace Atc.XUnit.Internal.MonoReflection
             DebugLimitData? debugLimitData)
         {
             // ReSharper disable once InvertIf
-            if (debugLimitData != null && debugLimitData.HasClassNames)
+            if (debugLimitData is not null && debugLimitData.HasClassNames)
             {
                 var notFound = debugLimitData.ClassMethodNames
-                    .Where(x => x.Item2 != null)
+                    .Where(x => x.Item2 is not null)
                     .All(x => !x.Item2.Any(m => method.BeautifyName().Equals(m, StringComparison.Ordinal)));
 
                 if (notFound)
@@ -187,7 +187,7 @@ namespace Atc.XUnit.Internal.MonoReflection
                         continue;
                     }
 
-                    if (classMethodNames.Item2 == null)
+                    if (classMethodNames.Item2 is null)
                     {
                         list.Add(usedSourceMethod);
                     }

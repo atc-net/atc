@@ -12,12 +12,12 @@ namespace Atc.Rest.Extended.Filters
     {
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            if (swaggerDoc == null)
+            if (swaggerDoc is null)
             {
                 throw new ArgumentNullException(nameof(swaggerDoc));
             }
 
-            if (context == null)
+            if (context is null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
@@ -38,7 +38,7 @@ namespace Atc.Rest.Extended.Filters
                     x =>
                         x.Source == parameterBindingSource &&
                         string.Equals(x.Name, parameterName, StringComparison.Ordinal));
-                if (apiParameterDescription != null)
+                if (apiParameterDescription is not null)
                 {
                     apiDescription.ParameterDescriptions.Remove(apiParameterDescription);
                 }
@@ -49,7 +49,7 @@ namespace Atc.Rest.Extended.Filters
                 foreach (var openApiOperation in swaggerDocPath.Value.Operations)
                 {
                     var operation = openApiOperation.Value.Parameters.FirstOrDefault(x => string.Equals(x.Name, parameterName, StringComparison.Ordinal));
-                    if (operation != null)
+                    if (operation is not null)
                     {
                         openApiOperation.Value.Parameters.Remove(operation);
                     }

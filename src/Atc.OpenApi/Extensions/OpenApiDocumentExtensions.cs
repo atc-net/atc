@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,12 +9,12 @@ namespace Microsoft.OpenApi.Models
     {
         public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
         {
-            if (document == null)
+            if (document is null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (basePathSegmentName == null)
+            if (basePathSegmentName is null)
             {
                 throw new ArgumentNullException(nameof(basePathSegmentName));
             }

@@ -112,26 +112,26 @@ namespace Atc.Math.Trigonometry
                 }
                 else if (!MathHelper.IsEqualToZero(data.B) && !MathHelper.IsEqualToZero(data.a) && !MathHelper.IsEqualToZero(data.c))
                 {
-                    double a2 = data.a * data.a;
-                    double c2 = data.c * data.c;
+                    var a2 = data.a * data.a;
+                    var c2 = data.c * data.c;
                     if (MathHelper.IsEqualToZero(data.b))
                     {
                         data.b = System.Math.Sqrt(a2 + c2 - (2 * data.a * data.c * MathHelper.Cos(data.B)));
                     }
 
-                    double b2 = data.b * data.b;
+                    var b2 = data.b * data.b;
                     data.A = MathHelper.Acos((b2 + c2 - a2) / (2 * data.b * data.c));
                 }
                 else if (!MathHelper.IsEqualToZero(data.C) && !MathHelper.IsEqualToZero(data.a) && !MathHelper.IsEqualToZero(data.b))
                 {
-                    double a2 = data.a * data.a;
-                    double b2 = data.b * data.b;
+                    var a2 = data.a * data.a;
+                    var b2 = data.b * data.b;
                     if (MathHelper.IsEqualToZero(data.c))
                     {
                         data.c = System.Math.Sqrt(a2 + b2 - (2 * data.a * data.b * MathHelper.Cos(data.C)));
                     }
 
-                    double c2 = data.c * data.c;
+                    var c2 = data.c * data.c;
                     data.A = MathHelper.Acos((b2 + c2 - a2) / (2 * data.b * data.c));
                 }
                 else if (!MathHelper.IsEqualToZero(data.C) && !MathHelper.IsEqualToZero(data.a) && !MathHelper.IsEqualToZero(data.c))
@@ -171,14 +171,14 @@ namespace Atc.Math.Trigonometry
                 }
                 else if (!MathHelper.IsEqualToZero(data.A) && !MathHelper.IsEqualToZero(data.b) && !MathHelper.IsEqualToZero(data.c))
                 {
-                    double b2 = data.b * data.b;
-                    double c2 = data.c * data.c;
+                    var b2 = data.b * data.b;
+                    var c2 = data.c * data.c;
                     if (MathHelper.IsEqualToZero(data.a))
                     {
                         data.a = System.Math.Sqrt(b2 + c2 - (2 * data.b * data.c * MathHelper.Cos(data.A)));
                     }
 
-                    double a2 = data.a * data.a;
+                    var a2 = data.a * data.a;
                     data.B = MathHelper.Acos((a2 + c2 - b2) / (2 * data.a * data.c));
                 }
                 else if (!MathHelper.IsEqualToZero(data.A) && !MathHelper.IsEqualToZero(data.a) && !MathHelper.IsEqualToZero(data.c))

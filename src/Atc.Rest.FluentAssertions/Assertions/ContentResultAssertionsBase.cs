@@ -42,7 +42,7 @@ namespace Atc.Rest.FluentAssertions
             var expectedType = typeof(T);
 
             Execute.Assertion
-                .ForCondition(Subject.Content != null)
+                .ForCondition(Subject.Content is not null)
                 .BecauseOf(because, becauseArgs)
                 .WithDefaultIdentifier($"type of content in {Identifier}")
                 .FailWith("Expected {context} to be {0}{reason}, but found <null>.", expectedType);

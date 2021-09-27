@@ -13,7 +13,7 @@ namespace Microsoft.AspNetCore.Http
         /// <returns>Correlation id for request.</returns>
         public static string GetOrAddCorrelationId(this IHeaderDictionary headers)
         {
-            if (headers == null)
+            if (headers is null)
             {
                 throw new ArgumentNullException(nameof(headers));
             }
@@ -25,7 +25,7 @@ namespace Microsoft.AspNetCore.Http
 
         public static string AddCorrelationId(this IHeaderDictionary headers, string correlationId)
         {
-            if (headers == null)
+            if (headers is null)
             {
                 throw new ArgumentNullException(nameof(headers));
             }
@@ -36,7 +36,7 @@ namespace Microsoft.AspNetCore.Http
 
         public static string? GetOrAddRequestId(this IHeaderDictionary headers)
         {
-            if (headers == null)
+            if (headers is null)
             {
                 throw new ArgumentNullException(nameof(headers));
             }
@@ -53,7 +53,7 @@ namespace Microsoft.AspNetCore.Http
 
         public static string? GetCallingOnBehalfOfIdentity(this IHeaderDictionary headers)
         {
-            if (headers == null)
+            if (headers is null)
             {
                 throw new ArgumentNullException(nameof(headers));
             }

@@ -20,7 +20,7 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">methodInfo.</exception>
         public static bool IsOverride(this MethodInfo methodInfo)
         {
-            if (methodInfo == null)
+            if (methodInfo is null)
             {
                 throw new ArgumentNullException(nameof(methodInfo));
             }
@@ -38,12 +38,12 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">methodInfo.</exception>
         public static bool HasDeclaringTypeValidationAttributes(this MethodInfo methodInfo)
         {
-            if (methodInfo == null)
+            if (methodInfo is null)
             {
                 throw new ArgumentNullException(nameof(methodInfo));
             }
 
-            if (methodInfo.DeclaringType == null)
+            if (methodInfo.DeclaringType is null)
             {
                 return false;
             }
@@ -63,7 +63,7 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">methodInfo.</exception>
         public static bool HasGenericParameters(this MethodInfo methodInfo)
         {
-            if (methodInfo == null)
+            if (methodInfo is null)
             {
                 throw new ArgumentNullException(nameof(methodInfo));
             }
@@ -81,7 +81,7 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">methodInfo.</exception>
         public static string BeautifyName(this MethodInfo methodInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
         {
-            if (methodInfo == null)
+            if (methodInfo is null)
             {
                 throw new ArgumentNullException(nameof(methodInfo));
             }

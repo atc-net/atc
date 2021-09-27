@@ -20,7 +20,7 @@ namespace Atc.CodeDocumentation
         {
             this.Type = type ?? throw new ArgumentNullException(nameof(type));
             this.CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
-            if (type.FullName == null)
+            if (type.FullName is null)
             {
                 throw new ArgumentNullOrDefaultPropertyException(nameof(type.FullName));
             }
@@ -119,17 +119,17 @@ namespace Atc.CodeDocumentation
                 {
                     var get = y.GetGetMethod(true);
                     var set = y.GetSetMethod(true);
-                    if (get != null && set != null)
+                    if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);
                     }
 
-                    if (get != null)
+                    if (get is not null)
                     {
                         return !get.IsPrivate;
                     }
 
-                    if (set != null)
+                    if (set is not null)
                     {
                         return !set.IsPrivate;
                     }
@@ -168,17 +168,17 @@ namespace Atc.CodeDocumentation
                 {
                     var get = y.GetGetMethod(true);
                     var set = y.GetSetMethod(true);
-                    if (get != null && set != null)
+                    if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);
                     }
 
-                    if (get != null)
+                    if (get is not null)
                     {
                         return !get.IsPrivate;
                     }
 
-                    if (set != null)
+                    if (set is not null)
                     {
                         return !set.IsPrivate;
                     }

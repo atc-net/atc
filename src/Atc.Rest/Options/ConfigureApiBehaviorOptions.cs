@@ -19,7 +19,7 @@ namespace Atc.Rest.Options
 
         public void Configure(ApiBehaviorOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }
@@ -27,10 +27,15 @@ namespace Atc.Rest.Options
             options.SuppressInferBindingSourcesForParameters = true;
             options.InvalidModelStateResponseFactory = (context) =>
             {
-                var error = new ValidationProblemDetails(context.ModelState);
-                error.Extensions["traceId"] = context.HttpContext.GetCorrelationId();
+                var error = new ValidationProblemDetails(context.ModelState)
+                {
+                    Extensions =
+                    {
+                        ["traceId"] = context.HttpContext.GetCorrelationId(),
+                    },
+                };
 
-                telemetry?.TrackTrace(
+                telemetry.TrackTrace(
                     "BadRequest",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {

@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace System
 {
     /// <summary>
@@ -16,9 +16,9 @@ namespace System
         /// </returns>
         public static bool IsEqual(this bool? a, bool? b)
         {
-            if (a == null || b == null)
+            if (a is null || b is null)
             {
-                return a == null && b == null;
+                return a is null && b is null;
             }
 
             return a == b;

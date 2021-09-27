@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -391,7 +391,7 @@ namespace System
 
                     if (value.Length > 1)
                     {
-                        for (int i = 0; i < value.Length - 1; i++)
+                        for (var i = 0; i < value.Length - 1; i++)
                         {
                             if (char.IsUpper(value[i]) && char.IsUpper(value[i + 1]))
                             {

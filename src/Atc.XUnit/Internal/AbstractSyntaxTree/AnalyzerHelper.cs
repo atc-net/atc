@@ -1,4 +1,4 @@
-﻿// ReSharper disable SuggestBaseTypeForParameter
+// ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable ParameterTypeCanBeEnumerable.Local
 
 using System;
@@ -18,7 +18,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration,
             DebugLimitData? debugLimitData)
         {
-            if (debugLimitData != null)
+            if (debugLimitData is not null)
             {
                 sourceTypes = TypeAndMethodAndParameterHelper.DebugFilterTypeNames(debugLimitData, sourceTypes);
                 testMethodsWithDeclaration = DecompilerMethodHelper.DebugFilterTypeNames(debugLimitData, testMethodsWithDeclaration);
@@ -50,7 +50,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                             {
                                 methodsWithTest.Add(method);
                             }
-                            else if (debugLimitData != null)
+                            else if (debugLimitData is not null)
                             {
                                 // Dummy for breakpoint
                                 throw new Exception("Whoops..");
@@ -104,16 +104,16 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             DebugLimitData? debugLimitData)
         {
             testMethodsWithDeclaration = DecompilerMethodHelper.FilterTestMethods(method, testMethodsWithDeclaration);
-            if (testMethodsWithDeclaration == null)
+            if (testMethodsWithDeclaration is null)
             {
                 return false;
             }
 
             // ReSharper disable once InvertIf
-            if (debugLimitData != null)
+            if (debugLimitData is not null)
             {
                 testMethodsWithDeclaration = DecompilerMethodHelper.DebugFilterMethod(debugLimitData, method, testMethodsWithDeclaration);
-                if (testMethodsWithDeclaration == null)
+                if (testMethodsWithDeclaration is null)
                 {
                     return true;
                 }
@@ -130,7 +130,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             foreach (var tuple in testMethodsWithDeclaration)
             {
                 var astNodeForTestMethod = DecompilerMethodHelper.GetAstNodeForMethod(method, tuple.Item2);
-                if (astNodeForTestMethod == null)
+                if (astNodeForTestMethod is null)
                 {
                     continue;
                 }
@@ -149,7 +149,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters,
             Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
         {
-            if (method.DeclaringType == null)
+            if (method.DeclaringType is null)
             {
                 throw new Exception("method.DeclaringType is null...");
             }
@@ -162,7 +162,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                     return ParametersNamingMatchHelper.Extension(parameters, astNodeForTestMethodAndParameters);
                 }
 
-                if (method.DeclaringType != null && method.DeclaringType.IsGenericType)
+                if (method.DeclaringType is not null && method.DeclaringType.IsGenericType)
                 {
                     return ParametersNamingMatchHelper.Generic(parameters, astNodeForTestMethodAndParameters);
                 }
@@ -174,7 +174,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             foreach (var tuple in testMethodsWithDeclaration)
             {
                 var astNodeForMethod = DecompilerMethodHelper.GetAstNodeForMethod(tuple.Item2.Body, method.Name);
-                if (astNodeForMethod != null)
+                if (astNodeForMethod is not null)
                 {
                     return true;
                 }

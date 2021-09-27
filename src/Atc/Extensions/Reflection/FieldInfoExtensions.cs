@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace System.Reflection
         /// <param name="includeReturnType">if set to <c>true</c> [include return type].</param>
         public static string BeautifyName(this FieldInfo fieldInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
         {
-            if (fieldInfo == null)
+            if (fieldInfo is null)
             {
                 throw new ArgumentNullException(nameof(fieldInfo));
             }

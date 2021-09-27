@@ -35,7 +35,7 @@ namespace Atc.XUnit
                 {
                     var indentSpaces = testResult.IndentLevel * 3;
                     lines.Add(testResult.Text.PadLeft(testResult.Text.Length + indentSpaces));
-                    if (testResult.SubLines != null)
+                    if (testResult.SubLines is not null)
                     {
                         lines.AddRange(testResult.SubLines
                             .Select(subLine => "- " + subLine)
@@ -44,7 +44,7 @@ namespace Atc.XUnit
                 }
                 else
                 {
-                    if (testResult.IndentLevel == 0)
+                    if (testResult.IndentLevel == default)
                     {
                         lines.Add(testResult.Text);
                     }
@@ -88,7 +88,7 @@ namespace Atc.XUnit
             MethodInfo[] methodsWithMissingTests,
             bool useFullName = false)
         {
-            if (methodsWithMissingTests == null)
+            if (methodsWithMissingTests is null)
             {
                 throw new ArgumentNullException(nameof(methodsWithMissingTests));
             }
@@ -123,7 +123,7 @@ namespace Atc.XUnit
             string assemblyName,
             MethodInfo[] methodsWithMissingTests)
         {
-            if (reportDirectory == null)
+            if (reportDirectory is null)
             {
                 throw new ArgumentNullException(nameof(reportDirectory));
             }
@@ -168,7 +168,7 @@ namespace Atc.XUnit
             Dictionary<MethodInfo, string> methodsWithWrongNaming,
             bool useFullName = false)
         {
-            if (methodsWithWrongNaming == null)
+            if (methodsWithWrongNaming is null)
             {
                 throw new ArgumentNullException(nameof(methodsWithWrongNaming));
             }

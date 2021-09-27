@@ -275,12 +275,12 @@ namespace Atc.Tests.Extensions
 
             Directory.CreateDirectory(root.FullName);
 
-            for (int i = 0; i < numberOfTempFoldersToCreate; i++)
+            for (var i = 0; i < numberOfTempFoldersToCreate; i++)
             {
                 Directory.CreateDirectory(Path.Combine(root.FullName, $"Folder{i}"));
             }
 
-            for (int i = 0; i < numberOfTempFilesToCreate; i++)
+            for (var i = 0; i < numberOfTempFilesToCreate; i++)
             {
                 var fileInfo = new FileInfo(Path.Combine(root.FullName, $"Tmp{i}.txt"));
                 File.WriteAllText(fileInfo.FullName, "Hello World");

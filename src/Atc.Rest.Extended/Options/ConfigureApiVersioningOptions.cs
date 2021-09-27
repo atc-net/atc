@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Rest.Extended.Versioning;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +18,7 @@ namespace Atc.Rest.Extended.Options
 
         public void Configure(ApiVersioningOptions options)
         {
-            if (options == null)
+            if (options is null)
             {
                 throw new ArgumentNullException(nameof(options));
             }

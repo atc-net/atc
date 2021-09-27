@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Atc.Rest.Extensions;
 using Atc.Rest.Middleware;
@@ -32,22 +32,22 @@ namespace Microsoft.AspNetCore.Builder
             RestApiOptions restApiOptions,
             Action<IApplicationBuilder> setupAction)
         {
-            if (app == null)
+            if (app is null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            if (env == null)
+            if (env is null)
             {
                 throw new ArgumentNullException(nameof(env));
             }
 
-            if (restApiOptions == null)
+            if (restApiOptions is null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
             }
 
-            if (setupAction == null)
+            if (setupAction is null)
             {
                 throw new ArgumentNullException(nameof(setupAction));
             }

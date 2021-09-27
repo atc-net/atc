@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +10,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static IEnumerable<T> Select<T>(this SyntaxNode syntaxNode)
         {
-            if (syntaxNode == null)
+            if (syntaxNode is null)
             {
                 throw new ArgumentNullException(nameof(syntaxNode));
             }
@@ -20,7 +20,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static T[] SelectToArray<T>(this SyntaxNode syntaxNode)
         {
-            if (syntaxNode == null)
+            if (syntaxNode is null)
             {
                 throw new ArgumentNullException(nameof(syntaxNode));
             }
@@ -30,7 +30,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static string[] GetUsedUsingStatements(this SyntaxNode syntaxNode)
         {
-            if (syntaxNode == null)
+            if (syntaxNode is null)
             {
                 throw new ArgumentNullException(nameof(syntaxNode));
             }
@@ -42,13 +42,13 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 
         public static string[] GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
         {
-            if (syntaxNode == null)
+            if (syntaxNode is null)
             {
                 throw new ArgumentNullException(nameof(syntaxNode));
             }
 
             return syntaxNode.Select<UsingDirectiveSyntax>()
-                .Where(x => x.Alias == null)
+                .Where(x => x.Alias is null)
                 .Select(x => x.Name.ToFullString())
                 .ToArray();
         }

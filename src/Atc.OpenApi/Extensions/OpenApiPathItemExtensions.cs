@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +10,7 @@ namespace Microsoft.OpenApi.Models
     {
         public static bool IsPathStartingSegmentName(this KeyValuePair<string, OpenApiPathItem> urlPath, string segmentName)
         {
-            if (segmentName == null)
+            if (segmentName is null)
             {
                 throw new ArgumentNullException(nameof(segmentName));
             }
@@ -23,7 +23,7 @@ namespace Microsoft.OpenApi.Models
 
         public static bool HasParameters(this OpenApiPathItem openApiOperation)
         {
-            if (openApiOperation == null)
+            if (openApiOperation is null)
             {
                 throw new ArgumentNullException(nameof(openApiOperation));
             }

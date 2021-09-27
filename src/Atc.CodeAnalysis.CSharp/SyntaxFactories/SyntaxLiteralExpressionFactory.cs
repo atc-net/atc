@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,7 +10,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static LiteralExpressionSyntax Create(string value, SyntaxKind syntaxKind = SyntaxKind.StringLiteralExpression)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }

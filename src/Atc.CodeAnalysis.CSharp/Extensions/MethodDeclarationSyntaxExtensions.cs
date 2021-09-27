@@ -9,12 +9,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         public static MethodDeclarationSyntax AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
         {
-            if (methodDeclaration == null)
+            if (methodDeclaration is null)
             {
                 throw new ArgumentNullException(nameof(methodDeclaration));
             }
 
-            if (suppressMessage == null)
+            if (suppressMessage is null)
             {
                 throw new ArgumentNullException(nameof(suppressMessage));
             }

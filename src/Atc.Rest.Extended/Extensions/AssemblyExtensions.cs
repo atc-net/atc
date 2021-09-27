@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using FluentValidation;
 
 // ReSharper disable CheckNamespace
@@ -8,7 +8,7 @@ namespace System.Reflection
     {
         public static Type[] GetValidationTypes(this Assembly assembly)
         {
-            if (assembly == null)
+            if (assembly is null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }

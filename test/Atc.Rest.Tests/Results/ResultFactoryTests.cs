@@ -22,7 +22,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.Status);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Detail);
                 Assert.Equal(message, actual.Detail);
@@ -40,7 +40,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.Status);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Detail);
                 Assert.Equal(message, actual.Detail);
@@ -58,7 +58,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
@@ -77,7 +77,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
@@ -99,7 +99,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
@@ -119,7 +119,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal(contentType, actual.ContentType);
@@ -138,7 +138,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal($"\"{message}\"", actual.Content);
@@ -157,7 +157,7 @@ namespace Atc.Rest.Tests.Results
             // Assert
             Assert.NotNull(actual);
             Assert.Equal((int)statusCode, actual.StatusCode);
-            if (message != null)
+            if (message is not null)
             {
                 Assert.NotNull(actual.Content);
                 Assert.Equal(contentType, actual.ContentType);

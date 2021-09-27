@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Rest.Extended.Options;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -18,12 +18,12 @@ namespace Microsoft.AspNetCore.Builder
             IWebHostEnvironment env,
             RestApiExtendedOptions restApiOptions)
         {
-            if (env == null)
+            if (env is null)
             {
                 throw new ArgumentNullException(nameof(env));
             }
 
-            if (restApiOptions == null)
+            if (restApiOptions is null)
             {
                 throw new ArgumentNullException(nameof(restApiOptions));
             }

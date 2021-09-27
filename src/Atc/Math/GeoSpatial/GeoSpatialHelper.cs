@@ -36,9 +36,9 @@ namespace Atc.Math.GeoSpatial
             double latitude2,
             DistanceMeasurementType measurement = DistanceMeasurementType.Kilometers)
         {
-            double diff = longitude1 - longitude2;
-            double distance = (System.Math.Sin(MathHelper.DegreesToRadians(latitude1)) * System.Math.Sin(MathHelper.DegreesToRadians(latitude2))) +
-                              (System.Math.Cos(MathHelper.DegreesToRadians(latitude1)) * System.Math.Cos(MathHelper.DegreesToRadians(latitude2)) * System.Math.Cos(MathHelper.DegreesToRadians(diff)));
+            var diff = longitude1 - longitude2;
+            var distance = (System.Math.Sin(MathHelper.DegreesToRadians(latitude1)) * System.Math.Sin(MathHelper.DegreesToRadians(latitude2))) +
+                           (System.Math.Cos(MathHelper.DegreesToRadians(latitude1)) * System.Math.Cos(MathHelper.DegreesToRadians(latitude2)) * System.Math.Cos(MathHelper.DegreesToRadians(diff)));
             distance = System.Math.Acos(distance);
             distance = MathHelper.RadiansToDegrees(distance);
             distance = distance * 60 * 1.1515;

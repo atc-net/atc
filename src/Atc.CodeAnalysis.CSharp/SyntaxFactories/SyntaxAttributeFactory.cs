@@ -17,7 +17,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
     {
         public static AttributeSyntax Create(string attributeName)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -27,12 +27,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
 
-            if (argumentValue == null)
+            if (argumentValue is null)
             {
                 throw new ArgumentNullException(nameof(argumentValue));
             }
@@ -46,7 +46,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, int argumentValue)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -60,7 +60,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeSyntax CreateWithOneItemWithTwoArgument(string attributeName, object argumentValue1, object argumentValue2)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }
@@ -79,7 +79,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static AttributeSyntax CreateFromValidationAttribute(ValidationAttribute validationAttribute)
         {
-            if (validationAttribute == null)
+            if (validationAttribute is null)
             {
                 throw new ArgumentNullException(nameof(validationAttribute));
             }
@@ -103,7 +103,7 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
 
         public static string RemoveSuffix(string attributeName)
         {
-            if (attributeName == null)
+            if (attributeName is null)
             {
                 throw new ArgumentNullException(nameof(attributeName));
             }

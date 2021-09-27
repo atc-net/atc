@@ -108,7 +108,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         {
             // Check org-parameter-name in test-method-parameters
             var astNode = astNodeForTestParameters.FirstOrDefault(x => parameter.Name.Equals(x.ToString(), StringComparison.Ordinal));
-            if (astNode != null)
+            if (astNode is not null)
             {
                 return true;
             }
@@ -134,7 +134,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent, astNodeName) ??
                            FindTypeNameForIdentifierExpressionOutsideMethodScope(astNode.GetRoot(), astNodeName);
 
-            if (typeName != null &&
+            if (typeName is not null &&
                 HasParameterTypeNameMatch(parameter, typeName))
             {
                 return true;
@@ -151,10 +151,10 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
             }
 
             var astNodeTypeReferenceExpression = astNode.GetFirstOrDefaultByExpressionType(typeof(TypeReferenceExpression));
-            if (astNodeTypeReferenceExpression == null)
+            if (astNodeTypeReferenceExpression is null)
             {
                 var astNodeIdentifierExpression = astNode.GetFirstOrDefaultByExpressionType(typeof(IdentifierExpression));
-                if (astNodeIdentifierExpression == null)
+                if (astNodeIdentifierExpression is null)
                 {
                     return false;
                 }
@@ -167,12 +167,12 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                     FindTypeNameForIdentifierExpressionOutsideMethodScope(
                         astNodeIdentifierExpression.GetRoot(),
                         astNodeIdentifierExpression.ToString());
-                if (identifierTypeName != null)
+                if (identifierTypeName is not null)
                 {
                     var propertyType = AppDomain.CurrentDomain.GetExportedPropertyTypeByName(
                         identifierTypeName,
                         astNodeIdentifier.ToString());
-                    if (propertyType != null &&
+                    if (propertyType is not null &&
                         parameter.ParameterType == propertyType)
                     {
                         return true;
@@ -234,7 +234,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
         private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(AstNode astNode, string parameterName)
         {
             var s = astNode.ToString();
-            var stopRecursive = astNode.Parent == null ||
+            var stopRecursive = astNode.Parent is null ||
                                 s.StartsWith("[Fact]", StringComparison.Ordinal) ||
                                 s.StartsWith("[Theory]", StringComparison.Ordinal);
 
@@ -250,7 +250,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                     if (AllowedCharsAfterParameterName.Contains(c))
                     {
                         var astNodeForParameter = DecompilerMethodHelper.GetAstNodeForParameter(astNode, parameterName);
-                        if (astNodeForParameter != null)
+                        if (astNodeForParameter is not null)
                         {
                             var tmp = astNodeForParameter.Parent.FirstChild.ToString().Trim();
                             if (tmp.StartsWith('[') && tmp.EndsWith(']'))
@@ -274,7 +274,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                 return null;
             }
 
-            if (astNode.Parent == null)
+            if (astNode.Parent is null)
             {
                 return null;
             }
@@ -288,7 +288,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
                 .FirstOrDefault(x =>
                     x.IsType(typeof(VariableInitializer)) &&
                     string.Equals((x as VariableInitializer)?.Name, parameterName, StringComparison.Ordinal));
-            if (foundAstNode?.Parent != null)
+            if (foundAstNode?.Parent is not null)
             {
                 var sa = foundAstNode.Parent.Children.Select(x => x.ToString()).ToArray();
                 for (var i = 1; i < sa.Length; i++)
@@ -305,7 +305,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree
 
         private static bool HasParameterTypeNameMatch(ParameterInfo methodParameter, string testParameterTypeName)
         {
-            if (methodParameter.Member.DeclaringType != null && methodParameter.Member.DeclaringType.IsGenericType)
+            if (methodParameter.Member.DeclaringType is not null && methodParameter.Member.DeclaringType.IsGenericType)
             {
                 return !methodParameter.ParameterType.IsGenericType;
             }

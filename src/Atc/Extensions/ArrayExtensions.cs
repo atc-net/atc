@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Atc;
 
@@ -38,7 +38,7 @@ namespace System
         /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
         public static List<string> ToList(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
         {
-            if (array == null)
+            if (array is null)
             {
                 throw new ArgumentNullException(nameof(array));
             }
@@ -49,7 +49,7 @@ namespace System
                 var s = array.GetValue(i).ToString();
                 if (removeDuplicates)
                 {
-                    if (!list.Contains(s))
+                    if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))
                     {
                         list.Add(s);
                     }

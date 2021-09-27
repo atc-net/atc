@@ -66,9 +66,9 @@ namespace Atc.Math.GeoSpatial
         public UniversalTransverseMercatorResult ToUtm(double latitude, double longitude)
         {
             int zoneNumber;
-            double longitudeTemp = longitude;
-            double latitudeRadian = MathHelper.DegreesToRadians(latitude);
-            double longitudeRadian = MathHelper.DegreesToRadians(longitudeTemp);
+            var longitudeTemp = longitude;
+            var latitudeRadian = MathHelper.DegreesToRadians(latitude);
+            var longitudeRadian = MathHelper.DegreesToRadians(longitudeTemp);
 
             //// !!! Bug in C# switch pattern matching for double vs int !!!
 
@@ -110,27 +110,27 @@ namespace Atc.Math.GeoSpatial
             // ReSharper restore ConvertIfStatementToSwitchExpression
             // ReSharper restore ConvertIfStatementToSwitchStatement
             // ReSharper restore MergeIntoPattern
-            int longitudeOrigin = (zoneNumber - 1) * 6 - 180 + 3; //// +3 puts origin in middle of zone
-            double longitudeOriginRadian = MathHelper.DegreesToRadians(longitudeOrigin);
+            var longitudeOrigin = (zoneNumber - 1) * 6 - 180 + 3; //// +3 puts origin in middle of zone
+            var longitudeOriginRadian = MathHelper.DegreesToRadians(longitudeOrigin);
             string utmZone = GetUtmLetterDesignator(latitude);
-            double eccPrimeSquared = this.eccSquared / (1 - this.eccSquared);
+            var eccPrimeSquared = this.eccSquared / (1 - this.eccSquared);
 
-            double N = this.a / System.Math.Sqrt(1 - this.eccSquared * System.Math.Sin(latitudeRadian) * System.Math.Sin(latitudeRadian));
-            double T = System.Math.Tan(latitudeRadian) * System.Math.Tan(latitudeRadian);
-            double C = eccPrimeSquared * System.Math.Cos(latitudeRadian) * System.Math.Cos(latitudeRadian);
-            double A = System.Math.Cos(latitudeRadian) * (longitudeRadian - longitudeOriginRadian);
+            var N = this.a / System.Math.Sqrt(1 - this.eccSquared * System.Math.Sin(latitudeRadian) * System.Math.Sin(latitudeRadian));
+            var T = System.Math.Tan(latitudeRadian) * System.Math.Tan(latitudeRadian);
+            var C = eccPrimeSquared * System.Math.Cos(latitudeRadian) * System.Math.Cos(latitudeRadian);
+            var A = System.Math.Cos(latitudeRadian) * (longitudeRadian - longitudeOriginRadian);
 
-            double M = this.a * ((1 - this.eccSquared / 4 - 3 * this.eccSquared * this.eccSquared / 64
-                - 5 * this.eccSquared * this.eccSquared * this.eccSquared / 256) * latitudeRadian
+            var M = this.a * ((1 - this.eccSquared / 4 - 3 * this.eccSquared * this.eccSquared / 64
+                               - 5 * this.eccSquared * this.eccSquared * this.eccSquared / 256) * latitudeRadian
                 - (3 * this.eccSquared / 8 + 3 * this.eccSquared * this.eccSquared / 32 + 45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024) * System.Math.Sin(2 * latitudeRadian)
                 + (15 * this.eccSquared * this.eccSquared / 256 + 45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024) *
                 System.Math.Sin(4 * latitudeRadian) - 35 * this.eccSquared * this.eccSquared * this.eccSquared / 3072 * System.Math.Sin(6 * latitudeRadian));
 
-            double utmEasting = 0.9996 * N * (A + (1 - T + C) * A * A * A / 6
-                    + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120)
-                    + 500000.0;
+            var utmEasting = 0.9996 * N * (A + (1 - T + C) * A * A * A / 6
+                                             + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120)
+                             + 500000.0;
 
-            double utmNorthing = 0.9996 * (M + N * System.Math.Tan(latitudeRadian) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24
+            var utmNorthing = 0.9996 * (M + N * System.Math.Tan(latitudeRadian) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24
                     + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720));
 
             if (latitude < 0)
@@ -152,79 +152,78 @@ namespace Atc.Math.GeoSpatial
         [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
         public CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
         {
-            if (utmZoneLetter == null)
+            if (utmZoneLetter is null)
             {
                 throw new ArgumentNullException(nameof(utmZoneLetter));
             }
 
             // Coefficients for calculating the latitude from given meridian arc length
-            double coefficient0Radian = WGS84_POL * MathHelper.DegreesToRadians(
+            var coefficient0Radian = WGS84_POL * MathHelper.DegreesToRadians(
                                             1 - 3 * WGS84_EXZENT2 / 4 + 45 * WGS84_EXZENT4 / 64 -
                                             175 * WGS84_EXZENT6 / 256 + 11025 * WGS84_EXZENT8 / 16384);
-            double coefficient2Degrees = MathHelper.RadiansToDegrees(
+            var coefficient2Degrees = MathHelper.RadiansToDegrees(
                 3 * WGS84_EXZENT2 / 8 - 3 * WGS84_EXZENT4 / 16 + 213 * WGS84_EXZENT6 / 2048 -
                 255 * WGS84_EXZENT8 / 4096);
-            double coefficient4Degrees =
-                MathHelper.RadiansToDegrees(21 * WGS84_EXZENT4 / 256 - 21 * WGS84_EXZENT6 / 256 +
-                                          533 * WGS84_EXZENT8 / 8192);
-            double coefficientDegrees =
+
+            var coefficient4Degrees = MathHelper.RadiansToDegrees(21 * WGS84_EXZENT4 / 256 - 21 * WGS84_EXZENT6 / 256 +
+                                                                  533 * WGS84_EXZENT8 / 8192);
+
+            var coefficientDegrees =
                 MathHelper.RadiansToDegrees(151 * WGS84_EXZENT6 / 6144 - 453 * WGS84_EXZENT8 / 12288);
 
             // Northern / Southern Hemisphere
-            char b = utmZoneLetter[0];
+            var b = utmZoneLetter[0];
             if (b < 'N' && !string.IsNullOrEmpty(utmZoneLetter))
             {
                 utmNorthing -= 10E+06;
             }
 
             // Latitude (Rad)
-            double sig = (utmNorthing / UTM_FAKTOR) / coefficient0Radian;
-            double sigRad = MathHelper.DegreesToRadians(sig);
-            double flatitude = sig + coefficient2Degrees * System.Math.Sin(2 * sigRad) +
-                               coefficient4Degrees * System.Math.Sin(4 * sigRad) + coefficientDegrees * System.Math.Sin(6 * sigRad);
-            double latitudeRadian = MathHelper.DegreesToRadians(flatitude);
+            var sig = (utmNorthing / UTM_FAKTOR) / coefficient0Radian;
+            var sigRad = MathHelper.DegreesToRadians(sig);
+            var flatitude = sig + coefficient2Degrees * System.Math.Sin(2 * sigRad) +
+                            coefficient4Degrees * System.Math.Sin(4 * sigRad) + coefficientDegrees * System.Math.Sin(6 * sigRad);
+            var latitudeRadian = MathHelper.DegreesToRadians(flatitude);
 
-            double tangens1 = System.Math.Tan(latitudeRadian);
-            double tangens2 = tangens1 * tangens1;
-            double tangens4 = tangens2 * tangens2;
-            double cosinus1 = System.Math.Cos(latitudeRadian);
-            double cosinus2 = cosinus1 * cosinus1;
+            var tangens1 = System.Math.Tan(latitudeRadian);
+            var tangens2 = tangens1 * tangens1;
+            var tangens4 = tangens2 * tangens2;
+            var cosinus1 = System.Math.Cos(latitudeRadian);
+            var cosinus2 = cosinus1 * cosinus1;
 
-            double eta = WGS84_EXZENT2 * cosinus2;
+            var eta = WGS84_EXZENT2 * cosinus2;
 
             // Transverse curvature
-            double qkhm1 = WGS84_POL / System.Math.Sqrt(1 + eta);
-            double qkhm2 = System.Math.Pow(qkhm1, 2);
-            double qkhm3 = System.Math.Pow(qkhm1, 3);
-            double qkhm4 = System.Math.Pow(qkhm1, 4);
-            double qkhm5 = System.Math.Pow(qkhm1, 5);
-            double qkhm6 = System.Math.Pow(qkhm1, 6);
+            var qkhm1 = WGS84_POL / System.Math.Sqrt(1 + eta);
+            var qkhm2 = System.Math.Pow(qkhm1, 2);
+            var qkhm3 = System.Math.Pow(qkhm1, 3);
+            var qkhm4 = System.Math.Pow(qkhm1, 4);
+            var qkhm5 = System.Math.Pow(qkhm1, 5);
+            var qkhm6 = System.Math.Pow(qkhm1, 6);
 
             // Difference to the reference meridian
-            double merid = (utmZoneNumber - 30) * 6 - 3;
-            double dlongitude1 = (utmEasting - UTM_FALSE_EASTING) / UTM_FAKTOR;
-            double dlongitude2 = System.Math.Pow(dlongitude1, 2);
-            double dlongitude3 = System.Math.Pow(dlongitude1, 3);
-            double dlongitude4 = System.Math.Pow(dlongitude1, 4);
-            double dlongitude5 = System.Math.Pow(dlongitude1, 5);
-            double dlongitude6 = System.Math.Pow(dlongitude1, 6);
+            var merid = (utmZoneNumber - 30) * 6 - 3;
+            var dlongitude1 = (utmEasting - UTM_FALSE_EASTING) / UTM_FAKTOR;
+            var dlongitude2 = System.Math.Pow(dlongitude1, 2);
+            var dlongitude3 = System.Math.Pow(dlongitude1, 3);
+            var dlongitude4 = System.Math.Pow(dlongitude1, 4);
+            var dlongitude5 = System.Math.Pow(dlongitude1, 5);
+            var dlongitude6 = System.Math.Pow(dlongitude1, 6);
 
             // Factors for latitude calculation
-            double bfakt2 = -tangens1 * (1 + eta) / (2 * qkhm2);
-            double bfakt4 = tangens1 * (5 + 3 * tangens2 + 6 * eta * (1 - tangens2)) / (24 * qkhm4);
-            double bfakt6 = -tangens1 * (61 + 90 * tangens2 + 45 * tangens4) / (720 * qkhm6);
+            var bfakt2 = -tangens1 * (1 + eta) / (2 * qkhm2);
+            var bfakt4 = tangens1 * (5 + 3 * tangens2 + 6 * eta * (1 - tangens2)) / (24 * qkhm4);
+            var bfakt6 = -tangens1 * (61 + 90 * tangens2 + 45 * tangens4) / (720 * qkhm6);
 
             // Factors for longitude calculation
-            double lfakt1 = 1 / (qkhm1 * cosinus1);
-            double lfakt3 = -(1 + 2 * tangens2 + eta) / (6 * qkhm3 * cosinus1);
-            double lfakt5 = (5 + 28 * tangens2 + 24 * tangens4) / (120 * qkhm5 * cosinus1);
+            var lfakt1 = 1 / (qkhm1 * cosinus1);
+            var lfakt3 = -(1 + 2 * tangens2 + eta) / (6 * qkhm3 * cosinus1);
+            var lfakt5 = (5 + 28 * tangens2 + 24 * tangens4) / (120 * qkhm5 * cosinus1);
 
             // WGS84
-            double latitude =
-                flatitude + MathHelper.RadiansToDegrees(
+            var latitude = flatitude + MathHelper.RadiansToDegrees(
                     bfakt2 * dlongitude2 + bfakt4 * dlongitude4 + bfakt6 * dlongitude6);
-            double longitude =
-                merid + MathHelper.RadiansToDegrees(lfakt1 * dlongitude1 + lfakt3 * dlongitude3 + lfakt5 * dlongitude5);
+            var longitude = merid + MathHelper.RadiansToDegrees(lfakt1 * dlongitude1 + lfakt3 * dlongitude3 + lfakt5 * dlongitude5);
 
             return new CartesianCoordinate(
                 MathHelper.TruncateToMaxPrecision(latitude, maxDecimalPrecision),

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
@@ -249,7 +248,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Items != null && schema.Items.IsSimpleDataType();
+            return schema.Items is not null && schema.Items.IsSimpleDataType();
         }
 
         public static bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
@@ -259,7 +258,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Items != null && schema.Items.IsFormatTypeBinary();
+            return schema.Items is not null && schema.Items.IsFormatTypeBinary();
         }
 
         public static bool HasAnyProperties(this OpenApiSchema schema)
@@ -269,7 +268,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (schema.OneOf != null &&
+            if (schema.OneOf is not null &&
                 schema.OneOf.Count == 1 &&
                 schema.OneOf.First().Properties.Count > 0)
             {
@@ -551,8 +550,8 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.MinLength != null ||
-                   schema.MaxLength != null;
+            return schema.MinLength is not null ||
+                   schema.MaxLength is not null;
         }
 
         public static bool IsRuleValidationNumber(this OpenApiSchema schema)
@@ -562,8 +561,8 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Minimum != null ||
-                   schema.Maximum != null;
+            return schema.Minimum is not null ||
+                   schema.Maximum is not null;
         }
 
         public static bool IsSimpleDataType(this OpenApiSchema schema)
@@ -598,7 +597,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Reference != null;
+            return schema.Reference is not null;
         }
 
         public static bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
@@ -609,7 +608,7 @@ namespace Microsoft.OpenApi.Models
             }
 
             return schema.IsTypeArray() &&
-                   schema.Items?.Reference != null;
+                   schema.Items?.Reference is not null;
         }
 
         public static bool IsSchemaEnum(this OpenApiSchema schema)
@@ -619,7 +618,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.Enum != null && schema.Enum.Any();
+            return schema.Enum is not null && schema.Enum.Any();
         }
 
         public static bool IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
@@ -633,7 +632,6 @@ namespace Microsoft.OpenApi.Models
                    (schema.Properties.Any(x => x.Value.Enum.Any()) && schema.Properties.Count == 1);
         }
 
-        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
         {
             if (schema is null)
@@ -700,12 +698,12 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
-            if (schema.Items == null && schema.Reference is null)
+            if (schema.Items is null && schema.Reference is null)
             {
                 return string.Empty;
             }
 
-            if (schema.Items != null &&
+            if (schema.Items is not null &&
                 !OpenApiDataTypeConstants.Object.Equals(schema.Items.Type, StringComparison.Ordinal))
             {
                 return string.Empty;
@@ -713,12 +711,12 @@ namespace Microsoft.OpenApi.Models
 
             if (ensureFirstCharacterToUpper)
             {
-                return schema.Items == null
+                return schema.Items is null
                     ? schema.Reference.Id.EnsureFirstCharacterToUpper()
                     : schema.Items.Reference.Id.EnsureFirstCharacterToUpper();
             }
 
-            return schema.Items == null
+            return schema.Items is null
                 ? schema.Reference.Id
                 : schema.Items.Reference.Id;
         }
@@ -797,11 +795,11 @@ namespace Microsoft.OpenApi.Models
                 }
             }
 
-            if (schema.Reference?.Id != null)
+            if (schema.Reference?.Id is not null)
             {
                 dataType = schema.Reference.Id;
             }
-            else if (schema.OneOf != null && schema.OneOf.Count == 1 && schema.OneOf.First().Reference?.Id != null)
+            else if (schema.OneOf is not null && schema.OneOf.Count == 1 && schema.OneOf.First().Reference?.Id is not null)
             {
                 dataType = schema.OneOf.First().Reference.Id;
             }
@@ -841,7 +839,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            if (schema.Enum != null && schema.Enum.Any())
+            if (schema.Enum is not null && schema.Enum.Any())
             {
                 return Tuple.Create(schema.Reference.Id, schema);
             }

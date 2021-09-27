@@ -28,17 +28,17 @@ namespace System.ComponentModel.DataAnnotations
         /// <inheritdoc />
         public override bool IsValid(object? value)
         {
-            if (value == null)
+            if (value is null)
             {
                 this.ErrorMessage = "Value is not a Uri.";
                 return false;
             }
 
-            bool result = Uri.TryCreate(value.ToString(), UriKind.Absolute, out Uri uriResult)
-                && ((AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)) ||
-                    (AllowHttps && string.Equals(uriResult.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) ||
-                    (AllowFtp && string.Equals(uriResult.Scheme, Uri.UriSchemeFtp, StringComparison.OrdinalIgnoreCase)) ||
-                    (AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)));
+            var result = Uri.TryCreate(value.ToString(), UriKind.Absolute, out Uri uriResult)
+                         && ((AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)) ||
+                             (AllowHttps && string.Equals(uriResult.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) ||
+                             (AllowFtp && string.Equals(uriResult.Scheme, Uri.UriSchemeFtp, StringComparison.OrdinalIgnoreCase)) ||
+                             (AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)));
             if (result)
             {
                 return true;

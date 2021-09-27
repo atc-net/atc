@@ -52,11 +52,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Console.Spectre.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Atc.Console.Spectre.Cli", "sample\Demo.Atc.Console.Spectre.Cli\Demo.Atc.Console.Spectre.Cli.csproj", "{EE52DA17-9197-4F1B-B831-DEA9FADAEDCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atc.DotNet", "src\Atc.DotNet\Atc.DotNet.csproj", "{74642670-DC7C-4A42-B6DD-227B006B7059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.DotNet", "src\Atc.DotNet\Atc.DotNet.csproj", "{74642670-DC7C-4A42-B6DD-227B006B7059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Atc.Dotnet.Cli", "sample\Demo.Atc.Dotnet.Cli\Demo.Atc.Dotnet.Cli.csproj", "{DD4D07BC-8188-421A-9455-6D25DA77D198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Atc.Dotnet.Cli", "sample\Demo.Atc.Dotnet.Cli\Demo.Atc.Dotnet.Cli.csproj", "{DD4D07BC-8188-421A-9455-6D25DA77D198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atc.DotNet.Tests", "test\Atc.DotNet.Tests\Atc.DotNet.Tests.csproj", "{410ED6D3-3A4C-475B-9A3C-BCAD06EB1390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.DotNet.Tests", "test\Atc.DotNet.Tests\Atc.DotNet.Tests.csproj", "{410ED6D3-3A4C-475B-9A3C-BCAD06EB1390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

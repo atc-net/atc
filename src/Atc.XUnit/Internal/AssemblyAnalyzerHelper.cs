@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -54,8 +54,8 @@ namespace Atc.XUnit.Internal
                 var methods = type.GetPublicDeclaredOnlyMethods();
                 foreach (var method in methods)
                 {
-                    if (method.DeclaringType != null &&
-                        listModuleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName))
+                    if (method.DeclaringType is not null &&
+                        listModuleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName, StringComparer.OrdinalIgnoreCase))
                     {
                         continue;
                     }
@@ -102,14 +102,14 @@ namespace Atc.XUnit.Internal
                     }
                     catch (ReflectionTypeLoadException ex)
                     {
-                        return ex.Types.Where(t => t != null);
+                        return ex.Types.Where(t => t is not null);
                     }
                     catch
                     {
                         return Type.EmptyTypes;
                     }
                 })
-                .Where(x => x != null
+                .Where(x => x is not null
                             && x.IsPublic
                             && !x.IsInterface
                             && !x.IsNested
@@ -126,13 +126,13 @@ namespace Atc.XUnit.Internal
 
         private static string? ValidateMethod(MethodInfo method)
         {
-            if (method.DeclaringType == null)
+            if (method.DeclaringType is null)
             {
                 return null;
             }
 
             var classType = method.DeclaringType;
-            if (TypeNamesForExtensionsToSkip.Contains(classType.Name))
+            if (TypeNamesForExtensionsToSkip.Contains(classType.Name, StringComparer.OrdinalIgnoreCase))
             {
                 return null;
             }
@@ -155,9 +155,9 @@ namespace Atc.XUnit.Internal
                     return null;
                 }
 
-                if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified)) ||
-                    (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified)) ||
-                    (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified)) ||
+                if ((classNamePrefixSimplified.Equals("Collection", StringComparison.Ordinal) && AllowedNamesForCollectionExtensions.Contains(firstParameterNameSimplified, StringComparer.OrdinalIgnoreCase)) ||
+                    (classNamePrefixSimplified.Equals("Enumerable", StringComparison.Ordinal) && AllowedNamesForEnumerableExtensions.Contains(firstParameterNameSimplified, StringComparer.OrdinalIgnoreCase)) ||
+                    (classNamePrefixSimplified.Equals("Queryable", StringComparison.Ordinal) && AllowedNamesForQueryableExtensions.Contains(firstParameterNameSimplified, StringComparer.OrdinalIgnoreCase)) ||
                     firstParameterType.Name.Equals("IApplicationBuilder", StringComparison.Ordinal) ||
                     firstParameterType.Name.Equals("IServiceCollection", StringComparison.Ordinal))
                 {
