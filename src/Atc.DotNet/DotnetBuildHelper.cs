@@ -8,12 +8,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Atc.Helpers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Atc.DotNet
 {
     public static class DotnetBuildHelper
     {
         private const int DefaultTimeoutInSec = 1200;
+
+        public static Task<Dictionary<string, int>> BuildAndCollectErrors(
+            DirectoryInfo rootPath,
+            int? runNumber = null,
+            FileInfo? buildFile = null,
+            bool useNugetRestore = true,
+            bool useConfigurationReleaseMode = true,
+            int timeoutInSec = DefaultTimeoutInSec,
+            CancellationToken cancellationToken = default)
+        {
+            if (rootPath is null)
+            {
+                throw new ArgumentNullException(nameof(rootPath));
+            }
+
+            return InvokeBuildAndCollectErrors(
+                NullLogger.Instance,
+                rootPath,
+                runNumber,
+                buildFile,
+                useNugetRestore,
+                useConfigurationReleaseMode,
+                timeoutInSec,
+                cancellationToken);
+        }
 
         public static Task<Dictionary<string, int>> BuildAndCollectErrors(
             ILogger logger,

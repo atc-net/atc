@@ -12,6 +12,7 @@
 - [AtcDotnetAssemblyTypeInitializer](Atc.DotNet.md#atcdotnetassemblytypeinitializer)
 - [DotnetBuildHelper](Atc.DotNet.md#dotnetbuildhelper)
   -  Static Methods
+     - BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, CancellationToken cancellationToken = null)
      - BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, CancellationToken cancellationToken = null)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
   -  Static Methods
