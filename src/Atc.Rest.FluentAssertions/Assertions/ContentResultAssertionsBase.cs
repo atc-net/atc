@@ -62,7 +62,7 @@ namespace Atc.Rest.FluentAssertions
                 .WithDefaultIdentifier($"type of content in {Identifier}")
                 .FailWith("Expected {context} to be {0}{reason}, but found {1}.", expectedType, Subject.Content);
 
-            // Its safe to ! BANG the result variable as the previous Exceute.Assertion will throw if
+            // Its safe to ! BANG the result variable as the previous Execute.Assertion will throw if
             // result is null and the parsing failed.
             return new AndWhichConstraint<ObjectAssertions, T>(new ObjectAssertions(result), result!);
         }
