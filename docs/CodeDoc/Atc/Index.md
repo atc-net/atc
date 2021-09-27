@@ -50,6 +50,7 @@
 ## [Atc.Data](Atc.Data.md)
 
 - [DataFactory](Atc.Data.md#datafactory)
+- [LogItemFactory](Atc.Data.md#logitemfactory)
 
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
