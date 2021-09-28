@@ -26,6 +26,7 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
+        [SuppressMessage("Insecure Configuration", "S5122:Having a permissive Cross-Origin Resource Sharing policy is security-sensitive", Justification = "OK.")]
         public static IApplicationBuilder ConfigureRestApi(
             this IApplicationBuilder app,
             IWebHostEnvironment env,
