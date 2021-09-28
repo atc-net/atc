@@ -59,7 +59,7 @@ namespace Atc.Rest.Extended.Filters
             var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
             foreach (var operation in operations)
             {
-                var operationDescription = pathDescriptions.FirstOrDefault(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
+                var operationDescription = pathDescriptions.Find(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
                 foreach (var param in operation.Value.Parameters)
                 {
                     var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));

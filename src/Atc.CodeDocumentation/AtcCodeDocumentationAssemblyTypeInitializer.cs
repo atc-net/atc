@@ -1,6 +1,6 @@
-﻿namespace Atc.CodeDocumentation
+namespace Atc.CodeDocumentation
 {
-    public class AtcCodeDocumentationAssemblyTypeInitializer
+    public static class AtcCodeDocumentationAssemblyTypeInitializer
     {
         // Dummy
     }

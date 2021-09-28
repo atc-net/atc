@@ -1,6 +1,6 @@
-﻿namespace Atc
+namespace Atc.Rest.FluentAssertions
 {
-    public class AtcRestFluentAssertionsAssemblyTypeInitializer
+    public static class AtcRestFluentAssertionsAssemblyTypeInitializer
     {
         // Dummy
     }

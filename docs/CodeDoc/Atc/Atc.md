@@ -67,7 +67,7 @@ public enum ArticleNumberType
 ## AtcAssemblyTypeInitializer
 
 ```csharp
-public class AtcAssemblyTypeInitializer
+public static class AtcAssemblyTypeInitializer
 ```
 
 

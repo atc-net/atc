@@ -11,7 +11,7 @@
 ## AtcDotnetAssemblyTypeInitializer
 
 ```csharp
-public class AtcDotnetAssemblyTypeInitializer
+public static class AtcDotnetAssemblyTypeInitializer
 ```
 
 

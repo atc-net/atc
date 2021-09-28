@@ -23,7 +23,7 @@ namespace Atc.Rest.Extended.Filters
 
             // Policy names map to scopes
             var requiredScopes = context.MethodInfo
-                .GetCustomAttributes(true)
+                .GetCustomAttributes(inherit: true)
                 .OfType<AuthorizeAttribute>()
                 .Select(attr => attr.Policy)
                 .Distinct(StringComparer.Ordinal)
@@ -42,7 +42,7 @@ namespace Atc.Rest.Extended.Filters
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = SecuritySchemeType.OAuth2.ToString(),
+                    Id = nameof(SecuritySchemeType.OAuth2),
                 },
             };
 

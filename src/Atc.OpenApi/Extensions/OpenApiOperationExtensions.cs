@@ -32,7 +32,7 @@ namespace Microsoft.OpenApi.Models
 
             return openApiOperation
                 .OperationId
-                .PascalCase(true)
+                .PascalCase(removeSeparators: true)
                 .EnsureFirstCharacterToUpper();
         }
 

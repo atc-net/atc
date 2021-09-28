@@ -1,6 +1,6 @@
-﻿namespace Atc.XUnit
+namespace Atc.XUnit
 {
-    public class AtcXUnitAssemblyTypeInitializer
+    public static class AtcXUnitAssemblyTypeInitializer
     {
         // Dummy
     }

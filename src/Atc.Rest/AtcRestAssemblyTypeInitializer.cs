@@ -1,6 +1,6 @@
-﻿namespace Atc.Rest
+namespace Atc.Rest
 {
-    public class AtcRestAssemblyTypeInitializer
+    public static class AtcRestAssemblyTypeInitializer
     {
         // Dummy
     }

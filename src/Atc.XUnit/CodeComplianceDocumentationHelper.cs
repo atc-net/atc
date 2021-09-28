@@ -23,7 +23,7 @@ namespace Atc.XUnit
             var testResults = new List<TestResult>();
             if (typeComments is not null && !typeComments.HasComments)
             {
-                testResults.Add(new TestResult(true, 0, $"Type: {typeComments.Type.BeautifyTypeName(true)}"));
+                testResults.Add(new TestResult(isError: true, 0, $"Type: {typeComments.Type.BeautifyTypeName(useFullName: true)}"));
             }
 
             TestResultHelper.AssertOnTestResults(testResults);
@@ -53,7 +53,7 @@ namespace Atc.XUnit
                 assembly,
                 excludeTypes)
                 .OrderBy(x => x.Type.FullName)
-                .GroupBy(x => x.Type.BeautifyName(true), StringComparer.Ordinal)
+                .GroupBy(x => x.Type.BeautifyName(useFullName: true), StringComparer.Ordinal)
                 .ToArray();
 
             var testResults = new List<TestResult>
@@ -61,7 +61,7 @@ namespace Atc.XUnit
                 new TestResult($"Assembly: {assembly.GetName()}"),
             };
 
-            testResults.AddRange(typesWithMissingCommentsGroups.Select(item => new TestResult(false, 1, $"Type: {item.Key}")));
+            testResults.AddRange(typesWithMissingCommentsGroups.Select(item => new TestResult(isError: false, 1, $"Type: {item.Key}")));
 
             TestResultHelper.AssertOnTestResults(testResults);
         }

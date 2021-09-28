@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Atc.Rest.Extended.Options;
 using AutoFixture.Xunit2;
 using FluentAssertions;

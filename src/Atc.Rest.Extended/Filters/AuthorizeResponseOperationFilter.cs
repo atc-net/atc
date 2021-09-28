@@ -22,17 +22,17 @@ namespace Atc.Rest.Extended.Filters
             }
 
             var controller = context.ApiDescription.ActionDescriptor as ControllerActionDescriptor;
-            var attributes = controller?.ControllerTypeInfo.GetCustomAttributes(true);
+            var attributes = controller?.ControllerTypeInfo.GetCustomAttributes(inherit: true);
 
             var controllerAuthorized = attributes?
                 .OfType<AuthorizeAttribute>()
                 .Any() ?? false;
 
-            var actionAuthorized = context.MethodInfo.GetCustomAttributes(true)
+            var actionAuthorized = context.MethodInfo.GetCustomAttributes(inherit: true)
                 .OfType<AuthorizeAttribute>()
                 .Any();
 
-            var actionAllowAnonymous = context.MethodInfo.GetCustomAttributes(true)
+            var actionAllowAnonymous = context.MethodInfo.GetCustomAttributes(inherit: true)
                 .OfType<AllowAnonymousAttribute>()
                 .Any();
 
