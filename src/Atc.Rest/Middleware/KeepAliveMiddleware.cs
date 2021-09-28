@@ -40,7 +40,7 @@ namespace Atc.Rest.Middleware
             if (IsKeepAlivePing(context.Request))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.OK;
-                await context.Response.WriteAsync(HttpStatusCode.OK.ToString());
+                await context.Response.WriteAsync(nameof(HttpStatusCode.OK));
                 return;
             }
 

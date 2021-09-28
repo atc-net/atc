@@ -103,7 +103,7 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             if (includeException && context.Exception is not null)
             {
                 sb.Append(" # ");
-                sb.Append(context.Exception.GetMessage(true, true));
+                sb.Append(context.Exception.GetMessage(includeInnerMessage: true, includeExceptionName: true));
             }
 
             return sb.ToString();

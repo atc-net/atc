@@ -11,7 +11,7 @@
 ## AtcCodeDocumentationAssemblyTypeInitializer
 
 ```csharp
-public class AtcCodeDocumentationAssemblyTypeInitializer
+public static class AtcCodeDocumentationAssemblyTypeInitializer
 ```
 
 

@@ -16,7 +16,7 @@ namespace Atc.Rest.Tests.Results
         {
             // Arrange
             var data = Fixture.Create<List<string>>();
-            var sut = new Pagination<string>(data, 5, null, null);
+            var sut = new Pagination<string>(items: data, pageSize: 5, queryString: null, continuationToken: null);
 
             // Act
             data.Add(Fixture.Create<string>());

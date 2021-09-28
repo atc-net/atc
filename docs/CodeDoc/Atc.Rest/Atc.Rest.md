@@ -11,7 +11,7 @@
 ## AtcRestAssemblyTypeInitializer
 
 ```csharp
-public class AtcRestAssemblyTypeInitializer
+public static class AtcRestAssemblyTypeInitializer
 ```
 
 

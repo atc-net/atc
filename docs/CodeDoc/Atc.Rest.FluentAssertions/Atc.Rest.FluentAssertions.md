@@ -18,6 +18,16 @@ public class AcceptedResultAssertions : ContentResultAssertionsBase<AcceptedResu
 <br />
 
 
+## AtcRestFluentAssertionsAssemblyTypeInitializer
+
+```csharp
+public static class AtcRestFluentAssertionsAssemblyTypeInitializer
+```
+
+
+<br />
+
+
 ## BadRequestResultAssertions
 
 ```csharp

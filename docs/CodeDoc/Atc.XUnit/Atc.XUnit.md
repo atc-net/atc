@@ -11,7 +11,7 @@
 ## AtcXUnitAssemblyTypeInitializer
 
 ```csharp
-public class AtcXUnitAssemblyTypeInitializer
+public static class AtcXUnitAssemblyTypeInitializer
 ```
 
 
