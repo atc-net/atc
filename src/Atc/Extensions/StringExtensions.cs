@@ -737,6 +737,7 @@ namespace System
         /// <returns>The string with pascal-case format.</returns>
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string PascalCase(this string value, char[]? separators, bool removeSeparators = false)
         {
             if (string.IsNullOrEmpty(value) || separators is null)

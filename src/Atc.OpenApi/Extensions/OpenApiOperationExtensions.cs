@@ -239,6 +239,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static bool IsOperationReferencingSchemaCheckRequestBody(OpenApiOperation openApiOperation, string schemaKey)
         {
             if (openApiOperation is null)
@@ -251,26 +252,28 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(schemaKey));
             }
 
-            if (openApiOperation.RequestBody?.Content is not null)
+            if (openApiOperation.RequestBody?.Content is null)
             {
-                foreach (var item in openApiOperation.RequestBody.Content)
-                {
-                    if (item.Value.Schema is null)
-                    {
-                        continue;
-                    }
+                return false;
+            }
 
-                    if (string.Equals(item.Value.Schema.Reference?.Id, schemaKey, StringComparison.Ordinal))
+            foreach (var item in openApiOperation.RequestBody.Content)
+            {
+                if (item.Value.Schema is null)
+                {
+                    continue;
+                }
+
+                if (string.Equals(item.Value.Schema.Reference?.Id, schemaKey, StringComparison.Ordinal))
+                {
+                    return true;
+                }
+
+                foreach (var property in item.Value.Schema.Properties)
+                {
+                    if (string.Equals(property.Value.Reference?.Id, schemaKey, StringComparison.Ordinal))
                     {
                         return true;
-                    }
-
-                    foreach (var property in item.Value.Schema.Properties)
-                    {
-                        if (string.Equals(property.Value.Reference?.Id, schemaKey, StringComparison.Ordinal))
-                        {
-                            return true;
-                        }
                     }
                 }
             }

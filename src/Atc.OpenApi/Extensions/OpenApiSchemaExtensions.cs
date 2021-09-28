@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
@@ -632,6 +633,7 @@ namespace Microsoft.OpenApi.Models
                    (schema.Properties.Any(x => x.Value.Enum.Any()) && schema.Properties.Count == 1);
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
         {
             if (schema is null)
@@ -676,6 +678,7 @@ namespace Microsoft.OpenApi.Models
             return false;
         }
 
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public static string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = true)
         {
             if (schema is null)

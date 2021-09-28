@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Atc.Helpers;
 
 // ReSharper disable InvertIf
@@ -88,6 +89,7 @@ namespace Atc.Math.Trigonometry
         /// <remarks>
         /// http://cossincalc.com/
         /// </remarks>
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static TriangleData CalculateAnglesAndSides(TriangleData data)
         {
             // A
