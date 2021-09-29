@@ -7,13 +7,10 @@
 
 # References extended
 
-## [Atc](Atc.md)
-
-- [AtcRestFluentAssertionsAssemblyTypeInitializer](Atc.md#atcrestfluentassertionsassemblytypeinitializer)
-
 ## [Atc.Rest.FluentAssertions](Atc.Rest.FluentAssertions.md)
 
 - [AcceptedResultAssertions](Atc.Rest.FluentAssertions.md#acceptedresultassertions)
+- [AtcRestFluentAssertionsAssemblyTypeInitializer](Atc.Rest.FluentAssertions.md#atcrestfluentassertionsassemblytypeinitializer)
 - [BadRequestResultAssertions](Atc.Rest.FluentAssertions.md#badrequestresultassertions)
 - [ConflictResultAssertions](Atc.Rest.FluentAssertions.md#conflictresultassertions)
 - [ContentResultAssertions](Atc.Rest.FluentAssertions.md#contentresultassertions)

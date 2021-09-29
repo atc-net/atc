@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -41,6 +42,7 @@ namespace Atc.DotNet
                 cancellationToken);
         }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         public static Task<Dictionary<string, int>> BuildAndCollectErrors(
             ILogger logger,
             DirectoryInfo rootPath,
@@ -72,6 +74,7 @@ namespace Atc.DotNet
                 cancellationToken);
         }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
         private static async Task<Dictionary<string, int>> InvokeBuildAndCollectErrors(
             ILogger logger,
             DirectoryInfo rootPath,

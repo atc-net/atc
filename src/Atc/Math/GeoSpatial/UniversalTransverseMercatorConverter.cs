@@ -63,6 +63,7 @@ namespace Atc.Math.GeoSpatial
         /// <param name="longitude">The longitude (also know as X or Northing).</param>
         [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter", Justification = "OK. By design.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         public UniversalTransverseMercatorResult ToUtm(double latitude, double longitude)
         {
             int zoneNumber;
@@ -329,6 +330,7 @@ namespace Atc.Math.GeoSpatial
         }
 
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1131:Use readable conditions", Justification = "OK. Bug in C# pattern matching for double.")]
+        [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
         private static string GetUtmLetterDesignator(double latitude)
         {
             //// !!! Bug in C# switch pattern matching for double vs int !!!

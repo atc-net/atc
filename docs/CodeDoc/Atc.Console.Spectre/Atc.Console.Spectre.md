@@ -11,7 +11,7 @@
 ## AtcConsoleSpectreAssemblyTypeInitializer
 
 ```csharp
-public class AtcConsoleSpectreAssemblyTypeInitializer
+public static class AtcConsoleSpectreAssemblyTypeInitializer
 ```
 
 

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -13,7 +13,7 @@ namespace Microsoft.ApplicationInsights.Extensibility
         public void Initialize(ITelemetry telemetry)
         {
             if (!(telemetry is RequestTelemetry requestTelemetry) ||
-                requestTelemetry.Success.GetValueOrDefault(false))
+                requestTelemetry.Success.GetValueOrDefault(defaultValue: false))
             {
                 return;
             }

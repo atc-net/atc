@@ -30,7 +30,7 @@ namespace Atc.CodeDocumentation
         {
             return AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
                 assembly,
-                null,
+                namespaceMatch: null,
                 excludeTypes);
         }
 
@@ -47,7 +47,7 @@ namespace Atc.CodeDocumentation
         {
             var typesWithMissingComments = AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
                     assembly,
-                    null,
+                    namespaceMatch: null,
                     excludeTypes);
             return AssemblyCommentHelper.GetTypesAsRenderText(typesWithMissingComments, useFullName);
         }
@@ -70,7 +70,7 @@ namespace Atc.CodeDocumentation
 
             return AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
                     assembly,
-                    null,
+                    namespaceMatch: null,
                     excludeTypes)
                 .Select(x => x.Type.BeautifyTypeName(useFullName))
                 .ToArray();

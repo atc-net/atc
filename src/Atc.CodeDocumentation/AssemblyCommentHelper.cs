@@ -21,11 +21,14 @@ namespace Atc.CodeDocumentation
             }
 
             var xmlFile = GetXmlFileForAssembly(type.Assembly);
-            return CollectExportedTypesWithComments(type.Assembly, xmlFile, null, null)
+            return CollectExportedTypesWithComments(type.Assembly, xmlFile, namespaceMatch: null, excludeSourceTypes: null)
                 .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
         }
 
-        public static TypeComments[] CollectExportedTypesWithMissingComments(Assembly assembly, string? namespaceMatch = null, List<Type>? excludeSourceTypes = null)
+        public static TypeComments[] CollectExportedTypesWithMissingComments(
+            Assembly assembly,
+            string? namespaceMatch = null,
+            List<Type>? excludeSourceTypes = null)
         {
             if (assembly is null)
             {
@@ -36,7 +39,10 @@ namespace Atc.CodeDocumentation
             return CollectExportedTypesWithMissingComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
         }
 
-        public static TypeComments[] CollectExportedTypesWithComments(Assembly assembly, string? namespaceMatch = null, List<Type>? excludeSourceTypes = null)
+        public static TypeComments[] CollectExportedTypesWithComments(
+            Assembly assembly,
+            string? namespaceMatch = null,
+            List<Type>? excludeSourceTypes = null)
         {
             if (assembly is null)
             {
@@ -74,7 +80,11 @@ namespace Atc.CodeDocumentation
             return regex is null || regex.IsMatch(type.Namespace ?? string.Empty);
         }
 
-        private static TypeComments[] CollectExportedTypesWithMissingComments(Assembly assembly, FileSystemInfo xmlPath, string? namespaceMatch, List<Type>? excludeSourceTypes)
+        private static TypeComments[] CollectExportedTypesWithMissingComments(
+            Assembly assembly,
+            FileSystemInfo xmlPath,
+            string? namespaceMatch,
+            List<Type>? excludeSourceTypes)
         {
             if (xmlPath is null)
             {
@@ -101,7 +111,11 @@ namespace Atc.CodeDocumentation
             return collectExportedTypesWithMissingComments;
         }
 
-        private static TypeComments[] CollectExportedTypesWithComments(Assembly assembly, FileSystemInfo xmlPath, string? namespaceMatch, List<Type>? excludeSourceTypes)
+        private static TypeComments[] CollectExportedTypesWithComments(
+            Assembly assembly,
+            FileSystemInfo xmlPath,
+            string? namespaceMatch,
+            List<Type>? excludeSourceTypes)
         {
             var types = CollectFilteredAssemblyTypes(assembly, excludeSourceTypes);
 

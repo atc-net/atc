@@ -72,7 +72,7 @@ namespace Atc.CodeDocumentation
         /// <value>
         /// The name of the beautify HTML.
         /// </value>
-        public string BeautifyHtmlName => Type.BeautifyName(false, true);
+        public string BeautifyHtmlName => Type.BeautifyName(useFullName: false, useHtmlFormat: true);
 
         /// <summary>
         /// Gets a value indicating whether this instance has comments.
@@ -117,8 +117,8 @@ namespace Atc.CodeDocumentation
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
-                    var get = y.GetGetMethod(true);
-                    var set = y.GetSetMethod(true);
+                    var get = y.GetGetMethod(nonPublic: true);
+                    var set = y.GetSetMethod(nonPublic: true);
                     if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);
@@ -166,8 +166,8 @@ namespace Atc.CodeDocumentation
                 .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
                 .Where(y =>
                 {
-                    var get = y.GetGetMethod(true);
-                    var set = y.GetSetMethod(true);
+                    var get = y.GetGetMethod(nonPublic: true);
+                    var set = y.GetSetMethod(nonPublic: true);
                     if (get is not null && set is not null)
                     {
                         return !(get.IsPrivate && set.IsPrivate);

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Atc.Console.Spectre.Logging;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ using Spectre.Console.Cli;
 
 namespace Atc.Console.Spectre.Extensions
 {
+    [SuppressMessage("Log Injection", "S4792:Configuring loggers is security-sensitive", Justification = "OK.")]
     public static class ServiceCollectionExtensions
     {
         public static void AddConsoleLogging(this IServiceCollection serviceCollection)
