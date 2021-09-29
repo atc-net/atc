@@ -7,84 +7,70 @@
 
 <br />
 
-
 ## AtcCodeDocumentationAssemblyTypeInitializer
 
-```csharp
-public static class AtcCodeDocumentationAssemblyTypeInitializer
-```
+>```csharp
+>public static class AtcCodeDocumentationAssemblyTypeInitializer
+>```
 
 
 <br />
-
 
 ## DocumentationHelper
 DocumentationHelper.
 
-
-```csharp
-public static class DocumentationHelper
-```
+>```csharp
+>public static class DocumentationHelper
+>```
 
 ### Static Methods
 
-
 #### CollectExportedTypesWithMissingCommentsFromAssembly
-
-```csharp
-TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List<Type> excludeTypes = null)
-```
-<p><b>Summary:</b> Collects the exported types with missing comments from assembly.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
+>```csharp
+>TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List<Type> excludeTypes = null)
+>```
+><b>Summary:</b> Collects the exported types with missing comments from assembly.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
 #### CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText
-
-```csharp
-string CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
-```
-<p><b>Summary:</b> Collects the exported types with missing comments from assembly and generate text.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>```csharp
+>string CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
+>```
+><b>Summary:</b> Collects the exported types with missing comments from assembly and generate text.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
 #### CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines
-
-```csharp
-string[] CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
-```
-<p><b>Summary:</b> Collects the exported types with missing comments from assembly and generate text lines.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>```csharp
+>string[] CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
+>```
+><b>Summary:</b> Collects the exported types with missing comments from assembly and generate text lines.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
 #### CollectExportedTypeWithCommentsFromType
-
-```csharp
-TypeComments CollectExportedTypeWithCommentsFromType(Type type)
-```
-<p><b>Summary:</b> Collects the type of the exported type with comments from.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+>```csharp
+>TypeComments CollectExportedTypeWithCommentsFromType(Type type)
+>```
+><b>Summary:</b> Collects the type of the exported type with comments from.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 
 <br />
-
 
 ## MemberType
 MemberType.
 
-
-```csharp
-public enum MemberType
-```
+>```csharp
+>public enum MemberType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -100,174 +86,128 @@ public enum MemberType
 
 <br />
 
-
 ## TypeComments
 TypeComments.
 
-
-```csharp
-public class TypeComments
-```
+>```csharp
+>public class TypeComments
+>```
 
 ### Properties
 
-
 #### BeautifyHtmlName
-
-```csharp
-BeautifyHtmlName
-```
-<p><b>Summary:</b> Gets the name of the beautify HTML.</p>
-
+>```csharp
+>BeautifyHtmlName
+>```
+><b>Summary:</b> Gets the name of the beautify HTML.
 #### CommentLookup
-
-```csharp
-CommentLookup
-```
-<p><b>Summary:</b> Gets the comment lookup.</p>
-
+>```csharp
+>CommentLookup
+>```
+><b>Summary:</b> Gets the comment lookup.
 #### FullName
-
-```csharp
-FullName
-```
-<p><b>Summary:</b> Gets the full name.</p>
-
+>```csharp
+>FullName
+>```
+><b>Summary:</b> Gets the full name.
 #### HasComments
-
-```csharp
-HasComments
-```
-<p><b>Summary:</b> Gets a value indicating whether this instance has comments.</p>
-
+>```csharp
+>HasComments
+>```
+><b>Summary:</b> Gets a value indicating whether this instance has comments.
 #### Name
-
-```csharp
-Name
-```
-<p><b>Summary:</b> Gets the name.</p>
-
+>```csharp
+>Name
+>```
+><b>Summary:</b> Gets the name.
 #### Namespace
-
-```csharp
-Namespace
-```
-<p><b>Summary:</b> Gets the namespace.</p>
-
+>```csharp
+>Namespace
+>```
+><b>Summary:</b> Gets the namespace.
 #### Type
-
-```csharp
-Type
-```
-<p><b>Summary:</b> Gets the type.</p>
-
+>```csharp
+>Type
+>```
+><b>Summary:</b> Gets the type.
 ### Methods
 
-
 #### GetXmlDocumentComments
-
-```csharp
-XmlDocumentComment[] GetXmlDocumentComments()
-```
-<p><b>Summary:</b> Gets the XML document comments.</p>
-
+>```csharp
+>XmlDocumentComment[] GetXmlDocumentComments()
+>```
+><b>Summary:</b> Gets the XML document comments.
 #### ToString
-
-```csharp
-string ToString()
-```
-<p><b>Summary:</b> Converts to string.</p>
-
-<p><b>Returns:</b> A string that represents this instance.</p>
-
+>```csharp
+>string ToString()
+>```
+><b>Summary:</b> Converts to string.
+>
+><b>Returns:</b> A string that represents this instance.
 
 <br />
-
 
 ## XmlDocumentComment
 XmlDocumentComment.
 
-
-```csharp
-public class XmlDocumentComment
-```
+>```csharp
+>public class XmlDocumentComment
+>```
 
 ### Properties
 
-
 #### ClassName
-
-```csharp
-ClassName
-```
-<p><b>Summary:</b> Gets or sets the name of the class.</p>
-
+>```csharp
+>ClassName
+>```
+><b>Summary:</b> Gets or sets the name of the class.
 #### Code
-
-```csharp
-Code
-```
-<p><b>Summary:</b> Gets or sets the code.</p>
-
+>```csharp
+>Code
+>```
+><b>Summary:</b> Gets or sets the code.
 #### Example
-
-```csharp
-Example
-```
-<p><b>Summary:</b> Gets or sets the example.</p>
-
+>```csharp
+>Example
+>```
+><b>Summary:</b> Gets or sets the example.
 #### MemberName
-
-```csharp
-MemberName
-```
-<p><b>Summary:</b> Gets or sets the name of the member.</p>
-
+>```csharp
+>MemberName
+>```
+><b>Summary:</b> Gets or sets the name of the member.
 #### MemberType
-
-```csharp
-MemberType
-```
-<p><b>Summary:</b> Gets or sets the type of the member.</p>
-
+>```csharp
+>MemberType
+>```
+><b>Summary:</b> Gets or sets the type of the member.
 #### Parameters
-
-```csharp
-Parameters
-```
-<p><b>Summary:</b> Gets or sets the parameters.</p>
-
+>```csharp
+>Parameters
+>```
+><b>Summary:</b> Gets or sets the parameters.
 #### Remarks
-
-```csharp
-Remarks
-```
-<p><b>Summary:</b> Gets or sets the remarks.</p>
-
+>```csharp
+>Remarks
+>```
+><b>Summary:</b> Gets or sets the remarks.
 #### Returns
-
-```csharp
-Returns
-```
-<p><b>Summary:</b> Gets or sets the returns.</p>
-
+>```csharp
+>Returns
+>```
+><b>Summary:</b> Gets or sets the returns.
 #### Summary
-
-```csharp
-Summary
-```
-<p><b>Summary:</b> Gets or sets the summary.</p>
-
+>```csharp
+>Summary
+>```
+><b>Summary:</b> Gets or sets the summary.
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
-<p><b>Summary:</b> Converts to string.</p>
-
-<p><b>Returns:</b> A string that represents this instance.</p>
-
+>```csharp
+>string ToString()
+>```
+><b>Summary:</b> Converts to string.
+>
+><b>Returns:</b> A string that represents this instance.
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

@@ -7,113 +7,93 @@
 
 <br />
 
-
 ## CircleHelper
 The CircleHelper module contains procedures used to preform math operations on a circle.
 
-
-```csharp
-public static class CircleHelper
-```
+>```csharp
+>public static class CircleHelper
+>```
 
 ### Static Methods
 
-
 #### ArcLength
-
-```csharp
-double ArcLength(double radius, double angle)
-```
-<p><b>Summary:</b> Arcs the length.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
+>```csharp
+>double ArcLength(double radius, double angle)
+>```
+><b>Summary:</b> Arcs the length.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
 #### Area
-
-```csharp
-double Area(double radius)
-```
-<p><b>Summary:</b> Areas the specified radius.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>```csharp
+>double Area(double radius)
+>```
+><b>Summary:</b> Areas the specified radius.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
 #### ChordLength
-
-```csharp
-double ChordLength(double radius, double angle)
-```
-<p><b>Summary:</b> Chords the length.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
+>```csharp
+>double ChordLength(double radius, double angle)
+>```
+><b>Summary:</b> Chords the length.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
 #### Circumference
-
-```csharp
-double Circumference(double radius)
-```
-<p><b>Summary:</b> Circumferences the specified radius.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>```csharp
+>double Circumference(double radius)
+>```
+><b>Summary:</b> Circumferences the specified radius.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
 
 <br />
-
 
 ## TriangleHelper
 The TriangleHelper module contains procedures used to preform math operations on a triangle.
 
-
-```csharp
-public static class TriangleHelper
-```
+>```csharp
+>public static class TriangleHelper
+>```
 
 ### Static Methods
 
-
 #### IsSumOfTheAnglesATriangle
-
-```csharp
-bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
-```
-<p><b>Summary:</b> Determines whether [is sum of the angles A triangle] [the specified angle A].</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
-<p><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.</p>
-
+>```csharp
+>bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
+>```
+><b>Summary:</b> Determines whether [is sum of the angles A triangle] [the specified angle A].
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
+>
+><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.
 #### IsSumOfTheAnglesATriangle
-
-```csharp
-bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
-```
-<p><b>Summary:</b> Determines whether [is sum of the angles A triangle] [the specified angle A].</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
-<p><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.</p>
-
+>```csharp
+>bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
+>```
+><b>Summary:</b> Determines whether [is sum of the angles A triangle] [the specified angle A].
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleA`&nbsp;&nbsp;-&nbsp;&nbsp;The angle A.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
+>
+><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.
 #### Pythagorean
-
-```csharp
-double Pythagorean(double? sideA, double? sideB, double? sideC)
-```
-<p><b>Summary:</b> Calculate the unspecified side (unspecified with NULL).</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideA`&nbsp;&nbsp;-&nbsp;&nbsp;The side A.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideB`&nbsp;&nbsp;-&nbsp;&nbsp;The side B.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideC`&nbsp;&nbsp;-&nbsp;&nbsp;The side C.<br />
+>```csharp
+>double Pythagorean(double? sideA, double? sideB, double? sideC)
+>```
+><b>Summary:</b> Calculate the unspecified side (unspecified with NULL).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideA`&nbsp;&nbsp;-&nbsp;&nbsp;The side A.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideB`&nbsp;&nbsp;-&nbsp;&nbsp;The side B.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sideC`&nbsp;&nbsp;-&nbsp;&nbsp;The side C.<br />
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

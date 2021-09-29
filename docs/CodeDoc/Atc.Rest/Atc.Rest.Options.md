@@ -7,254 +7,210 @@
 
 <br />
 
-
 ## AssemblyPairOptions
 
-```csharp
-public class AssemblyPairOptions
-```
+>```csharp
+>public class AssemblyPairOptions
+>```
 
 ### Properties
 
-
 #### ApiAssembly
-
-```csharp
-ApiAssembly
-```
+>```csharp
+>ApiAssembly
+>```
 #### DomainAssembly
-
-```csharp
-DomainAssembly
-```
+>```csharp
+>DomainAssembly
+>```
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## AuthorizationOptions
 Copy and fill out the AzureAd section into the project User Secrets.
+><b>Code usage:</b>
+>```csharp
+>{
+>"Authorization": {
+>/*
+>This will be used to set the Authority on the JWT bearer options
+>- 'https://login.microsoftonline.com' (For Azure AD)
+>- 'https://adfs1.some.organization.com' (For on-prem ADFS)
+>*/
+>"Instance": "https://login.microsoftonline.com",
+>"ClientId": "[Application ID of the Azure AD App Registration]",
+>/*
+>You need specify the TenantId only if you want to accept access tokens from a single tenant
+>(line-of-business app).
+>Otherwise, you can leave them set to common.
+>This can be:
+>- A GUID (Tenant ID = Directory ID)
+>- 'common' (any organization and personal accounts)
+>- 'organizations' (any organization)
+>- 'consumers' (Microsoft personal accounts)
+>- 'adfs' (For on-prem ADFS)
+>*/
+>"TenantId": "common",
+>"Audience": "[App Identifier URI of the Azure AD App Registration]"
+>"Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
+>"ValidAudiences": ["A", "collection", "of", "app", "identifier", "URIs"]
+>}
+>}
+>```
 
-<b>Code usage:</b>
-
-```csharp
-{
-"Authorization": {
-/*
-This will be used to set the Authority on the JWT bearer options
-- 'https://login.microsoftonline.com' (For Azure AD)
-- 'https://adfs1.some.organization.com' (For on-prem ADFS)
-*/
-"Instance": "https://login.microsoftonline.com",
-"ClientId": "[Application ID of the Azure AD App Registration]",
-/*
-You need specify the TenantId only if you want to accept access tokens from a single tenant
-(line-of-business app).
-Otherwise, you can leave them set to common.
-This can be:
-- A GUID (Tenant ID = Directory ID)
-- 'common' (any organization and personal accounts)
-- 'organizations' (any organization)
-- 'consumers' (Microsoft personal accounts)
-- 'adfs' (For on-prem ADFS)
-*/
-"TenantId": "common",
-"Audience": "[App Identifier URI of the Azure AD App Registration]"
-"Issuer": "[The token iss claim also specified as the access_token_issuer from the OpenID configuration]"
-"ValidAudiences": ["A", "collection", "of", "app", "identifier", "URIs"]
-}
-```
-
-```csharp
-public class AuthorizationOptions
-```
+>```csharp
+>public class AuthorizationOptions
+>```
 
 ### Static Fields
 
-
 #### ConfigurationSectionName
-
-```csharp
-string ConfigurationSectionName
-```
+>```csharp
+>string ConfigurationSectionName
+>```
 ### Properties
 
-
 #### Audience
-
-```csharp
-Audience
-```
+>```csharp
+>Audience
+>```
 #### ClientId
-
-```csharp
-ClientId
-```
+>```csharp
+>ClientId
+>```
 #### Instance
-
-```csharp
-Instance
-```
+>```csharp
+>Instance
+>```
 #### Issuer
-
-```csharp
-Issuer
-```
+>```csharp
+>Issuer
+>```
 #### TenantId
-
-```csharp
-TenantId
-```
+>```csharp
+>TenantId
+>```
 #### ValidAudiences
-
-```csharp
-ValidAudiences
-```
+>```csharp
+>ValidAudiences
+>```
 #### ValidIssuers
-
-```csharp
-ValidIssuers
-```
+>```csharp
+>ValidIssuers
+>```
 ### Methods
 
-
 #### IsSecurityEnabled
-
-```csharp
-bool IsSecurityEnabled()
-```
+>```csharp
+>bool IsSecurityEnabled()
+>```
 
 <br />
-
 
 ## ConfigureApiBehaviorOptions
 
-```csharp
-public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
-```
+>```csharp
+>public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
+>```
 
 ### Methods
 
-
 #### Configure
-
-```csharp
-void Configure(ApiBehaviorOptions options)
-```
+>```csharp
+>void Configure(ApiBehaviorOptions options)
+>```
 
 <br />
-
 
 ## RestApiOptions
 
-```csharp
-public class RestApiOptions
-```
+>```csharp
+>public class RestApiOptions
+>```
 
 ### Properties
 
-
 #### AllowAnonymousAccessForDevelopment
-
-```csharp
-AllowAnonymousAccessForDevelopment
-```
+>```csharp
+>AllowAnonymousAccessForDevelopment
+>```
 #### AssemblyPairs
-
-```csharp
-AssemblyPairs
-```
+>```csharp
+>AssemblyPairs
+>```
 #### Authorization
-
-```csharp
-Authorization
-```
+>```csharp
+>Authorization
+>```
 #### ErrorHandlingExceptionFilter
-
-```csharp
-ErrorHandlingExceptionFilter
-```
+>```csharp
+>ErrorHandlingExceptionFilter
+>```
 #### JsonSerializerCasingStyle
-
-```csharp
-JsonSerializerCasingStyle
-```
+>```csharp
+>JsonSerializerCasingStyle
+>```
 #### UseApplicationInsights
-
-```csharp
-UseApplicationInsights
-```
+>```csharp
+>UseApplicationInsights
+>```
 #### UseAutoRegistrateServices
-
-```csharp
-UseAutoRegistrateServices
-```
+>```csharp
+>UseAutoRegistrateServices
+>```
 #### UseEnumAsStringInSerialization
-
-```csharp
-UseEnumAsStringInSerialization
-```
+>```csharp
+>UseEnumAsStringInSerialization
+>```
 #### UseHttpContextAccessor
-
-```csharp
-UseHttpContextAccessor
-```
+>```csharp
+>UseHttpContextAccessor
+>```
 #### UseJsonSerializerOptionsIgnoreNullValues
-
-```csharp
-UseJsonSerializerOptionsIgnoreNullValues
-```
+>```csharp
+>UseJsonSerializerOptionsIgnoreNullValues
+>```
 #### UseRequireHttpsPermanent
-
-```csharp
-UseRequireHttpsPermanent
-```
+>```csharp
+>UseRequireHttpsPermanent
+>```
 #### UseValidateServiceRegistrations
-
-```csharp
-UseValidateServiceRegistrations
-```
+>```csharp
+>UseValidateServiceRegistrations
+>```
 ### Methods
 
-
 #### AddAssemblyPairs
-
-```csharp
-void AddAssemblyPairs(Assembly apiAssembly, Assembly domainAssembly)
-```
+>```csharp
+>void AddAssemblyPairs(Assembly apiAssembly, Assembly domainAssembly)
+>```
 
 <br />
 
-
 ## RestApiOptionsErrorHandlingExceptionFilter
 
-```csharp
-public class RestApiOptionsErrorHandlingExceptionFilter
-```
+>```csharp
+>public class RestApiOptionsErrorHandlingExceptionFilter
+>```
 
 ### Properties
 
-
 #### Enable
-
-```csharp
-Enable
-```
+>```csharp
+>Enable
+>```
 #### IncludeExceptionDetails
-
-```csharp
-IncludeExceptionDetails
-```
+>```csharp
+>IncludeExceptionDetails
+>```
 #### UseProblemDetailsAsResponseBody
-
-```csharp
-UseProblemDetailsAsResponseBody
-```
+>```csharp
+>UseProblemDetailsAsResponseBody
+>```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

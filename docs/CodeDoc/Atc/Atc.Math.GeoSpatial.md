@@ -7,14 +7,12 @@
 
 <br />
 
-
 ## DistanceMeasurementType
 DistanceMeasurementType
 
-
-```csharp
-public enum DistanceMeasurementType
-```
+>```csharp
+>public enum DistanceMeasurementType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -29,53 +27,44 @@ public enum DistanceMeasurementType
 
 <br />
 
-
 ## GeoSpatialHelper
 GeoSpatialHelper
 
-
-```csharp
-public static class GeoSpatialHelper
-```
+>```csharp
+>public static class GeoSpatialHelper
+>```
 
 ### Static Methods
 
-
 #### Distance
-
-```csharp
-double Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
-```
-<p><b>Summary:</b> Calculate distance.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
+>```csharp
+>double Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
+>```
+><b>Summary:</b> Calculate distance.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
 #### Distance
-
-```csharp
-double Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
-```
-<p><b>Summary:</b> Calculate distance.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
+>```csharp
+>double Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
+>```
+><b>Summary:</b> Calculate distance.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
 
 <br />
-
 
 ## ReferenceEllipsoidType
 ReferenceEllipsoidType
 
-
-```csharp
-public enum ReferenceEllipsoidType
-```
+>```csharp
+>public enum ReferenceEllipsoidType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -111,115 +100,89 @@ public enum ReferenceEllipsoidType
 
 <br />
 
-
 ## UniversalTransverseMercatorConverter
 UniversalTransverseMercatorConverter
 
-
-```csharp
-public class UniversalTransverseMercatorConverter
-```
+>```csharp
+>public class UniversalTransverseMercatorConverter
+>```
 
 ### Methods
 
-
 #### ToUtm
-
-```csharp
-UniversalTransverseMercatorResult ToUtm(CartesianCoordinate coordinate)
-```
-<p><b>Summary:</b> To UTM.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate.<br />
+>```csharp
+>UniversalTransverseMercatorResult ToUtm(CartesianCoordinate coordinate)
+>```
+><b>Summary:</b> To UTM.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate.<br />
 #### ToUtm
-
-```csharp
-UniversalTransverseMercatorResult ToUtm(double latitude, double longitude)
-```
-<p><b>Summary:</b> To UTM.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate.<br />
+>```csharp
+>UniversalTransverseMercatorResult ToUtm(double latitude, double longitude)
+>```
+><b>Summary:</b> To UTM.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate.<br />
 #### ToWgs84
-
-```csharp
-CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
-```
-<p><b>Summary:</b> To WGS84.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone number.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneLetter`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone letter.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmEasting`&nbsp;&nbsp;-&nbsp;&nbsp;The utm easting.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmNorthing`&nbsp;&nbsp;-&nbsp;&nbsp;The utm northing.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxDecimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum decimal precision.<br />
+>```csharp
+>CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
+>```
+><b>Summary:</b> To WGS84.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone number.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneLetter`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone letter.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmEasting`&nbsp;&nbsp;-&nbsp;&nbsp;The utm easting.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmNorthing`&nbsp;&nbsp;-&nbsp;&nbsp;The utm northing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxDecimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum decimal precision.<br />
 
 <br />
-
 
 ## UniversalTransverseMercatorResult
 UniversalTransverseMercatorResult
 
-
-```csharp
-public class UniversalTransverseMercatorResult
-```
+>```csharp
+>public class UniversalTransverseMercatorResult
+>```
 
 ### Properties
 
-
 #### FormattedUtm
-
-```csharp
-FormattedUtm
-```
-<p><b>Summary:</b> Gets the formatted UTM.</p>
-
+>```csharp
+>FormattedUtm
+>```
+><b>Summary:</b> Gets the formatted UTM.
 #### UtmEasting
-
-```csharp
-UtmEasting
-```
-<p><b>Summary:</b> Gets the utm easting.</p>
-
+>```csharp
+>UtmEasting
+>```
+><b>Summary:</b> Gets the utm easting.
 #### UtmNorthing
-
-```csharp
-UtmNorthing
-```
-<p><b>Summary:</b> Gets the utm northing.</p>
-
+>```csharp
+>UtmNorthing
+>```
+><b>Summary:</b> Gets the utm northing.
 #### Zone
-
-```csharp
-Zone
-```
-<p><b>Summary:</b> Gets the zone.</p>
-
+>```csharp
+>Zone
+>```
+><b>Summary:</b> Gets the zone.
 #### ZoneLetter
-
-```csharp
-ZoneLetter
-```
-<p><b>Summary:</b> Gets the zone letter.</p>
-
+>```csharp
+>ZoneLetter
+>```
+><b>Summary:</b> Gets the zone letter.
 #### ZoneNumber
-
-```csharp
-ZoneNumber
-```
-<p><b>Summary:</b> Gets the zone number.</p>
-
+>```csharp
+>ZoneNumber
+>```
+><b>Summary:</b> Gets the zone number.
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

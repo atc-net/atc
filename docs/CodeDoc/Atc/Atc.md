@@ -7,14 +7,12 @@
 
 <br />
 
-
 ## AddressType
 Flag-Enumeration: AddressType.
 
-
-```csharp
-public enum AddressType
-```
+>```csharp
+>public enum AddressType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -36,14 +34,12 @@ public enum AddressType
 
 <br />
 
-
 ## ArticleNumberType
 ArticleNumberType.
 
-
-```csharp
-public enum ArticleNumberType
-```
+>```csharp
+>public enum ArticleNumberType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -63,24 +59,21 @@ public enum ArticleNumberType
 
 <br />
 
-
 ## AtcAssemblyTypeInitializer
 
-```csharp
-public static class AtcAssemblyTypeInitializer
-```
+>```csharp
+>public static class AtcAssemblyTypeInitializer
+>```
 
 
 <br />
 
-
 ## BooleanOperatorType
 Enumeration: BooleanOperatorType.
 
-
-```csharp
-public enum BooleanOperatorType
-```
+>```csharp
+>public enum BooleanOperatorType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -95,14 +88,12 @@ public enum BooleanOperatorType
 
 <br />
 
-
 ## CardinalDirectionType
 Flag-Enumeration: CardinalDirectionType.
 
-
-```csharp
-public enum CardinalDirectionType
-```
+>```csharp
+>public enum CardinalDirectionType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -132,12 +123,11 @@ public enum CardinalDirectionType
 
 <br />
 
-
 ## CasingStyle
 
-```csharp
-public enum CasingStyle
-```
+>```csharp
+>public enum CasingStyle
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -152,14 +142,12 @@ public enum CasingStyle
 
 <br />
 
-
 ## CollectionActionType
 Enumeration: CollectionActionType.
 
-
-```csharp
-public enum CollectionActionType
-```
+>```csharp
+>public enum CollectionActionType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -176,37 +164,31 @@ public enum CollectionActionType
 
 <br />
 
-
 ## ConsoleExitStatusCodes
 
-```csharp
-public static class ConsoleExitStatusCodes
-```
+>```csharp
+>public static class ConsoleExitStatusCodes
+>```
 
 ### Static Fields
 
-
 #### Failure
-
-```csharp
-int Failure
-```
+>```csharp
+>int Failure
+>```
 #### Success
-
-```csharp
-int Success
-```
+>```csharp
+>int Success
+>```
 
 <br />
-
 
 ## DateTimeDiffCompareType
 Enumeration: DateTimeDiffCompareType.
 
-
-```csharp
-public enum DateTimeDiffCompareType
-```
+>```csharp
+>public enum DateTimeDiffCompareType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -224,14 +206,12 @@ public enum DateTimeDiffCompareType
 
 <br />
 
-
 ## DropDownFirstItemType
 Enumeration: DropDownFirstItemType.
 
-
-```csharp
-public enum DropDownFirstItemType
-```
+>```csharp
+>public enum DropDownFirstItemType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -245,344 +225,312 @@ public enum DropDownFirstItemType
 
 <br />
 
-
 ## Enum&lt;T&gt;
 Extension methods for enums.
 
-
-```csharp
-public static class Enum&lt;T&gt;
-```
+>```csharp
+>public static class Enum&lt;T&gt;
+>```
 
 ### Static Methods
 
-
 #### GetEnumValue
-
-```csharp
-T GetEnumValue(string value, bool ignoreCase = True)
-```
-<p><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
-<p><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</p>
-
-<b>Code usage:</b>
-
-```csharp
-DayOfWeek day = Enum<DayOfWeek>.GetEnumValue(value);
-```
-<b>Code example:</b>
-
-```csharp
-Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("Monday"));
-Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("MONDAY"));
-```
+>```csharp
+>T GetEnumValue(string value, bool ignoreCase = True)
+>```
+><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
+>
+><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+>
+><b>Code usage:</b>
+>```csharp
+>DayOfWeek day = Enum<DayOfWeek>.GetEnumValue(value);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("Monday"));
+>Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("MONDAY"));
+>```
 #### Parse
-
-```csharp
-T Parse(string value, bool ignoreCase = True)
-```
-<p><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
-<p><b>Returns:</b> An object of type enumType whose value is represented by value.</p>
-
-<b>Code usage:</b>
-
-```csharp
-DayOfWeek day = Enum<DayOfWeek>.Parse(value);
-```
-<b>Code example:</b>
-
-```csharp
-Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.Parse("Monday"));
-```
+>```csharp
+>T Parse(string value, bool ignoreCase = True)
+>```
+><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
+>
+><b>Returns:</b> An object of type enumType whose value is represented by value.
+>
+><b>Code usage:</b>
+>```csharp
+>DayOfWeek day = Enum<DayOfWeek>.Parse(value);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.Parse("Monday"));
+>```
 #### ToArray
-
-```csharp
-Array ToArray(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
-```
-<p><b>Summary:</b> Converts the enum to array.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
-<p><b>Returns:</b> An array of names from the enum.</p>
-
-<b>Code usage:</b>
-
-```csharp
-Array array = Enum<DayOfWeek>.ToArray();
-```
-<b>Code example:</b>
-
-```csharp
-Array array = Enum<DayOfWeek>.ToArray();
-Assert.Equal(7, array.Length);
-```
+>```csharp
+>Array ToArray(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Converts the enum to array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>
+><b>Returns:</b> An array of names from the enum.
+>
+><b>Code usage:</b>
+>```csharp
+>Array array = Enum<DayOfWeek>.ToArray();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Array array = Enum<DayOfWeek>.ToArray();
+>Assert.Equal(7, array.Length);
+>```
 #### ToDictionary
-
-```csharp
-Dictionary<int, string> ToDictionary(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
-```
-<p><b>Summary:</b> Converts the enum to dictionary.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
-<p><b>Returns:</b> An dictionary of enum values as int and names from the enum.</p>
-
-<b>Code usage:</b>
-
-```csharp
-Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();
-```
-<b>Code example:</b>
-
-```csharp
-Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();
-Assert.Equal(7, dictionary.Count);
-```
+>```csharp
+>Dictionary<int, string> ToDictionary(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Converts the enum to dictionary.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>
+><b>Returns:</b> An dictionary of enum values as int and names from the enum.
+>
+><b>Code usage:</b>
+>```csharp
+>Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();
+>Assert.Equal(7, dictionary.Count);
+>```
 #### ToDictionaryWithStringKey
-
-```csharp
-Dictionary<string, string> ToDictionaryWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
-```
-<p><b>Summary:</b> Converts the enum to dictionary with key as string.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
-<p><b>Returns:</b> An dictionary of enum values as string and names from the enum.</p>
-
-<b>Code usage:</b>
-
-```csharp
-Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();
-```
-<b>Code example:</b>
-
-```csharp
-Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();
-Assert.Equal(7, dictionary.Count);
-```
+>```csharp
+>Dictionary<string, string> ToDictionaryWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Converts the enum to dictionary with key as string.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>
+><b>Returns:</b> An dictionary of enum values as string and names from the enum.
+>
+><b>Code usage:</b>
+>```csharp
+>Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();
+>Assert.Equal(7, dictionary.Count);
+>```
 #### ToKeyValuePairs
-
-```csharp
-List<KeyValuePair<int, string>> ToKeyValuePairs(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
-```
-<p><b>Summary:</b> Converts the enum to list of key value pairs.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
-<p><b>Returns:</b> An list of KeyValuePair of the enum with the key as int.</p>
-
-<b>Code usage:</b>
-
-```csharp
-List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();
-```
-<b>Code example:</b>
-
-```csharp
-List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();
-Assert.Equal(7, list.Count);
-```
+>```csharp
+>List<KeyValuePair<int, string>> ToKeyValuePairs(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Converts the enum to list of key value pairs.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>
+><b>Returns:</b> An list of KeyValuePair of the enum with the key as int.
+>
+><b>Code usage:</b>
+>```csharp
+>List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();
+>Assert.Equal(7, list.Count);
+>```
 #### ToKeyValuePairsWithStringKey
-
-```csharp
-List<KeyValuePair<string, string>> ToKeyValuePairsWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
-```
-<p><b>Summary:</b> Converts the enum to list of key value pairs with key as string.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
-<p><b>Returns:</b> An list of KeyValuePair of the enum with the key as string.</p>
-
-<b>Code usage:</b>
-
-```csharp
-List<KeyValuePair<string, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
-```
-<b>Code example:</b>
-
-```csharp
-List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
-Assert.Equal(7, list.Count);
-```
+>```csharp
+>List<KeyValuePair<string, string>> ToKeyValuePairsWithStringKey(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Converts the enum to list of key value pairs with key as string.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;true to include the default enumeration value; false to skip it.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>
+><b>Returns:</b> An list of KeyValuePair of the enum with the key as string.
+>
+><b>Code usage:</b>
+>```csharp
+>List<KeyValuePair<string, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
+>Assert.Equal(7, list.Count);
+>```
 #### TryGetEnumValue
-
-```csharp
-bool TryGetEnumValue(string value, bool ignoreCase, out T returnedValue)
-```
-<p><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
-<p><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</p>
-
-<b>Code usage:</b>
-
-```csharp
-bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
-```
-<b>Code example:</b>
-
-```csharp
-DayOfWeek expectedOut;
-bool isParsed = Enum<DayOfWeek>.TryGetEnumValue("Monday", true, out var dayOfWeek);
-Assert.True(isParsed);
-Assert.Equal(expectedOut, dayOfWeek);
-```
+>```csharp
+>bool TryGetEnumValue(string value, bool ignoreCase, out T returnedValue)
+>```
+><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
+>
+><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+>
+><b>Code usage:</b>
+>```csharp
+>bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>DayOfWeek expectedOut;
+>bool isParsed = Enum<DayOfWeek>.TryGetEnumValue("Monday", true, out var dayOfWeek);
+>Assert.True(isParsed);
+>Assert.Equal(expectedOut, dayOfWeek);
+>```
 #### TryGetEnumValue
-
-```csharp
-bool TryGetEnumValue(Enum value, out T returnedValue)
-```
-<p><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
-<p><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</p>
-
-<b>Code usage:</b>
-
-```csharp
-bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
-```
-<b>Code example:</b>
-
-```csharp
-DayOfWeek expectedOut;
-bool isParsed = Enum<DayOfWeek>.TryGetEnumValue("Monday", true, out var dayOfWeek);
-Assert.True(isParsed);
-Assert.Equal(expectedOut, dayOfWeek);
-```
+>```csharp
+>bool TryGetEnumValue(Enum value, out T returnedValue)
+>```
+><b>Summary:</b> Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing the name or value to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;true to ignore case; false to regard case.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
+>
+><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+>
+><b>Code usage:</b>
+>```csharp
+>bool isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>DayOfWeek expectedOut;
+>bool isParsed = Enum<DayOfWeek>.TryGetEnumValue("Monday", true, out var dayOfWeek);
+>Assert.True(isParsed);
+>Assert.Equal(expectedOut, dayOfWeek);
+>```
 #### TryParse
-
-```csharp
-bool TryParse(string value, out T returnedValue)
-```
-<p><b>Summary:</b> Converts the string representation of a enum. A return value indicates whether the conversion succeeded.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing a enum to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
-<p><b>Returns:</b> true if the value was converted successfully; otherwise, false.</p>
-
-<b>Code usage:</b>
-
-```csharp
-bool isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
-```
-<b>Code example:</b>
-
-```csharp
-DayOfWeek expectedOut;
-bool isParsed = Enum<DayOfWeek>.TryParse("Monday", out var dayOfWeek);
-Assert.True(isParsed);
-Assert.Equal(expectedOut, dayOfWeek);
-```
+>```csharp
+>bool TryParse(string value, out T returnedValue)
+>```
+><b>Summary:</b> Converts the string representation of a enum. A return value indicates whether the conversion succeeded.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing a enum to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
+>
+><b>Returns:</b> true if the value was converted successfully; otherwise, false.
+>
+><b>Code usage:</b>
+>```csharp
+>bool isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>DayOfWeek expectedOut;
+>bool isParsed = Enum<DayOfWeek>.TryParse("Monday", out var dayOfWeek);
+>Assert.True(isParsed);
+>Assert.Equal(expectedOut, dayOfWeek);
+>```
 #### TryParse
-
-```csharp
-bool TryParse(string value, bool ignoreCase, out T returnedValue)
-```
-<p><b>Summary:</b> Converts the string representation of a enum. A return value indicates whether the conversion succeeded.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing a enum to convert.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
-<p><b>Returns:</b> true if the value was converted successfully; otherwise, false.</p>
-
-<b>Code usage:</b>
-
-```csharp
-bool isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
-```
-<b>Code example:</b>
-
-```csharp
-DayOfWeek expectedOut;
-bool isParsed = Enum<DayOfWeek>.TryParse("Monday", out var dayOfWeek);
-Assert.True(isParsed);
-Assert.Equal(expectedOut, dayOfWeek);
-```
+>```csharp
+>bool TryParse(string value, bool ignoreCase, out T returnedValue)
+>```
+><b>Summary:</b> Converts the string representation of a enum. A return value indicates whether the conversion succeeded.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A string containing a enum to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`returnedValue`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the enum value, if the conversion succeeded, or default enum if the conversion failed.<br />
+>
+><b>Returns:</b> true if the value was converted successfully; otherwise, false.
+>
+><b>Code usage:</b>
+>```csharp
+>bool isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>DayOfWeek expectedOut;
+>bool isParsed = Enum<DayOfWeek>.TryParse("Monday", out var dayOfWeek);
+>Assert.True(isParsed);
+>Assert.Equal(expectedOut, dayOfWeek);
+>```
 
 <br />
-
 
 ## EnumGuidAttribute
 Enum Guid Attribute.
 
-
-```csharp
-public class EnumGuidAttribute : Attribute
-```
+>```csharp
+>public class EnumGuidAttribute : Attribute
+>```
 
 ### Properties
 
-
 #### GlobalIdentifier
-
-```csharp
-GlobalIdentifier
-```
-<p><b>Summary:</b> Gets the global identifier.</p>
-
+>```csharp
+>GlobalIdentifier
+>```
+><b>Summary:</b> Gets the global identifier.
 
 <br />
-
 
 ## FileSystemWatcherChangeType
 Flag-Enumeration: FileSystemWatcherChangeType.
 
-
-```csharp
-public enum FileSystemWatcherChangeType
-```
+>```csharp
+>public enum FileSystemWatcherChangeType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -598,14 +546,12 @@ public enum FileSystemWatcherChangeType
 
 <br />
 
-
 ## ForwardReverseType
 Enumeration: ForwardReverseType.
 
-
-```csharp
-public enum ForwardReverseType
-```
+>```csharp
+>public enum ForwardReverseType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -618,179 +564,139 @@ public enum ForwardReverseType
 
 <br />
 
-
 ## GlobalizationConstants
 GlobalizationConstants.
 
-
-```csharp
-public static class GlobalizationConstants
-```
+>```csharp
+>public static class GlobalizationConstants
+>```
 
 ### Static Fields
 
-
 #### DanishCultureInfo
-
-```csharp
-CultureInfo DanishCultureInfo
-```
+>```csharp
+>CultureInfo DanishCultureInfo
+>```
 #### DateTimeIso8601
-
-```csharp
-string DateTimeIso8601
-```
+>```csharp
+>string DateTimeIso8601
+>```
 #### EnglishCultureInfo
-
-```csharp
-CultureInfo EnglishCultureInfo
-```
+>```csharp
+>CultureInfo EnglishCultureInfo
+>```
 
 <br />
-
 
 ## GlobalizationLcidConstants
 GlobalizationLcidConstants.
 
-
-```csharp
-public static class GlobalizationLcidConstants
-```
+>```csharp
+>public static class GlobalizationLcidConstants
+>```
 
 ### Static Fields
 
-
 #### Denmark
-
-```csharp
-int Denmark
-```
-<p><b>Summary:</b> Denmark - 1030.</p>
-
+>```csharp
+>int Denmark
+>```
+><b>Summary:</b> Denmark - 1030.
 #### Germany
-
-```csharp
-int Germany
-```
-<p><b>Summary:</b> Germany - 1031.</p>
-
+>```csharp
+>int Germany
+>```
+><b>Summary:</b> Germany - 1031.
 #### GreatBritain
-
-```csharp
-int GreatBritain
-```
-<p><b>Summary:</b> Great Britain - 2057.</p>
-
+>```csharp
+>int GreatBritain
+>```
+><b>Summary:</b> Great Britain - 2057.
 #### Invariant
-
-```csharp
-int Invariant
-```
-<p><b>Summary:</b> The invariant.</p>
-
+>```csharp
+>int Invariant
+>```
+><b>Summary:</b> The invariant.
 #### UnitedStates
-
-```csharp
-int UnitedStates
-```
-<p><b>Summary:</b> United States - 1033.</p>
-
+>```csharp
+>int UnitedStates
+>```
+><b>Summary:</b> United States - 1033.
 
 <br />
-
 
 ## GridCell
 Represents an x- and y-coordinate point in 2-D grid.
 
-
-```csharp
-public struct GridCell : ICloneable, IEquatable<GridCell>
-```
+>```csharp
+>public struct GridCell : ICloneable, IEquatable<GridCell>
+>```
 
 ### Properties
 
-
 #### IsDefault
-
-```csharp
-IsDefault
-```
-<p><b>Summary:</b> Gets a value indicating whether this instance is default.</p>
-
-<p><b>Returns:</b> `true` if this instance is default; otherwise, `false`.</p>
-
+>```csharp
+>IsDefault
+>```
+><b>Summary:</b> Gets a value indicating whether this instance is default.
+>
+><b>Returns:</b> `true` if this instance is default; otherwise, `false`.
 #### X
-
-```csharp
-X
-```
-<p><b>Summary:</b> Gets the X.</p>
-
+>```csharp
+>X
+>```
+><b>Summary:</b> Gets the X.
 #### Y
-
-```csharp
-Y
-```
-<p><b>Summary:</b> Gets the Y.</p>
-
+>```csharp
+>Y
+>```
+><b>Summary:</b> Gets the Y.
 ### Methods
 
-
 #### Clone
-
-```csharp
-object Clone()
-```
+>```csharp
+>object Clone()
+>```
 #### Equals
-
-```csharp
-bool Equals(GridCell other)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(GridCell other)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
-
-```csharp
-bool Equals(object obj)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(object obj)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### GetHashCode
-
-```csharp
-int GetHashCode()
-```
+>```csharp
+>int GetHashCode()
+>```
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 #### ToStringShort
-
-```csharp
-string ToStringShort()
-```
-<p><b>Summary:</b> To the string short.</p>
-
-<p><b>Returns:</b> Return a short format of x and y.</p>
-
+>```csharp
+>string ToStringShort()
+>```
+><b>Summary:</b> To the string short.
+>
+><b>Returns:</b> Return a short format of x and y.
 
 <br />
-
 
 ## IdentityRoleType
 Flag-Enumeration: IdentityRoleType.
 
-
-```csharp
-public enum IdentityRoleType
-```
+>```csharp
+>public enum IdentityRoleType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -806,26 +712,22 @@ public enum IdentityRoleType
 
 <br />
 
-
 ## IgnoreDisplayAttribute
 Ignore Display Attribute.
 
-
-```csharp
-public class IgnoreDisplayAttribute : Attribute
-```
+>```csharp
+>public class IgnoreDisplayAttribute : Attribute
+>```
 
 
 <br />
 
-
 ## InsertRemoveType
 Enumeration: InsertRemoveType.
 
-
-```csharp
-public enum InsertRemoveType
-```
+>```csharp
+>public enum InsertRemoveType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -838,14 +740,12 @@ public enum InsertRemoveType
 
 <br />
 
-
 ## LeftRightType
 Enumeration: LeftRightType.
 
-
-```csharp
-public enum LeftRightType
-```
+>```csharp
+>public enum LeftRightType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -858,14 +758,12 @@ public enum LeftRightType
 
 <br />
 
-
 ## LetterAccentType
 Flag-Enumeration: LetterAccentType.
 
-
-```csharp
-public enum LetterAccentType
-```
+>```csharp
+>public enum LetterAccentType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -882,38 +780,31 @@ public enum LetterAccentType
 
 <br />
 
-
 ## LocalizedDescriptionAttribute
 Localized Description Attribute.
 
-
-```csharp
-public class LocalizedDescriptionAttribute : DescriptionAttribute
-```
+>```csharp
+>public class LocalizedDescriptionAttribute : DescriptionAttribute
+>```
 
 ### Properties
 
-
 #### Description
-
-```csharp
-Description
-```
-<p><b>Summary:</b> Gets the description stored in this attribute.</p>
-
-<p><b>Returns:</b> The description stored in this attribute.</p>
-
+>```csharp
+>Description
+>```
+><b>Summary:</b> Gets the description stored in this attribute.
+>
+><b>Returns:</b> The description stored in this attribute.
 
 <br />
-
 
 ## LogCategoryType
 Enumeration: LogCategoryType categories available for logging.
 
-
-```csharp
-public enum LogCategoryType
-```
+>```csharp
+>public enum LogCategoryType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -933,34 +824,28 @@ public enum LogCategoryType
 
 <br />
 
-
 ## NumericAlphaComparer
 NumericAlphaComparer.
 
-
-```csharp
-public class NumericAlphaComparer : IComparer<string>
-```
+>```csharp
+>public class NumericAlphaComparer : IComparer<string>
+>```
 
 ### Methods
 
-
 #### Compare
-
-```csharp
-int Compare(string x, string y)
-```
+>```csharp
+>int Compare(string x, string y)
+>```
 
 <br />
-
 
 ## OnOffType
 Enumeration: OnOffType.
 
-
-```csharp
-public enum OnOffType
-```
+>```csharp
+>public enum OnOffType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -973,159 +858,123 @@ public enum OnOffType
 
 <br />
 
-
 ## Point2D
 Represents an x- and y-coordinate point in 2-D space.
 
-
-```csharp
-public struct Point2D : IEquatable<Point2D>
-```
+>```csharp
+>public struct Point2D : IEquatable<Point2D>
+>```
 
 ### Properties
 
-
 #### IsDefault
-
-```csharp
-IsDefault
-```
-<p><b>Summary:</b> Gets a value indicating whether this instance is default.</p>
-
+>```csharp
+>IsDefault
+>```
+><b>Summary:</b> Gets a value indicating whether this instance is default.
 #### X
-
-```csharp
-X
-```
-<p><b>Summary:</b> Gets the X.</p>
-
+>```csharp
+>X
+>```
+><b>Summary:</b> Gets the X.
 #### Y
-
-```csharp
-Y
-```
-<p><b>Summary:</b> Gets the Y.</p>
-
+>```csharp
+>Y
+>```
+><b>Summary:</b> Gets the Y.
 ### Methods
 
-
 #### Equals
-
-```csharp
-bool Equals(Point2D other)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(Point2D other)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
-
-```csharp
-bool Equals(object obj)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(object obj)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### GetHashCode
-
-```csharp
-int GetHashCode()
-```
+>```csharp
+>int GetHashCode()
+>```
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## Point3D
 Represents an x-, y-, and z-coordinate point in 3-D space.
 
-
-```csharp
-public struct Point3D : IEquatable<Point3D>
-```
+>```csharp
+>public struct Point3D : IEquatable<Point3D>
+>```
 
 ### Properties
 
-
 #### IsDefault
-
-```csharp
-IsDefault
-```
-<p><b>Summary:</b> Gets a value indicating whether this instance is default.</p>
-
+>```csharp
+>IsDefault
+>```
+><b>Summary:</b> Gets a value indicating whether this instance is default.
 #### X
-
-```csharp
-X
-```
-<p><b>Summary:</b> Gets the X.</p>
-
+>```csharp
+>X
+>```
+><b>Summary:</b> Gets the X.
 #### Y
-
-```csharp
-Y
-```
-<p><b>Summary:</b> Gets the Y.</p>
-
+>```csharp
+>Y
+>```
+><b>Summary:</b> Gets the Y.
 #### Z
-
-```csharp
-Z
-```
-<p><b>Summary:</b> Gets the Z.</p>
-
+>```csharp
+>Z
+>```
+><b>Summary:</b> Gets the Z.
 ### Methods
 
-
 #### Equals
-
-```csharp
-bool Equals(Point3D other)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(Point3D other)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
-
-```csharp
-bool Equals(object obj)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(object obj)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### GetHashCode
-
-```csharp
-int GetHashCode()
-```
+>```csharp
+>int GetHashCode()
+>```
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## SortDirectionType
 Enumeration: SortDirectionType.
 
-
-```csharp
-public enum SortDirectionType
-```
+>```csharp
+>public enum SortDirectionType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -1138,14 +987,12 @@ public enum SortDirectionType
 
 <br />
 
-
 ## TriggerActionType
 Enumeration: TriggerActionType.
 
-
-```csharp
-public enum TriggerActionType
-```
+>```csharp
+>public enum TriggerActionType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -1159,54 +1006,45 @@ public enum TriggerActionType
 
 <br />
 
-
 ## TupleEqualityComparer&lt;T1, T2&gt;
 TupleEqualityComparer.
 
-
-```csharp
-public class TupleEqualityComparer&lt;T1, T2&gt; : EqualityComparer<Tuple<T1, T2>>, IEqualityComparer, IEqualityComparer<Tuple<T1, T2>>
-```
+>```csharp
+>public class TupleEqualityComparer&lt;T1, T2&gt; : EqualityComparer<Tuple<T1, T2>>, IEqualityComparer, IEqualityComparer<Tuple<T1, T2>>
+>```
 
 ### Methods
 
-
 #### Equals
-
-```csharp
-bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
-```
-<p><b>Summary:</b> When overridden in a derived class, determines whether two objects of type are equal.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`x`&nbsp;&nbsp;-&nbsp;&nbsp;The first object to compare.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`y`&nbsp;&nbsp;-&nbsp;&nbsp;The second object to compare.<br />
-<p><b>Returns:</b> true if the specified objects are equal; otherwise, false.</p>
-
+>```csharp
+>bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
+>```
+><b>Summary:</b> When overridden in a derived class, determines whether two objects of type are equal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`x`&nbsp;&nbsp;-&nbsp;&nbsp;The first object to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`y`&nbsp;&nbsp;-&nbsp;&nbsp;The second object to compare.<br />
+>
+><b>Returns:</b> true if the specified objects are equal; otherwise, false.
 #### GetHashCode
-
-```csharp
-int GetHashCode(Tuple<T1, T2> obj)
-```
-<p><b>Summary:</b> Returns a hash code for this instance.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;&nbsp;-&nbsp;&nbsp;The object.<br />
-<p><b>Returns:</b> A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</p>
-
+>```csharp
+>int GetHashCode(Tuple<T1, T2> obj)
+>```
+><b>Summary:</b> Returns a hash code for this instance.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;&nbsp;-&nbsp;&nbsp;The object.<br />
+>
+><b>Returns:</b> A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
 
 <br />
-
 
 ## UpDownType
 Enumeration: UpDownType.
 
-
-```csharp
-public enum UpDownType
-```
+>```csharp
+>public enum UpDownType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -1219,14 +1057,12 @@ public enum UpDownType
 
 <br />
 
-
 ## YesNoType
 Enumeration: YesNoType.
 
-
-```csharp
-public enum YesNoType
-```
+>```csharp
+>public enum YesNoType
+>```
 
 
 | Value | Name | Description | Summary | 

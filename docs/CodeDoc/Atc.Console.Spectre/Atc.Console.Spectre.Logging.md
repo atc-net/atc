@@ -7,124 +7,102 @@
 
 <br />
 
-
 ## ConsoleLogger
 
-```csharp
-public class ConsoleLogger : ILogger
-```
+>```csharp
+>public class ConsoleLogger : ILogger
+>```
 
 ### Methods
 
-
 #### BeginScope
-
-```csharp
-IDisposable BeginScope(TState state)
-```
+>```csharp
+>IDisposable BeginScope(TState state)
+>```
 #### IsEnabled
-
-```csharp
-bool IsEnabled(LogLevel logLevel)
-```
+>```csharp
+>bool IsEnabled(LogLevel logLevel)
+>```
 #### Log
-
-```csharp
-void Log(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-```
+>```csharp
+>void Log(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+>```
 
 <br />
-
 
 ## ConsoleLoggerConfiguration
 
-```csharp
-public class ConsoleLoggerConfiguration
-```
+>```csharp
+>public class ConsoleLoggerConfiguration
+>```
 
 ### Properties
 
-
 #### ConsoleConfiguration
-
-```csharp
-ConsoleConfiguration
-```
+>```csharp
+>ConsoleConfiguration
+>```
 #### ConsoleSettings
-
-```csharp
-ConsoleSettings
-```
+>```csharp
+>ConsoleSettings
+>```
 #### IncludeExceptionNameForException
-
-```csharp
-IncludeExceptionNameForException
-```
+>```csharp
+>IncludeExceptionNameForException
+>```
 #### IncludeInnerMessageForException
-
-```csharp
-IncludeInnerMessageForException
-```
+>```csharp
+>IncludeInnerMessageForException
+>```
 #### MinimumLogLevel
-
-```csharp
-MinimumLogLevel
-```
+>```csharp
+>MinimumLogLevel
+>```
 #### RenderingMode
-
-```csharp
-RenderingMode
-```
+>```csharp
+>RenderingMode
+>```
 #### UseFixedWidthSpacing
-
-```csharp
-UseFixedWidthSpacing
-```
+>```csharp
+>UseFixedWidthSpacing
+>```
 #### UseShortNameForLogLevel
-
-```csharp
-UseShortNameForLogLevel
-```
+>```csharp
+>UseShortNameForLogLevel
+>```
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## ConsoleLoggerProvider
 
-```csharp
-public class ConsoleLoggerProvider : ILoggerProvider, IDisposable
-```
+>```csharp
+>public class ConsoleLoggerProvider : ILoggerProvider, IDisposable
+>```
 
 ### Methods
 
-
 #### CreateLogger
-
-```csharp
-ILogger CreateLogger(string categoryName)
-```
+>```csharp
+>ILogger CreateLogger(string categoryName)
+>```
 #### Dispose
-
-```csharp
-void Dispose()
-```
+>```csharp
+>void Dispose()
+>```
 
 <br />
 
-
 ## ConsoleRenderingMode
 
-```csharp
-public enum ConsoleRenderingMode
-```
+>```csharp
+>public enum ConsoleRenderingMode
+>```
 
 
 | Value | Name | Description | Summary | 
