@@ -124,14 +124,20 @@ namespace Atc.CodeDocumentation.Markdown
                 homeBuilder.AppendLine();
                 homeExtendedBuilder.AppendLine();
                 sb.AppendLine(GeneratedBy);
-                File.WriteAllText(Path.Combine(outputPath.FullName, g.Key + ".md"), sb.ToString());
+                WriteToFile(outputPath, g.Key + ".md", sb.ToString());
             }
 
             homeBuilder.AppendLine(GeneratedBy);
-            File.WriteAllText(Path.Combine(outputPath.FullName, "Index.md"), homeBuilder.ToString());
+            WriteToFile(outputPath, "Index.md", homeBuilder.ToString());
 
             homeExtendedBuilder.AppendLine(GeneratedBy);
-            File.WriteAllText(Path.Combine(outputPath.FullName, "IndexExtended.md"), homeExtendedBuilder.ToString());
+            WriteToFile(outputPath, "IndexExtended.md", homeExtendedBuilder.ToString());
+        }
+
+        private static void WriteToFile(DirectoryInfo directory, string filename, string content)
+        {
+            content = content.Replace("\r\n", "\n", StringComparison.Ordinal);
+            File.WriteAllText(Path.Combine(directory.FullName, filename), content);
         }
     }
 }
