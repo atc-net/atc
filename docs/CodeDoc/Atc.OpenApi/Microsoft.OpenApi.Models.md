@@ -7,739 +7,598 @@
 
 <br />
 
-
 ## NameConstants
 
-```csharp
-public static class NameConstants
-```
+>```csharp
+>public static class NameConstants
+>```
 
 ### Static Fields
 
-
 #### List
-
-```csharp
-string List
-```
+>```csharp
+>string List
+>```
 #### Pagination
-
-```csharp
-string Pagination
-```
+>```csharp
+>string Pagination
+>```
 
 <br />
-
 
 ## OpenApiDataTypeConstants
 
-```csharp
-public static class OpenApiDataTypeConstants
-```
+>```csharp
+>public static class OpenApiDataTypeConstants
+>```
 
 ### Static Fields
 
-
 #### Array
-
-```csharp
-string Array
-```
+>```csharp
+>string Array
+>```
 #### Boolean
-
-```csharp
-string Boolean
-```
+>```csharp
+>string Boolean
+>```
 #### Integer
-
-```csharp
-string Integer
-```
+>```csharp
+>string Integer
+>```
 #### Number
-
-```csharp
-string Number
-```
+>```csharp
+>string Number
+>```
 #### Object
-
-```csharp
-string Object
-```
+>```csharp
+>string Object
+>```
 #### String
-
-```csharp
-string String
-```
+>```csharp
+>string String
+>```
 
 <br />
-
 
 ## OpenApiDocumentExtensions
 
-```csharp
-public static class OpenApiDocumentExtensions
-```
+>```csharp
+>public static class OpenApiDocumentExtensions
+>```
 
 ### Static Methods
 
-
 #### GetPathsByBasePathSegmentName
-
-```csharp
-List<KeyValuePair<string, OpenApiPathItem>> GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
-```
+>```csharp
+>List<KeyValuePair<string, OpenApiPathItem>> GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
+>```
 
 <br />
-
 
 ## OpenApiFormatTypeConstants
 
-```csharp
-public static class OpenApiFormatTypeConstants
-```
+>```csharp
+>public static class OpenApiFormatTypeConstants
+>```
 
 ### Static Fields
 
-
 #### Binary
-
-```csharp
-string Binary
-```
+>```csharp
+>string Binary
+>```
 #### Byte
-
-```csharp
-string Byte
-```
+>```csharp
+>string Byte
+>```
 #### Date
-
-```csharp
-string Date
-```
+>```csharp
+>string Date
+>```
 #### DateTime
-
-```csharp
-string DateTime
-```
+>```csharp
+>string DateTime
+>```
 #### Double
-
-```csharp
-string Double
-```
+>```csharp
+>string Double
+>```
 #### Email
-
-```csharp
-string Email
-```
+>```csharp
+>string Email
+>```
 #### Float
-
-```csharp
-string Float
-```
+>```csharp
+>string Float
+>```
 #### Int32
-
-```csharp
-string Int32
-```
+>```csharp
+>string Int32
+>```
 #### Int64
-
-```csharp
-string Int64
-```
+>```csharp
+>string Int64
+>```
 #### Time
-
-```csharp
-string Time
-```
+>```csharp
+>string Time
+>```
 #### Timestamp
-
-```csharp
-string Timestamp
-```
+>```csharp
+>string Timestamp
+>```
 #### Uri
-
-```csharp
-string Uri
-```
+>```csharp
+>string Uri
+>```
 #### Uuid
-
-```csharp
-string Uuid
-```
+>```csharp
+>string Uuid
+>```
 
 <br />
-
 
 ## OpenApiMediaTypeExtensions
 
-```csharp
-public static class OpenApiMediaTypeExtensions
-```
+>```csharp
+>public static class OpenApiMediaTypeExtensions
+>```
 
 ### Static Methods
 
-
 #### GetSchema
-
-```csharp
-OpenApiSchema GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = application/json)
-```
+>```csharp
+>OpenApiSchema GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = application/json)
+>```
 #### GetSchemaByFirstMediaType
-
-```csharp
-OpenApiSchema GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
-```
+>```csharp
+>OpenApiSchema GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
+>```
 
 <br />
-
 
 ## OpenApiOperationExtensions
 
-```csharp
-public static class OpenApiOperationExtensions
-```
+>```csharp
+>public static class OpenApiOperationExtensions
+>```
 
 ### Static Methods
 
-
 #### GetModelSchemaFromRequest
-
-```csharp
-OpenApiSchema GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
-```
+>```csharp
+>OpenApiSchema GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
+>```
 #### GetModelSchemaFromResponse
-
-```csharp
-OpenApiSchema GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
-```
+>```csharp
+>OpenApiSchema GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
+>```
 #### GetOperationName
-
-```csharp
-string GetOperationName(this OpenApiOperation openApiOperation)
-```
+>```csharp
+>string GetOperationName(this OpenApiOperation openApiOperation)
+>```
 #### HasDataTypeFromSystemCollectionGenericNamespace
-
-```csharp
-bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
-```
+>```csharp
+>bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
+>```
 #### HasParametersOrRequestBody
-
-```csharp
-bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
-```
+>```csharp
+>bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
+>```
 #### HasRequestBodyWithAnythingAsFormatTypeBinary
-
-```csharp
-bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
-```
+>```csharp
+>bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
+>```
 #### IsOperationIdPluralized
-
-```csharp
-bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
-```
+>```csharp
+>bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+>```
 #### IsOperationNamePluralized
-
-```csharp
-bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
-```
+>```csharp
+>bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+>```
 #### IsOperationReferencingSchema
-
-```csharp
-bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
-```
+>```csharp
+>bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
+>```
 
 <br />
-
 
 ## OpenApiParameterExtensions
 
-```csharp
-public static class OpenApiParameterExtensions
-```
+>```csharp
+>public static class OpenApiParameterExtensions
+>```
 
 ### Static Methods
 
-
 #### GetAllFromHeader
-
-```csharp
-List<OpenApiParameter> GetAllFromHeader(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>List<OpenApiParameter> GetAllFromHeader(this IList<OpenApiParameter> parameters)
+>```
 #### GetAllFromQuery
-
-```csharp
-List<OpenApiParameter> GetAllFromQuery(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>List<OpenApiParameter> GetAllFromQuery(this IList<OpenApiParameter> parameters)
+>```
 #### GetAllFromRoute
-
-```csharp
-List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>List<OpenApiParameter> GetAllFromRoute(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeByte
-
-```csharp
-bool HasFormatTypeByte(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeByte(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeDate
-
-```csharp
-bool HasFormatTypeDate(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeDate(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeDateTime
-
-```csharp
-bool HasFormatTypeDateTime(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeDateTime(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeEmail
-
-```csharp
-bool HasFormatTypeEmail(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeEmail(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeFromDataAnnotationsNamespace
-
-```csharp
-bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeFromSystemNamespace
-
-```csharp
-bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeFromSystemNamespace(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeInt32
-
-```csharp
-bool HasFormatTypeInt32(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeInt32(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeInt64
-
-```csharp
-bool HasFormatTypeInt64(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeInt64(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeTime
-
-```csharp
-bool HasFormatTypeTime(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeTime(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeTimestamp
-
-```csharp
-bool HasFormatTypeTimestamp(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeTimestamp(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeUri
-
-```csharp
-bool HasFormatTypeUri(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeUri(this IList<OpenApiParameter> parameters)
+>```
 #### HasFormatTypeUuid
-
-```csharp
-bool HasFormatTypeUuid(this IList<OpenApiParameter> parameters)
-```
+>```csharp
+>bool HasFormatTypeUuid(this IList<OpenApiParameter> parameters)
+>```
 
 <br />
-
 
 ## OpenApiPathItemExtensions
 
-```csharp
-public static class OpenApiPathItemExtensions
-```
+>```csharp
+>public static class OpenApiPathItemExtensions
+>```
 
 ### Static Methods
 
-
 #### HasParameters
-
-```csharp
-bool HasParameters(this OpenApiPathItem openApiOperation)
-```
+>```csharp
+>bool HasParameters(this OpenApiPathItem openApiOperation)
+>```
 #### IsPathStartingSegmentName
-
-```csharp
-bool IsPathStartingSegmentName(this KeyValuePair<string, OpenApiPathItem> urlPath, string segmentName)
-```
+>```csharp
+>bool IsPathStartingSegmentName(this KeyValuePair<string, OpenApiPathItem> urlPath, string segmentName)
+>```
 
 <br />
-
 
 ## OpenApiPathsExtensions
 
-```csharp
-public static class OpenApiPathsExtensions
-```
+>```csharp
+>public static class OpenApiPathsExtensions
+>```
 
 ### Static Methods
 
-
 #### GetPathsStartingWithSegmentName
-
-```csharp
-List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
-```
+>```csharp
+>List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
+>```
 
 <br />
-
 
 ## OpenApiResponsesExtensions
 
-```csharp
-public static class OpenApiResponsesExtensions
-```
+>```csharp
+>public static class OpenApiResponsesExtensions
+>```
 
 ### Static Methods
 
-
 #### GetDataTypeForStatusCode
-
-```csharp
-string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-```
+>```csharp
+>string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+>```
 #### GetHttpStatusCodes
-
-```csharp
-List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
-```
+>```csharp
+>List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
+>```
 #### GetModelNameForStatusCode
-
-```csharp
-string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-```
+>```csharp
+>string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+>```
 #### GetSchemaForStatusCode
-
-```csharp
-OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
-```
+>```csharp
+>OpenApiSchema GetSchemaForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode, string contentType = application/json)
+>```
 #### HasSchemaHttpStatusCodeUsingAspNetCoreHttp
-
-```csharp
-bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
-```
+>```csharp
+>bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+>```
 #### HasSchemaHttpStatusCodeUsingSystemNet
-
-```csharp
-bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
-```
+>```csharp
+>bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+>```
 #### HasSchemaTypeArray
-
-```csharp
-bool HasSchemaTypeArray(this OpenApiResponses responses)
-```
+>```csharp
+>bool HasSchemaTypeArray(this OpenApiResponses responses)
+>```
 #### IsSchemaTypeArrayForStatusCode
-
-```csharp
-bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-```
+>```csharp
+>bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+>```
 #### IsSchemaTypePaginationForStatusCode
-
-```csharp
-bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-```
+>```csharp
+>bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+>```
 #### IsSchemaTypeProblemDetailsForStatusCode
-
-```csharp
-bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-```
+>```csharp
+>bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+>```
 #### IsSchemaUsingBinaryFormatForOkResponse
-
-```csharp
-bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
-```
+>```csharp
+>bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
+>```
 
 <br />
 
-
 ## OpenApiSchemaExtensions
 
-```csharp
-public static class OpenApiSchemaExtensions
-```
+>```csharp
+>public static class OpenApiSchemaExtensions
+>```
 
 ### Static Methods
 
-
 #### ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary
-
-```csharp
-string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema apiSchema)
-```
+>```csharp
+>string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema apiSchema)
+>```
 #### GetDataType
-
-```csharp
-string GetDataType(this OpenApiSchema schema)
-```
+>```csharp
+>string GetDataType(this OpenApiSchema schema)
+>```
 #### GetEnumSchema
-
-```csharp
-Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
-```
+>```csharp
+>Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
+>```
 #### GetModelName
-
-```csharp
-string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
-```
+>```csharp
+>string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = True)
+>```
 #### GetModelType
-
-```csharp
-string GetModelType(this OpenApiSchema schema)
-```
+>```csharp
+>string GetModelType(this OpenApiSchema schema)
+>```
 #### GetSchemaByModelName
-
-```csharp
-OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
-```
+>```csharp
+>OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+>```
 #### GetTitleFromPropertyByPropertyKey
-
-```csharp
-string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
-```
+>```csharp
+>string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
+>```
 #### HasAnyProperties
-
-```csharp
-bool HasAnyProperties(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasAnyProperties(this OpenApiSchema schema)
+>```
 #### HasAnyPropertiesAsArrayWithFormatTypeBinary
-
-```csharp
-bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
+>```
 #### HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace
-
-```csharp
-bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
-```
+>```csharp
+>bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+>```
 #### HasAnyPropertiesFormatTypeFromSystemNamespace
-
-```csharp
-bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
+>```
 #### HasAnyPropertiesFormatTypeFromSystemNamespace
-
-```csharp
-bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
-```
+>```csharp
+>bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+>```
 #### HasAnyPropertiesWithFormatTypeBinary
-
-```csharp
-bool HasAnyPropertiesWithFormatTypeBinary(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasAnyPropertiesWithFormatTypeBinary(this OpenApiSchema schema)
+>```
 #### HasAnythingAsFormatTypeBinary
-
-```csharp
-bool HasAnythingAsFormatTypeBinary(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasAnythingAsFormatTypeBinary(this OpenApiSchema schema)
+>```
 #### HasDataTypeFromSystemCollectionGenericNamespace
-
-```csharp
-bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
+>```
 #### HasDataTypeFromSystemCollectionGenericNamespace
-
-```csharp
-bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
+>```
 #### HasDataTypeList
-
-```csharp
-bool HasDataTypeList(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasDataTypeList(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatType
-
-```csharp
-bool HasFormatType(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasFormatType(this OpenApiSchema schema)
+>```
 #### HasFormatTypeByte
-
-```csharp
-bool HasFormatTypeByte(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeByte(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeDate
-
-```csharp
-bool HasFormatTypeDate(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeDate(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeDateTime
-
-```csharp
-bool HasFormatTypeDateTime(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeDateTime(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeEmail
-
-```csharp
-bool HasFormatTypeEmail(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeEmail(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeFromAspNetCoreHttpNamespace
-
-```csharp
-bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
+>```
 #### HasFormatTypeFromAspNetCoreHttpNamespace
-
-```csharp
-bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeFromDataAnnotationsNamespace
-
-```csharp
-bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
+>```
 #### HasFormatTypeFromDataAnnotationsNamespace
-
-```csharp
-bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeFromSystemNamespace
-
-```csharp
-bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
+>```
 #### HasFormatTypeFromSystemNamespace
-
-```csharp
-bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeInt32
-
-```csharp
-bool HasFormatTypeInt32(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeInt32(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeInt64
-
-```csharp
-bool HasFormatTypeInt64(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeInt64(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeTime
-
-```csharp
-bool HasFormatTypeTime(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeTime(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeTimestamp
-
-```csharp
-bool HasFormatTypeTimestamp(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeTimestamp(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeUri
-
-```csharp
-bool HasFormatTypeUri(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeUri(this IList<OpenApiSchema> schemas)
+>```
 #### HasFormatTypeUuid
-
-```csharp
-bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
-```
+>```csharp
+>bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
+>```
 #### HasItemsWithFormatTypeBinary
-
-```csharp
-bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
+>```
 #### HasItemsWithSimpleDataType
-
-```csharp
-bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
-```
+>```csharp
+>bool HasItemsWithSimpleDataType(this OpenApiSchema schema)
+>```
 #### HasModelNameOrAnyPropertiesWithModelName
-
-```csharp
-bool HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
-```
+>```csharp
+>bool HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
+>```
 #### IsArrayReferenceTypeDeclared
-
-```csharp
-bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsArrayReferenceTypeDeclared(this OpenApiSchema schema)
+>```
 #### IsFormatTypeBinary
-
-```csharp
-bool IsFormatTypeBinary(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeBinary(this OpenApiSchema schema)
+>```
 #### IsFormatTypeByte
-
-```csharp
-bool IsFormatTypeByte(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeByte(this OpenApiSchema schema)
+>```
 #### IsFormatTypeDate
-
-```csharp
-bool IsFormatTypeDate(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeDate(this OpenApiSchema schema)
+>```
 #### IsFormatTypeDateTime
-
-```csharp
-bool IsFormatTypeDateTime(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeDateTime(this OpenApiSchema schema)
+>```
 #### IsFormatTypeEmail
-
-```csharp
-bool IsFormatTypeEmail(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeEmail(this OpenApiSchema schema)
+>```
 #### IsFormatTypeInt32
-
-```csharp
-bool IsFormatTypeInt32(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeInt32(this OpenApiSchema schema)
+>```
 #### IsFormatTypeInt64
-
-```csharp
-bool IsFormatTypeInt64(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeInt64(this OpenApiSchema schema)
+>```
 #### IsFormatTypeTime
-
-```csharp
-bool IsFormatTypeTime(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeTime(this OpenApiSchema schema)
+>```
 #### IsFormatTypeTimestamp
-
-```csharp
-bool IsFormatTypeTimestamp(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeTimestamp(this OpenApiSchema schema)
+>```
 #### IsFormatTypeUri
-
-```csharp
-bool IsFormatTypeUri(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeUri(this OpenApiSchema schema)
+>```
 #### IsFormatTypeUuid
-
-```csharp
-bool IsFormatTypeUuid(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsFormatTypeUuid(this OpenApiSchema schema)
+>```
 #### IsObjectReferenceTypeDeclared
-
-```csharp
-bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsObjectReferenceTypeDeclared(this OpenApiSchema schema)
+>```
 #### IsRuleValidationNumber
-
-```csharp
-bool IsRuleValidationNumber(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsRuleValidationNumber(this OpenApiSchema schema)
+>```
 #### IsRuleValidationString
-
-```csharp
-bool IsRuleValidationString(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsRuleValidationString(this OpenApiSchema schema)
+>```
 #### IsSchemaEnum
-
-```csharp
-bool IsSchemaEnum(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsSchemaEnum(this OpenApiSchema schema)
+>```
 #### IsSchemaEnumOrPropertyEnum
-
-```csharp
-bool IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsSchemaEnumOrPropertyEnum(this OpenApiSchema schema)
+>```
 #### IsSharedContract
-
-```csharp
-bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
-```
+>```csharp
+>bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
+>```
 #### IsSimpleDataType
-
-```csharp
-bool IsSimpleDataType(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsSimpleDataType(this OpenApiSchema schema)
+>```
 #### IsTypeArray
-
-```csharp
-bool IsTypeArray(this OpenApiSchema schema)
-```
+>```csharp
+>bool IsTypeArray(this OpenApiSchema schema)
+>```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

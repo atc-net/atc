@@ -7,207 +7,154 @@
 
 <br />
 
-
 ## Culture
 Culture.
 
-
-```csharp
-public class Culture
-```
+>```csharp
+>public class Culture
+>```
 
 ### Properties
 
-
 #### CountryCodeA2
-
-```csharp
-CountryCodeA2
-```
-<p><b>Summary:</b> Gets or sets the country code a2.</p>
-
+>```csharp
+>CountryCodeA2
+>```
+><b>Summary:</b> Gets or sets the country code a2.
 #### CountryCodeA3
-
-```csharp
-CountryCodeA3
-```
-<p><b>Summary:</b> Gets or sets the country code a3.</p>
-
+>```csharp
+>CountryCodeA3
+>```
+><b>Summary:</b> Gets or sets the country code a3.
 #### CountryDisplayName
-
-```csharp
-CountryDisplayName
-```
-<p><b>Summary:</b> Gets or sets the display name of the country.</p>
-
+>```csharp
+>CountryDisplayName
+>```
+><b>Summary:</b> Gets or sets the display name of the country.
 #### CountryEnglishName
-
-```csharp
-CountryEnglishName
-```
-<p><b>Summary:</b> Gets or sets the name of the country english.</p>
-
+>```csharp
+>CountryEnglishName
+>```
+><b>Summary:</b> Gets or sets the name of the country english.
 #### CurrencySymbol
-
-```csharp
-CurrencySymbol
-```
-<p><b>Summary:</b> Gets or sets the currency symbol.</p>
-
+>```csharp
+>CurrencySymbol
+>```
+><b>Summary:</b> Gets or sets the currency symbol.
 #### LanguageCodeA2
-
-```csharp
-LanguageCodeA2
-```
-<p><b>Summary:</b> Gets or sets the language code a2.</p>
-
+>```csharp
+>LanguageCodeA2
+>```
+><b>Summary:</b> Gets or sets the language code a2.
 #### LanguageCodeA3
-
-```csharp
-LanguageCodeA3
-```
-<p><b>Summary:</b> Gets or sets the language code a3.</p>
-
+>```csharp
+>LanguageCodeA3
+>```
+><b>Summary:</b> Gets or sets the language code a3.
 #### LanguageDisplayName
-
-```csharp
-LanguageDisplayName
-```
-<p><b>Summary:</b> Gets or sets the display name of the language.</p>
-
+>```csharp
+>LanguageDisplayName
+>```
+><b>Summary:</b> Gets or sets the display name of the language.
 #### LanguageEnglishName
-
-```csharp
-LanguageEnglishName
-```
-<p><b>Summary:</b> Gets or sets the name of the language english.</p>
-
+>```csharp
+>LanguageEnglishName
+>```
+><b>Summary:</b> Gets or sets the name of the language english.
 #### Lcid
-
-```csharp
-Lcid
-```
-<p><b>Summary:</b> Gets or sets the lcid.</p>
-
+>```csharp
+>Lcid
+>```
+><b>Summary:</b> Gets or sets the lcid.
 #### LongTimePattern
-
-```csharp
-LongTimePattern
-```
-<p><b>Summary:</b> Gets or sets the long time pattern.</p>
-
+>```csharp
+>LongTimePattern
+>```
+><b>Summary:</b> Gets or sets the long time pattern.
 #### Name
-
-```csharp
-Name
-```
-<p><b>Summary:</b> Gets or sets the name.</p>
-
+>```csharp
+>Name
+>```
+><b>Summary:</b> Gets or sets the name.
 #### NumberDecimalSeparator
-
-```csharp
-NumberDecimalSeparator
-```
-<p><b>Summary:</b> Gets or sets the number decimal separator.</p>
-
+>```csharp
+>NumberDecimalSeparator
+>```
+><b>Summary:</b> Gets or sets the number decimal separator.
 #### ShortDatePattern
-
-```csharp
-ShortDatePattern
-```
-<p><b>Summary:</b> Gets or sets the short date pattern.</p>
-
+>```csharp
+>ShortDatePattern
+>```
+><b>Summary:</b> Gets or sets the short date pattern.
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## KeyValueItem
 KeyValueItem.
 
-
-```csharp
-public class KeyValueItem
-```
+>```csharp
+>public class KeyValueItem
+>```
 
 ### Properties
 
-
 #### Key
-
-```csharp
-Key
-```
-<p><b>Summary:</b> Gets or sets the key.</p>
-
+>```csharp
+>Key
+>```
+><b>Summary:</b> Gets or sets the key.
 #### Value
-
-```csharp
-Value
-```
-<p><b>Summary:</b> Gets or sets the value.</p>
-
+>```csharp
+>Value
+>```
+><b>Summary:</b> Gets or sets the value.
 ### Methods
 
-
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 
 <br />
-
 
 ## LogKeyValueItem
 LogKeyValueItem.
 
-
-```csharp
-public class LogKeyValueItem : KeyValueItem
-```
+>```csharp
+>public class LogKeyValueItem : KeyValueItem
+>```
 
 ### Properties
 
-
 #### Description
-
-```csharp
-Description
-```
-<p><b>Summary:</b> Gets or sets the description.</p>
-
+>```csharp
+>Description
+>```
+><b>Summary:</b> Gets or sets the description.
 #### LogCategory
-
-```csharp
-LogCategory
-```
-<p><b>Summary:</b> Gets or sets the log category.</p>
-
+>```csharp
+>LogCategory
+>```
+><b>Summary:</b> Gets or sets the log category.
 ### Methods
 
-
 #### GetLogMessage
-
-```csharp
-string GetLogMessage(bool includeKey = True, bool includeDescription = True)
-```
-<p><b>Summary:</b> Gets the log message.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
+>```csharp
+>string GetLogMessage(bool includeKey = True, bool includeDescription = True)
+>```
+><b>Summary:</b> Gets the log message.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
 #### ToString
-
-```csharp
-string ToString()
-```
+>```csharp
+>string ToString()
+>```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

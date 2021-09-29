@@ -260,13 +260,13 @@ namespace Atc.CodeDocumentation.Markdown
                 var remarks = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Remarks ?? string.Empty;
                 if (!string.IsNullOrEmpty(remarks))
                 {
-                    mb.AppendLine($"<p><b>Remarks:</b> {remarks.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
+                    mb.AppendLine($"><b>Remarks:</b> {remarks.Replace("  ", "<br>", StringComparison.Ordinal)}");
                 }
 
                 var code = typeComments.CommentLookup[typeComments.Type.FullName].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Code ?? string.Empty;
                 if (!string.IsNullOrEmpty(code))
                 {
-                    mb.AppendLine("<b>Code usage:</b>");
+                    mb.AppendLine("><b>Code usage:</b>");
                     mb.Code("csharp", code);
                 }
 
@@ -442,37 +442,43 @@ namespace Atc.CodeDocumentation.Markdown
 
                     if (!string.Equals(commentForMember.Summary, name(item) + ".", StringComparison.Ordinal))
                     {
-                        mb.AppendLine($"<p><b>Summary:</b> {commentForMember.Summary.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
+                        mb.AppendLine($"><b>Summary:</b> {commentForMember.Summary.Replace("  ", "<br>", StringComparison.Ordinal)}");
                     }
 
                     if (commentForMember.Parameters is not null && commentForMember.Parameters.Count > 0)
                     {
-                        mb.AppendLine("<b>Parameters</b>");
+                        mb.AppendLine(">");
+                        mb.AppendLine("><b>Parameters:</b><br>");
                         foreach (var parameter in commentForMember.Parameters)
                         {
+                            mb.Append(">");
                             mb.AppendLine(5, $"`{parameter.Key}`&nbsp;&nbsp;-&nbsp;&nbsp;{parameter.Value}<br />");
                         }
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Returns))
                     {
-                        mb.AppendLine($"<p><b>Returns:</b> {commentForMember.Returns.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
+                        mb.AppendLine(">");
+                        mb.AppendLine($"><b>Returns:</b> {commentForMember.Returns.Replace("  ", "<br>", StringComparison.Ordinal)}");
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Remarks))
                     {
-                        mb.AppendLine($"<p><b>Remarks:</b> {commentForMember.Remarks.Replace("  ", "<br>", StringComparison.Ordinal)}</p>");
+                        mb.AppendLine(">");
+                        mb.AppendLine($"><b>Remarks:</b> {commentForMember.Remarks.Replace("  ", "<br>", StringComparison.Ordinal)}");
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Code))
                     {
-                        mb.AppendLine("<b>Code usage:</b>");
+                        mb.AppendLine(">");
+                        mb.AppendLine("><b>Code usage:</b>");
                         mb.Code("csharp", commentForMember.Code);
                     }
 
                     if (!string.IsNullOrEmpty(commentForMember.Example))
                     {
-                        mb.AppendLine("<b>Code example:</b>");
+                        mb.AppendLine(">");
+                        mb.AppendLine("><b>Code example:</b>");
                         mb.Code("csharp", commentForMember.Example);
                     }
                 }

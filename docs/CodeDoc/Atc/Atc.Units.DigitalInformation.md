@@ -7,190 +7,148 @@
 
 <br />
 
-
 ## ByteSize
 Represents a size in bytes.
 
-
-```csharp
-public struct ByteSize : IEquatable<ByteSize>
-```
+>```csharp
+>public struct ByteSize : IEquatable<ByteSize>
+>```
 
 ### Properties
 
-
 #### Value
-
-```csharp
-Value
-```
-<p><b>Summary:</b> Gets the size in bytes.</p>
-
+>```csharp
+>Value
+>```
+><b>Summary:</b> Gets the size in bytes.
 ### Methods
 
-
 #### Equals
-
-```csharp
-bool Equals(ByteSize other)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(ByteSize other)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
-
-```csharp
-bool Equals(object obj)
-```
-<p><b>Summary:</b> Equals the specified other.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+>```csharp
+>bool Equals(object obj)
+>```
+><b>Summary:</b> Equals the specified other.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Format
-
-```csharp
-string Format()
-```
-<p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
-
-<p><b>Returns:</b> A `System.String` that represents this instance.</p>
-
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
-
+>```csharp
+>string Format()
+>```
+><b>Summary:</b> Returns a `System.String` that represents this instance.
+>
+><b>Returns:</b> A `System.String` that represents this instance.
+>
+><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).
 #### Format
-
-```csharp
-string Format(ByteSizeFormatter formatter)
-```
-<p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
-
-<p><b>Returns:</b> A `System.String` that represents this instance.</p>
-
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
-
+>```csharp
+>string Format(ByteSizeFormatter formatter)
+>```
+><b>Summary:</b> Returns a `System.String` that represents this instance.
+>
+><b>Returns:</b> A `System.String` that represents this instance.
+>
+><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).
 #### GetHashCode
-
-```csharp
-int GetHashCode()
-```
+>```csharp
+>int GetHashCode()
+>```
 #### ToString
-
-```csharp
-string ToString()
-```
-<p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
-
-<p><b>Returns:</b> A `System.String` that represents this instance.</p>
-
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
-
+>```csharp
+>string ToString()
+>```
+><b>Summary:</b> Returns a `System.String` that represents this instance.
+>
+><b>Returns:</b> A `System.String` that represents this instance.
+>
+><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).
 #### ToString
-
-```csharp
-string ToString(ByteSizeFormatter formatter)
-```
-<p><b>Summary:</b> Returns a `System.String` that represents this instance.</p>
-
-<p><b>Returns:</b> A `System.String` that represents this instance.</p>
-
-<p><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).</p>
-
+>```csharp
+>string ToString(ByteSizeFormatter formatter)
+>```
+><b>Summary:</b> Returns a `System.String` that represents this instance.
+>
+><b>Returns:</b> A `System.String` that represents this instance.
+>
+><b>Remarks:</b> The size is formatted to a human readable format using the default formatter (`Atc.Units.DigitalInformation.ByteSizeFormatter.Default`).
 
 <br />
-
 
 ## ByteSizeFormatter
 A formatter that converts a byte size to a human readable string.
 
-
-```csharp
-public class ByteSizeFormatter
-```
+>```csharp
+>public class ByteSizeFormatter
+>```
 
 ### Static Properties
 
-
 #### Default
-
-```csharp
-Default
-```
-<p><b>Summary:</b> Returns a default instance of ByteSizeFormatter. This formatter will be used by the ByteSize.ToString() method.</p>
-
+>```csharp
+>Default
+>```
+><b>Summary:</b> Returns a default instance of ByteSizeFormatter. This formatter will be used by the ByteSize.ToString() method.
 ### Properties
 
-
 #### MaxUnit
-
-```csharp
-MaxUnit
-```
-<p><b>Summary:</b> Gets or sets the largest unit used by the formatter.</p>
-
+>```csharp
+>MaxUnit
+>```
+><b>Summary:</b> Gets or sets the largest unit used by the formatter.
 #### MinUnit
-
-```csharp
-MinUnit
-```
-<p><b>Summary:</b> Gets or sets the smallest unit used by the formatter.</p>
-
+>```csharp
+>MinUnit
+>```
+><b>Summary:</b> Gets or sets the smallest unit used by the formatter.
 #### NumberFormatInfo
-
-```csharp
-NumberFormatInfo
-```
-<p><b>Summary:</b> Gets or sets the number format information.</p>
-
+>```csharp
+>NumberFormatInfo
+>```
+><b>Summary:</b> Gets or sets the number format information.
 #### NumberOfDecimals
-
-```csharp
-NumberOfDecimals
-```
-<p><b>Summary:</b> Gets or sets the number of decimals.</p>
-
+>```csharp
+>NumberOfDecimals
+>```
+><b>Summary:</b> Gets or sets the number of decimals.
 #### RoundingRule
-
-```csharp
-RoundingRule
-```
-<p><b>Summary:</b> Gets or sets the rounding rule.</p>
-
+>```csharp
+>RoundingRule
+>```
+><b>Summary:</b> Gets or sets the rounding rule.
 #### SuffixFormat
-
-```csharp
-SuffixFormat
-```
-<p><b>Summary:</b> Gets or sets a value indicating whether the suffix format should be short or full wording.</p>
-
+>```csharp
+>SuffixFormat
+>```
+><b>Summary:</b> Gets or sets a value indicating whether the suffix format should be short or full wording.
 ### Methods
 
-
 #### Format
-
-```csharp
-string Format(long size)
-```
-<p><b>Summary:</b> Formats the specified size.</p>
-
-<b>Parameters</b>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`size`&nbsp;&nbsp;-&nbsp;&nbsp;The size to format.<br />
-<p><b>Returns:</b> The formatted size.</p>
-
+>```csharp
+>string Format(long size)
+>```
+><b>Summary:</b> Formats the specified size.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`size`&nbsp;&nbsp;-&nbsp;&nbsp;The size to format.<br />
+>
+><b>Returns:</b> The formatted size.
 
 <br />
-
 
 ## ByteSizeRoundingRuleType
 Defines rounding rules for byte sizes
 
-
-```csharp
-public enum ByteSizeRoundingRuleType
-```
+>```csharp
+>public enum ByteSizeRoundingRuleType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -203,14 +161,12 @@ public enum ByteSizeRoundingRuleType
 
 <br />
 
-
 ## ByteSizeSuffixType
 Enumeration: Format the suffix word.
 
-
-```csharp
-public enum ByteSizeSuffixType
-```
+>```csharp
+>public enum ByteSizeSuffixType
+>```
 
 
 | Value | Name | Description | Summary | 
@@ -223,14 +179,12 @@ public enum ByteSizeSuffixType
 
 <br />
 
-
 ## ByteSizeUnitType
 Enumeration: Defines units for byte sizes.
 
-
-```csharp
-public enum ByteSizeUnitType
-```
+>```csharp
+>public enum ByteSizeUnitType
+>```
 
 
 | Value | Name | Description | Summary | 

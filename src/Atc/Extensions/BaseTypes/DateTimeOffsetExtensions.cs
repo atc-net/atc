@@ -57,7 +57,7 @@ namespace System
                 TimeSpan.Zero);
         }
 
-        /// <summary>Converts the DateTimeOffset to a unix time - seconds stating from 1-1-1970.</summary>
+        /// <summary>Converts the DateTimeOffset to a unix time - seconds starting from 1-1-1970.</summary>
         /// <param name="dateTimeOffset">The date time offset.</param>
         /// <returns>The long value from a DateTimeOffset.</returns>
         /// <code><![CDATA[long unixTime = DateTimeOffset.ToUnixTime(value);]]></code>

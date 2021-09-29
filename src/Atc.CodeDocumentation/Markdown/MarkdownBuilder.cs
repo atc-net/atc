@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -37,7 +37,6 @@ namespace Atc.CodeDocumentation.Markdown
         public void AppendLine(string text)
         {
             sb.AppendLine(text);
-            sb.AppendLine();
         }
 
         public void Header(int level, string text)
@@ -93,20 +92,23 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void Code(string language, string code)
         {
-            if (code.EndsWith(".", StringComparison.Ordinal))
+            if (code.EndsWith('.'))
             {
-                code = code.Substring(0, code.Length - 2);
+                code = code[0..^1];
             }
 
             if (code.EndsWith(Environment.NewLine, StringComparison.Ordinal))
             {
-                code = code.Substring(0, code.Length - 2);
+                code = code.Substring(0, code.Length - Environment.NewLine.Length);
             }
 
-            sb.Append("```");
+            code = code.Replace(Environment.NewLine, Environment.NewLine + ">", StringComparison.Ordinal);
+
+            sb.Append(">```");
             sb.AppendLine(language);
+            sb.Append('>');
             sb.AppendLine(code);
-            sb.AppendLine("```");
+            sb.AppendLine(">```");
         }
 
         public void CodeQuote(string code)
