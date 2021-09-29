@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -100,7 +100,7 @@ namespace Atc.CodeDocumentation.Markdown
 
             if (code.EndsWith(Environment.NewLine, StringComparison.Ordinal))
             {
-                code = code.Substring(0, code.Length - 2);
+                code = code.Substring(0, code.Length - Environment.NewLine.Length);
             }
 
             sb.Append("```");
