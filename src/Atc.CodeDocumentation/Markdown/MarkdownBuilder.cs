@@ -93,9 +93,9 @@ namespace Atc.CodeDocumentation.Markdown
 
         public void Code(string language, string code)
         {
-            if (code.EndsWith(".", StringComparison.Ordinal))
+            if (code.EndsWith('.'))
             {
-                code = code.Substring(0, code.Length - 2);
+                code = code[0..^1];
             }
 
             if (code.EndsWith(Environment.NewLine, StringComparison.Ordinal))
