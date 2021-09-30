@@ -32,7 +32,7 @@ namespace Atc.Rest.FluentAssertions
                 WithContentOfType<T>(because, becauseArgs)
                     .And.BeAssignableTo<T>(because, becauseArgs)
                     .And.BeEquivalentTo(expectedContent, because, becauseArgs);
-                    
+
                 var error = scope.Discard().FirstOrDefault();
                 if (error is not null)
                 {
