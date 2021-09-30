@@ -30,11 +30,11 @@ namespace Atc.Rest.FluentAssertions
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            var oftype = WithContentOfType<T>(because, becauseArgs);
+            var ofType = WithContentOfType<T>(because, becauseArgs);
 
             using (var scope = new AssertionScope($"content of {Identifier}"))
             {
-                oftype.And.BeEquivalentTo(expectedContent, because, becauseArgs);
+                ofType.And.BeEquivalentTo(expectedContent, because, becauseArgs);
 
                 var error = scope.Discard().FirstOrDefault();
                 if (error is not null)
@@ -93,6 +93,7 @@ namespace Atc.Rest.FluentAssertions
         }
 
         private bool TryContentValueAs(Type type, [NotNullWhen(true)] out object content)
+        private bool TryContentValueAs(Type type, out object content)
         {
             if (type is null)
             {
