@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -29,12 +30,21 @@ namespace Atc.Rest.FluentAssertions
 
         public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            var expectedType = WithContentOfType<T>();
-            using (new AssertionScope($"content of {Identifier}"))
+            var oftype = WithContentOfType<T>(because, becauseArgs);
+
+            using (var scope = new AssertionScope($"content of {Identifier}"))
             {
-                expectedType.And.BeEquivalentTo(expectedContent, because, becauseArgs);
-                return CreateAndWhichConstraint();
+                oftype.And.BeEquivalentTo(expectedContent, because, becauseArgs);
+
+                var error = scope.Discard().FirstOrDefault();
+                if (error is not null)
+                {
+                    var fixedErrorMessage = error.Replace("Expected root", $"Expected content of {Identifier}", StringComparison.InvariantCulture);
+                    Execute.Assertion.FailWith(fixedErrorMessage);
+                }
             }
+
+            return CreateAndWhichConstraint();
         }
 
         public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)

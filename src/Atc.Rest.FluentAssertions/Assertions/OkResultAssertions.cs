@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
@@ -16,20 +18,29 @@ namespace Atc.Rest.FluentAssertions
         protected override string Identifier => "OK result";
 
         public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
-            => Subject.Value.Should().BeOfType<T>(because, becauseArgs);
+        {
+            using (var scope = new AssertionScope($"content type of {Identifier}"))
+            {
+                return Subject.Value.Should().BeAssignableTo<T>(because, becauseArgs);
+            }
+        }
 
         public AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
         {
-            using (new AssertionScope($"content of {Identifier}"))
+            using (var scope = new AssertionScope($"content of {Identifier}"))
             {
-                WithContentOfType<T>(because, becauseArgs)
-                    .And
-                    .Subject
-                    .Should()
-                    .BeEquivalentTo(expectedContent, because, becauseArgs);
-
-                return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, Subject);
+                WithContentOfType<T>(because, becauseArgs).And.BeAssignableTo<T>(because, becauseArgs).And.BeEquivalentTo(expectedContent, because, becauseArgs);
+                var error = scope.Discard().FirstOrDefault();
+                if (error is not null)
+                {
+                    var fixedErrorMessage = error
+                        .Replace("Subject.Value", $"content of {Identifier}", StringComparison.InvariantCulture)
+                        .Replace("Expected root", $"Expected content of {Identifier}", StringComparison.InvariantCulture);
+                    Execute.Assertion.FailWith(fixedErrorMessage);
+                }
             }
+
+            return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, Subject);
         }
     }
 }

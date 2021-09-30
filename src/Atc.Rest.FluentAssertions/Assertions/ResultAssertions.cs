@@ -79,11 +79,11 @@ namespace Atc.Rest.FluentAssertions
                 .BecauseOf(because, becauseArgs)
                 .Given(() => Subject as T)
                 .ForCondition(x => !(x is null))
-                .FailWith("Expected {context:result} to be of type {0}{reason}, but found {1}.", _ => typeof(T), x => Subject.GetType())
+                .FailWith("Expected result to be of type {0}{reason}, but found {1}.", _ => typeof(T), x => Subject.GetType())
                 .Then
                 .Given(x => x?.StatusCode)
                 .ForCondition(x => x == (int)expectedStatusCode)
-                .FailWith("Expected status code from {context:result} to be {0}{reason}, but found {1}.", _ => (int)expectedStatusCode, x => x);
+                .FailWith("Expected status code from result to be {0}{reason}, but found {1}.", _ => (int)expectedStatusCode, x => x);
         }
     }
 }
