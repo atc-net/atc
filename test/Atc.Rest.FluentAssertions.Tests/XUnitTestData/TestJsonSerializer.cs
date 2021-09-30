@@ -1,15 +1,11 @@
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using Atc.Serialization;
 
 namespace Atc.Rest.FluentAssertions.Tests.XUnitTestData
 {
     public static class TestJsonSerializer
     {
-        private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-            Converters = { new JsonStringEnumConverter() },
-        };
+        private static readonly JsonSerializerOptions JsonSerializerOptions = JsonSerializerOptionsFactory.Create();
 
         public static string Serialize<T>(T content) => JsonSerializer.Serialize(content, JsonSerializerOptions);
     }

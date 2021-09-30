@@ -4,12 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Mime;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using Atc.Serialization;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
+// ReSharper disable InvertIf
 // ReSharper disable ConstantConditionalAccessQualifier
 // ReSharper disable once CheckNamespace
 namespace Atc.Rest.FluentAssertions
@@ -17,11 +18,7 @@ namespace Atc.Rest.FluentAssertions
     public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
     {
         [SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "This can safely be shared by all inherited types")]
-        private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-            Converters = { new JsonStringEnumConverter() },
-        };
+        private static readonly JsonSerializerOptions JsonSerializerOptions = JsonSerializerOptionsFactory.Create();
 
         protected ContentResultAssertionsBase(ContentResult subject)
             : base(subject)
@@ -92,7 +89,6 @@ namespace Atc.Rest.FluentAssertions
             return false;
         }
 
-        private bool TryContentValueAs(Type type, [NotNullWhen(true)] out object content)
         private bool TryContentValueAs(Type type, out object content)
         {
             if (type is null)
