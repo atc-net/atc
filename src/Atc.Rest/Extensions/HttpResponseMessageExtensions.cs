@@ -1,6 +1,7 @@
 using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Atc.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace System.Net.Http
@@ -19,12 +20,11 @@ namespace System.Net.Http
 
         private static async Task<T> InvokeDeserializeAsync<T>(HttpResponseMessage httpResponseMessage, JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            jsonSerializerOptions ??= new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            };
+            jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create();
 
-            var content = await httpResponseMessage.Content.ReadAsStringAsync();
+            var content = await httpResponseMessage.Content
+                .ReadAsStringAsync()
+                .ConfigureAwait(false);
 
             try
             {

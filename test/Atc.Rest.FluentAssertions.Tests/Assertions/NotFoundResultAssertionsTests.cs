@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Atc.Rest.FluentAssertions.Tests.XUnitTestData;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Subject.Should().Be(expected);
         }
 
-        [Fact]
-        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected()
+        [Theory]
+        [InlineData("BAR", @"Expected content of not found result to be System.String, but found System.Text.Json.JsonElement.")]
+        [InlineData(42, @"Expected content of not found result to be 42, but found FOO.")]
+        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(object content, string expectedMessage)
         {
             // Arrange
             var target = CreateWithJsonContent("FOO");
@@ -30,11 +33,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var sut = new NotFoundResultAssertions(target);
 
             // Act & Assert
-            sut.Invoking(x => x.WithContent("BAR"))
+            sut.Invoking(x => x.WithContent(content))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected content of not found result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .Throw<XunitException>()
+                .WithMessage(expectedMessage);
         }
 
         [Fact]
@@ -48,9 +50,8 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected content of not found result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .Throw<XunitException>()
+                .WithMessage(@"Expected content of not found result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -68,9 +69,8 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Act & Assert
             sut.Invoking(x => x.WithContent("FOO"))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected content type of not found result to be ""application/json"", but found ""BAZ"".");
+                .Throw<XunitException>()
+                .WithMessage(@"Expected content type of not found result to be ""application/json"", but found ""BAZ"".");
         }
 
         [Fact]
@@ -98,9 +98,8 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Act & Assert
             sut.Invoking(x => x.WithErrorMessage("BAR"))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected error message of not found result to be ""BAR"", but found ""FOO"".");
+                .Throw<XunitException>()
+                .WithMessage(@"Expected error message of not found result to be ""BAR"", but found ""FOO"".");
         }
 
         [Theory]

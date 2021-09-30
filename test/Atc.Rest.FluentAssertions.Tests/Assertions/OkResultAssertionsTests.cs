@@ -23,8 +23,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             sut.Subject.Should().Be(expected);
         }
 
-        [Fact]
-        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected()
+        [Theory]
+        [InlineData("BAR", @"Expected content of OK result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).")]
+        [InlineData(42, @"Expected content of OK result to be 42, but found ""FOO"".")]
+        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(object content, string expectedMessage)
         {
             // Arrange
             var target = new OkObjectResult("FOO");
@@ -32,11 +34,10 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             var sut = new OkResultAssertions(target);
 
             // Act & Assert
-            sut.Invoking(x => x.WithContent("BAR"))
+            sut.Invoking(x => x.WithContent(content))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected content of OK result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).");
+                .Throw<XunitException>()
+                .WithMessage(expectedMessage);
         }
 
         [Fact]
@@ -50,9 +51,8 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Act & Assert
             sut.Invoking(x => x.WithContent("BAR", "Because of something"))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@"Expected content of OK result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+                .Throw<XunitException>()
+                .WithMessage(@"Expected content of OK result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
         }
 
         [Fact]
@@ -65,9 +65,8 @@ namespace Atc.Rest.FluentAssertions.Tests.Assertions
             // Act & Assert
             sut.Invoking(x => x.WithContentOfType<List<string>>("Because of something"))
                 .Should()
-                .Throw<XunitException>();
-            //// TODO: Waiting for Github issue
-            ////.WithMessage(@$"Expected type to be {typeof(List<string>).FullName} Because of something, but found {typeof(string).FullName}.");
+                .Throw<XunitException>()
+                .WithMessage(@"Expected content type of OK result to be assignable to System.Collections.Generic.List`1[System.String] Because of something, but System.String is not.");
         }
 
         [Fact]
