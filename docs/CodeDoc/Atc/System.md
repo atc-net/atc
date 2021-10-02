@@ -1564,14 +1564,14 @@ StringHasIsExtensions.
 ><b>Returns:</b> `true` if the specified value is a valid email address; otherwise, `false`.
 #### IsEqual
 >```csharp
->bool IsEqual(this string a, string b, StringComparison stringComparison = Ordinal, bool treatNullAsEmpty = True, bool useNormalizeAccents = False)
+>bool IsEqual(this string a, string b, StringComparison comparison = Ordinal, bool treatNullAsEmpty = True, bool useNormalizeAccents = False)
 >```
 ><b>Summary:</b> Determines whether the specified b is equal.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stringComparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison - default is 'Ordinal'.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`treatNullAsEmpty`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [treat null as empty].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNormalizeAccents`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use normalize accents].<br />
 >

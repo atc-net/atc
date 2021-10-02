@@ -325,6 +325,7 @@
      - GetBeautifyArrayTypeName(Type type)
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
+     - IsSimpleType(string value, StringComparison comparison = Ordinal)
 - [TaskHelper](Atc.Helpers.md#taskhelper)
   -  Static Methods
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
@@ -664,7 +665,7 @@
      - IsDate(this string value, CultureInfo cultureInfo)
      - IsDigitOnly(this string value)
      - IsEmailAddress(this string value)
-     - IsEqual(this string a, string b, StringComparison stringComparison = Ordinal, bool treatNullAsEmpty = True, bool useNormalizeAccents = False)
+     - IsEqual(this string a, string b, StringComparison comparison = Ordinal, bool treatNullAsEmpty = True, bool useNormalizeAccents = False)
      - IsFalse(this string value)
      - IsFirstCharacterLowerCase(this string value)
      - IsFirstCharacterUpperCase(this string value)

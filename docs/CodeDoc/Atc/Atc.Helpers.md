@@ -1070,6 +1070,15 @@ PrimitiveTypeHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+#### IsSimpleType
+>```csharp
+>bool IsSimpleType(string value, StringComparison comparison = Ordinal)
+>```
+><b>Summary:</b> Determines whether the value is nameof a type that is simple / build-in.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison - default is 'Ordinal'.<br />
 
 <br />
 
