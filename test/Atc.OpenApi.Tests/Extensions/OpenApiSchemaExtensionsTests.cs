@@ -230,6 +230,28 @@ namespace Atc.OpenApi.Tests.Extensions
         }
 
         [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasArrayItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasArrayItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasArrayItemsWithSimpleDataType();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasPaginationItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void HasPaginationItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.HasPaginationItemsWithSimpleDataType();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasItemsWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
         public void HasItemsWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
         {
@@ -345,6 +367,28 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.IsTypeArray();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypePaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsTypePagination(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsTypePagination();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypeArrayOrPaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void IsTypeArrayOrPagination(bool expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.IsTypeArrayOrPagination();
 
             // Assert
             Assert.Equal(expected, actual);
@@ -576,6 +620,28 @@ namespace Atc.OpenApi.Tests.Extensions
         {
             // Act
             var actual = openApiSchema.GetDataType();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSimpleDataTypeFromArrayItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void GetSimpleDataTypeFromArray(string expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.GetSimpleDataTypeFromArray();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSimpleDataTypeFromPaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
+        public void GetSimpleDataTypeFromPagination(string expected, OpenApiSchema openApiSchema)
+        {
+            // Act
+            var actual = openApiSchema.GetSimpleDataTypeFromPagination();
 
             // Assert
             Assert.Equal(expected, actual);

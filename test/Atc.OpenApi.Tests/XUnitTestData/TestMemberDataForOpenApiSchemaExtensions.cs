@@ -587,6 +587,110 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
             };
 
+        public static IEnumerable<object[]> HasArrayItemsWithSimpleDataTypeItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
+            };
+
+        public static IEnumerable<object[]> HasPaginationItemsWithSimpleDataTypeItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
+            };
+
         public static IEnumerable<object[]> HasItemsWithFormatTypeBinaryItemData
             => new List<object[]>
             {
@@ -726,6 +830,126 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
                 new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
+            };
+
+        public static IEnumerable<object[]> IsTypePaginationItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
+            };
+
+        public static IEnumerable<object[]> IsTypeArrayOrPaginationItemData
+            => new List<object[]>
+            {
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringByte() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt32() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateInt64() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumber() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDate() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTime() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp() },
+                new object[] { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUuid() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDate() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringDateTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringTimestamp() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreateListStringUri() },
+
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { true, TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
             };
 
         public static IEnumerable<object[]> IsFormatTypeUuidItemData
@@ -1095,6 +1319,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             => new List<object[]>
             {
                 new object[] { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
+                new object[] { string.Empty,  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { string.Empty,  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
             };
 
         public static IEnumerable<object[]> GetModelNameEnsureFirstCharacterToUpperItemData
@@ -1117,21 +1343,50 @@ namespace Atc.OpenApi.Tests.XUnitTestData
         public static IEnumerable<object[]> GetModelTypeItemData
             => new List<object[]>
             {
-                new object[]
-                {
-                    "object",
-                    TestDataOpenApiFactory.CreateSchemaPet(),
-                },
+                new object[] { "object", TestDataOpenApiFactory.CreateSchemaPet(), },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { "array",  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
             };
 
         public static IEnumerable<object[]> GetDataTypeItemData
             => new List<object[]>
             {
-                new object[]
-                {
-                    "Pet",
-                    TestDataOpenApiFactory.CreateSchemaPet(),
-                },
+                new object[] { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
+                new object[] { "Array",  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+            };
+
+        public static IEnumerable<object[]> GetSimpleDataTypeFromArrayItemData
+            => new List<object[]>
+            {
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateListStringByte() },
+                new object[] { "int",  TestDataOpenApiSchemaOfTypeFactory.CreateListInteger() },
+                new object[] { "int",  TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
+                new object[] { "long",  TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
+                new object[] { "double",  TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
+                new object[] { "double",  TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+            };
+
+        public static IEnumerable<object[]> GetSimpleDataTypeFromPaginationItemData
+            => new List<object[]>
+            {
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
+                new object[] { "string",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringByte() },
+                new object[] { "IFormFile",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringBinary() },
+                new object[] { "int",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInteger() },
+                new object[] { "int",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
+                new object[] { "long",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
+                new object[] { "double",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
+                new object[] { "double",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+                new object[] { "Guid",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
+                new object[] { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
+                new object[] { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
+                new object[] { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTime() },
+                new object[] { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringTimestamp() },
+                new object[] { "Uri",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUri() },
             };
 
         public static IEnumerable<object[]> GetTitleFromPropertyByPropertyKeyItemData

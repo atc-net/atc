@@ -252,6 +252,35 @@ namespace Microsoft.OpenApi.Models
             return schema.Items is not null && schema.Items.IsSimpleDataType();
         }
 
+        public static bool HasArrayItemsWithSimpleDataType(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.IsTypeArray() && schema.HasItemsWithSimpleDataType();
+        }
+
+        public static bool HasPaginationItemsWithSimpleDataType(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (!schema.IsTypePagination())
+            {
+                return false;
+            }
+
+            return
+                (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) &&
+                 schema.AllOf[1].Items.IsSimpleDataType()) ||
+                (NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase) &&
+                 schema.AllOf[0].Items.IsSimpleDataType());
+        }
+
         public static bool HasItemsWithFormatTypeBinary(this OpenApiSchema schema)
         {
             if (schema is null)
@@ -432,6 +461,28 @@ namespace Microsoft.OpenApi.Models
             }
 
             return !string.IsNullOrEmpty(schema.Type) && schema.Type.Equals(OpenApiDataTypeConstants.Array, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool IsTypePagination(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.AllOf.Count == 2 &&
+                   (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
+                    NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public static bool IsTypeArrayOrPagination(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            return schema.IsTypeArray() || schema.IsTypePagination();
         }
 
         public static bool IsFormatTypeUuid(this OpenApiSchema schema)
@@ -810,6 +861,39 @@ namespace Microsoft.OpenApi.Models
             return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
                 ? dataType
                 : dataType.EnsureFirstCharacterToUpper();
+        }
+
+        public static string GetSimpleDataTypeFromArray(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (!schema.IsTypeArray() ||
+                !schema.HasItemsWithSimpleDataType())
+            {
+                return string.Empty;
+            }
+
+            return schema.Items.GetDataType();
+        }
+
+        public static string GetSimpleDataTypeFromPagination(this OpenApiSchema schema)
+        {
+            if (schema is null)
+            {
+                throw new ArgumentNullException(nameof(schema));
+            }
+
+            if (!schema.IsTypePagination())
+            {
+                return string.Empty;
+            }
+
+            return NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase)
+                ? schema.AllOf[1].Items.GetDataType()
+                : schema.AllOf[0].Items.GetDataType();
         }
 
         public static string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)

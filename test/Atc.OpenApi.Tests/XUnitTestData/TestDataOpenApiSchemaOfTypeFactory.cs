@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
@@ -136,6 +137,17 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             };
         }
 
+        public static OpenApiSchema CreateReferencePagination()
+        {
+            return new OpenApiSchema
+            {
+                Reference = new OpenApiReference
+                {
+                    Id = NameConstants.Pagination,
+                },
+            };
+        }
+
         public static OpenApiSchema CreateListString()
         {
             return new OpenApiSchema
@@ -268,6 +280,48 @@ namespace Atc.OpenApi.Tests.XUnitTestData
             {
                 Type = "array",
                 Items = CreateStringUuid(),
+            };
+        }
+
+        public static OpenApiSchema CreatePaginationString() => CreatePaginationWith(CreateListString());
+
+        public static OpenApiSchema CreatePaginationInteger() => CreatePaginationWith(CreateListInteger());
+
+        public static OpenApiSchema CreatePaginationInt32() => CreatePaginationWith(CreateListInt32());
+
+        public static OpenApiSchema CreatePaginationInt64() => CreatePaginationWith(CreateListInt64());
+
+        public static OpenApiSchema CreatePaginationNumber() => CreatePaginationWith(CreateListNumber());
+
+        public static OpenApiSchema CreatePaginationNumberFloat() => CreatePaginationWith(CreateListNumberFloat());
+
+        public static OpenApiSchema CreatePaginationStringByte() => CreatePaginationWith(CreateListStringByte());
+
+        public static OpenApiSchema CreatePaginationStringBinary() => CreatePaginationWith(CreateListStringBinary());
+
+        public static OpenApiSchema CreatePaginationStringDate() => CreatePaginationWith(CreateListStringDate());
+
+        public static OpenApiSchema CreatePaginationStringDateTime() => CreatePaginationWith(CreateListStringDateTime());
+
+        public static OpenApiSchema CreatePaginationStringEmail() => CreatePaginationWith(CreateListStringEmail());
+
+        public static OpenApiSchema CreatePaginationStringTime() => CreatePaginationWith(CreateListStringTime());
+
+        public static OpenApiSchema CreatePaginationStringTimestamp() => CreatePaginationWith(CreateListStringTimestamp());
+
+        public static OpenApiSchema CreatePaginationStringUri() => CreatePaginationWith(CreateListStringUri());
+
+        public static OpenApiSchema CreatePaginationStringUuid() => CreatePaginationWith(CreateListStringUuid());
+
+        public static OpenApiSchema CreatePaginationWith(OpenApiSchema schema)
+        {
+            return new OpenApiSchema
+            {
+                AllOf = new List<OpenApiSchema>
+                {
+                    CreateReferencePagination(),
+                    schema,
+                },
             };
         }
 
