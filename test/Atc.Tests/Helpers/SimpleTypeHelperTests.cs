@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Atc.Helpers;
 using Xunit;
 
@@ -87,5 +87,37 @@ namespace Atc.Tests.Helpers
 
         public void GetBeautifyArrayTypeName(string expected, Type type)
             => Assert.Equal(expected, SimpleTypeHelper.GetBeautifyArrayTypeName(type));
+
+        [Theory]
+        [InlineData(true, "bool")]
+        [InlineData(true, "byte")]
+        [InlineData(true, "char")]
+        [InlineData(true, "DateTime")]
+        [InlineData(true, "DateTimeOffset")]
+        [InlineData(true, "decimal")]
+        [InlineData(true, "double")]
+        [InlineData(true, "float")]
+        [InlineData(true, "Guid")]
+        [InlineData(true, "int")]
+        [InlineData(true, "long")]
+        [InlineData(true, "object")]
+        [InlineData(true, "sbyte")]
+        [InlineData(true, "short")]
+        [InlineData(true, "string")]
+        [InlineData(true, "uint")]
+        [InlineData(true, "ulong")]
+        [InlineData(true, "ushort")]
+        [InlineData(true, "void")]
+        [InlineData(false, "hallo")]
+        public void IsSimpleType(bool expected, string typeName)
+            => Assert.Equal(expected, SimpleTypeHelper.IsSimpleType(typeName));
+
+        [Theory]
+        [InlineData(true, "bool", StringComparison.Ordinal)]
+        [InlineData(true, "bool", StringComparison.OrdinalIgnoreCase)]
+        [InlineData(false, "BOOL", StringComparison.Ordinal)]
+        [InlineData(true, "BOOL", StringComparison.OrdinalIgnoreCase)]
+        public void IsSimpleType_Comparison(bool expected, string typeName, StringComparison comparison)
+            => Assert.Equal(expected, SimpleTypeHelper.IsSimpleType(typeName, comparison));
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 // ReSharper disable MemberCanBePrivate.Global
 namespace Atc.Helpers
@@ -292,6 +293,17 @@ namespace Atc.Helpers
             return BeautifySimpleTypeArrayLookup.ContainsKey(type)
                 ? BeautifySimpleTypeArrayLookup[type]
                 : null;
+        }
+
+        /// <summary>
+        /// Determines whether the value is nameof a type that is simple / build-in.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="comparison">The string comparison - default is 'Ordinal'.</param>
+        public static bool IsSimpleType(string value, StringComparison comparison = StringComparison.Ordinal)
+        {
+            var item = BeautifySimpleTypeLookup.FirstOrDefault(x => x.Value.Equals(value, comparison));
+            return item.Key is not null;
         }
     }
 }

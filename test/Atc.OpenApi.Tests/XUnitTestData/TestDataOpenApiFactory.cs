@@ -644,6 +644,61 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                 },
             };
 
+        public static OpenApiSchema CreateSchemaPagination()
+            => new OpenApiSchema
+            {
+                Type = "object",
+                Title = NameConstants.Pagination,
+                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                {
+                    ["pageSize"] = new OpenApiSchema
+                    {
+                        Type = "number",
+                        Description = "The number of items to request.",
+                    },
+                    ["pageIndex"] = new OpenApiSchema
+                    {
+                        Type = "number",
+                        Nullable = true,
+                        Description = "The given page index starting with 0.",
+                    },
+                    ["queryString"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Nullable = true,
+                        Description = "The query to filter items by.",
+                    },
+                    ["continuationToken"] = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Nullable = true,
+                        Description = "Token to indicate next result set.",
+                    },
+                    ["count"] = new OpenApiSchema
+                    {
+                        Type = "number",
+                        Description = "Items count in result set.",
+                    },
+                    ["totalCount"] = new OpenApiSchema
+                    {
+                        Type = "number",
+                        Nullable = true,
+                        Description = "Total items count.",
+                    },
+                    ["totalPages"] = new OpenApiSchema
+                    {
+                        Type = "number",
+                        Nullable = true,
+                        Description = "Total pages.",
+                    },
+                },
+                Required = new HashSet<string>(StringComparer.Ordinal)
+                {
+                    "pageSize",
+                    "count",
+                },
+            };
+
         public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
             => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {

@@ -53,11 +53,11 @@
 
 #### WithStatusCode
 >```csharp
->AndConstraint<ContentResultAssertions> WithStatusCode(int expectedStatusCode, string because = , object[] becauseArgs)
+>AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = , object[] becauseArgs)
 >```
 #### WithStatusCode
 >```csharp
->AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = , object[] becauseArgs)
+>AndConstraint<ContentResultAssertions> WithStatusCode(int expectedStatusCode, string because = , object[] becauseArgs)
 >```
 
 <br />

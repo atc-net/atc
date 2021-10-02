@@ -40,7 +40,7 @@ namespace System
         /// </summary>
         /// <param name="a">a.</param>
         /// <param name="b">The b.</param>
-        /// <param name="stringComparison">The string comparison.</param>
+        /// <param name="comparison">The string comparison - default is 'Ordinal'.</param>
         /// <param name="treatNullAsEmpty">if set to <c>true</c> [treat null as empty].</param>
         /// <param name="useNormalizeAccents">if set to <c>true</c> [use normalize accents].</param>
         /// <returns>
@@ -48,7 +48,7 @@ namespace System
         /// </returns>
         [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
         [SuppressMessage("Major Bug", "S2259:Null pointers should not be dereferenced", Justification = "OK.")]
-        public static bool IsEqual(this string a, string b, StringComparison stringComparison = StringComparison.Ordinal, bool treatNullAsEmpty = true, bool useNormalizeAccents = false)
+        public static bool IsEqual(this string a, string b, StringComparison comparison = StringComparison.Ordinal, bool treatNullAsEmpty = true, bool useNormalizeAccents = false)
         {
             if (string.Equals(a, null, StringComparison.Ordinal) && string.Equals(b, null, StringComparison.Ordinal))
             {
@@ -66,8 +66,8 @@ namespace System
             }
 
             return useNormalizeAccents
-                ? a.NormalizeAccents().Equals(b.NormalizeAccents(), stringComparison)
-                : a.Equals(b, stringComparison);
+                ? a.NormalizeAccents().Equals(b.NormalizeAccents(), comparison)
+                : a.Equals(b, comparison);
         }
 
         /// <summary>
