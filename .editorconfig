@@ -519,6 +519,7 @@ dotnet_diagnostic.MA0018.severity = none
 dotnet_diagnostic.MA0023.severity = none
 dotnet_diagnostic.MA0051.severity = none
 
+dotnet_diagnostic.S3267.severity = none # For now - Loops should be simplified with "LINQ" expressions or by calling Select()
 dotnet_diagnostic.S3928.severity = none
 
 dotnet_diagnostic.SA1615.severity = none
