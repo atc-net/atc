@@ -1,7 +1,9 @@
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Atc.Serialization.JsonConverters;
 
+// ReSharper disable MemberCanBePrivate.Global
 namespace Atc.Serialization
 {
     public static class JsonSerializerOptionsFactory
@@ -12,20 +14,50 @@ namespace Atc.Serialization
             bool propertyNameCaseInsensitive = true,
             bool writeIndented = true)
         {
-            var jsonSerializerOptions = new JsonSerializerOptions
+            var settings = new JsonSerializerFactorySettings
             {
+                UseCamelCase = useCamelCase,
                 IgnoreNullValues = ignoreNullValues,
                 PropertyNameCaseInsensitive = propertyNameCaseInsensitive,
                 WriteIndented = writeIndented,
             };
 
-            if (useCamelCase)
+            return Create(settings);
+        }
+
+        public static JsonSerializerOptions Create(JsonSerializerFactorySettings settings)
+        {
+            if (settings is null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                IgnoreNullValues = settings.IgnoreNullValues,
+                PropertyNameCaseInsensitive = settings.PropertyNameCaseInsensitive,
+                WriteIndented = settings.WriteIndented,
+            };
+
+            if (settings.UseCamelCase)
             {
                 jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             }
 
-            jsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
-            jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            if (settings.UseConverterEnumAsString)
+            {
+                jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            }
+
+            if (settings.UseConverterTimespan)
+            {
+                jsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
+            }
+
+            if (settings.UseConverterDatetimeOffsetMinToNull)
+            {
+                jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
+            }
 
             return jsonSerializerOptions;
         }
