@@ -22,7 +22,6 @@ namespace Atc.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
-            typeof(CharExtensions),
             typeof(MathEx),
             typeof(JsonTypeDiscriminatorConverter<>),
             typeof(JsonSerializerOptionsFactory),
@@ -75,6 +74,7 @@ namespace Atc.Tests
         {
             var excludeTypesForNaming = new List<Type>
             {
+                typeof(CharExtensions),
                 typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.
             };
 
