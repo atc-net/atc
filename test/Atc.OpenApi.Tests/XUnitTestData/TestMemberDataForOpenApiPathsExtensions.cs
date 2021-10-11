@@ -1,23 +1,22 @@
-﻿using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
+using Xunit;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiPathsExtensions
     {
-        public static IEnumerable<object[]> GetPathsStartingWithSegmentName =>
-            new List<object[]>
+        public static TheoryData<int, OpenApiPaths, string> GetPathsStartingWithSegmentName
+            => new TheoryData<int, OpenApiPaths, string>
             {
-                new object[]
                 {
                     0,
                     TestDataOpenApiFactory.CreatePaths(),
-                    "myPets",
+                    "myPets"
                 },
-                new object[]
                 {
                     2,
                     TestDataOpenApiFactory.CreatePaths(),
-                    "pets",
+                    "pets"
                 },
             };
     }

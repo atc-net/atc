@@ -1,14 +1,13 @@
-using System.Collections.Generic;
 using Atc.Math.Trigonometry;
+using Xunit;
 
 namespace Atc.Tests.XUnitTestData
 {
     internal static class TestMemberDataForTriangleHelper
     {
-        public static IEnumerable<object[]> GetSinesAndCosinesData =>
-            new List<object[]>
+        public static TheoryData<string, TriangleData, double?, double?, double?, double?, double?, double?> GetSinesAndCosinesData
+            => new TheoryData<string, TriangleData, double?, double?, double?, double?, double?, double?>
             {
-                new object[]
                 {
                     "A, B, a",
                     new TriangleData
@@ -20,9 +19,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 22.61031749694272,
                         c = 24.533631938113547,
                     },
-                    50, 60, null, 20, null, null,
+                    50, 60, null, 20, null, null
                 },
-                new object[]
                 {
                     "B, C, a",
                     new TriangleData
@@ -34,9 +32,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 22.61031749694272,
                         c = 24.533631938113547,
                     },
-                    null, 60, 70, 20, null, null,
+                    null, 60, 70, 20, null, null
                 },
-                new object[]
                 {
                     "A, C, a",
                     new TriangleData
@@ -48,9 +45,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 22.61031749694272,
                         c = 24.533631938113547,
                     },
-                    50, null, 70, 20, null, null,
+                    50, null, 70, 20, null, null
                 },
-                new object[]
                 {
                     "A, B, b",
                     new TriangleData
@@ -62,9 +58,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 27.12658937831246,
                     },
-                    50, 60, null, null, 25, null,
+                    50, 60, null, null, 25, null
                 },
-                new object[]
                 {
                     "B, C, b",
                     new TriangleData
@@ -76,9 +71,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 27.12658937831246,
                     },
-                    null, 60, 70, null, 25, null,
+                    null, 60, 70, null, 25, null
                 },
-                new object[]
                 {
                     "A, C, b",
                     new TriangleData
@@ -90,9 +84,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 27.12658937831246,
                     },
-                    50, null, 70, null, 25, null,
+                    50, null, 70, null, 25, null
                 },
-                new object[]
                 {
                     "A, B, c",
                     new TriangleData
@@ -104,9 +97,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 27.648149553206288,
                         c = 30,
                     },
-                    50, 60, null, null, null, 30,
+                    50, 60, null, null, null, 30
                 },
-                new object[]
                 {
                     "B, C, b",
                     new TriangleData
@@ -118,9 +110,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 27.648149553206288,
                         c = 30,
                     },
-                    null, 60, 70, null, null, 30,
+                    null, 60, 70, null, null, 30
                 },
-                new object[]
                 {
                     "A, C, b",
                     new TriangleData
@@ -132,9 +123,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 27.648149553206288,
                         c = 30,
                     },
-                    50, null, 70, null, null, 30,
+                    50, null, 70, null, null, 30
                 },
-                new object[]
                 {
                     "A, a, b",
                     new TriangleData
@@ -146,9 +136,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 21.8346659124577,
                     },
-                    50, null, null, 20, 25, null,
+                    50, null, null, 20, 25, null
                 },
-                new object[]
                 {
                     "A, b, c",
                     new TriangleData
@@ -160,9 +149,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 30,
                     },
-                    50, null, null, null, 25, 30,
+                    50, null, null, null, 25, 30
                 },
-                new object[]
                 {
                     "A, a, c",
                     new TriangleData
@@ -174,9 +162,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 38.56725658119236,
                         c = 30,
                     },
-                    50, null, null, 30, null, 30,
+                    50, null, null, 30, null, 30
                 },
-                new object[]
                 {
                     "B, a, b",
                     new TriangleData
@@ -188,9 +175,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 32.611013884394723,
                     },
-                    null, 50, null, 20, 25, null,
+                    null, 50, null, 20, 25, null
                 },
-                new object[]
                 {
                     "B, b, c",
                     new TriangleData
@@ -202,9 +188,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 30,
                     },
-                    null, 50, null, null, 25, 30,
+                    null, 50, null, null, 25, 30
                 },
-                new object[]
                 {
                     "B, a, c",
                     new TriangleData
@@ -216,9 +201,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25.357095704441967,
                         c = 30,
                     },
-                    null, 50, null, 30, null, 30,
+                    null, 50, null, 30, null, 30
                 },
-                new object[]
                 {
                     "C, a, b",
                     new TriangleData
@@ -230,9 +214,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 20,
                         c = 22.992495914453322,
                     },
-                    null, null, 50, 30, 20, null,
+                    null, null, 50, 30, 20, null
                 },
-                new object[]
                 {
                     "C, b, c",
                     new TriangleData
@@ -244,9 +227,8 @@ namespace Atc.Tests.XUnitTestData
                         b = 25,
                         c = 30,
                     },
-                    null, null, 50, null, 25, 30,
+                    null, null, 50, null, 25, 30
                 },
-                new object[]
                 {
                     "C, a, c",
                     new TriangleData
@@ -258,7 +240,7 @@ namespace Atc.Tests.XUnitTestData
                         b = 38.56725658119236,
                         c = 30,
                     },
-                    null, null, 50, 30, null, 30,
+                    null, null, 50, 30, null, 30
                 },
             };
     }

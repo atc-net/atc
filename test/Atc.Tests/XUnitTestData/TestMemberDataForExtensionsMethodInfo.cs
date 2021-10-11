@@ -1,36 +1,38 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Xunit;
 
+// ReSharper disable UnusedVariable
 namespace Atc.Tests.XUnitTestData
 {
     internal static class TestMemberDataForExtensionsMethodInfo
     {
-        public static IEnumerable<object[]> BeautifyNameData =>
-            new List<object[]>
+        public static TheoryData<string, MethodInfo?> BeautifyNameData
+            => new TheoryData<string, MethodInfo?>
             {
-                new object[] { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt") },
-                new object[] { "TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt") },
-                new object[] { "TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt") },
-                new object[] { "TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut") },
-                new object[] { "TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt") },
-                new object[] { "TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt") },
+                { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt") },
+                { "TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt") },
+                { "TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt") },
+                { "TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut") },
+                { "TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt") },
+                { "TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt") },
             };
 
-        public static IEnumerable<object[]> BeautifyNameWithParametersData =>
-            new List<object[]>
+        public static TheoryData<string, MethodInfo?, bool, bool, bool> BeautifyNameWithParametersData
+            => new TheoryData<string, MethodInfo?, bool, bool, bool>
             {
-                new object[] { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, false },
-                new object[] { "void TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, true },
-                new object[] { "TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt"), false, false, false },
-                new object[] { "void TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt"), false, false, true },
-                new object[] { "TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt"), false, false, false },
-                new object[] { "void TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt"), false, false, true },
-                new object[] { "TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut"), false, false, false },
-                new object[] { "void TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut"), false, false, true },
-                new object[] { "TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt"), false, false, false },
-                new object[] { "void TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt"), false, false, true },
-                new object[] { "TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt"), false, false, false },
-                new object[] { "void TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt"), false, false, true },
+                { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, false },
+                { "void TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, true },
+                { "TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt"), false, false, false },
+                { "void TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt"), false, false, true },
+                { "TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt"), false, false, false },
+                { "void TestOutInt(out int data)", typeof(TestMethods).GetMethod("TestOutInt"), false, false, true },
+                { "TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut"), false, false, false },
+                { "void TestInNullOut(out int? data)", typeof(TestMethods).GetMethod("TestInNullOut"), false, false, true },
+                { "TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt"), false, false, false },
+                { "void TestRefInt(ref int data)", typeof(TestMethods).GetMethod("TestRefInt"), false, false, true },
+                { "TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt"), false, false, false },
+                { "void TestRefNullInt(ref int? data)", typeof(TestMethods).GetMethod("TestRefNullInt"), false, false, true },
             };
     }
 
