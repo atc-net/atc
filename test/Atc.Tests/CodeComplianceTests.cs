@@ -22,6 +22,7 @@ namespace Atc.Tests
         private readonly List<Type> excludeTypes = new List<Type>
         {
             // TODO: Add UnitTest and remove from this list!!
+            typeof(CharExtensions),
             typeof(MathEx),
             typeof(JsonTypeDiscriminatorConverter<>),
             typeof(JsonSerializerOptionsFactory),
