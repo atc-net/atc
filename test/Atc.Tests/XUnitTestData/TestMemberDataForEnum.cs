@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace Atc.Tests.XUnitTestData
 {
+    [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
     internal static class TestMemberDataForEnum
     {
         public static TheoryData<DayOfWeek, int, DropDownFirstItemType, bool, bool, SortDirectionType, bool, bool> DayOfWeekData

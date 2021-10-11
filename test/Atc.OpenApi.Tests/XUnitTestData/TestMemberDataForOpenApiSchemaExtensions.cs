@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 using Xunit;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
+    [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
     public static class TestMemberDataForOpenApiSchemaExtensions
     {
         public static TheoryData<bool, List<OpenApiSchema>> HasDataTypeListItemData

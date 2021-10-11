@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace Atc.Tests.XUnitTestData
 {
+    [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
     internal static class TestMemberDataForExtensionsInteger
     {
         public static TheoryData<int, string, int, bool> MonthNameData

@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 // ReSharper disable StringLiteralTypo
 namespace Atc.Tests.XUnitTestData
 {
+    [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
     internal static class TestMemberDataForCultureHelper
     {
         public static TheoryData<int, string[], string[], int, int[]> GetCulturesDisplayLanguageLcidIncludeOnlyLcidsData
