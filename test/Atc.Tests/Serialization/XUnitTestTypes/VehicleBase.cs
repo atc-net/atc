@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 using Atc.Serialization.JsonConverters;
 
@@ -18,6 +19,11 @@ namespace Atc.Tests.Serialization.XUnitTestTypes
 
         public int NumberOfWheels { get; set; }
 
-        public new virtual string ToString() => $"{nameof(PlateNumber)}: {PlateNumber}, {nameof(NumberOfWheels)}: {NumberOfWheels}";
+        public DateTimeOffset? RegistrationDate { get; set; }
+
+        public TimeSpan RemainingLifeTime { get; set; }
+
+        public new virtual string ToString()
+            => $"{nameof(PlateNumber)}: {PlateNumber}, {nameof(NumberOfWheels)}: {NumberOfWheels}, {nameof(RegistrationDate)}: {RegistrationDate}, {nameof(RemainingLifeTime)}: {RemainingLifeTime}";
     }
 }

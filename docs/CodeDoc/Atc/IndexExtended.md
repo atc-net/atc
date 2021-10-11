@@ -423,15 +423,29 @@
 
 ## [Atc.Serialization](Atc.Serialization.md)
 
+- [JsonSerializerFactorySettings](Atc.Serialization.md#jsonserializerfactorysettings)
+  -  Properties
+     - IgnoreNullValues
+     - PropertyNameCaseInsensitive
+     - UseCamelCase
+     - UseConverterDatetimeOffsetMinToNull
+     - UseConverterEnumAsString
+     - UseConverterTimespan
+     - WriteIndented
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
   -  Static Methods
      - Create(bool useCamelCase = True, bool ignoreNullValues = True, bool propertyNameCaseInsensitive = True, bool writeIndented = True)
+     - Create(JsonSerializerFactorySettings settings)
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
 - [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
   -  Properties
      - TypeDiscriminator
+- [JsonDateTimeOffsetMinToNullConverter](Atc.Serialization.JsonConverters.md#jsondatetimeoffsetmintonullconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
