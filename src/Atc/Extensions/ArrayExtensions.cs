@@ -16,7 +16,7 @@ namespace System
         /// <param name="array">The array.</param>
         public static Array RemoveDuplicates(this Array array)
         {
-            return ToList(array, SortDirectionType.None, true).ToArray();
+            return ToList(array, SortDirectionType.None, removeDuplicates: true).ToArray();
         }
 
         /// <summary>
