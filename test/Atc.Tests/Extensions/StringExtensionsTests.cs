@@ -134,6 +134,17 @@ namespace Atc.Tests.Extensions
 
         [Theory]
         [InlineData("Hallo world")]
+        public void Base64EncodeAsAscii(string input)
+        {
+            // Act
+            var encodeData = input.Base64EncodeAsAscii();
+
+            // Assert
+            Assert.NotNull(encodeData);
+        }
+
+        [Theory]
+        [InlineData("Hallo world")]
         public void Base64Decode(string input)
         {
             // Arrange
@@ -141,6 +152,21 @@ namespace Atc.Tests.Extensions
 
             // Act
             var decodeData = encodeData!.Base64Decode();
+
+            // Assert
+            Assert.NotNull(decodeData);
+            Assert.Equal(input.Length, decodeData.Length);
+        }
+
+        [Theory]
+        [InlineData("Hallo world")]
+        public void Base64DecodeAsAscii(string input)
+        {
+            // Arrange
+            var encodeData = input.Base64EncodeAsAscii();
+
+            // Act
+            var decodeData = encodeData!.Base64DecodeAsAscii();
 
             // Assert
             Assert.NotNull(decodeData);
