@@ -140,6 +140,7 @@
 - [ArrayExtensions](System.md#arrayextensions)
 - [BooleanExtensions](System.md#booleanextensions)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
+- [CharExtensions](System.md#charextensions)
 - [DateTimeExtensions](System.md#datetimeextensions)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
 - [DecimalExtensions](System.md#decimalextensions)

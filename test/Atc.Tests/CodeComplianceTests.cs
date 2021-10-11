@@ -74,6 +74,7 @@ namespace Atc.Tests
         {
             var excludeTypesForNaming = new List<Type>
             {
+                typeof(CharExtensions),
                 typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.
             };
 

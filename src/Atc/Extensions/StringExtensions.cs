@@ -331,6 +331,17 @@ namespace System
         }
 
         /// <summary>
+        /// Base64s the encode as ASCII.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public static string? Base64EncodeAsAscii(this string value)
+        {
+            return string.IsNullOrEmpty(value)
+                ? null
+                : Convert.ToBase64String(Encoding.ASCII.GetBytes(value));
+        }
+
+        /// <summary>
         /// Base64s the decode.
         /// </summary>
         /// <param name="base64EData">The base64 e data.</param>
@@ -339,6 +350,17 @@ namespace System
             return string.IsNullOrEmpty(base64EData)
                 ? null
                 : Encoding.UTF8.GetString(Convert.FromBase64String(base64EData));
+        }
+
+        /// <summary>
+        /// Base64s the decode as ASCII.
+        /// </summary>
+        /// <param name="base64EData">The base64 e data.</param>
+        public static string? Base64DecodeAsAscii(this string base64EData)
+        {
+            return string.IsNullOrEmpty(base64EData)
+                ? null
+                : Encoding.ASCII.GetString(Convert.FromBase64String(base64EData));
         }
 
         /// <summary>

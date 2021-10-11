@@ -264,6 +264,21 @@ Extensions for the `System.Boolean` class.
 
 <br />
 
+## CharExtensions
+
+>```csharp
+>public static class CharExtensions
+>```
+
+### Static Methods
+
+#### IsAscii
+>```csharp
+>bool IsAscii(this char value)
+>```
+
+<br />
+
 ## DateTimeExtensions
 Extensions for the `System.DateTime` class.
 
@@ -1003,11 +1018,27 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EData`&nbsp;&nbsp;-&nbsp;&nbsp;The base64 e data.<br />
+#### Base64DecodeAsAscii
+>```csharp
+>string Base64DecodeAsAscii(this string base64EData)
+>```
+><b>Summary:</b> Base64s the decode as ASCII.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EData`&nbsp;&nbsp;-&nbsp;&nbsp;The base64 e data.<br />
 #### Base64Encode
 >```csharp
 >string Base64Encode(this string value)
 >```
 ><b>Summary:</b> Base64s the encode.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### Base64EncodeAsAscii
+>```csharp
+>string Base64EncodeAsAscii(this string value)
+>```
+><b>Summary:</b> Base64s the encode as ASCII.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />

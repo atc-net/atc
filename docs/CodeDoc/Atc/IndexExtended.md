@@ -542,6 +542,9 @@
      - Bytes(this long value)
      - Bytes(this uint value)
      - Bytes(this ulong value)
+- [CharExtensions](System.md#charextensions)
+  -  Static Methods
+     - IsAscii(this char value)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
@@ -620,7 +623,9 @@
   -  Static Methods
      - Alphabetize(this string value)
      - Base64Decode(this string base64EData)
+     - Base64DecodeAsAscii(this string base64EData)
      - Base64Encode(this string value)
+     - Base64EncodeAsAscii(this string value)
      - CamelCase(this string value)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
