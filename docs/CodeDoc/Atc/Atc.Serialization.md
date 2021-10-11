@@ -19,30 +19,37 @@
 >```csharp
 >IgnoreNullValues
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to read/write properties and ignoring null values.
 #### PropertyNameCaseInsensitive
 >```csharp
 >PropertyNameCaseInsensitive
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to read/write properties and ignoring casing.
 #### UseCamelCase
 >```csharp
 >UseCamelCase
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to read/write properties using camelCase.
 #### UseConverterDatetimeOffsetMinToNull
 >```csharp
 >UseConverterDatetimeOffsetMinToNull
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to utilize DatetimeOffsetMinToNullConverter.
 #### UseConverterEnumAsString
 >```csharp
 >UseConverterEnumAsString
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to utilize enumAsStringConverter.
 #### UseConverterTimespan
 >```csharp
 >UseConverterTimespan
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to utilize timespanConverter.
 #### WriteIndented
 >```csharp
 >WriteIndented
 >```
+><b>Summary:</b> Gets or sets a value indicating whether to read/write properties indented.
 
 <br />
 
