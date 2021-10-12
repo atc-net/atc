@@ -1,49 +1,45 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using Xunit;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiPathItemExtensions
     {
-        public static IEnumerable<object[]> IsPathStartingSegmentNameItemData =>
-            new List<object[]>
+        public static TheoryData<bool, KeyValuePair<string, OpenApiPathItem>, string> IsPathStartingSegmentNameItemData
+            => new TheoryData<bool, KeyValuePair<string, OpenApiPathItem>, string>
             {
-                new object[]
                 {
                     false,
                     TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPet("myPets"),
-                    "pets",
+                    "pets"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPet("pets"),
-                    "pets",
+                    "pets"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPet("pets/{petId}"),
-                    "pets",
+                    "pets"
                 },
             };
 
-        public static IEnumerable<object[]> HasParametersItemData =>
-            new List<object[]>
+        public static TheoryData<bool, OpenApiPathItem> HasParametersItemData
+            => new TheoryData<bool, OpenApiPathItem>
             {
-                new object[]
                 {
                     false,
-                    TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPet(),
+                    TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPet()
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreatePathItemWithOperationResponseOkPetWithParameters(
                         new List<OpenApiParameter>
                         {
                             TestDataOpenApiFactory.CreateParameterLimit(),
-                        }),
+                        })
                 },
             };
     }

@@ -1,67 +1,63 @@
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using Xunit;
 
 // ReSharper disable StringLiteralTypo
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiOperationExtensions
     {
-        public static IEnumerable<object[]> GetOperationNameItemData
-            => new List<object[]>
+        public static TheoryData<string, OpenApiOperation> GetOperationNameItemData
+            => new TheoryData<string, OpenApiOperation>
             {
-                new object[]
                 {
                     "GetOrderById",
                     new OpenApiOperation
                     {
                         OperationId = "GetOrderById",
-                    },
+                    }
                 },
-                new object[]
                 {
                     "GetOrderById",
                     new OpenApiOperation
                     {
                         OperationId = "getOrderById",
-                    },
+                    }
                 },
-                new object[]
                 {
                     "GetOrderById",
                     new OpenApiOperation
                     {
                         OperationId = "get-order-by-id",
-                    },
+                    }
                 },
-                new object[]
                 {
                     "GetOrderById",
                     new OpenApiOperation
                     {
                         OperationId = "GET-ORDER-BY-ID",
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> GetModelSchemaFromResponseItemData
-            => new List<object[]>
+        public static TheoryData<OpenApiSchema?, OpenApiOperation> GetModelSchemaFromResponseItemData
+            => new TheoryData<OpenApiSchema?, OpenApiOperation>
             {
-                new object[] { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
-                new object[] { null, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
+                { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
+                { null, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> GetModelSchemaFromRequestItemData
-            => new List<object[]>
+        public static TheoryData<OpenApiSchema?, OpenApiOperation> GetModelSchemaFromRequestItemData
+            => new TheoryData<OpenApiSchema?, OpenApiOperation>
             {
-                new object[] { null, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
-                new object[] { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
+                { null, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
+                { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> HasParametersOrRequestBodyItemData
-            => new List<object[]>
+        public static TheoryData<bool, OpenApiOperation> HasParametersOrRequestBodyItemData
+            => new TheoryData<bool, OpenApiOperation>
             {
-                new object[] { false, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
-                new object[]
+                { false, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
                 {
                     true,
                     new OpenApiOperation
@@ -70,202 +66,181 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         {
                             TestDataOpenApiFactory.CreateParameterLimit(),
                         },
-                    },
+                    }
                 },
-                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
+                { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
             };
 
-        public static IEnumerable<object[]> HasRequestBodyWithAnythingAsFormatTypeBinaryItemData
-            => new List<object[]>
+        public static TheoryData<bool, OpenApiOperation> HasRequestBodyWithAnythingAsFormatTypeBinaryItemData
+            => new TheoryData<bool, OpenApiOperation>
             {
-                new object[] { false, TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress() },
-                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetWithBinary() },
-                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsWithBinaryArray() },
-                new object[] { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray() },
+                { false, TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress() },
+                { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetWithBinary() },
+                { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsWithBinaryArray() },
+                { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray() },
             };
 
-        public static IEnumerable<object[]> IsOperationReferencingSchemaItemData
-            => new List<object[]>
+        public static TheoryData<bool, OpenApiOperation, string> IsOperationReferencingSchemaItemData
+            => new TheoryData<bool, OpenApiOperation, string>
             {
-                new object[]
                 {
                     false,
                     TestDataOpenApiFactory.CreateOperationWithRequestBodyPet(),
-                    "myKey",
+                    "myKey"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreateOperationWithRequestBodyCountry(),
-                    "country",
+                    "country"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress(),
-                    "country",
+                    "country"
                 },
-                new object[]
                 {
                     false,
                     TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
-                    "myKey",
+                    "myKey"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreateOperationWithResponseOkCountry(),
-                    "country",
+                    "country"
                 },
-                new object[]
                 {
                     true,
                     TestDataOpenApiFactory.CreateOperationWithResponseOkAddress(),
-                    "country",
+                    "country"
                 },
             };
 
-        public static IEnumerable<object[]> IsOperationNamePluralizedItemData
-            => new List<object[]>
+        public static TheoryData<bool, OpenApiOperation, OperationType> IsOperationNamePluralizedItemData
+            => new TheoryData<bool, OpenApiOperation, OperationType>
             {
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "getOrder",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "getOrdersById",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "Order",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "Orders",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "gettOrders",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "getOrderByMachineIds",
                     },
-                    OperationType.Get,
+                    OperationType.Get
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "deleteOrder",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "deleteOrders",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "deleteOrderById",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "deleteOrdersById",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "Order",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "Orders",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     true,
                     new OpenApiOperation
                     {
                         OperationId = "deletetOrders",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
-                new object[]
                 {
                     false,
                     new OpenApiOperation
                     {
                         OperationId = "deleteOrderByMachineIds",
                     },
-                    OperationType.Delete,
+                    OperationType.Delete
                 },
             };
 
-        public static IEnumerable<object[]> HasDataTypeFromSystemCollectionGenericNamespaceItemData
-            => new List<object[]>
+        public static TheoryData<bool, List<OpenApiOperation>> HasDataTypeFromSystemCollectionGenericNamespaceItemData
+            => new TheoryData<bool, List<OpenApiOperation>>
             {
-                new object[]
                 {
                     false,
                     new List<OpenApiOperation>
                     {
                         TestDataOpenApiFactory.CreateOperationWithResponseOkPet(),
-                    },
+                    }
                 },
             };
     }

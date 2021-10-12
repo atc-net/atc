@@ -1,338 +1,307 @@
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using Xunit;
 
 namespace Atc.OpenApi.Tests.XUnitTestData
 {
     public static class TestMemberDataForOpenApiParameterExtensions
     {
-        public static IEnumerable<object[]> HasFormatTypeUuidItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeUuidItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringUuid(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeByteItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeByteItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringByte(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeDateItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeDateItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringDate(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeDateTimeItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeDateTimeItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeTimeItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeTimeItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringTime(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeTimestampItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeTimestampItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringTimestamp(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeInt32ItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeInt32ItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateInt32(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeInt64ItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeInt64ItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateInt64(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeEmailItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeEmailItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeUriItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeUriItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     false,
-                    new List<OpenApiParameter>(),
+                    new List<OpenApiParameter>()
                 },
-                new object[]
                 {
                     false,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     true,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateStringEmail(),
                         TestDataOpenApiParameterOfTypeFactory.CreateStringUri(),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeFromSystemNamespaceItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeFromSystemNamespaceItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[] { false, new List<OpenApiParameter>() },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringEmail() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringByte() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt32() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt64() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUuid() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDate() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTime() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTimestamp() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUri() } },
+                { false, new List<OpenApiParameter>() },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringEmail() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringByte() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt32() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt64() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUuid() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDate() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTime() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTimestamp() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUri() } },
             };
 
-        public static IEnumerable<object[]> HasFormatTypeFromDataAnnotationsNamespaceItemData =>
-            new List<object[]>
+        public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeFromDataAnnotationsNamespaceItemData
+            => new TheoryData<bool, List<OpenApiParameter>>
             {
-                new object[] { false, new List<OpenApiParameter>() },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringEmail() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringByte() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt32() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt64() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUuid() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDate() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTime() } },
-                new object[] { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTimestamp() } },
-                new object[] { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUri() } },
+                { false, new List<OpenApiParameter>() },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringEmail() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringByte() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt32() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateInt64() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateNumberFloat() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUuid() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDate() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringDateTime() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTime() } },
+                { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringTimestamp() } },
+                { true, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateStringUri() } },
             };
 
-        public static IEnumerable<object[]> GetAllFromRouteItemData =>
-            new List<object[]>
+        public static TheoryData<int, List<OpenApiParameter>> GetAllFromRouteItemData
+            => new TheoryData<int, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     0,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     1,
                     new List<OpenApiParameter>
@@ -340,9 +309,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     2,
                     new List<OpenApiParameter>
@@ -351,22 +319,20 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteString("Hallo"),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> GetAllFromHeaderItemData =>
-            new List<object[]>
+        public static TheoryData<int, List<OpenApiParameter>> GetAllFromHeaderItemData
+            => new TheoryData<int, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     0,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     1,
                     new List<OpenApiParameter>
@@ -374,9 +340,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     2,
                     new List<OpenApiParameter>
@@ -385,22 +350,20 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderString("Hallo"),
-                    },
+                    }
                 },
             };
 
-        public static IEnumerable<object[]> GetAllFromQueryItemData =>
-            new List<object[]>
+        public static TheoryData<int, List<OpenApiParameter>> GetAllFromQueryItemData
+            => new TheoryData<int, List<OpenApiParameter>>
             {
-                new object[]
                 {
                     0,
                     new List<OpenApiParameter>
                     {
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     1,
                     new List<OpenApiParameter>
@@ -408,9 +371,8 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateRouteIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
-                    },
+                    }
                 },
-                new object[]
                 {
                     2,
                     new List<OpenApiParameter>
@@ -419,7 +381,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateHeaderIntId(),
                         TestDataOpenApiParameterOfTypeFactory.CreateQueryString("Hallo"),
-                    },
+                    }
                 },
             };
     }

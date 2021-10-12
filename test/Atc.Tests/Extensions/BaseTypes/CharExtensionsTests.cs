@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Atc.Tests.Extensions
+namespace Atc.Tests.Extensions.BaseTypes
 {
     public class CharExtensionsTests
     {
