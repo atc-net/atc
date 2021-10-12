@@ -622,10 +622,10 @@
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
      - Alphabetize(this string value)
-     - Base64Decode(this string base64EData)
-     - Base64DecodeAsAscii(this string base64EData)
+     - Base64Decode(this string base64EncodedData)
+     - Base64Decode(this string base64EncodedData, Encoding encoding)
      - Base64Encode(this string value)
-     - Base64EncodeAsAscii(this string value)
+     - Base64Encode(this string value, Encoding encoding)
      - CamelCase(this string value)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)

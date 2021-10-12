@@ -1012,36 +1012,36 @@ Extensions for the string class.
 ><b>Returns:</b> The string sorted alphabetically.
 #### Base64Decode
 >```csharp
->string Base64Decode(this string base64EData)
+>string Base64Decode(this string base64EncodedData)
 >```
-><b>Summary:</b> Base64s the decode.
+><b>Summary:</b> Decodes the `base64EncodedData`<see langword="string" /> using UTF8.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EData`&nbsp;&nbsp;-&nbsp;&nbsp;The base64 e data.<br />
-#### Base64DecodeAsAscii
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EncodedData`&nbsp;&nbsp;-&nbsp;&nbsp;The Base64 encoded data.<br />
+#### Base64Decode
 >```csharp
->string Base64DecodeAsAscii(this string base64EData)
+>string Base64Decode(this string base64EncodedData, Encoding encoding)
 >```
-><b>Summary:</b> Base64s the decode as ASCII.
+><b>Summary:</b> Decodes the `base64EncodedData`<see langword="string" /> using UTF8.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EData`&nbsp;&nbsp;-&nbsp;&nbsp;The base64 e data.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`base64EncodedData`&nbsp;&nbsp;-&nbsp;&nbsp;The Base64 encoded data.<br />
 #### Base64Encode
 >```csharp
 >string Base64Encode(this string value)
 >```
-><b>Summary:</b> Base64s the encode.
+><b>Summary:</b> Encodes the `value` to Base64 in UTF8.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
-#### Base64EncodeAsAscii
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string value to encode<br />
+#### Base64Encode
 >```csharp
->string Base64EncodeAsAscii(this string value)
+>string Base64Encode(this string value, Encoding encoding)
 >```
-><b>Summary:</b> Base64s the encode as ASCII.
+><b>Summary:</b> Encodes the `value` to Base64 in UTF8.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string value to encode<br />
 #### CamelCase
 >```csharp
 >string CamelCase(this string value)
