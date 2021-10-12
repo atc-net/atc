@@ -320,47 +320,51 @@ namespace System
         }
 
         /// <summary>
-        /// Base64s the encode.
+        /// Encodes the <paramref name="value"/> to Base64 in UTF8.
         /// </summary>
-        /// <param name="value">The value.</param>
-        public static string? Base64Encode(this string value)
+        /// <param name="value">The string value to encode</param>
+        public static string Base64Encode(this string value)
         {
-            return string.IsNullOrEmpty(value)
-                ? null
-                : Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
+            return value.Base64Encode(Encoding.UTF8);
         }
 
         /// <summary>
-        /// Base64s the encode as ASCII.
+        /// Encodes the <paramref name="value"/> to Base64 using the specified <paramref name="encoding"/>.
         /// </summary>
-        /// <param name="value">The value.</param>
-        public static string? Base64EncodeAsAscii(this string value)
+        /// <param name="value">The string value to encode.</param>
+        /// <param name="encoding">The encoding.</param>
+        public static string Base64Encode(this string value, Encoding encoding)
         {
-            return string.IsNullOrEmpty(value)
-                ? null
-                : Convert.ToBase64String(Encoding.ASCII.GetBytes(value));
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
+            return Convert.ToBase64String(encoding.GetBytes(value));
         }
 
         /// <summary>
-        /// Base64s the decode.
+        /// Decodes the <paramref name="base64EncodedData"/> <see langword="string"/> using UTF8.
         /// </summary>
-        /// <param name="base64EData">The base64 e data.</param>
-        public static string? Base64Decode(this string base64EData)
+        /// <param name="base64EncodedData">The Base64 encoded data.</param>
+        public static string Base64Decode(this string base64EncodedData)
         {
-            return string.IsNullOrEmpty(base64EData)
-                ? null
-                : Encoding.UTF8.GetString(Convert.FromBase64String(base64EData));
+            return base64EncodedData.Base64Decode(Encoding.UTF8);
         }
 
         /// <summary>
-        /// Base64s the decode as ASCII.
+        /// Decodes the <paramref name="base64EncodedData"/> using the specified <paramref name="encoding"/>
         /// </summary>
-        /// <param name="base64EData">The base64 e data.</param>
-        public static string? Base64DecodeAsAscii(this string base64EData)
+        /// <param name="base64EncodedData">The Base64 encoded data.</param>
+        /// <param name="encoding">The encoding.</param>
+        public static string Base64Decode(this string base64EncodedData, Encoding encoding)
         {
-            return string.IsNullOrEmpty(base64EData)
-                ? null
-                : Encoding.ASCII.GetString(Convert.FromBase64String(base64EData));
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
+            return encoding.GetString(Convert.FromBase64String(base64EncodedData));
         }
 
         /// <summary>

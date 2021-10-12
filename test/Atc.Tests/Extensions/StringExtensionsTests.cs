@@ -122,55 +122,71 @@ namespace Atc.Tests.Extensions
             => Assert.Equal(expected, input.TryParseDate(out var _, GlobalizationConstants.DanishCultureInfo, dateTimeStyles));
 
         [Theory]
-        [InlineData("Hallo world")]
-        public void Base64Encode(string input)
+        [InlineData("", "")]
+        [InlineData("Zg==", "f")]
+        [InlineData("Zm8=", "fo")]
+        [InlineData("Zm9v", "foo")]
+        [InlineData("Zm9vYg==", "foob")]
+        [InlineData("Zm9vYmE=", "fooba")]
+        [InlineData("Zm9vYmFy", "foobar")]
+        public void Base64Encode(string expected, string input)
         {
             // Act
-            var encodeData = input.Base64Encode();
+            var actual = input.Base64Encode();
 
             // Assert
-            Assert.NotNull(encodeData);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData("Hallo world")]
-        public void Base64EncodeAsAscii(string input)
+        [InlineData("", "")]
+        [InlineData("Zg==", "f")]
+        [InlineData("Zm8=", "fo")]
+        [InlineData("Zm9v", "foo")]
+        [InlineData("Zm9vYg==", "foob")]
+        [InlineData("Zm9vYmE=", "fooba")]
+        [InlineData("Zm9vYmFy", "foobar")]
+        public void Base64Encode_EncodingOverload(string expected, string input)
         {
             // Act
-            var encodeData = input.Base64EncodeAsAscii();
+            var actual = input.Base64Encode(System.Text.Encoding.ASCII);
 
             // Assert
-            Assert.NotNull(encodeData);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData("Hallo world")]
-        public void Base64Decode(string input)
+        [InlineData("", "")]
+        [InlineData("f", "Zg==")]
+        [InlineData("fo", "Zm8=")]
+        [InlineData("foo", "Zm9v")]
+        [InlineData("foob", "Zm9vYg==")]
+        [InlineData("fooba", "Zm9vYmE=")]
+        [InlineData("foobar", "Zm9vYmFy")]
+        public void Base64Decode(string expected, string input)
         {
-            // Arrange
-            var encodeData = input.Base64Encode();
-
             // Act
-            var decodeData = encodeData!.Base64Decode();
+            var actual = input.Base64Decode();
 
             // Assert
-            Assert.NotNull(decodeData);
-            Assert.Equal(input.Length, decodeData.Length);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData("Hallo world")]
-        public void Base64DecodeAsAscii(string input)
+        [InlineData("", "")]
+        [InlineData("f", "Zg==")]
+        [InlineData("fo", "Zm8=")]
+        [InlineData("foo", "Zm9v")]
+        [InlineData("foob", "Zm9vYg==")]
+        [InlineData("fooba", "Zm9vYmE=")]
+        [InlineData("foobar", "Zm9vYmFy")]
+        public void Base64Decode_EncodingOverload(string expected, string input)
         {
-            // Arrange
-            var encodeData = input.Base64EncodeAsAscii();
-
             // Act
-            var decodeData = encodeData!.Base64DecodeAsAscii();
+            var actual = input.Base64Decode(System.Text.Encoding.ASCII);
 
             // Assert
-            Assert.NotNull(decodeData);
-            Assert.Equal(input.Length, decodeData.Length);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
