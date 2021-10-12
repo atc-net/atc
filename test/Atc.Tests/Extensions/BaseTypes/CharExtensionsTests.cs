@@ -1,4 +1,5 @@
 using System;
+using Atc.Tests.XUnitTestData;
 using Xunit;
 
 namespace Atc.Tests.Extensions.BaseTypes
@@ -6,16 +7,9 @@ namespace Atc.Tests.Extensions.BaseTypes
     public class CharExtensionsTests
     {
         [Theory]
-        [InlineData(true, 'a')]
-        [InlineData(true, 'z')]
-        [InlineData(true, 'A')]
-        [InlineData(true, 'Z')]
-        [InlineData(false, 'æ')]
-        [InlineData(false, 'ø')]
-        [InlineData(false, 'å')]
-        [InlineData(false, 'Æ')]
-        [InlineData(false, 'Ø')]
-        [InlineData(false, 'Å')]
+        [MemberData(
+            nameof(TestMemberDataForExtensionsChar.IsAscii),
+            MemberType = typeof(TestMemberDataForExtensionsChar))]
         public void IsAscii(bool expected, char input)
         {
             // Act
