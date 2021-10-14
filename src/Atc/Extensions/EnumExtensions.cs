@@ -107,6 +107,20 @@ namespace System
                 : attributeValue;
         }
 
+        /// <summary>
+        /// Converts the named constant to <see langword="string"/> in upper case.
+        /// </summary>
+        /// <param name="enumeration">The enum.</param>
+        public static string ToStringUpperCase(this Enum enumeration)
+            => enumeration.ToString().ToUpperInvariant();
+
+        /// <summary>
+        /// Converts the named constant to <see langword="string"/> in lower case.
+        /// </summary>
+        /// <param name="enumeration">The enum.</param>
+        public static string ToStringLowerCase(this Enum enumeration)
+            => enumeration.ToString().ToLowerInvariant();
+
         /// <summary>Gets the attribute value.</summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <typeparam name="TExpected">The type of the expected.</typeparam>

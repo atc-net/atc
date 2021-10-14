@@ -598,6 +598,8 @@
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
      - GetName(this Enum enumeration)
      - IsSet(this Enum enumeration, Enum matchTo)
+     - ToStringLowerCase(this Enum enumeration)
+     - ToStringUpperCase(this Enum enumeration)
 - [ExceptionExtensions](System.md#exceptionextensions)
   -  Static Methods
      - Flatten(this Exception exception, string message = , bool includeStackTrace = False)
