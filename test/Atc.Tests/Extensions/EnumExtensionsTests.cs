@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 
 namespace Atc.Tests.Extensions
@@ -25,5 +25,15 @@ namespace Atc.Tests.Extensions
         [InlineData("Monday", DayOfWeek.Monday, true)]
         public void GetDescription_UseLocalizedIfPossible(string expected, DayOfWeek value, bool useLocalizedIfPossible)
             => Assert.Equal(expected, value.GetDescription(useLocalizedIfPossible));
+
+        [Theory]
+        [InlineData("MONDAY", DayOfWeek.Monday)]
+        public void ToStringUpperCase(string expected, DayOfWeek value)
+            => Assert.Equal(expected, value.ToStringUpperCase());
+
+        [Theory]
+        [InlineData("monday", DayOfWeek.Monday)]
+        public void ToStringLowerCase(string expected, DayOfWeek value)
+            => Assert.Equal(expected, value.ToStringLowerCase());
     }
 }

@@ -777,6 +777,22 @@ Extension methods for enumerations.
 >```csharp
 >Assert.True(DayOfWeek.Monday.IsSet(DayOfWeek.Monday));
 >```
+#### ToStringLowerCase
+>```csharp
+>string ToStringLowerCase(this Enum enumeration)
+>```
+><b>Summary:</b> Converts the named constant to <see langword="string" /> in lower case.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enum.<br />
+#### ToStringUpperCase
+>```csharp
+>string ToStringUpperCase(this Enum enumeration)
+>```
+><b>Summary:</b> Converts the named constant to <see langword="string" /> in upper case.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enum.<br />
 
 <br />
 
