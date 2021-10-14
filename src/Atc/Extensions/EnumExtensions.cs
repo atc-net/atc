@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Atc;
 
@@ -118,6 +119,7 @@ namespace System
         /// Converts the named constant to <see langword="string"/> in lower case.
         /// </summary>
         /// <param name="enumeration">The enum.</param>
+        [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "Triggers warnings, but is irrelevant for this case.")]
         public static string ToStringLowerCase(this Enum enumeration)
             => enumeration.ToString().ToLowerInvariant();
 
