@@ -15,10 +15,21 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(segmentName));
             }
 
-            var urlPathKey = urlPath.Key.Replace("-", string.Empty, StringComparison.Ordinal);
+            var sa = urlPath.Key.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            if (string.IsNullOrEmpty(segmentName) && sa.Length == 0)
+            {
+                return true;
+            }
 
-            return urlPathKey.StartsWith(segmentName, StringComparison.OrdinalIgnoreCase) ||
-                   urlPathKey.StartsWith($"/{segmentName}", StringComparison.OrdinalIgnoreCase);
+            if (sa.Length == 0)
+            {
+                return false;
+            }
+
+            var routeSegmentName = sa[0].Replace("-", string.Empty, StringComparison.Ordinal);
+
+            return segmentName.Equals(routeSegmentName, StringComparison.OrdinalIgnoreCase) ||
+                   segmentName.Equals(routeSegmentName.EnsureSingular(), StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool HasParameters(this OpenApiPathItem openApiOperation)
