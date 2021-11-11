@@ -60,7 +60,6 @@ namespace Atc.Tests.Serialization.JsonConverters
                 Assert.True(vehicle2.RegistrationDate.HasValue, $"Vehicle2 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
                 Assert.True(vehicle3.RegistrationDate is not null, $"Vehicle3 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
             }
-
         }
     }
 }
