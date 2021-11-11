@@ -73,6 +73,7 @@ namespace Atc.Helpers
         /// Runs a Task function synchronous.
         /// </summary>
         /// <param name="func">The Task function.</param>
+        [SuppressMessage("Microsoft.Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK. https://github.com/dotnet/roslyn-analyzers/issues/1907")]
         public static void RunSync(Func<Task> func)
         {
             var taskFactory = new TaskFactory(
@@ -93,6 +94,7 @@ namespace Atc.Helpers
         /// </summary>
         /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="func">The Task function.</param>
+        [SuppressMessage("Microsoft.Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK. https://github.com/dotnet/roslyn-analyzers/issues/1907")]
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
         {
             var taskFactory = new TaskFactory(
