@@ -59,6 +59,11 @@ namespace Atc.Serialization
                 jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
             }
 
+            if (settings.UseConverterUnixDatetimeOffset)
+            {
+                jsonSerializerOptions.Converters.Add(new JsonUnixDateTimeOffsetConverter());
+            }
+
             return jsonSerializerOptions;
         }
     }

@@ -27,6 +27,7 @@ namespace Atc.Tests
             typeof(JsonSerializerOptionsFactory),
             typeof(JsonTimeSpanConverter),
             typeof(JsonDateTimeOffsetMinToNullConverter),
+            typeof(JsonUnixDateTimeOffsetConverter),
 
             // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(ProcessExtensions),
