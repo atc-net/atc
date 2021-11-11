@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Atc.Helpers;
@@ -63,6 +64,41 @@ namespace Atc.Tests.Helpers
 
             Assert.Equal(firstExceptionMessage, actual.InnerExceptions[0].Message);
             Assert.Equal(secondExceptionMessage, actual.InnerExceptions[1].Message);
+        }
+
+        [Fact]
+        [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK. Just expect no exceptions.")]
+        public void RunSync()
+        {
+            // Arrange
+            var doSomethingTask = DoSomethingAsync();
+
+            // Act
+            TaskHelper.RunSync(() => doSomethingTask);
+        }
+
+        [Fact]
+        public void RunSyncAndReturnResult()
+        {
+            // Arrange
+            var doSomethingTask = DoSomethingAndReturnResultAsync();
+
+            // Act
+            var actual = TaskHelper.RunSync(() => doSomethingTask);
+
+            // Assert
+            Assert.Equal(42, actual);
+        }
+
+        private Task DoSomethingAsync()
+        {
+            return Task.Delay(100);
+        }
+
+        private async Task<int> DoSomethingAndReturnResultAsync()
+        {
+            await Task.Delay(100);
+            return 42;
         }
     }
 }

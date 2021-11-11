@@ -68,5 +68,46 @@ namespace Atc.Helpers
 
             throw allTasks.Exception ?? throw new Exception("Could not get AggregateException from tasks!");
         }
+
+        /// <summary>
+        /// Runs a Task function synchronous.
+        /// </summary>
+        /// <param name="func">The Task function.</param>
+        [SuppressMessage("Microsoft.Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK. https://github.com/dotnet/roslyn-analyzers/issues/1907")]
+        public static void RunSync(Func<Task> func)
+        {
+            var taskFactory = new TaskFactory(
+                CancellationToken.None,
+                TaskCreationOptions.None,
+                TaskContinuationOptions.None,
+                TaskScheduler.Default);
+
+            taskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Runs a Task function synchronous.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
+        /// <param name="func">The Task function.</param>
+        [SuppressMessage("Microsoft.Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK. https://github.com/dotnet/roslyn-analyzers/issues/1907")]
+        public static TResult RunSync<TResult>(Func<Task<TResult>> func)
+        {
+            var taskFactory = new TaskFactory(
+                CancellationToken.None,
+                TaskCreationOptions.None,
+                TaskContinuationOptions.None,
+                TaskScheduler.Default);
+
+            return taskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+        }
     }
 }

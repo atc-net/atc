@@ -34,7 +34,7 @@
 >```csharp
 >UseConverterDatetimeOffsetMinToNull
 >```
-><b>Summary:</b> Gets or sets a value indicating whether to utilize DatetimeOffsetMinToNullConverter.
+><b>Summary:</b> Gets or sets a value indicating whether to utilize datetimeOffsetMinToNullConverter.
 #### UseConverterEnumAsString
 >```csharp
 >UseConverterEnumAsString
@@ -45,6 +45,11 @@
 >UseConverterTimespan
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether to utilize timespanConverter.
+#### UseConverterUnixDatetimeOffset
+>```csharp
+>UseConverterUnixDatetimeOffset
+>```
+><b>Summary:</b> Gets or sets a value indicating whether to utilize UnixDateTimeOffsetConverter.
 #### WriteIndented
 >```csharp
 >WriteIndented

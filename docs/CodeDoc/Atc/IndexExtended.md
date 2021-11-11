@@ -172,6 +172,12 @@
      - ShortDatePattern
   -  Methods
      - ToString()
+- [IdValueItem](Atc.Data.Models.md#idvalueitem)
+  -  Properties
+     - Id
+     - Value
+  -  Methods
+     - ToString()
 - [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
   -  Properties
      - Key
@@ -329,6 +335,8 @@
 - [TaskHelper](Atc.Helpers.md#taskhelper)
   -  Static Methods
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
+     - RunSync(Func&lt;Task&gt; func)
+     - RunSync(Func&lt;Task&lt;TResult&gt;&gt; func)
      - WhenAll(Task`1[] tasks)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
   -  Static Properties
@@ -431,6 +439,7 @@
      - UseConverterDatetimeOffsetMinToNull
      - UseConverterEnumAsString
      - UseConverterTimespan
+     - UseConverterUnixDatetimeOffset
      - WriteIndented
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
   -  Static Methods
@@ -454,6 +463,10 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+- [JsonUnixDateTimeOffsetConverter](Atc.Serialization.JsonConverters.md#jsonunixdatetimeoffsetconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
 
 ## [Atc.Structs](Atc.Structs.md)
 

@@ -95,6 +95,34 @@ Culture.
 
 <br />
 
+## IdValueItem
+IdValueItem.
+
+>```csharp
+>public class IdValueItem
+>```
+
+### Properties
+
+#### Id
+>```csharp
+>Id
+>```
+><b>Summary:</b> Gets or sets the key.
+#### Value
+>```csharp
+>Value
+>```
+><b>Summary:</b> Gets or sets the value.
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## KeyValueItem
 KeyValueItem.
 

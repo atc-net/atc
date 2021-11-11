@@ -39,9 +39,15 @@ namespace Atc.Serialization
         public bool UseConverterTimespan { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets a value indicating whether to utilize DatetimeOffsetMinToNullConverter.
+        /// Gets or sets a value indicating whether to utilize datetimeOffsetMinToNullConverter.
         /// </summary>
         /// <para>This setting is not default set to true.</para>
         public bool UseConverterDatetimeOffsetMinToNull { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to utilize UnixDateTimeOffsetConverter.
+        /// </summary>
+        /// <para>This setting is default set to true.</para>
+        public bool UseConverterUnixDatetimeOffset { get; set; }
     }
 }

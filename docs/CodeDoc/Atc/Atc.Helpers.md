@@ -1101,6 +1101,22 @@ TaskHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taskToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The task to run.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeout`&nbsp;&nbsp;-&nbsp;&nbsp;The timeout.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+#### RunSync
+>```csharp
+>void RunSync(Func<Task> func)
+>```
+><b>Summary:</b> Runs a Task function synchronous.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`func`&nbsp;&nbsp;-&nbsp;&nbsp;The Task function.<br />
+#### RunSync
+>```csharp
+>TResult RunSync(Func<Task<TResult>> func)
+>```
+><b>Summary:</b> Runs a Task function synchronous.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`func`&nbsp;&nbsp;-&nbsp;&nbsp;The Task function.<br />
 #### WhenAll
 >```csharp
 >Task<IEnumerable<T>> WhenAll(Task`1[] tasks)

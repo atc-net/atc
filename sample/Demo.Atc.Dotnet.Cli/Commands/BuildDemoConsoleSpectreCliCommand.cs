@@ -1,10 +1,9 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Atc;
 using Atc.DotNet;
+using Atc.Helpers;
 using Demo.Atc.Dotnet.Cli.Settings;
 using Microsoft.Extensions.Logging;
 using Spectre.Console;
@@ -22,7 +21,6 @@ namespace Demo.Atc.Dotnet.Cli.Commands
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [SuppressMessage("Async", "AsyncifyInvocation:Use Task Async", Justification = "OK.")]
         public override int Execute(CommandContext context, BuildDemoConsoleSpectreCliCommandSettings settings)
         {
             var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
@@ -35,14 +33,12 @@ namespace Demo.Atc.Dotnet.Cli.Commands
             var demoDirectory = directory.GetDirectories("Demo.Atc.Console.Spectre.Cli", SearchOption.AllDirectories).Single();
             var demoCsproj = new FileInfo(Path.Combine(demoDirectory.FullName, "Demo.Atc.Console.Spectre.Cli.csproj"));
 
-            var buildAndCollectErrors = Task.Run(async () =>
-                await DotnetBuildHelper.BuildAndCollectErrors(
-                        logger,
-                        demoDirectory,
-                        1,
-                        demoCsproj)
-                    .ConfigureAwait(false))
-                    .Result;
+            var buildAndCollectErrors = TaskHelper.RunSync(() =>
+                DotnetBuildHelper.BuildAndCollectErrors(
+                    logger,
+                    demoDirectory,
+                    1,
+                    demoCsproj));
 
             AnsiConsole.MarkupLine(string.Empty);
             if (buildAndCollectErrors.Any())
