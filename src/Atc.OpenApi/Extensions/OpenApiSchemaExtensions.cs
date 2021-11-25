@@ -27,24 +27,30 @@ namespace Microsoft.OpenApi.Models
             return schemas.Any(x => x.IsTypeArray());
         }
 
-        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
+        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
         {
             if (schema is null)
             {
                 throw new ArgumentNullException(nameof(schema));
             }
 
-            return schema.IsTypeArray();
+            if (schema.IsTypeArray())
+            {
+                return true;
+            }
+
+            return schema.OneOf.Count > 0 &&
+                   schema.OneOf.Any(x => x.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas));
         }
 
-        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
+        public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas, IDictionary<string, OpenApiSchema> componentSchemas)
         {
             if (schemas is null)
             {
                 throw new ArgumentNullException(nameof(schemas));
             }
 
-            return schemas.Any(x => x.HasDataTypeFromSystemCollectionGenericNamespace());
+            return schemas.Any(x => x.HasDataTypeFromSystemCollectionGenericNamespace(componentSchemas));
         }
 
         public static bool HasFormatTypeUuid(this IList<OpenApiSchema> schemas)
@@ -419,7 +425,7 @@ namespace Microsoft.OpenApi.Models
                     continue;
                 }
 
-                if (schemaProperty.Value.HasDataTypeFromSystemCollectionGenericNamespace())
+                if (schemaProperty.Value.HasDataTypeFromSystemCollectionGenericNamespace(componentSchemas))
                 {
                     return true;
                 }

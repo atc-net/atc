@@ -22,10 +22,10 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema)
+        public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
         {
             // Act
-            var actual = openApiSchema.HasDataTypeFromSystemCollectionGenericNamespace();
+            var actual = openApiSchema.HasDataTypeFromSystemCollectionGenericNamespace(componentOpenApiSchemas);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -33,10 +33,10 @@ namespace Atc.OpenApi.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-        public void HasDataTypeFromSystemCollectionGenericNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+        public void HasDataTypeFromSystemCollectionGenericNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas, IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
         {
             // Act
-            var actual = openApiSchemas.HasDataTypeFromSystemCollectionGenericNamespace();
+            var actual = openApiSchemas.HasDataTypeFromSystemCollectionGenericNamespace(componentOpenApiSchemas);
 
             // Assert
             Assert.Equal(expected, actual);
