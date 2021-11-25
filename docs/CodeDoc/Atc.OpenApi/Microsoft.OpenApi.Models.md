@@ -443,11 +443,11 @@
 >```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 >```csharp
->bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema)
+>bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
 >```
 #### HasDataTypeFromSystemCollectionGenericNamespace
 >```csharp
->bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas)
+>bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas, IDictionary<string, OpenApiSchema> componentSchemas)
 >```
 #### HasDataTypeList
 >```csharp
