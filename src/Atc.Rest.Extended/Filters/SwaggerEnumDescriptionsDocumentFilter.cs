@@ -118,11 +118,15 @@ namespace Atc.Rest.Extended.Filters
         }
 
         private static Type? GetEnumTypeByName(string enumTypeName)
-        {
-            return AppDomain.CurrentDomain
+            => AppDomain.CurrentDomain
                 .GetAssemblies()
-                .SelectMany(x => x.GetTypes())
-                .FirstOrDefault(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal));
-        }
+                .SelectMany(x => x.GetTypes().Where(t => t.IsEnum))
+                .Where(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal))
+                .ToArray()
+            switch
+            {
+                { Length: 1 } a => a[0],
+                _ => null,
+            };
     }
 }
