@@ -165,7 +165,8 @@ namespace Microsoft.OpenApi.Models
                    schema.IsFormatTypeDateTime() ||
                    schema.IsFormatTypeTime() ||
                    schema.IsFormatTypeTimestamp() ||
-                   schema.IsFormatTypeUri();
+                   schema.IsFormatTypeUri() ||
+                   (schema.IsTypeArray() && HasFormatTypeFromSystemNamespace(schema.Items));
         }
 
         public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
@@ -639,11 +640,13 @@ namespace Microsoft.OpenApi.Models
 
             return string.Equals(dataType, OpenApiDataTypeConstants.Boolean, StringComparison.Ordinal) ||
                    string.Equals(dataType, "bool", StringComparison.Ordinal) ||
+                   string.Equals(dataType, "double", StringComparison.Ordinal) ||
+                   string.Equals(dataType, "float", StringComparison.Ordinal) ||
+                   string.Equals(dataType, OpenApiFormatTypeConstants.Uuid, StringComparison.Ordinal) ||
+                   string.Equals(dataType, "Guid", StringComparison.Ordinal) ||
                    string.Equals(dataType, OpenApiDataTypeConstants.Integer, StringComparison.Ordinal) ||
                    string.Equals(dataType, "int", StringComparison.Ordinal) ||
                    string.Equals(dataType, "long", StringComparison.Ordinal) ||
-                   string.Equals(dataType, "double", StringComparison.Ordinal) ||
-                   string.Equals(dataType, "float", StringComparison.Ordinal) ||
                    string.Equals(dataType, OpenApiDataTypeConstants.Number, StringComparison.Ordinal) ||
                    string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal);
         }
