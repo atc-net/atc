@@ -40,7 +40,7 @@
 
 ## CLI Tools
 
-REST API generator, please go to [Atc.Rest.ApiGenerator.CLI](https://github.com/atc-net/atc-rest-api-generator/src/Atc.Rest.ApiGenerator.CLI)
+REST API generator, please go to [Atc.Rest.ApiGenerator.CLI](https://github.com/atc-net/atc-rest-api-generator/tree/main/src/Atc.Rest.ApiGenerator.CLI)
 
 # The workflow setup for this repository
 [Read more on Git-Flow](docs/GitFlow.md)
