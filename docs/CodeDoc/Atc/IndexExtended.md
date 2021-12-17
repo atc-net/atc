@@ -337,6 +337,8 @@
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
      - RunSync(Func&lt;Task&gt; func)
      - RunSync(Func&lt;Task&lt;TResult&gt;&gt; func)
+     - WhenAll(IEnumerable&lt;Task&gt; tasks)
+     - WhenAll(IEnumerable&lt;Task&lt;T&gt;&gt; tasks)
      - WhenAll(Task`1[] tasks)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
   -  Static Properties
