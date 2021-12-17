@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,16 +12,48 @@ namespace Atc.Tests.Helpers
     public class TaskHelperTests
     {
         [Fact]
-        public async Task WhenAll()
+        public async Task WhenAll_AsIEnumerable_NoResult()
         {
             // Arrange
             const int expected = 1;
 
-            var taskCompletionSource = new TaskCompletionSource<int>();
-            taskCompletionSource.TrySetResult(expected);
+            var taskCompletionSource1 = new TaskCompletionSource<int>();
+            var taskCompletionSource2 = new TaskCompletionSource<int>();
+            taskCompletionSource1.TrySetResult(expected);
+            taskCompletionSource2.TrySetResult(expected);
+
+            var tasks = new List<Task>
+            {
+                taskCompletionSource1.Task,
+                taskCompletionSource2.Task,
+            };
 
             // Act
-            var actual = (await TaskHelper.WhenAll(taskCompletionSource.Task)).ToList();
+            await TaskHelper.WhenAll(tasks);
+
+            // Assert
+            Assert.True(true, "Just expect WhenAll successful executed");
+        }
+
+        [Fact]
+        public async Task WhenAll_AsIEnumerable()
+        {
+            // Arrange
+            const int expected = 1;
+
+            var taskCompletionSource1 = new TaskCompletionSource<int>();
+            var taskCompletionSource2 = new TaskCompletionSource<int>();
+            taskCompletionSource1.TrySetResult(expected);
+            taskCompletionSource2.TrySetResult(expected);
+
+            var tasks = new List<Task<int>>
+            {
+                taskCompletionSource1.Task,
+                taskCompletionSource2.Task,
+            };
+
+            // Act
+            var actual = (await TaskHelper.WhenAll(tasks)).ToList();
 
             // Assert
             actual
@@ -28,9 +61,36 @@ namespace Atc.Tests.Helpers
                 .NotBeNull()
                 .And
                 .NotBeEmpty()
-                .And.HaveCount(1);
+                .And.HaveCount(2);
 
             Assert.Equal(expected, actual[0]);
+            Assert.Equal(expected, actual[1]);
+        }
+
+        [Fact]
+        public async Task WhenAll_AsParams()
+        {
+            // Arrange
+            const int expected = 1;
+
+            var taskCompletionSource1 = new TaskCompletionSource<int>();
+            var taskCompletionSource2 = new TaskCompletionSource<int>();
+            taskCompletionSource1.TrySetResult(expected);
+            taskCompletionSource2.TrySetResult(expected);
+
+            // Act
+            var actual = (await TaskHelper.WhenAll(taskCompletionSource1.Task, taskCompletionSource2.Task)).ToList();
+
+            // Assert
+            actual
+                .Should()
+                .NotBeNull()
+                .And
+                .NotBeEmpty()
+                .And.HaveCount(2);
+
+            Assert.Equal(expected, actual[0]);
+            Assert.Equal(expected, actual[1]);
         }
 
         [Fact]

@@ -47,6 +47,58 @@ namespace Atc.Helpers
         /// This method wraps the built-in Task.WhenAll method, but
         /// correctly await`s tasks and gets an AggregateException back.
         /// </summary>
+        /// <param name="tasks">The tasks.</param>
+        /// <remarks>
+        /// This method gives us an AggregateException and not only the first exception occurrence,
+        /// in case of an exception thrown from one of the tasks.
+        /// </remarks>
+        public static async Task WhenAll(IEnumerable<Task> tasks)
+        {
+            var allTasks = Task.WhenAll(tasks);
+
+            try
+            {
+                await allTasks;
+                return;
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
+
+            throw allTasks.Exception ?? throw new Exception("Could not get AggregateException from tasks!");
+        }
+
+        /// <summary>
+        /// This method wraps the built-in Task.WhenAll method, but
+        /// correctly await`s tasks and gets an AggregateException back.
+        /// </summary>
+        /// <typeparam name="T">The type of tasks</typeparam>
+        /// <param name="tasks">The tasks.</param>
+        /// <remarks>
+        /// This method gives us an AggregateException and not only the first exception occurrence,
+        /// in case of an exception thrown from one of the tasks.
+        /// </remarks>
+        public static async Task<IEnumerable<T>> WhenAll<T>(IEnumerable<Task<T>> tasks)
+        {
+            var allTasks = Task.WhenAll(tasks);
+
+            try
+            {
+                return await allTasks;
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
+
+            throw allTasks.Exception ?? throw new Exception("Could not get AggregateException from tasks!");
+        }
+
+        /// <summary>
+        /// This method wraps the built-in Task.WhenAll method, but
+        /// correctly await`s tasks and gets an AggregateException back.
+        /// </summary>
         /// <typeparam name="T">The type of tasks</typeparam>
         /// <param name="tasks">The tasks.</param>
         /// <remarks>

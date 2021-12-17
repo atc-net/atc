@@ -1119,6 +1119,26 @@ TaskHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`func`&nbsp;&nbsp;-&nbsp;&nbsp;The Task function.<br />
 #### WhenAll
 >```csharp
+>Task WhenAll(IEnumerable<Task> tasks)
+>```
+><b>Summary:</b> This method wraps the built-in Task.WhenAll method, but correctly await`s tasks and gets an AggregateException back.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tasks`&nbsp;&nbsp;-&nbsp;&nbsp;The tasks.<br />
+>
+><b>Remarks:</b> This method gives us an AggregateException and not only the first exception occurrence, in case of an exception thrown from one of the tasks.
+#### WhenAll
+>```csharp
+>Task<IEnumerable<T>> WhenAll(IEnumerable<Task<T>> tasks)
+>```
+><b>Summary:</b> This method wraps the built-in Task.WhenAll method, but correctly await`s tasks and gets an AggregateException back.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tasks`&nbsp;&nbsp;-&nbsp;&nbsp;The tasks.<br />
+>
+><b>Remarks:</b> This method gives us an AggregateException and not only the first exception occurrence, in case of an exception thrown from one of the tasks.
+#### WhenAll
+>```csharp
 >Task<IEnumerable<T>> WhenAll(Task`1[] tasks)
 >```
 ><b>Summary:</b> This method wraps the built-in Task.WhenAll method, but correctly await`s tasks and gets an AggregateException back.
