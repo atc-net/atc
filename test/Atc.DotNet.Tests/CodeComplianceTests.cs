@@ -16,7 +16,9 @@ namespace Atc.DotNet.Tests
 
         private readonly List<Type> excludeTypes = new List<Type>
         {
+            // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(DotnetBuildHelper),
+            typeof(DotnetNugetHelper),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)

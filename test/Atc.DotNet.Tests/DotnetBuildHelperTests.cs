@@ -7,7 +7,8 @@ namespace Atc.DotNet.Tests
 {
     public class DotnetBuildHelperTests : IAsyncLifetime
     {
-        private static readonly DirectoryInfo WorkingDirectory = new DirectoryInfo(Path.Combine(Path.GetTempPath(), "atc-dotnet-integration-test"));
+        private static readonly DirectoryInfo WorkingDirectory = new DirectoryInfo(
+            Path.Combine(Path.GetTempPath(), "atc-integration-test-dotnet-build-helper"));
 
         public Task InitializeAsync()
         {
