@@ -26,6 +26,7 @@
   -  Static Methods
      - Create(ServiceCollection serviceCollection, Encoding encoding)
      - Create(ServiceCollection serviceCollection)
+     - CreateWithSingleCommand(ServiceCollection serviceCollection)
 - [ServiceCollectionFactory](Atc.Console.Spectre.Factories.md#servicecollectionfactory)
   -  Static Methods
      - Create(bool addConsoleLogger = True, bool autoRegisterCliCommandSettings = True)
@@ -53,6 +54,7 @@
      - Log(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func&lt;TState, Exception, string&gt; formatter)
 - [ConsoleLoggerConfiguration](Atc.Console.Spectre.Logging.md#consoleloggerconfiguration)
   -  Properties
+     - AllowMarkup
      - ConsoleConfiguration
      - ConsoleSettings
      - IncludeExceptionNameForException

@@ -38,6 +38,10 @@
 
 ### Properties
 
+#### AllowMarkup
+>```csharp
+>AllowMarkup
+>```
 #### ConsoleConfiguration
 >```csharp
 >ConsoleConfiguration

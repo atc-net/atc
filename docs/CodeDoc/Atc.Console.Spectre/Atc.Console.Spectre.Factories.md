@@ -23,6 +23,10 @@
 >```csharp
 >CommandApp Create(ServiceCollection serviceCollection, Encoding encoding)
 >```
+#### CreateWithSingleCommand
+>```csharp
+>CommandApp<T> CreateWithSingleCommand(ServiceCollection serviceCollection)
+>```
 
 <br />
 

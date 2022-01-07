@@ -15,23 +15,49 @@ namespace Atc.Console.Spectre.Factories
 
         public static CommandApp Create(ServiceCollection serviceCollection, Encoding encoding)
         {
-            Thread.CurrentThread.SetCulture(GlobalizationConstants.EnglishCultureInfo);
-            System.Console.OutputEncoding = encoding;
+            SetCultureAndConsoleSettings(encoding);
 
             var registrar = new Infrastructure.TypeRegistrar(serviceCollection);
-            var commandApp = new CommandApp(registrar);
 
+            var commandApp = new CommandApp(registrar);
+            commandApp.Configure(config =>
+            {
+                config.SetApplicationName(GetAppNameExe());
+            });
+
+            return commandApp;
+        }
+
+        public static CommandApp<T> CreateWithSingleCommand<T>(ServiceCollection serviceCollection)
+            where T : class, ICommand
+        {
+            SetCultureAndConsoleSettings(Encoding.UTF8);
+
+            var registrar = new Infrastructure.TypeRegistrar(serviceCollection);
+
+            var commandApp = new CommandApp<T>(registrar);
+            commandApp.Configure(config =>
+            {
+                config.SetApplicationName(GetAppNameExe());
+            });
+
+            return commandApp;
+        }
+
+        private static void SetCultureAndConsoleSettings(Encoding encoding)
+        {
+            Thread.CurrentThread.SetCulture(GlobalizationConstants.EnglishCultureInfo);
+            System.Console.OutputEncoding = encoding;
+        }
+
+        private static string GetAppNameExe()
+        {
             var appName = Assembly
                 .GetEntryAssembly()!
                 .GetName()
                 .Name;
 
-            commandApp.Configure(config =>
-            {
-                config.SetApplicationName($"{appName}.exe");
-            });
-
-            return commandApp;
+            return $"{appName}.exe";
         }
     }
 }
