@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Test Analyzers">
-    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.14" PrivateAssets="All" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
