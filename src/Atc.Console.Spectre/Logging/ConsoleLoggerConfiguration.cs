@@ -17,6 +17,7 @@ namespace Atc.Console.Spectre.Logging
             UseFixedWidthSpacing = true;
             IncludeInnerMessageForException = true;
             IncludeExceptionNameForException = true;
+            AllowMarkup = false;
         }
 
         public Action<IAnsiConsole>? ConsoleConfiguration { get; set; }
@@ -35,9 +36,11 @@ namespace Atc.Console.Spectre.Logging
 
         public bool IncludeExceptionNameForException { get; set; }
 
+        public bool AllowMarkup { get; set; }
+
         public override string ToString()
         {
-            return $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(UseFixedWidthSpacing)}: {UseFixedWidthSpacing}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}";
+            return $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(UseFixedWidthSpacing)}: {UseFixedWidthSpacing}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}";
         }
     }
 }

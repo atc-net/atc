@@ -50,7 +50,10 @@ namespace Atc.Console.Spectre.Logging
                 return;
             }
 
-            var message = Markup.Escape(state.ToString());
+            var message = config.AllowMarkup
+                ? state.ToString()
+                : Markup.Escape(state.ToString());
+
             var exceptionMessage = exception?.GetMessage(
                 includeInnerMessage: config.IncludeInnerMessageForException,
                 includeExceptionName: config.IncludeInnerMessageForException);
