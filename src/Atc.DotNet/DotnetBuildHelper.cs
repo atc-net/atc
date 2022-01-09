@@ -24,6 +24,7 @@ namespace Atc.DotNet
             bool useNugetRestore = true,
             bool useConfigurationReleaseMode = true,
             int timeoutInSec = DefaultTimeoutInSec,
+            string logPrefix = "",
             CancellationToken cancellationToken = default)
         {
             if (rootPath is null)
@@ -39,6 +40,7 @@ namespace Atc.DotNet
                 useNugetRestore,
                 useConfigurationReleaseMode,
                 timeoutInSec,
+                logPrefix,
                 cancellationToken);
         }
 
@@ -51,6 +53,7 @@ namespace Atc.DotNet
             bool useNugetRestore = true,
             bool useConfigurationReleaseMode = true,
             int timeoutInSec = DefaultTimeoutInSec,
+            string logPrefix = "",
             CancellationToken cancellationToken = default)
         {
             if (logger is null)
@@ -71,6 +74,7 @@ namespace Atc.DotNet
                 useNugetRestore,
                 useConfigurationReleaseMode,
                 timeoutInSec,
+                logPrefix,
                 cancellationToken);
         }
 
@@ -83,14 +87,14 @@ namespace Atc.DotNet
             bool useNugetRestore,
             bool useConfigurationReleaseMode,
             int timeoutInSec,
+            string logPrefix,
             CancellationToken cancellationToken)
         {
             logger.LogInformation(runNumber is > 0
-                ? $"Working on Build ({runNumber})"
-                : "Working on Build");
+                ? $"{logPrefix}Build ({runNumber})"
+                : $"{logPrefix}Build");
 
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            var stopwatch = Stopwatch.StartNew();
 
             (_, string output) = await RunBuildCommand(
                     rootPath,
@@ -106,16 +110,16 @@ namespace Atc.DotNet
 
             stopwatch.Stop();
 
-            logger.LogInformation(runNumber is > 0
-                ? $"Build ({runNumber}) is done in {stopwatch.Elapsed.GetPrettyTime()}"
-                : $"Build is done in {stopwatch.Elapsed.GetPrettyTime()}");
-
             if (totalErrors > 0)
             {
                 logger.LogError(runNumber is > 0
-                    ? $"Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})"
-                    : $"Found {totalErrors} errors divided into {parsedErrors.Count} rules");
+                    ? $"{logPrefix}Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})"
+                    : $"{logPrefix}Found {totalErrors} errors divided into {parsedErrors.Count} rules");
             }
+
+            logger.LogInformation(runNumber is > 0
+                ? $"{logPrefix}Build ({runNumber}) time: {stopwatch.Elapsed.GetPrettyTime()}"
+                : $"{logPrefix}Build time: {stopwatch.Elapsed.GetPrettyTime()}");
 
             return parsedErrors;
         }
