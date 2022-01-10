@@ -28,7 +28,7 @@ namespace Atc.Console.Spectre.Factories
             return commandApp;
         }
 
-        public static CommandApp<T> CreateWithSingleCommand<T>(ServiceCollection serviceCollection)
+        public static CommandApp<T> CreateWithRootCommand<T>(ServiceCollection serviceCollection)
             where T : class, ICommand
         {
             SetCultureAndConsoleSettings(Encoding.UTF8);
