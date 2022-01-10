@@ -26,7 +26,7 @@
   -  Static Methods
      - Create(ServiceCollection serviceCollection, Encoding encoding)
      - Create(ServiceCollection serviceCollection)
-     - CreateWithSingleCommand(ServiceCollection serviceCollection)
+     - CreateWithRootCommand(ServiceCollection serviceCollection)
 - [ServiceCollectionFactory](Atc.Console.Spectre.Factories.md#servicecollectionfactory)
   -  Static Methods
      - Create(bool addConsoleLogger = True, bool autoRegisterCliCommandSettings = True)
