@@ -23,9 +23,9 @@
 >```csharp
 >CommandApp Create(ServiceCollection serviceCollection, Encoding encoding)
 >```
-#### CreateWithRootCommand
+#### CreateWithSingleCommand
 >```csharp
->CommandApp<T> CreateWithRootCommand(ServiceCollection serviceCollection)
+>CommandApp<T> CreateWithSingleCommand(ServiceCollection serviceCollection)
 >```
 
 <br />
