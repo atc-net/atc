@@ -125,7 +125,7 @@ namespace Microsoft.OpenApi.Models
                 throw new ArgumentNullException(nameof(openApiOperation));
             }
 
-            string operationName = openApiOperation.GetOperationName();
+            var operationName = openApiOperation.GetOperationName();
 
             // Remove Http-verb
             if (operationName.StartsWith(operationType.ToString(), StringComparison.Ordinal))
@@ -139,7 +139,7 @@ namespace Microsoft.OpenApi.Models
             {
                 // Test for last-term
                 var termWord = sa.Last();
-                if (termWord.EndsWith("s", StringComparison.Ordinal) &&
+                if (termWord.EndsWith('s') &&
                     !(termWord.Equals("Ids", StringComparison.Ordinal) ||
                       termWord.Equals("Identifiers", StringComparison.Ordinal)))
                 {
@@ -148,9 +148,22 @@ namespace Microsoft.OpenApi.Models
 
                 // Test for first-term
                 termWord = sa.First();
-                if (termWord.EndsWith("s", StringComparison.Ordinal))
+                if (termWord.EndsWith('s'))
                 {
                     return true;
+                }
+
+                if (sa.Any(x => x.Equals("By", StringComparison.Ordinal)))
+                {
+                    var index = Array.IndexOf(sa, "By");
+                    if (index > 1)
+                    {
+                        termWord = sa[index - 1];
+                        if (termWord.EndsWith('s'))
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
 

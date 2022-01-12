@@ -135,6 +135,46 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     OperationType.Get
                 },
                 {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getLookupListsByGroupId",
+                    },
+                    OperationType.Get
+                },
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getLookupListByGroupId",
+                    },
+                    OperationType.Get
+                },
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getLookupListByGroupById",
+                    },
+                    OperationType.Get
+                },
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getLookupListsByGroupById",
+                    },
+                    OperationType.Get
+                },
+                {
+                    false,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getByLookupListsByGroupById",
+                    },
+                    OperationType.Get
+                },
+                {
                     false,
                     new OpenApiOperation
                     {
