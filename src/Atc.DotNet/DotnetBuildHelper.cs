@@ -105,6 +105,13 @@ namespace Atc.DotNet
                     cancellationToken)
                 .ConfigureAwait(false);
 
+            if (output.StartsWith("Please specify which", StringComparison.Ordinal) &&
+                output.Contains("option: --buildFile", StringComparison.Ordinal))
+            {
+                stopwatch.Stop();
+                throw new IOException(output);
+            }
+
             var parsedErrors = ParseBuildOutput(output);
             int totalErrors = parsedErrors.Sum(parsedError => parsedError.Value);
 
