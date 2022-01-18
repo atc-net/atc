@@ -754,8 +754,8 @@
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
 - [VersionExtensions](System.md#versionextensions)
   -  Static Methods
-     - CompareTo(this Version version, Version otherVersion, int significantParts)
-     - GreaterThan(this Version version, Version otherVersion)
+     - CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
+     - GreaterThan(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
