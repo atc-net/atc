@@ -33,6 +33,7 @@ namespace Atc.Tests
             typeof(ProcessExtensions),
             typeof(TaskExtensions),
             typeof(ThreadExtensions),
+            typeof(VersionExtensions),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
