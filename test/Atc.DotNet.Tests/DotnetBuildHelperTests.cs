@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
+// ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet.Tests
 {
     public class DotnetBuildHelperTests : IAsyncLifetime
