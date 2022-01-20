@@ -19,6 +19,7 @@ namespace Atc.DotNet.Tests
             // UnitTests are made, but CodeCompliance test cannot detect this
             typeof(DotnetBuildHelper),
             typeof(DotnetNugetHelper),
+            typeof(VisualStudioSolutionFileHelper),
         };
 
         public CodeComplianceTests(ITestOutputHelper testOutputHelper)
