@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
 
+// ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet.Tests
 {
     public class DotnetNugetHelperTests : IAsyncLifetime
@@ -41,10 +42,10 @@ namespace Atc.DotNet.Tests
             var file = new FileInfo(Path.Combine(WorkingDirectory.FullName, "Test.csproj"));
 
             // Atc
-            var packageReferences = DotnetNugetHelper.GetAllPackageReferences(file);
+            var actual = DotnetNugetHelper.GetAllPackageReferences(file);
 
             // Assert
-            packageReferences.Should()
+            actual.Should()
                 .NotBeEmpty()
                 .And.HaveCount(3);
         }
@@ -56,10 +57,10 @@ namespace Atc.DotNet.Tests
             var fileContent = CreateCsprojFileContent();
 
             // Atc
-            var packageReferences = DotnetNugetHelper.GetAllPackageReferences(fileContent);
+            var actual = DotnetNugetHelper.GetAllPackageReferences(fileContent);
 
             // Assert
-            packageReferences.Should()
+            actual.Should()
                 .NotBeEmpty()
                 .And.HaveCount(3);
         }
