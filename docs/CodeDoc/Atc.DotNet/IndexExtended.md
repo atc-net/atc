@@ -19,6 +19,10 @@
   -  Static Methods
      - GetAllPackageReferences(FileInfo fileInfo)
      - GetAllPackageReferences(string fileContent)
+- [VisualStudioSolutionFileHelper](Atc.DotNet.md#visualstudiosolutionfilehelper)
+  -  Static Methods
+     - GetSolutionFileMetadata(FileInfo fileInfo)
+     - GetSolutionFileMetadata(string fileContent)
 
 ## [Atc.DotNet.Models](Atc.DotNet.Models.md)
 
@@ -26,6 +30,15 @@
   -  Properties
      - PackageId
      - Version
+  -  Methods
+     - ToString()
+- [VisualStudioSolutionFileMetadata](Atc.DotNet.Models.md#visualstudiosolutionfilemetadata)
+  -  Properties
+     - FileFormatVersion
+     - MinimumVisualStudioVersion
+     - VisualStudioName
+     - VisualStudioVersion
+     - VisualStudioVersionNumber
   -  Methods
      - ToString()
 
