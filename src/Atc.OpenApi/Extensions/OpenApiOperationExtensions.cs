@@ -141,7 +141,8 @@ namespace Microsoft.OpenApi.Models
                 var termWord = sa.Last();
                 if (termWord.EndsWith('s') &&
                     !(termWord.Equals("Ids", StringComparison.Ordinal) ||
-                      termWord.Equals("Identifiers", StringComparison.Ordinal)))
+                      termWord.Equals("Identifiers", StringComparison.Ordinal) ||
+                      termWord.Equals("Status", StringComparison.Ordinal)))
                 {
                     return true;
                 }

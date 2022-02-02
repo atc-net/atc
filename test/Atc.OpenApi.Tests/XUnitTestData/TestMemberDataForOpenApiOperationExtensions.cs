@@ -270,6 +270,14 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     },
                     OperationType.Delete
                 },
+                {
+                    true,
+                    new OpenApiOperation
+                    {
+                        OperationId = "getSubscriptionsStatus",
+                    },
+                    OperationType.Get
+                },
             };
 
         public static TheoryData<bool, List<OpenApiOperation>> HasDataTypeFromSystemCollectionGenericNamespaceItemData
