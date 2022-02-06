@@ -86,6 +86,11 @@ public abstract class IntegrationTestCliBase
             throw new ArgumentNullException(nameof(programTypeForCliExe));
         }
 
+        if (searchFromPath is null)
+        {
+            throw new ArgumentNullException(nameof(searchFromPath));
+        }
+
         var cliFileNameExe = GetCliFileName(programTypeForCliExe);
         var cliFileExe = FindOneAndOnlyOneCliFileExe(searchFromPath, cliFileNameExe, pathFolderNameFilter: null);
         var cliFileAppSettings = GetAppSettingsFilePathFromCliFileExe(cliFileExe);
@@ -182,6 +187,11 @@ public abstract class IntegrationTestCliBase
         if (programTypeForCliExe is null)
         {
             throw new ArgumentNullException(nameof(programTypeForCliExe));
+        }
+
+        if (searchFromPath is null)
+        {
+            throw new ArgumentNullException(nameof(searchFromPath));
         }
 
         var cliFileNameExe = GetCliFileName(programTypeForCliExe);

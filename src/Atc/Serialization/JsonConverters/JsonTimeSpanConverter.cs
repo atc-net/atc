@@ -6,5 +6,12 @@ public class JsonTimeSpanConverter : JsonConverter<TimeSpan>
         => TimeSpan.Parse(reader.GetString()!, CultureInfo.InvariantCulture);
 
     public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
-        => writer.WriteStringValue(value.ToString());
+    {
+        if (writer is null)
+        {
+            throw new ArgumentNullException(nameof(writer));
+        }
+
+        writer.WriteStringValue(value.ToString());
+    }
 }

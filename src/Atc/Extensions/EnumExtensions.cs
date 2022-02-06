@@ -108,7 +108,14 @@ public static class EnumExtensions
     /// </summary>
     /// <param name="enumeration">The enum.</param>
     public static string ToStringUpperCase(this Enum enumeration)
-        => enumeration.ToString().ToUpperInvariant();
+    {
+        if (enumeration is null)
+        {
+            throw new ArgumentNullException(nameof(enumeration));
+        }
+
+        return enumeration.ToString().ToUpperInvariant();
+    }
 
     /// <summary>
     /// Converts the named constant to <see langword="string"/> in lower case.
@@ -116,7 +123,14 @@ public static class EnumExtensions
     /// <param name="enumeration">The enum.</param>
     [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "Triggers warnings, but is irrelevant for this case.")]
     public static string ToStringLowerCase(this Enum enumeration)
-        => enumeration.ToString().ToLowerInvariant();
+    {
+        if (enumeration is null)
+        {
+            throw new ArgumentNullException(nameof(enumeration));
+        }
+
+        return enumeration.ToString().ToLowerInvariant();
+    }
 
     /// <summary>Gets the attribute value.</summary>
     /// <typeparam name="T">The type.</typeparam>

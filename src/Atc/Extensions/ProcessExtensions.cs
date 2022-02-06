@@ -7,8 +7,14 @@ public static class ProcessExtensions
 {
     private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
 
+    [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
     public static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
     {
+        if (process is null)
+        {
+            throw new ArgumentNullException(nameof(process));
+        }
+
         var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
         void ProcessExited(object sender, EventArgs e)
@@ -41,6 +47,11 @@ public static class ProcessExtensions
 
     public static void KillTree(this Process process, TimeSpan timeout)
     {
+        if (process is null)
+        {
+            throw new ArgumentNullException(nameof(process));
+        }
+
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             // /T => Terminates the specified process and any child processes which were started by it.

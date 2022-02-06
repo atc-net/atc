@@ -13,11 +13,17 @@ public static class TaskHelper
     /// <param name="taskToRun">The task to run.</param>
     /// <param name="timeout">The timeout.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
+    [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
     public static async Task<TResult> Execute<TResult>(
         Func<CancellationToken, Task<TResult>> taskToRun,
         TimeSpan timeout,
         CancellationToken cancellationToken = default)
     {
+        if (taskToRun is null)
+        {
+            throw new ArgumentNullException(nameof(taskToRun));
+        }
+
         using var timeoutCancellation = new CancellationTokenSource();
         using var combinedCancellation = CancellationTokenSource
             .CreateLinkedTokenSource(cancellationToken, timeoutCancellation.Token);

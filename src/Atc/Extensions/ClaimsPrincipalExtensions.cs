@@ -7,6 +7,11 @@ public static class ClaimsPrincipalExtensions
     [SuppressMessage("Encryption of Sensitive Data", "S5332:Using clear-text protocols is security-sensitive", Justification = "OK.")]
     public static string? GetIdentity(this ClaimsPrincipal principal)
     {
+        if (principal is null)
+        {
+            throw new ArgumentNullException(nameof(principal));
+        }
+
         var identity = principal.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier");
         return identity?.Value;
     }

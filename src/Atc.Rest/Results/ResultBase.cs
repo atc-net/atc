@@ -12,9 +12,11 @@ public abstract class ResultBase
         this.result = result ?? throw new ArgumentNullException(nameof(result));
     }
 
+
     /// <summary>
     /// Performs an implicit conversion from result to ActionResult.
     /// </summary>
     /// <param name="x">The resultBase.</param>
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     public static implicit operator ActionResult(ResultBase x) => x.result;
 }

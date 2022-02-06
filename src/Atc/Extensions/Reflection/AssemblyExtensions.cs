@@ -12,10 +12,17 @@ public static class AssemblyExtensions
     /// <param name="assembly">The assembly.</param>
     /// <returns><c>true</c> if assembly is a debug compilation, <c>false</c> if the assembly is a release compilation.</returns>
     public static bool IsDebugBuild(this Assembly assembly)
-        => assembly.GetCustomAttributes(false)
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        return assembly.GetCustomAttributes(false)
             .OfType<DebuggableAttribute>()
             .Select(att => att.IsJITTrackingEnabled)
             .FirstOrDefault();
+    }
 
     /// <summary>
     /// Gets the name of the exported type by typeName.
@@ -24,6 +31,11 @@ public static class AssemblyExtensions
     /// <param name="typeName">Name of the type.</param>
     public static Type? GetExportedTypeByName(this Assembly assembly, string typeName)
     {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
         if (typeName is null)
         {
             throw new ArgumentNullException(nameof(typeName));
@@ -39,7 +51,14 @@ public static class AssemblyExtensions
     /// </summary>
     /// <param name="assembly">The assembly.</param>
     public static string GetBeautifiedName(this Assembly assembly)
-        => assembly.GetName().Name!.Replace(".", " ", StringComparison.Ordinal);
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        return assembly.GetName().Name!.Replace(".", " ", StringComparison.Ordinal);
+    }
 
     /// <summary>
     /// Gets the types inheriting from a specific type.
@@ -48,6 +67,11 @@ public static class AssemblyExtensions
     /// <param name="type">The type from which other types are inheriting.</param>
     public static Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)
     {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
         if (type is null)
         {
             throw new ArgumentNullException(nameof(type));

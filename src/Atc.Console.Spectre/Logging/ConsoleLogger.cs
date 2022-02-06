@@ -13,7 +13,7 @@ public class ConsoleLogger : ILogger
     public ConsoleLogger(string categoryName, ConsoleLoggerConfiguration config)
     {
         this.categoryName = categoryName;
-        this.config = config;
+        this.config = config ?? throw new ArgumentNullException(nameof(config));
 
         var settings = config.ConsoleSettings ?? new AnsiConsoleSettings
         {

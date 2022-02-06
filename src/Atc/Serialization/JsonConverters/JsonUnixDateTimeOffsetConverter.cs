@@ -9,6 +9,11 @@ public class JsonUnixDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
 
     public override void Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
     {
+        if (writer is null)
+        {
+            throw new ArgumentNullException(nameof(writer));
+        }
+
         if (!value.HasValue || value == DateTimeOffset.MinValue)
         {
             writer.WriteNullValue();
