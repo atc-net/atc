@@ -1,168 +1,162 @@
-using System;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
-namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
+public static class SyntaxArgumentListFactory
 {
-    public static class SyntaxArgumentListFactory
+    public static ArgumentListSyntax CreateWithOneItem(string argumentName)
     {
-        public static ArgumentListSyntax CreateWithOneItem(string argumentName)
+        if (argumentName is null)
         {
-            if (argumentName is null)
-            {
-                throw new ArgumentNullException(nameof(argumentName));
-            }
-
-            return SyntaxFactory.ArgumentList(
-                SyntaxFactory.SingletonSeparatedList(
-                    SyntaxArgumentFactory.Create(argumentName)));
+            throw new ArgumentNullException(nameof(argumentName));
         }
 
-        public static ArgumentListSyntax CreateWithTwoItems(
-            string argumentName1,
-            string argumentName2)
+        return SyntaxFactory.ArgumentList(
+            SyntaxFactory.SingletonSeparatedList(
+                SyntaxArgumentFactory.Create(argumentName)));
+    }
+
+    public static ArgumentListSyntax CreateWithTwoItems(
+        string argumentName1,
+        string argumentName2)
+    {
+        if (argumentName1 is null)
         {
-            if (argumentName1 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentName1));
-            }
-
-            if (argumentName2 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentName2));
-            }
-
-            return CreateWithTwoExpressionItems(
-                SyntaxFactory.IdentifierName(argumentName1),
-                SyntaxFactory.IdentifierName(argumentName2));
+            throw new ArgumentNullException(nameof(argumentName1));
         }
 
-        public static ArgumentListSyntax CreateWithOneArgumentItem(ArgumentSyntax argument)
+        if (argumentName2 is null)
         {
-            if (argument is null)
-            {
-                throw new ArgumentNullException(nameof(argument));
-            }
-
-            return SyntaxFactory.ArgumentList(
-                SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                    new SyntaxNodeOrToken[]
-                    {
-                        argument,
-                    }));
+            throw new ArgumentNullException(nameof(argumentName2));
         }
 
-        public static ArgumentListSyntax CreateWithTwoArgumentItems(
-            ArgumentSyntax argument1,
-            ArgumentSyntax argument2)
+        return CreateWithTwoExpressionItems(
+            SyntaxFactory.IdentifierName(argumentName1),
+            SyntaxFactory.IdentifierName(argumentName2));
+    }
+
+    public static ArgumentListSyntax CreateWithOneArgumentItem(ArgumentSyntax argument)
+    {
+        if (argument is null)
         {
-            if (argument1 is null)
-            {
-                throw new ArgumentNullException(nameof(argument1));
-            }
-
-            if (argument2 is null)
-            {
-                throw new ArgumentNullException(nameof(argument2));
-            }
-
-            return SyntaxFactory.ArgumentList(
-                SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                    new SyntaxNodeOrToken[]
-                    {
-                        argument1,
-                        SyntaxTokenFactory.Comma(),
-                        argument2,
-                    }));
+            throw new ArgumentNullException(nameof(argument));
         }
 
-        public static ArgumentListSyntax CreateWithThreeArgumentItems(
-            ArgumentSyntax argument1,
-            ArgumentSyntax argument2,
-            ArgumentSyntax argument3)
+        return SyntaxFactory.ArgumentList(
+            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                new SyntaxNodeOrToken[]
+                {
+                    argument,
+                }));
+    }
+
+    public static ArgumentListSyntax CreateWithTwoArgumentItems(
+        ArgumentSyntax argument1,
+        ArgumentSyntax argument2)
+    {
+        if (argument1 is null)
         {
-            if (argument1 is null)
-            {
-                throw new ArgumentNullException(nameof(argument1));
-            }
-
-            if (argument2 is null)
-            {
-                throw new ArgumentNullException(nameof(argument2));
-            }
-
-            if (argument3 is null)
-            {
-                throw new ArgumentNullException(nameof(argument3));
-            }
-
-            return SyntaxFactory.ArgumentList(
-                SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                    new SyntaxNodeOrToken[]
-                    {
-                        argument1,
-                        SyntaxTokenFactory.Comma(),
-                        argument2,
-                        SyntaxTokenFactory.Comma(),
-                        argument3,
-                    }));
+            throw new ArgumentNullException(nameof(argument1));
         }
 
-        public static ArgumentListSyntax CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
+        if (argument2 is null)
         {
-            if (argumentExpression1 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression1));
-            }
-
-            return CreateWithOneArgumentItem(
-                SyntaxFactory.Argument(argumentExpression1));
+            throw new ArgumentNullException(nameof(argument2));
         }
 
-        public static ArgumentListSyntax CreateWithTwoExpressionItems(
-            ExpressionSyntax argumentExpression1,
-            ExpressionSyntax argumentExpression2)
+        return SyntaxFactory.ArgumentList(
+            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                new SyntaxNodeOrToken[]
+                {
+                    argument1,
+                    SyntaxTokenFactory.Comma(),
+                    argument2,
+                }));
+    }
+
+    public static ArgumentListSyntax CreateWithThreeArgumentItems(
+        ArgumentSyntax argument1,
+        ArgumentSyntax argument2,
+        ArgumentSyntax argument3)
+    {
+        if (argument1 is null)
         {
-            if (argumentExpression1 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression1));
-            }
-
-            if (argumentExpression2 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression2));
-            }
-
-            return CreateWithTwoArgumentItems(
-                SyntaxFactory.Argument(argumentExpression1),
-                SyntaxFactory.Argument(argumentExpression2));
+            throw new ArgumentNullException(nameof(argument1));
         }
 
-        public static ArgumentListSyntax CreateWithThreeExpressionItems(
-            ExpressionSyntax argumentExpression1,
-            ExpressionSyntax argumentExpression2,
-            ExpressionSyntax argumentExpression3)
+        if (argument2 is null)
         {
-            if (argumentExpression1 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression1));
-            }
-
-            if (argumentExpression2 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression2));
-            }
-
-            if (argumentExpression3 is null)
-            {
-                throw new ArgumentNullException(nameof(argumentExpression3));
-            }
-
-            return CreateWithThreeArgumentItems(
-                SyntaxFactory.Argument(argumentExpression1),
-                SyntaxFactory.Argument(argumentExpression2),
-                SyntaxFactory.Argument(argumentExpression3));
+            throw new ArgumentNullException(nameof(argument2));
         }
+
+        if (argument3 is null)
+        {
+            throw new ArgumentNullException(nameof(argument3));
+        }
+
+        return SyntaxFactory.ArgumentList(
+            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                new SyntaxNodeOrToken[]
+                {
+                    argument1,
+                    SyntaxTokenFactory.Comma(),
+                    argument2,
+                    SyntaxTokenFactory.Comma(),
+                    argument3,
+                }));
+    }
+
+    public static ArgumentListSyntax CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
+    {
+        if (argumentExpression1 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression1));
+        }
+
+        return CreateWithOneArgumentItem(
+            SyntaxFactory.Argument(argumentExpression1));
+    }
+
+    public static ArgumentListSyntax CreateWithTwoExpressionItems(
+        ExpressionSyntax argumentExpression1,
+        ExpressionSyntax argumentExpression2)
+    {
+        if (argumentExpression1 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression1));
+        }
+
+        if (argumentExpression2 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression2));
+        }
+
+        return CreateWithTwoArgumentItems(
+            SyntaxFactory.Argument(argumentExpression1),
+            SyntaxFactory.Argument(argumentExpression2));
+    }
+
+    public static ArgumentListSyntax CreateWithThreeExpressionItems(
+        ExpressionSyntax argumentExpression1,
+        ExpressionSyntax argumentExpression2,
+        ExpressionSyntax argumentExpression3)
+    {
+        if (argumentExpression1 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression1));
+        }
+
+        if (argumentExpression2 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression2));
+        }
+
+        if (argumentExpression3 is null)
+        {
+            throw new ArgumentNullException(nameof(argumentExpression3));
+        }
+
+        return CreateWithThreeArgumentItems(
+            SyntaxFactory.Argument(argumentExpression1),
+            SyntaxFactory.Argument(argumentExpression2),
+            SyntaxFactory.Argument(argumentExpression3));
     }
 }

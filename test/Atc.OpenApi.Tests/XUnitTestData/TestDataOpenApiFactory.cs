@@ -1,33 +1,120 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Mime;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
+namespace Atc.OpenApi.Tests.XUnitTestData;
 
-namespace Atc.OpenApi.Tests.XUnitTestData
+public static class TestDataOpenApiFactory
 {
-    public static class TestDataOpenApiFactory
-    {
-        public static OpenApiComponents CreateComponents()
-            => new OpenApiComponents
+    public static OpenApiComponents CreateComponents()
+        => new OpenApiComponents
+        {
+            Schemas =
             {
-                Schemas =
-                {
-                    ["Address"] = CreateSchemaAddress(),
-                    ["Country"] = CreateSchemaCountry(),
-                    ["Pet"] = CreateSchemaPet(),
-                    ["Pets"] = CreateSchemaPets(),
-                    ["NewPet"] = CreateSchemaNewPet(),
-                    ["ColorType"] = CreateSchemaColorType(),
-                    ["ErrorModel"] = CreateSchemaErrorModel(),
-                },
-            };
+                ["Address"] = CreateSchemaAddress(),
+                ["Country"] = CreateSchemaCountry(),
+                ["Pet"] = CreateSchemaPet(),
+                ["Pets"] = CreateSchemaPets(),
+                ["NewPet"] = CreateSchemaNewPet(),
+                ["ColorType"] = CreateSchemaColorType(),
+                ["ErrorModel"] = CreateSchemaErrorModel(),
+            },
+        };
 
-        public static OpenApiOperation CreateOperationWithRequestBodyAddress()
-            => new OpenApiOperation
+    public static OpenApiOperation CreateOperationWithRequestBodyAddress()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
             {
-                RequestBody = new OpenApiRequestBody
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                 {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaAddress(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithRequestBodyCountry()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaCountry(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithRequestBodyPet()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaPet(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithRequestBodyPetWithBinary()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaPetWithBinary(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithRequestBodyPetsWithBinaryArray()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaPetsWithBinaryArray(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray()
+        => new OpenApiOperation
+        {
+            RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                {
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    {
+                        Schema = CreateSchemaPetsAsObjectWithBinaryArray(),
+                    },
+                },
+            },
+        };
+
+    public static OpenApiOperation CreateOperationWithResponseOkAddress()
+        => new OpenApiOperation
+        {
+            Responses = new OpenApiResponses
+            {
+                ["200"] = new OpenApiResponse
+                {
+                    Description = "Ok",
                     Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
@@ -36,13 +123,17 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         },
                     },
                 },
-            };
+            },
+        };
 
-        public static OpenApiOperation CreateOperationWithRequestBodyCountry()
-            => new OpenApiOperation
+    public static OpenApiOperation CreateOperationWithResponseOkCountry()
+        => new OpenApiOperation
+        {
+            Responses = new OpenApiResponses
             {
-                RequestBody = new OpenApiRequestBody
+                ["200"] = new OpenApiResponse
                 {
+                    Description = "Ok",
                     Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                     {
                         [MediaTypeNames.Application.Json] = new OpenApiMediaType
@@ -51,331 +142,376 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                         },
                     },
                 },
-            };
+            },
+        };
 
-        public static OpenApiOperation CreateOperationWithRequestBodyPet()
-            => new OpenApiOperation
+    public static OpenApiOperation CreateOperationWithResponseOkPet()
+        => new OpenApiOperation
+        {
+            Responses = CreateResponsesOkPet(),
+        };
+
+    public static OpenApiOperation CreateOperationWithResponseOkPets()
+        => new OpenApiOperation
+        {
+            Responses = CreateResponsesOkPets(),
+        };
+
+    public static OpenApiParameter CreateParameterTags()
+        => new OpenApiParameter
+        {
+            Name = "tags",
+            In = ParameterLocation.Query,
+            Description = "Tags to filter by",
+            Required = false,
+            Schema = new OpenApiSchema
             {
-                RequestBody = new OpenApiRequestBody
+                Type = "array",
+                Items = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
+            },
+        };
+
+    public static OpenApiParameter CreateParameterLimit()
+        => new OpenApiParameter
+        {
+            Name = "limit",
+            In = ParameterLocation.Query,
+            Description = "Maximum number of results to return",
+            Required = false,
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
+        };
+
+    public static OpenApiPaths CreatePaths()
+        => new OpenApiPaths
+        {
+            ["/pets"] = new OpenApiPathItem
+            {
+                Operations = new Dictionary<OperationType, OpenApiOperation>
                 {
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                    {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                        {
-                            Schema = CreateSchemaPet(),
-                        },
-                    },
+                    [OperationType.Get] = CreateOperationWithResponseOkPets(),
                 },
-            };
-
-        public static OpenApiOperation CreateOperationWithRequestBodyPetWithBinary()
-            => new OpenApiOperation
+            },
+            ["/pets/{petId}"] = new OpenApiPathItem
             {
-                RequestBody = new OpenApiRequestBody
+                Operations = new Dictionary<OperationType, OpenApiOperation>
                 {
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                    {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                        {
-                            Schema = CreateSchemaPetWithBinary(),
-                        },
-                    },
+                    [OperationType.Get] = CreateOperationWithResponseOkPet(),
                 },
-            };
+            },
+        };
 
-        public static OpenApiOperation CreateOperationWithRequestBodyPetsWithBinaryArray()
-            => new OpenApiOperation
+    public static OpenApiPathItem CreatePathItemWithOperationResponseOkPet()
+        => new OpenApiPathItem
+        {
+            Summary = "Get a pet",
+            Operations = new Dictionary<OperationType, OpenApiOperation>
             {
-                RequestBody = new OpenApiRequestBody
-                {
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                    {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                        {
-                            Schema = CreateSchemaPetsWithBinaryArray(),
-                        },
-                    },
-                },
-            };
+                [OperationType.Get] = CreateOperationWithResponseOkPet(),
+            },
+        };
 
-        public static OpenApiOperation CreateOperationWithRequestBodyPetsAsObjectWithBinaryArray()
-            => new OpenApiOperation
-            {
-                RequestBody = new OpenApiRequestBody
-                {
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                    {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                        {
-                            Schema = CreateSchemaPetsAsObjectWithBinaryArray(),
-                        },
-                    },
-                },
-            };
-
-        public static OpenApiOperation CreateOperationWithResponseOkAddress()
-            => new OpenApiOperation
-            {
-                Responses = new OpenApiResponses
-                {
-                    ["200"] = new OpenApiResponse
-                    {
-                        Description = "Ok",
-                        Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                        {
-                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                            {
-                                Schema = CreateSchemaAddress(),
-                            },
-                        },
-                    },
-                },
-            };
-
-        public static OpenApiOperation CreateOperationWithResponseOkCountry()
-            => new OpenApiOperation
-            {
-                Responses = new OpenApiResponses
-                {
-                    ["200"] = new OpenApiResponse
-                    {
-                        Description = "Ok",
-                        Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                        {
-                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                            {
-                                Schema = CreateSchemaCountry(),
-                            },
-                        },
-                    },
-                },
-            };
-
-        public static OpenApiOperation CreateOperationWithResponseOkPet()
-            => new OpenApiOperation
-            {
-                Responses = CreateResponsesOkPet(),
-            };
-
-        public static OpenApiOperation CreateOperationWithResponseOkPets()
-            => new OpenApiOperation
-            {
-                Responses = CreateResponsesOkPets(),
-            };
-
-        public static OpenApiParameter CreateParameterTags()
-            => new OpenApiParameter
-            {
-                Name = "tags",
-                In = ParameterLocation.Query,
-                Description = "Tags to filter by",
-                Required = false,
-                Schema = new OpenApiSchema
-                {
-                    Type = "array",
-                    Items = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
-                },
-            };
-
-        public static OpenApiParameter CreateParameterLimit()
-            => new OpenApiParameter
-            {
-                Name = "limit",
-                In = ParameterLocation.Query,
-                Description = "Maximum number of results to return",
-                Required = false,
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
-            };
-
-        public static OpenApiPaths CreatePaths()
-            => new OpenApiPaths
-            {
-                ["/pets"] = new OpenApiPathItem
-                {
-                    Operations = new Dictionary<OperationType, OpenApiOperation>
-                    {
-                        [OperationType.Get] = CreateOperationWithResponseOkPets(),
-                    },
-                },
-                ["/pets/{petId}"] = new OpenApiPathItem
-                {
-                    Operations = new Dictionary<OperationType, OpenApiOperation>
-                    {
-                        [OperationType.Get] = CreateOperationWithResponseOkPet(),
-                    },
-                },
-            };
-
-        public static OpenApiPathItem CreatePathItemWithOperationResponseOkPet()
-            => new OpenApiPathItem
+    public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(string path)
+        => new KeyValuePair<string, OpenApiPathItem>(
+            path,
+            new OpenApiPathItem
             {
                 Summary = "Get a pet",
                 Operations = new Dictionary<OperationType, OpenApiOperation>
                 {
                     [OperationType.Get] = CreateOperationWithResponseOkPet(),
                 },
-            };
+            });
 
-        public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(string path)
-            => new KeyValuePair<string, OpenApiPathItem>(
-                path,
-                new OpenApiPathItem
+    public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(List<OpenApiParameter> parameters)
+        => new OpenApiPathItem
+        {
+            Summary = "Get a pet",
+            Parameters = parameters,
+            Operations = new Dictionary<OperationType, OpenApiOperation>
+            {
+                [OperationType.Get] = CreateOperationWithResponseOkPet(),
+            },
+        };
+
+    public static OpenApiResponses CreateResponsesOkPet()
+        => new OpenApiResponses
+        {
+            ["200"] = new OpenApiResponse
+            {
+                Description = "Ok",
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                 {
-                    Summary = "Get a pet",
-                    Operations = new Dictionary<OperationType, OpenApiOperation>
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
                     {
-                        [OperationType.Get] = CreateOperationWithResponseOkPet(),
+                        Schema = CreateSchemaPet(),
                     },
-                });
-
-        public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(List<OpenApiParameter> parameters)
-            => new OpenApiPathItem
-            {
-                Summary = "Get a pet",
-                Parameters = parameters,
-                Operations = new Dictionary<OperationType, OpenApiOperation>
-                {
-                    [OperationType.Get] = CreateOperationWithResponseOkPet(),
                 },
-            };
+            },
+        };
 
-        public static OpenApiResponses CreateResponsesOkPet()
-            => new OpenApiResponses
+    public static OpenApiResponses CreateResponsesOkWithBinary()
+        => new OpenApiResponses
+        {
+            ["200"] = new OpenApiResponse
             {
-                ["200"] = new OpenApiResponse
+                Description = "Ok",
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                 {
-                    Description = "Ok",
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    [MediaTypeNames.Application.Octet] = new OpenApiMediaType
                     {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                        Schema = new OpenApiSchema
                         {
-                            Schema = CreateSchemaPet(),
+                            Type = OpenApiDataTypeConstants.String,
+                            Format = OpenApiFormatTypeConstants.Binary,
                         },
                     },
                 },
-            };
+            },
+        };
 
-        public static OpenApiResponses CreateResponsesOkWithBinary()
-            => new OpenApiResponses
+    public static OpenApiResponses CreateResponsesOkPets()
+        => new OpenApiResponses
+        {
+            ["200"] = new OpenApiResponse
             {
-                ["200"] = new OpenApiResponse
+                Description = "Ok",
+                Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                 {
-                    Description = "Ok",
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
+                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
                     {
-                        [MediaTypeNames.Application.Octet] = new OpenApiMediaType
-                        {
-                            Schema = new OpenApiSchema
-                            {
-                                Type = OpenApiDataTypeConstants.String,
-                                Format = OpenApiFormatTypeConstants.Binary,
-                            },
-                        },
+                        Schema = CreateSchemaPets(),
                     },
                 },
-            };
+            },
+        };
 
-        public static OpenApiResponses CreateResponsesOkPets()
-            => new OpenApiResponses
+    public static OpenApiSchema CreateSchemaAddress()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
             {
-                ["200"] = new OpenApiResponse
-                {
-                    Description = "Ok",
-                    Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
-                    {
-                        [MediaTypeNames.Application.Json] = new OpenApiMediaType
-                        {
-                            Schema = CreateSchemaPets(),
-                        },
-                    },
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaAddress()
-            => new OpenApiSchema
+                Type = ReferenceType.Schema,
+                Id = "address",
+            },
+            Title = "Address",
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {
-                Type = "object",
-                Reference = new OpenApiReference
+                ["streetName"] = new OpenApiSchema
                 {
-                    Type = ReferenceType.Schema,
-                    Id = "address",
+                    Type = "string",
                 },
-                Title = "Address",
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                ["streetNumber"] = new OpenApiSchema
                 {
-                    ["streetName"] = new OpenApiSchema
+                    Type = "string",
+                },
+                ["postalCode"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["cityName"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["country"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Reference = new OpenApiReference
                     {
-                        Type = "string",
-                    },
-                    ["streetNumber"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["postalCode"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["cityName"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["country"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.Schema,
-                            Id = "country",
-                        },
+                        Type = ReferenceType.Schema,
+                        Id = "country",
                     },
                 },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "name",
-                    "alpha2Code",
-                    "alpha3Code",
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaCountry()
-            => new OpenApiSchema
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
             {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "country",
-                },
-                Title = "Country",
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["name"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["alpha2Code"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        MinLength = 2,
-                        MaxLength = 2,
-                    },
-                    ["alpha3Code"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        MinLength = 3,
-                        MaxLength = 3,
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "name",
-                    "alpha2Code",
-                    "alpha3Code",
-                },
-            };
+                "name",
+                "alpha2Code",
+                "alpha3Code",
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaPet()
-            => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaCountry()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "country",
+            },
+            Title = "Country",
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["name"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["alpha2Code"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    MinLength = 2,
+                    MaxLength = 2,
+                },
+                ["alpha3Code"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    MinLength = 3,
+                    MaxLength = 3,
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "name",
+                "alpha2Code",
+                "alpha3Code",
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaPet()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "pet",
+            },
+            Title = "MyPet",
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["id"] = new OpenApiSchema
+                {
+                    Type = "integer",
+                    Format = "int64",
+                },
+                ["name"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["tag"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Title = "MyTag",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "id",
+                "name",
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaNewPet()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "newPet",
+            },
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["id"] = new OpenApiSchema
+                {
+                    Type = "integer",
+                    Format = "int64",
+                },
+                ["name"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["tag"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "name",
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaPetWithGuid()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "petWithGuid",
+            },
+            Title = "MyPet",
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["id"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "uuid",
+                },
+                ["name"] = new OpenApiSchema
+                {
+                    Type = "string",
+                },
+                ["tag"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Title = "MyTag",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "id",
+                "name",
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaPetWithBinary()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "petWithBinary",
+            },
+            Title = "MyPet",
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["id"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "uuid",
+                },
+                ["name"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "binary",
+                },
+                ["tag"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Title = "MyTag",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "id",
+                "name",
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaPets()
+        => new OpenApiSchema
+        {
+            Type = "array",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "pets",
+            },
+            Items = new OpenApiSchema
             {
                 Type = "object",
                 Reference = new OpenApiReference
@@ -383,333 +519,190 @@ namespace Atc.OpenApi.Tests.XUnitTestData
                     Type = ReferenceType.Schema,
                     Id = "pet",
                 },
-                Title = "MyPet",
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["id"] = new OpenApiSchema
-                    {
-                        Type = "integer",
-                        Format = "int64",
-                    },
-                    ["name"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["tag"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Title = "MyTag",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "id",
-                    "name",
-                },
-            };
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaNewPet()
-            => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaPetsWithBinaryArray()
+        => new OpenApiSchema
+        {
+            Type = "array",
+            Items = new OpenApiSchema
             {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "newPet",
-                },
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["id"] = new OpenApiSchema
-                    {
-                        Type = "integer",
-                        Format = "int64",
-                    },
-                    ["name"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["tag"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "name",
-                },
-            };
+                Type = "string",
+                Format = "binary",
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaPetWithGuid()
-            => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaPetsAsObjectWithArray()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
             {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "petWithGuid",
-                },
-                Title = "MyPet",
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["id"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Format = "uuid",
-                    },
-                    ["name"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                    ["tag"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Title = "MyTag",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "id",
-                    "name",
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaPetWithBinary()
-            => new OpenApiSchema
+                Type = ReferenceType.Schema,
+                Id = "animals",
+            },
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {
-                Type = "object",
-                Reference = new OpenApiReference
+                ["pets"] = new OpenApiSchema
                 {
-                    Type = ReferenceType.Schema,
-                    Id = "petWithBinary",
-                },
-                Title = "MyPet",
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["id"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Format = "uuid",
-                    },
-                    ["name"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Format = "binary",
-                    },
-                    ["tag"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Title = "MyTag",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "id",
-                    "name",
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaPets()
-            => new OpenApiSchema
-            {
-                Type = "array",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "pets",
-                },
-                Items = new OpenApiSchema
-                {
-                    Type = "object",
+                    Type = "array",
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.Schema,
                         Id = "pet",
                     },
                 },
-            };
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaPetsWithBinaryArray()
-            => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaPetsAsObjectWithBinaryArray()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
             {
-                Type = "array",
-                Items = new OpenApiSchema
+                Type = ReferenceType.Schema,
+                Id = "animals",
+            },
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["petFiles"] = new OpenApiSchema
+                {
+                    Type = "array",
+                    Items = new OpenApiSchema
+                    {
+                        Type = "string",
+                        Format = "binary",
+                    },
+                },
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaColorType()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "colorType",
+            },
+            Title = "Color type",
+            Properties =
+            {
+                ["color"] = CreateSchemaColorEnum(),
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaColorEnum()
+        => new OpenApiSchema
+        {
+            Type = "string",
+            Description = "The color type",
+            Enum =
+            {
+                new OpenApiString("unknown = 0"),
+                new OpenApiString("black = 1"),
+                new OpenApiString("white = 2"),
+                new OpenApiString("yellow = 4"),
+                new OpenApiString("red = 8"),
+            },
+        };
+
+    public static OpenApiSchema CreateSchemaErrorModel()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = "errorModel",
+            },
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["code"] = new OpenApiSchema
+                {
+                    Type = "integer",
+                    Format = "int32",
+                },
+                ["message"] = new OpenApiSchema
                 {
                     Type = "string",
-                    Format = "binary",
                 },
-            };
-
-        public static OpenApiSchema CreateSchemaPetsAsObjectWithArray()
-            => new OpenApiSchema
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
             {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "animals",
-                },
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["pets"] = new OpenApiSchema
-                    {
-                        Type = "array",
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.Schema,
-                            Id = "pet",
-                        },
-                    },
-                },
-            };
+                "code",
+                "message",
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaPetsAsObjectWithBinaryArray()
-            => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaPagination()
+        => new OpenApiSchema
+        {
+            Type = "object",
+            Title = NameConstants.Pagination,
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
             {
-                Type = "object",
-                Reference = new OpenApiReference
+                ["pageSize"] = new OpenApiSchema
                 {
-                    Type = ReferenceType.Schema,
-                    Id = "animals",
+                    Type = "number",
+                    Description = "The number of items to request.",
                 },
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+                ["pageIndex"] = new OpenApiSchema
                 {
-                    ["petFiles"] = new OpenApiSchema
-                    {
-                        Type = "array",
-                        Items = new OpenApiSchema
-                        {
-                            Type = "string",
-                            Format = "binary",
-                        },
-                    },
+                    Type = "number",
+                    Nullable = true,
+                    Description = "The given page index starting with 0.",
                 },
-            };
+                ["queryString"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Nullable = true,
+                    Description = "The query to filter items by.",
+                },
+                ["continuationToken"] = new OpenApiSchema
+                {
+                    Type = "string",
+                    Nullable = true,
+                    Description = "Token to indicate next result set.",
+                },
+                ["count"] = new OpenApiSchema
+                {
+                    Type = "number",
+                    Description = "Items count in result set.",
+                },
+                ["totalCount"] = new OpenApiSchema
+                {
+                    Type = "number",
+                    Nullable = true,
+                    Description = "Total items count.",
+                },
+                ["totalPages"] = new OpenApiSchema
+                {
+                    Type = "number",
+                    Nullable = true,
+                    Description = "Total pages.",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "pageSize",
+                "count",
+            },
+        };
 
-        public static OpenApiSchema CreateSchemaColorType()
-            => new OpenApiSchema
-            {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "colorType",
-                },
-                Title = "Color type",
-                Properties =
-                {
-                    ["color"] = CreateSchemaColorEnum(),
-                },
-            };
+    public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
+        => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+        {
+            ["Pet"] = CreateSchemaPet(),
+        };
 
-        public static OpenApiSchema CreateSchemaColorEnum()
-            => new OpenApiSchema
-            {
-                Type = "string",
-                Description = "The color type",
-                Enum =
-                {
-                    new OpenApiString("unknown = 0"),
-                    new OpenApiString("black = 1"),
-                    new OpenApiString("white = 2"),
-                    new OpenApiString("yellow = 4"),
-                    new OpenApiString("red = 8"),
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaErrorModel()
-            => new OpenApiSchema
-            {
-                Type = "object",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.Schema,
-                    Id = "errorModel",
-                },
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["code"] = new OpenApiSchema
-                    {
-                        Type = "integer",
-                        Format = "int32",
-                    },
-                    ["message"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "code",
-                    "message",
-                },
-            };
-
-        public static OpenApiSchema CreateSchemaPagination()
-            => new OpenApiSchema
-            {
-                Type = "object",
-                Title = NameConstants.Pagination,
-                Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-                {
-                    ["pageSize"] = new OpenApiSchema
-                    {
-                        Type = "number",
-                        Description = "The number of items to request.",
-                    },
-                    ["pageIndex"] = new OpenApiSchema
-                    {
-                        Type = "number",
-                        Nullable = true,
-                        Description = "The given page index starting with 0.",
-                    },
-                    ["queryString"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Nullable = true,
-                        Description = "The query to filter items by.",
-                    },
-                    ["continuationToken"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Nullable = true,
-                        Description = "Token to indicate next result set.",
-                    },
-                    ["count"] = new OpenApiSchema
-                    {
-                        Type = "number",
-                        Description = "Items count in result set.",
-                    },
-                    ["totalCount"] = new OpenApiSchema
-                    {
-                        Type = "number",
-                        Nullable = true,
-                        Description = "Total items count.",
-                    },
-                    ["totalPages"] = new OpenApiSchema
-                    {
-                        Type = "number",
-                        Nullable = true,
-                        Description = "Total pages.",
-                    },
-                },
-                Required = new HashSet<string>(StringComparer.Ordinal)
-                {
-                    "pageSize",
-                    "count",
-                },
-            };
-
-        public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
-            => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-            {
-                ["Pet"] = CreateSchemaPet(),
-            };
-
-        public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithDifferentPets()
-            => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
-            {
-                ["Pet"] = CreateSchemaPet(),
-                ["PetWithGuid"] = CreateSchemaPetWithGuid(),
-            };
-    }
+    public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithDifferentPets()
+        => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+        {
+            ["Pet"] = CreateSchemaPet(),
+            ["PetWithGuid"] = CreateSchemaPetWithGuid(),
+        };
 }

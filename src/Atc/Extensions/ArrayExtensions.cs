@@ -1,72 +1,67 @@
-using System.Collections.Generic;
-using System.Linq;
-using Atc;
-
 // ReSharper disable once CheckNamespace
-namespace System
+namespace System;
+
+/// <summary>
+/// Extensions for the <see cref="Array"/> class.
+/// </summary>
+public static class ArrayExtensions
 {
     /// <summary>
-    /// Extensions for the <see cref="Array"/> class.
+    /// Removes the duplicates.
     /// </summary>
-    public static class ArrayExtensions
+    /// <param name="array">The array.</param>
+    public static Array RemoveDuplicates(this Array array)
     {
-        /// <summary>
-        /// Removes the duplicates.
-        /// </summary>
-        /// <param name="array">The array.</param>
-        public static Array RemoveDuplicates(this Array array)
+        return ToList(array, SortDirectionType.None, removeDuplicates: true).ToArray();
+    }
+
+    /// <summary>
+    /// To the array.
+    /// </summary>
+    /// <param name="array">The array.</param>
+    /// <param name="sortDirectionType">Type of the sort direction.</param>
+    /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
+    public static Array ToArray(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
+    {
+        return ToList(array, sortDirectionType, removeDuplicates).ToArray();
+    }
+
+    /// <summary>
+    /// To the list.
+    /// </summary>
+    /// <param name="array">The array.</param>
+    /// <param name="sortDirectionType">Type of the sort direction.</param>
+    /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
+    public static List<string> ToList(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
+    {
+        if (array is null)
         {
-            return ToList(array, SortDirectionType.None, removeDuplicates: true).ToArray();
+            throw new ArgumentNullException(nameof(array));
         }
 
-        /// <summary>
-        /// To the array.
-        /// </summary>
-        /// <param name="array">The array.</param>
-        /// <param name="sortDirectionType">Type of the sort direction.</param>
-        /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
-        public static Array ToArray(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
+        var list = new List<string>(array.Length);
+        for (var i = 0; i < array.Length; i++)
         {
-            return ToList(array, sortDirectionType, removeDuplicates).ToArray();
-        }
-
-        /// <summary>
-        /// To the list.
-        /// </summary>
-        /// <param name="array">The array.</param>
-        /// <param name="sortDirectionType">Type of the sort direction.</param>
-        /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
-        public static List<string> ToList(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
-        {
-            if (array is null)
+            var s = array.GetValue(i).ToString();
+            if (removeDuplicates)
             {
-                throw new ArgumentNullException(nameof(array));
-            }
-
-            var list = new List<string>(array.Length);
-            for (var i = 0; i < array.Length; i++)
-            {
-                var s = array.GetValue(i).ToString();
-                if (removeDuplicates)
-                {
-                    if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))
-                    {
-                        list.Add(s);
-                    }
-                }
-                else
+                if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))
                 {
                     list.Add(s);
                 }
             }
-
-            return sortDirectionType switch
+            else
             {
-                SortDirectionType.None => list,
-                SortDirectionType.Ascending => list.OrderBy(x => x).ToList(),
-                SortDirectionType.Descending => list.OrderByDescending(x => x).ToList(),
-                _ => throw new SwitchCaseDefaultException(sortDirectionType)
-            };
+                list.Add(s);
+            }
         }
+
+        return sortDirectionType switch
+        {
+            SortDirectionType.None => list,
+            SortDirectionType.Ascending => list.OrderBy(x => x).ToList(),
+            SortDirectionType.Descending => list.OrderByDescending(x => x).ToList(),
+            _ => throw new SwitchCaseDefaultException(sortDirectionType)
+        };
     }
 }

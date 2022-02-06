@@ -1,55 +1,51 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+namespace Atc.Data.Models;
 
-namespace Atc.Data.Models
+/// <summary>
+/// KeyValueItem.
+/// </summary>
+[Serializable]
+public class KeyValueItem
 {
     /// <summary>
-    /// KeyValueItem.
+    /// Initializes a new instance of the <see cref="KeyValueItem"/> class.
     /// </summary>
-    [Serializable]
-    public class KeyValueItem
+    public KeyValueItem()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyValueItem"/> class.
-        /// </summary>
-        public KeyValueItem()
-        {
-            this.Key = string.Empty;
-            this.Value = string.Empty;
-        }
+        this.Key = string.Empty;
+        this.Value = string.Empty;
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyValueItem"/> class.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-        public KeyValueItem(string key, string value)
-        {
-            this.Key = key ?? throw new ArgumentNullException(nameof(key));
-            this.Value = value ?? throw new ArgumentNullException(nameof(value));
-        }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="KeyValueItem"/> class.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The value.</param>
+    [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
+    public KeyValueItem(string key, string value)
+    {
+        this.Key = key ?? throw new ArgumentNullException(nameof(key));
+        this.Value = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
-        /// <summary>
-        /// Gets or sets the key.
-        /// </summary>
-        /// <value>
-        /// The key.
-        /// </value>
-        public string Key { get; set; }
+    /// <summary>
+    /// Gets or sets the key.
+    /// </summary>
+    /// <value>
+    /// The key.
+    /// </value>
+    public string Key { get; set; }
 
-        /// <summary>
-        /// Gets or sets the value.
-        /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
-        public string Value { get; set; }
+    /// <summary>
+    /// Gets or sets the value.
+    /// </summary>
+    /// <value>
+    /// The value.
+    /// </value>
+    public string Value { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return $"{nameof(this.Key)}: {this.Key}, {nameof(this.Value)}: {this.Value}";
-        }
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return $"{nameof(this.Key)}: {this.Key}, {nameof(this.Value)}: {this.Value}";
     }
 }

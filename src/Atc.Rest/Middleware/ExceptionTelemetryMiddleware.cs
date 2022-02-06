@@ -1,59 +1,52 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.ApplicationInsights;
-using Microsoft.AspNetCore.Http;
+namespace Atc.Rest.Middleware;
 
-namespace Atc.Rest.Middleware
+public class ExceptionTelemetryMiddleware
 {
-    public class ExceptionTelemetryMiddleware
+    private readonly RequestDelegate next;
+    private readonly TelemetryClient client;
+
+    public ExceptionTelemetryMiddleware(RequestDelegate next, TelemetryClient client)
     {
-        private readonly RequestDelegate next;
-        private readonly TelemetryClient client;
+        this.next = next;
+        this.client = client;
+    }
 
-        public ExceptionTelemetryMiddleware(RequestDelegate next, TelemetryClient client)
+    public Task InvokeAsync(HttpContext context)
+    {
+        if (context is null)
         {
-            this.next = next;
-            this.client = client;
+            throw new ArgumentNullException(nameof(context));
         }
 
-        public Task InvokeAsync(HttpContext context)
+        return InternalInvokeAsync(context);
+    }
+
+    private async Task InternalInvokeAsync(HttpContext context)
+    {
+        var requestFailed = false;
+
+        try
         {
-            if (context is null)
+            await next(context);
+        }
+        catch (Exception ex)
+        {
+            client.TrackException(ex);
+
+            if (context.Response.HasStarted)
             {
-                throw new ArgumentNullException(nameof(context));
+                throw;
             }
 
-            return InternalInvokeAsync(context);
+            requestFailed = true;
         }
 
-        private async Task InternalInvokeAsync(HttpContext context)
+        if (requestFailed)
         {
-            var requestFailed = false;
-
-            try
-            {
-                await next(context);
-            }
-            catch (Exception ex)
-            {
-                client.TrackException(ex);
-
-                if (context.Response.HasStarted)
-                {
-                    throw;
-                }
-
-                requestFailed = true;
-            }
-
-            if (requestFailed)
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await context
-                    .Response
-                    .WriteAsync($"Something is broken. Please contact the development team with the value of the returned header named '{WellKnownHttpHeaders.CorrelationId}'");
-            }
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            await context
+                .Response
+                .WriteAsync($"Something is broken. Please contact the development team with the value of the returned header named '{WellKnownHttpHeaders.CorrelationId}'");
         }
     }
 }

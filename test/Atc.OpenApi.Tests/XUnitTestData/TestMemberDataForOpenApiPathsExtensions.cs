@@ -1,23 +1,19 @@
-using Microsoft.OpenApi.Models;
-using Xunit;
+namespace Atc.OpenApi.Tests.XUnitTestData;
 
-namespace Atc.OpenApi.Tests.XUnitTestData
+public static class TestMemberDataForOpenApiPathsExtensions
 {
-    public static class TestMemberDataForOpenApiPathsExtensions
-    {
-        public static TheoryData<int, OpenApiPaths, string> GetPathsStartingWithSegmentName
-            => new TheoryData<int, OpenApiPaths, string>
+    public static TheoryData<int, OpenApiPaths, string> GetPathsStartingWithSegmentName
+        => new TheoryData<int, OpenApiPaths, string>
+        {
             {
-                {
-                    0,
-                    TestDataOpenApiFactory.CreatePaths(),
-                    "myPets"
-                },
-                {
-                    2,
-                    TestDataOpenApiFactory.CreatePaths(),
-                    "pets"
-                },
-            };
-    }
+                0,
+                TestDataOpenApiFactory.CreatePaths(),
+                "myPets"
+            },
+            {
+                2,
+                TestDataOpenApiFactory.CreatePaths(),
+                "pets"
+            },
+        };
 }

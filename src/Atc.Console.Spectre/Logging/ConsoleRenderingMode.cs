@@ -1,10 +1,9 @@
-namespace Atc.Console.Spectre.Logging
+namespace Atc.Console.Spectre.Logging;
+
+public enum ConsoleRenderingMode
 {
-    public enum ConsoleRenderingMode
-    {
-        Default,
-        LogLevel,
-        CategoryName,
-        LogLevelAndCategoryName,
-    }
+    Default,
+    LogLevel,
+    CategoryName,
+    LogLevelAndCategoryName,
 }

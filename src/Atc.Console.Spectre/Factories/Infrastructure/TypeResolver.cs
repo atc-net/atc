@@ -1,29 +1,24 @@
-using System;
-using Microsoft.Extensions.DependencyInjection;
-using Spectre.Console.Cli;
+namespace Atc.Console.Spectre.Factories.Infrastructure;
 
-namespace Atc.Console.Spectre.Factories.Infrastructure
+public sealed class TypeResolver : ITypeResolver, IDisposable
 {
-    public sealed class TypeResolver : ITypeResolver, IDisposable
+    private readonly IServiceProvider provider;
+
+    public TypeResolver(IServiceProvider provider)
     {
-        private readonly IServiceProvider provider;
+        this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
+    }
 
-        public TypeResolver(IServiceProvider provider)
+    public object? Resolve(Type? type)
+        => type is null
+            ? null
+            : provider.GetRequiredService(type);
+
+    public void Dispose()
+    {
+        if (provider is IDisposable disposable)
         {
-            this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
-        }
-
-        public object? Resolve(Type? type)
-            => type is null
-                ? null
-                : provider.GetRequiredService(type);
-
-        public void Dispose()
-        {
-            if (provider is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
+            disposable.Dispose();
         }
     }
 }

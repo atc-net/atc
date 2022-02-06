@@ -1,88 +1,82 @@
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
-using Xunit;
-using Xunit.Sdk;
+namespace Atc.Rest.FluentAssertions.Tests.Assertions;
 
-namespace Atc.Rest.FluentAssertions.Tests.Assertions
+public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
 {
-    public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
+    [Fact]
+    public void Ctor_Sets_Subject_On_Subject_Property()
     {
-        [Fact]
-        public void Ctor_Sets_Subject_On_Subject_Property()
+        // Arrange
+        var expected = new ContentResult();
+
+        // Act
+        var sut = new NoContentResultAssertions(expected);
+
+        // Assert
+        sut.Subject.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData("BAR", @"Expected content of no content result to be System.String, but found System.Text.Json.JsonElement.")]
+    [InlineData(42, @"Expected content of no content result to be 42, but found FOO.")]
+    public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(object content, string expectedMessage)
+    {
+        // Arrange
+        var target = CreateWithJsonContent("FOO");
+
+        var sut = new NoContentResultAssertions(target);
+
+        // Act & Assert
+        sut.Invoking(x => x.WithContent(content))
+            .Should()
+            .Throw<XunitException>()
+            .WithMessage(expectedMessage);
+    }
+
+    [Fact]
+    public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected_WithBecauseMessage()
+    {
+        // Arrange
+        var target = CreateWithJsonContent("FOO");
+
+        var sut = new NoContentResultAssertions(target);
+
+        // Act & Assert
+        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+            .Should()
+            .Throw<XunitException>()
+            .WithMessage(@"Expected content of no content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+    }
+
+    [Fact]
+    public void WithContent_Throws_When_ContentTypes_Isnt_Json()
+    {
+        // Arrange
+        var target = new ContentResult
         {
-            // Arrange
-            var expected = new ContentResult();
+            Content = "FOO",
+            ContentType = "BAZ",
+        };
 
-            // Act
-            var sut = new NoContentResultAssertions(expected);
+        var sut = new NoContentResultAssertions(target);
 
-            // Assert
-            sut.Subject.Should().Be(expected);
-        }
+        // Act & Assert
+        sut.Invoking(x => x.WithContent("FOO"))
+            .Should()
+            .Throw<XunitException>()
+            .WithMessage(@"Expected content type of no content result to be ""application/json"", but found ""BAZ"".");
+    }
 
-        [Theory]
-        [InlineData("BAR", @"Expected content of no content result to be System.String, but found System.Text.Json.JsonElement.")]
-        [InlineData(42, @"Expected content of no content result to be 42, but found FOO.")]
-        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(object content, string expectedMessage)
-        {
-            // Arrange
-            var target = CreateWithJsonContent("FOO");
+    [Fact]
+    public void WithContent_Does_Not_Throw_When_Expected_Match()
+    {
+        // Arrange
+        var target = CreateWithJsonContent("FOO");
 
-            var sut = new NoContentResultAssertions(target);
+        var sut = new NoContentResultAssertions(target);
 
-            // Act & Assert
-            sut.Invoking(x => x.WithContent(content))
-                .Should()
-                .Throw<XunitException>()
-                .WithMessage(expectedMessage);
-        }
-
-        [Fact]
-        public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected_WithBecauseMessage()
-        {
-            // Arrange
-            var target = CreateWithJsonContent("FOO");
-
-            var sut = new NoContentResultAssertions(target);
-
-            // Act & Assert
-            sut.Invoking(x => x.WithContent("BAR", "Because of something"))
-                .Should()
-                .Throw<XunitException>()
-                .WithMessage(@"Expected content of no content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
-        }
-
-        [Fact]
-        public void WithContent_Throws_When_ContentTypes_Isnt_Json()
-        {
-            // Arrange
-            var target = new ContentResult
-            {
-                Content = "FOO",
-                ContentType = "BAZ",
-            };
-
-            var sut = new NoContentResultAssertions(target);
-
-            // Act & Assert
-            sut.Invoking(x => x.WithContent("FOO"))
-                .Should()
-                .Throw<XunitException>()
-                .WithMessage(@"Expected content type of no content result to be ""application/json"", but found ""BAZ"".");
-        }
-
-        [Fact]
-        public void WithContent_Does_Not_Throw_When_Expected_Match()
-        {
-            // Arrange
-            var target = CreateWithJsonContent("FOO");
-
-            var sut = new NoContentResultAssertions(target);
-
-            // Act & Assert
-            sut.Invoking(x => x.WithContent("FOO"))
-                .Should()
-                .NotThrow();
-        }
+        // Act & Assert
+        sut.Invoking(x => x.WithContent("FOO"))
+            .Should()
+            .NotThrow();
     }
 }

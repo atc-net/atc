@@ -1,20 +1,16 @@
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
-
 // ReSharper disable ConstantConditionalAccessQualifier
 // ReSharper disable once CheckNamespace
-namespace Atc.Rest.FluentAssertions
+namespace Atc.Rest.FluentAssertions;
+
+public class AcceptedResultAssertions : ContentResultAssertionsBase<AcceptedResultAssertions>
 {
-    public class AcceptedResultAssertions : ContentResultAssertionsBase<AcceptedResultAssertions>
+    public AcceptedResultAssertions(ContentResult subject)
+        : base(subject)
     {
-        public AcceptedResultAssertions(ContentResult subject)
-            : base(subject)
-        {
-        }
-
-        protected override string Identifier { get; } = "accepted result";
-
-        protected override AndWhichConstraint<AcceptedResultAssertions, ContentResult> CreateAndWhichConstraint()
-            => new AndWhichConstraint<AcceptedResultAssertions, ContentResult>(this, Subject);
     }
+
+    protected override string Identifier { get; } = "accepted result";
+
+    protected override AndWhichConstraint<AcceptedResultAssertions, ContentResult> CreateAndWhichConstraint()
+        => new AndWhichConstraint<AcceptedResultAssertions, ContentResult>(this, Subject);
 }

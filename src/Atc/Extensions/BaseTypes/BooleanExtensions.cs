@@ -1,45 +1,44 @@
 // ReSharper disable once CheckNamespace
-namespace System
+namespace System;
+
+/// <summary>
+/// Extensions for the <see cref="bool"/> class.
+/// </summary>
+public static class BooleanExtensions
 {
     /// <summary>
-    /// Extensions for the <see cref="bool"/> class.
+    /// Determines whether the specified a is equal.
     /// </summary>
-    public static class BooleanExtensions
+    /// <param name="a">a.</param>
+    /// <param name="b">The b.</param>
+    /// <returns>
+    ///   <c>true</c> if the specified a is equal; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool IsEqual(this bool? a, bool? b)
     {
-        /// <summary>
-        /// Determines whether the specified a is equal.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="b">The b.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified a is equal; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsEqual(this bool? a, bool? b)
+        if (a is null || b is null)
         {
-            if (a is null || b is null)
-            {
-                return a is null && b is null;
-            }
-
-            return a == b;
+            return a is null && b is null;
         }
 
-        /// <summary>
-        /// Converts the string representation of a number to an integer.
-        /// </summary>
-        /// <param name="source">if set to <c>true</c> [source].</param>
-        public static int ToInt(this bool source)
-        {
-            return source ? 1 : 0;
-        }
+        return a == b;
+    }
 
-        /// <summary>
-        /// Converts the string representation of a number to an integer.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        public static int ToInt(this bool? source)
-        {
-            return source?.ToInt() ?? 0;
-        }
+    /// <summary>
+    /// Converts the string representation of a number to an integer.
+    /// </summary>
+    /// <param name="source">if set to <c>true</c> [source].</param>
+    public static int ToInt(this bool source)
+    {
+        return source ? 1 : 0;
+    }
+
+    /// <summary>
+    /// Converts the string representation of a number to an integer.
+    /// </summary>
+    /// <param name="source">The source.</param>
+    public static int ToInt(this bool? source)
+    {
+        return source?.ToInt() ?? 0;
     }
 }

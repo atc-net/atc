@@ -1,91 +1,78 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Reflection;
-using Atc.Rest.Extensions;
-using Atc.Rest.Options;
-using Atc.Rest.Results;
-using Atc.XUnit;
-using Microsoft.AspNetCore.Http;
-using Xunit;
-using Xunit.Abstractions;
+namespace Atc.Rest.Tests;
 
-namespace Atc.Rest.Tests
+public class CodeComplianceTests
 {
-    public class CodeComplianceTests
+    // ReSharper disable once NotAccessedField.Local
+    private readonly ITestOutputHelper testOutputHelper;
+    private readonly Assembly sourceAssembly = typeof(AtcRestAssemblyTypeInitializer).Assembly;
+    private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
+
+    private readonly List<Type> excludeTypes = new List<Type>
     {
-        // ReSharper disable once NotAccessedField.Local
-        private readonly ITestOutputHelper testOutputHelper;
-        private readonly Assembly sourceAssembly = typeof(AtcRestAssemblyTypeInitializer).Assembly;
-        private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
+        // TODO: Add UnitTest and remove from this list!!
+        typeof(EndpointRouteBuilderExtensions),
+        typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
+        typeof(HttpResponseMessageExtensions),
+        typeof(Rest.Middleware.KeepAliveMiddleware),
+        typeof(Rest.Middleware.RequestCorrelationMiddleware),
+        typeof(AllowAnonymousAccessForDevelopmentHandler),
+        typeof(Options.ConfigureApiBehaviorOptions),
+        typeof(Options.RestApiOptions),
+        typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),
+        typeof(Microsoft.ApplicationInsights.Extensibility.CallingIdentityTelemetryInitializer),
+        typeof(Microsoft.AspNetCore.Builder.RestApiBuilderExtensions),
+        typeof(Microsoft.AspNetCore.Http.AnonymousAccessExtensions),
+        typeof(Microsoft.AspNetCore.Http.HttpContextExtensions),
+        typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilterAttribute),
+        typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
+        typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
+        typeof(ResultFactory),
+        typeof(AuthorizationOptions),
 
-        private readonly List<Type> excludeTypes = new List<Type>
-        {
-            // TODO: Add UnitTest and remove from this list!!
-            typeof(EndpointRouteBuilderExtensions),
-            typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
-            typeof(HttpResponseMessageExtensions),
-            typeof(Rest.Middleware.KeepAliveMiddleware),
-            typeof(Rest.Middleware.RequestCorrelationMiddleware),
-            typeof(AllowAnonymousAccessForDevelopmentHandler),
-            typeof(Options.ConfigureApiBehaviorOptions),
-            typeof(Options.RestApiOptions),
-            typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),
-            typeof(Microsoft.ApplicationInsights.Extensibility.CallingIdentityTelemetryInitializer),
-            typeof(Microsoft.AspNetCore.Builder.RestApiBuilderExtensions),
-            typeof(Microsoft.AspNetCore.Http.AnonymousAccessExtensions),
-            typeof(Microsoft.AspNetCore.Http.HttpContextExtensions),
-            typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilterAttribute),
-            typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
-            typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
-            typeof(ResultFactory),
-            typeof(AuthorizationOptions),
+        // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(FormFileExtensions),
+    };
 
-            // UnitTests are made, but CodeCompliance test cannot detect this
-            typeof(FormFileExtensions),
-        };
+    public CodeComplianceTests(ITestOutputHelper testOutputHelper)
+    {
+        this.testOutputHelper = testOutputHelper;
+    }
 
-        public CodeComplianceTests(ITestOutputHelper testOutputHelper)
-        {
-            this.testOutputHelper = testOutputHelper;
-        }
+    [Fact]
+    public void AssertExportedMethodsWithMissingTests_AbstractSyntaxTree()
+    {
+        // Act & Assert
+        CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
+            DecompilerType.AbstractSyntaxTree,
+            sourceAssembly,
+            testAssembly,
+            excludeTypes);
+    }
 
-        [Fact]
-        public void AssertExportedMethodsWithMissingTests_AbstractSyntaxTree()
-        {
-            // Act & Assert
-            CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
-                DecompilerType.AbstractSyntaxTree,
-                sourceAssembly,
-                testAssembly,
-                excludeTypes);
-        }
+    [Fact]
+    public void AssertExportedMethodsWithMissingTests_MonoReflection()
+    {
+        // Act & Assert
+        CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
+            DecompilerType.MonoReflection,
+            sourceAssembly,
+            testAssembly,
+            excludeTypes);
+    }
 
-        [Fact]
-        public void AssertExportedMethodsWithMissingTests_MonoReflection()
-        {
-            // Act & Assert
-            CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
-                DecompilerType.MonoReflection,
-                sourceAssembly,
-                testAssembly,
-                excludeTypes);
-        }
+    [Fact]
+    public void AssertExportedTypesWithMissingComments()
+    {
+        // Act & Assert
+        CodeComplianceDocumentationHelper.AssertExportedTypesWithMissingComments(
+            sourceAssembly);
+    }
 
-        [Fact]
-        public void AssertExportedTypesWithMissingComments()
-        {
-            // Act & Assert
-            CodeComplianceDocumentationHelper.AssertExportedTypesWithMissingComments(
-                sourceAssembly);
-        }
-
-        [Fact]
-        public void AssertExportedTypesWithWrongNaming()
-        {
-            // Act & Assert
-            CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
-                sourceAssembly);
-        }
+    [Fact]
+    public void AssertExportedTypesWithWrongNaming()
+    {
+        // Act & Assert
+        CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
+            sourceAssembly);
     }
 }

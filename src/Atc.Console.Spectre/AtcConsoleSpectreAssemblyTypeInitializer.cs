@@ -1,7 +1,6 @@
-namespace Atc.Console.Spectre
+namespace Atc.Console.Spectre;
+
+public static class AtcConsoleSpectreAssemblyTypeInitializer
 {
-    public static class AtcConsoleSpectreAssemblyTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Xunit;
+namespace Atc.Rest.Tests.Extensions;
 
-namespace Atc.Rest.Tests.Extensions
+public class ApplicationInsightsExtensionsTests
 {
-    public class ApplicationInsightsExtensionsTests
+    [Fact]
+    public void GetApiName()
     {
-        [Fact]
-        public void GetApiName()
-        {
-            // Arrange
-            var serviceCollection = new ServiceCollection();
+        // Arrange
+        var serviceCollection = new ServiceCollection();
 
-            // Act
-            var actual = serviceCollection.AddCallingIdentityTelemetryInitializer();
+        // Act
+        var actual = serviceCollection.AddCallingIdentityTelemetryInitializer();
 
-            // Assert
-            Assert.NotNull(actual);
-            Assert.True(actual.Count == 2);
-        }
+        // Assert
+        Assert.NotNull(actual);
+        Assert.True(actual.Count == 2);
     }
 }

@@ -1,29 +1,26 @@
-﻿using Atc.Resources;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Enumeration: InsertRemoveType.
+/// </summary>
+public enum InsertRemoveType
 {
     /// <summary>
-    /// Enumeration: InsertRemoveType.
+    /// Default None.
     /// </summary>
-    public enum InsertRemoveType
-    {
-        /// <summary>
-        /// Default None.
-        /// </summary>
-        [LocalizedDescription(null, typeof(EnumResources))]
-        None,
+    [LocalizedDescription(null, typeof(EnumResources))]
+    None,
 
-        /// <summary>
-        /// Insert.
-        /// </summary>
-        [LocalizedDescription("InsertRemoveTypeInsert", typeof(EnumResources))]
-        Insert,
+    /// <summary>
+    /// Insert.
+    /// </summary>
+    [LocalizedDescription("InsertRemoveTypeInsert", typeof(EnumResources))]
+    Insert,
 
-        /// <summary>
-        /// Remove.
-        /// </summary>
-        [LocalizedDescription("InsertRemoveTypeRemove", typeof(EnumResources))]
-        Remove,
-    }
+    /// <summary>
+    /// Remove.
+    /// </summary>
+    [LocalizedDescription("InsertRemoveTypeRemove", typeof(EnumResources))]
+    Remove,
 }

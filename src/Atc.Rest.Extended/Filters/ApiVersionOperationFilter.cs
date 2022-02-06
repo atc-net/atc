@@ -1,70 +1,61 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Atc.Rest.Extended.Versioning;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
+namespace Atc.Rest.Extended.Filters;
 
-namespace Atc.Rest.Extended.Filters
+public class ApiVersionOperationFilter : IOperationFilter
 {
-    public class ApiVersionOperationFilter : IOperationFilter
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        if (operation is null)
         {
-            if (operation is null)
-            {
-                throw new ArgumentNullException(nameof(operation));
-            }
-
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var apiVersionParameter = operation
-                .Parameters
-                .FirstOrDefault(p => string.Equals(p.Name, ApiVersionConstants.ApiVersionQueryParameter, StringComparison.Ordinal));
-
-            if (apiVersionParameter is not null)
-            {
-                ConfigureApiVersion(apiVersionParameter, context);
-            }
+            throw new ArgumentNullException(nameof(operation));
         }
 
-        protected void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
+        if (context is null)
         {
-            if (apiVersionParameter is null)
-            {
-                throw new ArgumentNullException(nameof(apiVersionParameter));
-            }
+            throw new ArgumentNullException(nameof(context));
+        }
 
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+        var apiVersionParameter = operation
+            .Parameters
+            .FirstOrDefault(p => string.Equals(p.Name, ApiVersionConstants.ApiVersionQueryParameter, StringComparison.Ordinal));
 
-            var description = context.ApiDescription
-                .ParameterDescriptions
-                .First(p => string.Equals(p.Name, apiVersionParameter.Name, StringComparison.Ordinal));
+        if (apiVersionParameter is not null)
+        {
+            ConfigureApiVersion(apiVersionParameter, context);
+        }
+    }
 
-            if (apiVersionParameter.Description is null)
-            {
-                apiVersionParameter.Description = description?.ModelMetadata?.Description;
-            }
+    protected void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
+    {
+        if (apiVersionParameter is null)
+        {
+            throw new ArgumentNullException(nameof(apiVersionParameter));
+        }
 
-            if (apiVersionParameter.Schema.Default is null && description is not null)
-            {
-                apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
+        if (context is null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
 
-                var openApiVersionList = new List<IOpenApiAny> { new OpenApiString(description.DefaultValue.ToString()) };
-                apiVersionParameter.Schema.Enum = openApiVersionList;
-            }
+        var description = context.ApiDescription
+            .ParameterDescriptions
+            .First(p => string.Equals(p.Name, apiVersionParameter.Name, StringComparison.Ordinal));
 
-            if (description is not null)
-            {
-                apiVersionParameter.Required |= description.IsRequired;
-            }
+        if (apiVersionParameter.Description is null)
+        {
+            apiVersionParameter.Description = description?.ModelMetadata?.Description;
+        }
+
+        if (apiVersionParameter.Schema.Default is null && description is not null)
+        {
+            apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
+
+            var openApiVersionList = new List<IOpenApiAny> { new OpenApiString(description.DefaultValue.ToString()) };
+            apiVersionParameter.Schema.Enum = openApiVersionList;
+        }
+
+        if (description is not null)
+        {
+            apiVersionParameter.Required |= description.IsRequired;
         }
     }
 }

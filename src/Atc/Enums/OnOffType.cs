@@ -1,29 +1,26 @@
-﻿using Atc.Resources;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Enumeration: OnOffType.
+/// </summary>
+public enum OnOffType
 {
     /// <summary>
-    /// Enumeration: OnOffType.
+    /// Default None.
     /// </summary>
-    public enum OnOffType
-    {
-        /// <summary>
-        /// Default None.
-        /// </summary>
-        [LocalizedDescription(null, typeof(EnumResources))]
-        None = 0,
+    [LocalizedDescription(null, typeof(EnumResources))]
+    None = 0,
 
-        /// <summary>
-        /// Off.
-        /// </summary>
-        [LocalizedDescription("OnOffTypeOff", typeof(EnumResources))]
-        Off = 1,
+    /// <summary>
+    /// Off.
+    /// </summary>
+    [LocalizedDescription("OnOffTypeOff", typeof(EnumResources))]
+    Off = 1,
 
-        /// <summary>
-        /// ON.
-        /// </summary>
-        [LocalizedDescription("OnOffTypeOn", typeof(EnumResources))]
-        On = 2,
-    }
+    /// <summary>
+    /// ON.
+    /// </summary>
+    [LocalizedDescription("OnOffTypeOn", typeof(EnumResources))]
+    On = 2,
 }

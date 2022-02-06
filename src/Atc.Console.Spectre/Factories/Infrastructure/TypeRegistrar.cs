@@ -1,37 +1,32 @@
-using System;
-using Microsoft.Extensions.DependencyInjection;
-using Spectre.Console.Cli;
+namespace Atc.Console.Spectre.Factories.Infrastructure;
 
-namespace Atc.Console.Spectre.Factories.Infrastructure
+public sealed class TypeRegistrar : ITypeRegistrar
 {
-    public sealed class TypeRegistrar : ITypeRegistrar
+    private readonly IServiceCollection builder;
+
+    public TypeRegistrar(IServiceCollection builder)
     {
-        private readonly IServiceCollection builder;
+        this.builder = builder;
+    }
 
-        public TypeRegistrar(IServiceCollection builder)
+    public ITypeResolver Build()
+    {
+        return new TypeResolver(builder.BuildServiceProvider());
+    }
+
+    public void Register(Type service, Type implementation)
+        => builder.AddSingleton(service, implementation);
+
+    public void RegisterInstance(Type service, object implementation)
+        => builder.AddSingleton(service, implementation);
+
+    public void RegisterLazy(Type service, Func<object> factory)
+    {
+        if (factory is null)
         {
-            this.builder = builder;
+            throw new ArgumentNullException(nameof(factory));
         }
 
-        public ITypeResolver Build()
-        {
-            return new TypeResolver(builder.BuildServiceProvider());
-        }
-
-        public void Register(Type service, Type implementation)
-            => builder.AddSingleton(service, implementation);
-
-        public void RegisterInstance(Type service, object implementation)
-            => builder.AddSingleton(service, implementation);
-
-        public void RegisterLazy(Type service, Func<object> factory)
-        {
-            if (factory is null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
-
-            builder.AddSingleton(service, _ => factory());
-        }
+        builder.AddSingleton(service, _ => factory());
     }
 }

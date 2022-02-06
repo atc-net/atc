@@ -1,29 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using Xunit;
+namespace Atc.Tests.Extensions;
 
-namespace Atc.Tests.Extensions
+public class ClaimsPrincipalExtensionsTests
 {
-    public class ClaimsPrincipalExtensionsTests
+    [Theory]
+    [InlineData("Hello World", "Hello World")]
+    [InlineData("Hello.World", "Hello.World")]
+    public void GetIdentity(string expected, string claimIdentifierValue)
     {
-        [Theory]
-        [InlineData("Hello World", "Hello World")]
-        [InlineData("Hello.World", "Hello.World")]
-        public void GetIdentity(string expected, string claimIdentifierValue)
-        {
-            // Arrange
-            var objectIdentifierClaim = new Claim("http://schemas.microsoft.com/identity/claims/objectidentifier", claimIdentifierValue);
-            var claims = new List<Claim> { objectIdentifierClaim };
+        // Arrange
+        var objectIdentifierClaim = new Claim("http://schemas.microsoft.com/identity/claims/objectidentifier", claimIdentifierValue);
+        var claims = new List<Claim> { objectIdentifierClaim };
 
-            var identity = new ClaimsIdentity(claims);
-            var claimsPrincipal = new ClaimsPrincipal(identity);
+        var identity = new ClaimsIdentity(claims);
+        var claimsPrincipal = new ClaimsPrincipal(identity);
 
-            // Act
-            var actual = claimsPrincipal.GetIdentity();
+        // Act
+        var actual = claimsPrincipal.GetIdentity();
 
-            // Assert
-            Assert.NotNull(actual);
-            Assert.Equal(expected, actual);
-        }
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(expected, actual);
     }
 }

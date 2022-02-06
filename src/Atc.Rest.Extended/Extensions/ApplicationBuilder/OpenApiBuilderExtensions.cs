@@ -1,45 +1,39 @@
-using System;
-using Atc.Rest.Extended.Options;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
 // ReSharper disable once CheckNamespace
-namespace Microsoft.AspNetCore.Builder
+namespace Microsoft.AspNetCore.Builder;
+
+public static class OpenApiBuilderExtensions
 {
-    public static class OpenApiBuilderExtensions
+    public static IApplicationBuilder UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
     {
-        public static IApplicationBuilder UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
+        return app.UseOpenApiSpec(env, new RestApiExtendedOptions());
+    }
+
+    public static IApplicationBuilder UseOpenApiSpec(
+        this IApplicationBuilder app,
+        IWebHostEnvironment env,
+        RestApiExtendedOptions restApiOptions)
+    {
+        if (env is null)
         {
-            return app.UseOpenApiSpec(env, new RestApiExtendedOptions());
+            throw new ArgumentNullException(nameof(env));
         }
 
-        public static IApplicationBuilder UseOpenApiSpec(
-            this IApplicationBuilder app,
-            IWebHostEnvironment env,
-            RestApiExtendedOptions restApiOptions)
+        if (restApiOptions is null)
         {
-            if (env is null)
-            {
-                throw new ArgumentNullException(nameof(env));
-            }
+            throw new ArgumentNullException(nameof(restApiOptions));
+        }
 
-            if (restApiOptions is null)
-            {
-                throw new ArgumentNullException(nameof(restApiOptions));
-            }
-
-            if (!restApiOptions.UseOpenApiSpec)
-            {
-                return app;
-            }
-
-            app.UseSwagger();
-            if (env.IsDevelopment())
-            {
-                app.UseSwaggerUI();
-            }
-
+        if (!restApiOptions.UseOpenApiSpec)
+        {
             return app;
         }
+
+        app.UseSwagger();
+        if (env.IsDevelopment())
+        {
+            app.UseSwaggerUI();
+        }
+
+        return app;
     }
 }

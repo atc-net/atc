@@ -1,18 +1,14 @@
-using System.Reflection;
-using Xunit;
+namespace Atc.Rest.Extended.Tests.Extensions;
 
-namespace Atc.Rest.Extended.Tests.Extensions
+public class AssemblyExtensionsTests
 {
-    public class AssemblyExtensionsTests
+    [Fact]
+    public void GetValidationTypes()
     {
-        [Fact]
-        public void GetValidationTypes()
-        {
-            // Act
-            var actual = Assembly.GetExecutingAssembly().GetValidationTypes();
+        // Act
+        var actual = Assembly.GetExecutingAssembly().GetValidationTypes();
 
-            // Assert
-            Assert.True(actual.Length == default);
-        }
+        // Assert
+        Assert.True(actual.Length == default);
     }
 }

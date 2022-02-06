@@ -1,42 +1,34 @@
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using Microsoft.ApplicationInsights;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
+namespace Atc.Rest.Extended.Versioning;
 
-namespace Atc.Rest.Extended.Versioning
+public class VersionErrorResponseProvider : IErrorResponseProvider
 {
-    public class VersionErrorResponseProvider : IErrorResponseProvider
+    private readonly TelemetryClient telemetry;
+
+    public VersionErrorResponseProvider(TelemetryClient telemetry)
     {
-        private readonly TelemetryClient telemetry;
+        this.telemetry = telemetry;
+    }
 
-        public VersionErrorResponseProvider(TelemetryClient telemetry)
+    public IActionResult CreateResponse(ErrorResponseContext context)
+    {
+        if (context is null)
         {
-            this.telemetry = telemetry;
+            throw new ArgumentNullException(nameof(context));
         }
 
-        public IActionResult CreateResponse(ErrorResponseContext context)
-        {
-            if (context is null)
+        var detail = new ValidationProblemDetails(
+            new Dictionary<string, string[]>(StringComparer.Ordinal)
             {
-                throw new ArgumentNullException(nameof(context));
-            }
+                { context.ErrorCode, new[] { context.Message } },
+            });
 
-            var detail = new ValidationProblemDetails(
-                new Dictionary<string, string[]>(StringComparer.Ordinal)
-                {
-                    { context.ErrorCode, new[] { context.Message } },
-                });
+        telemetry.TrackTrace(
+            "BadVersion",
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                { "Response.Body", JsonSerializer.Serialize(detail) },
+            });
 
-            telemetry.TrackTrace(
-                "BadVersion",
-                new Dictionary<string, string>(StringComparer.Ordinal)
-                {
-                    { "Response.Body", JsonSerializer.Serialize(detail) },
-                });
-
-            return new BadRequestObjectResult(detail);
-        }
+        return new BadRequestObjectResult(detail);
     }
 }

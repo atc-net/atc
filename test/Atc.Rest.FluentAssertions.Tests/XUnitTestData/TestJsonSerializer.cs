@@ -1,6 +1,3 @@
-using System.Text.Json;
-using Atc.Serialization;
-
 namespace Atc.Rest.FluentAssertions.Tests.XUnitTestData
 {
     public static class TestJsonSerializer

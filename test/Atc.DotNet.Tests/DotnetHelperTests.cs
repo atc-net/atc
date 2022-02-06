@@ -1,30 +1,26 @@
-using System.IO;
-using Xunit;
+namespace Atc.DotNet.Tests;
 
-namespace Atc.DotNet.Tests
+public class DotnetHelperTests
 {
-    public class DotnetHelperTests
+    [Fact]
+    public void GetDotnetDirectory()
     {
-        [Fact]
-        public void GetDotnetDirectory()
-        {
-            // Act
-            var actual = DotnetHelper.GetDotnetDirectory();
+        // Act
+        var actual = DotnetHelper.GetDotnetDirectory();
 
-            // Assert
-            Assert.NotNull(actual);
-            Assert.True(Directory.Exists(actual.FullName));
-        }
+        // Assert
+        Assert.NotNull(actual);
+        Assert.True(Directory.Exists(actual.FullName));
+    }
 
-        [Fact]
-        public void GetDotnetExecutable()
-        {
-            // Act
-            var actual = DotnetHelper.GetDotnetExecutable();
+    [Fact]
+    public void GetDotnetExecutable()
+    {
+        // Act
+        var actual = DotnetHelper.GetDotnetExecutable();
 
-            // Assert
-            Assert.NotNull(actual);
-            Assert.True(File.Exists(actual.FullName));
-        }
+        // Assert
+        Assert.NotNull(actual);
+        Assert.True(File.Exists(actual.FullName));
     }
 }
