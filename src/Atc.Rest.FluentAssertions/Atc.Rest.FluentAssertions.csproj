@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>Atc.Rest.FluentAssertions</PackageId>
     <PackageTags>rest;fluentassertions</PackageTags>
     <Description>Atc.Rest.FluentAssertions is a collection of assertion helpers for writing tests of Atc types.</Description>

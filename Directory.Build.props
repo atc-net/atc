@@ -16,9 +16,11 @@
 
   <PropertyGroup Label="Compile settings">
     <Nullable>enable</Nullable>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>1573,1591,1712</NoWarn>
+    <NoWarn>1573,1591,1712,CA1014</NoWarn>
 
     <!-- Used by code coverage -->
     <DebugType>full</DebugType>
@@ -27,9 +29,9 @@
 
   <PropertyGroup Label="Analyzer settings">
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<AnalysisLevel>latest</AnalysisLevel>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <!-- Treat warnings as errors are always on when building in release -->
@@ -41,11 +43,10 @@
   <ItemGroup Label="Code Analyzers">
     <PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="All" />
     <PackageReference Include="Asyncify" Version="0.9.7" PrivateAssets="All" />
-    <PackageReference Include="Meziantou.Analyzer" Version="1.0.688" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" PrivateAssets="All" />
+    <PackageReference Include="Meziantou.Analyzer" Version="1.0.694" PrivateAssets="All" />
     <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.0" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503" PrivateAssets="All" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.35.0.42613" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

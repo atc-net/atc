@@ -1,7 +1,8 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 04-12-2020
-# Location: Sample
+# Version: 1.0.9
+# Updated: 01-02-2022
+# Location: sample
+# Distribution: DotNet6
 # Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 
 ##########################################
