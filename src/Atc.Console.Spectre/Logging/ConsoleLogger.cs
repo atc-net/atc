@@ -25,7 +25,7 @@ public class ConsoleLogger : ILogger
         config.ConsoleConfiguration?.Invoke(console);
     }
 
-    public IDisposable? BeginScope<TState>(TState state) => null;
+    public IDisposable BeginScope<TState>(TState state) => default!;
 
     public bool IsEnabled(LogLevel logLevel) => logLevel >= config.MinimumLogLevel;
 
