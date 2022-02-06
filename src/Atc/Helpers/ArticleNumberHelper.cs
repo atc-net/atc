@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -199,7 +199,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            if (isbn10.Contains("-", StringComparison.Ordinal))
+            if (isbn10.Contains('-', StringComparison.Ordinal))
             {
                 isbn10 = isbn10.Replace("-", string.Empty, StringComparison.Ordinal);
             }
@@ -209,7 +209,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            if (!long.TryParse(isbn10.Substring(0, isbn10.Length - 1), out var _))
+            if (!long.TryParse(isbn10.AsSpan(0, isbn10.Length - 1), out _))
             {
                 return false;
             }
@@ -250,7 +250,7 @@ namespace Atc.Helpers
                 return false;
             }
 
-            if (isbn13.Contains("-", StringComparison.Ordinal))
+            if (isbn13.Contains('-', StringComparison.Ordinal))
             {
                 isbn13 = isbn13.Replace("-", string.Empty, StringComparison.Ordinal);
             }

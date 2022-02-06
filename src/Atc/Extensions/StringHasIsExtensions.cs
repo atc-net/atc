@@ -14,14 +14,14 @@ namespace System
     /// </summary>
     public static class StringHasIsExtensions
     {
-        private static readonly Lazy<Regex> RxAlpha = new Lazy<Regex>(() => new Regex("[^a-zA-Z]", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxAlphaNumeric = new Lazy<Regex>(() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxEmailAddress = new Lazy<Regex>(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxGuid = new Lazy<Regex>(() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxNumeric = new Lazy<Regex>(() => new Regex("[^0-9]", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxKey = new Lazy<Regex>(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline));
-        private static readonly Lazy<Regex> RxHtmlTags = new Lazy<Regex>(() => new Regex(@"<[^>]+>", RegexOptions.Multiline));
-        private static readonly Lazy<Regex> RxSingleWord = new Lazy<Regex>(() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxAlpha = new (() => new Regex("[^a-zA-Z]", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxAlphaNumeric = new (() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxEmailAddress = new (() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxGuid = new (() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxNumeric = new (() => new Regex("[^0-9]", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxKey = new (() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline));
+        private static readonly Lazy<Regex> RxHtmlTags = new (() => new Regex(@"<[^>]+>", RegexOptions.Multiline));
+        private static readonly Lazy<Regex> RxSingleWord = new (() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline));
 
         /// <summary>
         /// Determines whether [has HTML tags] [the specified value].
@@ -303,7 +303,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var s in sa)
             {
-                if (!s.Contains("}", StringComparison.Ordinal))
+                if (!s.Contains('}', StringComparison.Ordinal))
                 {
                     continue;
                 }

@@ -120,7 +120,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var s in sa)
             {
-                if (!s.Contains("}", StringComparison.Ordinal))
+                if (!s.Contains('}', StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -167,7 +167,7 @@ namespace System
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var s in sa)
             {
-                if (!s.Contains("}", StringComparison.Ordinal))
+                if (!s.Contains('}', StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -810,7 +810,7 @@ namespace System
 
                 if (i != strArray.Length - 1)
                 {
-                    sb.Append(value.Substring(sb.Length, 1));
+                    sb.Append(value.AsSpan(sb.Length, 1));
                 }
             }
 
@@ -1329,7 +1329,7 @@ namespace System
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (!value.Contains(" ", StringComparison.Ordinal))
+            if (!value.Contains(' ', StringComparison.Ordinal))
             {
                 return value;
             }

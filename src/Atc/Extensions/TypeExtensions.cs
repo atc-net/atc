@@ -505,7 +505,7 @@ namespace System
             }
 
             if (workOnType.IsByRef &&
-                typeName.Contains("&", StringComparison.Ordinal))
+                typeName.Contains('&', StringComparison.Ordinal))
             {
                 typeName += "&";
             }
