@@ -3,6 +3,7 @@
 namespace Atc.Tests.Extensions;
 
 [SuppressMessage("Usage", "MA0015:Specify the parameter name in ArgumentException", Justification = "OK.")]
+[SuppressMessage("Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ", Justification = "OK.")]
 public class ExceptionExtensionsTests
 {
     [Fact]
@@ -20,16 +21,16 @@ public class ExceptionExtensionsTests
             new ArgumentException("Test").GetMessage());
         Assert.Equal(
             defaultMessage,
-            new ArgumentException().GetMessage(true));
+            new ArgumentException().GetMessage(includeInnerMessage: true));
         Assert.Equal(
             "Test",
-            new ArgumentException("Test").GetMessage(true));
+            new ArgumentException("Test").GetMessage(includeInnerMessage: true));
         Assert.Equal(
             defaultMessageWithExceptionName,
-            new ArgumentException().GetMessage(true, true));
+            new ArgumentException().GetMessage(includeInnerMessage: true, includeExceptionName: true));
         Assert.Equal(
             "Argument: Test",
-            new ArgumentException("Test").GetMessage(true, true));
+            new ArgumentException("Test").GetMessage(includeInnerMessage: true, includeExceptionName: true));
 
         // 2 parameter
         Assert.Equal(
@@ -40,16 +41,16 @@ public class ExceptionExtensionsTests
             new ArgumentException("Test", new ArgumentException("Test2")).GetMessage());
         Assert.Equal(
             "Test # " + defaultMessage,
-            new ArgumentException("Test", new ArgumentException()).GetMessage(true));
+            new ArgumentException("Test", new ArgumentException()).GetMessage(includeInnerMessage: true));
         Assert.Equal(
             "Test # Test2",
-            new ArgumentException("Test", new ArgumentException("Test2")).GetMessage(true));
+            new ArgumentException("Test", new ArgumentException("Test2")).GetMessage(includeInnerMessage: true));
         Assert.Equal(
             "Argument: Test # " + defaultMessageWithExceptionName,
-            new ArgumentException("Test", new ArgumentException()).GetMessage(true, true));
+            new ArgumentException("Test", new ArgumentException()).GetMessage(includeInnerMessage: true, includeExceptionName: true));
         Assert.Equal(
             "Argument: Test # Argument: Test2",
-            new ArgumentException("Test", new ArgumentException("Test2")).GetMessage(true, true));
+            new ArgumentException("Test", new ArgumentException("Test2")).GetMessage(includeInnerMessage: true, includeExceptionName: true));
 
         // 3 parameter
         Assert.Equal(
@@ -60,16 +61,16 @@ public class ExceptionExtensionsTests
             new ArgumentException("Test", "paramName", new ArgumentException("Test2")).GetMessage());
         Assert.Equal(
             "Test (Parameter 'paramName') # " + defaultMessage,
-            new ArgumentException("Test", "paramName", new ArgumentException()).GetMessage(true));
+            new ArgumentException("Test", "paramName", new ArgumentException()).GetMessage(includeInnerMessage: true));
         Assert.Equal(
             "Test (Parameter 'paramName') # Test2",
-            new ArgumentException("Test", "paramName", new ArgumentException("Test2")).GetMessage(true));
+            new ArgumentException("Test", "paramName", new ArgumentException("Test2")).GetMessage(includeInnerMessage: true));
         Assert.Equal(
             "Argument: Test (Parameter 'paramName') # " + defaultMessageWithExceptionName,
-            new ArgumentException("Test", "paramName", new ArgumentException()).GetMessage(true, true));
+            new ArgumentException("Test", "paramName", new ArgumentException()).GetMessage(includeInnerMessage: true, includeExceptionName: true));
         Assert.Equal(
             "Argument: Test (Parameter 'paramName') # Argument: Test2",
-            new ArgumentException("Test", "paramName", new ArgumentException("Test2")).GetMessage(true, true));
+            new ArgumentException("Test", "paramName", new ArgumentException("Test2")).GetMessage(includeInnerMessage: true, includeExceptionName: true));
     }
 
     [Theory]

@@ -548,4 +548,3 @@ dotnet_diagnostic.CS8618.severity = none			# 2 occurrences - Non-nullable field 
 dotnet_diagnostic.CA1848.severity = none			# 9 occurrences
 dotnet_diagnostic.CA2254.severity = none			# 9 occurrences
 dotnet_diagnostic.S3267.severity = none				# 13 occurrences
-dotnet_diagnostic.S3928.severity = none				# 15 occurrences
