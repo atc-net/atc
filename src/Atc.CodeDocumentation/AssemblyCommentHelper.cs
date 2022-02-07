@@ -114,7 +114,7 @@ internal static class AssemblyCommentHelper
         var commentsLookup = comments.ToLookup(x => x!.ClassName, StringComparer.Ordinal);
 
         var namespaceRegex = !string.IsNullOrEmpty(namespaceMatch)
-            ? new Regex(namespaceMatch)
+            ? new Regex(namespaceMatch, RegexOptions.None, TimeSpan.FromSeconds(1))
             : null;
 
         return types

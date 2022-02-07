@@ -85,7 +85,7 @@ public class NumericAlphaComparer : IComparer<string>
         // ReSharper disable once InvertIf
         if (!string.IsNullOrEmpty(value))
         {
-            var s = Regex.Match(value, @"\d+").Value;
+            var s = Regex.Match(value, @"\d+", RegexOptions.None, TimeSpan.FromSeconds(1)).Value;
             if (int.TryParse(s, out var x))
             {
                 return x;

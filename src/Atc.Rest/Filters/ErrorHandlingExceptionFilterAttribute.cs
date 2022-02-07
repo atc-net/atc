@@ -9,7 +9,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
     private readonly bool useProblemDetailsAsResponseBody;
 
     private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex =
-        new Regex("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
+        new Regex("(?<=[a-z])([A-Z])", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
 
     public ErrorHandlingExceptionFilterAttribute(
         TelemetryClient telemetryClient,

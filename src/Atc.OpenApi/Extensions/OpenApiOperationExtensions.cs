@@ -127,7 +127,7 @@ public static class OpenApiOperationExtensions
         }
 
         // Split by uppercase
-        var sa = Regex.Split(operationName, RegexPatternUppercase);
+        var sa = Regex.Split(operationName, RegexPatternUppercase, RegexOptions.None, TimeSpan.FromSeconds(1));
         if (sa.Length > 0)
         {
             // Test for last-term

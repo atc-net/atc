@@ -59,7 +59,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        var regex = new Regex("^B\\d{2}\\w{7}|\\d{9}(X|\\d)$");
+        var regex = new Regex("^B\\d{2}\\w{7}|\\d{9}(X|\\d)$", RegexOptions.None, TimeSpan.FromSeconds(1));
         return regex.IsMatch(asin);
     }
 
@@ -176,7 +176,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        var regex = new Regex(@"^\d{4}-\d{3}[\dxX]{1}$");
+        var regex = new Regex(@"^\d{4}-\d{3}[\dxX]{1}$", RegexOptions.None, TimeSpan.FromSeconds(1));
         return regex.IsMatch(code);
     }
 
