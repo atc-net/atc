@@ -41,6 +41,7 @@ public static class StringHasIsExtensions
     /// </returns>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     [SuppressMessage("Major Bug", "S2259:Null pointers should not be dereferenced", Justification = "OK.")]
+    [SuppressMessage("Style", "MA0003:Add parameter name to improve readability", Justification = "OK.")]
     public static bool IsEqual(this string a, string b, StringComparison comparison = StringComparison.Ordinal, bool treatNullAsEmpty = true, bool useNormalizeAccents = false)
     {
         if (string.Equals(a, null, StringComparison.Ordinal) && string.Equals(b, null, StringComparison.Ordinal))
@@ -173,8 +174,8 @@ public static class StringHasIsExtensions
         }
 
         value = value.Trim();
-        return (value.StartsWith("{", StringComparison.Ordinal) && value.EndsWith("}", StringComparison.Ordinal)) ||
-               (value.StartsWith("[", StringComparison.Ordinal) && value.EndsWith("]", StringComparison.Ordinal));
+        return (value.StartsWith('{') && value.EndsWith('}')) ||
+               (value.StartsWith('[') && value.EndsWith(']'));
     }
 
     /// <summary>
@@ -192,7 +193,7 @@ public static class StringHasIsExtensions
         }
 
         value = value.Trim();
-        return value.StartsWith("<", StringComparison.Ordinal) && value.EndsWith(">", StringComparison.Ordinal);
+        return value.StartsWith('<') && value.EndsWith('>');
     }
 
     /// <summary>
