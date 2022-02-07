@@ -95,7 +95,8 @@ public static class ProcessExtensions
                 return;
             }
 
-            if (!int.TryParse(text, out int id) || children.Contains(id))
+            if (!int.TryParse(text, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out int id) ||
+                children.Contains(id))
             {
                 continue;
             }

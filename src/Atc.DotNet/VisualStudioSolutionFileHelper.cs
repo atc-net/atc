@@ -46,7 +46,7 @@ public static class VisualStudioSolutionFileHelper
             {
                 int lastSpaceIndex = line.LastIndexOf(' ');
                 var s = line.Substring(lastSpaceIndex);
-                if (int.TryParse(s, out var version))
+                if (int.TryParse(s, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out var version))
                 {
                     data.VisualStudioVersionNumber = version;
                 }

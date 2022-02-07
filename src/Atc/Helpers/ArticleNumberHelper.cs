@@ -204,7 +204,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        if (!long.TryParse(isbn10.AsSpan(0, isbn10.Length - 1), out _))
+        if (!long.TryParse(isbn10.AsSpan(0, isbn10.Length - 1), NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
         {
             return false;
         }
@@ -223,7 +223,7 @@ public static class ArticleNumberHelper
         {
             result = remainder == 10;
         }
-        else if (int.TryParse(lastChar.ToString(), out sum))
+        else if (int.TryParse(lastChar.ToString(), NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out sum))
         {
             result = remainder == lastChar - '0';
         }
@@ -255,7 +255,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        if (!long.TryParse(isbn13, out var _))
+        if (!long.TryParse(isbn13, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
         {
             return false;
         }
@@ -304,7 +304,7 @@ public static class ArticleNumberHelper
 
         var articleNumberType = ArticleNumberType.Unknown;
 
-        if (!long.TryParse(code, out var temp))
+        if (!long.TryParse(code, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out var temp))
         {
             return articleNumberType;
         }

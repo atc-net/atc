@@ -13,7 +13,7 @@ public class Accept4xxResponseAsSuccessInitializer : ITelemetryInitializer
             return;
         }
 
-        if (!int.TryParse(requestTelemetry.ResponseCode, out var code))
+        if (!int.TryParse(requestTelemetry.ResponseCode, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out var code))
         {
             return;
         }

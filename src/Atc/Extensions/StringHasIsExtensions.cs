@@ -313,7 +313,7 @@ public static class StringHasIsExtensions
             }
 
             var sas = s.Split('}');
-            if (sas.Length == 0 || !int.TryParse(sas[0], out var _))
+            if (sas.Length == 0 || !int.TryParse(sas[0], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
             {
                 return false;
             }

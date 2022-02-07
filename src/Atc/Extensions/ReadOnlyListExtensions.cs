@@ -31,10 +31,7 @@ public static class ReadOnlyListExtensions
         }
 
         return GetPowerSet(list)
-            .Select(subset =>
-                string.Join(",", subset
-                    .Select(clr => clr.ToString())
-                    .ToArray()))
+            .Select(subset => string.Join(",", subset.ToArray()))
             .Where(x => x.Length > 0)
             .ToList();
     }

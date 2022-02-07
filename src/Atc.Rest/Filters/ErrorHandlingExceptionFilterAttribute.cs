@@ -80,6 +80,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
     }
 
     [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
+    [SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "OK.")]
     private string CreateMessage(ExceptionContext context)
     {
         var sb = new StringBuilder();
