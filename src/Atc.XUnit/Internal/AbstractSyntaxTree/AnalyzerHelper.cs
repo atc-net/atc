@@ -4,6 +4,7 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree;
 
 internal static class AnalyzerHelper
 {
+    [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
     internal static MethodInfo[] GetSourceMethodsWithMissingTest(
         Type[] sourceTypes,
         Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration,
@@ -135,6 +136,7 @@ internal static class AnalyzerHelper
         return false;
     }
 
+    [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
     private static bool IsMethodUsedByTestMethod(
         MethodInfo method,
         Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters,

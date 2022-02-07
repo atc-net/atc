@@ -2,6 +2,7 @@
 // ReSharper disable NotResolvedInText
 namespace Atc.Tests.Extensions;
 
+[SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
 [SuppressMessage("Usage", "MA0015:Specify the parameter name in ArgumentException", Justification = "OK.")]
 [SuppressMessage("Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ", Justification = "OK.")]
 public class ExceptionExtensionsTests
