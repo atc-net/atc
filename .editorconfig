@@ -504,18 +504,18 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 ##########################################
 [*.cs]
 
-dotnet_diagnostic.CA1002.severity = none			# Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
-dotnet_diagnostic.CA1812.severity = none			# Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
-dotnet_diagnostic.CA1848.severity = none			# LoggerMessage delegates instead of calling
-dotnet_diagnostic.CA2254.severity = none			# Logging message template
+dotnet_diagnostic.CA1002.severity = suggestion		# Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
+dotnet_diagnostic.CA1812.severity = suggestion		# Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
+dotnet_diagnostic.CA1848.severity = suggestion		# LoggerMessage delegates instead of calling
+dotnet_diagnostic.CA2254.severity = suggestion		# Logging message template
 
-dotnet_diagnostic.MA0031.severity = none            # Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
-dotnet_diagnostic.MA0016.severity = none			# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
-dotnet_diagnostic.MA0023.severity = none			# Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
-dotnet_diagnostic.MA0076.severity = none			# Do not use implicit culture-sensitive ToString in interpolated strings - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0076.md
+dotnet_diagnostic.MA0031.severity = suggestion		# Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
+dotnet_diagnostic.MA0016.severity = suggestion		# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
+dotnet_diagnostic.MA0023.severity = suggestion		# Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
+dotnet_diagnostic.MA0076.severity = suggestion		# Do not use implicit culture-sensitive ToString in interpolated strings - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0076.md
 
-dotnet_diagnostic.SA1615.severity = none			# Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
+dotnet_diagnostic.SA1615.severity = suggestion		# Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
 
-dotnet_diagnostic.S3267.severity = none				# Simplified with LINQ expressions
+dotnet_diagnostic.S3267.severity = suggestion		# Simplified with LINQ expressions
 
-dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
+dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
