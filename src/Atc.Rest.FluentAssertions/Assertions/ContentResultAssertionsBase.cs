@@ -1,6 +1,7 @@
 // ReSharper disable InvertIf
 // ReSharper disable ConstantConditionalAccessQualifier
 // ReSharper disable once CheckNamespace
+// ReSharper disable StaticMemberInGenericType
 namespace Atc.Rest.FluentAssertions;
 
 public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
@@ -46,7 +47,7 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
             .BecauseOf(because, becauseArgs)
             .WithDefaultIdentifier($"content type of {Identifier}")
             .Given(() => Subject.ContentType)
-            .ForCondition(contentType => contentType.Equals(MediaTypeNames.Application.Json, StringComparison.Ordinal))
+            .ForCondition(contentType => contentType is not null && contentType.Equals(MediaTypeNames.Application.Json, StringComparison.Ordinal))
             .FailWith("Expected {context} to be {0}{reason}, but found {1}.", _ => MediaTypeNames.Application.Json, x => x);
 
         var parseSuccess = TryContentValueAs<T>(out var result);
@@ -101,7 +102,7 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         content = default!;
         try
         {
-            content = JsonSerializer.Deserialize(Subject.Content, type, JsonSerializerOptions);
+            content = JsonSerializer.Deserialize(Subject.Content!, type, JsonSerializerOptions)!;
             return true;
         }
         catch
@@ -117,8 +118,8 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
 
         try
         {
-            var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content, JsonSerializerOptions);
-            content = Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture);
+            var contentAsString = JsonSerializer.Deserialize<string>(Subject.Content!, JsonSerializerOptions);
+            content = Convert.ChangeType(contentAsString, type, CultureInfo.InvariantCulture)!;
             return true;
         }
         catch

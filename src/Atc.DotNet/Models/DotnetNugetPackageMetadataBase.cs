@@ -5,6 +5,8 @@ public class DotnetNugetPackageMetadataBase
 {
     public DotnetNugetPackageMetadataBase()
     {
+        this.PackageId = string.Empty;
+        this.Version = string.Empty;
     }
 
     public DotnetNugetPackageMetadataBase(string packageId, string version)

@@ -503,6 +503,7 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 # Custom - Code Analyzers Rules
 ##########################################
 [*.cs]
+
 dotnet_diagnostic.CA1002.severity = none			# Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
 dotnet_diagnostic.CA1812.severity = none			# Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
 dotnet_diagnostic.CA1848.severity = none			# LoggerMessage delegates instead of calling
@@ -518,19 +519,3 @@ dotnet_diagnostic.SA1615.severity = none			# Category: 'Documentation' - Element
 dotnet_diagnostic.S3267.severity = none				# Simplified with LINQ expressions
 
 dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
-
-##########################################
-# ATC temporary suppressions
-# generated @ Sunday, February 6, 2022 2:57:41 PM
-# Please fix all generated temporary suppressions
-# either by code changes or move the
-# suppressions one by one to the relevant
-# 'Custom - Code Analyzers Rules' section.
-##########################################
-[*.cs]
-
-# Microsoft.CompilerErrors.Undocumented
-dotnet_diagnostic.CS8601.severity = none			# 2 occurrences - Possible null reference assignment.
-dotnet_diagnostic.CS8602.severity = none			# 2 occurrences - Dereference of a possibly null reference.
-dotnet_diagnostic.CS8604.severity = none			# 2 occurrences - Possible null reference argument.
-dotnet_diagnostic.CS8618.severity = none			# 2 occurrences - Non-nullable field is uninitialized. Consider declaring as nullable.

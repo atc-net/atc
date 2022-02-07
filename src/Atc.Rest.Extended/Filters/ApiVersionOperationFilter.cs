@@ -1,3 +1,4 @@
+// ReSharper disable ConstantConditionalAccessQualifier
 namespace Atc.Rest.Extended.Filters;
 
 public class ApiVersionOperationFilter : IOperationFilter
@@ -44,7 +45,7 @@ public class ApiVersionOperationFilter : IOperationFilter
 
         if (apiVersionParameter.Schema.Default is null && description is not null)
         {
-            apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
+            apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue!.ToString());
 
             var openApiVersionList = new List<IOpenApiAny> { new OpenApiString(description.DefaultValue.ToString()) };
             apiVersionParameter.Schema.Enum = openApiVersionList;

@@ -57,7 +57,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(byte value) => new ByteSize(value);
+    public static implicit operator ByteSize(byte value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="sbyte"/> to <see cref="ByteSize"/>.
@@ -66,7 +66,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(sbyte value) => new ByteSize(value);
+    public static implicit operator ByteSize(sbyte value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="decimal"/> to <see cref="ByteSize"/>.
@@ -75,7 +75,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(decimal value) => new ByteSize((long)value);
+    public static implicit operator ByteSize(decimal value) => new ((long)value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="double"/> to <see cref="ByteSize"/>.
@@ -84,7 +84,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(double value) => new ByteSize(checked((long)value));
+    public static implicit operator ByteSize(double value) => new (checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="float"/> to <see cref="ByteSize"/>.
@@ -93,7 +93,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(float value) => new ByteSize(checked((long)value));
+    public static implicit operator ByteSize(float value) => new (checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="int"/> to <see cref="ByteSize"/>.
@@ -102,7 +102,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(int value) => new ByteSize(value);
+    public static implicit operator ByteSize(int value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="uint"/> to <see cref="ByteSize"/>.
@@ -111,7 +111,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(uint value) => new ByteSize(value);
+    public static implicit operator ByteSize(uint value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="long"/> to <see cref="ByteSize"/>.
@@ -120,7 +120,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(long value) => new ByteSize(value);
+    public static implicit operator ByteSize(long value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="ulong"/> to <see cref="ByteSize"/>.
@@ -129,7 +129,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(ulong value) => new ByteSize(checked((long)value));
+    public static implicit operator ByteSize(ulong value) => new (checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="short"/> to <see cref="ByteSize"/>.
@@ -138,7 +138,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(short value) => new ByteSize(value);
+    public static implicit operator ByteSize(short value) => new (value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="ushort"/> to <see cref="ByteSize"/>.
@@ -147,21 +147,21 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(ushort value) => new ByteSize(value);
+    public static implicit operator ByteSize(ushort value) => new (value);
 
     /// <summary>
     /// Equals the specified other.
     /// </summary>
     /// <param name="other">The other.</param>
-    public bool Equals(ByteSize other)
+    public readonly bool Equals(ByteSize other)
         => this.Value == other.Value;
 
     /// <inheritdoc />
-    public override bool Equals(object obj)
+    public override readonly bool Equals(object obj)
         => obj is ByteSize x && this.Equals(x);
 
     /// <inheritdoc />
-    public override int GetHashCode()
+    public override readonly int GetHashCode()
         => base.GetHashCode();
 
     /// <summary>
@@ -173,7 +173,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <remarks>
     /// The size is formatted to a human readable format using the default formatter (<see cref="ByteSizeFormatter.Default"/>).
     /// </remarks>
-    public override string ToString()
+    public override readonly string ToString()
     {
         return ByteSizeFormatter.Default.Format(Value);
     }
@@ -186,7 +186,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// A <see cref="string" /> that represents this instance.
     /// </returns>
     /// <exception cref="System.ArgumentNullException"><c>formatter</c> is null.</exception>
-    public string ToString(ByteSizeFormatter formatter)
+    public readonly string ToString(ByteSizeFormatter formatter)
     {
         if (formatter is null)
         {
@@ -205,7 +205,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <remarks>
     /// The size is formatted to a human readable format using the default formatter (<see cref="ByteSizeFormatter.Default"/>).
     /// </remarks>
-    public string Format()
+    public readonly string Format()
     {
         return ByteSizeFormatter.Default.Format(Value);
     }
@@ -218,7 +218,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// A <see cref="string" /> that represents this instance.
     /// </returns>
     /// <exception cref="System.ArgumentNullException"><c>formatter</c> is null.</exception>
-    public string Format(ByteSizeFormatter formatter)
+    public readonly string Format(ByteSizeFormatter formatter)
     {
         if (formatter is null)
         {

@@ -15,7 +15,10 @@ public class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConsoleSpectre
         var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
         do
         {
-            directory = new DirectoryInfo(directory.Parent.FullName);
+            if (directory.Parent is not null)
+            {
+                directory = new DirectoryInfo(directory.Parent.FullName);
+            }
         }
         while (!directory.Name.Equals("sample", StringComparison.OrdinalIgnoreCase));
 

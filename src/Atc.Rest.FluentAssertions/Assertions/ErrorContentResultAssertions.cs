@@ -23,7 +23,7 @@ public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultA
         }
 
         Execute.Assertion
-            .ForCondition(actualErrorMessage.Equals(expectedErrorMessage, StringComparison.Ordinal))
+            .ForCondition(actualErrorMessage is not null && actualErrorMessage.Equals(expectedErrorMessage, StringComparison.Ordinal))
             .BecauseOf(because, becauseArgs)
             .WithDefaultIdentifier($"error message of {Identifier}")
             .FailWith("Expected {context} to be {0}{reason}, but found {1}.", expectedErrorMessage, actualErrorMessage);

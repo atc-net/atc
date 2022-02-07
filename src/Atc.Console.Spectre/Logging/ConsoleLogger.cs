@@ -46,9 +46,10 @@ public class ConsoleLogger : ILogger
             return;
         }
 
+        var stateStr = state?.ToString() ?? string.Empty;
         var message = config.AllowMarkup
-            ? state.ToString()
-            : Markup.Escape(state.ToString());
+            ? stateStr
+            : Markup.Escape(stateStr);
 
         var exceptionMessage = exception?.GetMessage(
             includeInnerMessage: config.IncludeInnerMessageForException,
