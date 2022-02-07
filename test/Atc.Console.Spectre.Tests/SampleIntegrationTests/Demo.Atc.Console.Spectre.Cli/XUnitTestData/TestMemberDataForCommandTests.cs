@@ -46,6 +46,7 @@ internal static class TestMemberDataForCommandTests
             },
         };
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static IEnumerable<object[]> LogCommandRenderLogLevel
     {
         get
@@ -176,6 +177,7 @@ internal static class TestMemberDataForCommandTests
         }
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static IEnumerable<object[]> LogCommandRenderLogLevelCategoryName
     {
         get

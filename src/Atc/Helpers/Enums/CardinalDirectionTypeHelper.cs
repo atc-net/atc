@@ -36,6 +36,7 @@ public static class CardinalDirectionTypeHelper
     /// </summary>
     /// <param name="cardinalDirectionTypeToInclude">The cardinal direction type to include.</param>
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
     {
         var returnValue = CardinalDirectionType.None;
@@ -262,6 +263,7 @@ public static class CardinalDirectionTypeHelper
     /// </summary>
     /// <param name="combinedCardinalDirectionType">Type of the combined cardinal direction.</param>
     /// <param name="angle">The angle.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static CardinalDirectionType GetTheClosestByAngle(CardinalDirectionType combinedCardinalDirectionType, double angle)
     {

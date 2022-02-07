@@ -17,6 +17,7 @@ public static class RestApiExtensions
     }
 
     // ReSharper disable once UnusedTypeParameter
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Major Code Smell", "S2326:Unused type parameters should be removed", Justification = "OK. Due to pattern for base class.")]
     public static IServiceCollection AddRestApi<TStartup>(
         this IServiceCollection services,

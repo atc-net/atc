@@ -85,6 +85,7 @@ public static class TriangleHelper
     /// <remarks>
     /// http://cossincalc.com/
     /// </remarks>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     private static TriangleData CalculateAnglesAndSides(TriangleData data)
     {

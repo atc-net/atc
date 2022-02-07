@@ -266,6 +266,7 @@ public static class ProcessHelper
         }
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static (bool isSuccessful, string output) KillByName(
         string processName,

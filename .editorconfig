@@ -528,9 +528,6 @@ dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppres
 ##########################################
 [*.cs]
 
-# Meziantou.Analyzer
-dotnet_diagnostic.MA0051.severity = none			# 18 occurrences - Category: 'Design' - Method is too long - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0051.md
-
 # Microsoft.CodeAnalysis.NetAnalyzers
 dotnet_diagnostic.CA1508.severity = none			# 1 occurrence - Avoid dead conditional code - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1508
 dotnet_diagnostic.CA1812.severity = none			# 2 occurrences - Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812

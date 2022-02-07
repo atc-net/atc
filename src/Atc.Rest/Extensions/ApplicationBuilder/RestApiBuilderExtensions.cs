@@ -16,6 +16,7 @@ public static class RestApiBuilderExtensions
         return app.ConfigureRestApi(env, restApiOptions, _ => { });
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
     [SuppressMessage("Insecure Configuration", "S5122:Having a permissive Cross-Origin Resource Sharing policy is security-sensitive", Justification = "OK.")]
     public static IApplicationBuilder ConfigureRestApi(

@@ -8,6 +8,7 @@ namespace Atc.Tests.Extensions;
 public class ExceptionExtensionsTests
 {
     [Fact]
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public void GetMessage_ArgumentException()
     {
         const string defaultMessage = "Value does not fall within the expected range.";

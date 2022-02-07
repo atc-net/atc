@@ -56,6 +56,7 @@ public class UniversalTransverseMercatorConverter
     /// </summary>
     /// <param name="latitude">The latitude (also know as Y or Easting).</param>
     /// <param name="longitude">The longitude (also know as X or Northing).</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter", Justification = "OK. By design.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
@@ -145,6 +146,7 @@ public class UniversalTransverseMercatorConverter
     /// <param name="utmEasting">The utm easting.</param>
     /// <param name="utmNorthing">The utm northing.</param>
     /// <param name="maxDecimalPrecision">The maximum decimal precision.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
     public CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
@@ -227,6 +229,7 @@ public class UniversalTransverseMercatorConverter
             MathHelper.TruncateToMaxPrecision(longitude, maxDecimalPrecision));
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private void SetEllipsoide(ReferenceEllipsoidType referenceEllipsoidType)
     {
         switch (referenceEllipsoidType)
@@ -325,6 +328,7 @@ public class UniversalTransverseMercatorConverter
         }
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1131:Use readable conditions", Justification = "OK. Bug in C# pattern matching for double.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     private static string GetUtmLetterDesignator(double latitude)

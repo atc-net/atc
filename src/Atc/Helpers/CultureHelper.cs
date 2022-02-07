@@ -311,6 +311,7 @@ public static class CultureHelper
     /// <param name="displayLanguageLcid">The display language lcid.</param>
     /// <param name="includeLcids">The include lcids.</param>
     /// <param name="value">The value.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Culture? GetCultureFromValue(int displayLanguageLcid, List<int> includeLcids, string value)
     {

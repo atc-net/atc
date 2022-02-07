@@ -168,6 +168,7 @@ public static class EnumHelper
     /// <param name="sortDirectionType">Type of the sort direction.</param>
     /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
     /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<int, string> ConvertEnumToDictionary(
         Type enumType,
@@ -287,6 +288,7 @@ public static class EnumHelper
     /// <param name="sortDirectionType">Type of the sort direction.</param>
     /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
     /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<string, string> ConvertEnumToDictionaryWithStringKey(
         Type enumType,

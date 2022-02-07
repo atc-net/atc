@@ -366,6 +366,7 @@ public static class StringHasIsExtensions
     /// <returns>
     ///   <c>true</c> if [is casing style valid] [the specified casing style]; otherwise, <c>false</c>.
     /// </returns>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
     {

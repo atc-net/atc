@@ -24,6 +24,7 @@ public static class InternationalSystemOfUnitsHelper
     /// <returns>
     /// The <see cref="double"/>.
     /// </returns>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "OK. For now.")]
     public static double Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
     {

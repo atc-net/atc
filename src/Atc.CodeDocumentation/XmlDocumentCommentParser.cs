@@ -2,6 +2,7 @@ namespace Atc.CodeDocumentation;
 
 internal static class XmlDocumentCommentParser
 {
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     internal static XmlDocumentComment?[] ParseXmlComment(XDocument xDocument, string? namespaceMatch)
     {
         return xDocument.Descendants("member")

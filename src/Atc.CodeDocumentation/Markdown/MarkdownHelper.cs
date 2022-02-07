@@ -20,6 +20,7 @@ internal static class MarkdownHelper
         return mb.ToString();
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static string? RenderSubList(TypeComments typeComments)
     {
@@ -397,6 +398,7 @@ internal static class MarkdownHelper
         }
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     private static void Build<T>(MarkdownBuilder mb, TypeComments typeComments, string label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)

@@ -480,6 +480,7 @@ public static class StringExtensions
     /// <param name="forLower">if set to <c>true</c> [for lower].</param>
     /// <param name="forUpper">if set to <c>true</c> [for upper].</param>
     /// <returns>The string that is normalize for accent-letter.</returns>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static string NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
     {
@@ -1236,6 +1237,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without none readable chars etc.</returns>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static string TrimSpecial(this string value)
     {
         if (string.IsNullOrEmpty(value))
@@ -1401,6 +1403,7 @@ public static class StringExtensions
             : value;
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     private static string NormalizeAccentsHelper(string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
     {

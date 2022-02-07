@@ -117,6 +117,7 @@ internal static class AssemblyAnalyzerHelper
         return types;
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static string? ValidateMethod(MethodInfo method)
     {
         if (method.DeclaringType is null)

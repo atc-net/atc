@@ -160,6 +160,7 @@ public static class SimpleTypeHelper
     /// Gets the beautify type name by reference.
     /// </summary>
     /// <param name="type">The type.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static string? GetBeautifyTypeNameByRef(Type type)
     {

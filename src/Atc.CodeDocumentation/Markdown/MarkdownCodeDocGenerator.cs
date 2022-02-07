@@ -66,6 +66,7 @@ public static class MarkdownCodeDocGenerator
         }
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static void GenerateAndWrites(TypeComments[] typeComments, DirectoryInfo outputPath)
     {
         var homeBuilder = new MarkdownBuilder();
