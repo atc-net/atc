@@ -21,7 +21,6 @@ public sealed class ArgumentNullPropertyException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentNullPropertyException"/> class.
     /// </summary>
     /// <param name="paramName">Name of the parameter.</param>
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "OK.")]
     public ArgumentNullPropertyException(string paramName)
         : base("Value cannot be null.", paramName)
     {
@@ -32,7 +31,6 @@ public sealed class ArgumentNullPropertyException : ArgumentException
     /// </summary>
     /// <param name="paramName">Name of the parameter.</param>
     /// <param name="message">The message.</param>
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "param", Justification = "OK.")]
     public ArgumentNullPropertyException(string paramName, string message)
         : base(message, paramName)
     {

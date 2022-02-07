@@ -52,7 +52,7 @@ public static class TimeSpanExtensions
     /// </summary>
     /// <param name="timeSpan">The timeSpan.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
+    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
     public static string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
     {
         if ((int)timeSpan.TotalDays > 0)

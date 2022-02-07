@@ -474,7 +474,6 @@ public static class StringHasIsExtensions
     /// <returns>
     /// <c>true</c> if the specified company P number is a valid number; otherwise, <c>false</c>.
     /// </returns>
-    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
     public static bool IsCompanyPNumber(this string pNumber)
     {
         if (string.IsNullOrEmpty(pNumber) ||

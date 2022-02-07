@@ -77,7 +77,7 @@ public class ConfigureAuthorizationOptions :
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     }
 
-    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Not all issuers are used as the base URL for the well known OpenID configuration")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(string issuer)
     {
         try

@@ -32,7 +32,6 @@ internal static class TestMemberDataForExtensionsMethodInfo
         };
 }
 
-[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
 [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK, since this is a test.")]
 [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK.")]
 internal class TestMethods

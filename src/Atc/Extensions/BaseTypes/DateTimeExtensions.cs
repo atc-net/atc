@@ -58,7 +58,7 @@ public static class DateTimeExtensions
     /// <param name="endDate">The end date.</param>
     /// <param name="howToCompare">The how to compare.</param>
     /// <returns>The number between start date and end date, depend on the DiffCompareType.</returns>
-    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static double DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
     {
         double diff;

@@ -43,6 +43,7 @@ public class SimpleTypeHelperTests
 
     [Theory]
     [InlineData(typeof(bool))]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public void GetBeautifyTypeNameByRef(Type type)
     {
         // Act

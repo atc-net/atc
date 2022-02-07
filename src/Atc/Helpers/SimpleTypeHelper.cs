@@ -71,7 +71,6 @@ public static class SimpleTypeHelper
     /// <summary>
     /// The beautify simple type lookup.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "OK.")]
     [SuppressMessage("Minor Code Smell", "S2386:Mutable fields should not be \"public static\"", Justification = "OK.")]
     [SuppressMessage("Minor Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "OK.")]
     public static readonly Dictionary<Type, string> BeautifySimpleTypeLookup = new Dictionary<Type, string>

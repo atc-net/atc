@@ -733,7 +733,6 @@ public static class StringExtensions
     /// <param name="value">The string to work on.</param>
     /// <param name="removeSeparators">If true, remove all separators.</param>
     /// <returns>The string with pascal-case format.</returns>
-    [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     public static string PascalCase(this string value, bool removeSeparators = false)
     {
         if (string.IsNullOrEmpty(value))
@@ -999,7 +998,6 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <param name="index">The index.</param>
     /// <param name="newChar">The new character.</param>
-    [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "char", Justification = "OK.")]
     public static string ReplaceAt(this string value, int index, char newChar)
     {
         if (value is null)

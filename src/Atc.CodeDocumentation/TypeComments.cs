@@ -10,7 +10,6 @@ public class TypeComments
     /// </summary>
     /// <param name="type">The type.</param>
     /// <param name="commentLookup">The comment lookup.</param>
-    [SuppressMessage("Microsoft.Security", "CA2208:Instantiate argument exceptions correctly", Justification = "OK.")]
     public TypeComments(Type type, ILookup<string, XmlDocumentComment>? commentLookup)
     {
         this.Type = type ?? throw new ArgumentNullException(nameof(type));

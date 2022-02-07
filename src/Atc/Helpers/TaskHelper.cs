@@ -51,6 +51,7 @@ public static class TaskHelper
     /// This method gives us an AggregateException and not only the first exception occurrence,
     /// in case of an exception thrown from one of the tasks.
     /// </remarks>
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static async Task WhenAll(IEnumerable<Task> tasks)
     {
         var allTasks = Task.WhenAll(tasks);
@@ -60,7 +61,7 @@ public static class TaskHelper
             await allTasks;
             return;
         }
-        catch (Exception)
+        catch
         {
             // Ignore
         }
@@ -78,6 +79,7 @@ public static class TaskHelper
     /// This method gives us an AggregateException and not only the first exception occurrence,
     /// in case of an exception thrown from one of the tasks.
     /// </remarks>
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static async Task<IEnumerable<T>> WhenAll<T>(IEnumerable<Task<T>> tasks)
     {
         var allTasks = Task.WhenAll(tasks);
@@ -86,7 +88,7 @@ public static class TaskHelper
         {
             return await allTasks;
         }
-        catch (Exception)
+        catch
         {
             // Ignore
         }
@@ -104,6 +106,7 @@ public static class TaskHelper
     /// This method gives us an AggregateException and not only the first exception occurrence,
     /// in case of an exception thrown from one of the tasks.
     /// </remarks>
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static async Task<IEnumerable<T>> WhenAll<T>(params Task<T>[] tasks)
     {
         var allTasks = Task.WhenAll(tasks);
@@ -112,7 +115,7 @@ public static class TaskHelper
         {
             return await allTasks;
         }
-        catch (Exception)
+        catch
         {
             // Ignore
         }

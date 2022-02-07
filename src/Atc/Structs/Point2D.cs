@@ -82,7 +82,6 @@ public struct Point2D : IEquatable<Point2D>
         => this.X.GetHashCode() ^ this.Y.GetHashCode();
 
     /// <inheritdoc />
-    [SuppressMessage("Design", "MA0076:Do not use implicit culture-sensitive ToString in interpolated strings", Justification = "OK.")]
     public override string ToString()
     {
         return $"{nameof(X)}: {this.X}, {nameof(Y)}: {this.Y}";

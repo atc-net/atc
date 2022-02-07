@@ -225,7 +225,6 @@ public static class TypeExtensions
     /// Gets the type of the base type generic argument.
     /// </summary>
     /// <param name="type">The type.</param>
-    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     public static Type? GetBaseTypeGenericArgumentType(this Type type)
     {
         var types = GetBaseTypeGenericArgumentTypes(type);

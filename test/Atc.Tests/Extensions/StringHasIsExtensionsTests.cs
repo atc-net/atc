@@ -74,6 +74,7 @@ public class StringHasIsExtensionsTests
     [Theory]
     [InlineData(true, "03-24-2000")]
     [InlineData(false, "24-03-2000")]
+    [SuppressMessage("Globalization", "CA1304:Specify CultureInfo", Justification = "OK.")]
     public void IsDate(bool expected, string input)
         => Assert.Equal(expected, input.IsDate());
 

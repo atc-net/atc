@@ -51,7 +51,6 @@ public enum DateTimeDiffCompareType
     /// <summary>
     /// Quartal.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Quartal", Justification = "OK.")]
     [LocalizedDescription("DateTimeDiffCompareTypeQuartal", typeof(EnumResources))]
     Quartal,
 }

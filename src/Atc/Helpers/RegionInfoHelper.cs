@@ -11,7 +11,7 @@ public static class RegionInfoHelper
     /// <summary>
     /// Gets all region infos.
     /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "OK.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static List<RegionInfo> GetAllRegionInfos()
     {
         lock (Lock)

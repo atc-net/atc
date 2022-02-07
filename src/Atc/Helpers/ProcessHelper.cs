@@ -232,6 +232,7 @@ public static class ProcessHelper
         return KillByName(processName, allowMultiKill: true, timeoutInSec);
     }
 
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static (bool isSuccessful, string output) KillById(
         int processId,
         int timeoutInSec = DefaultKillTimeoutInSec)
@@ -265,6 +266,7 @@ public static class ProcessHelper
         }
     }
 
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static (bool isSuccessful, string output) KillByName(
         string processName,
         bool allowMultiKill = true,
@@ -411,6 +413,7 @@ public static class ProcessHelper
     }
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<(bool isSuccessful, string output, int processId)> InvokeExecuteWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
@@ -491,6 +494,7 @@ public static class ProcessHelper
         }
     }
 
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<bool> InvokeExecuteAndIgnoreOutput(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
@@ -507,7 +511,7 @@ public static class ProcessHelper
 
             return process.ExitCode == ConsoleExitStatusCodes.Success;
         }
-        catch (Exception)
+        catch
         {
             return false;
         }

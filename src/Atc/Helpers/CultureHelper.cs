@@ -868,7 +868,6 @@ public static class CultureHelper
             : cultureInfo.EnglishName.Substring(0, x - 1);
     }
 
-    [SuppressMessage("Microsoft.Globalization", "CA1304:SpecifyCultureInfo", Justification = "OK.")]
     private static string TryTranslateCountryEnglishName(string value, bool useValueAsDefault = true)
     {
         if (value is null)
@@ -878,7 +877,7 @@ public static class CultureHelper
 
         resourceManagerCountry ??= GetResourceManagerForResource("Country");
 
-        var result = resourceManagerCountry.GetString(value.Replace(" ", string.Empty, StringComparison.Ordinal));
+        var result = resourceManagerCountry.GetString(value.Replace(" ", string.Empty, StringComparison.Ordinal), GlobalizationConstants.EnglishCultureInfo);
         if (useValueAsDefault)
         {
             return result ?? value;
@@ -887,12 +886,11 @@ public static class CultureHelper
         return result ?? string.Empty;
     }
 
-    [SuppressMessage("Microsoft.Globalization", "CA1304:SpecifyCultureInfo", Justification = "OK.")]
     private static string TryTranslateLanguageEnglishName(string value, bool useValueAsDefault = true)
     {
         resourceManagerLanguage ??= GetResourceManagerForResource("Language");
 
-        var result = resourceManagerLanguage.GetString(value);
+        var result = resourceManagerLanguage.GetString(value, GlobalizationConstants.EnglishCultureInfo);
         if (useValueAsDefault)
         {
             return result ?? value;
