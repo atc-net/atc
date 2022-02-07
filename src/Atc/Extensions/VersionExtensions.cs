@@ -40,7 +40,7 @@ public static class VersionExtensions
 
         if (startingPart > significantParts)
         {
-            throw new ArgumentException("lessSignificantParts have be greater then significantParts");
+            throw new ArgumentException("lessSignificantParts have be greater then significantParts", nameof(startingPart));
         }
 
         if (otherVersion is null)

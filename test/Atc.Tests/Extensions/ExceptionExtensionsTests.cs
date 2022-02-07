@@ -2,6 +2,7 @@
 // ReSharper disable NotResolvedInText
 namespace Atc.Tests.Extensions;
 
+[SuppressMessage("Usage", "MA0015:Specify the parameter name in ArgumentException", Justification = "OK.")]
 public class ExceptionExtensionsTests
 {
     [Fact]
