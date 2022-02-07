@@ -12,7 +12,6 @@ public abstract class ResultBase
         this.result = result ?? throw new ArgumentNullException(nameof(result));
     }
 
-
     /// <summary>
     /// Performs an implicit conversion from result to ActionResult.
     /// </summary>
