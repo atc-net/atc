@@ -6,14 +6,14 @@ public static class RestApiExtensions
 {
     public static IServiceCollection AddRestApi<TStartup>(this IServiceCollection services)
     {
-        return services.AddRestApi<TStartup>(mvc => { }, new RestApiOptions());
+        return services.AddRestApi<TStartup>(_ => { }, new RestApiOptions());
     }
 
     public static IServiceCollection AddRestApi<TStartup>(
         this IServiceCollection services,
         RestApiOptions restApiOptions)
     {
-        return services.AddRestApi<TStartup>(mvc => { }, restApiOptions);
+        return services.AddRestApi<TStartup>(_ => { }, restApiOptions);
     }
 
     // ReSharper disable once UnusedTypeParameter
@@ -81,7 +81,9 @@ public static class RestApiExtensions
                         throw new SwitchCaseDefaultException(restApiOptions.JsonSerializerCasingStyle);
                 }
 
-                jsonOptions.JsonSerializerOptions.IgnoreNullValues = restApiOptions.UseJsonSerializerOptionsIgnoreNullValues;
+                jsonOptions.JsonSerializerOptions.DefaultIgnoreCondition = restApiOptions.UseJsonSerializerOptionsIgnoreNullValues
+                        ? JsonIgnoreCondition.WhenWritingNull
+                        : JsonIgnoreCondition.Never;
                 jsonOptions.JsonSerializerOptions.WriteIndented = false;
                 jsonOptions.JsonSerializerOptions.AllowTrailingCommas = false;
 

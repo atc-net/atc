@@ -504,6 +504,8 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 ##########################################
 dotnet_diagnostic.MA0016.severity = none			# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
 
+dotnet_diagnostic.SA1615.severity = none			# Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
+
 ##########################################
 # ATC temporary suppressions
 # generated @ Sunday, February 6, 2022 2:57:41 PM
@@ -541,11 +543,9 @@ dotnet_diagnostic.CS8604.severity = none			# 2 occurrences - Possible null refer
 dotnet_diagnostic.CS8618.severity = none			# 2 occurrences - Non-nullable field is uninitialized. Consider declaring as nullable.
 
 # StyleCop.Analyzers
-dotnet_diagnostic.SA1615.severity = none			# 240 occurrences - Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
 
 # Unknown
 dotnet_diagnostic.CA1848.severity = none			# 9 occurrences
 dotnet_diagnostic.CA2254.severity = none			# 9 occurrences
 dotnet_diagnostic.S3267.severity = none				# 13 occurrences
 dotnet_diagnostic.S3928.severity = none				# 15 occurrences
-dotnet_diagnostic.SYSLIB0020.severity = none			# 1 occurrence

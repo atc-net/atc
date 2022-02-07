@@ -29,7 +29,9 @@ public static class JsonSerializerOptionsFactory
 
         var jsonSerializerOptions = new JsonSerializerOptions
         {
-            IgnoreNullValues = settings.IgnoreNullValues,
+            DefaultIgnoreCondition = settings.IgnoreNullValues
+                ? JsonIgnoreCondition.WhenWritingNull
+                : JsonIgnoreCondition.Never,
             PropertyNameCaseInsensitive = settings.PropertyNameCaseInsensitive,
             WriteIndented = settings.WriteIndented,
         };
