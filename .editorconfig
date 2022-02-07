@@ -531,7 +531,6 @@ dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppres
 dotnet_diagnostic.MA0051.severity = none			# 18 occurrences - Category: 'Design' - Method is too long - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0051.md
 
 # Microsoft.CodeAnalysis.NetAnalyzers
-dotnet_diagnostic.CA1000.severity = none			# 11 occurrences - Do not declare static members on generic types - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1000
 dotnet_diagnostic.CA1002.severity = none			# 41 occurrences - Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
 dotnet_diagnostic.CA1019.severity = none			# 3 occurrences - Define accessors for attribute arguments - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1019
 dotnet_diagnostic.CA1508.severity = none			# 1 occurrence - Avoid dead conditional code - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1508

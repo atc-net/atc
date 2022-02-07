@@ -4,6 +4,7 @@ namespace Atc;
 /// Extension methods for enums.
 /// </summary>
 /// <typeparam name="T">The generic enum type.</typeparam>
+[SuppressMessage("Design", "CA1000:Do not declare static members on generic types", Justification = "OK.")]
 [SuppressMessage("Design", "MA0018:Do not declare static members on generic types", Justification = "OK.")]
 [SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "OK.")]
 [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "OK.")]
@@ -78,7 +79,7 @@ public static class Enum<T>
     public static bool TryGetEnumValue(Enum? value, out T returnedValue)
     {
         returnedValue = default!;
-        return value is not null && TryGetEnumValue(value.ToString(), false, out returnedValue);
+        return value is not null && TryGetEnumValue(value.ToString(), ignoreCase: false, out returnedValue);
     }
 
     /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>
@@ -107,7 +108,7 @@ public static class Enum<T>
     /// ]]></example>
     public static bool TryParse(string value, out T returnedValue)
     {
-        return TryParse(value, true, out returnedValue);
+        return TryParse(value, ignoreCase: true, out returnedValue);
     }
 
     /// <summary>Converts the string representation of a enum. A return value indicates whether the conversion succeeded.</summary>
