@@ -503,7 +503,8 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 # Custom - Code Analyzers Rules
 ##########################################
 [*.cs]
-dotnet_diagnostic.CA1002.severity = none			# 41 occurrences - Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
+dotnet_diagnostic.CA1002.severity = none			# Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
+dotnet_diagnostic.CA1812.severity = none			# Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
 dotnet_diagnostic.CA1848.severity = none			# LoggerMessage delegates instead of calling
 dotnet_diagnostic.CA2254.severity = none			# Logging message template
 
@@ -527,11 +528,6 @@ dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppres
 # 'Custom - Code Analyzers Rules' section.
 ##########################################
 [*.cs]
-
-# Microsoft.CodeAnalysis.NetAnalyzers
-dotnet_diagnostic.CA1812.severity = none			# 2 occurrences - Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
-dotnet_diagnostic.CA1849.severity = none			# 1 occurrence - Call async methods when in an async method - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1849
-dotnet_diagnostic.CA2225.severity = none			# 11 occurrences - Operator overloads have named alternates - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2225
 
 # Microsoft.CompilerErrors.Undocumented
 dotnet_diagnostic.CS8601.severity = none			# 2 occurrences - Possible null reference assignment.

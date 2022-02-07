@@ -4,6 +4,7 @@ namespace Atc.Units.DigitalInformation;
 /// Represents a size in bytes.
 /// </summary>
 [Serializable]
+[SuppressMessage("Usage", "CA2225:Operator overloads have named alternates", Justification = "OK.")]
 public struct ByteSize : IEquatable<ByteSize>
 {
     /// <summary>

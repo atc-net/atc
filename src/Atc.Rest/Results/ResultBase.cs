@@ -17,5 +17,6 @@ public abstract class ResultBase
     /// </summary>
     /// <param name="x">The resultBase.</param>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
+    [SuppressMessage("Usage", "CA2225:Operator overloads have named alternates", Justification = "OK.")]
     public static implicit operator ActionResult(ResultBase x) => x.result;
 }

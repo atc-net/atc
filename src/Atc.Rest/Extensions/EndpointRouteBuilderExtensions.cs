@@ -5,6 +5,7 @@ public static class EndpointRouteBuilderExtensions
     private static readonly Dictionary<string, string> YamlCache = new Dictionary<string, string>(StringComparer.Ordinal);
 
     [SuppressMessage("Usage", "VSTHRD103:Call async methods when in an async method", Justification = "OK. The async method is a sub-method.")]
+    [SuppressMessage("Performance", "CA1849:Call async methods when in an async method", Justification = "OK. The async method is a sub-method.")]
     public static void MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List<AssemblyPairOptions> assemblyPairs)
     {
         if (assemblyPairs is null)
