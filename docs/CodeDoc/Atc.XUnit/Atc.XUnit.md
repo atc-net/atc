@@ -223,7 +223,7 @@ DecompilerType.
 >public abstract class IntegrationTestCliBase
 >```
 
-### Methods
+### Static Methods
 
 #### GetAppSettingsFileForCli
 >```csharp

@@ -141,12 +141,12 @@ public class TaskHelperTests
         Assert.Equal(42, actual);
     }
 
-    private Task DoSomethingAsync()
+    private static Task DoSomethingAsync()
     {
         return Task.Delay(100);
     }
 
-    private async Task<int> DoSomethingAndReturnResultAsync()
+    private static async Task<int> DoSomethingAndReturnResultAsync()
     {
         await Task.Delay(100);
         return 42;

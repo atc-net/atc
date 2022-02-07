@@ -24,7 +24,7 @@ public class ApiVersionOperationFilter : IOperationFilter
         }
     }
 
-    protected void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
+    protected static void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
     {
         if (apiVersionParameter is null)
         {
@@ -40,10 +40,7 @@ public class ApiVersionOperationFilter : IOperationFilter
             .ParameterDescriptions
             .First(p => string.Equals(p.Name, apiVersionParameter.Name, StringComparison.Ordinal));
 
-        if (apiVersionParameter.Description is null)
-        {
-            apiVersionParameter.Description = description?.ModelMetadata?.Description;
-        }
+        apiVersionParameter.Description ??= description?.ModelMetadata?.Description;
 
         if (apiVersionParameter.Schema.Default is null && description is not null)
         {

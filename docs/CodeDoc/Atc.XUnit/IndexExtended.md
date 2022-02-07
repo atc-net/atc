@@ -29,7 +29,7 @@
      - CollectExportedTypesWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List&lt;Type&gt; excludeSourceTypes = null, bool useFullName = False)
 - [DecompilerType](Atc.XUnit.md#decompilertype)
 - [IntegrationTestCliBase](Atc.XUnit.md#integrationtestclibase)
-  -  Methods
+  -  Static Methods
      - GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
      - GetAppSettingsFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
      - GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)

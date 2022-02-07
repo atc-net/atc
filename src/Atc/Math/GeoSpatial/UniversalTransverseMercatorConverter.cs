@@ -145,6 +145,7 @@ public class UniversalTransverseMercatorConverter
     /// <param name="utmEasting">The utm easting.</param>
     /// <param name="utmNorthing">The utm northing.</param>
     /// <param name="maxDecimalPrecision">The maximum decimal precision.</param>
+    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
     public CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
     {

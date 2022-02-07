@@ -21,7 +21,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
     /// ]]></example>
-    public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
+    public static FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
     {
         if (programTypeForCliExe is null)
         {
@@ -51,7 +51,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
     /// ]]></example>
-    public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
+    public static FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
     {
         if (programTypeForCliExe is null)
         {
@@ -79,7 +79,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), new DirectoryInfo(@"C:\Code\atc-net\atc"));
     /// ]]></example>
-    public FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
+    public static FileInfo GetAppSettingsFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath)
     {
         if (programTypeForCliExe is null)
         {
@@ -113,7 +113,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program));
     /// ]]></example>
-    public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
+    public static FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string? pathFolderNameFilter)
     {
         if (programTypeForCliExe is null)
         {
@@ -142,7 +142,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
     /// ]]></example>
-    public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
+    public static FileInfo GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string? pathFolderNameFilter)
     {
         if (programTypeForCliExe is null)
         {
@@ -182,7 +182,7 @@ public abstract class IntegrationTestCliBase
     /// <example><![CDATA[
     /// var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), new DirectoryInfo(@"C:\Code\atc-net\atc"));
     /// ]]></example>
-    public FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string? pathFolderNameFilter)
+    public static FileInfo GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string? pathFolderNameFilter)
     {
         if (programTypeForCliExe is null)
         {
@@ -256,7 +256,7 @@ public abstract class IntegrationTestCliBase
     }
 
     private static FileInfo GetAppSettingsFilePathFromCliFileExe(FileInfo cliFileExe)
-        => new FileInfo(
+        => new (
             Path.Combine(
                 cliFileExe.Directory!.FullName,
                 "appsettings.json"));

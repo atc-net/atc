@@ -11,7 +11,7 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create(useCamelCase: false);
     }
 
-    public Task<(bool isSuccessful, string output)> ExecuteCli(string arguments)
+    public static Task<(bool isSuccessful, string output)> ExecuteCli(string arguments)
     {
         if (arguments is null)
         {
@@ -22,7 +22,7 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
     }
 
-    public void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
+    public static void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
     {
         if (config is null)
         {
