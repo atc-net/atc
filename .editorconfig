@@ -513,7 +513,6 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 [*.cs]
 
 # Meziantou.Analyzer
-dotnet_diagnostic.MA0008.severity = none			# 4 occurrences - Category: 'Performance' - Add StructLayoutAttribute - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0008.md
 dotnet_diagnostic.MA0009.severity = none			# 17 occurrences - Category: 'Security' - Add regex evaluation timeout - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0009.md
 dotnet_diagnostic.MA0011.severity = none			# 14 occurrences - Category: 'Usage' - IFormatProvider is missing - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0011.md
 dotnet_diagnostic.MA0015.severity = none			# 1 occurrence - Category: 'Usage' - Specify the parameter name in ArgumentException - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0015.md

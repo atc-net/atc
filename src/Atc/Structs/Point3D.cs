@@ -5,6 +5,7 @@ namespace Atc;
 /// Represents an x-, y-, and z-coordinate point in 3-D space.
 /// </summary>
 [Serializable]
+[StructLayout(LayoutKind.Auto)]
 public struct Point3D : IEquatable<Point3D>
 {
     /// <summary>

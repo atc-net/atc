@@ -5,6 +5,7 @@ namespace Atc;
 /// Represents an x- and y-coordinate point in 2-D grid.
 /// </summary>
 [Serializable]
+[StructLayout(LayoutKind.Auto)]
 public struct GridCell : ICloneable, IEquatable<GridCell>
 {
     /// <summary>

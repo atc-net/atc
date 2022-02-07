@@ -4,6 +4,7 @@ namespace Atc.Structs;
 /// Represents an latitude- and longitude-coordinate.
 /// </summary>
 [Serializable]
+[StructLayout(LayoutKind.Auto)]
 public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
 {
     /// <summary>

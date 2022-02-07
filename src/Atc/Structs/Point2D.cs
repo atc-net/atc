@@ -5,6 +5,7 @@ namespace Atc;
 /// Represents an x- and y-coordinate point in 2-D space.
 /// </summary>
 [Serializable]
+[StructLayout(LayoutKind.Auto)]
 public struct Point2D : IEquatable<Point2D>
 {
     /// <summary>
