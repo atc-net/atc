@@ -537,7 +537,6 @@ dotnet_diagnostic.CA1812.severity = none			# 2 occurrences - Avoid uninstantiate
 dotnet_diagnostic.CA1849.severity = none			# 1 occurrence - Call async methods when in an async method - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1849
 dotnet_diagnostic.CA2201.severity = none			# 3 occurrences - Do not raise reserved exception types - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2201
 dotnet_diagnostic.CA2225.severity = none			# 11 occurrences - Operator overloads have named alternates - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2225
-dotnet_diagnostic.CA2227.severity = none			# 4 occurrences - Collection properties should be read only - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2227
 
 # Microsoft.CompilerErrors.Undocumented
 dotnet_diagnostic.CS8601.severity = none			# 2 occurrences - Possible null reference assignment.

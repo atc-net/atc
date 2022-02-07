@@ -67,6 +67,7 @@ public class XmlDocumentComment
     /// <value>
     /// The parameters.
     /// </value>
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
     public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>

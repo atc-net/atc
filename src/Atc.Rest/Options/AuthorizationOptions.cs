@@ -31,6 +31,7 @@ namespace Atc.Rest.Options;
 ///   }
 /// }.
 /// </code>
+[SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
 public class AuthorizationOptions
 {
     public const string ConfigurationSectionName = "Authorization";

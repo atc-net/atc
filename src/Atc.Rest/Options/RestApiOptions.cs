@@ -25,6 +25,7 @@ public class RestApiOptions
 
     public bool UseValidateServiceRegistrations { get; set; } = true;
 
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
     public List<AssemblyPairOptions> AssemblyPairs { get; set; } = new List<AssemblyPairOptions>();
 
     public void AddAssemblyPairs(Assembly? apiAssembly, Assembly? domainAssembly)
