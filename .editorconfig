@@ -503,10 +503,17 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 # Custom - Code Analyzers Rules
 ##########################################
 [*.cs]
+dotnet_diagnostic.CA1848.severity = none			# LoggerMessage delegates instead of calling
+dotnet_diagnostic.CA2254.severity = none			# Logging message template
+
+dotnet_diagnostic.MA0031.severity = none            # Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
 dotnet_diagnostic.MA0016.severity = none			# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
 dotnet_diagnostic.MA0023.severity = none			# Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
+dotnet_diagnostic.MA0076.severity = none			# Do not use implicit culture-sensitive ToString in interpolated strings - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0076.md
 
 dotnet_diagnostic.SA1615.severity = none			# Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
+
+dotnet_diagnostic.S3267.severity = none				# Simplified with LINQ expressions
 
 dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
 
@@ -521,7 +528,6 @@ dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppres
 [*.cs]
 
 # Meziantou.Analyzer
-dotnet_diagnostic.MA0011.severity = none			# 14 occurrences - Category: 'Usage' - IFormatProvider is missing - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0011.md
 dotnet_diagnostic.MA0051.severity = none			# 18 occurrences - Category: 'Design' - Method is too long - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0051.md
 
 # Microsoft.CodeAnalysis.NetAnalyzers
@@ -541,10 +547,3 @@ dotnet_diagnostic.CS8601.severity = none			# 2 occurrences - Possible null refer
 dotnet_diagnostic.CS8602.severity = none			# 2 occurrences - Dereference of a possibly null reference.
 dotnet_diagnostic.CS8604.severity = none			# 2 occurrences - Possible null reference argument.
 dotnet_diagnostic.CS8618.severity = none			# 2 occurrences - Non-nullable field is uninitialized. Consider declaring as nullable.
-
-# StyleCop.Analyzers
-
-# Unknown
-dotnet_diagnostic.CA1848.severity = none			# 9 occurrences
-dotnet_diagnostic.CA2254.severity = none			# 9 occurrences
-dotnet_diagnostic.S3267.severity = none				# 13 occurrences

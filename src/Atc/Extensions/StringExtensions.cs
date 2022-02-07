@@ -119,7 +119,7 @@ public static class StringExtensions
             var sas = s.Split('}');
 
             // ReSharper disable once InvertIf
-            if (sas.Length > 0 && int.TryParse(sas[0], out var x))
+            if (sas.Length > 0 && int.TryParse(sas[0], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out var x))
             {
                 if (!parameterIds.Contains(x))
                 {
@@ -166,7 +166,7 @@ public static class StringExtensions
             var sas = s.Split('}');
 
             // ReSharper disable once InvertIf
-            if (sas.Length > 0 && !int.TryParse(sas[0], out _))
+            if (sas.Length > 0 && !int.TryParse(sas[0], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
             {
                 if (!parameterLiterals.Contains(sas[0], StringComparer.Ordinal))
                 {

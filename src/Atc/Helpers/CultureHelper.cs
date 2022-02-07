@@ -406,7 +406,7 @@ public static class CultureHelper
 
         if (value.IsDigitOnly())
         {
-            culture = cultures.Find(x => x.Lcid == int.Parse(value, GlobalizationConstants.EnglishCultureInfo));
+            culture = cultures.Find(x => x.Lcid == int.Parse(value, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo));
             if (culture is not null)
             {
                 return culture;
@@ -868,6 +868,8 @@ public static class CultureHelper
             : cultureInfo.EnglishName.Substring(0, x - 1);
     }
 
+    [SuppressMessage("Globalization", "CA1304:Specify CultureInfo", Justification = "OK.")]
+    [SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "OK.")]
     private static string TryTranslateCountryEnglishName(string value, bool useValueAsDefault = true)
     {
         if (value is null)
@@ -877,7 +879,7 @@ public static class CultureHelper
 
         resourceManagerCountry ??= GetResourceManagerForResource("Country");
 
-        var result = resourceManagerCountry.GetString(value.Replace(" ", string.Empty, StringComparison.Ordinal), GlobalizationConstants.EnglishCultureInfo);
+        var result = resourceManagerCountry.GetString(value.Replace(" ", string.Empty, StringComparison.Ordinal));
         if (useValueAsDefault)
         {
             return result ?? value;
@@ -886,11 +888,13 @@ public static class CultureHelper
         return result ?? string.Empty;
     }
 
+    [SuppressMessage("Globalization", "CA1304:Specify CultureInfo", Justification = "OK.")]
+    [SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "OK.")]
     private static string TryTranslateLanguageEnglishName(string value, bool useValueAsDefault = true)
     {
         resourceManagerLanguage ??= GetResourceManagerForResource("Language");
 
-        var result = resourceManagerLanguage.GetString(value, GlobalizationConstants.EnglishCultureInfo);
+        var result = resourceManagerLanguage.GetString(value);
         if (useValueAsDefault)
         {
             return result ?? value;
