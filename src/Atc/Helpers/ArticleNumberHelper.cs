@@ -238,6 +238,7 @@ public static class ArticleNumberHelper
     /// <returns>
     ///   <c>true</c> if [is valid isbn13] [the specified isbn13]; otherwise, <c>false</c>.
     /// </returns>
+    [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "TODO: Fix, then we have a UT that covers the senearios")]
     public static bool IsValidIsbn13(string isbn13)
     {
         if (string.IsNullOrEmpty(isbn13))

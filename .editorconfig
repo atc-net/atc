@@ -529,7 +529,6 @@ dotnet_diagnostic.IDE0079.severity = none           # Remove unnecessary suppres
 [*.cs]
 
 # Microsoft.CodeAnalysis.NetAnalyzers
-dotnet_diagnostic.CA1508.severity = none			# 1 occurrence - Avoid dead conditional code - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1508
 dotnet_diagnostic.CA1812.severity = none			# 2 occurrences - Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
 dotnet_diagnostic.CA1849.severity = none			# 1 occurrence - Call async methods when in an async method - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1849
 dotnet_diagnostic.CA2225.severity = none			# 11 occurrences - Operator overloads have named alternates - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2225
