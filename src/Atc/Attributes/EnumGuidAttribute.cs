@@ -11,6 +11,7 @@ public sealed class EnumGuidAttribute : Attribute
     /// Initializes a new instance of the <see cref="EnumGuidAttribute" /> class.
     /// </summary>
     /// <param name="value">The GUID.</param>
+    [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
     public EnumGuidAttribute(string value)
     {
         this.GlobalIdentifier = new Guid(value);

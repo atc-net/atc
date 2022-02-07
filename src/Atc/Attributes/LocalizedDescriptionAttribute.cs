@@ -16,6 +16,7 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     /// </summary>
     /// <param name="resourceKey">The resource key.</param>
     /// <param name="resourceType">Type of the resource.</param>
+    [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
     public LocalizedDescriptionAttribute(string? resourceKey, Type resourceType)
     {
         if (resourceType is null)
