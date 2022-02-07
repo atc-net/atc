@@ -502,6 +502,8 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 ##########################################
 # Custom - Code Analyzers Rules
 ##########################################
+dotnet_diagnostic.MA0016.severity = none			# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
+
 ##########################################
 # ATC temporary suppressions
 # generated @ Sunday, February 6, 2022 2:57:41 PM
@@ -514,8 +516,6 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 
 # Meziantou.Analyzer
 dotnet_diagnostic.MA0011.severity = none			# 14 occurrences - Category: 'Usage' - IFormatProvider is missing - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0011.md
-dotnet_diagnostic.MA0015.severity = none			# 1 occurrence - Category: 'Usage' - Specify the parameter name in ArgumentException - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0015.md
-dotnet_diagnostic.MA0016.severity = none			# 65 occurrences - Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
 dotnet_diagnostic.MA0023.severity = none			# 4 occurrences - Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
 dotnet_diagnostic.MA0051.severity = none			# 18 occurrences - Category: 'Design' - Method is too long - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0051.md
 

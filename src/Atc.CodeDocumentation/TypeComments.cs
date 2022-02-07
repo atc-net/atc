@@ -17,7 +17,7 @@ public class TypeComments
         this.CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
         if (type.FullName is null)
         {
-            throw new ArgumentNullOrDefaultPropertyException(nameof(type.FullName));
+            throw new ArgumentNullOrDefaultPropertyException(nameof(type), nameof(type.FullName));
         }
     }
 

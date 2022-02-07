@@ -151,12 +151,12 @@ public abstract class IntegrationTestCliBase
 
         if (string.IsNullOrEmpty(searchFromSubFolderName))
         {
-            throw new ArgumentException($"{nameof(programTypeForCliExe)} is null og empty.");
+            throw new ArgumentException($"{nameof(programTypeForCliExe)} is null og empty.", nameof(programTypeForCliExe));
         }
 
         if (searchFromSubFolderName.IndexOfAny(new[] { '/', '\\' }) != -1)
         {
-            throw new ArgumentException($"{nameof(programTypeForCliExe)} is not a folder name.");
+            throw new ArgumentException($"{nameof(programTypeForCliExe)} is not a folder name.", nameof(programTypeForCliExe));
         }
 
         var (cliFileNameExe, searchFromPath) = GetCliFileExeAndSearchFromPath(programTypeForCliExe);
