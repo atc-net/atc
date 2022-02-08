@@ -1,4 +1,5 @@
 // ReSharper disable CommentTypo
+// ReSharper disable LocalizableElement
 // ReSharper disable MemberCanBeMadeStatic.Global
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.XUnit;

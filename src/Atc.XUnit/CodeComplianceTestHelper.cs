@@ -173,14 +173,14 @@ public static class CodeComplianceTestHelper
             if (i == typesWithMissingTests.Length - 1)
             {
                 var text = useFullName
-                    ? $"typeof(global::{type.BeautifyName(true)})"
+                    ? $"typeof(global::{type.BeautifyName(useFullName: true)})"
                     : $"typeof({type.BeautifyName()})";
                 sb.AppendLine(16, text);
             }
             else
             {
                 var text = useFullName
-                    ? $"typeof(global::{type.BeautifyName(true)}),"
+                    ? $"typeof(global::{type.BeautifyName(useFullName: true)}),"
                     : $"typeof({type.BeautifyName()}),";
                 sb.AppendLine(16, text);
             }

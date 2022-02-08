@@ -16,7 +16,9 @@ internal static class DecompilerMethodHelper
             // ReSharper disable once UseDeconstruction
             foreach (var classMethodNames in debugLimitData.ClassMethodNames)
             {
-                if (!testMethodWithDeclaration.Item1.DeclaringType!.BeautifyName(false, false, true).StartsWith(classMethodNames.Item1, StringComparison.Ordinal))
+                if (!testMethodWithDeclaration.Item1.DeclaringType!
+                        .BeautifyName(useFullName: false, useHtmlFormat: false, useGenericParameterNamesAsT: true)
+                        .StartsWith(classMethodNames.Item1, StringComparison.Ordinal))
                 {
                     continue;
                 }

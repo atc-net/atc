@@ -85,7 +85,7 @@ public static class TestResultHelper
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
             .OrderBy(x => x.DeclaringType?.FullName)
-            .GroupBy(x => x.DeclaringType?.BeautifyName(true), StringComparer.Ordinal)
+            .GroupBy(x => x.DeclaringType?.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 
         var testResults = new List<TestResult>
@@ -96,7 +96,7 @@ public static class TestResultHelper
         foreach (var item in methodsWithMissingTestsGroups)
         {
             testResults.Add(new TestResult(false, 1, $"Type: {item.Key} ({item.Count()})"));
-            testResults.AddRange(item.Select(methodInfo => new TestResult(true, 2, methodInfo.BeautifyName(useFullName))));
+            testResults.AddRange(item.Select(methodInfo => new TestResult(isError: true, 2, methodInfo.BeautifyName(useFullName))));
         }
 
         AssertOnTestResults(testResults);
@@ -120,7 +120,7 @@ public static class TestResultHelper
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
             .OrderBy(x => x.ReflectedType?.FullName)
-            .GroupBy(x => x.ReflectedType?.BeautifyName(true), StringComparer.Ordinal)
+            .GroupBy(x => x.ReflectedType?.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 
         var file = new FileInfo(Path.Combine(reportDirectory.FullName, $"TestResultsFromMethodsWithMissingTestsFor_{assemblyName}.xlsx"));
@@ -136,7 +136,7 @@ public static class TestResultHelper
             ws.Cells["A" + row].Value = item.Key;
             foreach (var methodInfo in item)
             {
-                ws.Cells["B" + row].Value = methodInfo.BeautifyName(true);
+                ws.Cells["B" + row].Value = methodInfo.BeautifyName(useFullName: true);
                 row++;
             }
         }

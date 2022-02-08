@@ -28,7 +28,7 @@ internal static class TypeAndMethodAndParameterHelper
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     internal static string GetDebugMethodInfo(MethodInfo method)
     {
-        var debugMethodInfo = $"{method.DeclaringType?.BeautifyName()} # {method.BeautifyName(false, false, true)}";
+        var debugMethodInfo = $"{method.DeclaringType?.BeautifyName()} # {method.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true)}";
         var c1 = method.DeclaringType is not null && method.DeclaringType.IsGenericType;
         var c2 = method.DeclaringType is not null && method.DeclaringType.IsGenericTypeDefinition;
         var m1 = method.IsGenericMethod;

@@ -75,14 +75,13 @@ internal static class AnalyzerHelper
                 var instructions = method.GetInstructions();
                 foreach (var instruction in instructions)
                 {
-                    var usedMethodInTest = instruction.Operand as MethodInfo;
-                    if (usedMethodInTest is null)
+                    if (instruction.Operand is not MethodInfo usedMethodInTest)
                     {
                         continue;
                     }
 
                     var type = usedMethodInTest.DeclaringType;
-                    if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(false, false, true), StringComparison.Ordinal)) is null)
+                    if (sourceTypes.FirstOrDefault(x => x.BeautifyName().Equals(type!.BeautifyName(useFullName: false, useHtmlFormat: false, useGenericParameterNamesAsT: true), StringComparison.Ordinal)) is null)
                     {
                         continue;
                     }
@@ -177,7 +176,9 @@ internal static class AnalyzerHelper
             // ReSharper disable once UseDeconstruction
             foreach (var classMethodNames in debugLimitData.ClassMethodNames)
             {
-                if (!usedSourceMethod.DeclaringType!.BeautifyName(false, false, true).Equals(classMethodNames.Item1, StringComparison.Ordinal))
+                if (!usedSourceMethod.DeclaringType!
+                        .BeautifyName(useFullName: false, useHtmlFormat: false, useGenericParameterNamesAsT: true)
+                        .Equals(classMethodNames.Item1, StringComparison.Ordinal))
                 {
                     continue;
                 }
