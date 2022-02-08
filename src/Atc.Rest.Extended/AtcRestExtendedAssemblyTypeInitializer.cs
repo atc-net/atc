@@ -1,7 +1,6 @@
-namespace Atc.Rest.Extended
+namespace Atc.Rest.Extended;
+
+public static class AtcRestExtendedAssemblyTypeInitializer
 {
-    public static class AtcRestExtendedAssemblyTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

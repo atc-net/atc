@@ -1,7 +1,7 @@
 {
-	"Mappings": {
-		"Src": { "Paths": [ "src" ] },
-		"Test": { "Paths": [ "test" ] }
-    "Sample": { "Paths": [ "sample" ] }
+	"mappings": {
+		"src": { "Paths": [ "src" ] },
+		"test": { "Paths": [ "test" ] },
+    "sample": { "Paths": [ "sample" ] }
 	}
 }

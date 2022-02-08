@@ -1,29 +1,26 @@
-﻿using Atc.Resources;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Enumeration: LeftRightType.
+/// </summary>
+public enum LeftRightType
 {
     /// <summary>
-    /// Enumeration: LeftRightType.
+    /// Default None
     /// </summary>
-    public enum LeftRightType
-    {
-        /// <summary>
-        /// Default None
-        /// </summary>
-        [LocalizedDescription(null, typeof(EnumResources))]
-        None = 0,
+    [LocalizedDescription(null, typeof(EnumResources))]
+    None = 0,
 
-        /// <summary>
-        /// Left
-        /// </summary>
-        [LocalizedDescription("LeftRightTypeLeft", typeof(EnumResources))]
-        Left = 1,
+    /// <summary>
+    /// Left
+    /// </summary>
+    [LocalizedDescription("LeftRightTypeLeft", typeof(EnumResources))]
+    Left = 1,
 
-        /// <summary>
-        /// Right
-        /// </summary>
-        [LocalizedDescription("LeftRightTypeRight", typeof(EnumResources))]
-        Right = 2,
-    }
+    /// <summary>
+    /// Right
+    /// </summary>
+    [LocalizedDescription("LeftRightTypeRight", typeof(EnumResources))]
+    Right = 2,
 }

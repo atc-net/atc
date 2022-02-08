@@ -1,4 +1,4 @@
-﻿# ATC Rest FluentAssertions
+﻿# Atc.Rest.FluentAssertions
 
 This library contains extensions to the FluentAssertions library, that makes it easier to assert against the `ResultBase` types returned from domain handlers.
 

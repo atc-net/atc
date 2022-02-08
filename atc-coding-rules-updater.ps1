@@ -6,6 +6,7 @@ $currentPath = Get-Location
 
 Write-Host "Running atc-coding-rules-updater to fetch updated rulesets and configurations"
 atc-coding-rules-updater `
-    -r $currentPath `
+    run `
+    -p $currentPath `
     --optionsPath $currentPath'\atc-coding-rules-updater.json' `
-    -v true
+    -v

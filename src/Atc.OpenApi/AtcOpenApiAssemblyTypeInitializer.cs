@@ -1,7 +1,6 @@
-namespace Atc.OpenApi
+namespace Atc.OpenApi;
+
+public static class AtcOpenApiAssemblyTypeInitializer
 {
-    public static class AtcOpenApiAssemblyTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

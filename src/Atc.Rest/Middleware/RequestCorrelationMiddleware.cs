@@ -1,32 +1,27 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+namespace Atc.Rest.Middleware;
 
-namespace Atc.Rest.Middleware
+/// <summary>
+/// Responsible for ensuring x-correlation-id and x-request-id are set on request and response.
+/// </summary>
+public class RequestCorrelationMiddleware
 {
-    /// <summary>
-    /// Responsible for ensuring x-correlation-id and x-request-id are set on request and response.
-    /// </summary>
-    public class RequestCorrelationMiddleware
+    private readonly RequestDelegate next;
+
+    public RequestCorrelationMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate next;
+        this.next = next;
+    }
 
-        public RequestCorrelationMiddleware(RequestDelegate next)
+    public Task InvokeAsync(HttpContext context)
+    {
+        if (context is null)
         {
-            this.next = next;
+            throw new ArgumentNullException(nameof(context));
         }
 
-        public Task InvokeAsync(HttpContext context)
-        {
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var correlationId = context.Request.Headers.GetOrAddCorrelationId();
-            context.Request.Headers.GetOrAddRequestId();
-            context.Response.Headers.AddCorrelationId(correlationId);
-            return next(context);
-        }
+        var correlationId = context.Request.Headers.GetOrAddCorrelationId();
+        context.Request.Headers.GetOrAddRequestId();
+        context.Response.Headers.AddCorrelationId(correlationId);
+        return next(context);
     }
 }

@@ -1,94 +1,88 @@
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
 // ReSharper disable SuggestBaseTypeForParameter
-namespace Atc.DotNet.Tests
+namespace Atc.DotNet.Tests;
+
+public class DotnetBuildHelperTests : IAsyncLifetime
 {
-    public class DotnetBuildHelperTests : IAsyncLifetime
+    private static readonly DirectoryInfo WorkingDirectory = new DirectoryInfo(
+        Path.Combine(Path.GetTempPath(), "atc-integration-test-dotnet-build-helper"));
+
+    public Task InitializeAsync()
     {
-        private static readonly DirectoryInfo WorkingDirectory = new DirectoryInfo(
-            Path.Combine(Path.GetTempPath(), "atc-integration-test-dotnet-build-helper"));
-
-        public Task InitializeAsync()
+        if (Directory.Exists(WorkingDirectory.FullName))
         {
-            if (Directory.Exists(WorkingDirectory.FullName))
-            {
-                Directory.Delete(WorkingDirectory.FullName, recursive: true);
-            }
-
-            Directory.CreateDirectory(WorkingDirectory.FullName);
-
-            return Task.CompletedTask;
+            Directory.Delete(WorkingDirectory.FullName, recursive: true);
         }
 
-        public Task DisposeAsync()
-        {
-            if (Directory.Exists(WorkingDirectory.FullName))
-            {
-                Directory.Delete(WorkingDirectory.FullName, recursive: true);
-            }
+        Directory.CreateDirectory(WorkingDirectory.FullName);
 
-            return Task.CompletedTask;
+        return Task.CompletedTask;
+    }
+
+    public Task DisposeAsync()
+    {
+        if (Directory.Exists(WorkingDirectory.FullName))
+        {
+            Directory.Delete(WorkingDirectory.FullName, recursive: true);
         }
 
-        [Fact]
-        public async Task Create_ConsoleApp_GoodCase()
-        {
-            await CreateCsprojFile(WorkingDirectory);
-            await CreateProgramFile(WorkingDirectory, withError: false);
+        return Task.CompletedTask;
+    }
 
-            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
+    [Fact]
+    public async Task Create_ConsoleApp_GoodCase()
+    {
+        await CreateCsprojFile(WorkingDirectory);
+        await CreateProgramFile(WorkingDirectory, withError: false);
 
-            Assert.Empty(buildErrors);
-        }
+        var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
 
-        [Fact]
-        public async Task Create_ConsoleApp_BadCase()
-        {
-            await CreateCsprojFile(WorkingDirectory);
-            await CreateProgramFile(WorkingDirectory, withError: true);
+        Assert.Empty(buildErrors);
+    }
 
-            var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
+    [Fact]
+    public async Task Create_ConsoleApp_BadCase()
+    {
+        await CreateCsprojFile(WorkingDirectory);
+        await CreateProgramFile(WorkingDirectory, withError: true);
 
-            Assert.Single(buildErrors);
-        }
+        var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(WorkingDirectory);
 
-        private static Task CreateCsprojFile(DirectoryInfo workingDirectory)
-        {
-            var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Test.csproj"));
+        Assert.Single(buildErrors);
+    }
 
-            var sb = new StringBuilder();
-            sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
-            sb.AppendLine(2, "<PropertyGroup>");
-            sb.AppendLine(4, "<OutputType>Exe</OutputType>");
-            sb.AppendLine(4, "<TargetFramework>net5.0</TargetFramework>");
-            sb.AppendLine(2, "</PropertyGroup>");
-            sb.AppendLine("</Project>");
+    private static Task CreateCsprojFile(DirectoryInfo workingDirectory)
+    {
+        var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Test.csproj"));
 
-            return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
-        }
+        var sb = new StringBuilder();
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
+        sb.AppendLine(2, "<PropertyGroup>");
+        sb.AppendLine(4, "<OutputType>Exe</OutputType>");
+        sb.AppendLine(4, "<TargetFramework>net5.0</TargetFramework>");
+        sb.AppendLine(2, "</PropertyGroup>");
+        sb.AppendLine("</Project>");
 
-        private static Task CreateProgramFile(DirectoryInfo workingDirectory, bool withError = false)
-        {
-            var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Program.cs"));
+        return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
+    }
 
-            var sb = new StringBuilder();
-            sb.AppendLine("using System;");
-            sb.AppendLine();
-            sb.AppendLine("namespace Test");
-            sb.AppendLine("{");
-            sb.AppendLine(4, "class Program");
-            sb.AppendLine(4, "{");
-            sb.AppendLine(8, "static void Main(string[] args)");
-            sb.AppendLine(8, "{");
-            sb.AppendLine(12, withError ? "QQConsole.WriteLine(\"Hello World!\");" : "Console.WriteLine(\"Hello World!\");");
-            sb.AppendLine(8, "}");
-            sb.AppendLine(4, "}");
-            sb.AppendLine("}");
+    private static Task CreateProgramFile(DirectoryInfo workingDirectory, bool withError = false)
+    {
+        var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Program.cs"));
 
-            return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
-        }
+        var sb = new StringBuilder();
+        sb.AppendLine("using System;");
+        sb.AppendLine();
+        sb.AppendLine("namespace Test");
+        sb.AppendLine("{");
+        sb.AppendLine(4, "class Program");
+        sb.AppendLine(4, "{");
+        sb.AppendLine(8, "static void Main(string[] args)");
+        sb.AppendLine(8, "{");
+        sb.AppendLine(12, withError ? "QQConsole.WriteLine(\"Hello World!\");" : "Console.WriteLine(\"Hello World!\");");
+        sb.AppendLine(8, "}");
+        sb.AppendLine(4, "}");
+        sb.AppendLine("}");
+
+        return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
     }
 }

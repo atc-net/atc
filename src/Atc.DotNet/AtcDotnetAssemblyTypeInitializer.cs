@@ -1,7 +1,6 @@
-namespace Atc.DotNet
+namespace Atc.DotNet;
+
+public static class AtcDotnetAssemblyTypeInitializer
 {
-    public static class AtcDotnetAssemblyTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

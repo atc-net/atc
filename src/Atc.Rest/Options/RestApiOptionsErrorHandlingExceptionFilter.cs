@@ -1,11 +1,10 @@
-﻿namespace Atc.Rest.Options
+namespace Atc.Rest.Options;
+
+public class RestApiOptionsErrorHandlingExceptionFilter
 {
-    public class RestApiOptionsErrorHandlingExceptionFilter
-    {
-        public bool Enable { get; set; } = true;
+    public bool Enable { get; set; } = true;
 
-        public bool UseProblemDetailsAsResponseBody { get; set; } = true;
+    public bool UseProblemDetailsAsResponseBody { get; set; } = true;
 
-        public bool IncludeExceptionDetails { get; set; } = true;
-    }
+    public bool IncludeExceptionDetails { get; set; } = true;
 }

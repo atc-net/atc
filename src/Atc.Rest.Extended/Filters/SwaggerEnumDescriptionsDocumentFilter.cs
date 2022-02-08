@@ -1,124 +1,115 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
-
 // ReSharper disable UseDeconstruction
 // ReSharper disable LoopCanBeConvertedToQuery
-namespace Atc.Rest.Extended.Filters
+namespace Atc.Rest.Extended.Filters;
+
+public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 {
-    public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
+    [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
+    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
     {
-        [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
-        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+        if (swaggerDoc is null)
         {
-            if (swaggerDoc is null)
-            {
-                throw new ArgumentNullException(nameof(swaggerDoc));
-            }
+            throw new ArgumentNullException(nameof(swaggerDoc));
+        }
 
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+        if (context is null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
 
-            // Add enum descriptions to result models
-            foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
+        // Add enum descriptions to result models
+        foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
+        {
+            var propertyEnums = item.Value.Enum;
+            if (propertyEnums is not null && propertyEnums.Count > 0)
             {
-                var propertyEnums = item.Value.Enum;
-                if (propertyEnums is not null && propertyEnums.Count > 0)
-                {
-                    item.Value.Description += DescribeEnum(propertyEnums, item.Key);
-                }
-            }
-
-            // Add enum descriptions to input parameters
-            foreach (var item in swaggerDoc.Paths)
-            {
-                DescribeEnumParameters(item.Value.Operations, swaggerDoc, context.ApiDescriptions, item.Key);
+                item.Value.Description += DescribeEnum(propertyEnums, item.Key);
             }
         }
 
-        [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
-        private static void DescribeEnumParameters(
-            IDictionary<OperationType, OpenApiOperation>? operations,
-            OpenApiDocument document,
-            IEnumerable<ApiDescription> apiDescriptions,
-            string path)
+        // Add enum descriptions to input parameters
+        foreach (var item in swaggerDoc.Paths)
         {
-            path = path.Trim('/');
-            if (operations is null)
-            {
-                return;
-            }
+            DescribeEnumParameters(item.Value.Operations, swaggerDoc, context.ApiDescriptions, item.Key);
+        }
+    }
 
-            var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
-            foreach (var operation in operations)
+    [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
+    private static void DescribeEnumParameters(
+        IDictionary<OperationType, OpenApiOperation>? operations,
+        OpenApiDocument document,
+        IEnumerable<ApiDescription> apiDescriptions,
+        string path)
+    {
+        path = path.Trim('/');
+        if (operations is null)
+        {
+            return;
+        }
+
+        var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
+        foreach (var operation in operations)
+        {
+            var operationDescription = pathDescriptions.Find(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
+            foreach (var param in operation.Value.Parameters)
             {
-                var operationDescription = pathDescriptions.Find(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
-                foreach (var param in operation.Value.Parameters)
+                var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
+
+                if (parameterDescription?.Type is null)
                 {
-                    var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
+                    continue;
+                }
 
-                    if (parameterDescription?.Type is null)
-                    {
-                        continue;
-                    }
+                if (!parameterDescription.Type.TryGetEnumType(out var enumType))
+                {
+                    continue;
+                }
 
-                    if (!parameterDescription.Type.TryGetEnumType(out var enumType))
-                    {
-                        continue;
-                    }
+                var paramEnum = document.Components.Schemas.FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
+                if (paramEnum.Value is not null)
+                {
+                    param.Description += DescribeEnum(paramEnum.Value.Enum, paramEnum.Key);
+                }
+            }
+        }
+    }
 
-                    var paramEnum = document.Components.Schemas.FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
-                    if (paramEnum.Value is not null)
-                    {
-                        param.Description += DescribeEnum(paramEnum.Value.Enum, paramEnum.Key);
-                    }
+    private static string DescribeEnum(IEnumerable<IOpenApiAny> enums, string propertyTypeName)
+    {
+        var enumDescriptions = new List<string>();
+        var enumType = GetEnumTypeByName(propertyTypeName);
+        if (enumType is null)
+        {
+            return null!;
+        }
+
+        foreach (var item in enums)
+        {
+            switch (item)
+            {
+                case OpenApiInteger intItem:
+                {
+                    var enumOption = intItem;
+                    var enumInt = enumOption.Value;
+                    enumDescriptions.Add($"{enumInt} = {Enum.GetName(enumType, enumInt)}");
+                    break;
+                }
+
+                case OpenApiString stringItem:
+                {
+                    var enumOption = stringItem;
+                    var enumInt = (int)Enum.Parse(enumType, enumOption.Value);
+                    enumDescriptions.Add($"{enumInt} = {enumOption.Value}");
+                    break;
                 }
             }
         }
 
-        private static string DescribeEnum(IEnumerable<IOpenApiAny> enums, string propertyTypeName)
-        {
-            var enumDescriptions = new List<string>();
-            var enumType = GetEnumTypeByName(propertyTypeName);
-            if (enumType is null)
-            {
-                return null!;
-            }
+        return string.Join("<br />", enumDescriptions.ToArray());
+    }
 
-            foreach (var item in enums)
-            {
-                switch (item)
-                {
-                    case OpenApiInteger intItem:
-                    {
-                        var enumOption = intItem;
-                        var enumInt = enumOption.Value;
-                        enumDescriptions.Add($"{enumInt} = {Enum.GetName(enumType, enumInt)}");
-                        break;
-                    }
-
-                    case OpenApiString stringItem:
-                    {
-                        var enumOption = stringItem;
-                        var enumInt = (int)Enum.Parse(enumType, enumOption.Value);
-                        enumDescriptions.Add($"{enumInt} = {enumOption.Value}");
-                        break;
-                    }
-                }
-            }
-
-            return string.Join("<br />", enumDescriptions.ToArray());
-        }
-
-        private static Type? GetEnumTypeByName(string enumTypeName)
-            => AppDomain.CurrentDomain
+    private static Type? GetEnumTypeByName(string enumTypeName)
+        => AppDomain.CurrentDomain
                 .GetAssemblies()
                 .SelectMany(x => x.GetTypes().Where(t => t.IsEnum))
                 .Where(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal))
@@ -128,5 +119,4 @@ namespace Atc.Rest.Extended.Filters
                 { Length: 1 } a => a[0],
                 _ => null,
             };
-    }
 }

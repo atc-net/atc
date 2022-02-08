@@ -1,7 +1,6 @@
-﻿namespace Atc.CodeAnalysis.CSharp
+namespace Atc.CodeAnalysis.CSharp;
+
+public class AtcCodeAnalysisCSharpTypeInitializer
 {
-    public class AtcCodeAnalysisCSharpTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

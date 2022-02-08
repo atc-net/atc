@@ -1,181 +1,174 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Atc.CodeAnalysis.CSharp.Factories;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
-namespace Atc.CodeAnalysis.CSharp.SyntaxFactories
+public static class SyntaxClassDeclarationFactory
 {
-    public static class SyntaxClassDeclarationFactory
+    public static ClassDeclarationSyntax Create(string classTypeName)
     {
-        public static ClassDeclarationSyntax Create(string classTypeName)
+        if (classTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword());
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword());
+    }
+
+    public static ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
+    {
+        if (classTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (inheritClassTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(inheritClassTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .AddBaseListTypes(SyntaxSimpleBaseTypeFactory.Create(inheritClassTypeName));
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
+        if (inheritClassTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (interfaceTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(interfaceTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .WithBaseList(SyntaxBaseListFactory.CreateOneSimpleBaseType(interfaceTypeName));
+            throw new ArgumentNullException(nameof(inheritClassTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword())
+            .AddBaseListTypes(SyntaxSimpleBaseTypeFactory.Create(inheritClassTypeName));
+    }
+
+    public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
+    {
+        if (classTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (inheritClassTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(inheritClassTypeName));
-            }
-
-            if (interfaceTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(interfaceTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword())
-                .WithBaseList(SyntaxBaseListFactory.CreateTwoSimpleBaseTypes(inheritClassTypeName, interfaceTypeName));
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
+        if (interfaceTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword(), SyntaxTokenFactory.PartialKeyword());
+            throw new ArgumentNullException(nameof(interfaceTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
-        {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword())
+            .WithBaseList(SyntaxBaseListFactory.CreateOneSimpleBaseType(interfaceTypeName));
+    }
 
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.PublicKeyword(), SyntaxTokenFactory.StaticKeyword());
+    public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
+        if (inheritClassTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            return SyntaxFactory.ClassDeclaration(classTypeName)
-                .AddModifiers(SyntaxTokenFactory.InternalKeyword(), SyntaxTokenFactory.StaticKeyword());
+            throw new ArgumentNullException(nameof(inheritClassTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
+        if (interfaceTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (suppressMessage is null)
-            {
-                throw new ArgumentNullException(nameof(suppressMessage));
-            }
-
-            return Create(classTypeName)
-                .AddSuppressMessageAttribute(suppressMessage);
+            throw new ArgumentNullException(nameof(interfaceTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, int checkId, string justification = "")
-        {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword())
+            .WithBaseList(SyntaxBaseListFactory.CreateTwoSimpleBaseTypes(inheritClassTypeName, interfaceTypeName));
+    }
 
-            return Create(classTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalysisSuppression(checkId, justification));
+    public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword(), SyntaxTokenFactory.PartialKeyword());
+    }
+
+    public static ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
+    {
+        if (classTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (inheritClassTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(inheritClassTypeName));
-            }
-
-            return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalysisSuppression(checkId, justification));
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = "")
-        {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.PublicKeyword(), SyntaxTokenFactory.StaticKeyword());
+    }
 
-            return Create(classTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopSuppression(checkId, justification));
+    public static ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
         }
 
-        public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+        return SyntaxFactory.ClassDeclaration(classTypeName)
+            .AddModifiers(SyntaxTokenFactory.InternalKeyword(), SyntaxTokenFactory.StaticKeyword());
+    }
+
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
+    {
+        if (classTypeName is null)
         {
-            if (classTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(classTypeName));
-            }
-
-            if (inheritClassTypeName is null)
-            {
-                throw new ArgumentNullException(nameof(inheritClassTypeName));
-            }
-
-            return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
-                .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopSuppression(checkId, justification));
+            throw new ArgumentNullException(nameof(classTypeName));
         }
+
+        if (suppressMessage is null)
+        {
+            throw new ArgumentNullException(nameof(suppressMessage));
+        }
+
+        return Create(classTypeName)
+            .AddSuppressMessageAttribute(suppressMessage);
+    }
+
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, int checkId, string justification = "")
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
+        }
+
+        return Create(classTypeName)
+            .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalysisSuppression(checkId, justification));
+    }
+
+    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
+        }
+
+        if (inheritClassTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(inheritClassTypeName));
+        }
+
+        return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
+            .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateCodeAnalysisSuppression(checkId, justification));
+    }
+
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = "")
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
+        }
+
+        return Create(classTypeName)
+            .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopSuppression(checkId, justification));
+    }
+
+    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+    {
+        if (classTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(classTypeName));
+        }
+
+        if (inheritClassTypeName is null)
+        {
+            throw new ArgumentNullException(nameof(inheritClassTypeName));
+        }
+
+        return CreateWithInheritClassType(classTypeName, inheritClassTypeName)
+            .AddSuppressMessageAttribute(SuppressMessageAttributeFactory.CreateStyleCopSuppression(checkId, justification));
     }
 }

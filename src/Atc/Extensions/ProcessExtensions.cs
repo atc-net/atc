@@ -1,147 +1,152 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
-
 // ReSharper disable RedundantSuppressNullableWarningExpression
 // ReSharper disable StringLiteralTypo
 // ReSharper disable once CheckNamespace
-namespace System.Diagnostics
+namespace System.Diagnostics;
+
+public static class ProcessExtensions
 {
-    public static class ProcessExtensions
+    private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
+
+    [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
+    public static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
     {
-        private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
-
-        public static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
+        if (process is null)
         {
-            var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-            void ProcessExited(object sender, EventArgs e)
-            {
-                tcs.TrySetResult(true);
-            }
-
-            process.EnableRaisingEvents = true;
-            process.Exited += ProcessExited;
-
-            try
-            {
-                if (process.HasExited)
-                {
-                    return;
-                }
-
-                await using (cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken)))
-                {
-                    await tcs.Task.ConfigureAwait(false);
-                }
-            }
-            finally
-            {
-                process.Exited -= ProcessExited;
-            }
+            throw new ArgumentNullException(nameof(process));
         }
 
-        public static void KillTree(this Process process) => process.KillTree(DefaultKillTimeout);
+        var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-        public static void KillTree(this Process process, TimeSpan timeout)
+        void ProcessExited(object sender, EventArgs e)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                // /T => Terminates the specified process and any child processes which were started by it.
-                // /F => Specifies to forcefully terminate the process(es).
-                // /PID => Specifies the PID of the process to be terminated.
-                RunProcessAndIgnoreOutput("taskkill", $"/T /F /PID {process.Id}", timeout);
-            }
-            else
-            {
-                var children = new HashSet<int>();
-                UnixGetAllChildIds(process.Id, children, timeout);
-                foreach (var childId in children)
-                {
-                    UnixKillProcess(childId, timeout);
-                }
-
-                UnixKillProcess(process.Id, timeout);
-            }
+            tcs.TrySetResult(true);
         }
 
-        private static void UnixKillProcess(int processId, TimeSpan timeout)
-        {
-            RunProcessAndIgnoreOutput("kill", $"-TERM {processId}", timeout);
-        }
+        process.EnableRaisingEvents = true;
+        process.Exited += ProcessExited;
 
-        private static void UnixGetAllChildIds(int parentId, ISet<int> children, TimeSpan timeout)
+        try
         {
-            var (exitCode, stdout) = RunProcessAndReadOutput("pgrep", $"-P {parentId}", timeout);
-
-            if (exitCode != 0 || string.IsNullOrEmpty(stdout))
+            if (process.HasExited)
             {
                 return;
             }
 
-            using var reader = new StringReader(stdout);
-            while (true)
+            await using (cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken)))
             {
-                var text = reader.ReadLine();
-                if (text is null)
-                {
-                    return;
-                }
-
-                if (!int.TryParse(text, out int id) || children.Contains(id))
-                {
-                    continue;
-                }
-
-                children.Add(id);
-                UnixGetAllChildIds(id, children, timeout);
+                await tcs.Task.ConfigureAwait(false);
             }
         }
-
-        private static (int exitCode, string output) RunProcessAndReadOutput(string fileName, string arguments, TimeSpan timeout)
+        finally
         {
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = fileName,
-                Arguments = arguments,
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-            };
+            process.Exited -= ProcessExited;
+        }
+    }
 
-            using var process = Process.Start(startInfo);
-            if (process!.WaitForExit((int)timeout.TotalMilliseconds))
+    public static void KillTree(this Process process) => process.KillTree(DefaultKillTimeout);
+
+    public static void KillTree(this Process process, TimeSpan timeout)
+    {
+        if (process is null)
+        {
+            throw new ArgumentNullException(nameof(process));
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            // /T => Terminates the specified process and any child processes which were started by it.
+            // /F => Specifies to forcefully terminate the process(es).
+            // /PID => Specifies the PID of the process to be terminated.
+            RunProcessAndIgnoreOutput("taskkill", $"/T /F /PID {process.Id}", timeout);
+        }
+        else
+        {
+            var children = new HashSet<int>();
+            UnixGetAllChildIds(process.Id, children, timeout);
+            foreach (var childId in children)
             {
-                return (
-                    process.ExitCode,
-                    process.StandardOutput.ReadToEnd());
+                UnixKillProcess(childId, timeout);
             }
 
-            process.Kill();
+            UnixKillProcess(process.Id, timeout);
+        }
+    }
 
+    private static void UnixKillProcess(int processId, TimeSpan timeout)
+    {
+        RunProcessAndIgnoreOutput("kill", $"-TERM {processId}", timeout);
+    }
+
+    private static void UnixGetAllChildIds(int parentId, ISet<int> children, TimeSpan timeout)
+    {
+        var (exitCode, stdout) = RunProcessAndReadOutput("pgrep", $"-P {parentId}", timeout);
+
+        if (exitCode != 0 || string.IsNullOrEmpty(stdout))
+        {
+            return;
+        }
+
+        using var reader = new StringReader(stdout);
+        while (true)
+        {
+            var text = reader.ReadLine();
+            if (text is null)
+            {
+                return;
+            }
+
+            if (!int.TryParse(text, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out int id) ||
+                children.Contains(id))
+            {
+                continue;
+            }
+
+            children.Add(id);
+            UnixGetAllChildIds(id, children, timeout);
+        }
+    }
+
+    private static (int exitCode, string output) RunProcessAndReadOutput(string fileName, string arguments, TimeSpan timeout)
+    {
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = arguments,
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+        };
+
+        using var process = Process.Start(startInfo);
+        if (process!.WaitForExit((int)timeout.TotalMilliseconds))
+        {
             return (
-                process!.ExitCode,
-                string.Empty);
+                process.ExitCode,
+                process.StandardOutput.ReadToEnd());
         }
 
-        private static void RunProcessAndIgnoreOutput(string fileName, string arguments, TimeSpan timeout)
-        {
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = fileName,
-                Arguments = arguments,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
+        process.Kill();
 
-            using var process = Process.Start(startInfo);
-            if (!process!.WaitForExit((int)timeout.TotalMilliseconds))
-            {
-                process.Kill();
-            }
+        return (
+            process!.ExitCode,
+            string.Empty);
+    }
+
+    private static void RunProcessAndIgnoreOutput(string fileName, string arguments, TimeSpan timeout)
+    {
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = arguments,
+            RedirectStandardOutput = false,
+            RedirectStandardError = false,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
+
+        using var process = Process.Start(startInfo);
+        if (!process!.WaitForExit((int)timeout.TotalMilliseconds))
+        {
+            process.Kill();
         }
     }
 }

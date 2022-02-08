@@ -1,8 +1,5 @@
-using Spectre.Console.Cli;
+namespace Demo.Atc.Dotnet.Cli.Settings;
 
-namespace Demo.Atc.Dotnet.Cli.Settings
+public class BuildDemoConsoleSpectreCliCommandSettings : CommandSettings
 {
-    public class BuildDemoConsoleSpectreCliCommandSettings : CommandSettings
-    {
-    }
 }

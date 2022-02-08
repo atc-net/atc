@@ -1,126 +1,112 @@
-using System;
-using System.IO;
-using System.Reflection;
-using Atc.Rest.Extended.Filters;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.AspNetCore.SwaggerUI;
+namespace Atc.Rest.Extended.Options;
 
-namespace Atc.Rest.Extended.Options
+internal class ConfigureSwaggerOptions :
+    IConfigureOptions<SwaggerUIOptions>,
+    IConfigureOptions<SwaggerGenOptions>
 {
-    internal class ConfigureSwaggerOptions :
-        IConfigureOptions<SwaggerUIOptions>,
-        IConfigureOptions<SwaggerGenOptions>
+    private readonly IApiVersionDescriptionProvider versionDescriptionProvider;
+    private readonly RestApiExtendedOptions restApiOptions;
+
+    public ConfigureSwaggerOptions(
+        IApiVersionDescriptionProvider versionDescriptionProvider,
+        RestApiExtendedOptions restApiOptions)
     {
-        private readonly IApiVersionDescriptionProvider versionDescriptionProvider;
-        private readonly RestApiExtendedOptions restApiOptions;
+        this.versionDescriptionProvider = versionDescriptionProvider ?? throw new ArgumentNullException(nameof(versionDescriptionProvider));
+        this.restApiOptions = restApiOptions ?? throw new ArgumentNullException(nameof(restApiOptions));
+    }
 
-        public ConfigureSwaggerOptions(
-            IApiVersionDescriptionProvider versionDescriptionProvider,
-            RestApiExtendedOptions restApiOptions)
+    public void Configure(SwaggerUIOptions options)
+    {
+        ConfigureSwaggerEndpointPerApiVersion(options);
+
+        options.EnableValidator();
+        options.DocExpansion(DocExpansion.List);
+        options.SupportedSubmitMethods(SubmitMethod.Get, SubmitMethod.Post, SubmitMethod.Put, SubmitMethod.Patch, SubmitMethod.Delete);
+        options.DefaultModelRendering(ModelRendering.Model);
+        options.DisplayRequestDuration();
+        options.EnableDeepLinking();
+        options.ShowCommonExtensions();
+        options.InjectStylesheet("/swagger-ui/style.css");
+        options.InjectJavascript("/swagger-ui/main.js");
+    }
+
+    public void Configure(SwaggerGenOptions options)
+    {
+        options.TagActionsBy(api =>
         {
-            this.versionDescriptionProvider = versionDescriptionProvider ?? throw new ArgumentNullException(nameof(versionDescriptionProvider));
-            this.restApiOptions = restApiOptions ?? throw new ArgumentNullException(nameof(restApiOptions));
-        }
-
-        public void Configure(SwaggerUIOptions options)
-        {
-            ConfigureSwaggerEndpointPerApiVersion(options);
-
-            options.EnableValidator();
-            options.DocExpansion(DocExpansion.List);
-            options.SupportedSubmitMethods(SubmitMethod.Get, SubmitMethod.Post, SubmitMethod.Put, SubmitMethod.Patch, SubmitMethod.Delete);
-            options.DefaultModelRendering(ModelRendering.Model);
-            options.DisplayRequestDuration();
-            options.EnableDeepLinking();
-            options.ShowCommonExtensions();
-            options.InjectStylesheet("/swagger-ui/style.css");
-            options.InjectJavascript("/swagger-ui/main.js");
-        }
-
-        public void Configure(SwaggerGenOptions options)
-        {
-            options.TagActionsBy(api =>
+            if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
             {
-                if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
-                {
-                    return new[] { controllerActionDescriptor.ControllerName };
-                }
-
-                if (api.HttpMethod is not null)
-                {
-                    return new[] { api.HttpMethod };
-                }
-
-                throw new InvalidOperationException("Unable to determine tag for endpoint.");
-            });
-
-            options.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
-            options.IgnoreObsoleteActions();
-            options.IgnoreObsoleteProperties();
-            options.DefaultResponseForSecuredOperations();
-            options.TreatBadRequestAsDefaultResponse();
-
-            if (!restApiOptions.AllowAnonymousAccessForDevelopment)
-            {
-                options.OperationFilter<SecurityRequirementsOperationFilter>();
+                return new[] { controllerActionDescriptor.ControllerName };
             }
 
-            options.DocumentFilter<SwaggerEnumDescriptionsDocumentFilter>();
-
-            if (restApiOptions.UseApiVersioning)
+            if (api.HttpMethod is not null)
             {
-                options.ApplyApiVersioningFilters();
-
-                foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
-                {
-                    try
-                    {
-                        options.SwaggerDoc(
-                            description.GroupName,
-                            new OpenApiInfo
-                            {
-                                Title = Assembly.GetEntryAssembly()!.GetApiName(),
-                                Version = description.ApiVersion.ToString(),
-                            });
-                    }
-                    catch (ArgumentException)
-                    {
-                        // Ignore - This is here for backwards compatibility
-                        // Newer generated API's will have its own implementation of
-                        // IConfigureOptions<SwaggerGenOptions> that will use
-                        // use the Info metadata specified in the
-                        // OpenAPI specifications document
-                    }
-                }
+                return new[] { api.HttpMethod };
             }
 
-            foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
+            throw new InvalidOperationException("Unable to determine tag for endpoint.");
+        });
+
+        options.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
+        options.IgnoreObsoleteActions();
+        options.IgnoreObsoleteProperties();
+        options.DefaultResponseForSecuredOperations();
+        options.TreatBadRequestAsDefaultResponse();
+
+        if (!restApiOptions.AllowAnonymousAccessForDevelopment)
+        {
+            options.OperationFilter<SecurityRequirementsOperationFilter>();
+        }
+
+        options.DocumentFilter<SwaggerEnumDescriptionsDocumentFilter>();
+
+        if (restApiOptions.UseApiVersioning)
+        {
+            options.ApplyApiVersioningFilters();
+
+            foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
             {
-                options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
+                try
+                {
+                    options.SwaggerDoc(
+                        description.GroupName,
+                        new OpenApiInfo
+                        {
+                            Title = Assembly.GetEntryAssembly()!.GetApiName(),
+                            Version = description.ApiVersion.ToString(),
+                        });
+                }
+                catch (ArgumentException)
+                {
+                    // Ignore - This is here for backwards compatibility
+                    // Newer generated API's will have its own implementation of
+                    // IConfigureOptions<SwaggerGenOptions> that will use
+                    // use the Info metadata specified in the
+                    // OpenAPI specifications document
+                }
             }
         }
 
-        private void ConfigureSwaggerEndpointPerApiVersion(SwaggerUIOptions options)
+        foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
         {
-            if (restApiOptions.UseApiVersioning)
+            options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
+        }
+    }
+
+    private void ConfigureSwaggerEndpointPerApiVersion(SwaggerUIOptions options)
+    {
+        if (restApiOptions.UseApiVersioning)
+        {
+            foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
             {
-                foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint(
-                        $"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant());
-                }
+                options.SwaggerEndpoint(
+                    $"/swagger/{description.GroupName}/swagger.json",
+                    description.GroupName.ToUpperInvariant());
             }
-            else
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
-            }
+        }
+        else
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Default");
         }
     }
 }

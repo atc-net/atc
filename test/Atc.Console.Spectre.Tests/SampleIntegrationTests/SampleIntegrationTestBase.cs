@@ -1,56 +1,45 @@
-using System;
-using System.IO;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Atc.Console.Spectre.Logging;
-using Atc.Helpers;
-using Atc.Serialization;
-using Atc.XUnit;
-
 // ReSharper disable InvertIf
 // ReSharper disable MemberCanBeMadeStatic.Global
-namespace Atc.Console.Spectre.Tests.SampleIntegrationTests
+namespace Atc.Console.Spectre.Tests.SampleIntegrationTests;
+
+public class SampleIntegrationTestBase : IntegrationTestCliBase
 {
-    public class SampleIntegrationTestBase : IntegrationTestCliBase
+    private static JsonSerializerOptions? jsonSerializerOptions;
+
+    public SampleIntegrationTestBase()
     {
-        private static JsonSerializerOptions? jsonSerializerOptions;
+        jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create(useCamelCase: false);
+    }
 
-        public SampleIntegrationTestBase()
+    public static Task<(bool isSuccessful, string output)> ExecuteCli(string arguments)
+    {
+        if (arguments is null)
         {
-            jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create(useCamelCase: false);
+            throw new ArgumentNullException(nameof(arguments));
         }
 
-        public Task<(bool isSuccessful, string output)> ExecuteCli(string arguments)
-        {
-            if (arguments is null)
-            {
-                throw new ArgumentNullException(nameof(arguments));
-            }
+        var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
+        return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
+    }
 
-            var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
-            return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
+    public static void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
+    {
+        if (config is null)
+        {
+            throw new ArgumentNullException(nameof(config));
         }
 
-        public void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
-        {
-            if (config is null)
-            {
-                throw new ArgumentNullException(nameof(config));
-            }
+        var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
 
-            var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
+        var json = JsonSerializer.Serialize(config, jsonSerializerOptions);
+        var jsonPart = json.Replace(Environment.NewLine, $"{Environment.NewLine}  ", StringComparison.Ordinal);
 
-            var json = JsonSerializer.Serialize(config, jsonSerializerOptions);
-            var jsonPart = json.Replace(Environment.NewLine, $"{Environment.NewLine}  ", StringComparison.Ordinal);
+        var sbJson = new StringBuilder();
+        sbJson.AppendLine("{");
+        sbJson.AppendLine("  \"ConsoleLogger\": " + jsonPart);
+        sbJson.AppendLine("}");
 
-            var sbJson = new StringBuilder();
-            sbJson.AppendLine("{");
-            sbJson.AppendLine("  \"ConsoleLogger\": " + jsonPart);
-            sbJson.AppendLine("}");
-
-            var jsonOutput = sbJson.ToString();
-            File.WriteAllTextAsync(appSettingsFile.FullName, jsonOutput);
-        }
+        var jsonOutput = sbJson.ToString();
+        File.WriteAllTextAsync(appSettingsFile.FullName, jsonOutput);
     }
 }

@@ -1,69 +1,61 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Atc.CodeDocumentation;
+namespace Atc.XUnit;
 
-namespace Atc.XUnit
+/// <summary>
+/// CodeComplianceDocumentationHelper.
+/// </summary>
+public static class CodeComplianceDocumentationHelper
 {
     /// <summary>
-    /// CodeComplianceDocumentationHelper.
+    /// Asserts the exported type with missing comments.
     /// </summary>
-    public static class CodeComplianceDocumentationHelper
+    /// <param name="type">The type.</param>
+    public static void AssertExportedTypeWithMissingComments(Type type)
     {
-        /// <summary>
-        /// Asserts the exported type with missing comments.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        public static void AssertExportedTypeWithMissingComments(Type type)
+        var typeComments = DocumentationHelper.CollectExportedTypeWithCommentsFromType(type);
+
+        var testResults = new List<TestResult>();
+        if (typeComments is not null && !typeComments.HasComments)
         {
-            var typeComments = DocumentationHelper.CollectExportedTypeWithCommentsFromType(type);
-
-            var testResults = new List<TestResult>();
-            if (typeComments is not null && !typeComments.HasComments)
-            {
-                testResults.Add(new TestResult(isError: true, 0, $"Type: {typeComments.Type.BeautifyTypeName(useFullName: true)}"));
-            }
-
-            TestResultHelper.AssertOnTestResults(testResults);
+            testResults.Add(new TestResult(isError: true, 0, $"Type: {typeComments.Type.BeautifyTypeName(useFullName: true)}"));
         }
 
-        /// <summary>
-        /// Asserts the exported types with missing comments.
-        /// </summary>
-        /// <param name="assembly">The assembly.</param>
-        /// <param name="excludeTypes">The exclude types.</param>
-        public static void AssertExportedTypesWithMissingComments(
-            Assembly assembly,
-            List<Type>? excludeTypes = null)
+        TestResultHelper.AssertOnTestResults(testResults);
+    }
+
+    /// <summary>
+    /// Asserts the exported types with missing comments.
+    /// </summary>
+    /// <param name="assembly">The assembly.</param>
+    /// <param name="excludeTypes">The exclude types.</param>
+    public static void AssertExportedTypesWithMissingComments(
+        Assembly assembly,
+        List<Type>? excludeTypes = null)
+    {
+        if (assembly is null)
         {
-            if (assembly is null)
-            {
-                throw new ArgumentNullException(nameof(assembly));
-            }
+            throw new ArgumentNullException(nameof(assembly));
+        }
 
-            // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return;
-            }
+        // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            return;
+        }
 
-            var typesWithMissingCommentsGroups = DocumentationHelper.CollectExportedTypesWithMissingCommentsFromAssembly(
+        var typesWithMissingCommentsGroups = DocumentationHelper.CollectExportedTypesWithMissingCommentsFromAssembly(
                 assembly,
                 excludeTypes)
-                .OrderBy(x => x.Type.FullName)
-                .GroupBy(x => x.Type.BeautifyName(useFullName: true), StringComparer.Ordinal)
-                .ToArray();
+            .OrderBy(x => x.Type.FullName)
+            .GroupBy(x => x.Type.BeautifyName(useFullName: true), StringComparer.Ordinal)
+            .ToArray();
 
-            var testResults = new List<TestResult>
-            {
-                new TestResult($"Assembly: {assembly.GetName()}"),
-            };
+        var testResults = new List<TestResult>
+        {
+            new TestResult($"Assembly: {assembly.GetName()}"),
+        };
 
-            testResults.AddRange(typesWithMissingCommentsGroups.Select(item => new TestResult(isError: false, 1, $"Type: {item.Key}")));
+        testResults.AddRange(typesWithMissingCommentsGroups.Select(item => new TestResult(isError: false, 1, $"Type: {item.Key}")));
 
-            TestResultHelper.AssertOnTestResults(testResults);
-        }
+        TestResultHelper.AssertOnTestResults(testResults);
     }
 }

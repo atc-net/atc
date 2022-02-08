@@ -1,39 +1,32 @@
-using Atc.Rest.Results;
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
-using Xunit;
-using Xunit.Sdk;
+namespace Atc.Rest.FluentAssertions.Tests.Extensions;
 
-namespace Atc.Rest.FluentAssertions.Tests.Extensions
+public class ResultBaseExtensionsTests
 {
-    public class ResultBaseExtensionsTests
+    [Fact]
+    public void Should_Returns_ResultAssertion_With_Subject_Set_To_Subject()
     {
-        [Fact]
-        public void Should_Returns_ResultAssertion_With_Subject_Set_To_Subject()
+        // Arrange
+        var target = new AtcDummyResult();
+
+        // Act
+        var actual = target.Should();
+
+        // Assert
+        actual.Invoking(x => x.BeOkResult())
+            .Should()
+            .Throw<XunitException>()
+            .WithMessage($"*{typeof(DummyResult).FullName}*");
+    }
+
+    private class DummyResult : ActionResult
+    {
+    }
+
+    private class AtcDummyResult : ResultBase
+    {
+        public AtcDummyResult()
+            : base(new DummyResult())
         {
-            // Arrange
-            var target = new AtcDummyResult();
-
-            // Act
-            var actual = target.Should();
-
-            // Assert
-            actual.Invoking(x => x.BeOkResult())
-                .Should()
-                .Throw<XunitException>()
-                .WithMessage($"*{typeof(DummyResult).FullName}*");
-        }
-
-        private class DummyResult : ActionResult
-        {
-        }
-
-        private class AtcDummyResult : ResultBase
-        {
-            public AtcDummyResult()
-                : base(new DummyResult())
-            {
-            }
         }
     }
 }

@@ -1,29 +1,26 @@
-﻿using Atc.Resources;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Enumeration: ForwardReverseType.
+/// </summary>
+public enum ForwardReverseType
 {
     /// <summary>
-    /// Enumeration: ForwardReverseType.
+    /// Default None.
     /// </summary>
-    public enum ForwardReverseType
-    {
-        /// <summary>
-        /// Default None.
-        /// </summary>
-        [LocalizedDescription(null, typeof(EnumResources))]
-        None = 0,
+    [LocalizedDescription(null, typeof(EnumResources))]
+    None = 0,
 
-        /// <summary>
-        /// Forward.
-        /// </summary>
-        [LocalizedDescription("ForwardReverseTypeForward", typeof(EnumResources))]
-        Forward = 1,
+    /// <summary>
+    /// Forward.
+    /// </summary>
+    [LocalizedDescription("ForwardReverseTypeForward", typeof(EnumResources))]
+    Forward = 1,
 
-        /// <summary>
-        /// Reverse.
-        /// </summary>
-        [LocalizedDescription("ForwardReverseTypeReverse", typeof(EnumResources))]
-        Reverse = 2,
-    }
+    /// <summary>
+    /// Reverse.
+    /// </summary>
+    [LocalizedDescription("ForwardReverseTypeReverse", typeof(EnumResources))]
+    Reverse = 2,
 }

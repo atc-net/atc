@@ -1,22 +1,15 @@
-using System;
-using Atc.Tests.XUnitTestData;
-using Xunit;
+namespace Atc.Tests.Extensions.BaseTypes;
 
-namespace Atc.Tests.Extensions.BaseTypes
+public class CharExtensionsTests
 {
-    public class CharExtensionsTests
+    [Theory]
+    [MemberData(nameof(TestMemberDataForExtensionsChar.IsAscii), MemberType = typeof(TestMemberDataForExtensionsChar))]
+    public void IsAscii(bool expected, char input)
     {
-        [Theory]
-        [MemberData(
-            nameof(TestMemberDataForExtensionsChar.IsAscii),
-            MemberType = typeof(TestMemberDataForExtensionsChar))]
-        public void IsAscii(bool expected, char input)
-        {
-            // Act
-            var actual = input.IsAscii();
+        // Act
+        var actual = input.IsAscii();
 
-            // Assert
-            Assert.Equal(expected, actual);
-        }
+        // Assert
+        Assert.Equal(expected, actual);
     }
 }

@@ -1,36 +1,32 @@
-﻿using System.Reflection;
-using Xunit;
+namespace Atc.Rest.Tests.Extensions;
 
-namespace Atc.Rest.Tests.Extensions
+public class AssemblyExtensionsTests
 {
-    public class AssemblyExtensionsTests
+    [Fact]
+    public void GetApiName()
     {
-        [Fact]
-        public void GetApiName()
-        {
-            // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
+        // Arrange
+        var assembly = Assembly.GetExecutingAssembly();
 
-            // Act
-            var actual = assembly.GetApiName();
+        // Act
+        var actual = assembly.GetApiName();
 
-            // Assert
-            Assert.Equal("Atc Rest Tests", actual);
-        }
+        // Assert
+        Assert.Equal("Atc Rest Tests", actual);
+    }
 
-        [Theory]
-        [InlineData("Atc Rest Tests", false)]
-        [InlineData("Atc Rest", true)]
-        public void GetApiName_RemoveLastVerb(string expected, bool removeLastVerb)
-        {
-            // Arrange
-            var assembly = Assembly.GetExecutingAssembly();
+    [Theory]
+    [InlineData("Atc Rest Tests", false)]
+    [InlineData("Atc Rest", true)]
+    public void GetApiName_RemoveLastVerb(string expected, bool removeLastVerb)
+    {
+        // Arrange
+        var assembly = Assembly.GetExecutingAssembly();
 
-            // Act
-            var actual = assembly.GetApiName(removeLastVerb);
+        // Act
+        var actual = assembly.GetApiName(removeLastVerb);
 
-            // Assert
-            Assert.Equal(expected, actual);
-        }
+        // Assert
+        Assert.Equal(expected, actual);
     }
 }

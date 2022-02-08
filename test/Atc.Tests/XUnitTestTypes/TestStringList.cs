@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
+namespace Atc.Tests.XUnitTestTypes;
 
-namespace Atc.Tests.XUnitTestTypes
+public class TestStringList : List<string>
 {
-    public class TestStringList : List<string>
-    {
-        // Dummy
-    }
+    // Dummy
 }

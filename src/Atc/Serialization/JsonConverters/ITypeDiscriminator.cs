@@ -1,7 +1,6 @@
-namespace Atc.Serialization.JsonConverters
+namespace Atc.Serialization.JsonConverters;
+
+public interface ITypeDiscriminator
 {
-    public interface ITypeDiscriminator
-    {
-        string TypeDiscriminator { get; }
-    }
+    string TypeDiscriminator { get; }
 }

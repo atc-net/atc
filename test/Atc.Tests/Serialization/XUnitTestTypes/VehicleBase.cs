@@ -1,7 +1,3 @@
-using System;
-using System.Text.Json.Serialization;
-using Atc.Serialization.JsonConverters;
-
 // ReSharper disable MemberCanBeProtected.Global
 namespace Atc.Tests.Serialization.XUnitTestTypes
 {

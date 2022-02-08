@@ -1,49 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using Microsoft.ApplicationInsights;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+namespace Atc.Rest.Options;
 
-namespace Atc.Rest.Options
+public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
 {
-    public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
+    private readonly TelemetryClient telemetry;
+
+    public ConfigureApiBehaviorOptions(TelemetryClient telemetry)
     {
-        private readonly TelemetryClient telemetry;
+        this.telemetry = telemetry;
+    }
 
-        public ConfigureApiBehaviorOptions(TelemetryClient telemetry)
+    public void Configure(ApiBehaviorOptions options)
+    {
+        if (options is null)
         {
-            this.telemetry = telemetry;
+            throw new ArgumentNullException(nameof(options));
         }
 
-        public void Configure(ApiBehaviorOptions options)
+        options.SuppressInferBindingSourcesForParameters = true;
+        options.InvalidModelStateResponseFactory = (context) =>
         {
-            if (options is null)
+            var error = new ValidationProblemDetails(context.ModelState)
             {
-                throw new ArgumentNullException(nameof(options));
-            }
-
-            options.SuppressInferBindingSourcesForParameters = true;
-            options.InvalidModelStateResponseFactory = (context) =>
-            {
-                var error = new ValidationProblemDetails(context.ModelState)
+                Extensions =
                 {
-                    Extensions =
-                    {
-                        ["traceId"] = context.HttpContext.GetCorrelationId(),
-                    },
-                };
-
-                telemetry.TrackTrace(
-                    "BadRequest",
-                    new Dictionary<string, string>(StringComparer.Ordinal)
-                    {
-                        { "Response.Body", JsonSerializer.Serialize(error) },
-                    });
-
-                return new BadRequestObjectResult(error);
+                    ["traceId"] = context.HttpContext.GetCorrelationId(),
+                },
             };
-        }
+
+            telemetry.TrackTrace(
+                "BadRequest",
+                new Dictionary<string, string>(StringComparer.Ordinal)
+                {
+                    { "Response.Body", JsonSerializer.Serialize(error) },
+                });
+
+            return new BadRequestObjectResult(error);
+        };
     }
 }

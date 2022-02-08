@@ -1,13 +1,10 @@
-﻿using System;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Ignore Display Attribute.
+/// </summary>
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
+public sealed class IgnoreDisplayAttribute : Attribute
 {
-    /// <summary>
-    /// Ignore Display Attribute.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
-    public sealed class IgnoreDisplayAttribute : Attribute
-    {
-    }
 }

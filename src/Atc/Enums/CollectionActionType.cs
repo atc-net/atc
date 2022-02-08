@@ -1,53 +1,50 @@
-﻿using Atc.Resources;
-
 // ReSharper disable once CheckNamespace
-namespace Atc
+namespace Atc;
+
+/// <summary>
+/// Enumeration: CollectionActionType.
+/// </summary>
+public enum CollectionActionType
 {
     /// <summary>
-    /// Enumeration: CollectionActionType.
+    /// Default None.
     /// </summary>
-    public enum CollectionActionType
-    {
-        /// <summary>
-        /// Default None.
-        /// </summary>
-        [LocalizedDescription(null, typeof(EnumResources))]
-        None,
+    [LocalizedDescription(null, typeof(EnumResources))]
+    None,
 
-        /// <summary>
-        /// Added.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeAdded", typeof(EnumResources))]
-        Added,
+    /// <summary>
+    /// Added.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeAdded", typeof(EnumResources))]
+    Added,
 
-        /// <summary>
-        /// Updated.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeUpdated", typeof(EnumResources))]
-        Updated,
+    /// <summary>
+    /// Updated.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeUpdated", typeof(EnumResources))]
+    Updated,
 
-        /// <summary>
-        /// Removed.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeRemoved", typeof(EnumResources))]
-        Removed,
+    /// <summary>
+    /// Removed.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeRemoved", typeof(EnumResources))]
+    Removed,
 
-        /// <summary>
-        /// Cleared.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeCleared", typeof(EnumResources))]
-        Cleared,
+    /// <summary>
+    /// Cleared.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeCleared", typeof(EnumResources))]
+    Cleared,
 
-        /// <summary>
-        /// Saved.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeSaved", typeof(EnumResources))]
-        Saved,
+    /// <summary>
+    /// Saved.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeSaved", typeof(EnumResources))]
+    Saved,
 
-        /// <summary>
-        /// Loaded.
-        /// </summary>
-        [LocalizedDescription("CollectionActionTypeLoaded", typeof(EnumResources))]
-        Loaded,
-    }
+    /// <summary>
+    /// Loaded.
+    /// </summary>
+    [LocalizedDescription("CollectionActionTypeLoaded", typeof(EnumResources))]
+    Loaded,
 }

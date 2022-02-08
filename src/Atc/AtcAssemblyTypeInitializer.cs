@@ -1,7 +1,6 @@
-namespace Atc
+namespace Atc;
+
+public static class AtcAssemblyTypeInitializer
 {
-    public static class AtcAssemblyTypeInitializer
-    {
-        // Dummy
-    }
+    // Dummy
 }

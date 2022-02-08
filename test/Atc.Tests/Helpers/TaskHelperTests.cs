@@ -1,164 +1,155 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using Atc.Helpers;
-using FluentAssertions;
-using Xunit;
+namespace Atc.Tests.Helpers;
 
-namespace Atc.Tests.Helpers
+[SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
+public class TaskHelperTests
 {
-    public class TaskHelperTests
+    [Fact]
+    public async Task WhenAll_AsIEnumerable_NoResult()
     {
-        [Fact]
-        public async Task WhenAll_AsIEnumerable_NoResult()
+        // Arrange
+        const int expected = 1;
+
+        var taskCompletionSource1 = new TaskCompletionSource<int>();
+        var taskCompletionSource2 = new TaskCompletionSource<int>();
+        taskCompletionSource1.TrySetResult(expected);
+        taskCompletionSource2.TrySetResult(expected);
+
+        var tasks = new List<Task>
         {
-            // Arrange
-            const int expected = 1;
+            taskCompletionSource1.Task,
+            taskCompletionSource2.Task,
+        };
 
-            var taskCompletionSource1 = new TaskCompletionSource<int>();
-            var taskCompletionSource2 = new TaskCompletionSource<int>();
-            taskCompletionSource1.TrySetResult(expected);
-            taskCompletionSource2.TrySetResult(expected);
+        // Act
+        await TaskHelper.WhenAll(tasks);
 
-            var tasks = new List<Task>
-            {
-                taskCompletionSource1.Task,
-                taskCompletionSource2.Task,
-            };
+        // Assert
+        Assert.True(true, "Just expect WhenAll successful executed");
+    }
 
-            // Act
-            await TaskHelper.WhenAll(tasks);
+    [Fact]
+    public async Task WhenAll_AsIEnumerable()
+    {
+        // Arrange
+        const int expected = 1;
 
-            // Assert
-            Assert.True(true, "Just expect WhenAll successful executed");
-        }
+        var taskCompletionSource1 = new TaskCompletionSource<int>();
+        var taskCompletionSource2 = new TaskCompletionSource<int>();
+        taskCompletionSource1.TrySetResult(expected);
+        taskCompletionSource2.TrySetResult(expected);
 
-        [Fact]
-        public async Task WhenAll_AsIEnumerable()
+        var tasks = new List<Task<int>>
         {
-            // Arrange
-            const int expected = 1;
+            taskCompletionSource1.Task,
+            taskCompletionSource2.Task,
+        };
 
-            var taskCompletionSource1 = new TaskCompletionSource<int>();
-            var taskCompletionSource2 = new TaskCompletionSource<int>();
-            taskCompletionSource1.TrySetResult(expected);
-            taskCompletionSource2.TrySetResult(expected);
+        // Act
+        var actual = (await TaskHelper.WhenAll(tasks)).ToList();
 
-            var tasks = new List<Task<int>>
-            {
-                taskCompletionSource1.Task,
-                taskCompletionSource2.Task,
-            };
+        // Assert
+        actual
+            .Should()
+            .NotBeNull()
+            .And
+            .NotBeEmpty()
+            .And.HaveCount(2);
 
-            // Act
-            var actual = (await TaskHelper.WhenAll(tasks)).ToList();
+        Assert.Equal(expected, actual[0]);
+        Assert.Equal(expected, actual[1]);
+    }
 
-            // Assert
-            actual
-                .Should()
-                .NotBeNull()
-                .And
-                .NotBeEmpty()
-                .And.HaveCount(2);
+    [Fact]
+    public async Task WhenAll_AsParams()
+    {
+        // Arrange
+        const int expected = 1;
 
-            Assert.Equal(expected, actual[0]);
-            Assert.Equal(expected, actual[1]);
-        }
+        var taskCompletionSource1 = new TaskCompletionSource<int>();
+        var taskCompletionSource2 = new TaskCompletionSource<int>();
+        taskCompletionSource1.TrySetResult(expected);
+        taskCompletionSource2.TrySetResult(expected);
 
-        [Fact]
-        public async Task WhenAll_AsParams()
+        // Act
+        var actual = (await TaskHelper.WhenAll(taskCompletionSource1.Task, taskCompletionSource2.Task)).ToList();
+
+        // Assert
+        actual
+            .Should()
+            .NotBeNull()
+            .And
+            .NotBeEmpty()
+            .And.HaveCount(2);
+
+        Assert.Equal(expected, actual[0]);
+        Assert.Equal(expected, actual[1]);
+    }
+
+    [Fact]
+    public async Task WhenAll_Throws_AggregateException()
+    {
+        const string firstExceptionMessage = "First Exception!";
+        const string secondExceptionMessage = "Second Exception!";
+
+        // Arrange
+        var taskCompletionSource = new TaskCompletionSource<int>();
+        taskCompletionSource.TrySetException(new Exception[]
         {
-            // Arrange
-            const int expected = 1;
+            new (firstExceptionMessage),
+            new (secondExceptionMessage),
+        });
 
-            var taskCompletionSource1 = new TaskCompletionSource<int>();
-            var taskCompletionSource2 = new TaskCompletionSource<int>();
-            taskCompletionSource1.TrySetResult(expected);
-            taskCompletionSource2.TrySetResult(expected);
+        // Act & Assert
+        var actual = await Assert.ThrowsAsync<AggregateException>(async () => await TaskHelper.WhenAll(taskCompletionSource.Task));
 
-            // Act
-            var actual = (await TaskHelper.WhenAll(taskCompletionSource1.Task, taskCompletionSource2.Task)).ToList();
+        actual
+            .Should()
+            .NotBeNull();
 
-            // Assert
-            actual
-                .Should()
-                .NotBeNull()
-                .And
-                .NotBeEmpty()
-                .And.HaveCount(2);
+        Assert.Equal(typeof(AggregateException), actual.GetType());
 
-            Assert.Equal(expected, actual[0]);
-            Assert.Equal(expected, actual[1]);
-        }
+        actual.InnerExceptions
+            .Should()
+            .NotBeEmpty()
+            .And
+            .HaveCount(2);
 
-        [Fact]
-        public async Task WhenAll_Throws_AggregateException()
-        {
-            const string firstExceptionMessage = "First Exception!";
-            const string secondExceptionMessage = "Second Exception!";
+        Assert.Equal(firstExceptionMessage, actual.InnerExceptions[0].Message);
+        Assert.Equal(secondExceptionMessage, actual.InnerExceptions[1].Message);
+    }
 
-            // Arrange
-            var taskCompletionSource = new TaskCompletionSource<int>();
-            taskCompletionSource.TrySetException(new Exception[]
-            {
-                new (firstExceptionMessage),
-                new (secondExceptionMessage),
-            });
+    [Fact]
+    [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK. Just expect no exceptions.")]
+    public void RunSync()
+    {
+        // Arrange
+        var doSomethingTask = DoSomethingAsync();
 
-            // Act & Assert
-            var actual = await Assert.ThrowsAsync<AggregateException>(async () => await TaskHelper.WhenAll(taskCompletionSource.Task));
+        // Act
+        TaskHelper.RunSync(() => doSomethingTask);
+    }
 
-            actual
-                .Should()
-                .NotBeNull();
+    [Fact]
+    public void RunSyncAndReturnResult()
+    {
+        // Arrange
+        var doSomethingTask = DoSomethingAndReturnResultAsync();
 
-            Assert.Equal(typeof(AggregateException), actual.GetType());
+        // Act
+        var actual = TaskHelper.RunSync(() => doSomethingTask);
 
-            actual.InnerExceptions
-                .Should()
-                .NotBeEmpty()
-                .And
-                .HaveCount(2);
+        // Assert
+        Assert.Equal(42, actual);
+    }
 
-            Assert.Equal(firstExceptionMessage, actual.InnerExceptions[0].Message);
-            Assert.Equal(secondExceptionMessage, actual.InnerExceptions[1].Message);
-        }
+    private static Task DoSomethingAsync()
+    {
+        return Task.Delay(100);
+    }
 
-        [Fact]
-        [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK. Just expect no exceptions.")]
-        public void RunSync()
-        {
-            // Arrange
-            var doSomethingTask = DoSomethingAsync();
-
-            // Act
-            TaskHelper.RunSync(() => doSomethingTask);
-        }
-
-        [Fact]
-        public void RunSyncAndReturnResult()
-        {
-            // Arrange
-            var doSomethingTask = DoSomethingAndReturnResultAsync();
-
-            // Act
-            var actual = TaskHelper.RunSync(() => doSomethingTask);
-
-            // Assert
-            Assert.Equal(42, actual);
-        }
-
-        private Task DoSomethingAsync()
-        {
-            return Task.Delay(100);
-        }
-
-        private async Task<int> DoSomethingAndReturnResultAsync()
-        {
-            await Task.Delay(100);
-            return 42;
-        }
+    private static async Task<int> DoSomethingAndReturnResultAsync()
+    {
+        await Task.Delay(100);
+        return 42;
     }
 }

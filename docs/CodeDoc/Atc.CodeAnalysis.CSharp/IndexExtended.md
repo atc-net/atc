@@ -58,8 +58,8 @@
      - RemoveSuffix(string attributeName)
 - [SyntaxAttributeListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxattributelistfactory)
   -  Static Methods
-     - Create(string attributeName)
      - Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
+     - Create(string attributeName)
      - CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
      - CreateWithOneItemWithOneArgumentWithNameEquals(string attributeName, string argumentName, string argumentValue)
 - [SyntaxBaseListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxbaselistfactory)

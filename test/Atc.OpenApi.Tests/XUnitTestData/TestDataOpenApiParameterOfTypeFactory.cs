@@ -1,151 +1,148 @@
-﻿using Microsoft.OpenApi.Models;
+namespace Atc.OpenApi.Tests.XUnitTestData;
 
-namespace Atc.OpenApi.Tests.XUnitTestData
+public static class TestDataOpenApiParameterOfTypeFactory
 {
-    public static class TestDataOpenApiParameterOfTypeFactory
+    public static OpenApiParameter CreateString()
     {
-        public static OpenApiParameter CreateString()
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
+        };
+    }
 
-        public static OpenApiParameter CreateInt32()
+    public static OpenApiParameter CreateInt32()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
+        };
+    }
 
-        public static OpenApiParameter CreateInt64()
+    public static OpenApiParameter CreateInt64()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt64(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt64(),
+        };
+    }
 
-        public static OpenApiParameter CreateNumberFloat()
+    public static OpenApiParameter CreateNumberFloat()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringByte()
+    public static OpenApiParameter CreateStringByte()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringByte(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringByte(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringDate()
+    public static OpenApiParameter CreateStringDate()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDate(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDate(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringDateTime()
+    public static OpenApiParameter CreateStringDateTime()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringEmail()
+    public static OpenApiParameter CreateStringEmail()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringTime()
+    public static OpenApiParameter CreateStringTime()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTime(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTime(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringTimestamp()
+    public static OpenApiParameter CreateStringTimestamp()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringUri()
+    public static OpenApiParameter CreateStringUri()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUri(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUri(),
+        };
+    }
 
-        public static OpenApiParameter CreateStringUuid()
+    public static OpenApiParameter CreateStringUuid()
+    {
+        return new OpenApiParameter
         {
-            return new OpenApiParameter
-            {
-                Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid(),
-            };
-        }
+            Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid(),
+        };
+    }
 
-        public static OpenApiParameter CreateRouteIntId()
-        {
-            var parameter = CreateInt32();
-            parameter.In = ParameterLocation.Path;
-            parameter.Name = "id";
-            return parameter;
-        }
+    public static OpenApiParameter CreateRouteIntId()
+    {
+        var parameter = CreateInt32();
+        parameter.In = ParameterLocation.Path;
+        parameter.Name = "id";
+        return parameter;
+    }
 
-        public static OpenApiParameter CreateRouteString(string name)
-        {
-            var parameter = CreateString();
-            parameter.In = ParameterLocation.Path;
-            parameter.Name = name;
-            return parameter;
-        }
+    public static OpenApiParameter CreateRouteString(string name)
+    {
+        var parameter = CreateString();
+        parameter.In = ParameterLocation.Path;
+        parameter.Name = name;
+        return parameter;
+    }
 
-        public static OpenApiParameter CreateHeaderIntId()
-        {
-            var parameter = CreateInt32();
-            parameter.In = ParameterLocation.Header;
-            parameter.Name = "id";
-            return parameter;
-        }
+    public static OpenApiParameter CreateHeaderIntId()
+    {
+        var parameter = CreateInt32();
+        parameter.In = ParameterLocation.Header;
+        parameter.Name = "id";
+        return parameter;
+    }
 
-        public static OpenApiParameter CreateHeaderString(string name)
-        {
-            var parameter = CreateString();
-            parameter.In = ParameterLocation.Header;
-            parameter.Name = name;
-            return parameter;
-        }
+    public static OpenApiParameter CreateHeaderString(string name)
+    {
+        var parameter = CreateString();
+        parameter.In = ParameterLocation.Header;
+        parameter.Name = name;
+        return parameter;
+    }
 
-        public static OpenApiParameter CreateQueryIntId()
-        {
-            var parameter = CreateInt32();
-            parameter.In = ParameterLocation.Query;
-            parameter.Name = "id";
-            return parameter;
-        }
+    public static OpenApiParameter CreateQueryIntId()
+    {
+        var parameter = CreateInt32();
+        parameter.In = ParameterLocation.Query;
+        parameter.Name = "id";
+        return parameter;
+    }
 
-        public static OpenApiParameter CreateQueryString(string name)
-        {
-            var parameter = CreateString();
-            parameter.In = ParameterLocation.Query;
-            parameter.Name = name;
-            return parameter;
-        }
+    public static OpenApiParameter CreateQueryString(string name)
+    {
+        var parameter = CreateString();
+        parameter.In = ParameterLocation.Query;
+        parameter.Name = name;
+        return parameter;
     }
 }

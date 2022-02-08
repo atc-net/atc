@@ -1,9 +1,8 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Microsoft.OpenApi.Models
+// ReSharper disable once CheckNamespace
+namespace Microsoft.OpenApi.Models;
+
+public static class NameConstants
 {
-    public static class NameConstants
-    {
-        public const string Pagination = "Pagination";
-        public const string List = "List";
-    }
+    public const string Pagination = "Pagination";
+    public const string List = "List";
 }
