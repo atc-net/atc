@@ -12,14 +12,14 @@ public class AssemblyExtensionsTests
 #if DEBUG
         Assert.True(actual);
 #else
-            Assert.False(actual);
+        Assert.False(actual);
 #endif
     }
 
     [Theory]
     [InlineData(null, nameof(UnexpectedTypeException))]
     [InlineData(typeof(AssemblyExtensionsTests), nameof(AssemblyExtensionsTests))]
-    public void GetExportedTypeByName(Type expected, string typeName)
+    public void GetExportedTypeByName(Type? expected, string typeName)
     {
         // Arrange
         var assembly = Assembly.GetExecutingAssembly();
