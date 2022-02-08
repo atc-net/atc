@@ -8,7 +8,7 @@ on:
       - reopened
 
 jobs:
-  dotnet5-build:
+  dotnet-build:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
