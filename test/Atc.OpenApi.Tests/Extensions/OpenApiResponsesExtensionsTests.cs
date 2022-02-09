@@ -14,39 +14,6 @@ public class OpenApiResponsesExtensionsTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaTypeArrayItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
-    public void HasSchemaTypeArray(bool expected, OpenApiResponses openApiResponses)
-    {
-        // Act
-        var actual = openApiResponses.HasSchemaTypeArray();
-
-        // Assert
-        Assert.Equal(expected, actual);
-    }
-
-    [Theory]
-    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaHttpStatusCodeUsingSystemNetItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
-    public void HasSchemaHttpStatusCodeUsingSystemNet(bool expected, OpenApiResponses openApiResponses)
-    {
-        // Act
-        var actual = openApiResponses.HasSchemaHttpStatusCodeUsingSystemNet();
-
-        // Assert
-        Assert.Equal(expected, actual);
-    }
-
-    [Theory]
-    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaHttpStatusCodeUsingAspNetCoreHttpItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
-    public void HasSchemaHttpStatusCodeUsingAspNetCoreHttp(bool expected, OpenApiResponses openApiResponses)
-    {
-        // Act
-        var actual = openApiResponses.HasSchemaHttpStatusCodeUsingAspNetCoreHttp();
-
-        // Assert
-        Assert.Equal(expected, actual);
-    }
-
-    [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.GetSchemaForStatusCodeItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
     public void GetSchemaForStatusCode(OpenApiSchema expected, OpenApiResponses openApiResponses, HttpStatusCode httpStatusCode)
     {
@@ -87,6 +54,39 @@ public class OpenApiResponsesExtensionsTests
     {
         // Act
         var actual = openApiResponses.GetDataTypeForStatusCode(httpStatusCode);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaTypeArrayItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
+    public void HasSchemaTypeArray(bool expected, OpenApiResponses openApiResponses)
+    {
+        // Act
+        var actual = openApiResponses.HasSchemaTypeArray();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaHttpStatusCodeUsingSystemNetItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
+    public void HasSchemaHttpStatusCodeUsingSystemNet(bool expected, OpenApiResponses openApiResponses)
+    {
+        // Act
+        var actual = openApiResponses.HasSchemaHttpStatusCodeUsingSystemNet();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [MemberData(nameof(TestMemberDataForOpenApiResponsesExtensions.HasSchemaHttpStatusCodeUsingAspNetCoreHttpItemData), MemberType = typeof(TestMemberDataForOpenApiResponsesExtensions))]
+    public void HasSchemaHttpStatusCodeUsingAspNetCoreHttp(bool expected, OpenApiResponses openApiResponses)
+    {
+        // Act
+        var actual = openApiResponses.HasSchemaHttpStatusCodeUsingAspNetCoreHttp();
 
         // Assert
         Assert.Equal(expected, actual);

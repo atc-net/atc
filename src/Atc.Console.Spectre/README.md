@@ -1,14 +1,18 @@
-# Atc.Console.Spectra
+# Atc.Console.Spectre
 
-This library contains extensions ....
+This library contains extensions to the Spectre.Console library.
 
-### Requirements
+## Code documentation
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+[References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Console.Spectre/Index.md)
 
-### Usage
+[References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Console.Spectre/IndexExtended.md)
 
-Example on minimal setup in the `Program.cs`
+## `CommandAppFactory` examples
+
+### Using `Create(..)`
+
+Example with a minimal setup in the `Program.cs` with use `CommandAppFactory.Create`
 
 ```csharp
 public static class Program
@@ -28,21 +32,44 @@ public static class Program
         {
             config.AddCommand<HelloCommand>("hello")
                 .WithDescription("Say hello")
-                .WithExample(new[] { "hello Phil" })
-                .WithExample(new[] { "hello Phil --count 4" });
+                .WithExample(new[] { "hello Phil" });
 
             config.AddCommand<LogCommand>("log")
                 .WithDescription("Write a log message")
-                .WithExample(new[] { "log Hello world" })
-                .WithExample(new[] { "log Hello world --logLevel Trace" })
-                .WithExample(new[] { "log Hello world --logLevel Debug" })
-                .WithExample(new[] { "log Hello world --logLevel Information" })
-                .WithExample(new[] { "log Hello world --logLevel Warning" })
-                .WithExample(new[] { "log Hello world --logLevel Error" })
-                .WithExample(new[] { "log Hello world --logLevel Critical" });
+                .WithExample(new[] { "log Hello world" });
         });
 
         return app.RunAsync(args);
     }
 }
+```
+
+## `ILogger` examples
+
+### Using `logger.LogKeyValueItems(..)`
+
+```csharp
+    // Collect data
+    var logItems = new List<LogKeyValueItem>
+        {
+            new LogKeyValueItem(LogCategoryType.Error, "Key1", "Error1"),
+            new LogKeyValueItem(LogCategoryType.Warning, "Key2", "Warning1"),
+            new LogKeyValueItem(LogCategoryType.Information, "Key3", "Information1"),
+            LogItemFactory.CreateError("Key4", "Error2"),
+            LogItemFactory.CreateWarning("Key5", "Warning2"),
+            LogItemFactory.CreateInformation("Key6", "Information2"),
+        };
+
+    // Log data
+    logger.LogKeyValueItems(logItems);
+```
+
+### Using `logger.LogKeyValueItem(..)`
+
+```csharp
+    // Collect data
+    var logItem = LogItemFactory.CreateError("Key1", "Error1");
+
+    // Log data
+    logger.LogKeyValueItem(LogItemFactory.CreateError(logItem));
 ```

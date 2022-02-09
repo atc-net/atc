@@ -2,25 +2,35 @@
 
 This library contains extensions to wrap the usage of `dotnet.exe` from .NET code, extract metadata from `.sln` and `.csproj` files.
 
-### Requirements
+## Code documentation
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+[References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.DotNet/Index.md)
 
-### DotnetHelper examples
+[References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.DotNet/IndexExtended.md)
+
+## `DotnetHelper` examples
+
+### Using `GetDotnetDirectory()` to find the directory path of dotnet.exe / dotnet - depends on the operating system
 
 ```csharp
-var buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(workingDirectory);
+DirectoryInfo dotnetDirectory = DotnetHelper.GetDotnetDirectory();
 ```
 
-```csharp
-DirectoryInfo dotnetDirectory =DotnetHelper.GetDotnetDirectory();
-```
+### Using `GetDotnetExecutable()` to find the file path of dotnet.exe / dotnet - depends on the operating system
 
 ```csharp
 FileInfo dotnetFile = DotnetHelper.GetDotnetExecutable();
 ```
 
-### DotnetBuildHelper examples
+## `DotnetBuildHelper` examples
+
+### Using `BuildAndCollectErrors(..)` to build and collect errors
+
+This method build and collect errors if any - 0 errors is the same as a successful build.
+
+```csharp
+Dictionary<string, int> buildErrors = await DotnetBuildHelper.BuildAndCollectErrors(workingDirectory);
+```
 
 ```csharp
 var workingDirectory = new DirectoryInfo(@"c:\code\myproject");
@@ -43,7 +53,9 @@ Dictionary<string, int> buildErrors = await DotnetBuildHelper.BuildAndCollectErr
     cancellationToken);
 ```
 
-### DotnetNugetHelper examples
+## `DotnetNugetHelper` examples
+
+### Using `GetAllPackageReferences(..)` to find package-references in a file or file-content
 
 ```csharp
 var file = new FileInfo(@"c:\code\myproject\mylib.csproj"),
@@ -51,9 +63,26 @@ var file = new FileInfo(@"c:\code\myproject\mylib.csproj"),
 List<DotnetNugetPackageMetadataBase> packages = DotnetNugetHelper.GetAllPackageReferences(file);
 ```
 
-### Usage - VisualStudioSolutionFileHelper
+```csharp
+var file = new FileInfo(@"c:\code\myproject\mylib.csproj"),
+var fileContent = File.ReadAllText(file.FullName);
+
+List<DotnetNugetPackageMetadataBase> packages = DotnetNugetHelper.GetAllPackageReferences(fileContent);
+```
+
+## `VisualStudioSolutionFileHelper` examples
+
+### Using `GetSolutionFileMetadata(..)` to find VisualStudio metadata in a file or file-content
+
 ```csharp
 var file = new FileInfo(@"c:\code\myproject\mylib.sln"),
+
+VisualStudioSolutionFileMetadata metadata = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(file);
+```
+
+```csharp
+var file = new FileInfo(@"c:\code\myproject\mylib.sln"),
+var fileContent = File.ReadAllText(file.FullName);
 
 VisualStudioSolutionFileMetadata metadata = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(file);
 ```
