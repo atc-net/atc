@@ -3,9 +3,17 @@
 This library contains helpers classes which can help with generating code documentation as Markdown (`.md files`) from an assembly.
 The content is based on assembly reflection combined with a assembly-documentation xml file.
 
-## Usage
+## `MarkdownCodeDocGenerator` examples
 
-Example runs from a  unit-test, to ensure updated `CodeDoc` folder with Markdown files.
+## Code documentation
+
+[References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.CodeDocumentation/Index.md)
+
+[References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.CodeDocumentation/IndexExtended.md)
+
+### Using `Run(..)` to generate code documentation in markdown files
+
+The following example will show how to run from a unit-test, to ensure updated `CodeDoc` folder with Markdown files generated with `MarkdownCodeDocGenerator.Run`.
 
 ```csharp
 public class CodeDocumentationTests

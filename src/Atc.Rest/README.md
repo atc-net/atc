@@ -19,9 +19,17 @@ This library can be used to simplify a base setup for creating a Web-API in a .N
 
 * [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
-### Usage
+## Code documentation
 
-Example on minimal setup in the `Startup.cs`
+[References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest/Index.md)
+
+[References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest/IndexExtended.md)
+
+## `services.AddRestApi` and `app.ConfigureRestApi` examples
+
+### Using - minimal setup
+
+Example with a minimal setup in the `Startup.cs`
 
 ```csharp
 public class Startup
@@ -51,7 +59,9 @@ public class Startup
 }
 ```
 
-Example with specified features the `Startup.cs`
+### Using - specified features setup
+
+Example with specified features in the `Startup.cs`
 
 ```csharp
 public class Startup

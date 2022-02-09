@@ -26,6 +26,22 @@ public static class OpenApiResponsesExtensions
         return result;
     }
 
+    public static string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    {
+        var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
+        return responseSchema is null
+            ? string.Empty
+            : responseSchema.GetModelName();
+    }
+
+    public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    {
+        var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
+        return responseSchema is null
+            ? string.Empty
+            : responseSchema.GetDataType();
+    }
+
     public static bool HasSchemaTypeArray(this OpenApiResponses responses)
     {
         if (responses is null)
@@ -117,22 +133,6 @@ public static class OpenApiResponsesExtensions
         }
 
         return null;
-    }
-
-    public static string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-    {
-        var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
-        return responseSchema is null
-            ? string.Empty
-            : responseSchema.GetModelName();
-    }
-
-    public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
-    {
-        var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
-        return responseSchema is null
-            ? string.Empty
-            : responseSchema.GetDataType();
     }
 
     public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
