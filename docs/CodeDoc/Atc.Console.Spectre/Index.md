@@ -7,7 +7,6 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
-- [LoggerExtensions](Atc.Console.Spectre.md#loggerextensions)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 

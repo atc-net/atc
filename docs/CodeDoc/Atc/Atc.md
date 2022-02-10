@@ -824,6 +824,25 @@ Enumeration: LogCategoryType categories available for logging.
 
 <br />
 
+## LoggerExtensions
+
+>```csharp
+>public static class LoggerExtensions
+>```
+
+### Static Methods
+
+#### LogKeyValueItem
+>```csharp
+>void LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
+>```
+#### LogKeyValueItems
+>```csharp
+>void LogKeyValueItems(this ILogger logger, List<LogKeyValueItem> logKeyValueItems, bool includeKey = True, bool includeDescription = True)
+>```
+
+<br />
+
 ## NumericAlphaComparer
 NumericAlphaComparer.
 

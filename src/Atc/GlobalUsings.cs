@@ -26,3 +26,5 @@ global using Atc.Resources;
 global using Atc.Serialization.JsonConverters;
 global using Atc.Structs;
 global using Atc.Units.DigitalInformation;
+
+global using Microsoft.Extensions.Logging;
