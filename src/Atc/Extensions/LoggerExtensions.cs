@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace Atc.Console.Spectre;
+namespace Atc;
 
 public static class LoggerExtensions
 {

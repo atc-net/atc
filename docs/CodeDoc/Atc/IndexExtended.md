@@ -70,6 +70,10 @@
   -  Properties
      - Description
 - [LogCategoryType](Atc.md#logcategorytype)
+- [LoggerExtensions](Atc.md#loggerextensions)
+  -  Static Methods
+     - LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
+     - LogKeyValueItems(this ILogger logger, List&lt;LogKeyValueItem&gt; logKeyValueItems, bool includeKey = True, bool includeDescription = True)
 - [NumericAlphaComparer](Atc.md#numericalphacomparer)
   -  Methods
      - Compare(string x, string y)

@@ -7,10 +7,6 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
-- [LoggerExtensions](Atc.Console.Spectre.md#loggerextensions)
-  -  Static Methods
-     - LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
-     - LogKeyValueItems(this ILogger logger, List&lt;LogKeyValueItem&gt; logKeyValueItems, bool includeKey = True, bool includeDescription = True)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
