@@ -3,6 +3,16 @@ namespace Atc.Tests.Extensions.Reflection;
 public class AssemblyExtensionsTests
 {
     [Fact]
+    public void GetFileVersion()
+    {
+        // Act
+        var actual = Assembly.GetExecutingAssembly().GetFileVersion();
+
+        // Assert
+        Assert.NotNull(actual);
+    }
+
+    [Fact]
     public void IsDebugBuild()
     {
         // Act
