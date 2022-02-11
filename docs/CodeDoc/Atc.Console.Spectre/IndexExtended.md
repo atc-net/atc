@@ -28,10 +28,10 @@
 ## [Atc.Console.Spectre.CommandSettings](Atc.Console.Spectre.CommandSettings.md)
 
 - [BaseCommandSettings](Atc.Console.Spectre.CommandSettings.md#basecommandsettings)
-  -  Static Methods
-     - IsOptionValueTrue(bool? value)
   -  Properties
      - Verbose
+  -  Methods
+     - IsOptionValueTrue(bool? value)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
