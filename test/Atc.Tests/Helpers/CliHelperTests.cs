@@ -1,4 +1,4 @@
-namespace Atc.Console.Spectre.Tests.Helpers;
+namespace Atc.Tests.Helpers;
 
 public class CliHelperTests
 {

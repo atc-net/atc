@@ -205,6 +205,23 @@ Enumeration Helper: CardinalDirectionTypeHelper.
 
 <br />
 
+## CliHelper
+CliHelper.
+
+>```csharp
+>public static class CliHelper
+>```
+
+### Static Methods
+
+#### GetCurrentVersion
+>```csharp
+>Version GetCurrentVersion()
+>```
+><b>Summary:</b> Gets the current version from the executing assembly.
+
+<br />
+
 ## CultureHelper
 CultureHelper.
 

@@ -62,6 +62,7 @@
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
+- [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)

@@ -1,4 +1,4 @@
-namespace Atc.Console.Spectre.Helpers;
+namespace Atc.Helpers;
 
 /// <summary>
 /// CliHelper.
