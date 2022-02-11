@@ -41,6 +41,12 @@
      - Dispose()
      - Resolve(Type type)
 
+## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
+
+- [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
+  -  Static Methods
+     - GetCurrentVersion()
+
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 
 - [ConsoleLogger](Atc.Console.Spectre.Logging.md#consolelogger)

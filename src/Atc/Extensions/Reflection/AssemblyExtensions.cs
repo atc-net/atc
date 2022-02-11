@@ -6,6 +6,24 @@ namespace System.Reflection;
 /// </summary>
 public static class AssemblyExtensions
 {
+    public static Version GetFileVersion(this Assembly assembly)
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        var fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+        if (fileVersion is null)
+        {
+            return new Version(1, 0, 0, 0);
+        }
+
+        return Version.TryParse(fileVersion, out var version)
+            ? version
+            : new Version(1, 0, 0, 0);
+    }
+
     /// <summary>
     /// Diagnostics a assembly to find out, is this complied a debug assembly.
     /// </summary>

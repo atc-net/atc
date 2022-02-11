@@ -33,6 +33,10 @@ Extensions for the `System.Reflection.Assembly` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
+#### GetFileVersion
+>```csharp
+>Version GetFileVersion(this Assembly assembly)
+>```
 #### GetTypesInheritingFromType
 >```csharp
 >Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)

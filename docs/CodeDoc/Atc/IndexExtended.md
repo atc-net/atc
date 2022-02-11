@@ -835,6 +835,7 @@
   -  Static Methods
      - GetBeautifiedName(this Assembly assembly)
      - GetExportedTypeByName(this Assembly assembly, string typeName)
+     - GetFileVersion(this Assembly assembly)
      - GetTypesInheritingFromType(this Assembly assembly, Type type)
      - IsDebugBuild(this Assembly assembly)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)

@@ -22,6 +22,10 @@
 - [TypeRegistrar](Atc.Console.Spectre.Factories.Infrastructure.md#typeregistrar)
 - [TypeResolver](Atc.Console.Spectre.Factories.Infrastructure.md#typeresolver)
 
+## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
+
+- [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
+
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 
 - [ConsoleLogger](Atc.Console.Spectre.Logging.md#consolelogger)
