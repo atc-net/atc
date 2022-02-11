@@ -7,6 +7,12 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
+- [CommandConstants](Atc.Console.Spectre.md#commandconstants)
+- [EmojisConstants](Atc.Console.Spectre.md#emojisconstants)
+
+## [Atc.Console.Spectre.CommandSettings](Atc.Console.Spectre.CommandSettings.md)
+
+- [BaseCommandSettings](Atc.Console.Spectre.CommandSettings.md#basecommandsettings)
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
@@ -26,6 +32,7 @@
 
 - [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
+- [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 

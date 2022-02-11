@@ -1,5 +1,8 @@
 namespace Atc.Console.Spectre.Helpers;
 
+/// <summary>
+/// ConsoleHelper.
+/// </summary>
 public static class ConsoleHelper
 {
     /// <summary>Write a header in ASCII with blue color.</summary>

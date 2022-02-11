@@ -34,7 +34,7 @@ public static class ServiceCollectionExtensions
         var assemblies = AppDomain.CurrentDomain.GetCustomAssemblies();
         foreach (var assembly in assemblies)
         {
-            var commandSettingTypes = assembly.GetTypesInheritingFromType(typeof(CommandSettings));
+            var commandSettingTypes = assembly.GetTypesInheritingFromType(typeof(global::Spectre.Console.Cli.CommandSettings));
             foreach (var commandSettingType in commandSettingTypes)
             {
                 serviceCollection.AddSingleton(commandSettingType);

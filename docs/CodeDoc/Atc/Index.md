@@ -12,6 +12,7 @@
 - [BooleanOperatorType](Atc.md#booleanoperatortype)
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
+- [CasingStyleDescriptionAttribute](Atc.md#casingstyledescriptionattribute)
 - [CollectionActionType](Atc.md#collectionactiontype)
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
 - [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)

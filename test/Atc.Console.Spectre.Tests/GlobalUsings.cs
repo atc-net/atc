@@ -4,6 +4,7 @@ global using System.Text;
 global using System.Text.Json;
 
 global using Atc.CodeDocumentation.Markdown;
+global using Atc.Console.Spectre.CommandSettings;
 global using Atc.Console.Spectre.Extensions;
 global using Atc.Console.Spectre.Factories;
 global using Atc.Console.Spectre.Factories.Infrastructure;
