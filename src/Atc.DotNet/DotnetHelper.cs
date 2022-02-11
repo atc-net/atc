@@ -14,6 +14,20 @@ public static class DotnetHelper
     /// </remarks>
     public static DirectoryInfo GetDotnetDirectory()
     {
+        var pathEnvironmentVariable = Environment.GetEnvironmentVariable("path");
+        if (pathEnvironmentVariable is not null &&
+            pathEnvironmentVariable.Contains("dotnet", StringComparison.Ordinal))
+        {
+            var sa = pathEnvironmentVariable.Split(';');
+            foreach (var s in sa)
+            {
+                if (s.Contains("dotnet", StringComparison.Ordinal))
+                {
+                    return new DirectoryInfo(s);
+                }
+            }
+        }
+
         var directory = new DirectoryInfo(RuntimeEnvironment.GetRuntimeDirectory());
 
         while (directory.Parent is not null && !IsDefaultDotnetDirectoryName(directory.Name))
