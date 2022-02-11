@@ -46,6 +46,12 @@
 - [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
   -  Static Methods
      - GetCurrentVersion()
+- [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
+  -  Static Methods
+     - WriteHeader(string text, Color color)
+     - WriteHeader(string text)
+     - WriteLog(ILogger logger, LogKeyValueItem logItem, bool includeKey = True, bool includeDescription = True)
+     - WriteLogs(ILogger logger, List&lt;LogKeyValueItem&gt; logItems, bool includeKey = True, bool includeDescription = True)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 

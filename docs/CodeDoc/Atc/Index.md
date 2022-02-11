@@ -65,6 +65,8 @@
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)
 - [EnumHelper](Atc.Helpers.md#enumhelper)
+- [FileHelper](Atc.Helpers.md#filehelper)
+- [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)

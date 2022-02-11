@@ -836,10 +836,24 @@ Enumeration: LogCategoryType categories available for logging.
 >```csharp
 >void LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)
 >```
+><b>Summary:</b> Logs the key value item.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logger`&nbsp;&nbsp;-&nbsp;&nbsp;The logger.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logKeyValueItem`&nbsp;&nbsp;-&nbsp;&nbsp;The log key value item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
 #### LogKeyValueItems
 >```csharp
 >void LogKeyValueItems(this ILogger logger, List<LogKeyValueItem> logKeyValueItems, bool includeKey = True, bool includeDescription = True)
 >```
+><b>Summary:</b> Logs the key value items.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logger`&nbsp;&nbsp;-&nbsp;&nbsp;The logger.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logKeyValueItems`&nbsp;&nbsp;-&nbsp;&nbsp;The log key value items.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
 
 <br />
 

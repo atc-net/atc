@@ -25,6 +25,7 @@
 ## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
 
 - [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
+- [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 

@@ -17,6 +17,8 @@ public class CodeComplianceTests
         typeof(JsonDateTimeOffsetMinToNullConverter),
         typeof(JsonUnixDateTimeOffsetConverter),
         typeof(LoggerExtensions),
+        typeof(FileHelper),
+        typeof(FileHelper<>),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
         typeof(ProcessExtensions),

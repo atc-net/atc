@@ -273,6 +273,22 @@
      - GetEnumValue(string value, bool ignoreCase = True)
      - GetName(Enum enumeration)
      - GetValueFromDescription(string description)
+- [FileHelper](Atc.Helpers.md#filehelper)
+  -  Static Fields
+     - string[] LineBreaks
+  -  Static Methods
+     - ReadAllText(FileInfo fileInfo)
+     - ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadAllTextToLines(FileInfo fileInfo)
+     - ReadAllTextToLinesAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - WriteAllText(FileInfo fileInfo, string content)
+     - WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
+- [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
+  -  Static Methods
+     - ReadJsonFileAndDeserializeAsync(FileInfo fileInfo)
+     - ReadJsonFileToModel(FileInfo fileInfo)
+     - WriteModelToJsonFile(FileInfo fileInfo, T model)
+     - WriteModelToJsonFileAsync(FileInfo fileInfo, T model)
 - [MathHelper](Atc.Helpers.md#mathhelper)
   -  Static Methods
      - Acos(double value)
