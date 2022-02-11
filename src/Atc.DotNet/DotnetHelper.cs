@@ -75,6 +75,28 @@ public static class DotnetHelper
         return new FileInfo(dotnetFullName);
     }
 
+    /// <summary>
+    /// Get the dotnet version.
+    /// </summary>
+    /// <remarks>
+    /// This method is platform independent.
+    /// </remarks>
+    public static async Task<Version> GetDotnetVersion()
+    {
+        var dotnetFile = GetDotnetExecutable();
+
+        var (isSuccessful, output) = await ProcessHelper.Execute(dotnetFile.Directory!, dotnetFile, "--version");
+        if (!isSuccessful)
+        {
+            return new Version(0, 0);
+        }
+
+        var s = output.TrimSpecial();
+        return Version.TryParse(s, out var version)
+            ? version
+            : new Version(0, 0);
+    }
+
     /// <remarks>
     /// "dotnet" is the default name, but Github Actions installs to ".dotnet" ("/home/runner/.dotnet")
     /// </remarks>

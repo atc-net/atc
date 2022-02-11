@@ -15,6 +15,7 @@
   -  Static Methods
      - GetDotnetDirectory()
      - GetDotnetExecutable()
+     - GetDotnetVersion()
 - [DotnetNugetHelper](Atc.DotNet.md#dotnetnugethelper)
   -  Static Methods
      - GetAllPackageReferences(FileInfo fileInfo)

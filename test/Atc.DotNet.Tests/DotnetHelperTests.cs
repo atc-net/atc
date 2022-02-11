@@ -23,4 +23,15 @@ public class DotnetHelperTests
         Assert.NotNull(actual);
         Assert.True(File.Exists(actual.FullName));
     }
+
+    [Fact]
+    public async Task GetDotnetVersion()
+    {
+        // Act
+        var actual = await DotnetHelper.GetDotnetVersion();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.True(actual != new Version(0, 0));
+    }
 }
