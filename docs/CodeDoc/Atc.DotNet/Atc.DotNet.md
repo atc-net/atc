@@ -57,6 +57,13 @@
 ><b>Summary:</b> Get the dotnet executable file from the OS.
 >
 ><b>Remarks:</b> This method is platform independent.
+#### GetDotnetVersion
+>```csharp
+>Task<Version> GetDotnetVersion()
+>```
+><b>Summary:</b> Get the dotnet version.
+>
+><b>Remarks:</b> This method is platform independent.
 
 <br />
 

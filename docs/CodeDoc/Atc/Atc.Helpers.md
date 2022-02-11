@@ -627,6 +627,136 @@ Enumeration Helper: EnumHelper.
 
 <br />
 
+## FileHelper
+FileHelper.
+
+>```csharp
+>public static class FileHelper
+>```
+
+### Static Fields
+
+#### LineBreaks
+>```csharp
+>string[] LineBreaks
+>```
+><b>Summary:</b> The line breaks.
+### Static Methods
+
+#### ReadAllText
+>```csharp
+>string ReadAllText(FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads all text in the file with UTF8 encoding.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return the content from the file, if the file don't exist a empty string will be returned.
+#### ReadAllTextAsync
+>```csharp
+>Task<string> ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads all text in the file with UTF8 encoding.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return the content from the file, if the file don't exist a empty string will be returned.
+#### ReadAllTextToLines
+>```csharp
+>string[] ReadAllTextToLines(FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads all text in the file with UTF8 encoding and split it to lines.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return the content as lines from the file, if the file don't exist a empty string array will be returned.
+#### ReadAllTextToLinesAsync
+>```csharp
+>Task<string[]> ReadAllTextToLinesAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads all text in the file with UTF8 encoding and split it to lines.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return the content as lines from the file, if the file don't exist a empty string array will be returned.
+#### WriteAllText
+>```csharp
+>void WriteAllText(FileInfo fileInfo, string content)
+>```
+><b>Summary:</b> Writes all text to the file with UTF8 encoding.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content.<br />
+#### WriteAllTextAsync
+>```csharp
+>Task WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Writes all text to the file with UTF8 encoding.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+
+<br />
+
+## FileHelper&lt;T&gt;
+FileHelper.
+
+>```csharp
+>public static class FileHelper&lt;T&gt;
+>```
+
+### Static Methods
+
+#### ReadJsonFileAndDeserializeAsync
+>```csharp
+>Task<T> ReadJsonFileAndDeserializeAsync(FileInfo fileInfo)
+>```
+><b>Summary:</b> Read the json file and deserialize to the specified type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>
+><b>Returns:</b> The model.
+#### ReadJsonFileToModel
+>```csharp
+>T ReadJsonFileToModel(FileInfo fileInfo)
+>```
+><b>Summary:</b> Read the json file and deserialize to the specified type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>
+><b>Returns:</b> The model.
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(FileInfo fileInfo, T model)
+>```
+><b>Summary:</b> Write the model to a json file.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model.<br />
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model)
+>```
+><b>Summary:</b> Write the model to a json file.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model.<br />
+
+<br />
+
 ## MathHelper
 The MathHelper module contains procedures used to preform math operations.
 

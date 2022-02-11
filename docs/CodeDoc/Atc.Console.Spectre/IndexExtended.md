@@ -7,6 +7,31 @@
 ## [Atc.Console.Spectre](Atc.Console.Spectre.md)
 
 - [AtcConsoleSpectreAssemblyTypeInitializer](Atc.Console.Spectre.md#atcconsolespectreassemblytypeinitializer)
+- [CommandConstants](Atc.Console.Spectre.md#commandconstants)
+  -  Static Fields
+     - string ArgumentLongHelp
+     - string ArgumentLongVerbose
+     - string ArgumentLongVersion
+     - string ArgumentShortHelp
+     - string ArgumentShortVerbose
+     - string NameOptionsFile
+     - string NameOptionsFileCreate
+     - string NameOptionsFileValidate
+- [EmojisConstants](Atc.Console.Spectre.md#emojisconstants)
+  -  Static Fields
+     - string Done
+     - string Error
+     - string FileCreated
+     - string FileNotUpdated
+     - string FileUpdated
+
+## [Atc.Console.Spectre.CommandSettings](Atc.Console.Spectre.CommandSettings.md)
+
+- [BaseCommandSettings](Atc.Console.Spectre.CommandSettings.md#basecommandsettings)
+  -  Static Methods
+     - IsOptionValueTrue(bool? value)
+  -  Properties
+     - Verbose
 
 ## [Atc.Console.Spectre.Extensions](Atc.Console.Spectre.Extensions.md)
 
@@ -40,6 +65,21 @@
   -  Methods
      - Dispose()
      - Resolve(Type type)
+
+## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
+
+- [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
+  -  Static Methods
+     - GetCurrentVersion()
+- [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
+  -  Static Methods
+     - WriteHeader(string text, Color color)
+     - WriteHeader(string text)
+     - WriteLog(ILogger logger, LogKeyValueItem logItem, bool includeKey = True, bool includeDescription = True)
+     - WriteLogs(ILogger logger, List&lt;LogKeyValueItem&gt; logItems, bool includeKey = True, bool includeDescription = True)
+- [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)
+  -  Static Methods
+     - SetMinimumLogLevelIfNeeded(string[] args, ConsoleLoggerConfiguration consoleLoggerConfiguration)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)
 

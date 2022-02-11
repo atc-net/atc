@@ -12,6 +12,11 @@
 - [BooleanOperatorType](Atc.md#booleanoperatortype)
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
+- [CasingStyleDescriptionAttribute](Atc.md#casingstyledescriptionattribute)
+  -  Properties
+     - Default
+     - Description
+     - Prefix
 - [CollectionActionType](Atc.md#collectionactiontype)
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
   -  Static Fields
@@ -273,6 +278,22 @@
      - GetEnumValue(string value, bool ignoreCase = True)
      - GetName(Enum enumeration)
      - GetValueFromDescription(string description)
+- [FileHelper](Atc.Helpers.md#filehelper)
+  -  Static Fields
+     - string[] LineBreaks
+  -  Static Methods
+     - ReadAllText(FileInfo fileInfo)
+     - ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadAllTextToLines(FileInfo fileInfo)
+     - ReadAllTextToLinesAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - WriteAllText(FileInfo fileInfo, string content)
+     - WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
+- [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
+  -  Static Methods
+     - ReadJsonFileAndDeserializeAsync(FileInfo fileInfo)
+     - ReadJsonFileToModel(FileInfo fileInfo)
+     - WriteModelToJsonFile(FileInfo fileInfo, T model)
+     - WriteModelToJsonFileAsync(FileInfo fileInfo, T model)
 - [MathHelper](Atc.Helpers.md#mathhelper)
   -  Static Methods
      - Acos(double value)
@@ -760,6 +781,7 @@
   -  Static Methods
      - CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
      - GreaterThan(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
+     - GreaterThanOrEqualTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
@@ -834,6 +856,7 @@
   -  Static Methods
      - GetBeautifiedName(this Assembly assembly)
      - GetExportedTypeByName(this Assembly assembly, string typeName)
+     - GetFileVersion(this Assembly assembly)
      - GetTypesInheritingFromType(this Assembly assembly, Type type)
      - IsDebugBuild(this Assembly assembly)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)

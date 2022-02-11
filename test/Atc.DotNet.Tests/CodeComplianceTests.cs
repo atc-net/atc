@@ -10,6 +10,7 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new List<Type>
     {
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(DotnetHelper),
         typeof(DotnetBuildHelper),
         typeof(DotnetNugetHelper),
         typeof(VisualStudioSolutionFileHelper),

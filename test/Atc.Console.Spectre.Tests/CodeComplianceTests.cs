@@ -10,11 +10,14 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new List<Type>
     {
         // TODO: Add UnitTest and remove from this list!!
+        typeof(BaseCommandSettings),
         typeof(ServiceCollectionExtensions),
         typeof(CommandAppFactory),
         typeof(TypeRegistrar),
         typeof(TypeResolver),
         typeof(ServiceCollectionFactory),
+        typeof(ConsoleHelper),
+        typeof(ProgramCsHelper),
         typeof(ConsoleLogger),
         typeof(ConsoleLoggerProvider),
     };

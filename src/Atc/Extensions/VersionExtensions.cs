@@ -96,4 +96,30 @@ public static class VersionExtensions
 
         return version.CompareTo(otherVersion, significantParts, startingPart) > 0;
     }
+
+    /// <summary>
+    /// Is 'version' greater then or equal to the 'otherVersion'.
+    /// </summary>
+    /// <param name="version">The version.</param>
+    /// <param name="otherVersion">The other version.</param>
+    /// <param name="significantParts">The significant parts.</param>
+    /// <param name="startingPart">The starting parts.</param>
+    /// <returns>
+    ///   <c>true</c> if 'otherVersion' is greater then or equal to the current 'version'; otherwise, <c>false</c>.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">version.</exception>
+    public static bool GreaterThanOrEqualTo(this Version version, Version? otherVersion, int significantParts = 4, int startingPart = 1)
+    {
+        if (version is null)
+        {
+            throw new ArgumentNullException(nameof(version));
+        }
+
+        if (otherVersion is null)
+        {
+            return true;
+        }
+
+        return version.CompareTo(otherVersion, significantParts, startingPart) >= 0;
+    }
 }
