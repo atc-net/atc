@@ -68,9 +68,6 @@
 
 ## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
 
-- [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
-  -  Static Methods
-     - GetCurrentVersion()
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
   -  Static Methods
      - WriteHeader(string text, Color color)

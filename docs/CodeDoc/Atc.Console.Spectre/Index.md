@@ -30,7 +30,6 @@
 
 ## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
 
-- [CliHelper](Atc.Console.Spectre.Helpers.md#clihelper)
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
 - [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)
 

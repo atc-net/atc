@@ -225,6 +225,9 @@
      - GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
      - GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
      - GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+- [CliHelper](Atc.Helpers.md#clihelper)
+  -  Static Methods
+     - GetCurrentVersion()
 - [CultureHelper](Atc.Helpers.md#culturehelper)
   -  Static Methods
      - GetCountryNames(DropDownFirstItemType dropDownFirstItemType = None)
