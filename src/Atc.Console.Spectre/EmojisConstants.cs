@@ -2,10 +2,10 @@ namespace Atc.Console.Spectre;
 
 public static class EmojisConstants
 {
-    public const string FileCreated = ":green_circle:";
-    public const string FileUpdated = ":blue_circle:";
-    public const string FileNotUpdated = ":white_circle:";
+    public const string FileCreated = Emoji.Known.GreenCircle;
+    public const string FileUpdated = Emoji.Known.BlueCircle;
+    public const string FileNotUpdated = Emoji.Known.WhiteCircle;
 
-    public const string Done = ":check_mark_button:";
-    public const string Error = ":red_circle:";
+    public const string Success = Emoji.Known.CheckMarkButton;
+    public const string Error = Emoji.Known.RedCircle;
 }
