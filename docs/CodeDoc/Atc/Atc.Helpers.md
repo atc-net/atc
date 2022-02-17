@@ -219,6 +219,8 @@ CliHelper.
 >Version GetCurrentVersion()
 >```
 ><b>Summary:</b> Gets the current version from the executing assembly.
+>
+><b>Returns:</b> Return the `System.Version` of the CLI tool.
 
 <br />
 
