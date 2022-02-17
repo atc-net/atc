@@ -1033,6 +1033,25 @@ The MathHelper module contains procedures used to preform math operations.
 
 <br />
 
+## NetworkInformationHelper
+
+>```csharp
+>public static class NetworkInformationHelper
+>```
+
+### Static Methods
+
+#### GetPublicIpAddress
+>```csharp
+>IPAddress GetPublicIpAddress()
+>```
+#### HasConnection
+>```csharp
+>bool HasConnection()
+>```
+
+<br />
+
 ## ProcessHelper
 
 >```csharp

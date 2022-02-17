@@ -325,6 +325,10 @@
      - Sin(double degrees)
      - Tan(double degrees)
      - TruncateToMaxPrecision(double value, int decimalPrecision)
+- [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
+  -  Static Methods
+     - GetPublicIpAddress()
+     - HasConnection()
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)

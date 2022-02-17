@@ -19,11 +19,11 @@
      - string NameOptionsFileValidate
 - [EmojisConstants](Atc.Console.Spectre.md#emojisconstants)
   -  Static Fields
-     - string Done
      - string Error
      - string FileCreated
      - string FileNotUpdated
      - string FileUpdated
+     - string Success
 
 ## [Atc.Console.Spectre.CommandSettings](Atc.Console.Spectre.CommandSettings.md)
 
