@@ -1,6 +1,7 @@
 namespace Atc.Tests.Extensions;
 
-[Trait("Category", "SkipWhenLiveUnitTesting")]
+[Trait(Traits.Category, Traits.Categories.Integration)]
+[Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class TaskExtensionsTests
 {
     [Theory]
