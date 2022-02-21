@@ -1,3 +1,4 @@
+// ReSharper disable ConvertIfStatementToReturnStatement
 namespace Atc.DotNet;
 
 public static class DotnetBuildHelper
@@ -170,48 +171,49 @@ public static class DotnetBuildHelper
 
     private static Dictionary<string, int> ParseBuildOutput(string buildResult)
     {
-        var errors = new Dictionary<string, int>(StringComparer.Ordinal);
+        const string? regexPatternMsBuild = @": error MSB(\S+?): (.*)";
+        const string? regexPatternNuget = @": error NU(\S+?): (.*)";
+        const string? regexPatternGeneral = @": error ([A-Z]\S+?): (.*) \[";
 
-        const string? regexPatternMsb = @": error MSB(\S+?): (.*)";
-        var regexMsb = new Regex(
-            regexPatternMsb,
-            RegexOptions.Multiline | RegexOptions.Compiled,
-            TimeSpan.FromMinutes(2));
-
-        var matchCollectionMsb = regexMsb.Matches(buildResult);
-        foreach (Match match in matchCollectionMsb)
+        var errors = ParseBuildOutputHelper(buildResult, regexPatternMsBuild, "MSB");
+        if (errors.Any())
         {
-            if (match.Groups.Count != 3)
-            {
-                continue;
-            }
-
-            var key = "MSB" + match.Groups[1].Value;
-            if (errors.ContainsKey(key))
-            {
-                errors[key] += 1;
-            }
-            else
-            {
-                errors.Add(key, 1);
-            }
+            return errors;
         }
 
-        const string? regexPattern = @": error ([A-Z]\S+?): (.*) \[";
+        errors = ParseBuildOutputHelper(buildResult, regexPatternNuget, "NU");
+        if (errors.Any())
+        {
+            return errors;
+        }
+
+        return ParseBuildOutputHelper(buildResult, regexPatternGeneral);
+    }
+
+    private static Dictionary<string, int> ParseBuildOutputHelper(
+        string buildResult,
+        string regexPattern,
+        string? keyPrefix = null)
+    {
+        var errors = new Dictionary<string, int>(StringComparer.Ordinal);
+
         var regex = new Regex(
             regexPattern,
             RegexOptions.Multiline | RegexOptions.Compiled,
             TimeSpan.FromMinutes(2));
 
         var matchCollection = regex.Matches(buildResult);
-        foreach (Match match in matchCollection)
+        foreach (var matchGroups in matchCollection.Select(x => x.Groups))
         {
-            if (match.Groups.Count != 3)
+            if (matchGroups.Count != 3)
             {
                 continue;
             }
 
-            var key = match.Groups[1].Value;
+            var key = keyPrefix is null
+                ? matchGroups[1].Value
+                : keyPrefix + matchGroups[1].Value;
+
             if (errors.ContainsKey(key))
             {
                 errors[key] += 1;
