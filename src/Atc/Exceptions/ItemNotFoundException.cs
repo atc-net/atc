@@ -4,14 +4,17 @@ namespace System;
 /// <summary>
 /// The exception that is thrown when an item is not found.
 /// </summary>
+/// <seealso cref="Exception" />
 [Serializable]
 public class ItemNotFoundException : Exception
 {
+    private const string ExceptionMessage = "Item not found.";
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ItemNotFoundException"/> class.
     /// </summary>
     public ItemNotFoundException()
-        : base("Item not found.")
+        : base(ExceptionMessage)
     {
     }
 
@@ -35,7 +38,7 @@ public class ItemNotFoundException : Exception
     }
 
     protected ItemNotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-        : base("Item not found.")
+        : base(ExceptionMessage)
     {
     }
 }
