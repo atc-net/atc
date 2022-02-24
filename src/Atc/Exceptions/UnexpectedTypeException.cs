@@ -4,14 +4,17 @@ namespace System;
 /// <summary>
 /// The exception that is thrown when actual type differs from expected type.
 /// </summary>
+/// <seealso cref="Exception" />
 [Serializable]
 public class UnexpectedTypeException : Exception
 {
+    private const string ExceptionMessage = "Unexpected type.";
+
     /// <summary>
     /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class.
     /// </summary>
     public UnexpectedTypeException()
-        : base("Unexpected type.")
+        : base(ExceptionMessage)
     {
     }
 
@@ -30,7 +33,9 @@ public class UnexpectedTypeException : Exception
     /// <param name="actualType">The actual type.</param>
     /// <param name="expectedType">The expected type.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public UnexpectedTypeException(Type actualType, Type expectedType)
+    public UnexpectedTypeException(
+        Type actualType,
+        Type expectedType)
     {
         if (actualType is null)
         {
@@ -64,7 +69,10 @@ public class UnexpectedTypeException : Exception
     /// <param name="expectedType">The expected type.</param>
     /// <param name="message">The message.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public UnexpectedTypeException(Type actualType, Type expectedType, string message)
+    public UnexpectedTypeException(
+        Type actualType,
+        Type expectedType,
+        string message)
     {
         if (actualType is null)
         {
@@ -101,13 +109,17 @@ public class UnexpectedTypeException : Exception
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
-    public UnexpectedTypeException(string message, Exception innerException)
+    public UnexpectedTypeException(
+        string message,
+        Exception innerException)
         : base(message, innerException)
     {
     }
 
-    protected UnexpectedTypeException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-        : base("Unexpected type.")
+    protected UnexpectedTypeException(
+        SerializationInfo serializationInfo,
+        StreamingContext streamingContext)
+        : base(ExceptionMessage)
     {
     }
 }

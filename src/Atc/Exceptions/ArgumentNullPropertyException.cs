@@ -5,15 +5,17 @@ namespace System;
 /// <summary>
 /// ArgumentNullPropertyException.
 /// </summary>
-/// <seealso cref="System.Exception" />
+/// <seealso cref="Exception" />
 [Serializable]
 public sealed class ArgumentNullPropertyException : ArgumentException
 {
+    private const string ExceptionMessage = "Value cannot be null.";
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ArgumentNullPropertyException"/> class.
     /// </summary>
     public ArgumentNullPropertyException()
-        : base("Value cannot be null.")
+        : base(ExceptionMessage)
     {
     }
 
@@ -21,8 +23,9 @@ public sealed class ArgumentNullPropertyException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentNullPropertyException"/> class.
     /// </summary>
     /// <param name="paramName">Name of the parameter.</param>
-    public ArgumentNullPropertyException(string paramName)
-        : base("Value cannot be null.", paramName)
+    public ArgumentNullPropertyException(
+        string paramName)
+        : base(ExceptionMessage, paramName)
     {
     }
 
@@ -31,7 +34,9 @@ public sealed class ArgumentNullPropertyException : ArgumentException
     /// </summary>
     /// <param name="paramName">Name of the parameter.</param>
     /// <param name="message">The message.</param>
-    public ArgumentNullPropertyException(string paramName, string message)
+    public ArgumentNullPropertyException(
+        string paramName,
+        string message)
         : base(message, paramName)
     {
     }
@@ -41,13 +46,17 @@ public sealed class ArgumentNullPropertyException : ArgumentException
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
-    public ArgumentNullPropertyException(string message, Exception innerException)
+    public ArgumentNullPropertyException(
+        string message,
+        Exception innerException)
         : base(message, innerException)
     {
     }
 
-    private ArgumentNullPropertyException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-        : base("Value cannot be null.")
+    private ArgumentNullPropertyException(
+        SerializationInfo serializationInfo,
+        StreamingContext streamingContext)
+        : base(ExceptionMessage)
     {
     }
 }

@@ -205,7 +205,7 @@ public static class CultureHelper
 
         if (value.Length != 2)
         {
-            throw new ArgumentPropertyException("Length should be 2 letters", nameof(value));
+            throw new ArgumentPropertyException(nameof(value), "Length should be 2 letters");
         }
 
         return GetCultureFromValue(displayLanguageLcid, value);
@@ -239,7 +239,7 @@ public static class CultureHelper
 
         if (value.Length != 2)
         {
-            throw new ArgumentPropertyException("Length should be 2 letters", nameof(value));
+            throw new ArgumentPropertyException(nameof(value), "Length should be 2 letters");
         }
 
         var tmp = value.ToUpperInvariant();
@@ -276,7 +276,7 @@ public static class CultureHelper
 
         if (value.Length != 2)
         {
-            throw new ArgumentPropertyException("Length should be 2 letters", nameof(value));
+            throw new ArgumentPropertyException(nameof(value), "Length should be 2 letters");
         }
 
         var tmp = value.ToUpperInvariant();
@@ -332,7 +332,7 @@ public static class CultureHelper
 
         if (!includeLcids.Contains(displayLanguageLcid))
         {
-            throw new ArgumentPropertyException($"Display language (LCID={displayLanguageLcid}) must be included in include-lcid-list of {includeLcids.Count} items.", nameof(displayLanguageLcid));
+            throw new ArgumentPropertyException(nameof(displayLanguageLcid), $"Display language (LCID={displayLanguageLcid}) must be included in include-lcid-list of {includeLcids.Count} items.");
         }
 
         var cultures = GetCultures(displayLanguageLcid, includeLcids);

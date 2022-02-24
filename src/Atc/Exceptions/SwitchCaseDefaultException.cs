@@ -4,14 +4,17 @@ namespace System;
 /// <summary>
 /// The exception.
 /// </summary>
+/// <seealso cref="Exception" />
 [Serializable]
 public class SwitchCaseDefaultException : Exception
 {
+    private const string ExceptionMessage = "Unexpected value.";
+
     /// <summary>
     /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
     /// </summary>
     public SwitchCaseDefaultException()
-        : base("Unexpected value.")
+        : base(ExceptionMessage)
     {
     }
 
@@ -19,7 +22,8 @@ public class SwitchCaseDefaultException : Exception
     /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public SwitchCaseDefaultException(string message)
+    public SwitchCaseDefaultException(
+        string message)
         : base(message)
     {
     }
@@ -29,7 +33,8 @@ public class SwitchCaseDefaultException : Exception
     /// </summary>
     /// <param name="value">The value.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public SwitchCaseDefaultException(Enum value)
+    public SwitchCaseDefaultException(
+        Enum value)
     {
         if (value is null)
         {
@@ -45,7 +50,9 @@ public class SwitchCaseDefaultException : Exception
     /// <param name="value">The value.</param>
     /// <param name="message">The message.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public SwitchCaseDefaultException(Enum value, string message)
+    public SwitchCaseDefaultException(
+        Enum value,
+        string message)
     {
         if (value is null)
         {
@@ -65,13 +72,15 @@ public class SwitchCaseDefaultException : Exception
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
-    public SwitchCaseDefaultException(string message, Exception innerException)
+    public SwitchCaseDefaultException(
+        string message,
+        Exception innerException)
         : base(message, innerException)
     {
     }
 
     protected SwitchCaseDefaultException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-        : base("Unexpected value.")
+        : base(ExceptionMessage)
     {
     }
 }
