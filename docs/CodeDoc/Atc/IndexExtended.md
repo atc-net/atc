@@ -589,6 +589,7 @@
      - Bytes(this long value)
      - Bytes(this uint value)
      - Bytes(this ulong value)
+- [CertificateValidationException](System.md#certificatevalidationexception)
 - [CharExtensions](System.md#charextensions)
   -  Static Methods
      - IsAscii(this char value)
@@ -621,6 +622,7 @@
      - RoundOff10(this decimal value)
      - RoundOff2(this decimal value)
      - RoundOffPercent(this decimal percent)
+- [DesignTimeUseOnlyException](System.md#designtimeuseonlyexception)
 - [DoubleExtensions](System.md#doubleextensions)
   -  Static Fields
      - double DoubleEpsilon
@@ -640,6 +642,7 @@
      - RoundOff10(this double value)
      - RoundOff2(this double value)
      - RoundOffPercent(this double percent)
+- [EntityStoreException](System.md#entitystoreexception)
 - [EnumExtensions](System.md#enumextensions)
   -  Static Methods
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
@@ -668,6 +671,8 @@
 - [LongExtensions](System.md#longextensions)
   -  Static Methods
      - FromUnixTime(this long value)
+- [NullException](System.md#nullexception)
+- [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
      - Alphabetize(this string value)
@@ -749,6 +754,7 @@
      - IsStringFormatParametersBalanced(this string value, bool isNumeric = True)
      - IsTrue(this string value)
      - IsWord(this string value)
+- [StringNullOrEmptyException](System.md#stringnulloremptyexception)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
 - [TaskExtensions](System.md#taskextensions)
   -  Static Methods
@@ -784,11 +790,13 @@
      - TryGetAttribute(this Type type)
      - TryGetEnumType(this Type type, out Type enumType)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)
+- [UserNotFoundException](System.md#usernotfoundexception)
 - [VersionExtensions](System.md#versionextensions)
   -  Static Methods
      - CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
      - GreaterThan(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
      - GreaterThanOrEqualTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
+- [ViewModelException](System.md#viewmodelexception)
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
