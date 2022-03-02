@@ -60,7 +60,9 @@ internal static class DecompilerMethodHelper
         {
             foreach (var testMethodWithDeclaration in testMethodsWithDeclaration)
             {
-                if (!testMethodWithDeclaration.Item1.DeclaringType!.BeautifyName(false, false, true).StartsWith(classMethodsNames.Item1, StringComparison.Ordinal))
+                if (!testMethodWithDeclaration.Item1.DeclaringType!
+                        .BeautifyName(useFullName: false, useHtmlFormat: false, useGenericParameterNamesAsT: true)
+                        .StartsWith(classMethodsNames.Item1, StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -181,7 +183,7 @@ internal static class DecompilerMethodHelper
 
     internal static AstNode? GetAstNodeForMethodWithParameters(AstNode astNode, string methodName)
     {
-        return GetAstNodeForMethod(astNode, methodName)?.Parent.Parent;
+        return GetAstNodeForMethod(astNode, methodName)?.Parent?.Parent;
     }
 
     internal static List<AstNode> GetAstNodesForMethodParameters(AstNode astNode)
@@ -196,7 +198,7 @@ internal static class DecompilerMethodHelper
                          x.IsType(typeof(PrimitiveExpression)) ||
                          x.IsType(typeof(NullReferenceExpression)) ||
                          (x.IsType(typeof(MemberReferenceExpression)) && x != astNode.FirstChild)) &&
-                        !x.Parent.ToString().StartsWith(x + ".", StringComparison.Ordinal))
+                        (x.Parent is not null && !x.Parent.ToString().StartsWith(x + ".", StringComparison.Ordinal)))
             .ToList();
     }
 }
