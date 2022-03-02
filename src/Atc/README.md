@@ -8,7 +8,6 @@ This library contains common extensions, helpers etc.
 
 [References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc/IndexExtended.md)
 
-
 ## `ILogger` examples
 
 ### Using `logger.LogKeyValueItems(..)`
@@ -37,4 +36,46 @@ This library contains common extensions, helpers etc.
 
     // Log data
     logger.LogKeyValueItem(LogItemFactory.CreateError(logItem));
+```
+
+## `TimeSpanExtensions` examples
+
+### Using `GetPrettyTime()` or `GetPrettyTime(decimalPrecision)`
+
+The default value for `decimalPrecision` is 3.
+
+```csharp
+var stopwatch = Stopwatch.StartNew();
+
+DoSomthingThatTakesLongTime();
+
+stopwatch.Stop();
+
+Console.WriteLine($"Running time: {stopwatch.Elapsed.GetPrettyTime()}");
+```
+
+Result format could look like:
+
+```powershell
+Running time: 14,015 sec
+Running time: 13,234 min
+Running time: 12,213 hours
+```
+
+## `NetworkInformationHelper` examples
+
+### Using `HasConnection()`
+
+This helper method ask a external internet service (GoogleDNS ping), to see it there is connection.
+
+```csharp
+bool hasConnection = NetworkInformationHelper.HasConnection()
+```
+
+### Using `GetPublicIpAddress()`
+
+This helper method ask a external internet service (ipify.org), to get the external ip address.
+
+```csharp
+IPAddress? ipAddress = NetworkInformationHelper.GetPublicIpAddress()
 ```

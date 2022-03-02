@@ -124,7 +124,7 @@ internal static class ParametersNamingMatchHelper
         }
 
         var astNodeName = astNode.ToString();
-        var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent, astNodeName) ??
+        var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent!, astNodeName) ??
                        FindTypeNameForIdentifierExpressionOutsideMethodScope(astNode.GetRoot(), astNodeName);
 
         if (typeName is not null &&
@@ -155,7 +155,7 @@ internal static class ParametersNamingMatchHelper
             var astNodeIdentifier = astNode.Children.First(x => x.IsType(typeof(Identifier)));
             var identifierTypeName =
                 FindTypeNameForIdentifierExpressionInTestMethodScope(
-                    astNodeIdentifierExpression.Parent,
+                    astNodeIdentifierExpression.Parent!,
                     astNodeIdentifierExpression.ToString()) ??
                 FindTypeNameForIdentifierExpressionOutsideMethodScope(
                     astNodeIdentifierExpression.GetRoot(),
@@ -205,8 +205,8 @@ internal static class ParametersNamingMatchHelper
         }
 
         if (parameter.ParameterType == typeof(string) &&
-            astNodeName.StartsWith("\"", StringComparison.Ordinal) &&
-            astNodeName.EndsWith("\"", StringComparison.Ordinal))
+            astNodeName.StartsWith('"') &&
+            astNodeName.EndsWith('"'))
         {
             return true;
         }
@@ -245,15 +245,15 @@ internal static class ParametersNamingMatchHelper
                     var astNodeForParameter = DecompilerMethodHelper.GetAstNodeForParameter(astNode, parameterName);
                     if (astNodeForParameter is not null)
                     {
-                        var tmp = astNodeForParameter.Parent.FirstChild.ToString().Trim();
+                        var tmp = astNodeForParameter.Parent?.FirstChild?.ToString().Trim() ?? string.Empty;
                         if (tmp.StartsWith('[') && tmp.EndsWith(']'))
                         {
                             // FirstChild is a DataAnnotation attribute, then take the next one
-                            tmp = astNodeForParameter.Parent.Children.ToArray()[1].ToString().Trim();
+                            tmp = astNodeForParameter.Parent!.Children.ToArray()[1].ToString().Trim();
                         }
                         else if (string.Equals(tmp, parameterName, StringComparison.Ordinal))
                         {
-                            tmp = astNodeForParameter.Parent.Parent.FirstChild.ToString().Trim();
+                            tmp = astNodeForParameter.Parent!.Parent!.FirstChild!.ToString().Trim();
                         }
 
                         return tmp;
