@@ -4,10 +4,6 @@
 
 This repository contains common libraries for .NET. Detailed information for each repository can be found below.
 
-### Requirements
-
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-
 ## Projects in the repository
 
 |Project|Target Framework|Description|Docs|Nuget Download Link|
