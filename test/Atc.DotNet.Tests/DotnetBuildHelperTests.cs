@@ -58,7 +58,7 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         sb.AppendLine(2, "<PropertyGroup>");
         sb.AppendLine(4, "<OutputType>Exe</OutputType>");
-        sb.AppendLine(4, "<TargetFramework>net5.0</TargetFramework>");
+        sb.AppendLine(4, "<TargetFramework>net6.0</TargetFramework>");
         sb.AppendLine(2, "</PropertyGroup>");
         sb.AppendLine("</Project>");
 
