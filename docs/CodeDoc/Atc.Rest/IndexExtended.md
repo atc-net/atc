@@ -107,6 +107,7 @@
 - [ResultFactory](Atc.Rest.Results.md#resultfactory)
   -  Static Methods
      - CreateContentResult(HttpStatusCode statusCode, string message, string contentType = application/json)
+     - CreateContentResultWithProblemDetails(HttpStatusCode statusCode, object value, string contentType = application/json)
      - CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message, string contentType = application/json)
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
