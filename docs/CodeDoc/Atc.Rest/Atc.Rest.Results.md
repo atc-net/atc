@@ -82,6 +82,10 @@ ResultBase.
 >```csharp
 >ContentResult CreateContentResultWithProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
 >```
+#### CreateContentResultWithProblemDetails
+>```csharp
+>ContentResult CreateContentResultWithProblemDetails(HttpStatusCode statusCode, object value, string contentType = application/json)
+>```
 #### CreateContentResultWithValidationProblemDetails
 >```csharp
 >ContentResult CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)

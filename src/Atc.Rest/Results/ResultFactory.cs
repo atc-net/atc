@@ -2,7 +2,9 @@ namespace Atc.Rest.Results;
 
 public static class ResultFactory
 {
-    public static ProblemDetails CreateProblemDetails(HttpStatusCode statusCode, string? message)
+    public static ProblemDetails CreateProblemDetails(
+        HttpStatusCode statusCode,
+        string? message)
         => new ProblemDetails
         {
             Status = (int)statusCode,
@@ -29,6 +31,33 @@ public static class ResultFactory
             StatusCode = (int)statusCode,
             Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message)),
         };
+
+    public static ContentResult CreateContentResultWithProblemDetails(
+        HttpStatusCode statusCode,
+        object? value,
+        string contentType = MediaTypeNames.Application.Json)
+    {
+        var result = new ContentResult
+        {
+            ContentType = contentType,
+            StatusCode = (int)statusCode,
+        };
+
+        if (value is null)
+        {
+            return result;
+        }
+
+        var message = Helpers.SimpleTypeHelper.IsSimpleType(value.GetType().BeautifyTypeName())
+            ? value.ToString()
+            : JsonSerializer.Serialize(value);
+
+        var problemDetails = CreateProblemDetails(statusCode, message);
+
+        result.Content = JsonSerializer.Serialize(problemDetails);
+
+        return result;
+    }
 
     public static ContentResult CreateContentResultWithValidationProblemDetails(
         HttpStatusCode statusCode,

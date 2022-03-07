@@ -58,6 +58,25 @@ public class ResultFactoryTests
     }
 
     [Theory]
+    [InlineData(HttpStatusCode.Conflict, null)]
+    [InlineData(HttpStatusCode.Conflict, "Hallo World")]
+    public void CreateContentResultWithProblemDetails_Value(HttpStatusCode statusCode, object? value)
+    {
+        // Act
+        var actual = ResultFactory.CreateContentResultWithProblemDetails(statusCode, value);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal((int)statusCode, actual.StatusCode);
+        if (value is not null)
+        {
+            Assert.NotNull(actual.Content);
+            Assert.Equal(MediaTypeNames.Application.Json, actual.ContentType);
+            Assert.Equal($"{{\"status\":{(int)statusCode},\"detail\":\"{value}\"}}", actual.Content);
+        }
+    }
+
+    [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
     public void CreateContentResultWithValidationProblemDetails_Message(HttpStatusCode statusCode, string? message)
