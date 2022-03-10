@@ -9,24 +9,28 @@ public class ConsoleLoggerConfiguration
         ConsoleSettings = null;
         MinimumLogLevel = LogLevel.Information;
         RenderingMode = ConsoleRenderingMode.Default;
+        UseTimestamp = false;
         UseShortNameForLogLevel = true;
-        UseFixedWidthSpacing = true;
         IncludeInnerMessageForException = true;
         IncludeExceptionNameForException = true;
         AllowMarkup = false;
+        UseTimestampUtc = false;
+        TimeStampFormat = "yyyy-MM-dd HH:mm:ss";
     }
 
+    [JsonIgnore]
     public Action<IAnsiConsole>? ConsoleConfiguration { get; set; }
 
+    [JsonIgnore]
     public AnsiConsoleSettings? ConsoleSettings { get; set; }
 
     public LogLevel MinimumLogLevel { get; set; }
 
     public ConsoleRenderingMode RenderingMode { get; set; }
 
-    public bool UseShortNameForLogLevel { get; set; }
+    public bool UseTimestamp { get; set; }
 
-    public bool UseFixedWidthSpacing { get; set; }
+    public bool UseShortNameForLogLevel { get; set; }
 
     public bool IncludeInnerMessageForException { get; set; }
 
@@ -34,8 +38,10 @@ public class ConsoleLoggerConfiguration
 
     public bool AllowMarkup { get; set; }
 
+    public bool UseTimestampUtc { get; set; }
+
+    public string? TimeStampFormat { get; set; }
+
     public override string ToString()
-    {
-        return $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(UseFixedWidthSpacing)}: {UseFixedWidthSpacing}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}";
-    }
+        => $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseTimestamp)}: {UseTimestamp}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}, {nameof(UseTimestampUtc)}: {UseTimestampUtc}, {nameof(TimeStampFormat)}: {TimeStampFormat}";
 }
