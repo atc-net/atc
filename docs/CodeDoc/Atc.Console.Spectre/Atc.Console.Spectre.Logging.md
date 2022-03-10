@@ -66,13 +66,21 @@
 >```csharp
 >RenderingMode
 >```
-#### UseFixedWidthSpacing
+#### TimeStampFormat
 >```csharp
->UseFixedWidthSpacing
+>TimeStampFormat
 >```
 #### UseShortNameForLogLevel
 >```csharp
 >UseShortNameForLogLevel
+>```
+#### UseTimestamp
+>```csharp
+>UseTimestamp
+>```
+#### UseTimestampUtc
+>```csharp
+>UseTimestampUtc
 >```
 ### Methods
 

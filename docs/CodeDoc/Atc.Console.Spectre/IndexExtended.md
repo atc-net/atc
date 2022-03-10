@@ -94,8 +94,10 @@
      - IncludeInnerMessageForException
      - MinimumLogLevel
      - RenderingMode
-     - UseFixedWidthSpacing
+     - TimeStampFormat
      - UseShortNameForLogLevel
+     - UseTimestamp
+     - UseTimestampUtc
   -  Methods
      - ToString()
 - [ConsoleLoggerProvider](Atc.Console.Spectre.Logging.md#consoleloggerprovider)
