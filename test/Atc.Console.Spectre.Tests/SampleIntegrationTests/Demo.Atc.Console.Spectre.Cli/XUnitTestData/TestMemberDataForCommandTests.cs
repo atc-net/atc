@@ -57,8 +57,13 @@ internal static class TestMemberDataForCommandTests
             {
                 MinimumLogLevel = LogLevel.Trace,
                 RenderingMode = ConsoleRenderingMode.LogLevel,
+                UseTimestamp = false,
                 UseShortNameForLogLevel = true,
-                UseFixedWidthSpacing = true,
+                IncludeInnerMessageForException = true,
+                IncludeExceptionNameForException = true,
+                AllowMarkup = false,
+                UseTimestampUtc = false,
+                TimeStampFormat = "yyyy-MM-dd HH:mm:ss",
             };
 
             foreach (var logLevelName in LogLevelNames)
@@ -80,58 +85,19 @@ internal static class TestMemberDataForCommandTests
             {
                 MinimumLogLevel = LogLevel.Trace,
                 RenderingMode = ConsoleRenderingMode.LogLevel,
+                UseTimestamp = false,
                 UseShortNameForLogLevel = false,
-                UseFixedWidthSpacing = true,
+                IncludeInnerMessageForException = true,
+                IncludeExceptionNameForException = true,
+                AllowMarkup = false,
+                UseTimestampUtc = false,
+                TimeStampFormat = "yyyy-MM-dd HH:mm:ss",
             };
 
             foreach (var logLevelName in LogLevelNames)
             {
                 var spaces = string.Empty.PadRight(12 - logLevelName.Item1.Length);
                 var expected = $"{logLevelName.Item1}:{spaces}Hello";
-                var arguments = $"log --logLevel {logLevelName.Item1} Hello";
-                var test = new object[]
-                {
-                    new[] { expected },
-                    arguments,
-                    config,
-                };
-
-                tests.Add(test);
-            }
-
-            config = new ConsoleLoggerConfiguration
-            {
-                MinimumLogLevel = LogLevel.Trace,
-                RenderingMode = ConsoleRenderingMode.LogLevel,
-                UseShortNameForLogLevel = true,
-                UseFixedWidthSpacing = false,
-            };
-
-            foreach (var logLevelName in LogLevelNames)
-            {
-                var expected = $"{logLevelName.Item2}: Hello";
-                var arguments = $"log --logLevel {logLevelName.Item1} Hello";
-                var test = new object[]
-                {
-                    new[] { expected },
-                    arguments,
-                    config,
-                };
-
-                tests.Add(test);
-            }
-
-            config = new ConsoleLoggerConfiguration
-            {
-                MinimumLogLevel = LogLevel.Trace,
-                RenderingMode = ConsoleRenderingMode.LogLevel,
-                UseShortNameForLogLevel = false,
-                UseFixedWidthSpacing = false,
-            };
-
-            foreach (var logLevelName in LogLevelNames)
-            {
-                var expected = $"{logLevelName.Item1}: Hello";
                 var arguments = $"log --logLevel {logLevelName.Item1} Hello";
                 var test = new object[]
                 {
@@ -161,7 +127,7 @@ internal static class TestMemberDataForCommandTests
 
             foreach (var logLevelName in LogLevelNames)
             {
-                const string expected = "Demo.Atc.Console.Spectre.Cli.Commands.LogCommand: Hello";
+                const string expected = "Demo.Atc.Console.Spectre.Cli.Commands.LogCommand Hello";
                 var arguments = $"log --logLevel {logLevelName.Item1} Hello";
                 var test = new object[]
                 {
@@ -177,7 +143,6 @@ internal static class TestMemberDataForCommandTests
         }
     }
 
-    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static IEnumerable<object[]> LogCommandRenderLogLevelCategoryName
     {
         get
@@ -187,19 +152,18 @@ internal static class TestMemberDataForCommandTests
             {
                 MinimumLogLevel = LogLevel.Trace,
                 RenderingMode = ConsoleRenderingMode.LogLevelAndCategoryName,
+                UseTimestamp = false,
                 UseShortNameForLogLevel = true,
-                UseFixedWidthSpacing = true,
             };
 
             foreach (var logLevelName in LogLevelNames)
             {
                 var spaces = string.Empty.PadRight(9 - logLevelName.Item2.Length);
-                var expected1 = $"{logLevelName.Item2}:{spaces}Demo.Atc.Console.Spectre.Cli.Commands.LogCommand";
-                const string expected2 = "          Hello";
+                var expected = $"{logLevelName.Item2}:{spaces}Demo.Atc.Console.Spectre.Cli.Commands.LogCommand Hello";
                 var arguments = $"log --logLevel {logLevelName.Item1} Hello";
                 var test = new object[]
                 {
-                    new[] { expected1, expected2 },
+                    new[] { expected },
                     arguments,
                     config,
                 };
@@ -211,65 +175,18 @@ internal static class TestMemberDataForCommandTests
             {
                 MinimumLogLevel = LogLevel.Trace,
                 RenderingMode = ConsoleRenderingMode.LogLevelAndCategoryName,
+                UseTimestamp = false,
                 UseShortNameForLogLevel = false,
-                UseFixedWidthSpacing = true,
             };
 
             foreach (var logLevelName in LogLevelNames)
             {
                 var spaces = string.Empty.PadRight(12 - logLevelName.Item1.Length);
-                var expected1 = $"{logLevelName.Item1}:{spaces}Demo.Atc.Console.Spectre.Cli.Commands.LogCommand";
-                const string expected2 = "             Hello";
+                var expected = $"{logLevelName.Item1}:{spaces}Demo.Atc.Console.Spectre.Cli.Commands.LogCommand Hello";
                 var arguments = $"log --logLevel {logLevelName.Item1} Hello";
                 var test = new object[]
                 {
-                    new[] { expected1, expected2 },
-                    arguments,
-                    config,
-                };
-
-                tests.Add(test);
-            }
-
-            config = new ConsoleLoggerConfiguration
-            {
-                MinimumLogLevel = LogLevel.Trace,
-                RenderingMode = ConsoleRenderingMode.LogLevelAndCategoryName,
-                UseShortNameForLogLevel = true,
-                UseFixedWidthSpacing = false,
-            };
-
-            foreach (var logLevelName in LogLevelNames)
-            {
-                var expected1 = $"{logLevelName.Item2}: Demo.Atc.Console.Spectre.Cli.Commands.LogCommand";
-                const string expected2 = "       Hello";
-                var arguments = $"log --logLevel {logLevelName.Item1} Hello";
-                var test = new object[]
-                {
-                    new[] { expected1, expected2 },
-                    arguments,
-                    config,
-                };
-
-                tests.Add(test);
-            }
-
-            config = new ConsoleLoggerConfiguration
-            {
-                MinimumLogLevel = LogLevel.Trace,
-                RenderingMode = ConsoleRenderingMode.LogLevelAndCategoryName,
-                UseShortNameForLogLevel = false,
-                UseFixedWidthSpacing = false,
-            };
-
-            foreach (var logLevelName in LogLevelNames)
-            {
-                var expected1 = $"{logLevelName.Item1}: Demo.Atc.Console.Spectre.Cli.Commands.LogCommand";
-                const string expected2 = "       Hello";
-                var arguments = $"log --logLevel {logLevelName.Item1} Hello";
-                var test = new object[]
-                {
-                    new[] { expected1, expected2 },
+                    new[] { expected },
                     arguments,
                     config,
                 };
