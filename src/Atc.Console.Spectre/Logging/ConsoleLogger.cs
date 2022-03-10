@@ -2,8 +2,10 @@
 // ReSharper disable StringLiteralTypo
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+// ReSharper disable MemberCanBeMadeStatic.Local
 namespace Atc.Console.Spectre.Logging;
 
+[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
 public class ConsoleLogger : ILogger
 {
     private readonly string categoryName;
@@ -78,111 +80,137 @@ public class ConsoleLogger : ILogger
 
     private void OutputWithLogLevelAndCategoryName(LogLevel logLevel, string message, string? exceptionMessage)
     {
-        var logLevelMarkup = GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel);
+        var spaces = GetSpacesForLogLevel(logLevel);
 
-        if (config.UseFixedWidthSpacing)
+        if (config.UseTimestamp)
         {
-            var padLength1 = config.UseShortNameForLogLevel
-                ? 8 - GetShortLogLevelCharCount(logLevel, useShort: true)
-                : 11 - GetShortLogLevelCharCount(logLevel, useShort: false);
-
-            var spaces1 = string.Empty.PadRight(padLength1);
-            console.MarkupLine($"{logLevelMarkup}{spaces1}{GetCategoryNameWithMarkup()}");
-
-            var padLength2 = config.UseShortNameForLogLevel
-                ? 10
-                : 13;
-
-            var spaces2 = string.Empty.PadRight(padLength2);
-            console.MarkupLine($"{spaces2}{message}");
+            console.MarkupLine($"{GetTimeStampWithMarkup()} {GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel)}{spaces}{GetCategoryNameWithMarkup()} {GetMessageWithMarkup(logLevel, message)}");
 
             if (!string.IsNullOrEmpty(exceptionMessage))
             {
-                console.MarkupLine($"{spaces2}{exceptionMessage}");
+                var spacesForException = GetSpacesForTimeStampAndLogLevelAndCategoryNameExceptionPart();
+                console.MarkupLine($"{spacesForException}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
             }
         }
         else
         {
-            const int padLength = 7;
-            var spaces = string.Empty.PadRight(padLength);
-
-            console.MarkupLine($"{logLevelMarkup}{GetCategoryNameWithMarkup()}");
-            console.MarkupLine($"{spaces}{message}");
+            console.MarkupLine($"{GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel)}{spaces}{GetCategoryNameWithMarkup()} {GetMessageWithMarkup(logLevel, message)}");
 
             if (!string.IsNullOrEmpty(exceptionMessage))
             {
-                var spacesForException = string.Empty.PadRight(padLength);
-                console.MarkupLine($"{spacesForException}{exceptionMessage}");
+                var spacesForException = GetSpacesForLogLevelAndCategoryNameExceptionPart();
+                console.MarkupLine($"{spacesForException}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
             }
         }
     }
 
     private void OutputWithLogLevel(LogLevel logLevel, string message, string? exceptionMessage)
     {
-        var logLevelMarkup = GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel);
+        var spaces = GetSpacesForLogLevel(logLevel);
 
-        if (config.UseFixedWidthSpacing)
+        if (config.UseTimestamp)
         {
-            var padLength = config.UseShortNameForLogLevel
-                ? 8 - GetShortLogLevelCharCount(logLevel, useShort: true)
-                : 11 - GetShortLogLevelCharCount(logLevel, useShort: false);
-
-            var spaces = string.Empty.PadRight(padLength);
-            console.MarkupLine($"{logLevelMarkup}{spaces}{message}");
+            console.MarkupLine($"{GetTimeStampWithMarkup()} {GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel)}{spaces}{GetMessageWithMarkup(logLevel, message)}");
 
             if (!string.IsNullOrEmpty(exceptionMessage))
             {
-                var padLengthException = config.UseShortNameForLogLevel
-                    ? 10
-                    : 13;
-
-                var spacesForException = string.Empty.PadRight(padLengthException);
-                console.MarkupLine($"{spacesForException}{exceptionMessage}");
+                var spacesForException = GetSpacesForTimeStampAndLogLevelExceptionPart();
+                console.MarkupLine($"{spacesForException}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
             }
         }
         else
         {
-            console.MarkupLine(logLevelMarkup + message);
+            console.MarkupLine($"{GetLogLevelWithMarkup(logLevel, config.UseShortNameForLogLevel)}{spaces}{GetMessageWithMarkup(logLevel, message)}");
 
             if (!string.IsNullOrEmpty(exceptionMessage))
             {
-                const int padLengthException = 7;
-                var spaces = string.Empty.PadRight(padLengthException);
-                console.MarkupLine($"{spaces}{exceptionMessage}");
+                var spacesForException = GetSpacesForLogLevelExceptionPart();
+                console.MarkupLine($"{spacesForException}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
             }
         }
     }
 
     private void OutputWithCategoryName(LogLevel logLevel, string message, string? exceptionMessage)
     {
-        var logLevelMarkupTag = GetLogLevelMarkupStartTag(logLevel);
-
-        console.MarkupLine($"{GetCategoryNameWithMarkup()}: {logLevelMarkupTag}{message}[/]");
-
-        if (!string.IsNullOrEmpty(exceptionMessage))
+        if (config.UseTimestamp)
         {
-            var padLength = categoryName.Length + 2;
-            var spaces = string.Empty.PadRight(padLength);
-            console.MarkupLine($"{spaces}{logLevelMarkupTag}{exceptionMessage}[/]");
+            console.MarkupLine($"{GetTimeStampAndCategoryNameWithMarkup()} {GetMessageWithMarkup(logLevel, message)}");
+
+            if (!string.IsNullOrEmpty(exceptionMessage))
+            {
+                var spaces = GetSpacesForTimeStampAndCategoryName();
+                console.MarkupLine($"{spaces}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
+            }
+        }
+        else
+        {
+            console.MarkupLine($"{GetCategoryNameWithMarkup()} {GetMessageWithMarkup(logLevel, message)}");
+
+            if (!string.IsNullOrEmpty(exceptionMessage))
+            {
+                var spaces = GetSpacesForCategoryName();
+                console.MarkupLine($"{spaces}{GetMessageWithMarkup(logLevel, exceptionMessage)}");
+            }
         }
     }
 
     private void OutputDefault(LogLevel logLevel, string message, string? exceptionMessage)
     {
-        var logLevelMarkupTag = GetLogLevelMarkupStartTag(logLevel);
-
-        console.MarkupLine($"{logLevelMarkupTag}{message}[/]");
-
-        if (!string.IsNullOrEmpty(exceptionMessage))
+        if (config.UseTimestamp)
         {
-            console.MarkupLine($"{logLevelMarkupTag}{exceptionMessage}[/]");
+            console.MarkupLine($"{GetTimeStampWithMarkup()} {GetMessageWithMarkup(logLevel, message)}");
+
+            if (!string.IsNullOrEmpty(exceptionMessage))
+            {
+                console.MarkupLine($"{GetTimeStampWithMarkup()} {GetMessageWithMarkup(logLevel, exceptionMessage)}");
+            }
+        }
+        else
+        {
+            console.MarkupLine(GetMessageWithMarkup(logLevel, message));
+
+            if (!string.IsNullOrEmpty(exceptionMessage))
+            {
+                console.MarkupLine(GetMessageWithMarkup(logLevel, exceptionMessage));
+            }
         }
     }
 
-    private string GetCategoryNameWithMarkup()
-    {
-        return $"[grey]{categoryName}[/]";
-    }
+    private string GetTimeStamp()
+        => config.UseTimestampUtc
+            ? DateTime.UtcNow.ToString(config.TimestampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo)
+            : DateTime.Now.ToString(config.TimestampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo);
+
+    private string GetSpacesForLogLevel(LogLevel logLevel)
+        => string.Empty.PadRight(GetLengthForLogLevel(logLevel));
+
+    private string GetSpacesForCategoryName()
+        => string.Empty.PadRight(categoryName.Length + 1);
+
+    private string GetSpacesForTimeStampAndCategoryName()
+        => string.Empty.PadRight(GetTimeStamp().Length + categoryName.Length + 2);
+
+    private string GetSpacesForTimeStampAndLogLevelExceptionPart()
+        => string.Empty.PadRight(GetLengthForLogLevelExceptionPart() + GetTimeStamp().Length + 1);
+
+    private string GetSpacesForTimeStampAndLogLevelAndCategoryNameExceptionPart()
+        => string.Empty.PadRight(GetLengthForLogLevelExceptionPart() + GetTimeStamp().Length + categoryName.Length + 2);
+
+    private string GetSpacesForLogLevelExceptionPart()
+        => string.Empty.PadRight(GetLengthForLogLevelExceptionPart());
+
+    private string GetSpacesForLogLevelAndCategoryNameExceptionPart()
+        => string.Empty.PadRight(GetLengthForLogLevelExceptionPart() + categoryName.Length + 1);
+
+    private int GetLengthForLogLevel(LogLevel logLevel)
+        => config.UseShortNameForLogLevel
+            ? 9 - GetShortLogLevelCharCount(logLevel, useShort: true)
+            : 12 - GetShortLogLevelCharCount(logLevel, useShort: false);
+
+    private int GetLengthForLogLevelExceptionPart()
+        => config.UseShortNameForLogLevel
+            ? 10
+            : 13;
 
     private static int GetShortLogLevelCharCount(LogLevel logLevel, bool useShort)
     {
@@ -203,27 +231,6 @@ public class ConsoleLogger : ILogger
         return logLevel.ToString().Length;
     }
 
-    private static string GetLogLevelWithMarkup(LogLevel logLevel, bool useShort)
-    {
-        var startTag = GetLogLevelMarkupStartTag(logLevel);
-
-        if (useShort)
-        {
-            return logLevel switch
-            {
-                LogLevel.Trace => $"{startTag}trace[/]: ",
-                LogLevel.Debug => $"{startTag}debug[/]: ",
-                LogLevel.Information => $"{startTag}info[/]: ",
-                LogLevel.Warning => $"{startTag}warn[/]: ",
-                LogLevel.Error => $"{startTag}error[/]: ",
-                LogLevel.Critical => $"{startTag}critical[/]: ",
-                _ => throw new SwitchCaseDefaultException(nameof(logLevel))
-            };
-        }
-
-        return $"{startTag}{logLevel}[/]: ";
-    }
-
     private static string GetLogLevelMarkupStartTag(LogLevel logLevel)
         => logLevel switch
         {
@@ -235,4 +242,37 @@ public class ConsoleLogger : ILogger
             LogLevel.Critical => "[red on white]",
             _ => throw new SwitchCaseDefaultException(nameof(logLevel))
         };
+
+    private static string GetLogLevelWithMarkup(LogLevel logLevel, bool useShort)
+    {
+        var startTag = GetLogLevelMarkupStartTag(logLevel);
+
+        if (useShort)
+        {
+            return logLevel switch
+            {
+                LogLevel.Trace => $"{startTag}trace:[/]",
+                LogLevel.Debug => $"{startTag}debug:[/]",
+                LogLevel.Information => $"{startTag}info:[/]",
+                LogLevel.Warning => $"{startTag}warn:[/]",
+                LogLevel.Error => $"{startTag}error:[/]",
+                LogLevel.Critical => $"{startTag}critical:[/]",
+                _ => throw new SwitchCaseDefaultException(nameof(logLevel))
+            };
+        }
+
+        return $"{startTag}{logLevel}:[/]";
+    }
+
+    private string GetTimeStampWithMarkup()
+        => $"[white]{GetTimeStamp()}[/]";
+
+    private string GetCategoryNameWithMarkup()
+        => $"[grey]{categoryName}[/]";
+
+    private string GetTimeStampAndCategoryNameWithMarkup()
+        => $"{GetTimeStampWithMarkup()} {GetCategoryNameWithMarkup()}";
+
+    private string GetMessageWithMarkup(LogLevel logLevel, string message)
+        => $"{GetLogLevelMarkupStartTag(logLevel)}{message}[/]";
 }
