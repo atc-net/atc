@@ -80,6 +80,7 @@ public class ConsoleLoggerConfiguration
     /// <remarks>
     /// UseTimestamp have to be set.
     /// The format have to be a valid DateTime.ToString([TimestampFormat]) format.
+    /// Read more: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0
     /// </remarks>
     public string? TimestampFormat { get; set; }
 

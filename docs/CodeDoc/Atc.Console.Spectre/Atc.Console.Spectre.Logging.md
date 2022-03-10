@@ -81,7 +81,7 @@
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered with the custom format.
 >
-><b>Remarks:</b> UseTimestamp have to be set. The format have to be a valid DateTime.ToString([TimestampFormat]) format.
+><b>Remarks:</b> UseTimestamp have to be set. The format have to be a valid DateTime.ToString([TimestampFormat]) format. Read more: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0
 #### UseShortNameForLogLevel
 >```csharp
 >UseShortNameForLogLevel
