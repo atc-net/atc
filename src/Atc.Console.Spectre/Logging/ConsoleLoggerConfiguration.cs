@@ -29,7 +29,8 @@ public class ConsoleLoggerConfiguration
     /// If set to Information, then Trace and Debug will not be included.
     /// </summary>
     /// <remarks>
-    /// The ordered list: Trace, Debug, Information, Warning, Error, Critical.
+    /// The ordered list:<br />
+    /// Trace, Debug, Information, Warning, Error, Critical.
     /// </remarks>
     public LogLevel MinimumLogLevel { get; set; }
 
@@ -37,7 +38,8 @@ public class ConsoleLoggerConfiguration
     /// Gets or sets the rendering mode.
     /// </summary>
     /// <remarks>
-    /// The options: Default, LogLevel, CategoryName, LogLevelAndCategoryName.
+    /// The options:<br />
+    /// Default, LogLevel, CategoryName, LogLevelAndCategoryName.
     /// </remarks>
     public ConsoleRenderingMode RenderingMode { get; set; }
 
@@ -70,7 +72,7 @@ public class ConsoleLoggerConfiguration
     /// Gets or sets a value indicating whether the Timestamp should be rendered as UTC.
     /// </summary>
     /// <remarks>
-    /// UseTimestamp have to be set.
+    /// UseTimestamp setting has to be set in order for this setting to take effect.
     /// </remarks>
     public bool UseTimestampUtc { get; set; }
 
@@ -78,8 +80,8 @@ public class ConsoleLoggerConfiguration
     /// Gets or sets a value indicating whether the Timestamp should be rendered with the custom format.
     /// </summary>
     /// <remarks>
-    /// UseTimestamp have to be set.
-    /// The format have to be a valid DateTime.ToString([TimestampFormat]) format.
+    /// UseTimestamp setting has to be set in order for this setting to take effect.<br />
+    /// The format has to be in a valid DateTime.ToString([TimestampFormat]) format.<br />
     /// Read more: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0
     /// </remarks>
     public string? TimestampFormat { get; set; }

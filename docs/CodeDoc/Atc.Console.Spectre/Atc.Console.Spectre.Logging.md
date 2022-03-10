@@ -67,21 +67,21 @@
 >```
 ><b>Summary:</b> Gets or sets the minimum log level. If set to Information, then Trace and Debug will not be included.
 >
-><b>Remarks:</b> The ordered list: Trace, Debug, Information, Warning, Error, Critical.
+><b>Remarks:</b> The ordered list:<br /> Trace, Debug, Information, Warning, Error, Critical.
 #### RenderingMode
 >```csharp
 >RenderingMode
 >```
 ><b>Summary:</b> Gets or sets the rendering mode.
 >
-><b>Remarks:</b> The options: Default, LogLevel, CategoryName, LogLevelAndCategoryName.
+><b>Remarks:</b> The options:<br /> Default, LogLevel, CategoryName, LogLevelAndCategoryName.
 #### TimestampFormat
 >```csharp
 >TimestampFormat
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered with the custom format.
 >
-><b>Remarks:</b> UseTimestamp have to be set. The format have to be a valid DateTime.ToString([TimestampFormat]) format. Read more: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0
+><b>Remarks:</b> UseTimestamp setting has to be set in order for this setting to take effect.<br /> The format has to be in a valid DateTime.ToString([TimestampFormat]) format.<br /> Read more: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0
 #### UseShortNameForLogLevel
 >```csharp
 >UseShortNameForLogLevel
@@ -98,7 +98,7 @@
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered as UTC.
 >
-><b>Remarks:</b> UseTimestamp have to be set.
+><b>Remarks:</b> UseTimestamp setting has to be set in order for this setting to take effect.
 ### Methods
 
 #### ToString
