@@ -63,7 +63,7 @@ internal static class TestMemberDataForCommandTests
                 IncludeExceptionNameForException = true,
                 AllowMarkup = false,
                 UseTimestampUtc = false,
-                TimeStampFormat = "yyyy-MM-dd HH:mm:ss",
+                TimestampFormat = "yyyy-MM-dd HH:mm:ss",
             };
 
             foreach (var logLevelName in LogLevelNames)
@@ -91,7 +91,7 @@ internal static class TestMemberDataForCommandTests
                 IncludeExceptionNameForException = true,
                 AllowMarkup = false,
                 UseTimestampUtc = false,
-                TimeStampFormat = "yyyy-MM-dd HH:mm:ss",
+                TimestampFormat = "yyyy-MM-dd HH:mm:ss",
             };
 
             foreach (var logLevelName in LogLevelNames)

@@ -94,7 +94,7 @@
      - IncludeInnerMessageForException
      - MinimumLogLevel
      - RenderingMode
-     - TimeStampFormat
+     - TimestampFormat
      - UseShortNameForLogLevel
      - UseTimestamp
      - UseTimestampUtc

@@ -42,6 +42,7 @@
 >```csharp
 >AllowMarkup
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the Spectre-markup is allowed.
 #### ConsoleConfiguration
 >```csharp
 >ConsoleConfiguration
@@ -54,34 +55,50 @@
 >```csharp
 >IncludeExceptionNameForException
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the exception-name should be rendered.
 #### IncludeInnerMessageForException
 >```csharp
 >IncludeInnerMessageForException
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the inner-exception-message should be rendered.
 #### MinimumLogLevel
 >```csharp
 >MinimumLogLevel
 >```
+><b>Summary:</b> Gets or sets the minimum log level. If set to Information, then Trace and Debug will not be included.
+>
+><b>Remarks:</b> The ordered list: Trace, Debug, Information, Warning, Error, Critical.
 #### RenderingMode
 >```csharp
 >RenderingMode
 >```
-#### TimeStampFormat
+><b>Summary:</b> Gets or sets the rendering mode.
+>
+><b>Remarks:</b> The options: Default, LogLevel, CategoryName, LogLevelAndCategoryName.
+#### TimestampFormat
 >```csharp
->TimeStampFormat
+>TimestampFormat
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered with the custom format.
+>
+><b>Remarks:</b> UseTimestamp have to be set. The format have to be a valid DateTime.ToString([TimestampFormat]) format.
 #### UseShortNameForLogLevel
 >```csharp
 >UseShortNameForLogLevel
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the LogLevel should be rendered.
 #### UseTimestamp
 >```csharp
 >UseTimestamp
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered.
 #### UseTimestampUtc
 >```csharp
 >UseTimestampUtc
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the Timestamp should be rendered as UTC.
+>
+><b>Remarks:</b> UseTimestamp have to be set.
 ### Methods
 
 #### ToString

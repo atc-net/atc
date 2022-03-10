@@ -178,8 +178,8 @@ public class ConsoleLogger : ILogger
 
     private string GetTimeStamp()
         => config.UseTimestampUtc
-            ? DateTime.UtcNow.ToString(config.TimeStampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo)
-            : DateTime.Now.ToString(config.TimeStampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo);
+            ? DateTime.UtcNow.ToString(config.TimestampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo)
+            : DateTime.Now.ToString(config.TimestampFormat ?? "s", GlobalizationConstants.EnglishCultureInfo);
 
     private string GetSpacesForLogLevel(LogLevel logLevel)
         => string.Empty.PadRight(GetLengthForLogLevel(logLevel));
