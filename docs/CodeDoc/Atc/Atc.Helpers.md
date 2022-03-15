@@ -1049,6 +1049,14 @@ The MathHelper module contains procedures used to preform math operations.
 >```csharp
 >bool HasConnection()
 >```
+#### HasHttpConnection
+>```csharp
+>bool HasHttpConnection()
+>```
+#### HasHttpConnection
+>```csharp
+>bool HasHttpConnection(Uri uri)
+>```
 
 <br />
 

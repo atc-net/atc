@@ -25,6 +25,7 @@ public class CodeComplianceTests
         typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
+        typeof(NetworkInformationHelper),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
