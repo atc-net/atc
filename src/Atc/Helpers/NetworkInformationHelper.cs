@@ -26,13 +26,41 @@ public static class NetworkInformationHelper
         }
     }
 
-    public static IPAddress? GetPublicIpAddress()
+    public static bool HasHttpConnection()
     {
-        if (!HasConnection())
+        return HasHttpConnection(new Uri("https://www.google.com/"));
+    }
+
+    public static bool HasHttpConnection(Uri uri)
+    {
+        if (uri is null)
         {
-            return null;
+            throw new ArgumentNullException(nameof(uri));
         }
 
+        bool result = false;
+        TaskHelper.RunSync(async () =>
+        {
+            try
+            {
+                using HttpClient client = new HttpClient();
+                await client
+                    .GetStringAsync(uri)
+                    .ConfigureAwait(false);
+
+                result = true;
+            }
+            catch
+            {
+                // Do not touch response on exceptions
+            }
+        });
+
+        return result;
+    }
+
+    public static IPAddress? GetPublicIpAddress()
+    {
         string? response = null;
         TaskHelper.RunSync(async () =>
         {

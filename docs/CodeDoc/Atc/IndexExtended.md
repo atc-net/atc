@@ -329,6 +329,8 @@
   -  Static Methods
      - GetPublicIpAddress()
      - HasConnection()
+     - HasHttpConnection()
+     - HasHttpConnection(Uri uri)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
