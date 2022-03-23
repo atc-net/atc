@@ -16,36 +16,36 @@ Triangle Data
 
 ### Fields
 
-#### A
->```csharp
->A
->```
-><b>Summary:</b> Angle A - known as big 'A'
 #### a
 >```csharp
 >a
 >```
 ><b>Summary:</b> Side A - known as little 'a'
-#### B
+#### A
 >```csharp
->B
+>A
 >```
-><b>Summary:</b> Angle B - known as big 'B'
+><b>Summary:</b> Angle A - known as big 'A'
 #### b
 >```csharp
 >b
 >```
 ><b>Summary:</b> Side B - known as little 'b'
-#### C
+#### B
 >```csharp
->C
+>B
 >```
-><b>Summary:</b> Angle C - known as big 'C'
+><b>Summary:</b> Angle B - known as big 'B'
 #### c
 >```csharp
 >c
 >```
 ><b>Summary:</b> Side C - known as little 'c'
+#### C
+>```csharp
+>C
+>```
+><b>Summary:</b> Angle C - known as big 'C'
 ### Methods
 
 #### ToString

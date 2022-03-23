@@ -462,12 +462,12 @@
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
   -  Fields
-     - double A
      - double a
-     - double B
+     - double A
      - double b
-     - double C
+     - double B
      - double c
+     - double C
   -  Methods
      - ToString()
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
