@@ -181,6 +181,15 @@
      - ShortDatePattern
   -  Methods
      - ToString()
+- [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
+  -  Properties
+     - Data
+     - Exception
+     - HasCommunicationSucceeded
+     - Message
+     - StatusCode
+  -  Methods
+     - ToString()
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)
   -  Properties
      - Id

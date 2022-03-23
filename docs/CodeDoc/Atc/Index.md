@@ -54,6 +54,7 @@
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
 - [Culture](Atc.Data.Models.md#culture)
+- [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)
 - [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)

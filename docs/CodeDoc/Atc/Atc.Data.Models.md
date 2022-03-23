@@ -95,6 +95,44 @@ Culture.
 
 <br />
 
+## HttpClientRequestResult&lt;TData&gt;
+HttpClientRequestResult.
+
+>```csharp
+>public class HttpClientRequestResult&lt;TData&gt;
+>```
+
+### Properties
+
+#### Data
+>```csharp
+>Data
+>```
+#### Exception
+>```csharp
+>Exception
+>```
+#### HasCommunicationSucceeded
+>```csharp
+>HasCommunicationSucceeded
+>```
+#### Message
+>```csharp
+>Message
+>```
+#### StatusCode
+>```csharp
+>StatusCode
+>```
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## IdValueItem
 IdValueItem.
 
