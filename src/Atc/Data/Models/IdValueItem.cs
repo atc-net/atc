@@ -44,7 +44,5 @@ public class IdValueItem
 
     /// <inheritdoc />
     public override string ToString()
-    {
-        return $"{nameof(this.Id)}: {this.Id}, {nameof(this.Value)}: {this.Value}";
-    }
+        => $"{nameof(this.Id)}: {this.Id}, {nameof(this.Value)}: {this.Value}";
 }

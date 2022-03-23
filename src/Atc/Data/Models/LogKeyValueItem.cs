@@ -76,7 +76,5 @@ public class LogKeyValueItem : KeyValueItem
 
     /// <inheritdoc />
     public override string ToString()
-    {
-        return $"{base.ToString()}, {nameof(this.LogCategory)}: {this.LogCategory}, {nameof(this.Description)}: {this.Description}";
-    }
+        => $"{base.ToString()}, {nameof(this.LogCategory)}: {this.LogCategory}, {nameof(this.Description)}: {this.Description}";
 }

@@ -45,7 +45,5 @@ public class KeyValueItem
 
     /// <inheritdoc />
     public override string ToString()
-    {
-        return $"{nameof(this.Key)}: {this.Key}, {nameof(this.Value)}: {this.Value}";
-    }
+        => $"{nameof(this.Key)}: {this.Key}, {nameof(this.Value)}: {this.Value}";
 }
