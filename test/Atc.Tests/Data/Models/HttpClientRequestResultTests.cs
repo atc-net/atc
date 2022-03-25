@@ -10,11 +10,14 @@ public class HttpClientRequestResultTests
 
         // Assert
         Assert.NotNull(actual);
-        Assert.True(actual.HasCommunicationSucceeded);
+        Assert.True(actual.CommunicationSucceeded);
         Assert.Equal(HttpStatusCode.Created, actual.StatusCode);
         Assert.Equal(default, actual.Data);
         Assert.Null(actual.Message);
         Assert.Null(actual.Exception);
+        Assert.True(actual.HasData);
+        Assert.False(actual.HasMessage);
+        Assert.False(actual.HasException);
     }
 
     [Fact]
@@ -25,11 +28,14 @@ public class HttpClientRequestResultTests
 
         // Assert
         Assert.NotNull(actual);
-        Assert.True(actual.HasCommunicationSucceeded);
+        Assert.True(actual.CommunicationSucceeded);
         Assert.Equal(HttpStatusCode.Created, actual.StatusCode);
         Assert.Equal(1, actual.Data);
         Assert.Null(actual.Message);
         Assert.Null(actual.Exception);
+        Assert.True(actual.HasData);
+        Assert.False(actual.HasMessage);
+        Assert.False(actual.HasException);
     }
 
     [Fact]
@@ -40,11 +46,14 @@ public class HttpClientRequestResultTests
 
         // Assert
         Assert.NotNull(actual);
-        Assert.True(actual.HasCommunicationSucceeded);
+        Assert.True(actual.CommunicationSucceeded);
         Assert.Equal(HttpStatusCode.Created, actual.StatusCode);
         Assert.Equal(new[] { 1, 2, 3 }, actual.Data);
         Assert.Null(actual.Message);
         Assert.Null(actual.Exception);
+        Assert.True(actual.HasData);
+        Assert.False(actual.HasMessage);
+        Assert.False(actual.HasException);
     }
 
     [Fact]
@@ -55,11 +64,14 @@ public class HttpClientRequestResultTests
 
         // Assert
         Assert.NotNull(actual);
-        Assert.True(actual.HasCommunicationSucceeded);
+        Assert.True(actual.CommunicationSucceeded);
         Assert.Equal(HttpStatusCode.Created, actual.StatusCode);
         Assert.Equal(new[] { 1, 2, 3 }, actual.Data);
         Assert.Equal("Hello World", actual.Message);
         Assert.Null(actual.Exception);
+        Assert.True(actual.HasData);
+        Assert.True(actual.HasMessage);
+        Assert.False(actual.HasException);
     }
 
     [Fact]
@@ -70,10 +82,13 @@ public class HttpClientRequestResultTests
 
         // Assert
         Assert.NotNull(actual);
-        Assert.False(actual.HasCommunicationSucceeded);
+        Assert.False(actual.CommunicationSucceeded);
         Assert.Null(actual.StatusCode);
         Assert.Equal(default, actual.Data);
         Assert.Null(actual.Message);
         Assert.IsType<HttpRequestException>(actual.Exception);
+        Assert.False(actual.HasData);
+        Assert.False(actual.HasMessage);
+        Assert.True(actual.HasException);
     }
 }

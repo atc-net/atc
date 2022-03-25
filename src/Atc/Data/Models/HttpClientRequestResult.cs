@@ -15,14 +15,14 @@ public sealed class HttpClientRequestResult<TData>
     public HttpClientRequestResult(
         HttpStatusCode? statusCode)
     {
-        HasCommunicationSucceeded = true;
+        CommunicationSucceeded = true;
         StatusCode = statusCode;
     }
 
     public HttpClientRequestResult(
         TData data)
     {
-        HasCommunicationSucceeded = true;
+        CommunicationSucceeded = true;
         StatusCode = HttpStatusCode.OK;
         Data = data;
     }
@@ -31,7 +31,7 @@ public sealed class HttpClientRequestResult<TData>
         HttpStatusCode? statusCode,
         TData data)
     {
-        HasCommunicationSucceeded = true;
+        CommunicationSucceeded = true;
         StatusCode = statusCode;
         Data = data;
     }
@@ -41,7 +41,7 @@ public sealed class HttpClientRequestResult<TData>
         TData data,
         string message)
     {
-        HasCommunicationSucceeded = true;
+        CommunicationSucceeded = true;
         StatusCode = statusCode;
         Data = data;
         Message = message;
@@ -50,11 +50,11 @@ public sealed class HttpClientRequestResult<TData>
     public HttpClientRequestResult(
         Exception exception)
     {
-        HasCommunicationSucceeded = false;
+        CommunicationSucceeded = false;
         Exception = exception;
     }
 
-    public bool HasCommunicationSucceeded { get; set; }
+    public bool CommunicationSucceeded { get; set; }
 
     public HttpStatusCode? StatusCode { get; set; }
 
@@ -64,7 +64,16 @@ public sealed class HttpClientRequestResult<TData>
 
     public Exception? Exception { get; set; }
 
+    public bool HasData
+        => Data is not null;
+
+    public bool HasMessage
+        => !string.IsNullOrEmpty(Message);
+
+    public bool HasException
+        => Exception is not null;
+
     /// <inheritdoc />
     public override string ToString()
-        => $"{nameof(HasCommunicationSucceeded)}: {HasCommunicationSucceeded}, {nameof(StatusCode)}: {StatusCode}, {nameof(Data)}: {Data}, {nameof(Message)}: {Message}, {nameof(Exception)}: {Exception}";
+        => $"{nameof(CommunicationSucceeded)}: {CommunicationSucceeded}, {nameof(StatusCode)}: {StatusCode}, {nameof(Data)}: {Data}, {nameof(Message)}: {Message}, {nameof(Exception)}: {Exception}";
 }

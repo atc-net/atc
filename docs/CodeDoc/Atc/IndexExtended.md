@@ -183,9 +183,12 @@
      - ToString()
 - [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
   -  Properties
+     - CommunicationSucceeded
      - Data
      - Exception
-     - HasCommunicationSucceeded
+     - HasData
+     - HasException
+     - HasMessage
      - Message
      - StatusCode
   -  Methods
