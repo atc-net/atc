@@ -104,6 +104,10 @@ HttpClientRequestResult.
 
 ### Properties
 
+#### CommunicationSucceeded
+>```csharp
+>CommunicationSucceeded
+>```
 #### Data
 >```csharp
 >Data
@@ -112,9 +116,17 @@ HttpClientRequestResult.
 >```csharp
 >Exception
 >```
-#### HasCommunicationSucceeded
+#### HasData
 >```csharp
->HasCommunicationSucceeded
+>HasData
+>```
+#### HasException
+>```csharp
+>HasException
+>```
+#### HasMessage
+>```csharp
+>HasMessage
 >```
 #### Message
 >```csharp

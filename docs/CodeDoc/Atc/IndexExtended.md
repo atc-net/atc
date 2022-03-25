@@ -183,9 +183,12 @@
      - ToString()
 - [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
   -  Properties
+     - CommunicationSucceeded
      - Data
      - Exception
-     - HasCommunicationSucceeded
+     - HasData
+     - HasException
+     - HasMessage
      - Message
      - StatusCode
   -  Methods
@@ -462,12 +465,12 @@
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
   -  Fields
-     - double A
      - double a
-     - double B
+     - double A
      - double b
-     - double C
+     - double B
      - double c
+     - double C
   -  Methods
      - ToString()
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
