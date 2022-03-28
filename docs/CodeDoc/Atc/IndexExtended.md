@@ -686,6 +686,9 @@
   -  Static Methods
      - FromUnixTime(this long value)
 - [NullException](System.md#nullexception)
+- [ObjectExtensions](System.md#objectextensions)
+  -  Static Methods
+     - GetPropertyValue(this object source, string propertyName)
 - [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
@@ -793,7 +796,12 @@
      - GetNameWithoutGenericType(this Type type, bool useFullName = False)
      - GetPrivateDeclaredOnlyMethod(this Type type, string name)
      - GetPrivateDeclaredOnlyMethods(this Type type)
+     - GetPrivateDeclaredOnlyProperties(this Type type)
+     - GetPrivateDeclaredOnlyProperty(this Type type, string name)
      - GetPublicDeclaredOnlyMethods(this Type type)
+     - GetPublicDeclaredOnlyProperties(this Type type)
+     - GetPublicDeclaredOnlyPropertyValue(this Type type, string name)
+     - GetPublicProperties(this Type type)
      - HasValidationAttributes(this Type type)
      - IsDelegate(this Type type)
      - IsInheritedFrom(this Type type, Type inheritType)
