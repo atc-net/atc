@@ -306,7 +306,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    /// <remarks>Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
     public static MethodInfo[] GetPublicDeclaredOnlyMethods(this Type type)
     {
         if (type is null)
@@ -354,7 +354,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    /// <remarks>Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static.</remarks>
     public static PropertyInfo[] GetPublicProperties(this Type type)
     {
         if (type is null)
@@ -370,7 +370,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    /// <remarks>Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
     public static PropertyInfo[] GetPublicDeclaredOnlyProperties(this Type type)
     {
         if (type is null)

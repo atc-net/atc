@@ -2072,7 +2072,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Remarks:</b> Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
 #### GetPublicDeclaredOnlyProperties
 >```csharp
 >PropertyInfo[] GetPublicDeclaredOnlyProperties(this Type type)
@@ -2082,7 +2082,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Remarks:</b> Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
 #### GetPublicDeclaredOnlyPropertyValue
 >```csharp
 >object GetPublicDeclaredOnlyPropertyValue(this Type type, string name)
@@ -2101,7 +2101,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Remarks:</b> Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static.
 #### HasValidationAttributes
 >```csharp
 >bool HasValidationAttributes(this Type type)
