@@ -178,6 +178,7 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(1, typeof(EmailAddressAttribute))]
+    [InlineData(6, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyMethods(int expected, Type type)
     {
         // Act
@@ -189,6 +190,7 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(0, typeof(LogKeyValueItem))]
     public void GetPrivateDeclaredOnlyMethods(int expected, Type type)
     {
         // Act
@@ -204,6 +206,72 @@ public class TypeExtensionsTests
     {
         // Act
         var actual = type.GetPrivateDeclaredOnlyMethod(methodName);
+
+        // Assert
+        if (expected)
+        {
+            Assert.NotNull(actual);
+        }
+        else
+        {
+            Assert.Null(actual);
+        }
+    }
+
+    [Theory]
+    [InlineData(8, typeof(EmailAddressAttribute))]
+    [InlineData(4, typeof(LogKeyValueItem))]
+    public void GetPublicProperties(int expected, Type type)
+    {
+        // Act
+        var actual = type.GetPublicProperties();
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
+    [Theory]
+    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(2, typeof(LogKeyValueItem))]
+    public void GetPublicDeclaredOnlyProperties(int expected, Type type)
+    {
+        // Act
+        var actual = type.GetPublicDeclaredOnlyProperties();
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
+    [Theory]
+    [InlineData(null, typeof(EmailAddressAttribute), "IsValid")]
+    [InlineData(null, typeof(LogKeyValueItem), "Key")]
+    public void GetPublicDeclaredOnlyPropertyValue(object expected, Type type, string propertyName)
+    {
+        // Act
+        var actual = type.GetPublicDeclaredOnlyPropertyValue(propertyName);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(0, typeof(LogKeyValueItem))]
+    public void GetPrivateDeclaredOnlyProperties(int expected, Type type)
+    {
+        // Act
+        var actual = type.GetPrivateDeclaredOnlyProperties();
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
+    [Theory]
+    [InlineData(false, typeof(EmailAddressAttribute), "IsValid")]
+    public void GetPrivateDeclaredOnlyProperty(bool expected, Type type, string propertyName)
+    {
+        // Act
+        var actual = type.GetPrivateDeclaredOnlyProperty(propertyName);
 
         // Assert
         if (expected)
