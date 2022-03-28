@@ -1047,6 +1047,22 @@ The exception that is thrown when an value is null.
 
 <br />
 
+## ObjectExtensions
+Extensions for the `System.Object` class.
+
+>```csharp
+>public static class ObjectExtensions
+>```
+
+### Static Methods
+
+#### GetPropertyValue
+>```csharp
+>object GetPropertyValue(this object source, string propertyName)
+>```
+
+<br />
+
 ## PermissionException
 The exception that is thrown when permission is not fulfilled.
 
@@ -2030,6 +2046,23 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+#### GetPrivateDeclaredOnlyProperties
+>```csharp
+>PropertyInfo[] GetPrivateDeclaredOnlyProperties(this Type type)
+>```
+><b>Summary:</b> Gets the private declared only properties.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+#### GetPrivateDeclaredOnlyProperty
+>```csharp
+>PropertyInfo GetPrivateDeclaredOnlyProperty(this Type type, string name)
+>```
+><b>Summary:</b> Gets the private declared only property.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name.<br />
 #### GetPublicDeclaredOnlyMethods
 >```csharp
 >MethodInfo[] GetPublicDeclaredOnlyMethods(this Type type)
@@ -2039,7 +2072,36 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Remarks:</b> Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+#### GetPublicDeclaredOnlyProperties
+>```csharp
+>PropertyInfo[] GetPublicDeclaredOnlyProperties(this Type type)
+>```
+><b>Summary:</b> Gets the public declared only properties.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+>
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.
+#### GetPublicDeclaredOnlyPropertyValue
+>```csharp
+>object GetPublicDeclaredOnlyPropertyValue(this Type type, string name)
+>```
+><b>Summary:</b> Gets the public declared only property value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name.<br />
+#### GetPublicProperties
+>```csharp
+>PropertyInfo[] GetPublicProperties(this Type type)
+>```
+><b>Summary:</b> Gets the public properties.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+>
+><b>Remarks:</b> Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static.
 #### HasValidationAttributes
 >```csharp
 >bool HasValidationAttributes(this Type type)

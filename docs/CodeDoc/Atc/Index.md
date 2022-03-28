@@ -163,6 +163,7 @@
 - [ItemNotFoundException](System.md#itemnotfoundexception)
 - [LongExtensions](System.md#longextensions)
 - [NullException](System.md#nullexception)
+- [ObjectExtensions](System.md#objectextensions)
 - [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
 - [StringHasIsExtensions](System.md#stringhasisextensions)

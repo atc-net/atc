@@ -306,7 +306,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    /// <remarks>Use: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
     public static MethodInfo[] GetPublicDeclaredOnlyMethods(this Type type)
     {
         if (type is null)
@@ -347,6 +347,87 @@ public static class TypeExtensions
         }
 
         return type.GetPrivateDeclaredOnlyMethods().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+    }
+
+    /// <summary>
+    /// Gets the public properties.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <exception cref="ArgumentNullException">type.</exception>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static.</remarks>
+    public static PropertyInfo[] GetPublicProperties(this Type type)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        return type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+    }
+
+    /// <summary>
+    /// Gets the public declared only properties.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <exception cref="ArgumentNullException">type.</exception>
+    /// <remarks>Uses: BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly.</remarks>
+    public static PropertyInfo[] GetPublicDeclaredOnlyProperties(this Type type)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        return type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+    }
+
+    /// <summary>
+    /// Gets the public declared only property value.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="name">The name.</param>
+    /// <exception cref="System.ArgumentNullException">type</exception>
+    public static object? GetPublicDeclaredOnlyPropertyValue(this Type type, string name)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        var propertyInfo = type.GetPublicDeclaredOnlyProperties().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+        return propertyInfo?.GetValue(type, null);
+    }
+
+    /// <summary>
+    /// Gets the private declared only properties.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <exception cref="ArgumentNullException">type.</exception>
+    [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
+    public static PropertyInfo[] GetPrivateDeclaredOnlyProperties(this Type type)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        return type.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
+    }
+
+    /// <summary>
+    /// Gets the private declared only property.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="name">The name.</param>
+    /// <exception cref="ArgumentNullException">type.</exception>
+    public static PropertyInfo? GetPrivateDeclaredOnlyProperty(this Type type, string name)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        return type.GetPrivateDeclaredOnlyProperties().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
     }
 
     /// <summary>
