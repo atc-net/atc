@@ -2272,6 +2272,27 @@ The exception that is thrown when an user is not found.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting parts.<br />
 >
 ><b>Returns:</b> `true` if 'otherVersion' is greater then or equal to the current 'version'; otherwise, `false`.
+#### IsNewerMinorReleaseThen
+>```csharp
+>bool IsNewerMinorReleaseThen(this Version version, Version otherVersion)
+>```
+><b>Summary:</b> Determines whether 'version' is newer then the 'otherVersion'.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
+>
+><b>Returns:</b> `true` if 'otherVersion' is newer then the 'version'; otherwise, `false`.
+>
+><b>Code example:</b>
+>```csharp
+>    4.8.8.0 is newer then 4.5.3.3
+>    4.5.8.0 is newer then 4.5.3.3
+>    4.8.3.0 is newer then 4.5.3.3
+>    4.5.4.0 is newer then 4.5.3.3
+>    4.5.3.0 is NOT newer then 4.5.3.3
+>    5.8.8.0 is NOT newer then 4.5.3.3
+>```
 
 <br />
 

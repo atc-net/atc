@@ -158,4 +158,21 @@ public class VersionExtensionsTests
 
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData(true, new[] { 4, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(true, new[] { 4, 5, 8, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(true, new[] { 4, 8, 3, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(true, new[] { 4, 5, 4, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(false, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
+    public void IsNewerMinorReleaseThen(bool expected, int[] inputA, int[] inputB)
+    {
+        var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
+        var versionB = new Version(inputB[0], inputB[1], inputB[2], inputB[3]);
+
+        var actual = versionA.IsNewerMinorReleaseThen(versionB);
+
+        Assert.Equal(expected, actual);
+    }
 }
