@@ -122,4 +122,34 @@ public static class VersionExtensions
 
         return version.CompareTo(otherVersion, significantParts, startingPart) >= 0;
     }
+
+    /// <summary>Determines whether 'version' is newer then the 'otherVersion'.</summary>
+    /// <param name="version">The version.</param>
+    /// <param name="otherVersion">The other version.</param>
+    /// <example>
+    ///     4.8.8.0 is newer then 4.5.3.3
+    ///     4.5.8.0 is newer then 4.5.3.3
+    ///     4.8.3.0 is newer then 4.5.3.3
+    ///     4.5.4.0 is newer then 4.5.3.3
+    ///     4.5.3.0 is NOT newer then 4.5.3.3
+    ///     5.8.8.0 is NOT newer then 4.5.3.3
+    /// </example>
+    /// <returns>
+    ///   <c>true</c> if 'otherVersion' is newer then the 'version'; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool IsNewerMinorReleaseThen(this Version version, Version? otherVersion)
+    {
+        if (version is null)
+        {
+            throw new ArgumentNullException(nameof(version));
+        }
+
+        if (otherVersion is null)
+        {
+            return true;
+        }
+
+        return version.Major <= otherVersion.Major &&
+               version.GreaterThan(otherVersion, significantParts: 4, startingPart: 2);
+    }
 }
