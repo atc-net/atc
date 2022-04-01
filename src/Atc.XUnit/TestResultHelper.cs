@@ -50,13 +50,13 @@ public static class TestResultHelper
         for (var i = 0; i < lines.Count; i++)
         {
             if (i < lines.Count - 1
-                && lines[i].EndsWith(":", StringComparison.Ordinal)
-                && lines[i + 1].EndsWith(":", StringComparison.Ordinal))
+                && lines[i].EndsWith(':')
+                && lines[i + 1].EndsWith(':'))
             {
                 continue;
             }
 
-            if (i == lines.Count - 1 && lines[i].EndsWith(":", StringComparison.Ordinal))
+            if (i == lines.Count - 1 && lines[i].EndsWith(':'))
             {
                 continue;
             }
@@ -95,7 +95,7 @@ public static class TestResultHelper
 
         foreach (var item in methodsWithMissingTestsGroups)
         {
-            testResults.Add(new TestResult(false, 1, $"Type: {item.Key} ({item.Count()})"));
+            testResults.Add(new TestResult(isError: false, 1, $"Type: {item.Key} ({item.Count()})"));
             testResults.AddRange(item.Select(methodInfo => new TestResult(isError: true, 2, methodInfo.BeautifyName(useFullName))));
         }
 
@@ -124,6 +124,8 @@ public static class TestResultHelper
             .ToArray();
 
         var file = new FileInfo(Path.Combine(reportDirectory.FullName, $"TestResultsFromMethodsWithMissingTestsFor_{assemblyName}.xlsx"));
+
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
         using var p = new ExcelPackage();
         var ws = p.Workbook.Worksheets.Add("Methods with missing tests");
