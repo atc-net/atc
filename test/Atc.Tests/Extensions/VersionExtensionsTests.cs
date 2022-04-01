@@ -166,6 +166,7 @@ public class VersionExtensionsTests
     [InlineData(true, new[] { 4, 5, 4, 0 }, new[] { 4, 5, 3, 3 })]
     [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 })]
     [InlineData(true, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
+    [InlineData(false, new[] { 3, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
     public void IsNewerThan(bool expected, int[] inputA, int[] inputB)
     {
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -183,12 +184,14 @@ public class VersionExtensionsTests
     [InlineData(true, new[] { 4, 5, 4, 0 }, new[] { 4, 5, 3, 3 }, false)]
     [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 }, false)]
     [InlineData(true, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, false)]
+    [InlineData(false, new[] { 3, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, false)]
     [InlineData(true, new[] { 4, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(true, new[] { 4, 5, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(true, new[] { 4, 8, 3, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(true, new[] { 4, 5, 4, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(false, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
+    [InlineData(false, new[] { 3, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
     public void IsNewerThan_WithinMinorReleaseOnly(bool expected, int[] inputA, int[] inputB, bool withinMinorReleaseOnly)
     {
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);

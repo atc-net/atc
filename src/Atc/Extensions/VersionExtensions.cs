@@ -6,7 +6,7 @@ public static class VersionExtensions
 {
     /// <summary>
     /// Is 'version' greater than the 'otherVersion', where the significantParts is the stop part.
-    /// Example significantParts=2, than only Major and Minor wil be taken into consideration.
+    /// Example significantParts=2, then only Major and Minor wil be taken into consideration.
     /// </summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
@@ -176,7 +176,7 @@ public static class VersionExtensions
 
         if (withinMinorReleaseOnly)
         {
-            return version.Major <= otherVersion.Major &&
+            return version.Major == otherVersion.Major &&
                    version.GreaterThan(otherVersion, significantParts: 4, startingPart: 2);
         }
 

@@ -2229,7 +2229,7 @@ The exception that is thrown when an user is not found.
 >```csharp
 >int CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 >```
-><b>Summary:</b> Is 'version' greater than the 'otherVersion', where the significantParts is the stop part. Example significantParts=2, than only Major and Minor wil be taken into consideration.
+><b>Summary:</b> Is 'version' greater than the 'otherVersion', where the significantParts is the stop part. Example significantParts=2, then only Major and Minor wil be taken into consideration.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
