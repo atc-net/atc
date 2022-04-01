@@ -818,7 +818,7 @@
      - CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
      - GreaterThan(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
      - GreaterThanOrEqualTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
-     - IsNewerMinorReleaseThen(this Version version, Version otherVersion)
+     - IsNewerThan(this Version version, Version otherVersion, bool withinMinorReleaseOnly = False)
 - [ViewModelException](System.md#viewmodelexception)
 
 ## [System.Collections.Generic](System.Collections.Generic.md)

@@ -2229,7 +2229,7 @@ The exception that is thrown when an user is not found.
 >```csharp
 >int CompareTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 >```
-><b>Summary:</b> Is 'version' greater then the 'otherVersion', where the significantParts is the stop part. Example significantParts=2, then only Major and Minor wil be taken into consideration.
+><b>Summary:</b> Is 'version' greater than the 'otherVersion', where the significantParts is the stop part. Example significantParts=2, than only Major and Minor wil be taken into consideration.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
@@ -2250,7 +2250,7 @@ The exception that is thrown when an user is not found.
 >```csharp
 >bool GreaterThan(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 >```
-><b>Summary:</b> Is 'version' greater then the 'otherVersion'.
+><b>Summary:</b> Is 'version' greater than the 'otherVersion'.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
@@ -2258,12 +2258,12 @@ The exception that is thrown when an user is not found.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`significantParts`&nbsp;&nbsp;-&nbsp;&nbsp;The significant parts.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting parts.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is greater then the current 'version'; otherwise, `false`.
+><b>Returns:</b> `true` if 'otherVersion' is greater than the current 'version'; otherwise, `false`.
 #### GreaterThanOrEqualTo
 >```csharp
 >bool GreaterThanOrEqualTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
 >```
-><b>Summary:</b> Is 'version' greater then or equal to the 'otherVersion'.
+><b>Summary:</b> Is 'version' greater than or equal to the 'otherVersion'.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
@@ -2271,27 +2271,37 @@ The exception that is thrown when an user is not found.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`significantParts`&nbsp;&nbsp;-&nbsp;&nbsp;The significant parts.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting parts.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is greater then or equal to the current 'version'; otherwise, `false`.
-#### IsNewerMinorReleaseThen
+><b>Returns:</b> `true` if 'otherVersion' is greater than or equal to the current 'version'; otherwise, `false`.
+#### IsNewerThan
 >```csharp
->bool IsNewerMinorReleaseThen(this Version version, Version otherVersion)
+>bool IsNewerThan(this Version version, Version otherVersion, bool withinMinorReleaseOnly = False)
 >```
-><b>Summary:</b> Determines whether 'version' is newer then the 'otherVersion'.
+><b>Summary:</b> Determines whether 'version' is newer than the 'otherVersion'.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`withinMinorReleaseOnly`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true Than major has to be the same or smaller.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is newer then the 'version'; otherwise, `false`.
+><b>Returns:</b> `true` if 'otherVersion' is newer than the 'version'; otherwise, `false`.
 >
 ><b>Code example:</b>
 >```csharp
->    4.8.8.0 is newer then 4.5.3.3
->    4.5.8.0 is newer then 4.5.3.3
->    4.8.3.0 is newer then 4.5.3.3
->    4.5.4.0 is newer then 4.5.3.3
->    4.5.3.0 is NOT newer then 4.5.3.3
->    5.8.8.0 is NOT newer then 4.5.3.3
+>   For withinMinorReleaseOnly = true:
+>     4.8.8.0 is newer than 4.5.3.3
+>     4.5.8.0 is newer than 4.5.3.3
+>     4.8.3.0 is newer than 4.5.3.3
+>     4.5.4.0 is newer than 4.5.3.3
+>     4.5.3.0 is NOT newer than 4.5.3.3
+>     5.8.8.0 is NOT newer than 4.5.3.3
+>
+>   For withinMinorReleaseOnly = false:
+>     4.8.8.0 is newer than 4.5.3.3
+>     4.5.8.0 is newer than 4.5.3.3
+>     4.8.3.0 is newer than 4.5.3.3
+>     4.5.4.0 is newer than 4.5.3.3
+>     4.5.3.0 is NOT newer than 4.5.3.3
+>     5.8.8.0 is newer than 4.5.3.3
 >```
 
 <br />

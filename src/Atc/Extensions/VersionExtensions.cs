@@ -5,8 +5,8 @@ namespace System;
 public static class VersionExtensions
 {
     /// <summary>
-    /// Is 'version' greater then the 'otherVersion', where the significantParts is the stop part.
-    /// Example significantParts=2, then only Major and Minor wil be taken into consideration.
+    /// Is 'version' greater than the 'otherVersion', where the significantParts is the stop part.
+    /// Example significantParts=2, than only Major and Minor wil be taken into consideration.
     /// </summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
@@ -21,7 +21,11 @@ public static class VersionExtensions
     /// </example>
     /// <exception cref="ArgumentNullException">version.</exception>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static int CompareTo(this Version version, Version? otherVersion, int significantParts = 4, int startingPart = 1)
+    public static int CompareTo(
+        this Version version,
+        Version? otherVersion,
+        int significantParts = 4,
+        int startingPart = 1)
     {
         if (version is null)
         {
@@ -40,7 +44,7 @@ public static class VersionExtensions
 
         if (startingPart > significantParts)
         {
-            throw new ArgumentException("lessSignificantParts have be greater then significantParts", nameof(startingPart));
+            throw new ArgumentException("lessSignificantParts have be greater than significantParts", nameof(startingPart));
         }
 
         if (otherVersion is null)
@@ -72,17 +76,21 @@ public static class VersionExtensions
     }
 
     /// <summary>
-    /// Is 'version' greater then the 'otherVersion'.
+    /// Is 'version' greater than the 'otherVersion'.
     /// </summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting parts.</param>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is greater then the current 'version'; otherwise, <c>false</c>.
+    ///   <c>true</c> if 'otherVersion' is greater than the current 'version'; otherwise, <c>false</c>.
     /// </returns>
     /// <exception cref="ArgumentNullException">version.</exception>
-    public static bool GreaterThan(this Version version, Version? otherVersion, int significantParts = 4, int startingPart = 1)
+    public static bool GreaterThan(
+        this Version version,
+        Version? otherVersion,
+        int significantParts = 4,
+        int startingPart = 1)
     {
         if (version is null)
         {
@@ -98,17 +106,21 @@ public static class VersionExtensions
     }
 
     /// <summary>
-    /// Is 'version' greater then or equal to the 'otherVersion'.
+    /// Is 'version' greater than or equal to the 'otherVersion'.
     /// </summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting parts.</param>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is greater then or equal to the current 'version'; otherwise, <c>false</c>.
+    ///   <c>true</c> if 'otherVersion' is greater than or equal to the current 'version'; otherwise, <c>false</c>.
     /// </returns>
     /// <exception cref="ArgumentNullException">version.</exception>
-    public static bool GreaterThanOrEqualTo(this Version version, Version? otherVersion, int significantParts = 4, int startingPart = 1)
+    public static bool GreaterThanOrEqualTo(
+        this Version version,
+        Version? otherVersion,
+        int significantParts = 4,
+        int startingPart = 1)
     {
         if (version is null)
         {
@@ -123,21 +135,34 @@ public static class VersionExtensions
         return version.CompareTo(otherVersion, significantParts, startingPart) >= 0;
     }
 
-    /// <summary>Determines whether 'version' is newer then the 'otherVersion'.</summary>
+    /// <summary>Determines whether 'version' is newer than the 'otherVersion'.</summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
+    /// <param name="withinMinorReleaseOnly">if set to <c>true</c> Than major has to be the same or smaller.</param>
     /// <example>
-    ///     4.8.8.0 is newer then 4.5.3.3
-    ///     4.5.8.0 is newer then 4.5.3.3
-    ///     4.8.3.0 is newer then 4.5.3.3
-    ///     4.5.4.0 is newer then 4.5.3.3
-    ///     4.5.3.0 is NOT newer then 4.5.3.3
-    ///     5.8.8.0 is NOT newer then 4.5.3.3
+    ///   For withinMinorReleaseOnly = true:
+    ///     4.8.8.0 is newer than 4.5.3.3
+    ///     4.5.8.0 is newer than 4.5.3.3
+    ///     4.8.3.0 is newer than 4.5.3.3
+    ///     4.5.4.0 is newer than 4.5.3.3
+    ///     4.5.3.0 is NOT newer than 4.5.3.3
+    ///     5.8.8.0 is NOT newer than 4.5.3.3
+    ///
+    ///   For withinMinorReleaseOnly = false:
+    ///     4.8.8.0 is newer than 4.5.3.3
+    ///     4.5.8.0 is newer than 4.5.3.3
+    ///     4.8.3.0 is newer than 4.5.3.3
+    ///     4.5.4.0 is newer than 4.5.3.3
+    ///     4.5.3.0 is NOT newer than 4.5.3.3
+    ///     5.8.8.0 is newer than 4.5.3.3
     /// </example>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is newer then the 'version'; otherwise, <c>false</c>.
+    ///   <c>true</c> if 'otherVersion' is newer than the 'version'; otherwise, <c>false</c>.
     /// </returns>
-    public static bool IsNewerMinorReleaseThen(this Version version, Version? otherVersion)
+    public static bool IsNewerThan(
+        this Version version,
+        Version? otherVersion,
+        bool withinMinorReleaseOnly = false)
     {
         if (version is null)
         {
@@ -149,7 +174,12 @@ public static class VersionExtensions
             return true;
         }
 
-        return version.Major <= otherVersion.Major &&
-               version.GreaterThan(otherVersion, significantParts: 4, startingPart: 2);
+        if (withinMinorReleaseOnly)
+        {
+            return version.Major <= otherVersion.Major &&
+                   version.GreaterThan(otherVersion, significantParts: 4, startingPart: 2);
+        }
+
+        return version.GreaterThan(otherVersion);
     }
 }
