@@ -16,8 +16,11 @@ global using ICSharpCode.Decompiler.CSharp.Syntax;
 global using ICSharpCode.Decompiler.Metadata;
 global using ICSharpCode.Decompiler.TypeSystem;
 
+global using Microsoft.Extensions.Logging;
+
 global using Mono.Reflection;
 
 global using OfficeOpenXml;
 
 global using Xunit;
+global using Xunit.Abstractions;
