@@ -181,7 +181,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// </summary>
     /// <returns>The base version</returns>
     public SemanticVersion BaseVersion()
-        => new(Major, Minor, Patch);
+        => new (Major, Minor, Patch);
 
     /// <summary>
     /// Compares two versions are semantically.
@@ -395,7 +395,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     public static SemanticVersion Parse(
         string input,
         bool looseMode = false)
-        => new(input, looseMode);
+        => new (input, looseMode);
 
     /// <summary>
     /// Try to construct a new semantic version from a version string.
