@@ -96,17 +96,15 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         if (looseMode &&
             !string.IsNullOrEmpty(PreRelease) &&
             string.IsNullOrEmpty(Build) &&
-            PreRelease.StartsWith('.'))
+            PreRelease.StartsWith('.') &&
+            int.TryParse(
+                PreRelease.Replace(".", string.Empty, StringComparison.Ordinal),
+                NumberStyles.Any,
+                GlobalizationConstants.EnglishCultureInfo,
+                out var build))
         {
-            if (int.TryParse(
-                    PreRelease.Replace(".", string.Empty, StringComparison.Ordinal),
-                    NumberStyles.Any,
-                    GlobalizationConstants.EnglishCultureInfo,
-                    out var build))
-            {
-                PreRelease = string.Empty;
-                Build = build.ToString(GlobalizationConstants.EnglishCultureInfo);
-            }
+            PreRelease = string.Empty;
+            Build = build.ToString(GlobalizationConstants.EnglishCultureInfo);
         }
     }
 
