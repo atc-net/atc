@@ -14,8 +14,9 @@ public class CodeComplianceTests
         typeof(CodeComplianceHelper),
         typeof(CodeComplianceTestHelper),
         typeof(CodeDocumentation.DocumentationHelper),
-        typeof(CodeDocumentation.Markdown.MarkdownCodeDocGenerator),
+        typeof(MarkdownCodeDocGenerator),
         typeof(TestResultHelper),
+        typeof(SerializeAndDeserializeHelper),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
