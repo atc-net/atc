@@ -12,6 +12,7 @@
 - [CodeComplianceTestHelper](Atc.XUnit.md#codecompliancetesthelper)
 - [DecompilerType](Atc.XUnit.md#decompilertype)
 - [IntegrationTestCliBase](Atc.XUnit.md#integrationtestclibase)
+- [SerializeAndDeserializeHelper](Atc.XUnit.md#serializeanddeserializehelper)
 - [TestResult](Atc.XUnit.md#testresult)
 - [TestResultHelper](Atc.XUnit.md#testresulthelper)
 - [Traits](Atc.XUnit.md#traits)

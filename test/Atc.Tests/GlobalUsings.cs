@@ -15,6 +15,7 @@ global using Atc.CodeDocumentation.Markdown;
 global using Atc.Collections;
 global using Atc.Data;
 global using Atc.Data.Models;
+global using Atc.Data.SemVer;
 global using Atc.Helpers;
 global using Atc.Math;
 global using Atc.Math.Geometry;

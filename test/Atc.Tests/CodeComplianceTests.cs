@@ -10,6 +10,7 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new ()
     {
         // TODO: Add UnitTest and remove from this list!!
+        typeof(SemanticVersion),
         typeof(MathEx),
         typeof(JsonTypeDiscriminatorConverter<>),
         typeof(JsonSerializerOptionsFactory),

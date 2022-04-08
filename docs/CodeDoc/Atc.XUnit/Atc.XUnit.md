@@ -366,6 +366,21 @@ DecompilerType.
 
 <br />
 
+## SerializeAndDeserializeHelper
+
+>```csharp
+>public static class SerializeAndDeserializeHelper
+>```
+
+### Static Methods
+
+#### Assert
+>```csharp
+>void Assert(object obj)
+>```
+
+<br />
+
 ## TestResult
 TestResult.
 
