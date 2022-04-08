@@ -36,6 +36,9 @@
      - GetExecutableFileForCli(Type programTypeForCliExe, DirectoryInfo searchFromPath, string pathFolderNameFilter)
      - GetExecutableFileForCli(Type programTypeForCliExe, string pathFolderNameFilter)
      - GetExecutableFileForCli(Type programTypeForCliExe, string searchFromSubFolderName, string pathFolderNameFilter)
+- [SerializeAndDeserializeHelper](Atc.XUnit.md#serializeanddeserializehelper)
+  -  Static Methods
+     - Assert(object obj)
 - [TestResult](Atc.XUnit.md#testresult)
   -  Properties
      - IndentLevel

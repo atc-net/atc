@@ -59,6 +59,10 @@
 - [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
 
+## [Atc.Data.SemVer](Atc.Data.SemVer.md)
+
+- [SemanticVersion](Atc.Data.SemVer.md#semanticversion)
+
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)

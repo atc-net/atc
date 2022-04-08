@@ -213,6 +213,35 @@
      - GetLogMessage(bool includeKey = True, bool includeDescription = True)
      - ToString()
 
+## [Atc.Data.SemVer](Atc.Data.SemVer.md)
+
+- [SemanticVersion](Atc.Data.SemVer.md#semanticversion)
+  -  Static Methods
+     - Parse(string input, bool looseMode = False)
+     - TryParse(string input, bool looseMode, out SemanticVersion result)
+     - TryParse(string input, out SemanticVersion result)
+  -  Properties
+     - Build
+     - IsPreRelease
+     - IsStrictMode
+     - Major
+     - Minor
+     - Patch
+     - PreRelease
+  -  Methods
+     - BaseVersion()
+     - CompareTo(object obj)
+     - CompareTo(SemanticVersion other)
+     - CompareTo(SemanticVersion otherVersion, int significantParts, int startingPart, bool looseMode = False)
+     - Equals(object obj)
+     - Equals(SemanticVersion other)
+     - GetHashCode()
+     - GreaterThan(SemanticVersion otherVersion, int significantParts = 4, int startingPart = 1, bool looseMode = False)
+     - GreaterThanOrEqualTo(SemanticVersion otherVersion, int significantParts = 4, int startingPart = 1)
+     - IsNewerThan(SemanticVersion otherVersion, bool withinMinorReleaseOnly = False, bool looseMode = False)
+     - ToString()
+     - ToVersion()
+
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
