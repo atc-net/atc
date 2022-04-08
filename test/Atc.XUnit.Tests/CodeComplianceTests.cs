@@ -17,6 +17,8 @@ public class CodeComplianceTests
         typeof(MarkdownCodeDocGenerator),
         typeof(TestResultHelper),
         typeof(SerializeAndDeserializeHelper),
+        typeof(XUnitLogger),
+        typeof(XUnitLoggerProvider ),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
