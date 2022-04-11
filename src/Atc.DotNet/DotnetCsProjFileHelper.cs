@@ -258,6 +258,11 @@ public static class DotnetCsProjFileHelper
                 : DotnetProjectType.UwpLibrary;
         }
 
+        if (IsOutputType(rootElement, "Library"))
+        {
+            return DotnetProjectType.Library;
+        }
+
         return DotnetProjectType.None;
     }
 
@@ -349,7 +354,7 @@ public static class DotnetCsProjFileHelper
             .Elements()
             .Where(x => x.Name.LocalName == "PropertyGroup")
             .Descendants()
-            .FirstOrDefault(x => x.Name.LocalName == "TargetFrameworkIdentifier");
+            .FirstOrDefault(x => x.Name.LocalName == "TargetPlatformIdentifier");
 
         return element is not null &&
                element.Value.Equals("UAP", StringComparison.Ordinal);

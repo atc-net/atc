@@ -367,7 +367,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine(2, "<PropertyGroup>");
         sb.AppendLine(4, "<ProjectGuid>{91316817-76BC-45D6-ABC5-B9824493DC56}</ProjectGuid>");
         sb.AppendLine(4, "<OutputType>AppContainerExe</OutputType>");
-        sb.AppendLine(4, "<TargetFrameworkIdentifier>UAP</TargetFrameworkIdentifier>");
+        sb.AppendLine(4, "<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>");
         sb.AppendLine(2, "</PropertyGroup>");
         sb.AppendLine("</Project>");
     }
@@ -410,7 +410,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine(2, "<PropertyGroup>");
         sb.AppendLine(4, "<ProjectGuid>{91316817-76BC-45D6-ABC5-B9824493DC56}</ProjectGuid>");
         sb.AppendLine(4, "<OutputType>Library</OutputType>");
-        sb.AppendLine(4, "<TargetFrameworkIdentifier>UAP</TargetFrameworkIdentifier>");
+        sb.AppendLine(4, "<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>");
         sb.AppendLine(2, "</PropertyGroup>");
         sb.AppendLine("</Project>");
     }
