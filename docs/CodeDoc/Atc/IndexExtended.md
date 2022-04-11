@@ -958,6 +958,7 @@
 
 - [StringBuilderExtensions](System.Text.md#stringbuilderextensions)
   -  Static Methods
+     - Append(this StringBuilder sb, int indentSpaces, string value)
      - Append(this StringBuilder sb, string format, object[] args)
      - AppendLine(this StringBuilder sb, int indentSpaces, string value)
      - AppendLine(this StringBuilder sb, string format, object[] args)

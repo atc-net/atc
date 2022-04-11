@@ -26,6 +26,16 @@ Extensions for the `System.Text.StringBuilder` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sb`&nbsp;&nbsp;-&nbsp;&nbsp;The .<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`format`&nbsp;&nbsp;-&nbsp;&nbsp;A composite format string.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`args`&nbsp;&nbsp;-&nbsp;&nbsp;An object array that contains zero or more objects to format.<br />
+#### Append
+>```csharp
+>void Append(this StringBuilder sb, int indentSpaces, string value)
+>```
+><b>Summary:</b> Appends a formatting options to the string builder.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sb`&nbsp;&nbsp;-&nbsp;&nbsp;The .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`format`&nbsp;&nbsp;-&nbsp;&nbsp;A composite format string.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`args`&nbsp;&nbsp;-&nbsp;&nbsp;An object array that contains zero or more objects to format.<br />
 #### AppendLine
 >```csharp
 >void AppendLine(this StringBuilder sb, string format, object[] args)
