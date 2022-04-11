@@ -53,6 +53,26 @@ Dictionary<string, int> buildErrors = await DotnetBuildHelper.BuildAndCollectErr
     cancellationToken);
 ```
 
+## `DotnetCsProjFileHelper` examples
+
+### Using `PredictProjectType(..)` to find the DotnetProjectType in a file
+
+```csharp
+var file = new FileInfo(@"c:\code\myproject\mylib.csproj"),
+
+DotnetProjectType projectType = DotnetCsProjFileHelper.PredictProjectType(file);
+```
+
+**Note:** `PredictProjectType` use `GetProjectType` but extend the determinations with surrounded files analytics as looking into the `Program.cs`.
+
+### Using `GetProjectType(..)` to find the DotnetProjectType in a file or file-content
+
+```csharp
+var file = new FileInfo(@"c:\code\myproject\mylib.csproj"),
+
+DotnetProjectType projectType = DotnetCsProjFileHelper.GetProjectType(file);
+```
+
 ## `DotnetNugetHelper` examples
 
 ### Using `GetAllPackageReferences(..)` to find package-references in a file or file-content

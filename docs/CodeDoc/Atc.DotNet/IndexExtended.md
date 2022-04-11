@@ -11,6 +11,12 @@
   -  Static Methods
      - BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
      - BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
+- [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
+  -  Static Methods
+     - GetProjectType(FileInfo fileInfo)
+     - GetProjectType(string fileContent)
+     - PredictProjectType(FileInfo fileInfo)
+     - SearchAllForElement(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
   -  Static Methods
      - GetDotnetDirectory()
@@ -20,10 +26,12 @@
   -  Static Methods
      - GetAllPackageReferences(FileInfo fileInfo)
      - GetAllPackageReferences(string fileContent)
+- [DotnetProjectType](Atc.DotNet.md#dotnetprojecttype)
 - [VisualStudioSolutionFileHelper](Atc.DotNet.md#visualstudiosolutionfilehelper)
   -  Static Methods
      - GetSolutionFileMetadata(FileInfo fileInfo)
      - GetSolutionFileMetadata(string fileContent)
+     - SearchAllForElement(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
 
 ## [Atc.DotNet.Models](Atc.DotNet.Models.md)
 
