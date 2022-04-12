@@ -3,7 +3,7 @@ namespace Atc.DotNet;
 
 public static class VisualStudioSolutionFileHelper
 {
-    public static Collection<FileInfo> SearchAllForElement(
+    public static Collection<FileInfo> FindAllInPath(
         DirectoryInfo directoryInfo,
         SearchOption searchOption = SearchOption.AllDirectories)
     {

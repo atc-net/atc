@@ -7,7 +7,7 @@ namespace Atc.DotNet;
 
 public static class DotnetCsProjFileHelper
 {
-    public static Collection<FileInfo> SearchAllForElement(
+    public static Collection<FileInfo> FindAllInPath(
         DirectoryInfo directoryInfo,
         SearchOption searchOption = SearchOption.AllDirectories)
     {
@@ -174,11 +174,6 @@ public static class DotnetCsProjFileHelper
                 : DotnetProjectType.WpfLibrary;
         }
 
-        if (IsOutputType(rootElement, "Library"))
-        {
-            return DotnetProjectType.Library;
-        }
-
         if (IsOutputType(rootElement, "Exe"))
         {
             return IsPackAsTool(rootElement)
@@ -186,7 +181,9 @@ public static class DotnetCsProjFileHelper
                 : DotnetProjectType.ConsoleApp;
         }
 
-        return DotnetProjectType.None;
+        return IsOutputType(rootElement, "Library")
+            ? DotnetProjectType.Library
+            : DotnetProjectType.None;
     }
 
     private static DotnetProjectType ProjectElementForSdkTest(

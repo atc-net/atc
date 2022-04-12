@@ -13,10 +13,10 @@
      - BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
 - [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
   -  Static Methods
+     - FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
      - GetProjectType(FileInfo fileInfo)
      - GetProjectType(string fileContent)
      - PredictProjectType(FileInfo fileInfo)
-     - SearchAllForElement(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
   -  Static Methods
      - GetDotnetDirectory()
@@ -29,9 +29,9 @@
 - [DotnetProjectType](Atc.DotNet.md#dotnetprojecttype)
 - [VisualStudioSolutionFileHelper](Atc.DotNet.md#visualstudiosolutionfilehelper)
   -  Static Methods
+     - FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
      - GetSolutionFileMetadata(FileInfo fileInfo)
      - GetSolutionFileMetadata(string fileContent)
-     - SearchAllForElement(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
 
 ## [Atc.DotNet.Models](Atc.DotNet.Models.md)
 
