@@ -8,8 +8,10 @@
 
 - [AtcDotnetAssemblyTypeInitializer](Atc.DotNet.md#atcdotnetassemblytypeinitializer)
 - [DotnetBuildHelper](Atc.DotNet.md#dotnetbuildhelper)
+- [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
 - [DotnetNugetHelper](Atc.DotNet.md#dotnetnugethelper)
+- [DotnetProjectType](Atc.DotNet.md#dotnetprojecttype)
 - [VisualStudioSolutionFileHelper](Atc.DotNet.md#visualstudiosolutionfilehelper)
 
 ## [Atc.DotNet.Models](Atc.DotNet.Models.md)

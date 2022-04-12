@@ -35,6 +35,33 @@
 
 <br />
 
+## DotnetCsProjFileHelper
+
+>```csharp
+>public static class DotnetCsProjFileHelper
+>```
+
+### Static Methods
+
+#### FindAllInPath
+>```csharp
+>Collection<FileInfo> FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
+>```
+#### GetProjectType
+>```csharp
+>DotnetProjectType GetProjectType(FileInfo fileInfo)
+>```
+#### GetProjectType
+>```csharp
+>DotnetProjectType GetProjectType(string fileContent)
+>```
+#### PredictProjectType
+>```csharp
+>DotnetProjectType PredictProjectType(FileInfo fileInfo)
+>```
+
+<br />
+
 ## DotnetHelper
 
 >```csharp
@@ -94,6 +121,49 @@
 
 <br />
 
+## DotnetProjectType
+
+>```csharp
+>public enum DotnetProjectType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None |  | 
+| 1 | AzureFunctionApp | Azure Function App |  | 
+| 2 | AndroidApp | Android App |  | 
+| 4 | ConsoleApp | Console App |  | 
+| 8 | CliApp | Cli App |  | 
+| 16 | BlazorServerApp | Blazor Server App |  | 
+| 32 | BlazorWAsmApp | Blazor WAsm App |  | 
+| 64 | IosApp | Ios App |  | 
+| 128 | UwpApp | Uwp App |  | 
+| 256 | WebApp | Web App |  | 
+| 512 | WpfApp | Wpf App |  | 
+| 1024 | WinFormApp | Win Form App |  | 
+| 2047 | Apps | Apps |  | 
+| 2048 | Library | Library |  | 
+| 4096 | RazorLibrary | Razor Library |  | 
+| 8192 | UwpLibrary | Uwp Library |  | 
+| 16384 | WpfLibrary | Wpf Library |  | 
+| 30720 | Libraries | Libraries |  | 
+| 32768 | Modules | Azure Iot Edge Module |  | 
+| 32768 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
+| 65536 | VisualStudioExtension | Visual Studio Extension |  | 
+| 131072 | WebApi | Web Api |  | 
+| 262144 | WorkerService | Worker Service |  | 
+| 393216 | Services | Services |  | 
+| 524288 | BUnitTest | BUnit Test |  | 
+| 1048576 | MsTest | Ms Test |  | 
+| 2097152 | NUnitTest | NUnit Test |  | 
+| 4194304 | XUnitTest | XUnit Test |  | 
+| 7864320 | Tests | Tests |  | 
+
+
+
+<br />
+
 ## VisualStudioSolutionFileHelper
 
 >```csharp
@@ -102,6 +172,10 @@
 
 ### Static Methods
 
+#### FindAllInPath
+>```csharp
+>Collection<FileInfo> FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
+>```
 #### GetSolutionFileMetadata
 >```csharp
 >VisualStudioSolutionFileMetadata GetSolutionFileMetadata(FileInfo fileInfo)

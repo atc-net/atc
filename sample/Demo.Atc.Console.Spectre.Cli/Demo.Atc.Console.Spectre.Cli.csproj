@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <PackAsTool>false</PackAsTool>
-    <IsPackable>false</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <IsPackable>false</IsPackable>  <!-- Do not create nuget package in this pipeline -->
   </PropertyGroup>
 
   <ItemGroup>

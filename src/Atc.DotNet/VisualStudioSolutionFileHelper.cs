@@ -3,6 +3,25 @@ namespace Atc.DotNet;
 
 public static class VisualStudioSolutionFileHelper
 {
+    public static Collection<FileInfo> FindAllInPath(
+        DirectoryInfo directoryInfo,
+        SearchOption searchOption = SearchOption.AllDirectories)
+    {
+        if (directoryInfo is null)
+        {
+            throw new ArgumentNullException(nameof(directoryInfo));
+        }
+
+        var result = new Collection<FileInfo>();
+        var files = Directory.GetFiles(directoryInfo.FullName, "*.sln", searchOption);
+        foreach (var file in files)
+        {
+            result.Add(new FileInfo(file));
+        }
+
+        return result;
+    }
+
     public static VisualStudioSolutionFileMetadata GetSolutionFileMetadata(FileInfo fileInfo)
     {
         if (fileInfo is null)
@@ -11,6 +30,11 @@ public static class VisualStudioSolutionFileHelper
         }
 
         if (!fileInfo.Exists)
+        {
+            throw new FileNotFoundException();
+        }
+
+        if (!fileInfo.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase))
         {
             throw new FileNotFoundException();
         }

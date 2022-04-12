@@ -12,6 +12,7 @@ public class CodeComplianceTests
         // UnitTests are made, but CodeCompliance test cannot detect this
         typeof(DotnetHelper),
         typeof(DotnetBuildHelper),
+        typeof(DotnetCsProjFileHelper),
         typeof(DotnetNugetHelper),
         typeof(VisualStudioSolutionFileHelper),
     };
