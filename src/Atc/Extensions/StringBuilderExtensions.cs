@@ -12,7 +12,10 @@ public static class StringBuilderExtensions
     /// <param name="sb">The <see cref="StringBuilder"/>.</param>
     /// <param name="format">A composite format string.</param>
     /// <param name="args">An object array that contains zero or more objects to format.</param>
-    public static void Append(this StringBuilder sb, string format, params object[] args)
+    public static void Append(
+        this StringBuilder sb,
+        string format,
+        params object[] args)
     {
         if (sb is null)
         {
@@ -38,7 +41,10 @@ public static class StringBuilderExtensions
     /// <param name="sb">The <see cref="StringBuilder"/>.</param>
     /// <param name="indentSpaces">The indent spaces.</param>
     /// <param name="value">The value.</param>
-    public static void Append(this StringBuilder sb, int indentSpaces, string value)
+    public static void Append(
+        this StringBuilder sb,
+        int indentSpaces,
+        string value)
     {
         if (sb is null)
         {
@@ -64,7 +70,10 @@ public static class StringBuilderExtensions
     /// <param name="sb">The <see cref="StringBuilder"/>.</param>
     /// <param name="format">A composite format string.</param>
     /// <param name="args">An object array that contains zero or more objects to format.</param>
-    public static void AppendLine(this StringBuilder sb, string format, params object[] args)
+    public static void AppendLine(
+        this StringBuilder sb,
+        string format,
+        params object[] args)
     {
         if (sb is null)
         {
@@ -90,7 +99,10 @@ public static class StringBuilderExtensions
     /// <param name="sb">The <see cref="StringBuilder"/>.</param>
     /// <param name="indentSpaces">The indent spaces.</param>
     /// <param name="value">The value.</param>
-    public static void AppendLine(this StringBuilder sb, int indentSpaces, string value)
+    public static void AppendLine(
+        this StringBuilder sb,
+        int indentSpaces,
+        string value)
     {
         if (sb is null)
         {
