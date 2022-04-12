@@ -364,6 +364,7 @@ public static class DotnetCsProjFileHelper
         return element is not null &&
                element.Value.IsTrue();
     }
+
     private static bool IsUwp(
         XElement rootElement)
     {
