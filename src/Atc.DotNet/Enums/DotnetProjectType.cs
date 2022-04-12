@@ -30,15 +30,18 @@ public enum DotnetProjectType
     // Modules
     AzureIotEdgeModule    = 0x008000,
 
+    // Extensions
+    VisualStudioExtension = 0x010000,
+
     // Services
-    WebApi                = 0x010000,
-    WorkerService         = 0x020000,
+    WebApi = 0x020000,
+    WorkerService         = 0x040000,
 
     // Tests
-    BUnitTest             = 0x040000,
-    MsTest                = 0x080000,
-    NUnitTest             = 0x100000,
-    XUnitTest             = 0x200000,
+    BUnitTest             = 0x080000,
+    MsTest                = 0x100000,
+    NUnitTest             = 0x200000,
+    XUnitTest             = 0x400000,
 
     // Combined
     Apps = AzureFunctionApp | AndroidApp | ConsoleApp | CliApp | BlazorServerApp | BlazorWAsmApp | IosApp | UwpApp | WebApp | WpfApp | WinFormApp,

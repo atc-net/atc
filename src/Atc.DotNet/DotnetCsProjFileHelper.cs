@@ -258,6 +258,11 @@ public static class DotnetCsProjFileHelper
                 : DotnetProjectType.UwpLibrary;
         }
 
+        if (IsVisualStudioExtension(rootElement))
+        {
+            return DotnetProjectType.VisualStudioExtension;
+        }
+
         if (IsOutputType(rootElement, "Library"))
         {
             return DotnetProjectType.Library;
@@ -347,6 +352,18 @@ public static class DotnetCsProjFileHelper
                element.Value.Equals("Resources", StringComparison.Ordinal);
     }
 
+    private static bool IsVisualStudioExtension(
+        XElement rootElement)
+    {
+        var element = rootElement
+            .Elements()
+            .Where(x => x.Name.LocalName == "PropertyGroup")
+            .Descendants()
+            .FirstOrDefault(x => x.Name.LocalName == "IncludeAssemblyInVSIXContainer");
+
+        return element is not null &&
+               element.Value.IsTrue();
+    }
     private static bool IsUwp(
         XElement rootElement)
     {

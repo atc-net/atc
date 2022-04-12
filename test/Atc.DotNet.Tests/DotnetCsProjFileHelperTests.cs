@@ -1,3 +1,4 @@
+// ReSharper disable StringLiteralTypo
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet.Tests;
 
@@ -45,6 +46,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.UwpLibrary, DotnetProjectType.UwpLibrary)]
     [InlineData(DotnetProjectType.WpfLibrary, DotnetProjectType.WpfLibrary)]
     [InlineData(DotnetProjectType.AzureIotEdgeModule, DotnetProjectType.AzureIotEdgeModule)]
+    [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
@@ -88,6 +90,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.UwpLibrary, DotnetProjectType.UwpLibrary)]
     [InlineData(DotnetProjectType.WpfLibrary, DotnetProjectType.WpfLibrary)]
     [InlineData(DotnetProjectType.AzureIotEdgeModule, DotnetProjectType.AzureIotEdgeModule)]
+    [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
@@ -126,6 +129,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.UwpLibrary, DotnetProjectType.UwpLibrary)]
     [InlineData(DotnetProjectType.WpfLibrary, DotnetProjectType.WpfLibrary)]
     [InlineData(DotnetProjectType.AzureIotEdgeModule, DotnetProjectType.AzureIotEdgeModule)]
+    [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
@@ -213,6 +217,9 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             case DotnetProjectType.AzureIotEdgeModule:
                 CreateCsProjFileAzureIotEdgeModule(sb);
                 break;
+            case DotnetProjectType.VisualStudioExtension:
+                CreateCsProjFileVisualStudioExtension(sb);
+                break;
             case DotnetProjectType.WebApi:
                 CreateCsProjFileWebApi(sb);
                 break;
@@ -285,21 +292,6 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileConsoleApp(
-        StringBuilder sb)
-    {
-        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
-        AppendPropertyGroupFirst(
-            sb,
-            outputType: "Exe",
-            packAsTool: false,
-            useAzureFunction: false,
-            useWinForm: false,
-            useWpf: false);
-        sb.AppendLine();
-        sb.AppendLine("</Project>");
-    }
-
     private static void CreateCsProjFileCliApp(
         StringBuilder sb)
     {
@@ -308,6 +300,21 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             sb,
             outputType: "Exe",
             packAsTool: true,
+            useAzureFunction: false,
+            useWinForm: false,
+            useWpf: false);
+        sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
+    private static void CreateCsProjFileConsoleApp(
+        StringBuilder sb)
+    {
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
+        AppendPropertyGroupFirst(
+            sb,
+            outputType: "Exe",
+            packAsTool: false,
             useAzureFunction: false,
             useWinForm: false,
             useWpf: false);
@@ -359,19 +366,6 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileUwpApp(
-        StringBuilder sb)
-    {
-        sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-        sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
-        sb.AppendLine(2, "<PropertyGroup>");
-        sb.AppendLine(4, "<ProjectGuid>{91316817-76BC-45D6-ABC5-B9824493DC56}</ProjectGuid>");
-        sb.AppendLine(4, "<OutputType>AppContainerExe</OutputType>");
-        sb.AppendLine(4, "<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>");
-        sb.AppendLine(2, "</PropertyGroup>");
-        sb.AppendLine("</Project>");
-    }
-
     private static void CreateCsProjFileLibrary(
         StringBuilder sb)
     {
@@ -402,6 +396,19 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
+    private static void CreateCsProjFileUwpApp(
+        StringBuilder sb)
+    {
+        sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
+        sb.AppendLine(2, "<PropertyGroup>");
+        sb.AppendLine(4, "<ProjectGuid>{91316817-76BC-45D6-ABC5-B9824493DC56}</ProjectGuid>");
+        sb.AppendLine(4, "<OutputType>AppContainerExe</OutputType>");
+        sb.AppendLine(4, "<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>");
+        sb.AppendLine(2, "</PropertyGroup>");
+        sb.AppendLine("</Project>");
+    }
+
     private static void CreateCsProjFileUwpLibrary(
         StringBuilder sb)
     {
@@ -415,10 +422,11 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWebApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileTest(
+        StringBuilder sb,
+        string testLibraryName)
     {
-        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Web\">");
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
             sb,
             outputType: null,
@@ -426,7 +434,26 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useWinForm: false,
             useWpf: false);
+        AppendItemGroupPackageReference(
+            sb,
+            new[] { "Atc", testLibraryName });
         sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
+    private static void CreateCsProjFileVisualStudioExtension(
+        StringBuilder sb)
+    {
+        sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
+        sb.AppendLine(2, "<PropertyGroup>");
+        sb.AppendLine(4, "<MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>");
+        sb.AppendLine(2, "</PropertyGroup>");
+        sb.AppendLine(2, "<PropertyGroup>");
+        sb.AppendLine(4, "<ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>");
+        sb.AppendLine(4, "<OutputType>Library</OutputType>");
+        sb.AppendLine(4, "<IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>");
+        sb.AppendLine(2, "</PropertyGroup>");
         sb.AppendLine("</Project>");
     }
 
@@ -448,8 +475,23 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWorkerService(
+    private static void CreateCsProjFileWebApp(
         StringBuilder sb)
+    {
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Web\">");
+        AppendPropertyGroupFirst(
+            sb,
+            outputType: null,
+            packAsTool: false,
+            useAzureFunction: false,
+            useWinForm: false,
+            useWpf: false);
+        sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
+    private static void CreateCsProjFileWorkerService(
+         StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Worker\">");
         AppendPropertyGroupFirst(
@@ -504,25 +546,6 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useWinForm: false,
             useWpf: true);
-        sb.AppendLine();
-        sb.AppendLine("</Project>");
-    }
-
-    private static void CreateCsProjFileTest(
-        StringBuilder sb,
-        string testLibraryName)
-    {
-        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
-        AppendPropertyGroupFirst(
-            sb,
-            outputType: null,
-            packAsTool: false,
-            useAzureFunction: false,
-            useWinForm: false,
-            useWpf: false);
-        AppendItemGroupPackageReference(
-            sb,
-            new[] { "Atc", testLibraryName });
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }

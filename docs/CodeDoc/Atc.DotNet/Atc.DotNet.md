@@ -150,14 +150,15 @@
 | 30720 | Libraries | Libraries |  | 
 | 32768 | Modules | Azure Iot Edge Module |  | 
 | 32768 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
-| 65536 | WebApi | Web Api |  | 
-| 131072 | WorkerService | Worker Service |  | 
-| 196608 | Services | Services |  | 
-| 262144 | BUnitTest | BUnit Test |  | 
-| 524288 | MsTest | Ms Test |  | 
-| 1048576 | NUnitTest | NUnit Test |  | 
-| 2097152 | XUnitTest | XUnit Test |  | 
-| 3932160 | Tests | Tests |  | 
+| 65536 | VisualStudioExtension | Visual Studio Extension |  | 
+| 131072 | WebApi | Web Api |  | 
+| 262144 | WorkerService | Worker Service |  | 
+| 393216 | Services | Services |  | 
+| 524288 | BUnitTest | BUnit Test |  | 
+| 1048576 | MsTest | Ms Test |  | 
+| 2097152 | NUnitTest | NUnit Test |  | 
+| 4194304 | XUnitTest | XUnit Test |  | 
+| 7864320 | Tests | Tests |  | 
 
 
 
