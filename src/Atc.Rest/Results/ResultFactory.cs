@@ -48,7 +48,7 @@ public static class ResultFactory
             return result;
         }
 
-        var message = Helpers.SimpleTypeHelper.IsSimpleType(value.GetType().BeautifyTypeName())
+        var message = Atc.Helpers.SimpleTypeHelper.IsSimpleType(value.GetType().BeautifyTypeName())
             ? value.ToString()
             : JsonSerializer.Serialize(value);
 

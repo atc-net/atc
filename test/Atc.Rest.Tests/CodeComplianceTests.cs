@@ -28,6 +28,7 @@ public class CodeComplianceTests
         typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
         typeof(ResultFactory),
         typeof(AuthorizationOptions),
+        typeof(ProblemDetailsHelper),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
         typeof(FormFileExtensions),

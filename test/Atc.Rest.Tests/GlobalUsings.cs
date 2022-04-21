@@ -7,6 +7,7 @@ global using System.Text;
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.Rest.Extended;
 global using Atc.Rest.Extensions;
+global using Atc.Rest.Helpers;
 global using Atc.Rest.Middleware;
 global using Atc.Rest.Options;
 global using Atc.Rest.Results;
