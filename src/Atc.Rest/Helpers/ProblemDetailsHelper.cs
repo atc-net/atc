@@ -2,18 +2,18 @@ namespace Atc.Rest.Helpers;
 
 public static class ProblemDetailsHelper
 {
-    public static bool IsJsonWithProblemDetails(
+    public static bool IsFormatJsonAndProblemDetailsModel(
         string value)
         => !string.IsNullOrEmpty(value) &&
            value.IsFormatJson() &&
            value.Contains(new[] { "Status", "Title", "Detail" });
 
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static bool TrySerializedToProblemDetails(
+    public static bool TrySerializeToProblemDetails(
         string value,
         out ProblemDetails? problemDetails)
     {
-        if (IsJsonWithProblemDetails(value))
+        if (IsFormatJsonAndProblemDetailsModel(value))
         {
             try
             {
@@ -31,23 +31,11 @@ public static class ProblemDetailsHelper
         return false;
     }
 
-    public static bool TrySerializedToProblemDetailsAndGetDetails(
+    public static bool TrySerializeToProblemDetailsAndGetStatusCode(
         string value,
-        out string? detailValue)
+        out HttpStatusCode? statusCodeValue)
     {
-        if (TrySerializedToProblemDetails(value, out var problemDetails))
-        {
-            detailValue = problemDetails!.Detail;
-            return true;
-        }
-
-        detailValue = null;
-        return false;
-    }
-
-    public static bool TrySerializedToProblemDetailsAndGetStatusCode(string value, out HttpStatusCode? statusCodeValue)
-    {
-        if (TrySerializedToProblemDetails(value, out var problemDetails) &&
+        if (TrySerializeToProblemDetails(value, out var problemDetails) &&
             problemDetails!.Status is not null)
         {
             statusCodeValue = (HttpStatusCode)problemDetails.Status;
@@ -55,6 +43,34 @@ public static class ProblemDetailsHelper
         }
 
         statusCodeValue = null;
+        return false;
+    }
+
+    public static bool TrySerializeToProblemDetailsAndGetTitle(
+        string value,
+        out string? titleValue)
+    {
+        if (TrySerializeToProblemDetails(value, out var problemDetails))
+        {
+            titleValue = problemDetails!.Title;
+            return true;
+        }
+
+        titleValue = null;
+        return false;
+    }
+
+    public static bool TrySerializeToProblemDetailsAndGetDetails(
+        string value,
+        out string? detailValue)
+    {
+        if (TrySerializeToProblemDetails(value, out var problemDetails))
+        {
+            detailValue = problemDetails!.Detail;
+            return true;
+        }
+
+        detailValue = null;
         return false;
     }
 }

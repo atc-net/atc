@@ -35,10 +35,11 @@
 
 - [ProblemDetailsHelper](Atc.Rest.Helpers.md#problemdetailshelper)
   -  Static Methods
-     - IsJsonWithProblemDetails(string value)
-     - TrySerializedToProblemDetails(string value, out ProblemDetails problemDetails)
-     - TrySerializedToProblemDetailsAndGetDetails(string value, out string detailValue)
-     - TrySerializedToProblemDetailsAndGetStatusCode(string value, out HttpStatusCode? statusCodeValue)
+     - IsFormatJsonAndProblemDetailsModel(string value)
+     - TrySerializeToProblemDetails(string value, out ProblemDetails problemDetails)
+     - TrySerializeToProblemDetailsAndGetDetails(string value, out string detailValue)
+     - TrySerializeToProblemDetailsAndGetStatusCode(string value, out HttpStatusCode? statusCodeValue)
+     - TrySerializeToProblemDetailsAndGetTitle(string value, out string titleValue)
 
 ## [Atc.Rest.Middleware](Atc.Rest.Middleware.md)
 
