@@ -1,3 +1,4 @@
+// ReSharper disable StringLiteralTypo
 namespace Atc.Tests.Extensions;
 
 public class StringExtensionsTests
@@ -144,7 +145,7 @@ public class StringExtensionsTests
     public void Base64Encode_EncodingOverload(string expected, string input)
     {
         // Act
-        var actual = input.Base64Encode(System.Text.Encoding.ASCII);
+        var actual = input.Base64Encode(Encoding.ASCII);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -178,7 +179,7 @@ public class StringExtensionsTests
     public void Base64Decode_EncodingOverload(string expected, string input)
     {
         // Act
-        var actual = input.Base64Decode(System.Text.Encoding.ASCII);
+        var actual = input.Base64Decode(Encoding.ASCII);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -346,6 +347,16 @@ public class StringExtensionsTests
     [InlineData(false, "Hallo World", "world", false)]
     [InlineData(true, "Hallo World", "world", true)]
     public void Contains_IgnoreCaseSensitive(bool expected, string inputA, string inputB, bool ignoreCaseSensitive)
+        => Assert.Equal(expected, inputA.Contains(inputB, ignoreCaseSensitive));
+
+    [Theory]
+    [InlineData(false, "Hallo World", new[] { "world" }, false)]
+    [InlineData(true, "Hallo World", new[] { "World" }, true)]
+    [InlineData(false, "Hallo World", new[] { "hallo", "world" }, false)]
+    [InlineData(true, "Hallo World", new[] { "hallo", "World" }, true)]
+    [InlineData(false, "Hallo World", new[] { "hallo", "world", "bob" }, false)]
+    [InlineData(false, "Hallo World", new[] { "hallo", "World", "bob" }, true)]
+    public void Contains_IgnoreCaseSensitive_Multiple(bool expected, string inputA, string[] inputB, bool ignoreCaseSensitive)
         => Assert.Equal(expected, inputA.Contains(inputB, ignoreCaseSensitive));
 
     [Theory]
