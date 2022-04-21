@@ -370,8 +370,10 @@
   -  Static Methods
      - GetPublicIpAddress()
      - HasConnection()
+     - HasConnection(IPAddress ipAddress)
      - HasHttpConnection()
      - HasHttpConnection(Uri uri)
+     - HasTcpConnection(IPAddress ipAddress, int port)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
@@ -728,6 +730,7 @@
      - Base64Encode(this string value)
      - CamelCase(this string value)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
+     - Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
      - EnsureEnvironmentNewLines(this string value)
      - EnsureFirstCharacterToLower(this string value)
