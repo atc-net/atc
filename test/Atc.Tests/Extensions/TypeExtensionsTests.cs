@@ -4,7 +4,7 @@ public class TypeExtensionsTests
 {
     [Theory]
     [InlineData(false, typeof(NumericAlphaComparer))]
-    [InlineData(true, typeof(EmailAddressAttribute))]
+    [InlineData(true, typeof(UriAttribute))]
     public void HasValidationAttributes(bool expected, Type type)
     {
         // Act
@@ -40,7 +40,7 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(NumericAlphaComparer))]
-    [InlineData(false, typeof(EmailAddressAttribute))]
+    [InlineData(false, typeof(UriAttribute))]
     [InlineData(true, typeof(DayOfWeek))]
     [InlineData(true, typeof(int))]
     [InlineData(true, typeof(string))]
@@ -68,7 +68,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(false, typeof(EmailAddressAttribute), typeof(EmailAddressAttribute), typeof(EmailAddressAttribute))]
+    [InlineData(false, typeof(UriAttribute), typeof(UriAttribute), typeof(UriAttribute))]
     public void IsInheritedFromGenericWithArgumentType(bool expected, Type type, Type baseType, Type argumentType)
     {
         // Act
@@ -79,7 +79,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(false, typeof(EmailAddressAttribute), typeof(EmailAddressAttribute), typeof(EmailAddressAttribute), false)]
+    [InlineData(false, typeof(UriAttribute), typeof(UriAttribute), typeof(UriAttribute), false)]
     public void IsInheritedFromGenericWithArgumentType_MatchAlsoOnArgumentTypeInterface(bool expected, Type type, Type baseType, Type argumentType, bool matchAlsoOnArgumentTypeInterface)
     {
         // Act
@@ -90,7 +90,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(false, typeof(EmailAddressAttribute))]
+    [InlineData(false, typeof(UriAttribute))]
     public void GetBaseTypeGenericArgumentType(bool expected, Type type)
     {
         // Act
@@ -108,7 +108,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(0, typeof(UriAttribute))]
     public void GetBaseTypeGenericArgumentTypes(int expected, Type type)
     {
         // Act
@@ -127,7 +127,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(true, typeof(EmailAddressAttribute))]
+    [InlineData(true, typeof(UriAttribute))]
     [InlineData(false, typeof(NumericAlphaComparer))]
     public void GetAttribute(bool expected, Type type)
     {
@@ -146,7 +146,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(true, typeof(EmailAddressAttribute))]
+    [InlineData(true, typeof(UriAttribute))]
     [InlineData(false, typeof(NumericAlphaComparer))]
     public void TryGetAttribute(bool expected, Type type)
     {
@@ -165,7 +165,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(1, typeof(EmailAddressAttribute))]
+    [InlineData(1, typeof(UriAttribute))]
     [InlineData(0, typeof(NumericAlphaComparer))]
     public void GetAttributes(int expected, Type type)
     {
@@ -177,7 +177,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(1, typeof(EmailAddressAttribute))]
+    [InlineData(9, typeof(UriAttribute))]
     [InlineData(6, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyMethods(int expected, Type type)
     {
@@ -189,7 +189,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(0, typeof(UriAttribute))]
     [InlineData(0, typeof(LogKeyValueItem))]
     public void GetPrivateDeclaredOnlyMethods(int expected, Type type)
     {
@@ -201,7 +201,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(false, typeof(EmailAddressAttribute), "IsValid")]
+    [InlineData(false, typeof(UriAttribute), "IsValid")]
     public void GetPrivateDeclaredOnlyMethod(bool expected, Type type, string methodName)
     {
         // Act
@@ -219,7 +219,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(8, typeof(EmailAddressAttribute))]
+    [InlineData(9, typeof(UriAttribute))]
     [InlineData(4, typeof(LogKeyValueItem))]
     public void GetPublicProperties(int expected, Type type)
     {
@@ -231,7 +231,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(4, typeof(UriAttribute))]
     [InlineData(2, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyProperties(int expected, Type type)
     {
@@ -243,7 +243,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(null, typeof(EmailAddressAttribute), "IsValid")]
+    [InlineData(null, typeof(UriAttribute), "IsValid")]
     [InlineData(null, typeof(LogKeyValueItem), "Key")]
     public void GetPublicDeclaredOnlyPropertyValue(object expected, Type type, string propertyName)
     {
@@ -255,7 +255,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(0, typeof(EmailAddressAttribute))]
+    [InlineData(0, typeof(UriAttribute))]
     [InlineData(0, typeof(LogKeyValueItem))]
     public void GetPrivateDeclaredOnlyProperties(int expected, Type type)
     {
@@ -267,7 +267,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(false, typeof(EmailAddressAttribute), "IsValid")]
+    [InlineData(false, typeof(UriAttribute), "IsValid")]
     public void GetPrivateDeclaredOnlyProperty(bool expected, Type type, string propertyName)
     {
         // Act
