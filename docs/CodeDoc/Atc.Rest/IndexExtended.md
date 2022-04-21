@@ -31,6 +31,16 @@
   -  Static Methods
      - MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List&lt;AssemblyPairOptions&gt; assemblyPairs)
 
+## [Atc.Rest.Helpers](Atc.Rest.Helpers.md)
+
+- [ProblemDetailsHelper](Atc.Rest.Helpers.md#problemdetailshelper)
+  -  Static Methods
+     - IsFormatJsonAndProblemDetailsModel(string value)
+     - TrySerializeToProblemDetails(string value, out ProblemDetails problemDetails)
+     - TrySerializeToProblemDetailsAndGetDetails(string value, out string detailValue)
+     - TrySerializeToProblemDetailsAndGetStatusCode(string value, out HttpStatusCode? statusCodeValue)
+     - TrySerializeToProblemDetailsAndGetTitle(string value, out string titleValue)
+
 ## [Atc.Rest.Middleware](Atc.Rest.Middleware.md)
 
 - [ExceptionTelemetryMiddleware](Atc.Rest.Middleware.md#exceptiontelemetrymiddleware)

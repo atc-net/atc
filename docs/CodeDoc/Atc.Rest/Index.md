@@ -15,6 +15,10 @@
 - [AllowAnonymousAccessForDevelopmentHandler](Atc.Rest.Extensions.md#allowanonymousaccessfordevelopmenthandler)
 - [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
 
+## [Atc.Rest.Helpers](Atc.Rest.Helpers.md)
+
+- [ProblemDetailsHelper](Atc.Rest.Helpers.md#problemdetailshelper)
+
 ## [Atc.Rest.Middleware](Atc.Rest.Middleware.md)
 
 - [ExceptionTelemetryMiddleware](Atc.Rest.Middleware.md#exceptiontelemetrymiddleware)

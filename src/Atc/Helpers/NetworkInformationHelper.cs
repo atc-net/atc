@@ -6,16 +6,21 @@ public static class NetworkInformationHelper
 {
     public static bool HasConnection()
     {
+        const string googleDns = "8.8.8.8";
+        return HasConnection(IPAddress.Parse(googleDns));
+    }
+
+    public static bool HasConnection(IPAddress ipAddress)
+    {
         try
         {
             using var ping = new Ping();
             var buffer = new byte[32];
 
-            const string googleDns = "8.8.8.8";
             const int timeout = 1000;
             var pingOptions = new PingOptions();
 
-            var pingReply = ping.Send(googleDns, timeout, buffer, pingOptions);
+            var pingReply = ping.Send(ipAddress, timeout, buffer, pingOptions);
 
             return pingReply is not null &&
                    pingReply.Status == IPStatus.Success;
@@ -38,7 +43,7 @@ public static class NetworkInformationHelper
             throw new ArgumentNullException(nameof(uri));
         }
 
-        bool result = false;
+        var result = false;
         TaskHelper.RunSync(async () =>
         {
             try
@@ -59,6 +64,24 @@ public static class NetworkInformationHelper
         return result;
     }
 
+    public static bool HasTcpConnection(IPAddress ipAddress, int port)
+    {
+        if (ipAddress is null)
+        {
+            throw new ArgumentNullException(nameof(ipAddress));
+        }
+
+        try
+        {
+            using var client = new TcpClient(ipAddress.ToString(), port);
+            return client.Connected;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public static IPAddress? GetPublicIpAddress()
     {
         string? response = null;
@@ -66,7 +89,7 @@ public static class NetworkInformationHelper
         {
             try
             {
-                using HttpClient client = new HttpClient();
+                using var client = new HttpClient();
                 response = await client
                     .GetStringAsync(new Uri("https://api.ipify.org"))
                     .ConfigureAwait(false);
