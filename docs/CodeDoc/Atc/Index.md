@@ -69,6 +69,7 @@
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
+- [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)
 - [EnumHelper](Atc.Helpers.md#enumhelper)

@@ -303,6 +303,11 @@
      - GetLanguageNames(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+- [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
+  -  Static Methods
+     - TryValidate(T data, out IList`1 validationResults, bool validateAllProperties = True)
+     - TryValidateOutToString(T data, out string validationMessage, bool validateAllProperties = True)
+     - TryValidateOutToValidationException(T data, out ValidationException validationException, bool validateAllProperties = True)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
   -  Static Methods
      - GetDescription(DayOfWeek dayOfWeek, CultureInfo culture = null)
