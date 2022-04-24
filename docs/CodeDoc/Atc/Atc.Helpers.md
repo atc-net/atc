@@ -473,6 +473,29 @@ CultureHelper.
 
 <br />
 
+## DataAnnotationHelper
+
+>```csharp
+>public static class DataAnnotationHelper
+>```
+
+### Static Methods
+
+#### TryValidate
+>```csharp
+>bool TryValidate(T data, out IList`1 validationResults, bool validateAllProperties = True)
+>```
+#### TryValidateOutToString
+>```csharp
+>bool TryValidateOutToString(T data, out string validationMessage, bool validateAllProperties = True)
+>```
+#### TryValidateOutToValidationException
+>```csharp
+>bool TryValidateOutToValidationException(T data, out ValidationException validationException, bool validateAllProperties = True)
+>```
+
+<br />
+
 ## DayOfWeekHelper
 DayOfWeekHelper.
 
