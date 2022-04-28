@@ -7,6 +7,15 @@
 
 <br />
 
+## KeyStringAttribute
+
+>```csharp
+>public class KeyStringAttribute : StringAttribute
+>```
+
+
+<br />
+
 ## StringAttribute
 
 >```csharp
@@ -30,6 +39,10 @@
 #### MinLength
 >```csharp
 >MinLength
+>```
+#### RegularExpression
+>```csharp
+>RegularExpression
 >```
 #### Required
 >```csharp

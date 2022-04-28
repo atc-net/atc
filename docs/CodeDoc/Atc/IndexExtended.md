@@ -869,12 +869,14 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
   -  Properties
      - InvalidCharacters
      - InvalidPrefixStrings
      - MaxLength
      - MinLength
+     - RegularExpression
      - Required
   -  Methods
      - IsValid(object value)
