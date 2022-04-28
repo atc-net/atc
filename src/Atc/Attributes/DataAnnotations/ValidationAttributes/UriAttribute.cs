@@ -24,7 +24,8 @@ public sealed class UriAttribute : ValidationAttribute
     public bool AllowFile { get; set; }
 
     /// <inheritdoc />
-    public override bool IsValid(object? value)
+    public override bool IsValid(
+        object? value)
     {
         if (value is null)
         {
@@ -32,7 +33,7 @@ public sealed class UriAttribute : ValidationAttribute
             return false;
         }
 
-        var result = Uri.TryCreate(value.ToString(), UriKind.Absolute, out Uri uriResult)
+        var result = Uri.TryCreate(value.ToString(), UriKind.Absolute, out var uriResult)
                      && ((AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowHttps && string.Equals(uriResult.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowFtp && string.Equals(uriResult.Scheme, Uri.UriSchemeFtp, StringComparison.OrdinalIgnoreCase)) ||
