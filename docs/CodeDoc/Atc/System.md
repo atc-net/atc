@@ -1148,6 +1148,18 @@ Extensions for the string class.
 ><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.
 #### Contains
 >```csharp
+>bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = True)
+>```
+><b>Summary:</b> Determines whether a string contains a specified value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>
+><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.
+#### Contains
+>```csharp
 >bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
 >```
 ><b>Summary:</b> Determines whether a string contains a specified value.

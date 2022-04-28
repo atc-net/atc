@@ -188,6 +188,7 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
 
 ## [System.Data](System.Data.md)

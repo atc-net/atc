@@ -7,6 +7,43 @@
 
 <br />
 
+## StringAttribute
+
+>```csharp
+>public class StringAttribute : ValidationAttribute
+>```
+
+### Properties
+
+#### InvalidCharacters
+>```csharp
+>InvalidCharacters
+>```
+#### InvalidPrefixStrings
+>```csharp
+>InvalidPrefixStrings
+>```
+#### MaxLength
+>```csharp
+>MaxLength
+>```
+#### MinLength
+>```csharp
+>MinLength
+>```
+#### Required
+>```csharp
+>Required
+>```
+### Methods
+
+#### IsValid
+>```csharp
+>bool IsValid(object value)
+>```
+
+<br />
+
 ## UriAttribute
 
 >```csharp

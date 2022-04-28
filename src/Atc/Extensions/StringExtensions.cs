@@ -1,4 +1,5 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
 namespace System;
@@ -983,13 +984,34 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Determines whether a chars contains all specified values.
+    /// </summary>
+    /// <param name="value">The string to work on.</param>
+    /// <param name="containsValues">The chars to compare with.</param>
+    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <returns>
+    ///   <c>true</c> if a string contains a specified values; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = true)
+    {
+        if (string.IsNullOrEmpty(value) ||
+            containsValues is null ||
+            containsValues.Length == 0)
+        {
+            return false;
+        }
+
+        return containsValues.All(x => Contains(value, x.ToString(), ignoreCaseSensitive));
+    }
+
+    /// <summary>
     /// Determines whether a string contains all specified values.
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="containsValues">The strings to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if a string contains a specified value; otherwise, <c>false</c>.
+    ///   <c>true</c> if a string contains a specified values; otherwise, <c>false</c>.
     /// </returns>
     public static bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = true)
     {
