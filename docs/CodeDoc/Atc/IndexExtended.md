@@ -870,7 +870,13 @@
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
+  -  Static Methods
+     - TryIsValid(string value, KeyStringAttribute attribute, out string errorMessage)
+     - TryIsValid(string value, out string errorMessage)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
+  -  Static Methods
+     - TryIsValid(string value, out string errorMessage)
+     - TryIsValid(string value, StringAttribute attribute, out string errorMessage)
   -  Properties
      - InvalidCharacters
      - InvalidPrefixStrings
@@ -881,6 +887,9 @@
   -  Methods
      - IsValid(object value)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
+  -  Static Methods
+     - TryIsValid(string value, out string errorMessage)
+     - TryIsValid(string value, UriAttribute attribute, out string errorMessage)
   -  Properties
      - AllowFile
      - AllowFtp

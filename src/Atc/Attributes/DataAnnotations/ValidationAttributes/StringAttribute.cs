@@ -130,4 +130,35 @@ public class StringAttribute : ValidationAttribute
 
         return true;
     }
+
+    public static bool TryIsValid(
+        string value,
+        out string errorMessage)
+    {
+        var attribute = new StringAttribute();
+        return TryIsValid(value, attribute, out errorMessage);
+    }
+
+    public static bool TryIsValid(
+        string value,
+        StringAttribute attribute,
+        out string errorMessage)
+    {
+        if (attribute is null)
+        {
+            throw new ArgumentNullException(nameof(attribute));
+        }
+
+        if (attribute.IsValid(value))
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        errorMessage = attribute.ErrorMessage
+            .Replace("field {0}", "value", StringComparison.Ordinal)
+            .Replace("{0} field", "value", StringComparison.Ordinal);
+
+        return false;
+    }
 }

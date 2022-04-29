@@ -29,6 +29,31 @@ public static class StringAttributeTests
     }
 
     [Theory]
+    [InlineData(true, "", null)]
+    [InlineData(false, "The value must be between 1 and 256.", "")]
+    [InlineData(true, "", "H")]
+    [InlineData(true, "", "Hallo")]
+    [InlineData(true, "", "HalloHalloHallo")]
+    [InlineData(false, "The value must be between 1 and 256.", "HalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloXX")]
+    [InlineData(true, "", "_Hallo")]
+    [InlineData(true, "", "Hal lo")]
+    [InlineData(true, "", "Hal.lo")]
+    [InlineData(true, "", "Hal@lo")]
+    [InlineData(true, "", "Hal\'lo")]
+    public static void TryIsValid(
+        bool expected,
+        string expectedMessage,
+        string input)
+    {
+        // Act
+        var actual = StringAttribute.TryIsValid(input, out var errorMessage);
+
+        // Assert
+        Assert.Equal(expected, actual);
+        Assert.Equal(expectedMessage, errorMessage);
+    }
+
+    [Theory]
     [InlineData(true, null)]
     [InlineData(false, "")]
     [InlineData(true, "H")]
