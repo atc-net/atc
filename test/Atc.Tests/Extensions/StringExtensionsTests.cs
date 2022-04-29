@@ -350,13 +350,23 @@ public class StringExtensionsTests
         => Assert.Equal(expected, inputA.Contains(inputB, ignoreCaseSensitive));
 
     [Theory]
+    [InlineData(false, "Hallo World", new[] { 'w' }, false)]
+    [InlineData(true, "Hallo World", new[] { 'W' }, true)]
+    [InlineData(false, "Hallo World", new[] { 'h', 'w' }, false)]
+    [InlineData(true, "Hallo World", new[] { 'h', 'w' }, true)]
+    [InlineData(false, "Hallo World", new[] { 'h', 'w', 'b' }, false)]
+    [InlineData(false, "Hallo World", new[] { 'h', 'W', 'b' }, true)]
+    public void Contains_IgnoreCaseSensitive_MultipleChars(bool expected, string inputA, char[] inputB, bool ignoreCaseSensitive)
+        => Assert.Equal(expected, inputA.Contains(inputB, ignoreCaseSensitive));
+
+    [Theory]
     [InlineData(false, "Hallo World", new[] { "world" }, false)]
     [InlineData(true, "Hallo World", new[] { "World" }, true)]
     [InlineData(false, "Hallo World", new[] { "hallo", "world" }, false)]
     [InlineData(true, "Hallo World", new[] { "hallo", "World" }, true)]
     [InlineData(false, "Hallo World", new[] { "hallo", "world", "bob" }, false)]
     [InlineData(false, "Hallo World", new[] { "hallo", "World", "bob" }, true)]
-    public void Contains_IgnoreCaseSensitive_Multiple(bool expected, string inputA, string[] inputB, bool ignoreCaseSensitive)
+    public void Contains_IgnoreCaseSensitive_MultipleStrings(bool expected, string inputA, string[] inputB, bool ignoreCaseSensitive)
         => Assert.Equal(expected, inputA.Contains(inputB, ignoreCaseSensitive));
 
     [Theory]

@@ -734,6 +734,7 @@
      - Base64Encode(this string value, Encoding encoding)
      - Base64Encode(this string value)
      - CamelCase(this string value)
+     - Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = True)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
@@ -868,12 +869,24 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
+- [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
+  -  Properties
+     - InvalidCharacters
+     - InvalidPrefixStrings
+     - MaxLength
+     - MinLength
+     - RegularExpression
+     - Required
+  -  Methods
+     - IsValid(object value)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
   -  Properties
      - AllowFile
      - AllowFtp
      - AllowHttp
      - AllowHttps
+     - Required
   -  Methods
      - IsValid(object value)
 

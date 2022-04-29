@@ -7,6 +7,56 @@
 
 <br />
 
+## KeyStringAttribute
+
+>```csharp
+>public class KeyStringAttribute : StringAttribute
+>```
+
+
+<br />
+
+## StringAttribute
+
+>```csharp
+>public class StringAttribute : ValidationAttribute
+>```
+
+### Properties
+
+#### InvalidCharacters
+>```csharp
+>InvalidCharacters
+>```
+#### InvalidPrefixStrings
+>```csharp
+>InvalidPrefixStrings
+>```
+#### MaxLength
+>```csharp
+>MaxLength
+>```
+#### MinLength
+>```csharp
+>MinLength
+>```
+#### RegularExpression
+>```csharp
+>RegularExpression
+>```
+#### Required
+>```csharp
+>Required
+>```
+### Methods
+
+#### IsValid
+>```csharp
+>bool IsValid(object value)
+>```
+
+<br />
+
 ## UriAttribute
 
 >```csharp
@@ -30,6 +80,10 @@
 #### AllowHttps
 >```csharp
 >AllowHttps
+>```
+#### Required
+>```csharp
+>Required
 >```
 ### Methods
 
