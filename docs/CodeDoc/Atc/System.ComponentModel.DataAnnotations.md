@@ -13,6 +13,16 @@
 >public class KeyStringAttribute : StringAttribute
 >```
 
+### Static Methods
+
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, out string errorMessage)
+>```
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, KeyStringAttribute attribute, out string errorMessage)
+>```
 
 <br />
 
@@ -22,6 +32,16 @@
 >public class StringAttribute : ValidationAttribute
 >```
 
+### Static Methods
+
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, out string errorMessage)
+>```
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, StringAttribute attribute, out string errorMessage)
+>```
 ### Properties
 
 #### InvalidCharacters
@@ -63,6 +83,16 @@
 >public class UriAttribute : ValidationAttribute
 >```
 
+### Static Methods
+
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, out string errorMessage)
+>```
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, UriAttribute attribute, out string errorMessage)
+>```
 ### Properties
 
 #### AllowFile
