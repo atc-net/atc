@@ -886,6 +886,7 @@
      - AllowFtp
      - AllowHttp
      - AllowHttps
+     - Required
   -  Methods
      - IsValid(object value)
 

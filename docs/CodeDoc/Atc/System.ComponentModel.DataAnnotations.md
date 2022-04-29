@@ -81,6 +81,10 @@
 >```csharp
 >AllowHttps
 >```
+#### Required
+>```csharp
+>Required
+>```
 ### Methods
 
 #### IsValid
