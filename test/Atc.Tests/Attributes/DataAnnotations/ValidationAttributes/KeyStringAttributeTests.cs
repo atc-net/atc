@@ -3,7 +3,7 @@ namespace Atc.Tests.Attributes.DataAnnotations.ValidationAttributes;
 public static class KeyStringAttributeTests
 {
     [Theory]
-    [InlineData(true, null)]
+    [InlineData(false, null)]
     [InlineData(false, "")]
     [InlineData(true, "H")]
     [InlineData(true, "Hallo")]
