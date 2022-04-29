@@ -14,7 +14,9 @@ public class UriAttributeTests
     [InlineData(false, "httpsx://www.dr.dk")]
     [InlineData(false, "ftpx://www.dr.dk")]
     [InlineData(false, "filex://c:/temp/file.txt")]
-    public void IsValid(bool expected, string input)
+    public void IsValid(
+        bool expected,
+        string input)
     {
         // Arrange
         var sut = new UriAttribute();
