@@ -26,9 +26,4 @@
     <ProjectReference Include="..\..\src\Atc\Atc.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Attributes\DataAnnotations\DataTypeAttributes\" />
-    <Folder Include="Math\" />
-  </ItemGroup>
-
 </Project>
