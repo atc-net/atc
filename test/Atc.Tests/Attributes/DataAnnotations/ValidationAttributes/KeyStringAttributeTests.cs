@@ -14,7 +14,9 @@ public static class KeyStringAttributeTests
     [InlineData(false, "Hal.lo")]
     [InlineData(false, "Hal@lo")]
     [InlineData(false, "Hal\'lo")]
-    public static void IsValid(bool expected, string input)
+    public static void IsValid(
+        bool expected,
+        string input)
     {
         // Arrange
         var sut = new KeyStringAttribute();
