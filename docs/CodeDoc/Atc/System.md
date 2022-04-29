@@ -1145,7 +1145,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.
+><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
 #### Contains
 >```csharp
 >bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = True)
@@ -1157,7 +1157,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.
+><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
 #### Contains
 >```csharp
 >bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
@@ -1169,7 +1169,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if a string contains a specified value; otherwise, `false`.
+><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
 #### Cut
 >```csharp
 >string Cut(this string value, int maxLength, string appendValue = ...)

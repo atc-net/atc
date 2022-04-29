@@ -970,7 +970,7 @@ public static class StringExtensions
     /// <param name="containsValue">The string to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if a string contains a specified value; otherwise, <c>false</c>.
+    ///   <c>true</c> if input string contains a value from specified value; otherwise, <c>false</c>.
     /// </returns>
     public static bool Contains(this string value, string containsValue, bool ignoreCaseSensitive = true)
     {
@@ -990,7 +990,7 @@ public static class StringExtensions
     /// <param name="containsValues">The chars to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if a string contains a specified values; otherwise, <c>false</c>.
+    ///   <c>true</c> if input string contains a value from specified char-values; otherwise, <c>false</c>.
     /// </returns>
     public static bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = true)
     {
@@ -1011,7 +1011,7 @@ public static class StringExtensions
     /// <param name="containsValues">The strings to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if a string contains a specified values; otherwise, <c>false</c>.
+    ///   <c>true</c> if input string contains a value from specified string-values; otherwise, <c>false</c>.
     /// </returns>
     public static bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = true)
     {
