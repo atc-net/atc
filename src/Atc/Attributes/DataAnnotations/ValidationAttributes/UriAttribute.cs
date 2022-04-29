@@ -9,11 +9,14 @@ public sealed class UriAttribute : ValidationAttribute
     public UriAttribute()
         : base("The {0} field requires a Uri value.")
     {
+        this.Required = false;
         this.AllowHttp = true;
         this.AllowHttps = true;
         this.AllowFtp = true;
         this.AllowFile = true;
     }
+
+    public bool Required { get; set; }
 
     public bool AllowHttp { get; set; }
 
@@ -27,10 +30,16 @@ public sealed class UriAttribute : ValidationAttribute
     public override bool IsValid(
         object? value)
     {
+        if (this.Required &&
+            value is null)
+        {
+            this.ErrorMessage = "The {0} field is required.";
+            return false;
+        }
+
         if (value is null)
         {
-            this.ErrorMessage = "Value is not a Uri.";
-            return false;
+            return true;
         }
 
         var result = Uri.TryCreate(value.ToString(), UriKind.Absolute, out var uriResult)
@@ -43,7 +52,7 @@ public sealed class UriAttribute : ValidationAttribute
             return true;
         }
 
-        this.ErrorMessage = "Value is not a Uri.";
+        this.ErrorMessage = "The {0} field is not a valid Uri.";
         return false;
     }
 }
