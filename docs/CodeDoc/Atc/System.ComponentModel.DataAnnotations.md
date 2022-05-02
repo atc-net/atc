@@ -111,6 +111,10 @@
 >```csharp
 >AllowHttps
 >```
+#### AllowOpcTcp
+>```csharp
+>AllowOpcTcp
+>```
 #### Required
 >```csharp
 >Required

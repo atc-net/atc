@@ -10,10 +10,12 @@ public class UriAttributeTests
     [InlineData(true, "https://www.dr.dk")]
     [InlineData(true, "ftp://www.dr.dk")]
     [InlineData(true, "file://c:/temp/file.txt")]
+    [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
     [InlineData(false, "httpx://www.dr.dk")]
     [InlineData(false, "httpsx://www.dr.dk")]
     [InlineData(false, "ftpx://www.dr.dk")]
     [InlineData(false, "filex://c:/temp/file.txt")]
+    [InlineData(false, "opa.tcp://milo.digitalpetri.com:62541/milo")]
     public void IsValid(
         bool expected,
         string input)
@@ -36,10 +38,12 @@ public class UriAttributeTests
     [InlineData(true, "", "https://www.dr.dk")]
     [InlineData(true, "", "ftp://www.dr.dk")]
     [InlineData(true, "", "file://c:/temp/file.txt")]
+    [InlineData(true, "", "opc.tcp://milo.digitalpetri.com:62541/milo")]
     [InlineData(false, "The value is not a valid Uri.", "httpx://www.dr.dk")]
     [InlineData(false, "The value is not a valid Uri.", "httpsx://www.dr.dk")]
     [InlineData(false, "The value is not a valid Uri.", "ftpx://www.dr.dk")]
     [InlineData(false, "The value is not a valid Uri.", "filex://c:/temp/file.txt")]
+    [InlineData(false, "The value is not a valid Uri.", "opa.tcp://milo.digitalpetri.com:62541/milo")]
     public void TryIsValid(
         bool expected,
         string expectedMessage,
