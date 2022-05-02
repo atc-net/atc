@@ -14,6 +14,7 @@ public sealed class UriAttribute : ValidationAttribute
         this.AllowHttps = true;
         this.AllowFtp = true;
         this.AllowFile = true;
+        this.AllowOpcTcp = true;
     }
 
     public bool Required { get; set; }
@@ -25,6 +26,8 @@ public sealed class UriAttribute : ValidationAttribute
     public bool AllowFtp { get; set; }
 
     public bool AllowFile { get; set; }
+
+    public bool AllowOpcTcp { get; set; }
 
     /// <inheritdoc />
     public override bool IsValid(
@@ -46,7 +49,8 @@ public sealed class UriAttribute : ValidationAttribute
                      && ((AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowHttps && string.Equals(uriResult.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowFtp && string.Equals(uriResult.Scheme, Uri.UriSchemeFtp, StringComparison.OrdinalIgnoreCase)) ||
-                         (AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)));
+                         (AllowFile && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)) ||
+                         (AllowOpcTcp && string.Equals(uriResult.Scheme, "opc.tcp", StringComparison.OrdinalIgnoreCase)));
         if (result)
         {
             return true;
