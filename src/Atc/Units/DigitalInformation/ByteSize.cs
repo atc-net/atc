@@ -153,16 +153,13 @@ public struct ByteSize : IEquatable<ByteSize>
     /// Equals the specified other.
     /// </summary>
     /// <param name="other">The other.</param>
-    public readonly bool Equals(ByteSize other)
-        => this.Value == other.Value;
+    public readonly bool Equals(ByteSize other) => this.Value == other.Value;
 
     /// <inheritdoc />
-    public override readonly bool Equals(object obj)
-        => obj is ByteSize x && this.Equals(x);
+    public override readonly bool Equals(object obj) => obj is ByteSize x && this.Equals(x);
 
     /// <inheritdoc />
-    public override readonly int GetHashCode()
-        => base.GetHashCode();
+    public override readonly int GetHashCode() => base.GetHashCode();
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance.
@@ -173,10 +170,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <remarks>
     /// The size is formatted to a human readable format using the default formatter (<see cref="ByteSizeFormatter.Default"/>).
     /// </remarks>
-    public override readonly string ToString()
-    {
-        return ByteSizeFormatter.Default.Format(Value);
-    }
+    public override readonly string ToString() => ByteSizeFormatter.Default.Format(Value);
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance, using the specified formatter.
@@ -186,15 +180,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// A <see cref="string" /> that represents this instance.
     /// </returns>
     /// <exception cref="System.ArgumentNullException"><c>formatter</c> is null.</exception>
-    public readonly string ToString(ByteSizeFormatter formatter)
-    {
-        if (formatter is null)
-        {
-            throw new ArgumentNullException(nameof(formatter));
-        }
-
-        return formatter.Format(Value);
-    }
+    public readonly string ToString(ByteSizeFormatter formatter) => Format(formatter);
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance.
@@ -205,10 +191,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <remarks>
     /// The size is formatted to a human readable format using the default formatter (<see cref="ByteSizeFormatter.Default"/>).
     /// </remarks>
-    public readonly string Format()
-    {
-        return ByteSizeFormatter.Default.Format(Value);
-    }
+    public readonly string Format() => ByteSizeFormatter.Default.Format(Value);
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance, using the specified formatter.
