@@ -41,6 +41,7 @@ public static class CultureHelper
                     LanguageCodeA3 = cultureInfo.ThreeLetterISOLanguageName.ToUpperInvariant(),
                     LanguageEnglishName = ExtractLanguageEnglishName(cultureInfo),
                     CurrencySymbol = regionInfo.CurrencySymbol,
+                    IsoCurrencySymbol = regionInfo.ISOCurrencySymbol,
                     NumberDecimalSeparator = cultureInfo.NumberFormat.NumberDecimalSeparator,
                     ShortDatePattern = cultureInfo.DateTimeFormat.ShortDatePattern,
                     LongTimePattern = cultureInfo.DateTimeFormat.LongTimePattern,

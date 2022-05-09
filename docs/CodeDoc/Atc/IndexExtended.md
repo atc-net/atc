@@ -170,6 +170,7 @@
      - CountryDisplayName
      - CountryEnglishName
      - CurrencySymbol
+     - IsoCurrencySymbol
      - LanguageCodeA2
      - LanguageCodeA3
      - LanguageDisplayName
@@ -869,6 +870,12 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
+  -  Properties
+     - IsoCurrencySymbols
+     - Required
+  -  Methods
+     - IsValid(object value)
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
   -  Static Methods
      - TryIsValid(string value, KeyStringAttribute attribute, out string errorMessage)
@@ -895,6 +902,7 @@
      - AllowFtp
      - AllowHttp
      - AllowHttps
+     - AllowOpcTcp
      - Required
   -  Methods
      - IsValid(object value)

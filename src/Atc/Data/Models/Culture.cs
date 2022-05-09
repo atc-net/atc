@@ -19,6 +19,7 @@ public class Culture
         this.LanguageCodeA3 = string.Empty;
         this.LanguageCodeA2 = string.Empty;
         this.CurrencySymbol = string.Empty;
+        this.IsoCurrencySymbol = string.Empty;
         this.NumberDecimalSeparator = string.Empty;
         this.ShortDatePattern = string.Empty;
         this.LongTimePattern = string.Empty;
@@ -37,6 +38,7 @@ public class Culture
         string languageCodeA3,
         string languageCodeA2,
         string currencySymbol,
+        string isoCurrencySymbol,
         string numberDecimalSeparator,
         string shortDatePattern,
         string longTimePattern)
@@ -52,6 +54,7 @@ public class Culture
         this.LanguageCodeA3 = languageCodeA3;
         this.LanguageCodeA2 = languageCodeA2;
         this.CurrencySymbol = currencySymbol;
+        this.IsoCurrencySymbol = isoCurrencySymbol;
         this.NumberDecimalSeparator = numberDecimalSeparator;
         this.ShortDatePattern = shortDatePattern;
         this.LongTimePattern = longTimePattern;
@@ -146,6 +149,14 @@ public class Culture
     public string CurrencySymbol { get; set; }
 
     /// <summary>
+    /// Gets or sets the ISO currency symbol.
+    /// </summary>
+    /// <value>
+    /// The currency symbol.
+    /// </value>
+    public string IsoCurrencySymbol { get; set; }
+
+    /// <summary>
     /// Gets or sets the number decimal separator.
     /// </summary>
     /// <value>
@@ -172,6 +183,6 @@ public class Culture
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{nameof(this.Lcid)}: {this.Lcid}, {nameof(this.Name)}: {this.Name}, {nameof(this.CountryEnglishName)}: {this.CountryEnglishName}, {nameof(this.CountryDisplayName)}: {this.CountryDisplayName}, {nameof(this.CountryCodeA2)}: {this.CountryCodeA2}, {nameof(this.CountryCodeA3)}: {this.CountryCodeA3}, {nameof(this.LanguageEnglishName)}: {this.LanguageEnglishName}, {nameof(this.LanguageDisplayName)}: {this.LanguageDisplayName}, {nameof(this.LanguageCodeA3)}: {this.LanguageCodeA3}, {nameof(this.LanguageCodeA2)}: {this.LanguageCodeA2}, {nameof(this.CurrencySymbol)}: {this.CurrencySymbol}, {nameof(this.NumberDecimalSeparator)}: {this.NumberDecimalSeparator}, {nameof(this.ShortDatePattern)}: {this.ShortDatePattern}, {nameof(this.LongTimePattern)}: {this.LongTimePattern}";
+        return $"{nameof(this.Lcid)}: {this.Lcid}, {nameof(this.Name)}: {this.Name}, {nameof(this.CountryEnglishName)}: {this.CountryEnglishName}, {nameof(this.CountryDisplayName)}: {this.CountryDisplayName}, {nameof(this.CountryCodeA2)}: {this.CountryCodeA2}, {nameof(this.CountryCodeA3)}: {this.CountryCodeA3}, {nameof(this.LanguageEnglishName)}: {this.LanguageEnglishName}, {nameof(this.LanguageDisplayName)}: {this.LanguageDisplayName}, {nameof(this.LanguageCodeA3)}: {this.LanguageCodeA3}, {nameof(this.LanguageCodeA2)}: {this.LanguageCodeA2}, {nameof(this.CurrencySymbol)}: {this.CurrencySymbol}, {nameof(this.IsoCurrencySymbol)}: {this.IsoCurrencySymbol}, {nameof(this.NumberDecimalSeparator)}: {this.NumberDecimalSeparator}, {nameof(this.ShortDatePattern)}: {this.ShortDatePattern}, {nameof(this.LongTimePattern)}: {this.LongTimePattern}";
     }
 }

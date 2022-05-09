@@ -188,6 +188,7 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)

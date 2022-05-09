@@ -95,7 +95,7 @@ public class StringAttribute : ValidationAttribute
         if (str.Length < this.MinLength ||
             str.Length > this.MaxLength)
         {
-            this.ErrorMessage = "The field {0} must be between 1 and 256.";
+            this.ErrorMessage = $"The field {{0}} must be between {this.MinLength} and {this.MaxLength}.";
             return false;
         }
 

@@ -129,11 +129,7 @@ public static class StringAttributeTests
         {
             Assert.True(validationResults
                 .Select(x => x.ErrorMessage)
-                .Contains("The field FirstName must be between 1 and 256.", StringComparer.Ordinal));
-
-            Assert.True(validationResults
-                .Select(x => x.ErrorMessage)
-                .Contains("The field FirstName must be between 1 and 256.", StringComparer.Ordinal));
+                .Contains("The field FirstName must be between 2 and 10.", StringComparer.Ordinal));
         }
         else if (stringAttribute.InvalidCharacters
                  .Any(x => value.Contains(x.ToString(), StringComparison.Ordinal)))
