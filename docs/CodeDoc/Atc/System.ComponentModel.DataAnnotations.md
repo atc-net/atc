@@ -7,6 +7,31 @@
 
 <br />
 
+## IsoCurrencySymbolAttribute
+
+>```csharp
+>public class IsoCurrencySymbolAttribute : ValidationAttribute
+>```
+
+### Properties
+
+#### IsoCurrencySymbols
+>```csharp
+>IsoCurrencySymbols
+>```
+#### Required
+>```csharp
+>Required
+>```
+### Methods
+
+#### IsValid
+>```csharp
+>bool IsValid(object value)
+>```
+
+<br />
+
 ## KeyStringAttribute
 
 >```csharp
