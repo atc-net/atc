@@ -22,6 +22,7 @@ public class CodeComplianceTests
         typeof(FileHelper<>),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(IsoCurrencySymbolAttribute),
         typeof(StringAttribute),
         typeof(ProcessExtensions),
         typeof(System.TaskExtensions),
