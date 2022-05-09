@@ -41,6 +41,11 @@ Culture.
 >CurrencySymbol
 >```
 ><b>Summary:</b> Gets or sets the currency symbol.
+#### IsoCurrencySymbol
+>```csharp
+>IsoCurrencySymbol
+>```
+><b>Summary:</b> Gets or sets the ISO currency symbol.
 #### LanguageCodeA2
 >```csharp
 >LanguageCodeA2
