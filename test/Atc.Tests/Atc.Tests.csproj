@@ -7,10 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
-    <PackageReference Include="FluentAssertions" Version="6.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -24,6 +24,10 @@
     <ProjectReference Include="..\..\src\Atc.CodeDocumentation\Atc.CodeDocumentation.csproj" />
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
     <ProjectReference Include="..\..\src\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Atc.Test" Version="1.0.64" />
   </ItemGroup>
 
 </Project>
