@@ -256,6 +256,13 @@
      - IsValidIssn(string code)
      - IsValidUpc(string code)
      - TryConvertToGtin(string code, out string gtin)
+- [ByteHelper](Atc.Helpers.md#bytehelper)
+  -  Static Methods
+     - ConvertToFourBytes(int value)
+     - ConvertToTwoBytes(int value)
+     - CreateZeroArray(int size)
+     - HasBit(byte value, byte checkValue)
+     - HasBit(byte value, int checkValue)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
   -  Static Methods
      - GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
@@ -631,6 +638,12 @@
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+- [ByteExtensions](System.md#byteextensions)
+  -  Static Methods
+     - TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeRemainingBytes(this byte[] value, int startPosition = 0)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
   -  Static Methods
      - Bytes(this decimal value)
@@ -764,6 +777,7 @@
      - RemoveEnd(this string value, string endValue, bool ignoreCaseSensitive = True)
      - RemoveEndingSlashIfExist(this string value)
      - RemoveNewLines(this string value)
+     - RemoveNonPrintableCharacter(this string value)
      - RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = True)
      - ReplaceAt(this string value, int index, char newChar)
      - ReplaceMany(this string value, char[] chars, char replacement)
@@ -816,6 +830,7 @@
   -  Static Methods
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
+- [TcpException](System.md#tcpexception)
 - [TimeSpanExtensions](System.md#timespanextensions)
   -  Static Methods
      - GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)

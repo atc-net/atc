@@ -16,7 +16,7 @@ public static class DecimalExtensions
     /// </returns>
     public static bool IsEqual(this decimal a, decimal b)
     {
-        return ((double)a).IsEqual((double)b);
+        return decimal.Equals(a, b);
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public static class DecimalExtensions
             return a is null && b is null;
         }
 
-        return ((double)a).IsEqual((double)b);
+        return ((decimal)a).IsEqual((decimal)b);
     }
 
     /// <summary>
