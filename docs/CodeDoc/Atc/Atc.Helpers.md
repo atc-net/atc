@@ -107,6 +107,60 @@ BarcodeHelper.
 
 <br />
 
+## ByteHelper
+ByteHelper.
+
+>```csharp
+>public static class ByteHelper
+>```
+
+### Static Methods
+
+#### ConvertToFourBytes
+>```csharp
+>byte[] ConvertToFourBytes(int value)
+>```
+><b>Summary:</b> Convert the `System.Int32` value to four bytes.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### ConvertToTwoBytes
+>```csharp
+>byte[] ConvertToTwoBytes(int value)
+>```
+><b>Summary:</b> Convert the `System.Int32` value to two bytes.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CreateZeroArray
+>```csharp
+>byte[] CreateZeroArray(int size)
+>```
+><b>Summary:</b> Create a array with the given size that only contains zeros.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`size`&nbsp;&nbsp;-&nbsp;&nbsp;The size.<br />
+#### HasBit
+>```csharp
+>bool HasBit(byte value, byte checkValue)
+>```
+><b>Summary:</b> Determines whether the specified value has the bit set compared with the check-value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`checkValue`&nbsp;&nbsp;-&nbsp;&nbsp;The check value.<br />
+#### HasBit
+>```csharp
+>bool HasBit(byte value, int checkValue)
+>```
+><b>Summary:</b> Determines whether the specified value has the bit set compared with the check-value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`checkValue`&nbsp;&nbsp;-&nbsp;&nbsp;The check value.<br />
+
+<br />
+
 ## CardinalDirectionTypeHelper
 Enumeration Helper: CardinalDirectionTypeHelper.
 

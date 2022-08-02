@@ -66,6 +66,7 @@
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
+- [ByteHelper](Atc.Helpers.md#bytehelper)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
@@ -153,6 +154,7 @@
 - [ArgumentPropertyNullException](System.md#argumentpropertynullexception)
 - [ArrayExtensions](System.md#arrayextensions)
 - [BooleanExtensions](System.md#booleanextensions)
+- [ByteExtensions](System.md#byteextensions)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
 - [CertificateValidationException](System.md#certificatevalidationexception)
 - [CharExtensions](System.md#charextensions)
