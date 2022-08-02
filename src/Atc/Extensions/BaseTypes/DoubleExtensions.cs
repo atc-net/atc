@@ -186,7 +186,7 @@ public static class DoubleExtensions
     {
         var precision = 0;
 
-        while (value * Math.Pow(10, precision) != Math.Round(value * Math.Pow(10, precision)))
+        while (Math.Abs((value * Math.Pow(10, precision)) - Math.Round(value * Math.Pow(10, precision))) > double.Epsilon)
         {
             precision++;
         }
