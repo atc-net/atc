@@ -9,7 +9,7 @@ public static class DoubleExtensions
     /// <summary>
     /// The double epsilon.
     /// </summary>
-    public const double DoubleEpsilon = 2.2204460492503131E-15;
+    public const double DoubleEpsilon = double.Epsilon;
 
     /// <summary>
     /// Compare two values. Return <c>true</c> if they are equals.
