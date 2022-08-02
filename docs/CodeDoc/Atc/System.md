@@ -1976,6 +1976,16 @@ Extensions for the `System.Threading.Tasks.Task` class.
 
 <br />
 
+## TcpException
+The exception that is thrown when TCP error occurred.
+
+>```csharp
+>public class TcpException : Exception, ISerializable
+>```
+
+
+<br />
+
 ## TimeSpanExtensions
 Extensions for the `System.TimeSpan` class.
 

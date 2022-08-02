@@ -177,6 +177,7 @@
 - [StringNullOrEmptyException](System.md#stringnulloremptyexception)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
 - [TaskExtensions](System.md#taskextensions)
+- [TcpException](System.md#tcpexception)
 - [TimeSpanExtensions](System.md#timespanextensions)
 - [TypeExtensions](System.md#typeextensions)
 - [UnexpectedTypeException](System.md#unexpectedtypeexception)

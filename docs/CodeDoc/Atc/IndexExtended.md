@@ -830,6 +830,7 @@
   -  Static Methods
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
+- [TcpException](System.md#tcpexception)
 - [TimeSpanExtensions](System.md#timespanextensions)
   -  Static Methods
      - GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
