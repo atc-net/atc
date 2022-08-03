@@ -7,7 +7,7 @@ namespace System;
 public static class ByteExtensions
 {
     /// <summary>
-    /// Take some bytes for a given start position and with a the given length.
+    /// Take some bytes from a given start position and for the given length.
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="startPosition">The start position.</param>
@@ -34,7 +34,7 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take some bytes for a given start position and with a the given length
+    /// Take some bytes from a given start position and for the given length and convert to Int.
     /// and convert to a <see cref="int"/> value.
     /// </summary>
     /// <param name="value">The value.</param>
@@ -67,7 +67,7 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take some bytes for a given start position and with a the given length
+    /// Take some bytes from a given start position and for the given length and convert to Long.
     /// and convert to a <see cref="long"/> value.
     /// </summary>
     /// <param name="value">The value.</param>
@@ -100,7 +100,7 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take the remaining bytes for a given start position.
+    /// Take the remaining bytes from a given start position.
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="startPosition">The start position.</param>
