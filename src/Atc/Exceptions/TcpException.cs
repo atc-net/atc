@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when TCP error occurred.
+/// The exception that is thrown when a TCP error occurred.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]

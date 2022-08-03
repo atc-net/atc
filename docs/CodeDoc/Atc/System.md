@@ -196,7 +196,7 @@ Extensions for the byte class.
 >```csharp
 >byte[] TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes for a given start position and with a the given length.
+><b>Summary:</b> Take some bytes from a given start position and for the given length.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
@@ -206,7 +206,7 @@ Extensions for the byte class.
 >```csharp
 >int TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes for a given start position and with a the given length and convert to a `System.Int32` value.
+><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Int. and convert to a `System.Int32` value.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
@@ -216,7 +216,7 @@ Extensions for the byte class.
 >```csharp
 >long TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes for a given start position and with a the given length and convert to a `System.Int64` value.
+><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Long. and convert to a `System.Int64` value.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
@@ -226,7 +226,7 @@ Extensions for the byte class.
 >```csharp
 >byte[] TakeRemainingBytes(this byte[] value, int startPosition = 0)
 >```
-><b>Summary:</b> Take the remaining bytes for a given start position.
+><b>Summary:</b> Take the remaining bytes from a given start position.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
@@ -1977,7 +1977,7 @@ Extensions for the `System.Threading.Tasks.Task` class.
 <br />
 
 ## TcpException
-The exception that is thrown when TCP error occurred.
+The exception that is thrown when a TCP error occurred.
 
 >```csharp
 >public class TcpException : Exception, ISerializable
