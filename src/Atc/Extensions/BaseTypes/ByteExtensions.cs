@@ -122,4 +122,42 @@ public static class ByteExtensions
             .Skip(startPosition)
             .ToArray();
     }
+
+    /// <summary>
+    /// Splits a byte array by a specific byte into multiple byte arrays.
+    /// </summary>
+    /// <param name="source">The source byte array to split.</param>
+    /// <param name="splitByte">The byte to split on.</param>
+    public static IEnumerable<byte[]> Split(
+        this IEnumerable<byte> source,
+        byte splitByte)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        var current = new List<byte>();
+
+        foreach (var b in source)
+        {
+            if (b == splitByte)
+            {
+                if (current.Count > 0)
+                {
+                    yield return current.ToArray();
+                }
+
+                current.Clear();
+                continue;
+            }
+
+            current.Add(b);
+        }
+
+        if (current.Count > 0)
+        {
+            yield return current.ToArray();
+        }
+    }
 }
