@@ -512,11 +512,13 @@ dotnet_diagnostic.CA2254.severity = suggestion		# Logging message template
 dotnet_diagnostic.MA0031.severity = suggestion		# Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
 dotnet_diagnostic.MA0016.severity = suggestion		# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
 dotnet_diagnostic.MA0023.severity = suggestion		# Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
+dotnet_diagnostic.MA0050.severity = none	    	# Validate parameters correctly in iterator methods - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0050.md
 dotnet_diagnostic.MA0076.severity = suggestion		# Do not use implicit culture-sensitive ToString in interpolated strings - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0076.md
 
 dotnet_diagnostic.SA1615.severity = suggestion		# Category: 'Documentation' - Element return value must be documented - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1615.md
 
 dotnet_diagnostic.S1172.severity = none		        # False positive: Unused method parameters should be removed
 dotnet_diagnostic.S3267.severity = suggestion		# Simplified with LINQ expressions
+dotnet_diagnostic.S4456.severity = none		        # Split method into two - one validating the parameters and one handling the iterator
 
 dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
