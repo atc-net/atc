@@ -640,6 +640,7 @@
      - ToInt(this bool? source)
 - [ByteExtensions](System.md#byteextensions)
   -  Static Methods
+     - Split(this IEnumerable&lt;byte&gt; source, byte splitByte)
      - TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
      - TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
      - TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
