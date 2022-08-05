@@ -192,6 +192,15 @@ Extensions for the byte class.
 
 ### Static Methods
 
+#### Split
+>```csharp
+>IEnumerable<byte[]> Split(this IEnumerable<byte> source, byte splitByte)
+>```
+><b>Summary:</b> Splits a byte array by a specific byte into multiple byte arrays.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array to split.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`splitByte`&nbsp;&nbsp;-&nbsp;&nbsp;The byte to split on.<br />
 #### TakeBytes
 >```csharp
 >byte[] TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
