@@ -140,26 +140,37 @@
   -  Static Methods
      - Create(LogCategoryType logCategoryType, string key, string value, string description)
      - Create(LogCategoryType logCategoryType, string key, string value)
+     - Create(LogCategoryType logCategoryType, string message)
      - CreateAudit(string key, string value, string description)
      - CreateAudit(string key, string value)
+     - CreateAudit(string message)
      - CreateCritical(string key, string value, string description)
      - CreateCritical(string key, string value)
+     - CreateCritical(string message)
      - CreateDebug(string key, string value, string description)
      - CreateDebug(string key, string value)
+     - CreateDebug(string message)
      - CreateError(string key, string value, string description)
      - CreateError(string key, string value)
+     - CreateError(string message)
      - CreateInformation(string key, string value, string description)
      - CreateInformation(string key, string value)
+     - CreateInformation(string message)
      - CreateSecurity(string key, string value, string description)
      - CreateSecurity(string key, string value)
+     - CreateSecurity(string message)
      - CreateService(string key, string value, string description)
      - CreateService(string key, string value)
+     - CreateService(string message)
      - CreateTrace(string key, string value, string description)
      - CreateTrace(string key, string value)
+     - CreateTrace(string message)
      - CreateUi(string key, string value, string description)
      - CreateUi(string key, string value)
+     - CreateUi(string message)
      - CreateWarning(string key, string value, string description)
      - CreateWarning(string key, string value)
+     - CreateWarning(string message)
 
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
@@ -205,6 +216,13 @@
   -  Properties
      - Key
      - Value
+  -  Methods
+     - ToString()
+- [LogItem](Atc.Data.Models.md#logitem)
+  -  Properties
+     - Message
+     - Severity
+     - TimeStamp
   -  Methods
      - ToString()
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)

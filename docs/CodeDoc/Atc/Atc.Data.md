@@ -79,11 +79,19 @@ Data Helper.
 
 #### Create
 >```csharp
+>LogItem Create(LogCategoryType logCategoryType, string message)
+>```
+#### Create
+>```csharp
 >LogKeyValueItem Create(LogCategoryType logCategoryType, string key, string value)
 >```
 #### Create
 >```csharp
 >LogKeyValueItem Create(LogCategoryType logCategoryType, string key, string value, string description)
+>```
+#### CreateAudit
+>```csharp
+>LogItem CreateAudit(string message)
 >```
 #### CreateAudit
 >```csharp
@@ -95,11 +103,19 @@ Data Helper.
 >```
 #### CreateCritical
 >```csharp
+>LogItem CreateCritical(string message)
+>```
+#### CreateCritical
+>```csharp
 >LogKeyValueItem CreateCritical(string key, string value)
 >```
 #### CreateCritical
 >```csharp
 >LogKeyValueItem CreateCritical(string key, string value, string description)
+>```
+#### CreateDebug
+>```csharp
+>LogItem CreateDebug(string message)
 >```
 #### CreateDebug
 >```csharp
@@ -111,11 +127,19 @@ Data Helper.
 >```
 #### CreateError
 >```csharp
+>LogItem CreateError(string message)
+>```
+#### CreateError
+>```csharp
 >LogKeyValueItem CreateError(string key, string value)
 >```
 #### CreateError
 >```csharp
 >LogKeyValueItem CreateError(string key, string value, string description)
+>```
+#### CreateInformation
+>```csharp
+>LogItem CreateInformation(string message)
 >```
 #### CreateInformation
 >```csharp
@@ -127,11 +151,19 @@ Data Helper.
 >```
 #### CreateSecurity
 >```csharp
+>LogItem CreateSecurity(string message)
+>```
+#### CreateSecurity
+>```csharp
 >LogKeyValueItem CreateSecurity(string key, string value)
 >```
 #### CreateSecurity
 >```csharp
 >LogKeyValueItem CreateSecurity(string key, string value, string description)
+>```
+#### CreateService
+>```csharp
+>LogItem CreateService(string message)
 >```
 #### CreateService
 >```csharp
@@ -143,6 +175,10 @@ Data Helper.
 >```
 #### CreateTrace
 >```csharp
+>LogItem CreateTrace(string message)
+>```
+#### CreateTrace
+>```csharp
 >LogKeyValueItem CreateTrace(string key, string value)
 >```
 #### CreateTrace
@@ -151,11 +187,19 @@ Data Helper.
 >```
 #### CreateUi
 >```csharp
+>LogItem CreateUi(string message)
+>```
+#### CreateUi
+>```csharp
 >LogKeyValueItem CreateUi(string key, string value)
 >```
 #### CreateUi
 >```csharp
 >LogKeyValueItem CreateUi(string key, string value, string description)
+>```
+#### CreateWarning
+>```csharp
+>LogItem CreateWarning(string message)
 >```
 #### CreateWarning
 >```csharp

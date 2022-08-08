@@ -105,6 +105,15 @@
 
 <br />
 
+## ForbiddenResultAssertions
+
+>```csharp
+>public class ForbiddenResultAssertions : ErrorContentResultAssertions<ForbiddenResultAssertions>
+>```
+
+
+<br />
+
 ## NoContentResultAssertions
 
 >```csharp
@@ -169,6 +178,10 @@
 #### BeCreatedResult
 >```csharp
 >CreatedResultAssertions BeCreatedResult(string because = , object[] becauseArgs)
+>```
+#### BeForbiddenResult
+>```csharp
+>ForbiddenResultAssertions BeForbiddenResult(string because = , object[] becauseArgs)
 >```
 #### BeNoContentResult
 >```csharp

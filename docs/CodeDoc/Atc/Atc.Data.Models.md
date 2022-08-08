@@ -210,6 +210,39 @@ KeyValueItem.
 
 <br />
 
+## LogItem
+LogKeyValueItem.
+
+>```csharp
+>public class LogItem
+>```
+
+### Properties
+
+#### Message
+>```csharp
+>Message
+>```
+><b>Summary:</b> Gets or sets the message.
+#### Severity
+>```csharp
+>Severity
+>```
+><b>Summary:</b> Gets or sets the severity.
+#### TimeStamp
+>```csharp
+>TimeStamp
+>```
+><b>Summary:</b> Gets or sets the time stamp.
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## LogKeyValueItem
 LogKeyValueItem.
 

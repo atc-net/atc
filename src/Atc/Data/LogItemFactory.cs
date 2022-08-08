@@ -1,7 +1,118 @@
 namespace Atc.Data;
 
+[SuppressMessage("Minor Code Smell", "S4136:Method overloads should be grouped together", Justification = "OK.")]
 public static class LogItemFactory
 {
+    public static LogItem Create(LogCategoryType logCategoryType, string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(logCategoryType, message);
+    }
+
+    public static LogItem CreateCritical(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Critical, message);
+    }
+
+    public static LogItem CreateError(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Error, message);
+    }
+
+    public static LogItem CreateWarning(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Warning, message);
+    }
+
+    public static LogItem CreateSecurity(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Security, message);
+    }
+
+    public static LogItem CreateAudit(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Audit, message);
+    }
+
+    public static LogItem CreateService(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Service, message);
+    }
+
+    public static LogItem CreateUi(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.UI, message);
+    }
+
+    public static LogItem CreateInformation(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Information, message);
+    }
+
+    public static LogItem CreateDebug(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Debug, message);
+    }
+
+    public static LogItem CreateTrace(string message)
+    {
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return new LogItem(LogCategoryType.Trace, message);
+    }
+
     public static LogKeyValueItem Create(LogCategoryType logCategoryType, string key, string value)
     {
         if (key is null)

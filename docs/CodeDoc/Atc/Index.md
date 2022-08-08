@@ -57,6 +57,7 @@
 - [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)
 - [KeyValueItem](Atc.Data.Models.md#keyvalueitem)
+- [LogItem](Atc.Data.Models.md#logitem)
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
 
 ## [Atc.Data.SemVer](Atc.Data.SemVer.md)
