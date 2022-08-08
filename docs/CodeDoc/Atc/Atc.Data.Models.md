@@ -143,6 +143,10 @@ HttpClientRequestResult.
 >```
 ### Methods
 
+#### GetErrorMessageOrMessage
+>```csharp
+>string GetErrorMessageOrMessage()
+>```
 #### ToString
 >```csharp
 >string ToString()

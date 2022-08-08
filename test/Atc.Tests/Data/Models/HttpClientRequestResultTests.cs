@@ -91,4 +91,18 @@ public class HttpClientRequestResultTests
         Assert.False(actual.HasMessage);
         Assert.True(actual.HasException);
     }
+
+    [Fact]
+    public void GetErrorMessageOrMessage()
+    {
+        // Arrange
+        var sut = new HttpClientRequestResult<int[]>(new HttpRequestException("Hello World"));
+
+        // Act
+        var actual = sut.GetErrorMessageOrMessage();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal("Hello World", actual);
+    }
 }

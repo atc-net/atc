@@ -193,6 +193,7 @@
      - Message
      - StatusCode
   -  Methods
+     - GetErrorMessageOrMessage()
      - ToString()
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)
   -  Properties
