@@ -9,6 +9,10 @@ public static class FluentValidationExtensions
         bool useAutoRegistrateServices,
         List<AssemblyPairOptions> assemblyPairs)
     {
+        // TODO: AddFluentValidation is obsolete
+        // - this should be change to use AddFluentValidationAutoValidation instead and tested!
+        // https://github.com/FluentValidation/FluentValidation/issues/1965
+#pragma warning disable CS0618 // Type or member is obsolete
         services
             .AddControllers()
             .AddFluentValidation(options =>
@@ -33,5 +37,6 @@ public static class FluentValidationExtensions
                     }
                 }
             });
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

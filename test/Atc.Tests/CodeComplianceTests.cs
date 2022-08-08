@@ -31,6 +31,7 @@ public class CodeComplianceTests
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
         typeof(NetworkInformationHelper),
+        typeof(HttpClientRequestResult<>),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

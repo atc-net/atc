@@ -14,6 +14,7 @@
 - [ContentResultAssertionsBase&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#contentresultassertionsbase&lt;tassertions&gt;)
 - [CreatedResultAssertions](Atc.Rest.FluentAssertions.md#createdresultassertions)
 - [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
+- [ForbiddenResultAssertions](Atc.Rest.FluentAssertions.md#forbiddenresultassertions)
 - [NoContentResultAssertions](Atc.Rest.FluentAssertions.md#nocontentresultassertions)
 - [NotFoundResultAssertions](Atc.Rest.FluentAssertions.md#notfoundresultassertions)
 - [OkResultAssertions](Atc.Rest.FluentAssertions.md#okresultassertions)

@@ -73,6 +73,19 @@ public sealed class HttpClientRequestResult<TData>
     public bool HasException
         => Exception is not null;
 
+    [SuppressMessage("Design", "CA1024:Use properties where appropriate", Justification = "OK.")]
+    public string GetErrorMessageOrMessage()
+    {
+        if (HasException)
+        {
+            return Exception!.Message;
+        }
+
+        return HasMessage
+            ? Message!
+            : string.Empty;
+    }
+
     /// <inheritdoc />
     public override string ToString()
         => $"{nameof(CommunicationSucceeded)}: {CommunicationSucceeded}, {nameof(StatusCode)}: {StatusCode}, {nameof(Data)}: {Data}, {nameof(Message)}: {Message}, {nameof(Exception)}: {Exception}";
