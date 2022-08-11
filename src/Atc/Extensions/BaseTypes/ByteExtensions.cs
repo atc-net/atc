@@ -137,27 +137,32 @@ public static class ByteExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        var current = new List<byte>();
+        return SplitSource();
 
-        foreach (var b in source)
+        IEnumerable<byte[]> SplitSource()
         {
-            if (b == splitByte)
+            var current = new List<byte>();
+
+            foreach (var b in source)
             {
-                if (current.Count > 0)
+                if (b == splitByte)
                 {
-                    yield return current.ToArray();
+                    if (current.Count > 0)
+                    {
+                        yield return current.ToArray();
+                    }
+
+                    current.Clear();
+                    continue;
                 }
 
-                current.Clear();
-                continue;
+                current.Add(b);
             }
 
-            current.Add(b);
-        }
-
-        if (current.Count > 0)
-        {
-            yield return current.ToArray();
+            if (current.Count > 0)
+            {
+                yield return current.ToArray();
+            }
         }
     }
 }
