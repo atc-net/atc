@@ -3,7 +3,7 @@ namespace Atc.Tests.Helpers;
 public class MathHelperTests
 {
     [Theory]
-    [InlineData(25, 127, 95)]
+    [InlineData(75, 127, 95)]
     public void PercentageAsInteger(int expected, double totalValue, double value)
     {
         // Act
@@ -14,7 +14,7 @@ public class MathHelperTests
     }
 
     [Theory]
-    [InlineData(25.2, 127, 95)]
+    [InlineData(74.8, 127, 95)]
     public void Percentage(double expected, double totalValue, double value)
     {
         // Act
@@ -25,15 +25,15 @@ public class MathHelperTests
     }
 
     [Theory]
-    [InlineData(25.2, 127, 95, 1)]
-    [InlineData(25.2, 127, 95, 2)]
-    [InlineData(25.197, 127, 95, 3)]
+    [InlineData(74.8, 127, 95, 1)]
+    [InlineData(74.8, 127, 95, 2)]
+    [InlineData(74.803, 127, 95, 3)]
     [InlineData(0, 0, 0, 2)]
-    [InlineData(90, 100, 10, 2)]
-    [InlineData(88, 100, 12, 2)]
-    [InlineData(87.6, 100, 12.4, 2)]
-    [InlineData(87.5, 100, 12.5, 2)]
-    [InlineData(87.4, 100, 12.6, 2)]
+    [InlineData(10, 100, 10, 2)]
+    [InlineData(12, 100, 12, 2)]
+    [InlineData(12.4, 100, 12.4, 2)]
+    [InlineData(12.5, 100, 12.5, 2)]
+    [InlineData(12.6, 100, 12.6, 2)]
     public void Percentage_Digits(double expected, double totalValue, double value, int digits)
     {
         // Act
