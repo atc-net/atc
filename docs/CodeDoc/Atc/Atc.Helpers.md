@@ -1029,7 +1029,7 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`values`&nbsp;&nbsp;-&nbsp;&nbsp;The values.<br />
 #### Percentage
 >```csharp
->double Percentage(double totalValue, double value, int digits = 2)
+>double Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = False)
 >```
 ><b>Summary:</b> Percentages the specified total value.
 >
@@ -1037,6 +1037,7 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`totalValue`&nbsp;&nbsp;-&nbsp;&nbsp;The total value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`digits`&nbsp;&nbsp;-&nbsp;&nbsp;The digits.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`limit0To100`&nbsp;&nbsp;-&nbsp;&nbsp;If set, the calculated percentage will be round up/down to min 0 or max 100.<br />
 >
 ><b>Returns:</b> The calculated percentage.
 >

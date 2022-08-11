@@ -1,3 +1,4 @@
+// ReSharper disable InvertIf
 namespace Atc.Helpers;
 
 /// <summary>
@@ -24,6 +25,7 @@ public static class MathHelper
     /// <param name="totalValue">The total value.</param>
     /// <param name="value">The value.</param>
     /// <param name="digits">The digits.</param>
+    /// <param name="limit0To100">If set, the calculated percentage will be round up/down to min 0 or max 100.</param>
     /// <returns>The calculated percentage.</returns>
     /// <code><![CDATA[double value = MathUtil.Percentage(totalValue, value);]]></code>
     /// <example><![CDATA[
@@ -31,17 +33,28 @@ public static class MathHelper
     /// double value = 10;
     /// double procentage = MathUtil.Percentage(totalValue, value);
     /// ]]></example>
-    public static double Percentage(double totalValue, double value, int digits = 2)
+    public static double Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = false)
     {
         if (digits < 0)
         {
             digits = 0;
         }
 
-        double p = 0;
-        if (value < totalValue)
+        if (value.Equals(0) || totalValue.Equals(0))
         {
-            p = System.Math.Round(value / totalValue * 100, digits, MidpointRounding.AwayFromZero);
+            return 0;
+        }
+
+        var p = System.Math.Round(value / totalValue * 100, digits, MidpointRounding.AwayFromZero);
+        if (limit0To100)
+        {
+            switch (p)
+            {
+                case > 100:
+                    return 100;
+                case < 0:
+                    return 0;
+            }
         }
 
         return p;

@@ -15,6 +15,10 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(74.8, 127, 95)]
+    [InlineData(0, 100, 0)]
+    [InlineData(100, 100, 100)]
+    [InlineData(101, 100, 101)]
+    [InlineData(-1, 100, -1)]
     public void Percentage(double expected, double totalValue, double value)
     {
         // Act
@@ -38,6 +42,24 @@ public class MathHelperTests
     {
         // Act
         var actual = MathHelper.Percentage(totalValue, value, digits);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0, 100, 0, 2, false)]
+    [InlineData(100, 100, 100, 2, false)]
+    [InlineData(101, 100, 101, 2, false)]
+    [InlineData(-1, 100, -1, 2, false)]
+    [InlineData(0, 100, 0, 2, true)]
+    [InlineData(100, 100, 100, 2, true)]
+    [InlineData(100, 100, 101, 2, true)]
+    [InlineData(0, 100, -1, 2, true)]
+    public void Percentage_Digits_Limit0To100(double expected, double totalValue, double value, int digits, bool limit0To100)
+    {
+        // Act
+        var actual = MathHelper.Percentage(totalValue, value, digits, limit0To100);
 
         // Assert
         Assert.Equal(expected, actual);
