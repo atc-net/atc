@@ -392,7 +392,7 @@
      - Min(int[] values)
      - Min(List&lt;double&gt; values)
      - Min(List&lt;int&gt; values)
-     - Percentage(double totalValue, double value, int digits = 2)
+     - Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = False)
      - PercentageAsInteger(double totalValue, double value)
      - RadiansToDegrees(double radians)
      - Sin(double degrees)
