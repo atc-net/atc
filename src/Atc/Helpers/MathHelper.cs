@@ -41,7 +41,7 @@ public static class MathHelper
         double p = 0;
         if (value < totalValue)
         {
-            p = System.Math.Round(100 - (value / totalValue * 100), digits, MidpointRounding.AwayFromZero);
+            p = System.Math.Round(value / totalValue * 100, digits, MidpointRounding.AwayFromZero);
         }
 
         return p;
