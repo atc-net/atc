@@ -68,6 +68,33 @@
 
 <br />
 
+## FileInfoExtensions
+
+>```csharp
+>public static class FileInfoExtensions
+>```
+
+### Static Methods
+
+#### ReadToByteArray
+>```csharp
+>byte[] ReadToByteArray(this FileInfo fileInfo)
+>```
+#### ReadToByteArrayAsync
+>```csharp
+>Task<byte[]> ReadToByteArrayAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+#### ReadToMemoryStream
+>```csharp
+>MemoryStream ReadToMemoryStream(this FileInfo fileInfo)
+>```
+#### ReadToMemoryStreamAsync
+>```csharp
+>Task<MemoryStream> ReadToMemoryStreamAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+
+<br />
+
 ## MemoryStreamExtensions
 Extensions for the `System.IO.Stream` class.
 

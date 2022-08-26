@@ -208,6 +208,7 @@
 ## [System.IO](System.IO.md)
 
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
+- [FileInfoExtensions](System.IO.md#fileinfoextensions)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
 - [StreamExtensions](System.IO.md#streamextensions)
 

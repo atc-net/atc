@@ -969,6 +969,12 @@
      - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
      - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+- [FileInfoExtensions](System.IO.md#fileinfoextensions)
+  -  Static Methods
+     - ReadToByteArray(this FileInfo fileInfo)
+     - ReadToByteArrayAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadToMemoryStream(this FileInfo fileInfo)
+     - ReadToMemoryStreamAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
   -  Static Methods
      - ToString(this MemoryStream stream, Encoding encoding = null)

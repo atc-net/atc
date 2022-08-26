@@ -24,14 +24,15 @@ public class CodeComplianceTests
         typeof(ByteExtensions),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(FileInfoExtensions),
+        typeof(HttpClientRequestResult<>),
         typeof(IsoCurrencySymbolAttribute),
-        typeof(StringAttribute),
+        typeof(NetworkInformationHelper),
         typeof(ProcessExtensions),
+        typeof(StringAttribute),
         typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
-        typeof(NetworkInformationHelper),
-        typeof(HttpClientRequestResult<>),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
