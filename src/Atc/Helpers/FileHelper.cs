@@ -78,6 +78,38 @@ public static class FileHelper
         return InvokeReadAllTextToLinesAsync(fileInfo, cancellationToken);
     }
 
+    /// <summary>Reads to byte array.</summary>
+    /// <param name="fileInfo">The file information.</param>
+    /// <returns>Return a byte array from the file</returns>
+    public static byte[] ReadToByteArray(
+        FileInfo fileInfo)
+        => fileInfo.ReadToByteArray();
+
+    /// <summary>Reads to byte array.</summary>
+    /// <param name="fileInfo">The file information.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>Return a byte array from the file</returns>
+    public static Task<byte[]> ReadToByteArrayAsync(
+        FileInfo fileInfo,
+        CancellationToken cancellationToken = default)
+        => fileInfo.ReadToByteArrayAsync(cancellationToken);
+
+    /// <summary>Reads to <see cref="MemoryStream"/>.</summary>
+    /// <param name="fileInfo">The file information.</param>
+    /// <returns>Return a <see cref="MemoryStream"/> from the file</returns>
+    public static MemoryStream ReadToMemoryStream(
+        FileInfo fileInfo)
+        => fileInfo.ReadToMemoryStream();
+
+    /// <summary>Reads to <see cref="MemoryStream"/>.</summary>
+    /// <param name="fileInfo">The file information.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>Return a <see cref="MemoryStream"/> from the file</returns>
+    public static Task<MemoryStream> ReadToMemoryStreamAsync(
+        FileInfo fileInfo,
+        CancellationToken cancellationToken = default)
+        => fileInfo.ReadToMemoryStreamAsync(cancellationToken);
+
     /// <summary>Writes all text to the file with UTF8 encoding.</summary>
     /// <param name="fileInfo">The file information.</param>
     /// <param name="content">The content.</param>
