@@ -88,6 +88,26 @@ Enumeration: BooleanOperatorType.
 
 <br />
 
+## ByteArrayEqualityComparer
+ByteArrayEqualityComparer.
+
+>```csharp
+>public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
+>```
+
+### Methods
+
+#### Equals
+>```csharp
+>bool Equals(byte[] x, byte[] y)
+>```
+#### GetHashCode
+>```csharp
+>int GetHashCode(byte[] obj)
+>```
+
+<br />
+
 ## CardinalDirectionType
 Flag-Enumeration: CardinalDirectionType.
 
