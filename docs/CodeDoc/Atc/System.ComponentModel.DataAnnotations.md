@@ -7,6 +7,37 @@
 
 <br />
 
+## IPAddressAttribute
+
+>```csharp
+>public class IPAddressAttribute : ValidationAttribute
+>```
+
+### Static Methods
+
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, out string errorMessage)
+>```
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
+>```
+### Properties
+
+#### Required
+>```csharp
+>Required
+>```
+### Methods
+
+#### IsValid
+>```csharp
+>bool IsValid(object value)
+>```
+
+<br />
+
 ## KeyStringAttribute
 
 >```csharp
