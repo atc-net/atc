@@ -27,6 +27,7 @@
 - [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
   -  Static Methods
      - GetEnumValue(string value, bool ignoreCase = True)
+     - HasFlag(T value, T hasValue)
      - Parse(string value, bool ignoreCase = True)
      - ToArray(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
      - ToDictionary(DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = True, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)

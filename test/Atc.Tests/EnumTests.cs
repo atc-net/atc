@@ -23,6 +23,18 @@ public class EnumTests
     }
 
     [Theory]
+    [InlineData(true, AddressType.AllRegularly, AddressType.Address)]
+    [InlineData(false, AddressType.Address, AddressType.AllRegularly)]
+    [InlineData(false, AddressType.AllRegularly, AddressType.PreliminaryAddress)]
+    [InlineData(true, AddressType.AllPreliminary, AddressType.PreliminaryAddress)]
+    [InlineData(true, AddressType.All, AddressType.PreliminaryAddress)]
+    public void HasFlag(bool expected, AddressType value, AddressType hasValue)
+    {
+        var actual = Enum<AddressType>.HasFlag(value, hasValue);
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [InlineData(DayOfWeek.Monday, "Monday", true)]
     [InlineData(DayOfWeek.Monday, "MONDAY", true)]
     public void TryGetEnumValue(DayOfWeek expected, string value, bool ignoreCase)

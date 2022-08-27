@@ -82,6 +82,15 @@ public static class Enum<T>
         return value is not null && TryGetEnumValue(value.ToString(), ignoreCase: false, out returnedValue);
     }
 
+    /// <summary>Determines whether the specified value has flag.</summary>
+    /// <param name="value">The value.</param>
+    /// <param name="hasValue">The has value.</param>
+    /// <returns>
+    ///     <c>true</c> if the specified value has flag; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool HasFlag(T value, T hasValue)
+        => value.HasFlag(hasValue);
+
     /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>
     /// <param name="value">A string containing the name or value to convert.</param>
     /// <param name="ignoreCase">true to ignore case; false to regard case.</param>
