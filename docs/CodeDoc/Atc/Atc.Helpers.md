@@ -853,6 +853,37 @@ FileHelper.
 
 <br />
 
+## InternetBrowserHelper
+
+>```csharp
+>public static class InternetBrowserHelper
+>```
+
+### Static Methods
+
+#### OpenUrl
+>```csharp
+>bool OpenUrl(string url)
+>```
+><b>Summary:</b> Open the given url in the default browser on the machine.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
+>
+><b>Remarks:</b> Only url with the http or https protocol is supported.
+#### OpenUrl
+>```csharp
+>bool OpenUrl(Uri uri)
+>```
+><b>Summary:</b> Open the given url in the default browser on the machine.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
+>
+><b>Remarks:</b> Only url with the http or https protocol is supported.
+
+<br />
+
 ## MathHelper
 The MathHelper module contains procedures used to preform math operations.
 

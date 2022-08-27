@@ -370,6 +370,10 @@
      - ReadJsonFileToModel(FileInfo fileInfo)
      - WriteModelToJsonFile(FileInfo fileInfo, T model)
      - WriteModelToJsonFileAsync(FileInfo fileInfo, T model)
+- [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
+  -  Static Methods
+     - OpenUrl(string url)
+     - OpenUrl(Uri uri)
 - [MathHelper](Atc.Helpers.md#mathhelper)
   -  Static Methods
      - Acos(double value)
