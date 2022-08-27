@@ -9,7 +9,7 @@ public static class DoubleExtensions
     /// <summary>
     /// The double epsilon.
     /// </summary>
-    public const double DoubleEpsilon = 2.2204460492503131E-15;
+    public const double DoubleEpsilon = double.Epsilon;
 
     /// <summary>
     /// Compare two values. Return <c>true</c> if they are equals.
@@ -186,7 +186,7 @@ public static class DoubleExtensions
     {
         var precision = 0;
 
-        while (value * Math.Pow(10, precision) != Math.Round(value * Math.Pow(10, precision)))
+        while (Math.Abs((value * Math.Pow(10, precision)) - Math.Round(value * Math.Pow(10, precision))) > double.Epsilon)
         {
             precision++;
         }

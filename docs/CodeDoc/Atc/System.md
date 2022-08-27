@@ -183,6 +183,66 @@ Extensions for the `System.Boolean` class.
 
 <br />
 
+## ByteExtensions
+Extensions for the byte class.
+
+>```csharp
+>public static class ByteExtensions
+>```
+
+### Static Methods
+
+#### Split
+>```csharp
+>IEnumerable<byte[]> Split(this IEnumerable<byte> source, byte splitByte)
+>```
+><b>Summary:</b> Splits a byte array by a specific byte into multiple byte arrays.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array to split.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`splitByte`&nbsp;&nbsp;-&nbsp;&nbsp;The byte to split on.<br />
+#### TakeBytes
+>```csharp
+>byte[] TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
+>```
+><b>Summary:</b> Take some bytes from a given start position and for the given length.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+#### TakeBytesAndConvertToInt
+>```csharp
+>int TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
+>```
+><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Int. and convert to a `System.Int32` value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+#### TakeBytesAndConvertToLong
+>```csharp
+>long TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
+>```
+><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Long. and convert to a `System.Int64` value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+#### TakeRemainingBytes
+>```csharp
+>byte[] TakeRemainingBytes(this byte[] value, int startPosition = 0)
+>```
+><b>Summary:</b> Take the remaining bytes from a given start position.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
+
+<br />
+
 ## ByteSizeExtensions
 
 >```csharp
@@ -1380,7 +1440,7 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> The string without none readable chars.
+><b>Returns:</b> The string without non-printable character.
 #### RemoveEnd
 >```csharp
 >string RemoveEnd(this string value, string endValue, bool ignoreCaseSensitive = True)
@@ -1411,6 +1471,16 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
 ><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline but instead works for all platforms as Windows, Unix and Mac. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac
+#### RemoveNonPrintableCharacter
+>```csharp
+>string RemoveNonPrintableCharacter(this string value)
+>```
+><b>Summary:</b> Removes the non-printable character.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+>
+><b>Returns:</b> The string without non-printable character.
 #### RemoveStart
 >```csharp
 >string RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = True)
@@ -1912,6 +1982,16 @@ Extensions for the `System.Threading.Tasks.Task` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tasksToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The tasks to run.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxTasksToRunInParallel`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum number of tasks to run in parallel.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+
+<br />
+
+## TcpException
+The exception that is thrown when a TCP error occurred.
+
+>```csharp
+>public class TcpException : Exception, ISerializable
+>```
+
 
 <br />
 

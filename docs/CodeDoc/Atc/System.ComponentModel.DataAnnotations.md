@@ -25,6 +25,19 @@
 >```
 ### Properties
 
+=======
+## IsoCurrencySymbolAttribute
+
+>```csharp
+>public class IsoCurrencySymbolAttribute : ValidationAttribute
+>```
+
+### Properties
+
+#### IsoCurrencySymbols
+>```csharp
+>IsoCurrencySymbols
+>```
 #### Required
 >```csharp
 >Required

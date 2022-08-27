@@ -140,26 +140,37 @@
   -  Static Methods
      - Create(LogCategoryType logCategoryType, string key, string value, string description)
      - Create(LogCategoryType logCategoryType, string key, string value)
+     - Create(LogCategoryType logCategoryType, string message)
      - CreateAudit(string key, string value, string description)
      - CreateAudit(string key, string value)
+     - CreateAudit(string message)
      - CreateCritical(string key, string value, string description)
      - CreateCritical(string key, string value)
+     - CreateCritical(string message)
      - CreateDebug(string key, string value, string description)
      - CreateDebug(string key, string value)
+     - CreateDebug(string message)
      - CreateError(string key, string value, string description)
      - CreateError(string key, string value)
+     - CreateError(string message)
      - CreateInformation(string key, string value, string description)
      - CreateInformation(string key, string value)
+     - CreateInformation(string message)
      - CreateSecurity(string key, string value, string description)
      - CreateSecurity(string key, string value)
+     - CreateSecurity(string message)
      - CreateService(string key, string value, string description)
      - CreateService(string key, string value)
+     - CreateService(string message)
      - CreateTrace(string key, string value, string description)
      - CreateTrace(string key, string value)
+     - CreateTrace(string message)
      - CreateUi(string key, string value, string description)
      - CreateUi(string key, string value)
+     - CreateUi(string message)
      - CreateWarning(string key, string value, string description)
      - CreateWarning(string key, string value)
+     - CreateWarning(string message)
 
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
@@ -170,6 +181,7 @@
      - CountryDisplayName
      - CountryEnglishName
      - CurrencySymbol
+     - IsoCurrencySymbol
      - LanguageCodeA2
      - LanguageCodeA3
      - LanguageDisplayName
@@ -192,6 +204,7 @@
      - Message
      - StatusCode
   -  Methods
+     - GetErrorMessageOrMessage()
      - ToString()
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)
   -  Properties
@@ -203,6 +216,13 @@
   -  Properties
      - Key
      - Value
+  -  Methods
+     - ToString()
+- [LogItem](Atc.Data.Models.md#logitem)
+  -  Properties
+     - Message
+     - Severity
+     - TimeStamp
   -  Methods
      - ToString()
 - [LogKeyValueItem](Atc.Data.Models.md#logkeyvalueitem)
@@ -255,6 +275,13 @@
      - IsValidIssn(string code)
      - IsValidUpc(string code)
      - TryConvertToGtin(string code, out string gtin)
+- [ByteHelper](Atc.Helpers.md#bytehelper)
+  -  Static Methods
+     - ConvertToFourBytes(int value)
+     - ConvertToTwoBytes(int value)
+     - CreateZeroArray(int size)
+     - HasBit(byte value, byte checkValue)
+     - HasBit(byte value, int checkValue)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
   -  Static Methods
      - GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
@@ -365,7 +392,7 @@
      - Min(int[] values)
      - Min(List&lt;double&gt; values)
      - Min(List&lt;int&gt; values)
-     - Percentage(double totalValue, double value, int digits = 2)
+     - Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = False)
      - PercentageAsInteger(double totalValue, double value)
      - RadiansToDegrees(double radians)
      - Sin(double degrees)
@@ -630,6 +657,13 @@
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+- [ByteExtensions](System.md#byteextensions)
+  -  Static Methods
+     - Split(this IEnumerable&lt;byte&gt; source, byte splitByte)
+     - TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
+     - TakeRemainingBytes(this byte[] value, int startPosition = 0)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
   -  Static Methods
      - Bytes(this decimal value)
@@ -763,6 +797,7 @@
      - RemoveEnd(this string value, string endValue, bool ignoreCaseSensitive = True)
      - RemoveEndingSlashIfExist(this string value)
      - RemoveNewLines(this string value)
+     - RemoveNonPrintableCharacter(this string value)
      - RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = True)
      - ReplaceAt(this string value, int index, char newChar)
      - ReplaceMany(this string value, char[] chars, char replacement)
@@ -815,6 +850,7 @@
   -  Static Methods
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
+- [TcpException](System.md#tcpexception)
 - [TimeSpanExtensions](System.md#timespanextensions)
   -  Static Methods
      - GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
@@ -874,6 +910,9 @@
      - TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
      - TryIsValid(string value, out string errorMessage)
   -  Properties
+- [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
+  -  Properties
+     - IsoCurrencySymbols
      - Required
   -  Methods
      - IsValid(object value)

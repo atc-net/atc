@@ -489,7 +489,6 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     public static bool operator <=(SemanticVersion? a, SemanticVersion? b)
         => ReferenceEquals(a, null) || a.CompareTo(b) <= 0;
 
-    [SuppressMessage("Major Code Smell", "S4456:Parameter validation in yielding methods should be wrapped", Justification = "OK.")]
     private IEnumerable<int> PartComparisons(
         SemanticVersion other)
     {
@@ -498,9 +497,14 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             throw new ArgumentNullException(nameof(other));
         }
 
-        yield return Major.CompareTo(other.Major);
-        yield return Minor.CompareTo(other.Minor);
-        yield return Patch.CompareTo(other.Patch);
+        return Compare();
+
+        IEnumerable<int> Compare()
+        {
+            yield return Major.CompareTo(other.Major);
+            yield return Minor.CompareTo(other.Minor);
+            yield return Patch.CompareTo(other.Patch);
+        }
     }
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]

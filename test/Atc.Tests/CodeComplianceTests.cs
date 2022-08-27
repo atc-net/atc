@@ -20,14 +20,18 @@ public class CodeComplianceTests
         typeof(LoggerExtensions),
         typeof(FileHelper),
         typeof(FileHelper<>),
+        typeof(ByteHelper),
+        typeof(ByteExtensions),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(IsoCurrencySymbolAttribute),
         typeof(StringAttribute),
         typeof(ProcessExtensions),
         typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
         typeof(NetworkInformationHelper),
+        typeof(HttpClientRequestResult<>),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
@@ -71,6 +75,7 @@ public class CodeComplianceTests
         var excludeTypesForNaming = new List<Type>
         {
             typeof(CharExtensions),
+            typeof(ByteExtensions),
             typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.
         };
 

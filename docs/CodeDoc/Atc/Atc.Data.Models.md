@@ -41,6 +41,11 @@ Culture.
 >CurrencySymbol
 >```
 ><b>Summary:</b> Gets or sets the currency symbol.
+#### IsoCurrencySymbol
+>```csharp
+>IsoCurrencySymbol
+>```
+><b>Summary:</b> Gets or sets the ISO currency symbol.
 #### LanguageCodeA2
 >```csharp
 >LanguageCodeA2
@@ -138,6 +143,10 @@ HttpClientRequestResult.
 >```
 ### Methods
 
+#### GetErrorMessageOrMessage
+>```csharp
+>string GetErrorMessageOrMessage()
+>```
 #### ToString
 >```csharp
 >string ToString()
@@ -192,6 +201,39 @@ KeyValueItem.
 >Value
 >```
 ><b>Summary:</b> Gets or sets the value.
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
+## LogItem
+LogKeyValueItem.
+
+>```csharp
+>public class LogItem
+>```
+
+### Properties
+
+#### Message
+>```csharp
+>Message
+>```
+><b>Summary:</b> Gets or sets the message.
+#### Severity
+>```csharp
+>Severity
+>```
+><b>Summary:</b> Gets or sets the severity.
+#### TimeStamp
+>```csharp
+>TimeStamp
+>```
+><b>Summary:</b> Gets or sets the time stamp.
 ### Methods
 
 #### ToString

@@ -460,6 +460,11 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.RemoveDataCrap());
 
     [Theory]
+    [InlineData("HalloWorld", "Hallo\u0006World")]
+    public void RemoveNonPrintableCharacter(string expected, string input)
+        => Assert.Equal(expected, input.RemoveNonPrintableCharacter());
+
+    [Theory]
     [InlineData("Hallo Wo...", "Hallo World", 8)]
     [InlineData("Hallo World", "Hallo World", 20)]
     public void Truncate(string expected, string input, int maxLength)

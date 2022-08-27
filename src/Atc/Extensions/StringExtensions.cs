@@ -1211,7 +1211,7 @@ public static class StringExtensions
     /// Removes the data crap.
     /// </summary>
     /// <param name="value">The string to work on.</param>
-    /// <returns>The string without none readable chars.</returns>
+    /// <returns>The string without non-printable character.</returns>
     public static string RemoveDataCrap(this string value)
     {
         if (string.IsNullOrEmpty(value))
@@ -1253,6 +1253,25 @@ public static class StringExtensions
         sb.Replace("\u001E", " ");
         sb.Replace("\u001F", " ");
         return sb.ToString();
+    }
+
+    /// <summary>
+    /// Removes the non-printable character.
+    /// </summary>
+    /// <param name="value">The string to work on.</param>
+    /// <returns>The string without non-printable character.</returns>
+    public static string RemoveNonPrintableCharacter(this string value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        var ca = value
+            .Where(c => !char.IsControl(c))
+            .ToArray();
+
+        return new string(ca);
     }
 
     /// <summary>

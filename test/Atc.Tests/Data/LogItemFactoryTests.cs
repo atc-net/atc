@@ -3,6 +3,179 @@ namespace Atc.Tests.Data;
 public class LogItemFactoryTests
 {
     [Theory]
+    [InlineData("MyValue", LogCategoryType.Critical, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Error, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Warning, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Security, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Audit, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Service, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.UI, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Information, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Debug, "MyValue")]
+    [InlineData("MyValue", LogCategoryType.Trace, "MyValue")]
+    public void LogItemCreate(string expected, LogCategoryType logCategoryType, string message)
+    {
+        // Act
+        var actual = LogItemFactory.Create(logCategoryType, message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(logCategoryType, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateCritical(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateCritical(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Critical, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateError(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateError(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Error, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateWarning(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateWarning(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Warning, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateSecurity(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateSecurity(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Security, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateAudit(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateAudit(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Audit, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateService(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateService(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Service, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateUi(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateUi(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.UI, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateInformation(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateInformation(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Information, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateDebug(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateDebug(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Debug, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
+    [InlineData("MyValue", "MyValue")]
+    public void LogItemCreateTrace(string expected, string message)
+    {
+        // Act
+        var actual = LogItemFactory.CreateTrace(message);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotNull(actual);
+        Assert.NotNull(actual.Message);
+        Assert.Equal(LogCategoryType.Trace, actual.Severity);
+        Assert.Equal(expected, actual.Message);
+    }
+
+    [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Critical, Description: ", LogCategoryType.Critical, "MyKey", "MyValue")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Error, Description: ", LogCategoryType.Error, "MyKey", "MyValue")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Warning, Description: ", LogCategoryType.Warning, "MyKey", "MyValue")]

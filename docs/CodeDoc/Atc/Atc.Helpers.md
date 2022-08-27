@@ -107,6 +107,60 @@ BarcodeHelper.
 
 <br />
 
+## ByteHelper
+ByteHelper.
+
+>```csharp
+>public static class ByteHelper
+>```
+
+### Static Methods
+
+#### ConvertToFourBytes
+>```csharp
+>byte[] ConvertToFourBytes(int value)
+>```
+><b>Summary:</b> Convert the `System.Int32` value to four bytes.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### ConvertToTwoBytes
+>```csharp
+>byte[] ConvertToTwoBytes(int value)
+>```
+><b>Summary:</b> Convert the `System.Int32` value to two bytes.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### CreateZeroArray
+>```csharp
+>byte[] CreateZeroArray(int size)
+>```
+><b>Summary:</b> Create a array with the given size that only contains zeros.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`size`&nbsp;&nbsp;-&nbsp;&nbsp;The size.<br />
+#### HasBit
+>```csharp
+>bool HasBit(byte value, byte checkValue)
+>```
+><b>Summary:</b> Determines whether the specified value has the bit set compared with the check-value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`checkValue`&nbsp;&nbsp;-&nbsp;&nbsp;The check value.<br />
+#### HasBit
+>```csharp
+>bool HasBit(byte value, int checkValue)
+>```
+><b>Summary:</b> Determines whether the specified value has the bit set compared with the check-value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`checkValue`&nbsp;&nbsp;-&nbsp;&nbsp;The check value.<br />
+
+<br />
+
 ## CardinalDirectionTypeHelper
 Enumeration Helper: CardinalDirectionTypeHelper.
 
@@ -975,7 +1029,7 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`values`&nbsp;&nbsp;-&nbsp;&nbsp;The values.<br />
 #### Percentage
 >```csharp
->double Percentage(double totalValue, double value, int digits = 2)
+>double Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = False)
 >```
 ><b>Summary:</b> Percentages the specified total value.
 >
@@ -983,6 +1037,7 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`totalValue`&nbsp;&nbsp;-&nbsp;&nbsp;The total value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`digits`&nbsp;&nbsp;-&nbsp;&nbsp;The digits.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`limit0To100`&nbsp;&nbsp;-&nbsp;&nbsp;If set, the calculated percentage will be round up/down to min 0 or max 100.<br />
 >
 ><b>Returns:</b> The calculated percentage.
 >

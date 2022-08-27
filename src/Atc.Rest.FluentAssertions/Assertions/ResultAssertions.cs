@@ -51,6 +51,13 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
         return new BadRequestResultAssertions(badRequest);
     }
 
+    public ForbiddenResultAssertions BeForbiddenResult(string because = "", params object[] becauseArgs)
+    {
+        AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Forbidden, because, becauseArgs);
+        var forbidden = (ContentResult)Subject;
+        return new ForbiddenResultAssertions(forbidden);
+    }
+
     public NotFoundResultAssertions BeNotFoundResult(string because = "", params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NotFound, because, becauseArgs);

@@ -22,6 +22,7 @@
 - [ErrorContentResultAssertions&lt;TAssertions&gt;](Atc.Rest.FluentAssertions.md#errorcontentresultassertions&lt;tassertions&gt;)
   -  Methods
      - WithErrorMessage(string expectedErrorMessage, string because = , object[] becauseArgs)
+- [ForbiddenResultAssertions](Atc.Rest.FluentAssertions.md#forbiddenresultassertions)
 - [NoContentResultAssertions](Atc.Rest.FluentAssertions.md#nocontentresultassertions)
 - [NotFoundResultAssertions](Atc.Rest.FluentAssertions.md#notfoundresultassertions)
 - [OkResultAssertions](Atc.Rest.FluentAssertions.md#okresultassertions)
@@ -35,6 +36,7 @@
      - BeConflictResult(string because = , object[] becauseArgs)
      - BeContentResult(string because = , object[] becauseArgs)
      - BeCreatedResult(string because = , object[] becauseArgs)
+     - BeForbiddenResult(string because = , object[] becauseArgs)
      - BeNoContentResult(string because = , object[] becauseArgs)
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)
