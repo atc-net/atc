@@ -362,6 +362,10 @@
      - ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
      - ReadAllTextToLines(FileInfo fileInfo)
      - ReadAllTextToLinesAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadToByteArray(FileInfo fileInfo)
+     - ReadToByteArrayAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadToMemoryStream(FileInfo fileInfo)
+     - ReadToMemoryStreamAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
      - WriteAllText(FileInfo fileInfo, string content)
      - WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
 - [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
@@ -969,6 +973,12 @@
      - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
      - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+- [FileInfoExtensions](System.IO.md#fileinfoextensions)
+  -  Static Methods
+     - ReadToByteArray(this FileInfo fileInfo)
+     - ReadToByteArrayAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+     - ReadToMemoryStream(this FileInfo fileInfo)
+     - ReadToMemoryStreamAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
   -  Static Methods
      - ToString(this MemoryStream stream, Encoding encoding = null)

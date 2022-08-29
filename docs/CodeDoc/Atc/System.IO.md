@@ -68,6 +68,60 @@
 
 <br />
 
+## FileInfoExtensions
+Extension methods for the `System.IO.FileInfo` class.
+
+>```csharp
+>public static class FileInfoExtensions
+>```
+
+### Static Methods
+
+#### ReadToByteArray
+>```csharp
+>byte[] ReadToByteArray(this FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads to byte array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return a byte array from the file
+#### ReadToByteArrayAsync
+>```csharp
+>Task<byte[]> ReadToByteArrayAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads to byte array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return a byte array from the file
+#### ReadToMemoryStream
+>```csharp
+>MemoryStream ReadToMemoryStream(this FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
+#### ReadToMemoryStreamAsync
+>```csharp
+>Task<MemoryStream> ReadToMemoryStreamAsync(this FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
+
+<br />
+
 ## MemoryStreamExtensions
 Extensions for the `System.IO.Stream` class.
 
