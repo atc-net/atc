@@ -10,6 +10,10 @@
 - [ArticleNumberType](Atc.md#articlenumbertype)
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
 - [BooleanOperatorType](Atc.md#booleanoperatortype)
+- [ByteArrayEqualityComparer](Atc.md#bytearrayequalitycomparer)
+  -  Methods
+     - Equals(byte[] x, byte[] y)
+     - GetHashCode(byte[] obj)
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
 - [CasingStyleDescriptionAttribute](Atc.md#casingstyledescriptionattribute)
