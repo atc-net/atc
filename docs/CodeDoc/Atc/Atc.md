@@ -88,6 +88,26 @@ Enumeration: BooleanOperatorType.
 
 <br />
 
+## ByteArrayEqualityComparer
+ByteArrayEqualityComparer.
+
+>```csharp
+>public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
+>```
+
+### Methods
+
+#### Equals
+>```csharp
+>bool Equals(byte[] x, byte[] y)
+>```
+#### GetHashCode
+>```csharp
+>int GetHashCode(byte[] obj)
+>```
+
+<br />
+
 ## CardinalDirectionType
 Flag-Enumeration: CardinalDirectionType.
 
@@ -285,6 +305,17 @@ Extension methods for enums.
 >Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("Monday"));
 >Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("MONDAY"));
 >```
+#### HasFlag
+>```csharp
+>bool HasFlag(T value, T hasValue)
+>```
+><b>Summary:</b> Determines whether the specified value has flag.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`hasValue`&nbsp;&nbsp;-&nbsp;&nbsp;The has value.<br />
+>
+><b>Returns:</b> `true` if the specified value has flag; otherwise, `false`.
 #### Parse
 >```csharp
 >T Parse(string value, bool ignoreCase = True)

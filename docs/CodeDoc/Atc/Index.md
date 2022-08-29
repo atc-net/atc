@@ -10,6 +10,7 @@
 - [ArticleNumberType](Atc.md#articlenumbertype)
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
 - [BooleanOperatorType](Atc.md#booleanoperatortype)
+- [ByteArrayEqualityComparer](Atc.md#bytearrayequalitycomparer)
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
 - [CasingStyleDescriptionAttribute](Atc.md#casingstyledescriptionattribute)
@@ -193,6 +194,7 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [IPAddressAttribute](System.ComponentModel.DataAnnotations.md#ipaddressattribute)
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
@@ -209,6 +211,7 @@
 ## [System.IO](System.IO.md)
 
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
+- [FileInfoExtensions](System.IO.md#fileinfoextensions)
 - [MemoryStreamExtensions](System.IO.md#memorystreamextensions)
 - [StreamExtensions](System.IO.md#streamextensions)
 

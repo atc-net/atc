@@ -781,6 +781,48 @@ FileHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
 >
 ><b>Returns:</b> Return the content as lines from the file, if the file don't exist a empty string array will be returned.
+#### ReadToByteArray
+>```csharp
+>byte[] ReadToByteArray(FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads to byte array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return a byte array from the file
+#### ReadToByteArrayAsync
+>```csharp
+>Task<byte[]> ReadToByteArrayAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads to byte array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return a byte array from the file
+#### ReadToMemoryStream
+>```csharp
+>MemoryStream ReadToMemoryStream(FileInfo fileInfo)
+>```
+><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>
+><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
+#### ReadToMemoryStreamAsync
+>```csharp
+>Task<MemoryStream> ReadToMemoryStreamAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>
+><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
 #### WriteAllText
 >```csharp
 >void WriteAllText(FileInfo fileInfo, string content)
