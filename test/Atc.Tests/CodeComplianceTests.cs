@@ -24,6 +24,7 @@ public class CodeComplianceTests
         typeof(ByteExtensions),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(InternetBrowserHelper),
         typeof(FileInfoExtensions),
         typeof(HttpClientRequestResult<>),
         typeof(IsoCurrencySymbolAttribute),

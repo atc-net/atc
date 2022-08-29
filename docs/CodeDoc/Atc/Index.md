@@ -78,6 +78,7 @@
 - [EnumHelper](Atc.Helpers.md#enumhelper)
 - [FileHelper](Atc.Helpers.md#filehelper)
 - [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
+- [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
