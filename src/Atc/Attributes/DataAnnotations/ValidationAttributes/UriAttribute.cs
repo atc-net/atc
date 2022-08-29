@@ -3,6 +3,7 @@
 namespace System.ComponentModel.DataAnnotations;
 
 [ExcludeFromCodeCoverage]
+[SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public sealed class UriAttribute : ValidationAttribute
 {
@@ -15,6 +16,23 @@ public sealed class UriAttribute : ValidationAttribute
         this.AllowFtp = true;
         this.AllowFile = true;
         this.AllowOpcTcp = true;
+    }
+
+    public UriAttribute(
+        bool required,
+        bool allowHttp,
+        bool allowHttps,
+        bool allowFtp,
+        bool allowFile,
+        bool allowOpcTcp)
+        : this()
+    {
+        this.Required = required;
+        this.AllowHttp = allowHttp;
+        this.AllowHttps = allowHttps;
+        this.AllowFtp = allowFtp;
+        this.AllowFile = allowFile;
+        this.AllowOpcTcp = allowOpcTcp;
     }
 
     public bool Required { get; set; }

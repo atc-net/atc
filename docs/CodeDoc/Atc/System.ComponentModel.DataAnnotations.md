@@ -7,6 +7,25 @@
 
 <br />
 
+## IPAddressAttribute
+
+>```csharp
+>public class IPAddressAttribute : ValidationAttribute
+>```
+
+### Static Methods
+
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, out string errorMessage)
+>```
+#### TryIsValid
+>```csharp
+>bool TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
+>```
+### Properties
+
+=======
 ## IsoCurrencySymbolAttribute
 
 >```csharp

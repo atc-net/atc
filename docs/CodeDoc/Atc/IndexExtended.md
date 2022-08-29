@@ -914,6 +914,11 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [IPAddressAttribute](System.ComponentModel.DataAnnotations.md#ipaddressattribute)
+  -  Static Methods
+     - TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
+     - TryIsValid(string value, out string errorMessage)
+  -  Properties
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
   -  Properties
      - IsoCurrencySymbols

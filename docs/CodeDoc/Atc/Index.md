@@ -193,6 +193,7 @@
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
 
+- [IPAddressAttribute](System.ComponentModel.DataAnnotations.md#ipaddressattribute)
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
