@@ -46,7 +46,7 @@ public static class InternetBrowserHelper
 
         if (!uri.Scheme.StartsWith("http", StringComparison.OrdinalIgnoreCase))
         {
-            throw new ArgumentException("Only supported protocols: http or https", nameof(uri));
+            throw new ArgumentException("Only supports protocols: http or https", nameof(uri));
         }
 
         try
