@@ -175,7 +175,7 @@ public class ByteSizeFormatterTests
             NumberOfDecimals = numberOfDecimals,
             MinUnit = minUnit,
             MaxUnit = maxUnit,
-            NumberFormatInfo = new System.Globalization.CultureInfo(lcid).NumberFormat,
+            NumberFormatInfo = new CultureInfo(lcid).NumberFormat,
         };
 
         // Atc

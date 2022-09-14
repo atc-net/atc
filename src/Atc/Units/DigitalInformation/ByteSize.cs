@@ -13,7 +13,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <param name="value">The size in bytes.</param>
     public ByteSize(long value)
     {
-        this.Value = value;
+        Value = value;
     }
 
     /// <summary>
@@ -153,10 +153,10 @@ public struct ByteSize : IEquatable<ByteSize>
     /// Equals the specified other.
     /// </summary>
     /// <param name="other">The other.</param>
-    public readonly bool Equals(ByteSize other) => this.Value == other.Value;
+    public readonly bool Equals(ByteSize other) => Value == other.Value;
 
     /// <inheritdoc />
-    public override readonly bool Equals(object obj) => obj is ByteSize x && this.Equals(x);
+    public override readonly bool Equals(object obj) => obj is ByteSize x && Equals(x);
 
     /// <inheritdoc />
     public override readonly int GetHashCode() => base.GetHashCode();

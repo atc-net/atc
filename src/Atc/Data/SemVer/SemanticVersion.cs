@@ -174,7 +174,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <summary>
     /// Whether this version is a strict SemVer2.0.
     /// </summary>
-    public bool IsStrictMode => TryParse(this.ToString(), looseMode: false, out _);
+    public bool IsStrictMode => TryParse(ToString(), looseMode: false, out _);
 
     /// <summary>
     /// Returns this version without any pre-release or build version.
@@ -220,7 +220,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             }
         }
 
-        return PreReleaseVersion.Compare(this.PreRelease, other.PreRelease);
+        return PreReleaseVersion.Compare(PreRelease, other.PreRelease);
     }
 
     /// <summary>
@@ -236,7 +236,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         int startingPart,
         bool looseMode = false)
     {
-        var version = Parse(this.ToString(), looseMode);
+        var version = Parse(ToString(), looseMode);
 
         if (significantParts is < 0 or > 4)
         {
@@ -335,7 +335,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             return true;
         }
 
-        var version = Parse(this.ToString(), looseMode);
+        var version = Parse(ToString(), looseMode);
         return version.CompareTo(otherVersion, significantParts, startingPart, looseMode) > 0;
     }
 
@@ -355,7 +355,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             return true;
         }
 
-        var version = Parse(this.ToString());
+        var version = Parse(ToString());
         return version.CompareTo(otherVersion, significantParts, startingPart) >= 0;
     }
 
@@ -375,7 +375,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             return true;
         }
 
-        var version = Parse(this.ToString(), looseMode);
+        var version = Parse(ToString(), looseMode);
         if (withinMinorReleaseOnly)
         {
             return version.Major == otherVersion.Major &&

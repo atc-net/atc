@@ -16,8 +16,8 @@ public struct Point2D : IEquatable<Point2D>
     public Point2D(double x, double y)
         : this()
     {
-        this.X = x;
-        this.Y = y;
+        X = x;
+        Y = y;
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public struct Point2D : IEquatable<Point2D>
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
-    public bool IsDefault => this.X.IsEqual(0) && this.Y.IsEqual(0);
+    public bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
 
     /// <summary>
     /// Implements the operator ==.
@@ -71,19 +71,19 @@ public struct Point2D : IEquatable<Point2D>
     /// </summary>
     /// <param name="other">The other.</param>
     public bool Equals(Point2D other)
-        => this.X.AreClose(other.X) && this.Y.AreClose(other.Y);
+        => X.AreClose(other.X) && Y.AreClose(other.Y);
 
     /// <inheritdoc />
     public override bool Equals(object obj)
-        => obj is Point2D x && this.Equals(x);
+        => obj is Point2D x && Equals(x);
 
     /// <inheritdoc />
     public override int GetHashCode()
-        => this.X.GetHashCode() ^ this.Y.GetHashCode();
+        => X.GetHashCode() ^ Y.GetHashCode();
 
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{nameof(X)}: {this.X}, {nameof(Y)}: {this.Y}";
+        return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
     }
 }

@@ -1,3 +1,5 @@
+using TaskExtensions = System.TaskExtensions;
+
 namespace Atc.Tests;
 
 public class CodeComplianceTests
@@ -31,7 +33,7 @@ public class CodeComplianceTests
         typeof(NetworkInformationHelper),
         typeof(ProcessExtensions),
         typeof(StringAttribute),
-        typeof(System.TaskExtensions),
+        typeof(TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
     };

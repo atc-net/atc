@@ -11,9 +11,9 @@ public class TestResult
     /// <param name="text">The text.</param>
     public TestResult(string text)
     {
-        this.IsError = false;
-        this.IndentLevel = 0;
-        this.Text = text;
+        IsError = false;
+        IndentLevel = 0;
+        Text = text;
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public class TestResult
             indentLevel = 1;
         }
 
-        this.IsError = true;
-        this.IndentLevel = indentLevel;
-        this.Text = text;
+        IsError = true;
+        IndentLevel = indentLevel;
+        Text = text;
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public class TestResult
             indentLevel = 1;
         }
 
-        this.IsError = isError;
-        this.IndentLevel = indentLevel;
-        this.Text = text;
+        IsError = isError;
+        IndentLevel = indentLevel;
+        Text = text;
     }
 
     /// <summary>
@@ -64,10 +64,10 @@ public class TestResult
             indentLevel = 1;
         }
 
-        this.IsError = true;
-        this.IndentLevel = indentLevel;
-        this.Text = text;
-        this.SubLines = subLines;
+        IsError = true;
+        IndentLevel = indentLevel;
+        Text = text;
+        SubLines = subLines;
     }
 
     /// <summary>
@@ -110,6 +110,6 @@ public class TestResult
     /// </returns>
     public override string ToString()
     {
-        return $"{nameof(this.IsError)}: {this.IsError}, {nameof(this.IndentLevel)}: {this.IndentLevel}, {nameof(this.Text)}: {this.Text}, {nameof(this.SubLines)}: {this.SubLines?.Count}";
+        return $"{nameof(IsError)}: {IsError}, {nameof(IndentLevel)}: {IndentLevel}, {nameof(Text)}: {Text}, {nameof(SubLines)}: {SubLines?.Count}";
     }
 }

@@ -9,7 +9,7 @@ public class DataAnnotationHelperTests
     public void TryValidate(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
     {
         // Arrange
-        var person = new TestPerson()
+        var person = new TestPerson
         {
             FirstName = firstName,
             LastName = lastName,
@@ -35,7 +35,7 @@ public class DataAnnotationHelperTests
     public void TryValidateOutToString(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
     {
         // Arrange
-        var person = new TestPerson()
+        var person = new TestPerson
         {
             FirstName = firstName,
             LastName = lastName,
@@ -61,7 +61,7 @@ public class DataAnnotationHelperTests
     public void TryValidateOutToValidationException(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
     {
         // Arrange
-        var person = new TestPerson()
+        var person = new TestPerson
         {
             FirstName = firstName,
             LastName = lastName,

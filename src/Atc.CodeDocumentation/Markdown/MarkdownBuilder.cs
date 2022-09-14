@@ -90,7 +90,7 @@ internal class MarkdownBuilder
     {
         if (code.EndsWith('.'))
         {
-            code = code[0..^1];
+            code = code[..^1];
         }
 
         if (code.EndsWith(Environment.NewLine, StringComparison.Ordinal))

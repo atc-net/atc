@@ -1,3 +1,9 @@
+using Atc.Rest.Extended.Filters;
+using Atc.Rest.Extended.Versioning;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using SwaggerGenOptionsExtensions = Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptionsExtensions;
+
 namespace Atc.Rest.Extended.Tests;
 
 public class CodeComplianceTests
@@ -10,20 +16,20 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new List<Type>
     {
         // TODO: Add UnitTest and remove from this list!!
-        typeof(Filters.ApiVersionDocumentFilter),
-        typeof(Filters.ApiVersionOperationFilter),
-        typeof(Filters.AuthorizeResponseOperationFilter),
-        typeof(Filters.DefaultResponseOperationFilter),
-        typeof(Filters.SecurityRequirementsOperationFilter),
-        typeof(Filters.SwaggerEnumDescriptionsDocumentFilter),
+        typeof(ApiVersionDocumentFilter),
+        typeof(ApiVersionOperationFilter),
+        typeof(AuthorizeResponseOperationFilter),
+        typeof(DefaultResponseOperationFilter),
+        typeof(SecurityRequirementsOperationFilter),
+        typeof(SwaggerEnumDescriptionsDocumentFilter),
         typeof(ConfigureAuthorizationOptions),
         typeof(ConfigureApiVersioningOptions),
-        typeof(Versioning.VersionErrorResponseProvider),
-        typeof(Microsoft.AspNetCore.Builder.OpenApiBuilderExtensions),
-        typeof(Microsoft.AspNetCore.Builder.RestApiExtendedBuilderExtensions),
-        typeof(Microsoft.Extensions.DependencyInjection.FluentValidationExtensions),
-        typeof(Microsoft.Extensions.DependencyInjection.RestApiExtendedExtensions),
-        typeof(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptionsExtensions),
+        typeof(VersionErrorResponseProvider),
+        typeof(OpenApiBuilderExtensions),
+        typeof(RestApiExtendedBuilderExtensions),
+        typeof(FluentValidationExtensions),
+        typeof(RestApiExtendedExtensions),
+        typeof(SwaggerGenOptionsExtensions),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

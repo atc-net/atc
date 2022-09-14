@@ -1,3 +1,5 @@
+using AuthorizationOptions = Atc.Rest.Options.AuthorizationOptions;
+
 namespace Atc.Rest.Extended.Options;
 
 public class ConfigureAuthorizationOptions :
@@ -134,7 +136,7 @@ public class ConfigureAuthorizationOptions :
         if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
             string.IsNullOrEmpty(apiOptions.Authorization.Audience))
         {
-            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {Atc.Rest.Options.AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
+            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
         }
     }
 }

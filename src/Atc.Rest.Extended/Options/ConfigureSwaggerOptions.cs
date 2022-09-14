@@ -47,7 +47,7 @@ internal class ConfigureSwaggerOptions :
             throw new InvalidOperationException("Unable to determine tag for endpoint.");
         });
 
-        options.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
+        options.OrderActionsBy(apiDesc => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
         options.IgnoreObsoleteActions();
         options.IgnoreObsoleteProperties();
         options.DefaultResponseForSecuredOperations();

@@ -1,3 +1,5 @@
+using Atc.Console.Spectre.Factories.Infrastructure;
+
 namespace Atc.Console.Spectre.Factories;
 
 public static class CommandAppFactory
@@ -11,7 +13,7 @@ public static class CommandAppFactory
     {
         SetCultureAndConsoleSettings(encoding);
 
-        var registrar = new Infrastructure.TypeRegistrar(serviceCollection);
+        var registrar = new TypeRegistrar(serviceCollection);
 
         var commandApp = new CommandApp(registrar);
         commandApp.Configure(config =>
@@ -27,7 +29,7 @@ public static class CommandAppFactory
     {
         SetCultureAndConsoleSettings(Encoding.UTF8);
 
-        var registrar = new Infrastructure.TypeRegistrar(serviceCollection);
+        var registrar = new TypeRegistrar(serviceCollection);
 
         var commandApp = new CommandApp<T>(registrar);
         commandApp.Configure(config =>

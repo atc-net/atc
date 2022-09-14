@@ -11,7 +11,7 @@ public class CodeComplianceTests
     {
         // TODO: Add UnitTest and remove from this list!!
         typeof(DocumentationHelper),
-        typeof(Markdown.MarkdownCodeDocGenerator),
+        typeof(MarkdownCodeDocGenerator),
         typeof(TypeComments),
     };
 

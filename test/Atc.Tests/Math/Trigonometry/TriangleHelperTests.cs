@@ -1,3 +1,5 @@
+using TriangleHelper = Atc.Math.Trigonometry.TriangleHelper;
+
 namespace Atc.Tests.Math.Trigonometry;
 
 public class TriangleHelperTests
@@ -7,7 +9,7 @@ public class TriangleHelperTests
     public void SinesAndCosines(string testName, TriangleData expected, double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
     {
         // Act
-        var actual = Atc.Math.Trigonometry.TriangleHelper.SinesAndCosines(angleA, angleB, angleC, sideA, sideB, sideC);
+        var actual = TriangleHelper.SinesAndCosines(angleA, angleB, angleC, sideA, sideB, sideC);
 
         // Assert
         Assert.NotNull(testName);

@@ -11,14 +11,14 @@ public sealed class IPAddressAttribute : ValidationAttribute
     public IPAddressAttribute()
         : base("The {0} field requires a IPAddress value.")
     {
-        this.Required = false;
+        Required = false;
     }
 
     public IPAddressAttribute(
         bool required)
         : this()
     {
-        this.Required = required;
+        Required = required;
     }
 
     public bool Required { get; set; }
@@ -27,10 +27,10 @@ public sealed class IPAddressAttribute : ValidationAttribute
     public override bool IsValid(
         object? value)
     {
-        if (this.Required &&
+        if (Required &&
             value is null)
         {
-            this.ErrorMessage = "The {0} field is required.";
+            ErrorMessage = "The {0} field is required.";
             return false;
         }
 
@@ -45,7 +45,7 @@ public sealed class IPAddressAttribute : ValidationAttribute
             return true;
         }
 
-        this.ErrorMessage = "The {0} field is not a valid IPAddress.";
+        ErrorMessage = "The {0} field is not a valid IPAddress.";
         return false;
     }
 

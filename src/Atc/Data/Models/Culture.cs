@@ -8,21 +8,21 @@ public class Culture
 {
     public Culture()
     {
-        this.Lcid = 0;
-        this.Name = string.Empty;
-        this.CountryEnglishName = string.Empty;
-        this.CountryDisplayName = string.Empty;
-        this.CountryCodeA2 = string.Empty;
-        this.CountryCodeA3 = string.Empty;
-        this.LanguageEnglishName = string.Empty;
-        this.LanguageDisplayName = string.Empty;
-        this.LanguageCodeA3 = string.Empty;
-        this.LanguageCodeA2 = string.Empty;
-        this.CurrencySymbol = string.Empty;
-        this.IsoCurrencySymbol = string.Empty;
-        this.NumberDecimalSeparator = string.Empty;
-        this.ShortDatePattern = string.Empty;
-        this.LongTimePattern = string.Empty;
+        Lcid = 0;
+        Name = string.Empty;
+        CountryEnglishName = string.Empty;
+        CountryDisplayName = string.Empty;
+        CountryCodeA2 = string.Empty;
+        CountryCodeA3 = string.Empty;
+        LanguageEnglishName = string.Empty;
+        LanguageDisplayName = string.Empty;
+        LanguageCodeA3 = string.Empty;
+        LanguageCodeA2 = string.Empty;
+        CurrencySymbol = string.Empty;
+        IsoCurrencySymbol = string.Empty;
+        NumberDecimalSeparator = string.Empty;
+        ShortDatePattern = string.Empty;
+        LongTimePattern = string.Empty;
     }
 
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
@@ -43,21 +43,21 @@ public class Culture
         string shortDatePattern,
         string longTimePattern)
     {
-        this.Lcid = lcid;
-        this.Name = name;
-        this.CountryEnglishName = countryEnglishName;
-        this.CountryDisplayName = countryDisplayName;
-        this.CountryCodeA2 = countryCodeA2;
-        this.CountryCodeA3 = countryCodeA3;
-        this.LanguageEnglishName = languageEnglishName;
-        this.LanguageDisplayName = languageDisplayName;
-        this.LanguageCodeA3 = languageCodeA3;
-        this.LanguageCodeA2 = languageCodeA2;
-        this.CurrencySymbol = currencySymbol;
-        this.IsoCurrencySymbol = isoCurrencySymbol;
-        this.NumberDecimalSeparator = numberDecimalSeparator;
-        this.ShortDatePattern = shortDatePattern;
-        this.LongTimePattern = longTimePattern;
+        Lcid = lcid;
+        Name = name;
+        CountryEnglishName = countryEnglishName;
+        CountryDisplayName = countryDisplayName;
+        CountryCodeA2 = countryCodeA2;
+        CountryCodeA3 = countryCodeA3;
+        LanguageEnglishName = languageEnglishName;
+        LanguageDisplayName = languageDisplayName;
+        LanguageCodeA3 = languageCodeA3;
+        LanguageCodeA2 = languageCodeA2;
+        CurrencySymbol = currencySymbol;
+        IsoCurrencySymbol = isoCurrencySymbol;
+        NumberDecimalSeparator = numberDecimalSeparator;
+        ShortDatePattern = shortDatePattern;
+        LongTimePattern = longTimePattern;
     }
 
     /// <summary>
@@ -183,6 +183,6 @@ public class Culture
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{nameof(this.Lcid)}: {this.Lcid}, {nameof(this.Name)}: {this.Name}, {nameof(this.CountryEnglishName)}: {this.CountryEnglishName}, {nameof(this.CountryDisplayName)}: {this.CountryDisplayName}, {nameof(this.CountryCodeA2)}: {this.CountryCodeA2}, {nameof(this.CountryCodeA3)}: {this.CountryCodeA3}, {nameof(this.LanguageEnglishName)}: {this.LanguageEnglishName}, {nameof(this.LanguageDisplayName)}: {this.LanguageDisplayName}, {nameof(this.LanguageCodeA3)}: {this.LanguageCodeA3}, {nameof(this.LanguageCodeA2)}: {this.LanguageCodeA2}, {nameof(this.CurrencySymbol)}: {this.CurrencySymbol}, {nameof(this.IsoCurrencySymbol)}: {this.IsoCurrencySymbol}, {nameof(this.NumberDecimalSeparator)}: {this.NumberDecimalSeparator}, {nameof(this.ShortDatePattern)}: {this.ShortDatePattern}, {nameof(this.LongTimePattern)}: {this.LongTimePattern}";
+        return $"{nameof(Lcid)}: {Lcid}, {nameof(Name)}: {Name}, {nameof(CountryEnglishName)}: {CountryEnglishName}, {nameof(CountryDisplayName)}: {CountryDisplayName}, {nameof(CountryCodeA2)}: {CountryCodeA2}, {nameof(CountryCodeA3)}: {CountryCodeA3}, {nameof(LanguageEnglishName)}: {LanguageEnglishName}, {nameof(LanguageDisplayName)}: {LanguageDisplayName}, {nameof(LanguageCodeA3)}: {LanguageCodeA3}, {nameof(LanguageCodeA2)}: {LanguageCodeA2}, {nameof(CurrencySymbol)}: {CurrencySymbol}, {nameof(IsoCurrencySymbol)}: {IsoCurrencySymbol}, {nameof(NumberDecimalSeparator)}: {NumberDecimalSeparator}, {nameof(ShortDatePattern)}: {ShortDatePattern}, {nameof(LongTimePattern)}: {LongTimePattern}";
     }
 }

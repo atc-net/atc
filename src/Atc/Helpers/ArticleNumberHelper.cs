@@ -24,15 +24,18 @@ public static class ArticleNumberHelper
         {
             return ArticleNumberType.ISBN10;
         }
-        else if (IsValidIsbn13(articleNumber))
+
+        if (IsValidIsbn13(articleNumber))
         {
             return ArticleNumberType.ISBN13;
         }
-        else if (IsValidAsin(articleNumber))
+
+        if (IsValidAsin(articleNumber))
         {
             return ArticleNumberType.ASIN;
         }
-        else if (IsValidIssn(articleNumber))
+
+        if (IsValidIssn(articleNumber))
         {
             return ArticleNumberType.ISSN;
         }

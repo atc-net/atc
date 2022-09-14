@@ -11,8 +11,8 @@ public class KeyValueItem
     /// </summary>
     public KeyValueItem()
     {
-        this.Key = string.Empty;
-        this.Value = string.Empty;
+        Key = string.Empty;
+        Value = string.Empty;
     }
 
     /// <summary>
@@ -23,8 +23,8 @@ public class KeyValueItem
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public KeyValueItem(string key, string value)
     {
-        this.Key = key ?? throw new ArgumentNullException(nameof(key));
-        this.Value = value ?? throw new ArgumentNullException(nameof(value));
+        Key = key ?? throw new ArgumentNullException(nameof(key));
+        Value = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     /// <summary>
@@ -45,5 +45,5 @@ public class KeyValueItem
 
     /// <inheritdoc />
     public override string ToString()
-        => $"{nameof(this.Key)}: {this.Key}, {nameof(this.Value)}: {this.Value}";
+        => $"{nameof(Key)}: {Key}, {nameof(Value)}: {Value}";
 }

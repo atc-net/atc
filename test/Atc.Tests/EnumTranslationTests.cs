@@ -19,7 +19,7 @@ public class EnumTranslationTests
     [MemberData(nameof(TestMemberDataForEnumTranslation.UpDownTypeData), MemberType = typeof(TestMemberDataForEnumTranslation))]
     [MemberData(nameof(TestMemberDataForEnumTranslation.YesNoTypeData), MemberType = typeof(TestMemberDataForEnumTranslation))]
     public void ToDictionary<T>(T dummyForT, int arrangeUiLcid, List<KeyValuePair<int, string>> expectedKeyValues)
-        where T : System.Enum
+        where T : Enum
     {
         object dummyAssignment = dummyForT;
 

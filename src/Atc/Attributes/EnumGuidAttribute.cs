@@ -14,7 +14,7 @@ public sealed class EnumGuidAttribute : Attribute
     [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
     public EnumGuidAttribute(string value)
     {
-        this.GlobalIdentifier = new Guid(value);
+        GlobalIdentifier = new Guid(value);
     }
 
     /// <summary>
