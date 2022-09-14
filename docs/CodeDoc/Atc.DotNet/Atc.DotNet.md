@@ -62,6 +62,25 @@
 
 <br />
 
+## DotnetGlobalUsingsHelper
+
+>```csharp
+>public static class DotnetGlobalUsingsHelper
+>```
+
+### Static Methods
+
+#### CreateOrUpdate
+>```csharp
+>void CreateOrUpdate(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+>```
+#### GetNewContentByReadingExistingIfExistAndMergeWithRequired
+>```csharp
+>string GetNewContentByReadingExistingIfExistAndMergeWithRequired(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+>```
+
+<br />
+
 ## DotnetHelper
 
 >```csharp

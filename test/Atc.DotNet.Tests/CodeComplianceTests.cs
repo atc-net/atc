@@ -13,6 +13,7 @@ public class CodeComplianceTests
         typeof(DotnetHelper),
         typeof(DotnetBuildHelper),
         typeof(DotnetCsProjFileHelper),
+        typeof(DotnetGlobalUsingsHelper),
         typeof(DotnetNugetHelper),
         typeof(VisualStudioSolutionFileHelper),
     };
