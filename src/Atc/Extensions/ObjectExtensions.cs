@@ -6,7 +6,31 @@ namespace System;
 /// </summary>
 public static class ObjectExtensions
 {
-    public static object? GetPropertyValue(this object source, string propertyName)
+    public static string GetTypeName(
+        this object source)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        return source.GetType().Name;
+    }
+
+    public static string GetTypeFullName(
+        this object source)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        return source.GetType().FullName;
+    }
+
+    public static object? GetPropertyValue(
+        this object source,
+        string propertyName)
     {
         if (source is null)
         {

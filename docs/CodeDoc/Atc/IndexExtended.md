@@ -772,6 +772,8 @@
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods
      - GetPropertyValue(this object source, string propertyName)
+     - GetTypeFullName(this object source)
+     - GetTypeName(this object source)
 - [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
