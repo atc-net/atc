@@ -127,7 +127,7 @@ public static class RegionInfoHelper
         {
             1116 => 1033,
             1106 => 2057,
-            _ => culture.Lcid
+            _ => culture.Lcid,
         };
     }
 

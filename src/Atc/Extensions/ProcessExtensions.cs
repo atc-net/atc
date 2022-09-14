@@ -106,7 +106,7 @@ public static class ProcessExtensions
         }
     }
 
-    private static (int exitCode, string output) RunProcessAndReadOutput(string fileName, string arguments, TimeSpan timeout)
+    private static (int ExitCode, string Output) RunProcessAndReadOutput(string fileName, string arguments, TimeSpan timeout)
     {
         var startInfo = new ProcessStartInfo
         {

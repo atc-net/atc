@@ -9,7 +9,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
     private readonly bool useProblemDetailsAsResponseBody;
 
     private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex =
-        new ("(?<=[a-z])([A-Z])", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+        new("(?<=[a-z])([A-Z])", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
 
     [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
     public ErrorHandlingExceptionFilterAttribute(

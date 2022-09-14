@@ -5,7 +5,7 @@ namespace Atc.DotNet.Tests;
 [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "OK.")]
 public class DotnetCsProjFileHelperTests : IAsyncLifetime
 {
-    private static readonly DirectoryInfo WorkingDirectory = new (Path.Combine(Path.GetTempPath(), "atc-integration-test-csproj-file-helper"));
+    private static readonly DirectoryInfo WorkingDirectory = new(Path.Combine(Path.GetTempPath(), "atc-integration-test-csproj-file-helper"));
 
     public Task InitializeAsync()
     {

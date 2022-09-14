@@ -9,7 +9,7 @@ public static class HttpStatusCodeExtensions
         {
             HttpStatusCode.OK => "Ok",
             HttpStatusCode.IMUsed => "ImUsed",
-            _ => httpStatusCode.ToString()
+            _ => httpStatusCode.ToString(),
         };
     }
 

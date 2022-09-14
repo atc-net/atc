@@ -22,7 +22,7 @@ public class Accept4xxResponseAsSuccessInitializer : ITelemetryInitializer
         {
             (int)HttpStatusCode.BadRequest => true,
             (int)HttpStatusCode.NotFound => true,
-            _ => requestTelemetry.Success
+            _ => requestTelemetry.Success,
         };
     }
 }

@@ -228,7 +228,7 @@ public static class EnumHelper
             SortDirectionType.None => list.ToList(),
             SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
             SortDirectionType.Descending => list.OrderByDescending(x => x.Value).ToList(),
-            _ => throw new SwitchCaseDefaultException(sortDirectionType)
+            _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 
         if (dropDownFirstItemType == DropDownFirstItemType.None || enumType == typeof(DropDownFirstItemType))
@@ -348,7 +348,7 @@ public static class EnumHelper
             SortDirectionType.None => list.ToList(),
             SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
             SortDirectionType.Descending => list.OrderByDescending(x => x.Value).ToList(),
-            _ => throw new SwitchCaseDefaultException(sortDirectionType)
+            _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 
         if (dropDownFirstItemType == DropDownFirstItemType.None || enumType == typeof(DropDownFirstItemType))

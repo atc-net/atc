@@ -71,7 +71,7 @@ public class LogKeyValueItem : KeyValueItem
                 ? string.IsNullOrEmpty(this.Description)
                     ? $"{this.Value}"
                     : $"{this.Value} - {this.Description}"
-                : $"{this.Value}"
+                : $"{this.Value}",
         };
 
     /// <inheritdoc />

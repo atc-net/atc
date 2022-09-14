@@ -12,7 +12,7 @@ public static class DataAnnotationHelper
         {
             validationResults = new List<ValidationResult>
             {
-                new ("Data is null"),
+                new("Data is null"),
             };
 
             return false;

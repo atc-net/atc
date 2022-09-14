@@ -61,7 +61,7 @@ public static class ArrayExtensions
             SortDirectionType.None => list,
             SortDirectionType.Ascending => list.OrderBy(x => x).ToList(),
             SortDirectionType.Descending => list.OrderByDescending(x => x).ToList(),
-            _ => throw new SwitchCaseDefaultException(sortDirectionType)
+            _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
     }
 }

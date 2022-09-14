@@ -22,7 +22,7 @@ public static class SuppressMessageAttributeFactory
             // TODO: Add all rules
             1062 => new SuppressMessageAttribute("Design", "CA1062:Validate arguments of public methods") { Justification = justification },
             1720 => new SuppressMessageAttribute("Naming", "CA1720:Identifiers should not contain type names") { Justification = justification },
-            _ => throw new NotImplementedException($"Rule for CA{checkId} must be implemented.")
+            _ => throw new NotImplementedException($"Rule for CA{checkId} must be implemented."),
         };
     }
 
@@ -38,7 +38,7 @@ public static class SuppressMessageAttributeFactory
         {
             // TODO: Add all rules
             1413 => new SuppressMessageAttribute("Maintainability Rules", "SA1413:Use trailing comma in multi-line initializers") { Justification = justification },
-            _ => throw new NotImplementedException($"Rule for SA{checkId} must be implemented.")
+            _ => throw new NotImplementedException($"Rule for SA{checkId} must be implemented."),
         };
     }
 }

@@ -57,7 +57,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(byte value) => new (value);
+    public static implicit operator ByteSize(byte value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="sbyte"/> to <see cref="ByteSize"/>.
@@ -66,7 +66,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(sbyte value) => new (value);
+    public static implicit operator ByteSize(sbyte value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="decimal"/> to <see cref="ByteSize"/>.
@@ -75,7 +75,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(decimal value) => new ((long)value);
+    public static implicit operator ByteSize(decimal value) => new((long)value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="double"/> to <see cref="ByteSize"/>.
@@ -84,7 +84,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(double value) => new (checked((long)value));
+    public static implicit operator ByteSize(double value) => new(checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="float"/> to <see cref="ByteSize"/>.
@@ -93,7 +93,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(float value) => new (checked((long)value));
+    public static implicit operator ByteSize(float value) => new(checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="int"/> to <see cref="ByteSize"/>.
@@ -102,7 +102,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(int value) => new (value);
+    public static implicit operator ByteSize(int value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="uint"/> to <see cref="ByteSize"/>.
@@ -111,7 +111,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(uint value) => new (value);
+    public static implicit operator ByteSize(uint value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="long"/> to <see cref="ByteSize"/>.
@@ -120,7 +120,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(long value) => new (value);
+    public static implicit operator ByteSize(long value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="ulong"/> to <see cref="ByteSize"/>.
@@ -129,7 +129,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(ulong value) => new (checked((long)value));
+    public static implicit operator ByteSize(ulong value) => new(checked((long)value));
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="short"/> to <see cref="ByteSize"/>.
@@ -138,7 +138,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(short value) => new (value);
+    public static implicit operator ByteSize(short value) => new(value);
 
     /// <summary>
     /// Performs an implicit conversion from <see cref="ushort"/> to <see cref="ByteSize"/>.
@@ -147,7 +147,7 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the conversion.
     /// </returns>
-    public static implicit operator ByteSize(ushort value) => new (value);
+    public static implicit operator ByteSize(ushort value) => new(value);
 
     /// <summary>
     /// Equals the specified other.

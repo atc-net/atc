@@ -11,7 +11,8 @@ namespace Atc.Data.SemVer;
 [Serializable]
 public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>
 {
-    private static readonly Regex StrictModeRegex = new (@"^
+    private static readonly Regex StrictModeRegex = new(
+        @"^
             \s*v?
             ([0-9]|[1-9][0-9]+)       # major version
             \.
@@ -25,7 +26,8 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         RegexOptions.IgnorePatternWhitespace,
         TimeSpan.FromSeconds(3));
 
-    private static readonly Regex LooseModeRegex = new (@"^
+    private static readonly Regex LooseModeRegex = new(
+        @"^
             [v=\s]*
             (\d+)                     # major version
             \.
@@ -179,7 +181,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// </summary>
     /// <returns>The base version</returns>
     public SemanticVersion BaseVersion()
-        => new (Major, Minor, Patch);
+        => new(Major, Minor, Patch);
 
     /// <summary>
     /// Compares two versions are semantically.
@@ -393,7 +395,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     public static SemanticVersion Parse(
         string input,
         bool looseMode = false)
-        => new (input, looseMode);
+        => new(input, looseMode);
 
     /// <summary>
     /// Try to construct a new semantic version from a version string.
@@ -461,10 +463,10 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
                 GlobalizationConstants.EnglishCultureInfo,
                 out var build))
         {
-            return new (Major, Minor, Patch, build);
+            return new(Major, Minor, Patch, build);
         }
 
-        return new (Major, Minor, Patch);
+        return new(Major, Minor, Patch);
     }
 
     public static bool operator ==(SemanticVersion? a, SemanticVersion? b)

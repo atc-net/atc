@@ -870,7 +870,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1)
+            _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1),
         };
     }
 
@@ -889,7 +889,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1)
+            _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1),
         };
     }
 
