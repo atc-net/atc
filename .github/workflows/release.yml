@@ -63,4 +63,5 @@ jobs:
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.Extended.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.FluentAssertions.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.HealthCheck.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
           dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.XUnit.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
