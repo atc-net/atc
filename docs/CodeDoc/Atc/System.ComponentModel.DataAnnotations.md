@@ -25,7 +25,19 @@
 >```
 ### Properties
 
-=======
+#### Required
+>```csharp
+>Required
+>```
+### Methods
+
+#### IsValid
+>```csharp
+>bool IsValid(object value)
+>```
+
+<br />
+
 ## IsoCurrencySymbolAttribute
 
 >```csharp

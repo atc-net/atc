@@ -923,6 +923,9 @@
      - TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
      - TryIsValid(string value, out string errorMessage)
   -  Properties
+     - Required
+  -  Methods
+     - IsValid(object value)
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
   -  Properties
      - IsoCurrencySymbols
