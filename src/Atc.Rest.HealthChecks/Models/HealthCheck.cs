@@ -1,4 +1,4 @@
-namespace Atc.Rest.HealthCheck.Models;
+namespace Atc.Rest.HealthChecks.Models;
 
 public sealed record HealthCheck(
     string Name,

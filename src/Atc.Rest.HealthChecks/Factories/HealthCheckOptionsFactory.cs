@@ -1,8 +1,4 @@
-using Atc.Rest.HealthCheck.Extensions;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Http;
-
-namespace Atc.Rest.HealthCheck.Factories;
+namespace Atc.Rest.HealthChecks.Factories;
 
 public static class HealthCheckOptionsFactory
 {

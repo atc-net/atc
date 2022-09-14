@@ -58,7 +58,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Atc.Dotnet.Cli", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.DotNet.Tests", "test\Atc.DotNet.Tests\Atc.DotNet.Tests.csproj", "{410ED6D3-3A4C-475B-9A3C-BCAD06EB1390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atc.Rest.HealthCheck", "src\Atc.Rest.HealthCheck\Atc.Rest.HealthCheck.csproj", "{06D83AAD-1BFA-4D33-8B17-8426ABDA0968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.HealthChecks", "src\Atc.Rest.HealthChecks\Atc.Rest.HealthChecks.csproj", "{06D83AAD-1BFA-4D33-8B17-8426ABDA0968}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
-namespace Atc.Rest.HealthCheck.Extensions;
+namespace Atc.Rest.HealthChecks.Extensions;
 
 public static class HealthReportEntryExtensions
 {
-    public static Models.HealthCheck ToHealthCheck(
+    public static HealthCheck ToHealthCheck(
         this KeyValuePair<string, HealthReportEntry> healthReportEntry)
     {
         var resourceHealthChecks = new List<ResourceHealthCheck>();
@@ -24,14 +24,14 @@ public static class HealthReportEntryExtensions
             }
         }
 
-        return new Models.HealthCheck(
+        return new HealthCheck(
                 healthReportEntry.Key,
                 resourceHealthChecks,
                 healthReportEntry.Value.Status,
                 healthReportEntry.Value.Duration);
     }
 
-    public static IList<Models.HealthCheck> ToHealthChecks(
+    public static IList<HealthCheck> ToHealthChecks(
         this IReadOnlyDictionary<string, HealthReportEntry> healthReportEntries)
         => healthReportEntries
             .Select(x => x.ToHealthCheck())

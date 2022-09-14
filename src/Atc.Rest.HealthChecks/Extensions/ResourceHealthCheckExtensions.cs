@@ -1,4 +1,4 @@
-namespace Atc.Rest.HealthCheck.Extensions;
+namespace Atc.Rest.HealthChecks.Extensions;
 
 public static class ResourceHealthCheckExtensions
 {
