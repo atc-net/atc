@@ -20,7 +20,7 @@ public static class HealthCheckOptionsFactory
                 await c.Response.WriteAsync(
                     JsonSerializer.Serialize(
                         response,
-                        jsonSerializerOptions ?? new JsonSerializerOptions()));
+                        jsonSerializerOptions ?? JsonSerializerOptionsFactory.Create()));
             },
         };
 }
