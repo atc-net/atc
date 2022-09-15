@@ -4,7 +4,7 @@ public static class DotnetGlobalUsingsHelper
 {
     public static void CreateOrUpdate(
         DirectoryInfo directoryInfo,
-        IReadOnlyList<string> requiredUsings,
+        IReadOnlyList<string> requiredNamespaces,
         bool setSystemFirst = true,
         bool addNamespaceSeparator = true)
     {
@@ -13,24 +13,33 @@ public static class DotnetGlobalUsingsHelper
             throw new ArgumentNullException(nameof(directoryInfo));
         }
 
-        if (requiredUsings is null)
+        if (requiredNamespaces is null)
         {
-            throw new ArgumentNullException(nameof(requiredUsings));
+            throw new ArgumentNullException(nameof(requiredNamespaces));
         }
 
-        var content = GetNewContentByReadingExistingIfExistAndMergeWithRequired(directoryInfo, requiredUsings, setSystemFirst, addNamespaceSeparator);
+        var content = GetNewContentByReadingExistingIfExistAndMergeWithRequired(
+            directoryInfo,
+            requiredNamespaces,
+            setSystemFirst,
+            addNamespaceSeparator);
+
         if (string.IsNullOrEmpty(content))
         {
             return;
         }
 
-        var globalUsingFile = new FileInfo(Path.Combine(directoryInfo.FullName, "GlobalUsings.cs"));
+        var globalUsingFile = new FileInfo(
+            Path.Combine(
+                directoryInfo.FullName,
+                "GlobalUsings.cs"));
+
         FileHelper.WriteAllText(globalUsingFile, content);
     }
 
     public static string GetNewContentByReadingExistingIfExistAndMergeWithRequired(
         DirectoryInfo directoryInfo,
-        IReadOnlyList<string> requiredUsings,
+        IReadOnlyList<string> requiredNamespaces,
         bool setSystemFirst = true,
         bool addNamespaceSeparator = true)
     {
@@ -39,33 +48,46 @@ public static class DotnetGlobalUsingsHelper
             throw new ArgumentNullException(nameof(directoryInfo));
         }
 
-        if (requiredUsings is null)
+        if (requiredNamespaces is null)
         {
-            throw new ArgumentNullException(nameof(requiredUsings));
+            throw new ArgumentNullException(nameof(requiredNamespaces));
         }
 
-        var rawExistingUsings = new List<string>();
+        var existingNamespaces = new List<string>();
 
-        var globalUsingFile = new FileInfo(Path.Combine(directoryInfo.FullName, "GlobalUsings.cs"));
+        var globalUsingFile = new FileInfo(
+            Path.Combine(
+                directoryInfo.FullName,
+                "GlobalUsings.cs"));
+
         if (globalUsingFile.Exists)
         {
-            rawExistingUsings = StripToRawUsings(FileHelper.ReadAllTextToLines(globalUsingFile));
+            var text = FileHelper.ReadAllTextToLines(globalUsingFile);
+            existingNamespaces = ExtractNamespacesFromUsings(text);
         }
 
-        if (!requiredUsings.Any())
+        if (!requiredNamespaces.Any())
         {
-            return rawExistingUsings.Any()
-                ? GetContentFromRawUsings(rawExistingUsings, setSystemFirst, addNamespaceSeparator)
+            return existingNamespaces.Any()
+                ? ConvertNamespacesToGlobalUsings(
+                    existingNamespaces,
+                    setSystemFirst,
+                    addNamespaceSeparator)
                 : string.Empty;
         }
 
-        var rawRequiredUsings = StripToRawUsings(requiredUsings.ToArray());
-        var rawUsings = MergeRawUsings(rawRequiredUsings, rawExistingUsings);
-        return GetContentFromRawUsings(rawUsings, setSystemFirst, addNamespaceSeparator);
+        var namespaces = MergeNamespaces(
+            requiredNamespaces,
+            existingNamespaces);
+
+        return ConvertNamespacesToGlobalUsings(
+            namespaces,
+            setSystemFirst,
+            addNamespaceSeparator);
     }
 
-    private static string GetContentFromRawUsings(
-        IReadOnlyCollection<string> rawUsings,
+    private static string ConvertNamespacesToGlobalUsings(
+        IReadOnlyCollection<string> namespaces,
         bool setSystemFirst,
         bool addNamespaceSeparator)
     {
@@ -73,56 +95,56 @@ public static class DotnetGlobalUsingsHelper
 
         if (setSystemFirst)
         {
-            var rawSortedSystemUsings = rawUsings
+            var sortedSystemNamespaces = namespaces
                 .Where(x => x.Equals("System", StringComparison.Ordinal) ||
                             x.StartsWith("System.", StringComparison.Ordinal))
                 .OrderBy(x => x)
                 .ToList();
 
-            var rawSortedOtherUsings = rawUsings
+            var sortedOtherNamespaces = namespaces
                 .Where(x => !x.Equals("System", StringComparison.Ordinal) &&
                             !x.StartsWith("System.", StringComparison.Ordinal))
                 .OrderBy(x => x)
                 .ToList();
 
-            foreach (var item in rawSortedSystemUsings)
+            foreach (var item in sortedSystemNamespaces)
             {
                 sb.AppendLine($"global using {item};", GlobalizationConstants.EnglishCultureInfo);
             }
 
             if (addNamespaceSeparator &&
-                rawSortedSystemUsings.Any() &&
-                rawSortedOtherUsings.Any())
+                sortedSystemNamespaces.Any() &&
+                sortedOtherNamespaces.Any())
             {
                 sb.AppendLine();
             }
 
-            sb.Append(RawUsingsToContent(addNamespaceSeparator, rawSortedOtherUsings));
+            sb.Append(ConvertNamespacesToGlobalUsings(addNamespaceSeparator, sortedOtherNamespaces));
         }
         else
         {
-            var rawSortedUsings = rawUsings
+            var sortedNamespaces = namespaces
                 .OrderBy(x => x)
                 .ToList();
 
-            sb.Append(RawUsingsToContent(addNamespaceSeparator, rawSortedUsings));
+            sb.Append(ConvertNamespacesToGlobalUsings(addNamespaceSeparator, sortedNamespaces));
         }
 
         return sb.ToString();
     }
 
-    private static string RawUsingsToContent(
+    private static string ConvertNamespacesToGlobalUsings(
         bool addNamespaceSeparator,
-        List<string> rawUsings)
+        List<string> namespaces)
     {
         var sb = new StringBuilder();
         if (addNamespaceSeparator)
         {
-            sb.Append(RawUsingsToContent(rawUsings));
+            sb.Append(ConvertNamespacesToGlobalUsings(namespaces));
         }
         else
         {
-            foreach (var item in rawUsings)
+            foreach (var item in namespaces)
             {
                 sb.AppendLine($"global using {item};", GlobalizationConstants.EnglishCultureInfo);
             }
@@ -131,23 +153,23 @@ public static class DotnetGlobalUsingsHelper
         return sb.ToString();
     }
 
-    private static string RawUsingsToContent(
-        List<string> rawUsings)
+    private static string ConvertNamespacesToGlobalUsings(
+        List<string> namespaces)
     {
         var sb = new StringBuilder();
-        var lastMajorNs = string.Empty;
-        foreach (var item in rawUsings)
+        var lastNamespacePrefix = string.Empty;
+        foreach (var item in namespaces)
         {
-            if (string.IsNullOrEmpty(lastMajorNs))
+            if (string.IsNullOrEmpty(lastNamespacePrefix))
             {
-                lastMajorNs = item.Split('.').First();
+                lastNamespacePrefix = item.Split('.').First();
             }
             else
             {
-                var majorNs = item.Split('.').First();
-                if (!lastMajorNs.Equals(majorNs, StringComparison.Ordinal))
+                var namespacePrefix = item.Split('.').First();
+                if (!lastNamespacePrefix.Equals(namespacePrefix, StringComparison.Ordinal))
                 {
-                    lastMajorNs = majorNs;
+                    lastNamespacePrefix = namespacePrefix;
                     sb.AppendLine();
                 }
             }
@@ -158,7 +180,7 @@ public static class DotnetGlobalUsingsHelper
         return sb.ToString();
     }
 
-    private static List<string> StripToRawUsings(
+    private static List<string> ExtractNamespacesFromUsings(
         IEnumerable<string> lines)
     {
         var result = new List<string>();
@@ -191,18 +213,18 @@ public static class DotnetGlobalUsingsHelper
         return result;
     }
 
-    private static List<string> MergeRawUsings(
-        IEnumerable<string> rawRequiredUsings,
-        IEnumerable<string> rawExistingUsings)
+    private static List<string> MergeNamespaces(
+        IEnumerable<string> requiredNamespaces,
+        IEnumerable<string> existingNamespaces)
     {
         var result = new List<string>();
 
-        foreach (var item in rawRequiredUsings.Where(x => !result.Contains(x, StringComparer.Ordinal)))
+        foreach (var item in requiredNamespaces.Where(x => !result.Contains(x, StringComparer.Ordinal)))
         {
             result.Add(item);
         }
 
-        foreach (var item in rawExistingUsings.Where(x => !result.Contains(x, StringComparer.Ordinal)))
+        foreach (var item in existingNamespaces.Where(x => !result.Contains(x, StringComparer.Ordinal)))
         {
             result.Add(item);
         }
