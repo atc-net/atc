@@ -317,22 +317,22 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
 
     private static void CreateSortedGlobalUsingsContentAppend(
         StringBuilder sb,
-        List<string> rawSortedUsings,
+        List<string> sortedUsings,
         bool addNamespaceSeparator)
     {
-        var lastMajorNs = string.Empty;
-        foreach (var item in rawSortedUsings)
+        var lastNamespacePrefix = string.Empty;
+        foreach (var item in sortedUsings)
         {
-            if (string.IsNullOrEmpty(lastMajorNs))
+            if (string.IsNullOrEmpty(lastNamespacePrefix))
             {
-                lastMajorNs = item.Split('.').First();
+                lastNamespacePrefix = item.Split('.').First();
             }
             else
             {
-                var majorNs = item.Split('.').First();
-                if (!lastMajorNs.Equals(majorNs, StringComparison.Ordinal))
+                var namespacePrefix = item.Split('.').First();
+                if (!lastNamespacePrefix.Equals(namespacePrefix, StringComparison.Ordinal))
                 {
-                    lastMajorNs = majorNs;
+                    lastNamespacePrefix = namespacePrefix;
                     if (addNamespaceSeparator)
                     {
                         sb.AppendLine();
