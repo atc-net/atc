@@ -1,6 +1,6 @@
 # Atc.Rest.Extended
 
-This library extend the `Atc.Rest` library with more feature-options:
+This library extends the `Atc.Rest` library with the following features
 
 - Versioning
 - Fluent validation (on top on data-annotations validation)
@@ -12,7 +12,7 @@ This library extend the `Atc.Rest` library with more feature-options:
 
 ## Code documentation
 
-[References](dhttps://github.com/atc-net/atc/blob/main/ocs/CodeDoc/Atc.Rest.Extended/Index.md)
+[References](dhttps://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest.Extended/Index.md)
 
 [References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest.Extended/IndexExtended.md)
 
