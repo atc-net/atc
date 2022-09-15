@@ -43,5 +43,5 @@ public class TriangleData
     public double c;
 
     /// <inheritdoc/>
-    public override string ToString() => $"{nameof(A)}: {this.A}, {nameof(B)}: {this.B}, {nameof(C)}: {this.C}, {nameof(a)}: {this.a}, {nameof(b)}: {this.b}, {nameof(c)}: {this.c}";
+    public override string ToString() => $"{nameof(A)}: {A}, {nameof(B)}: {B}, {nameof(C)}: {C}, {nameof(a)}: {a}, {nameof(b)}: {b}, {nameof(c)}: {c}";
 }

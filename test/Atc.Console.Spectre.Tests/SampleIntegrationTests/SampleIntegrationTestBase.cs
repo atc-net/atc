@@ -1,5 +1,8 @@
 // ReSharper disable InvertIf
 // ReSharper disable MemberCanBeMadeStatic.Global
+
+using Demo.Atc.Console.Spectre.Cli;
+
 namespace Atc.Console.Spectre.Tests.SampleIntegrationTests;
 
 public class SampleIntegrationTestBase : IntegrationTestCliBase
@@ -11,14 +14,14 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create(useCamelCase: false);
     }
 
-    public static Task<(bool isSuccessful, string output)> ExecuteCli(string arguments)
+    public static Task<(bool IsSuccessful, string Output)> ExecuteCli(string arguments)
     {
         if (arguments is null)
         {
             throw new ArgumentNullException(nameof(arguments));
         }
 
-        var cliFile = GetExecutableFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
+        var cliFile = GetExecutableFileForCli(typeof(Program), "sample");
         return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
     }
 
@@ -29,7 +32,7 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
             throw new ArgumentNullException(nameof(config));
         }
 
-        var appSettingsFile = GetAppSettingsFileForCli(typeof(global::Demo.Atc.Console.Spectre.Cli.Program), "sample");
+        var appSettingsFile = GetAppSettingsFileForCli(typeof(Program), "sample");
 
         var json = JsonSerializer.Serialize(config, jsonSerializerOptions);
         var jsonPart = json.Replace(Environment.NewLine, $"{Environment.NewLine}  ", StringComparison.Ordinal);

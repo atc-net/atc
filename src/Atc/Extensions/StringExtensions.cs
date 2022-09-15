@@ -2,6 +2,9 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
+
+using System.Web;
+
 namespace System;
 
 /// <summary>
@@ -376,7 +379,7 @@ public static class StringExtensions
             .Replace("'", "\x27", StringComparison.Ordinal)
             .Replace("\"", "\x22", StringComparison.Ordinal);
         return htmlEncode
-            ? Web.HttpUtility.HtmlEncode(javaScript)
+            ? HttpUtility.HtmlEncode(javaScript)
             : javaScript;
     }
 
@@ -394,7 +397,7 @@ public static class StringExtensions
 
         if (htmlDecode)
         {
-            javaScript = Web.HttpUtility.HtmlDecode(javaScript);
+            javaScript = HttpUtility.HtmlDecode(javaScript);
         }
 
         return javaScript
@@ -870,7 +873,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1)
+            _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1),
         };
     }
 
@@ -889,7 +892,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1)
+            _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1),
         };
     }
 

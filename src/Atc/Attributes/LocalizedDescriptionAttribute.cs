@@ -24,7 +24,7 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
             throw new ArgumentNullException(nameof(resourceType));
         }
 
-        this.resource = new ResourceManager(resourceType);
+        resource = new ResourceManager(resourceType);
         this.resourceKey = resourceKey;
     }
 
@@ -36,17 +36,17 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     {
         get
         {
-            if (this.resourceKey is null)
+            if (resourceKey is null)
             {
                 return null;
             }
 
-            if (this.resourceKey.Length == default)
+            if (resourceKey.Length == default)
             {
                 return string.Empty;
             }
 
-            var displayName = this.resource.GetString(this.resourceKey, CultureInfo.CurrentUICulture);
+            var displayName = resource.GetString(resourceKey, CultureInfo.CurrentUICulture);
             return string.IsNullOrEmpty(displayName)
                 ? null
                 : displayName;

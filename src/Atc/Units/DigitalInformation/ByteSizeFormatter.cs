@@ -15,12 +15,12 @@ public class ByteSizeFormatter
     /// </summary>
     public ByteSizeFormatter()
     {
-        this.SuffixFormat = ByteSizeSuffixType.Short;
-        this.MinUnit = ByteSizeUnitType.Byte;
-        this.MaxUnit = ByteSizeUnitType.Exabyte;
-        this.RoundingRule = ByteSizeRoundingRuleType.Closest;
-        this.NumberOfDecimals = 0;
-        this.NumberFormatInfo = Thread.CurrentThread.CurrentUICulture.NumberFormat;
+        SuffixFormat = ByteSizeSuffixType.Short;
+        MinUnit = ByteSizeUnitType.Byte;
+        MaxUnit = ByteSizeUnitType.Exabyte;
+        RoundingRule = ByteSizeRoundingRuleType.Closest;
+        NumberOfDecimals = 0;
+        NumberFormatInfo = Thread.CurrentThread.CurrentUICulture.NumberFormat;
     }
 
     /// <summary>
@@ -38,13 +38,13 @@ public class ByteSizeFormatter
     /// </summary>
     public ByteSizeUnitType MinUnit
     {
-        get => this.minUnit;
+        get => minUnit;
         set
         {
-            this.minUnit = value;
-            if (this.MaxUnit < this.minUnit)
+            minUnit = value;
+            if (MaxUnit < minUnit)
             {
-                this.minUnit = this.MaxUnit;
+                minUnit = MaxUnit;
             }
         }
     }
@@ -54,13 +54,13 @@ public class ByteSizeFormatter
     /// </summary>
     public ByteSizeUnitType MaxUnit
     {
-        get => this.maxUnit;
+        get => maxUnit;
         set
         {
-            this.maxUnit = value;
-            if (this.MinUnit > this.maxUnit)
+            maxUnit = value;
+            if (MinUnit > maxUnit)
             {
-                this.maxUnit = this.MinUnit;
+                maxUnit = MinUnit;
             }
         }
     }
@@ -75,13 +75,13 @@ public class ByteSizeFormatter
     /// </summary>
     public int NumberOfDecimals
     {
-        get => this.numberOfDecimals;
+        get => numberOfDecimals;
         set
         {
-            this.numberOfDecimals = value;
-            if (this.numberOfDecimals < 0)
+            numberOfDecimals = value;
+            if (numberOfDecimals < 0)
             {
-                this.numberOfDecimals = 0;
+                numberOfDecimals = 0;
             }
         }
     }
@@ -107,14 +107,14 @@ public class ByteSizeFormatter
         var prefixIndex = GetPrefixIndex(size, multiples);
 
         var displaySize = Round((decimal)size / multiples[prefixIndex]);
-        var displaySizeStr = displaySize.ToString("#,##0.###", this.NumberFormatInfo);
+        var displaySizeStr = displaySize.ToString("#,##0.###", NumberFormatInfo);
 
-        if (this.SuffixFormat == ByteSizeSuffixType.None)
+        if (SuffixFormat == ByteSizeSuffixType.None)
         {
             return displaySizeStr;
         }
 
-        var prefixes = this.SuffixFormat == ByteSizeSuffixType.Full
+        var prefixes = SuffixFormat == ByteSizeSuffixType.Full
             ? ByteSizeCalculationData.PrefixesFull
             : ByteSizeCalculationData.PrefixesShort;
 
@@ -125,8 +125,8 @@ public class ByteSizeFormatter
 
     private int GetPrefixIndex(long size, IReadOnlyList<long> multiples)
     {
-        var prefixIndex = (int)this.MinUnit;
-        for (int i = prefixIndex; i <= (int)this.MaxUnit; i++)
+        var prefixIndex = (int)MinUnit;
+        for (int i = prefixIndex; i <= (int)MaxUnit; i++)
         {
             if (size < multiples[i])
             {
@@ -142,7 +142,7 @@ public class ByteSizeFormatter
     private string BuildSuffixLastPart(long size, int prefixIndex)
     {
         var text = "B";
-        if (this.SuffixFormat == ByteSizeSuffixType.Full)
+        if (SuffixFormat == ByteSizeSuffixType.Full)
         {
             if (prefixIndex == 0)
             {
@@ -161,14 +161,14 @@ public class ByteSizeFormatter
 
     private decimal Round(decimal value)
     {
-        if (this.RoundingRule == ByteSizeRoundingRuleType.Closest)
+        if (RoundingRule == ByteSizeRoundingRuleType.Closest)
         {
-            return value.RoundOff(this.NumberOfDecimals);
+            return value.RoundOff(NumberOfDecimals);
         }
 
-        var factor = (decimal)System.Math.Pow(10, this.NumberOfDecimals);
+        var factor = (decimal)System.Math.Pow(10, NumberOfDecimals);
 
-        Func<decimal, decimal> roundFunc = this.RoundingRule == ByteSizeRoundingRuleType.Down
+        Func<decimal, decimal> roundFunc = RoundingRule == ByteSizeRoundingRuleType.Down
             ? decimal.Floor
             : decimal.Ceiling;
 

@@ -9,7 +9,7 @@ public class ExceptionTelemetryMiddlewareTests
         using var telemetryConfiguration = new TelemetryConfiguration();
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
         var middleware = new ExceptionTelemetryMiddleware(
-            async (innerHttpContext) =>
+            async innerHttpContext =>
             {
                 await innerHttpContext.Response.WriteAsync("test response body");
             },

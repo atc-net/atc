@@ -1,3 +1,5 @@
+using Atc.CodeDocumentation;
+
 namespace Atc.XUnit.Tests;
 
 public class CodeComplianceTests
@@ -13,7 +15,7 @@ public class CodeComplianceTests
         typeof(CodeComplianceDocumentationHelper),
         typeof(CodeComplianceHelper),
         typeof(CodeComplianceTestHelper),
-        typeof(CodeDocumentation.DocumentationHelper),
+        typeof(DocumentationHelper),
         typeof(MarkdownCodeDocGenerator),
         typeof(TestResultHelper),
         typeof(SerializeAndDeserializeHelper),

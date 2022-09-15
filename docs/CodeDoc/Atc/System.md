@@ -1120,6 +1120,14 @@ Extensions for the `System.Object` class.
 >```csharp
 >object GetPropertyValue(this object source, string propertyName)
 >```
+#### GetTypeFullName
+>```csharp
+>string GetTypeFullName(this object source)
+>```
+#### GetTypeName
+>```csharp
+>string GetTypeName(this object source)
+>```
 
 <br />
 

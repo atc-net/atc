@@ -13,7 +13,7 @@ public class RequestContext : IRequestContext
         => accessor.HttpContext?.User!.GetIdentity() ?? string.Empty;
 
     public string OnBehalfOfIdentity
-        => accessor.HttpContext?.Request.Headers.GetCallingOnBehalfOfIdentity() ?? this.CallingIdentity;
+        => accessor.HttpContext?.Request.Headers.GetCallingOnBehalfOfIdentity() ?? CallingIdentity;
 
     public string RequestId
         => accessor.HttpContext?.Request.Headers.GetOrAddRequestId() ?? string.Empty;

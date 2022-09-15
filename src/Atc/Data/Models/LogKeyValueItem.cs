@@ -22,7 +22,7 @@ public class LogKeyValueItem : KeyValueItem
     public LogKeyValueItem(LogCategoryType logCategory, string key, string value)
         : base(key, value)
     {
-        this.LogCategory = logCategory;
+        LogCategory = logCategory;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class LogKeyValueItem : KeyValueItem
     public LogKeyValueItem(LogCategoryType logCategory, string key, string value, string description)
         : this(logCategory, key, value)
     {
-        this.Description = description;
+        Description = description;
     }
 
     /// <summary>
@@ -63,18 +63,18 @@ public class LogKeyValueItem : KeyValueItem
     public string GetLogMessage(bool includeKey = true, bool includeDescription = true)
         => includeKey switch
         {
-            true when includeDescription => string.IsNullOrEmpty(this.Description)
-                ? $"{this.Key}: {this.Value}"
-                : $"{this.Key}: {this.Value} - {this.Description}",
-            true => $"{this.Key}: {this.Value}",
+            true when includeDescription => string.IsNullOrEmpty(Description)
+                ? $"{Key}: {Value}"
+                : $"{Key}: {Value} - {Description}",
+            true => $"{Key}: {Value}",
             _ => includeDescription
-                ? string.IsNullOrEmpty(this.Description)
-                    ? $"{this.Value}"
-                    : $"{this.Value} - {this.Description}"
-                : $"{this.Value}"
+                ? string.IsNullOrEmpty(Description)
+                    ? $"{Value}"
+                    : $"{Value} - {Description}"
+                : $"{Value}",
         };
 
     /// <inheritdoc />
     public override string ToString()
-        => $"{base.ToString()}, {nameof(this.LogCategory)}: {this.LogCategory}, {nameof(this.Description)}: {this.Description}";
+        => $"{base.ToString()}, {nameof(LogCategory)}: {LogCategory}, {nameof(Description)}: {Description}";
 }

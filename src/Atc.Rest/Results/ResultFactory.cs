@@ -1,3 +1,5 @@
+using Atc.Helpers;
+
 namespace Atc.Rest.Results;
 
 public static class ResultFactory
@@ -48,7 +50,7 @@ public static class ResultFactory
             return result;
         }
 
-        var message = Atc.Helpers.SimpleTypeHelper.IsSimpleType(value.GetType().BeautifyTypeName())
+        var message = SimpleTypeHelper.IsSimpleType(value.GetType().BeautifyTypeName())
             ? value.ToString()
             : JsonSerializer.Serialize(value);
 

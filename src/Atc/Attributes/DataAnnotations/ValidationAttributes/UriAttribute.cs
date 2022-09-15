@@ -10,12 +10,12 @@ public sealed class UriAttribute : ValidationAttribute
     public UriAttribute()
         : base("The {0} field requires a Uri value.")
     {
-        this.Required = false;
-        this.AllowHttp = true;
-        this.AllowHttps = true;
-        this.AllowFtp = true;
-        this.AllowFile = true;
-        this.AllowOpcTcp = true;
+        Required = false;
+        AllowHttp = true;
+        AllowHttps = true;
+        AllowFtp = true;
+        AllowFile = true;
+        AllowOpcTcp = true;
     }
 
     public UriAttribute(
@@ -27,12 +27,12 @@ public sealed class UriAttribute : ValidationAttribute
         bool allowOpcTcp)
         : this()
     {
-        this.Required = required;
-        this.AllowHttp = allowHttp;
-        this.AllowHttps = allowHttps;
-        this.AllowFtp = allowFtp;
-        this.AllowFile = allowFile;
-        this.AllowOpcTcp = allowOpcTcp;
+        Required = required;
+        AllowHttp = allowHttp;
+        AllowHttps = allowHttps;
+        AllowFtp = allowFtp;
+        AllowFile = allowFile;
+        AllowOpcTcp = allowOpcTcp;
     }
 
     public bool Required { get; set; }
@@ -51,10 +51,10 @@ public sealed class UriAttribute : ValidationAttribute
     public override bool IsValid(
         object? value)
     {
-        if (this.Required &&
+        if (Required &&
             value is null)
         {
-            this.ErrorMessage = "The {0} field is required.";
+            ErrorMessage = "The {0} field is required.";
             return false;
         }
 
@@ -74,7 +74,7 @@ public sealed class UriAttribute : ValidationAttribute
             return true;
         }
 
-        this.ErrorMessage = "The {0} field is not a valid Uri.";
+        ErrorMessage = "The {0} field is not a valid Uri.";
         return false;
     }
 

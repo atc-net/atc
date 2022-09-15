@@ -56,7 +56,7 @@ internal static class PreReleaseVersion
                     true when b.IsNumeric => a.IntValue.CompareTo(b.IntValue),
                     false when !b.IsNumeric => string.CompareOrdinal(a.Value, b.Value),
                     true when !b.IsNumeric => -1,
-                    _ => 1
+                    _ => 1,
                 };
             }
         }

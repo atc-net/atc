@@ -21,17 +21,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     {
         get
         {
-            this.readerWriterLock.EnterReadLock();
+            readerWriterLock.EnterReadLock();
 
             try
             {
-                return this.hashSet.Count;
+                return hashSet.Count;
             }
             finally
             {
-                if (this.readerWriterLock.IsReadLockHeld)
+                if (readerWriterLock.IsReadLockHeld)
                 {
-                    this.readerWriterLock.ExitReadLock();
+                    readerWriterLock.ExitReadLock();
                 }
             }
         }
@@ -40,24 +40,24 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <inheritdoc />
     public IEnumerator<T> GetEnumerator()
     {
-        this.readerWriterLock.EnterWriteLock();
+        readerWriterLock.EnterWriteLock();
 
         try
         {
-            return this.hashSet.GetEnumerator();
+            return hashSet.GetEnumerator();
         }
         finally
         {
-            if (this.readerWriterLock.IsWriteLockHeld)
+            if (readerWriterLock.IsWriteLockHeld)
             {
-                this.readerWriterLock.ExitWriteLock();
+                readerWriterLock.ExitWriteLock();
             }
         }
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return this.GetEnumerator();
+        return GetEnumerator();
     }
 
     /// <summary>
@@ -66,17 +66,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <param name="item">The item.</param>
     public bool TryAdd(T item)
     {
-        this.readerWriterLock.EnterWriteLock();
+        readerWriterLock.EnterWriteLock();
 
         try
         {
-            return this.hashSet.Add(item);
+            return hashSet.Add(item);
         }
         finally
         {
-            if (this.readerWriterLock.IsWriteLockHeld)
+            if (readerWriterLock.IsWriteLockHeld)
             {
-                this.readerWriterLock.ExitWriteLock();
+                readerWriterLock.ExitWriteLock();
             }
         }
     }
@@ -87,17 +87,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <param name="item">The item.</param>
     public bool TryRemove(T item)
     {
-        this.readerWriterLock.EnterWriteLock();
+        readerWriterLock.EnterWriteLock();
 
         try
         {
-            return this.hashSet.Remove(item);
+            return hashSet.Remove(item);
         }
         finally
         {
-            if (this.readerWriterLock.IsWriteLockHeld)
+            if (readerWriterLock.IsWriteLockHeld)
             {
-                this.readerWriterLock.ExitWriteLock();
+                readerWriterLock.ExitWriteLock();
             }
         }
     }
@@ -111,17 +111,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// </returns>
     public bool Contains(T item)
     {
-        this.readerWriterLock.EnterReadLock();
+        readerWriterLock.EnterReadLock();
 
         try
         {
-            return this.hashSet.Contains(item);
+            return hashSet.Contains(item);
         }
         finally
         {
-            if (this.readerWriterLock.IsReadLockHeld)
+            if (readerWriterLock.IsReadLockHeld)
             {
-                this.readerWriterLock.ExitReadLock();
+                readerWriterLock.ExitReadLock();
             }
         }
     }
@@ -131,17 +131,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// </summary>
     public void Clear()
     {
-        this.readerWriterLock.EnterWriteLock();
+        readerWriterLock.EnterWriteLock();
 
         try
         {
-            this.hashSet.Clear();
+            hashSet.Clear();
         }
         finally
         {
-            if (this.readerWriterLock.IsWriteLockHeld)
+            if (readerWriterLock.IsWriteLockHeld)
             {
-                this.readerWriterLock.ExitWriteLock();
+                readerWriterLock.ExitWriteLock();
             }
         }
     }
@@ -152,17 +152,17 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <param name="predicate">The predicate.</param>
     public T FirstOrDefault(Func<T, bool> predicate)
     {
-        this.readerWriterLock.EnterReadLock();
+        readerWriterLock.EnterReadLock();
 
         try
         {
-            return this.hashSet.FirstOrDefault(predicate);
+            return hashSet.FirstOrDefault(predicate);
         }
         finally
         {
-            if (this.readerWriterLock.IsReadLockHeld)
+            if (readerWriterLock.IsReadLockHeld)
             {
-                this.readerWriterLock.ExitReadLock();
+                readerWriterLock.ExitReadLock();
             }
         }
     }
@@ -170,7 +170,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <inheritdoc />
     public void Dispose()
     {
-        this.Dispose(true);
+        Dispose(true);
         GC.SuppressFinalize(this);
     }
 
@@ -182,7 +182,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     {
         if (disposing)
         {
-            this.readerWriterLock.Dispose();
+            readerWriterLock.Dispose();
         }
     }
 }

@@ -12,8 +12,8 @@ public class TypeComments
     /// <param name="commentLookup">The comment lookup.</param>
     public TypeComments(Type type, ILookup<string, XmlDocumentComment>? commentLookup)
     {
-        this.Type = type ?? throw new ArgumentNullException(nameof(type));
-        this.CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
+        Type = type ?? throw new ArgumentNullException(nameof(type));
+        CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));
         if (type.FullName is null)
         {
             throw new ArgumentNullOrDefaultPropertyException(nameof(type), nameof(type.FullName));
@@ -95,7 +95,7 @@ public class TypeComments
     /// </returns>
     public override string ToString()
     {
-        return this.Name;
+        return Name;
     }
 
     internal MethodInfo[] GetMethods()

@@ -5,10 +5,10 @@ public sealed class KeyStringAttribute : StringAttribute
 {
     public KeyStringAttribute()
     {
-        this.Required = true;
-        this.InvalidCharacters = new[] { ' ', '.', '@', '\'' };
-        this.InvalidPrefixStrings = new[] { "_" };
-        this.RegularExpression = string.Empty;
+        Required = true;
+        InvalidCharacters = new[] { ' ', '.', '@', '\'' };
+        InvalidPrefixStrings = new[] { "_" };
+        RegularExpression = string.Empty;
     }
 
     public KeyStringAttribute(

@@ -9,6 +9,7 @@
 - [AtcDotnetAssemblyTypeInitializer](Atc.DotNet.md#atcdotnetassemblytypeinitializer)
 - [DotnetBuildHelper](Atc.DotNet.md#dotnetbuildhelper)
 - [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
+- [DotnetGlobalUsingsHelper](Atc.DotNet.md#dotnetglobalusingshelper)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
 - [DotnetNugetHelper](Atc.DotNet.md#dotnetnugethelper)
 - [DotnetProjectType](Atc.DotNet.md#dotnetprojecttype)

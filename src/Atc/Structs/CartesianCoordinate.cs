@@ -15,8 +15,8 @@ public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
     public CartesianCoordinate(double latitude, double longitude)
         : this()
     {
-        this.Latitude = latitude;
-        this.Longitude = longitude;
+        Latitude = latitude;
+        Longitude = longitude;
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
-    public bool IsDefault => this.Latitude.IsEqual(0) && this.Longitude.IsEqual(0);
+    public bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
 
     /// <summary>
     /// Implements the operator ==.
@@ -70,20 +70,20 @@ public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
     /// </summary>
     /// <param name="other">The other.</param>
     public bool Equals(CartesianCoordinate other) =>
-        this.Latitude.AreClose(other.Latitude) &&
-        this.Longitude.AreClose(other.Longitude);
+        Latitude.AreClose(other.Latitude) &&
+        Longitude.AreClose(other.Longitude);
 
     /// <inheritdoc />
     public override bool Equals(object obj)
-        => obj is CartesianCoordinate x && this.Equals(x);
+        => obj is CartesianCoordinate x && Equals(x);
 
     /// <inheritdoc />
     public override int GetHashCode()
-        => this.Latitude.GetHashCode() ^ this.Longitude.GetHashCode();
+        => Latitude.GetHashCode() ^ Longitude.GetHashCode();
 
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{nameof(this.Latitude)}: {this.Latitude}, {nameof(this.Longitude)}: {this.Longitude}";
+        return $"{nameof(Latitude)}: {Latitude}, {nameof(Longitude)}: {Longitude}";
     }
 }

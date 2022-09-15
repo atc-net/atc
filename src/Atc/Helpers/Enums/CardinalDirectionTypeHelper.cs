@@ -53,7 +53,7 @@ public static class CardinalDirectionTypeHelper
                         CardinalDirectionType.East => CardinalDirectionType.South,
                         CardinalDirectionType.South => CardinalDirectionType.West,
                         CardinalDirectionType.West => CardinalDirectionType.North,
-                        _ => returnValue
+                        _ => returnValue,
                     };
 
                     break;
@@ -68,7 +68,7 @@ public static class CardinalDirectionTypeHelper
                         CardinalDirectionType.SouthWest => CardinalDirectionType.West,
                         CardinalDirectionType.West => CardinalDirectionType.NorthWest,
                         CardinalDirectionType.NorthWest => CardinalDirectionType.North,
-                        _ => returnValue
+                        _ => returnValue,
                     };
 
                     break;
@@ -91,7 +91,7 @@ public static class CardinalDirectionTypeHelper
                         CardinalDirectionType.WestNorthWest => CardinalDirectionType.NorthWest,
                         CardinalDirectionType.NorthWest => CardinalDirectionType.NorthNorthWest,
                         CardinalDirectionType.NorthNorthWest => CardinalDirectionType.North,
-                        _ => returnValue
+                        _ => returnValue,
                     };
 
                     break;
@@ -145,7 +145,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.West => CardinalDirectionType.South,
                     CardinalDirectionType.South => CardinalDirectionType.East,
                     CardinalDirectionType.East => CardinalDirectionType.North,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
             else if (cardinalDirectionTypeToInclude == CardinalDirectionType.Medium)
@@ -160,7 +160,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.SouthEast => CardinalDirectionType.East,
                     CardinalDirectionType.East => CardinalDirectionType.NorthEast,
                     CardinalDirectionType.NorthEast => CardinalDirectionType.North,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
             else if (cardinalDirectionTypeToInclude == CardinalDirectionType.Advanced)
@@ -183,7 +183,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.EastNorthEast => CardinalDirectionType.NorthEast,
                     CardinalDirectionType.NorthEast => CardinalDirectionType.NorthNorthEast,
                     CardinalDirectionType.NorthNorthEast => CardinalDirectionType.North,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
         }
@@ -212,7 +212,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.East => CardinalDirectionType.West,
                     CardinalDirectionType.South => CardinalDirectionType.North,
                     CardinalDirectionType.West => CardinalDirectionType.East,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
             else if (cardinalDirectionTypeToInclude == CardinalDirectionType.Medium)
@@ -227,7 +227,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.SouthWest => CardinalDirectionType.NorthEast,
                     CardinalDirectionType.West => CardinalDirectionType.East,
                     CardinalDirectionType.NorthWest => CardinalDirectionType.SouthEast,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
             else if (cardinalDirectionTypeToInclude == CardinalDirectionType.Advanced)
@@ -250,7 +250,7 @@ public static class CardinalDirectionTypeHelper
                     CardinalDirectionType.WestNorthWest => CardinalDirectionType.EastSouthEast,
                     CardinalDirectionType.NorthWest => CardinalDirectionType.SouthEast,
                     CardinalDirectionType.NorthNorthWest => CardinalDirectionType.SouthSouthEast,
-                    _ => returnValue
+                    _ => returnValue,
                 };
             }
         }

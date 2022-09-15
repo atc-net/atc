@@ -7,7 +7,7 @@ public static class ProcessHelper
 {
     private const int DefaultKillTimeoutInSec = 30;
 
-    public static Task<(bool isSuccessful, string output)> Execute(
+    public static Task<(bool IsSuccessful, string Output)> Execute(
         FileInfo fileInfo,
         string arguments)
     {
@@ -29,7 +29,7 @@ public static class ProcessHelper
         return InvokeExecute(workingDirectory: null, fileInfo, arguments);
     }
 
-    public static Task<(bool isSuccessful, string output)> Execute(
+    public static Task<(bool IsSuccessful, string Output)> Execute(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
         string arguments)
@@ -57,7 +57,7 @@ public static class ProcessHelper
         return InvokeExecute(workingDirectory, fileInfo, arguments);
     }
 
-    public static Task<(bool isSuccessful, string output)> Execute(
+    public static Task<(bool IsSuccessful, string Output)> Execute(
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
@@ -81,7 +81,7 @@ public static class ProcessHelper
         return InvokeExecuteWithTimeout(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
     }
 
-    public static Task<(bool isSuccessful, string output)> Execute(
+    public static Task<(bool IsSuccessful, string Output)> Execute(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -225,7 +225,7 @@ public static class ProcessHelper
         return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
     }
 
-    public static (bool isSuccessful, string output) KillEntryCaller(
+    public static (bool IsSuccessful, string Output) KillEntryCaller(
         int timeoutInSec = DefaultKillTimeoutInSec)
     {
         var processName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()!.Location);
@@ -233,7 +233,7 @@ public static class ProcessHelper
     }
 
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static (bool isSuccessful, string output) KillById(
+    public static (bool IsSuccessful, string Output) KillById(
         int processId,
         int timeoutInSec = DefaultKillTimeoutInSec)
     {
@@ -245,22 +245,22 @@ public static class ProcessHelper
             if (process is null)
             {
                 return (
-                    isSuccessful: false,
-                    output: $"No process found by pid '{processId}'");
+                    IsSuccessful: false,
+                    Output: $"No process found by pid '{processId}'");
             }
 
             process.KillTree();
             process.WaitForExit(timeoutInSec * 1000);
 
             return (
-                isSuccessful: true,
-                output: $"Process found by pid '{processId}' is now terminated");
+                IsSuccessful: true,
+                Output: $"Process found by pid '{processId}' is now terminated");
         }
         catch (Exception ex)
         {
             return (
-                isSuccessful: false,
-                output: ex.GetMessage(
+                IsSuccessful: false,
+                Output: ex.GetMessage(
                     includeInnerMessage: true,
                     includeExceptionName: false));
         }
@@ -268,7 +268,7 @@ public static class ProcessHelper
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static (bool isSuccessful, string output) KillByName(
+    public static (bool IsSuccessful, string Output) KillByName(
         string processName,
         bool allowMultiKill = true,
         int timeoutInSec = DefaultKillTimeoutInSec)
@@ -289,8 +289,8 @@ public static class ProcessHelper
             if (processes.Length == 0)
             {
                 return (
-                    isSuccessful: false,
-                    output: $"No process found by name '{processName}'");
+                    IsSuccessful: false,
+                    Output: $"No process found by name '{processName}'");
             }
 
             try
@@ -302,14 +302,14 @@ public static class ProcessHelper
                 }
 
                 return (
-                    isSuccessful: true,
-                    output: $"{processes.Length} processes found by name '{processName}' is now terminated");
+                    IsSuccessful: true,
+                    Output: $"{processes.Length} processes found by name '{processName}' is now terminated");
             }
             catch (Exception ex)
             {
                 return (
-                    isSuccessful: false,
-                    output: ex.GetMessage(
+                    IsSuccessful: false,
+                    Output: ex.GetMessage(
                         includeInnerMessage: true,
                         includeExceptionName: false));
             }
@@ -319,12 +319,12 @@ public static class ProcessHelper
         {
             case 0:
                 return (
-                    isSuccessful: false,
-                    output: $"No process found by name '{processName}'");
+                    IsSuccessful: false,
+                    Output: $"No process found by name '{processName}'");
             case > 1:
                 return (
-                    isSuccessful: false,
-                    output: $"Too many processes found by name '{processName}'");
+                    IsSuccessful: false,
+                    Output: $"Too many processes found by name '{processName}'");
             default:
             {
                 var process = processes[0];
@@ -335,14 +335,14 @@ public static class ProcessHelper
                     process.WaitForExit(timeoutInSec * 1000);
 
                     return (
-                        isSuccessful: true,
-                        output: $"Process found by name '{processName}' is now terminated");
+                        IsSuccessful: true,
+                        Output: $"Process found by name '{processName}' is now terminated");
                 }
                 catch (Exception ex)
                 {
                     return (
-                        isSuccessful: false,
-                        output: ex.GetMessage(
+                        IsSuccessful: false,
+                        Output: ex.GetMessage(
                             includeInnerMessage: true,
                             includeExceptionName: false));
                 }
@@ -350,7 +350,7 @@ public static class ProcessHelper
         }
     }
 
-    private static async Task<(bool isSuccessful, string output)> InvokeExecuteWithTimeout(
+    private static async Task<(bool IsSuccessful, string Output)> InvokeExecuteWithTimeout(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -373,7 +373,7 @@ public static class ProcessHelper
             processId = assignedProcessId;
             resultOutput = output;
 
-            return (isSuccessful: isSuccessful, output: output);
+            return (IsSuccessful: isSuccessful, Output: output);
         }
         catch (TimeoutException)
         {
@@ -404,7 +404,7 @@ public static class ProcessHelper
         }
     }
 
-    private static async Task<(bool isSuccessful, string output)> InvokeExecute(
+    private static async Task<(bool IsSuccessful, string Output)> InvokeExecute(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments)
@@ -415,7 +415,7 @@ public static class ProcessHelper
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task<(bool isSuccessful, string output, int processId)> InvokeExecuteWithProcessId(
+    private static async Task<(bool IsSuccessful, string Output, int ProcessId)> InvokeExecuteWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments)
@@ -449,18 +449,18 @@ public static class ProcessHelper
                     : $"{standardOutput}{Environment.NewLine}{standardError}";
 
             return (
-                isSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
-                output: message,
-                processId: processId);
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                Output: message,
+                ProcessId: processId);
         }
         catch (Exception ex)
         {
             return (
-                isSuccessful: false,
-                output: ex.GetMessage(
+                IsSuccessful: false,
+                Output: ex.GetMessage(
                     includeInnerMessage: true,
                     includeExceptionName: true),
-                processId: processId);
+                ProcessId: processId);
         }
     }
 

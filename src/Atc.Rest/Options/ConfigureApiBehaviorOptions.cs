@@ -17,7 +17,7 @@ public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
         }
 
         options.SuppressInferBindingSourcesForParameters = true;
-        options.InvalidModelStateResponseFactory = (context) =>
+        options.InvalidModelStateResponseFactory = context =>
         {
             var error = new ValidationProblemDetails(context.ModelState)
             {

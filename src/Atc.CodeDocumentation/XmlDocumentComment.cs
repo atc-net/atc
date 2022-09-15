@@ -86,6 +86,6 @@ public class XmlDocumentComment
     /// </returns>
     public override string ToString()
     {
-        return this.MemberType + ":" + this.ClassName + "." + this.MemberName;
+        return MemberType + ":" + ClassName + "." + MemberName;
     }
 }

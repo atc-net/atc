@@ -238,7 +238,7 @@ public abstract class IntegrationTestCliBase
             : cliProjectName;
     }
 
-    private static (string cliFileNameExe, DirectoryInfo searchFromPath) GetCliFileExeAndSearchFromPath(Type programTypeForCliExe)
+    private static (string CliFileNameExe, DirectoryInfo SearchFromPath) GetCliFileExeAndSearchFromPath(Type programTypeForCliExe)
     {
         var currentDomainBaseDirectory = AppDomain
             .CurrentDomain
@@ -257,7 +257,7 @@ public abstract class IntegrationTestCliBase
     }
 
     private static FileInfo GetAppSettingsFilePathFromCliFileExe(FileInfo cliFileExe)
-        => new (
+        => new(
             Path.Combine(
                 cliFileExe.Directory!.FullName,
                 "appsettings.json"));

@@ -4,10 +4,10 @@ internal class DebugLimitData
 {
     public DebugLimitData(List<Tuple<string, List<string>>> classMethodNames)
     {
-        this.ClassMethodNames = classMethodNames;
+        ClassMethodNames = classMethodNames;
     }
 
     internal List<Tuple<string, List<string>>> ClassMethodNames { get; }
 
-    internal bool HasClassNames => this.ClassMethodNames.Count != 0;
+    internal bool HasClassNames => ClassMethodNames.Count != 0;
 }

@@ -39,7 +39,7 @@ public class UniversalTransverseMercatorConverter
     /// <param name="referenceEllipsoidType">Type of the reference ellipsoid.</param>
     public UniversalTransverseMercatorConverter(ReferenceEllipsoidType referenceEllipsoidType = ReferenceEllipsoidType.Wgs84)
     {
-        this.SetEllipsoide(referenceEllipsoidType);
+        SetEllipsoide(referenceEllipsoidType);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class UniversalTransverseMercatorConverter
     /// <param name="coordinate">The coordinate.</param>
     public UniversalTransverseMercatorResult ToUtm(CartesianCoordinate coordinate)
     {
-        return this.ToUtm(coordinate.Latitude, coordinate.Longitude);
+        return ToUtm(coordinate.Latitude, coordinate.Longitude);
     }
 
     /// <summary>
@@ -110,18 +110,18 @@ public class UniversalTransverseMercatorConverter
         var longitudeOrigin = (zoneNumber - 1) * 6 - 180 + 3; //// +3 puts origin in middle of zone
         var longitudeOriginRadian = MathHelper.DegreesToRadians(longitudeOrigin);
         string utmZone = GetUtmLetterDesignator(latitude);
-        var eccPrimeSquared = this.eccSquared / (1 - this.eccSquared);
+        var eccPrimeSquared = eccSquared / (1 - eccSquared);
 
-        var N = this.a / System.Math.Sqrt(1 - this.eccSquared * System.Math.Sin(latitudeRadian) * System.Math.Sin(latitudeRadian));
+        var N = a / System.Math.Sqrt(1 - eccSquared * System.Math.Sin(latitudeRadian) * System.Math.Sin(latitudeRadian));
         var T = System.Math.Tan(latitudeRadian) * System.Math.Tan(latitudeRadian);
         var C = eccPrimeSquared * System.Math.Cos(latitudeRadian) * System.Math.Cos(latitudeRadian);
         var A = System.Math.Cos(latitudeRadian) * (longitudeRadian - longitudeOriginRadian);
 
-        var M = this.a * ((1 - this.eccSquared / 4 - 3 * this.eccSquared * this.eccSquared / 64
-                           - 5 * this.eccSquared * this.eccSquared * this.eccSquared / 256) * latitudeRadian
-            - (3 * this.eccSquared / 8 + 3 * this.eccSquared * this.eccSquared / 32 + 45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024) * System.Math.Sin(2 * latitudeRadian)
-            + (15 * this.eccSquared * this.eccSquared / 256 + 45 * this.eccSquared * this.eccSquared * this.eccSquared / 1024) *
-            System.Math.Sin(4 * latitudeRadian) - 35 * this.eccSquared * this.eccSquared * this.eccSquared / 3072 * System.Math.Sin(6 * latitudeRadian));
+        var M = a * ((1 - eccSquared / 4 - 3 * eccSquared * eccSquared / 64
+                           - 5 * eccSquared * eccSquared * eccSquared / 256) * latitudeRadian
+            - (3 * eccSquared / 8 + 3 * eccSquared * eccSquared / 32 + 45 * eccSquared * eccSquared * eccSquared / 1024) * System.Math.Sin(2 * latitudeRadian)
+            + (15 * eccSquared * eccSquared / 256 + 45 * eccSquared * eccSquared * eccSquared / 1024) *
+            System.Math.Sin(4 * latitudeRadian) - 35 * eccSquared * eccSquared * eccSquared / 3072 * System.Math.Sin(6 * latitudeRadian));
 
         var utmEasting = 0.9996 * N * (A + (1 - T + C) * A * A * A / 6
                                          + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120)
@@ -235,93 +235,93 @@ public class UniversalTransverseMercatorConverter
         switch (referenceEllipsoidType)
         {
             case ReferenceEllipsoidType.Airy:
-                this.a = 6377563;
-                this.eccSquared = 0.00667054;
+                a = 6377563;
+                eccSquared = 0.00667054;
                 break;
             case ReferenceEllipsoidType.AustralianNational:
             case ReferenceEllipsoidType.SouthAmerican1969:
-                this.a = 6378160;
-                this.eccSquared = 0.006694542;
+                a = 6378160;
+                eccSquared = 0.006694542;
                 break;
             case ReferenceEllipsoidType.Bessel1841:
-                this.a = 6377397;
-                this.eccSquared = 0.006674372;
+                a = 6377397;
+                eccSquared = 0.006674372;
                 break;
             case ReferenceEllipsoidType.Bessel1841Nambia:
-                this.a = 6377484;
-                this.eccSquared = 0.006674372;
+                a = 6377484;
+                eccSquared = 0.006674372;
                 break;
             case ReferenceEllipsoidType.Clarke1866:
-                this.a = 6378206;
-                this.eccSquared = 0.006768658;
+                a = 6378206;
+                eccSquared = 0.006768658;
                 break;
             case ReferenceEllipsoidType.Clarke1880:
-                this.a = 6378249;
-                this.eccSquared = 0.006803511;
+                a = 6378249;
+                eccSquared = 0.006803511;
                 break;
             case ReferenceEllipsoidType.Everest:
-                this.a = 6377276;
-                this.eccSquared = 0.006637847;
+                a = 6377276;
+                eccSquared = 0.006637847;
                 break;
             case ReferenceEllipsoidType.Fischer1960Mercury:
-                this.a = 6378166;
-                this.eccSquared = 0.006693422;
+                a = 6378166;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.Fischer1968:
-                this.a = 6378150;
-                this.eccSquared = 0.006693422;
+                a = 6378150;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.Grs1967:
-                this.a = 6378160;
-                this.eccSquared = 0.006694605;
+                a = 6378160;
+                eccSquared = 0.006694605;
                 break;
             case ReferenceEllipsoidType.Grs1980:
             case ReferenceEllipsoidType.Wgs84:
             case ReferenceEllipsoidType.Euref89:
             case ReferenceEllipsoidType.Etrs89:
-                this.a = 6378137;
-                this.eccSquared = 0.00669438;
+                a = 6378137;
+                eccSquared = 0.00669438;
                 break;
             case ReferenceEllipsoidType.Helmert1906:
-                this.a = 6378200;
-                this.eccSquared = 0.006693422;
+                a = 6378200;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.Hough:
-                this.a = 6378270;
-                this.eccSquared = 0.00672267;
+                a = 6378270;
+                eccSquared = 0.00672267;
                 break;
             case ReferenceEllipsoidType.International:
             case ReferenceEllipsoidType.Ed50:
-                this.a = 6378388;
-                this.eccSquared = 0.00672267;
+                a = 6378388;
+                eccSquared = 0.00672267;
                 break;
             case ReferenceEllipsoidType.Krassovsky:
-                this.a = 6378245;
-                this.eccSquared = 0.006693422;
+                a = 6378245;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.ModifiedAiry:
-                this.a = 6377340;
-                this.eccSquared = 0.00667054;
+                a = 6377340;
+                eccSquared = 0.00667054;
                 break;
             case ReferenceEllipsoidType.ModifiedEverest:
-                this.a = 6377304;
-                this.eccSquared = 0.006637847;
+                a = 6377304;
+                eccSquared = 0.006637847;
                 break;
             case ReferenceEllipsoidType.ModifiedFischer1960:
-                this.a = 6378155;
-                this.eccSquared = 0.006693422;
+                a = 6378155;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.Wgs60:
-                this.a = 6378165;
-                this.eccSquared = 0.006693422;
+                a = 6378165;
+                eccSquared = 0.006693422;
                 break;
             case ReferenceEllipsoidType.Wgs66:
-                this.a = 6378145;
-                this.eccSquared = 0.006694542;
+                a = 6378145;
+                eccSquared = 0.006694542;
                 break;
             case ReferenceEllipsoidType.Wgs72:
-                this.a = 6378135;
-                this.eccSquared = 0.006694318;
+                a = 6378135;
+                eccSquared = 0.006694318;
                 break;
             default:
                 throw new SwitchCaseDefaultException(referenceEllipsoidType);

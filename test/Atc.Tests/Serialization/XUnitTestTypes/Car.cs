@@ -5,8 +5,8 @@ public class Car : VehicleBase
     public Car(string plateNumber)
         : base(plateNumber)
     {
-        this.TypeDiscriminator = nameof(Car);
-        this.NumberOfWheels = 4;
+        TypeDiscriminator = nameof(Car);
+        NumberOfWheels = 4;
     }
 
     public bool HasSunroof { get; set; }

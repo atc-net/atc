@@ -224,7 +224,7 @@ public class ConsoleLogger : ILogger
                 LogLevel.Warning => 4,
                 LogLevel.Error => 5,
                 LogLevel.Critical => 8,
-                _ => throw new SwitchCaseDefaultException(logLevel)
+                _ => throw new SwitchCaseDefaultException(logLevel),
             };
         }
 
@@ -240,7 +240,7 @@ public class ConsoleLogger : ILogger
             LogLevel.Warning => "[orange1]",
             LogLevel.Error => "[red]",
             LogLevel.Critical => "[red on white]",
-            _ => throw new SwitchCaseDefaultException(logLevel)
+            _ => throw new SwitchCaseDefaultException(logLevel),
         };
 
     private static string GetLogLevelWithMarkup(LogLevel logLevel, bool useShort)
@@ -257,7 +257,7 @@ public class ConsoleLogger : ILogger
                 LogLevel.Warning => $"{startTag}warn:[/]",
                 LogLevel.Error => $"{startTag}error:[/]",
                 LogLevel.Critical => $"{startTag}critical:[/]",
-                _ => throw new SwitchCaseDefaultException(logLevel)
+                _ => throw new SwitchCaseDefaultException(logLevel),
             };
         }
 

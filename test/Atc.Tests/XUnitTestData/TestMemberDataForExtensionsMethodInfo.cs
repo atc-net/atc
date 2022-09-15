@@ -4,7 +4,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForExtensionsMethodInfo
 {
     public static TheoryData<string, MethodInfo?> BeautifyNameData
-        => new ()
+        => new()
         {
             { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt") },
             { "TestInNullInt(in int? data)", typeof(TestMethods).GetMethod("TestInNullInt") },
@@ -15,7 +15,7 @@ internal static class TestMemberDataForExtensionsMethodInfo
         };
 
     public static TheoryData<string, MethodInfo?, bool, bool, bool> BeautifyNameWithParametersData
-        => new ()
+        => new()
         {
             { "TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, false },
             { "void TestInInt(in int data)", typeof(TestMethods).GetMethod("TestInInt"), false, false, true },
@@ -35,6 +35,7 @@ internal static class TestMemberDataForExtensionsMethodInfo
 [SuppressMessage("Major Code Smell", "S1118:Utility classes should not have public constructors", Justification = "OK.")]
 [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "OK, since this is a test.")]
 [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK.")]
+[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
 [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "OK.")]
 internal class TestMethods
 {

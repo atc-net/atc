@@ -772,6 +772,8 @@
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods
      - GetPropertyValue(this object source, string propertyName)
+     - GetTypeFullName(this object source)
+     - GetTypeName(this object source)
 - [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
@@ -923,6 +925,9 @@
      - TryIsValid(string value, IPAddressAttribute attribute, out string errorMessage)
      - TryIsValid(string value, out string errorMessage)
   -  Properties
+     - Required
+  -  Methods
+     - IsValid(object value)
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
   -  Properties
      - IsoCurrencySymbols

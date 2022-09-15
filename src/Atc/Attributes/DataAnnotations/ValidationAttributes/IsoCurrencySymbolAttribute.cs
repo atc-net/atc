@@ -10,8 +10,8 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
     public IsoCurrencySymbolAttribute()
         : base("The {0} field requires a ISO-Currency-Symbol value.")
     {
-        this.Required = false;
-        this.IsoCurrencySymbols = Array.Empty<string>();
+        Required = false;
+        IsoCurrencySymbols = Array.Empty<string>();
     }
 
     public bool Required { get; set; }
@@ -21,10 +21,10 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
     public override bool IsValid(
         object? value)
     {
-        if (this.Required &&
+        if (Required &&
             value is null)
         {
-            this.ErrorMessage = "The {0} field is required.";
+            ErrorMessage = "The {0} field is required.";
             return false;
         }
 
@@ -37,15 +37,15 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
         if (str!.Length != 3 ||
             !str.Equals(str.ToUpper(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal))
         {
-            this.ErrorMessage = "The field {0} is not a valid ISO-Currency-Symbol, it should be in three upper-case letters.";
+            ErrorMessage = "The field {0} is not a valid ISO-Currency-Symbol, it should be in three upper-case letters.";
             return false;
         }
 
-        if (this.IsoCurrencySymbols.Any())
+        if (IsoCurrencySymbols.Any())
         {
-            if (!this.IsoCurrencySymbols.Any(x => str.Equals(x.ToUpper(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal)))
+            if (!IsoCurrencySymbols.Any(x => str.Equals(x.ToUpper(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal)))
             {
-                this.ErrorMessage = $"The field {{0}} do not match any: {string.Join(", ", this.IsoCurrencySymbols)}.";
+                ErrorMessage = $"The field {{0}} do not match any: {string.Join(", ", IsoCurrencySymbols)}.";
                 return false;
             }
         }
@@ -59,7 +59,7 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
 
             if (!systemIsoCurrencySymbols.Any(x => str.Equals(x, StringComparison.Ordinal)))
             {
-                this.ErrorMessage = $"The field {{0}} do not match any: {string.Join(", ", systemIsoCurrencySymbols)}.";
+                ErrorMessage = $"The field {{0}} do not match any: {string.Join(", ", systemIsoCurrencySymbols)}.";
                 return false;
             }
         }

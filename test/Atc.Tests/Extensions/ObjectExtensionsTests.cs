@@ -3,6 +3,32 @@ namespace Atc.Tests.Extensions;
 public class ObjectExtensionsTests
 {
     [Fact]
+    public void GetTypeName()
+    {
+        // Arrange
+        var sut = new LogKeyValueItem();
+
+        // Act
+        var actual = sut.GetTypeName();
+
+        // Assert
+        Assert.Equal("LogKeyValueItem", actual);
+    }
+
+    [Fact]
+    public void GetTypeFullName()
+    {
+        // Arrange
+        var sut = new LogKeyValueItem();
+
+        // Act
+        var actual = sut.GetTypeFullName();
+
+        // Assert
+        Assert.Equal("Atc.Data.Models.LogKeyValueItem", actual);
+    }
+
+    [Fact]
     public void GetPropertyValue()
     {
         // Arrange

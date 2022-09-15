@@ -6,7 +6,7 @@ namespace Atc.Tests.Serialization.XUnitTestTypes
     {
         protected VehicleBase(string plateNumber)
         {
-            this.PlateNumber = plateNumber;
+            PlateNumber = plateNumber;
         }
 
         public string TypeDiscriminator { get; set; } = string.Empty;

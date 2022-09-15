@@ -1,3 +1,5 @@
+using TaskExtensions = System.TaskExtensions;
+
 namespace Atc.Tests;
 
 public class CodeComplianceTests
@@ -7,7 +9,7 @@ public class CodeComplianceTests
     private readonly Assembly sourceAssembly = typeof(AtcAssemblyTypeInitializer).Assembly;
     private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
 
-    private readonly List<Type> excludeTypes = new ()
+    private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
         typeof(SemanticVersion),
@@ -31,7 +33,7 @@ public class CodeComplianceTests
         typeof(NetworkInformationHelper),
         typeof(ProcessExtensions),
         typeof(StringAttribute),
-        typeof(System.TaskExtensions),
+        typeof(TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
     };

@@ -3,7 +3,7 @@ namespace Atc.DotNet.Tests;
 
 public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
 {
-    private static readonly DirectoryInfo WorkingDirectory = new (Path.Combine(Path.GetTempPath(), "atc-integration-test-solution-file-helper"));
+    private static readonly DirectoryInfo WorkingDirectory = new(Path.Combine(Path.GetTempPath(), "atc-integration-test-solution-file-helper"));
 
     public Task InitializeAsync()
     {

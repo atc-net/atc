@@ -16,8 +16,8 @@ public struct GridCell : ICloneable, IEquatable<GridCell>
     public GridCell(int x, int y)
         : this()
     {
-        this.X = x;
-        this.Y = y;
+        X = x;
+        Y = y;
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public struct GridCell : ICloneable, IEquatable<GridCell>
     /// <returns>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </returns>
-    public bool IsDefault => this.X == 0 && this.Y == 0;
+    public bool IsDefault => X == 0 && Y == 0;
 
     /// <summary>
     /// Implements the operator ==.
@@ -71,31 +71,31 @@ public struct GridCell : ICloneable, IEquatable<GridCell>
     /// </summary>
     /// <param name="other">The other.</param>
     public bool Equals(GridCell other)
-        => this.X == other.X && this.Y == other.Y;
+        => X == other.X && Y == other.Y;
 
     /// <inheritdoc />
     public override bool Equals(object obj)
-        => obj is GridCell x && this.Equals(x);
+        => obj is GridCell x && Equals(x);
 
     /// <inheritdoc />
     public override int GetHashCode()
     {
         unchecked
         {
-            return (this.X * 397) ^ this.Y;
+            return (X * 397) ^ Y;
         }
     }
 
     /// <inheritdoc />
     public object Clone()
     {
-        return new GridCell(this.X, this.Y);
+        return new GridCell(X, Y);
     }
 
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{nameof(X)}: {this.X}, {nameof(Y)}: {this.Y}";
+        return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
     }
 
     /// <summary>
@@ -104,6 +104,6 @@ public struct GridCell : ICloneable, IEquatable<GridCell>
     /// <returns>Return a short format of x and y.</returns>
     public string ToStringShort()
     {
-        return $"{this.X}, {this.Y}";
+        return $"{X}, {Y}";
     }
 }

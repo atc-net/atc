@@ -11,7 +11,7 @@ public class IdValueItem
     /// </summary>
     public IdValueItem()
     {
-        this.Value = string.Empty;
+        Value = string.Empty;
     }
 
     /// <summary>
@@ -22,8 +22,8 @@ public class IdValueItem
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public IdValueItem(Guid id, string value)
     {
-        this.Id = id;
-        this.Value = value ?? throw new ArgumentNullException(nameof(value));
+        Id = id;
+        Value = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     /// <summary>
@@ -44,5 +44,5 @@ public class IdValueItem
 
     /// <inheritdoc />
     public override string ToString()
-        => $"{nameof(this.Id)}: {this.Id}, {nameof(this.Value)}: {this.Value}";
+        => $"{nameof(Id)}: {Id}, {nameof(Value)}: {Value}";
 }

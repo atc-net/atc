@@ -119,7 +119,7 @@ public static class DotnetBuildHelper
         return parsedErrors;
     }
 
-    private static async Task<(bool isSuccessful, string output)> RunBuildCommand(
+    private static async Task<(bool IsSuccessful, string Output)> RunBuildCommand(
         DirectoryInfo rootPath,
         FileInfo? buildFile,
         bool useNugetRestore,
@@ -148,8 +148,8 @@ public static class DotnetBuildHelper
             {
                 var files = slnFiles.Select(x => new FileInfo(x).Name).ToList();
                 return (
-                    isSuccessful: false,
-                    output: $"Please specify which solution file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the solution file using this option: --buildFile");
+                    IsSuccessful: false,
+                    Output: $"Please specify which solution file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the solution file using this option: --buildFile");
             }
 
             var csprojFiles = Directory.GetFiles(rootPath.FullName, "*.csproj");
@@ -157,8 +157,8 @@ public static class DotnetBuildHelper
             {
                 var files = csprojFiles.Select(x => new FileInfo(x).Name).ToList();
                 return (
-                    isSuccessful: false,
-                    output: $"Please specify which C# project file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the C# project file using this option: --buildFile");
+                    IsSuccessful: false,
+                    Output: $"Please specify which C# project file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the C# project file using this option: --buildFile");
             }
         }
 

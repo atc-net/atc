@@ -10,7 +10,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
                 new OpenApiResponses()
             },
             {
-                new List<HttpStatusCode>()
+                new List<HttpStatusCode>
                 {
                     HttpStatusCode.OK,
                 },
@@ -30,7 +30,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
                 }
             },
             {
-                new List<HttpStatusCode>()
+                new List<HttpStatusCode>
                 {
                     HttpStatusCode.OK,
                     HttpStatusCode.NotFound,

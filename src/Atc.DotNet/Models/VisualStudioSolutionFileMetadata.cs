@@ -23,7 +23,7 @@ public class VisualStudioSolutionFileMetadata
             15 => "Visual Studio 2017",
             16 => "Visual Studio 2019",
             17 => "Visual Studio 2022",
-            _ => "Unknown Visual Studio"
+            _ => "Unknown Visual Studio",
         };
 
     public override string ToString()

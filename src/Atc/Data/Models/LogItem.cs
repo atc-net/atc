@@ -11,9 +11,9 @@ public class LogItem
     /// </summary>
     public LogItem()
     {
-        this.TimeStamp = DateTime.Now;
-        this.Severity = LogCategoryType.Information;
-        this.Message = string.Empty;
+        TimeStamp = DateTime.Now;
+        Severity = LogCategoryType.Information;
+        Message = string.Empty;
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ public class LogItem
     public LogItem(string message)
         : this()
     {
-        this.Message = message ?? throw new ArgumentNullException(nameof(message));
+        Message = message ?? throw new ArgumentNullException(nameof(message));
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public class LogItem
     public LogItem(LogCategoryType severity, string message)
         : this(message)
     {
-        this.Severity = severity;
+        Severity = severity;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public class LogItem
     public LogItem(DateTime timeStamp, LogCategoryType severity, string message)
         : this(severity, message)
     {
-        this.TimeStamp = timeStamp;
+        TimeStamp = timeStamp;
     }
 
     /// <summary>

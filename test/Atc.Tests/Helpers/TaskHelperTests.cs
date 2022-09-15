@@ -95,8 +95,8 @@ public class TaskHelperTests
         var taskCompletionSource = new TaskCompletionSource<int>();
         taskCompletionSource.TrySetException(new Exception[]
         {
-            new (firstExceptionMessage),
-            new (secondExceptionMessage),
+            new(firstExceptionMessage),
+            new(secondExceptionMessage),
         });
 
         // Act & Assert

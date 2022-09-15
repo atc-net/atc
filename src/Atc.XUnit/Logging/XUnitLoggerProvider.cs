@@ -3,7 +3,7 @@ namespace Atc.XUnit.Logging;
 public sealed class XUnitLoggerProvider : ILoggerProvider
 {
     private readonly ITestOutputHelper testOutputHelper;
-    private readonly LoggerExternalScopeProvider scopeProvider = new ();
+    private readonly LoggerExternalScopeProvider scopeProvider = new();
 
     public XUnitLoggerProvider(
         ITestOutputHelper testOutputHelper)

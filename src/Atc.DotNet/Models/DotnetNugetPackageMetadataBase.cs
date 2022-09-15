@@ -5,14 +5,14 @@ public class DotnetNugetPackageMetadataBase
 {
     public DotnetNugetPackageMetadataBase()
     {
-        this.PackageId = string.Empty;
-        this.Version = string.Empty;
+        PackageId = string.Empty;
+        Version = string.Empty;
     }
 
     public DotnetNugetPackageMetadataBase(string packageId, string version)
     {
-        this.PackageId = packageId;
-        this.Version = version;
+        PackageId = packageId;
+        Version = version;
     }
 
     public string PackageId { get; set; }

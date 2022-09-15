@@ -1,3 +1,6 @@
+using Atc.CodeAnalysis.CSharp.Factories;
+using SyntaxNodeExtensions = Microsoft.CodeAnalysis.CSharp.Syntax.SyntaxNodeExtensions;
+
 namespace Atc.CodeAnalysis.CSharp.Tests;
 
 public class CodeComplianceTests
@@ -13,10 +16,10 @@ public class CodeComplianceTests
         typeof(ClassDeclarationSyntaxExtensions),
         typeof(EnumDeclarationSyntaxExtensions),
         typeof(MethodDeclarationSyntaxExtensions),
-        typeof(Microsoft.CodeAnalysis.CSharp.Syntax.SyntaxNodeExtensions),
+        typeof(SyntaxNodeExtensions),
         typeof(InterfaceDeclarationSyntaxExtensions),
         typeof(CompilationUnitSyntaxExtensions),
-        typeof(Factories.SuppressMessageAttributeFactory),
+        typeof(SuppressMessageAttributeFactory),
         typeof(SyntaxAccessorDeclarationFactory),
         typeof(SyntaxArgumentListFactory),
         typeof(SyntaxAssignmentExpressionFactory),

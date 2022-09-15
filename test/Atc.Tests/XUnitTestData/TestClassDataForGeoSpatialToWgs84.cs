@@ -26,7 +26,7 @@ public class TestClassDataForGeoSpatialToWgs84 : IEnumerable<object[]>
         },
     };
 
-    public IEnumerator<object[]> GetEnumerator() => this.data.GetEnumerator();
+    public IEnumerator<object[]> GetEnumerator() => data.GetEnumerator();
 
-    IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

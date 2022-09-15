@@ -40,7 +40,7 @@ public class RestApiOptions
             throw new ArgumentNullException(nameof(domainAssembly));
         }
 
-        this.AssemblyPairs ??= new List<AssemblyPairOptions>();
-        this.AssemblyPairs.Add(new AssemblyPairOptions(apiAssembly, domainAssembly));
+        AssemblyPairs ??= new List<AssemblyPairOptions>();
+        AssemblyPairs.Add(new AssemblyPairOptions(apiAssembly, domainAssembly));
     }
 }

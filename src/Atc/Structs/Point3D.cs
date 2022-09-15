@@ -16,9 +16,9 @@ public struct Point3D : IEquatable<Point3D>
     public Point3D(double x, double y)
         : this()
     {
-        this.X = x;
-        this.Y = y;
-        this.Z = 0;
+        X = x;
+        Y = y;
+        Z = 0;
     }
 
     /// <summary>
@@ -30,9 +30,9 @@ public struct Point3D : IEquatable<Point3D>
     public Point3D(double x, double y, double z)
         : this()
     {
-        this.X = x;
-        this.Y = y;
-        this.Z = z;
+        X = x;
+        Y = y;
+        Z = z;
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public struct Point3D : IEquatable<Point3D>
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
-    public bool IsDefault => this.X.IsEqual(0) && this.Y.IsEqual(0) && this.Z.IsEqual(0);
+    public bool IsDefault => X.IsEqual(0) && Y.IsEqual(0) && Z.IsEqual(0);
 
     /// <summary>
     /// Implements the operator ==.
@@ -94,20 +94,20 @@ public struct Point3D : IEquatable<Point3D>
     /// </summary>
     /// <param name="other">The other.</param>
     public bool Equals(Point3D other)
-        => this.X.AreClose(other.X) && this.Y.AreClose(other.Y) && this.Z.AreClose(other.Z);
+        => X.AreClose(other.X) && Y.AreClose(other.Y) && Z.AreClose(other.Z);
 
     /// <inheritdoc />
     public override bool Equals(object obj)
-        => obj is Point3D x && this.Equals(x);
+        => obj is Point3D x && Equals(x);
 
     /// <inheritdoc />
     public override int GetHashCode()
-        => this.X.GetHashCode() ^ this.Y.GetHashCode() ^ this.Z.GetHashCode();
+        => X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
 
     /// <inheritdoc />
     [SuppressMessage("Design", "MA0076:Do not use implicit culture-sensitive ToString in interpolated strings", Justification = "OK.")]
     public override string ToString()
     {
-        return $"{nameof(X)}: {this.X}, {nameof(Y)}: {this.Y}, {nameof(Z)}: {this.Z}";
+        return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}, {nameof(Z)}: {Z}";
     }
 }

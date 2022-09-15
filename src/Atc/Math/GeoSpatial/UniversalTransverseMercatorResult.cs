@@ -16,10 +16,10 @@ public class UniversalTransverseMercatorResult
     /// <param name="utmNorthing">The utm northing.</param>
     public UniversalTransverseMercatorResult(int zoneNumber, string zoneLetter, double utmEasting, double utmNorthing)
     {
-        this.ZoneNumber = zoneNumber;
-        this.ZoneLetter = zoneLetter ?? throw new ArgumentNullException(nameof(zoneLetter));
-        this.UtmEasting = utmEasting;
-        this.UtmNorthing = utmNorthing;
+        ZoneNumber = zoneNumber;
+        ZoneLetter = zoneLetter ?? throw new ArgumentNullException(nameof(zoneLetter));
+        UtmEasting = utmEasting;
+        UtmNorthing = utmNorthing;
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public class UniversalTransverseMercatorResult
     /// <value>
     /// The zone.
     /// </value>
-    public string Zone => this.ZoneNumber + this.ZoneLetter;
+    public string Zone => ZoneNumber + ZoneLetter;
 
     /// <summary>
     /// Gets the formatted UTM.
@@ -68,8 +68,8 @@ public class UniversalTransverseMercatorResult
     /// <value>
     /// The formatted UTM.
     /// </value>
-    public string FormattedUtm => $"{this.UtmEasting.ToString(GlobalizationConstants.EnglishCultureInfo)}, {this.UtmNorthing.ToString(GlobalizationConstants.EnglishCultureInfo)}";
+    public string FormattedUtm => $"{UtmEasting.ToString(GlobalizationConstants.EnglishCultureInfo)}, {UtmNorthing.ToString(GlobalizationConstants.EnglishCultureInfo)}";
 
     /// <inheritdoc />
-    public override string ToString() => $"{this.Zone} {this.UtmEasting} {this.UtmNorthing}";
+    public override string ToString() => $"{Zone} {UtmEasting} {UtmNorthing}";
 }

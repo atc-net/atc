@@ -1,3 +1,5 @@
+using Atc.XUnit.Internal.AbstractSyntaxTree;
+
 namespace Atc.XUnit.Internal;
 
 internal static class AssemblyTestHelper
@@ -55,9 +57,9 @@ internal static class AssemblyTestHelper
         switch (decompilerType)
         {
             case DecompilerType.AbstractSyntaxTree:
-                var decompiler = AbstractSyntaxTree.DecompilerHelper.GetDecompiler(testType.Assembly);
-                var testMethodsWithDecompiled = AbstractSyntaxTree.DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
-                return AbstractSyntaxTree.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes.ToArray(), testMethodsWithDecompiled, DebugLimitData);
+                var decompiler = DecompilerHelper.GetDecompiler(testType.Assembly);
+                var testMethodsWithDecompiled = DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
+                return AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes.ToArray(), testMethodsWithDecompiled, DebugLimitData);
             case DecompilerType.MonoReflection:
                 var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceTypes, testTypeMethods);
                 return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);
@@ -85,9 +87,9 @@ internal static class AssemblyTestHelper
         switch (decompilerType)
         {
             case DecompilerType.AbstractSyntaxTree:
-                var decompiler = AbstractSyntaxTree.DecompilerHelper.GetDecompiler(testAssembly);
-                var testMethodsWithDecompiled = AbstractSyntaxTree.DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
-                return AbstractSyntaxTree.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes.ToArray(), testMethodsWithDecompiled, DebugLimitData);
+                var decompiler = DecompilerHelper.GetDecompiler(testAssembly);
+                var testMethodsWithDecompiled = DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
+                return AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes.ToArray(), testMethodsWithDecompiled, DebugLimitData);
             case DecompilerType.MonoReflection:
                 var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceTypes, testTypeMethods);
                 return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);
@@ -132,9 +134,9 @@ internal static class AssemblyTestHelper
         switch (decompilerType)
         {
             case DecompilerType.AbstractSyntaxTree:
-                var decompiler = AbstractSyntaxTree.DecompilerHelper.GetDecompiler(testAssembly);
-                var testMethodsWithDecompiled = AbstractSyntaxTree.DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
-                return AbstractSyntaxTree.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, testMethodsWithDecompiled, DebugLimitData);
+                var decompiler = DecompilerHelper.GetDecompiler(testAssembly);
+                var testMethodsWithDecompiled = DecompilerHelper.GetTestMethodsWithDecompiled(decompiler, testTypeMethods);
+                return AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, testMethodsWithDecompiled, DebugLimitData);
             case DecompilerType.MonoReflection:
                 var usedSourceMethods = MonoReflection.AnalyzerHelper.GetUsedSourceMethods(sourceAssembly.ExportedTypes.ToArray(), testTypeMethods);
                 return MonoReflection.AnalyzerHelper.GetSourceMethodsWithMissingTest(sourceTypes, usedSourceMethods, DebugLimitData);

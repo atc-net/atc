@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Filters;
+using EndpointRouteBuilderExtensions = Atc.Rest.Extensions.EndpointRouteBuilderExtensions;
+using HttpContextExtensions = Microsoft.AspNetCore.Http.HttpContextExtensions;
+
 namespace Atc.Rest.Tests;
 
 public class CodeComplianceTests
@@ -11,21 +16,21 @@ public class CodeComplianceTests
     {
         // TODO: Add UnitTest and remove from this list!!
         typeof(EndpointRouteBuilderExtensions),
-        typeof(Rest.Middleware.ExceptionTelemetryMiddleware),
+        typeof(ExceptionTelemetryMiddleware),
         typeof(HttpResponseMessageExtensions),
-        typeof(Rest.Middleware.KeepAliveMiddleware),
-        typeof(Rest.Middleware.RequestCorrelationMiddleware),
+        typeof(KeepAliveMiddleware),
+        typeof(RequestCorrelationMiddleware),
         typeof(AllowAnonymousAccessForDevelopmentHandler),
-        typeof(Options.ConfigureApiBehaviorOptions),
-        typeof(Options.RestApiOptions),
-        typeof(Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer),
-        typeof(Microsoft.ApplicationInsights.Extensibility.CallingIdentityTelemetryInitializer),
-        typeof(Microsoft.AspNetCore.Builder.RestApiBuilderExtensions),
-        typeof(Microsoft.AspNetCore.Http.AnonymousAccessExtensions),
-        typeof(Microsoft.AspNetCore.Http.HttpContextExtensions),
-        typeof(Microsoft.AspNetCore.Mvc.Filters.ErrorHandlingExceptionFilterAttribute),
-        typeof(Microsoft.Extensions.DependencyInjection.RestApiExtensions),
-        typeof(Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions),
+        typeof(ConfigureApiBehaviorOptions),
+        typeof(RestApiOptions),
+        typeof(Accept4xxResponseAsSuccessInitializer),
+        typeof(CallingIdentityTelemetryInitializer),
+        typeof(RestApiBuilderExtensions),
+        typeof(AnonymousAccessExtensions),
+        typeof(HttpContextExtensions),
+        typeof(ErrorHandlingExceptionFilterAttribute),
+        typeof(RestApiExtensions),
+        typeof(ServiceCollectionExtensions),
         typeof(ResultFactory),
         typeof(AuthorizationOptions),
         typeof(ProblemDetailsHelper),

@@ -11,12 +11,12 @@ public class StringAttribute : ValidationAttribute
     public StringAttribute()
         : base("The {0} field requires a value.")
     {
-        this.Required = false;
-        this.MinLength = 1;
-        this.MaxLength = 256;
-        this.InvalidCharacters = Array.Empty<char>();
-        this.InvalidPrefixStrings = Array.Empty<string>();
-        this.RegularExpression = string.Empty;
+        Required = false;
+        MinLength = 1;
+        MaxLength = 256;
+        InvalidCharacters = Array.Empty<char>();
+        InvalidPrefixStrings = Array.Empty<string>();
+        RegularExpression = string.Empty;
     }
 
     public StringAttribute(
@@ -25,12 +25,12 @@ public class StringAttribute : ValidationAttribute
         uint maxLength)
         : this()
     {
-        this.Required = required;
-        this.MinLength = minLength;
-        this.MaxLength = maxLength;
-        this.InvalidCharacters = Array.Empty<char>();
-        this.InvalidPrefixStrings = Array.Empty<string>();
-        this.RegularExpression = string.Empty;
+        Required = required;
+        MinLength = minLength;
+        MaxLength = maxLength;
+        InvalidCharacters = Array.Empty<char>();
+        InvalidPrefixStrings = Array.Empty<string>();
+        RegularExpression = string.Empty;
     }
 
     public StringAttribute(
@@ -41,12 +41,12 @@ public class StringAttribute : ValidationAttribute
         string[] invalidPrefixStrings)
         : this()
     {
-        this.Required = required;
-        this.MinLength = minLength;
-        this.MaxLength = maxLength;
-        this.InvalidCharacters = invalidCharacters;
-        this.InvalidPrefixStrings = invalidPrefixStrings;
-        this.RegularExpression = string.Empty;
+        Required = required;
+        MinLength = minLength;
+        MaxLength = maxLength;
+        InvalidCharacters = invalidCharacters;
+        InvalidPrefixStrings = invalidPrefixStrings;
+        RegularExpression = string.Empty;
     }
 
     public StringAttribute(
@@ -56,12 +56,12 @@ public class StringAttribute : ValidationAttribute
         string regularExpression)
         : this()
     {
-        this.Required = required;
-        this.MinLength = minLength;
-        this.MaxLength = maxLength;
-        this.InvalidCharacters = Array.Empty<char>();
-        this.InvalidPrefixStrings = Array.Empty<string>();
-        this.RegularExpression = regularExpression;
+        Required = required;
+        MinLength = minLength;
+        MaxLength = maxLength;
+        InvalidCharacters = Array.Empty<char>();
+        InvalidPrefixStrings = Array.Empty<string>();
+        RegularExpression = regularExpression;
     }
 
     public bool Required { get; set; }
@@ -79,10 +79,10 @@ public class StringAttribute : ValidationAttribute
     public override bool IsValid(
         object? value)
     {
-        if (this.Required &&
+        if (Required &&
             value is null)
         {
-            this.ErrorMessage = "The {0} field is required.";
+            ErrorMessage = "The {0} field is required.";
             return false;
         }
 
@@ -92,38 +92,38 @@ public class StringAttribute : ValidationAttribute
         }
 
         var str = value.ToString();
-        if (str.Length < this.MinLength ||
-            str.Length > this.MaxLength)
+        if (str.Length < MinLength ||
+            str.Length > MaxLength)
         {
-            this.ErrorMessage = $"The field {{0}} must be between {this.MinLength} and {this.MaxLength}.";
+            ErrorMessage = $"The field {{0}} must be between {MinLength} and {MaxLength}.";
             return false;
         }
 
-        if (this.InvalidCharacters.Any() &&
-            this.InvalidCharacters.Any(x => str.Contains(x, StringComparison.Ordinal)))
+        if (InvalidCharacters.Any() &&
+            InvalidCharacters.Any(x => str.Contains(x, StringComparison.Ordinal)))
         {
-            this.ErrorMessage = $"The field {{0}} cannot contain: {string.Join(", ", this.InvalidCharacters)}.";
+            ErrorMessage = $"The field {{0}} cannot contain: {string.Join(", ", InvalidCharacters)}.";
             return false;
         }
 
-        if (this.InvalidPrefixStrings.Any() &&
-            this.InvalidPrefixStrings.Any(x => str.StartsWith(x.ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal)))
+        if (InvalidPrefixStrings.Any() &&
+            InvalidPrefixStrings.Any(x => str.StartsWith(x.ToString(GlobalizationConstants.EnglishCultureInfo), StringComparison.Ordinal)))
         {
-            this.ErrorMessage = $"The field {{0}} cannot start with: {string.Join(", ", this.InvalidPrefixStrings)}.";
+            ErrorMessage = $"The field {{0}} cannot start with: {string.Join(", ", InvalidPrefixStrings)}.";
             return false;
         }
 
-        if (!string.IsNullOrEmpty(this.RegularExpression))
+        if (!string.IsNullOrEmpty(RegularExpression))
         {
             var regEx = new Regex(
-                this.RegularExpression,
+                RegularExpression,
                 RegexOptions.Singleline,
                 TimeSpan.FromSeconds(2));
 
             var match = regEx.Match(str);
             if (!match.Success)
             {
-                this.ErrorMessage = $"The field {{0}} do not match with: {this.RegularExpression}.";
+                ErrorMessage = $"The field {{0}} do not match with: {RegularExpression}.";
                 return false;
             }
         }
