@@ -19,8 +19,8 @@
      - PredictProjectType(FileInfo fileInfo)
 - [DotnetGlobalUsingsHelper](Atc.DotNet.md#dotnetglobalusingshelper)
   -  Static Methods
-     - CreateOrUpdate(DirectoryInfo directoryInfo, IReadOnlyList&lt;string&gt; requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
-     - GetNewContentByReadingExistingIfExistAndMergeWithRequired(DirectoryInfo directoryInfo, IReadOnlyList&lt;string&gt; requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+     - CreateOrUpdate(DirectoryInfo directoryInfo, IReadOnlyList&lt;string&gt; requiredNamespaces, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+     - GetNewContentByReadingExistingIfExistAndMergeWithRequired(DirectoryInfo directoryInfo, IReadOnlyList&lt;string&gt; requiredNamespaces, bool setSystemFirst = True, bool addNamespaceSeparator = True)
 - [DotnetHelper](Atc.DotNet.md#dotnethelper)
   -  Static Methods
      - GetDotnetDirectory()

@@ -107,6 +107,40 @@ BarcodeHelper.
 
 <br />
 
+## AssemblyHelper
+The AssemblyHelper module contains procedures used to preform assembly operations.
+
+>```csharp
+>public static class AssemblyHelper
+>```
+
+### Static Methods
+
+#### Load
+>```csharp
+>Assembly Load(FileInfo assemblyFile)
+>```
+><b>Summary:</b> Load the specified assembly file, with a reference to memory and not the specified file.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyFile`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly file.<br />
+>
+><b>Returns:</b> The Assembly that is loaded.
+>
+><b>Remarks:</b> The assembly is never directly loaded, to avoid holding a instance as "assembly = Assembly.Load(file)" do.
+#### ReadAsBytes
+>```csharp
+>byte[] ReadAsBytes(FileInfo assemblyFile)
+>```
+><b>Summary:</b> Read the specified assembly file into a byte array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyFile`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly file.<br />
+>
+><b>Returns:</b> The Assembly in a byte array.
+
+<br />
+
 ## ByteHelper
 ByteHelper.
 

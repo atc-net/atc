@@ -51,6 +51,19 @@ Extensions for the `System.AppDomain` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
+#### TryLoadAssemblyIfNeeded
+>```csharp
+>bool TryLoadAssemblyIfNeeded(this AppDomain appDomain, string dllFileName)
+>```
+><b>Summary:</b> Load the specified assembly file, with a reference to memory and not the specified file.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dllFileName`&nbsp;&nbsp;-&nbsp;&nbsp;The name for the assembly file.<br />
+>
+><b>Returns:</b> The Assembly that is loaded.
+>
+><b>Remarks:</b> The assembly is never directly loaded, to avoid holding a instance as "assembly = Assembly.Load(file)" do.
 
 <br />
 

@@ -10,7 +10,8 @@ public static class AppDomainExtensions
     /// Gets all exported types.
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
-    public static Type[] GetAllExportedTypes(this AppDomain appDomain)
+    public static Type[] GetAllExportedTypes(
+        this AppDomain appDomain)
     {
         if (appDomain is null)
         {
@@ -33,7 +34,9 @@ public static class AppDomainExtensions
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
     /// <param name="typeName">Name of the type.</param>
-    public static Type? GetExportedTypeByName(this AppDomain appDomain, string typeName)
+    public static Type? GetExportedTypeByName(
+        this AppDomain appDomain,
+        string typeName)
     {
         if (appDomain is null)
         {
@@ -66,7 +69,10 @@ public static class AppDomainExtensions
     /// <param name="appDomain">The application domain.</param>
     /// <param name="typeName">Name of the type.</param>
     /// <param name="propertyName">Name of the property.</param>
-    public static Type? GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
+    public static Type? GetExportedPropertyTypeByName(
+        this AppDomain appDomain,
+        string typeName,
+        string propertyName)
     {
         if (appDomain is null)
         {
@@ -93,7 +99,8 @@ public static class AppDomainExtensions
     /// Gets the custom assemblies - excluding System, Microsoft etc.
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
-    public static Assembly[] GetCustomAssemblies(this AppDomain appDomain)
+    public static Assembly[] GetCustomAssemblies(
+        this AppDomain appDomain)
     {
         if (appDomain is null)
         {
@@ -106,5 +113,47 @@ public static class AppDomainExtensions
                         !x.FullName.StartsWith("Microsoft", StringComparison.Ordinal) &&
                         !x.FullName.StartsWith("netstandard", StringComparison.Ordinal))
             .ToArray();
+    }
+
+    /// <summary>
+    /// Load the specified assembly file, with a reference to memory and not the specified file.
+    /// </summary>
+    /// <remarks>
+    /// The assembly is never directly loaded, to avoid
+    /// holding a instance as "assembly = Assembly.Load(file)" do.
+    /// </remarks>
+    /// <param name="appDomain">The application domain.</param>
+    /// <param name="dllFileName">The name for the assembly file.</param>
+    /// <returns>The Assembly that is loaded.</returns>
+    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    public static bool TryLoadAssemblyIfNeeded(
+        this AppDomain appDomain,
+        string dllFileName)
+    {
+        var assemblies = GetCustomAssemblies(appDomain);
+
+        var isLoaded = assemblies.Any(x => !string.IsNullOrEmpty(x.Location) &&
+                                           x.Location.Contains(dllFileName, StringComparison.OrdinalIgnoreCase));
+
+        if (isLoaded)
+        {
+            return true;
+        }
+
+        var dllFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dllFileName));
+        if (dllFile.Exists)
+        {
+            try
+            {
+                AssemblyHelper.Load(dllFile);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        return false;
     }
 }
