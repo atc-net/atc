@@ -12,6 +12,8 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
+        typeof(AssemblyHelper),
+        typeof(AppDomainExtensions),
         typeof(SemanticVersion),
         typeof(MathEx),
         typeof(JsonTypeDiscriminatorConverter<>),
