@@ -280,6 +280,10 @@
      - IsValidIssn(string code)
      - IsValidUpc(string code)
      - TryConvertToGtin(string code, out string gtin)
+- [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
+  -  Static Methods
+     - Load(FileInfo assemblyFile)
+     - ReadAsBytes(FileInfo assemblyFile)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
   -  Static Methods
      - ConvertToFourBytes(int value)
@@ -655,6 +659,7 @@
      - GetCustomAssemblies(this AppDomain appDomain)
      - GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
      - GetExportedTypeByName(this AppDomain appDomain, string typeName)
+     - TryLoadAssemblyIfNeeded(this AppDomain appDomain, string dllFileName)
 - [ArgumentNullOrDefaultException](System.md#argumentnullordefaultexception)
 - [ArgumentNullOrDefaultPropertyException](System.md#argumentnullordefaultpropertyexception)
 - [ArgumentNullPropertyException](System.md#argumentnullpropertyexception)

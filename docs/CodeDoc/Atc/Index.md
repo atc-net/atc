@@ -68,6 +68,7 @@
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
+- [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)

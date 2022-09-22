@@ -72,11 +72,11 @@
 
 #### CreateOrUpdate
 >```csharp
->void CreateOrUpdate(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+>void CreateOrUpdate(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredNamespaces, bool setSystemFirst = True, bool addNamespaceSeparator = True)
 >```
 #### GetNewContentByReadingExistingIfExistAndMergeWithRequired
 >```csharp
->string GetNewContentByReadingExistingIfExistAndMergeWithRequired(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredUsings, bool setSystemFirst = True, bool addNamespaceSeparator = True)
+>string GetNewContentByReadingExistingIfExistAndMergeWithRequired(DirectoryInfo directoryInfo, IReadOnlyList<string> requiredNamespaces, bool setSystemFirst = True, bool addNamespaceSeparator = True)
 >```
 
 <br />
