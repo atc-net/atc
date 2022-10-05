@@ -18,4 +18,29 @@ public class PaginationTests
         sut.Count.Should().Be(data.Count - 1);
         sut.Items.Should().NotContain(data.Last());
     }
+
+    [Theory]
+    [InlineData(2, 3, 5, 3)]
+    [InlineData(3, 3, 9, 3)]
+    [InlineData(1, 10, 9, 9)]
+    [InlineData(1, 10, 10, 9)]
+    [InlineData(2, 10, 11, 9)]
+    [InlineData(2, 10, 11, 10)]
+    [InlineData(2, 10, 11, 11)]
+    public void Calculate_TotalPages(int expectedTotalPages, int pageSize, int elementsToCreate, int elementsToTake)
+    {
+        // Arrange
+        var data = Fixture
+            .CreateMany<int>(elementsToCreate)
+            .ToList();
+
+        // Act
+        var actual = new Pagination<int>(items: data.Take(elementsToTake), pageSize, queryString: null, continuationToken: null)
+        {
+            TotalCount = data.Count,
+        };
+
+        // Assert
+        Assert.Equal(expectedTotalPages, actual.TotalPages);
+    }
 }
