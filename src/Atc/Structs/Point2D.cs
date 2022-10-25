@@ -6,36 +6,8 @@ namespace Atc;
 /// </summary>
 [Serializable]
 [StructLayout(LayoutKind.Auto)]
-public struct Point2D : IEquatable<Point2D>
+public record struct Point2D(double X = 0, double Y = 0)
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Point2D"/> struct.
-    /// </summary>
-    /// <param name="x">The x.</param>
-    /// <param name="y">The y.</param>
-    public Point2D(double x, double y)
-        : this()
-    {
-        X = x;
-        Y = y;
-    }
-
-    /// <summary>
-    /// Gets the X.
-    /// </summary>
-    /// <value>
-    /// The X.
-    /// </value>
-    public double X { get; }
-
-    /// <summary>
-    /// Gets the Y.
-    /// </summary>
-    /// <value>
-    /// The Y.
-    /// </value>
-    public double Y { get; }
-
     /// <summary>
     /// Gets a value indicating whether this instance is default.
     /// </summary>
@@ -44,46 +16,14 @@ public struct Point2D : IEquatable<Point2D>
     /// </value>
     public bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
 
-    /// <summary>
-    /// Implements the operator ==.
-    /// </summary>
-    /// <param name="point1">The point1.</param>
-    /// <param name="point2">The point2.</param>
-    /// <returns>
-    /// The result of the operator.
-    /// </returns>
-    public static bool operator ==(Point2D point1, Point2D point2)
-        => point1.Equals(point2);
+    /// <inheritdoc />
+    public override readonly string ToString()
+        => $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
 
     /// <summary>
-    /// Implements the operator !=.
+    /// To the string short.
     /// </summary>
-    /// <param name="point1">The point1.</param>
-    /// <param name="point2">The point2.</param>
-    /// <returns>
-    /// The result of the operator.
-    /// </returns>
-    public static bool operator !=(Point2D point1, Point2D point2)
-        => !point1.Equals(point2);
-
-    /// <summary>
-    /// Equals the specified other.
-    /// </summary>
-    /// <param name="other">The other.</param>
-    public bool Equals(Point2D other)
-        => X.AreClose(other.X) && Y.AreClose(other.Y);
-
-    /// <inheritdoc />
-    public override bool Equals(object obj)
-        => obj is Point2D x && Equals(x);
-
-    /// <inheritdoc />
-    public override int GetHashCode()
-        => X.GetHashCode() ^ Y.GetHashCode();
-
-    /// <inheritdoc />
-    public override string ToString()
-    {
-        return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
-    }
+    /// <returns>Return a short format of x and y.</returns>
+    public readonly string ToStringShort()
+        => $"{X}, {Y}";
 }

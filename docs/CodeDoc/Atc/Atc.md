@@ -689,7 +689,7 @@ GlobalizationLcidConstants.
 Represents an x- and y-coordinate point in 2-D grid.
 
 >```csharp
->public struct GridCell : ICloneable, IEquatable<GridCell>
+>public struct GridCell : IEquatable<GridCell>
 >```
 
 ### Properties
@@ -705,34 +705,24 @@ Represents an x- and y-coordinate point in 2-D grid.
 >```csharp
 >X
 >```
-><b>Summary:</b> Gets the X.
 #### Y
 >```csharp
 >Y
 >```
-><b>Summary:</b> Gets the Y.
 ### Methods
 
-#### Clone
+#### Deconstruct
 >```csharp
->object Clone()
+>void Deconstruct(out int X, out int Y)
+>```
+#### Equals
+>```csharp
+>bool Equals(object obj)
 >```
 #### Equals
 >```csharp
 >bool Equals(GridCell other)
 >```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
-#### Equals
->```csharp
->bool Equals(object obj)
->```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### GetHashCode
 >```csharp
 >int GetHashCode()
@@ -969,30 +959,24 @@ Represents an x- and y-coordinate point in 2-D space.
 >```csharp
 >X
 >```
-><b>Summary:</b> Gets the X.
 #### Y
 >```csharp
 >Y
 >```
-><b>Summary:</b> Gets the Y.
 ### Methods
 
-#### Equals
+#### Deconstruct
 >```csharp
->bool Equals(Point2D other)
+>void Deconstruct(out double X, out double Y)
 >```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
 >```csharp
 >bool Equals(object obj)
 >```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+#### Equals
+>```csharp
+>bool Equals(Point2D other)
+>```
 #### GetHashCode
 >```csharp
 >int GetHashCode()
@@ -1001,6 +985,13 @@ Represents an x- and y-coordinate point in 2-D space.
 >```csharp
 >string ToString()
 >```
+#### ToStringShort
+>```csharp
+>string ToStringShort()
+>```
+><b>Summary:</b> To the string short.
+>
+><b>Returns:</b> Return a short format of x and y.
 
 <br />
 
@@ -1022,35 +1013,28 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 >```csharp
 >X
 >```
-><b>Summary:</b> Gets the X.
 #### Y
 >```csharp
 >Y
 >```
-><b>Summary:</b> Gets the Y.
 #### Z
 >```csharp
 >Z
 >```
-><b>Summary:</b> Gets the Z.
 ### Methods
 
-#### Equals
+#### Deconstruct
 >```csharp
->bool Equals(Point3D other)
+>void Deconstruct(out double X, out double Y, out double Z)
 >```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
 #### Equals
 >```csharp
 >bool Equals(object obj)
 >```
-><b>Summary:</b> Equals the specified other.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other.<br />
+#### Equals
+>```csharp
+>bool Equals(Point3D other)
+>```
 #### GetHashCode
 >```csharp
 >int GetHashCode()
@@ -1059,6 +1043,13 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 >```csharp
 >string ToString()
 >```
+#### ToStringShort
+>```csharp
+>string ToStringShort()
+>```
+><b>Summary:</b> To the string short.
+>
+><b>Returns:</b> Return a short format of x, y, and z.
 
 <br />
 

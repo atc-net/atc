@@ -19,6 +19,21 @@ public class MemberInfoExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
+    [InlineData(true, typeof(Point2D), "Deconstruct")]
+    public void HasCompilerGeneratedAttribute(bool expected, Type type, string methodName)
+    {
+        // Arrange
+        var memberInfo = type.GetMember(methodName).First();
+
+        // Act
+        var actual = memberInfo.HasCompilerGeneratedAttribute();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(TestItem), "World")]
     public void HasIgnoreDisplayAttribute(bool expected, Type type, string methodName)
     {

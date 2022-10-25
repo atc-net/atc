@@ -116,7 +116,8 @@ internal static class AssemblyTestHelper
                         !x.IsNested &&
                         !(x.IsAbstract && !x.IsSealed) &&
                         !x.IsDelegate() &&
-                        !x.HasExcludeFromCodeCoverageAttribute())
+                        !x.HasExcludeFromCodeCoverageAttribute() &&
+                        !x.HasCompilerGeneratedAttribute())
             .OrderBy(x => x.Name)
             .ToArray();
 
