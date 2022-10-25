@@ -65,7 +65,7 @@
      - X
      - Y
   -  Methods
-     - Clone()
+     - Deconstruct(out int X, out int Y)
      - Equals(GridCell other)
      - Equals(object obj)
      - GetHashCode()
@@ -94,10 +94,12 @@
      - X
      - Y
   -  Methods
+     - Deconstruct(out double X, out double Y)
      - Equals(object obj)
      - Equals(Point2D other)
      - GetHashCode()
      - ToString()
+     - ToStringShort()
 - [Point3D](Atc.md#point3d)
   -  Properties
      - IsDefault
@@ -105,10 +107,12 @@
      - Y
      - Z
   -  Methods
+     - Deconstruct(out double X, out double Y, out double Z)
      - Equals(object obj)
      - Equals(Point3D other)
      - GetHashCode()
      - ToString()
+     - ToStringShort()
 - [SortDirectionType](Atc.md#sortdirectiontype)
 - [TriggerActionType](Atc.md#triggeractiontype)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)
@@ -604,10 +608,12 @@
      - Latitude
      - Longitude
   -  Methods
+     - Deconstruct(out double Latitude, out double Longitude)
      - Equals(CartesianCoordinate other)
      - Equals(object obj)
      - GetHashCode()
      - ToString()
+     - ToStringShort()
 
 ## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
 

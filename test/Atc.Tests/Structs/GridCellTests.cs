@@ -20,23 +20,6 @@ public class GridCellTests
     }
 
     [Theory]
-    [InlineData(0, 0)]
-    [InlineData(1, 0)]
-    [InlineData(0, 1)]
-    [InlineData(1, 1)]
-    public void Clone(int x, int y)
-    {
-        // Arrange
-        var input = new GridCell(x, y);
-
-        // Act
-        var actual = input.Clone();
-
-        // Assert
-        actual.Should().BeEquivalentTo(input);
-    }
-
-    [Theory]
     [InlineData("X: 0, Y: 0", 0, 0)]
     [InlineData("X: 1, Y: 0", 1, 0)]
     [InlineData("X: 0, Y: 1", 0, 1)]

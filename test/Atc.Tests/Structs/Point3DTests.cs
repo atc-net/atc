@@ -18,4 +18,21 @@ public class Point3DTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData("0, 0, 0", 0, 0, 0)]
+    [InlineData("1, 0, 0", 1, 0, 0)]
+    [InlineData("0, 1, 0", 0, 1, 0)]
+    [InlineData("1, 1, 0", 1, 1, 0)]
+    public void ToStringShort(string expected, int x, int y, int z)
+    {
+        // Arrange
+        var input = new Point3D(x, y, z);
+
+        // Act
+        var actual = input.ToStringShort();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
 }

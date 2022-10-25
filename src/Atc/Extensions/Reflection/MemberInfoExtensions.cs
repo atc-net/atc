@@ -25,6 +25,17 @@ public static class MemberInfoExtensions
         return attributeData is not null;
     }
 
+    public static bool HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
+    {
+        if (memberInfo is null)
+        {
+            throw new ArgumentNullException(nameof(memberInfo));
+        }
+
+        var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(CompilerGeneratedAttribute));
+        return attributeData is not null;
+    }
+
     /// <summary>
     /// Determines whether [has ignore display attribute].
     /// </summary>

@@ -127,7 +127,8 @@ internal static class TypeAndMethodAndParameterHelper
             return true;
         }
 
-        if (method.HasExcludeFromCodeCoverageAttribute())
+        if (method.HasExcludeFromCodeCoverageAttribute() ||
+            method.HasCompilerGeneratedAttribute())
         {
             return true;
         }
