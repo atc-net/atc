@@ -19,9 +19,12 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
     /// Equals the specified other.
     /// </summary>
     /// <param name="other">The other.</param>
-    public bool Equals(CartesianCoordinate other) =>
+    public readonly bool Equals(CartesianCoordinate other) =>
         Latitude.AreClose(other.Latitude) &&
         Longitude.AreClose(other.Longitude);
+
+    public override readonly int GetHashCode()
+        => base.GetHashCode();
 
     /// <inheritdoc />
     public override readonly string ToString()
