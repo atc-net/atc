@@ -31,6 +31,7 @@ public class CodeComplianceTests
         typeof(ErrorHandlingExceptionFilterAttribute),
         typeof(RestApiExtensions),
         typeof(ServiceCollectionExtensions),
+        typeof(HttpRequestExtensions),
         typeof(ResultFactory),
         typeof(AuthorizationOptions),
         typeof(ProblemDetailsHelper),

@@ -15,7 +15,10 @@ public class JsonTypeDiscriminatorConverter<T> : JsonConverter<T>
             .ToList();
     }
 
-    public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override T Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options)
     {
         if (reader.TokenType != JsonTokenType.StartObject)
         {
@@ -44,8 +47,9 @@ public class JsonTypeDiscriminatorConverter<T> : JsonConverter<T>
         return result;
     }
 
-    public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, (object)value, options);
-    }
+    public override void Write(
+        Utf8JsonWriter writer,
+        T value,
+        JsonSerializerOptions options)
+        => JsonSerializer.Serialize(writer, (object)value, options);
 }

@@ -2,12 +2,18 @@ namespace Atc.Serialization.JsonConverters;
 
 public class JsonUnixDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
 {
-    public override DateTimeOffset? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override DateTimeOffset? Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options)
         => reader.TryGetInt64(out var value)
             ? DateTimeOffset.FromUnixTimeSeconds(value)
             : default;
 
-    public override void Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        DateTimeOffset? value,
+        JsonSerializerOptions options)
     {
         if (writer is null)
         {

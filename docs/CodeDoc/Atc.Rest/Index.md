@@ -54,6 +54,7 @@
 - [FormFileExtensions](Microsoft.AspNetCore.Http.md#formfileextensions)
 - [HeaderDictionaryExtensions](Microsoft.AspNetCore.Http.md#headerdictionaryextensions)
 - [HttpContextExtensions](Microsoft.AspNetCore.Http.md#httpcontextextensions)
+- [HttpRequestExtensions](Microsoft.AspNetCore.Http.md#httprequestextensions)
 - [WellKnownHttpHeaders](Microsoft.AspNetCore.Http.md#wellknownhttpheaders)
 
 ## [Microsoft.AspNetCore.Mvc.Filters](Microsoft.AspNetCore.Mvc.Filters.md)

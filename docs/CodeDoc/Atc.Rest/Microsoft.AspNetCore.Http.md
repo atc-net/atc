@@ -89,6 +89,34 @@
 
 <br />
 
+## HttpRequestExtensions
+
+>```csharp
+>public static class HttpRequestExtensions
+>```
+
+### Static Methods
+
+#### GetRawBodyBytesAsync
+>```csharp
+>Task<byte[]> GetRawBodyBytesAsync(this HttpRequest request)
+>```
+><b>Summary:</b> Retrieves the raw body as a byte array from the Request.Body stream
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`request`&nbsp;&nbsp;-&nbsp;&nbsp;Request instance to applies to<br />
+#### GetRawBodyStringAsync
+>```csharp
+>Task<string> GetRawBodyStringAsync(this HttpRequest request, Encoding encoding = null)
+>```
+><b>Summary:</b> Retrieve the raw body as a string from the Request.Body stream
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`request`&nbsp;&nbsp;-&nbsp;&nbsp;Request instance to applies to<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`encoding`&nbsp;&nbsp;-&nbsp;&nbsp;Optional - Encoding, defaults to UTF8<br />
+
+<br />
+
 ## WellKnownHttpHeaders
 
 >```csharp

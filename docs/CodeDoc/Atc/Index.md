@@ -124,6 +124,7 @@
 
 - [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
 - [JsonDateTimeOffsetMinToNullConverter](Atc.Serialization.JsonConverters.md#jsondatetimeoffsetmintonullconverter)
+- [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
 - [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
 - [JsonUnixDateTimeOffsetConverter](Atc.Serialization.JsonConverters.md#jsonunixdatetimeoffsetconverter)

@@ -587,6 +587,11 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+- [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
+  -  Methods
+     - CanConvert(Type typeToConvert)
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -1045,6 +1050,7 @@
 - [MemberInfoExtensions](System.Reflection.md#memberinfoextensions)
   -  Static Methods
      - GetUnderlyingType(this MemberInfo member)
+     - HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
      - HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
      - HasIgnoreDisplayAttribute(this MemberInfo memberInfo)
      - HasRequiredAttribute(this MemberInfo memberInfo)

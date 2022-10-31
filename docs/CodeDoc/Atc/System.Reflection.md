@@ -99,6 +99,10 @@ Extensions for the `System.Reflection.MemberInfo` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member.<br />
+#### HasCompilerGeneratedAttribute
+>```csharp
+>bool HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
+>```
 #### HasExcludeFromCodeCoverageAttribute
 >```csharp
 >bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
