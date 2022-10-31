@@ -21,6 +21,7 @@ public class CodeComplianceTests
         typeof(JsonTimeSpanConverter),
         typeof(JsonDateTimeOffsetMinToNullConverter),
         typeof(JsonUnixDateTimeOffsetConverter),
+        typeof(JsonNumberToStringConverter),
         typeof(LoggerExtensions),
         typeof(FileHelper),
         typeof(FileHelper<>),

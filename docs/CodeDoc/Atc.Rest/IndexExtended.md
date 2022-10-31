@@ -160,6 +160,10 @@
   -  Static Methods
      - GetCorrelationId(this HttpContext context)
      - GetRequestId(this HttpContext context)
+- [HttpRequestExtensions](Microsoft.AspNetCore.Http.md#httprequestextensions)
+  -  Static Methods
+     - GetRawBodyBytesAsync(this HttpRequest request)
+     - GetRawBodyStringAsync(this HttpRequest request, Encoding encoding = null)
 - [WellKnownHttpHeaders](Microsoft.AspNetCore.Http.md#wellknownhttpheaders)
   -  Static Fields
      - string CallingIdentity
