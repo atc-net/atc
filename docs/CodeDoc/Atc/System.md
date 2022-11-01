@@ -1088,24 +1088,45 @@ Extensions for the `System.Int64` class.
 
 #### FromUnixTime
 >```csharp
->DateTimeOffset FromUnixTime(this long value)
+>DateTimeOffset FromUnixTime(this long valueInSeconds)
 >```
 ><b>Summary:</b> Converts a unix time to a DateTimeOffset.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;A long containing the value to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`valueInSeconds`&nbsp;&nbsp;-&nbsp;&nbsp;A long containing the value (in seconds) to convert.<br />
 >
-><b>Returns:</b> The DateTimeOffset value from a long.
+><b>Returns:</b> The DateTimeOffset value from a long in seconds.
 >
 ><b>Code usage:</b>
 >```csharp
->DateTimeOffset dateTimeOffset = value.FromUnixTimeSeconds(value);
+>DateTimeOffset dateTimeOffset = value.FromUnixTime(value);
 >```
 >
 ><b>Code example:</b>
 >```csharp
 >long unixTime = 0; // Equivalent to 1-1-1970
->DateTimeOffset dateTimeOffset = unixTime.FromUnixTimeSeconds();
+>DateTimeOffset dateTimeOffset = unixTime.FromUnixTime();
+>```
+#### FromUnixTimeMs
+>```csharp
+>DateTimeOffset FromUnixTimeMs(this long valueInMs)
+>```
+><b>Summary:</b> Converts a unix time to a DateTimeOffset.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`valueInMs`&nbsp;&nbsp;-&nbsp;&nbsp;A long containing the value (in ms) to convert.<br />
+>
+><b>Returns:</b> The DateTimeOffset value from a long in ms.
+>
+><b>Code usage:</b>
+>```csharp
+>DateTimeOffset dateTimeOffset = value.FromUnixTimeMs(value);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>long unixTime = 0; // Equivalent to 1-1-1970
+>DateTimeOffset dateTimeOffset = unixTime.FromUnixTimeMs();
 >```
 
 <br />

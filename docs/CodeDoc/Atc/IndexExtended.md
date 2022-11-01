@@ -783,7 +783,8 @@
 - [ItemNotFoundException](System.md#itemnotfoundexception)
 - [LongExtensions](System.md#longextensions)
   -  Static Methods
-     - FromUnixTime(this long value)
+     - FromUnixTime(this long valueInSeconds)
+     - FromUnixTimeMs(this long valueInMs)
 - [NullException](System.md#nullexception)
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods
