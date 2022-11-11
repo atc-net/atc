@@ -52,6 +52,43 @@
 - [RequestCorrelationMiddleware](Atc.Rest.Middleware.md#requestcorrelationmiddleware)
   -  Methods
      - InvokeAsync(HttpContext context)
+- [RequestResponseLoggerMiddleware](Atc.Rest.Middleware.md#requestresponseloggermiddleware)
+  -  Methods
+     - InvokeAsync(HttpContext httpContext)
+
+## [Atc.Rest.Models](Atc.Rest.Models.md)
+
+- [RequestLogModel](Atc.Rest.Models.md#requestlogmodel)
+  -  Properties
+     - Body
+     - ClientIp
+     - ContentType
+     - DateTimeUtc
+     - HeaderParameters
+     - Host
+     - Method
+     - Path
+     - QueryParameters
+     - QueryString
+     - RequestId
+     - Scheme
+- [RequestResponseLogModel](Atc.Rest.Models.md#requestresponselogmodel)
+  -  Properties
+     - ExceptionMessage
+     - ExceptionStackTrace
+     - ExecutionTime
+     - Request
+     - Response
+     - System
+  -  Methods
+     - SetException(Exception exception)
+- [ResponseLogModel](Atc.Rest.Models.md#responselogmodel)
+  -  Properties
+     - Body
+     - ContentType
+     - DateTimeUtc
+     - HeaderParameters
+     - Status
 
 ## [Atc.Rest.Options](Atc.Rest.Options.md)
 
@@ -77,13 +114,20 @@
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
   -  Methods
      - Configure(ApiBehaviorOptions options)
+- [RequestResponseLoggerOptions](Atc.Rest.Options.md#requestresponseloggeroptions)
+  -  Properties
+     - DefaultLogLevel
+     - IncludeResponseBody
+     - SkipSwaggerRequests
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
   -  Properties
      - AllowAnonymousAccessForDevelopment
      - AssemblyPairs
      - Authorization
+     - EnableRequestResponseLogger
      - ErrorHandlingExceptionFilter
      - JsonSerializerCasingStyle
+     - RequestResponseLoggerOptions
      - UseApplicationInsights
      - UseAutoRegistrateServices
      - UseEnumAsStringInSerialization

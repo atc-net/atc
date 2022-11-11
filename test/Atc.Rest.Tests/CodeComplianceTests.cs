@@ -1,3 +1,4 @@
+using Atc.Rest.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Filters;
 using EndpointRouteBuilderExtensions = Atc.Rest.Extensions.EndpointRouteBuilderExtensions;
@@ -17,6 +18,8 @@ public class CodeComplianceTests
         // TODO: Add UnitTest and remove from this list!!
         typeof(EndpointRouteBuilderExtensions),
         typeof(ExceptionTelemetryMiddleware),
+        typeof(RequestResponseLoggerMiddleware),
+        typeof(RequestResponseLogModel),
         typeof(HttpResponseMessageExtensions),
         typeof(KeepAliveMiddleware),
         typeof(RequestCorrelationMiddleware),

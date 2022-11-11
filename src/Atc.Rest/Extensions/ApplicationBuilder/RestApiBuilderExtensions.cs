@@ -62,6 +62,12 @@ public static class RestApiBuilderExtensions
         app.UseMiddleware<KeepAliveMiddleware>();
         app.UseMiddleware<RequestCorrelationMiddleware>();
         app.UseMiddleware<ExceptionTelemetryMiddleware>();
+
+        if (restApiOptions.EnableRequestResponseLogger)
+        {
+            app.UseMiddleware<RequestResponseLoggerMiddleware>();
+        }
+
         if (!env.IsDevelopment())
         {
             app.UseHsts();
