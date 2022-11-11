@@ -1,5 +1,6 @@
 namespace Atc.Rest.Models;
 
+[SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
 public sealed class ResponseLogModel
 {
     public ResponseLogModel(

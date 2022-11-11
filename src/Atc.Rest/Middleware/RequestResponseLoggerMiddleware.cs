@@ -1,6 +1,9 @@
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 namespace Atc.Rest.Middleware;
 
+[SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
+[SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+[SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
 public class RequestResponseLoggerMiddleware
 {
     private readonly RequestDelegate next;
