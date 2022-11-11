@@ -128,6 +128,36 @@ Copy and fill out the AzureAd section into the project User Secrets.
 
 <br />
 
+## RequestResponseLoggerOptions
+
+>```csharp
+>public class RequestResponseLoggerOptions
+>```
+
+### Properties
+
+#### DefaultLogLevel
+>```csharp
+>DefaultLogLevel
+>```
+><b>Summary:</b> Indicates the default log level for the logger.
+#### IncludeResponseBody
+>```csharp
+>IncludeResponseBody
+>```
+><b>Summary:</b> Indicates if response body is logged.
+>
+><b>Remarks:</b> Default set to <see langword="true" />.
+#### SkipSwaggerRequests
+>```csharp
+>SkipSwaggerRequests
+>```
+><b>Summary:</b> Indicates if swagger requests should be exempt from logger.
+>
+><b>Remarks:</b> Default set to <see langword="true" />.
+
+<br />
+
 ## RestApiOptions
 
 >```csharp
@@ -148,6 +178,10 @@ Copy and fill out the AzureAd section into the project User Secrets.
 >```csharp
 >Authorization
 >```
+#### EnableRequestResponseLogger
+>```csharp
+>EnableRequestResponseLogger
+>```
 #### ErrorHandlingExceptionFilter
 >```csharp
 >ErrorHandlingExceptionFilter
@@ -155,6 +189,10 @@ Copy and fill out the AzureAd section into the project User Secrets.
 #### JsonSerializerCasingStyle
 >```csharp
 >JsonSerializerCasingStyle
+>```
+#### RequestResponseLoggerOptions
+>```csharp
+>RequestResponseLoggerOptions
 >```
 #### UseApplicationInsights
 >```csharp

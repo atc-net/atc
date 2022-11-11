@@ -24,12 +24,20 @@
 - [ExceptionTelemetryMiddleware](Atc.Rest.Middleware.md#exceptiontelemetrymiddleware)
 - [KeepAliveMiddleware](Atc.Rest.Middleware.md#keepalivemiddleware)
 - [RequestCorrelationMiddleware](Atc.Rest.Middleware.md#requestcorrelationmiddleware)
+- [RequestResponseLoggerMiddleware](Atc.Rest.Middleware.md#requestresponseloggermiddleware)
+
+## [Atc.Rest.Models](Atc.Rest.Models.md)
+
+- [RequestLogModel](Atc.Rest.Models.md#requestlogmodel)
+- [RequestResponseLogModel](Atc.Rest.Models.md#requestresponselogmodel)
+- [ResponseLogModel](Atc.Rest.Models.md#responselogmodel)
 
 ## [Atc.Rest.Options](Atc.Rest.Options.md)
 
 - [AssemblyPairOptions](Atc.Rest.Options.md#assemblypairoptions)
 - [AuthorizationOptions](Atc.Rest.Options.md#authorizationoptions)
 - [ConfigureApiBehaviorOptions](Atc.Rest.Options.md#configureapibehavioroptions)
+- [RequestResponseLoggerOptions](Atc.Rest.Options.md#requestresponseloggeroptions)
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
 - [RestApiOptionsErrorHandlingExceptionFilter](Atc.Rest.Options.md#restapioptionserrorhandlingexceptionfilter)
 

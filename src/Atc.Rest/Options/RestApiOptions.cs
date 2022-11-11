@@ -25,6 +25,10 @@ public class RestApiOptions
 
     public bool UseValidateServiceRegistrations { get; set; } = true;
 
+    public bool EnableRequestResponseLogger { get; set; }
+
+    public RequestResponseLoggerOptions RequestResponseLoggerOptions { get; set; } = new();
+
     [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
     public List<AssemblyPairOptions> AssemblyPairs { get; set; } = new();
 
