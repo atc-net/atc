@@ -6,7 +6,8 @@ public sealed class RequestResponseLogModel
     public RequestResponseLogModel(
         HttpRequest request)
     {
-        System = Assembly.GetExecutingAssembly().GetName().Name!.Replace('.', '-').ToLower(GlobalizationConstants.EnglishCultureInfo);
+        var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+        System = assembly.GetName().Name!.Replace('.', '-').ToLower(GlobalizationConstants.EnglishCultureInfo);
         Request = new RequestLogModel(request);
     }
 
