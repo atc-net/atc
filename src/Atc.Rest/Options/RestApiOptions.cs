@@ -5,7 +5,7 @@ public class RestApiOptions
 {
     public bool AllowAnonymousAccessForDevelopment { get; set; } = true;
 
-    public AuthorizationOptions Authorization { get; set; } = new AuthorizationOptions();
+    public AuthorizationOptions Authorization { get; set; } = new();
 
     public bool UseApplicationInsights { get; set; } = true;
 
@@ -15,7 +15,7 @@ public class RestApiOptions
 
     public bool UseHttpContextAccessor { get; set; } = true;
 
-    public RestApiOptionsErrorHandlingExceptionFilter ErrorHandlingExceptionFilter { get; set; } = new RestApiOptionsErrorHandlingExceptionFilter();
+    public RestApiOptionsErrorHandlingExceptionFilter ErrorHandlingExceptionFilter { get; set; } = new();
 
     public bool UseRequireHttpsPermanent { get; set; } = true;
 
@@ -26,7 +26,7 @@ public class RestApiOptions
     public bool UseValidateServiceRegistrations { get; set; } = true;
 
     [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
-    public List<AssemblyPairOptions> AssemblyPairs { get; set; } = new List<AssemblyPairOptions>();
+    public List<AssemblyPairOptions> AssemblyPairs { get; set; } = new();
 
     public void AddAssemblyPairs(Assembly? apiAssembly, Assembly? domainAssembly)
     {
