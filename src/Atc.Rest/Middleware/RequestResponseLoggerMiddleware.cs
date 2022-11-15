@@ -68,6 +68,8 @@ public class RequestResponseLoggerMiddleware
             await swapStream.CopyToAsync(originalResponseBody);
             httpContext.Response.Body = originalResponseBody;
 
+            StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
+
             logModel.Response.Body = responseBodyText;
         }
 
@@ -90,6 +92,86 @@ public class RequestResponseLoggerMiddleware
                 Body = await ReadBodyFromRequest(httpContext.Request),
             },
         };
+
+    private static async Task<string> ReadBodyFromRequest(
+        HttpRequest request)
+    {
+        // Ensure the request's body can be read multiple times for the next middleware in the pipeline
+        request.EnableBuffering();
+        using var streamReader = new StreamReader(request.Body, leaveOpen: true);
+        var requestBody = await streamReader.ReadToEndAsync();
+
+        // Reset the request's body stream position for next middleware in the pipeline.
+        request.Body.Position = 0;
+
+        StripBinaryContentPartFromRequestResponseBody(ref requestBody);
+
+        return requestBody;
+    }
+
+    private static void StripBinaryContentPartFromRequestResponseBody(
+        ref string bodyContent)
+    {
+        if (string.IsNullOrEmpty(bodyContent))
+        {
+            return;
+        }
+
+        var saContentTypes = bodyContent.Split(
+            new[] { "Content-Type: " },
+            StringSplitOptions.RemoveEmptyEntries);
+
+        if (saContentTypes.Length <= 1)
+        {
+            return;
+        }
+
+        var sb = new StringBuilder();
+        foreach (var part in saContentTypes)
+        {
+            if (part.StartsWith("application/", StringComparison.OrdinalIgnoreCase) ||
+                part.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
+                part.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) ||
+                part.StartsWith("video/", StringComparison.OrdinalIgnoreCase) ||
+                part.StartsWith("multipart/", StringComparison.OrdinalIgnoreCase))
+            {
+                if (part.StartsWith("application/json", StringComparison.OrdinalIgnoreCase) ||
+                    part.StartsWith("application/xml", StringComparison.OrdinalIgnoreCase))
+                {
+                    sb.AppendLine(part);
+                }
+                else
+                {
+                    var saDoubleNewLines = part.Split(
+                        new[] { $"{Environment.NewLine}{Environment.NewLine}" },
+                        StringSplitOptions.RemoveEmptyEntries);
+
+                    if (saDoubleNewLines.Length <= 1)
+                    {
+                        continue;
+                    }
+
+                    const int MaxAsciiValue = 255;
+                    var sbOverridePart = new StringBuilder();
+                    foreach (var s in saDoubleNewLines)
+                    {
+                        sbOverridePart.Append(
+                            s.Any(c => c > MaxAsciiValue)
+                                ? $"{Environment.NewLine}# BINARY-DATA-REDACTED #"
+                                : s);
+                    }
+
+                    sb.AppendLine(sbOverridePart.ToString());
+                }
+            }
+            else
+            {
+                sb.AppendLine(part);
+            }
+        }
+
+        bodyContent = sb.ToString();
+    }
 
     private void Log(
         RequestResponseLogModel logModel)
@@ -117,18 +199,5 @@ public class RequestResponseLoggerMiddleware
         {
             logger.LogError(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
         }
-    }
-
-    private static async Task<string> ReadBodyFromRequest(
-        HttpRequest request)
-    {
-        // Ensure the request's body can be read multiple times for the next middleware in the pipeline
-        request.EnableBuffering();
-        using var streamReader = new StreamReader(request.Body, leaveOpen: true);
-        var requestBody = await streamReader.ReadToEndAsync();
-
-        // Reset the request's body stream position for next middleware in the pipeline.
-        request.Body.Position = 0;
-        return requestBody;
     }
 }
