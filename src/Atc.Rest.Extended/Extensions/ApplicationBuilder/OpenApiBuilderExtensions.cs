@@ -3,25 +3,18 @@ namespace Microsoft.AspNetCore.Builder;
 
 public static class OpenApiBuilderExtensions
 {
-    public static IApplicationBuilder UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        return app.UseOpenApiSpec(env, new RestApiExtendedOptions());
-    }
+    public static IApplicationBuilder UseOpenApiSpec(
+        this IApplicationBuilder app,
+        IWebHostEnvironment env)
+        => app.UseOpenApiSpec(env, new RestApiExtendedOptions());
 
     public static IApplicationBuilder UseOpenApiSpec(
         this IApplicationBuilder app,
         IWebHostEnvironment env,
         RestApiExtendedOptions restApiOptions)
     {
-        if (env is null)
-        {
-            throw new ArgumentNullException(nameof(env));
-        }
-
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
+        ArgumentNullException.ThrowIfNull(env);
+        ArgumentNullException.ThrowIfNull(restApiOptions);
 
         if (!restApiOptions.UseOpenApiSpec)
         {
@@ -29,6 +22,7 @@ public static class OpenApiBuilderExtensions
         }
 
         app.UseSwagger();
+
         if (env.IsDevelopment())
         {
             app.UseSwaggerUI();

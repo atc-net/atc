@@ -79,10 +79,8 @@ internal class ConfigureSwaggerOptions :
                 catch (ArgumentException)
                 {
                     // Ignore - This is here for backwards compatibility
-                    // Newer generated API's will have its own implementation of
-                    // IConfigureOptions<SwaggerGenOptions> that will use
-                    // use the Info metadata specified in the
-                    // OpenAPI specifications document
+                    // Newer generated API's will have its own implementation of IConfigureOptions<SwaggerGenOptions> that will use
+                    // use the Info metadata specified in the OpenAPI specifications document
                 }
             }
         }

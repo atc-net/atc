@@ -9,17 +9,12 @@ namespace Atc.Rest.Extended.Filters;
 /// <seealso cref="Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter" />
 public class DefaultResponseOperationFilter : IOperationFilter
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public void Apply(
+        OpenApiOperation operation,
+        OperationFilterContext context)
     {
-        if (operation is null)
-        {
-            throw new ArgumentNullException(nameof(operation));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(operation);
+        ArgumentNullException.ThrowIfNull(context);
 
         operation.Responses ??= new OpenApiResponses();
 

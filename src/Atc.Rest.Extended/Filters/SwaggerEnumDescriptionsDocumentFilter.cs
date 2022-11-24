@@ -5,17 +5,12 @@ namespace Atc.Rest.Extended.Filters;
 public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 {
     [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
-    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+    public void Apply(
+        OpenApiDocument swaggerDoc,
+        DocumentFilterContext context)
     {
-        if (swaggerDoc is null)
-        {
-            throw new ArgumentNullException(nameof(swaggerDoc));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(swaggerDoc);
+        ArgumentNullException.ThrowIfNull(context);
 
         // Add enum descriptions to result models
         foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
@@ -34,23 +29,24 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
         }
     }
 
-    [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
+    [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK.")]
     private static void DescribeEnumParameters(
         IDictionary<OperationType, OpenApiOperation>? operations,
         OpenApiDocument document,
         IEnumerable<ApiDescription> apiDescriptions,
         string path)
     {
-        path = path.Trim('/');
         if (operations is null)
         {
             return;
         }
 
+        path = path.Trim('/');
+
         var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
         foreach (var operation in operations)
         {
-            var operationDescription = pathDescriptions.Find(a => a.HttpMethod.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
+            var operationDescription = pathDescriptions.Find(a => a.HttpMethod!.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
             foreach (var param in operation.Value.Parameters)
             {
                 var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
@@ -74,7 +70,9 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
         }
     }
 
-    private static string DescribeEnum(IEnumerable<IOpenApiAny> enums, string propertyTypeName)
+    private static string DescribeEnum(
+        IEnumerable<IOpenApiAny> enums,
+        string propertyTypeName)
     {
         var enumDescriptions = new List<string>();
         var enumType = GetEnumTypeByName(propertyTypeName);
@@ -89,17 +87,15 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
             {
                 case OpenApiInteger intItem:
                 {
-                    var enumOption = intItem;
-                    var enumInt = enumOption.Value;
+                    var enumInt = intItem.Value;
                     enumDescriptions.Add($"{enumInt} = {Enum.GetName(enumType, enumInt)}");
                     break;
                 }
 
                 case OpenApiString stringItem:
                 {
-                    var enumOption = stringItem;
-                    var enumInt = (int)Enum.Parse(enumType, enumOption.Value);
-                    enumDescriptions.Add($"{enumInt} = {enumOption.Value}");
+                    var enumInt = (int)Enum.Parse(enumType, stringItem.Value);
+                    enumDescriptions.Add($"{enumInt} = {stringItem.Value}");
                     break;
                 }
             }

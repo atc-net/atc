@@ -3,12 +3,10 @@ namespace System.Reflection;
 
 public static class AssemblyExtensions
 {
-    public static Type[] GetValidationTypes(this Assembly assembly)
+    public static Type[] GetValidationTypes(
+        this Assembly assembly)
     {
-        if (assembly is null)
-        {
-            throw new ArgumentNullException(nameof(assembly));
-        }
+        ArgumentNullException.ThrowIfNull(assembly);
 
         var types = assembly
             .GetExportedTypes()
