@@ -2,17 +2,12 @@ namespace Atc.Rest.Extended.Filters;
 
 public class AuthorizeResponseOperationFilter : IOperationFilter
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public void Apply(
+        OpenApiOperation operation,
+        OperationFilterContext context)
     {
-        if (operation is null)
-        {
-            throw new ArgumentNullException(nameof(operation));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(operation);
+        ArgumentNullException.ThrowIfNull(context);
 
         var controller = context.ApiDescription.ActionDescriptor as ControllerActionDescriptor;
         var attributes = controller?.ControllerTypeInfo.GetCustomAttributes(inherit: true);

@@ -1,24 +1,20 @@
-// ReSharper disable InvertIf
-// ReSharper disable once CheckNamespace
-
 using AuthorizationOptions = Atc.Rest.Options.AuthorizationOptions;
 
+// ReSharper disable InvertIf
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class RestApiExtendedExtensions
 {
-    public static IServiceCollection AddRestApi<TStartup>(this IServiceCollection services)
-    {
-        return services.AddRestApi<TStartup>(mvc => { }, new RestApiExtendedOptions());
-    }
+    public static IServiceCollection AddRestApi<TStartup>(
+        this IServiceCollection services)
+        => services.AddRestApi<TStartup>(mvc => { }, new RestApiExtendedOptions());
 
     public static IServiceCollection AddRestApi<TStartup>(
         this IServiceCollection services,
         RestApiExtendedOptions restApiOptions,
         IConfiguration configuration)
-    {
-        return services.AddRestApi<TStartup>(mvc => { }, restApiOptions, configuration);
-    }
+        => services.AddRestApi<TStartup>(mvc => { }, restApiOptions, configuration);
 
     public static IServiceCollection AddRestApi<TStartup>(
         this IServiceCollection services,
@@ -26,20 +22,9 @@ public static class RestApiExtendedExtensions
         RestApiExtendedOptions restApiOptions,
         IConfiguration configuration)
     {
-        if (setupMvcAction is null)
-        {
-            throw new ArgumentNullException(nameof(setupMvcAction));
-        }
-
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
-
-        if (configuration is null)
-        {
-            throw new ArgumentNullException(nameof(configuration));
-        }
+        ArgumentNullException.ThrowIfNull(setupMvcAction);
+        ArgumentNullException.ThrowIfNull(restApiOptions);
+        ArgumentNullException.ThrowIfNull(configuration);
 
         services.AddSingleton(restApiOptions);
         services.AddSingleton<RestApiOptions>(restApiOptions);

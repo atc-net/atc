@@ -128,10 +128,7 @@ public class ConfigureAuthorizationOptions :
 
     private void SanityCheck(JwtBearerOptions options)
     {
-        if (options is null)
-        {
-            throw new ArgumentNullException(nameof(options));
-        }
+        ArgumentNullException.ThrowIfNull(options);
 
         if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
             string.IsNullOrEmpty(apiOptions.Authorization.Audience))

@@ -4,17 +4,16 @@ public class VersionErrorResponseProvider : IErrorResponseProvider
 {
     private readonly TelemetryClient telemetry;
 
-    public VersionErrorResponseProvider(TelemetryClient telemetry)
+    public VersionErrorResponseProvider(
+        TelemetryClient telemetry)
     {
         this.telemetry = telemetry;
     }
 
-    public IActionResult CreateResponse(ErrorResponseContext context)
+    public IActionResult CreateResponse(
+        ErrorResponseContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         var detail = new ValidationProblemDetails(
             new Dictionary<string, string[]>(StringComparer.Ordinal)

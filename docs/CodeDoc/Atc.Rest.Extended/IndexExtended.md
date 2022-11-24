@@ -8,6 +8,12 @@
 
 - [AtcRestExtendedAssemblyTypeInitializer](Atc.Rest.Extended.md#atcrestextendedassemblytypeinitializer)
 
+## [Atc.Rest.Extended.Extensions](Atc.Rest.Extended.Extensions.md)
+
+- [OperationFilterContextExtensions](Atc.Rest.Extended.Extensions.md#operationfiltercontextextensions)
+  -  Static Methods
+     - GetControllerAndActionAttributes(this OperationFilterContext context)
+
 ## [Atc.Rest.Extended.Filters](Atc.Rest.Extended.Filters.md)
 
 - [ApiVersionDocumentFilter](Atc.Rest.Extended.Filters.md#apiversiondocumentfilter)

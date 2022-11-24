@@ -3,17 +3,12 @@ namespace Atc.Rest.Extended.Filters;
 
 public class ApiVersionOperationFilter : IOperationFilter
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public void Apply(
+        OpenApiOperation operation,
+        OperationFilterContext context)
     {
-        if (operation is null)
-        {
-            throw new ArgumentNullException(nameof(operation));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(operation);
+        ArgumentNullException.ThrowIfNull(context);
 
         var apiVersionParameter = operation
             .Parameters
@@ -25,17 +20,12 @@ public class ApiVersionOperationFilter : IOperationFilter
         }
     }
 
-    protected static void ConfigureApiVersion(OpenApiParameter apiVersionParameter, OperationFilterContext context)
+    protected static void ConfigureApiVersion(
+        OpenApiParameter apiVersionParameter,
+        OperationFilterContext context)
     {
-        if (apiVersionParameter is null)
-        {
-            throw new ArgumentNullException(nameof(apiVersionParameter));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(apiVersionParameter);
+        ArgumentNullException.ThrowIfNull(context);
 
         var description = context.ApiDescription
             .ParameterDescriptions

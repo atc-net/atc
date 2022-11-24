@@ -3,17 +3,12 @@ namespace Atc.Rest.Extended.Filters;
 
 public class ApiVersionDocumentFilter : IDocumentFilter
 {
-    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+    public void Apply(
+        OpenApiDocument swaggerDoc,
+        DocumentFilterContext context)
     {
-        if (swaggerDoc is null)
-        {
-            throw new ArgumentNullException(nameof(swaggerDoc));
-        }
-
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(swaggerDoc);
+        ArgumentNullException.ThrowIfNull(context);
 
         RemoveParameter(swaggerDoc, context, BindingSource.Header, ApiVersionConstants.ApiVersionHeaderParameter);
         RemoveParameter(swaggerDoc, context, BindingSource.Query, ApiVersionConstants.ApiVersionQueryParameterShort);
@@ -27,10 +22,10 @@ public class ApiVersionDocumentFilter : IDocumentFilter
     {
         foreach (var apiDescription in context.ApiDescriptions)
         {
-            var apiParameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(
-                x =>
-                    x.Source == parameterBindingSource &&
-                    string.Equals(x.Name, parameterName, StringComparison.Ordinal));
+            var apiParameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(x =>
+                x.Source == parameterBindingSource &&
+                string.Equals(x.Name, parameterName, StringComparison.Ordinal));
+
             if (apiParameterDescription is not null)
             {
                 apiDescription.ParameterDescriptions.Remove(apiParameterDescription);

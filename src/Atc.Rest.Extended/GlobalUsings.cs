@@ -2,8 +2,10 @@ global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Net.Mime;
 global using System.Reflection;
+global using System.Text;
 global using System.Text.Json;
 
+global using Atc.Rest.Extended.Extensions;
 global using Atc.Rest.Extended.Filters;
 global using Atc.Rest.Extended.Options;
 global using Atc.Rest.Extended.Versioning;

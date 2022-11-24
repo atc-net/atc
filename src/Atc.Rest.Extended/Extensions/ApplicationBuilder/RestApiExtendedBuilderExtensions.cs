@@ -4,18 +4,16 @@ namespace Microsoft.AspNetCore.Builder;
 
 public static class RestApiExtendedBuilderExtensions
 {
-    public static IApplicationBuilder ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        return app.ConfigureRestApi(env, new RestApiExtendedOptions(), _ => { });
-    }
+    public static IApplicationBuilder ConfigureRestApi(
+        this IApplicationBuilder app,
+        IWebHostEnvironment env)
+        => app.ConfigureRestApi(env, new RestApiExtendedOptions(), _ => { });
 
     public static IApplicationBuilder ConfigureRestApi(
         this IApplicationBuilder app,
         IWebHostEnvironment env,
         RestApiExtendedOptions restApiOptions)
-    {
-        return app.ConfigureRestApi(env, restApiOptions, _ => { });
-    }
+        => app.ConfigureRestApi(env, restApiOptions, _ => { });
 
     public static IApplicationBuilder ConfigureRestApi(
         this IApplicationBuilder app,
@@ -23,25 +21,10 @@ public static class RestApiExtendedBuilderExtensions
         RestApiExtendedOptions restApiOptions,
         Action<IApplicationBuilder> setupAction)
     {
-        if (app is null)
-        {
-            throw new ArgumentNullException(nameof(app));
-        }
-
-        if (env is null)
-        {
-            throw new ArgumentNullException(nameof(env));
-        }
-
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
-
-        if (setupAction is null)
-        {
-            throw new ArgumentNullException(nameof(setupAction));
-        }
+        ArgumentNullException.ThrowIfNull(app);
+        ArgumentNullException.ThrowIfNull(env);
+        ArgumentNullException.ThrowIfNull(restApiOptions);
+        ArgumentNullException.ThrowIfNull(setupAction);
 
         if (env.IsDevelopment())
         {

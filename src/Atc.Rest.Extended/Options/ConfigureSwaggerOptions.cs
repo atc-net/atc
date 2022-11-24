@@ -1,3 +1,4 @@
+// ReSharper disable InvertIf
 namespace Atc.Rest.Extended.Options;
 
 internal class ConfigureSwaggerOptions :
@@ -53,11 +54,6 @@ internal class ConfigureSwaggerOptions :
         options.DefaultResponseForSecuredOperations();
         options.TreatBadRequestAsDefaultResponse();
 
-        if (!restApiOptions.AllowAnonymousAccessForDevelopment)
-        {
-            options.OperationFilter<SecurityRequirementsOperationFilter>();
-        }
-
         options.DocumentFilter<SwaggerEnumDescriptionsDocumentFilter>();
 
         if (restApiOptions.UseApiVersioning)
@@ -79,10 +75,8 @@ internal class ConfigureSwaggerOptions :
                 catch (ArgumentException)
                 {
                     // Ignore - This is here for backwards compatibility
-                    // Newer generated API's will have its own implementation of
-                    // IConfigureOptions<SwaggerGenOptions> that will use
-                    // use the Info metadata specified in the
-                    // OpenAPI specifications document
+                    // Newer generated API's will have its own implementation of IConfigureOptions<SwaggerGenOptions> that will use
+                    // use the Info metadata specified in the OpenAPI specifications document
                 }
             }
         }
@@ -90,6 +84,12 @@ internal class ConfigureSwaggerOptions :
         foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
         {
             options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
+        }
+
+        if (!restApiOptions.AllowAnonymousAccessForDevelopment)
+        {
+            options.OperationFilter<SecurityRequirementsOperationFilter>();
+            options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
         }
     }
 
