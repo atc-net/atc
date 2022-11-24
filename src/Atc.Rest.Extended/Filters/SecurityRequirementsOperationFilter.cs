@@ -2,22 +2,26 @@ namespace Atc.Rest.Extended.Filters;
 
 public class SecurityRequirementsOperationFilter : IOperationFilter
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public void Apply(
+        OpenApiOperation operation,
+        OperationFilterContext context)
     {
-        if (operation is null)
+        ArgumentNullException.ThrowIfNull(operation);
+        ArgumentNullException.ThrowIfNull(context);
+
+        if (context.GetControllerAndActionAttributes<AllowAnonymousAttribute>().Any())
         {
-            throw new ArgumentNullException(nameof(operation));
+            return;
         }
 
-        if (context is null)
+        var authorizeAttributes = context.GetControllerAndActionAttributes<AuthorizeAttribute>().ToList();
+        if (!authorizeAttributes.Any())
         {
-            throw new ArgumentNullException(nameof(context));
+            return;
         }
 
         // Policy names map to scopes
-        var requiredScopes = context.MethodInfo
-            .GetCustomAttributes(inherit: true)
-            .OfType<AuthorizeAttribute>()
+        var requiredScopes = authorizeAttributes
             .Select(attr => attr.Policy)
             .Distinct(StringComparer.Ordinal)
             .ToList();
@@ -41,7 +45,7 @@ public class SecurityRequirementsOperationFilter : IOperationFilter
 
         operation.Security = new List<OpenApiSecurityRequirement>
         {
-            new OpenApiSecurityRequirement
+            new()
             {
                 [oAuthScheme] = requiredScopes,
             },
