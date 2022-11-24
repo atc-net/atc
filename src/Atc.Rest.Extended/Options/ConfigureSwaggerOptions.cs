@@ -1,3 +1,4 @@
+// ReSharper disable InvertIf
 namespace Atc.Rest.Extended.Options;
 
 internal class ConfigureSwaggerOptions :
@@ -53,11 +54,6 @@ internal class ConfigureSwaggerOptions :
         options.DefaultResponseForSecuredOperations();
         options.TreatBadRequestAsDefaultResponse();
 
-        if (!restApiOptions.AllowAnonymousAccessForDevelopment)
-        {
-            options.OperationFilter<SecurityRequirementsOperationFilter>();
-        }
-
         options.DocumentFilter<SwaggerEnumDescriptionsDocumentFilter>();
 
         if (restApiOptions.UseApiVersioning)
@@ -88,6 +84,12 @@ internal class ConfigureSwaggerOptions :
         foreach (var assemblyPairOptions in restApiOptions.AssemblyPairs)
         {
             options.IncludeXmlComments(Path.ChangeExtension(assemblyPairOptions.ApiAssembly.Location, "xml"));
+        }
+
+        if (!restApiOptions.AllowAnonymousAccessForDevelopment)
+        {
+            options.OperationFilter<SecurityRequirementsOperationFilter>();
+            options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
         }
     }
 
