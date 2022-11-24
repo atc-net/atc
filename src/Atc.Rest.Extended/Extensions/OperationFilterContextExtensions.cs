@@ -6,6 +6,8 @@ public static class OperationFilterContextExtensions
         this OperationFilterContext context)
         where T : Attribute
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         if (context.MethodInfo is null)
         {
             return Enumerable.Empty<T>();
