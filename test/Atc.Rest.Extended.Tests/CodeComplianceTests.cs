@@ -1,7 +1,3 @@
-using Atc.Rest.Extended.Filters;
-using Atc.Rest.Extended.Versioning;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 using SwaggerGenOptionsExtensions = Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptionsExtensions;
 
 namespace Atc.Rest.Extended.Tests;
@@ -27,6 +23,7 @@ public class CodeComplianceTests
         typeof(VersionErrorResponseProvider),
         typeof(OpenApiBuilderExtensions),
         typeof(RestApiExtendedBuilderExtensions),
+        typeof(OperationFilterContextExtensions),
         typeof(FluentValidationExtensions),
         typeof(RestApiExtendedExtensions),
         typeof(SwaggerGenOptionsExtensions),
