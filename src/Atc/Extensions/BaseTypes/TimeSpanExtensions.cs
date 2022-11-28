@@ -57,25 +57,30 @@ public static class TimeSpanExtensions
     {
         if ((int)timeSpan.TotalDays > 0)
         {
-            return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} days";
+            return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
+                   $"{DateAndTime.Days.ToLower(Thread.CurrentThread.CurrentUICulture)}";
         }
 
         if ((int)timeSpan.TotalHours > 0)
         {
-            return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} hours";
+            return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
+                   $"{DateAndTime.Hours.ToLower(Thread.CurrentThread.CurrentUICulture)}";
         }
 
         if ((int)timeSpan.TotalMinutes > 0)
         {
-            return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} min";
+            return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
+                   $"{DateAndTime.MinuteAsAbbreviation.ToLower(Thread.CurrentThread.CurrentUICulture)}";
         }
 
         // ReSharper disable once ConvertIfStatementToReturnStatement
         if ((int)timeSpan.TotalSeconds > 0)
         {
-            return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} sec";
+            return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
+                   $"{DateAndTime.SecondAsAbbreviation.ToLower(Thread.CurrentThread.CurrentUICulture)}";
         }
 
-        return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} ms";
+        return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
+               $"{DateAndTime.MillisecondAsAbbreviation1.ToLower(Thread.CurrentThread.CurrentUICulture)}";
     }
 }
