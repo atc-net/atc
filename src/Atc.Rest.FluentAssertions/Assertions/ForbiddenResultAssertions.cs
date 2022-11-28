@@ -12,5 +12,5 @@ public class ForbiddenResultAssertions : ErrorContentResultAssertions<ForbiddenR
     protected override string Identifier => "forbidden result";
 
     protected override AndWhichConstraint<ForbiddenResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<ForbiddenResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

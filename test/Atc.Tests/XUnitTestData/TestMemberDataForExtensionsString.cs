@@ -4,7 +4,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForExtensionsString
 {
     public static TheoryData<bool, string, CasingStyle> IsCasingStyleValidData
-        => new TheoryData<bool, string, CasingStyle>
+        => new()
         {
             // CamelCase
             { true, string.Empty, CasingStyle.CamelCase },

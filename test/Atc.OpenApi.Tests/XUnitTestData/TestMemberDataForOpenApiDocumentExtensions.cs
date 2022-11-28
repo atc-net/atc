@@ -3,12 +3,12 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiDocumentExtensions
 {
     public static TheoryData<int, string, OpenApiDocument> OpenApiPathItemData
-        => new TheoryData<int, string, OpenApiDocument>
+        => new()
         {
-            { 1, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new OpenApiPathItem() } } },
-            { 2, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new OpenApiPathItem(), ["/todos/"] = new OpenApiPathItem() } } },
-            { 1, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new OpenApiPathItem(), ["/users/"] = new OpenApiPathItem() } } },
-            { 1, "user", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new OpenApiPathItem(), ["/users/"] = new OpenApiPathItem() } } },
-            { 1, "users", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new OpenApiPathItem(), ["/users/"] = new OpenApiPathItem() } } },
+            { 1, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new() } } },
+            { 2, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new(), ["/todos/"] = new() } } },
+            { 1, "todo", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new(), ["/users/"] = new() } } },
+            { 1, "user", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new(), ["/users/"] = new() } } },
+            { 1, "users", new OpenApiDocument { Paths = new OpenApiPaths { ["/todos/{id}/"] = new(), ["/users/"] = new() } } },
         };
 }

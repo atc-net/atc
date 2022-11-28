@@ -22,11 +22,11 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    private static readonly Lazy<Regex> RxSplitLines = new Lazy<Regex>(() => new Regex("\r\n|\n|\r", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
-    private static readonly Lazy<Regex> RxStringFormatParameterTemplatePlaceholder = new Lazy<Regex>(() => new Regex("{{.*?}}", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
-    private static readonly Lazy<Regex> RxUnderscore = new Lazy<Regex>(() => new Regex(@"_", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxCamelCase = new Lazy<Regex>(() => new Regex(@"[a-z][A-Z]", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<MatchEvaluator> SplitCamelCaseString = new Lazy<MatchEvaluator>(() => m =>
+    private static readonly Lazy<Regex> RxSplitLines = new(() => new Regex("\r\n|\n|\r", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
+    private static readonly Lazy<Regex> RxStringFormatParameterTemplatePlaceholder = new(() => new Regex("{{.*?}}", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
+    private static readonly Lazy<Regex> RxUnderscore = new(() => new Regex(@"_", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxCamelCase = new(() => new Regex(@"[a-z][A-Z]", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<MatchEvaluator> SplitCamelCaseString = new(() => m =>
     {
         var x = m.ToString();
         return x[0] + " " + x.Substring(1, x.Length - 1);

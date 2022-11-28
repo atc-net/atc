@@ -3,7 +3,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiPathsExtensions
 {
     public static TheoryData<int, OpenApiPaths, string> GetPathsStartingWithSegmentName
-        => new TheoryData<int, OpenApiPaths, string>
+        => new()
         {
             {
                 0,

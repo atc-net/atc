@@ -26,5 +26,5 @@ public class ContentResultAssertions : ContentResultAssertionsBase<ContentResult
     }
 
     protected override AndWhichConstraint<ContentResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<ContentResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

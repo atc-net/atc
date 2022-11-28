@@ -5,7 +5,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForCultureHelper
 {
     public static TheoryData<int, string[], string[], int, int[]> GetCulturesDisplayLanguageLcidIncludeOnlyLcidsData
-        => new TheoryData<int, string[], string[], int, int[]>
+        => new()
         {
             {
                 4,
@@ -62,7 +62,7 @@ internal static class TestMemberDataForCultureHelper
         };
 
     public static TheoryData<int, string[], string[], int, string[]> GetCulturesDisplayLanguageLcidIncludeOnlyCultureNamesData
-        => new TheoryData<int, string[], string[], int, string[]>
+        => new()
         {
             {
                 4,
@@ -95,7 +95,7 @@ internal static class TestMemberDataForCultureHelper
         };
 
     public static TheoryData<string, string, int, int> GetCultureByLcidDisplayLanguageLcidData
-        => new TheoryData<string, string, int, int>
+        => new()
         {
             { "United States", "English", GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.UnitedStates },
             { "United Kingdom", "English", GlobalizationLcidConstants.GreatBritain, GlobalizationLcidConstants.UnitedStates },
@@ -119,7 +119,7 @@ internal static class TestMemberDataForCultureHelper
         };
 
     public static TheoryData<string, string, string, int> GetCultureByCountryCodeA2LcidDisplayLanguageLcidData
-        => new TheoryData<string, string, string, int>
+        => new()
         {
             { "United States", "English", "US", GlobalizationLcidConstants.UnitedStates },
             { "United Kingdom", "English", "GB", GlobalizationLcidConstants.UnitedStates },
@@ -143,7 +143,7 @@ internal static class TestMemberDataForCultureHelper
         };
 
     public static TheoryData<string, string, string, int> GetCultureFromValueDisplayLanguageLcidData
-        => new TheoryData<string, string, string, int>
+        => new()
         {
             { "United States", "English", "US", GlobalizationLcidConstants.UnitedStates },
             { "United Kingdom", "English", "GB", GlobalizationLcidConstants.UnitedStates },
@@ -167,7 +167,7 @@ internal static class TestMemberDataForCultureHelper
         };
 
     public static TheoryData<string, string, string, int[], int> GetCultureFromValueDisplayLanguageLcidIncludeLcidsData
-        => new TheoryData<string, string, string, int[], int>
+        => new()
         {
             { "United States", "English", "US", new[] { 1030, 1031, 1033, 2057 }, GlobalizationLcidConstants.UnitedStates },
             { "United Kingdom", "English", "GB", new[] { 1030, 1031, 1033, 2057 }, GlobalizationLcidConstants.UnitedStates },

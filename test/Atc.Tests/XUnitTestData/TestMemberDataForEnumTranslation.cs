@@ -4,17 +4,17 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForEnumTranslation
 {
     public static TheoryData<BooleanOperatorType, int, List<KeyValuePair<int, string>>> BooleanOperatorTypeData
-        => new TheoryData<BooleanOperatorType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 BooleanOperatorType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "And"),
-                    new KeyValuePair<int, string>(2, "Or"),
-                    new KeyValuePair<int, string>(3, "Not"),
-                    new KeyValuePair<int, string>(4, "Near"),
+                    new(1, "And"),
+                    new(2, "Or"),
+                    new(3, "Not"),
+                    new(4, "Near"),
                 }
             },
             {
@@ -22,10 +22,10 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "And"),
-                    new KeyValuePair<int, string>(2, "Or"),
-                    new KeyValuePair<int, string>(3, "Not"),
-                    new KeyValuePair<int, string>(4, "Near"),
+                    new(1, "And"),
+                    new(2, "Or"),
+                    new(3, "Not"),
+                    new(4, "Near"),
                 }
             },
             {
@@ -33,10 +33,10 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Og"),
-                    new KeyValuePair<int, string>(2, "Eller"),
-                    new KeyValuePair<int, string>(3, "Ikke"),
-                    new KeyValuePair<int, string>(4, "Tæt"),
+                    new(1, "Og"),
+                    new(2, "Eller"),
+                    new(3, "Ikke"),
+                    new(4, "Tæt"),
                 }
             },
             {
@@ -44,28 +44,28 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Und"),
-                    new KeyValuePair<int, string>(2, "Oder"),
-                    new KeyValuePair<int, string>(3, "Nicht"),
-                    new KeyValuePair<int, string>(4, "Nah"),
+                    new(1, "Und"),
+                    new(2, "Oder"),
+                    new(3, "Nicht"),
+                    new(4, "Nah"),
                 }
             },
         };
 
     public static TheoryData<CollectionActionType, int, List<KeyValuePair<int, string>>> CollectionActionTypeData
-        => new TheoryData<CollectionActionType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 CollectionActionType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Added"),
-                    new KeyValuePair<int, string>(2, "Updated"),
-                    new KeyValuePair<int, string>(3, "Removed"),
-                    new KeyValuePair<int, string>(4, "Cleared"),
-                    new KeyValuePair<int, string>(5, "Saved"),
-                    new KeyValuePair<int, string>(6, "Loaded"),
+                    new(1, "Added"),
+                    new(2, "Updated"),
+                    new(3, "Removed"),
+                    new(4, "Cleared"),
+                    new(5, "Saved"),
+                    new(6, "Loaded"),
                 }
             },
             {
@@ -73,12 +73,12 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Added"),
-                    new KeyValuePair<int, string>(2, "Updated"),
-                    new KeyValuePair<int, string>(3, "Removed"),
-                    new KeyValuePair<int, string>(4, "Cleared"),
-                    new KeyValuePair<int, string>(5, "Saved"),
-                    new KeyValuePair<int, string>(6, "Loaded"),
+                    new(1, "Added"),
+                    new(2, "Updated"),
+                    new(3, "Removed"),
+                    new(4, "Cleared"),
+                    new(5, "Saved"),
+                    new(6, "Loaded"),
                 }
             },
             {
@@ -86,12 +86,12 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Tilføjet"),
-                    new KeyValuePair<int, string>(2, "Opdateret"),
-                    new KeyValuePair<int, string>(3, "Fjernet"),
-                    new KeyValuePair<int, string>(4, "Ryddet"),
-                    new KeyValuePair<int, string>(5, "Gemt"),
-                    new KeyValuePair<int, string>(6, "Indlæst"),
+                    new(1, "Tilføjet"),
+                    new(2, "Opdateret"),
+                    new(3, "Fjernet"),
+                    new(4, "Ryddet"),
+                    new(5, "Gemt"),
+                    new(6, "Indlæst"),
                 }
             },
             {
@@ -99,32 +99,32 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Hinzugefügt"),
-                    new KeyValuePair<int, string>(2, "Aktualisiert"),
-                    new KeyValuePair<int, string>(3, "Entfernt"),
-                    new KeyValuePair<int, string>(4, "Geklärt"),
-                    new KeyValuePair<int, string>(5, "Gespeichert"),
-                    new KeyValuePair<int, string>(6, "Geladen"),
+                    new(1, "Hinzugefügt"),
+                    new(2, "Aktualisiert"),
+                    new(3, "Entfernt"),
+                    new(4, "Geklärt"),
+                    new(5, "Gespeichert"),
+                    new(6, "Geladen"),
                 }
             },
         };
 
     public static TheoryData<DateTimeDiffCompareType, int, List<KeyValuePair<int, string>>> DateTimeDiffCompareTypeData
-        => new TheoryData<DateTimeDiffCompareType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 DateTimeDiffCompareType.Year,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Ticks"),
-                    new KeyValuePair<int, string>(1, "Milliseconds"),
-                    new KeyValuePair<int, string>(2, "Seconds"),
-                    new KeyValuePair<int, string>(3, "Minutes"),
-                    new KeyValuePair<int, string>(4, "Hours"),
-                    new KeyValuePair<int, string>(5, "Days"),
-                    new KeyValuePair<int, string>(6, "Year"),
-                    new KeyValuePair<int, string>(7, "Quartal"),
+                    new(0, "Ticks"),
+                    new(1, "Milliseconds"),
+                    new(2, "Seconds"),
+                    new(3, "Minutes"),
+                    new(4, "Hours"),
+                    new(5, "Days"),
+                    new(6, "Year"),
+                    new(7, "Quartal"),
                 }
             },
             {
@@ -132,14 +132,14 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Ticks"),
-                    new KeyValuePair<int, string>(1, "Milliseconds"),
-                    new KeyValuePair<int, string>(2, "Seconds"),
-                    new KeyValuePair<int, string>(3, "Minutes"),
-                    new KeyValuePair<int, string>(4, "Hours"),
-                    new KeyValuePair<int, string>(5, "Days"),
-                    new KeyValuePair<int, string>(6, "Year"),
-                    new KeyValuePair<int, string>(7, "Quartal"),
+                    new(0, "Ticks"),
+                    new(1, "Milliseconds"),
+                    new(2, "Seconds"),
+                    new(3, "Minutes"),
+                    new(4, "Hours"),
+                    new(5, "Days"),
+                    new(6, "Year"),
+                    new(7, "Quartal"),
                 }
             },
             {
@@ -147,14 +147,14 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Tidsmærke"),
-                    new KeyValuePair<int, string>(1, "Millisekunder"),
-                    new KeyValuePair<int, string>(2, "Sekunder"),
-                    new KeyValuePair<int, string>(3, "Minutter"),
-                    new KeyValuePair<int, string>(4, "Timer"),
-                    new KeyValuePair<int, string>(5, "Dage"),
-                    new KeyValuePair<int, string>(6, "År"),
-                    new KeyValuePair<int, string>(7, "Quartal"),
+                    new(0, "Tidsmærke"),
+                    new(1, "Millisekunder"),
+                    new(2, "Sekunder"),
+                    new(3, "Minutter"),
+                    new(4, "Timer"),
+                    new(5, "Dage"),
+                    new(6, "År"),
+                    new(7, "Quartal"),
                 }
             },
             {
@@ -162,30 +162,30 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Ticks"),
-                    new KeyValuePair<int, string>(1, "Millisekunden"),
-                    new KeyValuePair<int, string>(2, "Sekunden"),
-                    new KeyValuePair<int, string>(3, "Minuten"),
-                    new KeyValuePair<int, string>(4, "Stunden"),
-                    new KeyValuePair<int, string>(5, "Tage"),
-                    new KeyValuePair<int, string>(6, "Jahr"),
-                    new KeyValuePair<int, string>(7, "Quartal"),
+                    new(0, "Ticks"),
+                    new(1, "Millisekunden"),
+                    new(2, "Sekunden"),
+                    new(3, "Minuten"),
+                    new(4, "Stunden"),
+                    new(5, "Tage"),
+                    new(6, "Jahr"),
+                    new(7, "Quartal"),
                 }
             },
         };
 
     public static TheoryData<DropDownFirstItemType, int, List<KeyValuePair<int, string>>> DropDownFirstItemTypeData
-        => new TheoryData<DropDownFirstItemType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 DropDownFirstItemType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(-1, "None"),
-                    new KeyValuePair<int, string>(-2, "Blank"),
-                    new KeyValuePair<int, string>(-3, "-- Select --"),
-                    new KeyValuePair<int, string>(-4, "-- All --"),
+                    new(-1, "None"),
+                    new(-2, "Blank"),
+                    new(-3, "-- Select --"),
+                    new(-4, "-- All --"),
                 }
             },
             {
@@ -193,10 +193,10 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(-1, "None"),
-                    new KeyValuePair<int, string>(-2, "Blank"),
-                    new KeyValuePair<int, string>(-3, "-- Select --"),
-                    new KeyValuePair<int, string>(-4, "-- All --"),
+                    new(-1, "None"),
+                    new(-2, "Blank"),
+                    new(-3, "-- Select --"),
+                    new(-4, "-- All --"),
                 }
             },
             {
@@ -204,10 +204,10 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(-1, "None"),
-                    new KeyValuePair<int, string>(-2, "Blank"),
-                    new KeyValuePair<int, string>(-3, "-- Vælg --"),
-                    new KeyValuePair<int, string>(-4, "-- Alle --"),
+                    new(-1, "None"),
+                    new(-2, "Blank"),
+                    new(-3, "-- Vælg --"),
+                    new(-4, "-- Alle --"),
                 }
             },
             {
@@ -215,27 +215,27 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(-1, "None"),
-                    new KeyValuePair<int, string>(-2, "Blank"),
-                    new KeyValuePair<int, string>(-3, "-- Wählen --"),
-                    new KeyValuePair<int, string>(-4, "-- Alles --"),
+                    new(-1, "None"),
+                    new(-2, "Blank"),
+                    new(-3, "-- Wählen --"),
+                    new(-4, "-- Alles --"),
                 }
             },
         };
 
     public static TheoryData<FileSystemWatcherChangeType, int, List<KeyValuePair<int, string>>> FileSystemWatcherChangeTypeData
-        => new TheoryData<FileSystemWatcherChangeType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 FileSystemWatcherChangeType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Added"),
-                    new KeyValuePair<int, string>(2, "Deleted"),
-                    new KeyValuePair<int, string>(4, "Renamed"),
-                    new KeyValuePair<int, string>(8, "Changed"),
-                    new KeyValuePair<int, string>(15, "All"),
+                    new(1, "Added"),
+                    new(2, "Deleted"),
+                    new(4, "Renamed"),
+                    new(8, "Changed"),
+                    new(15, "All"),
                 }
             },
             {
@@ -243,11 +243,11 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Added"),
-                    new KeyValuePair<int, string>(2, "Deleted"),
-                    new KeyValuePair<int, string>(4, "Renamed"),
-                    new KeyValuePair<int, string>(8, "Changed"),
-                    new KeyValuePair<int, string>(15, "All"),
+                    new(1, "Added"),
+                    new(2, "Deleted"),
+                    new(4, "Renamed"),
+                    new(8, "Changed"),
+                    new(15, "All"),
                 }
             },
             {
@@ -255,11 +255,11 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Tilføjet"),
-                    new KeyValuePair<int, string>(2, "Slettet"),
-                    new KeyValuePair<int, string>(4, "Omdøbt"),
-                    new KeyValuePair<int, string>(8, "Ændret"),
-                    new KeyValuePair<int, string>(15, "Alle"),
+                    new(1, "Tilføjet"),
+                    new(2, "Slettet"),
+                    new(4, "Omdøbt"),
+                    new(8, "Ændret"),
+                    new(15, "Alle"),
                 }
             },
             {
@@ -267,25 +267,25 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Hinzugefügt"),
-                    new KeyValuePair<int, string>(2, "Gelöscht"),
-                    new KeyValuePair<int, string>(4, "Umbenannt"),
-                    new KeyValuePair<int, string>(8, "Geändert"),
-                    new KeyValuePair<int, string>(15, "Alles"),
+                    new(1, "Hinzugefügt"),
+                    new(2, "Gelöscht"),
+                    new(4, "Umbenannt"),
+                    new(8, "Geändert"),
+                    new(15, "Alles"),
                 }
             },
         };
 
     public static TheoryData<ForwardReverseType, int, List<KeyValuePair<int, string>>> ForwardReverseTypeData
-        => new TheoryData<ForwardReverseType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 ForwardReverseType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Forward"),
-                    new KeyValuePair<int, string>(2, "Reverse"),
+                    new(1, "Forward"),
+                    new(2, "Reverse"),
                 }
             },
             {
@@ -293,8 +293,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Forward"),
-                    new KeyValuePair<int, string>(2, "Reverse"),
+                    new(1, "Forward"),
+                    new(2, "Reverse"),
                 }
             },
             {
@@ -302,8 +302,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Fremad"),
-                    new KeyValuePair<int, string>(2, "Tilbage"),
+                    new(1, "Fremad"),
+                    new(2, "Tilbage"),
                 }
             },
             {
@@ -311,25 +311,25 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Vorwärts"),
-                    new KeyValuePair<int, string>(2, "Rückwärts"),
+                    new(1, "Vorwärts"),
+                    new(2, "Rückwärts"),
                 }
             },
         };
 
     public static TheoryData<IdentityRoleType, int, List<KeyValuePair<int, string>>> IdentityRoleTypeData
-        => new TheoryData<IdentityRoleType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 IdentityRoleType.Anonymous,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Anonymous"),
-                    new KeyValuePair<int, string>(2, "User"),
-                    new KeyValuePair<int, string>(4, "Super User"),
-                    new KeyValuePair<int, string>(8, "Administrator"),
-                    new KeyValuePair<int, string>(16, "Super Administrator"),
+                    new(1, "Anonymous"),
+                    new(2, "User"),
+                    new(4, "Super User"),
+                    new(8, "Administrator"),
+                    new(16, "Super Administrator"),
                 }
             },
             {
@@ -337,11 +337,11 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Anonymous"),
-                    new KeyValuePair<int, string>(2, "User"),
-                    new KeyValuePair<int, string>(4, "Super User"),
-                    new KeyValuePair<int, string>(8, "Administrator"),
-                    new KeyValuePair<int, string>(16, "Super Administrator"),
+                    new(1, "Anonymous"),
+                    new(2, "User"),
+                    new(4, "Super User"),
+                    new(8, "Administrator"),
+                    new(16, "Super Administrator"),
                 }
             },
             {
@@ -349,11 +349,11 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Anonym"),
-                    new KeyValuePair<int, string>(2, "Bruger"),
-                    new KeyValuePair<int, string>(4, "Super Bruger"),
-                    new KeyValuePair<int, string>(8, "Administrator"),
-                    new KeyValuePair<int, string>(16, "Super Administrator"),
+                    new(1, "Anonym"),
+                    new(2, "Bruger"),
+                    new(4, "Super Bruger"),
+                    new(8, "Administrator"),
+                    new(16, "Super Administrator"),
                 }
             },
             {
@@ -361,25 +361,25 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Anonym"),
-                    new KeyValuePair<int, string>(2, "Benutzer"),
-                    new KeyValuePair<int, string>(4, "Super Benutzer"),
-                    new KeyValuePair<int, string>(8, "Administrator"),
-                    new KeyValuePair<int, string>(16, "Super Administrator"),
+                    new(1, "Anonym"),
+                    new(2, "Benutzer"),
+                    new(4, "Super Benutzer"),
+                    new(8, "Administrator"),
+                    new(16, "Super Administrator"),
                 }
             },
         };
 
     public static TheoryData<InsertRemoveType, int, List<KeyValuePair<int, string>>> InsertRemoveTypeData
-        => new TheoryData<InsertRemoveType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 InsertRemoveType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Insert"),
-                    new KeyValuePair<int, string>(2, "Remove"),
+                    new(1, "Insert"),
+                    new(2, "Remove"),
                 }
             },
             {
@@ -387,8 +387,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Insert"),
-                    new KeyValuePair<int, string>(2, "Remove"),
+                    new(1, "Insert"),
+                    new(2, "Remove"),
                 }
             },
             {
@@ -396,8 +396,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Indsæt"),
-                    new KeyValuePair<int, string>(2, "Fjern"),
+                    new(1, "Indsæt"),
+                    new(2, "Fjern"),
                 }
             },
             {
@@ -405,22 +405,22 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Legen"),
-                    new KeyValuePair<int, string>(2, "Entfernen"),
+                    new(1, "Legen"),
+                    new(2, "Entfernen"),
                 }
             },
         };
 
     public static TheoryData<LeftRightType, int, List<KeyValuePair<int, string>>> LeftRightTypeData
-        => new TheoryData<LeftRightType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 LeftRightType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Left"),
-                    new KeyValuePair<int, string>(2, "Right"),
+                    new(1, "Left"),
+                    new(2, "Right"),
                 }
             },
             {
@@ -428,8 +428,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Left"),
-                    new KeyValuePair<int, string>(2, "Right"),
+                    new(1, "Left"),
+                    new(2, "Right"),
                 }
             },
             {
@@ -437,8 +437,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Venstre"),
-                    new KeyValuePair<int, string>(2, "Højre"),
+                    new(1, "Venstre"),
+                    new(2, "Højre"),
                 }
             },
             {
@@ -446,30 +446,30 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Links"),
-                    new KeyValuePair<int, string>(2, "Rechts"),
+                    new(1, "Links"),
+                    new(2, "Rechts"),
                 }
             },
         };
 
     public static TheoryData<LogCategoryType, int, List<KeyValuePair<int, string>>> LogCategoryTypeData
-        => new TheoryData<LogCategoryType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 LogCategoryType.Critical,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Critical"),
-                    new KeyValuePair<int, string>(1, "Error"),
-                    new KeyValuePair<int, string>(2, "Warning"),
-                    new KeyValuePair<int, string>(3, "Security"),
-                    new KeyValuePair<int, string>(4, "Audit"),
-                    new KeyValuePair<int, string>(5, "Service"),
-                    new KeyValuePair<int, string>(6, "UI"),
-                    new KeyValuePair<int, string>(7, "Information"),
-                    new KeyValuePair<int, string>(8, "Debug"),
-                    new KeyValuePair<int, string>(9, "Trace"),
+                    new(0, "Critical"),
+                    new(1, "Error"),
+                    new(2, "Warning"),
+                    new(3, "Security"),
+                    new(4, "Audit"),
+                    new(5, "Service"),
+                    new(6, "UI"),
+                    new(7, "Information"),
+                    new(8, "Debug"),
+                    new(9, "Trace"),
                 }
             },
             {
@@ -477,16 +477,16 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Critical"),
-                    new KeyValuePair<int, string>(1, "Error"),
-                    new KeyValuePair<int, string>(2, "Warning"),
-                    new KeyValuePair<int, string>(3, "Security"),
-                    new KeyValuePair<int, string>(4, "Audit"),
-                    new KeyValuePair<int, string>(5, "Service"),
-                    new KeyValuePair<int, string>(6, "UI"),
-                    new KeyValuePair<int, string>(7, "Information"),
-                    new KeyValuePair<int, string>(8, "Debug"),
-                    new KeyValuePair<int, string>(9, "Trace"),
+                    new(0, "Critical"),
+                    new(1, "Error"),
+                    new(2, "Warning"),
+                    new(3, "Security"),
+                    new(4, "Audit"),
+                    new(5, "Service"),
+                    new(6, "UI"),
+                    new(7, "Information"),
+                    new(8, "Debug"),
+                    new(9, "Trace"),
                 }
             },
             {
@@ -494,16 +494,16 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Kritisk"),
-                    new KeyValuePair<int, string>(1, "Fejl"),
-                    new KeyValuePair<int, string>(2, "Advarsel"),
-                    new KeyValuePair<int, string>(3, "Sikkerhed"),
-                    new KeyValuePair<int, string>(4, "Revision"),
-                    new KeyValuePair<int, string>(5, "Tjenesten"),
-                    new KeyValuePair<int, string>(6, "UI"),
-                    new KeyValuePair<int, string>(7, "Information"),
-                    new KeyValuePair<int, string>(8, "Fejlsøg"),
-                    new KeyValuePair<int, string>(9, "Trace"),
+                    new(0, "Kritisk"),
+                    new(1, "Fejl"),
+                    new(2, "Advarsel"),
+                    new(3, "Sikkerhed"),
+                    new(4, "Revision"),
+                    new(5, "Tjenesten"),
+                    new(6, "UI"),
+                    new(7, "Information"),
+                    new(8, "Fejlsøg"),
+                    new(9, "Trace"),
                 }
             },
             {
@@ -511,30 +511,30 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(0, "Kritisch"),
-                    new KeyValuePair<int, string>(1, "Fehler"),
-                    new KeyValuePair<int, string>(2, "Warnung"),
-                    new KeyValuePair<int, string>(3, "Sicherheit"),
-                    new KeyValuePair<int, string>(4, "Prüfung"),
-                    new KeyValuePair<int, string>(5, "Service"),
-                    new KeyValuePair<int, string>(6, "UI"),
-                    new KeyValuePair<int, string>(7, "Information"),
-                    new KeyValuePair<int, string>(8, "Debuggen"),
-                    new KeyValuePair<int, string>(9, "Spur"),
+                    new(0, "Kritisch"),
+                    new(1, "Fehler"),
+                    new(2, "Warnung"),
+                    new(3, "Sicherheit"),
+                    new(4, "Prüfung"),
+                    new(5, "Service"),
+                    new(6, "UI"),
+                    new(7, "Information"),
+                    new(8, "Debuggen"),
+                    new(9, "Spur"),
                 }
             },
         };
 
     public static TheoryData<OnOffType, int, List<KeyValuePair<int, string>>> OnOffTypeData
-        => new TheoryData<OnOffType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 OnOffType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Off"),
-                    new KeyValuePair<int, string>(2, "On"),
+                    new(1, "Off"),
+                    new(2, "On"),
                 }
             },
             {
@@ -542,8 +542,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Off"),
-                    new KeyValuePair<int, string>(2, "On"),
+                    new(1, "Off"),
+                    new(2, "On"),
                 }
             },
             {
@@ -551,8 +551,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Off"),
-                    new KeyValuePair<int, string>(2, "On"),
+                    new(1, "Off"),
+                    new(2, "On"),
                 }
             },
             {
@@ -560,22 +560,22 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Off"),
-                    new KeyValuePair<int, string>(2, "On"),
+                    new(1, "Off"),
+                    new(2, "On"),
                 }
             },
         };
 
     public static TheoryData<SortDirectionType, int, List<KeyValuePair<int, string>>> SortDirectionTypeData
-        => new TheoryData<SortDirectionType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 SortDirectionType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Ascending"),
-                    new KeyValuePair<int, string>(2, "Descending"),
+                    new(1, "Ascending"),
+                    new(2, "Descending"),
                 }
             },
             {
@@ -583,8 +583,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Ascending"),
-                    new KeyValuePair<int, string>(2, "Descending"),
+                    new(1, "Ascending"),
+                    new(2, "Descending"),
                 }
             },
             {
@@ -592,8 +592,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Stigende"),
-                    new KeyValuePair<int, string>(2, "Faldende"),
+                    new(1, "Stigende"),
+                    new(2, "Faldende"),
                 }
             },
             {
@@ -601,23 +601,23 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Aufsteigend"),
-                    new KeyValuePair<int, string>(2, "Absteigend"),
+                    new(1, "Aufsteigend"),
+                    new(2, "Absteigend"),
                 }
             },
         };
 
     public static TheoryData<TriggerActionType, int, List<KeyValuePair<int, string>>> TriggerActionTypeData
-        => new TheoryData<TriggerActionType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 TriggerActionType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Insert"),
-                    new KeyValuePair<int, string>(2, "Update"),
-                    new KeyValuePair<int, string>(3, "Delete"),
+                    new(1, "Insert"),
+                    new(2, "Update"),
+                    new(3, "Delete"),
                 }
             },
             {
@@ -625,9 +625,9 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Insert"),
-                    new KeyValuePair<int, string>(2, "Update"),
-                    new KeyValuePair<int, string>(3, "Delete"),
+                    new(1, "Insert"),
+                    new(2, "Update"),
+                    new(3, "Delete"),
                 }
             },
             {
@@ -635,9 +635,9 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Indsæt"),
-                    new KeyValuePair<int, string>(2, "Opdatering"),
-                    new KeyValuePair<int, string>(3, "Slette"),
+                    new(1, "Indsæt"),
+                    new(2, "Opdatering"),
+                    new(3, "Slette"),
                 }
             },
             {
@@ -645,23 +645,23 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Einfügen"),
-                    new KeyValuePair<int, string>(2, "Aktualisieren"),
-                    new KeyValuePair<int, string>(3, "Löschen"),
+                    new(1, "Einfügen"),
+                    new(2, "Aktualisieren"),
+                    new(3, "Löschen"),
                 }
             },
         };
 
     public static TheoryData<UpDownType, int, List<KeyValuePair<int, string>>> UpDownTypeData
-        => new TheoryData<UpDownType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 UpDownType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Up"),
-                    new KeyValuePair<int, string>(2, "Down"),
+                    new(1, "Up"),
+                    new(2, "Down"),
                 }
             },
             {
@@ -669,8 +669,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Up"),
-                    new KeyValuePair<int, string>(2, "Down"),
+                    new(1, "Up"),
+                    new(2, "Down"),
                 }
             },
             {
@@ -678,8 +678,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Op"),
-                    new KeyValuePair<int, string>(2, "Ned"),
+                    new(1, "Op"),
+                    new(2, "Ned"),
                 }
             },
             {
@@ -687,22 +687,22 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Nach oben"),
-                    new KeyValuePair<int, string>(2, "Nach unten"),
+                    new(1, "Nach oben"),
+                    new(2, "Nach unten"),
                 }
             },
         };
 
     public static TheoryData<YesNoType, int, List<KeyValuePair<int, string>>> YesNoTypeData
-        => new TheoryData<YesNoType, int, List<KeyValuePair<int, string>>>
+        => new()
         {
             {
                 YesNoType.None,
                 GlobalizationLcidConstants.UnitedStates,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "No"),
-                    new KeyValuePair<int, string>(2, "Yes"),
+                    new(1, "No"),
+                    new(2, "Yes"),
                 }
             },
             {
@@ -710,8 +710,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.GreatBritain,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "No"),
-                    new KeyValuePair<int, string>(2, "Yes"),
+                    new(1, "No"),
+                    new(2, "Yes"),
                 }
             },
             {
@@ -719,8 +719,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Denmark,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Nej"),
-                    new KeyValuePair<int, string>(2, "Ja"),
+                    new(1, "Nej"),
+                    new(2, "Ja"),
                 }
             },
             {
@@ -728,8 +728,8 @@ internal static class TestMemberDataForEnumTranslation
                 GlobalizationLcidConstants.Germany,
                 new List<KeyValuePair<int, string>>
                 {
-                    new KeyValuePair<int, string>(1, "Keine"),
-                    new KeyValuePair<int, string>(2, "Ja"),
+                    new(1, "Keine"),
+                    new(2, "Ja"),
                 }
             },
         };

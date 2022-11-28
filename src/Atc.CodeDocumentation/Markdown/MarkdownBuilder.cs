@@ -2,7 +2,7 @@ namespace Atc.CodeDocumentation.Markdown;
 
 internal class MarkdownBuilder
 {
-    private readonly StringBuilder sb = new StringBuilder();
+    private readonly StringBuilder sb = new();
 
     public static string MarkdownCodeQuote(string code)
     {

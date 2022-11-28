@@ -12,5 +12,5 @@ public class BadRequestResultAssertions : ErrorContentResultAssertions<BadReques
     protected override string Identifier { get; } = "bad request result";
 
     protected override AndWhichConstraint<BadRequestResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<BadRequestResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

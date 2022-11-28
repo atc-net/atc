@@ -46,9 +46,9 @@ public class AuthorizationOptions
 
     public string Issuer { get; set; } = string.Empty;
 
-    public List<string> ValidAudiences { get; set; } = new List<string>();
+    public List<string> ValidAudiences { get; set; } = new();
 
-    public List<string> ValidIssuers { get; set; } = new List<string>();
+    public List<string> ValidIssuers { get; set; } = new();
 
     public bool IsSecurityEnabled()
         => !string.IsNullOrEmpty(ClientId) ||

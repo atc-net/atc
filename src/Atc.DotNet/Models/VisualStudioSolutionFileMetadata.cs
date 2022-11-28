@@ -2,13 +2,13 @@ namespace Atc.DotNet.Models;
 
 public class VisualStudioSolutionFileMetadata
 {
-    public Version FileFormatVersion { get; set; } = new Version();
+    public Version FileFormatVersion { get; set; } = new();
 
     public int VisualStudioVersionNumber { get; set; }
 
-    public Version VisualStudioVersion { get; set; } = new Version();
+    public Version VisualStudioVersion { get; set; } = new();
 
-    public Version MinimumVisualStudioVersion { get; set; } = new Version();
+    public Version MinimumVisualStudioVersion { get; set; } = new();
 
     public string VisualStudioName
         => VisualStudioVersionNumber switch

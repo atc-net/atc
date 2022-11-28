@@ -3,7 +3,7 @@ namespace Atc.XUnit.Internal;
 
 internal static class TypeAndMethodAndParameterHelper
 {
-    private static readonly List<string> ListModuleScopeNamesToExclude = new List<string>
+    private static readonly List<string> ListModuleScopeNamesToExclude = new()
     {
         typeof(Exception).Module.ScopeName,
     };

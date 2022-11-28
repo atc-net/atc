@@ -8,7 +8,7 @@ public class HeaderDictionaryExtensionsTests
         // Arrange
         var data = new HeaderDictionary
         {
-            new KeyValuePair<string, StringValues>(
+            new(
                 "x-correlation-id",
                 new StringValues(Guid.NewGuid().ToString())),
         };
@@ -42,7 +42,7 @@ public class HeaderDictionaryExtensionsTests
         // Arrange
         var data = new HeaderDictionary
         {
-            new KeyValuePair<string, StringValues>(
+            new(
                 "x-request-id",
                 new StringValues(Guid.NewGuid().ToString())),
         };
@@ -61,7 +61,7 @@ public class HeaderDictionaryExtensionsTests
         // Arrange
         var data = new HeaderDictionary
         {
-            new KeyValuePair<string, StringValues>(
+            new(
                 "x-on-behalf-of",
                 new StringValues(Guid.NewGuid().ToString())),
         };

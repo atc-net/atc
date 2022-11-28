@@ -3,7 +3,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiPathItemExtensions
 {
     public static TheoryData<bool, KeyValuePair<string, OpenApiPathItem>, string> IsPathStartingSegmentNameItemData
-        => new TheoryData<bool, KeyValuePair<string, OpenApiPathItem>, string>
+        => new()
         {
             {
                 false,
@@ -23,7 +23,7 @@ public static class TestMemberDataForOpenApiPathItemExtensions
         };
 
     public static TheoryData<bool, OpenApiPathItem> HasParametersItemData
-        => new TheoryData<bool, OpenApiPathItem>
+        => new()
         {
             {
                 false,

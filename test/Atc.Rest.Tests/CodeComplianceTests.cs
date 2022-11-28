@@ -13,7 +13,7 @@ public class CodeComplianceTests
     private readonly Assembly sourceAssembly = typeof(AtcRestAssemblyTypeInitializer).Assembly;
     private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
 
-    private readonly List<Type> excludeTypes = new List<Type>
+    private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
         typeof(EndpointRouteBuilderExtensions),

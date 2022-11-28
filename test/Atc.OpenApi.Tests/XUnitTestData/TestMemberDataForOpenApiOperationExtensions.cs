@@ -4,7 +4,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiOperationExtensions
 {
     public static TheoryData<string, OpenApiOperation> GetOperationNameItemData
-        => new TheoryData<string, OpenApiOperation>
+        => new()
         {
             {
                 "GetOrderById",
@@ -37,21 +37,21 @@ public static class TestMemberDataForOpenApiOperationExtensions
         };
 
     public static TheoryData<OpenApiSchema?, OpenApiOperation> GetModelSchemaFromResponseItemData
-        => new TheoryData<OpenApiSchema?, OpenApiOperation>
+        => new()
         {
             { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
             { null, TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
         };
 
     public static TheoryData<OpenApiSchema?, OpenApiOperation> GetModelSchemaFromRequestItemData
-        => new TheoryData<OpenApiSchema?, OpenApiOperation>
+        => new()
         {
             { null, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
             { TestDataOpenApiFactory.CreateSchemaPet(), TestDataOpenApiFactory.CreateOperationWithRequestBodyPet() },
         };
 
     public static TheoryData<bool, OpenApiOperation> HasParametersOrRequestBodyItemData
-        => new TheoryData<bool, OpenApiOperation>
+        => new()
         {
             { false, TestDataOpenApiFactory.CreateOperationWithResponseOkPet() },
             {
@@ -68,7 +68,7 @@ public static class TestMemberDataForOpenApiOperationExtensions
         };
 
     public static TheoryData<bool, OpenApiOperation> HasRequestBodyWithAnythingAsFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiOperation>
+        => new()
         {
             { false, TestDataOpenApiFactory.CreateOperationWithRequestBodyAddress() },
             { true, TestDataOpenApiFactory.CreateOperationWithRequestBodyPetWithBinary() },
@@ -77,7 +77,7 @@ public static class TestMemberDataForOpenApiOperationExtensions
         };
 
     public static TheoryData<bool, OpenApiOperation, string> IsOperationReferencingSchemaItemData
-        => new TheoryData<bool, OpenApiOperation, string>
+        => new()
         {
             {
                 false,
@@ -112,7 +112,7 @@ public static class TestMemberDataForOpenApiOperationExtensions
         };
 
     public static TheoryData<bool, OpenApiOperation, OperationType> IsOperationNamePluralizedItemData
-        => new TheoryData<bool, OpenApiOperation, OperationType>
+        => new()
         {
             {
                 false,
@@ -277,7 +277,7 @@ public static class TestMemberDataForOpenApiOperationExtensions
         };
 
     public static TheoryData<bool, List<OpenApiOperation>> HasDataTypeFromSystemCollectionGenericNamespaceItemData
-        => new TheoryData<bool, List<OpenApiOperation>>
+        => new()
         {
             {
                 false,

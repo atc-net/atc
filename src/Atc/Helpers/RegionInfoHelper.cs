@@ -5,7 +5,7 @@ namespace Atc.Helpers;
 /// </summary>
 public static class RegionInfoHelper
 {
-    private static readonly object Lock = new object();
+    private static readonly object Lock = new();
     private static List<RegionInfo>? allRegionInfos;
 
     /// <summary>

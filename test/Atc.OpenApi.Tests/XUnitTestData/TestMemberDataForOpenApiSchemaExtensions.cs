@@ -4,7 +4,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiSchemaExtensions
 {
     public static TheoryData<bool, List<OpenApiSchema>> HasDataTypeListItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() } },
@@ -38,7 +38,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>> HasDataTypeFromSystemCollectionGenericNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal) },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail(), new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal) },
@@ -74,7 +74,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>, IDictionary<string, OpenApiSchema>> HasDataTypeFromSystemCollectionGenericNamespaceListItemData
-        => new TheoryData<bool, List<OpenApiSchema>, IDictionary<string, OpenApiSchema>>
+        => new()
         {
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() }, new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal) },
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() }, new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal) },
@@ -110,7 +110,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeUuidItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -135,7 +135,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeByteItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -160,7 +160,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeDateItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -185,7 +185,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeDateTimeItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -210,7 +210,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeTimeItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -235,7 +235,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeTimestampItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -260,7 +260,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeInt32ItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -285,7 +285,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeInt64ItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -310,7 +310,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeEmailItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -335,7 +335,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeUriItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             {
                 false,
@@ -360,7 +360,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasFormatTypeFromSystemNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -396,7 +396,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeFromSystemNamespaceListItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             { false, new List<OpenApiSchema>() },
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
@@ -433,7 +433,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasFormatTypeFromDataAnnotationsNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -453,7 +453,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeFromDataAnnotationsNamespaceListItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             { false, new List<OpenApiSchema>() },
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
@@ -474,7 +474,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasFormatTypeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -510,7 +510,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema, string> HasModelNameOrAnyPropertiesWithModelNameItemData
-        => new TheoryData<bool, OpenApiSchema, string>
+        => new()
         {
             { false, TestDataOpenApiFactory.CreateSchemaPet(), "MyPet" },
             { true, TestDataOpenApiFactory.CreateSchemaPet(), "Pet" },
@@ -519,7 +519,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasItemsWithSimpleDataTypeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -555,7 +555,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasArrayItemsWithSimpleDataTypeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -607,7 +607,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasPaginationItemsWithSimpleDataTypeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -659,7 +659,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasItemsWithFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringBinary() },
@@ -670,21 +670,21 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasAnyPropertiesItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiFactory.CreateSchemaPet() },
         };
 
     public static TheoryData<bool, OpenApiSchema> HasAnyPropertiesWithFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
         };
 
     public static TheoryData<bool, OpenApiSchema> HasAnyPropertiesAsArrayWithFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
@@ -693,7 +693,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasAnythingAsFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiFactory.CreateSchemaPetWithBinary() },
@@ -702,28 +702,28 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> HasAnyPropertiesFormatTypeFromSystemNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiFactory.CreateSchemaPetWithGuid() },
         };
 
     public static TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>> HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemasItemData
-        => new TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), TestDataOpenApiFactory.CreateComponentSchemasWithOnePet() },
             { true, TestDataOpenApiFactory.CreateSchemaPetWithGuid(), TestDataOpenApiFactory.CreateComponentSchemasWithDifferentPets() },
         };
 
     public static TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>> HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema, IDictionary<string, OpenApiSchema>>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString(), TestDataOpenApiFactory.CreateComponentSchemasWithOnePet() },
             { true, TestDataOpenApiFactory.CreateSchemaPetsAsObjectWithArray(), TestDataOpenApiFactory.CreateComponentSchemasWithDifferentPets() },
         };
 
     public static TheoryData<bool, OpenApiSchema> HasFormatTypeFromAspNetCoreHttpNamespaceItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -743,7 +743,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, List<OpenApiSchema>> HasFormatTypeFromAspNetCoreHttpNamespaceListItemData
-        => new TheoryData<bool, List<OpenApiSchema>>
+        => new()
         {
             { false, new List<OpenApiSchema>() },
             { false, new List<OpenApiSchema> { TestDataOpenApiSchemaOfTypeFactory.CreateString() } },
@@ -764,7 +764,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsTypeArrayItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -816,7 +816,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsTypePaginationItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -868,7 +868,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsTypeArrayOrPaginationItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -920,7 +920,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeUuidItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -940,7 +940,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeDateItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -960,7 +960,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeTimeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -980,7 +980,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeTimestampItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1000,7 +1000,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeDateTimeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1020,7 +1020,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeByteItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1040,7 +1040,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeBinaryItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1060,7 +1060,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeInt32ItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1080,7 +1080,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeInt64ItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1100,7 +1100,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeEmailItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1120,7 +1120,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsFormatTypeUriItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1140,7 +1140,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsSimpleDataTypeItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { true, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { true, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1160,7 +1160,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsRuleValidationStringItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
@@ -1174,7 +1174,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsRuleValidationNumberItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateInteger() },
@@ -1188,7 +1188,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsObjectReferenceTypeDeclaredItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1222,7 +1222,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsArrayReferenceTypeDeclaredItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { false, TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail() },
@@ -1256,7 +1256,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsSchemaEnumItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiFactory.CreateSchemaPet() },
             { false, TestDataOpenApiFactory.CreateSchemaColorType() },
@@ -1264,7 +1264,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema> IsSchemaEnumOrPropertyEnumItemData
-        => new TheoryData<bool, OpenApiSchema>
+        => new()
         {
             { false, TestDataOpenApiFactory.CreateSchemaPet() },
             { true, TestDataOpenApiFactory.CreateSchemaColorType() },
@@ -1272,7 +1272,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<bool, OpenApiSchema, OpenApiComponents> IsSharedContractItemData
-        => new TheoryData<bool, OpenApiSchema, OpenApiComponents>
+        => new()
         {
             {
                 false,
@@ -1282,7 +1282,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> GetModelNameItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
             { string.Empty,  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -1290,7 +1290,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema, bool> GetModelNameEnsureFirstCharacterToUpperItemData
-        => new TheoryData<string, OpenApiSchema, bool>
+        => new()
         {
             {
                 "pet",
@@ -1305,7 +1305,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> GetModelTypeItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             { "object", TestDataOpenApiFactory.CreateSchemaPet() },
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -1313,7 +1313,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> GetDataTypeItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
@@ -1321,7 +1321,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> GetSimpleDataTypeFromArrayItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateListStringEmail() },
@@ -1334,7 +1334,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> GetSimpleDataTypeFromPaginationItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationString() },
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringEmail() },
@@ -1354,7 +1354,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string?, OpenApiSchema, string> GetTitleFromPropertyByPropertyKeyItemData
-        => new TheoryData<string?, OpenApiSchema, string>
+        => new()
         {
             {
                 "MyTag",
@@ -1369,7 +1369,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<Tuple<string, int>, OpenApiSchema> GetEnumSchemaItemData
-        => new TheoryData<Tuple<string, int>, OpenApiSchema>
+        => new()
         {
             {
                 new Tuple<string, int>("colorType", 5),
@@ -1378,7 +1378,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<OpenApiSchema, Dictionary<string, OpenApiSchema>, string> GetSchemaByModelNameItemData
-        => new TheoryData<OpenApiSchema, Dictionary<string, OpenApiSchema>, string>
+        => new()
         {
             {
                 TestDataOpenApiFactory.CreateSchemaColorType(),
@@ -1393,7 +1393,7 @@ public static class TestMemberDataForOpenApiSchemaExtensions
         };
 
     public static TheoryData<string, OpenApiSchema> ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinaryItemData
-        => new TheoryData<string, OpenApiSchema>
+        => new()
         {
             {
                 "Pets",

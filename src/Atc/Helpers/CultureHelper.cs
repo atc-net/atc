@@ -6,7 +6,7 @@ namespace Atc.Helpers;
 public static class CultureHelper
 {
     private const string ResourceBaseName = "Atc";
-    private static readonly object Lock = new object();
+    private static readonly object Lock = new();
     private static Dictionary<int, List<Culture>>? allCultures;
     private static ResourceManager? resourceManagerCountry;
     private static ResourceManager? resourceManagerLanguage;

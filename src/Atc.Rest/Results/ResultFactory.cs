@@ -7,7 +7,7 @@ public static class ResultFactory
     public static ProblemDetails CreateProblemDetails(
         HttpStatusCode statusCode,
         string? message)
-        => new ProblemDetails
+        => new()
         {
             Status = (int)statusCode,
             Detail = message,
@@ -17,7 +17,7 @@ public static class ResultFactory
         HttpStatusCode statusCode,
         Dictionary<string, string[]> errors,
         string? message)
-        => new ValidationProblemDetails(errors)
+        => new(errors)
         {
             Status = (int)statusCode,
             Detail = message,
@@ -27,7 +27,7 @@ public static class ResultFactory
         HttpStatusCode statusCode,
         string? message,
         string contentType = MediaTypeNames.Application.Json)
-        => new ContentResult
+        => new()
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
@@ -65,7 +65,7 @@ public static class ResultFactory
         HttpStatusCode statusCode,
         string? message,
         string contentType = MediaTypeNames.Application.Json)
-        => new ContentResult
+        => new()
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
@@ -77,7 +77,7 @@ public static class ResultFactory
         Dictionary<string, string[]> errors,
         string? message,
         string contentType = MediaTypeNames.Application.Json)
-        => new ContentResult
+        => new()
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
@@ -88,7 +88,7 @@ public static class ResultFactory
         HttpStatusCode statusCode,
         string? message,
         string contentType = MediaTypeNames.Application.Json)
-        => new ContentResult
+        => new()
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,

@@ -3,7 +3,7 @@ namespace Atc.DotNet.Tests.XUnitTestData;
 public static class TestClassDataForVisualStudioSolutionFileMetadata
 {
     public static TheoryData<VisualStudioSolutionFileMetadata, int> GetSolutionFileMetadata
-        => new TheoryData<VisualStudioSolutionFileMetadata, int>
+        => new()
         {
             {
                 new VisualStudioSolutionFileMetadata

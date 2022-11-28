@@ -90,7 +90,7 @@ public static class TestResultHelper
 
         var testResults = new List<TestResult>
         {
-            new TestResult($"Assembly: {assemblyName} ({methodsWithMissingTests.Length})"),
+            new($"Assembly: {assemblyName} ({methodsWithMissingTests.Length})"),
         };
 
         foreach (var item in methodsWithMissingTestsGroups)
@@ -172,7 +172,7 @@ public static class TestResultHelper
 
         var testResults = new List<TestResult>
         {
-            new TestResult($"Assembly: {assemblyName} ({methodsWithWrongNaming.Count})"),
+            new($"Assembly: {assemblyName} ({methodsWithWrongNaming.Count})"),
         };
 
         foreach (var item in methodsWithWrongNamingGroups)

@@ -12,5 +12,5 @@ public class AcceptedResultAssertions : ContentResultAssertionsBase<AcceptedResu
     protected override string Identifier { get; } = "accepted result";
 
     protected override AndWhichConstraint<AcceptedResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<AcceptedResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

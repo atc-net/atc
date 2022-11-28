@@ -12,5 +12,5 @@ public class NotFoundResultAssertions : ErrorContentResultAssertions<NotFoundRes
     protected override string Identifier => "not found result";
 
     protected override AndWhichConstraint<NotFoundResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<NotFoundResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }
