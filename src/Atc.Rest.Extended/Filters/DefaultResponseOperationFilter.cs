@@ -25,7 +25,7 @@ public class DefaultResponseOperationFilter : IOperationFilter
                 Description = "Problem response",
                 Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                 {
-                    [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                    [MediaTypeNames.Application.Json] = new()
                     {
                         Schema = context.SchemaGenerator.GenerateSchema(typeof(ProblemDetails), context.SchemaRepository),
                     },

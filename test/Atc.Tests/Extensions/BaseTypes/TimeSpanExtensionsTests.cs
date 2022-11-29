@@ -67,8 +67,11 @@ public class TimeSpanExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTime), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
-    public void GetPrettyTimeDiff(string expected, TimeSpan timeSpan)
+    public void GetPrettyTimeDiff(string expected, TimeSpan timeSpan, int arrangeUiLcid)
     {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+
         // Act
         var actual = timeSpan.GetPrettyTime();
 
@@ -79,8 +82,11 @@ public class TimeSpanExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTimeWithDecimalPrecision), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
-    public void GetPrettyTimeDiff_DecimalPrecision(string expected, TimeSpan timeSpan, int decimalPrecision)
+    public void GetPrettyTimeDiff_DecimalPrecision(string expected, TimeSpan timeSpan, int decimalPrecision, int arrangeUiLcid)
     {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+
         // Act
         var actual = timeSpan.GetPrettyTime(decimalPrecision);
 

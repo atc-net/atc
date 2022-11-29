@@ -12,5 +12,5 @@ public class NoContentResultAssertions : ContentResultAssertionsBase<NoContentRe
     protected override string Identifier { get; } = "no content result";
 
     protected override AndWhichConstraint<NoContentResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<NoContentResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

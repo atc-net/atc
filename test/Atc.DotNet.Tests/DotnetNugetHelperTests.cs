@@ -3,7 +3,7 @@ namespace Atc.DotNet.Tests;
 
 public class DotnetNugetHelperTests : IAsyncLifetime
 {
-    private static readonly DirectoryInfo WorkingDirectory = new DirectoryInfo(
+    private static readonly DirectoryInfo WorkingDirectory = new(
         Path.Combine(Path.GetTempPath(), "atc-integration-test-dotnet-nuget-helper"));
 
     public Task InitializeAsync()

@@ -12,5 +12,5 @@ public class ConflictResultAssertions : ErrorContentResultAssertions<ConflictRes
     protected override string Identifier => "conflict result";
 
     protected override AndWhichConstraint<ConflictResultAssertions, ContentResult> CreateAndWhichConstraint()
-        => new AndWhichConstraint<ConflictResultAssertions, ContentResult>(this, Subject);
+        => new(this, Subject);
 }

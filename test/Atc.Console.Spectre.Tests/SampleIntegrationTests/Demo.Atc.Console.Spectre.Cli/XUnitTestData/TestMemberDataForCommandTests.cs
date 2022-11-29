@@ -199,7 +199,7 @@ internal static class TestMemberDataForCommandTests
     }
 
     private static List<Tuple<string, string>> LogLevelNames
-        => new List<Tuple<string, string>>
+        => new()
         {
             Tuple.Create(nameof(LogLevel.Trace), "trace"),
             Tuple.Create(nameof(LogLevel.Debug), "debug"),

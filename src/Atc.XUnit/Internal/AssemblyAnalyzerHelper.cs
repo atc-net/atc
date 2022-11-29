@@ -2,7 +2,7 @@ namespace Atc.XUnit.Internal;
 
 internal static class AssemblyAnalyzerHelper
 {
-    private static readonly List<string> TypeNamesForExtensionsToSkip = new List<string>
+    private static readonly List<string> TypeNamesForExtensionsToSkip = new()
     {
         "DynamicExtensions",
         "EventHandlerExtensions",
@@ -11,7 +11,7 @@ internal static class AssemblyAnalyzerHelper
         "TypeExtensions",
     };
 
-    private static readonly List<string> AllowedNamesForCollectionExtensions = new List<string>
+    private static readonly List<string> AllowedNamesForCollectionExtensions = new()
     {
         "IList",
         "IEnumerable",
@@ -20,12 +20,12 @@ internal static class AssemblyAnalyzerHelper
         "ObservableCollection",
     };
 
-    private static readonly List<string> AllowedNamesForEnumerableExtensions = new List<string>
+    private static readonly List<string> AllowedNamesForEnumerableExtensions = new()
     {
         "IEnumerable",
     };
 
-    private static readonly List<string> AllowedNamesForQueryableExtensions = new List<string>
+    private static readonly List<string> AllowedNamesForQueryableExtensions = new()
     {
         "IQueryable",
         "IOrderedQueryable",

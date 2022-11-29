@@ -23,8 +23,11 @@ public class DateTimeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiff), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff(string expected, DateTime start)
+    public void GetPrettyTimeDiff(string expected, DateTime start, int arrangeUiLcid)
     {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+
         // Act
         var actual = start.GetPrettyTimeDiff();
 
@@ -35,8 +38,11 @@ public class DateTimeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_DecimalPrecision(string expected, DateTime start, int decimalPrecision)
+    public void GetPrettyTimeDiff_DecimalPrecision(string expected, DateTime start, int decimalPrecision, int arrangeUiLcid)
     {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+
         // Act
         var actual = start.GetPrettyTimeDiff(decimalPrecision);
 
@@ -47,10 +53,10 @@ public class DateTimeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithEnd), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_EndNow(string expected, DateTime start, DateTime end)
+    public void GetPrettyTimeDiff_EndNow(string expected, DateTime start, DateTime end, int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = GlobalizationConstants.DanishCultureInfo;
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end);
@@ -61,10 +67,10 @@ public class DateTimeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithEndNowAndDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(string expected, DateTime start, DateTime end, int decimalPrecision)
+    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(string expected, DateTime start, DateTime end, int decimalPrecision, int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = GlobalizationConstants.DanishCultureInfo;
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end, decimalPrecision);

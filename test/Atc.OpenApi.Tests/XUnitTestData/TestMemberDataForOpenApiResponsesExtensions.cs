@@ -3,7 +3,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiResponsesExtensions
 {
     public static TheoryData<List<HttpStatusCode>, OpenApiResponses> GetHttpStatusCodesItemData
-        => new TheoryData<List<HttpStatusCode>, OpenApiResponses>
+        => new()
         {
             {
                 new List<HttpStatusCode>(),
@@ -16,12 +16,12 @@ public static class TestMemberDataForOpenApiResponsesExtensions
                 },
                 new OpenApiResponses
                 {
-                    ["200"] = new OpenApiResponse
+                    ["200"] = new()
                     {
                         Description = "Ok",
                         Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                         {
-                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                            [MediaTypeNames.Application.Json] = new()
                             {
                                 Schema = TestDataOpenApiFactory.CreateSchemaAddress(),
                             },
@@ -37,18 +37,18 @@ public static class TestMemberDataForOpenApiResponsesExtensions
                 },
                 new OpenApiResponses
                 {
-                    ["200"] = new OpenApiResponse
+                    ["200"] = new()
                     {
                         Description = "Ok",
                         Content = new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
                         {
-                            [MediaTypeNames.Application.Json] = new OpenApiMediaType
+                            [MediaTypeNames.Application.Json] = new()
                             {
                                 Schema = TestDataOpenApiFactory.CreateSchemaAddress(),
                             },
                         },
                     },
-                    ["404"] = new OpenApiResponse
+                    ["404"] = new()
                     {
                         Description = "Not found",
                     },
@@ -57,7 +57,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses> HasSchemaTypeArrayItemData
-        => new TheoryData<bool, OpenApiResponses>
+        => new()
         {
             {
                 false,
@@ -70,7 +70,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses> HasSchemaHttpStatusCodeUsingSystemNetItemData
-        => new TheoryData<bool, OpenApiResponses>
+        => new()
         {
             {
                 false,
@@ -79,7 +79,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses> HasSchemaHttpStatusCodeUsingAspNetCoreHttpItemData
-        => new TheoryData<bool, OpenApiResponses>
+        => new()
         {
             {
                 false,
@@ -88,7 +88,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<OpenApiSchema, OpenApiResponses, HttpStatusCode> GetSchemaForStatusCodeItemData
-        => new TheoryData<OpenApiSchema, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 TestDataOpenApiFactory.CreateSchemaPet(),
@@ -98,7 +98,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<OpenApiSchema, OpenApiResponses, HttpStatusCode, string> GetSchemaForStatusCodeContentTypeItemData
-        => new TheoryData<OpenApiSchema, OpenApiResponses, HttpStatusCode, string>
+        => new()
         {
             {
                 TestDataOpenApiFactory.CreateSchemaPet(),
@@ -109,7 +109,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<string, OpenApiResponses, HttpStatusCode> GetModelNameForStatusCodeItemData
-        => new TheoryData<string, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 "Pet",
@@ -119,7 +119,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<string, OpenApiResponses, HttpStatusCode> GetDataTypeForStatusCodeItemData
-        => new TheoryData<string, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 "Pet",
@@ -129,7 +129,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses, HttpStatusCode> IsSchemaTypeArrayForStatusCodeItemData
-        => new TheoryData<bool, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 false,
@@ -144,7 +144,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses, HttpStatusCode> IsSchemaTypePaginationForStatusCodeItemData
-        => new TheoryData<bool, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 false,
@@ -154,7 +154,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses, HttpStatusCode> IsSchemaTypeProblemDetailsForStatusCodeItemData
-        => new TheoryData<bool, OpenApiResponses, HttpStatusCode>
+        => new()
         {
             {
                 false,
@@ -164,7 +164,7 @@ public static class TestMemberDataForOpenApiResponsesExtensions
         };
 
     public static TheoryData<bool, OpenApiResponses> IsSchemaUsingBinaryFormatForOkResponseItemData
-        => new TheoryData<bool, OpenApiResponses>
+        => new()
         {
             {
                 true,

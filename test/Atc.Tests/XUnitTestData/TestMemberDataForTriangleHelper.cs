@@ -3,7 +3,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForTriangleHelper
 {
     public static TheoryData<string, TriangleData, double?, double?, double?, double?, double?, double?> GetSinesAndCosinesData
-        => new TheoryData<string, TriangleData, double?, double?, double?, double?, double?, double?>
+        => new()
         {
             {
                 "A, B, a",

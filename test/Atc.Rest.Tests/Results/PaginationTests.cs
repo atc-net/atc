@@ -2,7 +2,7 @@ namespace Atc.Rest.Tests.Results;
 
 public class PaginationTests
 {
-    private Fixture Fixture { get; } = new Fixture();
+    private Fixture Fixture { get; } = new();
 
     [Fact]
     public void Ctor_Copies_Items_To_Pagination()

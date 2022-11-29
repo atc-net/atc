@@ -7,7 +7,7 @@ public class CodeComplianceTests
     private readonly Assembly sourceAssembly = typeof(AtcRestFluentAssertionsAssemblyTypeInitializer).Assembly;
     private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
 
-    private readonly List<Type> excludeTypes = new List<Type>
+    private readonly List<Type> excludeTypes = new()
     {
         // Ok to exclude Assertions types, because they are a kind of extensions types, and the
         // Decompiler for AST & Mono way in CodeCompliance-helper, don't support this yet.

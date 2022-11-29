@@ -3,19 +3,19 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiMediaTypeExtensions
 {
     public static TheoryData<string, IDictionary<string, OpenApiMediaType>> GetSchemaItemData
-        => new TheoryData<string, IDictionary<string, OpenApiMediaType>>
+        => new()
         {
             { OpenApiDataTypeConstants.Array, CreateContent(OpenApiDataTypeConstants.Array) },
         };
 
     public static TheoryData<string, IDictionary<string, OpenApiMediaType>> GetSchemaByFirstMediaTypeItemData
-        => new TheoryData<string, IDictionary<string, OpenApiMediaType>>
+        => new()
         {
             { OpenApiDataTypeConstants.Array, CreateMultipleContents(OpenApiDataTypeConstants.Array, OpenApiDataTypeConstants.Object) },
         };
 
     public static TheoryData<string, string, IDictionary<string, OpenApiMediaType>> GetSchemaContentTypeItemData
-        => new TheoryData<string, string, IDictionary<string, OpenApiMediaType>>
+        => new()
         {
             { OpenApiDataTypeConstants.Array, MediaTypeNames.Application.Json, CreateContent(OpenApiDataTypeConstants.Array) },
         };

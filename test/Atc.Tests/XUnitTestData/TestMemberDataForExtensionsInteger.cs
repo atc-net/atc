@@ -4,7 +4,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForExtensionsInteger
 {
     public static TheoryData<int, string, int, bool> MonthNameData
-        => new TheoryData<int, string, int, bool>
+        => new()
         {
             { GlobalizationLcidConstants.UnitedStates, "january", 1, false },
             { GlobalizationLcidConstants.UnitedStates, "february", 2, false },

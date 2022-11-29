@@ -26,7 +26,7 @@ public class ByteSizeFormatter
     /// <summary>
     /// Returns a default instance of ByteSizeFormatter. This formatter will be used by the ByteSize.ToString() method.
     /// </summary>
-    public static ByteSizeFormatter Default { get; } = new ByteSizeFormatter();
+    public static ByteSizeFormatter Default { get; } = new();
 
     /// <summary>
     /// Gets or sets a value indicating whether the suffix format should be short or full wording.

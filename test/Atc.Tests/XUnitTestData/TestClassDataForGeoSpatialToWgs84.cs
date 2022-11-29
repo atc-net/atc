@@ -4,7 +4,7 @@ namespace Atc.Tests.XUnitTestData;
 public class TestClassDataForGeoSpatialToWgs84 : IEnumerable<object[]>
 {
     [SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "OK.")]
-    private readonly TheoryData<string, UniversalTransverseMercatorResult, int, CartesianCoordinate> data = new TheoryData<string, UniversalTransverseMercatorResult, int, CartesianCoordinate>
+    private readonly TheoryData<string, UniversalTransverseMercatorResult, int, CartesianCoordinate> data = new()
     {
         {
             "Ågeruphøj 33 4000 Roskilde",

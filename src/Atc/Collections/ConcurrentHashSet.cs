@@ -8,8 +8,8 @@ namespace Atc.Collections;
 /// <seealso cref="System.IDisposable" />
 public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
 {
-    private readonly ReaderWriterLockSlim readerWriterLock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
-    private readonly HashSet<T> hashSet = new HashSet<T>();
+    private readonly ReaderWriterLockSlim readerWriterLock = new(LockRecursionPolicy.SupportsRecursion);
+    private readonly HashSet<T> hashSet = new();
 
     /// <summary>
     /// Gets the count.

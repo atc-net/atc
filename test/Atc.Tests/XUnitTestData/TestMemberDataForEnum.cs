@@ -4,7 +4,7 @@ namespace Atc.Tests.XUnitTestData;
 internal static class TestMemberDataForEnum
 {
     public static TheoryData<DayOfWeek, int, DropDownFirstItemType, bool, bool, SortDirectionType, bool, bool> DayOfWeekData
-        => new TheoryData<DayOfWeek, int, DropDownFirstItemType, bool, bool, SortDirectionType, bool, bool>
+        => new()
         {
             { DayOfWeek.Sunday, 7, DropDownFirstItemType.None, true, true, SortDirectionType.None, true, true },
             { DayOfWeek.Sunday, 6, DropDownFirstItemType.None, true, false, SortDirectionType.None, true, true },

@@ -286,7 +286,7 @@
 
 #### HasParameters
 >```csharp
->bool HasParameters(this OpenApiPathItem openApiOperation)
+>bool HasParameters(this OpenApiPathItem openApiPathItem)
 >```
 #### IsPathStartingSegmentName
 >```csharp

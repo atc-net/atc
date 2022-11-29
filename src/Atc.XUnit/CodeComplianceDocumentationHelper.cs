@@ -51,7 +51,7 @@ public static class CodeComplianceDocumentationHelper
 
         var testResults = new List<TestResult>
         {
-            new TestResult($"Assembly: {assembly.GetName()}"),
+            new($"Assembly: {assembly.GetName()}"),
         };
 
         testResults.AddRange(typesWithMissingCommentsGroups.Select(item => new TestResult(isError: false, 1, $"Type: {item.Key}")));

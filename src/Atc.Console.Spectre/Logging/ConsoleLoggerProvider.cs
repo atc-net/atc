@@ -3,7 +3,7 @@ namespace Atc.Console.Spectre.Logging;
 public class ConsoleLoggerProvider : ILoggerProvider
 {
     private readonly ConsoleLoggerConfiguration config;
-    private readonly ConcurrentDictionary<string, ConsoleLogger> loggers = new ConcurrentDictionary<string, ConsoleLogger>(StringComparer.Ordinal);
+    private readonly ConcurrentDictionary<string, ConsoleLogger> loggers = new(StringComparer.Ordinal);
 
     public ConsoleLoggerProvider(ConsoleLoggerConfiguration config)
     {

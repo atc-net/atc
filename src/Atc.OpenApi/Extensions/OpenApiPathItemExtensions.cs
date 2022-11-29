@@ -28,13 +28,13 @@ public static class OpenApiPathItemExtensions
                segmentName.Equals(routeSegmentName.EnsureSingular(), StringComparison.OrdinalIgnoreCase);
     }
 
-    public static bool HasParameters(this OpenApiPathItem openApiOperation)
+    public static bool HasParameters(this OpenApiPathItem openApiPathItem)
     {
-        if (openApiOperation is null)
+        if (openApiPathItem is null)
         {
-            throw new ArgumentNullException(nameof(openApiOperation));
+            throw new ArgumentNullException(nameof(openApiPathItem));
         }
 
-        return openApiOperation.Parameters.Any();
+        return openApiPathItem.Parameters.Any();
     }
 }

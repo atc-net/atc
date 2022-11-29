@@ -73,7 +73,7 @@ public static class SimpleTypeHelper
     /// </summary>
     [SuppressMessage("Minor Code Smell", "S2386:Mutable fields should not be \"public static\"", Justification = "OK.")]
     [SuppressMessage("Minor Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "OK.")]
-    public static readonly Dictionary<Type, string> BeautifySimpleTypeLookup = new Dictionary<Type, string>
+    public static readonly Dictionary<Type, string> BeautifySimpleTypeLookup = new()
     {
         { typeof(bool), "bool" },
         { typeof(byte), "byte" },
@@ -118,7 +118,7 @@ public static class SimpleTypeHelper
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "OK.")]
     [SuppressMessage("Minor Code Smell", "S2386:Mutable fields should not be \"public static\"", Justification = "OK.")]
     [SuppressMessage("Minor Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "OK.")]
-    public static readonly Dictionary<Type, string> BeautifySimpleTypeArrayLookup = new Dictionary<Type, string>
+    public static readonly Dictionary<Type, string> BeautifySimpleTypeArrayLookup = new()
     {
         { typeof(bool[]), "bool[]" },
         { typeof(byte[]), "byte[]" },

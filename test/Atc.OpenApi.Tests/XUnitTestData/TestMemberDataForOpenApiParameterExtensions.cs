@@ -3,7 +3,7 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 public static class TestMemberDataForOpenApiParameterExtensions
 {
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeUuidItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -28,7 +28,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeByteItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -53,7 +53,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeDateItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -78,7 +78,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeDateTimeItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -103,7 +103,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeTimeItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -128,7 +128,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeTimestampItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -153,7 +153,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeInt32ItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -178,7 +178,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeInt64ItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -203,7 +203,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeEmailItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -228,7 +228,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeUriItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             {
                 false,
@@ -253,7 +253,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeFromSystemNamespaceItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             { false, new List<OpenApiParameter>() },
             { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
@@ -271,7 +271,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeFromDataAnnotationsNamespaceItemData
-        => new TheoryData<bool, List<OpenApiParameter>>
+        => new()
         {
             { false, new List<OpenApiParameter>() },
             { false, new List<OpenApiParameter> { TestDataOpenApiParameterOfTypeFactory.CreateString() } },
@@ -289,7 +289,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<int, List<OpenApiParameter>> GetAllFromRouteItemData
-        => new TheoryData<int, List<OpenApiParameter>>
+        => new()
         {
             {
                 0,
@@ -320,7 +320,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<int, List<OpenApiParameter>> GetAllFromHeaderItemData
-        => new TheoryData<int, List<OpenApiParameter>>
+        => new()
         {
             {
                 0,
@@ -351,7 +351,7 @@ public static class TestMemberDataForOpenApiParameterExtensions
         };
 
     public static TheoryData<int, List<OpenApiParameter>> GetAllFromQueryItemData
-        => new TheoryData<int, List<OpenApiParameter>>
+        => new()
         {
             {
                 0,

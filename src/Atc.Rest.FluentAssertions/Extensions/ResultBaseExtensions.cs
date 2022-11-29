@@ -13,5 +13,5 @@ public static class ResultBaseExtensions
     /// <param name="subject">The subject to assert against.</param>
     /// <returns>A <see cref="ResultAssertions"/>.</returns>
     public static ResultAssertions Should(this ResultBase subject)
-        => new ResultAssertions(subject);
+        => new(subject);
 }
