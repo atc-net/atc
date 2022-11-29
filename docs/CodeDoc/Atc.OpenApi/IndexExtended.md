@@ -74,7 +74,7 @@
      - HasFormatTypeUuid(this IList&lt;OpenApiParameter&gt; parameters)
 - [OpenApiPathItemExtensions](Microsoft.OpenApi.Models.md#openapipathitemextensions)
   -  Static Methods
-     - HasParameters(this OpenApiPathItem openApiOperation)
+     - HasParameters(this OpenApiPathItem openApiPathItem)
      - IsPathStartingSegmentName(this KeyValuePair&lt;string, OpenApiPathItem&gt; urlPath, string segmentName)
 - [OpenApiPathsExtensions](Microsoft.OpenApi.Models.md#openapipathsextensions)
   -  Static Methods
