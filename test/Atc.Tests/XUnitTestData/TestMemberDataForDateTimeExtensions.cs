@@ -41,7 +41,7 @@ internal static class TestMemberDataForDateTimeExtensions
             { "11.5 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates },
             { "12.2 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates },
             { "13.2 min", new DateTime(unitTestEnd.Ticks).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates },
-            { "14.0 sec", new DateTime(unitTestEnd.Ticks).AddSeconds(-14).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates},
+            { "14.0 sec", new DateTime(unitTestEnd.Ticks).AddSeconds(-14).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates },
             { "15.0 ms", new DateTime(unitTestEnd.Ticks).AddMilliseconds(-15), 1, GlobalizationLcidConstants.UnitedStates },
             { "11.51 days", new DateTime(unitTestEnd.Ticks).AddDays(-11).AddHours(-12).AddMinutes(-13).AddSeconds(-14).AddMilliseconds(-15), 2, GlobalizationLcidConstants.UnitedStates },
             { "12.21 hours", new DateTime(unitTestEnd.Ticks).AddHours(-12).AddMinutes(-13).AddSeconds(14).AddMilliseconds(-15), 2, GlobalizationLcidConstants.UnitedStates },
