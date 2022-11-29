@@ -509,6 +509,8 @@ dotnet_diagnostic.CA1812.severity = suggestion		# Avoid uninstantiated internal 
 dotnet_diagnostic.CA1848.severity = suggestion		# LoggerMessage delegates instead of calling
 dotnet_diagnostic.CA2254.severity = suggestion		# Logging message template
 
+dotnet_diagnostic.CS8633.severity =  suggestion     # Nullability in constraints for type parameter of method doesn't match the constraints for type parameter of interface method. Consider using an explicit interface implementation instead.
+
 dotnet_diagnostic.MA0031.severity = suggestion		# Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
 dotnet_diagnostic.MA0016.severity = suggestion		# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
 dotnet_diagnostic.MA0023.severity = suggestion		# Category: 'Performance' - Add RegexOptions.ExplicitCapture - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0023.md
@@ -520,5 +522,6 @@ dotnet_diagnostic.SA1615.severity = suggestion		# Category: 'Documentation' - El
 dotnet_diagnostic.S1172.severity = none		        # False positive: Unused method parameters should be removed
 dotnet_diagnostic.S3267.severity = suggestion		# Simplified with LINQ expressions
 dotnet_diagnostic.S4456.severity = none		        # Split method into two - one validating the parameters and one handling the iterator
+dotnet_diagnostic.S4457.severity = none             # Split this method into two, one handling parameters check and the other handling the asynchronous code
 
 dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
