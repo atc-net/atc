@@ -364,6 +364,9 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
         sb.AppendLine("global using Microsoft.AspNetCore.Mvc.ModelBinding;");
         sb.AppendLine("global using Microsoft.Extensions.Logging;");
         sb.AppendLine("global using Microsoft.Extensions.Logging.Abstractions;");
+        sb.AppendLine();
+        sb.AppendLine("global using static System.Console;");
+        sb.AppendLine("global using static System.Math;");
 
         return sb.ToString();
     }
@@ -389,6 +392,9 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
         sb.AppendLine("global using Microsoft.AspNetCore.Mvc.ModelBinding;");
         sb.AppendLine("global using Microsoft.Extensions.Logging;");
         sb.AppendLine("global using Microsoft.Extensions.Logging.Abstractions;");
+        sb.AppendLine();
+        sb.AppendLine("global using static System.Console;");
+        sb.AppendLine("global using static System.Math;");
 
         return sb.ToString();
     }
@@ -399,6 +405,8 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, "GlobalUsings.cs"));
 
         var sb = new StringBuilder();
+        sb.AppendLine("global using static System.Console;");
+        sb.AppendLine("global using static System.Math;");
         sb.AppendLine("global using System;");
         sb.AppendLine("global using System.Collections.ObjectModel;");
         sb.AppendLine("global using Microsoft.Extensions.Logging;");
