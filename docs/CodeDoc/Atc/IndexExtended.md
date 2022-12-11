@@ -353,6 +353,10 @@
      - GetDescription(DayOfWeek dayOfWeek, CultureInfo culture = null)
      - GetDescriptions(CultureInfo culture = null)
      - TryParseDescription(string value, out DayOfWeek dayOfWeek, CultureInfo culture = null)
+- [DirectoryInfoHelper](Atc.Helpers.md#directoryinfohelper)
+  -  Static Methods
+     - GetTempPath()
+     - GetTempPathWithSubFolder(string folderName)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)
   -  Static Methods
      - EnsureFirstItemType(List&lt;string&gt; list, DropDownFirstItemType dropDownFirstItemType)
@@ -371,6 +375,8 @@
   -  Static Fields
      - string[] LineBreaks
   -  Static Methods
+     - GetFiles(DirectoryInfo path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFiles(string path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - ReadAllText(FileInfo fileInfo)
      - ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
      - ReadAllTextToLines(FileInfo fileInfo)
@@ -1005,7 +1011,9 @@
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
   -  Static Methods
      - GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFileInfo(this DirectoryInfo directoryInfo, string file)
      - GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+     - GetFilesForAuthorizedAccess(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = TopDirectoryOnly)
      - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
      - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)

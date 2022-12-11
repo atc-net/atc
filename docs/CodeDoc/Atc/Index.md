@@ -75,6 +75,7 @@
 - [CultureHelper](Atc.Helpers.md#culturehelper)
 - [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
+- [DirectoryInfoHelper](Atc.Helpers.md#directoryinfohelper)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)
 - [EnumHelper](Atc.Helpers.md#enumhelper)
 - [FileHelper](Atc.Helpers.md#filehelper)
