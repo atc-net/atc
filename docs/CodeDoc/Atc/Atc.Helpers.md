@@ -792,6 +792,26 @@ FileHelper.
 ><b>Summary:</b> The line breaks.
 ### Static Methods
 
+#### GetFiles
+>```csharp
+>FileInfo[] GetFiles(string path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+>```
+><b>Summary:</b> Gets the files as GetFiles, but skip files and folders with unauthorized access.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The directory.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+#### GetFiles
+>```csharp
+>FileInfo[] GetFiles(DirectoryInfo path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
+>```
+><b>Summary:</b> Gets the files as GetFiles, but skip files and folders with unauthorized access.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The directory.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
 #### ReadAllText
 >```csharp
 >string ReadAllText(FileInfo fileInfo)

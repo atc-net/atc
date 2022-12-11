@@ -1,7 +1,53 @@
+// ReSharper disable StringLiteralTypo
 namespace Atc.Tests.Extensions;
 
 public class DirectoryInfoExtensionsTests
 {
+    [Theory]
+    [InlineData(1, 1, 0)]
+    public void GetFilesEx(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    {
+        // Arrange
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
+        PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
+
+        // Atc
+        var actual = root.GetFilesEx();
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
+    [Theory]
+    [InlineData(1, "*.*", 1, 0)]
+    public void GetFilesEx_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    {
+        // Arrange
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
+        PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
+
+        // Atc
+        var actual = root.GetFilesEx(searchPattern);
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
+    [Theory]
+    [InlineData(1, "*.*", SearchOption.TopDirectoryOnly, 1, 0)]
+    public void GetFilesEx_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    {
+        // Arrange
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
+        PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
+
+        // Atc
+        var actual = root.GetFilesEx(searchPattern, searchOption);
+
+        // Assert
+        Assert.Equal(expected, actual.Length);
+    }
+
     [Theory]
     [InlineData(1, 1, 0)]
     [InlineData(0, 0, 1)]
@@ -10,7 +56,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFilesCount(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -27,7 +73,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFilesCount_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -44,7 +90,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFilesCount_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -62,7 +108,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFoldersCount_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -80,7 +126,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFoldersCount_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -98,7 +144,7 @@ public class DirectoryInfoExtensionsTests
     public void GetFoldersCount(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -113,7 +159,7 @@ public class DirectoryInfoExtensionsTests
     public void GetByteSize(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -128,7 +174,7 @@ public class DirectoryInfoExtensionsTests
     public void GetByteSize_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -143,7 +189,7 @@ public class DirectoryInfoExtensionsTests
     public void GetByteSize_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
@@ -159,7 +205,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettySize(string expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -176,7 +222,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettySize_SearchPattern(string expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -193,7 +239,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettySize_SearchPattern_SearchOptions(string expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -210,7 +256,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettyByteSize_SearchPattern(string expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -227,7 +273,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettyByteSize_SearchPattern_SearchOptions(string expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -244,7 +290,7 @@ public class DirectoryInfoExtensionsTests
     public void GetPrettyByteSize(string expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
     {
         // Arrange
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
         Thread.CurrentThread.SetCulture(new CultureInfo(lcid));
 
@@ -255,14 +301,24 @@ public class DirectoryInfoExtensionsTests
         Assert.Equal(expected, actual);
     }
 
-    private static DirectoryInfo GetTempTestPath()
+    [Theory]
+    [InlineData(@"c:\temp\myfile.txt", @"c:\temp", "myfile.txt")]
+    public void GetFileInfo(string expected, string path, string file)
     {
-        return new DirectoryInfo(Path.Combine(Path.GetTempPath(), nameof(DirectoryInfoExtensionsTests)));
+        // Arrange
+        var directoryInfo = new DirectoryInfo(path);
+
+        // Atc
+        var actual = directoryInfo.GetFileInfo(file);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(expected, actual.FullName);
     }
 
     private static void PrepareTempFiles(int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
-        var root = GetTempTestPath();
+        var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         if (root.Exists)
         {
             Directory.Delete(root.FullName, recursive: true);

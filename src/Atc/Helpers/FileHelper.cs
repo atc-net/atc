@@ -8,6 +8,30 @@ public static class FileHelper
     /// <summary>The line breaks.</summary>
     public static readonly string[] LineBreaks = { "\r\n", "\r", "\n" };
 
+    /// <summary>
+    /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
+    /// </summary>
+    /// <param name="path">The directory.</param>
+    /// <param name="searchPattern">The search pattern.</param>
+    /// <param name="searchOption">The search option.</param>
+    public static FileInfo[] GetFiles(
+        string path,
+        string searchPattern = "*.*",
+        SearchOption searchOption = SearchOption.AllDirectories)
+        => new DirectoryInfo(path).GetFilesEx(searchPattern, searchOption);
+
+    /// <summary>
+    /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
+    /// </summary>
+    /// <param name="path">The directory information.</param>
+    /// <param name="searchPattern">The search pattern.</param>
+    /// <param name="searchOption">The search option.</param>
+    public static FileInfo[] GetFiles(
+        DirectoryInfo path,
+        string searchPattern = "*.*",
+        SearchOption searchOption = SearchOption.AllDirectories)
+        => path.GetFilesEx(searchPattern, searchOption);
+
     /// <summary>Reads all text in the file with UTF8 encoding.</summary>
     /// <param name="fileInfo">The file information.</param>
     /// <returns>Return the content from the file, if the file don't exist a empty string will be returned.</returns>
