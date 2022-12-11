@@ -301,15 +301,15 @@ public class DirectoryInfoExtensionsTests
         Assert.Equal(expected, actual);
     }
 
-    [Theory]
-    [InlineData(@"c:\temp\myfile.txt", @"c:\temp", "myfile.txt")]
-    public void GetFileInfo(string expected, string path, string file)
+    [Fact]
+    public void GetFileInfo()
     {
         // Arrange
-        var directoryInfo = new DirectoryInfo(path);
+        var directoryInfo = DirectoryInfoHelper.GetTempPath();
+        var expected = Path.Combine(directoryInfo.FullName, "myfile.txt");
 
         // Atc
-        var actual = directoryInfo.GetFileInfo(file);
+        var actual = directoryInfo.GetFileInfo("myfile.txt");
 
         // Assert
         Assert.NotNull(actual);
