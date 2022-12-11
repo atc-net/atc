@@ -5,7 +5,7 @@ public class DirectoryInfoExtensionsTests
 {
     [Theory]
     [InlineData(1, 1, 0)]
-    public void GetFilesEx(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -20,7 +20,7 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(1, "*.*", 1, 0)]
-    public void GetFilesEx_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -35,7 +35,7 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(1, "*.*", SearchOption.TopDirectoryOnly, 1, 0)]
-    public void GetFilesEx_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
