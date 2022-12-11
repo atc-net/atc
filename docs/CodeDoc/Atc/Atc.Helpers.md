@@ -623,6 +623,25 @@ DayOfWeekHelper.
 
 <br />
 
+## DirectoryInfoHelper
+
+>```csharp
+>public static class DirectoryInfoHelper
+>```
+
+### Static Methods
+
+#### GetTempPath
+>```csharp
+>DirectoryInfo GetTempPath()
+>```
+#### GetTempPathWithSubFolder
+>```csharp
+>DirectoryInfo GetTempPathWithSubFolder(string folderName)
+>```
+
+<br />
+
 ## DropDownFirstItemTypeHelper
 Enumeration Helper: DropDownFirstItemTypeHelper.
 
