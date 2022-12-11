@@ -1013,7 +1013,7 @@
      - GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetFileInfo(this DirectoryInfo directoryInfo, string file)
      - GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
-     - GetFilesEx(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = TopDirectoryOnly)
+     - GetFilesForAuthorizedAccess(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = TopDirectoryOnly)
      - GetFoldersCount(this DirectoryInfo directoryInfo, string searchPattern = *, SearchOption searchOption = AllDirectories)
      - GetPrettyByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetPrettySize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)

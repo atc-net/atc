@@ -18,7 +18,7 @@ public static class FileHelper
         string path,
         string searchPattern = "*.*",
         SearchOption searchOption = SearchOption.AllDirectories)
-        => new DirectoryInfo(path).GetFilesEx(searchPattern, searchOption);
+        => new DirectoryInfo(path).GetFilesForAuthorizedAccess(searchPattern, searchOption);
 
     /// <summary>
     /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
@@ -30,7 +30,7 @@ public static class FileHelper
         DirectoryInfo path,
         string searchPattern = "*.*",
         SearchOption searchOption = SearchOption.AllDirectories)
-        => path.GetFilesEx(searchPattern, searchOption);
+        => path.GetFilesForAuthorizedAccess(searchPattern, searchOption);
 
     /// <summary>Reads all text in the file with UTF8 encoding.</summary>
     /// <param name="fileInfo">The file information.</param>

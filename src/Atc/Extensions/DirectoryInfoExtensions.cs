@@ -9,7 +9,7 @@ public static class DirectoryInfoExtensions
     /// <param name="directoryInfo">The directory information.</param>
     /// <param name="searchPattern">The search pattern.</param>
     /// <param name="searchOption">The search option.</param>
-    public static FileInfo[] GetFilesEx(
+    public static FileInfo[] GetFilesForAuthorizedAccess(
         this DirectoryInfo directoryInfo,
         string searchPattern = "*.*",
         SearchOption searchOption = SearchOption.TopDirectoryOnly)

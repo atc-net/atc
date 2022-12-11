@@ -12,7 +12,7 @@ public class DirectoryInfoExtensionsTests
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
-        var actual = root.GetFilesEx();
+        var actual = root.GetFilesForAuthorizedAccess();
 
         // Assert
         Assert.Equal(expected, actual.Length);
@@ -27,7 +27,7 @@ public class DirectoryInfoExtensionsTests
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
-        var actual = root.GetFilesEx(searchPattern);
+        var actual = root.GetFilesForAuthorizedAccess(searchPattern);
 
         // Assert
         Assert.Equal(expected, actual.Length);
@@ -42,7 +42,7 @@ public class DirectoryInfoExtensionsTests
         PrepareTempFiles(numberOfTempFilesToCreate, numberOfTempFoldersToCreate);
 
         // Atc
-        var actual = root.GetFilesEx(searchPattern, searchOption);
+        var actual = root.GetFilesForAuthorizedAccess(searchPattern, searchOption);
 
         // Assert
         Assert.Equal(expected, actual.Length);

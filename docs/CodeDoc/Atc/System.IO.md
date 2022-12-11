@@ -44,9 +44,9 @@
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The directory information.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
-#### GetFilesEx
+#### GetFilesForAuthorizedAccess
 >```csharp
->FileInfo[] GetFilesEx(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = TopDirectoryOnly)
+>FileInfo[] GetFilesForAuthorizedAccess(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = TopDirectoryOnly)
 >```
 ><b>Summary:</b> Gets the files as GetFiles, but skip files and folders with unauthorized access.
 >
