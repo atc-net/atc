@@ -252,11 +252,6 @@ public static class DirectoryInfoExtensions
             throw new ArgumentNullException(nameof(file));
         }
 
-        if (!directoryInfo.Exists)
-        {
-            throw new IOException("Directory do not exist");
-        }
-
         if (file.Contains('/', StringComparison.Ordinal) ||
             file.Contains('\\', StringComparison.Ordinal))
         {
