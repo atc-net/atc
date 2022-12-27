@@ -316,7 +316,7 @@ public class ResultAssertionsTests
             .NotThrow();
     }
 
-    private class DummyResult : ActionResult
+    private sealed class DummyResult : ActionResult
     {
     }
 }

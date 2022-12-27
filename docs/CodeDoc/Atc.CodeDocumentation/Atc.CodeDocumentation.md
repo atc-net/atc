@@ -16,6 +16,21 @@
 
 <br />
 
+## Constants
+
+>```csharp
+>public static class Constants
+>```
+
+### Static Fields
+
+#### UndefinedDescription
+>```csharp
+>string UndefinedDescription
+>```
+
+<br />
+
 ## DocumentationHelper
 DocumentationHelper.
 
@@ -137,72 +152,6 @@ TypeComments.
 >XmlDocumentComment[] GetXmlDocumentComments()
 >```
 ><b>Summary:</b> Gets the XML document comments.
-#### ToString
->```csharp
->string ToString()
->```
-><b>Summary:</b> Converts to string.
->
-><b>Returns:</b> A string that represents this instance.
-
-<br />
-
-## XmlDocumentComment
-XmlDocumentComment.
-
->```csharp
->public class XmlDocumentComment
->```
-
-### Properties
-
-#### ClassName
->```csharp
->ClassName
->```
-><b>Summary:</b> Gets or sets the name of the class.
-#### Code
->```csharp
->Code
->```
-><b>Summary:</b> Gets or sets the code.
-#### Example
->```csharp
->Example
->```
-><b>Summary:</b> Gets or sets the example.
-#### MemberName
->```csharp
->MemberName
->```
-><b>Summary:</b> Gets or sets the name of the member.
-#### MemberType
->```csharp
->MemberType
->```
-><b>Summary:</b> Gets or sets the type of the member.
-#### Parameters
->```csharp
->Parameters
->```
-><b>Summary:</b> Gets or sets the parameters.
-#### Remarks
->```csharp
->Remarks
->```
-><b>Summary:</b> Gets or sets the remarks.
-#### Returns
->```csharp
->Returns
->```
-><b>Summary:</b> Gets or sets the returns.
-#### Summary
->```csharp
->Summary
->```
-><b>Summary:</b> Gets or sets the summary.
-### Methods
-
 #### ToString
 >```csharp
 >string ToString()

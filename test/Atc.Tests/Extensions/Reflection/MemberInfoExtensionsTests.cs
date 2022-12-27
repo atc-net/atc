@@ -96,7 +96,7 @@ public class MemberInfoExtensionsTests
 
 [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK.")]
 [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
-internal class TestItem
+internal sealed class TestItem
 {
     public string Hallo { get; set; }
 

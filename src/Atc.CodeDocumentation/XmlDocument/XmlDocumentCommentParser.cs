@@ -1,4 +1,4 @@
-namespace Atc.CodeDocumentation;
+namespace Atc.CodeDocumentation.XmlDocument;
 
 internal static class XmlDocumentCommentParser
 {
@@ -26,7 +26,7 @@ internal static class XmlDocumentCommentParser
                     return null;
                 }
 
-                var className = (memberType == MemberType.Type)
+                var className = memberType == MemberType.Type
                     ? match.Groups[2].Value + "." + match.Groups[3].Value
                     : match.Groups[2].Value;
 

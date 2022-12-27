@@ -1,7 +1,7 @@
 // ReSharper disable InvertIf
 namespace Atc.Rest.Extended.Options;
 
-internal class ConfigureSwaggerOptions :
+internal sealed class ConfigureSwaggerOptions :
     IConfigureOptions<SwaggerUIOptions>,
     IConfigureOptions<SwaggerGenOptions>
 {

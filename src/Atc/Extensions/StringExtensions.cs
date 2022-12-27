@@ -2,9 +2,6 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
-
-using System.Web;
-
 namespace System;
 
 /// <summary>
@@ -894,6 +891,22 @@ public static class StringExtensions
             1 => value.ToLower(CultureInfo.CurrentCulture),
             _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1),
         };
+    }
+
+    /// <summary>
+    /// Ensures the string-value ends with a '.'.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    public static string EnsureEndsWithDot(this string value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        return value.EndsWith('.')
+            ? value
+            : $"{value}.";
     }
 
     /// <summary>

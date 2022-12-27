@@ -1,6 +1,6 @@
 namespace Atc.Tests.XUnitTestTypes;
 
-internal class TestItem
+internal sealed class TestItem
 {
     public int Dosage { get; set; }
 
