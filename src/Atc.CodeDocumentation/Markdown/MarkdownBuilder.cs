@@ -1,6 +1,6 @@
 namespace Atc.CodeDocumentation.Markdown;
 
-internal class MarkdownBuilder
+internal sealed class MarkdownBuilder
 {
     private readonly StringBuilder sb = new();
 

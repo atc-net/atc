@@ -1,6 +1,6 @@
 namespace Atc.Data.SemVer;
 
-internal class Identifier
+internal sealed class Identifier
 {
     public Identifier(string input)
     {

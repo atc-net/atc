@@ -18,11 +18,11 @@ public class ResultBaseExtensionsTests
             .WithMessage($"*{typeof(DummyResult).FullName}*");
     }
 
-    private class DummyResult : ActionResult
+    private sealed class DummyResult : ActionResult
     {
     }
 
-    private class AtcDummyResult : ResultBase
+    private sealed class AtcDummyResult : ResultBase
     {
         public AtcDummyResult()
             : base(new DummyResult())

@@ -37,7 +37,7 @@ internal static class TestMemberDataForExtensionsMethodInfo
 [SuppressMessage("Design", "MA0048:File name must match type name", Justification = "OK.")]
 [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:File may only contain a single type", Justification = "OK.")]
 [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "OK.")]
-internal class TestMethods
+internal sealed class TestMethods
 {
     public static void TestInInt(in int data)
     {

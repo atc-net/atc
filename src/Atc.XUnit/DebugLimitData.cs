@@ -1,6 +1,6 @@
 namespace Atc.XUnit;
 
-internal class DebugLimitData
+internal sealed class DebugLimitData
 {
     public DebugLimitData(List<Tuple<string, List<string>>> classMethodNames)
     {
