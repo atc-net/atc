@@ -2,9 +2,6 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
-
-using System.Web;
-
 namespace System;
 
 /// <summary>
