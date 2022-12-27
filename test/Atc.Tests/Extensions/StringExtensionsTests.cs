@@ -314,6 +314,12 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.EnsureFirstCharacterToLower());
 
     [Theory]
+    [InlineData("hallo.", "hallo")]
+    [InlineData("hallo.", "hallo.")]
+    public void EnsureEndsWithDot(string expected, string input)
+        => Assert.Equal(expected, input.EnsureEndsWithDot());
+
+    [Theory]
     [InlineData("Hallo", "Hallo")]
     [InlineData("Hallo", "Hallos")]
     public void EnsureSingular(string expected, string input)

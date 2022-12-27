@@ -897,6 +897,22 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Ensures the string-value ends with a '.'.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    public static string EnsureEndsWithDot(this string value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        return value.EndsWith('.')
+            ? value
+            : $"{value}.";
+    }
+
+    /// <summary>
     /// Ensures the singular.
     /// </summary>
     /// <param name="value">The value.</param>

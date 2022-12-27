@@ -810,6 +810,7 @@
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
      - Cut(this string value, int maxLength, string appendValue = ...)
+     - EnsureEndsWithDot(this string value)
      - EnsureEnvironmentNewLines(this string value)
      - EnsureFirstCharacterToLower(this string value)
      - EnsureFirstCharacterToUpper(this string value)
