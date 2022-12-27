@@ -1,4 +1,4 @@
-namespace Atc.CodeDocumentation;
+namespace Atc.CodeDocumentation.XmlDocument;
 
 /// <summary>
 /// XmlDocumentComment.
