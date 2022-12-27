@@ -1,3 +1,4 @@
+// ReSharper disable ConvertIfStatementToConditionalTernaryExpression
 namespace Atc.CodeDocumentation.CodeComment;
 
 public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
@@ -103,13 +104,20 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
         sb.AppendLine(indentSpaces, $"/// <{tag}>");
 
         var lines = value
-            .EnsureEndsWithDot()
             .EnsureEnvironmentNewLines()
             .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-        foreach (var line in lines)
+        for (var i = 0; i < lines.Length; i++)
         {
-            sb.AppendLine(indentSpaces, $"/// {line}");
+            var line = lines[i];
+            if (i == lines.Length - 1)
+            {
+                sb.AppendLine(indentSpaces, $"/// {line.EnsureEndsWithDot()}");
+            }
+            else
+            {
+                sb.AppendLine(indentSpaces, $"/// {line}");
+            }
         }
 
         sb.AppendLine(indentSpaces, $"/// </{tag}>");
