@@ -5,20 +5,8 @@ namespace Atc.Console;
 /// Emojis (not from unicode.org).
 /// </Summery>
 [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1605:Partial element documentation should have summary", Justification = "OK.")]
-public static partial class EmojisConstants
+public static partial class EmojiConstants
 {
-    // Number's
-    public const string Zero = "0";
-    public const string One = "1";
-    public const string Two = "2";
-    public const string Three = "3";
-    public const string Four = "4";
-    public const string Five = "5";
-    public const string Six = "6";
-    public const string Seven = "7";
-    public const string Eight = "8";
-    public const string Nine = "9";
-
     // Arrows
     public const string ArrowBackward = "◀";
     public const string ArrowDoubleDown = "⏬";

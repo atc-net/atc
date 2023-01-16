@@ -1,4 +1,6 @@
 // ReSharper disable IdentifierTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable ArrangeObjectCreationWhenTypeNotEvident
 namespace Atc.Tests;
 
 /// <summary>
@@ -11,21 +13,22 @@ namespace Atc.Tests;
 [Collection(nameof(Xunit.Sdk.TestCollection))]
 [Trait(Traits.Category, Traits.Categories.Integration)]
 [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
-public class ConsoleEmojisConstantsTests
+public class ConsoleEmojiConstantsTests
 {
-    private const string EmojisConstantsFile = "UnicodeEmojisConstants.cs";
+    private const string EmojiConstantsFile = "UnicodeEmojiConstants.cs";
     private const string SourceUrl = "https://unicode.org/Public/emoji/15.0/emoji-test.txt";
     private const string GroupPrefix = "# group:";
-    private const string SubgroupPrefix = "# subgroup:";
+    private const string SubGroupPrefix = "# subgroup:";
     private const char CommentPrefix = '#';
     private const float MaxVersion = 15.0F;
+    private static readonly char[] FormatNameSeparators = { ' ', '-', ',', '’', '!', '“', '”', '(', ')', '.' };
 
     [Fact]
     [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK. This \"Test\" generates our EmojisConstants.cs file.")]
 
-    public void RunEmojisConstantsGenerate()
+    public void RunEmojiConstantsGenerate()
     {
-        var emojisConstantsFile = GetEmojisConstantsFile();
+        var emojisConstantsFile = GetEmojiConstantsFile();
         if (emojisConstantsFile.Exists)
         {
             // To re-create/update the file - please manual delete it first.
@@ -40,11 +43,11 @@ public class ConsoleEmojisConstantsTests
 
         var emojis = Extract(unicodeEmojisContent);
 
-        var emojisConstantsContent = GenerateContent(emojis);
+        var emojiConstantsContent = GenerateContent(emojis);
 
         FileHelper.WriteAllText(
             emojisConstantsFile,
-            emojisConstantsContent);
+            emojiConstantsContent);
     }
 
     [SuppressMessage("Major Bug", "S2583:Conditionally executed code should be reachable", Justification = "OK.")]
@@ -66,7 +69,7 @@ public class ConsoleEmojisConstantsTests
         sb.AppendLine("/// <Remarks>");
         sb.AppendLine($"/// Generated from: {SourceUrl}");
         sb.AppendLine("/// </Remarks>");
-        sb.AppendLine("public static partial class EmojisConstants");
+        sb.AppendLine("public static partial class EmojiConstants");
         sb.AppendLine("{");
         var isFirst = true;
         foreach (var groupName in groupNames)
@@ -117,13 +120,13 @@ public class ConsoleEmojisConstantsTests
 
             if (line.StartsWith(GroupPrefix, StringComparison.Ordinal))
             {
-                group = FormatName(line.Substring(GroupPrefix.Length));
+                group = FormatName(line[GroupPrefix.Length..]);
                 continue;
             }
 
-            if (line.StartsWith(SubgroupPrefix, StringComparison.Ordinal))
+            if (line.StartsWith(SubGroupPrefix, StringComparison.Ordinal))
             {
-                subGroup = FormatName(line.Substring(SubgroupPrefix.Length));
+                subGroup = FormatName(line[SubGroupPrefix.Length..]);
                 continue;
             }
 
@@ -158,8 +161,12 @@ public class ConsoleEmojisConstantsTests
             .Replace("*", "Asterisk", StringComparison.Ordinal)
             .Replace(",", string.Empty, StringComparison.Ordinal)
             .Replace("’", string.Empty, StringComparison.Ordinal)
-            .Split(new[] { ' ', '-', ',', '’', '!', '“', '”', '(', ')', '.' }, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(x));
+            .Split(FormatNameSeparators, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x
+                .Replace("_", string.Empty, StringComparison.Ordinal)
+                .Trim()
+                .PascalCase())
+            .ToList();
 
         return string.Concat(parts);
     }
@@ -196,15 +203,10 @@ public class ConsoleEmojisConstantsTests
 
         var value = string.Concat(surrogates);
 
-        if (name.Contains('_', StringComparison.Ordinal))
-        {
-            name = name.PascalCase(removeSeparators: true);
-        }
-
         return (name, value);
     }
 
-    private static FileInfo GetEmojisConstantsFile()
+    private static FileInfo GetEmojiConstantsFile()
     {
         var assemblyName = typeof(CodeDocumentationTests).Assembly.GetName().Name;
         var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -217,7 +219,7 @@ public class ConsoleEmojisConstantsTests
         return new FileInfo(
             Path.Combine(
                 rootDirectory!.FullName,
-                $"src\\Atc\\Console\\{EmojisConstantsFile}"));
+                $"src\\Atc\\Console\\{EmojiConstantsFile}"));
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]

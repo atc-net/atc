@@ -49,7 +49,7 @@
 
 ## [Atc.Console](Atc.Console.md)
 
-- [EmojisConstants](Atc.Console.md#emojisconstants)
+- [EmojiConstants](Atc.Console.md#emojiconstants)
 
 ## [Atc.Data](Atc.Data.md)
 

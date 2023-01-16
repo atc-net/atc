@@ -138,12 +138,12 @@
 
 ## [Atc.Console](Atc.Console.md)
 
-- [EmojisConstants](Atc.Console.md#emojisconstants)
+- [EmojiConstants](Atc.Console.md#emojiconstants)
   -  Static Fields
      - string A
      - string Ab
      - string Abacus
-     - string ABButtonBloodType
+     - string AbButtonBloodType
      - string Abc
      - string Abcd
      - string AButtonBloodType
@@ -222,7 +222,7 @@
      - string AstronautMediumSkinTone
      - string AthleticShoe
      - string Atm
-     - string ATMSign
+     - string AtmSign
      - string AtomSymbol
      - string Automobile
      - string AutoRickshaw
@@ -245,7 +245,7 @@
      - string BabyMediumSkinTone
      - string BabySymbol
      - string Back
-     - string BACKArrow
+     - string BackArrow
      - string BackhandIndexPointingDown
      - string BackhandIndexPointingDownDarkSkinTone
      - string BackhandIndexPointingDownLightSkinTone
@@ -500,7 +500,7 @@
      - string ClappingHandsMediumLightSkinTone
      - string ClappingHandsMediumSkinTone
      - string ClassicalBuilding
-     - string CLButton
+     - string ClButton
      - string ClinkingBeerMugs
      - string ClinkingGlasses
      - string Clipboard
@@ -586,7 +586,7 @@
      - string CookMediumLightSkinTone
      - string CookMediumSkinTone
      - string Cool
-     - string COOLButton
+     - string CoolButton
      - string Cop
      - string Copyright
      - string Coral
@@ -872,7 +872,7 @@
      - string EMail
      - string EmptyNest
      - string End
-     - string ENDArrow
+     - string EndArrow
      - string EnragedFace
      - string Envelope
      - string EnvelopeWithArrow
@@ -1064,7 +1064,7 @@
      - string FlagCongoKinshasa
      - string FlagCookIslands
      - string FlagCostaRica
-     - string FlagCôteDivoire
+     - string FlagCôteDIvoire
      - string FlagCroatia
      - string FlagCuba
      - string FlagCuraçao
@@ -1110,9 +1110,9 @@
      - string FlagGuineaBissau
      - string FlagGuyana
      - string FlagHaiti
-     - string FlagHeardAndMcdonaldIslands
+     - string FlagHeardAndMcDonaldIslands
      - string FlagHonduras
-     - string FlagHongKongsarchina
+     - string FlagHongKongSarChina
      - string FlagHungary
      - string FlagIceland
      - string FlagIndia
@@ -1143,7 +1143,7 @@
      - string FlagLiechtenstein
      - string FlagLithuania
      - string FlagLuxembourg
-     - string FlagMacaosarchina
+     - string FlagMacaoSarChina
      - string FlagMadagascar
      - string FlagMalawi
      - string FlagMalaysia
@@ -1255,8 +1255,8 @@
      - string FlagUnitedNations
      - string FlagUnitedStates
      - string FlagUruguay
-     - string FlagUsoutlyingIslands
-     - string FlagUsvirginIslands
+     - string FlagUSOutlyingIslands
+     - string FlagUSVirginIslands
      - string FlagUzbekistan
      - string FlagVanuatu
      - string FlagVaticanCity
@@ -1319,7 +1319,7 @@
      - string Fr
      - string FramedPicture
      - string Free
-     - string FREEButton
+     - string FreeButton
      - string FrenchFries
      - string FriedShrimp
      - string Fries
@@ -1537,7 +1537,7 @@
      - string IceHockey
      - string IceSkate
      - string Id
-     - string IDButton
+     - string IdButton
      - string IdentificationCard
      - string IdeographAdvantage
      - string Imp
@@ -1624,7 +1624,7 @@
      - string Keycap8
      - string Keycap9
      - string KeycapAsterisk
-     - string KeycapNumbersign
+     - string KeycapNumberSign
      - string KeycapTen
      - string Khanda
      - string KickScooter
@@ -1989,18 +1989,18 @@
      - string ManFrowningMediumLightSkinTone
      - string ManFrowningMediumSkinTone
      - string ManGenie
-     - string ManGesturingNO
-     - string ManGesturingnoDarkSkinTone
-     - string ManGesturingnoLightSkinTone
-     - string ManGesturingnoMediumDarkSkinTone
-     - string ManGesturingnoMediumLightSkinTone
-     - string ManGesturingnoMediumSkinTone
-     - string ManGesturingOK
-     - string ManGesturingokDarkSkinTone
-     - string ManGesturingokLightSkinTone
-     - string ManGesturingokMediumDarkSkinTone
-     - string ManGesturingokMediumLightSkinTone
-     - string ManGesturingokMediumSkinTone
+     - string ManGesturingNo
+     - string ManGesturingNoDarkSkinTone
+     - string ManGesturingNoLightSkinTone
+     - string ManGesturingNoMediumDarkSkinTone
+     - string ManGesturingNoMediumLightSkinTone
+     - string ManGesturingNoMediumSkinTone
+     - string ManGesturingOk
+     - string ManGesturingOkDarkSkinTone
+     - string ManGesturingOkLightSkinTone
+     - string ManGesturingOkMediumDarkSkinTone
+     - string ManGesturingOkMediumLightSkinTone
+     - string ManGesturingOkMediumSkinTone
      - string ManGettingHaircut
      - string ManGettingHaircutDarkSkinTone
      - string ManGettingHaircutLightSkinTone
@@ -2390,7 +2390,6 @@
      - string MobilePhone
      - string MobilePhoneOff
      - string MobilePhoneWithArrow
-     - string Moneybag
      - string MoneyBag
      - string MoneyMouthFace
      - string MoneyWithWings
@@ -2459,14 +2458,14 @@
      - string NestWithEggs
      - string NeutralFace
      - string New
-     - string NEWButton
+     - string NewButton
      - string NewMoon
      - string NewMoonFace
      - string NewMoonWithFace
      - string Newspaper
      - string NextTrackButton
      - string Ng
-     - string NGButton
+     - string NgButton
      - string NightWithStars
      - string Nine
      - string NineOclock
@@ -2499,9 +2498,9 @@
      - string NotebookWithDecorativeCover
      - string Notes
      - string Number100
-     - string Number1StPlaceMedal
-     - string Number2NdPlaceMedal
-     - string Number3RdPlaceMedal
+     - string Number1stPlaceMedal
+     - string Number2ndPlaceMedal
+     - string Number3rdPlaceMedal
      - string Numbers1234
      - string NutAndBolt
      - string O
@@ -2521,14 +2520,13 @@
      - string Ogre
      - string OilDrum
      - string Ok
-     - string OKButton
+     - string OkButton
      - string OkHand
-     - string OKHand
-     - string OkhandDarkSkinTone
-     - string OkhandLightSkinTone
-     - string OkhandMediumDarkSkinTone
-     - string OkhandMediumLightSkinTone
-     - string OkhandMediumSkinTone
+     - string OkHandDarkSkinTone
+     - string OkHandLightSkinTone
+     - string OkHandMediumDarkSkinTone
+     - string OkHandMediumLightSkinTone
+     - string OkHandMediumSkinTone
      - string OkWoman
      - string OlderMan
      - string OlderPerson
@@ -2554,7 +2552,7 @@
      - string Olive
      - string Om
      - string On
-     - string ONArrow
+     - string OnArrow
      - string OncomingAutomobile
      - string OncomingBus
      - string OncomingFist
@@ -2739,18 +2737,18 @@
      - string PersonFrowningMediumDarkSkinTone
      - string PersonFrowningMediumLightSkinTone
      - string PersonFrowningMediumSkinTone
-     - string PersonGesturingNO
-     - string PersonGesturingnoDarkSkinTone
-     - string PersonGesturingnoLightSkinTone
-     - string PersonGesturingnoMediumDarkSkinTone
-     - string PersonGesturingnoMediumLightSkinTone
-     - string PersonGesturingnoMediumSkinTone
-     - string PersonGesturingOK
-     - string PersonGesturingokDarkSkinTone
-     - string PersonGesturingokLightSkinTone
-     - string PersonGesturingokMediumDarkSkinTone
-     - string PersonGesturingokMediumLightSkinTone
-     - string PersonGesturingokMediumSkinTone
+     - string PersonGesturingNo
+     - string PersonGesturingNoDarkSkinTone
+     - string PersonGesturingNoLightSkinTone
+     - string PersonGesturingNoMediumDarkSkinTone
+     - string PersonGesturingNoMediumLightSkinTone
+     - string PersonGesturingNoMediumSkinTone
+     - string PersonGesturingOk
+     - string PersonGesturingOkDarkSkinTone
+     - string PersonGesturingOkLightSkinTone
+     - string PersonGesturingOkMediumDarkSkinTone
+     - string PersonGesturingOkMediumLightSkinTone
+     - string PersonGesturingOkMediumSkinTone
      - string PersonGettingHaircut
      - string PersonGettingHaircutDarkSkinTone
      - string PersonGettingHaircutLightSkinTone
@@ -3376,9 +3374,9 @@
      - string Softball
      - string SoftIceCream
      - string Soon
-     - string SOONArrow
+     - string SoonArrow
      - string Sos
-     - string SOSButton
+     - string SosButton
      - string Sound
      - string SpaceInvader
      - string Spades
@@ -3550,7 +3548,7 @@
      - string Tooth
      - string Toothbrush
      - string Top
-     - string TOPArrow
+     - string TopArrow
      - string TopHat
      - string Tornado
      - string Trackball
@@ -3615,7 +3613,7 @@
      - string Unlocked
      - string Up
      - string UpArrow
-     - string UPButton
+     - string UpButton
      - string UpDownArrow
      - string UpLeftArrow
      - string UpRightArrow
@@ -3646,7 +3644,7 @@
      - string Volcano
      - string Volleyball
      - string Vs
-     - string VSButton
+     - string VsButton
      - string VulcanSalute
      - string VulcanSaluteDarkSkinTone
      - string VulcanSaluteLightSkinTone
@@ -3864,18 +3862,18 @@
      - string WomanFrowningMediumLightSkinTone
      - string WomanFrowningMediumSkinTone
      - string WomanGenie
-     - string WomanGesturingNO
-     - string WomanGesturingnoDarkSkinTone
-     - string WomanGesturingnoLightSkinTone
-     - string WomanGesturingnoMediumDarkSkinTone
-     - string WomanGesturingnoMediumLightSkinTone
-     - string WomanGesturingnoMediumSkinTone
-     - string WomanGesturingOK
-     - string WomanGesturingokDarkSkinTone
-     - string WomanGesturingokLightSkinTone
-     - string WomanGesturingokMediumDarkSkinTone
-     - string WomanGesturingokMediumLightSkinTone
-     - string WomanGesturingokMediumSkinTone
+     - string WomanGesturingNo
+     - string WomanGesturingNoDarkSkinTone
+     - string WomanGesturingNoLightSkinTone
+     - string WomanGesturingNoMediumDarkSkinTone
+     - string WomanGesturingNoMediumLightSkinTone
+     - string WomanGesturingNoMediumSkinTone
+     - string WomanGesturingOk
+     - string WomanGesturingOkDarkSkinTone
+     - string WomanGesturingOkLightSkinTone
+     - string WomanGesturingOkMediumDarkSkinTone
+     - string WomanGesturingOkMediumLightSkinTone
+     - string WomanGesturingOkMediumSkinTone
      - string WomanGettingHaircut
      - string WomanGettingHaircutDarkSkinTone
      - string WomanGettingHaircutLightSkinTone
@@ -4239,7 +4237,6 @@
      - string ZipperMouthFace
      - string Zombie
      - string Zzz
-     - string ZZZ
 
 ## [Atc.Data](Atc.Data.md)
 

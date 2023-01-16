@@ -7,10 +7,10 @@
 
 <br />
 
-## EmojisConstants
+## EmojiConstants
 
 >```csharp
->public static class EmojisConstants
+>public static class EmojiConstants
 >```
 
 ### Static Fields
@@ -27,9 +27,9 @@
 >```csharp
 >string Abacus
 >```
-#### ABButtonBloodType
+#### AbButtonBloodType
 >```csharp
->string ABButtonBloodType
+>string AbButtonBloodType
 >```
 #### Abc
 >```csharp
@@ -343,9 +343,9 @@
 >```csharp
 >string Atm
 >```
-#### ATMSign
+#### AtmSign
 >```csharp
->string ATMSign
+>string AtmSign
 >```
 #### AtomSymbol
 >```csharp
@@ -435,9 +435,9 @@
 >```csharp
 >string Back
 >```
-#### BACKArrow
+#### BackArrow
 >```csharp
->string BACKArrow
+>string BackArrow
 >```
 #### BackhandIndexPointingDown
 >```csharp
@@ -1455,9 +1455,9 @@
 >```csharp
 >string ClassicalBuilding
 >```
-#### CLButton
+#### ClButton
 >```csharp
->string CLButton
+>string ClButton
 >```
 #### ClinkingBeerMugs
 >```csharp
@@ -1799,9 +1799,9 @@
 >```csharp
 >string Cool
 >```
-#### COOLButton
+#### CoolButton
 >```csharp
->string COOLButton
+>string CoolButton
 >```
 #### Cop
 >```csharp
@@ -2943,9 +2943,9 @@
 >```csharp
 >string End
 >```
-#### ENDArrow
+#### EndArrow
 >```csharp
->string ENDArrow
+>string EndArrow
 >```
 #### EnragedFace
 >```csharp
@@ -3711,9 +3711,9 @@
 >```csharp
 >string FlagCostaRica
 >```
-#### FlagCôteDivoire
+#### FlagCôteDIvoire
 >```csharp
->string FlagCôteDivoire
+>string FlagCôteDIvoire
 >```
 #### FlagCroatia
 >```csharp
@@ -3895,17 +3895,17 @@
 >```csharp
 >string FlagHaiti
 >```
-#### FlagHeardAndMcdonaldIslands
+#### FlagHeardAndMcDonaldIslands
 >```csharp
->string FlagHeardAndMcdonaldIslands
+>string FlagHeardAndMcDonaldIslands
 >```
 #### FlagHonduras
 >```csharp
 >string FlagHonduras
 >```
-#### FlagHongKongsarchina
+#### FlagHongKongSarChina
 >```csharp
->string FlagHongKongsarchina
+>string FlagHongKongSarChina
 >```
 #### FlagHungary
 >```csharp
@@ -4027,9 +4027,9 @@
 >```csharp
 >string FlagLuxembourg
 >```
-#### FlagMacaosarchina
+#### FlagMacaoSarChina
 >```csharp
->string FlagMacaosarchina
+>string FlagMacaoSarChina
 >```
 #### FlagMadagascar
 >```csharp
@@ -4475,13 +4475,13 @@
 >```csharp
 >string FlagUruguay
 >```
-#### FlagUsoutlyingIslands
+#### FlagUSOutlyingIslands
 >```csharp
->string FlagUsoutlyingIslands
+>string FlagUSOutlyingIslands
 >```
-#### FlagUsvirginIslands
+#### FlagUSVirginIslands
 >```csharp
->string FlagUsvirginIslands
+>string FlagUSVirginIslands
 >```
 #### FlagUzbekistan
 >```csharp
@@ -4731,9 +4731,9 @@
 >```csharp
 >string Free
 >```
-#### FREEButton
+#### FreeButton
 >```csharp
->string FREEButton
+>string FreeButton
 >```
 #### FrenchFries
 >```csharp
@@ -5603,9 +5603,9 @@
 >```csharp
 >string Id
 >```
-#### IDButton
+#### IdButton
 >```csharp
->string IDButton
+>string IdButton
 >```
 #### IdentificationCard
 >```csharp
@@ -5951,9 +5951,9 @@
 >```csharp
 >string KeycapAsterisk
 >```
-#### KeycapNumbersign
+#### KeycapNumberSign
 >```csharp
->string KeycapNumbersign
+>string KeycapNumberSign
 >```
 #### KeycapTen
 >```csharp
@@ -7411,53 +7411,53 @@
 >```csharp
 >string ManGenie
 >```
-#### ManGesturingNO
+#### ManGesturingNo
 >```csharp
->string ManGesturingNO
+>string ManGesturingNo
 >```
-#### ManGesturingnoDarkSkinTone
+#### ManGesturingNoDarkSkinTone
 >```csharp
->string ManGesturingnoDarkSkinTone
+>string ManGesturingNoDarkSkinTone
 >```
-#### ManGesturingnoLightSkinTone
+#### ManGesturingNoLightSkinTone
 >```csharp
->string ManGesturingnoLightSkinTone
+>string ManGesturingNoLightSkinTone
 >```
-#### ManGesturingnoMediumDarkSkinTone
+#### ManGesturingNoMediumDarkSkinTone
 >```csharp
->string ManGesturingnoMediumDarkSkinTone
+>string ManGesturingNoMediumDarkSkinTone
 >```
-#### ManGesturingnoMediumLightSkinTone
+#### ManGesturingNoMediumLightSkinTone
 >```csharp
->string ManGesturingnoMediumLightSkinTone
+>string ManGesturingNoMediumLightSkinTone
 >```
-#### ManGesturingnoMediumSkinTone
+#### ManGesturingNoMediumSkinTone
 >```csharp
->string ManGesturingnoMediumSkinTone
+>string ManGesturingNoMediumSkinTone
 >```
-#### ManGesturingOK
+#### ManGesturingOk
 >```csharp
->string ManGesturingOK
+>string ManGesturingOk
 >```
-#### ManGesturingokDarkSkinTone
+#### ManGesturingOkDarkSkinTone
 >```csharp
->string ManGesturingokDarkSkinTone
+>string ManGesturingOkDarkSkinTone
 >```
-#### ManGesturingokLightSkinTone
+#### ManGesturingOkLightSkinTone
 >```csharp
->string ManGesturingokLightSkinTone
+>string ManGesturingOkLightSkinTone
 >```
-#### ManGesturingokMediumDarkSkinTone
+#### ManGesturingOkMediumDarkSkinTone
 >```csharp
->string ManGesturingokMediumDarkSkinTone
+>string ManGesturingOkMediumDarkSkinTone
 >```
-#### ManGesturingokMediumLightSkinTone
+#### ManGesturingOkMediumLightSkinTone
 >```csharp
->string ManGesturingokMediumLightSkinTone
+>string ManGesturingOkMediumLightSkinTone
 >```
-#### ManGesturingokMediumSkinTone
+#### ManGesturingOkMediumSkinTone
 >```csharp
->string ManGesturingokMediumSkinTone
+>string ManGesturingOkMediumSkinTone
 >```
 #### ManGettingHaircut
 >```csharp
@@ -9015,10 +9015,6 @@
 >```csharp
 >string MobilePhoneWithArrow
 >```
-#### Moneybag
->```csharp
->string Moneybag
->```
 #### MoneyBag
 >```csharp
 >string MoneyBag
@@ -9291,9 +9287,9 @@
 >```csharp
 >string New
 >```
-#### NEWButton
+#### NewButton
 >```csharp
->string NEWButton
+>string NewButton
 >```
 #### NewMoon
 >```csharp
@@ -9319,9 +9315,9 @@
 >```csharp
 >string Ng
 >```
-#### NGButton
+#### NgButton
 >```csharp
->string NGButton
+>string NgButton
 >```
 #### NightWithStars
 >```csharp
@@ -9451,17 +9447,17 @@
 >```csharp
 >string Number100
 >```
-#### Number1StPlaceMedal
+#### Number1stPlaceMedal
 >```csharp
->string Number1StPlaceMedal
+>string Number1stPlaceMedal
 >```
-#### Number2NdPlaceMedal
+#### Number2ndPlaceMedal
 >```csharp
->string Number2NdPlaceMedal
+>string Number2ndPlaceMedal
 >```
-#### Number3RdPlaceMedal
+#### Number3rdPlaceMedal
 >```csharp
->string Number3RdPlaceMedal
+>string Number3rdPlaceMedal
 >```
 #### Numbers1234
 >```csharp
@@ -9539,37 +9535,33 @@
 >```csharp
 >string Ok
 >```
-#### OKButton
+#### OkButton
 >```csharp
->string OKButton
+>string OkButton
 >```
 #### OkHand
 >```csharp
 >string OkHand
 >```
-#### OKHand
+#### OkHandDarkSkinTone
 >```csharp
->string OKHand
+>string OkHandDarkSkinTone
 >```
-#### OkhandDarkSkinTone
+#### OkHandLightSkinTone
 >```csharp
->string OkhandDarkSkinTone
+>string OkHandLightSkinTone
 >```
-#### OkhandLightSkinTone
+#### OkHandMediumDarkSkinTone
 >```csharp
->string OkhandLightSkinTone
+>string OkHandMediumDarkSkinTone
 >```
-#### OkhandMediumDarkSkinTone
+#### OkHandMediumLightSkinTone
 >```csharp
->string OkhandMediumDarkSkinTone
+>string OkHandMediumLightSkinTone
 >```
-#### OkhandMediumLightSkinTone
+#### OkHandMediumSkinTone
 >```csharp
->string OkhandMediumLightSkinTone
->```
-#### OkhandMediumSkinTone
->```csharp
->string OkhandMediumSkinTone
+>string OkHandMediumSkinTone
 >```
 #### OkWoman
 >```csharp
@@ -9671,9 +9663,9 @@
 >```csharp
 >string On
 >```
-#### ONArrow
+#### OnArrow
 >```csharp
->string ONArrow
+>string OnArrow
 >```
 #### OncomingAutomobile
 >```csharp
@@ -10411,53 +10403,53 @@
 >```csharp
 >string PersonFrowningMediumSkinTone
 >```
-#### PersonGesturingNO
+#### PersonGesturingNo
 >```csharp
->string PersonGesturingNO
+>string PersonGesturingNo
 >```
-#### PersonGesturingnoDarkSkinTone
+#### PersonGesturingNoDarkSkinTone
 >```csharp
->string PersonGesturingnoDarkSkinTone
+>string PersonGesturingNoDarkSkinTone
 >```
-#### PersonGesturingnoLightSkinTone
+#### PersonGesturingNoLightSkinTone
 >```csharp
->string PersonGesturingnoLightSkinTone
+>string PersonGesturingNoLightSkinTone
 >```
-#### PersonGesturingnoMediumDarkSkinTone
+#### PersonGesturingNoMediumDarkSkinTone
 >```csharp
->string PersonGesturingnoMediumDarkSkinTone
+>string PersonGesturingNoMediumDarkSkinTone
 >```
-#### PersonGesturingnoMediumLightSkinTone
+#### PersonGesturingNoMediumLightSkinTone
 >```csharp
->string PersonGesturingnoMediumLightSkinTone
+>string PersonGesturingNoMediumLightSkinTone
 >```
-#### PersonGesturingnoMediumSkinTone
+#### PersonGesturingNoMediumSkinTone
 >```csharp
->string PersonGesturingnoMediumSkinTone
+>string PersonGesturingNoMediumSkinTone
 >```
-#### PersonGesturingOK
+#### PersonGesturingOk
 >```csharp
->string PersonGesturingOK
+>string PersonGesturingOk
 >```
-#### PersonGesturingokDarkSkinTone
+#### PersonGesturingOkDarkSkinTone
 >```csharp
->string PersonGesturingokDarkSkinTone
+>string PersonGesturingOkDarkSkinTone
 >```
-#### PersonGesturingokLightSkinTone
+#### PersonGesturingOkLightSkinTone
 >```csharp
->string PersonGesturingokLightSkinTone
+>string PersonGesturingOkLightSkinTone
 >```
-#### PersonGesturingokMediumDarkSkinTone
+#### PersonGesturingOkMediumDarkSkinTone
 >```csharp
->string PersonGesturingokMediumDarkSkinTone
+>string PersonGesturingOkMediumDarkSkinTone
 >```
-#### PersonGesturingokMediumLightSkinTone
+#### PersonGesturingOkMediumLightSkinTone
 >```csharp
->string PersonGesturingokMediumLightSkinTone
+>string PersonGesturingOkMediumLightSkinTone
 >```
-#### PersonGesturingokMediumSkinTone
+#### PersonGesturingOkMediumSkinTone
 >```csharp
->string PersonGesturingokMediumSkinTone
+>string PersonGesturingOkMediumSkinTone
 >```
 #### PersonGettingHaircut
 >```csharp
@@ -12959,17 +12951,17 @@
 >```csharp
 >string Soon
 >```
-#### SOONArrow
+#### SoonArrow
 >```csharp
->string SOONArrow
+>string SoonArrow
 >```
 #### Sos
 >```csharp
 >string Sos
 >```
-#### SOSButton
+#### SosButton
 >```csharp
->string SOSButton
+>string SosButton
 >```
 #### Sound
 >```csharp
@@ -13655,9 +13647,9 @@
 >```csharp
 >string Top
 >```
-#### TOPArrow
+#### TopArrow
 >```csharp
->string TOPArrow
+>string TopArrow
 >```
 #### TopHat
 >```csharp
@@ -13915,9 +13907,9 @@
 >```csharp
 >string UpArrow
 >```
-#### UPButton
+#### UpButton
 >```csharp
->string UPButton
+>string UpButton
 >```
 #### UpDownArrow
 >```csharp
@@ -14039,9 +14031,9 @@
 >```csharp
 >string Vs
 >```
-#### VSButton
+#### VsButton
 >```csharp
->string VSButton
+>string VsButton
 >```
 #### VulcanSalute
 >```csharp
@@ -14911,53 +14903,53 @@
 >```csharp
 >string WomanGenie
 >```
-#### WomanGesturingNO
+#### WomanGesturingNo
 >```csharp
->string WomanGesturingNO
+>string WomanGesturingNo
 >```
-#### WomanGesturingnoDarkSkinTone
+#### WomanGesturingNoDarkSkinTone
 >```csharp
->string WomanGesturingnoDarkSkinTone
+>string WomanGesturingNoDarkSkinTone
 >```
-#### WomanGesturingnoLightSkinTone
+#### WomanGesturingNoLightSkinTone
 >```csharp
->string WomanGesturingnoLightSkinTone
+>string WomanGesturingNoLightSkinTone
 >```
-#### WomanGesturingnoMediumDarkSkinTone
+#### WomanGesturingNoMediumDarkSkinTone
 >```csharp
->string WomanGesturingnoMediumDarkSkinTone
+>string WomanGesturingNoMediumDarkSkinTone
 >```
-#### WomanGesturingnoMediumLightSkinTone
+#### WomanGesturingNoMediumLightSkinTone
 >```csharp
->string WomanGesturingnoMediumLightSkinTone
+>string WomanGesturingNoMediumLightSkinTone
 >```
-#### WomanGesturingnoMediumSkinTone
+#### WomanGesturingNoMediumSkinTone
 >```csharp
->string WomanGesturingnoMediumSkinTone
+>string WomanGesturingNoMediumSkinTone
 >```
-#### WomanGesturingOK
+#### WomanGesturingOk
 >```csharp
->string WomanGesturingOK
+>string WomanGesturingOk
 >```
-#### WomanGesturingokDarkSkinTone
+#### WomanGesturingOkDarkSkinTone
 >```csharp
->string WomanGesturingokDarkSkinTone
+>string WomanGesturingOkDarkSkinTone
 >```
-#### WomanGesturingokLightSkinTone
+#### WomanGesturingOkLightSkinTone
 >```csharp
->string WomanGesturingokLightSkinTone
+>string WomanGesturingOkLightSkinTone
 >```
-#### WomanGesturingokMediumDarkSkinTone
+#### WomanGesturingOkMediumDarkSkinTone
 >```csharp
->string WomanGesturingokMediumDarkSkinTone
+>string WomanGesturingOkMediumDarkSkinTone
 >```
-#### WomanGesturingokMediumLightSkinTone
+#### WomanGesturingOkMediumLightSkinTone
 >```csharp
->string WomanGesturingokMediumLightSkinTone
+>string WomanGesturingOkMediumLightSkinTone
 >```
-#### WomanGesturingokMediumSkinTone
+#### WomanGesturingOkMediumSkinTone
 >```csharp
->string WomanGesturingokMediumSkinTone
+>string WomanGesturingOkMediumSkinTone
 >```
 #### WomanGettingHaircut
 >```csharp
@@ -16410,9 +16402,5 @@
 #### Zzz
 >```csharp
 >string Zzz
->```
-#### ZZZ
->```csharp
->string ZZZ
 >```
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>
