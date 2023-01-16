@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Atc.Test" Version="1.0.70" />
-  </ItemGroup>
-
 </Project>
