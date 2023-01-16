@@ -4,6 +4,7 @@ namespace Atc.Console;
 /// <Summery>
 /// Emojis (not from unicode.org).
 /// </Summery>
+[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1605:Partial element documentation should have summary", Justification = "OK.")]
 public static partial class EmojisConstants
 {
     // Number's
@@ -312,7 +313,6 @@ public static partial class EmojisConstants
     public const string Ocean = "🌊";
     public const string Office = "🏢";
     public const string Ok = "🆗";
-    public const string OkHand = "👌";
     public const string OkWoman = "🙆";
     public const string OlderMan = "👴";
     public const string OlderWoman = "👵";
@@ -460,5 +460,4 @@ public static partial class EmojisConstants
     public const string Yen = "💴";
     public const string Yum = "😋";
     public const string Zap = "⚡";
-    public const string Zzz = "💤";
 }
