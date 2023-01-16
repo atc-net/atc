@@ -29,7 +29,7 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         sut.Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
-            .WithMessage(expectedMessage);
+            .WithMessage(expectedMessage + "*");
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         sut.Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
-            .WithMessage(@"Expected content of content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0).");
+            .WithMessage(@"Expected content of content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
     }
 
     [Fact]
