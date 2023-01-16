@@ -850,7 +850,6 @@
      - string EarWithHearingAidMediumSkinTone
      - string Egg
      - string Eggplant
-     - string Eight
      - string EightBall
      - string EightOclock
      - string EightPointedBlackStar
@@ -1002,7 +1001,6 @@
      - string FishingPole
      - string FishingPoleAndFish
      - string Fist
-     - string Five
      - string FiveOclock
      - string FiveThirty
      - string FlagAfghanistan
@@ -1311,7 +1309,6 @@
      - string FortuneCookie
      - string Fountain
      - string FountainPen
-     - string Four
      - string FourLeafClover
      - string FourOclock
      - string FourThirty
@@ -2467,7 +2464,6 @@
      - string Ng
      - string NgButton
      - string NightWithStars
-     - string Nine
      - string NineOclock
      - string NineThirty
      - string Ninja
@@ -2563,7 +2559,6 @@
      - string OncomingFistMediumSkinTone
      - string OncomingPoliceCar
      - string OncomingTaxi
-     - string One
      - string OneOclock
      - string OnePieceSwimsuit
      - string OneThirty
@@ -3271,7 +3266,6 @@
      - string SelfieMediumLightSkinTone
      - string SelfieMediumSkinTone
      - string ServiceDog
-     - string Seven
      - string SevenOclock
      - string SevenThirty
      - string SewingNeedle
@@ -3309,7 +3303,6 @@
      - string SingerMediumDarkSkinTone
      - string SingerMediumLightSkinTone
      - string SingerMediumSkinTone
-     - string Six
      - string SixOclock
      - string SixPointedStar
      - string SixThirty
@@ -3518,7 +3511,6 @@
      - string ThongSandal
      - string ThoughtBalloon
      - string Thread
-     - string Three
      - string ThreeOclock
      - string ThreeThirty
      - string ThumbsDown
@@ -3583,7 +3575,6 @@
      - string Tv
      - string TwelveOclock
      - string TwelveThirty
-     - string Two
      - string TwoHearts
      - string TwoHumpCamel
      - string TwoMenHoldingHands
@@ -4233,7 +4224,6 @@
      - string ZanyFace
      - string Zap
      - string Zebra
-     - string Zero
      - string ZipperMouthFace
      - string Zombie
      - string Zzz

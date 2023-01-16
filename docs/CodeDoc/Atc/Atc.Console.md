@@ -2855,10 +2855,6 @@
 >```csharp
 >string Eggplant
 >```
-#### Eight
->```csharp
->string Eight
->```
 #### EightBall
 >```csharp
 >string EightBall
@@ -3462,10 +3458,6 @@
 #### Fist
 >```csharp
 >string Fist
->```
-#### Five
->```csharp
->string Five
 >```
 #### FiveOclock
 >```csharp
@@ -4698,10 +4690,6 @@
 #### FountainPen
 >```csharp
 >string FountainPen
->```
-#### Four
->```csharp
->string Four
 >```
 #### FourLeafClover
 >```csharp
@@ -9323,10 +9311,6 @@
 >```csharp
 >string NightWithStars
 >```
-#### Nine
->```csharp
->string Nine
->```
 #### NineOclock
 >```csharp
 >string NineOclock
@@ -9706,10 +9690,6 @@
 #### OncomingTaxi
 >```csharp
 >string OncomingTaxi
->```
-#### One
->```csharp
->string One
 >```
 #### OneOclock
 >```csharp
@@ -12539,10 +12519,6 @@
 >```csharp
 >string ServiceDog
 >```
-#### Seven
->```csharp
->string Seven
->```
 #### SevenOclock
 >```csharp
 >string SevenOclock
@@ -12690,10 +12666,6 @@
 #### SingerMediumSkinTone
 >```csharp
 >string SingerMediumSkinTone
->```
-#### Six
->```csharp
->string Six
 >```
 #### SixOclock
 >```csharp
@@ -13527,10 +13499,6 @@
 >```csharp
 >string Thread
 >```
-#### Three
->```csharp
->string Three
->```
 #### ThreeOclock
 >```csharp
 >string ThreeOclock
@@ -13786,10 +13754,6 @@
 #### TwelveThirty
 >```csharp
 >string TwelveThirty
->```
-#### Two
->```csharp
->string Two
 >```
 #### TwoHearts
 >```csharp
@@ -16386,10 +16350,6 @@
 #### Zebra
 >```csharp
 >string Zebra
->```
-#### Zero
->```csharp
->string Zero
 >```
 #### ZipperMouthFace
 >```csharp
