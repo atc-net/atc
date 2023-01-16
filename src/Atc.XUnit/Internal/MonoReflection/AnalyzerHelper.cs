@@ -101,8 +101,8 @@ internal static class AnalyzerHelper
         }
 
         return list
-            .OrderBy(x => x.DeclaringType?.Name)
-            .ThenBy(x => x.Name)
+            .OrderBy(x => x.DeclaringType?.Name, StringComparer.Ordinal)
+            .ThenBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();
     }
 

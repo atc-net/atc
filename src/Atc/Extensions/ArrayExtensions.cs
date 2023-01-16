@@ -59,8 +59,8 @@ public static class ArrayExtensions
         return sortDirectionType switch
         {
             SortDirectionType.None => list,
-            SortDirectionType.Ascending => list.OrderBy(x => x).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x).ToList(),
+            SortDirectionType.Ascending => list.OrderBy(x => x, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Descending => list.OrderByDescending(x => x, StringComparer.Ordinal).ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
     }

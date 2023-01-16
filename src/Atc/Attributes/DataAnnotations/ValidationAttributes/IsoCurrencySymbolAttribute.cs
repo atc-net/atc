@@ -54,7 +54,7 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
             var systemIsoCurrencySymbols = CultureHelper
                 .GetCultures()
                 .Select(x => x.IsoCurrencySymbol.ToUpper(GlobalizationConstants.EnglishCultureInfo))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             if (!systemIsoCurrencySymbols.Any(x => str.Equals(x, StringComparison.Ordinal)))

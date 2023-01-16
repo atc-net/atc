@@ -28,12 +28,12 @@ internal static class AssemblyTestHelper
         var methodsWithMissingTests = CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
-            .OrderBy(x => x.DeclaringType?.FullName)
+            .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
             .GroupBy(x => x.DeclaringType)
             .ToArray();
 
         return methodsWithMissingTestsGroups
-            .OrderBy(x => x.Key?.Name)
+            .OrderBy(x => x.Key?.Name, StringComparer.Ordinal)
             .Select(item => item.Key)
             .ToArray();
     }
@@ -118,7 +118,7 @@ internal static class AssemblyTestHelper
                         !x.IsDelegate() &&
                         !x.HasExcludeFromCodeCoverageAttribute() &&
                         !x.HasCompilerGeneratedAttribute())
-            .OrderBy(x => x.Name)
+            .OrderBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();
 
         if (excludeSourceTypes is { Count: > 0 })
@@ -126,7 +126,7 @@ internal static class AssemblyTestHelper
             sourceTypes = sourceTypes
                 .Where(sourceType => excludeSourceTypes
                     .FirstOrDefault(x => string.Equals(x.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), sourceType.BeautifyName(useFullName: true, useHtmlFormat: false, useGenericParameterNamesAsT: true), StringComparison.Ordinal)) is null)
-                .OrderBy(x => x.Name)
+                .OrderBy(x => x.Name, StringComparer.Ordinal)
                 .ToArray();
         }
 
@@ -149,8 +149,8 @@ internal static class AssemblyTestHelper
     internal static string[] GetMethodsAsRenderTextLines(MethodInfo[] methods, bool useFullName)
     {
         return methods
-            .OrderBy(x => x.DeclaringType?.FullName)
-            .ThenBy(x => x.Name)
+            .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
+            .ThenBy(x => x.Name, StringComparer.Ordinal)
             .ThenBy(x => x.GetParameters().Length)
             .Select(method => method.BeautifyName(useFullName))
             .ToArray();

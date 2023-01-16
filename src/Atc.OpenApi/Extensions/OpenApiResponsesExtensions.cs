@@ -12,7 +12,7 @@ public static class OpenApiResponsesExtensions
         }
 
         var result = new List<HttpStatusCode>();
-        foreach (var responseKey in responses.Keys.OrderBy(x => x))
+        foreach (var responseKey in responses.Keys.OrderBy(x => x, StringComparer.Ordinal))
         {
             if (!Enum.TryParse(typeof(HttpStatusCode), responseKey, out var parsedType))
             {
@@ -116,7 +116,7 @@ public static class OpenApiResponsesExtensions
         HttpStatusCode httpStatusCode,
         string contentType = MediaTypeNames.Application.Json)
     {
-        foreach (var (key, value) in responses.OrderBy(x => x.Key))
+        foreach (var (key, value) in responses.OrderBy(x => x.Key, StringComparer.Ordinal))
         {
             if (!key.Equals(httpStatusCode.ToString(), StringComparison.OrdinalIgnoreCase) &&
                 !key.Equals($"{(int)httpStatusCode}", StringComparison.Ordinal))
@@ -157,7 +157,7 @@ public static class OpenApiResponsesExtensions
 
     public static bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
     {
-        foreach (var (key, value) in responses.OrderBy(x => x.Key))
+        foreach (var (key, value) in responses.OrderBy(x => x.Key, StringComparer.Ordinal))
         {
             if (!key.Equals(((int)HttpStatusCode.OK).ToString(CultureInfo.CurrentCulture), StringComparison.OrdinalIgnoreCase))
             {

@@ -280,13 +280,13 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
             var rawSortedSystemUsings = required
                 .Where(x => x.Equals("System", StringComparison.Ordinal) ||
                             x.StartsWith("System.", StringComparison.Ordinal))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             var rawSortedOtherUsings = required
                 .Where(x => !x.Equals("System", StringComparison.Ordinal) &&
                             !x.StartsWith("System.", StringComparison.Ordinal))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             foreach (var item in rawSortedSystemUsings)
@@ -306,7 +306,7 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
         else
         {
             var rawSortedUsings = required
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             CreateSortedGlobalUsingsContentAppend(sb, rawSortedUsings, addNamespaceSeparator);

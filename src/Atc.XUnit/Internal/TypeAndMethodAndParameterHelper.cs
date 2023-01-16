@@ -21,7 +21,7 @@ internal static class TypeAndMethodAndParameterHelper
                     in debugLimitData.ClassMethodNames
                 where sourceType.BeautifyName().Equals(classMethodNames.Item1, StringComparison.Ordinal)
                 select sourceType)
-            .OrderBy(x => x.Name)
+            .OrderBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();
     }
 
@@ -159,7 +159,7 @@ internal static class TypeAndMethodAndParameterHelper
         var list = new List<MethodInfo>();
 
         // ReSharper disable once LoopCanBeConvertedToQuery
-        foreach (var sourceType in sourceTypes.OrderBy(x => x.FullName))
+        foreach (var sourceType in sourceTypes.OrderBy(x => x.FullName, StringComparer.Ordinal))
         {
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var methodInfo in sourceType.GetPublicDeclaredOnlyMethods())

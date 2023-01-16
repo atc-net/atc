@@ -150,7 +150,7 @@ public static class CultureHelper
             GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates })[0],
         };
 
-        foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName))
+        foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName, StringComparer.Ordinal))
         {
             if (data.Find(x => string.Equals(x.CountryCodeA2, culture.CountryCodeA2, StringComparison.Ordinal)) is null)
             {
@@ -158,7 +158,9 @@ public static class CultureHelper
             }
         }
 
-        return data.OrderBy(x => x.CountryDisplayName).ToList();
+        return data
+            .OrderBy(x => x.CountryDisplayName, StringComparer.Ordinal)
+            .ToList();
     }
 
     /// <summary>
@@ -585,7 +587,7 @@ public static class CultureHelper
             }
         }
 
-        foreach (var culture in cultures.OrderBy(x => x.CountryDisplayName))
+        foreach (var culture in cultures.OrderBy(x => x.CountryDisplayName, StringComparer.Ordinal))
         {
             if (data.ContainsKey(culture.Lcid))
             {
@@ -716,7 +718,7 @@ public static class CultureHelper
             }
         }
 
-        foreach (var culture in cultures.OrderBy(x => x.LanguageDisplayName))
+        foreach (var culture in cultures.OrderBy(x => x.LanguageDisplayName, StringComparer.Ordinal))
         {
             if (data.ContainsKey(culture.Lcid))
             {

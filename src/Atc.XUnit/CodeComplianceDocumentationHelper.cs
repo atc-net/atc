@@ -45,7 +45,7 @@ public static class CodeComplianceDocumentationHelper
         var typesWithMissingCommentsGroups = DocumentationHelper.CollectExportedTypesWithMissingCommentsFromAssembly(
                 assembly,
                 excludeTypes)
-            .OrderBy(x => x.Type.FullName)
+            .OrderBy(x => x.Type.FullName, StringComparer.Ordinal)
             .GroupBy(x => x.Type.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 

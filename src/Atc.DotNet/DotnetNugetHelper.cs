@@ -82,7 +82,7 @@ public static class DotnetNugetHelper
         }
 
         return data
-            .OrderBy(x => x.PackageId)
+            .OrderBy(x => x.PackageId, StringComparer.Ordinal)
             .ToList();
     }
 }

@@ -56,7 +56,7 @@ public class ConsoleEmojiConstantsTests
         var groupNames = emojis
             .Select(x => x.Group)
             .Distinct(StringComparer.Ordinal)
-            .OrderBy(x => x)
+            .OrderBy(x => x, StringComparer.Ordinal)
             .ToList();
 
         var sb = new StringBuilder();
@@ -76,8 +76,9 @@ public class ConsoleEmojiConstantsTests
         {
             var emojisForGroupName = emojis
                 .Where(x => x.Group == groupName)
-                .OrderBy(x => x.SubGroup)
-                .ThenBy(x => x.Name).ToList();
+                .OrderBy(x => x.SubGroup, StringComparer.Ordinal)
+                .ThenBy(x => x.Name, StringComparer.Ordinal)
+                .ToList();
 
             if (isFirst)
             {
