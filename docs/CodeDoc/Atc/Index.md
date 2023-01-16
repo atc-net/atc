@@ -47,6 +47,10 @@
 
 - [ConcurrentHashSet&lt;T&gt;](Atc.Collections.md#concurrenthashset&lt;t&gt;)
 
+## [Atc.Console](Atc.Console.md)
+
+- [EmojisConstants](Atc.Console.md#emojisconstants)
+
 ## [Atc.Data](Atc.Data.md)
 
 - [DataFactory](Atc.Data.md#datafactory)
