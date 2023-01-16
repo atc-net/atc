@@ -289,7 +289,6 @@ public static partial class EmojisConstants
     public const string Mega = "📣";
     public const string Mens = "🚹";
     public const string MiniDisc = "💽";
-    public const string Moneybag = "💰";
     public const string MortarBoard = "🎓";
     public const string MountainBicyclist = "🚵";
     public const string Mouse2 = "🐁";
