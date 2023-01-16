@@ -274,6 +274,23 @@ Enumeration: DropDownFirstItemType.
 
 <br />
 
+## EnumGuidAttribute
+Enum Guid Attribute.
+
+>```csharp
+>public class EnumGuidAttribute : Attribute
+>```
+
+### Properties
+
+#### GlobalIdentifier
+>```csharp
+>GlobalIdentifier
+>```
+><b>Summary:</b> Gets the global identifier.
+
+<br />
+
 ## Enum&lt;T&gt;
 Extension methods for enums.
 
@@ -565,23 +582,6 @@ Extension methods for enums.
 >Assert.True(isParsed);
 >Assert.Equal(expectedOut, dayOfWeek);
 >```
-
-<br />
-
-## EnumGuidAttribute
-Enum Guid Attribute.
-
->```csharp
->public class EnumGuidAttribute : Attribute
->```
-
-### Properties
-
-#### GlobalIdentifier
->```csharp
->GlobalIdentifier
->```
-><b>Summary:</b> Gets the global identifier.
 
 <br />
 

@@ -25,6 +25,14 @@ CodeComplianceDocumentationHelper.
 
 ### Static Methods
 
+#### AssertExportedTypeWithMissingComments
+>```csharp
+>void AssertExportedTypeWithMissingComments(Type type)
+>```
+><b>Summary:</b> Asserts the exported type with missing comments.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 #### AssertExportedTypesWithMissingComments
 >```csharp
 >void AssertExportedTypesWithMissingComments(Assembly assembly, List<Type> excludeTypes = null)
@@ -34,14 +42,6 @@ CodeComplianceDocumentationHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
-#### AssertExportedTypeWithMissingComments
->```csharp
->void AssertExportedTypeWithMissingComments(Type type)
->```
-><b>Summary:</b> Asserts the exported type with missing comments.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 
 <br />
 

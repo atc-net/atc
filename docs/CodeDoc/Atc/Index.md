@@ -18,8 +18,8 @@
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
 - [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)
 - [DropDownFirstItemType](Atc.md#dropdownfirstitemtype)
-- [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
 - [EnumGuidAttribute](Atc.md#enumguidattribute)
+- [Enum&lt;T&gt;](Atc.md#enum&lt;t&gt;)
 - [FileSystemWatcherChangeType](Atc.md#filesystemwatcherchangetype)
 - [ForwardReverseType](Atc.md#forwardreversetype)
 - [GlobalizationConstants](Atc.md#globalizationconstants)
@@ -98,6 +98,14 @@
 
 - [MathEx](Atc.Math.md#mathex)
 
+## [Atc.Math.GeoSpatial](Atc.Math.GeoSpatial.md)
+
+- [DistanceMeasurementType](Atc.Math.GeoSpatial.md#distancemeasurementtype)
+- [GeoSpatialHelper](Atc.Math.GeoSpatial.md#geospatialhelper)
+- [ReferenceEllipsoidType](Atc.Math.GeoSpatial.md#referenceellipsoidtype)
+- [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
+- [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
+
 ## [Atc.Math.Geometry](Atc.Math.Geometry.md)
 
 - [CircleHelper](Atc.Math.Geometry.md#circlehelper)
@@ -106,14 +114,6 @@
 ## [Atc.Math.Geometry.CoordinateSystem](Atc.Math.Geometry.CoordinateSystem.md)
 
 - [CartesianHelper](Atc.Math.Geometry.CoordinateSystem.md#cartesianhelper)
-
-## [Atc.Math.GeoSpatial](Atc.Math.GeoSpatial.md)
-
-- [DistanceMeasurementType](Atc.Math.GeoSpatial.md#distancemeasurementtype)
-- [GeoSpatialHelper](Atc.Math.GeoSpatial.md#geospatialhelper)
-- [ReferenceEllipsoidType](Atc.Math.GeoSpatial.md#referenceellipsoidtype)
-- [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
-- [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
 
 ## [Atc.Math.Trigonometry](Atc.Math.Trigonometry.md)
 

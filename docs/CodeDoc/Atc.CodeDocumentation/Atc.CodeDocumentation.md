@@ -40,6 +40,14 @@ DocumentationHelper.
 
 ### Static Methods
 
+#### CollectExportedTypeWithCommentsFromType
+>```csharp
+>TypeComments CollectExportedTypeWithCommentsFromType(Type type)
+>```
+><b>Summary:</b> Collects the type of the exported type with comments from.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 #### CollectExportedTypesWithMissingCommentsFromAssembly
 >```csharp
 >TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List<Type> excludeTypes = null)
@@ -69,14 +77,6 @@ DocumentationHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude types.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
-#### CollectExportedTypeWithCommentsFromType
->```csharp
->TypeComments CollectExportedTypeWithCommentsFromType(Type type)
->```
-><b>Summary:</b> Collects the type of the exported type with comments from.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 
 <br />
 
