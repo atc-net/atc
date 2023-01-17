@@ -38,7 +38,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = staticFields
                 .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true, includeReturnType: true))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -50,7 +50,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = staticProperties
                 .Select(x => x.Name)
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -62,7 +62,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = staticEvents
                 .Select(x => x.Name)
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -74,7 +74,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = staticMethods
                 .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -86,7 +86,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = fields
                 .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true, includeReturnType: true))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -98,7 +98,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = properties
                 .Select(x => x.Name)
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -110,7 +110,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = events
                 .Select(x => x.Name)
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -122,7 +122,7 @@ internal static class MarkdownHelper
             mb.AppendLine();
             var list = methods
                 .Select(x => x.BeautifyName(useFullName: false, useHtmlFormat: true))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
             AppendIndentedLines(mb, list);
         }
@@ -379,7 +379,7 @@ internal static class MarkdownHelper
         }
         else
         {
-            seq = array.OrderBy(name);
+            seq = array.OrderBy(name, StringComparer.Ordinal);
             string[] head = { "Type", "Name", "Summary" };
 
             var data = seq.Select(item =>
@@ -420,7 +420,7 @@ internal static class MarkdownHelper
             }
 
             mb.AppendLine();
-            foreach (var item in array.OrderBy(name))
+            foreach (var item in array.OrderBy(name, StringComparer.Ordinal))
             {
                 mb.AppendLine($"#### {name(item)}");
                 mb.Code("csharp", finalName(item));

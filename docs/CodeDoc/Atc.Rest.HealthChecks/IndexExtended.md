@@ -61,8 +61,8 @@
   -  Methods
      - <Clone>$()
      - Deconstruct(out string Name, out HealthStatus Status, out string Message, out TimeSpan Duration)
-     - Equals(object obj)
      - Equals(ResourceHealthCheck other)
+     - Equals(object obj)
      - GetHashCode()
      - ToString()
 

@@ -12,10 +12,10 @@
      - string UndefinedDescription
 - [DocumentationHelper](Atc.CodeDocumentation.md#documentationhelper)
   -  Static Methods
+     - CollectExportedTypeWithCommentsFromType(Type type)
      - CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List&lt;Type&gt; excludeTypes = null)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
-     - CollectExportedTypeWithCommentsFromType(Type type)
 - [MemberType](Atc.CodeDocumentation.md#membertype)
 - [TypeComments](Atc.CodeDocumentation.md#typecomments)
   -  Properties

@@ -1088,6 +1088,16 @@ The MathHelper module contains procedures used to preform math operations.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fahrenheit`&nbsp;&nbsp;-&nbsp;&nbsp;The fahrenheit.<br />
+#### IsEqualToZero
+>```csharp
+>bool IsEqualToZero(double value)
+>```
+><b>Summary:</b> Determines whether [is equal to zero] [the specified value].
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>
+><b>Returns:</b> `true` if [is equal to zero] [the specified value]; otherwise, `false`.
 #### IsEquals
 >```csharp
 >bool IsEquals(double value1, double value2)
@@ -1099,16 +1109,6 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
 >
 ><b>Returns:</b> `true` if the specified value1 is equals; otherwise, `false`.
-#### IsEqualToZero
->```csharp
->bool IsEqualToZero(double value)
->```
-><b>Summary:</b> Determines whether [is equal to zero] [the specified value].
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->
-><b>Returns:</b> `true` if [is equal to zero] [the specified value]; otherwise, `false`.
 #### Max
 >```csharp
 >int Max(int[] values)

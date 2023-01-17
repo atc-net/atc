@@ -561,13 +561,13 @@ SyntaxTokenFactory - for base methods.
 >```csharp
 >SyntaxToken ImplicitKeyword(bool withTrailingSpace = True)
 >```
-#### InternalKeyword
->```csharp
->SyntaxToken InternalKeyword(bool withTrailingSpace = True)
->```
 #### IntKeyword
 >```csharp
 >SyntaxToken IntKeyword(bool withTrailingSpace = True)
+>```
+#### InternalKeyword
+>```csharp
+>SyntaxToken InternalKeyword(bool withTrailingSpace = True)
 >```
 #### LineFeed
 >```csharp

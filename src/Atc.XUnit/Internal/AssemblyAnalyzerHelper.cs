@@ -111,7 +111,7 @@ internal static class AssemblyAnalyzerHelper
                         && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
                         && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
                         && !excludeTypes.Contains(x))
-            .OrderBy(x => x.FullName)
+            .OrderBy(x => x.FullName, StringComparer.Ordinal)
             .ToArray();
 
         return types;

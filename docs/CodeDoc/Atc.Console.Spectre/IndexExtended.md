@@ -37,21 +37,21 @@
 
 - [ServiceCollectionExtensions](Atc.Console.Spectre.Extensions.md#servicecollectionextensions)
   -  Static Methods
-     - AddConsoleLogging(this IServiceCollection serviceCollection, ConsoleLoggerConfiguration consoleLoggerConfiguration)
      - AddConsoleLogging(this IServiceCollection serviceCollection)
+     - AddConsoleLogging(this IServiceCollection serviceCollection, ConsoleLoggerConfiguration consoleLoggerConfiguration)
      - AutoRegisterCliCommandSettings(this IServiceCollection serviceCollection)
 
 ## [Atc.Console.Spectre.Factories](Atc.Console.Spectre.Factories.md)
 
 - [CommandAppFactory](Atc.Console.Spectre.Factories.md#commandappfactory)
   -  Static Methods
-     - Create(ServiceCollection serviceCollection, Encoding encoding)
      - Create(ServiceCollection serviceCollection)
+     - Create(ServiceCollection serviceCollection, Encoding encoding)
      - CreateWithRootCommand(ServiceCollection serviceCollection)
 - [ServiceCollectionFactory](Atc.Console.Spectre.Factories.md#servicecollectionfactory)
   -  Static Methods
-     - Create(bool addConsoleLogger = True, bool autoRegisterCliCommandSettings = True)
      - Create(ConsoleLoggerConfiguration consoleLoggerConfiguration, bool autoRegisterCliCommandSettings = True)
+     - Create(bool addConsoleLogger = True, bool autoRegisterCliCommandSettings = True)
 
 ## [Atc.Console.Spectre.Factories.Infrastructure](Atc.Console.Spectre.Factories.Infrastructure.md)
 
@@ -70,8 +70,8 @@
 
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
   -  Static Methods
-     - WriteHeader(string text, Color color)
      - WriteHeader(string text)
+     - WriteHeader(string text, Color color)
      - WriteLog(ILogger logger, LogKeyValueItem logItem, bool includeKey = True, bool includeDescription = True)
      - WriteLogs(ILogger logger, List&lt;LogKeyValueItem&gt; logItems, bool includeKey = True, bool includeDescription = True)
 - [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)

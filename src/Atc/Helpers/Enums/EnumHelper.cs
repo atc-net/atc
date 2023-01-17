@@ -226,8 +226,8 @@ public static class EnumHelper
         var orderList = sortDirectionType switch
         {
             SortDirectionType.None => list.ToList(),
-            SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x.Value).ToList(),
+            SortDirectionType.Ascending => list.OrderBy(x => x.Value, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Descending => list.OrderByDescending(x => x.Value, StringComparer.Ordinal).ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 
@@ -346,8 +346,8 @@ public static class EnumHelper
         var orderList = sortDirectionType switch
         {
             SortDirectionType.None => list.ToList(),
-            SortDirectionType.Ascending => list.OrderBy(x => x.Value).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x.Value).ToList(),
+            SortDirectionType.Ascending => list.OrderBy(x => x.Value, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Descending => list.OrderByDescending(x => x.Value, StringComparer.Ordinal).ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 

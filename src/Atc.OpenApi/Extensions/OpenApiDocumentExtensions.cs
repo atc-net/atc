@@ -17,7 +17,8 @@ public static class OpenApiDocumentExtensions
 
         var startName = basePathSegmentName.EnsureSingular();
         return document.Paths
-            .OrderBy(x => x.Key)
-            .Where(x => x.IsPathStartingSegmentName(startName)).ToList();
+            .OrderBy(x => x.Key, StringComparer.Ordinal)
+            .Where(x => x.IsPathStartingSegmentName(startName))
+            .ToList();
     }
 }

@@ -85,7 +85,9 @@ public static class MarkdownCodeDocGenerator
         homeExtendedBuilder.Header(1, "References extended");
         homeExtendedBuilder.AppendLine();
 
-        foreach (var g in typeComments.GroupBy(x => x.Namespace, StringComparer.Ordinal).OrderBy(x => x.Key))
+        foreach (var g in typeComments
+                     .GroupBy(x => x.Namespace, StringComparer.Ordinal)
+                     .OrderBy(x => x.Key, StringComparer.Ordinal))
         {
             homeBuilder.HeaderWithLink(2, g.Key, g.Key + ".md");
             homeBuilder.AppendLine();
@@ -101,7 +103,7 @@ public static class MarkdownCodeDocGenerator
             sb.AppendLine();
 
             sb.AppendLine($"# {g.Key}");
-            foreach (var item in g.OrderBy(x => x.Name))
+            foreach (var item in g.OrderBy(x => x.Name, StringComparer.Ordinal))
             {
                 var beautifyItemName1 = item.BeautifyHtmlName;
                 var beautifyItemName2 = item.BeautifyHtmlName

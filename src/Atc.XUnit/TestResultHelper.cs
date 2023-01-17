@@ -84,7 +84,7 @@ public static class TestResultHelper
         }
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
-            .OrderBy(x => x.DeclaringType?.FullName)
+            .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
             .GroupBy(x => x.DeclaringType?.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 
@@ -119,7 +119,7 @@ public static class TestResultHelper
         }
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
-            .OrderBy(x => x.ReflectedType?.FullName)
+            .OrderBy(x => x.ReflectedType?.FullName, StringComparer.Ordinal)
             .GroupBy(x => x.ReflectedType?.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 
@@ -166,8 +166,8 @@ public static class TestResultHelper
         }
 
         var methodsWithWrongNamingGroups = methodsWithWrongNaming
-            .OrderBy(x => x.Key.ReflectedType?.FullName)
-            .GroupBy(x => x.Key.ReflectedType?.BeautifyName(true), StringComparer.Ordinal)
+            .OrderBy(x => x.Key.ReflectedType?.FullName, StringComparer.Ordinal)
+            .GroupBy(x => x.Key.ReflectedType?.BeautifyName(useFullName: true), StringComparer.Ordinal)
             .ToArray();
 
         var testResults = new List<TestResult>

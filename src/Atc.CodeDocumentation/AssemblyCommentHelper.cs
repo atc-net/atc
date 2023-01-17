@@ -94,7 +94,7 @@ internal static class AssemblyCommentHelper
 
         var collectExportedTypesWithMissingComments = collectExportedTypesWithComments
             .Where(x => !x.HasComments)
-            .OrderBy(x => x.Type.FullName)
+            .OrderBy(x => x.Type.FullName, StringComparer.Ordinal)
             .ToArray();
 
         return collectExportedTypesWithMissingComments;
@@ -120,7 +120,7 @@ internal static class AssemblyCommentHelper
         return types
             .Where(x => IsRequiredNamespace(x, namespaceRegex))
             .Select(x => new TypeComments(x, commentsLookup!))
-            .OrderBy(x => x.FullName)
+            .OrderBy(x => x.FullName, StringComparer.Ordinal)
             .ToArray();
     }
 
@@ -150,7 +150,7 @@ internal static class AssemblyCommentHelper
                         && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
                         && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
                         && !excludeTypes.Contains(x))
-            .OrderBy(x => x.FullName)
+            .OrderBy(x => x.FullName, StringComparer.Ordinal)
             .ToArray();
 
         return types;

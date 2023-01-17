@@ -182,8 +182,8 @@
 
 - [RestApiBuilderExtensions](Microsoft.AspNetCore.Builder.md#restapibuilderextensions)
   -  Static Methods
-     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
      - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
      - UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
 
 ## [Microsoft.AspNetCore.Http](Microsoft.AspNetCore.Http.md)
@@ -235,9 +235,9 @@
      - AddCallingIdentityTelemetryInitializer(this IServiceCollection services)
 - [RestApiExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextensions)
   -  Static Methods
+     - AddRestApi(this IServiceCollection services)
      - AddRestApi(this IServiceCollection services, Action&lt;IMvcBuilder&gt; setupMvcAction, RestApiOptions restApiOptions)
      - AddRestApi(this IServiceCollection services, RestApiOptions restApiOptions)
-     - AddRestApi(this IServiceCollection services)
 - [ServiceCollectionExtensions](Microsoft.Extensions.DependencyInjection.md#servicecollectionextensions)
   -  Static Methods
      - AutoRegistrateServices(this IServiceCollection services, Assembly interfaceAssembly, Assembly implementationAssembly)

@@ -98,13 +98,13 @@ public static class DotnetGlobalUsingsHelper
             var sortedSystemNamespaces = namespaces
                 .Where(x => x.Equals("System", StringComparison.Ordinal) ||
                             x.StartsWith("System.", StringComparison.Ordinal))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             var sortedOtherNamespaces = namespaces
                 .Where(x => !x.Equals("System", StringComparison.Ordinal) &&
                             !x.StartsWith("System.", StringComparison.Ordinal))
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             foreach (var item in sortedSystemNamespaces)
@@ -124,7 +124,7 @@ public static class DotnetGlobalUsingsHelper
         else
         {
             var sortedNamespaces = namespaces
-                .OrderBy(x => x)
+                .OrderBy(x => x, StringComparer.Ordinal)
                 .ToList();
 
             sb.Append(ConvertNamespacesToGlobalUsings(addNamespaceSeparator, sortedNamespaces));

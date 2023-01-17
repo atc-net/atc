@@ -66,13 +66,13 @@
 
 - [OpenApiBuilderExtensions](Microsoft.AspNetCore.Builder.md#openapibuilderextensions)
   -  Static Methods
-     - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
      - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
+     - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
 - [RestApiExtendedBuilderExtensions](Microsoft.AspNetCore.Builder.md#restapiextendedbuilderextensions)
   -  Static Methods
-     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
-     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
      - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
+     - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, Action&lt;IApplicationBuilder&gt; setupAction)
 
 ## [Microsoft.Extensions.DependencyInjection](Microsoft.Extensions.DependencyInjection.md)
 
@@ -81,9 +81,9 @@
      - AddFluentValidation(this IServiceCollection services, bool useAutoRegistrateServices, List&lt;AssemblyPairOptions&gt; assemblyPairs)
 - [RestApiExtendedExtensions](Microsoft.Extensions.DependencyInjection.md#restapiextendedextensions)
   -  Static Methods
+     - AddRestApi(this IServiceCollection services)
      - AddRestApi(this IServiceCollection services, Action&lt;IMvcBuilder&gt; setupMvcAction, RestApiExtendedOptions restApiOptions, IConfiguration configuration)
      - AddRestApi(this IServiceCollection services, RestApiExtendedOptions restApiOptions, IConfiguration configuration)
-     - AddRestApi(this IServiceCollection services)
 
 ## [Swashbuckle.AspNetCore.SwaggerGen](Swashbuckle.AspNetCore.SwaggerGen.md)
 
