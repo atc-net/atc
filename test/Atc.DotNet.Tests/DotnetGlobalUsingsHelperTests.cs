@@ -2,6 +2,7 @@
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet.Tests;
 
+[SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
 public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
 {
     private static readonly DirectoryInfo WorkingDirectory = new(
@@ -265,6 +266,103 @@ public class DotnetGlobalUsingsHelperTests : IAsyncLifetime
         var globalUsingFile = new FileInfo(Path.Combine(WorkingDirectory.FullName, "GlobalUsings.cs"));
         Assert.False(globalUsingFile.Exists);
 
+        Assert.Equal(expectedContent, actualContent);
+    }
+
+    [Fact]
+    public void StyleCop1210_Scenario1()
+    {
+        // Arrange
+        var required = new List<string>
+        {
+            "Contracts.PrintPlans",
+            "Contracts.Printers",
+            "Contracts.Orders",
+            "Contracts.PrintLines",
+            "Contracts.PrintServer",
+            "Contracts.Products",
+            "Contracts.PrintServerTypes",
+        };
+
+        const string expectedContent = @"global using Contracts.Orders;
+global using Contracts.Printers;
+global using Contracts.PrintLines;
+global using Contracts.PrintPlans;
+global using Contracts.PrintServer;
+global using Contracts.PrintServerTypes;
+global using Contracts.Products;
+";
+
+        // Atc
+        var actualContent = DotnetGlobalUsingsHelper.GetNewContentByReadingExistingIfExistAndMergeWithRequired(WorkingDirectory, required);
+
+        // Assert
+        Assert.Equal(expectedContent, actualContent);
+    }
+
+    [Fact]
+    public void StyleCop1210_Scenario2()
+    {
+        // Arrange
+        var required = new List<string>
+        {
+            "System.CodeDom.Compiler",
+            "System.ComponentModel.DataAnnotations",
+            "System.Net",
+            "Atc.Rest.Results",
+            "Microsoft.AspNetCore.Authorization",
+            "Microsoft.AspNetCore.Http",
+            "Microsoft.AspNetCore.Mvc",
+            "Sch.Oct.Api.Generated.Contracts",
+            "Sch.Oct.Api.Generated.Contracts.Areas",
+            "Sch.Oct.Api.Generated.Contracts.Batches",
+            "Sch.Oct.Api.Generated.Contracts.Blocks",
+            "Sch.Oct.Api.Generated.Contracts.Customers",
+            "Sch.Oct.Api.Generated.Contracts.External",
+            "Sch.Oct.Api.Generated.Contracts.LabelLayoutGroups",
+            "Sch.Oct.Api.Generated.Contracts.LabelLayouts",
+            "Sch.Oct.Api.Generated.Contracts.Locations",
+            "Sch.Oct.Api.Generated.Contracts.Orders",
+            "Sch.Oct.Api.Generated.Contracts.Printers",
+            "Sch.Oct.Api.Generated.Contracts.PrintLines",
+            "Sch.Oct.Api.Generated.Contracts.PrintPlans",
+            "Sch.Oct.Api.Generated.Contracts.PrintServer",
+            "Sch.Oct.Api.Generated.Contracts.PrintServerTypes",
+            "Sch.Oct.Api.Generated.Contracts.Products",
+        };
+
+        const string expectedContent = @"global using System.CodeDom.Compiler;
+global using System.ComponentModel.DataAnnotations;
+global using System.Net;
+
+global using Atc.Rest.Results;
+
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+
+global using Sch.Oct.Api.Generated.Contracts;
+global using Sch.Oct.Api.Generated.Contracts.Areas;
+global using Sch.Oct.Api.Generated.Contracts.Batches;
+global using Sch.Oct.Api.Generated.Contracts.Blocks;
+global using Sch.Oct.Api.Generated.Contracts.Customers;
+global using Sch.Oct.Api.Generated.Contracts.External;
+global using Sch.Oct.Api.Generated.Contracts.LabelLayoutGroups;
+global using Sch.Oct.Api.Generated.Contracts.LabelLayouts;
+global using Sch.Oct.Api.Generated.Contracts.Locations;
+global using Sch.Oct.Api.Generated.Contracts.Orders;
+global using Sch.Oct.Api.Generated.Contracts.Printers;
+global using Sch.Oct.Api.Generated.Contracts.PrintLines;
+global using Sch.Oct.Api.Generated.Contracts.PrintPlans;
+global using Sch.Oct.Api.Generated.Contracts.PrintServer;
+global using Sch.Oct.Api.Generated.Contracts.PrintServerTypes;
+global using Sch.Oct.Api.Generated.Contracts.Products;
+";
+
+        // Atc
+        var actualContent = DotnetGlobalUsingsHelper.GetNewContentByReadingExistingIfExistAndMergeWithRequired(WorkingDirectory, required);
+
+        // Assert
         Assert.Equal(expectedContent, actualContent);
     }
 
