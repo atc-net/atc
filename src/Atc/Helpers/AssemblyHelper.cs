@@ -93,4 +93,17 @@ public static class AssemblyHelper
             return data;
         }
     }
+
+    /// <summary>
+    /// Gets the system name as kebab casing.</summary>
+    /// <returns>System name as kebab casing.</returns>
+    public static string GetSystemNameAsKebabCasing()
+    {
+        var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+        return assembly
+            .GetName()
+            .Name!
+            .Replace('.', '-')
+            .ToLower(GlobalizationConstants.EnglishCultureInfo);
+    }
 }

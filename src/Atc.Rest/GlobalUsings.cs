@@ -12,6 +12,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 
 global using Atc;
+global using Atc.Helpers;
 global using Atc.Rest;
 global using Atc.Rest.Extensions;
 global using Atc.Rest.Middleware;

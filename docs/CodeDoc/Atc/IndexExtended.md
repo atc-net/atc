@@ -4378,6 +4378,7 @@
      - TryConvertToGtin(string code, out string gtin)
 - [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
   -  Static Methods
+     - GetSystemNameAsKebabCasing()
      - Load(FileInfo assemblyFile)
      - ReadAsBytes(FileInfo assemblyFile)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
