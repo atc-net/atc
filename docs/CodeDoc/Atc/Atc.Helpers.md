@@ -116,6 +116,13 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 
 ### Static Methods
 
+#### GetSystemNameAsKebabCasing
+>```csharp
+>string GetSystemNameAsKebabCasing()
+>```
+><b>Summary:</b> Gets the system name as kebab casing.
+>
+><b>Returns:</b> System name as kebab casing.
 #### Load
 >```csharp
 >Assembly Load(FileInfo assemblyFile)
