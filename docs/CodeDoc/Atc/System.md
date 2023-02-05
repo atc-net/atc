@@ -395,6 +395,16 @@ The exception that is thrown when an certificate is not valid.
 
 <br />
 
+## ConfigurationException
+The exception that is thrown when a TCP error occurred.
+
+>```csharp
+>public class ConfigurationException : Exception, ISerializable
+>```
+
+
+<br />
+
 ## DateTimeExtensions
 Extensions for the `System.DateTime` class.
 
