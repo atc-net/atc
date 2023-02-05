@@ -29,6 +29,8 @@
      - HandleAsync(AuthorizationHandlerContext context)
 - [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
   -  Static Methods
+     - MapApiAssemblyInformations(this IEndpointRouteBuilder endpoints, string pattern)
+     - MapApiManagementAssemblyInformations(this IEndpointRouteBuilder endpoints)
      - MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List&lt;AssemblyPairOptions&gt; assemblyPairs)
 
 ## [Atc.Rest.Helpers](Atc.Rest.Helpers.md)

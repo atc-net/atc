@@ -171,6 +171,7 @@
 - [ByteSizeExtensions](System.md#bytesizeextensions)
 - [CertificateValidationException](System.md#certificatevalidationexception)
 - [CharExtensions](System.md#charextensions)
+- [ConfigurationException](System.md#configurationexception)
 - [DateTimeExtensions](System.md#datetimeextensions)
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
 - [DecimalExtensions](System.md#decimalextensions)
