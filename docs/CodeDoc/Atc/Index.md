@@ -53,11 +53,13 @@
 
 ## [Atc.Data](Atc.Data.md)
 
+- [AssemblyInformationFactory](Atc.Data.md#assemblyinformationfactory)
 - [DataFactory](Atc.Data.md#datafactory)
 - [LogItemFactory](Atc.Data.md#logitemfactory)
 
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
+- [AssemblyInformation](Atc.Data.Models.md#assemblyinformation)
 - [Culture](Atc.Data.Models.md#culture)
 - [HttpClientRequestResult&lt;TData&gt;](Atc.Data.Models.md#httpclientrequestresult&lt;tdata&gt;)
 - [IdValueItem](Atc.Data.Models.md#idvalueitem)

@@ -7,6 +7,64 @@
 
 <br />
 
+## AssemblyInformation
+AssemblyInformation.
+
+>```csharp
+>public class AssemblyInformation
+>```
+
+### Properties
+
+#### Copyright
+>```csharp
+>Copyright
+>```
+><b>Summary:</b> Gets or sets the copyright.
+#### FullName
+>```csharp
+>FullName
+>```
+><b>Summary:</b> Gets or sets the full name.
+#### IsDebugBuild
+>```csharp
+>IsDebugBuild
+>```
+><b>Summary:</b> Gets or sets the is debug build.
+#### Name
+>```csharp
+>Name
+>```
+><b>Summary:</b> Gets or sets the name.
+#### SourcePath
+>```csharp
+>SourcePath
+>```
+><b>Summary:</b> Gets or sets the source path.
+#### TargetFrameworkDisplayName
+>```csharp
+>TargetFrameworkDisplayName
+>```
+><b>Summary:</b> Gets or sets the display name of the target framework.
+#### TargetFrameworkName
+>```csharp
+>TargetFrameworkName
+>```
+><b>Summary:</b> Gets or sets the name of the target framework.
+#### Version
+>```csharp
+>Version
+>```
+><b>Summary:</b> Gets or sets the version.
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## Culture
 Culture.
 

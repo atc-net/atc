@@ -7,6 +7,21 @@
 
 <br />
 
+## AssemblyInformationFactory
+
+>```csharp
+>public static class AssemblyInformationFactory
+>```
+
+### Static Methods
+
+#### Create
+>```csharp
+>AssemblyInformation Create(Assembly assembly)
+>```
+
+<br />
+
 ## DataFactory
 Data Helper.
 

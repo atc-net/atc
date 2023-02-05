@@ -116,6 +116,51 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 
 ### Static Methods
 
+#### GetAssemblyInformations
+>```csharp
+>AssemblyInformation[] GetAssemblyInformations()
+>```
+><b>Summary:</b> Gets the assembly informations.
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+#### GetAssemblyInformationsByStartsWith
+>```csharp
+>AssemblyInformation[] GetAssemblyInformationsByStartsWith(string value)
+>```
+><b>Summary:</b> Gets the assembly informations by assembly fullname should start with value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+#### GetAssemblyInformationsBySystem
+>```csharp
+>AssemblyInformation[] GetAssemblyInformationsBySystem()
+>```
+><b>Summary:</b> Gets the assembly informations by system.
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+#### GetSystemLocation
+>```csharp
+>string GetSystemLocation()
+>```
+><b>Summary:</b> Gets the system location.
+>
+><b>Returns:</b> System location.
+#### GetSystemLocationPath
+>```csharp
+>string GetSystemLocationPath()
+>```
+><b>Summary:</b> Gets the system location path.
+>
+><b>Returns:</b> System location path.
+#### GetSystemName
+>```csharp
+>string GetSystemName()
+>```
+><b>Summary:</b> Gets the system name.
+>
+><b>Returns:</b> System name.
 #### GetSystemNameAsKebabCasing
 >```csharp
 >string GetSystemNameAsKebabCasing()
@@ -123,6 +168,13 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 ><b>Summary:</b> Gets the system name as kebab casing.
 >
 ><b>Returns:</b> System name as kebab casing.
+#### GetSystemVersion
+>```csharp
+>Version GetSystemVersion()
+>```
+><b>Summary:</b> Gets the system version.
+>
+><b>Returns:</b> System version.
 #### Load
 >```csharp
 >Assembly Load(FileInfo assemblyFile)

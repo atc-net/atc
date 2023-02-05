@@ -4230,6 +4230,9 @@
 
 ## [Atc.Data](Atc.Data.md)
 
+- [AssemblyInformationFactory](Atc.Data.md#assemblyinformationfactory)
+  -  Static Methods
+     - Create(Assembly assembly)
 - [DataFactory](Atc.Data.md#datafactory)
   -  Static Methods
      - CreateKeyValueDataTableOfGuidString(DropDownFirstItemType dropDownFirstItemType = None)
@@ -4275,6 +4278,18 @@
 
 ## [Atc.Data.Models](Atc.Data.Models.md)
 
+- [AssemblyInformation](Atc.Data.Models.md#assemblyinformation)
+  -  Properties
+     - Copyright
+     - FullName
+     - IsDebugBuild
+     - Name
+     - SourcePath
+     - TargetFrameworkDisplayName
+     - TargetFrameworkName
+     - Version
+  -  Methods
+     - ToString()
 - [Culture](Atc.Data.Models.md#culture)
   -  Properties
      - CountryCodeA2
@@ -4378,7 +4393,14 @@
      - TryConvertToGtin(string code, out string gtin)
 - [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
   -  Static Methods
+     - GetAssemblyInformations()
+     - GetAssemblyInformationsByStartsWith(string value)
+     - GetAssemblyInformationsBySystem()
+     - GetSystemLocation()
+     - GetSystemLocationPath()
+     - GetSystemName()
      - GetSystemNameAsKebabCasing()
+     - GetSystemVersion()
      - Load(FileInfo assemblyFile)
      - ReadAsBytes(FileInfo assemblyFile)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
@@ -4766,6 +4788,9 @@
 - [AppDomainExtensions](System.md#appdomainextensions)
   -  Static Methods
      - GetAllExportedTypes(this AppDomain appDomain)
+     - GetAssemblyInformations(this AppDomain appDomain)
+     - GetAssemblyInformationsByStartsWith(this AppDomain appDomain, string value)
+     - GetAssemblyInformationsBySystem(this AppDomain appDomain)
      - GetCustomAssemblies(this AppDomain appDomain)
      - GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
      - GetExportedTypeByName(this AppDomain appDomain, string typeName)
