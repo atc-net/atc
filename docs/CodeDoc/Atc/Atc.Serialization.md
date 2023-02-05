@@ -50,6 +50,11 @@
 >UseConverterUnixDatetimeOffset
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether to utilize UnixDateTimeOffsetConverter.
+#### UseConverterVersion
+>```csharp
+>UseConverterVersion
+>```
+><b>Summary:</b> Gets or sets a value indicating whether to utilize VersionConverter.
 #### WriteIndented
 >```csharp
 >WriteIndented

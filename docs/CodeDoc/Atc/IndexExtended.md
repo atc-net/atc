@@ -4693,6 +4693,7 @@
      - UseConverterEnumAsString
      - UseConverterTimespan
      - UseConverterUnixDatetimeOffset
+     - UseConverterVersion
      - WriteIndented
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
   -  Static Methods
@@ -4725,6 +4726,10 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+- [JsonVersionConverter](Atc.Serialization.JsonConverters.md#jsonversionconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, Version value, JsonSerializerOptions options)
 
 ## [Atc.Structs](Atc.Structs.md)
 

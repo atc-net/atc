@@ -41,12 +41,18 @@ public class JsonSerializerFactorySettings
     /// <summary>
     /// Gets or sets a value indicating whether to utilize datetimeOffsetMinToNullConverter.
     /// </summary>
-    /// <para>This setting is not default set to true.</para>
+    /// <para>This setting is default set to false.</para>
     public bool UseConverterDatetimeOffsetMinToNull { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether to utilize UnixDateTimeOffsetConverter.
     /// </summary>
-    /// <para>This setting is default set to true.</para>
+    /// <para>This setting is default set to false.</para>
     public bool UseConverterUnixDatetimeOffset { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to utilize VersionConverter.
+    /// </summary>
+    /// <para>This setting is default set to false.</para>
+    public bool UseConverterVersion { get; set; }
 }

@@ -135,6 +135,7 @@
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
 - [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
 - [JsonUnixDateTimeOffsetConverter](Atc.Serialization.JsonConverters.md#jsonunixdatetimeoffsetconverter)
+- [JsonVersionConverter](Atc.Serialization.JsonConverters.md#jsonversionconverter)
 
 ## [Atc.Structs](Atc.Structs.md)
 
