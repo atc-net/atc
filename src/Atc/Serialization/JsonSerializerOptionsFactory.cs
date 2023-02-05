@@ -61,6 +61,11 @@ public static class JsonSerializerOptionsFactory
             jsonSerializerOptions.Converters.Add(new JsonUnixDateTimeOffsetConverter());
         }
 
+        if (settings.UseConverterVersion)
+        {
+            jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
+        }
+
         return jsonSerializerOptions;
     }
 }
