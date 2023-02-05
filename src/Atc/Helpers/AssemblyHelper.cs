@@ -143,12 +143,14 @@ public static class AssemblyHelper
     /// <summary>
     /// Gets the assembly informations.
     /// </summary>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformations()
         => AppDomain.CurrentDomain.GetAssemblyInformations();
 
     /// <summary>
     /// Gets the assembly informations by system.
     /// </summary>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformationsBySystem()
         => AppDomain.CurrentDomain.GetAssemblyInformationsBySystem();
 
@@ -156,6 +158,7 @@ public static class AssemblyHelper
     /// Gets the assembly informations by assembly fullname should start with value.
     /// </summary>
     /// <param name="value">The value.</param>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformationsByStartsWith(
         string value)
         => AppDomain.CurrentDomain.GetAssemblyInformationsByStartsWith(value);

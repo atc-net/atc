@@ -99,6 +99,7 @@ public static class AppDomainExtensions
     /// Gets the custom assemblies - excluding System, Microsoft etc.
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
+    /// <returns>The array of <see cref="Assembly"/>.</returns>
     public static Assembly[] GetCustomAssemblies(
         this AppDomain appDomain)
     {
@@ -123,6 +124,7 @@ public static class AppDomainExtensions
     /// Gets the assembly informations.
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformations(
         this AppDomain appDomain)
     {
@@ -143,6 +145,7 @@ public static class AppDomainExtensions
     /// Gets the assembly informations by system.
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformationsBySystem(
         this AppDomain appDomain)
     {
@@ -162,6 +165,7 @@ public static class AppDomainExtensions
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
     /// <param name="value">The value.</param>
+    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
     public static AssemblyInformation[] GetAssemblyInformationsByStartsWith(
         this AppDomain appDomain,
         string value)

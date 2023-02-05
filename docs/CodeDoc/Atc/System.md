@@ -32,6 +32,8 @@ Extensions for the `System.AppDomain` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetAssemblyInformationsByStartsWith
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsByStartsWith(this AppDomain appDomain, string value)
@@ -41,6 +43,8 @@ Extensions for the `System.AppDomain` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetAssemblyInformationsBySystem
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsBySystem(this AppDomain appDomain)
@@ -49,6 +53,8 @@ Extensions for the `System.AppDomain` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetCustomAssemblies
 >```csharp
 >Assembly[] GetCustomAssemblies(this AppDomain appDomain)
@@ -57,6 +63,8 @@ Extensions for the `System.AppDomain` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>
+><b>Returns:</b> The array of `System.Reflection.Assembly`.
 #### GetExportedPropertyTypeByName
 >```csharp
 >Type GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)

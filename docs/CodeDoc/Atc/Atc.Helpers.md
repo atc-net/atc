@@ -121,6 +121,8 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 >AssemblyInformation[] GetAssemblyInformations()
 >```
 ><b>Summary:</b> Gets the assembly informations.
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetAssemblyInformationsByStartsWith
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsByStartsWith(string value)
@@ -129,11 +131,15 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetAssemblyInformationsBySystem
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsBySystem()
 >```
 ><b>Summary:</b> Gets the assembly informations by system.
+>
+><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
 #### GetSystemLocation
 >```csharp
 >string GetSystemLocation()
