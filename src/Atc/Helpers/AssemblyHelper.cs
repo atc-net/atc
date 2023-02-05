@@ -95,15 +95,68 @@ public static class AssemblyHelper
     }
 
     /// <summary>
-    /// Gets the system name as kebab casing.</summary>
-    /// <returns>System name as kebab casing.</returns>
-    public static string GetSystemNameAsKebabCasing()
+    /// Gets the system name.</summary>
+    /// <returns>System name.</returns>
+    public static string GetSystemName()
     {
         var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
         return assembly
             .GetName()
-            .Name!
+            .Name!;
+    }
+
+    /// <summary>
+    /// Gets the system name as kebab casing.</summary>
+    /// <returns>System name as kebab casing.</returns>
+    public static string GetSystemNameAsKebabCasing()
+        => GetSystemName()
             .Replace('.', '-')
             .ToLower(GlobalizationConstants.EnglishCultureInfo);
+
+    /// <summary>
+    /// Gets the system version.</summary>
+    /// <returns>System version.</returns>
+    public static Version GetSystemVersion()
+    {
+        var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+        return assembly.GetFileVersion();
     }
+
+    /// <summary>
+    /// Gets the system location.</summary>
+    /// <returns>System location.</returns>
+    public static string GetSystemLocation()
+    {
+        var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+        return assembly.Location;
+    }
+
+    /// <summary>
+    /// Gets the system location path.</summary>
+    /// <returns>System location path.</returns>
+    public static string GetSystemLocationPath()
+    {
+        var uri = new UriBuilder(GetSystemLocation());
+        return Path.GetDirectoryName(Uri.UnescapeDataString(uri.Path))!;
+    }
+
+    /// <summary>
+    /// Gets the assembly informations.
+    /// </summary>
+    public static AssemblyInformation[] GetAssemblyInformations()
+        => AppDomain.CurrentDomain.GetAssemblyInformations();
+
+    /// <summary>
+    /// Gets the assembly informations by system.
+    /// </summary>
+    public static AssemblyInformation[] GetAssemblyInformationsBySystem()
+        => AppDomain.CurrentDomain.GetAssemblyInformationsBySystem();
+
+    /// <summary>
+    /// Gets the assembly informations by assembly fullname should start with value.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    public static AssemblyInformation[] GetAssemblyInformationsByStartsWith(
+        string value)
+        => AppDomain.CurrentDomain.GetAssemblyInformationsByStartsWith(value);
 }

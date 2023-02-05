@@ -24,6 +24,31 @@ Extensions for the `System.AppDomain` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+#### GetAssemblyInformations
+>```csharp
+>AssemblyInformation[] GetAssemblyInformations(this AppDomain appDomain)
+>```
+><b>Summary:</b> Gets the assembly informations.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+#### GetAssemblyInformationsByStartsWith
+>```csharp
+>AssemblyInformation[] GetAssemblyInformationsByStartsWith(this AppDomain appDomain, string value)
+>```
+><b>Summary:</b> Gets the assembly informations by assembly fullname should start with value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### GetAssemblyInformationsBySystem
+>```csharp
+>AssemblyInformation[] GetAssemblyInformationsBySystem(this AppDomain appDomain)
+>```
+><b>Summary:</b> Gets the assembly informations by system.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
 #### GetCustomAssemblies
 >```csharp
 >Assembly[] GetCustomAssemblies(this AppDomain appDomain)
