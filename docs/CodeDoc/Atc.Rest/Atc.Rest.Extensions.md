@@ -30,6 +30,14 @@
 
 ### Static Methods
 
+#### MapApiAssemblyInformations
+>```csharp
+>void MapApiAssemblyInformations(this IEndpointRouteBuilder endpoints, string pattern)
+>```
+#### MapApiManagementAssemblyInformations
+>```csharp
+>void MapApiManagementAssemblyInformations(this IEndpointRouteBuilder endpoints)
+>```
 #### MapApiSpecificationEndpoint
 >```csharp
 >void MapApiSpecificationEndpoint(this IEndpointRouteBuilder endpoints, List<AssemblyPairOptions> assemblyPairs)

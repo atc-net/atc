@@ -4835,6 +4835,7 @@
 - [CharExtensions](System.md#charextensions)
   -  Static Methods
      - IsAscii(this char value)
+- [ConfigurationException](System.md#configurationexception)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
