@@ -1,5 +1,3 @@
-using AuthorizationOptions = Atc.Rest.Options.AuthorizationOptions;
-
 namespace Atc.Rest.Extended.Options;
 
 public class ConfigureAuthorizationOptions :
@@ -21,7 +19,8 @@ public class ConfigureAuthorizationOptions :
     [SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "OK.")]
     public void PostConfigure(string name, JwtBearerOptions options)
     {
-        if (!apiOptions.Authorization.IsSecurityEnabled())
+        if (apiOptions.Authorization is not null &&
+            !apiOptions.Authorization.IsSecurityEnabled())
         {
             return;
         }
@@ -31,9 +30,14 @@ public class ConfigureAuthorizationOptions :
             return;
         }
 
+        if (apiOptions.Authorization is null)
+        {
+            return;
+        }
+
         SanityCheck(options);
 
-        if (apiOptions.Authorization.ValidAudiences?.Any() == false)
+        if (!apiOptions.Authorization.ValidAudiences.Any())
         {
             apiOptions.Authorization.ValidAudiences = new List<string>
             {
@@ -54,7 +58,7 @@ public class ConfigureAuthorizationOptions :
             ValidAudience = apiOptions.Authorization.Audience,
             ValidAudiences = apiOptions.Authorization.ValidAudiences,
             ValidateIssuer = !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
-                             apiOptions.Authorization.ValidIssuers?.Any() == true,
+                             apiOptions.Authorization.ValidIssuers.Any(),
         };
 
         if (!options.TokenValidationParameters.ValidateIssuer)
@@ -63,7 +67,7 @@ public class ConfigureAuthorizationOptions :
         }
 
         options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
-        options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
+        options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers;
 
         options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeysAsync(options).GetAwaiter().GetResult();
         options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
@@ -109,7 +113,8 @@ public class ConfigureAuthorizationOptions :
                     options.Authority));
         }
 
-        if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+        if (apiOptions.Authorization is not null &&
+            !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
         {
             issuerSigningKeys.AddRange(
                 await GetIssuerSigningKeysAsync(
@@ -130,10 +135,11 @@ public class ConfigureAuthorizationOptions :
     {
         ArgumentNullException.ThrowIfNull(options);
 
-        if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
-            string.IsNullOrEmpty(apiOptions.Authorization.Audience))
+        if (apiOptions.Authorization is null ||
+            (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
+            string.IsNullOrEmpty(apiOptions.Authorization.Audience)))
         {
-            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
+            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {Atc.Rest.Options.AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
         }
     }
 }
