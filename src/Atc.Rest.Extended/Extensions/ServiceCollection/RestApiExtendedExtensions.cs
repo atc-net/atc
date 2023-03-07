@@ -1,5 +1,3 @@
-using AuthorizationOptions = Atc.Rest.Options.AuthorizationOptions;
-
 // ReSharper disable InvertIf
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
@@ -49,9 +47,12 @@ public static class RestApiExtendedExtensions
             services.AddFluentValidation<TStartup>(restApiOptions.UseAutoRegistrateServices, restApiOptions.AssemblyPairs);
         }
 
-        configuration.Bind(AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
-        services.ConfigureOptions<ConfigureAuthorizationOptions>();
-        services.AddAuthentication().AddJwtBearer();
+        if (restApiOptions.Authorization is not null)
+        {
+            configuration.Bind(Atc.Rest.Options.AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
+            services.ConfigureOptions<ConfigureAuthorizationOptions>();
+            services.AddAuthentication().AddJwtBearer();
+        }
 
         return services;
     }

@@ -65,8 +65,11 @@ public class ConfigureAuthorizationOptionsTests
     [Theory, AutoData]
     public void PostConfigure_JwtBearerOptions_ValidateIssuer_False_If_No_Issuers(RestApiExtendedOptions apiOptions)
     {
-        apiOptions.Authorization.Issuer = null!;
-        apiOptions.Authorization.ValidIssuers = new List<string>();
+        apiOptions.Authorization = new AuthorizationOptions
+        {
+            Issuer = null!,
+            ValidIssuers = new List<string>(),
+        };
 
         var options = new JwtBearerOptions();
         new ConfigureAuthorizationOptions(apiOptions, null).PostConfigure(string.Empty, options);
@@ -74,19 +77,12 @@ public class ConfigureAuthorizationOptionsTests
     }
 
     [Theory, AutoData]
-    public void PostConfigure_JwtBearerOptions_ValidateIssuer_True_With_ValidIssuers(RestApiExtendedOptions apiOptions)
-    {
-        apiOptions.Authorization.Issuer = null!;
-
-        var options = new JwtBearerOptions();
-        new ConfigureAuthorizationOptions(apiOptions, null).PostConfigure(string.Empty, options);
-        options.TokenValidationParameters.ValidateIssuer.Should().BeTrue();
-    }
-
-    [Theory, AutoData]
     public void PostConfigure_JwtBearerOptions_ValidateIssuer_True_With_Issuer(RestApiExtendedOptions apiOptions)
     {
-        apiOptions.Authorization.ValidIssuers = new List<string>();
+        apiOptions.Authorization = new AuthorizationOptions
+        {
+            ValidIssuers = new List<string>(),
+        };
 
         var options = new JwtBearerOptions();
         new ConfigureAuthorizationOptions(apiOptions, null).PostConfigure(string.Empty, options);
@@ -96,8 +92,11 @@ public class ConfigureAuthorizationOptionsTests
     [Theory, AutoData]
     public void PostConfigure_JwtBearerOptions_ValidateIssuer_False_With_ValidIssuers_Null(RestApiExtendedOptions apiOptions)
     {
-        apiOptions.Authorization.Issuer = null!;
-        apiOptions.Authorization.ValidIssuers = null!;
+        apiOptions.Authorization = new AuthorizationOptions
+        {
+            Issuer = null!,
+            ValidIssuers = null!,
+        };
 
         var options = new JwtBearerOptions();
         new ConfigureAuthorizationOptions(apiOptions, null).PostConfigure(string.Empty, options);

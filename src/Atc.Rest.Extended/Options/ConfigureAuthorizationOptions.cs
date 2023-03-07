@@ -1,5 +1,6 @@
-using AuthorizationOptions = Atc.Rest.Options.AuthorizationOptions;
-
+// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 namespace Atc.Rest.Extended.Options;
 
 public class ConfigureAuthorizationOptions :
@@ -18,16 +19,39 @@ public class ConfigureAuthorizationOptions :
         apiOptions = options ?? throw new ArgumentNullException(nameof(options));
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
+    [SuppressMessage("Design", "CA5404:Do not disable token validation checks", Justification = "OK.")]
     [SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "OK.")]
     public void PostConfigure(string name, JwtBearerOptions options)
     {
-        if (!apiOptions.Authorization.IsSecurityEnabled())
+        if (apiOptions.Authorization is not null &&
+            !apiOptions.Authorization.IsSecurityEnabled())
         {
+            if (apiOptions.Authorization.ValidIssuers is null ||
+                apiOptions.Authorization.Issuer is null)
+            {
+                options.TokenValidationParameters.ValidateIssuer = false;
+            }
+
+            if (apiOptions.Authorization.ValidAudiences is null ||
+                apiOptions.Authorization.Audience is null)
+            {
+                options.TokenValidationParameters.ValidateAudience = false;
+            }
+
             return;
         }
 
         if (apiOptions.AllowAnonymousAccessForDevelopment && environment?.IsDevelopment() == true)
         {
+            return;
+        }
+
+        if (apiOptions.Authorization is null)
+        {
+            options.TokenValidationParameters.ValidateIssuer = false;
+            options.TokenValidationParameters.ValidateAudience = false;
             return;
         }
 
@@ -109,7 +133,8 @@ public class ConfigureAuthorizationOptions :
                     options.Authority));
         }
 
-        if (!string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
+        if (apiOptions.Authorization is not null &&
+            !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
         {
             issuerSigningKeys.AddRange(
                 await GetIssuerSigningKeysAsync(
@@ -130,10 +155,11 @@ public class ConfigureAuthorizationOptions :
     {
         ArgumentNullException.ThrowIfNull(options);
 
-        if (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
-            string.IsNullOrEmpty(apiOptions.Authorization.Audience))
+        if (apiOptions.Authorization is null ||
+            (string.IsNullOrEmpty(apiOptions.Authorization.ClientId) &&
+            string.IsNullOrEmpty(apiOptions.Authorization.Audience)))
         {
-            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
+            throw new InvalidOperationException($"Missing ClientId and Audience. Please verify the {Atc.Rest.Options.AuthorizationOptions.ConfigurationSectionName} section in appSettings and ensure that the ClientId or Audience is specified");
         }
     }
 }

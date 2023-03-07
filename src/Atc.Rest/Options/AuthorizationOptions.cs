@@ -1,3 +1,4 @@
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 namespace Atc.Rest.Options;
 
 /// <summary>
@@ -56,6 +57,6 @@ public class AuthorizationOptions
            !string.IsNullOrEmpty(Instance) ||
            !string.IsNullOrEmpty(Audience) ||
            !string.IsNullOrEmpty(Issuer) ||
-           ValidAudiences.Any() ||
-           ValidIssuers.Any();
+           (ValidAudiences is not null && ValidAudiences.Any()) ||
+           (ValidIssuers is not null && ValidIssuers.Any());
 }

@@ -5,7 +5,7 @@ public class RestApiOptions
 {
     public bool AllowAnonymousAccessForDevelopment { get; set; } = true;
 
-    public AuthorizationOptions Authorization { get; set; } = new();
+    public AuthorizationOptions? Authorization { get; set; } = new();
 
     public bool UseApplicationInsights { get; set; } = true;
 
