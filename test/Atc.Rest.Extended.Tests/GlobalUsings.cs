@@ -6,6 +6,7 @@ global using Atc.Rest.Extended.Extensions;
 global using Atc.Rest.Extended.Filters;
 global using Atc.Rest.Extended.Options;
 global using Atc.Rest.Extended.Versioning;
+global using Atc.Rest.Options;
 global using Atc.XUnit;
 
 global using Microsoft.AspNetCore.Authentication;

@@ -1,3 +1,6 @@
+// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 namespace Atc.Rest.Extended.Options;
 
 public class ConfigureAuthorizationOptions :
@@ -22,6 +25,18 @@ public class ConfigureAuthorizationOptions :
         if (apiOptions.Authorization is not null &&
             !apiOptions.Authorization.IsSecurityEnabled())
         {
+            if (apiOptions.Authorization.ValidIssuers is null ||
+                apiOptions.Authorization.Issuer is null)
+            {
+                options.TokenValidationParameters.ValidateIssuer = false;
+            }
+
+            if (apiOptions.Authorization.ValidAudiences is null ||
+                apiOptions.Authorization.Audience is null)
+            {
+                options.TokenValidationParameters.ValidateAudience = false;
+            }
+
             return;
         }
 
@@ -32,12 +47,14 @@ public class ConfigureAuthorizationOptions :
 
         if (apiOptions.Authorization is null)
         {
+            options.TokenValidationParameters.ValidateIssuer = false;
+            options.TokenValidationParameters.ValidateAudience = false;
             return;
         }
 
         SanityCheck(options);
 
-        if (!apiOptions.Authorization.ValidAudiences.Any())
+        if (apiOptions.Authorization.ValidAudiences?.Any() == false)
         {
             apiOptions.Authorization.ValidAudiences = new List<string>
             {
@@ -58,7 +75,7 @@ public class ConfigureAuthorizationOptions :
             ValidAudience = apiOptions.Authorization.Audience,
             ValidAudiences = apiOptions.Authorization.ValidAudiences,
             ValidateIssuer = !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
-                             apiOptions.Authorization.ValidIssuers.Any(),
+                             apiOptions.Authorization.ValidIssuers?.Any() == true,
         };
 
         if (!options.TokenValidationParameters.ValidateIssuer)
@@ -67,7 +84,7 @@ public class ConfigureAuthorizationOptions :
         }
 
         options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
-        options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers;
+        options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
 
         options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeysAsync(options).GetAwaiter().GetResult();
         options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
