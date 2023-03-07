@@ -19,6 +19,8 @@ public class ConfigureAuthorizationOptions :
         apiOptions = options ?? throw new ArgumentNullException(nameof(options));
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    [SuppressMessage("Design", "CA5404:Do not disable token validation checks", Justification = "OK.")]
     [SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "OK.")]
     public void PostConfigure(string name, JwtBearerOptions options)
     {
