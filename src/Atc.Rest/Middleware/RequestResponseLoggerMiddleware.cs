@@ -6,6 +6,8 @@ namespace Atc.Rest.Middleware;
 [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
 public class RequestResponseLoggerMiddleware
 {
+    private const string BinaryDataRedactedString = $"# BINARY-DATA-REDACTED #";
+
     private readonly RequestDelegate next;
     private readonly ILogger<RequestResponseLoggerMiddleware> logger;
     private readonly JsonSerializerOptions jsonSerializerOptions;
@@ -61,16 +63,27 @@ public class RequestResponseLoggerMiddleware
         if (apiOptions.RequestResponseLoggerOptions.IncludeResponseBody &&
             originalResponseBody is not null)
         {
-            swapStream.Seek(0, SeekOrigin.Begin);
-            var responseBodyText = await new StreamReader(swapStream).ReadToEndAsync();
+            if (IsBinaryContent(logModel.Response.ContentType))
+            {
+                swapStream.Seek(0, SeekOrigin.Begin);
+                await swapStream.CopyToAsync(originalResponseBody);
+                httpContext.Response.Body = originalResponseBody;
 
-            swapStream.Seek(0, SeekOrigin.Begin);
-            await swapStream.CopyToAsync(originalResponseBody);
-            httpContext.Response.Body = originalResponseBody;
+                logModel.Response.Body = BinaryDataRedactedString;
+            }
+            else
+            {
+                swapStream.Seek(0, SeekOrigin.Begin);
+                var responseBodyText = await new StreamReader(swapStream).ReadToEndAsync();
 
-            StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
+                swapStream.Seek(0, SeekOrigin.Begin);
+                await swapStream.CopyToAsync(originalResponseBody);
+                httpContext.Response.Body = originalResponseBody;
 
-            logModel.Response.Body = responseBodyText;
+                StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
+
+                logModel.Response.Body = responseBodyText;
+            }
         }
 
         // Exception was managed at app.UseExceptionHandler() or by any middleware
@@ -129,11 +142,7 @@ public class RequestResponseLoggerMiddleware
         var sb = new StringBuilder();
         foreach (var part in saContentTypes)
         {
-            if (part.StartsWith("application/", StringComparison.OrdinalIgnoreCase) ||
-                part.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
-                part.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) ||
-                part.StartsWith("video/", StringComparison.OrdinalIgnoreCase) ||
-                part.StartsWith("multipart/", StringComparison.OrdinalIgnoreCase))
+            if (IsBinaryContent(part))
             {
                 if (part.StartsWith("application/json", StringComparison.OrdinalIgnoreCase) ||
                     part.StartsWith("application/xml", StringComparison.OrdinalIgnoreCase))
@@ -157,7 +166,7 @@ public class RequestResponseLoggerMiddleware
                     {
                         sbOverridePart.Append(
                             s.Any(c => c > MaxAsciiValue)
-                                ? $"{Environment.NewLine}# BINARY-DATA-REDACTED #"
+                                ? $"{Environment.NewLine}{BinaryDataRedactedString}"
                                 : s);
                     }
 
@@ -200,4 +209,12 @@ public class RequestResponseLoggerMiddleware
             logger.LogError(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
         }
     }
+
+    private static bool IsBinaryContent(
+        string contentType)
+        => contentType.StartsWith("application/", StringComparison.OrdinalIgnoreCase) ||
+           contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
+           contentType.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) ||
+           contentType.StartsWith("video/", StringComparison.OrdinalIgnoreCase) ||
+           contentType.StartsWith("multipart/", StringComparison.OrdinalIgnoreCase);
 }
