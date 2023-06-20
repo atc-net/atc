@@ -4,6 +4,7 @@ namespace Atc.Rest.Middleware;
 [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
 [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
 [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
+[SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
 public class RequestResponseLoggerMiddleware
 {
     private const string BinaryDataRedactedString = $"# BINARY-DATA-REDACTED #";
