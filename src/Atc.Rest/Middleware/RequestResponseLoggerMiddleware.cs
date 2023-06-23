@@ -64,7 +64,8 @@ public class RequestResponseLoggerMiddleware
         if (apiOptions.RequestResponseLoggerOptions.IncludeResponseBody &&
             originalResponseBody is not null)
         {
-            if (IsBinaryContent(logModel.Response.ContentType))
+            if (logModel.Response.ContentType is not null &&
+                IsBinaryContent(logModel.Response.ContentType))
             {
                 swapStream.Seek(0, SeekOrigin.Begin);
                 await swapStream.CopyToAsync(originalResponseBody);
