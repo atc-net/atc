@@ -18,7 +18,7 @@ public sealed class ResponseLogModel
 
     public IDictionary<string, string> HeaderParameters { get; init; }
 
-    public string ContentType { get; init; }
+    public string? ContentType { get; init; }
 
     public string? Body { get; set; }
 
