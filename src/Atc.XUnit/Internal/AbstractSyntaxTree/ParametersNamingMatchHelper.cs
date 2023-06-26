@@ -48,16 +48,21 @@ internal static class ParametersNamingMatchHelper
             return true;
         }
 
-        if (filteredParameters.Length != astNodeForTestMethodAndParameters.Item2.Count)
+        var filteredAstParameters = astNodeForTestMethodAndParameters
+            .Item2
+            .TakeLast(filteredParameters.Length)
+            .ToList();
+
+        if (filteredParameters.Length != filteredAstParameters.Count)
         {
             return false;
         }
 
         // ReSharper disable once LoopCanBeConvertedToQuery
-        for (var i = 0; i < astNodeForTestMethodAndParameters.Item2.Count; i++)
+        for (var i = 0; i < filteredAstParameters.Count; i++)
         {
             var parameter = filteredParameters[i];
-            var pc = ParameterCheck(parameter, i, astNodeForTestMethodAndParameters.Item2);
+            var pc = ParameterCheck(parameter, i, filteredAstParameters);
             if (!pc)
             {
                 return false;
@@ -320,8 +325,17 @@ internal static class ParametersNamingMatchHelper
             return methodParameterTypeName.Equals("I" + testParameterTypeName, StringComparison.Ordinal);
         }
 
-        return methodParameter.ParameterType.IsAbstract
-            ? testParameterTypeName.EndsWith(methodParameterTypeName, StringComparison.Ordinal)
-            : methodParameterTypeName.Equals(testParameterTypeName, StringComparison.Ordinal);
+        if (methodParameter.ParameterType.IsAbstract)
+        {
+            return testParameterTypeName.EndsWith(methodParameterTypeName, StringComparison.Ordinal);
+        }
+
+        if (methodParameterTypeName.Equals(testParameterTypeName, StringComparison.Ordinal) ||
+            methodParameter.ParameterType.FullName!.Equals(testParameterTypeName, StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

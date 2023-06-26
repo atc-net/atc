@@ -7,7 +7,7 @@ internal static class DecompilerHelper
     {
         var assemblyFileName = new Uri(assembly.CodeBase).AbsolutePath;
         using var module = new PEFile(assemblyFileName);
-        var resolver = new UniversalAssemblyResolver(assemblyFileName, false, module.Reader.DetectTargetFrameworkId());
+        var resolver = new UniversalAssemblyResolver(assemblyFileName, false, targetFramework: null);
         return new CSharpDecompiler(assemblyFileName, resolver, GetSettings());
     }
 
@@ -31,7 +31,7 @@ internal static class DecompilerHelper
             {
                 foreach (var astNode in astNodes)
                 {
-                    if (!(astNode is MethodDeclaration methodDeclaration))
+                    if (astNode is not MethodDeclaration methodDeclaration)
                     {
                         continue;
                     }
