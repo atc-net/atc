@@ -67,7 +67,7 @@ public static class DecimalExtensions
             sbd = sab[1];
             if (sab[1].Length > decimalPrecision)
             {
-                sbd = sab[1].Substring(0, decimalPrecision);
+                sbd = sab[1][..decimalPrecision];
             }
         }
 

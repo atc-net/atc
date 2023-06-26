@@ -131,7 +131,7 @@ public static class OpenApiOperationExtensions
         if (sa.Length > 0)
         {
             // Test for last-term
-            var termWord = sa.Last();
+            var termWord = sa[^1];
             if (termWord.EndsWith('s') &&
                 !(termWord.Equals("Ids", StringComparison.Ordinal) ||
                   termWord.Equals("Identifiers", StringComparison.Ordinal) ||
@@ -141,7 +141,7 @@ public static class OpenApiOperationExtensions
             }
 
             // Test for first-term
-            termWord = sa.First();
+            termWord = sa[0];
             if (termWord.EndsWith('s'))
             {
                 return true;

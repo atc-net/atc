@@ -8,8 +8,9 @@ public static class UsingDirectiveSyntaxExtensions
             usingDirectives
                 .OrderBy(Compare)
                 .ThenBy(x => x.Alias?.ToString(), StringComparer.Ordinal)
-                .ThenByDescending(x => placeSystemNamespaceFirst && x.Name.ToString().StartsWith(nameof(System), StringComparison.Ordinal))
-                .ThenBy(x => x.Name.ToString(), StringComparer.Ordinal));
+                .ThenByDescending(x => placeSystemNamespaceFirst &&
+                                       x.Name!.ToString().StartsWith(nameof(System), StringComparison.Ordinal))
+                .ThenBy(x => x.Name!.ToString(), StringComparer.Ordinal));
 
     private static int Compare(UsingDirectiveSyntax directive)
     {

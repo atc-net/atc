@@ -306,7 +306,7 @@ public static class OpenApiSchemaExtensions
 
         if (schema.OneOf is not null &&
             schema.OneOf.Count == 1 &&
-            schema.OneOf.First().Properties.Count > 0)
+            schema.OneOf[0].Properties.Count > 0)
         {
             return true;
         }
@@ -866,9 +866,9 @@ public static class OpenApiSchemaExtensions
         {
             dataType = schema.Reference.Id;
         }
-        else if (schema.OneOf is not null && schema.OneOf.Count == 1 && schema.OneOf.First().Reference?.Id is not null)
+        else if (schema.OneOf is not null && schema.OneOf.Count == 1 && schema.OneOf[0].Reference?.Id is not null)
         {
-            dataType = schema.OneOf.First().Reference.Id;
+            dataType = schema.OneOf[0].Reference.Id;
         }
 
         return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)

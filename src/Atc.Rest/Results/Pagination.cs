@@ -53,5 +53,5 @@ public class Pagination<T>
     public IReadOnlyList<T>? Items { get; set; } = Array.Empty<T>();
 
     public override string ToString()
-        => FormattableString.Invariant($"{nameof(PageIndex)}: {PageIndex}, {nameof(PageSize)}: {PageSize}, {nameof(QueryString)}: {QueryString}, {nameof(ContinuationToken)}: {ContinuationToken}, {nameof(Count)}: {Count}, {nameof(TotalCount)}: {TotalCount}, {nameof(TotalPages)}: {TotalPages}");
+        => string.Create(CultureInfo.InvariantCulture, $"{nameof(PageIndex)}: {PageIndex}, {nameof(PageSize)}: {PageSize}, {nameof(QueryString)}: {QueryString}, {nameof(ContinuationToken)}: {ContinuationToken}, {nameof(Count)}: {Count}, {nameof(TotalCount)}: {TotalCount}, {nameof(TotalPages)}: {TotalPages}");
 }

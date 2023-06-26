@@ -8,7 +8,7 @@ public class MemberInfoExtensionsTests
     public void HasExcludeFromCodeCoverageAttribute(bool expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.HasExcludeFromCodeCoverageAttribute();
@@ -23,7 +23,7 @@ public class MemberInfoExtensionsTests
     public void HasCompilerGeneratedAttribute(bool expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.HasCompilerGeneratedAttribute();
@@ -38,7 +38,7 @@ public class MemberInfoExtensionsTests
     public void HasIgnoreDisplayAttribute(bool expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.HasIgnoreDisplayAttribute();
@@ -53,7 +53,7 @@ public class MemberInfoExtensionsTests
     public void HasRequiredAttribute(bool expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.HasRequiredAttribute();
@@ -68,7 +68,7 @@ public class MemberInfoExtensionsTests
     public void IsPropertyWithSetter(bool expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.IsPropertyWithSetter();
@@ -84,7 +84,7 @@ public class MemberInfoExtensionsTests
     public void GetUnderlyingType(Type expected, Type type, string methodName)
     {
         // Arrange
-        var memberInfo = type.GetMember(methodName).First();
+        var memberInfo = type.GetMember(methodName)[0];
 
         // Act
         var actual = memberInfo.GetUnderlyingType();

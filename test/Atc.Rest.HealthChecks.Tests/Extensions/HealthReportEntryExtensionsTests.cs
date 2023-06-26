@@ -73,7 +73,7 @@ public class HealthReportEntryExtensionsTests
         Assert.Equal(myHealthStatus, actual.Status);
         Assert.Equal(myTimeSpan, actual.Duration);
 
-        var (healthCheckName, healthCheckStatus, message, duration) = actual.Resources.First();
+        var (healthCheckName, healthCheckStatus, message, duration) = actual.Resources[0];
 
         Assert.Equal(myHealthCheckName, healthCheckName);
         Assert.Equal(myHealthStatus, healthCheckStatus);
@@ -104,7 +104,7 @@ public class HealthReportEntryExtensionsTests
             .And.Subject.Should().BeAssignableTo<IList<HealthCheck>>()
             .And.HaveCount(1);
 
-        var (name, resourceHealthChecks, healthStatus, timeSpan) = actual.First();
+        var (name, resourceHealthChecks, healthStatus, timeSpan) = actual[0];
 
         Assert.Empty(resourceHealthChecks);
         Assert.Equal(myReportName, name);
@@ -143,14 +143,14 @@ public class HealthReportEntryExtensionsTests
             .And.Subject.Should().BeAssignableTo<IList<HealthCheck>>()
             .And.HaveCount(1);
 
-        var (name, resources, healthStatus, timeSpan) = actual.First();
+        var (name, resources, healthStatus, timeSpan) = actual[0];
 
         Assert.Equal(myReportName, name);
         Assert.Single(resources);
         Assert.Equal(myHealthStatus, healthStatus);
         Assert.Equal(myTimeSpan, timeSpan);
 
-        var (healthCheckName, healthCheckStatus, message, duration) = resources.First();
+        var (healthCheckName, healthCheckStatus, message, duration) = resources[0];
 
         Assert.Equal(myHealthCheckName, healthCheckName);
         Assert.Equal(myHealthStatus, healthCheckStatus);

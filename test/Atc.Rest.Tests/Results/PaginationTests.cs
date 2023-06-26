@@ -16,7 +16,7 @@ public class PaginationTests
 
         // Assert
         sut.Count.Should().Be(data.Count - 1);
-        sut.Items.Should().NotContain(data.Last());
+        sut.Items.Should().NotContain(data[^1]);
     }
 
     [Theory]

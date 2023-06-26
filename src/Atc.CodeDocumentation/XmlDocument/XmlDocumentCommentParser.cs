@@ -125,7 +125,7 @@ internal static class XmlDocumentCommentParser
         }
 
         return typeName.StartsWith(ns, StringComparison.Ordinal)
-            ? $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace(".", "#", StringComparison.Ordinal).ToLower(GlobalizationConstants.EnglishCultureInfo), RegexOptions.None, TimeSpan.FromSeconds(1))})"
+            ? $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace('.', '#').ToLower(GlobalizationConstants.EnglishCultureInfo), RegexOptions.None, TimeSpan.FromSeconds(1))})"
             : $"`{typeName}`";
     }
 

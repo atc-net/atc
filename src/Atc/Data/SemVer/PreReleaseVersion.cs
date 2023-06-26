@@ -25,7 +25,7 @@ internal static class PreReleaseVersion
     public static string Build(string input)
     {
         var identifierStrings = Identifiers(input).Select(i => i.Clean());
-        return string.Join(".", identifierStrings.ToArray());
+        return string.Join('.', identifierStrings.ToArray());
     }
 
     private static IEnumerable<Identifier> Identifiers(string input)
