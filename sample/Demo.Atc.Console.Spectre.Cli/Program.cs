@@ -23,18 +23,18 @@ public static class Program
         {
             config.AddCommand<HelloCommand>("hello")
                 .WithDescription("Say hello")
-                .WithExample(new[] { "hello Phil" })
-                .WithExample(new[] { "hello Phil --count 4" });
+                .WithExample("hello Phil")
+                .WithExample("hello Phil --count 4");
 
             config.AddCommand<LogCommand>("log")
                 .WithDescription("Write a log message")
-                .WithExample(new[] { "log Hello world" })
-                .WithExample(new[] { "log Hello world --logLevel Trace" })
-                .WithExample(new[] { "log Hello world --logLevel Debug" })
-                .WithExample(new[] { "log Hello world --logLevel Information" })
-                .WithExample(new[] { "log Hello world --logLevel Warning" })
-                .WithExample(new[] { "log Hello world --logLevel Error" })
-                .WithExample(new[] { "log Hello world --logLevel Critical" });
+                .WithExample("log Hello world")
+                .WithExample("log Hello world --logLevel Trace")
+                .WithExample("log Hello world --logLevel Debug")
+                .WithExample("log Hello world --logLevel Information")
+                .WithExample("log Hello world --logLevel Warning")
+                .WithExample("log Hello world --logLevel Error")
+                .WithExample("log Hello world --logLevel Critical");
         });
 
         return app.RunAsync(args);
