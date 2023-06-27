@@ -1361,35 +1361,23 @@ The MathHelper module contains procedures used to preform math operations.
 
 #### Execute
 >```csharp
->Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments)
+>Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
 #### Execute
 >```csharp
->Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
->```
-#### Execute
->```csharp
->Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
->```
-#### Execute
->```csharp
->Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+>Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
 #### ExecuteAndIgnoreOutput
 >```csharp
->Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments)
+>Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
 #### ExecuteAndIgnoreOutput
 >```csharp
->Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments)
+>Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
-#### ExecuteAndIgnoreOutput
+#### ExecutePrompt
 >```csharp
->Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
->```
-#### ExecuteAndIgnoreOutput
->```csharp
->Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, int timeoutInSec, CancellationToken cancellationToken = null)
+>Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
 >```
 #### KillById
 >```csharp
