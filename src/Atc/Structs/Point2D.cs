@@ -14,7 +14,7 @@ public record struct Point2D(double X = 0, double Y = 0)
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
-    public bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
+    public readonly bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
 
     /// <inheritdoc />
     public override readonly string ToString()

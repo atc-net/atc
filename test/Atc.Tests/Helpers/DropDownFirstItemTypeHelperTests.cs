@@ -52,6 +52,6 @@ public class DropDownFirstItemTypeHelperTests
 
         // Assert
         actual.Should().HaveCount(expectedCount);
-        Assert.Equal(expectedFirstItem, actual.First());
+        Assert.Equal(expectedFirstItem, actual[0]);
     }
 }

@@ -43,6 +43,6 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         sbJson.AppendLine("}");
 
         var jsonOutput = sbJson.ToString();
-        File.WriteAllTextAsync(appSettingsFile.FullName, jsonOutput);
+        File.WriteAllText(appSettingsFile.FullName, jsonOutput);
     }
 }

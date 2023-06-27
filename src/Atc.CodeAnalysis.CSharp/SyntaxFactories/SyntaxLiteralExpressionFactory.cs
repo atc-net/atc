@@ -17,7 +17,7 @@ public static class SyntaxLiteralExpressionFactory
                 return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedInt));
             }
 
-            value = value.Replace(",", ".", StringComparison.Ordinal);
+            value = value.Replace(',', '.');
             if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedDouble))
             {
                 return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedDouble));

@@ -16,7 +16,7 @@ public class SyntaxLiteralExpressionFactoryTests
 
         // Assert
         Assert.Equal(SyntaxKind.NumericLiteralExpression, result.Kind());
-        Assert.Equal(value.Replace(",", ".", StringComparison.Ordinal), result.ToString());
+        Assert.Equal(value.Replace(',', '.'), result.ToString());
     }
 
     [Theory]

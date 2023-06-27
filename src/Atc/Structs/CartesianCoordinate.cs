@@ -13,7 +13,7 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
-    public bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
+    public readonly bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
 
     /// <summary>
     /// Equals the specified other.

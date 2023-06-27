@@ -14,7 +14,7 @@ public record struct GridCell(int X = 0, int Y = 0)
     /// <returns>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </returns>
-    public bool IsDefault => X == 0 && Y == 0;
+    public readonly bool IsDefault => X == 0 && Y == 0;
 
     /// <inheritdoc />
     public override readonly string ToString()

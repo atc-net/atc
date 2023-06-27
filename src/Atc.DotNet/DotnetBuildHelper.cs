@@ -165,7 +165,7 @@ public static class DotnetBuildHelper
         var dotnetFile = DotnetHelper.GetDotnetExecutable();
 
         return await ProcessHelper
-            .Execute(rootPath, dotnetFile, arguments, timeoutInSec, cancellationToken)
+            .Execute(rootPath, dotnetFile, arguments, runAsAdministrator: false, (ushort)timeoutInSec, cancellationToken)
             .ConfigureAwait(false);
     }
 

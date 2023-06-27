@@ -26,13 +26,13 @@ public static class FluentValidationExtensions
                         var apiValidationTypes = assemblyPairOptions.ApiAssembly.GetValidationTypes();
                         if (apiValidationTypes.Length > 0)
                         {
-                            options.RegisterValidatorsFromAssemblyContaining(apiValidationTypes.First());
+                            options.RegisterValidatorsFromAssemblyContaining(apiValidationTypes[0]);
                         }
 
                         var domainValidationTypes = assemblyPairOptions.DomainAssembly.GetValidationTypes();
                         if (domainValidationTypes.Length > 0)
                         {
-                            options.RegisterValidatorsFromAssemblyContaining(domainValidationTypes.First());
+                            options.RegisterValidatorsFromAssemblyContaining(domainValidationTypes[0]);
                         }
                     }
                 }

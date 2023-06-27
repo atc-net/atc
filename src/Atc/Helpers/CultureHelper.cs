@@ -396,7 +396,7 @@ public static class CultureHelper
                 break;
             }
 
-            case 5 when value.IndexOf("-", StringComparison.Ordinal) != -1:
+            case 5 when value.IndexOf('-', StringComparison.Ordinal) != -1:
             {
                 culture = cultures.Find(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
                 if (culture is not null)
@@ -858,18 +858,18 @@ public static class CultureHelper
 
     private static string ExtractCountryEnglishName(CultureInfo cultureInfo)
     {
-        var x = cultureInfo.EnglishName.IndexOf("(", StringComparison.Ordinal);
+        var x = cultureInfo.EnglishName.IndexOf('(', StringComparison.Ordinal);
         return x == -1
             ? cultureInfo.EnglishName
-            : cultureInfo.EnglishName.Substring(x + 1).Replace(")", string.Empty, StringComparison.Ordinal);
+            : cultureInfo.EnglishName[(x + 1)..].Replace(")", string.Empty, StringComparison.Ordinal);
     }
 
     private static string ExtractLanguageEnglishName(CultureInfo cultureInfo)
     {
-        var x = cultureInfo.EnglishName.IndexOf("(", StringComparison.Ordinal);
+        var x = cultureInfo.EnglishName.IndexOf('(', StringComparison.Ordinal);
         return x == -1
             ? cultureInfo.EnglishName
-            : cultureInfo.EnglishName.Substring(0, x - 1);
+            : cultureInfo.EnglishName[..(x - 1)];
     }
 
     [SuppressMessage("Globalization", "CA1304:Specify CultureInfo", Justification = "OK.")]

@@ -32,7 +32,7 @@ public static class SyntaxNodeExtensions
         }
 
         return syntaxNode.Select<UsingDirectiveSyntax>()
-            .Select(x => x.Name.ToFullString())
+            .Select(x => x.Name!.ToFullString())
             .ToArray();
     }
 
@@ -45,7 +45,7 @@ public static class SyntaxNodeExtensions
 
         return syntaxNode.Select<UsingDirectiveSyntax>()
             .Where(x => x.Alias is null)
-            .Select(x => x.Name.ToFullString())
+            .Select(x => x.Name!.ToFullString())
             .ToArray();
     }
 }

@@ -108,7 +108,7 @@ public static class MarkdownCodeDocGenerator
                 var beautifyItemName1 = item.BeautifyHtmlName;
                 var beautifyItemName2 = item.BeautifyHtmlName
                     .Replace(",", string.Empty, StringComparison.Ordinal)
-                    .Replace(" ", "-", StringComparison.Ordinal)
+                    .Replace(' ', '-')
                     .ToLower(GlobalizationConstants.EnglishCultureInfo);
 
                 homeBuilder.ListLink(beautifyItemName1, g.Key + ".md" + "#" + beautifyItemName2);

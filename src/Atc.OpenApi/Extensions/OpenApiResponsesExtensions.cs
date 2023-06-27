@@ -19,8 +19,7 @@ public static class OpenApiResponsesExtensions
                 continue;
             }
 
-            var httpStatusCode = parsedType is HttpStatusCode code ? code : 0;
-            result.Add(httpStatusCode);
+            result.Add((HttpStatusCode)parsedType);
         }
 
         return result;

@@ -230,7 +230,7 @@ public static class TypeExtensions
         var types = GetBaseTypeGenericArgumentTypes(type);
         if (types is not null && types.Length == 1)
         {
-            return types.First();
+            return types[0];
         }
 
         return null;

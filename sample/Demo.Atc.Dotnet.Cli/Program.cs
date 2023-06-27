@@ -19,7 +19,7 @@ public static class Program
             {
                 add.AddCommand<BuildDemoConsoleSpectreCliCommand>("demo")
                     .WithDescription("Build the Demo.Atc.Console.Spectre.Cli project")
-                    .WithExample(new[] { "build demo" });
+                    .WithExample("build demo");
             });
         });
 

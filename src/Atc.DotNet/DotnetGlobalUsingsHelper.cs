@@ -162,11 +162,11 @@ public static class DotnetGlobalUsingsHelper
         {
             if (string.IsNullOrEmpty(lastNamespacePrefix))
             {
-                lastNamespacePrefix = item.Split('.').First();
+                lastNamespacePrefix = item.Split('.')[0];
             }
             else
             {
-                var namespacePrefix = item.Split('.').First();
+                var namespacePrefix = item.Split('.')[0];
                 if (!lastNamespacePrefix.Equals(namespacePrefix, StringComparison.Ordinal))
                 {
                     lastNamespacePrefix = namespacePrefix;

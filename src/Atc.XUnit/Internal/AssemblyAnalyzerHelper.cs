@@ -140,7 +140,7 @@ internal static class AssemblyAnalyzerHelper
 
             var className = classType.Name.Replace("Extensions", string.Empty, StringComparison.Ordinal);
             var classNamePrefixSimplified = GetSimpleTypeName(className);
-            var firstParameterType = method.GetParameters().First().ParameterType;
+            var firstParameterType = method.GetParameters()[0].ParameterType;
             var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
             if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||
                 ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified, StringComparison.Ordinal))
@@ -233,7 +233,7 @@ internal static class AssemblyAnalyzerHelper
             beautifyName = beautifyName.Replace("?", string.Empty, StringComparison.Ordinal);
         }
 
-        var i = beautifyName.IndexOf("<", StringComparison.Ordinal);
+        var i = beautifyName.IndexOf('<', StringComparison.Ordinal);
         if (i != -1)
         {
             beautifyName = beautifyName.Substring(0, i);
