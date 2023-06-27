@@ -1,5 +1,6 @@
 // ReSharper disable RedundantExplicitTupleComponentName
 // ReSharper disable LocalizableElement
+// ReSharper disable StringLiteralTypo
 namespace Atc.Helpers;
 
 [ExcludeFromCodeCoverage]
@@ -9,7 +10,8 @@ public static class ProcessHelper
 
     public static Task<(bool IsSuccessful, string Output)> Execute(
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator = false)
     {
         if (fileInfo is null)
         {
@@ -26,13 +28,14 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecute(workingDirectory: null, fileInfo, arguments);
+        return InvokeExecute(workingDirectory: null, fileInfo, arguments, runAsAdministrator);
     }
 
     public static Task<(bool IsSuccessful, string Output)> Execute(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator = false)
     {
         if (workingDirectory is null)
         {
@@ -54,13 +57,25 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecute(workingDirectory, fileInfo, arguments);
+        return InvokeExecute(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
     }
 
     public static Task<(bool IsSuccessful, string Output)> Execute(
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        CancellationToken cancellationToken = default)
+        => Execute(fileInfo, arguments, timeoutInSec, runAsAdministrator: false, cancellationToken);
+
+    public static Task<(bool IsSuccessful, string Output)> Execute(
+        FileInfo fileInfo,
+        string arguments,
+        int timeoutInSec,
+        bool runAsAdministrator = false,
         CancellationToken cancellationToken = default)
     {
         if (fileInfo is null)
@@ -78,7 +93,13 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecuteWithTimeout(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
+        return InvokeExecuteWithTimeout(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            timeoutInSec,
+            runAsAdministrator,
+            cancellationToken);
     }
 
     public static Task<(bool IsSuccessful, string Output)> Execute(
@@ -86,6 +107,15 @@ public static class ProcessHelper
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        CancellationToken cancellationToken = default)
+        => Execute(workingDirectory, fileInfo, arguments, timeoutInSec, runAsAdministrator: false, cancellationToken);
+
+    public static Task<(bool IsSuccessful, string Output)> Execute(
+        DirectoryInfo workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        int timeoutInSec,
+        bool runAsAdministrator = false,
         CancellationToken cancellationToken = default)
     {
         if (workingDirectory is null)
@@ -108,12 +138,19 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecuteWithTimeout(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
+        return InvokeExecuteWithTimeout(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            timeoutInSec,
+            runAsAdministrator,
+            cancellationToken);
     }
 
     public static Task<bool> ExecuteAndIgnoreOutput(
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator = false)
     {
         if (fileInfo is null)
         {
@@ -130,13 +167,18 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecuteAndIgnoreOutput(workingDirectory: null, fileInfo, arguments);
+        return InvokeExecuteAndIgnoreOutput(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
     }
 
     public static Task<bool> ExecuteAndIgnoreOutput(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator = false)
     {
         if (workingDirectory is null)
         {
@@ -158,13 +200,18 @@ public static class ProcessHelper
             throw new FileNotFoundException(nameof(fileInfo));
         }
 
-        return InvokeExecuteAndIgnoreOutput(workingDirectory, fileInfo, arguments);
+        return InvokeExecuteAndIgnoreOutput(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
     }
 
     public static Task<bool> ExecuteAndIgnoreOutput(
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        bool runAsAdministrator = false,
         CancellationToken cancellationToken = default)
     {
         if (fileInfo is null)
@@ -187,7 +234,13 @@ public static class ProcessHelper
             throw new ArgumentException("Timeout should be greater then 1 seconds", nameof(timeoutInSec));
         }
 
-        return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory: null, fileInfo, arguments, timeoutInSec, cancellationToken);
+        return InvokeExecuteWithTimeoutAndIgnoreOutput(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            timeoutInSec,
+            runAsAdministrator,
+            cancellationToken);
     }
 
     public static Task<bool> ExecuteAndIgnoreOutput(
@@ -195,6 +248,7 @@ public static class ProcessHelper
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        bool runAsAdministrator = false,
         CancellationToken cancellationToken = default)
     {
         if (workingDirectory is null)
@@ -222,7 +276,13 @@ public static class ProcessHelper
             throw new ArgumentException("Timeout should be greater then 1 seconds", nameof(timeoutInSec));
         }
 
-        return InvokeExecuteWithTimeoutAndIgnoreOutput(workingDirectory, fileInfo, arguments, timeoutInSec, cancellationToken);
+        return InvokeExecuteWithTimeoutAndIgnoreOutput(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            timeoutInSec,
+            runAsAdministrator,
+            cancellationToken);
     }
 
     public static (bool IsSuccessful, string Output) KillEntryCaller(
@@ -355,6 +415,7 @@ public static class ProcessHelper
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        bool runAsAdministrator,
         CancellationToken cancellationToken)
     {
         var processId = -1;
@@ -364,8 +425,7 @@ public static class ProcessHelper
         {
             var (isSuccessful, output, assignedProcessId) = await TaskHelper
                 .Execute(
-                    _ =>
-                        InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments),
+                    _ => InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments, runAsAdministrator),
                     TimeSpan.FromSeconds(timeoutInSec),
                     cancellationToken)
                 .ConfigureAwait(false);
@@ -407,9 +467,14 @@ public static class ProcessHelper
     private static async Task<(bool IsSuccessful, string Output)> InvokeExecute(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator)
     {
-        var (isSuccessful, output, _) = await InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments);
+        var (isSuccessful, output, _) = await InvokeExecuteWithProcessId(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator).ConfigureAwait(false);
         return (isSuccessful, output);
     }
 
@@ -418,9 +483,15 @@ public static class ProcessHelper
     private static async Task<(bool IsSuccessful, string Output, int ProcessId)> InvokeExecuteWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator)
     {
-        using var process = CreateProcess(redirectStandard: true, workingDirectory, fileInfo, arguments);
+        using var process = CreateProcess(
+            redirectStandard: true,
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
         var processId = -1;
 
         try
@@ -469,6 +540,7 @@ public static class ProcessHelper
         FileInfo fileInfo,
         string arguments,
         int timeoutInSec,
+        bool runAsAdministrator,
         CancellationToken cancellationToken)
     {
         var processName = Path.GetFileNameWithoutExtension(fileInfo.FullName);
@@ -477,8 +549,7 @@ public static class ProcessHelper
         {
             var result = await TaskHelper
                 .Execute(
-                    _ =>
-                        InvokeExecuteAndIgnoreOutput(workingDirectory, fileInfo, arguments),
+                    _ => InvokeExecuteAndIgnoreOutput(workingDirectory, fileInfo, arguments, runAsAdministrator),
                     TimeSpan.FromSeconds(timeoutInSec),
                     cancellationToken)
                 .ConfigureAwait(false);
@@ -499,9 +570,15 @@ public static class ProcessHelper
     private static async Task<bool> InvokeExecuteAndIgnoreOutput(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator)
     {
-        using var process = CreateProcess(redirectStandard: false, workingDirectory, fileInfo, arguments);
+        using var process = CreateProcess(
+            redirectStandard: false,
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
 
         try
         {
@@ -522,19 +599,28 @@ public static class ProcessHelper
         bool redirectStandard,
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
-        string arguments)
+        string arguments,
+        bool runAsAdministrator)
     {
+        var processStartInfo = new ProcessStartInfo
+        {
+            FileName = fileInfo.FullName,
+            Arguments = arguments,
+            UseShellExecute = false,
+            RedirectStandardError = redirectStandard,
+            RedirectStandardOutput = redirectStandard,
+            CreateNoWindow = true,
+        };
+
+        if (runAsAdministrator &&
+            processStartInfo.Verbs.Contains("runas", StringComparer.OrdinalIgnoreCase))
+        {
+            processStartInfo.Verb = "runas";
+        }
+
         var process = new Process
         {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = fileInfo.FullName,
-                Arguments = arguments,
-                UseShellExecute = false,
-                RedirectStandardError = redirectStandard,
-                RedirectStandardOutput = redirectStandard,
-                CreateNoWindow = true,
-            },
+            StartInfo = processStartInfo,
         };
 
         process.StartInfo.WorkingDirectory = workingDirectory is not null && workingDirectory.Exists
