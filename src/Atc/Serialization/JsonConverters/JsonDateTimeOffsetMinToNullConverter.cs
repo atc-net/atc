@@ -4,7 +4,7 @@ public class JsonDateTimeOffsetMinToNullConverter : JsonConverter<DateTimeOffset
 {
     public override DateTimeOffset? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var result = reader.GetDateTime().ToUniversalTime();
+        var result = new DateTimeOffset(reader.GetDateTime().ToUniversalTime());
         if (result == DateTimeOffset.MinValue)
         {
             return null;
