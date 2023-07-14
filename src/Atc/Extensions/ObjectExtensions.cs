@@ -42,4 +42,19 @@ public static class ObjectExtensions
             .GetProperty(propertyName)?
             .GetValue(source, index: null);
     }
+
+    public static T Clone<T>(
+        this T source,
+        CloneStrategyType strategy = CloneStrategyType.Json)
+    {
+        switch (strategy)
+        {
+            case CloneStrategyType.None:
+            case CloneStrategyType.Json:
+                var serialized = JsonSerializer.Serialize(source);
+                return JsonSerializer.Deserialize<T>(serialized)!;
+            default:
+                throw new SwitchCaseDefaultException(strategy);
+        }
+    }
 }

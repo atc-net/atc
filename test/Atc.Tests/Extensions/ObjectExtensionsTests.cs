@@ -1,3 +1,4 @@
+// ReSharper disable ConvertToConstant.Local
 namespace Atc.Tests.Extensions;
 
 public class ObjectExtensionsTests
@@ -49,5 +50,42 @@ public class ObjectExtensionsTests
         Assert.Equal("MyKey", actualKey);
         Assert.Equal("MyValue", actualValue);
         Assert.Equal("MyDescription", actualDescription);
+    }
+
+    [Fact]
+    public void Clone()
+    {
+        // Arrange
+        var sut = new LogKeyValueItem(
+            LogCategoryType.Debug,
+            "MyKey",
+            "MyValue",
+            "MyDescription");
+
+        // Act
+        var actual = sut.Clone();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(JsonSerializer.Serialize(sut), JsonSerializer.Serialize(actual));
+    }
+
+    [Fact]
+    public void Clone_CloneStrategyType()
+    {
+        // Arrange
+        var cloneStrategy = CloneStrategyType.Json;
+        var sut = new LogKeyValueItem(
+            LogCategoryType.Debug,
+            "MyKey",
+            "MyValue",
+            "MyDescription");
+
+        // Act
+        var actual = sut.Clone(cloneStrategy);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(JsonSerializer.Serialize(sut), JsonSerializer.Serialize(actual));
     }
 }
