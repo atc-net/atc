@@ -117,7 +117,11 @@ internal static class TestMemberDataForCultureHelper
             { "Großbritannien", "Englisch", GlobalizationLcidConstants.GreatBritain, GlobalizationLcidConstants.Germany },
             { "Dänemark", "Dänisch", GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.Germany },
             { "Deutschland", "Deutsche", GlobalizationLcidConstants.Germany, GlobalizationLcidConstants.Germany },
+        };
 
+    public static TheoryData<string, string, int, int> GetCultureByLcidDisplayLanguageLcidWindowsData
+        => new()
+        {
             { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.UnitedStates },
             { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.GreatBritain },
             { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.Denmark },

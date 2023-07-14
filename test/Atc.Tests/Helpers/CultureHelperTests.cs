@@ -168,6 +168,23 @@ public class CultureHelperTests
     }
 
     [Theory]
+    [Trait(Traits.Category, Traits.Categories.Integration)]
+    [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
+    [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "OK - same code as GetCultureByLcid_DisplayLanguageLcid - but other test data.")]
+    [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByLcidDisplayLanguageLcidWindowsData), MemberType = typeof(TestMemberDataForCultureHelper))]
+    public void GetCultureByLcid_DisplayLanguageLcid_Windows(string expectedCountryName, string expectedLanguageName, int input, int displayLanguageLcid)
+    {
+        // Act
+        var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<Culture>();
+        Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
+        Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
+    }
+
+    [Theory]
     [InlineData(GlobalizationLcidConstants.UnitedStates, "US")]
     [InlineData(GlobalizationLcidConstants.GreatBritain, "GB")]
     [InlineData(GlobalizationLcidConstants.Denmark, "DK")]
