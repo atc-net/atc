@@ -569,6 +569,11 @@ CultureHelper.
 >List<Culture> GetCulturesForCountries()
 >```
 ><b>Summary:</b> Gets the cultures for countries.
+#### GetCulturesForLanguages
+>```csharp
+>List<Culture> GetCulturesForLanguages()
+>```
+><b>Summary:</b> Gets the cultures for languages.
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(DropDownFirstItemType dropDownFirstItemType = None)
@@ -617,6 +622,10 @@ CultureHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+#### GetSupportedCultures
+>```csharp
+>IList<Culture> GetSupportedCultures(int displayLanguageLcid = 1033)
+>```
 
 <br />
 

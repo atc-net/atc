@@ -1,4 +1,5 @@
 // ReSharper disable StringLiteralTypo
+// ReSharper disable IdentifierTypo
 namespace Atc.Tests.XUnitTestData;
 
 [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
@@ -116,6 +117,21 @@ internal static class TestMemberDataForCultureHelper
             { "Großbritannien", "Englisch", GlobalizationLcidConstants.GreatBritain, GlobalizationLcidConstants.Germany },
             { "Dänemark", "Dänisch", GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.Germany },
             { "Deutschland", "Deutsche", GlobalizationLcidConstants.Germany, GlobalizationLcidConstants.Germany },
+
+            { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.UnitedStates },
+            { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.GreatBritain },
+            { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.Denmark },
+            { "Arabic, Morocco", "Central Atlas Tamazight", 1119, GlobalizationLcidConstants.Germany },
+
+            { "Dominican Republic", "Spanish", 7178, GlobalizationLcidConstants.UnitedStates },
+            { "Dominican Republic", "Spanish", 7178, GlobalizationLcidConstants.GreatBritain },
+            { "Dominikanske republik", "Spansk", 7178, GlobalizationLcidConstants.Denmark },
+            { "Dominikanische Republik", "Spanisch", 7178, GlobalizationLcidConstants.Germany },
+
+            { "Israel", "Hebrew", 1037, GlobalizationLcidConstants.UnitedStates },
+            { "Israel", "Hebrew", 1037, GlobalizationLcidConstants.GreatBritain },
+            { "Israel", "Hebraisk", 1037, GlobalizationLcidConstants.Denmark },
+            { "Israel", "Hebräisch", 1037, GlobalizationLcidConstants.Germany },
         };
 
     public static TheoryData<string, string, string, int> GetCultureByCountryCodeA2LcidDisplayLanguageLcidData

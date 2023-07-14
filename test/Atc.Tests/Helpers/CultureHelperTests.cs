@@ -1,3 +1,4 @@
+// ReSharper disable IdentifierTypo
 namespace Atc.Tests.Helpers;
 
 public class CultureHelperTests
@@ -116,6 +117,19 @@ public class CultureHelperTests
     {
         // Act
         var actual = CultureHelper.GetCulturesForCountries();
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
+            .And.HaveCountGreaterThan(expected);
+    }
+
+    [Theory]
+    [InlineData(100)]
+    public void GetCulturesForLanguages(int expected)
+    {
+        // Act
+        var actual = CultureHelper.GetCulturesForLanguages();
 
         // Assert
         actual.Should().NotBeNull()
@@ -613,6 +627,32 @@ public class CultureHelperTests
         // Assert
         actual.Should().NotBeNull()
             .And.BeOfType<List<int>>()
+            .And.HaveCount(expected);
+    }
+
+    [Theory]
+    [InlineData(4)]
+    public void GetSupportedCultures(int expected)
+    {
+        // Act
+        var actual = CultureHelper.GetSupportedCultures();
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
+            .And.HaveCount(expected);
+    }
+
+    [Theory]
+    [InlineData(4, GlobalizationLcidConstants.Denmark)]
+    public void GetSupportedCultures_DisplayLanguageLcid(int expected, int displayLanguageLcid)
+    {
+        // Act
+        var actual = CultureHelper.GetSupportedCultures(displayLanguageLcid);
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }
 }
