@@ -21,6 +21,7 @@
      - Default
      - Description
      - Prefix
+- [CloneStrategyType](Atc.md#clonestrategytype)
 - [CollectionActionType](Atc.md#collectionactiontype)
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
   -  Static Fields
@@ -4452,12 +4453,14 @@
      - GetCulturesByLanguageCodeA2(int displayLanguageLcid, string value)
      - GetCulturesByLanguageCodeA2(string value)
      - GetCulturesForCountries()
+     - GetCulturesForLanguages()
      - GetLanguageNames(DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(int displayLanguageLcid, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
+     - GetSupportedCultures(int displayLanguageLcid = 1033)
 - [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
   -  Static Methods
      - TryValidate(T data, out IList`1 validationResults, bool validateAllProperties = True)
@@ -4915,6 +4918,7 @@
 - [NullException](System.md#nullexception)
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods
+     - Clone(this T source, CloneStrategyType strategy = Json)
      - GetPropertyValue(this object source, string propertyName)
      - GetTypeFullName(this object source)
      - GetTypeName(this object source)

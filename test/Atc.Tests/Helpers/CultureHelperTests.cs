@@ -1,3 +1,4 @@
+// ReSharper disable IdentifierTypo
 namespace Atc.Tests.Helpers;
 
 public class CultureHelperTests
@@ -124,6 +125,19 @@ public class CultureHelperTests
     }
 
     [Theory]
+    [InlineData(100)]
+    public void GetCulturesForLanguages(int expected)
+    {
+        // Act
+        var actual = CultureHelper.GetCulturesForLanguages();
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
+            .And.HaveCountGreaterThan(expected);
+    }
+
+    [Theory]
     [InlineData("US", GlobalizationLcidConstants.UnitedStates)]
     [InlineData("GB", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("DK", GlobalizationLcidConstants.Denmark)]
@@ -142,6 +156,23 @@ public class CultureHelperTests
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByLcidDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper))]
     public void GetCultureByLcid_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, int input, int displayLanguageLcid)
+    {
+        // Act
+        var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<Culture>();
+        Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
+        Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
+    }
+
+    [Theory]
+    [Trait(Traits.Category, Traits.Categories.Integration)]
+    [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
+    [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "OK - same code as GetCultureByLcid_DisplayLanguageLcid - but other test data.")]
+    [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByLcidDisplayLanguageLcidWindowsData), MemberType = typeof(TestMemberDataForCultureHelper))]
+    public void GetCultureByLcid_DisplayLanguageLcid_Windows(string expectedCountryName, string expectedLanguageName, int input, int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
@@ -613,6 +644,32 @@ public class CultureHelperTests
         // Assert
         actual.Should().NotBeNull()
             .And.BeOfType<List<int>>()
+            .And.HaveCount(expected);
+    }
+
+    [Theory]
+    [InlineData(4)]
+    public void GetSupportedCultures(int expected)
+    {
+        // Act
+        var actual = CultureHelper.GetSupportedCultures();
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
+            .And.HaveCount(expected);
+    }
+
+    [Theory]
+    [InlineData(4, GlobalizationLcidConstants.Denmark)]
+    public void GetSupportedCultures_DisplayLanguageLcid(int expected, int displayLanguageLcid)
+    {
+        // Act
+        var actual = CultureHelper.GetSupportedCultures(displayLanguageLcid);
+
+        // Assert
+        actual.Should().NotBeNull()
+            .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }
 }

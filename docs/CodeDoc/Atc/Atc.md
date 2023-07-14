@@ -191,6 +191,22 @@ CasingStyle Description Attribute.
 
 <br />
 
+## CloneStrategyType
+
+>```csharp
+>public enum CloneStrategyType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None |  | 
+| 1 | Json | Json |  | 
+
+
+
+<br />
+
 ## CollectionActionType
 Enumeration: CollectionActionType.
 

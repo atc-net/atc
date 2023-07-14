@@ -132,4 +132,394 @@
   <data name="_Language" xml:space="preserve">
     <value>Sprog</value>
   </data>
+  <data name="Afrikaans" xml:space="preserve">
+    <value>Afrikaans</value>
+  </data>
+  <data name="Albanian" xml:space="preserve">
+    <value>Albansk</value>
+  </data>
+  <data name="Amharic" xml:space="preserve">
+    <value>Amharisk</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>Arabisk</value>
+  </data>
+  <data name="Armenian" xml:space="preserve">
+    <value>Armensk</value>
+  </data>
+  <data name="Assamese" xml:space="preserve">
+    <value>Assamisk</value>
+  </data>
+  <data name="Azerbaijani" xml:space="preserve">
+    <value>Aserbajdsjansk</value>
+  </data>
+  <data name="Bangla" xml:space="preserve">
+    <value>Bangla</value>
+  </data>
+  <data name="Bashkir" xml:space="preserve">
+    <value>Bashkir</value>
+  </data>
+  <data name="Basque" xml:space="preserve">
+    <value>Baskisk</value>
+  </data>
+  <data name="Belarusian" xml:space="preserve">
+    <value>Hviderussisk</value>
+  </data>
+  <data name="Bosnian" xml:space="preserve">
+    <value>Bosnisk</value>
+  </data>
+  <data name="Breton" xml:space="preserve">
+    <value>Breton</value>
+  </data>
+  <data name="Bulgarian" xml:space="preserve">
+    <value>Bulgarsk</value>
+  </data>
+  <data name="Burmese" xml:space="preserve">
+    <value>Burmesisk</value>
+  </data>
+  <data name="Catalan" xml:space="preserve">
+    <value>Catalansk</value>
+  </data>
+  <data name="CentralAtlasTamazight" xml:space="preserve">
+    <value>Central Atlas Tamazight</value>
+  </data>
+  <data name="Corsican" xml:space="preserve">
+    <value>Korsikansk</value>
+  </data>
+  <data name="Croatian" xml:space="preserve">
+    <value>Kroatisk</value>
+  </data>
+  <data name="Czech" xml:space="preserve">
+    <value>Tjekkisk</value>
+  </data>
+  <data name="Divehi" xml:space="preserve">
+    <value>Divehi</value>
+  </data>
+  <data name="Dutch" xml:space="preserve">
+    <value>Hollandsk</value>
+  </data>
+  <data name="Dzongkha" xml:space="preserve">
+    <value>Dzongkha</value>
+  </data>
+  <data name="Edo" xml:space="preserve">
+    <value>Edo</value>
+  </data>
+  <data name="Estonian" xml:space="preserve">
+    <value>Estisk</value>
+  </data>
+  <data name="Faroese" xml:space="preserve">
+    <value>Færøsk</value>
+  </data>
+  <data name="Filipino" xml:space="preserve">
+    <value>Filippinsk</value>
+  </data>
+  <data name="Finnish" xml:space="preserve">
+    <value>Finsk</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Fransk</value>
+  </data>
+  <data name="Fulah" xml:space="preserve">
+    <value>Fulah</value>
+  </data>
+  <data name="Galician" xml:space="preserve">
+    <value>Galicisk</value>
+  </data>
+  <data name="Georgian" xml:space="preserve">
+    <value>Georgisk</value>
+  </data>
+  <data name="Greek" xml:space="preserve">
+    <value>Græsk</value>
+  </data>
+  <data name="Guarani" xml:space="preserve">
+    <value>Guarani</value>
+  </data>
+  <data name="Gujarati" xml:space="preserve">
+    <value>Gujarati</value>
+  </data>
+  <data name="Hawaiian" xml:space="preserve">
+    <value>Hawaiiansk</value>
+  </data>
+  <data name="Hebrew" xml:space="preserve">
+    <value>Hebraisk</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>Hindi</value>
+  </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Ungarsk</value>
+  </data>
+  <data name="Ibibio" xml:space="preserve">
+    <value>Ibibio</value>
+  </data>
+  <data name="Icelandic" xml:space="preserve">
+    <value>Islandsk</value>
+  </data>
+  <data name="Igbo" xml:space="preserve">
+    <value>Igbo</value>
+  </data>
+  <data name="Inari Sami" xml:space="preserve">
+    <value>Inari Sami</value>
+  </data>
+  <data name="Indonesian" xml:space="preserve">
+    <value>Indonesisk</value>
+  </data>
+  <data name="Inuktitut" xml:space="preserve">
+    <value>Inuktitut</value>
+  </data>
+  <data name="Irish" xml:space="preserve">
+    <value>Irsk</value>
+  </data>
+  <data name="IsiXhosa" xml:space="preserve">
+    <value>IsiXhosa</value>
+  </data>
+  <data name="IsiZulu" xml:space="preserve">
+    <value>IsiZulu</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italiensk</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>Japansk</value>
+  </data>
+  <data name="Kalaallisut" xml:space="preserve">
+    <value>Kalaallisut</value>
+  </data>
+  <data name="Kannada" xml:space="preserve">
+    <value>Kannada</value>
+  </data>
+  <data name="Kashmiri" xml:space="preserve">
+    <value>Kashmiri</value>
+  </data>
+  <data name="Kazakh" xml:space="preserve">
+    <value>Kasakhisk</value>
+  </data>
+  <data name="Khmer" xml:space="preserve">
+    <value>Khmer</value>
+  </data>
+  <data name="Kinyarwanda" xml:space="preserve">
+    <value>Kinyarwanda</value>
+  </data>
+  <data name="Kiswahili" xml:space="preserve">
+    <value>Kiswahili</value>
+  </data>
+  <data name="Konkani" xml:space="preserve">
+    <value>Konkani</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>Koreansk</value>
+  </data>
+  <data name="Kyrgyz" xml:space="preserve">
+    <value>Kirgisisk</value>
+  </data>
+  <data name="Lao" xml:space="preserve">
+    <value>Lao</value>
+  </data>
+  <data name="Latvian" xml:space="preserve">
+    <value>Lettisk</value>
+  </data>
+  <data name="Lithuanian" xml:space="preserve">
+    <value>Litauisk</value>
+  </data>
+  <data name="Lower Sorbian" xml:space="preserve">
+    <value>Lavere sorbisk</value>
+  </data>
+  <data name="Lule Sami" xml:space="preserve">
+    <value>Lulesamisk</value>
+  </data>
+  <data name="Luxembourgish" xml:space="preserve">
+    <value>Luxembourgsk</value>
+  </data>
+  <data name="Macedonian" xml:space="preserve">
+    <value>Makedonsk</value>
+  </data>
+  <data name="Malay" xml:space="preserve">
+    <value>Malaysisk</value>
+  </data>
+  <data name="Malayalam" xml:space="preserve">
+    <value>Malayalam</value>
+  </data>
+  <data name="Maltese" xml:space="preserve">
+    <value>Maltesisk</value>
+  </data>
+  <data name="Maori" xml:space="preserve">
+    <value>Maori</value>
+  </data>
+  <data name="Mapuche" xml:space="preserve">
+    <value>Mapuche</value>
+  </data>
+  <data name="Marathi" xml:space="preserve">
+    <value>Marathi</value>
+  </data>
+  <data name="Mohawk" xml:space="preserve">
+    <value>Mohawk</value>
+  </data>
+  <data name="Mongolian" xml:space="preserve">
+    <value>Mongolsk</value>
+  </data>
+  <data name="Nepali" xml:space="preserve">
+    <value>Nepalesisk</value>
+  </data>
+  <data name="Northern Sami" xml:space="preserve">
+    <value>Nordsamisk</value>
+  </data>
+  <data name="Norwegian Bokmål" xml:space="preserve">
+    <value>Norsk bokmål</value>
+  </data>
+  <data name="Norwegian Nynorsk" xml:space="preserve">
+    <value>Norsk nynorsk</value>
+  </data>
+  <data name="Occitan" xml:space="preserve">
+    <value>Occitansk</value>
+  </data>
+  <data name="Odia" xml:space="preserve">
+    <value>Odia</value>
+  </data>
+  <data name="Oromo" xml:space="preserve">
+    <value>Oromo</value>
+  </data>
+  <data name="Pashto" xml:space="preserve">
+    <value>Pashto</value>
+  </data>
+  <data name="Persian" xml:space="preserve">
+    <value>Persisk</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>Polsk</value>
+  </data>
+  <data name="Portuguese" xml:space="preserve">
+    <value>Portugisisk</value>
+  </data>
+  <data name="Punjabi" xml:space="preserve">
+    <value>Punjabi</value>
+  </data>
+  <data name="Romanian" xml:space="preserve">
+    <value>Rumænsk</value>
+  </data>
+  <data name="Romansh" xml:space="preserve">
+    <value>Romansk</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Russisk</value>
+  </data>
+  <data name="Sakha" xml:space="preserve">
+    <value>Sakha</value>
+  </data>
+  <data name="Sanskrit" xml:space="preserve">
+    <value>Sanskrit</value>
+  </data>
+  <data name="ScottishGaelic" xml:space="preserve">
+    <value>Skotsk gælisk</value>
+  </data>
+  <data name="Serbian" xml:space="preserve">
+    <value>Serbisk</value>
+  </data>
+  <data name="Sesotho" xml:space="preserve">
+    <value>Sesotho</value>
+  </data>
+  <data name="SesothoSaLeboa" xml:space="preserve">
+    <value>Sesotho på Leboa</value>
+  </data>
+  <data name="Setswana" xml:space="preserve">
+    <value>Setswana</value>
+  </data>
+  <data name="Sindhi" xml:space="preserve">
+    <value>Sindhi</value>
+  </data>
+  <data name="Sinhala" xml:space="preserve">
+    <value>Singalesiske</value>
+  </data>
+  <data name="Skolt Sami" xml:space="preserve">
+    <value>Skoltesamisk</value>
+  </data>
+  <data name="Norwegian" xml:space="preserve">
+    <value>Norsk</value>
+  </data>
+  <data name="Slovak" xml:space="preserve">
+    <value>Slovakisk</value>
+  </data>
+  <data name="Slovenian" xml:space="preserve">
+    <value>Slovensk</value>
+  </data>
+  <data name="Somali" xml:space="preserve">
+    <value>Somali</value>
+  </data>
+  <data name="SouthernSami" xml:space="preserve">
+    <value>Sydsamisk</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spansk</value>
+  </data>
+  <data name="Swedish" xml:space="preserve">
+    <value>Svensk</value>
+  </data>
+  <data name="SwissGerman" xml:space="preserve">
+    <value>Schweizisk tysk</value>
+  </data>
+  <data name="Syriac" xml:space="preserve">
+    <value>Syrisk</value>
+  </data>
+  <data name="Tamil" xml:space="preserve">
+    <value>Tamil</value>
+  </data>
+  <data name="Tatar" xml:space="preserve">
+    <value>Tatarisk</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>Telugu</value>
+  </data>
+  <data name="Thai" xml:space="preserve">
+    <value>Thai</value>
+  </data>
+  <data name="Tibetan" xml:space="preserve">
+    <value>Tibetansk</value>
+  </data>
+  <data name="Tigrinya" xml:space="preserve">
+    <value>Tigrinya</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>Tyrkisk</value>
+  </data>
+  <data name="Turkmen" xml:space="preserve">
+    <value>Turkmenske</value>
+  </data>
+  <data name="Ukrainian" xml:space="preserve">
+    <value>Ukrainsk</value>
+  </data>
+  <data name="UpperSorbian" xml:space="preserve">
+    <value>Oversorbisk</value>
+  </data>
+  <data name="Urdu" xml:space="preserve">
+    <value>Urdu</value>
+  </data>
+  <data name="Uyghur" xml:space="preserve">
+    <value>Uyghur</value>
+  </data>
+  <data name="Uzbek" xml:space="preserve">
+    <value>Usbekisk</value>
+  </data>
+  <data name="Venda" xml:space="preserve">
+    <value>Venda</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Vietnamesisk</value>
+  </data>
+  <data name="Welsh" xml:space="preserve">
+    <value>Walisisk</value>
+  </data>
+  <data name="WesternFrisian" xml:space="preserve">
+    <value>Vestfrisisk</value>
+  </data>
+  <data name="Wolof" xml:space="preserve">
+    <value>Wolof</value>
+  </data>
+  <data name="Xitsonga" xml:space="preserve">
+    <value>Xitsonga</value>
+  </data>
+  <data name="Yi" xml:space="preserve">
+    <value>Yi</value>
+  </data>
+  <data name="Yoruba" xml:space="preserve">
+    <value>Yoruba</value>
+  </data>
 </root>
