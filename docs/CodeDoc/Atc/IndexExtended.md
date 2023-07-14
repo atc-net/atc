@@ -21,6 +21,7 @@
      - Default
      - Description
      - Prefix
+- [CloneStrategyType](Atc.md#clonestrategytype)
 - [CollectionActionType](Atc.md#collectionactiontype)
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
   -  Static Fields
@@ -4917,6 +4918,7 @@
 - [NullException](System.md#nullexception)
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods
+     - Clone(this T source, CloneStrategyType strategy = Json)
      - GetPropertyValue(this object source, string propertyName)
      - GetTypeFullName(this object source)
      - GetTypeName(this object source)

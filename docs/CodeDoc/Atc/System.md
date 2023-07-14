@@ -1193,6 +1193,10 @@ Extensions for the `System.Object` class.
 
 ### Static Methods
 
+#### Clone
+>```csharp
+>T Clone(this T source, CloneStrategyType strategy = Json)
+>```
 #### GetPropertyValue
 >```csharp
 >object GetPropertyValue(this object source, string propertyName)

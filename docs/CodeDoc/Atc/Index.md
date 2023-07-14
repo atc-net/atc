@@ -14,6 +14,7 @@
 - [CardinalDirectionType](Atc.md#cardinaldirectiontype)
 - [CasingStyle](Atc.md#casingstyle)
 - [CasingStyleDescriptionAttribute](Atc.md#casingstyledescriptionattribute)
+- [CloneStrategyType](Atc.md#clonestrategytype)
 - [CollectionActionType](Atc.md#collectionactiontype)
 - [ConsoleExitStatusCodes](Atc.md#consoleexitstatuscodes)
 - [DateTimeDiffCompareType](Atc.md#datetimediffcomparetype)
