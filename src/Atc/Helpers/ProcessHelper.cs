@@ -455,6 +455,7 @@ public static class ProcessHelper
     {
         var processId = -1;
         var resultOutput = string.Empty;
+
         try
         {
             var (isSuccessful, output, assignedProcessId) = await TaskHelper
