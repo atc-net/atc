@@ -1360,6 +1360,149 @@ The MathHelper module contains procedures used to preform math operations.
 
 <br />
 
+## NumberHelper
+
+>```csharp
+>public static class NumberHelper
+>```
+
+### Static Methods
+
+#### IsDecimal
+>```csharp
+>bool IsDecimal(string value)
+>```
+#### IsDecimal
+>```csharp
+>bool IsDecimal(string value, bool useUiCulture)
+>```
+#### IsDecimal
+>```csharp
+>bool IsDecimal(string value, CultureInfo cultureInfo)
+>```
+#### IsDouble
+>```csharp
+>bool IsDouble(string value)
+>```
+#### IsDouble
+>```csharp
+>bool IsDouble(string value, bool useUiCulture)
+>```
+#### IsDouble
+>```csharp
+>bool IsDouble(string value, CultureInfo cultureInfo)
+>```
+#### IsFloat
+>```csharp
+>bool IsFloat(string value)
+>```
+#### IsFloat
+>```csharp
+>bool IsFloat(string value, bool useUiCulture)
+>```
+#### IsFloat
+>```csharp
+>bool IsFloat(string value, CultureInfo cultureInfo)
+>```
+#### IsInt
+>```csharp
+>bool IsInt(string value)
+>```
+#### IsNumber
+>```csharp
+>bool IsNumber(string value)
+>```
+#### IsNumber
+>```csharp
+>bool IsNumber(string value, bool useUiCulture)
+>```
+#### IsNumber
+>```csharp
+>bool IsNumber(string value, CultureInfo cultureInfo)
+>```
+#### ParseToDecimal
+>```csharp
+>decimal ParseToDecimal(string value)
+>```
+#### ParseToDecimal
+>```csharp
+>decimal ParseToDecimal(string value, bool useUiCulture)
+>```
+#### ParseToDecimal
+>```csharp
+>decimal ParseToDecimal(string value, CultureInfo cultureInfo)
+>```
+#### ParseToDouble
+>```csharp
+>double ParseToDouble(string value)
+>```
+#### ParseToDouble
+>```csharp
+>double ParseToDouble(string value, bool useUiCulture)
+>```
+#### ParseToDouble
+>```csharp
+>double ParseToDouble(string value, CultureInfo cultureInfo)
+>```
+#### ParseToFloat
+>```csharp
+>float ParseToFloat(string value)
+>```
+#### ParseToFloat
+>```csharp
+>float ParseToFloat(string value, bool useUiCulture)
+>```
+#### ParseToFloat
+>```csharp
+>float ParseToFloat(string value, CultureInfo cultureInfo)
+>```
+#### ParseToInt
+>```csharp
+>int ParseToInt(string value)
+>```
+#### TryParseToDecimal
+>```csharp
+>bool TryParseToDecimal(string value, out decimal result)
+>```
+#### TryParseToDecimal
+>```csharp
+>bool TryParseToDecimal(string value, bool useUiCulture, out decimal result)
+>```
+#### TryParseToDecimal
+>```csharp
+>bool TryParseToDecimal(string value, CultureInfo cultureInfo, out decimal result)
+>```
+#### TryParseToDouble
+>```csharp
+>bool TryParseToDouble(string value, out double result)
+>```
+#### TryParseToDouble
+>```csharp
+>bool TryParseToDouble(string value, bool useUiCulture, out double result)
+>```
+#### TryParseToDouble
+>```csharp
+>bool TryParseToDouble(string value, CultureInfo cultureInfo, out double result)
+>```
+#### TryParseToFloat
+>```csharp
+>bool TryParseToFloat(string value, out float result)
+>```
+#### TryParseToFloat
+>```csharp
+>bool TryParseToFloat(string value, bool useUiCulture, out float result)
+>```
+#### TryParseToFloat
+>```csharp
+>bool TryParseToFloat(string value, CultureInfo cultureInfo, out float result)
+>```
+#### TryParseToInt
+>```csharp
+>bool TryParseToInt(string value, out int result)
+>```
+
+<br />
+
 ## ProcessHelper
 
 >```csharp
