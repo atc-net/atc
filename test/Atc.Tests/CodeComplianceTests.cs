@@ -1,5 +1,3 @@
-using TaskExtensions = System.TaskExtensions;
-
 namespace Atc.Tests;
 
 public class CodeComplianceTests
@@ -30,6 +28,7 @@ public class CodeComplianceTests
         typeof(ByteExtensions),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(NumberHelper),
         typeof(InternetBrowserHelper),
         typeof(FileInfoExtensions),
         typeof(HttpClientRequestResult<>),
@@ -37,7 +36,7 @@ public class CodeComplianceTests
         typeof(NetworkInformationHelper),
         typeof(ProcessExtensions),
         typeof(StringAttribute),
-        typeof(TaskExtensions),
+        typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
     };

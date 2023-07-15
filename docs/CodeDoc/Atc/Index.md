@@ -90,6 +90,7 @@
 - [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
+- [NumberHelper](Atc.Helpers.md#numberhelper)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
 - [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
