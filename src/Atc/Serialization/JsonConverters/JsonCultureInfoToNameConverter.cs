@@ -1,21 +1,21 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonDateTimeOffsetMinToNullConverter : JsonConverter<DateTimeOffset?>
+public class JsonCultureInfoToNameConverter : JsonConverter<CultureInfo?>
 {
-    public override DateTimeOffset? Read(
+    public override CultureInfo? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        var result = new DateTimeOffset(reader.GetDateTime().ToUniversalTime());
-        return result == DateTimeOffset.MinValue
+        var name = reader.GetString();
+        return string.IsNullOrEmpty(name)
             ? null
-            : result;
+            : new CultureInfo(name);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DateTimeOffset? value,
+        CultureInfo? value,
         JsonSerializerOptions options)
     {
         if (writer is null)
@@ -23,13 +23,13 @@ public class JsonDateTimeOffsetMinToNullConverter : JsonConverter<DateTimeOffset
             throw new ArgumentNullException(nameof(writer));
         }
 
-        if (!value.HasValue || value == DateTimeOffset.MinValue)
+        if (string.IsNullOrEmpty(value?.Name))
         {
             writer.WriteNullValue();
         }
         else
         {
-            writer.WriteStringValue(value.Value.ToUniversalTime());
+            writer.WriteStringValue(value.Name);
         }
     }
 }

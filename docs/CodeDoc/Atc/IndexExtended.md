@@ -4740,6 +4740,14 @@
 - [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
   -  Properties
      - TypeDiscriminator
+- [JsonCultureInfoToLcidConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotolcidconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
+- [JsonCultureInfoToNameConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotonameconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
 - [JsonDateTimeOffsetMinToNullConverter](Atc.Serialization.JsonConverters.md#jsondatetimeoffsetmintonullconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
