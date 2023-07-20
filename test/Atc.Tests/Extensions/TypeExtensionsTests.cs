@@ -189,7 +189,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(15, typeof(UriAttribute))]
+    [InlineData(17, typeof(UriAttribute))]
     [InlineData(6, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyMethods(int expected, Type type)
     {
@@ -231,7 +231,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(11, typeof(UriAttribute))]
+    [InlineData(12, typeof(UriAttribute))]
     [InlineData(4, typeof(LogKeyValueItem))]
     public void GetPublicProperties(int expected, Type type)
     {
@@ -243,7 +243,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(6, typeof(UriAttribute))]
+    [InlineData(7, typeof(UriAttribute))]
     [InlineData(2, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyProperties(int expected, Type type)
     {

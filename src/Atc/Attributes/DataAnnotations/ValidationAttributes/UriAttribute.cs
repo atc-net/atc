@@ -14,6 +14,7 @@ public sealed class UriAttribute : ValidationAttribute
         AllowHttp = true;
         AllowHttps = true;
         AllowFtp = true;
+        AllowFtps = true;
         AllowFile = true;
         AllowOpcTcp = true;
     }
@@ -23,6 +24,7 @@ public sealed class UriAttribute : ValidationAttribute
         bool allowHttp,
         bool allowHttps,
         bool allowFtp,
+        bool allowFtps,
         bool allowFile,
         bool allowOpcTcp)
         : this()
@@ -31,6 +33,7 @@ public sealed class UriAttribute : ValidationAttribute
         AllowHttp = allowHttp;
         AllowHttps = allowHttps;
         AllowFtp = allowFtp;
+        AllowFtps = allowFtps;
         AllowFile = allowFile;
         AllowOpcTcp = allowOpcTcp;
     }
@@ -42,6 +45,8 @@ public sealed class UriAttribute : ValidationAttribute
     public bool AllowHttps { get; set; }
 
     public bool AllowFtp { get; set; }
+
+    public bool AllowFtps { get; set; }
 
     public bool AllowFile { get; set; }
 
@@ -67,6 +72,7 @@ public sealed class UriAttribute : ValidationAttribute
                      && ((AllowHttp && string.Equals(uriResult.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowHttps && string.Equals(uriResult.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowFtp && string.Equals(uriResult.Scheme, Uri.UriSchemeFtp, StringComparison.OrdinalIgnoreCase)) ||
+                         (AllowFtps && string.Equals(uriResult.Scheme, "ftps", StringComparison.OrdinalIgnoreCase)) ||
                          (AllowFile && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowOpcTcp && string.Equals(uriResult.Scheme, "opc.tcp", StringComparison.OrdinalIgnoreCase)));
         if (result)

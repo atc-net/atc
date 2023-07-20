@@ -5151,6 +5151,7 @@
   -  Properties
      - AllowFile
      - AllowFtp
+     - AllowFtps
      - AllowHttp
      - AllowHttps
      - AllowOpcTcp
