@@ -159,6 +159,10 @@
 >```csharp
 >AllowFtp
 >```
+#### AllowFtps
+>```csharp
+>AllowFtps
+>```
 #### AllowHttp
 >```csharp
 >AllowHttp

@@ -4740,6 +4740,14 @@
 - [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
   -  Properties
      - TypeDiscriminator
+- [JsonCultureInfoToLcidConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotolcidconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
+- [JsonCultureInfoToNameConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotonameconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
 - [JsonDateTimeOffsetMinToNullConverter](Atc.Serialization.JsonConverters.md#jsondatetimeoffsetmintonullconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -5067,6 +5075,7 @@
      - GetBaseTypeGenericArgumentType(this Type type)
      - GetBaseTypeGenericArgumentTypes(this Type type)
      - GetNameWithoutGenericType(this Type type, bool useFullName = False)
+     - GetNonNullableType(this Type type)
      - GetPrivateDeclaredOnlyMethod(this Type type, string name)
      - GetPrivateDeclaredOnlyMethods(this Type type)
      - GetPrivateDeclaredOnlyProperties(this Type type)
@@ -5142,6 +5151,7 @@
   -  Properties
      - AllowFile
      - AllowFtp
+     - AllowFtps
      - AllowHttp
      - AllowHttps
      - AllowOpcTcp
@@ -5236,6 +5246,7 @@
      - BeautifyName(this PropertyInfo propertyInfo)
      - GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = True)
      - GetName(this PropertyInfo propertyInfo)
+     - IsNullable(this PropertyInfo propertyInfo)
 
 ## [System.Security.Claims](System.Security.Claims.md)
 

@@ -221,6 +221,16 @@ public static class TypeExtensions
                type.BaseType.IsInheritedFromGenericWithArgumentType(inheritType, argumentType);
     }
 
+    public static Type GetNonNullableType(this Type type)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        return Nullable.GetUnderlyingType(type) ?? type;
+    }
+
     /// <summary>
     /// Gets the type of the base type generic argument.
     /// </summary>

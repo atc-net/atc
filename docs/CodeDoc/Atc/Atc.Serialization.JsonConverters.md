@@ -22,6 +22,44 @@
 
 <br />
 
+## JsonCultureInfoToLcidConverter
+
+>```csharp
+>public class JsonCultureInfoToLcidConverter : JsonConverter<CultureInfo>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>CultureInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
+>```
+
+<br />
+
+## JsonCultureInfoToNameConverter
+
+>```csharp
+>public class JsonCultureInfoToNameConverter : JsonConverter<CultureInfo>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>CultureInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
+>```
+
+<br />
+
 ## JsonDateTimeOffsetMinToNullConverter
 
 >```csharp

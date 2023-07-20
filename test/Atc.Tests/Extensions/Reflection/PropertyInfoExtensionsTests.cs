@@ -31,6 +31,21 @@ public class PropertyInfoExtensionsTests
     }
 
     [Theory]
+    [InlineData(false, typeof(TestNullableVsNonNullable), "NonNullableInt")]
+    [InlineData(true, typeof(TestNullableVsNonNullable), "NullableInt")]
+    public void IsNullable(bool expected, Type type, string propertyName)
+    {
+        // Arrange
+        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, propertyName, StringComparison.Ordinal));
+
+        // Act
+        var actual = propertyInfo.IsNullable();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [InlineData("Message", typeof(UnexpectedTypeException))]
     public void GetDescription(string expected, Type type)
     {

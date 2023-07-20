@@ -2230,6 +2230,10 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+#### GetNonNullableType
+>```csharp
+>Type GetNonNullableType(this Type type)
+>```
 #### GetPrivateDeclaredOnlyMethod
 >```csharp
 >MethodInfo GetPrivateDeclaredOnlyMethod(this Type type, string name)

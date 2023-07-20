@@ -105,6 +105,16 @@ public static class PropertyInfoExtensions
         return attributeValue;
     }
 
+    public static bool IsNullable(this PropertyInfo propertyInfo)
+    {
+        if (propertyInfo is null)
+        {
+            throw new ArgumentNullException(nameof(propertyInfo));
+        }
+
+        return Nullable.GetUnderlyingType(propertyInfo.PropertyType) is not null;
+    }
+
     // ReSharper disable once SuggestBaseTypeForParameter
     private static TExpected GetAttributeValue<T, TExpected>(this PropertyInfo propertyInfo, Func<T, TExpected> expression)
         where T : Attribute
