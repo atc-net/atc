@@ -5075,6 +5075,7 @@
      - GetBaseTypeGenericArgumentType(this Type type)
      - GetBaseTypeGenericArgumentTypes(this Type type)
      - GetNameWithoutGenericType(this Type type, bool useFullName = False)
+     - GetNonNullableType(this Type type)
      - GetPrivateDeclaredOnlyMethod(this Type type, string name)
      - GetPrivateDeclaredOnlyMethods(this Type type)
      - GetPrivateDeclaredOnlyProperties(this Type type)
@@ -5244,6 +5245,7 @@
      - BeautifyName(this PropertyInfo propertyInfo)
      - GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = True)
      - GetName(this PropertyInfo propertyInfo)
+     - IsNullable(this PropertyInfo propertyInfo)
 
 ## [System.Security.Claims](System.Security.Claims.md)
 

@@ -90,6 +90,18 @@ public class TypeExtensionsTests
     }
 
     [Theory]
+    [InlineData(typeof(int), typeof(int))]
+    [InlineData(typeof(int), typeof(int?))]
+    public void GetNonNullableType(Type expected, Type type)
+    {
+        // Act
+        var actual = type.GetNonNullableType();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [InlineData(false, typeof(UriAttribute))]
     public void GetBaseTypeGenericArgumentType(bool expected, Type type)
     {
