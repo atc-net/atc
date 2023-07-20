@@ -7,15 +7,8 @@ public class JsonCultureInfoToLcidConverter : JsonConverter<CultureInfo?>
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        var value = reader.GetString();
-        if (string.IsNullOrEmpty(value))
-        {
-            return null;
-        }
-
-        return NumberHelper.TryParseToInt(value, out var lcid)
-            ? new CultureInfo(lcid)
-            : null;
+        var lcid = reader.GetInt32();
+        return new CultureInfo(lcid);
     }
 
     public override void Write(

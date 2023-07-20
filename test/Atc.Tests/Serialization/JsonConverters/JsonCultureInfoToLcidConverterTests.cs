@@ -11,7 +11,7 @@ public class JsonCultureInfoToLcidConverterTests
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
         var jsonConverter = new JsonCultureInfoToLcidConverter();
-        var json = $"\"{lcid}\"";
+        var json = $"{lcid}";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
         utf8JsonReader.Read();
