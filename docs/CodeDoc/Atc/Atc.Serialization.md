@@ -7,6 +7,51 @@
 
 <br />
 
+## DynamicJson
+
+>```csharp
+>public class DynamicJson
+>```
+
+### Properties
+
+#### JsonDictionary
+>```csharp
+>JsonDictionary
+>```
+### Methods
+
+#### GetValue
+>```csharp
+>object GetValue(string path)
+>```
+#### RemovePath
+>```csharp
+>ValueTuple<bool, string> RemovePath(string path)
+>```
+#### SetValue
+>```csharp
+>ValueTuple<bool, string> SetValue(string path, object value, bool createKeyIfNotExist = True)
+>```
+#### ToJson
+>```csharp
+>string ToJson(bool orderByKey = False)
+>```
+#### ToJson
+>```csharp
+>string ToJson(JsonSerializerOptions serializerOptions, bool orderByKey = False)
+>```
+#### ToString
+>```csharp
+>string ToString()
+>```
+#### ToString
+>```csharp
+>string ToString(JsonSerializerOptions serializerOptions)
+>```
+
+<br />
+
 ## JsonSerializerFactorySettings
 
 >```csharp

@@ -4719,6 +4719,17 @@
 
 ## [Atc.Serialization](Atc.Serialization.md)
 
+- [DynamicJson](Atc.Serialization.md#dynamicjson)
+  -  Properties
+     - JsonDictionary
+  -  Methods
+     - GetValue(string path)
+     - RemovePath(string path)
+     - SetValue(string path, object value, bool createKeyIfNotExist = True)
+     - ToJson(JsonSerializerOptions serializerOptions, bool orderByKey = False)
+     - ToJson(bool orderByKey = False)
+     - ToString()
+     - ToString(JsonSerializerOptions serializerOptions)
 - [JsonSerializerFactorySettings](Atc.Serialization.md#jsonserializerfactorysettings)
   -  Properties
      - IgnoreNullValues
@@ -4752,6 +4763,10 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+- [JsonElementObjectConverter](Atc.Serialization.JsonConverters.md#jsonelementobjectconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
 - [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
   -  Methods
      - CanConvert(Type typeToConvert)

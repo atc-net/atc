@@ -18,6 +18,7 @@ public class CodeComplianceTests
         typeof(JsonCultureInfoToLcidConverter),
         typeof(JsonCultureInfoToNameConverter),
         typeof(JsonDateTimeOffsetMinToNullConverter),
+        typeof(JsonElementObjectConverter),
         typeof(JsonNumberToStringConverter),
         typeof(JsonTimeSpanConverter),
         typeof(JsonTypeDiscriminatorConverter<>),
@@ -30,6 +31,7 @@ public class CodeComplianceTests
         typeof(ByteExtensions),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(DynamicJson),
         typeof(NumberHelper),
         typeof(InternetBrowserHelper),
         typeof(FileInfoExtensions),
