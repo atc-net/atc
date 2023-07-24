@@ -8,6 +8,15 @@
 <br />
 
 ## DynamicJson
+DynamicJson can update a json document by adding or removing elements by dot annotation.
+<b>Code example:</b>
+>```csharp
+>Load a json document and set a property value like the following:
+>
+>var dynamicJson = new DynamicJson(json);
+>dynamicJson.SetValue("Property1.Property2", "StrValue2");
+>json = dynamicJson.ToJson();
+>```
 
 >```csharp
 >public class DynamicJson
