@@ -527,8 +527,13 @@ dotnet_diagnostic.S3267.severity = suggestion		# Simplified with LINQ expression
 dotnet_diagnostic.S4456.severity = none		        # Split method into two - one validating the parameters and one handling the iterator
 dotnet_diagnostic.S4457.severity = none             # Split this method into two, one handling parameters check and the other handling the asynchronous code
 dotnet_diagnostic.S4487.severity = none             # Remove this unread private field 'testOutputHelper' or refactor the code to use its value.
+dotnet_diagnostic.S6562.severity = suggestion       # Provide the "DateTimeKind" when creating this object
+dotnet_diagnostic.S6588.severity = suggestion       # Use "DateTime.UnixEpoch" instead of creating DateTime instances that point to the unix epoch time
 dotnet_diagnostic.S6602.severity = none            	# "Find" method should be used instead of the "FirstOrDefault"
 dotnet_diagnostic.S6603.severity = none            	# The collection-specific "TrueForAll" method should be used instead of the "All"
 dotnet_diagnostic.S6605.severity = none             # Collection-specific "Exists" method should be used instead of the "Any"
 
 dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
+
+dotnet_diagnostic.xUnit2017.severity = suggestion   # Do not use Assert.True() to check if a value exists in a collection. Use Assert.Contains instead
+dotnet_diagnostic.xUnit2020.severity = suggestion   # Do not use Assert.True(false, message) to fail a test. Use Assert.Fail(message) instead
