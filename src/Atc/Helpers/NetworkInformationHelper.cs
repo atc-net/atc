@@ -82,6 +82,7 @@ public static class NetworkInformationHelper
         }
     }
 
+    [SuppressMessage("Bug", "S2583:Conditionally executed code should be reachable", Justification = "OK.")]
     public static IPAddress? GetPublicIpAddress()
     {
         string? response = null;

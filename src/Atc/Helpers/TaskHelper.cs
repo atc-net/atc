@@ -53,6 +53,7 @@ public static class TaskHelper
     /// </remarks>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
+    [SuppressMessage("Code Smell", "S112:General exceptions should never be thrown", Justification = "OK.")]
     public static async Task WhenAll(IEnumerable<Task> tasks)
     {
         var allTasks = Task.WhenAll(tasks);
@@ -82,6 +83,7 @@ public static class TaskHelper
     /// </remarks>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
+    [SuppressMessage("Code Smell", "S112:General exceptions should never be thrown", Justification = "OK.")]
     public static async Task<IEnumerable<T>> WhenAll<T>(IEnumerable<Task<T>> tasks)
     {
         var allTasks = Task.WhenAll(tasks);
@@ -110,6 +112,7 @@ public static class TaskHelper
     /// </remarks>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
+    [SuppressMessage("Code Smell", "S112:General exceptions should never be thrown", Justification = "OK.")]
     public static async Task<IEnumerable<T>> WhenAll<T>(params Task<T>[] tasks)
     {
         var allTasks = Task.WhenAll(tasks);
