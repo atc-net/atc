@@ -27,9 +27,10 @@ public static class AssemblyHelper
             throw new IOException("File not found");
         }
 
-        if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase))
+        if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase) &&
+            !assemblyFile.Extension.Equals(".exe", StringComparison.OrdinalIgnoreCase))
         {
-            throw new IOException("File is not a dll");
+            throw new IOException("File is not a dll or a executable file");
         }
 
         var bytes = ReadAsBytes(assemblyFile);
@@ -43,7 +44,14 @@ public static class AssemblyHelper
             throw new IOException("File has a 0 byte length");
         }
 
-        return Assembly.Load(bytes);
+        try
+        {
+            return Assembly.Load(bytes);
+        }
+        catch (BadImageFormatException)
+        {
+            throw new IOException("File is not a valid Assembly");
+        }
     }
 
     /// <summary>
@@ -64,9 +72,10 @@ public static class AssemblyHelper
             throw new IOException("File not found");
         }
 
-        if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase))
+        if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase) &&
+            !assemblyFile.Extension.Equals(".exe", StringComparison.OrdinalIgnoreCase))
         {
-            throw new IOException("File is not a dll");
+            throw new IOException("File is not a dll or a executable file");
         }
 
         try
