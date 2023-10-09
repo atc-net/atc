@@ -14,18 +14,25 @@ public static class AssemblyInformationFactory
         var isDebugBuild = IsAssemblyCompliedToDebug(assembly);
         string? targetFrameworkName = null;
         string? targetFrameworkDisplayName = null;
-
-        object[] customAttributes = assembly.GetCustomAttributes(inherit: true);
-        if (customAttributes.FirstOrDefault(x => x is TargetFrameworkAttribute) is TargetFrameworkAttribute tfa)
-        {
-            targetFrameworkName = tfa.FrameworkName;
-            targetFrameworkDisplayName = tfa.FrameworkDisplayName;
-        }
-
         string? copyright = null;
-        if (customAttributes.FirstOrDefault(x => x is AssemblyCopyrightAttribute) is AssemblyCopyrightAttribute aca)
+
+        try
         {
-            copyright = aca.Copyright;
+            object[] customAttributes = assembly.GetCustomAttributes(inherit: true);
+            if (customAttributes.FirstOrDefault(x => x is TargetFrameworkAttribute) is TargetFrameworkAttribute tfa)
+            {
+                targetFrameworkName = tfa.FrameworkName;
+                targetFrameworkDisplayName = tfa.FrameworkDisplayName;
+            }
+
+            if (customAttributes.FirstOrDefault(x => x is AssemblyCopyrightAttribute) is AssemblyCopyrightAttribute aca)
+            {
+                copyright = aca.Copyright;
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            // Skip
         }
 
         return new AssemblyInformation(

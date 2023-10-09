@@ -52,6 +52,10 @@ public static class AssemblyHelper
         {
             throw new IOException("File is not a valid Assembly");
         }
+        catch (TypeLoadException)
+        {
+            throw new IOException("File is a unknown Assembly");
+        }
     }
 
     /// <summary>
@@ -67,13 +71,14 @@ public static class AssemblyHelper
             throw new ArgumentNullException(nameof(assemblyFile));
         }
 
-        if (!assemblyFile.Exists)
+        if (!File.Exists(assemblyFile.FullName))
         {
             throw new IOException("File not found");
         }
 
         if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase) &&
-            !assemblyFile.Extension.Equals(".exe", StringComparison.OrdinalIgnoreCase))
+            !assemblyFile.Extension.Equals(".exe", StringComparison.OrdinalIgnoreCase) &&
+            !(assemblyFile.Name.StartsWith('~') && assemblyFile.Name.EndsWith(".tmp", StringComparison.Ordinal)))
         {
             throw new IOException("File is not a dll or a executable file");
         }
@@ -96,6 +101,11 @@ public static class AssemblyHelper
         catch (IOException)
         {
             var tmpFile = new FileInfo(Path.Combine(Path.GetTempPath(), "~" + Path.GetFileNameWithoutExtension(assemblyFile.Name) + ".tmp"));
+            if (tmpFile.Exists)
+            {
+                File.Delete(tmpFile.FullName);
+            }
+
             File.Copy(assemblyFile.FullName, tmpFile.FullName);
             var data = ReadAsBytes(tmpFile);
             File.Delete(tmpFile.FullName);
