@@ -74,7 +74,7 @@ public static class AssemblyHelper
 
         if (!assemblyFile.Extension.Equals(".dll", StringComparison.OrdinalIgnoreCase) &&
             !assemblyFile.Extension.Equals(".exe", StringComparison.OrdinalIgnoreCase) &&
-            !(assemblyFile.Name.StartsWith("~", StringComparison.Ordinal) && assemblyFile.Name.EndsWith(".tmp", StringComparison.Ordinal)))
+            !(assemblyFile.Name.StartsWith('~') && assemblyFile.Name.EndsWith(".tmp", StringComparison.Ordinal)))
         {
             throw new IOException("File is not a dll or a executable file");
         }
