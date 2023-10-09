@@ -52,6 +52,10 @@ public static class AssemblyHelper
         {
             throw new IOException("File is not a valid Assembly");
         }
+        catch (TypeLoadException)
+        {
+            throw new IOException("File is a unknown Assembly");
+        }
     }
 
     /// <summary>
