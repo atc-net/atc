@@ -96,6 +96,11 @@ public static class AssemblyHelper
         catch (IOException)
         {
             var tmpFile = new FileInfo(Path.Combine(Path.GetTempPath(), "~" + Path.GetFileNameWithoutExtension(assemblyFile.Name) + ".tmp"));
+            if (tmpFile.Exists)
+            {
+                File.Delete(tmpFile.FullName);
+            }
+
             File.Copy(assemblyFile.FullName, tmpFile.FullName);
             var data = ReadAsBytes(tmpFile);
             File.Delete(tmpFile.FullName);
