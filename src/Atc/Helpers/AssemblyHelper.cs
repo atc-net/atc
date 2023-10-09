@@ -67,7 +67,7 @@ public static class AssemblyHelper
             throw new ArgumentNullException(nameof(assemblyFile));
         }
 
-        if (!assemblyFile.Exists)
+        if (!File.Exists(assemblyFile.FullName))
         {
             throw new IOException("File not found");
         }
