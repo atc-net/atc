@@ -81,6 +81,8 @@
 - [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
 - [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
+- [DateTimeHelper](Atc.Helpers.md#datetimehelper)
+- [DateTimeOffsetHelper](Atc.Helpers.md#datetimeoffsethelper)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
 - [DirectoryInfoHelper](Atc.Helpers.md#directoryinfohelper)
 - [DropDownFirstItemTypeHelper](Atc.Helpers.md#dropdownfirstitemtypehelper)

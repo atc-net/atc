@@ -38,6 +38,8 @@ public class CodeComplianceTests
         typeof(HttpClientRequestResult<>),
         typeof(IsoCurrencySymbolAttribute),
         typeof(NetworkInformationHelper),
+        typeof(DateTimeExtensions),
+        typeof(DateTimeOffsetExtensions),
         typeof(ProcessExtensions),
         typeof(StringAttribute),
         typeof(System.TaskExtensions),

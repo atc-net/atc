@@ -1,7 +1,7 @@
 // ReSharper disable StringLiteralTypo
-namespace Atc.Tests.Extensions.BaseTypes;
+namespace Atc.Tests.Helpers;
 
-public class DateTimeExtensionsTests
+public class DateTimeOffsetExtensionsTests
 {
     [Theory]
     [InlineData(true, 2019, 10, 5, 15)]
@@ -11,9 +11,9 @@ public class DateTimeExtensionsTests
     public void IsBetween(bool expected, int year, int inputSeconds, int secondsA, int secondsB)
     {
         // Arrange
-        var input = new DateTime(year, 1, 1, 0, 0, inputSeconds);
-        var inputA = new DateTime(year, 1, 1, 0, 0, secondsA);
-        var inputB = new DateTime(year, 1, 1, 0, 0, secondsB);
+        var input = new DateTimeOffset(year, 1, 1, 0, 0, inputSeconds, TimeSpan.Zero);
+        var inputA = new DateTimeOffset(year, 1, 1, 0, 0, secondsA, TimeSpan.Zero);
+        var inputB = new DateTimeOffset(year, 1, 1, 0, 0, secondsB, TimeSpan.Zero);
 
         // Act
         var actual = input.IsBetween(inputA, inputB);
@@ -23,8 +23,8 @@ public class DateTimeExtensionsTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiff), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff(string expected, DateTime start, int arrangeUiLcid)
+    [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiff), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
+    public void GetPrettyTimeDiff(string expected, DateTimeOffset start, int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -38,8 +38,8 @@ public class DateTimeExtensionsTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_DecimalPrecision(string expected, DateTime start, int decimalPrecision, int arrangeUiLcid)
+    [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
+    public void GetPrettyTimeDiff_DecimalPrecision(string expected, DateTimeOffset start, int decimalPrecision, int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -53,8 +53,8 @@ public class DateTimeExtensionsTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithEnd), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_EndNow(string expected, DateTime start, DateTime end, int arrangeUiLcid)
+    [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithEnd), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
+    public void GetPrettyTimeDiff_EndNow(string expected, DateTimeOffset start, DateTimeOffset end, int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -67,8 +67,8 @@ public class DateTimeExtensionsTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForDateTimeExtensions.GetPrettyTimeDiffWithEndNowAndDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeExtensions))]
-    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(string expected, DateTime start, DateTime end, int decimalPrecision, int arrangeUiLcid)
+    [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithEndNowAndDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
+    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(string expected, DateTimeOffset start, DateTimeOffset end, int decimalPrecision, int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -86,7 +86,7 @@ public class DateTimeExtensionsTests
     public void GetWeekNumber(int expected, int year, int month)
     {
         // Arrange
-        var input = new DateTime(year, month, 1, 0, 0, 0);
+        var input = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
 
         // Act
         var actual = input.GetWeekNumber();
@@ -101,8 +101,8 @@ public class DateTimeExtensionsTests
     public void DateTimeDiff(double expected, int seconds, DateTimeDiffCompareType dateTimeDiffCompareType)
     {
         // Arrange
-        var inputA = new DateTime(1970, 1, 1, 0, 0, 0);
-        var inputB = new DateTime(1970, 1, 1, 0, 0, seconds);
+        var inputA = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
+        var inputB = new DateTimeOffset(1970, 1, 1, 0, 0, seconds, TimeSpan.Zero);
 
         // Act
         var actual = inputA.DateTimeDiff(inputB, dateTimeDiffCompareType);
@@ -117,7 +117,7 @@ public class DateTimeExtensionsTests
     public void ToIso8601Date(string expected, int year, int seconds)
     {
         // Arrange
-        var input = new DateTime(year, 1, 1, 0, 0, seconds);
+        var input = new DateTimeOffset(year, 1, 1, 0, 0, seconds, TimeSpan.Zero);
 
         // Act
         var actual = input.ToIso8601Date();
@@ -133,7 +133,7 @@ public class DateTimeExtensionsTests
     public void ToIso8601Utc(int year, int hour, int seconds)
     {
         // Arrange
-        var input = new DateTime(year, 1, 1, hour, 0, seconds);
+        var input = new DateTimeOffset(year, 1, 1, hour, 0, seconds, TimeSpan.Zero);
 
         // Act
         var actual = input.ToIso8601UtcDate();
@@ -151,11 +151,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongDateStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToLongDateStringUsingCurrentUiCulture();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -170,11 +170,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        var actual = dateTimeOffset.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -189,11 +189,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongTimeStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToLongTimeStringUsingCurrentUiCulture();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -208,11 +208,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        var actual = dateTimeOffset.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -227,11 +227,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortDateStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToShortDateStringUsingCurrentUiCulture();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -246,11 +246,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        var actual = dateTimeOffset.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -265,11 +265,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortTimeStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToShortTimeStringUsingCurrentUiCulture();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -284,11 +284,11 @@ public class DateTimeExtensionsTests
         string expected, int arrangeUiLcid)
     {
         // Arrange
-        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        var actual = dateTimeOffset.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
         // Assert
         Assert.Equal(expected, actual);

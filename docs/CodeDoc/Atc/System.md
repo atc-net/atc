@@ -487,6 +487,90 @@ Extensions for the `System.DateTime` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+#### ToLongDateString
+>```csharp
+>string ToLongDateString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long date pattern of the provided DateTimeFormatInfo.
+#### ToLongDateStringUsingCurrentUiCulture
+>```csharp
+>string ToLongDateStringUsingCurrentUiCulture(this DateTime dateTime)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long date pattern of the current UI culture.
+#### ToLongTimeString
+>```csharp
+>string ToLongTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long time pattern of the provided DateTimeFormatInfo.
+#### ToLongTimeStringUsingCurrentUiCulture
+>```csharp
+>string ToLongTimeStringUsingCurrentUiCulture(this DateTime dateTime)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long time pattern of the current UI culture.
+#### ToShortDateString
+>```csharp
+>string ToShortDateString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short date pattern of the provided DateTimeFormatInfo.
+#### ToShortDateStringUsingCurrentUiCulture
+>```csharp
+>string ToShortDateStringUsingCurrentUiCulture(this DateTime dateTime)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short date pattern of the current UI culture.
+#### ToShortTimeString
+>```csharp
+>string ToShortTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short time pattern of the provided DateTimeFormatInfo.
+#### ToShortTimeStringUsingCurrentUiCulture
+>```csharp
+>string ToShortTimeStringUsingCurrentUiCulture(this DateTime dateTime)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short time pattern of the current UI culture.
 
 <br />
 
@@ -499,6 +583,46 @@ Extensions for the `System.DateTimeOffset` class.
 
 ### Static Methods
 
+#### DateTimeDiff
+>```csharp
+>double DateTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, DateTimeDiffCompareType howToCompare)
+>```
+><b>Summary:</b> Find the diff between to DateTimes.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;The end date.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`howToCompare`&nbsp;&nbsp;-&nbsp;&nbsp;The how to compare.<br />
+>
+><b>Returns:</b> The number between start date and end date, depend on the DiffCompareType.
+#### GetPrettyTimeDiff
+>```csharp
+>string GetPrettyTimeDiff(this DateTimeOffset startDate, int decimalPrecision = 3)
+>```
+><b>Summary:</b> Gets the pretty time difference.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
+#### GetPrettyTimeDiff
+>```csharp
+>string GetPrettyTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, int decimalPrecision = 3)
+>```
+><b>Summary:</b> Gets the pretty time difference.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startDate`&nbsp;&nbsp;-&nbsp;&nbsp;The start date.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
+#### GetWeekNumber
+>```csharp
+>int GetWeekNumber(this DateTimeOffset date)
+>```
+><b>Summary:</b> Gets the week number from a given date.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
+>
+><b>Returns:</b> The week number from the given date.
 #### IsBetween
 >```csharp
 >bool IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
@@ -537,10 +661,102 @@ Extensions for the `System.DateTimeOffset` class.
 >```csharp
 >string ToIso8601Date(this DateTimeOffset dateTimeOffset)
 >```
-><b>Summary:</b> Converts to ISO 8601 date.
+><b>Summary:</b> To the iso8601 date.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
+#### ToIso8601UtcDate
+>```csharp
+>string ToIso8601UtcDate(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> To the iso8601 UTC date.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date time offset.<br />
+#### ToLongDateString
+>```csharp
+>string ToLongDateString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long date pattern of the provided DateTimeFormatInfo.
+#### ToLongDateStringUsingCurrentUiCulture
+>```csharp
+>string ToLongDateStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long date pattern of the current UI culture.
+#### ToLongTimeString
+>```csharp
+>string ToLongTimeString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long time pattern of the provided DateTimeFormatInfo.
+#### ToLongTimeStringUsingCurrentUiCulture
+>```csharp
+>string ToLongTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long time pattern of the current UI culture.
+#### ToShortDateString
+>```csharp
+>string ToShortDateString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short date pattern of the provided DateTimeFormatInfo.
+#### ToShortDateStringUsingCurrentUiCulture
+>```csharp
+>string ToShortDateStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short date pattern of the current UI culture.
+#### ToShortTimeString
+>```csharp
+>string ToShortTimeString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the provided DateTimeFormatInfo.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short time pattern of the provided DateTimeFormatInfo.
+#### ToShortTimeStringUsingCurrentUiCulture
+>```csharp
+>string ToShortTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the current UI culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short time pattern of the current UI culture.
 #### ToUnixTime
 >```csharp
 >long ToUnixTime(this DateTimeOffset dateTimeOffset)

@@ -106,4 +106,137 @@ public static class DateTimeExtensions
     {
         return dateTime.ToUniversalTime().ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
     }
+
+    /// <summary>
+    /// Converts a DateTime to a string using the long date pattern
+    /// of the current UI culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <returns>A string representation of the DateTime using the
+    /// long date pattern of the current UI culture.</returns>
+    public static string ToLongDateStringUsingCurrentUiCulture(
+        this DateTime dateTime)
+        => dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+
+    /// <summary>
+    /// Converts a DateTime to a string using the long date pattern of the provided DateTimeFormatInfo.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="dateTimeFormatInfo">The DateTimeFormatInfo specifying the format to use.</param>
+    /// <returns>
+    /// A string representation of the DateTime using the long date pattern
+    /// of the provided DateTimeFormatInfo.
+    /// </returns>
+    public static string ToLongDateString(
+        this DateTime dateTime,
+        DateTimeFormatInfo dateTimeFormatInfo)
+    {
+        if (dateTimeFormatInfo == null)
+        {
+            throw new ArgumentNullException(nameof(dateTimeFormatInfo));
+        }
+
+        return dateTime.ToString(
+            dateTimeFormatInfo.LongDatePattern,
+            dateTimeFormatInfo);
+    }
+
+    /// <summary>
+    /// Converts a DateTime to a string using the long time pattern
+    /// of the current UI culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <returns>A string representation of the DateTime using the
+    /// long time pattern of the current UI culture.</returns>
+    public static string ToLongTimeStringUsingCurrentUiCulture(
+        this DateTime dateTime)
+        => dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+
+    /// <summary>
+    /// Converts a DateTime to a string using the long time pattern of the provided DateTimeFormatInfo.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="dateTimeFormatInfo">The DateTimeFormatInfo specifying the format to use.</param>
+    /// <returns>
+    /// A string representation of the DateTime using the long time pattern of the provided DateTimeFormatInfo.
+    /// </returns>
+    public static string ToLongTimeString(
+        this DateTime dateTime,
+        DateTimeFormatInfo dateTimeFormatInfo)
+    {
+        if (dateTimeFormatInfo == null)
+        {
+            throw new ArgumentNullException(nameof(dateTimeFormatInfo));
+        }
+
+        return dateTime.ToString(
+            dateTimeFormatInfo.LongTimePattern,
+            dateTimeFormatInfo);
+    }
+
+    /// <summary>
+    /// Converts a DateTime to a string using the short date pattern
+    /// of the current UI culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <returns>A string representation of the DateTime using the
+    /// short date pattern of the current UI culture.</returns>
+    public static string ToShortDateStringUsingCurrentUiCulture(
+        this DateTime dateTime)
+        => dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+
+    /// <summary>
+    /// Converts a DateTime to a string using the short date pattern of the provided DateTimeFormatInfo.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="dateTimeFormatInfo">The DateTimeFormatInfo specifying the format to use.</param>
+    /// <returns>
+    /// A string representation of the DateTime using the short date pattern of the provided DateTimeFormatInfo.
+    /// </returns>
+    public static string ToShortDateString(
+        this DateTime dateTime,
+        DateTimeFormatInfo dateTimeFormatInfo)
+    {
+        if (dateTimeFormatInfo == null)
+        {
+            throw new ArgumentNullException(nameof(dateTimeFormatInfo));
+        }
+
+        return dateTime.ToString(
+            dateTimeFormatInfo.ShortDatePattern,
+            dateTimeFormatInfo);
+    }
+
+    /// <summary>
+    /// Converts a DateTime to a string using the short time pattern
+    /// of the current UI culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <returns>A string representation of the DateTime using the
+    /// short time pattern of the current UI culture.</returns>
+    public static string ToShortTimeStringUsingCurrentUiCulture(
+        this DateTime dateTime)
+        => dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+
+    /// <summary>
+    /// Converts a DateTime to a string using the short time pattern of the provided DateTimeFormatInfo.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="dateTimeFormatInfo">The DateTimeFormatInfo specifying the format to use.</param>
+    /// <returns>
+    /// A string representation of the DateTime using the short time pattern of the provided DateTimeFormatInfo.
+    /// </returns>
+    public static string ToShortTimeString(
+        this DateTime dateTime,
+        DateTimeFormatInfo dateTimeFormatInfo)
+    {
+        if (dateTimeFormatInfo == null)
+        {
+            throw new ArgumentNullException(nameof(dateTimeFormatInfo));
+        }
+
+        return dateTime.ToString(
+            dateTimeFormatInfo.ShortTimePattern,
+            dateTimeFormatInfo);
+    }
 }
