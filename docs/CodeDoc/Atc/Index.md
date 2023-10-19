@@ -80,6 +80,7 @@
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
+- [CultureInfoHelper](Atc.Helpers.md#cultureinfohelper)
 - [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
 - [DateTimeHelper](Atc.Helpers.md#datetimehelper)
 - [DateTimeOffsetHelper](Atc.Helpers.md#datetimeoffsethelper)

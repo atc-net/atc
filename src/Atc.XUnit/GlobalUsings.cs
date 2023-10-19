@@ -10,6 +10,7 @@ global using System.Text;
 global using System.Text.Json;
 
 global using Atc.CodeDocumentation;
+global using Atc.Helpers;
 global using Atc.Serialization;
 global using Atc.XUnit.Internal;
 

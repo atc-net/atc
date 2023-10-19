@@ -37,6 +37,10 @@ Extensions for the `System.Reflection.Assembly` class.
 >```csharp
 >Version GetFileVersion(this Assembly assembly)
 >```
+#### GetResourceManagers
+>```csharp
+>ResourceManager[] GetResourceManagers(this Assembly assembly)
+>```
 #### GetTypesInheritingFromType
 >```csharp
 >Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)

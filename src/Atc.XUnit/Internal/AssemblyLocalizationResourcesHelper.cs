@@ -8,15 +8,18 @@ internal static class AssemblyLocalizationResourcesHelper
         Assembly assembly,
         IList<string> cultureNames)
     {
+        var resourceManagers = assembly.GetResourceManagers();
+
+        var cultures = CultureInfoHelper.GetCulturesFromNames(cultureNames);
+
         var result = new Dictionary<string, Dictionary<string, List<string>>>(StringComparer.Ordinal);
-        var resourceManagers = GetResourceManagersFromAssembly(assembly);
-        foreach (var resourceManager in resourceManagers.OrderBy(x => x.BaseName, StringComparer.Ordinal))
+        foreach (var resourceManager in resourceManagers)
         {
             result.Add(
                 resourceManager.BaseName,
                 CollectMissingTranslationsForResourceManager(
                     resourceManager,
-                    cultureNames));
+                    cultures));
         }
 
         return result;
@@ -27,41 +30,22 @@ internal static class AssemblyLocalizationResourcesHelper
         IList<string> cultureNames,
         IList<string>? allowSuffixTerms = null)
     {
+        var resourceManagers = assembly.GetResourceManagers();
+
+        var cultures = CultureInfoHelper.GetCulturesFromNames(cultureNames);
+
         var result = new Dictionary<string, Dictionary<string, List<string>>>(StringComparer.Ordinal);
-        var resourceManagers = GetResourceManagersFromAssembly(assembly);
-        foreach (var resourceManager in resourceManagers.OrderBy(x => x.BaseName, StringComparer.Ordinal))
+        foreach (var resourceManager in resourceManagers)
         {
             result.Add(
                 resourceManager.BaseName,
                 CollectInvalidKeySuffixWithPlaceholdersForResourceManager(
                     resourceManager,
-                    cultureNames,
+                    cultures,
                     allowSuffixTerms));
         }
 
         return result;
-    }
-
-    private static IEnumerable<ResourceManager> GetResourceManagersFromAssembly(
-        Assembly assembly)
-    {
-        var resourceTypes = assembly.GetTypes();
-        var resourceManagers = new List<ResourceManager>();
-
-        foreach (var type in resourceTypes)
-        {
-            var property = type.GetProperty("ResourceManager", BindingFlags.Public | BindingFlags.Static);
-            if (property is null ||
-                property.PropertyType != typeof(ResourceManager))
-            {
-                continue;
-            }
-
-            var resourceManager = (ResourceManager)property.GetValue(null)!;
-            resourceManagers.Add(resourceManager);
-        }
-
-        return resourceManagers;
     }
 
     private static List<string> GetMissingKeysInDefault(
@@ -104,7 +88,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
     private static Dictionary<string, List<string>> CollectMissingTranslationsForResourceManagerSet(
         ResourceManager resourceManager,
-        IList<string> cultureNames,
+        IList<CultureInfo> cultures,
         ResourceSet resourceSet)
     {
         var result = new Dictionary<string, List<string>>(StringComparer.Ordinal);
@@ -115,28 +99,30 @@ internal static class AssemblyLocalizationResourcesHelper
                 continue;
             }
 
-            if (entry.Value is not string neutralValue)
+            foreach (var culture in cultures)
             {
-                continue;
-            }
+                var resourceSetForCulture = resourceManager.GetResourceSet(
+                    culture,
+                    createIfNotExists: true,
+                    tryParents: false);
 
-            foreach (var cultureName in cultureNames)
-            {
-                var cultureInfo = new CultureInfo(cultureName);
-                var translatedValue = resourceManager.GetString(key, cultureInfo);
-
-                if (!string.IsNullOrEmpty(translatedValue) &&
-                    translatedValue != neutralValue)
+                if (resourceSetForCulture is null)
                 {
                     continue;
                 }
 
-                if (!result.ContainsKey(cultureName))
+                var translatedValue = resourceSetForCulture.GetString(key);
+                if (translatedValue is not null)
                 {
-                    result.Add(cultureName, new List<string>());
+                    continue;
                 }
 
-                result[cultureName].Add(key);
+                if (!result.ContainsKey(culture.Name))
+                {
+                    result.Add(culture.Name, new List<string>());
+                }
+
+                result[culture.Name].Add(key);
             }
         }
 
@@ -145,7 +131,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
     private static Dictionary<string, List<string>> CollectInvalidKeySuffixWithPlaceholdersForResourceManagerSet(
         ResourceManager resourceManager,
-        IList<string> cultureNames,
+        IList<CultureInfo> cultures,
         ResourceSet resourceSet,
         IList<string>? allowSuffixTerms = null)
     {
@@ -162,10 +148,9 @@ internal static class AssemblyLocalizationResourcesHelper
                 continue;
             }
 
-            foreach (var cultureName in cultureNames)
+            foreach (var culture in cultures)
             {
-                var cultureInfo = new CultureInfo(cultureName);
-                var translatedValue = resourceManager.GetString(key, cultureInfo);
+                var translatedValue = resourceManager.GetString(key, culture);
 
                 if (string.IsNullOrEmpty(translatedValue) ||
                     translatedValue == neutralValue)
@@ -181,12 +166,12 @@ internal static class AssemblyLocalizationResourcesHelper
                     continue;
                 }
 
-                if (!result.ContainsKey(cultureName))
+                if (!result.ContainsKey(culture.Name))
                 {
-                    result.Add(cultureName, new List<string>());
+                    result.Add(culture.Name, new List<string>());
                 }
 
-                result[cultureName].Add(key);
+                result[culture.Name].Add(key);
             }
         }
 
@@ -195,7 +180,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
     private static Dictionary<string, List<string>> CollectMissingTranslationsForResourceManager(
         ResourceManager resourceManager,
-        IList<string> cultureNames)
+        IList<CultureInfo> cultures)
     {
         var resourceSet = resourceManager.GetResourceSet(
             CultureInfo.InvariantCulture,
@@ -223,7 +208,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
         var resultForTranslations = CollectMissingTranslationsForResourceManagerSet(
             resourceManager,
-            cultureNames,
+            cultures,
             resourceSet);
 
         foreach (var item in resultForTranslations)
@@ -236,7 +221,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
     private static Dictionary<string, List<string>> CollectInvalidKeySuffixWithPlaceholdersForResourceManager(
         ResourceManager resourceManager,
-        IList<string> cultureNames,
+        IList<CultureInfo> cultures,
         IList<string>? allowSuffixTerms = null)
     {
         var resourceSet = resourceManager.GetResourceSet(
@@ -266,7 +251,7 @@ internal static class AssemblyLocalizationResourcesHelper
 
         var resultForTranslations = CollectInvalidKeySuffixWithPlaceholdersForResourceManagerSet(
             resourceManager,
-            cultureNames,
+            cultures,
             resourceSet,
             allowSuffixTerms);
 

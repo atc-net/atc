@@ -189,22 +189,33 @@ public static class TestResultHelper
         IDictionary<string, Dictionary<string, List<string>>>? missingTranslations,
         IDictionary<string, Dictionary<string, List<string>>>? invalidKeysSuffixWithPlaceholders)
     {
+        var assemblyTotalCount = 0;
+        if (missingTranslations is not null)
+        {
+            assemblyTotalCount += missingTranslations.Sum(item => missingTranslations[item.Key].Values.Sum(x => x.Count));
+        }
+
+        if (invalidKeysSuffixWithPlaceholders is not null)
+        {
+            assemblyTotalCount += invalidKeysSuffixWithPlaceholders.Sum(item => invalidKeysSuffixWithPlaceholders[item.Key].Values.Sum(x => x.Count));
+        }
+
         var testResults = new List<TestResult>
         {
-            new($"Assembly: {assemblyName} (???)"),
+            new($"Assembly: {assemblyName} ({assemblyTotalCount})"),
         };
 
         if (missingTranslations is not null)
         {
             foreach (var item in missingTranslations)
             {
-                var totalCount = missingTranslations[item.Key].Values.Sum(x => x.Count);
-                if (totalCount == 0)
+                var resourceTotalCount = missingTranslations[item.Key].Values.Sum(x => x.Count);
+                if (resourceTotalCount == 0)
                 {
                     continue;
                 }
 
-                testResults.Add(new TestResult(isError: false, 1, $"Resource: {item.Key} ({totalCount})"));
+                testResults.Add(new TestResult(isError: false, 1, $"Resource: {item.Key} ({resourceTotalCount})"));
                 foreach (var itemForResource in item.Value)
                 {
                     testResults.Add(new TestResult(isError: false, 2, $"Missing translation values for '{itemForResource.Key}' ({itemForResource.Value.Count})"));

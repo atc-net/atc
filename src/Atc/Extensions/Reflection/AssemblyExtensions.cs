@@ -1,4 +1,5 @@
 // ReSharper disable once CheckNamespace
+// ReSharper disable LoopCanBeConvertedToQuery
 namespace System.Reflection;
 
 /// <summary>
@@ -98,6 +99,35 @@ public static class AssemblyExtensions
         return assembly
             .GetTypes()
             .Where(x => x.IsInheritedFrom(type))
+            .ToArray();
+    }
+
+    public static ResourceManager[] GetResourceManagers(
+        this Assembly assembly)
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        var resourceTypes = assembly.GetTypes();
+        var resourceManagers = new List<ResourceManager>();
+
+        foreach (var type in resourceTypes)
+        {
+            var property = type.GetProperty(nameof(ResourceManager), BindingFlags.Public | BindingFlags.Static);
+            if (property is null ||
+                property.PropertyType != typeof(ResourceManager))
+            {
+                continue;
+            }
+
+            var resourceManager = (ResourceManager)property.GetValue(null)!;
+            resourceManagers.Add(resourceManager);
+        }
+
+        return resourceManagers
+            .OrderBy(x => x.BaseName, StringComparer.Ordinal)
             .ToArray();
     }
 }

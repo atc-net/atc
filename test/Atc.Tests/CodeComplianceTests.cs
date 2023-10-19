@@ -6,6 +6,11 @@ public class CodeComplianceTests
     private readonly ITestOutputHelper testOutputHelper;
     private readonly Assembly sourceAssembly = typeof(AtcAssemblyTypeInitializer).Assembly;
     private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
+    private readonly List<string> supportedCultureNames = new()
+    {
+        "da-DK",
+        "de-DE",
+    };
 
     private readonly List<Type> excludeTypes = new()
     {
@@ -101,57 +106,32 @@ public class CodeComplianceTests
     [Fact]
     public void AssertLocalizationResources()
     {
-        // TODO: Fix missing translation and uncomment this:
-        Assert.True(true);
-
-        ////// Arrange
-        ////var cultureNames = new List<string>
-        ////{
-        ////    "da-DK",
-        ////    "de-DE",
-        ////};
-
-        ////var allowSuffixTermsForKeySuffixWithPlaceholders = new List<string>
-        ////{
-        ////    "AsAbbreviation",
-        ////};
+        // Arrange
+        var allowSuffixTermsForKeySuffixWithPlaceholders = new List<string>
+        {
+            "AsAbbreviation",
+        };
 
         // Act & Assert
-        ////CodeComplianceHelper.AssertLocalizationResources(
-        ////    sourceAssembly,
-        ////    cultureNames,
-        ////    allowSuffixTermsForKeySuffixWithPlaceholders);
+        CodeComplianceHelper.AssertLocalizationResources(
+            sourceAssembly,
+            supportedCultureNames,
+            allowSuffixTermsForKeySuffixWithPlaceholders);
     }
 
     [Fact]
     public void AssertLocalizationResourcesForMissingTranslations()
     {
-        // TODO: Fix missing translation and uncomment this:
-        Assert.True(true);
-
-        ////// Arrange
-        ////var cultureNames = new List<string>
-        ////{
-        ////    "da-DK",
-        ////    "de-DE",
-        ////};
-
-        ////// Act & Assert
-        ////CodeComplianceHelper.AssertLocalizationResourcesForMissingTranslations(
-        ////    sourceAssembly,
-        ////    cultureNames);
+        // Act & Assert
+        CodeComplianceHelper.AssertLocalizationResourcesForMissingTranslations(
+            sourceAssembly,
+            supportedCultureNames);
     }
 
     [Fact]
     public void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders()
     {
         // Arrange
-        var cultureNames = new List<string>
-        {
-            "da-DK",
-            "de-DE",
-        };
-
         var allowSuffixTermsForKeySuffixWithPlaceholders = new List<string>
         {
             "AsAbbreviation",
@@ -160,7 +140,7 @@ public class CodeComplianceTests
         // Act & Assert
         CodeComplianceHelper.AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(
             sourceAssembly,
-            cultureNames,
+            supportedCultureNames,
             allowSuffixTermsForKeySuffixWithPlaceholders);
     }
 }
