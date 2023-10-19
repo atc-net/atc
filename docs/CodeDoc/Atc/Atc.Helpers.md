@@ -629,6 +629,21 @@ CultureHelper.
 
 <br />
 
+## CultureInfoHelper
+
+>```csharp
+>public static class CultureInfoHelper
+>```
+
+### Static Methods
+
+#### GetCulturesFromNames
+>```csharp
+>IList<CultureInfo> GetCulturesFromNames(IEnumerable<string> cultureNames)
+>```
+
+<br />
+
 ## DataAnnotationHelper
 
 >```csharp

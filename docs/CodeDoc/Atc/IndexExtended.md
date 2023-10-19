@@ -4461,6 +4461,9 @@
      - GetLanguageNames(int displayLanguageLcid, List&lt;int&gt; includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
      - GetLanguageNames(int displayLanguageLcid, List&lt;string&gt; includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
      - GetSupportedCultures(int displayLanguageLcid = 1033)
+- [CultureInfoHelper](Atc.Helpers.md#cultureinfohelper)
+  -  Static Methods
+     - GetCulturesFromNames(IEnumerable&lt;string&gt; cultureNames)
 - [DataAnnotationHelper](Atc.Helpers.md#dataannotationhelper)
   -  Static Methods
      - TryValidate(T data, out IList`1 validationResults, bool validateAllProperties = True)
@@ -5270,6 +5273,7 @@
      - GetBeautifiedName(this Assembly assembly)
      - GetExportedTypeByName(this Assembly assembly, string typeName)
      - GetFileVersion(this Assembly assembly)
+     - GetResourceManagers(this Assembly assembly)
      - GetTypesInheritingFromType(this Assembly assembly, Type type)
      - IsDebugBuild(this Assembly assembly)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)
