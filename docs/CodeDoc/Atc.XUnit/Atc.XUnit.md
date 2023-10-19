@@ -76,14 +76,31 @@ CodeComplianceNamingHelper.
 >```csharp
 >void AssertLocalizationResources(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
 >```
+><b>Summary:</b> Asserts the localization resources with missing translations or invalid keys with placeholders in value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`allowSuffixTermsForKeySuffixWithPlaceholders`&nbsp;&nbsp;-&nbsp;&nbsp;The allow suffix terms for key suffix with placeholders.<br />
 #### AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders
 >```csharp
 >void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
 >```
+><b>Summary:</b> Asserts the localization resources with invalid keys with placeholders in value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`allowSuffixTermsForKeySuffixWithPlaceholders`&nbsp;&nbsp;-&nbsp;&nbsp;The allow suffix terms for key suffix with placeholders.<br />
 #### AssertLocalizationResourcesForMissingTranslations
 >```csharp
 >void AssertLocalizationResourcesForMissingTranslations(Assembly assembly, IList<string> cultureNames)
 >```
+><b>Summary:</b> Asserts the localization resources with missing translations.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
 
 <br />
 
