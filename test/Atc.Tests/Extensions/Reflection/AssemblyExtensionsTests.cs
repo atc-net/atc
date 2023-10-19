@@ -77,4 +77,19 @@ public class AssemblyExtensionsTests
             .And
             .HaveCountGreaterOrEqualTo(1);
     }
+
+    [Fact]
+    public void GetResourceManagers()
+    {
+        // Arrange
+        var assembly = typeof(KeyValueItem).Assembly;
+
+        // Act
+        var actual = assembly.GetResourceManagers();
+
+        // Assert
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(4);
+    }
 }
