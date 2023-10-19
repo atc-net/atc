@@ -15,6 +15,9 @@
   -  Static Methods
      - AssertExportedTypesWithWrongDefinitions(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
      - AssertExportedTypesWithWrongDefinitions(Type type, bool useFullName = False)
+     - AssertLocalizationResources(Assembly assembly, IList&lt;string&gt; cultureNames, IList&lt;string&gt; allowSuffixTermsForKeySuffixWithPlaceholders = null)
+     - AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(Assembly assembly, IList&lt;string&gt; cultureNames, IList&lt;string&gt; allowSuffixTermsForKeySuffixWithPlaceholders = null)
+     - AssertLocalizationResourcesForMissingTranslations(Assembly assembly, IList&lt;string&gt; cultureNames)
 - [CodeComplianceTestHelper](Atc.XUnit.md#codecompliancetesthelper)
   -  Static Methods
      - AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List&lt;Type&gt; excludeSourceTypes = null, bool useFullName = False)
@@ -51,7 +54,8 @@
   -  Static Methods
      - AssertOnTestResults(IReadOnlyCollection&lt;TestResult&gt; testResults)
      - AssertOnTestResultsFromMethodsWithMissingTests(string assemblyName, MethodInfo[] methodsWithMissingTests, bool useFullName = False)
-     - AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, Dictionary&lt;MethodInfo, string&gt; methodsWithWrongNaming, bool useFullName = False)
+     - AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, IDictionary&lt;MethodInfo, string&gt; methodsWithWrongNaming, bool useFullName = False)
+     - AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(string assemblyName, IDictionary&lt;string, Dictionary&lt;string, List&lt;string&gt;&gt;&gt; missingTranslations, IDictionary&lt;string, Dictionary&lt;string, List&lt;string&gt;&gt;&gt; invalidKeysSuffixWithPlaceholders)
      - ToExcelTestResultsFromMethodsWithMissingTests(DirectoryInfo reportDirectory, string assemblyName, MethodInfo[] methodsWithMissingTests)
 - [Traits](Atc.XUnit.md#traits)
   -  Static Fields

@@ -72,6 +72,35 @@ CodeComplianceNamingHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+#### AssertLocalizationResources
+>```csharp
+>void AssertLocalizationResources(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
+>```
+><b>Summary:</b> Asserts the localization resources with missing translations or invalid keys with placeholders in value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`allowSuffixTermsForKeySuffixWithPlaceholders`&nbsp;&nbsp;-&nbsp;&nbsp;The allow suffix terms for key suffix with placeholders.<br />
+#### AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders
+>```csharp
+>void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
+>```
+><b>Summary:</b> Asserts the localization resources with invalid keys with placeholders in value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`allowSuffixTermsForKeySuffixWithPlaceholders`&nbsp;&nbsp;-&nbsp;&nbsp;The allow suffix terms for key suffix with placeholders.<br />
+#### AssertLocalizationResourcesForMissingTranslations
+>```csharp
+>void AssertLocalizationResourcesForMissingTranslations(Assembly assembly, IList<string> cultureNames)
+>```
+><b>Summary:</b> Asserts the localization resources with missing translations.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;The culture names.<br />
 
 <br />
 
@@ -451,7 +480,7 @@ TestResultHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
 #### AssertOnTestResultsFromMethodsWithWrongDefinitions
 >```csharp
->void AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, Dictionary<MethodInfo, string> methodsWithWrongNaming, bool useFullName = False)
+>void AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, IDictionary<MethodInfo, string> methodsWithWrongNaming, bool useFullName = False)
 >```
 ><b>Summary:</b> Asserts the on test results from methods with wrong definitions.
 >
@@ -459,6 +488,10 @@ TestResultHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodsWithWrongNaming`&nbsp;&nbsp;-&nbsp;&nbsp;The methods with wrong naming.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+#### AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders
+>```csharp
+>void AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(string assemblyName, IDictionary<string, Dictionary<string, List<string>>> missingTranslations, IDictionary<string, Dictionary<string, List<string>>> invalidKeysSuffixWithPlaceholders)
+>```
 #### ToExcelTestResultsFromMethodsWithMissingTests
 >```csharp
 >void ToExcelTestResultsFromMethodsWithMissingTests(DirectoryInfo reportDirectory, string assemblyName, MethodInfo[] methodsWithMissingTests)
