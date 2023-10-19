@@ -296,7 +296,6 @@ internal static class AssemblyLocalizationResourcesHelper
             }
         }
 
-        // No numeric suffix in the key, but placeholders are present in the value.
         if (string.IsNullOrEmpty(suffix) &&
             value.Contains('{', StringComparison.Ordinal) &&
             value.Contains('}', StringComparison.Ordinal))
@@ -310,9 +309,8 @@ internal static class AssemblyLocalizationResourcesHelper
             return true;
         }
 
-        // Calculate the highest placeholder index in the value string.
         var maxIndex = -1;
-        for (var i = 0; i < value.Length - 2; i++) // "- 2" to avoid out of range for "{x}" at the end of the string.
+        for (var i = 0; i < value.Length - 2; i++)
         {
             if (value[i] != '{' || !char.IsDigit(value[i + 1]) || value[i + 2] != '}')
             {
@@ -323,14 +321,11 @@ internal static class AssemblyLocalizationResourcesHelper
             maxIndex = System.Math.Max(maxIndex, index);
         }
 
-        // If there's no numeric suffix, the highest index should be -1 (no placeholders).
         if (string.IsNullOrEmpty(suffix))
         {
             return maxIndex == -1;
         }
 
-        // Check if the key's numeric suffix matches the highest placeholder index + 1.
-        // The "+ 1" is because placeholders are zero-based, but suffixes are 1-based.
         return int.TryParse(
             suffix,
             NumberStyles.Any,
