@@ -43,6 +43,12 @@ public static class CodeComplianceHelper
             useFullName);
     }
 
+    /// <summary>
+    /// Asserts the localization resources with missing translations or invalid keys with placeholders in value.
+    /// </summary>
+    /// <param name="assembly">The assembly.</param>
+    /// <param name="cultureNames">The culture names.</param>
+    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">The allow suffix terms for key suffix with placeholders.</param>
     public static void AssertLocalizationResources(
         Assembly assembly,
         IList<string> cultureNames,
@@ -68,6 +74,11 @@ public static class CodeComplianceHelper
             invalidKeysSuffixWithPlaceholders);
     }
 
+    /// <summary>
+    /// Asserts the localization resources with missing translations.
+    /// </summary>
+    /// <param name="assembly">The assembly.</param>
+    /// <param name="cultureNames">The culture names.</param>
     public static void AssertLocalizationResourcesForMissingTranslations(
         Assembly assembly,
         IList<string> cultureNames)
@@ -87,6 +98,12 @@ public static class CodeComplianceHelper
             invalidKeysSuffixWithPlaceholders: null);
     }
 
+    /// <summary>
+    /// Asserts the localization resources with invalid keys with placeholders in value.
+    /// </summary>
+    /// <param name="assembly">The assembly.</param>
+    /// <param name="cultureNames">The culture names.</param>
+    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">The allow suffix terms for key suffix with placeholders.</param>
     public static void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(
         Assembly assembly,
         IList<string> cultureNames,
