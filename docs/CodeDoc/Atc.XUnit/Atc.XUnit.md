@@ -72,6 +72,18 @@ CodeComplianceNamingHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+#### AssertLocalizationResources
+>```csharp
+>void AssertLocalizationResources(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
+>```
+#### AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders
+>```csharp
+>void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
+>```
+#### AssertLocalizationResourcesForMissingTranslations
+>```csharp
+>void AssertLocalizationResourcesForMissingTranslations(Assembly assembly, IList<string> cultureNames)
+>```
 
 <br />
 
@@ -451,7 +463,7 @@ TestResultHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
 #### AssertOnTestResultsFromMethodsWithWrongDefinitions
 >```csharp
->void AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, Dictionary<MethodInfo, string> methodsWithWrongNaming, bool useFullName = False)
+>void AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, IDictionary<MethodInfo, string> methodsWithWrongNaming, bool useFullName = False)
 >```
 ><b>Summary:</b> Asserts the on test results from methods with wrong definitions.
 >
@@ -459,6 +471,10 @@ TestResultHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodsWithWrongNaming`&nbsp;&nbsp;-&nbsp;&nbsp;The methods with wrong naming.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+#### AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders
+>```csharp
+>void AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(string assemblyName, IDictionary<string, Dictionary<string, List<string>>> missingTranslations, IDictionary<string, Dictionary<string, List<string>>> invalidKeysSuffixWithPlaceholders)
+>```
 #### ToExcelTestResultsFromMethodsWithMissingTests
 >```csharp
 >void ToExcelTestResultsFromMethodsWithMissingTests(DirectoryInfo reportDirectory, string assemblyName, MethodInfo[] methodsWithMissingTests)

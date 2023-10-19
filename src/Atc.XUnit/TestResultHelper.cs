@@ -157,7 +157,7 @@ public static class TestResultHelper
     /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
     public static void AssertOnTestResultsFromMethodsWithWrongDefinitions(
         string assemblyName,
-        Dictionary<MethodInfo, string> methodsWithWrongNaming,
+        IDictionary<MethodInfo, string> methodsWithWrongNaming,
         bool useFullName = false)
     {
         if (methodsWithWrongNaming is null)
@@ -177,8 +177,59 @@ public static class TestResultHelper
 
         foreach (var item in methodsWithWrongNamingGroups)
         {
-            testResults.Add(new TestResult(false, 1, $"Type: {item.Key} ({item.Count()})"));
-            testResults.AddRange(item.Select(x => new TestResult(true, 2, $"{x.Key.BeautifyName(useFullName)} # {x.Value}")));
+            testResults.Add(new TestResult(isError: false, 1, $"Type: {item.Key} ({item.Count()})"));
+            testResults.AddRange(item.Select(x => new TestResult(isError: true, 2, $"{x.Key.BeautifyName(useFullName)} # {x.Value}")));
+        }
+
+        AssertOnTestResults(testResults);
+    }
+
+    public static void AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(
+        string assemblyName,
+        IDictionary<string, Dictionary<string, List<string>>>? missingTranslations,
+        IDictionary<string, Dictionary<string, List<string>>>? invalidKeysSuffixWithPlaceholders)
+    {
+        var testResults = new List<TestResult>
+        {
+            new($"Assembly: {assemblyName} (???)"),
+        };
+
+        if (missingTranslations is not null)
+        {
+            foreach (var item in missingTranslations)
+            {
+                var totalCount = missingTranslations[item.Key].Values.Sum(x => x.Count);
+                if (totalCount == 0)
+                {
+                    continue;
+                }
+
+                testResults.Add(new TestResult(isError: false, 1, $"Resource: {item.Key} ({totalCount})"));
+                foreach (var itemForResource in item.Value)
+                {
+                    testResults.Add(new TestResult(isError: false, 2, $"Missing translation values for '{itemForResource.Key}' ({itemForResource.Value.Count})"));
+                    testResults.AddRange(itemForResource.Value.Select(itemValue => new TestResult(isError: true, 3, $"Key: {itemValue}")));
+                }
+            }
+        }
+
+        if (invalidKeysSuffixWithPlaceholders is not null)
+        {
+            foreach (var item in invalidKeysSuffixWithPlaceholders)
+            {
+                var totalCount = invalidKeysSuffixWithPlaceholders[item.Key].Values.Sum(x => x.Count);
+                if (totalCount == 0)
+                {
+                    continue;
+                }
+
+                testResults.Add(new TestResult(isError: false, 1, $"Resource: {item.Key} ({totalCount})"));
+                foreach (var itemForResource in item.Value)
+                {
+                    testResults.Add(new TestResult(isError: false, 2, $"Invalid placeholder values for '{itemForResource.Key}' ({itemForResource.Value.Count})"));
+                    testResults.AddRange(itemForResource.Value.Select(itemValue => new TestResult(isError: true, 3, $"Key: {itemValue}")));
+                }
+            }
         }
 
         AssertOnTestResults(testResults);

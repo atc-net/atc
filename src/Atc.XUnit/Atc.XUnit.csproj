@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Atc\Atc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Atc.XUnit.Tests" />
+  </ItemGroup>
+
 </Project>
