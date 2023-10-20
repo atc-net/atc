@@ -1,9 +1,9 @@
-// ReSharper disable LoopCanBeConvertedToQuery
-// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 namespace Atc.XUnit.Internal;
 
 internal static class AssemblyLocalizationResourcesHelper
 {
+    private static readonly Lazy<Regex> ArgIndexCaptureRegex = new Lazy<Regex>(() => new Regex(@"\{(\d+)", RegexOptions.Multiline, TimeSpan.FromMilliseconds(10)));
+
     public static Dictionary<string, Dictionary<string, List<string>>> CollectMissingTranslations(
         Assembly assembly,
         IList<string> cultureNames)
@@ -295,15 +295,21 @@ internal static class AssemblyLocalizationResourcesHelper
         }
 
         var maxIndex = -1;
-        for (var i = 0; i < value.Length - 2; i++)
-        {
-            if (value[i] != '{' || !char.IsDigit(value[i + 1]) || value[i + 2] != '}')
-            {
-                continue;
-            }
+        var formatArgsIndex = ArgIndexCaptureRegex.Value
+            .Matches(value)
+            .Select(x => x.Groups[1].Value)
+            .ToList();
 
-            var index = int.Parse(value[i + 1].ToString(), GlobalizationConstants.EnglishCultureInfo);
-            maxIndex = System.Math.Max(maxIndex, index);
+        foreach (var indexString in formatArgsIndex)
+        {
+            if (NumberHelper.TryParseToInt(indexString, out var index))
+            {
+                maxIndex = System.Math.Max(maxIndex, index);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         if (string.IsNullOrEmpty(suffix))
