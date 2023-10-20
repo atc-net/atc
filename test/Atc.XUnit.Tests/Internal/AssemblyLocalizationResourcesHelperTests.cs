@@ -17,6 +17,8 @@ public class AssemblyLocalizationResourcesHelperTests
     [InlineData(false, "Foo2", "Hello {0} world")]
     [InlineData(false, "Foo2", "Hello {0} world {0}")]
     [InlineData(true, "Foo2", "Hello {0} world {1}")]
+    [InlineData(true, "Foo3", "Hello {0:format} world {1,10:format} {2,10}")]
+    [InlineData(true, "Foo11", "{0:format}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}")]
     public void ValidateKeySuffixWithPlaceholdersTest(bool expected, string key, string value)
     {
         Assert.Equal(expected, AssemblyLocalizationResourcesHelper.ValidateKeySuffixWithPlaceholders(key, value));
@@ -37,6 +39,8 @@ public class AssemblyLocalizationResourcesHelperTests
     [InlineData(false, "Foo2", "Hello {0} world", null)]
     [InlineData(false, "Foo2", "Hello {0} world {0}", null)]
     [InlineData(true, "Foo2", "Hello {0} world {1}", null)]
+    [InlineData(true, "Foo3", "Hello {0:format} world {1,10:format} {2,10}", null)]
+    [InlineData(true, "Foo11", "{0:format}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}", null)]
     public void ValidateKeySuffixWithPlaceholdersTest_AllowSuffixTerms(bool expected, string key, string value, string? allowSuffixTerm)
     {
         List<string>? allowSuffixTerms = null;
