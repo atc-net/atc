@@ -4895,7 +4895,6 @@
      - TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
      - TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
      - TakeRemainingBytes(this byte[] value, int startPosition = 0)
-     - ToHex(this byte[] value, string separator = null, bool showHexSign = False)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
   -  Static Methods
      - Bytes(this decimal value)

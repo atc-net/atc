@@ -286,18 +286,6 @@ Extensions for the byte class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
-#### ToHex
->```csharp
->string ToHex(this byte[] value, string separator = null, bool showHexSign = False)
->```
-><b>Summary:</b> Converts a byte array to its hexadecimal string representation.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array to be converted.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`separator`&nbsp;&nbsp;-&nbsp;&nbsp;An optional character used to separate the hexadecimal values. If not provided, there will be no separator between values.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`showHexSign`&nbsp;&nbsp;-&nbsp;&nbsp;A flag indicating whether to prepend each hexadecimal value with '0x'. Defaults to false.<br />
->
-><b>Returns:</b> A string representation of the byte array in hexadecimal format.
 
 <br />
 
