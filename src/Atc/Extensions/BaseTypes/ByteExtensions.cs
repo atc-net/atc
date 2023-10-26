@@ -165,4 +165,34 @@ public static class ByteExtensions
             }
         }
     }
+
+    /// <summary>
+    /// Converts a byte array to its hexadecimal string representation.
+    /// </summary>
+    /// <param name="value">The byte array to be converted.</param>
+    /// <param name="separator">An optional character used to separate the hexadecimal values. If not provided, there will be no separator between values.</param>
+    /// <param name="showHexSign">A flag indicating whether to prepend each hexadecimal value with '0x'. Defaults to false.</param>
+    /// <returns>
+    /// A string representation of the byte array in hexadecimal format.
+    /// </returns>
+    public static string ToHex(
+        this byte[] value,
+        string? separator = null,
+        bool showHexSign = false)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        var s = BitConverter.ToString(value);
+        if (separator is null)
+        {
+            return s.Replace("-", string.Empty, StringComparison.Ordinal);
+        }
+
+        return showHexSign
+            ? "0x" + s.Replace("-", $"{separator}0x", StringComparison.Ordinal)
+            : s.Replace("-", separator, StringComparison.Ordinal);
+    }
 }
