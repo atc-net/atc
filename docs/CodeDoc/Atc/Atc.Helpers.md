@@ -1195,6 +1195,114 @@ FileHelper.
 
 ### Static Methods
 
+#### CloseMainWindowOnAllRunningInternetBrowsers
+>```csharp
+>void CloseMainWindowOnAllRunningInternetBrowsers()
+>```
+#### CloseMainWindowOnRunningBraveInstances
+>```csharp
+>void CloseMainWindowOnRunningBraveInstances()
+>```
+#### CloseMainWindowOnRunningFirefoxInstances
+>```csharp
+>void CloseMainWindowOnRunningFirefoxInstances()
+>```
+#### CloseMainWindowOnRunningGhostBrowserInstances
+>```csharp
+>void CloseMainWindowOnRunningGhostBrowserInstances()
+>```
+#### CloseMainWindowOnRunningGoogleChromeInstances
+>```csharp
+>void CloseMainWindowOnRunningGoogleChromeInstances()
+>```
+#### CloseMainWindowOnRunningMicrosoftEdgeInstances
+>```csharp
+>void CloseMainWindowOnRunningMicrosoftEdgeInstances()
+>```
+#### CloseMainWindowOnRunningMicrosoftInternetExplorerInstances
+>```csharp
+>void CloseMainWindowOnRunningMicrosoftInternetExplorerInstances()
+>```
+#### CloseMainWindowOnRunningOperaInstances
+>```csharp
+>void CloseMainWindowOnRunningOperaInstances()
+>```
+#### CloseMainWindowOnRunningSafariInstances
+>```csharp
+>void CloseMainWindowOnRunningSafariInstances()
+>```
+#### GetRunningInternetBrowsers
+>```csharp
+>IList<string> GetRunningInternetBrowsers()
+>```
+#### IsBraveRunning
+>```csharp
+>bool IsBraveRunning()
+>```
+#### IsFirefoxRunning
+>```csharp
+>bool IsFirefoxRunning()
+>```
+#### IsGhostBrowserRunning
+>```csharp
+>bool IsGhostBrowserRunning()
+>```
+#### IsGoogleChromeRunning
+>```csharp
+>bool IsGoogleChromeRunning()
+>```
+#### IsMicrosoftEdgeRunning
+>```csharp
+>bool IsMicrosoftEdgeRunning()
+>```
+#### IsMicrosoftInternetExplorerRunning
+>```csharp
+>bool IsMicrosoftInternetExplorerRunning()
+>```
+#### IsOperaRunning
+>```csharp
+>bool IsOperaRunning()
+>```
+#### IsSafariRunning
+>```csharp
+>bool IsSafariRunning()
+>```
+#### KillAllRunningInternetBrowsers
+>```csharp
+>void KillAllRunningInternetBrowsers()
+>```
+#### KillRunningBraveInstances
+>```csharp
+>void KillRunningBraveInstances()
+>```
+#### KillRunningFirefoxInstances
+>```csharp
+>void KillRunningFirefoxInstances()
+>```
+#### KillRunningGhostBrowserInstances
+>```csharp
+>void KillRunningGhostBrowserInstances()
+>```
+#### KillRunningGoogleChromeInstances
+>```csharp
+>void KillRunningGoogleChromeInstances()
+>```
+#### KillRunningMicrosoftEdgeInstances
+>```csharp
+>void KillRunningMicrosoftEdgeInstances()
+>```
+#### KillRunningMicrosoftInternetExplorerInstances
+>```csharp
+>void KillRunningMicrosoftInternetExplorerInstances()
+>```
+#### KillRunningOperaInstances
+>```csharp
+>void KillRunningOperaInstances()
+>```
+#### KillRunningSafariInstances
+>```csharp
+>void KillRunningSafariInstances()
+>```
 #### OpenUrl
 >```csharp
 >bool OpenUrl(string url)
@@ -1203,6 +1311,8 @@ FileHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
+>
+><b>Returns:</b> `true` if the url is started in a browser; otherwise, `false`.
 >
 ><b>Remarks:</b> Only url with the http or https protocol is supported.
 #### OpenUrl
@@ -1213,6 +1323,8 @@ FileHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
+>
+><b>Returns:</b> `true` if the url is started in a browser; otherwise, `false`.
 >
 ><b>Remarks:</b> Only url with the http or https protocol is supported.
 
