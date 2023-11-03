@@ -2,6 +2,158 @@ namespace Atc.Helpers;
 
 public static class InternetBrowserHelper
 {
+    private const string ProcessNameBrave = "brave";
+    private const string ProcessNameFirefox = "firefox";
+    private const string ProcessNameGhostBrowser = "ghost";
+    private const string ProcessNameChrome = "chrome";
+    private const string ProcessNameMicrosoftEdge = "msedge";
+    private const string ProcessNameMicrosoftInternetExplorer = "iexplore";
+    private const string ProcessNameOpera = "opera";
+    private const string ProcessNameSafari = "safari";
+
+    public static IList<string> GetRunningInternetBrowsers()
+    {
+        var result = new List<string>();
+
+        if (IsBraveRunning())
+        {
+            result.Add("Brave");
+        }
+
+        if (IsFirefoxRunning())
+        {
+            result.Add("Firefox");
+        }
+
+        if (IsGhostBrowserRunning())
+        {
+            result.Add("Ghost Browser");
+        }
+
+        if (IsGoogleChromeRunning())
+        {
+            result.Add("Google Chrome");
+        }
+
+        if (IsMicrosoftEdgeRunning())
+        {
+            result.Add("Microsoft Edge");
+        }
+
+        if (IsMicrosoftInternetExplorerRunning())
+        {
+            result.Add("Microsoft Internet Explorer");
+        }
+
+        if (IsOperaRunning())
+        {
+            result.Add("Opera");
+        }
+
+        if (IsSafariRunning())
+        {
+            result.Add("Safari");
+        }
+
+        return result;
+    }
+
+    public static void CloseMainWindowOnAllRunningInternetBrowsers()
+    {
+        CloseMainWindowOnRunningBraveInstances();
+        CloseMainWindowOnRunningFirefoxInstances();
+        CloseMainWindowOnRunningGhostBrowserInstances();
+        CloseMainWindowOnRunningGoogleChromeInstances();
+        CloseMainWindowOnRunningMicrosoftEdgeInstances();
+        CloseMainWindowOnRunningMicrosoftInternetExplorerInstances();
+        CloseMainWindowOnRunningOperaInstances();
+        CloseMainWindowOnRunningSafariInstances();
+    }
+
+    public static void KillAllRunningInternetBrowsers()
+    {
+        KillRunningBraveInstances();
+        KillRunningFirefoxInstances();
+        KillRunningGhostBrowserInstances();
+        KillRunningGoogleChromeInstances();
+        KillRunningMicrosoftEdgeInstances();
+        KillRunningMicrosoftInternetExplorerInstances();
+        KillRunningOperaInstances();
+        KillRunningSafariInstances();
+    }
+
+    public static bool IsBraveRunning()
+        => IsProcessRunning(ProcessNameBrave);
+
+    public static bool IsFirefoxRunning()
+        => IsProcessRunning(ProcessNameFirefox);
+
+    public static bool IsGhostBrowserRunning()
+        => IsProcessRunning(ProcessNameGhostBrowser);
+
+    public static bool IsGoogleChromeRunning()
+        => IsProcessRunning(ProcessNameChrome);
+
+    public static bool IsMicrosoftEdgeRunning()
+        => IsProcessRunning(ProcessNameMicrosoftEdge);
+
+    public static bool IsMicrosoftInternetExplorerRunning()
+        => IsProcessRunning(ProcessNameMicrosoftInternetExplorer);
+
+    public static bool IsOperaRunning()
+        => IsProcessRunning(ProcessNameOpera);
+
+    public static bool IsSafariRunning()
+        => IsProcessRunning(ProcessNameSafari);
+
+    public static void CloseMainWindowOnRunningBraveInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameBrave);
+
+    public static void CloseMainWindowOnRunningFirefoxInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameFirefox);
+
+    public static void CloseMainWindowOnRunningGhostBrowserInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameGhostBrowser);
+
+    public static void CloseMainWindowOnRunningGoogleChromeInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameChrome);
+
+    public static void CloseMainWindowOnRunningMicrosoftEdgeInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameMicrosoftEdge);
+
+    public static void CloseMainWindowOnRunningMicrosoftInternetExplorerInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameMicrosoftInternetExplorer);
+
+    public static void CloseMainWindowOnRunningOperaInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameOpera);
+
+    public static void CloseMainWindowOnRunningSafariInstances()
+        => CloseMainWindowOnRunningInstances(ProcessNameSafari);
+
+    public static void KillRunningBraveInstances()
+        => KillRunningInstances(ProcessNameBrave);
+
+    public static void KillRunningFirefoxInstances()
+        => KillRunningInstances(ProcessNameFirefox);
+
+    public static void KillRunningGhostBrowserInstances()
+        => KillRunningInstances(ProcessNameGhostBrowser);
+
+    public static void KillRunningGoogleChromeInstances()
+        => KillRunningInstances(ProcessNameChrome);
+
+    public static void KillRunningMicrosoftEdgeInstances()
+        => KillRunningInstances(ProcessNameMicrosoftEdge);
+
+    public static void KillRunningMicrosoftInternetExplorerInstances()
+        => KillRunningInstances(ProcessNameMicrosoftInternetExplorer);
+
+    public static void KillRunningOperaInstances()
+        => KillRunningInstances(ProcessNameOpera);
+
+    public static void KillRunningSafariInstances()
+        => KillRunningInstances(ProcessNameSafari);
+
     /// <summary>
     /// Open the given url in the default browser on the machine.
     /// </summary>
@@ -9,7 +161,11 @@ public static class InternetBrowserHelper
     /// <remarks>
     /// Only url with the http or https protocol is supported.
     /// </remarks>
-    public static bool OpenUrl(string url)
+    /// <returns>
+    ///   <c>true</c> if the url is started in a browser; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool OpenUrl(
+        string url)
     {
         if (url is null)
         {
@@ -26,7 +182,11 @@ public static class InternetBrowserHelper
     /// <remarks>
     /// Only url with the http or https protocol is supported.
     /// </remarks>
-    public static bool OpenUrl(Uri uri)
+    /// <returns>
+    ///   <c>true</c> if the url is started in a browser; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool OpenUrl(
+        Uri uri)
     {
         if (uri is null)
         {
@@ -37,7 +197,8 @@ public static class InternetBrowserHelper
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static bool ProcessStartOpenUrl(Uri uri)
+    private static bool ProcessStartOpenUrl(
+        Uri uri)
     {
         if (uri is null)
         {
@@ -74,6 +235,30 @@ public static class InternetBrowserHelper
         catch
         {
             return false;
+        }
+    }
+
+    private static bool IsProcessRunning(
+        string processName)
+        => Process.GetProcessesByName(processName).Length > 0;
+
+    private static void CloseMainWindowOnRunningInstances(
+        string processName)
+    {
+        var instances = Process.GetProcessesByName(processName);
+        foreach (var instance in instances)
+        {
+            instance.CloseMainWindow();
+        }
+    }
+
+    private static void KillRunningInstances(
+        string processName)
+    {
+        var instances = Process.GetProcessesByName(processName);
+        foreach (var instance in instances)
+        {
+            instance.Kill();
         }
     }
 }
