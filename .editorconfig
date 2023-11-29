@@ -510,7 +510,10 @@ dotnet_diagnostic.CA1848.severity = suggestion		# LoggerMessage delegates instea
 dotnet_diagnostic.CA2254.severity = suggestion		# Logging message template
 dotnet_diagnostic.CA1854.severity = suggestion		# Use TryGetValue over ContainsKey and dictionary index accesser
 
-dotnet_diagnostic.CS8633.severity =  suggestion     # Nullability in constraints for type parameter of method doesn't match the constraints for type parameter of interface method. Consider using an explicit interface implementation instead.
+dotnet_diagnostic.CA1859.severity = suggestion      # Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1860.severity = suggestion      # Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance
+dotnet_diagnostic.CA1861.severity = suggestion      #  'static readonly' fields over constant array arguments if the called method is called repeatedly and is not mutating the passed array
+dotnet_diagnostic.CS8633.severity = suggestion      # Nullability in constraints for type parameter of method doesn't match the constraints for type parameter of interface method. Consider using an explicit interface implementation instead.
 
 dotnet_diagnostic.MA0031.severity = suggestion		# Optimize Enumerable.Count() usage - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0031.md
 dotnet_diagnostic.MA0016.severity = suggestion		# Category: 'Design' - Prefer return collection abstraction instead of implementation - https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0016.md
@@ -535,5 +538,7 @@ dotnet_diagnostic.S6605.severity = none             # Collection-specific "Exist
 
 dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
 
+dotnet_diagnostic.xUnit1012.severity = suggestion   # Null should not be used for type parameter
+dotnet_diagnostic.xUnit1040.severity = suggestion   # The type argument
 dotnet_diagnostic.xUnit2017.severity = suggestion   # Do not use Assert.True() to check if a value exists in a collection. Use Assert.Contains instead
 dotnet_diagnostic.xUnit2020.severity = suggestion   # Do not use Assert.True(false, message) to fail a test. Use Assert.Fail(message) instead
