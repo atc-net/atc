@@ -11,10 +11,7 @@ public class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOpti
 
     public void Configure(ApiVersioningOptions options)
     {
-        if (options is null)
-        {
-            throw new ArgumentNullException(nameof(options));
-        }
+        ArgumentNullException.ThrowIfNull(options);
 
         // Specify the default API Version
         options.DefaultApiVersion = new ApiVersion(1, 0);

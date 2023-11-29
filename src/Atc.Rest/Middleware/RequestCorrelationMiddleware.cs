@@ -14,10 +14,7 @@ public class RequestCorrelationMiddleware
 
     public Task InvokeAsync(HttpContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         var correlationId = context.Request.Headers.GetOrAddCorrelationId();
         context.Request.Headers.GetOrAddRequestId();

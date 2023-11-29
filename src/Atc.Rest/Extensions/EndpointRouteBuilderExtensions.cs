@@ -77,10 +77,7 @@ public static class EndpointRouteBuilderExtensions
         this IEndpointRouteBuilder endpoints,
         string pattern)
     {
-        if (endpoints == null)
-        {
-            throw new ArgumentNullException(nameof(endpoints));
-        }
+        ArgumentNullException.ThrowIfNull(endpoints);
 
         if (string.IsNullOrEmpty(pattern))
         {

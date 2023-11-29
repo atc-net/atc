@@ -13,10 +13,7 @@ public class ExceptionTelemetryMiddleware
 
     public Task InvokeAsync(HttpContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         return InternalInvokeAsync(context);
     }

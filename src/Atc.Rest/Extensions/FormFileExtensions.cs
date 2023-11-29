@@ -5,10 +5,7 @@ public static class FormFileExtensions
 {
     public static Task<byte[]> GetBytes(this IFormFile formFile)
     {
-        if (formFile is null)
-        {
-            throw new ArgumentNullException(nameof(formFile));
-        }
+        ArgumentNullException.ThrowIfNull(formFile);
 
         return GetBytesInternalAsync(formFile);
     }

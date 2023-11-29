@@ -25,25 +25,10 @@ public static class RestApiBuilderExtensions
         RestApiOptions restApiOptions,
         Action<IApplicationBuilder> setupAction)
     {
-        if (app is null)
-        {
-            throw new ArgumentNullException(nameof(app));
-        }
-
-        if (env is null)
-        {
-            throw new ArgumentNullException(nameof(env));
-        }
-
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
-
-        if (setupAction is null)
-        {
-            throw new ArgumentNullException(nameof(setupAction));
-        }
+        ArgumentNullException.ThrowIfNull(app);
+        ArgumentNullException.ThrowIfNull(env);
+        ArgumentNullException.ThrowIfNull(restApiOptions);
+        ArgumentNullException.ThrowIfNull(setupAction);
 
         if (env.IsDevelopment())
         {

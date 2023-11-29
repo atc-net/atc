@@ -5,10 +5,7 @@ public static class AssemblyExtensions
 {
     public static string GetApiName(this Assembly assembly, bool removeLastVerb = false)
     {
-        if (assembly is null)
-        {
-            throw new ArgumentNullException(nameof(assembly));
-        }
+        ArgumentNullException.ThrowIfNull(assembly);
 
         var assemblyName = assembly.GetBeautifiedName().Replace("Api", "API", StringComparison.Ordinal);
 
