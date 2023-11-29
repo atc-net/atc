@@ -323,7 +323,7 @@ public class DynamicJson
             ErrorMessage: null);
     }
 
-    private (bool IsSucceeded, string? ErrorMessage) RemovePathRecursive(
+    private static (bool IsSucceeded, string? ErrorMessage) RemovePathRecursive(
         IDictionary<string, object?> currentDict,
         IReadOnlyList<string> segments,
         int index)

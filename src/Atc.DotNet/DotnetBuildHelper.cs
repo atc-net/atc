@@ -214,13 +214,9 @@ public static class DotnetBuildHelper
                 ? matchGroups[1].Value
                 : keyPrefix + matchGroups[1].Value;
 
-            if (errors.ContainsKey(key))
+            if (!errors.TryAdd(key, 1))
             {
                 errors[key] += 1;
-            }
-            else
-            {
-                errors.Add(key, 1);
             }
         }
 

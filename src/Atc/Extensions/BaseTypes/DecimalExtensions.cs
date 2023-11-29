@@ -72,13 +72,13 @@ public static class DecimalExtensions
         }
 
         sa = string.Format(CultureInfo.InvariantCulture, "{0}.{1}", saa[0], sad);
-        while (sa.EndsWith("0", StringComparison.Ordinal))
+        while (sa.EndsWith('0'))
         {
             sa = sa.Substring(0, sa.Length - 1);
         }
 
         sb = string.Format(CultureInfo.InvariantCulture, "{0}.{1}", sab[0], sbd);
-        while (sb.EndsWith("0", StringComparison.Ordinal))
+        while (sb.EndsWith('0'))
         {
             sb = sb.Substring(0, sb.Length - 1);
         }

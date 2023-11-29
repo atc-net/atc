@@ -1325,13 +1325,13 @@ public static class StringExtensions
         }
 
         value = value.Trim();
-        while (value.IndexOf("\t", StringComparison.Ordinal) != -1)
+        while (value.Contains('\t', StringComparison.Ordinal))
         {
-            value = value.Replace("\t", " ", StringComparison.Ordinal);
+            value = value.Replace('\t', ' ');
         }
 
         var lengthBefore = value.Length;
-        while (value.IndexOf("\n ", StringComparison.Ordinal) != -1)
+        while (value.Contains("\n ", StringComparison.Ordinal))
         {
             value = value.Replace("\n ", "\n", StringComparison.Ordinal);
             if (lengthBefore == value.Length)
@@ -1343,7 +1343,7 @@ public static class StringExtensions
         }
 
         lengthBefore = value.Length;
-        while (value.IndexOf("\n\n", StringComparison.Ordinal) != -1)
+        while (value.Contains("\n\n", StringComparison.Ordinal))
         {
             value = value.Replace("\n\n", "\n", StringComparison.Ordinal);
             if (lengthBefore == value.Length)
@@ -1355,7 +1355,7 @@ public static class StringExtensions
         }
 
         lengthBefore = value.Length;
-        while (value.IndexOf("\r\n\r\n", StringComparison.Ordinal) != -1)
+        while (value.Contains("\r\n\r\n", StringComparison.Ordinal))
         {
             value = value.Replace("\r\n\r\n", "\r\n", StringComparison.Ordinal);
             if (lengthBefore == value.Length)
@@ -1366,7 +1366,7 @@ public static class StringExtensions
             lengthBefore = value.Length;
         }
 
-        while (value.IndexOf("..", StringComparison.Ordinal) != -1)
+        while (value.Contains("..", StringComparison.Ordinal))
         {
             value = value.Replace("..", ".", StringComparison.Ordinal);
         }
@@ -1405,7 +1405,7 @@ public static class StringExtensions
         }
 
         var s = value.Trim();
-        while (s.IndexOf("  ", StringComparison.Ordinal) != -1)
+        while (s.Contains("  ", StringComparison.Ordinal))
         {
             s = s.Replace("  ", " ", StringComparison.Ordinal);
         }
