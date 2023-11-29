@@ -5,10 +5,7 @@ public static class HttpResponseMessageExtensions
 {
     public static Task<T> DeserializeAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions? jsonSerializerOptions = null)
     {
-        if (httpResponseMessage is null)
-        {
-            throw new ArgumentNullException(nameof(httpResponseMessage));
-        }
+        ArgumentNullException.ThrowIfNull(httpResponseMessage);
 
         return InvokeDeserializeAsync<T>(httpResponseMessage, jsonSerializerOptions);
     }

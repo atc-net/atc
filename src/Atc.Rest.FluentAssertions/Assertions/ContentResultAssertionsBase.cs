@@ -80,10 +80,7 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
 
     private bool TryContentValueAs(Type type, out object content)
     {
-        if (type is null)
-        {
-            throw new ArgumentNullException(nameof(type));
-        }
+        ArgumentNullException.ThrowIfNull(type);
 
         if (Subject.Content is null)
         {

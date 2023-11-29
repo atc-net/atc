@@ -16,10 +16,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
         TelemetryClient telemetryClient,
         RestApiOptions options)
     {
-        if (options is null)
-        {
-            throw new ArgumentNullException(nameof(options));
-        }
+        ArgumentNullException.ThrowIfNull(options);
 
         this.telemetryClient = telemetryClient;
         includeException = options.ErrorHandlingExceptionFilter.IncludeExceptionDetails;
@@ -28,10 +25,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
 
     public override void OnException(ExceptionContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         HandleException(context);
         context.ExceptionHandled = true;

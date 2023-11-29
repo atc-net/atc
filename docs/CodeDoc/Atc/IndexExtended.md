@@ -4805,10 +4805,18 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+- [JsonDirectoryInfoToFullNameConverter](Atc.Serialization.JsonConverters.md#jsondirectoryinfotofullnameconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, DirectoryInfo value, JsonSerializerOptions options)
 - [JsonElementObjectConverter](Atc.Serialization.JsonConverters.md#jsonelementobjectconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
+- [JsonFileInfoToFullNameConverter](Atc.Serialization.JsonConverters.md#jsonfileinfotofullnameconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, FileInfo value, JsonSerializerOptions options)
 - [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
   -  Methods
      - CanConvert(Type typeToConvert)
@@ -4826,6 +4834,10 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+- [JsonUriToAbsoluteUriConverter](Atc.Serialization.JsonConverters.md#jsonuritoabsoluteuriconverter)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, Uri value, JsonSerializerOptions options)
 - [JsonVersionConverter](Atc.Serialization.JsonConverters.md#jsonversionconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

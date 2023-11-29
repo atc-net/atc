@@ -8,20 +8,9 @@ public static class ServiceCollectionExtensions
         Assembly interfaceAssembly,
         Assembly implementationAssembly)
     {
-        if (services is null)
-        {
-            throw new ArgumentNullException(nameof(services));
-        }
-
-        if (interfaceAssembly is null)
-        {
-            throw new ArgumentNullException(nameof(interfaceAssembly));
-        }
-
-        if (implementationAssembly is null)
-        {
-            throw new ArgumentNullException(nameof(implementationAssembly));
-        }
+        ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(interfaceAssembly);
+        ArgumentNullException.ThrowIfNull(implementationAssembly);
 
         var implementationInterfaces = interfaceAssembly
             .DefinedTypes
@@ -57,15 +46,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         Assembly apiAssembly)
     {
-        if (services is null)
-        {
-            throw new ArgumentNullException(nameof(services));
-        }
-
-        if (apiAssembly is null)
-        {
-            throw new ArgumentNullException(nameof(apiAssembly));
-        }
+        ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(apiAssembly);
 
         var notRegistered = apiAssembly
             .DefinedTypes

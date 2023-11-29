@@ -446,7 +446,7 @@ public static class CultureHelper
                 break;
             }
 
-            case 5 when value.IndexOf('-', StringComparison.Ordinal) != -1:
+            case 5 when value.Contains('-', StringComparison.Ordinal):
             {
                 culture = cultures.Find(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
                 if (culture is not null)
@@ -631,13 +631,9 @@ public static class CultureHelper
                 continue;
             }
 
-            if (countryDisplayNameCount.ContainsKey(culture.CountryDisplayName))
+            if (!countryDisplayNameCount.TryAdd(culture.CountryDisplayName, 1))
             {
                 countryDisplayNameCount[culture.CountryDisplayName]++;
-            }
-            else
-            {
-                countryDisplayNameCount.Add(culture.CountryDisplayName, 1);
             }
         }
 
@@ -768,13 +764,9 @@ public static class CultureHelper
                 continue;
             }
 
-            if (languageDisplayNameCount.ContainsKey(culture.LanguageDisplayName))
+            if (!languageDisplayNameCount.TryAdd(culture.LanguageDisplayName, 1))
             {
                 languageDisplayNameCount[culture.LanguageDisplayName]++;
-            }
-            else
-            {
-                languageDisplayNameCount.Add(culture.LanguageDisplayName, 1);
             }
         }
 

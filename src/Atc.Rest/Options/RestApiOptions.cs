@@ -34,15 +34,8 @@ public class RestApiOptions
 
     public void AddAssemblyPairs(Assembly? apiAssembly, Assembly? domainAssembly)
     {
-        if (apiAssembly is null)
-        {
-            throw new ArgumentNullException(nameof(apiAssembly));
-        }
-
-        if (domainAssembly is null)
-        {
-            throw new ArgumentNullException(nameof(domainAssembly));
-        }
+        ArgumentNullException.ThrowIfNull(apiAssembly);
+        ArgumentNullException.ThrowIfNull(domainAssembly);
 
         AssemblyPairs ??= new List<AssemblyPairOptions>();
         AssemblyPairs.Add(new AssemblyPairOptions(apiAssembly, domainAssembly));

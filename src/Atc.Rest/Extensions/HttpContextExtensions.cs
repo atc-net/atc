@@ -5,10 +5,7 @@ public static class HttpContextExtensions
 {
     public static string? GetCorrelationId(this HttpContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         return context.Request.Headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header)
             ? header.FirstOrDefault()
@@ -17,10 +14,7 @@ public static class HttpContextExtensions
 
     public static string? GetRequestId(this HttpContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         return context.Request.Headers.TryGetValue(WellKnownHttpHeaders.RequestId, out var header)
             ? header.FirstOrDefault()

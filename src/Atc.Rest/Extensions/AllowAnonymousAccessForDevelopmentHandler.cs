@@ -15,10 +15,7 @@ public class AllowAnonymousAccessForDevelopmentHandler : IAuthorizationHandler
 
     public Task HandleAsync(AuthorizationHandlerContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context);
 
         if (!apiOptions.AllowAnonymousAccessForDevelopment || !environment.IsDevelopment())
         {

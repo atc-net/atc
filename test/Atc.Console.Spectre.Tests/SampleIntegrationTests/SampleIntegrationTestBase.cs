@@ -16,10 +16,7 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
 
     public static Task<(bool IsSuccessful, string Output)> ExecuteCli(string arguments)
     {
-        if (arguments is null)
-        {
-            throw new ArgumentNullException(nameof(arguments));
-        }
+        ArgumentNullException.ThrowIfNull(arguments);
 
         var cliFile = GetExecutableFileForCli(typeof(Program), "sample");
         return ProcessHelper.Execute(cliFile, arguments, timeoutInSec: 30);
@@ -27,10 +24,7 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
 
     public static void PrepareCliAppSettings(ConsoleLoggerConfiguration config)
     {
-        if (config is null)
-        {
-            throw new ArgumentNullException(nameof(config));
-        }
+        ArgumentNullException.ThrowIfNull(config);
 
         var appSettingsFile = GetAppSettingsFileForCli(typeof(Program), "sample");
 

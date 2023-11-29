@@ -15,10 +15,7 @@ public class CallingIdentityTelemetryInitializer : ITelemetryInitializer
 
     public void Initialize(ITelemetry telemetry)
     {
-        if (telemetry is null)
-        {
-            throw new ArgumentNullException(nameof(telemetry));
-        }
+        ArgumentNullException.ThrowIfNull(telemetry);
 
         telemetry.Context.User.AuthenticatedUserId = context.CallingIdentity;
         if (telemetry is not ISupportProperties sp)

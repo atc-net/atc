@@ -11,10 +11,7 @@ public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
 
     public void Configure(ApiBehaviorOptions options)
     {
-        if (options is null)
-        {
-            throw new ArgumentNullException(nameof(options));
-        }
+        ArgumentNullException.ThrowIfNull(options);
 
         options.SuppressInferBindingSourcesForParameters = true;
         options.InvalidModelStateResponseFactory = context =>

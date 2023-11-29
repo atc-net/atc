@@ -95,10 +95,7 @@ public class ConfigureAuthorizationOptions :
 
     public void PostConfigure(string name, AuthenticationOptions options)
     {
-        if (options is null)
-        {
-            throw new ArgumentNullException(nameof(options));
-        }
+        ArgumentNullException.ThrowIfNull(options);
 
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     }

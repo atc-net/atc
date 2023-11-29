@@ -93,13 +93,9 @@ public static class DataTableExtensions
                      in dataTable.Rows
                  select dr[countOnColumn].ToString())
         {
-            if (list.ContainsKey(key))
+            if (!list.TryAdd(key, 1))
             {
                 list[key] = list[key] + 1;
-            }
-            else
-            {
-                list.Add(key, 1);
             }
         }
 

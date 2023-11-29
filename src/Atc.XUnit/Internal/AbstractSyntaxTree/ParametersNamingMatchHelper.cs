@@ -185,7 +185,7 @@ internal static class ParametersNamingMatchHelper
                 return true;
             }
 
-            if (astNodeTypeName.IndexOf("Constants", StringComparison.Ordinal) != -1)
+            if (astNodeTypeName.Contains("Constants", StringComparison.Ordinal))
             {
                 return true;
             }

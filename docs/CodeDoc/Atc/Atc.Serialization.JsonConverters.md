@@ -79,6 +79,25 @@
 
 <br />
 
+## JsonDirectoryInfoToFullNameConverter
+
+>```csharp
+>public class JsonDirectoryInfoToFullNameConverter : JsonConverter<DirectoryInfo>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>DirectoryInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, DirectoryInfo value, JsonSerializerOptions options)
+>```
+
+<br />
+
 ## JsonElementObjectConverter
 
 >```csharp
@@ -94,6 +113,25 @@
 #### Write
 >```csharp
 >void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
+>```
+
+<br />
+
+## JsonFileInfoToFullNameConverter
+
+>```csharp
+>public class JsonFileInfoToFullNameConverter : JsonConverter<FileInfo>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>FileInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, FileInfo value, JsonSerializerOptions options)
 >```
 
 <br />
@@ -174,6 +212,25 @@
 #### Write
 >```csharp
 >void Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
+>```
+
+<br />
+
+## JsonUriToAbsoluteUriConverter
+
+>```csharp
+>public class JsonUriToAbsoluteUriConverter : JsonConverter<Uri>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>Uri Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, Uri value, JsonSerializerOptions options)
 >```
 
 <br />

@@ -9,10 +9,7 @@ public class Pagination<T>
 
     public Pagination(IEnumerable<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
     {
-        if (items is null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         Items = new List<T>(items);
         PageSize = pageSize;
@@ -23,10 +20,7 @@ public class Pagination<T>
 
     public Pagination(IEnumerable<T> items, int pageSize, string? queryString, string? continuationToken)
     {
-        if (items is null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         Items = new List<T>(items);
         PageSize = pageSize;

@@ -24,15 +24,8 @@ public static class RestApiExtensions
         Action<IMvcBuilder> setupMvcAction,
         RestApiOptions restApiOptions)
     {
-        if (setupMvcAction is null)
-        {
-            throw new ArgumentNullException(nameof(setupMvcAction));
-        }
-
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
+        ArgumentNullException.ThrowIfNull(setupMvcAction);
+        ArgumentNullException.ThrowIfNull(restApiOptions);
 
         if (restApiOptions.UseHttpContextAccessor)
         {
@@ -104,10 +97,7 @@ public static class RestApiExtensions
 
     private static void HandleAssemblyPairs(IServiceCollection services, RestApiOptions restApiOptions)
     {
-        if (restApiOptions is null)
-        {
-            throw new ArgumentNullException(nameof(restApiOptions));
-        }
+        ArgumentNullException.ThrowIfNull(restApiOptions);
 
         if (restApiOptions.AssemblyPairs.Count == 0)
         {

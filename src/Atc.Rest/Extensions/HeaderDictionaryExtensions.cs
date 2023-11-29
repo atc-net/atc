@@ -10,10 +10,7 @@ public static class HeaderDictionaryExtensions
     /// <returns>Correlation id for request.</returns>
     public static string GetOrAddCorrelationId(this IHeaderDictionary headers)
     {
-        if (headers is null)
-        {
-            throw new ArgumentNullException(nameof(headers));
-        }
+        ArgumentNullException.ThrowIfNull(headers);
 
         return headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header)
             ? header.FirstOrDefault()!
@@ -22,10 +19,7 @@ public static class HeaderDictionaryExtensions
 
     public static string AddCorrelationId(this IHeaderDictionary headers, string correlationId)
     {
-        if (headers is null)
-        {
-            throw new ArgumentNullException(nameof(headers));
-        }
+        ArgumentNullException.ThrowIfNull(headers);
 
         headers[WellKnownHttpHeaders.CorrelationId] = correlationId;
         return correlationId;
@@ -33,10 +27,7 @@ public static class HeaderDictionaryExtensions
 
     public static string? GetOrAddRequestId(this IHeaderDictionary headers)
     {
-        if (headers is null)
-        {
-            throw new ArgumentNullException(nameof(headers));
-        }
+        ArgumentNullException.ThrowIfNull(headers);
 
         if (headers.TryGetValue(WellKnownHttpHeaders.RequestId, out var header))
         {
@@ -50,10 +41,7 @@ public static class HeaderDictionaryExtensions
 
     public static string? GetCallingOnBehalfOfIdentity(this IHeaderDictionary headers)
     {
-        if (headers is null)
-        {
-            throw new ArgumentNullException(nameof(headers));
-        }
+        ArgumentNullException.ThrowIfNull(headers);
 
         return headers.TryGetValue(WellKnownHttpHeaders.OnBehalfOf, out var header)
             ? header.FirstOrDefault()

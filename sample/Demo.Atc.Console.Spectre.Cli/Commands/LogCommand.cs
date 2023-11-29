@@ -12,10 +12,7 @@ public class LogCommand : Command<LogCommandSettings>
 
     public override int Execute(CommandContext context, LogCommandSettings settings)
     {
-        if (settings is null)
-        {
-            throw new ArgumentNullException(nameof(settings));
-        }
+        ArgumentNullException.ThrowIfNull(settings);
 
         var logLevel = Enum<LogLevel>.Parse(settings.LogLevel);
         switch (logLevel)
