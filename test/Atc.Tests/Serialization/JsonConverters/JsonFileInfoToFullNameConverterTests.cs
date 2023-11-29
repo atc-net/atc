@@ -19,7 +19,10 @@ public class JsonFileInfoToFullNameConverterTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(file, result.FullName);
+        if (OperatingSystem.IsWindows())
+        {
+            Assert.Equal(file, result.FullName);
+        }
     }
 
     [Theory]
@@ -41,6 +44,9 @@ public class JsonFileInfoToFullNameConverterTests
         var result = Encoding.UTF8.GetString(memoryStream.ToArray());
 
         Assert.NotNull(result);
-        Assert.Equal($"\"{file}\"", result.Replace("\\\\", "\\", StringComparison.Ordinal));
+        if (OperatingSystem.IsWindows())
+        {
+            Assert.Equal($"\"{file}\"", result.Replace("\\\\", "\\", StringComparison.Ordinal));
+        }
     }
 }

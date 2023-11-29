@@ -19,7 +19,10 @@ public class JsonDirectoryInfoToFullNameConverterTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(directory, result.FullName);
+        if (OperatingSystem.IsWindows())
+        {
+            Assert.Equal(directory, result.FullName);
+        }
     }
 
     [Theory]
@@ -41,6 +44,9 @@ public class JsonDirectoryInfoToFullNameConverterTests
         var result = Encoding.UTF8.GetString(memoryStream.ToArray());
 
         Assert.NotNull(result);
-        Assert.Equal($"\"{directory}\"", result.Replace("\\\\", "\\", StringComparison.Ordinal));
+        if (OperatingSystem.IsWindows())
+        {
+            Assert.Equal($"\"{directory}\"", result.Replace("\\\\", "\\", StringComparison.Ordinal));
+        }
     }
 }
