@@ -974,6 +974,47 @@ Enumeration Helper: EnumHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [ignore case].<br />
 >
 ><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+#### GetIndividualValues
+>```csharp
+>IList<T> GetIndividualValues(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves individual flag values from a enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of individual values.
+#### GetIndividualValuesByCombinedValueFromFlagEnum
+>```csharp
+>IList<T> GetIndividualValuesByCombinedValueFromFlagEnum(T combinedValue, bool includeDefault = True)
+>```
+><b>Summary:</b> Extracts and returns individual flags from a combined flag value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`combinedValue`&nbsp;&nbsp;-&nbsp;&nbsp;The aggregate value of flags.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of matching individual flags.
+#### GetIndividualValuesFromEnum
+>```csharp
+>IList<T> GetIndividualValuesFromEnum(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves values from a regular (non-flag) enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of enum values.
+#### GetIndividualValuesFromFlagEnum
+>```csharp
+>IList<T> GetIndividualValuesFromFlagEnum(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves individual flag values from a flag-based enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of individual flag values.
 #### GetName
 >```csharp
 >string GetName(Enum enumeration)
@@ -1971,6 +2012,22 @@ TaskHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taskToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The task to run.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeout`&nbsp;&nbsp;-&nbsp;&nbsp;The timeout.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+#### FireAndForget
+>```csharp
+>void FireAndForget(Action action)
+>```
+><b>Summary:</b> Executes the provided action on a background thread, ignoring its completion status. This method is intended for fire-and-forget scenarios where the action is non-critical and does not need to be awaited or monitored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`action`&nbsp;&nbsp;-&nbsp;&nbsp;The action to execute asynchronously.<br />
+#### FireAndForget
+>```csharp
+>void FireAndForget(Task task)
+>```
+><b>Summary:</b> Executes the provided action on a background thread, ignoring its completion status. This method is intended for fire-and-forget scenarios where the action is non-critical and does not need to be awaited or monitored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`action`&nbsp;&nbsp;-&nbsp;&nbsp;The action to execute asynchronously.<br />
 #### RunSync
 >```csharp
 >void RunSync(Func<Task> func)

@@ -4502,6 +4502,10 @@
      - ConvertEnumToDictionaryWithStringKey(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
      - GetDescription(Enum enumeration)
      - GetEnumValue(string value, bool ignoreCase = True)
+     - GetIndividualValues(bool includeDefault = True)
+     - GetIndividualValuesByCombinedValueFromFlagEnum(T combinedValue, bool includeDefault = True)
+     - GetIndividualValuesFromEnum(bool includeDefault = True)
+     - GetIndividualValuesFromFlagEnum(bool includeDefault = True)
      - GetName(Enum enumeration)
      - GetValueFromDescription(string description)
 - [FileHelper](Atc.Helpers.md#filehelper)
@@ -4663,6 +4667,8 @@
 - [TaskHelper](Atc.Helpers.md#taskhelper)
   -  Static Methods
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
+     - FireAndForget(Action action)
+     - FireAndForget(Task task)
      - RunSync(Func&lt;Task&gt; func)
      - RunSync(Func&lt;Task&lt;TResult&gt;&gt; func)
      - WhenAll(IEnumerable&lt;Task&gt; tasks)
@@ -5146,6 +5152,7 @@
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
 - [TaskExtensions](System.md#taskextensions)
   -  Static Methods
+     - Forget(this Task task)
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
      - StartAndWaitAllThrottled(this IEnumerable&lt;Task&gt; tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = null)
 - [TcpException](System.md#tcpexception)

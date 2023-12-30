@@ -160,4 +160,67 @@ public class EnumHelperTests
         // Assert
         actual.Should().NotBeNull().And.HaveCount(expectedCount);
     }
+
+    [Theory]
+    [InlineData(16, false)]
+    [InlineData(17, true)]
+    public void GetIndividualValues_CardinalDirectionType(
+        int expected,
+        bool includeDefault)
+    {
+        // Act
+        var actual = EnumHelper.GetIndividualValues<CardinalDirectionType>(includeDefault);
+
+        // Assert
+        Assert.Equal(expected, actual.Count);
+    }
+
+    [Theory]
+    [InlineData(16, false)]
+    [InlineData(17, true)]
+    public void GetIndividualValuesFromFlagEnum_CardinalDirectionType(
+        int expected,
+        bool includeDefault)
+    {
+        // Act
+        var actual = EnumHelper.GetIndividualValuesFromFlagEnum<CardinalDirectionType>(includeDefault);
+
+        // Assert
+        Assert.Equal(expected, actual.Count);
+    }
+
+    [Theory]
+    [InlineData(4, false, CardinalDirectionType.Simple)]
+    [InlineData(5, true, CardinalDirectionType.Simple)]
+    [InlineData(8, false, CardinalDirectionType.Medium)]
+    [InlineData(9, true, CardinalDirectionType.Medium)]
+    [InlineData(16, false, CardinalDirectionType.Advanced)]
+    [InlineData(17, true, CardinalDirectionType.Advanced)]
+    public void GetIndividualValuesByCombinedValueFromFlagEnum_CardinalDirectionType(
+        int expected,
+        bool includeDefault,
+        CardinalDirectionType cardinalDirectionType)
+    {
+        // Act
+        var actual = EnumHelper.GetIndividualValuesByCombinedValueFromFlagEnum(
+            cardinalDirectionType,
+            includeDefault);
+
+        // Assert
+        Assert.Equal(expected, actual.Count);
+    }
+
+    [Theory]
+    [InlineData(6, false)]
+    [InlineData(7, true)]
+    public void GetIndividualValuesFromEnum_DayOfWeek(
+        int expected,
+        bool includeDefault)
+    {
+        // Act
+        var actual = EnumHelper.GetIndividualValuesFromEnum<DayOfWeek>(includeDefault);
+
+        // Assert
+        Assert.Equal(expected, actual.Count);
+    }
 }

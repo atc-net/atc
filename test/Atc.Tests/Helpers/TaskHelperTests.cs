@@ -1,3 +1,5 @@
+// ReSharper disable RedundantAssignment
+// ReSharper disable NotAccessedVariable
 namespace Atc.Tests.Helpers;
 
 [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
@@ -140,6 +142,32 @@ public class TaskHelperTests
 
         // Assert
         Assert.Equal(42, actual);
+    }
+
+    [Fact]
+    [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
+    [SuppressMessage("Major Code Smell", "S1854:Unused assignments should be removed", Justification = "OK.")]
+    [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK.")]
+    public void FireAndForget_Action()
+    {
+        // Act
+        TaskHelper.FireAndForget(() =>
+        {
+            var x = 0;
+            x++;
+        });
+    }
+
+    [Fact]
+    [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
+    [SuppressMessage("Blocker Code Smell", "S2699:Tests should include assertions", Justification = "OK.")]
+    public void FireAndForget_Task()
+    {
+        // Arrange
+        var doSomethingTask = DoSomethingAndReturnResultAsync();
+
+        // Act
+        TaskHelper.FireAndForget(doSomethingTask);
     }
 
     private static Task DoSomethingAsync()

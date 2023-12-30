@@ -169,4 +169,41 @@ public static class TaskHelper
             .GetAwaiter()
             .GetResult();
     }
+
+    /// <summary>
+    /// Executes the provided action on a background thread, ignoring its completion status.
+    /// This method is intended for fire-and-forget scenarios where the action is non-critical and does not need to be awaited or monitored.
+    /// </summary>
+    /// <param name="action">The action to execute asynchronously.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the action is null.</exception>
+    [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
+    public static void FireAndForget(
+        Action action)
+    {
+        if (action is null)
+        {
+            throw new ArgumentNullException(nameof(action));
+        }
+
+        Task.Run(action).Forget();
+    }
+
+    /// <summary>
+    /// Initiates the execution of a provided task and intentionally ignores its result or completion status.
+    /// This is a fire-and-forget utility method, used when the outcome of the task is not needed or is handled elsewhere.
+    /// It's primarily used for tasks where the result is not critical and does not need to be awaited or monitored.
+    /// </summary>
+    /// <param name="task">The task to execute and forget.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the task is null.</exception>
+    [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
+    public static void FireAndForget(
+        Task task)
+    {
+        if (task is null)
+        {
+            throw new ArgumentNullException(nameof(task));
+        }
+
+        task.Forget();
+    }
 }
