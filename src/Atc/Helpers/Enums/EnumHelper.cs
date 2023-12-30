@@ -1,5 +1,7 @@
 // ReSharper disable UnreachableSwitchCaseDueToIntegerAnalysis
 // ReSharper disable once CheckNamespace
+// ReSharper disable LoopCanBeConvertedToQuery
+// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 namespace Atc.Helpers;
 
 /// <summary>
@@ -398,7 +400,191 @@ public static class EnumHelper
         return orderList.ToDictionary(x => x.Key, x => x.Value, StringComparer.Ordinal);
     }
 
-    internal static bool ShouldEnumValueBeSkipped(
+    /// <summary>
+    /// Retrieves individual flag values from a enum.
+    /// </summary>
+    /// <typeparam name="T">The enum type.</typeparam>
+    /// <param name="includeDefault">Includes the default '0' value if true.</param>
+    /// <returns>A list of individual values.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if T is not an enum.</exception>
+    public static IList<T> GetIndividualValues<T>(
+        bool includeDefault = true)
+        where T : Enum
+    {
+        if (!typeof(T).IsEnum)
+        {
+            throw new InvalidOperationException("The generic type parameter must be an enum.");
+        }
+
+        return typeof(T).GetCustomAttribute<FlagsAttribute>() is null
+            ? GetIndividualValuesFromEnum<T>(includeDefault)
+            : GetIndividualValuesFromFlagEnum<T>(includeDefault);
+    }
+
+    /// <summary>
+    /// Retrieves individual flag values from a flag-based enum.
+    /// </summary>
+    /// <typeparam name="T">The enum type with <c>[Flags]</c> attribute.</typeparam>
+    /// <param name="includeDefault">Includes the default '0' value if true.</param>
+    /// <returns>A list of individual flag values.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if T is not an enum with the <c>[Flags]</c> attribute.</exception>
+    public static IList<T> GetIndividualValuesFromFlagEnum<T>(
+        bool includeDefault = true)
+        where T : Enum
+    {
+        if (!typeof(T).IsEnum ||
+            typeof(T).GetCustomAttribute<FlagsAttribute>() is null)
+        {
+            throw new InvalidOperationException("The generic type parameter must be an enum with the [Flags] attribute.");
+        }
+
+        var allValues = Enum
+            .GetValues(typeof(T))
+            .Cast<T>()
+            .ToList();
+
+        var individualValues = new List<T>();
+        foreach (var value in allValues)
+        {
+            var valueAsLong = Convert.ToInt64(value, GlobalizationConstants.EnglishCultureInfo);
+            if (!includeDefault &&
+                valueAsLong == 0)
+            {
+                continue;
+            }
+
+            var bitCount = CountBitsForEnumValue(valueAsLong);
+            if (includeDefault)
+            {
+                if (bitCount is 0 or 1)
+                {
+                    individualValues.Add(value);
+                }
+            }
+            else
+            {
+                if (bitCount == 1)
+                {
+                    individualValues.Add(value);
+                }
+            }
+        }
+
+        return individualValues;
+    }
+
+    /// <summary>
+    /// Extracts and returns individual flags from a combined flag value.
+    /// </summary>
+    /// <typeparam name="T">The enum type with <c>[Flags]</c> attribute.</typeparam>
+    /// <param name="combinedValue">The aggregate value of flags.</param>
+    /// <param name="includeDefault">Includes the default '0' value if true.</param>
+    /// <returns>A list of matching individual flags.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if T is not an enum with the <c>[Flags]</c> attribute or the combined value is invalid.</exception>
+    public static IList<T> GetIndividualValuesByCombinedValueFromFlagEnum<T>(
+        T combinedValue,
+        bool includeDefault = true)
+        where T : Enum
+    {
+        if (!typeof(T).IsEnum ||
+            typeof(T).GetCustomAttribute<FlagsAttribute>() is null)
+        {
+            throw new InvalidOperationException("The generic type parameter must be an enum with the [Flags] attribute.");
+        }
+
+        var combinedValueAsLong = Convert.ToInt64(combinedValue, GlobalizationConstants.EnglishCultureInfo);
+        if (CountBitsForEnumValue(combinedValueAsLong) == 1)
+        {
+            throw new InvalidOperationException("The combined value is invalid.");
+        }
+
+        var matchingValues = new List<T>();
+        foreach (T value in Enum.GetValues(typeof(T)))
+        {
+            var valueAsLong = Convert.ToInt64(value, GlobalizationConstants.EnglishCultureInfo);
+            if (!includeDefault &&
+                valueAsLong == 0)
+            {
+                continue;
+            }
+
+            var bitCount = CountBitsForEnumValue(valueAsLong);
+            if ((combinedValueAsLong & valueAsLong) != valueAsLong)
+            {
+                continue;
+            }
+
+            if (includeDefault)
+            {
+                if (bitCount is 0 or 1)
+                {
+                    matchingValues.Add(value);
+                }
+            }
+            else
+            {
+                if (bitCount == 1)
+                {
+                    matchingValues.Add(value);
+                }
+            }
+        }
+
+        return matchingValues;
+    }
+
+    /// <summary>
+    /// Retrieves values from a regular (non-flag) enum.
+    /// </summary>
+    /// <typeparam name="T">The enum type without the <c>[Flags]</c> attribute.</typeparam>
+    /// <param name="includeDefault">Includes the default '0' value if true.</param>
+    /// <returns>A list of enum values.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if T is an enum with the <c>[Flags]</c> attribute.</exception>
+    public static IList<T> GetIndividualValuesFromEnum<T>(
+        bool includeDefault = true)
+        where T : Enum
+    {
+        if (!typeof(T).IsEnum ||
+            typeof(T).GetCustomAttribute<FlagsAttribute>() is not null)
+        {
+            throw new InvalidOperationException("The generic type parameter must be an enum without the [Flags] attribute.");
+        }
+
+        var allValues = Enum
+            .GetValues(typeof(T))
+            .Cast<T>()
+            .ToList();
+
+        var individualValues = new List<T>();
+        foreach (var value in allValues)
+        {
+            var valueAsLong = Convert.ToInt64(value, GlobalizationConstants.EnglishCultureInfo);
+            if (!includeDefault &&
+                valueAsLong == 0)
+            {
+                continue;
+            }
+
+            individualValues.Add(value);
+        }
+
+        return individualValues;
+    }
+
+    private static int CountBitsForEnumValue(
+        long value)
+    {
+        var count = 0;
+        while (value != 0)
+        {
+            count++;
+            value &= value - 1; // Clear the least significant bit set.
+        }
+
+        return count;
+    }
+
+    private static bool ShouldEnumValueBeSkipped(
         object objEnumValue,
         bool includeDefault,
         bool hasFlagAttribute,

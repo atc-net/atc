@@ -40,6 +40,7 @@ public class CodeComplianceTests
 
         // UnitTests are made, but CodeCompliance test cannot detect this
         typeof(DynamicJson),
+        typeof(EnumHelper),
         typeof(NumberHelper),
         typeof(InternetBrowserHelper),
         typeof(FileInfoExtensions),

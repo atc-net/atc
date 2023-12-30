@@ -974,6 +974,47 @@ Enumeration Helper: EnumHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [ignore case].<br />
 >
 ><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+#### GetIndividualValues
+>```csharp
+>IList<T> GetIndividualValues(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves individual flag values from a enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of individual values.
+#### GetIndividualValuesByCombinedValueFromFlagEnum
+>```csharp
+>IList<T> GetIndividualValuesByCombinedValueFromFlagEnum(T combinedValue, bool includeDefault = True)
+>```
+><b>Summary:</b> Extracts and returns individual flags from a combined flag value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`combinedValue`&nbsp;&nbsp;-&nbsp;&nbsp;The aggregate value of flags.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of matching individual flags.
+#### GetIndividualValuesFromEnum
+>```csharp
+>IList<T> GetIndividualValuesFromEnum(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves values from a regular (non-flag) enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of enum values.
+#### GetIndividualValuesFromFlagEnum
+>```csharp
+>IList<T> GetIndividualValuesFromFlagEnum(bool includeDefault = True)
+>```
+><b>Summary:</b> Retrieves individual flag values from a flag-based enum.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;Includes the default '0' value if true.<br />
+>
+><b>Returns:</b> A list of individual flag values.
 #### GetName
 >```csharp
 >string GetName(Enum enumeration)
