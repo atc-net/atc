@@ -2012,6 +2012,22 @@ TaskHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taskToRun`&nbsp;&nbsp;-&nbsp;&nbsp;The task to run.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeout`&nbsp;&nbsp;-&nbsp;&nbsp;The timeout.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+#### FireAndForget
+>```csharp
+>void FireAndForget(Action action)
+>```
+><b>Summary:</b> Executes the provided action on a background thread, ignoring its completion status. This method is intended for fire-and-forget scenarios where the action is non-critical and does not need to be awaited or monitored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`action`&nbsp;&nbsp;-&nbsp;&nbsp;The action to execute asynchronously.<br />
+#### FireAndForget
+>```csharp
+>void FireAndForget(Task task)
+>```
+><b>Summary:</b> Executes the provided action on a background thread, ignoring its completion status. This method is intended for fire-and-forget scenarios where the action is non-critical and does not need to be awaited or monitored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`action`&nbsp;&nbsp;-&nbsp;&nbsp;The action to execute asynchronously.<br />
 #### RunSync
 >```csharp
 >void RunSync(Func<Task> func)

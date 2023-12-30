@@ -69,4 +69,39 @@ public static class TaskExtensions
         // before some Tasks have had their "post" action completed, which references the throttler, resulting in an exception due to accessing a disposed object.
         Task.WaitAll(postTaskTasks.ToArray(), cancellationToken);
     }
+
+    /// <summary>
+    /// Marks the provided task as 'forgotten', meaning its completion is intentionally unobserved.
+    /// This method is used to explicitly denote that a task's result or exception is to be ignored.
+    /// It should be used with caution, primarily in fire-and-forget scenarios where task exceptions are handled separately.
+    /// </summary>
+    /// <param name="task">The task to be forgotten.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the task is null.</exception>
+    public static void Forget(
+        this Task task)
+    {
+        if (task is null)
+        {
+            throw new ArgumentNullException(nameof(task));
+        }
+
+        if (!task.IsCompleted || task.IsFaulted)
+        {
+            _ = ForgetAwaited(task);
+        }
+    }
+
+    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    private static async Task ForgetAwaited(
+        Task task)
+    {
+        try
+        {
+            await task.ConfigureAwait(false);
+        }
+        catch
+        {
+            // Nothing to do here
+        }
+    }
 }

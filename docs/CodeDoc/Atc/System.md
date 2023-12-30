@@ -2287,6 +2287,14 @@ Extensions for the `System.Threading.Tasks.Task` class.
 
 ### Static Methods
 
+#### Forget
+>```csharp
+>void Forget(this Task task)
+>```
+><b>Summary:</b> Marks the provided task as 'forgotten', meaning its completion is intentionally unobserved. This method is used to explicitly denote that a task's result or exception is to be ignored. It should be used with caution, primarily in fire-and-forget scenarios where task exceptions are handled separately.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`task`&nbsp;&nbsp;-&nbsp;&nbsp;The task to be forgotten.<br />
 #### StartAndWaitAllThrottled
 >```csharp
 >void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = null)
