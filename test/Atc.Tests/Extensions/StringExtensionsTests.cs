@@ -1,6 +1,7 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.Tests.Extensions;
 
+[SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "OK.")]
 public class StringExtensionsTests
 {
     [Theory]
@@ -81,6 +82,55 @@ public class StringExtensionsTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData(false, "Hello, World!", TemplatePatternType.None)]
+    [InlineData(true, "Hello [World]!", TemplatePatternType.SingleHardBrackets)]
+    [InlineData(false, "Hello [World]!", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData(false, "Hello [World]!", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData(false, "Hello [World]!", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData(true, "Hello [[World]]!", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData(false, "Hello {World}!", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData(false, "Hello {World}!", TemplatePatternType.SingleHardBrackets)]
+    [InlineData(true, "Hello {World}!", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData(false, "Hello {World}!", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData(false, "Hello {{World}}!", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData(true, "Hello {{World}}!", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData(false, "Hello World!", TemplatePatternType.All)]
+    [InlineData(true, "Hello [World]!", TemplatePatternType.All)]
+    [InlineData(true, "Hello {World}!", TemplatePatternType.All)]
+    [InlineData(true, "Hello [[World]]!", TemplatePatternType.All)]
+    [InlineData(true, "Hello {{World}}!", TemplatePatternType.All)]
+    public void ContainsTemplatePattern(bool expected, string input, TemplatePatternType patternType)
+        => Assert.Equal(expected, input.ContainsTemplatePattern(patternType));
+
+    [Theory]
+    [InlineData(new[] { "[World]" }, "Hello [World]!", TemplatePatternType.SingleHardBrackets, true)]
+    [InlineData(new[] { "World" }, "Hello [World]!", TemplatePatternType.SingleHardBrackets, false)]
+    [InlineData(new[] { "[[World]]" }, "Hello [[World]]!", TemplatePatternType.DoubleHardBrackets, true)]
+    [InlineData(new[] { "World" }, "Hello [[World]]!", TemplatePatternType.DoubleHardBrackets, false)]
+    [InlineData(new[] { "[World]" }, "Hello [World]!", TemplatePatternType.HardBrackets, true)]
+    [InlineData(new[] { "World" }, "Hello [World]!", TemplatePatternType.HardBrackets, false)]
+    [InlineData(new[] { "[[World]]" }, "Hello [[World]]!", TemplatePatternType.HardBrackets, true)]
+    [InlineData(new[] { "World" }, "Hello [[World]]!", TemplatePatternType.HardBrackets, false)]
+    [InlineData(new[] { "[Hello]", "[World]" }, "[Hello] [World]!", TemplatePatternType.HardBrackets, true)]
+    [InlineData(new[] { "Hello", "World" }, "[Hello] [World]!", TemplatePatternType.HardBrackets, false)]
+    [InlineData(new[] { "{World}" }, "Hello {World}!", TemplatePatternType.SingleCurlyBraces, true)]
+    [InlineData(new[] { "World" }, "Hello {World}!", TemplatePatternType.SingleCurlyBraces, false)]
+    [InlineData(new[] { "{{World}}" }, "Hello {{World}}!", TemplatePatternType.DoubleCurlyBraces, true)]
+    [InlineData(new[] { "World" }, "Hello {{World}}!", TemplatePatternType.DoubleCurlyBraces, false)]
+    [InlineData(new[] { "{World}" }, "Hello {World}!", TemplatePatternType.CurlyBraces, true)]
+    [InlineData(new[] { "World" }, "Hello {World}!", TemplatePatternType.CurlyBraces, false)]
+    [InlineData(new[] { "{{World}}" }, "Hello {{World}}!", TemplatePatternType.CurlyBraces, true)]
+    [InlineData(new[] { "World" }, "Hello {{World}}!", TemplatePatternType.CurlyBraces, false)]
+    [InlineData(new[] { "{Hello}", "{World}" }, "{Hello} {World}!", TemplatePatternType.CurlyBraces, true)]
+    [InlineData(new[] { "Hello", "World" }, "{Hello} {World}!", TemplatePatternType.CurlyBraces, false)]
+    [InlineData(new[] { "[Hello]", "{World}" }, "[Hello] {World}!", TemplatePatternType.All, true)]
+    [InlineData(new[] { "Hello", "World" }, "[Hello] {World}!", TemplatePatternType.All, false)]
+    [InlineData(new[] { "[Hello]", "[[Hello2]]", "{World}", "{{World2}}" }, "[Hello] {World}! [[Hello2]] {{World2}}", TemplatePatternType.All, true)]
+    [InlineData(new[] { "Hello", "Hello2", "World", "World2" }, "[Hello] {World}! [[Hello2]] {{World2}}", TemplatePatternType.All, false)]
+    public void GetTemplateKeys(string[] expected, string input, TemplatePatternType patternType, bool includePattern)
+        => Assert.Equal(expected, input.GetTemplateKeys(patternType, includePattern));
 
     [Theory]
     [InlineData("2000-12-01T23:47:37", "2000-12-01T23:47:37")]

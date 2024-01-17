@@ -1547,6 +1547,17 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
 >
 ><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
+#### ContainsTemplatePattern
+>```csharp
+>bool ContainsTemplatePattern(this string value, TemplatePatternType templatePatternType = HardBrackets)
+>```
+><b>Summary:</b> Determines if the provided string contains specific template patterns based on the specified TemplatePatternType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to check for template patterns.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templatePatternType`&nbsp;&nbsp;-&nbsp;&nbsp;The type of template pattern to look for. Defaults to HardBrackets.<br />
+>
+><b>Returns:</b> True if the string contains the specified template pattern; otherwise, false.
 #### Cut
 >```csharp
 >string Cut(this string value, int maxLength, string appendValue = ...)
@@ -1649,6 +1660,18 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### GetTemplateKeys
+>```csharp
+>IList<string> GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
+>```
+><b>Summary:</b> Extracts template keys from the provided string based on the specified TemplatePatternType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to extract template keys from.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templatePatternType`&nbsp;&nbsp;-&nbsp;&nbsp;The type of template pattern to use for extraction. Defaults to HardBrackets.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeTemplatePattern`&nbsp;&nbsp;-&nbsp;&nbsp;Indicates whether to include the template pattern in the returned keys.<br />
+>
+><b>Returns:</b> A list of extracted template keys. If no keys are found, an empty list is returned.
 #### GetValueBetweenLessAndGreaterThanCharsIfExist
 >```csharp
 >string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)

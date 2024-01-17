@@ -2,6 +2,9 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+// ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 namespace System;
 
 /// <summary>
@@ -199,7 +202,7 @@ public static class StringExtensions
         var matches = RxStringFormatParameterTemplatePlaceholder.Value.Matches(value);
         return (from Match match
                 in matches
-            select match.Value).ToList();
+                select match.Value).ToList();
     }
 
     /// <summary>
@@ -239,6 +242,193 @@ public static class StringExtensions
         }
 
         return value;
+    }
+
+    /// <summary>
+    /// Determines if the provided string contains specific template patterns based on the specified TemplatePatternType.
+    /// </summary>
+    /// <param name="value">The string to check for template patterns.</param>
+    /// <param name="templatePatternType">The type of template pattern to look for. Defaults to HardBrackets.</param>
+    /// <returns>True if the string contains the specified template pattern; otherwise, false.</returns>
+    /// <exception cref="SwitchCaseDefaultException">Thrown when an undefined TemplatePatternType is provided.</exception>
+    public static bool ContainsTemplatePattern(
+        this string value,
+        TemplatePatternType templatePatternType = TemplatePatternType.HardBrackets)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return false;
+        }
+
+        return templatePatternType switch
+        {
+            TemplatePatternType.None => false,
+            TemplatePatternType.SingleHardBrackets => value.Contains('[', StringComparison.Ordinal) &&
+                                                      value.Contains(']', StringComparison.Ordinal),
+            TemplatePatternType.HardBrackets => value.Contains('[', StringComparison.Ordinal) &&
+                                                value.Contains(']', StringComparison.Ordinal),
+            TemplatePatternType.DoubleHardBrackets => value.Contains("[[", StringComparison.Ordinal) &&
+                                                      value.Contains("]]", StringComparison.Ordinal),
+            TemplatePatternType.SingleCurlyBraces => value.Contains('{', StringComparison.Ordinal) &&
+                                                     value.Contains('}', StringComparison.Ordinal),
+            TemplatePatternType.CurlyBraces => value.Contains('{', StringComparison.Ordinal) &&
+                                               value.Contains('}', StringComparison.Ordinal),
+            TemplatePatternType.DoubleCurlyBraces => value.Contains("{{", StringComparison.Ordinal) &&
+                                                     value.Contains("}}", StringComparison.Ordinal),
+            TemplatePatternType.All => (value.Contains('[', StringComparison.Ordinal) &&
+                                        value.Contains(']', StringComparison.Ordinal)) ||
+                                       (value.Contains('{', StringComparison.Ordinal) &&
+                                        value.Contains('}', StringComparison.Ordinal)),
+            _ => throw new SwitchCaseDefaultException(templatePatternType),
+        };
+    }
+
+    /// <summary>
+    /// Extracts template keys from the provided string based on the specified TemplatePatternType.
+    /// </summary>
+    /// <param name="value">The string to extract template keys from.</param>
+    /// <param name="templatePatternType">The type of template pattern to use for extraction. Defaults to HardBrackets.</param>
+    /// <param name="includeTemplatePattern">Indicates whether to include the template pattern in the returned keys.</param>
+    /// <returns>A list of extracted template keys. If no keys are found, an empty list is returned.</returns>
+    /// <exception cref="SwitchCaseDefaultException">Thrown when an undefined TemplatePatternType is provided.</exception>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    public static IList<string> GetTemplateKeys(
+        this string value,
+        TemplatePatternType templatePatternType = TemplatePatternType.HardBrackets,
+        bool includeTemplatePattern = false)
+    {
+        var result = new List<string>();
+        if (string.IsNullOrEmpty(value) ||
+            templatePatternType == TemplatePatternType.None)
+        {
+            return result;
+        }
+
+        var regexPattern = templatePatternType switch
+        {
+            TemplatePatternType.SingleHardBrackets => @"\[(.*?)\]",
+            TemplatePatternType.DoubleHardBrackets => @"\[\[(.*?)\]\]",
+            TemplatePatternType.HardBrackets => @"\[(.*?)\]",
+            TemplatePatternType.SingleCurlyBraces => @"\{(.*?)\}",
+            TemplatePatternType.DoubleCurlyBraces => @"\{\{(.*?)\}\}",
+            TemplatePatternType.CurlyBraces => @"\{(.*?)\}",
+            TemplatePatternType.All => @"\[(.*?)\]",
+            TemplatePatternType.None => throw new SwitchCaseDefaultException(templatePatternType),
+            _ => throw new SwitchCaseDefaultException(templatePatternType),
+        };
+
+        var tmpResult = new Regex(
+            regexPattern,
+            RegexOptions.Multiline | RegexOptions.ExplicitCapture,
+            TimeSpan.FromSeconds(1))
+            .Matches(value)
+            .Select(match => match.Groups[0].Value)
+            .ToList();
+
+        if (templatePatternType == TemplatePatternType.All)
+        {
+            var matches = new Regex(
+                @"\{(.*?)\}",
+                RegexOptions.Multiline | RegexOptions.ExplicitCapture,
+                TimeSpan.FromSeconds(1))
+                .Matches(value);
+
+            tmpResult.AddRange(matches.Select(match => match.Groups[0].Value));
+        }
+
+        if (includeTemplatePattern)
+        {
+            foreach (var str in tmpResult)
+            {
+                switch (templatePatternType)
+                {
+                    case TemplatePatternType.HardBrackets:
+                        result.Add(str.StartsWith("[[", StringComparison.Ordinal)
+                            ? str.Replace("]", "]]", StringComparison.Ordinal)
+                            : str);
+                        break;
+                    case TemplatePatternType.CurlyBraces:
+                        result.Add(str.StartsWith("{{", StringComparison.Ordinal)
+                            ? str.Replace("}", "}}", StringComparison.Ordinal)
+                            : str);
+                        break;
+                    case TemplatePatternType.All:
+                        if (str.StartsWith("[[", StringComparison.Ordinal))
+                        {
+                            result.Add(str.Replace("]", "]]", StringComparison.Ordinal));
+                        }
+                        else if (str.StartsWith("{{", StringComparison.Ordinal))
+                        {
+                            result.Add(str.Replace("}", "}}", StringComparison.Ordinal));
+                        }
+                        else
+                        {
+                            result.Add(str);
+                        }
+
+                        break;
+                    default:
+                        result.Add(str);
+                        break;
+                }
+            }
+        }
+        else
+        {
+            foreach (var str in tmpResult)
+            {
+                switch (templatePatternType)
+                {
+                    case TemplatePatternType.SingleHardBrackets:
+                        result.Add(str
+                            .Replace("[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.DoubleHardBrackets:
+                        result.Add(str
+                            .Replace("[[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]]", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.SingleCurlyBraces:
+                        result.Add(str
+                            .Replace("{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.DoubleCurlyBraces:
+                        result.Add(str
+                            .Replace("{{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}}", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.HardBrackets:
+                        result.Add(str
+                            .Replace("[[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]]", string.Empty, StringComparison.Ordinal)
+                            .Replace("[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.CurlyBraces:
+                        result.Add(str
+                            .Replace("{{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}}", string.Empty, StringComparison.Ordinal)
+                            .Replace("{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}", string.Empty, StringComparison.Ordinal));
+                        break;
+                    case TemplatePatternType.All:
+                        result.Add(str
+                            .Replace("[[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]]", string.Empty, StringComparison.Ordinal)
+                            .Replace("[", string.Empty, StringComparison.Ordinal)
+                            .Replace("]", string.Empty, StringComparison.Ordinal)
+                            .Replace("{{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}}", string.Empty, StringComparison.Ordinal)
+                            .Replace("{", string.Empty, StringComparison.Ordinal)
+                            .Replace("}", string.Empty, StringComparison.Ordinal));
+                        break;
+                }
+            }
+        }
+
+        return result;
     }
 
     /// <summary>

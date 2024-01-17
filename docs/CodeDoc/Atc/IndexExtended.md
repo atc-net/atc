@@ -115,6 +115,7 @@
      - ToString()
      - ToStringShort()
 - [SortDirectionType](Atc.md#sortdirectiontype)
+- [TemplatePatternType](Atc.md#templatepatterntype)
 - [TriggerActionType](Atc.md#triggeractiontype)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)
   -  Methods
@@ -5074,6 +5075,7 @@
      - Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = True)
      - Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
      - Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
+     - ContainsTemplatePattern(this string value, TemplatePatternType templatePatternType = HardBrackets)
      - Cut(this string value, int maxLength, string appendValue = ...)
      - EnsureEndsWithDot(this string value)
      - EnsureEnvironmentNewLines(this string value)
@@ -5086,6 +5088,7 @@
      - GetStringFormatParameterLiteralCount(this string value)
      - GetStringFormatParameterNumericCount(this string value)
      - GetStringFormatParameterTemplatePlaceholders(this string value)
+     - GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
      - GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
      - Humanize(this string value)
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
