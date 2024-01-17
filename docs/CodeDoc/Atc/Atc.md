@@ -1087,6 +1087,28 @@ Enumeration: SortDirectionType.
 
 <br />
 
+## TemplatePatternType
+
+>```csharp
+>public enum TemplatePatternType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None |  | 
+| 1 | SingleHardBrackets | Single Hard Brackets | The single hard brackets pattern: [ * ] | 
+| 2 | DoubleHardBrackets | Double Hard Brackets | The double hard brackets pattern: [[ * ]] | 
+| 3 | HardBrackets | Hard Brackets | The hard brackets pattern: [ * ] or [[ * ]] | 
+| 4 | SingleCurlyBraces | Single Curly Braces | The single curly braces: { * } | 
+| 8 | DoubleCurlyBraces | Double Curly Braces | The double curly braces pattern: {{ * }} | 
+| 12 | CurlyBraces | Curly Braces | The curly braces pattern: { * } or {{ * }} | 
+| 15 | All | All |  | 
+
+
+
+<br />
+
 ## TriggerActionType
 Enumeration: TriggerActionType.
 
