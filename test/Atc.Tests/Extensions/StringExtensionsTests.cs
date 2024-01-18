@@ -133,6 +133,72 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.GetTemplateKeys(patternType, includePattern));
 
     [Theory]
+    [InlineData("World", 2, "Hello [World] and [World] again.", TemplatePatternType.SingleHardBrackets, false)]
+    [InlineData("[World]", 2, "Hello [World] and [World] again.", TemplatePatternType.SingleHardBrackets, true)]
+    [InlineData("World", 2, "Hello {World} and {World} again.", TemplatePatternType.SingleCurlyBraces, false)]
+    [InlineData("{World}", 2, "Hello {World} and {World} again.", TemplatePatternType.SingleCurlyBraces, true)]
+    public void GetUniqueTemplateKeysWithOccurrence(
+        string expectedString, int expectedCount, string input, TemplatePatternType patternType, bool includePattern)
+    {
+        // Act
+        var result = input.GetUniqueTemplateKeysWithOccurrence(patternType, includePattern);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Single(result);
+        Assert.Equal(expectedString, result.Keys.First());
+        Assert.Equal(expectedCount, result.Values.First());
+    }
+
+    [Theory]
+    [InlineData("Hello John!", "Hello [Name]!", "Name", "John", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello [John]!", "Hello [[Name]]!", "Name", "John", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello John!", "Hello [[Name]]!", "Name", "John", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData("Hello John!", "Hello [[Name]]!", "Name", "John", TemplatePatternType.HardBrackets)]
+    [InlineData("Hello John!", "Hello {Name}!", "Name", "John", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello {John}!", "Hello {{Name}}!", "Name", "John", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello John!", "Hello {{Name}}!", "Name", "John", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData("Hello John!", "Hello {{Name}}!", "Name", "John", TemplatePatternType.CurlyBraces)]
+    [InlineData("Hello John John!", "Hello [[Name]] {{Name}}!", "Name", "John", TemplatePatternType.All)]
+    public void ReplaceTemplateKeyWithValue(
+        string expected, string input, string templateKey, string templateValue, TemplatePatternType patternType)
+        => Assert.Equal(expected, input.ReplaceTemplateKeyWithValue(templateKey, templateValue, patternType));
+
+    [Theory]
+    [InlineData("Hello John", "Hello [FirstName]", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello John Doe", "Hello [FirstName] [LastName]", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello John Doe and 30!", "Hello [FirstName] [LastName] and [Age]!", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello John", "Hello [[FirstName]]", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData("Hello John Doe", "Hello [[FirstName]] [[LastName]]", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData("Hello John Doe and 30!", "Hello [[FirstName]] [[LastName]] and [[Age]]!", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData("Hello [Name]", "Hello [Name]", TemplatePatternType.SingleHardBrackets)]
+    [InlineData("Hello [[Name]]", "Hello [[Name]]", TemplatePatternType.DoubleHardBrackets)]
+    [InlineData("Hello John", "Hello {FirstName}", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello John Doe", "Hello {FirstName} {LastName}", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello John Doe and 30!", "Hello {FirstName} {LastName} and {Age}!", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello John", "Hello {{FirstName}}", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData("Hello John Doe", "Hello {{FirstName}} {{LastName}}", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData("Hello John Doe and 30!", "Hello {{FirstName}} {{LastName}} and {{Age}}!", TemplatePatternType.DoubleCurlyBraces)]
+    [InlineData("Hello {Name}", "Hello {Name}", TemplatePatternType.SingleCurlyBraces)]
+    [InlineData("Hello {{Name}}", "Hello {{Name}}", TemplatePatternType.DoubleCurlyBraces)]
+    public void ReplaceTemplateKeysWithValues(string expected, string input, TemplatePatternType patternType)
+    {
+        // Arrange
+        var templateKeyValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "FirstName", "John" },
+            { "LastName", "Doe" },
+            { "Age", "30" },
+        };
+
+        // Act
+        var result = input.ReplaceTemplateKeysWithValues(templateKeyValues, patternType);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
     [InlineData("2000-12-01T23:47:37", "2000-12-01T23:47:37")]
     public void ParseDateFromIso8601(string expected, string input)
     {
