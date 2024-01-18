@@ -17,6 +17,7 @@ public class CodeComplianceTests
         // TODO: Add UnitTest and remove from this list!!
         typeof(AssemblyHelper),
         typeof(AppDomainExtensions),
+        typeof(X509Certificate2Extensions),
         typeof(SemanticVersion),
         typeof(MathEx),
         typeof(JsonSerializerOptionsFactory),
@@ -37,8 +38,10 @@ public class CodeComplianceTests
         typeof(FileHelper<>),
         typeof(ByteHelper),
         typeof(ByteExtensions),
+        typeof(StackTraceHelper),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(EnumAtcExtensions),
         typeof(DynamicJson),
         typeof(EnumHelper),
         typeof(NumberHelper),
@@ -96,6 +99,7 @@ public class CodeComplianceTests
     {
         var excludeTypesForNaming = new List<Type>
         {
+            typeof(EnumAtcExtensions),
             typeof(CharExtensions),
             typeof(ByteExtensions),
             typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.

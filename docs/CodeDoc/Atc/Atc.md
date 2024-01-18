@@ -34,6 +34,25 @@ Flag-Enumeration: AddressType.
 
 <br />
 
+## ArrowDirectionType
+
+>```csharp
+>public enum ArrowDirectionType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None | Default None. | 
+| 1 | Left | Left | Left. | 
+| 2 | Up | Up | Up. | 
+| 4 | Right | Right | Right. | 
+| 8 | Down | Down | Down. | 
+
+
+
+<br />
+
 ## ArticleNumberType
 ArticleNumberType.
 

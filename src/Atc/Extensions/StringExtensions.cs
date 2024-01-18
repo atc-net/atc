@@ -5,6 +5,8 @@
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
+// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+// ReSharper disable LoopCanBeConvertedToQuery
 namespace System;
 
 /// <summary>
@@ -429,6 +431,114 @@ public static class StringExtensions
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Gets unique template keys from the input string and counts their occurrences.
+    /// </summary>
+    /// <param name="value">The input string containing template keys.</param>
+    /// <param name="templatePatternType">The type of template pattern to match.</param>
+    /// <param name="includeTemplatePattern">Determines whether to include the template pattern itself.</param>
+    /// <returns>A dictionary where keys are unique template keys, and values are the number of times each
+    /// key appears in the input string.</returns>
+    public static IDictionary<string, int> GetUniqueTemplateKeysWithOccurrence(
+        this string value,
+        TemplatePatternType templatePatternType = TemplatePatternType.HardBrackets,
+        bool includeTemplatePattern = false)
+    {
+        var templateKeys = value.GetTemplateKeys(
+            templatePatternType,
+            includeTemplatePattern);
+
+        var result = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var templateKey in templateKeys)
+        {
+            if (!result.TryAdd(templateKey, 1))
+            {
+                result[templateKey]++;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Replaces a template key in the input string with a specified template value based on the given template pattern type.
+    /// </summary>
+    /// <param name="value">The input string containing template keys.</param>
+    /// <param name="templateKey">The template key to be replaced.</param>
+    /// <param name="templateValue">The value to replace the template key with.</param>
+    /// <param name="templatePatternType">The type of template pattern to match in the input string.</param>
+    /// <returns>The modified input string with the template key replaced by the template value.</returns>
+    public static string ReplaceTemplateKeyWithValue(
+        this string value,
+        string templateKey,
+        string templateValue,
+        TemplatePatternType templatePatternType = TemplatePatternType.HardBrackets)
+    {
+        if (string.IsNullOrEmpty(value) ||
+            templatePatternType == TemplatePatternType.None)
+        {
+            return value;
+        }
+
+        switch (templatePatternType)
+        {
+            case TemplatePatternType.SingleHardBrackets:
+                return value.Replace($"[{templateKey}]", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.DoubleHardBrackets:
+                return value.Replace($"[[{templateKey}]]", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.SingleCurlyBraces:
+                return value.Replace($"{{{templateKey}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.DoubleCurlyBraces:
+                return value.Replace($"{{{{{templateKey}}}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.HardBrackets:
+                value = value.Replace($"[[{templateKey}]]", templateValue, StringComparison.OrdinalIgnoreCase);
+                return value.Replace($"[{templateKey}]", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.CurlyBraces:
+                value = value.Replace($"{{{{{templateKey}}}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+                return value.Replace($"{{{templateKey}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+            case TemplatePatternType.All:
+                value = value.Replace($"[[{templateKey}]]", templateValue, StringComparison.OrdinalIgnoreCase);
+                value = value.Replace($"[{templateKey}]", templateValue, StringComparison.OrdinalIgnoreCase);
+                value = value.Replace($"{{{{{templateKey}}}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+                return value.Replace($"{{{templateKey}}}", templateValue, StringComparison.OrdinalIgnoreCase);
+            default:
+                throw new SwitchCaseDefaultException(templatePatternType);
+        }
+    }
+
+    /// <summary>
+    /// Replaces multiple template keys in the input string with their corresponding template values
+    /// based on the given template pattern type and a dictionary of key-value pairs.
+    /// </summary>
+    /// <param name="value">The input string containing template keys.</param>
+    /// <param name="templateKeyValues">A dictionary of key-value pairs where keys are template keys
+    /// and values are the replacements for those keys.</param>
+    /// <param name="templatePatternType">The type of template pattern to match in the input string.</param>
+    /// <returns>The modified input string with template keys replaced by their corresponding template values.</returns>
+    public static string ReplaceTemplateKeysWithValues(
+        this string value,
+        IDictionary<string, string> templateKeyValues,
+        TemplatePatternType templatePatternType = TemplatePatternType.HardBrackets)
+    {
+        if (string.IsNullOrEmpty(value) ||
+            templateKeyValues is null ||
+            templatePatternType == TemplatePatternType.None)
+        {
+            return value;
+        }
+
+        foreach (var templateKeyValue in templateKeyValues)
+        {
+            value = value.ReplaceTemplateKeyWithValue(
+                templateKeyValue.Key,
+                templateKeyValue.Value,
+                templatePatternType);
+        }
+
+        return value;
     }
 
     /// <summary>

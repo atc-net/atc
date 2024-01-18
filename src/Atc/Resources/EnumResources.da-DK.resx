@@ -369,4 +369,16 @@
   <data name="YesNoTypeYes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="ArrowDirectionTypeDown" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="ArrowDirectionTypeLeft" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="ArrowDirectionTypeRight" xml:space="preserve">
+    <value>Højre</value>
+  </data>
+  <data name="ArrowDirectionTypeUp" xml:space="preserve">
+    <value>Op</value>
+  </data>
 </root>
