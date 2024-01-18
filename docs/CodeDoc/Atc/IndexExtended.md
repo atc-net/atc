@@ -7,6 +7,7 @@
 ## [Atc](Atc.md)
 
 - [AddressType](Atc.md#addresstype)
+- [ArrowDirectionType](Atc.md#arrowdirectiontype)
 - [ArticleNumberType](Atc.md#articlenumbertype)
 - [AtcAssemblyTypeInitializer](Atc.md#atcassemblytypeinitializer)
 - [BooleanOperatorType](Atc.md#booleanoperatortype)
@@ -4665,6 +4666,9 @@
      - GetBeautifyTypeName(Type type)
      - GetBeautifyTypeNameByRef(Type type)
      - IsSimpleType(string value, StringComparison comparison = Ordinal)
+- [StackTraceHelper](Atc.Helpers.md#stacktracehelper)
+  -  Static Methods
+     - ContainsConstructorWithinFrameCount(int drillDownFrameMax)
 - [TaskHelper](Atc.Helpers.md#taskhelper)
   -  Static Methods
      - Execute(Func&lt;CancellationToken, Task&lt;TResult&gt;&gt; taskToRun, TimeSpan timeout, CancellationToken cancellationToken = null)
@@ -4680,6 +4684,11 @@
      - ProcessorCount
   -  Static Methods
      - GetParallelOptions(int exemptProcessorCount = 2)
+- [VersionHelper](Atc.Helpers.md#versionhelper)
+  -  Static Methods
+     - IsDefault(Version sourceVersion, Version destinationVersion)
+     - IsSourceNewerThanDestination(Version sourceVersion, Version destinationVersion)
+     - IsSourceNewerThanDestination(string sourceVersion, string destinationVersion)
 
 ## [Atc.Math](Atc.Math.md)
 
@@ -5027,6 +5036,17 @@
      - RoundOff2(this double value)
      - RoundOffPercent(this double percent)
 - [EntityStoreException](System.md#entitystoreexception)
+- [EnumAtcExtensions](System.md#enumatcextensions)
+  -  Static Methods
+     - Opposite(this ArrowDirectionType arrowDirectionType)
+     - Opposite(this CardinalDirectionType cardinalDirectionType)
+     - Opposite(this ForwardReverseType forwardReverseType)
+     - Opposite(this InsertRemoveType insertRemoveType)
+     - Opposite(this LeftRightType leftRightType)
+     - Opposite(this OnOffType onOffType)
+     - Opposite(this SortDirectionType sortDirectionType)
+     - Opposite(this UpDownType yesNoType)
+     - Opposite(this YesNoType yesNoType)
 - [EnumExtensions](System.md#enumextensions)
   -  Static Methods
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
@@ -5089,6 +5109,7 @@
      - GetStringFormatParameterNumericCount(this string value)
      - GetStringFormatParameterTemplatePlaceholders(this string value)
      - GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
+     - GetUniqueTemplateKeysWithOccurrence(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
      - GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
      - Humanize(this string value)
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
@@ -5110,6 +5131,8 @@
      - ReplaceMany(this string value, IDictionary&lt;string, string&gt; replacements)
      - ReplaceMany(this string value, char[] chars, char replacement)
      - ReplaceNewLines(this string value, string newValue)
+     - ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
+     - ReplaceTemplateKeysWithValues(this string value, IDictionary&lt;string, string&gt; templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
      - SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary&lt;string, string&gt; replacements)
      - ToLines(this string value)
      - ToStream(this string value)
@@ -5355,6 +5378,13 @@
 - [ClaimsPrincipalExtensions](System.Security.Claims.md#claimsprincipalextensions)
   -  Static Methods
      - GetIdentity(this ClaimsPrincipal principal)
+
+## [System.Security.Cryptography.X509Certificates](System.Security.Cryptography.X509Certificates.md)
+
+- [X509Certificate2Extensions](System.Security.Cryptography.X509Certificates.md#x509certificate2extensions)
+  -  Static Methods
+     - GetNameIdentifier(this X509Certificate2 certificate)
+     - IsValid(this X509Certificate2 certificate)
 
 ## [System.Text](System.Text.md)
 

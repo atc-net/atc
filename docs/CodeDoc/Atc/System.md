@@ -1080,6 +1080,108 @@ The exception that is thrown when an entity is not stored.
 
 <br />
 
+## EnumAtcExtensions
+Provides extension methods for atc enum types.
+
+>```csharp
+>public static class EnumAtcExtensions
+>```
+
+### Static Methods
+
+#### Opposite
+>```csharp
+>ArrowDirectionType Opposite(this ArrowDirectionType arrowDirectionType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>CardinalDirectionType Opposite(this CardinalDirectionType cardinalDirectionType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>ForwardReverseType Opposite(this ForwardReverseType forwardReverseType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>InsertRemoveType Opposite(this InsertRemoveType insertRemoveType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>LeftRightType Opposite(this LeftRightType leftRightType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>OnOffType Opposite(this OnOffType onOffType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>SortDirectionType Opposite(this SortDirectionType sortDirectionType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>UpDownType Opposite(this UpDownType yesNoType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>YesNoType Opposite(this YesNoType yesNoType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+
+<br />
+
 ## EnumExtensions
 Extension methods for enumerations.
 
@@ -1672,6 +1774,18 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeTemplatePattern`&nbsp;&nbsp;-&nbsp;&nbsp;Indicates whether to include the template pattern in the returned keys.<br />
 >
 ><b>Returns:</b> A list of extracted template keys. If no keys are found, an empty list is returned.
+#### GetUniqueTemplateKeysWithOccurrence
+>```csharp
+>IDictionary<string, int> GetUniqueTemplateKeysWithOccurrence(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
+>```
+><b>Summary:</b> Gets unique template keys from the input string and counts their occurrences.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The input string containing template keys.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templatePatternType`&nbsp;&nbsp;-&nbsp;&nbsp;The type of template pattern to match.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeTemplatePattern`&nbsp;&nbsp;-&nbsp;&nbsp;Determines whether to include the template pattern itself.<br />
+>
+><b>Returns:</b> A dictionary where keys are unique template keys, and values are the number of times each key appears in the input string.
 #### GetValueBetweenLessAndGreaterThanCharsIfExist
 >```csharp
 >string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
@@ -1884,6 +1998,32 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`newValue`&nbsp;&nbsp;-&nbsp;&nbsp;The new value for NewLine.<br />
 >
 ><b>Remarks:</b> This method don't use the platform dependent System.Environment.Newline but instead works for all platforms as Windows, Unix and Mac. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac
+#### ReplaceTemplateKeyWithValue
+>```csharp
+>string ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
+>```
+><b>Summary:</b> Replaces a template key in the input string with a specified template value based on the given template pattern type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The input string containing template keys.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templateKey`&nbsp;&nbsp;-&nbsp;&nbsp;The template key to be replaced.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templateValue`&nbsp;&nbsp;-&nbsp;&nbsp;The value to replace the template key with.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templatePatternType`&nbsp;&nbsp;-&nbsp;&nbsp;The type of template pattern to match in the input string.<br />
+>
+><b>Returns:</b> The modified input string with the template key replaced by the template value.
+#### ReplaceTemplateKeysWithValues
+>```csharp
+>string ReplaceTemplateKeysWithValues(this string value, IDictionary<string, string> templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
+>```
+><b>Summary:</b> Replaces multiple template keys in the input string with their corresponding template values based on the given template pattern type and a dictionary of key-value pairs.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The input string containing template keys.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templateKeyValues`&nbsp;&nbsp;-&nbsp;&nbsp;A dictionary of key-value pairs where keys are template keys
+            and values are the replacements for those keys.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`templatePatternType`&nbsp;&nbsp;-&nbsp;&nbsp;The type of template pattern to match in the input string.<br />
+>
+><b>Returns:</b> The modified input string with template keys replaced by their corresponding template values.
 #### SetStringFormatParameterTemplatePlaceholders
 >```csharp
 >string SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary<string, string> replacements)
