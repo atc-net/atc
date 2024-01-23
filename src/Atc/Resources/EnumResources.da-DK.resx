@@ -381,4 +381,16 @@
   <data name="ArrowDirectionTypeUp" xml:space="preserve">
     <value>Op</value>
   </data>
+  <data name="LeftTopRightBottomTypeLeft" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="LeftTopRightBottomTypeBottom" xml:space="preserve">
+    <value>Bund</value>
+  </data>
+  <data name="LeftTopRightBottomTypeRight" xml:space="preserve">
+    <value>Højre</value>
+  </data>
+  <data name="LeftTopRightBottomTypeTop" xml:space="preserve">
+    <value>Top</value>
+  </data>
 </root>

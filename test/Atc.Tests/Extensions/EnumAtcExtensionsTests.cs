@@ -54,6 +54,24 @@ public class EnumAtcExtensionsTests
         => Assert.Equal(expected, input.Opposite());
 
     [Theory]
+    [InlineData(LeftTopRightBottomType.Left, LeftTopRightBottomType.Right)]
+    [InlineData(LeftTopRightBottomType.Top, LeftTopRightBottomType.Top)]
+    [InlineData(LeftTopRightBottomType.Right, LeftTopRightBottomType.Left)]
+    [InlineData(LeftTopRightBottomType.Bottom, LeftTopRightBottomType.Bottom)]
+    [InlineData(LeftTopRightBottomType.None, LeftTopRightBottomType.None)]
+    public void Opposite_LeftTopRightBottomType(LeftTopRightBottomType expected, LeftTopRightBottomType input)
+        => Assert.Equal(expected, input.Opposite());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Left, LeftUpRightDownType.Right)]
+    [InlineData(LeftUpRightDownType.Up, LeftUpRightDownType.Down)]
+    [InlineData(LeftUpRightDownType.Right, LeftUpRightDownType.Left)]
+    [InlineData(LeftUpRightDownType.Down, LeftUpRightDownType.Up)]
+    [InlineData(LeftUpRightDownType.None, LeftUpRightDownType.None)]
+    public void Opposite_LeftUpRightDownType(LeftUpRightDownType expected, LeftUpRightDownType input)
+        => Assert.Equal(expected, input.Opposite());
+
+    [Theory]
     [InlineData(OnOffType.On, OnOffType.Off)]
     [InlineData(OnOffType.Off, OnOffType.On)]
     [InlineData(OnOffType.None, OnOffType.None)]

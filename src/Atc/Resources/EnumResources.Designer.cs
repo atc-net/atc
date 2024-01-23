@@ -502,6 +502,42 @@ namespace Atc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottom.
+        /// </summary>
+        public static string LeftTopRightBottomTypeBottom {
+            get {
+                return ResourceManager.GetString("LeftTopRightBottomTypeBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string LeftTopRightBottomTypeLeft {
+            get {
+                return ResourceManager.GetString("LeftTopRightBottomTypeLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string LeftTopRightBottomTypeRight {
+            get {
+                return ResourceManager.GetString("LeftTopRightBottomTypeRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top.
+        /// </summary>
+        public static string LeftTopRightBottomTypeTop {
+            get {
+                return ResourceManager.GetString("LeftTopRightBottomTypeTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log Category Type.
         /// </summary>
         public static string LogCategoryType {
