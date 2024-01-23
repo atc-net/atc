@@ -102,9 +102,9 @@ public static class EnumAtcExtensions
         => leftTopRightBottomType switch
         {
             LeftTopRightBottomType.Left => LeftTopRightBottomType.Right,
-            LeftTopRightBottomType.Top => LeftTopRightBottomType.Top,
+            LeftTopRightBottomType.Top => LeftTopRightBottomType.Bottom,
             LeftTopRightBottomType.Right => LeftTopRightBottomType.Left,
-            LeftTopRightBottomType.Bottom => LeftTopRightBottomType.Bottom,
+            LeftTopRightBottomType.Bottom => LeftTopRightBottomType.Top,
             _ => LeftTopRightBottomType.None,
         };
 
