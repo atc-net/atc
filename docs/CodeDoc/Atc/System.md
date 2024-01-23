@@ -1141,6 +1141,26 @@ Provides extension methods for atc enum types.
 ><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
 #### Opposite
 >```csharp
+>LeftTopRightBottomType Opposite(this LeftTopRightBottomType leftTopRightBottomType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
+>LeftUpRightDownType Opposite(this LeftUpRightDownType leftUpRightDownType)
+>```
+><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
+>
+><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### Opposite
+>```csharp
 >OnOffType Opposite(this OnOffType onOffType)
 >```
 ><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
@@ -1161,7 +1181,7 @@ Provides extension methods for atc enum types.
 ><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
 #### Opposite
 >```csharp
->UpDownType Opposite(this UpDownType yesNoType)
+>UpDownType Opposite(this UpDownType upDownType)
 >```
 ><b>Summary:</b> Gets the opposite direction of the specified ArrowDirectionType.
 >
@@ -1179,6 +1199,186 @@ Provides extension methods for atc enum types.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to find the opposite for.<br />
 >
 ><b>Returns:</b> The opposite ArrowDirectionType. Returns ArrowDirectionType.None if no opposite is defined.
+#### ToArrowDirectionType
+>```csharp
+>ArrowDirectionType ToArrowDirectionType(this CardinalDirectionType cardinalDirectionType)
+>```
+><b>Summary:</b> Converts a CardinalDirectionType to an ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cardinalDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The CardinalDirectionType to convert.<br />
+>
+><b>Returns:</b> ArrowDirectionType corresponding to the given CardinalDirectionType: - West is converted to ArrowDirectionType.Left - North is converted to ArrowDirectionType.Up - East is converted to ArrowDirectionType.Right - South is converted to ArrowDirectionType.Down - If no match, then default is ArrowDirectionType.None.
+#### ToArrowDirectionType
+>```csharp
+>ArrowDirectionType ToArrowDirectionType(this LeftTopRightBottomType leftTopRightBottomType)
+>```
+><b>Summary:</b> Converts a CardinalDirectionType to an ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cardinalDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The CardinalDirectionType to convert.<br />
+>
+><b>Returns:</b> ArrowDirectionType corresponding to the given CardinalDirectionType: - West is converted to ArrowDirectionType.Left - North is converted to ArrowDirectionType.Up - East is converted to ArrowDirectionType.Right - South is converted to ArrowDirectionType.Down - If no match, then default is ArrowDirectionType.None.
+#### ToArrowDirectionType
+>```csharp
+>ArrowDirectionType ToArrowDirectionType(this LeftUpRightDownType leftUpRightDownType)
+>```
+><b>Summary:</b> Converts a CardinalDirectionType to an ArrowDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cardinalDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The CardinalDirectionType to convert.<br />
+>
+><b>Returns:</b> ArrowDirectionType corresponding to the given CardinalDirectionType: - West is converted to ArrowDirectionType.Left - North is converted to ArrowDirectionType.Up - East is converted to ArrowDirectionType.Right - South is converted to ArrowDirectionType.Down - If no match, then default is ArrowDirectionType.None.
+#### ToCardinalDirectionType
+>```csharp
+>CardinalDirectionType ToCardinalDirectionType(this ArrowDirectionType arrowDirectionType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an CardinalDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> CardinalDirectionType corresponding to the given ArrowDirectionType: - Left is converted to CardinalDirectionType.West - Up is converted to CardinalDirectionType.North - Right is converted to CardinalDirectionType.East - Down is converted to CardinalDirectionType.South - If no match, then default is CardinalDirectionType.None
+#### ToCardinalDirectionType
+>```csharp
+>CardinalDirectionType ToCardinalDirectionType(this LeftTopRightBottomType leftTopRightBottomType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an CardinalDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> CardinalDirectionType corresponding to the given ArrowDirectionType: - Left is converted to CardinalDirectionType.West - Up is converted to CardinalDirectionType.North - Right is converted to CardinalDirectionType.East - Down is converted to CardinalDirectionType.South - If no match, then default is CardinalDirectionType.None
+#### ToCardinalDirectionType
+>```csharp
+>CardinalDirectionType ToCardinalDirectionType(this LeftUpRightDownType leftUpRightDownType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an CardinalDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> CardinalDirectionType corresponding to the given ArrowDirectionType: - Left is converted to CardinalDirectionType.West - Up is converted to CardinalDirectionType.North - Right is converted to CardinalDirectionType.East - Down is converted to CardinalDirectionType.South - If no match, then default is CardinalDirectionType.None
+#### ToLeftTopRightBottomType
+>```csharp
+>LeftTopRightBottomType ToLeftTopRightBottomType(this ArrowDirectionType arrowDirectionType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftTopRightBottomType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftTopRightBottomType corresponding to the given ArrowDirectionType: - Left is converted to LeftTopRightBottomType.Left - Up is converted to LeftTopRightBottomType.Top - Right is converted to LeftTopRightBottomType.Right - Down is converted to LeftTopRightBottomType.Bottom - If no match, then default is LeftTopRightBottomType.None
+#### ToLeftTopRightBottomType
+>```csharp
+>LeftTopRightBottomType ToLeftTopRightBottomType(this CardinalDirectionType cardinalDirectionType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftTopRightBottomType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftTopRightBottomType corresponding to the given ArrowDirectionType: - Left is converted to LeftTopRightBottomType.Left - Up is converted to LeftTopRightBottomType.Top - Right is converted to LeftTopRightBottomType.Right - Down is converted to LeftTopRightBottomType.Bottom - If no match, then default is LeftTopRightBottomType.None
+#### ToLeftTopRightBottomType
+>```csharp
+>LeftTopRightBottomType ToLeftTopRightBottomType(this LeftRightType leftRightType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftTopRightBottomType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftTopRightBottomType corresponding to the given ArrowDirectionType: - Left is converted to LeftTopRightBottomType.Left - Up is converted to LeftTopRightBottomType.Top - Right is converted to LeftTopRightBottomType.Right - Down is converted to LeftTopRightBottomType.Bottom - If no match, then default is LeftTopRightBottomType.None
+#### ToLeftTopRightBottomType
+>```csharp
+>LeftTopRightBottomType ToLeftTopRightBottomType(this LeftUpRightDownType leftUpRightDownType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftTopRightBottomType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftTopRightBottomType corresponding to the given ArrowDirectionType: - Left is converted to LeftTopRightBottomType.Left - Up is converted to LeftTopRightBottomType.Top - Right is converted to LeftTopRightBottomType.Right - Down is converted to LeftTopRightBottomType.Bottom - If no match, then default is LeftTopRightBottomType.None
+#### ToLeftTopRightBottomType
+>```csharp
+>LeftTopRightBottomType ToLeftTopRightBottomType(this UpDownType upDownType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftTopRightBottomType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftTopRightBottomType corresponding to the given ArrowDirectionType: - Left is converted to LeftTopRightBottomType.Left - Up is converted to LeftTopRightBottomType.Top - Right is converted to LeftTopRightBottomType.Right - Down is converted to LeftTopRightBottomType.Bottom - If no match, then default is LeftTopRightBottomType.None
+#### ToLeftUpRightDownType
+>```csharp
+>LeftUpRightDownType ToLeftUpRightDownType(this ArrowDirectionType arrowDirectionType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftUpRightDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftUpRightDownType corresponding to the given ArrowDirectionType: - Left is converted to LeftUpRightDownType.Left - Up is converted to LeftUpRightDownType.Up - Right is converted to LeftUpRightDownType.Right - Down is converted to LeftUpRightDownType.Down - If no match, then default is LeftUpRightDownType.None
+#### ToLeftUpRightDownType
+>```csharp
+>LeftUpRightDownType ToLeftUpRightDownType(this CardinalDirectionType cardinalDirectionType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftUpRightDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftUpRightDownType corresponding to the given ArrowDirectionType: - Left is converted to LeftUpRightDownType.Left - Up is converted to LeftUpRightDownType.Up - Right is converted to LeftUpRightDownType.Right - Down is converted to LeftUpRightDownType.Down - If no match, then default is LeftUpRightDownType.None
+#### ToLeftUpRightDownType
+>```csharp
+>LeftUpRightDownType ToLeftUpRightDownType(this LeftRightType leftRightType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftUpRightDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftUpRightDownType corresponding to the given ArrowDirectionType: - Left is converted to LeftUpRightDownType.Left - Up is converted to LeftUpRightDownType.Up - Right is converted to LeftUpRightDownType.Right - Down is converted to LeftUpRightDownType.Down - If no match, then default is LeftUpRightDownType.None
+#### ToLeftUpRightDownType
+>```csharp
+>LeftUpRightDownType ToLeftUpRightDownType(this LeftTopRightBottomType leftTopRightBottomType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftUpRightDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftUpRightDownType corresponding to the given ArrowDirectionType: - Left is converted to LeftUpRightDownType.Left - Up is converted to LeftUpRightDownType.Up - Right is converted to LeftUpRightDownType.Right - Down is converted to LeftUpRightDownType.Down - If no match, then default is LeftUpRightDownType.None
+#### ToLeftUpRightDownType
+>```csharp
+>LeftUpRightDownType ToLeftUpRightDownType(this UpDownType upDownType)
+>```
+><b>Summary:</b> Converts a ArrowDirectionType to an LeftUpRightDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arrowDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The ArrowDirectionType to convert.<br />
+>
+><b>Returns:</b> LeftUpRightDownType corresponding to the given ArrowDirectionType: - Left is converted to LeftUpRightDownType.Left - Up is converted to LeftUpRightDownType.Up - Right is converted to LeftUpRightDownType.Right - Down is converted to LeftUpRightDownType.Down - If no match, then default is LeftUpRightDownType.None
+#### ToSortDirectionType
+>```csharp
+>SortDirectionType ToSortDirectionType(this UpDownType upDownType)
+>```
+><b>Summary:</b> Converts a UpDownType to an SortDirectionType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`upDownType`&nbsp;&nbsp;-&nbsp;&nbsp;The UpDownType to convert.<br />
+>
+><b>Returns:</b> SortDirectionType corresponding to the given UpDownType: - Up is converted to SortDirectionType.Ascending - Down is converted to SortDirectionType.Descending - If no match, then default is SortDirectionType.None
+#### ToUpDownType
+>```csharp
+>UpDownType ToUpDownType(this SortDirectionType sortDirectionType)
+>```
+><b>Summary:</b> Converts a SortDirectionType to an UpDownType.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The SortDirectionType to convert.<br />
+>
+><b>Returns:</b> UpDownType corresponding to the given SortDirectionType: - Ascending is converted to UpDownType.Up - Descending is converted to UpDownType.Down - If no match, then default is UpDownType.None
 
 <br />
 

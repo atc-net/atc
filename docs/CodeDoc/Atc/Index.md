@@ -31,6 +31,8 @@
 - [IgnoreDisplayAttribute](Atc.md#ignoredisplayattribute)
 - [InsertRemoveType](Atc.md#insertremovetype)
 - [LeftRightType](Atc.md#leftrighttype)
+- [LeftTopRightBottomType](Atc.md#lefttoprightbottomtype)
+- [LeftUpRightDownType](Atc.md#leftuprightdowntype)
 - [LetterAccentType](Atc.md#letteraccenttype)
 - [LocalizedDescriptionAttribute](Atc.md#localizeddescriptionattribute)
 - [LogCategoryType](Atc.md#logcategorytype)

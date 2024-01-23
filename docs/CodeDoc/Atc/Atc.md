@@ -843,6 +843,46 @@ Enumeration: LeftRightType.
 
 <br />
 
+## LeftTopRightBottomType
+Enumeration: LeftTopRightBottomType.
+
+>```csharp
+>public enum LeftTopRightBottomType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None | Default None | 
+| 1 | Left | Left | Left | 
+| 2 | Top | Top | Top. | 
+| 3 | Right | Right | Right | 
+| 4 | Bottom | Bottom | Bottom. | 
+
+
+
+<br />
+
+## LeftUpRightDownType
+Enumeration: LeftUpRightDownType.
+
+>```csharp
+>public enum LeftUpRightDownType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | None | None | Default None | 
+| 1 | Left | Left | Left | 
+| 2 | Up | Up | Up. | 
+| 3 | Right | Right | Right | 
+| 4 | Down | Down | Down. | 
+
+
+
+<br />
+
 ## LetterAccentType
 Flag-Enumeration: LetterAccentType.
 
