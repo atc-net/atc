@@ -55,9 +55,9 @@ public class EnumAtcExtensionsTests
 
     [Theory]
     [InlineData(LeftTopRightBottomType.Left, LeftTopRightBottomType.Right)]
-    [InlineData(LeftTopRightBottomType.Top, LeftTopRightBottomType.Top)]
+    [InlineData(LeftTopRightBottomType.Top, LeftTopRightBottomType.Bottom)]
     [InlineData(LeftTopRightBottomType.Right, LeftTopRightBottomType.Left)]
-    [InlineData(LeftTopRightBottomType.Bottom, LeftTopRightBottomType.Bottom)]
+    [InlineData(LeftTopRightBottomType.Bottom, LeftTopRightBottomType.Top)]
     [InlineData(LeftTopRightBottomType.None, LeftTopRightBottomType.None)]
     public void Opposite_LeftTopRightBottomType(LeftTopRightBottomType expected, LeftTopRightBottomType input)
         => Assert.Equal(expected, input.Opposite());
