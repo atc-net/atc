@@ -118,6 +118,12 @@
      - ToString()
      - ToStringShort()
 - [SortDirectionType](Atc.md#sortdirectiontype)
+- [StringCaseFormatter](Atc.md#stringcaseformatter)
+  -  Static Fields
+     - StringCaseFormatter Default
+  -  Methods
+     - Format(string format, object arg, IFormatProvider formatProvider)
+     - GetFormat(Type formatType)
 - [TemplatePatternType](Atc.md#templatepatterntype)
 - [TriggerActionType](Atc.md#triggeractiontype)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)

@@ -1146,6 +1146,33 @@ Enumeration: SortDirectionType.
 
 <br />
 
+## StringCaseFormatter
+Provides custom string formatting based on specified case formatting options.<br /><br /> Supported formats: <list type="table"><item><term>U</term><description>Converts the entire string to uppercase.</description></item><item><term>u</term><description>Capitalizes the first character of the string.</description></item><item><term>L</term><description>Converts the entire string to lowercase.</description></item><item><term>l</term><description>Converts the first character of the string to lowercase.</description></item><item><term>Ul</term><description>Converts the string to uppercase with the first character in lowercase.</description></item><item><term>Lu</term><description>Converts the string to lowercase with the first character capitalized.</description></item><item><term>[Format]:</term><description>Applies the specified format and appends a colon ´<b>:</b>´ to the end.</description></item><item><term>[Format].</term><description>Applies the specified format and appends a period ´<b>.</b>´ to the end.</description></item></list> Examples: <code>string.Format(StringCaseFormatter.Default, "{0:U} {1:u} {2:L} {3:l}", .... 4 parameters );</code><code>string.Format(StringCaseFormatter.Default, "{0:U.} {1:u.} {2:L:} {3:l:}", .... 4 parameters );</code><code>string.Format(StringCaseFormatter.Default, "{0:Ul:} {1:Lu:}", ... 2 parameters );</code><code>string.Format(new StringCaseFormatter(), "{0:U} {1:u} {2:L} {3:l}", ... 4 parameters );</code>
+
+>```csharp
+>public class StringCaseFormatter : IFormatProvider, ICustomFormatter
+>```
+
+### Static Fields
+
+#### Default
+>```csharp
+>StringCaseFormatter Default
+>```
+><b>Summary:</b> Static `Atc.StringCaseFormatter` using `System.Globalization.CultureInfo.CurrentCulture`.
+### Methods
+
+#### Format
+>```csharp
+>string Format(string format, object arg, IFormatProvider formatProvider)
+>```
+#### GetFormat
+>```csharp
+>object GetFormat(Type formatType)
+>```
+
+<br />
+
 ## TemplatePatternType
 
 >```csharp
