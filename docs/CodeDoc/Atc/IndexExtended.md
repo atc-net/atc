@@ -5119,6 +5119,7 @@
      - Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
      - ContainsTemplatePattern(this string value, TemplatePatternType templatePatternType = HardBrackets)
      - Cut(this string value, int maxLength, string appendValue = ...)
+     - EnsureEndsWithColon(this string value)
      - EnsureEndsWithDot(this string value)
      - EnsureEnvironmentNewLines(this string value)
      - EnsureFirstCharacterToLower(this string value)
