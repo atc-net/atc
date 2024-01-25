@@ -44,6 +44,7 @@ public class CodeComplianceTests
         typeof(EnumAtcExtensions),
         typeof(DynamicJson),
         typeof(EnumHelper),
+        typeof(StringCaseFormatter),
         typeof(NumberHelper),
         typeof(InternetBrowserHelper),
         typeof(FileInfoExtensions),

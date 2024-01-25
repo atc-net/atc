@@ -431,9 +431,17 @@ public class StringExtensionsTests
 
     [Theory]
     [InlineData("hallo.", "hallo")]
+    [InlineData("hallo:.", "hallo:")]
     [InlineData("hallo.", "hallo.")]
     public void EnsureEndsWithDot(string expected, string input)
         => Assert.Equal(expected, input.EnsureEndsWithDot());
+
+    [Theory]
+    [InlineData("hallo:", "hallo")]
+    [InlineData("hallo.:", "hallo.")]
+    [InlineData("hallo:", "hallo:")]
+    public void EnsureEndsWithColon(string expected, string input)
+        => Assert.Equal(expected, input.EnsureEndsWithColon());
 
     [Theory]
     [InlineData("Hallo", "Hallo")]

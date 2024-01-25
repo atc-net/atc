@@ -1872,6 +1872,14 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appendValue`&nbsp;&nbsp;-&nbsp;&nbsp;The append value.<br />
 >
 ><b>Returns:</b> The string that is cutoff by the max-length and appended with the appendValue.
+#### EnsureEndsWithColon
+>```csharp
+>string EnsureEndsWithColon(this string value)
+>```
+><b>Summary:</b> Ensures the string-value ends with a ':'.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### EnsureEndsWithDot
 >```csharp
 >string EnsureEndsWithDot(this string value)

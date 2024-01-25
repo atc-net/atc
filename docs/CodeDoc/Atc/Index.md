@@ -42,6 +42,7 @@
 - [Point2D](Atc.md#point2d)
 - [Point3D](Atc.md#point3d)
 - [SortDirectionType](Atc.md#sortdirectiontype)
+- [StringCaseFormatter](Atc.md#stringcaseformatter)
 - [TemplatePatternType](Atc.md#templatepatterntype)
 - [TriggerActionType](Atc.md#triggeractiontype)
 - [TupleEqualityComparer&lt;T1, T2&gt;](Atc.md#tupleequalitycomparer&lt;t1-t2&gt;)
