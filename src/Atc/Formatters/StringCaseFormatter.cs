@@ -1,4 +1,5 @@
 // ReSharper disable once CheckNamespace
+// ReSharper disable CommentTypo
 namespace Atc;
 
 /// <summary>
@@ -51,11 +52,31 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
     /// </summary>
     public static readonly StringCaseFormatter Default = new();
 
+    /// <summary>
+    /// Returns an object that provides formatting services for the specified type.
+    /// </summary>
+    /// <param name="formatType">An object that specifies the type of format object to return.</param>
+    /// <returns>
+    /// An instance of the object specified by <paramref name="formatType"/>,
+    /// if the <see cref="ICustomFormatter"/> interface is requested; otherwise, null.
+    /// </returns>
     public object? GetFormat(Type? formatType)
         => formatType == typeof(ICustomFormatter)
             ? this
             : null;
 
+    /// <summary>
+    /// Converts the value of a specified object to an equivalent string representation
+    /// using specified format and culture-specific formatting information.
+    /// </summary>
+    /// <param name="format">A format string containing formatting specifications.</param>
+    /// <param name="arg">The object to format.</param>
+    /// <param name="formatProvider">An object that supplies format information about the current instance.
+    /// This parameter is ignored in this implementation.</param>
+    /// <returns>
+    /// The string representation of the value of <paramref name="arg"/>, formatted as
+    /// specified by <paramref name="format"/> and <paramref name="formatProvider"/>.
+    /// </returns>
     public string Format(
         string? format,
         object? arg,

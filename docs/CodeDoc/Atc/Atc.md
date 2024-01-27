@@ -1160,16 +1160,46 @@ Provides custom string formatting based on specified case formatting options.<br
 >StringCaseFormatter Default
 >```
 ><b>Summary:</b> Static `Atc.StringCaseFormatter` using `System.Globalization.CultureInfo.CurrentCulture`.
+### Static Methods
+
+#### Format
+>```csharp
+>string Format(string format, object[] args)
+>```
+><b>Summary:</b> Converts the value of a specified object to an equivalent string representation using specified format and culture-specific formatting information.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`format`&nbsp;&nbsp;-&nbsp;&nbsp;A format string containing formatting specifications.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg`&nbsp;&nbsp;-&nbsp;&nbsp;The object to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`formatProvider`&nbsp;&nbsp;-&nbsp;&nbsp;An object that supplies format information about the current instance.
+            This parameter is ignored in this implementation.<br />
+>
+><b>Returns:</b> The string representation of the value of `arg`, formatted as specified by `format` and `formatProvider`.
 ### Methods
 
 #### Format
 >```csharp
 >string Format(string format, object arg, IFormatProvider formatProvider)
 >```
+><b>Summary:</b> Converts the value of a specified object to an equivalent string representation using specified format and culture-specific formatting information.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`format`&nbsp;&nbsp;-&nbsp;&nbsp;A format string containing formatting specifications.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg`&nbsp;&nbsp;-&nbsp;&nbsp;The object to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`formatProvider`&nbsp;&nbsp;-&nbsp;&nbsp;An object that supplies format information about the current instance.
+            This parameter is ignored in this implementation.<br />
+>
+><b>Returns:</b> The string representation of the value of `arg`, formatted as specified by `format` and `formatProvider`.
 #### GetFormat
 >```csharp
 >object GetFormat(Type formatType)
 >```
+><b>Summary:</b> Returns an object that provides formatting services for the specified type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`formatType`&nbsp;&nbsp;-&nbsp;&nbsp;An object that specifies the type of format object to return.<br />
+>
+><b>Returns:</b> An instance of the object specified by `formatType`, if the `System.ICustomFormatter` interface is requested; otherwise, null.
 
 <br />
 

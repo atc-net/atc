@@ -121,6 +121,8 @@
 - [StringCaseFormatter](Atc.md#stringcaseformatter)
   -  Static Fields
      - StringCaseFormatter Default
+  -  Static Methods
+     - Format(string format, object[] args)
   -  Methods
      - Format(string format, object arg, IFormatProvider formatProvider)
      - GetFormat(Type formatType)
