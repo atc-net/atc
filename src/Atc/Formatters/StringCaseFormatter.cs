@@ -89,4 +89,25 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
             _ => str,
         };
     }
+
+    /// <summary>
+    /// Formats the given arguments using the specified format string and the custom case formatting rules defined in StringCaseFormatter.
+    /// Each format item in the format string is replaced by the string representation of the corresponding object argument, formatted according to the custom case formatting rules.
+    /// </summary>
+    /// <param name="format">A composite format string that includes one or more format items, each of which corresponds to an object in the <paramref name="args"/> array.</param>
+    /// <param name="args">An object array that contains zero or more objects to format and insert in the format string.</param>
+    /// <returns>
+    /// A copy of <paramref name="format"/> in which the format items have been replaced by the string representation of the corresponding
+    /// objects in <paramref name="args"/>, formatted according to the custom case formatting rules.
+    /// </returns>
+    /// <example>
+    /// <code>
+    /// var result = StringCaseFormatter.Format("{0:U} {1:u} {2:L} {3:l}", "john", "dove", "HALLO", "WORLD");
+    /// // Result: "JOHN Dove hallo wORLD"
+    /// </code>
+    /// </example>
+    public static string Format(
+        string format,
+        params object[] args)
+        => string.Format(Default, format, args);
 }

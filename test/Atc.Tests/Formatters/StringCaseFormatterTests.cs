@@ -107,4 +107,39 @@ public class StringCaseFormatterTests
         => Assert.Equal(
             expected,
             string.Format(formatter, $"{{0:{formatSpecifier1}}} {{1:{formatSpecifier2}}}", input1, input2));
+
+    [Theory]
+    [InlineData("hallo world", "Hallo", "World", "L", "L")]
+    [InlineData("hallo world", "Hallo", "World", "L", "l")]
+    [InlineData("hallo world", "Hallo", "World", "l", "l")]
+    [InlineData("hallo world", "Hallo", "World", "l", "L")]
+    [InlineData("hallo world", "HALLO", "WORLD", "L", "L")]
+    [InlineData("hallo wORLD", "HALLO", "WORLD", "L", "l")]
+    [InlineData("hALLO wORLD", "HALLO", "WORLD", "l", "l")]
+    [InlineData("hALLO world", "HALLO", "WORLD", "l", "L")]
+    [InlineData("hallo world", "hallo", "world", "L", "L")]
+    [InlineData("hallo world", "hallo", "world", "L", "l")]
+    [InlineData("hallo world", "hallo", "world", "l", "l")]
+    [InlineData("hallo world", "hallo", "world", "l", "L")]
+    [InlineData("HALLO WORLD", "Hallo", "World", "U", "U")]
+    [InlineData("HALLO World", "Hallo", "World", "U", "u")]
+    [InlineData("Hallo World", "Hallo", "World", "u", "u")]
+    [InlineData("Hallo WORLD", "Hallo", "World", "u", "U")]
+    [InlineData("HALLO WORLD", "HALLO", "WORLD", "U", "U")]
+    [InlineData("HALLO WORLD", "HALLO", "WORLD", "U", "u")]
+    [InlineData("HALLO WORLD", "HALLO", "WORLD", "u", "u")]
+    [InlineData("HALLO WORLD", "HALLO", "WORLD", "u", "U")]
+    [InlineData("HALLO WORLD", "hallo", "world", "U", "U")]
+    [InlineData("HALLO World", "hallo", "world", "U", "u")]
+    [InlineData("Hallo World", "hallo", "world", "u", "u")]
+    [InlineData("Hallo WORLD", "hallo", "world", "u", "U")]
+    public void StaticFormatStringForTwoParameters(
+        string expected,
+        string input1,
+        string input2,
+        string formatSpecifier1,
+        string formatSpecifier2)
+        => Assert.Equal(
+            expected,
+            StringCaseFormatter.Format($"{{0:{formatSpecifier1}}} {{1:{formatSpecifier2}}}", input1, input2));
 }
