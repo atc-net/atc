@@ -1,4 +1,5 @@
 // ReSharper disable once CheckNamespace
+// ReSharper disable CommentTypo
 namespace Atc;
 
 /// <summary>
@@ -51,11 +52,31 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
     /// </summary>
     public static readonly StringCaseFormatter Default = new();
 
+    /// <summary>
+    /// Returns an object that provides formatting services for the specified type.
+    /// </summary>
+    /// <param name="formatType">An object that specifies the type of format object to return.</param>
+    /// <returns>
+    /// An instance of the object specified by <paramref name="formatType"/>,
+    /// if the <see cref="ICustomFormatter"/> interface is requested; otherwise, null.
+    /// </returns>
     public object? GetFormat(Type? formatType)
         => formatType == typeof(ICustomFormatter)
             ? this
             : null;
 
+    /// <summary>
+    /// Converts the value of a specified object to an equivalent string representation
+    /// using specified format and culture-specific formatting information.
+    /// </summary>
+    /// <param name="format">A format string containing formatting specifications.</param>
+    /// <param name="arg">The object to format.</param>
+    /// <param name="formatProvider">An object that supplies format information about the current instance.
+    /// This parameter is ignored in this implementation.</param>
+    /// <returns>
+    /// The string representation of the value of <paramref name="arg"/>, formatted as
+    /// specified by <paramref name="format"/> and <paramref name="formatProvider"/>.
+    /// </returns>
     public string Format(
         string? format,
         object? arg,
@@ -89,4 +110,25 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
             _ => str,
         };
     }
+
+    /// <summary>
+    /// Formats the given arguments using the specified format string and the custom case formatting rules defined in StringCaseFormatter.
+    /// Each format item in the format string is replaced by the string representation of the corresponding object argument, formatted according to the custom case formatting rules.
+    /// </summary>
+    /// <param name="format">A composite format string that includes one or more format items, each of which corresponds to an object in the <paramref name="args"/> array.</param>
+    /// <param name="args">An object array that contains zero or more objects to format and insert in the format string.</param>
+    /// <returns>
+    /// A copy of <paramref name="format"/> in which the format items have been replaced by the string representation of the corresponding
+    /// objects in <paramref name="args"/>, formatted according to the custom case formatting rules.
+    /// </returns>
+    /// <example>
+    /// <code>
+    /// var result = StringCaseFormatter.Format("{0:U} {1:u} {2:L} {3:l}", "john", "dove", "HALLO", "WORLD");
+    /// // Result: "JOHN Dove hallo wORLD"
+    /// </code>
+    /// </example>
+    public static string Format(
+        string format,
+        params object[] args)
+        => string.Format(Default, format, args);
 }
