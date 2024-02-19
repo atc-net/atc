@@ -119,8 +119,14 @@
 - [RequestResponseLoggerOptions](Atc.Rest.Options.md#requestresponseloggeroptions)
   -  Properties
      - DefaultLogLevel
+     - IncludeRequestHeaderParameters
+     - IncludeRequestQueryParameters
      - IncludeResponseBody
+     - IncludeResponseHeaderParameters
+     - SkipSignalrRequests
      - SkipSwaggerRequests
+  -  Methods
+     - ToString()
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
   -  Properties
      - AllowAnonymousAccessForDevelopment

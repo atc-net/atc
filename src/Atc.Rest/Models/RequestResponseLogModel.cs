@@ -4,10 +4,15 @@ namespace Atc.Rest.Models;
 public sealed class RequestResponseLogModel
 {
     public RequestResponseLogModel(
-        HttpRequest request)
+        HttpRequest request,
+        bool includeQueryParameters = true,
+        bool includeHeaderParameters = true)
     {
         System = AssemblyHelper.GetSystemNameAsKebabCasing();
-        Request = new RequestLogModel(request);
+        Request = new RequestLogModel(
+            request,
+            includeQueryParameters,
+            includeHeaderParameters);
     }
 
     public string System { get; init; }

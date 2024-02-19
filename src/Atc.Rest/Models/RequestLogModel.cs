@@ -4,7 +4,9 @@ namespace Atc.Rest.Models;
 public sealed class RequestLogModel
 {
     public RequestLogModel(
-        HttpRequest request)
+        HttpRequest request,
+        bool includeQueryParameters = true,
+        bool includeHeaderParameters = true)
     {
         DateTimeUtc = DateTime.UtcNow;
         RequestId = request.HttpContext.TraceIdentifier;
@@ -14,9 +16,17 @@ public sealed class RequestLogModel
         Host = request.Host.ToString();
         Path = request.Path;
         QueryString = request.QueryString.ToString();
-        QueryParameters = ExtractQueryParameters(request.QueryString.ToString());
-        HeaderParameters = ExtractHeaderParameters(request.Headers);
         ContentType = request.ContentType;
+
+        if (includeQueryParameters)
+        {
+            QueryParameters = ExtractQueryParameters(request.QueryString.ToString());
+        }
+
+        if (includeHeaderParameters)
+        {
+            HeaderParameters = ExtractHeaderParameters(request.Headers);
+        }
     }
 
     public DateTime DateTimeUtc { get; init; }
@@ -35,9 +45,9 @@ public sealed class RequestLogModel
 
     public string QueryString { get; init; }
 
-    public IList<KeyValuePair<string, string>> QueryParameters { get; init; }
+    public IList<KeyValuePair<string, string>>? QueryParameters { get; init; }
 
-    public IDictionary<string, string> HeaderParameters { get; init; }
+    public IDictionary<string, string>? HeaderParameters { get; init; }
 
     public string? Body { get; set; }
 

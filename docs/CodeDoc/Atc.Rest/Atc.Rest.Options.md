@@ -140,21 +140,49 @@ Copy and fill out the AzureAd section into the project User Secrets.
 >```csharp
 >DefaultLogLevel
 >```
-><b>Summary:</b> Indicates the default log level for the logger.
+><b>Summary:</b> Gets or sets the default log level for the logger.
+#### IncludeRequestHeaderParameters
+>```csharp
+>IncludeRequestHeaderParameters
+>```
+><b>Summary:</b> Gets or sets a value indicating whether request header parameters should be included in logs.
+#### IncludeRequestQueryParameters
+>```csharp
+>IncludeRequestQueryParameters
+>```
+><b>Summary:</b> Gets or sets a value indicating whether request query parameters should be included in logs.
 #### IncludeResponseBody
 >```csharp
 >IncludeResponseBody
 >```
-><b>Summary:</b> Indicates if response body is logged.
+><b>Summary:</b> Gets or sets a value indicating whether the response body should be logged.
 >
-><b>Remarks:</b> Default set to <see langword="true" />.
+><b>Remarks:</b> Logging the response body can be useful for debugging responses but may increase the size of log files.
+#### IncludeResponseHeaderParameters
+>```csharp
+>IncludeResponseHeaderParameters
+>```
+><b>Summary:</b> Gets or sets a value indicating whether response header parameters should be included in logs.
+#### SkipSignalrRequests
+>```csharp
+>SkipSignalrRequests
+>```
+><b>Summary:</b> Gets or sets a value indicating whether SignalR requests should be exempt from logging.
+>
+><b>Remarks:</b> Skipping SignalR requests can reduce noise in logs from real-time communications.
 #### SkipSwaggerRequests
 >```csharp
 >SkipSwaggerRequests
 >```
-><b>Summary:</b> Indicates if swagger requests should be exempt from logger.
+><b>Summary:</b> Gets or sets a value indicating whether Swagger requests should be exempt from logging.
 >
-><b>Remarks:</b> Default set to <see langword="true" />.
+><b>Remarks:</b> Skipping Swagger requests can reduce noise in logs from automated or development-time API exploration.
+### Methods
+
+#### ToString
+>```csharp
+>string ToString()
+>```
 
 <br />
 
