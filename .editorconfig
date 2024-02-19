@@ -507,6 +507,7 @@ dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net
 dotnet_diagnostic.CA1002.severity = suggestion		# Do not expose generic lists - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1002
 dotnet_diagnostic.CA1812.severity = suggestion		# Avoid uninstantiated internal classes - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1812
 dotnet_diagnostic.CA1848.severity = suggestion		# LoggerMessage delegates instead of calling
+dotnet_diagnostic.CA2227.severity = suggestion		# Collection properties should be read only
 dotnet_diagnostic.CA2254.severity = suggestion		# Logging message template
 dotnet_diagnostic.CA1854.severity = suggestion		# Use TryGetValue over ContainsKey and dictionary index accesser
 

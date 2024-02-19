@@ -7,7 +7,7 @@ namespace Atc.Rest.Middleware;
 [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
 public class RequestResponseLoggerMiddleware
 {
-    private const string BinaryDataRedactedString = $"# BINARY-DATA-REDACTED #";
+    private const string BinaryDataRedactedString = "# BINARY-DATA-REDACTED #";
 
     private readonly RequestDelegate next;
     private readonly ILogger<RequestResponseLoggerMiddleware> logger;
@@ -30,7 +30,10 @@ public class RequestResponseLoggerMiddleware
     {
         if (!httpContext.Request.Path.HasValue ||
             (apiOptions.RequestResponseLoggerOptions.SkipSwaggerRequests &&
-             httpContext.Request.Path.Value.StartsWith("/swagger", StringComparison.Ordinal)))
+             httpContext.Request.Path.Value.StartsWith("/swagger", StringComparison.Ordinal)) ||
+            (apiOptions.RequestResponseLoggerOptions.SkipSignalrRequests &&
+             (httpContext.Request.Path.Value.StartsWith("/signalr/", StringComparison.Ordinal) ||
+              httpContext.Request.Path.Value.StartsWith("/hubs/", StringComparison.Ordinal))))
         {
             await next(httpContext);
             return;
@@ -59,7 +62,9 @@ public class RequestResponseLoggerMiddleware
             logModel.SetException(exception);
         }
 
-        logModel.Response = new ResponseLogModel(httpContext.Response);
+        logModel.Response = new ResponseLogModel(
+            httpContext.Response,
+            apiOptions.RequestResponseLoggerOptions.IncludeResponseHeaderParameters);
 
         if (apiOptions.RequestResponseLoggerOptions.IncludeResponseBody &&
             originalResponseBody is not null)
@@ -98,9 +103,12 @@ public class RequestResponseLoggerMiddleware
         Log(logModel);
     }
 
-    private static async Task<RequestResponseLogModel> CreateRequestResponseLogModel(
+    private async Task<RequestResponseLogModel> CreateRequestResponseLogModel(
         HttpContext httpContext)
-        => new(httpContext.Request)
+        => new(
+            httpContext.Request,
+            apiOptions.RequestResponseLoggerOptions.IncludeRequestQueryParameters,
+            apiOptions.RequestResponseLoggerOptions.IncludeRequestHeaderParameters)
         {
             Request =
             {

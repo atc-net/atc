@@ -4,19 +4,24 @@ namespace Atc.Rest.Models;
 public sealed class ResponseLogModel
 {
     public ResponseLogModel(
-        HttpResponse response)
+        HttpResponse response,
+        bool includeHeaderParameters = true)
     {
         DateTimeUtc = DateTime.UtcNow;
         Status = response.StatusCode.ToString(GlobalizationConstants.EnglishCultureInfo);
-        HeaderParameters = ExtractHeaderParameters(response.Headers);
         ContentType = response.ContentType;
+
+        if (includeHeaderParameters)
+        {
+            HeaderParameters = ExtractHeaderParameters(response.Headers);
+        }
     }
 
     public DateTime DateTimeUtc { get; init; }
 
     public string Status { get; init; }
 
-    public IDictionary<string, string> HeaderParameters { get; init; }
+    public IDictionary<string, string>? HeaderParameters { get; set; }
 
     public string? ContentType { get; init; }
 
