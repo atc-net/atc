@@ -118,6 +118,18 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    public static string ToLongDateStringUsingSpecificCulture(
+        this DateTime dateTime,
+        CultureInfo cultureInfo)
+    {
+        if (cultureInfo is null)
+        {
+            throw new ArgumentNullException(nameof(cultureInfo));
+        }
+
+        return dateTime.ToLongDateString(cultureInfo.DateTimeFormat);
+    }
+
     /// <summary>
     /// Converts a DateTime to a string using the long date pattern of the provided DateTimeFormatInfo.
     /// </summary>
@@ -152,6 +164,18 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    public static string ToLongTimeStringUsingSpecificCulture(
+        this DateTime dateTime,
+        CultureInfo cultureInfo)
+    {
+        if (cultureInfo is null)
+        {
+            throw new ArgumentNullException(nameof(cultureInfo));
+        }
+
+        return dateTime.ToLongTimeString(cultureInfo.DateTimeFormat);
+    }
+
     /// <summary>
     /// Converts a DateTime to a string using the long time pattern of the provided DateTimeFormatInfo.
     /// </summary>
@@ -185,6 +209,18 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    public static string ToShortDateStringUsingSpecificCulture(
+        this DateTime dateTime,
+        CultureInfo cultureInfo)
+    {
+        if (cultureInfo is null)
+        {
+            throw new ArgumentNullException(nameof(cultureInfo));
+        }
+
+        return dateTime.ToShortDateString(cultureInfo.DateTimeFormat);
+    }
+
     /// <summary>
     /// Converts a DateTime to a string using the short date pattern of the provided DateTimeFormatInfo.
     /// </summary>
@@ -217,6 +253,18 @@ public static class DateTimeExtensions
     public static string ToShortTimeStringUsingCurrentUiCulture(
         this DateTime dateTime)
         => dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+
+    public static string ToShortTimeStringUsingSpecificCulture(
+        this DateTime dateTime,
+        CultureInfo cultureInfo)
+    {
+        if (cultureInfo is null)
+        {
+            throw new ArgumentNullException(nameof(cultureInfo));
+        }
+
+        return dateTime.ToShortTimeString(cultureInfo.DateTimeFormat);
+    }
 
     /// <summary>
     /// Converts a DateTime to a string using the short time pattern of the provided DateTimeFormatInfo.
