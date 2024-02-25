@@ -520,6 +520,10 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long date pattern of the current UI culture.
+#### ToLongDateStringUsingSpecificCulture
+>```csharp
+>string ToLongDateStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
+>```
 #### ToLongTimeString
 >```csharp
 >string ToLongTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -541,6 +545,10 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long time pattern of the current UI culture.
+#### ToLongTimeStringUsingSpecificCulture
+>```csharp
+>string ToLongTimeStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
+>```
 #### ToShortDateString
 >```csharp
 >string ToShortDateString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -562,6 +570,10 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short date pattern of the current UI culture.
+#### ToShortDateStringUsingSpecificCulture
+>```csharp
+>string ToShortDateStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
+>```
 #### ToShortTimeString
 >```csharp
 >string ToShortTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -583,6 +595,10 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short time pattern of the current UI culture.
+#### ToShortTimeStringUsingSpecificCulture
+>```csharp
+>string ToShortTimeStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
+>```
 
 <br />
 

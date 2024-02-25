@@ -690,6 +690,21 @@ DateTimeHelper.
             <br />
 >
 ><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+#### TryParseShortDateUsingSpecificCulture
+>```csharp
+>bool TryParseShortDateUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short date using a specific culture's date format.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTime,
+            if the parse operation was successful; otherwise, contains the default DateTime.
+            <br />
+>
+><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
 #### TryParseShortTimeUsingCurrentUiCulture
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
@@ -718,6 +733,36 @@ DateTimeHelper.
             <br />
 >
 ><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+#### TryParseShortTimeUsingSpecificCulture
+>```csharp
+>bool TryParseShortTimeUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short time using a specific culture's time format (12-hour or 24-hour).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTime,
+            if the parse operation was successful; otherwise, contains the default DateTime.
+            <br />
+>
+><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+#### TryParseShortTimeUsingSpecificCultureUtc
+>```csharp
+>bool TryParseShortTimeUsingSpecificCultureUtc(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short UTC time using a specific culture's time format (12-hour or 24-hour).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTime in UTC,
+            if the parse operation was successful; otherwise, contains the default DateTime.
+            <br />
+>
+><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
 #### TryParseUsingCurrentUiCulture
 >```csharp
 >bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
@@ -726,6 +771,21 @@ DateTimeHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTime,
+            if the parse operation was successful; otherwise, contains the default DateTime.
+            <br />
+>
+><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+#### TryParseUsingSpecificCulture
+>```csharp
+>bool TryParseUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a DateTime using a specific culture's date and time format.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
             When this method returns, contains the parsed DateTime,
             if the parse operation was successful; otherwise, contains the default DateTime.
@@ -2002,16 +2062,80 @@ Provides utility methods for working with stack traces.
 
 ### Static Methods
 
-#### ContainsConstructorWithinFrameCount
+#### ContainsConstructor
 >```csharp
->bool ContainsConstructorWithinFrameCount(int drillDownFrameMax)
+>bool ContainsConstructor()
 >```
-><b>Summary:</b> Determines whether any of the stack frames within the specified frame count contains a constructor.
+><b>Summary:</b> Checks if the current stack trace contains a constructor call.
+>
+><b>Returns:</b> True if a constructor call is found; otherwise, false.
+#### ContainsConstructor
+>```csharp
+>bool ContainsConstructor(int drillDownFrameMax)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a constructor call.
+>
+><b>Returns:</b> True if a constructor call is found; otherwise, false.
+#### ContainsPropertyGetterName
+>```csharp
+>bool ContainsPropertyGetterName(string propertyName)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property getter call for a specified property name.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`drillDownFrameMax`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum number of frames to inspect in the stack trace.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
 >
-><b>Returns:</b> `true` if a constructor is found within the specified number of frames; otherwise, `false`.
+><b>Returns:</b> True if a getter call is found for the specified property; otherwise, false.
+#### ContainsPropertyGetterName
+>```csharp
+>bool ContainsPropertyGetterName(string propertyName, int drillDownFrameMax)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property getter call for a specified property name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
+>
+><b>Returns:</b> True if a getter call is found for the specified property; otherwise, false.
+#### ContainsPropertyName
+>```csharp
+>bool ContainsPropertyName(string propertyName)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property call for a specified property name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
+>
+><b>Returns:</b> True if a call is found for the specified property; otherwise, false.
+#### ContainsPropertyName
+>```csharp
+>bool ContainsPropertyName(string propertyName, int drillDownFrameMax)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property call for a specified property name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
+>
+><b>Returns:</b> True if a call is found for the specified property; otherwise, false.
+#### ContainsPropertySetterName
+>```csharp
+>bool ContainsPropertySetterName(string propertyName)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property setter call for a specified property name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
+>
+><b>Returns:</b> True if a setter call is found for the specified property; otherwise, false.
+#### ContainsPropertySetterName
+>```csharp
+>bool ContainsPropertySetterName(string propertyName, int drillDownFrameMax)
+>```
+><b>Summary:</b> Checks if the current stack trace contains a property setter call for a specified property name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property to check.<br />
+>
+><b>Returns:</b> True if a setter call is found for the specified property; otherwise, false.
 
 <br />
 
