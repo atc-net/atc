@@ -405,7 +405,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <returns>A boolean indicating success of the parse operation.</returns>
     public static bool TryParse(
         string input,
-        out SemanticVersion? result)
+        [NotNullWhen(true)] out SemanticVersion? result)
         => TryParse(input, looseMode: false, out result);
 
     /// <summary>
@@ -419,7 +419,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     public static bool TryParse(
         string input,
         bool looseMode,
-        out SemanticVersion? result)
+        [NotNullWhen(true)] out SemanticVersion? result)
     {
         try
         {
