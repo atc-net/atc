@@ -14,6 +14,7 @@
 - [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
   -  Static Methods
      - FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
+     - FindAllInPathAndPredictProjectTypes(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
      - GetProjectType(FileInfo fileInfo)
      - GetProjectType(string fileContent)
      - PredictProjectType(FileInfo fileInfo)
