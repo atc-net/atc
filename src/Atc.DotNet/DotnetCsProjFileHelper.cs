@@ -1,6 +1,7 @@
 // ReSharper disable ConvertIfStatementToReturnStatement
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable InvertIf
+// ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable StringLiteralTypo
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet;
@@ -17,10 +18,38 @@ public static class DotnetCsProjFileHelper
         }
 
         var result = new Collection<FileInfo>();
-        var files = Directory.GetFiles(directoryInfo.FullName, "*.csproj", searchOption);
-        foreach (var file in files)
+
+        var csprojFiles = Directory
+            .GetFiles(directoryInfo.FullName, "*.csproj", searchOption)
+            .Select(x => new FileInfo(x));
+
+        foreach (var file in csprojFiles)
         {
-            result.Add(new FileInfo(file));
+            result.Add(file);
+        }
+
+        return result;
+    }
+
+    public static Collection<(FileInfo CsProjFile, DotnetProjectType ProjectType)> FindAllInPathAndPredictProjectTypes(
+        DirectoryInfo directoryInfo,
+        SearchOption searchOption = SearchOption.AllDirectories)
+    {
+        if (directoryInfo is null)
+        {
+            throw new ArgumentNullException(nameof(directoryInfo));
+        }
+
+        var result = new Collection<(FileInfo, DotnetProjectType)>();
+
+        var csprojFiles = Directory
+            .GetFiles(directoryInfo.FullName, "*.csproj", searchOption)
+            .Select(x => new FileInfo(x));
+
+        foreach (var file in csprojFiles)
+        {
+            var predictProjectType = PredictProjectType(file);
+            result.Add((file, predictProjectType));
         }
 
         return result;
@@ -74,12 +103,18 @@ public static class DotnetCsProjFileHelper
         return GetProjectType(fileContent);
     }
 
+    [SuppressMessage("Performance", "MA0031:Optimize Enumerable.Count() usage", Justification = "OK.")]
     public static DotnetProjectType GetProjectType(
         string fileContent)
     {
         if (string.IsNullOrEmpty(fileContent))
         {
             throw new ArgumentNullException(nameof(fileContent));
+        }
+
+        if (fileContent.Contains("WebAssembly", StringComparison.Ordinal))
+        {
+            return DotnetProjectType.BlazorWAsmApp;
         }
 
         try
@@ -150,7 +185,8 @@ public static class DotnetCsProjFileHelper
             return DotnetProjectType.None;
         }
 
-        if (HasPackageReference(rootElement, "Microsoft.Azure.Devices.Client"))
+        if (IsProjectCapabilityAzureIoTEdgeModule(rootElement) ||
+            HasPackageReference(rootElement, "Microsoft.Azure.Devices.Client"))
         {
             return DotnetProjectType.AzureIotEdgeModule;
         }
@@ -165,6 +201,11 @@ public static class DotnetCsProjFileHelper
             return IsOutputType(rootElement, "WinExe")
                 ? DotnetProjectType.WinFormApp
                 : DotnetProjectType.Library;
+        }
+
+        if (IsMaui(rootElement))
+        {
+            return DotnetProjectType.MauiApp;
         }
 
         if (IsWpf(rootElement))
@@ -388,6 +429,19 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
+    private static bool IsMaui(
+        XElement rootElement)
+    {
+        var element = rootElement
+            .Elements()
+            .Where(x => x.Name.LocalName == "PropertyGroup")
+            .Descendants()
+            .FirstOrDefault(x => x.Name.LocalName == "UseMaui");
+
+        return element is not null &&
+               element.Value.IsTrue();
+    }
+
     private static bool IsWpf(
         XElement rootElement)
     {
@@ -401,9 +455,31 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
+    private static bool IsProjectCapabilityAzureIoTEdgeModule(
+        XElement rootElement)
+    {
+        var elements = rootElement
+            .Elements()
+            .Where(x => x.Name.LocalName == "ItemGroup")
+            .Descendants()
+            .Where(x => x.Name.LocalName == "ProjectCapability");
+
+        foreach (var element in elements)
+        {
+            var attribute = element.Attribute("Include");
+            if (attribute is not null &&
+                attribute.Value == "AzureIoTEdgeModule")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static bool IsOutputType(
-        XElement rootElement,
-        string value)
+            XElement rootElement,
+            string value)
     {
         var element = rootElement
             .Elements()

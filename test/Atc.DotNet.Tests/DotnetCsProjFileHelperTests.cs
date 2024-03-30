@@ -36,6 +36,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.CliApp, DotnetProjectType.CliApp)]
     [InlineData(DotnetProjectType.BlazorServerApp, DotnetProjectType.BlazorServerApp)]
     [InlineData(DotnetProjectType.BlazorWAsmApp, DotnetProjectType.BlazorWAsmApp)]
+    [InlineData(DotnetProjectType.MauiApp, DotnetProjectType.MauiApp)]
     [InlineData(DotnetProjectType.IosApp, DotnetProjectType.IosApp)]
     [InlineData(DotnetProjectType.UwpApp, DotnetProjectType.UwpApp)]
     [InlineData(DotnetProjectType.WebApp, DotnetProjectType.WebApp)]
@@ -80,6 +81,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.CliApp, DotnetProjectType.CliApp)]
     [InlineData(DotnetProjectType.WebApp, DotnetProjectType.BlazorServerApp)]
     [InlineData(DotnetProjectType.BlazorWAsmApp, DotnetProjectType.BlazorWAsmApp)]
+    [InlineData(DotnetProjectType.MauiApp, DotnetProjectType.MauiApp)]
     [InlineData(DotnetProjectType.IosApp, DotnetProjectType.IosApp)]
     [InlineData(DotnetProjectType.UwpApp, DotnetProjectType.UwpApp)]
     [InlineData(DotnetProjectType.WebApp, DotnetProjectType.WebApp)]
@@ -119,6 +121,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.CliApp, DotnetProjectType.CliApp)]
     [InlineData(DotnetProjectType.WebApp, DotnetProjectType.BlazorServerApp)]
     [InlineData(DotnetProjectType.BlazorWAsmApp, DotnetProjectType.BlazorWAsmApp)]
+    [InlineData(DotnetProjectType.MauiApp, DotnetProjectType.MauiApp)]
     [InlineData(DotnetProjectType.IosApp, DotnetProjectType.IosApp)]
     [InlineData(DotnetProjectType.UwpApp, DotnetProjectType.UwpApp)]
     [InlineData(DotnetProjectType.WebApp, DotnetProjectType.WebApp)]
@@ -187,6 +190,9 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             case DotnetProjectType.BlazorWAsmApp:
                 CreateCsProjFileBlazorWAsmApp(sb);
                 break;
+            case DotnetProjectType.MauiApp:
+                CreateCsProjFileMauiApp(sb);
+                break;
             case DotnetProjectType.IosApp:
                 CreateCsProjFileIosApp(sb);
                 break;
@@ -254,6 +260,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "Exe",
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         AppendItemGroupPackageReference(
@@ -272,6 +279,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "Library",
             packAsTool: false,
             useAzureFunction: true,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -301,6 +309,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "Exe",
             packAsTool: true,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -316,6 +325,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "Exe",
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -331,6 +341,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -346,6 +357,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -366,6 +378,22 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
+    private static void CreateCsProjFileMauiApp(
+        StringBuilder sb)
+    {
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
+        AppendPropertyGroupFirst(
+            sb,
+            outputType: "Exe",
+            packAsTool: false,
+            useAzureFunction: false,
+            useMaui: true,
+            useWinForm: false,
+            useWpf: false);
+        sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
     private static void CreateCsProjFileLibrary(
         StringBuilder sb)
     {
@@ -375,6 +403,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "Library",
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -390,6 +419,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -432,6 +462,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         AppendItemGroupPackageReference(
@@ -466,6 +497,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         AppendItemGroupPackageReference(
@@ -484,6 +516,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -499,6 +532,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: false);
         sb.AppendLine();
@@ -514,6 +548,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "WinExe",
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: true,
             useWpf: false);
         sb.AppendLine();
@@ -529,6 +564,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: "WinExe",
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: true);
         sb.AppendLine();
@@ -544,6 +580,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             outputType: null,
             packAsTool: false,
             useAzureFunction: false,
+            useMaui: false,
             useWinForm: false,
             useWpf: true);
         sb.AppendLine();
@@ -586,6 +623,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             case DotnetProjectType.UwpApp:
                 break;
             case DotnetProjectType.WebApp:
+                break;
+            case DotnetProjectType.MauiApp:
                 break;
             case DotnetProjectType.WpfApp:
                 break;
@@ -653,6 +692,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         string? outputType,
         bool packAsTool,
         bool useAzureFunction,
+        bool useMaui,
         bool useWinForm,
         bool useWpf)
     {
@@ -673,6 +713,11 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         if (useAzureFunction)
         {
             sb.AppendLine("<AzureFunctionsVersion>v4</AzureFunctionsVersion>");
+        }
+
+        if (useMaui)
+        {
+            sb.AppendLine("<UseMaui>true</UseMaui>");
         }
 
         if (useWinForm)

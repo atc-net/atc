@@ -47,6 +47,10 @@
 >```csharp
 >Collection<FileInfo> FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
 >```
+#### FindAllInPathAndPredictProjectTypes
+>```csharp
+>Collection<ValueTuple<FileInfo, DotnetProjectType>> FindAllInPathAndPredictProjectTypes(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)
+>```
 #### GetProjectType
 >```csharp
 >DotnetProjectType GetProjectType(FileInfo fileInfo)
@@ -156,28 +160,29 @@
 | 8 | CliApp | Cli App |  | 
 | 16 | BlazorServerApp | Blazor Server App |  | 
 | 32 | BlazorWAsmApp | Blazor WAsm App |  | 
-| 64 | IosApp | Ios App |  | 
-| 128 | UwpApp | Uwp App |  | 
-| 256 | WebApp | Web App |  | 
-| 512 | WpfApp | Wpf App |  | 
-| 1024 | WinFormApp | Win Form App |  | 
-| 2047 | Apps | Apps |  | 
-| 2048 | Library | Library |  | 
-| 4096 | RazorLibrary | Razor Library |  | 
-| 8192 | UwpLibrary | Uwp Library |  | 
-| 16384 | WpfLibrary | Wpf Library |  | 
-| 30720 | Libraries | Libraries |  | 
-| 32768 | Modules | Azure Iot Edge Module |  | 
-| 32768 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
-| 65536 | VisualStudioExtension | Visual Studio Extension |  | 
-| 131072 | WebApi | Web Api |  | 
-| 262144 | WorkerService | Worker Service |  | 
-| 393216 | Services | Services |  | 
-| 524288 | BUnitTest | BUnit Test |  | 
-| 1048576 | MsTest | Ms Test |  | 
-| 2097152 | NUnitTest | NUnit Test |  | 
-| 4194304 | XUnitTest | XUnit Test |  | 
-| 7864320 | Tests | Tests |  | 
+| 64 | MauiApp | Maui App |  | 
+| 128 | IosApp | Ios App |  | 
+| 256 | UwpApp | Uwp App |  | 
+| 512 | WebApp | Web App |  | 
+| 1024 | WpfApp | Wpf App |  | 
+| 2048 | WinFormApp | Win Form App |  | 
+| 4095 | Apps | Apps |  | 
+| 4096 | Library | Library |  | 
+| 8192 | RazorLibrary | Razor Library |  | 
+| 16384 | UwpLibrary | Uwp Library |  | 
+| 32768 | WpfLibrary | Wpf Library |  | 
+| 61440 | Libraries | Libraries |  | 
+| 65536 | Modules | Azure Iot Edge Module |  | 
+| 65536 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
+| 131072 | VisualStudioExtension | Visual Studio Extension |  | 
+| 262144 | WebApi | Web Api |  | 
+| 524288 | WorkerService | Worker Service |  | 
+| 786432 | Services | Services |  | 
+| 1048576 | BUnitTest | BUnit Test |  | 
+| 2097152 | MsTest | Ms Test |  | 
+| 4194304 | NUnitTest | NUnit Test |  | 
+| 8388608 | XUnitTest | XUnit Test |  | 
+| 15728640 | Tests | Tests |  | 
 
 
 
