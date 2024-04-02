@@ -17,8 +17,7 @@ public static class ProgramCsHelper
             throw new ArgumentNullException(nameof(consoleLoggerConfiguration));
         }
 
-        if (args.Any(x => x.Equals(CommandConstants.ArgumentShortVerbose, StringComparison.OrdinalIgnoreCase)) ||
-            args.Any(x => x.Equals(CommandConstants.ArgumentLongVerbose, StringComparison.OrdinalIgnoreCase)))
+        if (args.Any(x => x.Equals(CommandConstants.ArgumentLongVerbose, StringComparison.OrdinalIgnoreCase)))
         {
             consoleLoggerConfiguration.MinimumLogLevel = LogLevel.Trace;
         }
