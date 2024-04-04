@@ -179,7 +179,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
                 AssemblyHelper.GetProjectRootDirectory().FullName,
                 "XUnitTestDataProjectSampleTypes"));
 
-        // Actual
+        // Act
         var actual = DotnetCsProjFileHelper.FindAllInPathAndPredictProjectTypes(sampleTypesDirectory);
 
         // Assert
