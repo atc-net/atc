@@ -4409,6 +4409,7 @@
      - GetAssemblyInformations()
      - GetAssemblyInformationsByStartsWith(string value)
      - GetAssemblyInformationsBySystem()
+     - GetProjectRootDirectory()
      - GetSystemLocation()
      - GetSystemLocationPath()
      - GetSystemName()

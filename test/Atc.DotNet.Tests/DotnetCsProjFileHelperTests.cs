@@ -153,6 +153,43 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         Assert.Equal(expected, actual);
     }
 
+    [Theory]
+    [InlineData(DotnetProjectType.AzureFunctionApp, "AzureFunctionApp1")]
+    [InlineData(DotnetProjectType.BlazorServerApp, "BlazorServerApp1")]
+    [InlineData(DotnetProjectType.BlazorWAsmApp, "BlazorWebAssemblyApp1")]
+    [InlineData(DotnetProjectType.BlazorWAsmApp, "BlazorWebAssemblyStandaloneApp1")]
+    [InlineData(DotnetProjectType.Library, "ClassLibrary1")]
+    [InlineData(DotnetProjectType.CliApp, "CliApp1")]
+    [InlineData(DotnetProjectType.ConsoleApp, "ConsoleApp1")]
+    [InlineData(DotnetProjectType.MauiApp, "MauiApp1")]
+    [InlineData(DotnetProjectType.MsTest, "MsTestProject1")]
+    [InlineData(DotnetProjectType.WebApp, "WebApplication1")]
+    [InlineData(DotnetProjectType.WebApp, "WebApplication2")]
+    [InlineData(DotnetProjectType.WebApi, "WebApi1")]
+    [InlineData(DotnetProjectType.Library, "WindowsFormsControlLibrary1")]
+    [InlineData(DotnetProjectType.WinFormApp, "WinFormsApp1")]
+    [InlineData(DotnetProjectType.WpfApp, "WpfApp1")]
+    public void FindAllInPathAndPredictProjectTypes(
+        DotnetProjectType expected,
+        string projectName)
+    {
+        // Arrange
+        var sampleTypesDirectory = new DirectoryInfo(
+            Path.Combine(
+                AssemblyHelper.GetProjectRootDirectory().FullName,
+                "XUnitTestDataProjectSampleTypes"));
+
+        // Act
+        var actual = DotnetCsProjFileHelper.FindAllInPathAndPredictProjectTypes(sampleTypesDirectory);
+
+        // Assert
+        Assert.NotNull(actual);
+
+        var (actualCsProjFile, actualProjectType) = actual.FirstOrDefault(x => x.CsProjFile.Directory!.Name == projectName);
+        Assert.Equal(expected, actualProjectType);
+        Assert.Equal($"{projectName}.csproj", actualCsProjFile.Name);
+    }
+
     private static Task CreateCsProjFile(
         DirectoryInfo workingDirectory,
         string fileName,

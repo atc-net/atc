@@ -140,6 +140,15 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 ><b>Summary:</b> Gets the assembly informations by system.
 >
 ><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+#### GetProjectRootDirectory
+>```csharp
+>DirectoryInfo GetProjectRootDirectory()
+>```
+><b>Summary:</b> Retrieves the project root directory by searching upwards from the current assembly's base directory. The method looks for a directory containing a .csproj or .sln file, which is commonly found in the root of a C# project.
+>
+><b>Returns:</b> A `System.IO.DirectoryInfo` object representing the project root directory, or the assembly's base directory if the project root cannot be determined.
+>
+><b>Remarks:</b> This method starts at the current assembly's base directory and moves up the directory tree until it finds a directory containing at least one .csproj or .sln file. This directory is considered the project root. If no such directory is found, the method defaults to returning the base directory of the application domain. This approach allows the method to be more adaptable to various project structures without relying on a fixed directory depth. However, it assumes that the project root will contain at least one .csproj or .sln file.
 #### GetSystemLocation
 >```csharp
 >string GetSystemLocation()
