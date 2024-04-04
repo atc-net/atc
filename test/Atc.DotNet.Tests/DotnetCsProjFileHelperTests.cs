@@ -159,6 +159,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.BlazorWAsmApp, "BlazorWebAssemblyApp1")]
     [InlineData(DotnetProjectType.BlazorWAsmApp, "BlazorWebAssemblyStandaloneApp1")]
     [InlineData(DotnetProjectType.Library, "ClassLibrary1")]
+    [InlineData(DotnetProjectType.CliApp, "CliApp1")]
     [InlineData(DotnetProjectType.ConsoleApp, "ConsoleApp1")]
     [InlineData(DotnetProjectType.MauiApp, "MauiApp1")]
     [InlineData(DotnetProjectType.MsTest, "MsTestProject1")]
