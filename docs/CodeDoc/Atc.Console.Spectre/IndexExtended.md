@@ -13,7 +13,7 @@
      - string ArgumentLongVerbose
      - string ArgumentLongVersion
      - string ArgumentShortHelp
-     - string ArgumentShortVerbose
+     - string ArgumentShortVersion
      - string NameOptionsFile
      - string NameOptionsFileCreate
      - string NameOptionsFileValidate

@@ -40,9 +40,9 @@
 >```csharp
 >string ArgumentShortHelp
 >```
-#### ArgumentShortVerbose
+#### ArgumentShortVersion
 >```csharp
->string ArgumentShortVerbose
+>string ArgumentShortVersion
 >```
 #### NameOptionsFile
 >```csharp
