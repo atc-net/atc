@@ -30,7 +30,6 @@
 ## [Atc.Rest.Extended.Versioning](Atc.Rest.Extended.Versioning.md)
 
 - [ApiVersionConstants](Atc.Rest.Extended.Versioning.md#apiversionconstants)
-- [VersionErrorResponseProvider](Atc.Rest.Extended.Versioning.md#versionerrorresponseprovider)
 
 ## [Microsoft.AspNetCore.Builder](Microsoft.AspNetCore.Builder.md)
 

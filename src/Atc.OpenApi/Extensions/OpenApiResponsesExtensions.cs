@@ -151,7 +151,7 @@ public static class OpenApiResponsesExtensions
 
     public static bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
-        return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, nameof(ProblemDetails), StringComparison.Ordinal);
+        return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, "ProblemDetails", StringComparison.Ordinal);
     }
 
     public static bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)

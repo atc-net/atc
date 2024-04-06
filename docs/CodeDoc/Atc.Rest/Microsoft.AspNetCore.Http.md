@@ -70,10 +70,10 @@
 
 <br />
 
-## HttpContextExtensions
+## HttpContextExExtensions
 
 >```csharp
->public static class HttpContextExtensions
+>public static class HttpContextExExtensions
 >```
 
 ### Static Methods
@@ -89,10 +89,10 @@
 
 <br />
 
-## HttpRequestExtensions
+## HttpRequestExExtensions
 
 >```csharp
->public static class HttpRequestExtensions
+>public static class HttpRequestExExtensions
 >```
 
 ### Static Methods

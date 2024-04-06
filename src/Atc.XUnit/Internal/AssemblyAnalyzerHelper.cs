@@ -143,7 +143,9 @@ internal static class AssemblyAnalyzerHelper
             var firstParameterType = method.GetParameters()[0].ParameterType;
             var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
             if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||
-                ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified, StringComparison.Ordinal))
+                ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||
+                classNamePrefixSimplified.Equals(firstParameterNameSimplified + "Ex", StringComparison.Ordinal) ||
+                ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified + "Ex", StringComparison.Ordinal))
             {
                 // Ok
                 return null;

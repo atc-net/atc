@@ -58,9 +58,6 @@
      - string ApiVersionMediaTypeParameter
      - string ApiVersionQueryParameter
      - string ApiVersionQueryParameterShort
-- [VersionErrorResponseProvider](Atc.Rest.Extended.Versioning.md#versionerrorresponseprovider)
-  -  Methods
-     - CreateResponse(ErrorResponseContext context)
 
 ## [Microsoft.AspNetCore.Builder](Microsoft.AspNetCore.Builder.md)
 

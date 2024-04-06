@@ -13,7 +13,7 @@
 ## [Atc.Rest.Extensions](Atc.Rest.Extensions.md)
 
 - [AllowAnonymousAccessForDevelopmentHandler](Atc.Rest.Extensions.md#allowanonymousaccessfordevelopmenthandler)
-- [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
+- [EndpointRouteBuilderExExtensions](Atc.Rest.Extensions.md#endpointroutebuilderexextensions)
 
 ## [Atc.Rest.Helpers](Atc.Rest.Helpers.md)
 
@@ -61,8 +61,8 @@
 - [AnonymousAccessExtensions](Microsoft.AspNetCore.Http.md#anonymousaccessextensions)
 - [FormFileExtensions](Microsoft.AspNetCore.Http.md#formfileextensions)
 - [HeaderDictionaryExtensions](Microsoft.AspNetCore.Http.md#headerdictionaryextensions)
-- [HttpContextExtensions](Microsoft.AspNetCore.Http.md#httpcontextextensions)
-- [HttpRequestExtensions](Microsoft.AspNetCore.Http.md#httprequestextensions)
+- [HttpContextExExtensions](Microsoft.AspNetCore.Http.md#httpcontextexextensions)
+- [HttpRequestExExtensions](Microsoft.AspNetCore.Http.md#httprequestexextensions)
 - [WellKnownHttpHeaders](Microsoft.AspNetCore.Http.md#wellknownhttpheaders)
 
 ## [Microsoft.AspNetCore.Mvc.Filters](Microsoft.AspNetCore.Mvc.Filters.md)

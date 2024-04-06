@@ -155,9 +155,16 @@ public class StringAttribute : ValidationAttribute
             return true;
         }
 
-        errorMessage = attribute.ErrorMessage
-            .Replace("field {0}", "value", StringComparison.Ordinal)
-            .Replace("{0} field", "value", StringComparison.Ordinal);
+        if (attribute.ErrorMessage is null)
+        {
+            errorMessage = "The value is invalid.";
+        }
+        else
+        {
+            errorMessage = attribute.ErrorMessage
+                .Replace("field {0}", "value", StringComparison.Ordinal)
+                .Replace("{0} field", "value", StringComparison.Ordinal);
+        }
 
         return false;
     }

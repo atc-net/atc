@@ -20,7 +20,6 @@ public class CodeComplianceTests
         typeof(SwaggerEnumDescriptionsDocumentFilter),
         typeof(ConfigureAuthorizationOptions),
         typeof(ConfigureApiVersioningOptions),
-        typeof(VersionErrorResponseProvider),
         typeof(OpenApiBuilderExtensions),
         typeof(RestApiExtendedBuilderExtensions),
         typeof(OperationFilterContextExtensions),

@@ -35,7 +35,7 @@ public static class DotnetNugetHelper
 
         if (!fileContent.StartsWith('<'))
         {
-            throw new UnsupportedContentTypeException("Expect xml content");
+            throw new DataException("Expect xml content");
         }
 
         var data = new List<DotnetNugetPackageMetadataBase>();

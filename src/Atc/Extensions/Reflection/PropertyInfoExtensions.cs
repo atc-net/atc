@@ -53,7 +53,7 @@ public static class PropertyInfoExtensions
         var attributeValue = GetAttributeValue<DisplayNameAttribute, string>(propertyInfo, arg => arg.DisplayName);
         if (string.IsNullOrEmpty(attributeValue))
         {
-            attributeValue = GetAttributeValue<DisplayAttribute, string>(propertyInfo, arg => arg.Name);
+            attributeValue = GetAttributeValue<DisplayAttribute, string>(propertyInfo, arg => arg.Name!);
         }
 
         if (string.IsNullOrEmpty(attributeValue))
@@ -94,7 +94,7 @@ public static class PropertyInfoExtensions
 
         if (string.IsNullOrEmpty(attributeValue))
         {
-            attributeValue = GetAttributeValue<DisplayAttribute, string>(propertyInfo, arg => arg.Description);
+            attributeValue = GetAttributeValue<DisplayAttribute, string>(propertyInfo, arg => arg.Description ?? string.Empty);
         }
 
         if (string.IsNullOrEmpty(attributeValue))

@@ -27,7 +27,7 @@
 - [AllowAnonymousAccessForDevelopmentHandler](Atc.Rest.Extensions.md#allowanonymousaccessfordevelopmenthandler)
   -  Methods
      - HandleAsync(AuthorizationHandlerContext context)
-- [EndpointRouteBuilderExtensions](Atc.Rest.Extensions.md#endpointroutebuilderextensions)
+- [EndpointRouteBuilderExExtensions](Atc.Rest.Extensions.md#endpointroutebuilderexextensions)
   -  Static Methods
      - MapApiAssemblyInformations(this IEndpointRouteBuilder endpoints, string pattern)
      - MapApiManagementAssemblyInformations(this IEndpointRouteBuilder endpoints)
@@ -208,11 +208,11 @@
      - GetCallingOnBehalfOfIdentity(this IHeaderDictionary headers)
      - GetOrAddCorrelationId(this IHeaderDictionary headers)
      - GetOrAddRequestId(this IHeaderDictionary headers)
-- [HttpContextExtensions](Microsoft.AspNetCore.Http.md#httpcontextextensions)
+- [HttpContextExExtensions](Microsoft.AspNetCore.Http.md#httpcontextexextensions)
   -  Static Methods
      - GetCorrelationId(this HttpContext context)
      - GetRequestId(this HttpContext context)
-- [HttpRequestExtensions](Microsoft.AspNetCore.Http.md#httprequestextensions)
+- [HttpRequestExExtensions](Microsoft.AspNetCore.Http.md#httprequestexextensions)
   -  Static Methods
      - GetRawBodyBytesAsync(this HttpRequest request)
      - GetRawBodyStringAsync(this HttpRequest request, Encoding encoding = null)

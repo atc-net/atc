@@ -1,7 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Http;
 
-public static class HttpContextExtensions
+public static class HttpContextExExtensions
 {
     public static string? GetCorrelationId(this HttpContext context)
     {

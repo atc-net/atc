@@ -22,10 +22,10 @@
 
 <br />
 
-## EndpointRouteBuilderExtensions
+## EndpointRouteBuilderExExtensions
 
 >```csharp
->public static class EndpointRouteBuilderExtensions
+>public static class EndpointRouteBuilderExExtensions
 >```
 
 ### Static Methods

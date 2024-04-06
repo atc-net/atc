@@ -172,8 +172,8 @@
 | 16384 | UwpLibrary | Uwp Library |  | 
 | 32768 | WpfLibrary | Wpf Library |  | 
 | 61440 | Libraries | Libraries |  | 
-| 65536 | Modules | Azure Iot Edge Module |  | 
-| 65536 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
+| 65536 | AzureIotEdgeModule | Modules |  | 
+| 65536 | Modules | Modules |  | 
 | 131072 | VisualStudioExtension | Visual Studio Extension |  | 
 | 262144 | WebApi | Web Api |  | 
 | 524288 | WorkerService | Worker Service |  | 
