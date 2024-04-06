@@ -15,14 +15,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: 🛒 Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: ⚙️ Setup dotnet 7.0.x
-        uses: actions/setup-dotnet@v1
+      - name: ⚙️ Setup dotnet 8.0.x
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: 🧹 Clean
         run: dotnet clean -c Release && dotnet nuget locals all --clear
@@ -39,14 +39,14 @@ jobs:
       - dotnet-build
     steps:
       - name: 🛒 Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: ⚙️ Setup dotnet 7.0.x
-        uses: actions/setup-dotnet@v1
+      - name: ⚙️ Setup dotnet 8.0.x
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: 🔁 Restore packages
         run: dotnet restore

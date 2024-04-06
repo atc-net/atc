@@ -767,7 +767,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             sb.AppendLine("<UseWPF>true</UseWPF>");
         }
 
-        sb.AppendLine(4, "<TargetFramework>net6.0</TargetFramework>");
+        sb.AppendLine(4, "<TargetFramework>net8.0</TargetFramework>");
         sb.AppendLine(2, "</PropertyGroup>");
     }
 

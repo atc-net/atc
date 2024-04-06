@@ -33,7 +33,7 @@ public sealed class ResponseLogModel
         var pairs = new Dictionary<string, string>(StringComparer.Ordinal);
         foreach (var header in headers)
         {
-            pairs.Add(header.Key, header.Value);
+            pairs.Add(header.Key, header.Value!);
         }
 
         return pairs;

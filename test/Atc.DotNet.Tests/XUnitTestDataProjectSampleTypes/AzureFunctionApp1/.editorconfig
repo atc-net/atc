@@ -1,0 +1,14 @@
+# ATC coding rules - https://github.com/atc-net/atc-coding-rules
+# Version: 1.0.0
+# Updated: 27-03-2024
+# Location: azurefunctions
+# Distribution: Frameworks
+
+##########################################
+# Code Analyzers Rules
+##########################################
+[*.{cs}]
+
+##########################################
+# Custom - Code Analyzers Rules
+##########################################
