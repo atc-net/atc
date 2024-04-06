@@ -74,9 +74,16 @@ public sealed class KeyStringAttribute : StringAttribute
             return true;
         }
 
-        errorMessage = attribute.ErrorMessage
-            .Replace("field {0}", "value", StringComparison.Ordinal)
-            .Replace("{0} field", "value", StringComparison.Ordinal);
+        if (attribute.ErrorMessage is null)
+        {
+            errorMessage = "The value is not a valid KeyString.";
+        }
+        else
+        {
+            errorMessage = attribute.ErrorMessage
+                .Replace("field {0}", "value", StringComparison.Ordinal)
+                .Replace("{0} field", "value", StringComparison.Ordinal);
+        }
 
         return false;
     }

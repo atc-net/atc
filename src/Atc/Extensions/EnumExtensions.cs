@@ -46,7 +46,7 @@ public static class EnumExtensions
         var attributeValue = GetAttributeValue<DisplayNameAttribute, string>(enumeration, arg => arg.DisplayName);
         if (string.IsNullOrEmpty(attributeValue))
         {
-            attributeValue = GetAttributeValue<DisplayAttribute, string>(enumeration, arg => arg.Name);
+            attributeValue = GetAttributeValue<DisplayAttribute, string>(enumeration, arg => arg.Name!);
         }
 
         if (string.IsNullOrEmpty(attributeValue))
@@ -95,7 +95,7 @@ public static class EnumExtensions
 
         if (string.IsNullOrEmpty(attributeValue))
         {
-            attributeValue = GetAttributeValue<DisplayAttribute, string>(enumeration, arg => arg.Description);
+            attributeValue = GetAttributeValue<DisplayAttribute, string>(enumeration, arg => arg.Description ?? string.Empty);
         }
 
         return string.IsNullOrEmpty(attributeValue)
