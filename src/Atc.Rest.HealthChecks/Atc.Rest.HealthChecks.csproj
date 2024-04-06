@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>Atc.Rest.HealthChecks</PackageId>
     <PackageTags>api;rest;healthchecks</PackageTags>
     <Description>Atc.Rest.HealthChecks is a collection of classes, extension methods and factories for working with HealthChecks in an ASP.NET core application.</Description>
