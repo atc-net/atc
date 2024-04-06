@@ -1,6 +1,6 @@
 namespace Atc.Rest.Extensions;
 
-public static class EndpointRouteBuilderExtensions
+public static class EndpointRouteBuilderExExtensions
 {
     private static readonly Dictionary<string, string> YamlCache = new(StringComparer.Ordinal);
 
@@ -25,9 +25,9 @@ public static class EndpointRouteBuilderExtensions
             endpoints.Map(yamlEndpoint, async context =>
             {
                 string yaml;
-                if (YamlCache.ContainsKey(yamlEndpoint))
+                if (YamlCache.TryGetValue(yamlEndpoint, out var value))
                 {
-                    yaml = YamlCache[yamlEndpoint];
+                    yaml = value;
                 }
                 else
                 {

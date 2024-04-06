@@ -1,7 +1,7 @@
 // ReSharper disable CheckNamespace
 namespace Microsoft.AspNetCore.Http;
 
-public static class HttpRequestExtensions
+public static class HttpRequestExExtensions
 {
     /// <summary>
     /// Retrieve the raw body as a string from the Request.Body stream
