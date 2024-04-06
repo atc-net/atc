@@ -31,7 +31,5 @@ public class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOpti
             new QueryStringApiVersionReader(ApiVersionConstants.ApiVersionQueryParameter),
             new QueryStringApiVersionReader(ApiVersionConstants.ApiVersionQueryParameterShort),
             new UrlSegmentApiVersionReader());
-
-        options.ErrorResponses = new VersionErrorResponseProvider(telemetry);
     }
 }

@@ -1,9 +1,3 @@
-using Atc.Rest.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.Filters;
-using EndpointRouteBuilderExtensions = Atc.Rest.Extensions.EndpointRouteBuilderExtensions;
-using HttpContextExtensions = Microsoft.AspNetCore.Http.HttpContextExtensions;
-
 namespace Atc.Rest.Tests;
 
 public class CodeComplianceTests
@@ -16,7 +10,7 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
-        typeof(EndpointRouteBuilderExtensions),
+        typeof(EndpointRouteBuilderExExtensions),
         typeof(ExceptionTelemetryMiddleware),
         typeof(RequestResponseLoggerMiddleware),
         typeof(RequestResponseLogModel),
@@ -30,11 +24,11 @@ public class CodeComplianceTests
         typeof(CallingIdentityTelemetryInitializer),
         typeof(RestApiBuilderExtensions),
         typeof(AnonymousAccessExtensions),
-        typeof(HttpContextExtensions),
+        typeof(HttpContextExExtensions),
         typeof(ErrorHandlingExceptionFilterAttribute),
         typeof(RestApiExtensions),
         typeof(ServiceCollectionExtensions),
-        typeof(HttpRequestExtensions),
+        typeof(HttpRequestExExtensions),
         typeof(ResultFactory),
         typeof(AuthorizationOptions),
         typeof(ProblemDetailsHelper),

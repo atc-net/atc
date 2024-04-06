@@ -30,8 +30,17 @@ public static class RestApiExtendedExtensions
         if (restApiOptions.UseApiVersioning)
         {
             services.ConfigureOptions<ConfigureApiVersioningOptions>();
-            services.AddApiVersioning();
-            services.AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VV");
+            services.AddApiVersioning(options =>
+                {
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.ReportApiVersions = true;
+                })
+                .AddApiExplorer(options =>
+                {
+                    options.GroupNameFormat = "'v'VV";
+                    options.SubstituteApiVersionInUrl = true;
+                });
         }
 
         if (restApiOptions.UseOpenApiSpec)
