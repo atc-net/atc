@@ -4,7 +4,7 @@ This library contains features related to ASP-NET HealthChecks.
 
 ### Requirements
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
 ## Code documentation
 
