@@ -5097,6 +5097,7 @@
      - ToUpDownType(this SortDirectionType sortDirectionType)
 - [EnumExtensions](System.md#enumextensions)
   -  Static Methods
+     - AreFlagsSet(this Enum enumeration, Enum flags)
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
      - GetName(this Enum enumeration)
      - IsSet(this Enum enumeration, Enum matchTo)

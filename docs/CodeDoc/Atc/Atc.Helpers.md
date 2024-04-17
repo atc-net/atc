@@ -264,7 +264,7 @@ ByteHelper.
 >```csharp
 >string ToStringWithPrefix(byte[] bytes)
 >```
-><b>Summary:</b> Converts a byte array to its hexadecimal string representation with a '0x' prefix for each byte and separated with ', '.
+><b>Summary:</b> Converts a byte array to its hexadecimal string representation with a '0x' prefix for each byte and separated with ', '. <code>{ 0x1A, 0x2B, 0x3C }.ToStringWithPrefix() // Gives: "0x1A, 0x2B, 0x3C"</code>
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`bytes`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array to be converted.<br />
