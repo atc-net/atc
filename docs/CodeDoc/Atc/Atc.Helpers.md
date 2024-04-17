@@ -260,6 +260,23 @@ ByteHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`checkValue`&nbsp;&nbsp;-&nbsp;&nbsp;The check value.<br />
+#### ToStringWithPrefix
+>```csharp
+>string ToStringWithPrefix(byte[] bytes)
+>```
+><b>Summary:</b> Converts a byte array to its hexadecimal string representation with a '0x' prefix for each byte and separated with ', '.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`bytes`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array to be converted.<br />
+>
+><b>Returns:</b> A string representation of the byte array in hexadecimal format, prefixed with '0x' for each byte and separated with ', '.
+>
+><b>Code example:</b>
+>```csharp
+>byte[] exampleBytes = { 0x1A, 0x2B, 0x3C };
+>string hex = ByteHelper.ToStringWithPrefix(exampleBytes);
+>Console.WriteLine(hex); // Outputs: 0x1A, 0x2B, 0x3C
+>```
 
 <br />
 

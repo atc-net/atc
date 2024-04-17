@@ -36,7 +36,6 @@ public class CodeComplianceTests
         typeof(LoggerExtensions),
         typeof(FileHelper),
         typeof(FileHelper<>),
-        typeof(ByteHelper),
         typeof(ByteExtensions),
         typeof(StackTraceHelper),
 
