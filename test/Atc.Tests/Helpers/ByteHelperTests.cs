@@ -6,7 +6,9 @@ public class ByteHelperTests
     [InlineData(256, new byte[] { 0x00, 0x01 })]
     [InlineData(65535, new byte[] { 0xFF, 0xFF })]
     [InlineData(-1, new byte[] { 0xFF, 0xFF })]
-    public void ConvertToTwoBytes(int input, byte[] expected)
+    public void ConvertToTwoBytes(
+        int input,
+        byte[] expected)
     {
         // Arrange & Act
         var actual = ByteHelper.ConvertToTwoBytes(input);
@@ -19,7 +21,9 @@ public class ByteHelperTests
     [InlineData(1, new byte[] { 0x01, 0x00, 0x00, 0x00 })]
     [InlineData(-1, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF })]
     [InlineData(16777216, new byte[] { 0x00, 0x00, 0x00, 0x01 })]
-    public void ConvertToFourBytes(int input, byte[] expected)
+    public void ConvertToFourBytes(
+        int input,
+        byte[] expected)
     {
         // Arrange & Act
         var actual = ByteHelper.ConvertToFourBytes(input);
@@ -32,7 +36,8 @@ public class ByteHelperTests
     [InlineData(0)]
     [InlineData(10)]
     [InlineData(255)]
-    public void CreateZeroArray(int size)
+    public void CreateZeroArray(
+        int size)
     {
         // Arrange & Act
         var actual = ByteHelper.CreateZeroArray(size);
@@ -46,7 +51,10 @@ public class ByteHelperTests
     [InlineData(0b00001010, 0b00000010, true)]
     [InlineData(0b00001010, 0b00000100, false)]
     [InlineData(0b00001010, 0b00001000, true)]
-    public void HasBitByte(byte value, byte checkValue, bool expected)
+    public void HasBitByte(
+        byte value,
+        byte checkValue,
+        bool expected)
     {
         // Arrange & Act
         var actual = ByteHelper.HasBit(value, checkValue);
@@ -59,7 +67,10 @@ public class ByteHelperTests
     [InlineData(0b00001010, 0b00000010, true)]
     [InlineData(0b00001010, 0b00000100, false)]
     [InlineData(0b00001010, 0b00001000, true)]
-    public void HasBitInt(byte value, int checkValue, bool expected)
+    public void HasBitInt(
+        byte value,
+        int checkValue,
+        bool expected)
     {
         // Arrange & Act
         var actual = ByteHelper.HasBit(value, checkValue);
@@ -70,7 +81,9 @@ public class ByteHelperTests
 
     [Theory]
     [InlineData(new byte[] { 0x1A, 0x2B, 0x3C }, "0x1A, 0x2B, 0x3C")]
-    public void ToStringWithPrefix(byte[] bytes, string expected)
+    public void ToStringWithPrefix(
+        byte[] bytes,
+        string expected)
     {
         // Arrange & Act
         var actual = ByteHelper.ToStringWithPrefix(bytes);
