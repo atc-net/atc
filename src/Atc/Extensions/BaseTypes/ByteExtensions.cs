@@ -168,6 +168,11 @@ public static class ByteExtensions
 
     /// <summary>
     /// Converts a byte array to its hexadecimal string representation.
+    /// Examples:
+    /// <code>{ 0x1A, 0x2B, 0x3C }.ToHex() // Gives: "1A2B3C"</code>
+    /// <code>{ 0x1A, 0x2B, 0x3C }.ToHex("-") // Gives: "1A-2B-3C"</code>
+    /// <code>{ 0x1A, 0x2B, 0x3C }.ToHex("-", true) // Gives: "0x1A-0x2B-0x3C"</code>
+    /// <code>{ 0x1A, 0x2B, 0x3C }.ToHex(", ", true) // Gives: "0x1A, 0x2B, 0x3C"</code>
     /// </summary>
     /// <param name="value">The byte array to be converted.</param>
     /// <param name="separator">An optional character used to separate the hexadecimal values. If not provided, there will be no separator between values.</param>
@@ -175,6 +180,24 @@ public static class ByteExtensions
     /// <returns>
     /// A string representation of the byte array in hexadecimal format.
     /// </returns>
+    /// <example>
+    /// Here are several examples of using the ToHex method:
+    /// <code>
+    /// byte[] exampleBytes = { 0x1A, 0x2B, 0x3C };
+    ///
+    /// // Example without separator
+    /// Console.WriteLine(exampleBytes.ToHex()); // Outputs: 1A2B3C
+    ///
+    /// // Example with separator
+    /// Console.WriteLine(exampleBytes.ToHex("-")); // Outputs: 1A-2B-3C
+    ///
+    /// // Example with separator and hex sign
+    /// Console.WriteLine(exampleBytes.ToHex("-", true)); // Outputs: 0x1A-0x2B-0x3C
+    ///
+    /// // Example with separator and hex sign - Note: Same as exampleBytes.ToHexWithPrefix()
+    /// Console.WriteLine(exampleBytes.ToHex(", ", true)); // Outputs: 0x1A, 0x2B, 0x3C
+    /// </code>
+    /// </example>
     public static string ToHex(
         this byte[] value,
         string? separator = null,
@@ -195,4 +218,26 @@ public static class ByteExtensions
             ? "0x" + s.Replace("-", $"{separator}0x", StringComparison.Ordinal)
             : s.Replace("-", separator, StringComparison.Ordinal);
     }
+
+    /// <summary>
+    /// Converts a byte array to its hexadecimal string representation with a '0x' prefix for each byte
+    /// and separated with ', '.
+    /// Examples:
+    /// <code>{ 0x1A, 0x2B, 0x3C }.ToHexWithPrefix() // Gives: "0x1A, 0x2B, 0x3C"</code>
+    /// </summary>
+    /// <param name="value">The byte array to be converted.</param>
+    /// <returns>
+    /// A string representation of the byte array in hexadecimal format, prefixed with '0x' for each byte
+    /// and separated with ', '.
+    /// </returns>
+    /// <example>
+    /// <code>
+    /// byte[] exampleBytes = { 0x1A, 0x2B, 0x3C };
+    /// string hex = ToHexWithPrefix(exampleBytes);
+    /// Console.WriteLine(hex); // Outputs: 0x1A, 0x2B, 0x3C
+    /// </code>
+    /// </example>
+    public static string ToHexWithPrefix(
+        this byte[] value)
+        => ToHex(value, separator: ", ", showHexSign: true);
 }

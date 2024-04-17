@@ -4424,6 +4424,7 @@
      - CreateZeroArray(int size)
      - HasBit(byte value, byte checkValue)
      - HasBit(byte value, int checkValue)
+     - ToStringWithPrefix(byte[] bytes)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
   -  Static Methods
      - GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
@@ -4973,6 +4974,7 @@
      - TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
      - TakeRemainingBytes(this byte[] value, int startPosition = 0)
      - ToHex(this byte[] value, string separator = null, bool showHexSign = False)
+     - ToHexWithPrefix(this byte[] value)
 - [ByteSizeExtensions](System.md#bytesizeextensions)
   -  Static Methods
      - Bytes(this decimal value)
@@ -5095,6 +5097,7 @@
      - ToUpDownType(this SortDirectionType sortDirectionType)
 - [EnumExtensions](System.md#enumextensions)
   -  Static Methods
+     - AreFlagsSet(this Enum enumeration, Enum flags)
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
      - GetName(this Enum enumeration)
      - IsSet(this Enum enumeration, Enum matchTo)

@@ -290,7 +290,7 @@ Extensions for the byte class.
 >```csharp
 >string ToHex(this byte[] value, string separator = null, bool showHexSign = False)
 >```
-><b>Summary:</b> Converts a byte array to its hexadecimal string representation.
+><b>Summary:</b> Converts a byte array to its hexadecimal string representation. Examples: <code>{ 0x1A, 0x2B, 0x3C }.ToHex() // Gives: "1A2B3C"</code><code>{ 0x1A, 0x2B, 0x3C }.ToHex("-") // Gives: "1A-2B-3C"</code><code>{ 0x1A, 0x2B, 0x3C }.ToHex("-", true) // Gives: "0x1A-0x2B-0x3C"</code><code>{ 0x1A, 0x2B, 0x3C }.ToHex(", ", true) // Gives: "0x1A, 0x2B, 0x3C"</code>
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array to be converted.<br />
@@ -298,6 +298,42 @@ Extensions for the byte class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`showHexSign`&nbsp;&nbsp;-&nbsp;&nbsp;A flag indicating whether to prepend each hexadecimal value with '0x'. Defaults to false.<br />
 >
 ><b>Returns:</b> A string representation of the byte array in hexadecimal format.
+>
+><b>Code example:</b>
+>```csharp
+> Here are several examples of using the ToHex method:
+> 
+> byte[] exampleBytes = { 0x1A, 0x2B, 0x3C };
+>
+> // Example without separator
+> Console.WriteLine(exampleBytes.ToHex()); // Outputs: 1A2B3C
+>
+> // Example with separator
+> Console.WriteLine(exampleBytes.ToHex("-")); // Outputs: 1A-2B-3C
+>
+> // Example with separator and hex sign
+> Console.WriteLine(exampleBytes.ToHex("-", true)); // Outputs: 0x1A-0x2B-0x3C
+>
+> // Example with separator and hex sign - Note: Same as exampleBytes.ToHexWithPrefix()
+> Console.WriteLine(exampleBytes.ToHex(", ", true)); // Outputs: 0x1A, 0x2B, 0x3C
+>```
+#### ToHexWithPrefix
+>```csharp
+>string ToHexWithPrefix(this byte[] value)
+>```
+><b>Summary:</b> Converts a byte array to its hexadecimal string representation with a '0x' prefix for each byte and separated with ', '. Examples: <code>{ 0x1A, 0x2B, 0x3C }.ToHexWithPrefix() // Gives: "0x1A, 0x2B, 0x3C"</code>
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array to be converted.<br />
+>
+><b>Returns:</b> A string representation of the byte array in hexadecimal format, prefixed with '0x' for each byte and separated with ', '.
+>
+><b>Code example:</b>
+>```csharp
+>byte[] exampleBytes = { 0x1A, 0x2B, 0x3C };
+>string hex = ToHexWithPrefix(exampleBytes);
+>Console.WriteLine(hex); // Outputs: 0x1A, 0x2B, 0x3C
+>```
 
 <br />
 
@@ -1407,6 +1443,23 @@ Extension methods for enumerations.
 
 ### Static Methods
 
+#### AreFlagsSet
+>```csharp
+>bool AreFlagsSet(this Enum enumeration, Enum flags)
+>```
+><b>Summary:</b> Determines whether all specified flags of another enumeration are set in the current enumeration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to check for flags.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`flags`&nbsp;&nbsp;-&nbsp;&nbsp;The flags to verify within the enumeration.<br />
+>
+><b>Returns:</b> True if all specified flags are set; otherwise, false.
+>
+><b>Code example:</b>
+>```csharp
+>bool areFlagsSet = DayOfWeek.Monday.AreFlagsSet(DayOfWeek.Monday);
+>Assert.True(areFlagsSet);
+>```
 #### GetDescription
 >```csharp
 >string GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
@@ -1452,7 +1505,7 @@ Extension methods for enumerations.
 >```csharp
 >bool IsSet(this Enum enumeration, Enum matchTo)
 >```
-><b>Summary:</b> Determines whether the specified enumeration match to another enumeration.
+><b>Summary:</b> Determines whether the specified enumeration match another enumeration.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration.<br />
