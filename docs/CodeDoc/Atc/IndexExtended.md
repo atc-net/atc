@@ -5355,6 +5355,7 @@
 
 - [DirectoryInfoExtensions](System.IO.md#directoryinfoextensions)
   -  Static Methods
+     - CombineFileInfo(this DirectoryInfo directoryInfo, string[] paths)
      - GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
      - GetFileInfo(this DirectoryInfo directoryInfo, string file)
      - GetFilesCount(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)

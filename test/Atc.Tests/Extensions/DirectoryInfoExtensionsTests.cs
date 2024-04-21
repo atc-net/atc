@@ -4,6 +4,22 @@ namespace Atc.Tests.Extensions;
 public class DirectoryInfoExtensionsTests
 {
     [Theory]
+    [InlineData(@"C:\Projects\Extensions\ServiceCollectionExtensions.cs", @"C:\Projects", "Extensions", "ServiceCollectionExtensions.cs")]
+    [InlineData(@"C:\Projects\Config\appsettings.json", @"C:\Projects", "Config", "appsettings.json")]
+    [InlineData(@"C:\Users\User\Documents\Reports\AnnualReport.pdf", @"C:\Users\User\Documents", "Reports", "AnnualReport.pdf")]
+    public void CombineFileInfo(string expected, string baseDir, string subPath1, string subPath2)
+    {
+        // Arrange
+        var baseDirectoryInfo = new DirectoryInfo(baseDir);
+
+        // Act
+        var result = baseDirectoryInfo.CombineFileInfo(subPath1, subPath2);
+
+        // Assert
+        Assert.Equal(expected, result.FullName);
+    }
+
+    [Theory]
     [InlineData(1, 1, 0)]
     public void GetFilesForAuthorizedAccess(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
     {
