@@ -46,6 +46,7 @@ public class CodeComplianceTests
         typeof(StringCaseFormatter),
         typeof(NumberHelper),
         typeof(InternetBrowserHelper),
+        typeof(DirectoryInfoExtensions),
         typeof(FileInfoExtensions),
         typeof(HttpClientRequestResult<>),
         typeof(IsoCurrencySymbolAttribute),

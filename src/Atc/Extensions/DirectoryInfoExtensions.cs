@@ -1,8 +1,30 @@
 // ReSharper disable once CheckNamespace
 namespace System.IO;
 
+/// <summary>
+/// Provides extension methods for the DirectoryInfo class.
+/// </summary>
 public static class DirectoryInfoExtensions
 {
+    /// <summary>
+    /// Combines the directory path with additional sub-paths to create a FileInfo object.
+    /// </summary>
+    /// <param name="directoryInfo">The base directory information.</param>
+    /// <param name="paths">An array of sub-paths to combine with the base directory.</param>
+    /// <returns>A FileInfo object representing the combined path.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the directoryInfo parameter is null.</exception>
+    public static FileInfo CombineFileInfo(
+        this DirectoryInfo directoryInfo,
+        params string[] paths)
+    {
+        if (directoryInfo is null)
+        {
+            throw new ArgumentNullException(nameof(directoryInfo));
+        }
+
+        return new FileInfo(Path.Combine(new[] { directoryInfo.FullName }.Concat(paths).ToArray()));
+    }
+
     /// <summary>
     /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
     /// </summary>

@@ -8,6 +8,7 @@
 <br />
 
 ## DirectoryInfoExtensions
+Provides extension methods for the DirectoryInfo class.
 
 >```csharp
 >public static class DirectoryInfoExtensions
@@ -15,6 +16,17 @@
 
 ### Static Methods
 
+#### CombineFileInfo
+>```csharp
+>FileInfo CombineFileInfo(this DirectoryInfo directoryInfo, string[] paths)
+>```
+><b>Summary:</b> Combines the directory path with additional sub-paths to create a FileInfo object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`directoryInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The base directory information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`paths`&nbsp;&nbsp;-&nbsp;&nbsp;An array of sub-paths to combine with the base directory.<br />
+>
+><b>Returns:</b> A FileInfo object representing the combined path.
 #### GetByteSize
 >```csharp
 >long GetByteSize(this DirectoryInfo directoryInfo, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
