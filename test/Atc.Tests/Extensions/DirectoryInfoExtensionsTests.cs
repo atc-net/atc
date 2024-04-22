@@ -1,6 +1,9 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.Tests.Extensions;
 
+[Collection(nameof(Xunit.Sdk.TestCollection))]
+[Trait(Traits.Category, Traits.Categories.Integration)]
+[Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class DirectoryInfoExtensionsTests
 {
     [Theory]
