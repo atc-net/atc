@@ -5193,6 +5193,7 @@
      - TryParseDate(this string value, out DateTime dateTime)
      - TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = None)
      - TryParseDateFromIso8601(this string value, out DateTime dateTime)
+     - TryParseToHttpStatusCode(this string value, out HttpStatusCode httpStatusCode)
      - WordCount(this string value)
      - XmlDecode(this string xml)
      - XmlEncode(this string xml)
@@ -5389,6 +5390,7 @@
      - IsServerError(this HttpStatusCode httpStatusCode)
      - IsSuccessful(this HttpStatusCode httpStatusCode)
      - ToNormalizedString(this HttpStatusCode httpStatusCode)
+     - ToStatusCodesConstant(this HttpStatusCode httpStatusCode)
 
 ## [System.Reflection](System.Reflection.md)
 

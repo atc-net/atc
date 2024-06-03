@@ -3,15 +3,25 @@ namespace System.Net;
 
 public static class HttpStatusCodeExtensions
 {
-    public static string ToNormalizedString(this HttpStatusCode httpStatusCode)
-    {
-        return httpStatusCode switch
+    public static string ToNormalizedString(
+        this HttpStatusCode httpStatusCode)
+        => httpStatusCode switch
         {
             HttpStatusCode.OK => "Ok",
             HttpStatusCode.IMUsed => "ImUsed",
             _ => httpStatusCode.ToString(),
         };
-    }
+
+    public static string ToStatusCodesConstant(
+        this HttpStatusCode httpStatusCode)
+        => httpStatusCode switch
+        {
+            HttpStatusCode.NonAuthoritativeInformation => "Status203NonAuthoritative",
+            HttpStatusCode.Unused => "Status306SwitchProxy",
+            HttpStatusCode.RedirectKeepVerb => "Status307TemporaryRedirect",
+            HttpStatusCode.HttpVersionNotSupported => "Status505HttpVersionNotsupported",
+            _ => $"Status{(int)httpStatusCode}{httpStatusCode}",
+        };
 
     public static bool IsInformational(this HttpStatusCode httpStatusCode)
         => (int)httpStatusCode >= 100 && (int)httpStatusCode < 200;
