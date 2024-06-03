@@ -2393,6 +2393,10 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+#### TryParseToHttpStatusCode
+>```csharp
+>bool TryParseToHttpStatusCode(this string value, out HttpStatusCode httpStatusCode)
+>```
 #### WordCount
 >```csharp
 >int WordCount(this string value)
