@@ -657,4 +657,27 @@ public class StringExtensionsTests
         // Assert
         Assert.NotNull(actual);
     }
+
+    [Theory]
+    [InlineData("OK", true, (int)HttpStatusCode.OK)]
+    [InlineData("NotFound", true, (int)HttpStatusCode.NotFound)]
+    [InlineData("BadRequest", true, (int)HttpStatusCode.BadRequest)]
+    [InlineData("InternalServerError", true, (int)HttpStatusCode.InternalServerError)]
+    [InlineData("InvalidStatusCode", false, 0)]
+    [InlineData("", false, 0)]
+    public void TryParseToHttpStatusCode(
+        string input,
+        bool expectedResult,
+        int expectedStatusCodeAsInt)
+    {
+        // Arrange
+        var expectedStatusCode = (HttpStatusCode)expectedStatusCodeAsInt;
+
+        // Act
+        var result = input.TryParseToHttpStatusCode(out var httpStatusCode);
+
+        // Assert
+        Assert.Equal(expectedResult, result);
+        Assert.Equal(expectedStatusCode, httpStatusCode);
+    }
 }

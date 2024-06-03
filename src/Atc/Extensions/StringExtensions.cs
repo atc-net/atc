@@ -1774,6 +1774,12 @@ public static class StringExtensions
         return stream;
     }
 
+    public static bool TryParseToHttpStatusCode(
+        this string value,
+        out HttpStatusCode httpStatusCode)
+        => Enum<HttpStatusCode>.TryParse(value, false, out httpStatusCode) &&
+           !NumberHelper.IsInt(httpStatusCode.ToString());
+
     /// <summary>
     /// Gets the value between less and greater than chars if exist.
     /// </summary>
