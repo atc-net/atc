@@ -64,12 +64,15 @@ public sealed class HttpClientRequestResult<TData>
 
     public Exception? Exception { get; set; }
 
+    [MemberNotNullWhen(true, nameof(Data))]
     public bool HasData
         => Data is not null;
 
+    [MemberNotNullWhen(true, nameof(Message))]
     public bool HasMessage
         => !string.IsNullOrEmpty(Message);
 
+    [MemberNotNullWhen(true, nameof(Exception))]
     public bool HasException
         => Exception is not null;
 
