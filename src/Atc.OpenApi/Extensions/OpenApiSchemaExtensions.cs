@@ -813,6 +813,7 @@ public static class OpenApiSchemaExtensions
         return schema.Type;
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static string GetDataType(this OpenApiSchema schema)
     {
         if (schema is null)
@@ -866,9 +867,30 @@ public static class OpenApiSchemaExtensions
         {
             dataType = schema.Reference.Id;
         }
-        else if (schema.OneOf is not null && schema.OneOf.Count == 1 && schema.OneOf[0].Reference?.Id is not null)
+        else if (schema.OneOf is not null &&
+                 schema.OneOf.Count == 1 &&
+                 schema.OneOf[0].Reference?.Id is not null)
         {
             dataType = schema.OneOf[0].Reference.Id;
+        }
+
+        if (dataType is null &&
+            schema.AllOf is not null &&
+            schema.AllOf.Count > 0)
+        {
+            foreach (var apiSchema in schema.AllOf)
+            {
+                dataType = apiSchema.GetDataType();
+                if (!string.IsNullOrEmpty(dataType))
+                {
+                    break;
+                }
+            }
+        }
+
+        if (dataType is null)
+        {
+            return string.Empty;
         }
 
         return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
