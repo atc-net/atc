@@ -813,6 +813,7 @@ public static class OpenApiSchemaExtensions
         return schema.Type;
     }
 
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static string GetDataType(this OpenApiSchema schema)
     {
         if (schema is null)
