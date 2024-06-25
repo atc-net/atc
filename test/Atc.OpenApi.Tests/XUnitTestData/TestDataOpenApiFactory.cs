@@ -693,6 +693,40 @@ public static class TestDataOpenApiFactory
             },
         };
 
+    public static OpenApiSchema CreateSchemaWithModelName(string name)
+        => new()
+        {
+            Type = "object",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.Schema,
+                Id = name,
+            },
+            Title = "My" + name,
+            Properties = new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
+            {
+                ["id"] = new()
+                {
+                    Type = "integer",
+                    Format = "int64",
+                },
+                ["name"] = new()
+                {
+                    Type = "string",
+                },
+                ["tag"] = new()
+                {
+                    Type = "string",
+                    Title = "MyTag",
+                },
+            },
+            Required = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "id",
+                "name",
+            },
+        };
+
     public static IDictionary<string, OpenApiSchema> CreateComponentSchemasWithOnePet()
         => new Dictionary<string, OpenApiSchema>(StringComparer.Ordinal)
         {

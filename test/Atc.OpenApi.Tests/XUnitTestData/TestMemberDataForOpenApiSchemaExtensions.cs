@@ -1318,6 +1318,11 @@ public static class TestMemberDataForOpenApiSchemaExtensions
             { "Pet", TestDataOpenApiFactory.CreateSchemaPet() },
             { "string",  TestDataOpenApiSchemaOfTypeFactory.CreateString() },
             { "Array",  TestDataOpenApiSchemaOfTypeFactory.CreateListString() },
+            { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("Hallo World") },
+            { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("Hallo_World_") },
+            { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("Hallo.World_") },
+            { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("HalloWorld_") },
+            { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("HalloWorld.") },
         };
 
     public static TheoryData<string, OpenApiSchema> GetSimpleDataTypeFromArrayItemData

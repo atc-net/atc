@@ -11,6 +11,8 @@ namespace Microsoft.OpenApi.Models;
 
 public static class OpenApiSchemaExtensions
 {
+    private static readonly char[] ModelNameSeparators = { ' ', '-', '_', '.' };
+
     public static bool HasDataTypeList(this IList<OpenApiSchema> schemas)
     {
         if (schemas is null)
@@ -895,7 +897,7 @@ public static class OpenApiSchemaExtensions
 
         return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
             ? dataType
-            : dataType.EnsureFirstCharacterToUpper();
+            : dataType.PascalCase(ModelNameSeparators, removeSeparators: true);
     }
 
     public static string GetSimpleDataTypeFromArray(this OpenApiSchema schema)

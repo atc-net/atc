@@ -1074,7 +1074,7 @@ public static class StringExtensions
             return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1).ToLowerInvariant();
         }
 
-        var strArray = value.Split(separators);
+        var strArray = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         for (var i = 0; i < strArray.Length; i++)
         {
             var tmp = strArray[i].Substring(0, 1).ToUpperInvariant() + strArray[i].Substring(1).ToLowerInvariant();
