@@ -780,9 +780,13 @@ public static class OpenApiSchemaExtensions
 
         if (ensureFirstCharacterToUpper)
         {
-            return schema.Items is null
-                ? schema.Reference.Id.EnsureFirstCharacterToUpper()
-                : schema.Items.Reference.Id.EnsureFirstCharacterToUpper();
+            var dataType = schema.Items is null
+                ? schema.Reference.Id
+                : schema.Items.Reference.Id;
+
+            return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
+                ? dataType
+                : dataType.PascalCase(ModelNameSeparators, removeSeparators: true);
         }
 
         return schema.Items is null
