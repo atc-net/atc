@@ -222,9 +222,12 @@ public class RequestResponseLoggerMiddleware
 
     private static bool IsBinaryContent(
         string contentType)
-        => contentType.StartsWith("application/", StringComparison.OrdinalIgnoreCase) ||
-           contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
-           contentType.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) ||
-           contentType.StartsWith("video/", StringComparison.OrdinalIgnoreCase) ||
-           contentType.StartsWith("multipart/", StringComparison.OrdinalIgnoreCase);
+        => !contentType.Equals(MediaTypeNames.Application.Json, StringComparison.OrdinalIgnoreCase) &&
+           !contentType.Equals(MediaTypeNames.Application.JsonPatch, StringComparison.OrdinalIgnoreCase) &&
+           !contentType.Equals(MediaTypeNames.Application.Xml, StringComparison.OrdinalIgnoreCase) &&
+           (contentType.StartsWith("application/", StringComparison.OrdinalIgnoreCase) ||
+            contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
+            contentType.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) ||
+            contentType.StartsWith("video/", StringComparison.OrdinalIgnoreCase) ||
+            contentType.StartsWith("multipart/", StringComparison.OrdinalIgnoreCase));
 }
