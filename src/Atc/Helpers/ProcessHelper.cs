@@ -4,6 +4,7 @@
 namespace Atc.Helpers;
 
 [ExcludeFromCodeCoverage]
+[SuppressMessage("Major Bug", "S2583:Conditionally executed code should be reachable", Justification = "OK - False/Positive")]
 public static class ProcessHelper
 {
     private const ushort DefaultTimeoutInSec = 30;
