@@ -58,6 +58,7 @@ public class CodeComplianceTests
         typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
+        typeof(JsonStringEnumMemberConverter<>),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

@@ -6,7 +6,12 @@ public class JsonComplexDataTests
     public void ToJson()
     {
         // Arrange
-        var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
+        var jsonSerializerFactorySettings = new JsonSerializerFactorySettings
+        {
+            UseConverterEnumAsString = false,
+        };
+
+        var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(jsonSerializerFactorySettings);
         jsonSerializerOptions.Converters.Add(new JsonCultureInfoToNameConverter());
         jsonSerializerOptions.Converters.Add(new JsonDirectoryInfoToFullNameConverter());
         jsonSerializerOptions.Converters.Add(new JsonFileInfoToFullNameConverter());
@@ -14,6 +19,7 @@ public class JsonComplexDataTests
         jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
         jsonSerializerOptions.Converters.Add(new JsonUriToAbsoluteUriConverter());
         jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
+        jsonSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter<ChargePointState>());
 
         var data = new ComplexData
         {
@@ -24,6 +30,7 @@ public class JsonComplexDataTests
             MyDateTimeOffset = new DateTimeOffset(2023, 11, 29, 20, 39, 22, 123, TimeSpan.Zero),
             MyUri = new Uri("http://dr.dk/"),
             MyVersion = new Version(1, 2, 3, 4),
+            State = ChargePointState.BusyNonReleased,
         };
 
         var expected = "{\r\n" +
@@ -33,7 +40,8 @@ public class JsonComplexDataTests
                        "  \"myTimeSpan\": \"-10675199.02:48:05.4775808\",\r\n" +
                        "  \"myDateTimeOffset\": \"2023-11-29T20:39:22.123+00:00\",\r\n" +
                        "  \"myUri\": \"http://dr.dk/\",\r\n" +
-                       "  \"myVersion\": \"1.2.3.4\"\r\n" +
+                       "  \"myVersion\": \"1.2.3.4\",\r\n" +
+                       "  \"state\": \"busy-non-released\"\r\n" +
                        "}".EnsureEnvironmentNewLines();
 
         // Atc
@@ -51,7 +59,12 @@ public class JsonComplexDataTests
     public void FromJson()
     {
         // Arrange
-        var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
+        var jsonSerializerFactorySettings = new JsonSerializerFactorySettings
+        {
+            UseConverterEnumAsString = false,
+        };
+
+        var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(jsonSerializerFactorySettings);
         jsonSerializerOptions.Converters.Add(new JsonCultureInfoToNameConverter());
         jsonSerializerOptions.Converters.Add(new JsonDirectoryInfoToFullNameConverter());
         jsonSerializerOptions.Converters.Add(new JsonFileInfoToFullNameConverter());
@@ -59,6 +72,7 @@ public class JsonComplexDataTests
         jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
         jsonSerializerOptions.Converters.Add(new JsonUriToAbsoluteUriConverter());
         jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
+        jsonSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter<ChargePointState>());
 
         const string data = "{\r\n" +
                                 "  \"myCulture\": \"en-US\",\r\n" +
@@ -67,7 +81,8 @@ public class JsonComplexDataTests
                                 "  \"myTimeSpan\": \"-10675199.02:48:05.4775808\",\r\n" +
                                 "  \"myDateTimeOffset\": \"2023-11-29T20:39:22.123+00:00\",\r\n" +
                                 "  \"myUri\": \"http://dr.dk/\",\r\n" +
-                                "  \"myVersion\": \"1.2.3.4\"\r\n" +
+                                "  \"myVersion\": \"1.2.3.4\",\r\n" +
+                                "  \"state\": \"busy-non-released\"\r\n" +
                                 "}";
 
         var expected = new ComplexData
@@ -79,6 +94,7 @@ public class JsonComplexDataTests
             MyDateTimeOffset = new DateTimeOffset(2023, 11, 29, 20, 39, 22, 123, TimeSpan.Zero),
             MyUri = new Uri("http://dr.dk/"),
             MyVersion = new Version(1, 2, 3, 4),
+            State = ChargePointState.BusyNonReleased,
         };
 
         // Atc

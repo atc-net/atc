@@ -4861,6 +4861,10 @@
      - CanConvert(Type typeToConvert)
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
+- [JsonStringEnumMemberConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsonstringenummemberconverter&lt;t&gt;)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

@@ -150,6 +150,7 @@
 - [JsonElementObjectConverter](Atc.Serialization.JsonConverters.md#jsonelementobjectconverter)
 - [JsonFileInfoToFullNameConverter](Atc.Serialization.JsonConverters.md#jsonfileinfotofullnameconverter)
 - [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
+- [JsonStringEnumMemberConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsonstringenummemberconverter&lt;t&gt;)
 - [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
 - [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
 - [JsonUnixDateTimeOffsetConverter](Atc.Serialization.JsonConverters.md#jsonunixdatetimeoffsetconverter)
