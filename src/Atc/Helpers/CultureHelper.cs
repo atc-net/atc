@@ -139,11 +139,9 @@ public static class CultureHelper
         var data = new List<Culture>();
         foreach (var culture in cultures)
         {
-            if (includeOnlyCultureNames is null || includeOnlyCultureNames.Count == 0)
-            {
-                data.Add(culture);
-            }
-            else if (includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
+            if (includeOnlyCultureNames is null ||
+                includeOnlyCultureNames.Count == 0 ||
+                includeOnlyCultureNames.Contains(culture.Name, StringComparer.OrdinalIgnoreCase))
             {
                 data.Add(culture);
             }

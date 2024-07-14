@@ -16,6 +16,8 @@ public class ComplexData
 
     public Version? MyVersion { get; set; }
 
+    public ChargePointState? State { get; set; }
+
     public override string ToString()
         => $"{nameof(MyCulture)}: {MyCulture}, {nameof(MyDirectory)}: {MyDirectory}, {nameof(MyFile)}: {MyFile}, {nameof(MyTimeSpan)}: {MyTimeSpan}, {nameof(MyDateTimeOffset)}: {MyDateTimeOffset}, {nameof(MyUri)}: {MyUri}, {nameof(MyVersion)}: {MyVersion}";
 }

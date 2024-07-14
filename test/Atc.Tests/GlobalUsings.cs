@@ -6,6 +6,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Net;
 global using System.Reflection;
+global using System.Runtime.Serialization;
 global using System.Runtime.Versioning;
 global using System.Security.Claims;
 global using System.Security.Cryptography.X509Certificates;

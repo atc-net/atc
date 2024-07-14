@@ -159,6 +159,25 @@
 
 <br />
 
+## JsonStringEnumMemberConverter&lt;T&gt;
+
+>```csharp
+>public class JsonStringEnumMemberConverter&lt;T&gt; : JsonConverter<T>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+>```
+
+<br />
+
 ## JsonTimeSpanConverter
 
 >```csharp
