@@ -7,6 +7,29 @@
 
 <br />
 
+## EnumerableExtensions
+Provides extension methods for asynchronous enumeration of collections.
+
+>```csharp
+>public static class EnumerableExtensions
+>```
+
+### Static Methods
+
+#### ToAsyncEnumerable
+>```csharp
+>IAsyncEnumerable<T> ToAsyncEnumerable(this IEnumerable<T> source, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Converts an `System.Collections.Generic.IEnumerable`1` to an `System.Collections.Generic.IAsyncEnumerable`1`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source sequence to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A  to observe while waiting for the asynchronous operation to complete.<br />
+>
+><b>Returns:</b> An `System.Collections.Generic.IAsyncEnumerable`1` that contains the elements from the input sequence.
+
+<br />
+
 ## ReadOnlyListExtensions
 
 >```csharp

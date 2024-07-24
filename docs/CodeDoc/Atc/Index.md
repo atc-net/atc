@@ -222,6 +222,7 @@
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
+- [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
 
 ## [System.ComponentModel.DataAnnotations](System.ComponentModel.DataAnnotations.md)
