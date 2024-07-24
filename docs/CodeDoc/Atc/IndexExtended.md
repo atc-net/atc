@@ -5284,6 +5284,9 @@
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
+- [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
+  -  Static Methods
+     - ToAsyncEnumerable(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
   -  Static Methods
      - GetPowerSet(this IReadOnlyList&lt;T&gt; list)
