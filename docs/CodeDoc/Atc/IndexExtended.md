@@ -4967,9 +4967,17 @@
      - ToList(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
 - [BooleanExtensions](System.md#booleanextensions)
   -  Static Methods
+     - HasNoValue(this bool? source)
+     - HasNoValueOrFalse(this bool? source)
+     - HasNoValueOrTrue(this bool? source)
+     - HasValueAndFalse(this bool? source)
+     - HasValueAndTrue(this bool? source)
      - IsEqual(this bool? a, bool? b)
      - ToInt(this bool source)
      - ToInt(this bool? source)
+     - ToYesNoString(this bool source)
+     - ToYesNoType(this bool source)
+     - ToYesNoType(this bool? source)
 - [ByteExtensions](System.md#byteextensions)
   -  Static Methods
      - Split(this IEnumerable&lt;byte&gt; source, byte splitByte)

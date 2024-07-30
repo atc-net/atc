@@ -199,33 +199,117 @@ Extensions for the `System.Boolean` class.
 
 ### Static Methods
 
+#### HasNoValue
+>```csharp
+>bool HasNoValue(this bool? source)
+>```
+><b>Summary:</b> Determines if the nullable boolean does not have a value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
+>
+><b>Returns:</b> `true` if the source does not have a value; otherwise, `false`.
+#### HasNoValueOrFalse
+>```csharp
+>bool HasNoValueOrFalse(this bool? source)
+>```
+><b>Summary:</b> Determines if the nullable boolean does not have a value or is false.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
+>
+><b>Returns:</b> `true` if the source does not have a value or is false; otherwise, `false`.
+#### HasNoValueOrTrue
+>```csharp
+>bool HasNoValueOrTrue(this bool? source)
+>```
+><b>Summary:</b> Determines if the nullable boolean does not have a value or is true.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
+>
+><b>Returns:</b> `true` if the source does not have a value or is true; otherwise, `false`.
+#### HasValueAndFalse
+>```csharp
+>bool HasValueAndFalse(this bool? source)
+>```
+><b>Summary:</b> Determines if the nullable boolean has a value and it is false.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
+>
+><b>Returns:</b> `true` if the source has a value and it is false; otherwise, `false`.
+#### HasValueAndTrue
+>```csharp
+>bool HasValueAndTrue(this bool? source)
+>```
+><b>Summary:</b> Determines if the nullable boolean has a value and it is true.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
+>
+><b>Returns:</b> `true` if the source has a value and it is true; otherwise, `false`.
 #### IsEqual
 >```csharp
 >bool IsEqual(this bool? a, bool? b)
 >```
-><b>Summary:</b> Determines whether the specified a is equal.
+><b>Summary:</b> Determines whether the specified nullable booleans are equal.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first nullable boolean.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second nullable boolean.<br />
 >
-><b>Returns:</b> `true` if the specified a is equal; otherwise, `false`.
+><b>Returns:</b> `true` if both nullable booleans are equal; otherwise, `false`.
 #### ToInt
 >```csharp
 >int ToInt(this bool source)
 >```
-><b>Summary:</b> Converts the string representation of a number to an integer.
+><b>Summary:</b> Converts the boolean to an integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [source].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The boolean source.<br />
+>
+><b>Returns:</b> 1 if the source is true; otherwise, 0.
 #### ToInt
 >```csharp
 >int ToInt(this bool? source)
 >```
-><b>Summary:</b> Converts the string representation of a number to an integer.
+><b>Summary:</b> Converts the boolean to an integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [source].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The boolean source.<br />
+>
+><b>Returns:</b> 1 if the source is true; otherwise, 0.
+#### ToYesNoString
+>```csharp
+>string ToYesNoString(this bool source)
+>```
+><b>Summary:</b> Converts the boolean to a "Yes" or "No" string.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The boolean source.<br />
+>
+><b>Returns:</b> "Yes" if the source is true; otherwise, "No".
+#### ToYesNoType
+>```csharp
+>YesNoType ToYesNoType(this bool source)
+>```
+><b>Summary:</b> Converts the boolean to a `Atc.YesNoType`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The boolean source.<br />
+>
+><b>Returns:</b> `Atc.YesNoType.Yes` if the source is true; otherwise, `Atc.YesNoType.No`.
+#### ToYesNoType
+>```csharp
+>YesNoType ToYesNoType(this bool? source)
+>```
+><b>Summary:</b> Converts the boolean to a `Atc.YesNoType`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The boolean source.<br />
+>
+><b>Returns:</b> `Atc.YesNoType.Yes` if the source is true; otherwise, `Atc.YesNoType.No`.
 
 <br />
 
