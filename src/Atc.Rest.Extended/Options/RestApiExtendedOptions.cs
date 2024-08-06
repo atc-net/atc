@@ -7,4 +7,8 @@ public class RestApiExtendedOptions : RestApiOptions
     public bool UseFluentValidation { get; set; } = true;
 
     public bool UseOpenApiSpec { get; set; } = true;
+
+    public bool UseSwaggerUi { get; set; }
+
+    public string? SwaggerUiTheme { get; set; } = "Dark";
 }
