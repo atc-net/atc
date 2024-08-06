@@ -42,23 +42,26 @@ public static class RestApiExtendedBuilderExtensions
         if ((env.IsDevelopment() || restApiOptions.UseSwaggerUi) &&
             restApiOptions.SwaggerUiTheme is not null)
         {
-            var cssFile = string.Empty;
-            if (restApiOptions.SwaggerUiTheme.EndsWith(".css", StringComparison.Ordinal) &&
-                restApiOptions.SwaggerUiTheme.Contains("Light", StringComparison.OrdinalIgnoreCase))
+            var cssFile = restApiOptions.SwaggerUiTheme.EndsWith(".css", StringComparison.Ordinal) switch
             {
-                cssFile = "SwaggerLight.css";
-            }
-            else if (restApiOptions.SwaggerUiTheme.EndsWith(".css", StringComparison.Ordinal) &&
-                     restApiOptions.SwaggerUiTheme.Contains("Dark", StringComparison.OrdinalIgnoreCase))
-            {
-                cssFile = "SwaggerDark.css";
-            }
+                false when restApiOptions.SwaggerUiTheme.Contains("Light", StringComparison.OrdinalIgnoreCase) =>
+                    "SwaggerLight.css",
+                false when restApiOptions.SwaggerUiTheme.Contains("Dark", StringComparison.OrdinalIgnoreCase) =>
+                    "SwaggerDark.css",
+                _ => string.Empty,
+            };
 
             var options = new SwaggerUIOptions();
-            options.InjectStylesheet(restApiOptions.SwaggerUiTheme);
             options.EnableTryItOutByDefault();
             options.InjectStylesheet($"/swagger-ui/{cssFile}");
             options.InjectJavascript("/swagger-ui/main.js");
+
+            // TODO: Add support for multiple versions
+            var groupName = "v1.0";
+            var url = $"/swagger/{groupName}/swagger.json";
+            var applicationName = env.ApplicationName;
+            var name = groupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, $"{applicationName} {name}");
 
             app.UseOpenApiSpec(env, restApiOptions, options);
         }
