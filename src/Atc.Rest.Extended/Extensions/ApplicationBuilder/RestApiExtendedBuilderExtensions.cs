@@ -34,7 +34,35 @@ public static class RestApiExtendedBuilderExtensions
         // Cast to base-restApiOptions to force to use ConfigureRestApi in RestApiBuilderExtensions
         app.ConfigureRestApi(env, restApiOptions as RestApiOptions, setupAction);
 
-        if (restApiOptions.UseOpenApiSpec)
+        if (!restApiOptions.UseOpenApiSpec)
+        {
+            return app;
+        }
+
+        if ((env.IsDevelopment() || restApiOptions.UseSwaggerUi) &&
+            restApiOptions.SwaggerUiTheme is not null)
+        {
+            var cssFile = string.Empty;
+            if (restApiOptions.SwaggerUiTheme.EndsWith(".css", StringComparison.Ordinal) &&
+                restApiOptions.SwaggerUiTheme.Contains("Light", StringComparison.OrdinalIgnoreCase))
+            {
+                cssFile = "SwaggerLight.css";
+            }
+            else if (restApiOptions.SwaggerUiTheme.EndsWith(".css", StringComparison.Ordinal) &&
+                     restApiOptions.SwaggerUiTheme.Contains("Dark", StringComparison.OrdinalIgnoreCase))
+            {
+                cssFile = "SwaggerDark.css";
+            }
+
+            var options = new SwaggerUIOptions();
+            options.InjectStylesheet(restApiOptions.SwaggerUiTheme);
+            options.EnableTryItOutByDefault();
+            options.InjectStylesheet($"/swagger-ui/{cssFile}");
+            options.InjectJavascript("/swagger-ui/main.js");
+
+            app.UseOpenApiSpec(env, restApiOptions, options);
+        }
+        else
         {
             app.UseOpenApiSpec(env, restApiOptions);
         }

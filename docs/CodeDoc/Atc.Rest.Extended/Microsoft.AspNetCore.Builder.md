@@ -21,7 +21,7 @@
 >```
 #### UseOpenApiSpec
 >```csharp
->IApplicationBuilder UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
+>IApplicationBuilder UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, SwaggerUIOptions swaggerUiOption = null)
 >```
 
 <br />

@@ -46,9 +46,11 @@
      - PostConfigure(string name, JwtBearerOptions options)
 - [RestApiExtendedOptions](Atc.Rest.Extended.Options.md#restapiextendedoptions)
   -  Properties
+     - SwaggerUiTheme
      - UseApiVersioning
      - UseFluentValidation
      - UseOpenApiSpec
+     - UseSwaggerUi
 
 ## [Atc.Rest.Extended.Versioning](Atc.Rest.Extended.Versioning.md)
 
@@ -64,7 +66,7 @@
 - [OpenApiBuilderExtensions](Microsoft.AspNetCore.Builder.md#openapibuilderextensions)
   -  Static Methods
      - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env)
-     - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions)
+     - UseOpenApiSpec(this IApplicationBuilder app, IWebHostEnvironment env, RestApiExtendedOptions restApiOptions, SwaggerUIOptions swaggerUiOption = null)
 - [RestApiExtendedBuilderExtensions](Microsoft.AspNetCore.Builder.md#restapiextendedbuilderextensions)
   -  Static Methods
      - ConfigureRestApi(this IApplicationBuilder app, IWebHostEnvironment env)

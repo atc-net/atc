@@ -11,7 +11,8 @@ public static class OpenApiBuilderExtensions
     public static IApplicationBuilder UseOpenApiSpec(
         this IApplicationBuilder app,
         IWebHostEnvironment env,
-        RestApiExtendedOptions restApiOptions)
+        RestApiExtendedOptions restApiOptions,
+        SwaggerUIOptions? swaggerUiOption = null)
     {
         ArgumentNullException.ThrowIfNull(env);
         ArgumentNullException.ThrowIfNull(restApiOptions);
@@ -23,9 +24,16 @@ public static class OpenApiBuilderExtensions
 
         app.UseSwagger();
 
-        if (env.IsDevelopment())
+        if (restApiOptions.UseSwaggerUi || env.IsDevelopment())
         {
-            app.UseSwaggerUI();
+            if (swaggerUiOption is null)
+            {
+                app.UseSwaggerUI();
+            }
+            else
+            {
+                app.UseSwaggerUI(swaggerUiOption);
+            }
         }
 
         return app;
