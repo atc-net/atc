@@ -40,6 +40,7 @@ public class CodeComplianceTests
         typeof(StackTraceHelper),
 
         // UnitTests are made, but CodeCompliance test cannot detect this
+        typeof(AsyncEnumerableFactory),
         typeof(EnumerableExtensions),
         typeof(EnumAtcExtensions),
         typeof(DynamicJson),
