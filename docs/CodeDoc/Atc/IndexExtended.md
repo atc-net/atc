@@ -4391,6 +4391,12 @@
      - ToString()
      - ToVersion()
 
+## [Atc.Factories](Atc.Factories.md)
+
+- [AsyncEnumerableFactory](Atc.Factories.md#asyncenumerablefactory)
+  -  Static Methods
+     - EmptyAsyncEnumerable()
+
 ## [Atc.Helpers](Atc.Helpers.md)
 
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
@@ -5294,7 +5300,9 @@
 
 - [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
   -  Static Methods
+     - CountAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
      - ToAsyncEnumerable(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
+     - ToListAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
   -  Static Methods
      - GetPowerSet(this IReadOnlyList&lt;T&gt; list)

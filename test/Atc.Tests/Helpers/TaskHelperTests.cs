@@ -47,7 +47,7 @@ public class TaskHelperTests
         };
 
         // Act
-        var actual = (await TaskHelper.WhenAll(tasks)).ToList();
+        var actual = await (await TaskHelper.WhenAll(tasks)).ToListAsync();
 
         // Assert
         actual
@@ -73,7 +73,7 @@ public class TaskHelperTests
         taskCompletionSource2.TrySetResult(expected);
 
         // Act
-        var actual = (await TaskHelper.WhenAll(taskCompletionSource1.Task, taskCompletionSource2.Task)).ToList();
+        var actual = await (await TaskHelper.WhenAll(taskCompletionSource1.Task, taskCompletionSource2.Task)).ToListAsync();
 
         // Assert
         actual

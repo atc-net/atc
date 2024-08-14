@@ -16,6 +16,17 @@ Provides extension methods for asynchronous enumeration of collections.
 
 ### Static Methods
 
+#### CountAsync
+>```csharp
+>Task<int> CountAsync(this IEnumerable<T> source, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously counts the elements in a sequence.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source sequence to count.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A  to observe while waiting for the asynchronous operation to complete.<br />
+>
+><b>Returns:</b> A task that represents the asynchronous operation. The task result contains the number of elements in the sequence.
 #### ToAsyncEnumerable
 >```csharp
 >IAsyncEnumerable<T> ToAsyncEnumerable(this IEnumerable<T> source, CancellationToken cancellationToken = null)
@@ -27,6 +38,17 @@ Provides extension methods for asynchronous enumeration of collections.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A  to observe while waiting for the asynchronous operation to complete.<br />
 >
 ><b>Returns:</b> An `System.Collections.Generic.IAsyncEnumerable`1` that contains the elements from the input sequence.
+#### ToListAsync
+>```csharp
+>Task<List<T>> ToListAsync(this IEnumerable<T> source, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously creates a `System.Collections.Generic.List`1` from an `System.Collections.Generic.IEnumerable`1`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source sequence to convert to a list.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A  to observe while waiting for the asynchronous operation to complete.<br />
+>
+><b>Returns:</b> A task that represents the asynchronous operation. The task result contains a list with the elements from the input sequence.
 
 <br />
 
