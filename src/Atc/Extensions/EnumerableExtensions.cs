@@ -38,7 +38,8 @@ public static class EnumerableExtensions
     /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the asynchronous operation to complete.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the number of elements in the sequence.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the source sequence is null.</exception>
-    public static Task<int> CountAsync<T>(
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter", Justification = "False/Positive")]
+    public static async Task<int> CountAsync<T>(
         this IEnumerable<T> source,
         CancellationToken cancellationToken = default)
     {
@@ -47,7 +48,15 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        return Task.Run(source.Count, cancellationToken);
+        var count = 0;
+        foreach (var _ in source)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            count++;
+            await Task.Yield();
+        }
+
+        return count;
     }
 
     /// <summary>
@@ -58,7 +67,7 @@ public static class EnumerableExtensions
     /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the asynchronous operation to complete.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains a list with the elements from the input sequence.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the source sequence is null.</exception>
-    public static Task<List<T>> ToListAsync<T>(
+    public static async Task<List<T>> ToListAsync<T>(
         this IEnumerable<T> source,
         CancellationToken cancellationToken = default)
     {
@@ -67,7 +76,15 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        return Task.Run(source.ToList, cancellationToken);
+        var list = new List<T>();
+        foreach (var item in source)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            list.Add(item);
+            await Task.Yield();
+        }
+
+        return list;
     }
 
     /// <summary>
