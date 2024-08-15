@@ -86,4 +86,67 @@ public class AsyncEnumerableFactoryTests
         Assert.Empty(stringResult);
         Assert.Empty(customTypeResult);
     }
+
+    [Fact]
+    public async Task FromSingleItem_ReturnsAsyncEnumerableWithSingleItem()
+    {
+        // Arrange
+        const int item = 42;
+
+        // Act
+        var result = new List<int>();
+        await foreach (var value in AsyncEnumerableFactory.FromSingleItem(item))
+        {
+            result.Add(value);
+        }
+
+        // Assert
+        Assert.Single(result);
+        Assert.Equal(item, result.First());
+    }
+
+    [Fact]
+    public async Task FromSingleItem_ReturnsAsyncEnumerable_WithReferenceType()
+    {
+        // Arrange
+        const string item = "TestString";
+
+        // Act
+        var result = new List<string>();
+        await foreach (var value in AsyncEnumerableFactory.FromSingleItem(item))
+        {
+            result.Add(value);
+        }
+
+        // Assert
+        Assert.Single(result);
+        Assert.Equal(item, result.First());
+    }
+
+    [Fact]
+    public async Task FromSingleItem_CanBeEnumeratedMultipleTimes()
+    {
+        // Arrange
+        var item = 42;
+        var asyncEnumerable = AsyncEnumerableFactory.FromSingleItem(item);
+
+        // Act
+        var firstEnumeration = new List<int>();
+        await foreach (var value in asyncEnumerable)
+        {
+            firstEnumeration.Add(value);
+        }
+
+        var secondEnumeration = new List<int>();
+        await foreach (var value in asyncEnumerable)
+        {
+            secondEnumeration.Add(value);
+        }
+
+        // Assert
+        Assert.Single(firstEnumeration);
+        Assert.Single(secondEnumeration);
+        Assert.Equal(item, firstEnumeration.First());
+        Assert.Equal(item, secondEnumeration.First());
+    }
 }

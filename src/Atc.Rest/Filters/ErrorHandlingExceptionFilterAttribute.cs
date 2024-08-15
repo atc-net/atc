@@ -2,6 +2,7 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc.Filters;
 
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttribute
 {
     private readonly TelemetryClient telemetryClient;

@@ -1,6 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace System.ComponentModel.DataAnnotations;
 
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class KeyStringAttribute : StringAttribute
 {
     public KeyStringAttribute()
