@@ -13,6 +13,7 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
     /// <value>
     ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
     /// </value>
+    [JsonIgnore]
     public readonly bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
 
     /// <summary>
@@ -23,8 +24,9 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
         Latitude.AreClose(other.Latitude) &&
         Longitude.AreClose(other.Longitude);
 
+    /// <inheritdoc />
     public override readonly int GetHashCode()
-        => base.GetHashCode();
+        => HashCode.Combine(Latitude, Longitude);
 
     /// <inheritdoc />
     public override readonly string ToString()

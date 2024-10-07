@@ -4395,7 +4395,8 @@
 
 - [AsyncEnumerableFactory](Atc.Factories.md#asyncenumerablefactory)
   -  Static Methods
-     - EmptyAsyncEnumerable()
+     - Empty()
+     - FromSingleItem(T item)
 
 ## [Atc.Helpers](Atc.Helpers.md)
 
