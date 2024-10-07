@@ -24,8 +24,9 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
         Latitude.AreClose(other.Latitude) &&
         Longitude.AreClose(other.Longitude);
 
+    /// <inheritdoc />
     public override readonly int GetHashCode()
-        => base.GetHashCode();
+        => HashCode.Combine(Latitude, Longitude);
 
     /// <inheritdoc />
     public override readonly string ToString()
