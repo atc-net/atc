@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-03-2024
+# Version: 1.0.2
+# Updated: 03-06-2024
 # Location: webapi
 # Distribution: Frameworks
 
@@ -9,7 +9,36 @@
 ##########################################
 [*.{cs}]
 
+dotnet_diagnostic.ASP0000.severity = error          # Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices' - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0000?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0001.severity = error          # Authorization middleware is incorrectly configured - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/ASP0001?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0003.severity = error          # Do not use model binding attributes with route handlers - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0003?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0004.severity = error          # Do not use action results with route handlers - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0004?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0005.severity = error          # Do not place attribute on method called by route handler lambda - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0005?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0007.severity = error          # Route parameter and argument optionality is mismatched - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0007?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0008.severity = error          # Do not use ConfigureWebHost with WebApplicationBuilder.Host - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0008?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0009.severity = error          # Do not use Configure with WebApplicationBuilder.WebHost - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0009?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0010.severity = error          # Do not use UseStartup with WebApplicationBuilder.WebHost - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0010?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0011.severity = suggestion     # Suggest using builder.Logging over Host.ConfigureLogging or WebHost.ConfigureLogging - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0011?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0012.severity = suggestion     # Suggest using builder.Services over Host.ConfigureServices or WebHost.ConfigureServices - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0012?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0013.severity = suggestion     # Suggest switching from using Configure methods to WebApplicationBuilder.Configuration - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0013?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0014.severity = suggestion     # Suggest using top level route registrations - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0014?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0015.severity = suggestion     # Suggest using IHeaderDictionary properties - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0015?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0016.severity = error          # Do not return a value from RequestDelegate - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0016?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0017.severity = error          # Invalid route pattern - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0017?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0018.severity = suggestion     # Unused route parameter - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0018?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0019.severity = suggestion     # Suggest using IHeaderDictionary.Append or the indexer - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0019?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0020.severity = none           # Complex types referenced by route parameters must be parsable - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0020?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0021.severity = none           # The return type of the BindAsync method must be ValueTask<T> - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0021?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0022.severity = error          # Route conflict detected between route handlers (Minimal API) - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0022?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0023.severity = error          # Route conflict detected between route handlers (MVC) - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0023?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0024.severity = error          # Route handler has multiple parameters with the [FromBody] attribute - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0024?view=aspnetcore-8.0
+dotnet_diagnostic.ASP0025.severity = suggestion     # Use AddAuthorizationBuilder to register authorization services and construct policies - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0025?view=aspnetcore-8.0
+
 dotnet_diagnostic.CA1062.severity = none            # No need for null-checking in public method.
+
+dotnet_diagnostic.MA0004.severity = none            # Use Task.ConfigureAwait(false) https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0004.md
+
+dotnet_diagnostic.S6964.severity = none             # The rule S6964 should not be active for model properties that use the required keyword. Those properties can never be under-posted because the JSON deserialization for them fails.
 
 
 ##########################################

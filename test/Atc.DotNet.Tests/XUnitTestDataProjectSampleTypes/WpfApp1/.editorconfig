@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-03-2024
+# Version: 1.0.1
+# Updated: 06-06-2024
 # Location: wpf
 # Distribution: Frameworks
 
@@ -8,6 +8,8 @@
 # Code Analyzers Rules
 ##########################################
 [*.{cs}]
+
+dotnet_diagnostic.CA2227.severity = none            # Change property to be read-only by removing the property setter - https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2227
 
 dotnet_diagnostic.MA0004.severity = error           # Use Task.ConfigureAwait(false) https://github.com/meziantou/Meziantou.Analyzer/blob/main/docs/Rules/MA0004.md
 dotnet_diagnostic.MA0048.severity = none            # To support partial classes - File will not match type name.
