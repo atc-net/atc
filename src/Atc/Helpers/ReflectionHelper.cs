@@ -11,9 +11,7 @@ public static class ReflectionHelper
     /// <param name="target">The target object containing the private field.</param>
     /// <param name="fieldName">The name of the private field to set.</param>
     /// <param name="value">The value to set on the private field.</param>
-    /// <exception cref="ArgumentNullException">Thrown if the target or field name is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the private field is not found in the object hierarchy.</exception>
-    [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Reflection required for testing private fields.")]
+    [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
     [ExcludeFromCodeCoverage]
     public static void SetPrivateField(object target, string fieldName, object value)
     {
@@ -43,9 +41,7 @@ public static class ReflectionHelper
     /// <param name="target">The target object containing the private field.</param>
     /// <param name="fieldName">The name of the private field to retrieve.</param>
     /// <returns>The value of the private field, cast to the specified type.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the target or field name is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the private field is not found in the object hierarchy.</exception>
-    [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Reflection required for testing private fields.")]
+    [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
     [ExcludeFromCodeCoverage]
     public static T? GetPrivateField<T>(object target, string fieldName)
     {
