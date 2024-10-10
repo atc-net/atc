@@ -4669,6 +4669,7 @@
      - KillEntryCaller(int timeoutInSec = 30)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
+     - GetPrivateField(object target, string fieldName)
      - SetPrivateField(object target, string fieldName, object value)
 - [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
   -  Static Methods

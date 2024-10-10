@@ -1945,16 +1945,27 @@ ReflectionHelper.
 
 ### Static Methods
 
+#### GetPrivateField
+>```csharp
+>T GetPrivateField(object target, string fieldName)
+>```
+><b>Summary:</b> Gets the value of a private field from the specified target object.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`target`&nbsp;&nbsp;-&nbsp;&nbsp;The target object containing the private field.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fieldName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the private field to retrieve.<br />
+>
+><b>Returns:</b> The value of the private field, cast to the specified type.
 #### SetPrivateField
 >```csharp
 >void SetPrivateField(object target, string fieldName, object value)
 >```
-><b>Summary:</b> Sets the private field.
+><b>Summary:</b> Sets the value of a private field on the specified target object.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`target`&nbsp;&nbsp;-&nbsp;&nbsp;The target.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fieldName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the field.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`target`&nbsp;&nbsp;-&nbsp;&nbsp;The target object containing the private field.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fieldName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the private field to set.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to set on the private field.<br />
 
 <br />
 
