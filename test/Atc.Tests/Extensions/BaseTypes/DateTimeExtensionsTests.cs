@@ -1,6 +1,9 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.Tests.Extensions.BaseTypes;
 
+[Collection(nameof(TestCollection))]
+[Trait(Traits.Category, Traits.Categories.Integration)]
+[Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class DateTimeExtensionsTests
 {
     [Theory]

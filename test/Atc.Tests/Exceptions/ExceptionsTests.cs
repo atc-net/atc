@@ -300,8 +300,8 @@ public class ExceptionsTests
     {
         // Arrange & Act
         var sut = inputMessage is not null
-            ? new NullException(inputMessage)
-            : new NullException();
+            ? new System.NullException(inputMessage)
+            : new System.NullException();
 
         // Assert
         if (expectedMessage is null)

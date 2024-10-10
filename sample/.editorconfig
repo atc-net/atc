@@ -41,6 +41,11 @@
 # StyleCop
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers
 
+# SonarAnalyzer.CSharp
+# https://rules.sonarsource.com/csharp
+
+dotnet_diagnostic.S1075.severity = none             # Refactor your code not to use hardcoded absolute paths or URIs
+
 
 ##########################################
 # Custom - Code Analyzers Rules
