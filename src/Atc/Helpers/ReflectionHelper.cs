@@ -1,3 +1,4 @@
+// ReSharper disable ReturnTypeCanBeNotNullable
 namespace Atc.Helpers;
 
 /// <summary>
@@ -61,7 +62,12 @@ public static class ReflectionHelper
             throw new ArgumentPropertyException($"Field '{fieldName}' not found in type '{target.GetType()}' or its base types.");
         }
 
-        return (T?)fieldInfo.GetValue(target);
+        if (fieldInfo.GetValue(target) is not T fieldValue)
+        {
+            throw new InvalidCastException($"Field '{fieldName}' found in type '{target.GetType()}', but cannot be cast to type '{typeof(T)}'.");
+        }
+
+        return fieldValue;
     }
 
     /// <summary>
@@ -77,7 +83,7 @@ public static class ReflectionHelper
         while (type is not null)
         {
             var fieldInfo = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-            if (fieldInfo != null)
+            if (fieldInfo is not null)
             {
                 return fieldInfo;
             }
