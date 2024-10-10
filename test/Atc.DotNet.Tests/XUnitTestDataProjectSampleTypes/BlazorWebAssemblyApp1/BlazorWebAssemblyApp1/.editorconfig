@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-03-2024
+# Version: 1.0.1
+# Updated: 03-06-2024
 # Location: blazor
 # Distribution: Frameworks
 
@@ -9,7 +9,17 @@
 ##########################################
 [*.{cs}]
 
+dotnet_diagnostic.ASP0006.severity = suggestion     # Do not use non-literal sequence numbers - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/asp0006?view=aspnetcore-8.0
+
+dotnet_diagnostic.BL0001.severity = error           # Component parameter should have public setters - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0001?view=aspnetcore-8.0
+dotnet_diagnostic.BL0002.severity = error           # Component has multiple CaptureUnmatchedValues parameters - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0002?view=aspnetcore-8.0
+dotnet_diagnostic.BL0003.severity = error           # Component parameter with CaptureUnmatchedValues has the wrong type - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0003?view=aspnetcore-8.0
+dotnet_diagnostic.BL0004.severity = error           # Component parameter should be public - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0004?view=aspnetcore-8.0
+dotnet_diagnostic.BL0005.severity = error           # Component parameter should not be set outside of its component - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0005?view=aspnetcore-8.0
+dotnet_diagnostic.BL0006.severity = warning         # Do not use RenderTree types - https://learn.microsoft.com/en-us/aspnet/core/diagnostics/bl0006?view=aspnetcore-8.0
+
 dotnet_diagnostic.MA0048.severity = none            # To support code-behind [component].razor.cs files / Inherit from ComponentBase - File will not match type name.
+
 
 ##########################################
 # Custom - Code Analyzers Rules
