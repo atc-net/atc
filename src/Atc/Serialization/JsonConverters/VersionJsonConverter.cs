@@ -24,14 +24,10 @@ public sealed class VersionJsonConverter : JsonConverter<Version>
                 }
 
                 case JsonValueKind.String:
-                    var sa = jsonDocument.RootElement.GetString()!.Split('.');
-                    if (sa.Length == 4)
+                    var str = jsonDocument.RootElement.GetString()!;
+                    if (str.TryParseVersion(out var read))
                     {
-                        return new Version(
-                            int.Parse(sa[0], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo),
-                            int.Parse(sa[1], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo),
-                            int.Parse(sa[2], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo),
-                            int.Parse(sa[3], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo));
+                        return read;
                     }
 
                     break;
