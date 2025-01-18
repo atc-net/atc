@@ -34,6 +34,8 @@ public static class StringExtensions
         return x[0] + " " + x.Substring(1);
     });
 
+    private static readonly char[] TrimCharsForTryParseVersion = { '[', '{' };
+
     /// <summary>
     /// Indexers the of.
     /// </summary>
@@ -610,6 +612,54 @@ public static class StringExtensions
         dateTime = DateTime.MinValue;
         return !string.IsNullOrEmpty(value) &&
                DateTime.TryParse(value, cultureInfo, dateTimeStyles, out dateTime);
+    }
+
+    /// <summary>
+    /// Attempts to parse a string into a <see cref="Version"/> object.
+    /// Handles input with brackets or braces and varying number of version components.
+    /// </summary>
+    /// <param name="value">The version string to parse.</param>
+    /// <param name="version">When this method returns, contains the <see cref="Version"/> object if parsing succeeded, or a default version if parsing failed.</param>
+    /// <returns><c>true</c> if the string was successfully parsed; otherwise, <c>false</c>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="value"/> is <c>null</c>.</exception>
+    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    public static bool TryParseVersion(this string value, out Version version)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        version = new Version();
+
+        if (value.IndexOfAny(TrimCharsForTryParseVersion) != -1)
+        {
+            value = value
+                .TrimStart('[')
+                .TrimEnd(']')
+                .TrimStart('{')
+                .TrimEnd('}');
+        }
+
+        var segments = value.Split('.');
+        if (segments.Length is > 4 or 0)
+        {
+            return false;
+        }
+
+        try
+        {
+            var major = segments.Length > 0 ? int.Parse(segments[0], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo) : 0;
+            var minor = segments.Length > 1 ? int.Parse(segments[1], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo) : 0;
+            var build = segments.Length > 2 ? int.Parse(segments[2], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo) : 0;
+            var revision = segments.Length > 3 ? int.Parse(segments[3], NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo) : 0;
+            version = new Version(major, minor, build, revision);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     /// <summary>
