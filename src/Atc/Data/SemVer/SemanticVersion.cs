@@ -41,6 +41,8 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         RegexOptions.IgnorePatternWhitespace,
         TimeSpan.FromSeconds(3));
 
+    private static readonly char[] TrimChars = { '[', '{' };
+
     /// <summary>
     /// Initializes a new instance of the <see cref="SemanticVersion"/> class.
     /// </summary>
@@ -58,9 +60,23 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         string input,
         bool looseMode = false)
     {
+        if (input is null)
+        {
+            throw new ArgumentNullException(nameof(input));
+        }
+
         var regex = looseMode
             ? LooseModeRegex
             : StrictModeRegex;
+
+        if (input.IndexOfAny(TrimChars) != -1)
+        {
+            input = input
+                .TrimStart('[')
+                .TrimEnd(']')
+                .TrimStart('{')
+                .TrimEnd('}');
+        }
 
         var match = regex.Match(input);
         if (!match.Success)
@@ -68,15 +84,9 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
             throw new ArgumentException($"Invalid version string: {input}", nameof(input));
         }
 
-        Major = int.Parse(
-            match.Groups[1].Value,
-            GlobalizationConstants.EnglishCultureInfo);
-        Minor = int.Parse(
-            match.Groups[2].Value,
-            GlobalizationConstants.EnglishCultureInfo);
-        Patch = int.Parse(
-            match.Groups[3].Value,
-            GlobalizationConstants.EnglishCultureInfo);
+        Major = int.Parse(match.Groups[1].Value, GlobalizationConstants.EnglishCultureInfo);
+        Minor = int.Parse(match.Groups[2].Value, GlobalizationConstants.EnglishCultureInfo);
+        Patch = int.Parse(match.Groups[3].Value, GlobalizationConstants.EnglishCultureInfo);
 
         if (match.Groups[4].Success)
         {
