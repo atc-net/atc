@@ -33,16 +33,16 @@ public sealed class VersionJsonConverterTests
     [Theory]
     [InlineData("1.2.3.4", "1.2.3.4")]
     [InlineData("1.2.3.4", "[1.2.3.4]")]
-    [InlineData("1.2.3.4", "{1.2.3.4}")]
+    [InlineData("1.2.3.4", "(1.2.3.4)")]
     [InlineData("1.2.3.0", "1.2.3")]
     [InlineData("1.2.3.0", "[1.2.3]")]
-    [InlineData("1.2.3.0", "{1.2.3}")]
+    [InlineData("1.2.3.0", "(1.2.3)")]
     [InlineData("1.2.0.0", "1.2")]
     [InlineData("1.2.0.0", "[1.2]")]
-    [InlineData("1.2.0.0", "{1.2}")]
+    [InlineData("1.2.0.0", "(1.2)")]
     [InlineData("1.0.0.0", "1")]
     [InlineData("1.0.0.0", "[1]")]
-    [InlineData("1.0.0.0", "{1}")]
+    [InlineData("1.0.0.0", "(1)")]
     public void Read_ShouldDeserializeVersionFromString(
         string expected,
         string value)

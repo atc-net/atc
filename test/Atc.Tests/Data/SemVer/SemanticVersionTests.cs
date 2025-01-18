@@ -7,7 +7,7 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3")]
     [InlineData(true, "1.2.3-beta01")]
     [InlineData(true, "[1.2.3]")]
-    [InlineData(true, "{1.2.3}")]
+    [InlineData(true, "(1.2.3)")]
     [InlineData(false, "")]
     [InlineData(false, "1")]
     [InlineData(false, "1.2")]
@@ -42,7 +42,7 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3", true)]
     [InlineData(true, "1.2.3-beta01", true)]
     [InlineData(true, "[1.2.3]", true)]
-    [InlineData(true, "{1.2.3}", true)]
+    [InlineData(true, "(1.2.3)", true)]
     [InlineData(false, "", true)]
     [InlineData(false, "1", true)]
     [InlineData(false, "1.2", true)]
@@ -89,7 +89,7 @@ public class SemanticVersionTests
     [InlineData("1.2.3")]
     [InlineData("1.2.3-beta01")]
     [InlineData("[1.2.3]")]
-    [InlineData("{1.2.3}")]
+    [InlineData("(1.2.3)")]
     public void SerializeAndDeserialize(string version)
         => SerializeAndDeserializeHelper.Assert<SemanticVersion>(new SemanticVersion(version));
 
@@ -152,8 +152,8 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3-beta01", "1.2.3-beta01")]
     [InlineData(true, "1.2.3", "[1.2.3]")]
     [InlineData(true, "[1.2.3]", "1.2.3")]
-    [InlineData(true, "1.2.3", "{1.2.3}")]
-    [InlineData(true, "{1.2.3}", "1.2.3")]
+    [InlineData(true, "1.2.3", "(1.2.3)")]
+    [InlineData(true, "(1.2.3)", "1.2.3")]
     public void Override_Equals(bool expected, string versionA, string versionB)
     {
         // Arrange
@@ -296,7 +296,7 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3")]
     [InlineData(true, "1.2.3-beta01")]
     [InlineData(true, "[1.2.3]")]
-    [InlineData(true, "{1.2.3}")]
+    [InlineData(true, "(1.2.3)")]
     [InlineData(false, "")]
     [InlineData(false, "1")]
     [InlineData(false, "1.2")]
@@ -331,7 +331,7 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3")]
     [InlineData(true, "1.2.3-beta01")]
     [InlineData(true, "[1.2.3]")]
-    [InlineData(true, "{1.2.3}")]
+    [InlineData(true, "(1.2.3)")]
     [InlineData(false, "")]
     [InlineData(false, "1")]
     [InlineData(false, "1.2")]
@@ -355,7 +355,7 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.3", true)]
     [InlineData(true, "1.2.3-beta01", true)]
     [InlineData(true, "[1.2.3]", true)]
-    [InlineData(true, "{1.2.3}", true)]
+    [InlineData(true, "(1.2.3)", true)]
     [InlineData(false, "", true)]
     [InlineData(false, "1", true)]
     [InlineData(false, "1.2", true)]

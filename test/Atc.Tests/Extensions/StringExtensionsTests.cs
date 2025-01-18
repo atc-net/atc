@@ -236,16 +236,16 @@ public class StringExtensionsTests
     [Theory]
     [InlineData(true, "1.2.3.4", "1.2.3.4")]
     [InlineData(true, "1.2.3.4", "[1.2.3.4]")]
-    [InlineData(true, "1.2.3.4", "{1.2.3.4}")]
+    [InlineData(true, "1.2.3.4", "(1.2.3.4)")]
     [InlineData(true, "1.2.3.0", "1.2.3")]
     [InlineData(true, "1.2.3.0", "[1.2.3]")]
-    [InlineData(true, "1.2.3.0", "{1.2.3}")]
+    [InlineData(true, "1.2.3.0", "(1.2.3)")]
     [InlineData(true, "1.2.0.0", "1.2")]
     [InlineData(true, "1.2.0.0", "[1.2]")]
-    [InlineData(true, "1.2.0.0", "{1.2}")]
+    [InlineData(true, "1.2.0.0", "(1.2)")]
     [InlineData(true, "1.0.0.0", "1")]
     [InlineData(true, "1.0.0.0", "[1]")]
-    [InlineData(true, "1.0.0.0", "{1}")]
+    [InlineData(true, "1.0.0.0", "(1)")]
     public void TryParseVersion(bool expectedReturn, string expectedValue, string input)
     {
         var actualReturn = input.TryParseVersion(out var version);

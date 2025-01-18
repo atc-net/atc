@@ -34,7 +34,7 @@ public static class StringExtensions
         return x[0] + " " + x.Substring(1);
     });
 
-    private static readonly char[] TrimCharsForTryParseVersion = { '[', '{' };
+    private static readonly char[] TrimCharsForTryParseVersion = { '[', ']', '(', ')', ',' };
 
     /// <summary>
     /// Indexers the of.
@@ -635,10 +635,9 @@ public static class StringExtensions
         if (value.IndexOfAny(TrimCharsForTryParseVersion) != -1)
         {
             value = value
-                .TrimStart('[')
-                .TrimEnd(']')
-                .TrimStart('{')
-                .TrimEnd('}');
+                .TrimStart('[').TrimEnd(']')
+                .TrimStart('(').TrimEnd(')')
+                .Trim(',');
         }
 
         var segments = value.Split('.');
