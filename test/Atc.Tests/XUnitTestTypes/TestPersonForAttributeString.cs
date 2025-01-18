@@ -1,6 +1,6 @@
 namespace Atc.Tests.XUnitTestTypes;
 
-public class TestPersonForAttributeString
+internal sealed class TestPersonForAttributeString
 {
     public TestPersonForAttributeString()
     {

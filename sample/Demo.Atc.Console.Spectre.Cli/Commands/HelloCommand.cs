@@ -1,6 +1,6 @@
 namespace Demo.Atc.Console.Spectre.Cli.Commands;
 
-public class HelloCommand : Command<HelloCommandSettings>
+internal sealed class HelloCommand : Command<HelloCommandSettings>
 {
     public override int Execute(CommandContext context, HelloCommandSettings settings)
     {

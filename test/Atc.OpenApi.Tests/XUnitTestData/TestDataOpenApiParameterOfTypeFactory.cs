@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestDataOpenApiParameterOfTypeFactory
+internal static class TestDataOpenApiParameterOfTypeFactory
 {
     public static OpenApiParameter CreateString()
     {

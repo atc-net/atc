@@ -1,6 +1,6 @@
 namespace Atc.Tests.XUnitTestTypes;
 
-public class TestNullableVsNonNullable
+internal sealed class TestNullableVsNonNullable
 {
     public int NonNullableInt { get; set; }
 

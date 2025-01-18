@@ -1,6 +1,6 @@
 namespace Atc.DotNet.Tests.XUnitTestData;
 
-public static class TestClassDataForVisualStudioSolutionFileMetadata
+internal static class TestClassDataForVisualStudioSolutionFileMetadata
 {
     public static TheoryData<VisualStudioSolutionFileMetadata, int> GetSolutionFileMetadata
         => new()

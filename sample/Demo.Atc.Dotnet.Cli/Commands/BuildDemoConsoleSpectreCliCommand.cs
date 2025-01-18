@@ -1,7 +1,7 @@
 // ReSharper disable StringLiteralTypo
 namespace Demo.Atc.Dotnet.Cli.Commands;
 
-public class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConsoleSpectreCliCommandSettings>
+internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConsoleSpectreCliCommandSettings>
 {
     private readonly ILogger<BuildDemoConsoleSpectreCliCommand> logger;
 

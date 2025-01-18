@@ -1,3 +1,5 @@
+global using System.Diagnostics.CodeAnalysis;
+
 global using Atc;
 global using Atc.Console.Spectre;
 global using Atc.Console.Spectre.Factories;

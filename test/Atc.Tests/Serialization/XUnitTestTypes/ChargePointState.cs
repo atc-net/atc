@@ -1,5 +1,6 @@
 namespace Atc.Tests.Serialization.XUnitTestTypes;
 
+[SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "OK - false/positive")]
 [SuppressMessage("Naming", "CA1700:Do not name enum values 'Reserved'", Justification = "OK - For testing.")]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ChargePointState

@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.XUnitTestTypes;
 
-public class Motorcycle : VehicleBase
+internal sealed class Motorcycle : VehicleBase
 {
     public Motorcycle(string plateNumber)
         : base(plateNumber)

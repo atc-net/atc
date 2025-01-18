@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiDocumentExtensions
+internal static class TestMemberDataForOpenApiDocumentExtensions
 {
     public static TheoryData<int, string, OpenApiDocument> OpenApiPathItemData
         => new()

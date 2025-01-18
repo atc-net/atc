@@ -1,6 +1,6 @@
 namespace Atc.Tests.XUnitTestTypes;
 
-public class TestStringList : List<string>
+internal sealed class TestStringList : List<string>
 {
     // Dummy
 }

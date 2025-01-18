@@ -1,7 +1,7 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiOperationExtensions
+internal static class TestMemberDataForOpenApiOperationExtensions
 {
     public static TheoryData<string, OpenApiOperation> GetOperationNameItemData
         => new()

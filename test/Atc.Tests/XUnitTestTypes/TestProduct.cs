@@ -1,6 +1,6 @@
 namespace Atc.Tests.XUnitTestTypes;
 
-public class TestProduct
+internal sealed class TestProduct
 {
     public TestProduct()
     {

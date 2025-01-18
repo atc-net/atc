@@ -1,7 +1,7 @@
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 namespace Demo.Atc.Console.Spectre.Cli.Commands;
 
-public class LogCommand : Command<LogCommandSettings>
+internal sealed class LogCommand : Command<LogCommandSettings>
 {
     private readonly ILogger<LogCommand> logger;
 

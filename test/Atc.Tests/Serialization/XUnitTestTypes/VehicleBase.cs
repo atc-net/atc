@@ -1,8 +1,8 @@
 // ReSharper disable MemberCanBeProtected.Global
 namespace Atc.Tests.Serialization.XUnitTestTypes
 {
-    [JsonConverter(typeof(JsonTypeDiscriminatorConverter<VehicleBase>))]
-    public abstract class VehicleBase : ITypeDiscriminator
+    [JsonConverter(typeof(TypeDiscriminatorJsonConverter<VehicleBase>))]
+    internal abstract class VehicleBase : ITypeDiscriminator
     {
         protected VehicleBase(string plateNumber)
         {
