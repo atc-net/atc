@@ -1,18 +1,21 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonUnixDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
+public sealed class UriToAbsoluteUriJsonConverter : JsonConverter<Uri?>
 {
-    public override DateTimeOffset? Read(
+    public override Uri? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
-        => reader.TryGetInt64(out var value)
-            ? DateTimeOffset.FromUnixTimeSeconds(value)
-            : default;
+    {
+        var absoluteUri = reader.GetString();
+        return string.IsNullOrEmpty(absoluteUri)
+            ? null
+            : new Uri(absoluteUri);
+    }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DateTimeOffset? value,
+        Uri? value,
         JsonSerializerOptions options)
     {
         if (writer is null)
@@ -20,13 +23,13 @@ public class JsonUnixDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
             throw new ArgumentNullException(nameof(writer));
         }
 
-        if (!value.HasValue || value == DateTimeOffset.MinValue)
+        if (string.IsNullOrEmpty(value?.AbsoluteUri))
         {
             writer.WriteNullValue();
         }
         else
         {
-            writer.WriteNumberValue(value.Value.ToUnixTimeSeconds());
+            writer.WriteStringValue(value.AbsoluteUri);
         }
     }
 }

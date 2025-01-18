@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonVersionConverterTests
+public sealed class VersionJsonConverterTests
 {
     [Fact]
     public void SerializeAndDeserialize()

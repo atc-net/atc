@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonNumberToStringConverterTests
+public sealed class NumberToStringJsonConverterTests
 {
     [Theory]
     [InlineData(123, 123)]
@@ -10,7 +10,7 @@ public class JsonNumberToStringConverterTests
         // Arrange
         Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonNumberToStringConverter();
+        var jsonConverter = new NumberToStringJsonConverter();
         var json = $"\"{number}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
@@ -33,7 +33,7 @@ public class JsonNumberToStringConverterTests
         // Arrange
         Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonNumberToStringConverter();
+        var jsonConverter = new NumberToStringJsonConverter();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
 

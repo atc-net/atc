@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonTypeDiscriminatorConverterTests
+public sealed class TypeDiscriminatorJsonConverterTests
 {
     [Theory]
     [InlineData(true)]

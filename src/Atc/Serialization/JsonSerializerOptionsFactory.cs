@@ -48,22 +48,22 @@ public static class JsonSerializerOptionsFactory
 
         if (settings.UseConverterTimespan)
         {
-            jsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
+            jsonSerializerOptions.Converters.Add(new TimeSpanJsonConverter());
         }
 
         if (settings.UseConverterDatetimeOffsetMinToNull)
         {
-            jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
+            jsonSerializerOptions.Converters.Add(new DateTimeOffsetMinToNullJsonConverter());
         }
 
         if (settings.UseConverterUnixDatetimeOffset)
         {
-            jsonSerializerOptions.Converters.Add(new JsonUnixDateTimeOffsetConverter());
+            jsonSerializerOptions.Converters.Add(new UnixDateTimeOffsetJsonConverter());
         }
 
         if (settings.UseConverterVersion)
         {
-            jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
+            jsonSerializerOptions.Converters.Add(new VersionJsonConverter());
         }
 
         return jsonSerializerOptions;

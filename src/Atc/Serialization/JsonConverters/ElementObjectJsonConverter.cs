@@ -1,6 +1,6 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonElementObjectConverter : JsonConverter<object>
+public sealed class ElementObjectJsonConverter : JsonConverter<object>
 {
     public override object? Read(
         ref Utf8JsonReader reader,

@@ -1,17 +1,17 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonUnixDateTimeOffsetConverterTests
+public sealed class DateTimeOffsetMinToNullJsonConverterTests
 {
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public void SerializeAndDeserialize(bool useConverterUnixDatetimeOffset)
+    public void SerializeAndDeserialize(bool useConverterDatetimeOffsetMinToNull)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(
             new JsonSerializerFactorySettings
             {
-                UseConverterUnixDatetimeOffset = useConverterUnixDatetimeOffset,
+                UseConverterDatetimeOffsetMinToNull = useConverterDatetimeOffsetMinToNull,
             });
 
         var data = new List<VehicleBase>
@@ -39,17 +39,17 @@ public class JsonUnixDateTimeOffsetConverterTests
         var vehicle3 = actualData!
             .First(x => x.PlateNumber == "AB98765");
 
-        if (useConverterUnixDatetimeOffset)
+        if (useConverterDatetimeOffsetMinToNull)
         {
-            Assert.True(vehicle1.RegistrationDate is null, $"Vehicle1 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
-            Assert.True(vehicle2.RegistrationDate.HasValue, $"Vehicle2 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
-            Assert.True(vehicle3.RegistrationDate is null, $"Vehicle3 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
+            Assert.True(vehicle1.RegistrationDate is null, $"Vehicle1 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
+            Assert.True(vehicle2.RegistrationDate.HasValue, $"Vehicle2 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
+            Assert.True(vehicle3.RegistrationDate is null, $"Vehicle3 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
         }
         else
         {
-            Assert.True(vehicle1.RegistrationDate is null, $"Vehicle1 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
-            Assert.True(vehicle2.RegistrationDate.HasValue, $"Vehicle2 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
-            Assert.True(vehicle3.RegistrationDate is not null, $"Vehicle3 - UseConverterDatetimeUnixDatetimeOffset={useConverterUnixDatetimeOffset}");
+            Assert.True(vehicle1.RegistrationDate is null, $"Vehicle1 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
+            Assert.True(vehicle2.RegistrationDate.HasValue, $"Vehicle2 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
+            Assert.True(vehicle3.RegistrationDate is not null, $"Vehicle3 - UseConverterDatetimeOffsetMinToNull={useConverterDatetimeOffsetMinToNull}");
         }
     }
 }

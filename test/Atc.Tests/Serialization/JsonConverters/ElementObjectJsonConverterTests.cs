@@ -1,16 +1,16 @@
 // ReSharper disable NotAccessedField.Local
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonElementObjectConverterTests
+public sealed class ElementObjectJsonConverterTests
 {
     private readonly JsonSerializerOptions options;
-    private readonly JsonElementObjectConverter converter;
+    private readonly ElementObjectJsonConverter converter;
 
-    public JsonElementObjectConverterTests()
+    public ElementObjectJsonConverterTests()
     {
         options = new JsonSerializerOptions();
-        options.Converters.Add(new JsonElementObjectConverter());
-        converter = new JsonElementObjectConverter();
+        options.Converters.Add(new ElementObjectJsonConverter());
+        converter = new ElementObjectJsonConverter();
     }
 
     [Fact]

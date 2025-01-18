@@ -1,6 +1,6 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonCultureInfoToLcidConverter : JsonConverter<CultureInfo?>
+public sealed class CultureInfoToLcidJsonConverter : JsonConverter<CultureInfo?>
 {
     public override CultureInfo? Read(
         ref Utf8JsonReader reader,

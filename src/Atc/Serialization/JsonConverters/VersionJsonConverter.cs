@@ -1,7 +1,7 @@
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonVersionConverter : JsonConverter<Version>
+public sealed class VersionJsonConverter : JsonConverter<Version>
 {
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public override Version Read(

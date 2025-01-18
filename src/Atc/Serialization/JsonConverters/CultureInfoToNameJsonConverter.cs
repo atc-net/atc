@@ -1,21 +1,21 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonUriToAbsoluteUriConverter : JsonConverter<Uri?>
+public sealed class CultureInfoToNameJsonConverter : JsonConverter<CultureInfo?>
 {
-    public override Uri? Read(
+    public override CultureInfo? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        var absoluteUri = reader.GetString();
-        return string.IsNullOrEmpty(absoluteUri)
+        var name = reader.GetString();
+        return string.IsNullOrEmpty(name)
             ? null
-            : new Uri(absoluteUri);
+            : new CultureInfo(name);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Uri? value,
+        CultureInfo? value,
         JsonSerializerOptions options)
     {
         if (writer is null)
@@ -23,13 +23,13 @@ public class JsonUriToAbsoluteUriConverter : JsonConverter<Uri?>
             throw new ArgumentNullException(nameof(writer));
         }
 
-        if (string.IsNullOrEmpty(value?.AbsoluteUri))
+        if (string.IsNullOrEmpty(value?.Name))
         {
             writer.WriteNullValue();
         }
         else
         {
-            writer.WriteStringValue(value.AbsoluteUri);
+            writer.WriteStringValue(value.Name);
         }
     }
 }
