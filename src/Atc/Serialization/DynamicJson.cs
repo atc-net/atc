@@ -135,7 +135,7 @@ public class DynamicJson
     {
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
         jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
-        jsonSerializerOptions.Converters.Add(new JsonElementObjectConverter());
+        jsonSerializerOptions.Converters.Add(new ElementObjectJsonConverter());
 
         JsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object?>>(jsonString, jsonSerializerOptions)!;
     }

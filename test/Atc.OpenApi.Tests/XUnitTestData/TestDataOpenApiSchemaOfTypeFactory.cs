@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestDataOpenApiSchemaOfTypeFactory
+internal static class TestDataOpenApiSchemaOfTypeFactory
 {
     public static OpenApiSchema CreateString()
     {

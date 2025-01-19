@@ -1,17 +1,17 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonCultureInfoToLcidConverterTests
+public sealed class CultureInfoToNameJsonConverterTests
 {
     [Theory]
-    [InlineData(1033)]
-    [InlineData(1036)]
-    [InlineData(1041)]
-    public void Read_ShouldReturnExpectedCultureInfo(int lcid)
+    [InlineData("en-US")]
+    [InlineData("fr-FR")]
+    [InlineData("ja-JP")]
+    public void Read_ShouldReturnExpectedCultureInfo(string cultureName)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonCultureInfoToLcidConverter();
-        var json = $"{lcid}";
+        var jsonConverter = new CultureInfoToNameJsonConverter();
+        var json = $"\"{cultureName}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
         utf8JsonReader.Read();
@@ -21,21 +21,21 @@ public class JsonCultureInfoToLcidConverterTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(lcid, result.LCID);
+        Assert.Equal(cultureName, result.Name);
     }
 
     [Theory]
-    [InlineData(1033)]
-    [InlineData(1036)]
-    [InlineData(1041)]
-    public void Write_ShouldWriteCultureInfoNameToUtf8JsonWriter(int lcid)
+    [InlineData("en-US")]
+    [InlineData("fr-FR")]
+    [InlineData("ja-JP")]
+    public void Write_ShouldWriteCultureInfoNameToUtf8JsonWriter(string cultureName)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonCultureInfoToLcidConverter();
+        var jsonConverter = new CultureInfoToNameJsonConverter();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
-        var cultureInfo = new CultureInfo(lcid);
+        var cultureInfo = new CultureInfo(cultureName);
 
         // Act
         jsonConverter.Write(utf8JsonWriter, cultureInfo, jsonSerializerOptions);
@@ -45,7 +45,6 @@ public class JsonCultureInfoToLcidConverterTests
         var result = Encoding.UTF8.GetString(memoryStream.ToArray());
 
         Assert.NotNull(result);
-        Assert.True(NumberHelper.IsInt(result));
-        Assert.Equal(lcid, NumberHelper.ParseToInt(result));
+        Assert.Equal($"\"{cultureName}\"", result);
     }
 }

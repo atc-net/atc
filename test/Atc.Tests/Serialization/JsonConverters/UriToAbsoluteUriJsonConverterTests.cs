@@ -1,7 +1,7 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
 [SuppressMessage("Design", "CA1054:URI-like parameters should not be strings", Justification = "OK.")]
-public class JsonUriToAbsoluteUriConverterTests
+public sealed class UriToAbsoluteUriJsonConverterTests
 {
     [Theory]
     [InlineData("http://dr.dk/")]
@@ -9,7 +9,7 @@ public class JsonUriToAbsoluteUriConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonUriToAbsoluteUriConverter();
+        var jsonConverter = new UriToAbsoluteUriJsonConverter();
         var json = $"\"{url}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
@@ -29,7 +29,7 @@ public class JsonUriToAbsoluteUriConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonUriToAbsoluteUriConverter();
+        var jsonConverter = new UriToAbsoluteUriJsonConverter();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
         var uri = new Uri(url);

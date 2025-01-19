@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonFileInfoToFullNameConverterTests
+public sealed class FileInfoToFullNameJsonConverterTests
 {
     [Theory]
     [InlineData(@"C:\Temp\test.txt")]
@@ -8,7 +8,7 @@ public class JsonFileInfoToFullNameConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonFileInfoToFullNameConverter();
+        var jsonConverter = new FileInfoToFullNameJsonConverter();
         var json = $"\"{file.Replace("\\", "\\\\", StringComparison.Ordinal)}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
@@ -31,7 +31,7 @@ public class JsonFileInfoToFullNameConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonFileInfoToFullNameConverter();
+        var jsonConverter = new FileInfoToFullNameJsonConverter();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
         var fileInfo = new FileInfo(file);

@@ -1,9 +1,9 @@
 namespace Atc.Serialization.JsonConverters;
 
-public sealed class JsonStringEnumMemberConverter<T> : JsonConverter<T>
-    where T : Enum
+public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
+    where TEnum : Enum
 {
-    public override T Read(
+    public override TEnum Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
@@ -22,14 +22,14 @@ public sealed class JsonStringEnumMemberConverter<T> : JsonConverter<T>
             {
                 case null when
                     field.Name.Equals(enumValue, StringComparison.OrdinalIgnoreCase):
-                    return (T)field.GetValue(null);
+                    return (TEnum)field.GetValue(null);
                 case null:
                     continue;
             }
 
             if (enumMemberAttribute.Value.Equals(enumValue, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)field.GetValue(null);
+                return (TEnum)field.GetValue(null);
             }
         }
 
@@ -38,7 +38,7 @@ public sealed class JsonStringEnumMemberConverter<T> : JsonConverter<T>
 
     public override void Write(
         Utf8JsonWriter writer,
-        T value,
+        TEnum value,
         JsonSerializerOptions options)
     {
         if (writer is null)

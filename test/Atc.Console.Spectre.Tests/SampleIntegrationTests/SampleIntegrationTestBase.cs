@@ -1,10 +1,10 @@
 // ReSharper disable InvertIf
 // ReSharper disable MemberCanBeMadeStatic.Global
-
 using Demo.Atc.Console.Spectre.Cli;
 
 namespace Atc.Console.Spectre.Tests.SampleIntegrationTests;
 
+[SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "OK - false/positive")]
 public class SampleIntegrationTestBase : IntegrationTestCliBase
 {
     private static JsonSerializerOptions? jsonSerializerOptions;

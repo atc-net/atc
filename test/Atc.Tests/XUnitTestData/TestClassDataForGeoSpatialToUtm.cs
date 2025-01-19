@@ -1,7 +1,7 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.Tests.XUnitTestData;
 
-public class TestClassDataForGeoSpatialToUtm : IEnumerable<object[]>
+internal sealed class TestClassDataForGeoSpatialToUtm : IEnumerable<object[]>
 {
     [SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "OK.")]
     private readonly TheoryData<string, CartesianCoordinate, UniversalTransverseMercatorResult> data = new()

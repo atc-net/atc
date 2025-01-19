@@ -12,12 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="7.4.0" />
+    <PackageReference Include="EPPlus" Version="7.5.3" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="8.2.0.7535" />
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup>

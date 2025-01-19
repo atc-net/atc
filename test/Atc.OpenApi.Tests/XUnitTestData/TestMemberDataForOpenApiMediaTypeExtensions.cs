@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiMediaTypeExtensions
+internal static class TestMemberDataForOpenApiMediaTypeExtensions
 {
     public static TheoryData<string, IDictionary<string, OpenApiMediaType>> GetSchemaItemData
         => new()

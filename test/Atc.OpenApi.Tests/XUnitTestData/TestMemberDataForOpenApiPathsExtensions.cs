@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiPathsExtensions
+internal static class TestMemberDataForOpenApiPathsExtensions
 {
     public static TheoryData<int, OpenApiPaths, string> GetPathsStartingWithSegmentName
         => new()

@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiParameterExtensions
+internal static class TestMemberDataForOpenApiParameterExtensions
 {
     public static TheoryData<bool, List<OpenApiParameter>> HasFormatTypeUuidItemData
         => new()

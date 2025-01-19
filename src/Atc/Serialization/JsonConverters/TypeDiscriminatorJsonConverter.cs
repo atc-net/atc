@@ -1,12 +1,12 @@
 // ReSharper disable ConstantConditionalAccessQualifier
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonTypeDiscriminatorConverter<T> : JsonConverter<T>
+public sealed class TypeDiscriminatorJsonConverter<T> : JsonConverter<T>
     where T : ITypeDiscriminator
 {
     private readonly IEnumerable<Type> types;
 
-    public JsonTypeDiscriminatorConverter()
+    public TypeDiscriminatorJsonConverter()
     {
         var type = typeof(T);
         types = AppDomain.CurrentDomain.GetAssemblies()

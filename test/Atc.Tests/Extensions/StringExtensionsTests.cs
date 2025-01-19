@@ -213,25 +213,46 @@ public class StringExtensionsTests
     [InlineData(true, "2000-12-01T23:47:37")]
     [InlineData(false, "2000-12-01")]
     public void TryParseDateFromIso8601(bool expected, string input)
-        => Assert.Equal(expected, input.TryParseDateFromIso8601(out var _));
+        => Assert.Equal(expected, input.TryParseDateFromIso8601(out _));
 
     [Theory]
     [InlineData(true, "03-24-2000")]
     [InlineData(false, "24-03-2000")]
     public void TryParseDate(bool expected, string input)
-        => Assert.Equal(expected, input.TryParseDate(out var _));
+        => Assert.Equal(expected, input.TryParseDate(out _));
 
     [Theory]
     [InlineData(false, "03-24-2000")]
     [InlineData(true, "24-03-2000")]
     public void TryParseDate_DanishCultureCulture(bool expected, string input)
-        => Assert.Equal(expected, input.TryParseDate(out var _, GlobalizationConstants.DanishCultureInfo));
+        => Assert.Equal(expected, input.TryParseDate(out _, GlobalizationConstants.DanishCultureInfo));
 
     [Theory]
     [InlineData(false, "03-24-2000", DateTimeStyles.None)]
     [InlineData(true, "24-03-2000", DateTimeStyles.None)]
     public void TryParseDate_DanishCultureCulture_DateTimeStyles(bool expected, string input, DateTimeStyles dateTimeStyles)
-        => Assert.Equal(expected, input.TryParseDate(out var _, GlobalizationConstants.DanishCultureInfo, dateTimeStyles));
+        => Assert.Equal(expected, input.TryParseDate(out _, GlobalizationConstants.DanishCultureInfo, dateTimeStyles));
+
+    [Theory]
+    [InlineData(true, "1.2.3.4", "1.2.3.4")]
+    [InlineData(true, "1.2.3.4", "[1.2.3.4]")]
+    [InlineData(true, "1.2.3.4", "(1.2.3.4)")]
+    [InlineData(true, "1.2.3.0", "1.2.3")]
+    [InlineData(true, "1.2.3.0", "[1.2.3]")]
+    [InlineData(true, "1.2.3.0", "(1.2.3)")]
+    [InlineData(true, "1.2.0.0", "1.2")]
+    [InlineData(true, "1.2.0.0", "[1.2]")]
+    [InlineData(true, "1.2.0.0", "(1.2)")]
+    [InlineData(true, "1.0.0.0", "1")]
+    [InlineData(true, "1.0.0.0", "[1]")]
+    [InlineData(true, "1.0.0.0", "(1)")]
+    public void TryParseVersion(bool expectedReturn, string expectedValue, string input)
+    {
+        var actualReturn = input.TryParseVersion(out var version);
+
+        Assert.Equal(expectedReturn, actualReturn);
+        Assert.Equal(expectedValue, version.ToString());
+    }
 
     [Theory]
     [InlineData("", "")]

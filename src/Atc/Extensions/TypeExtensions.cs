@@ -308,7 +308,7 @@ public static class TypeExtensions
     public static IEnumerable<T> GetAttributes<T>(this Type type)
         where T : Attribute
     {
-        return CustomAttributeExtensions.GetCustomAttributes(type.GetTypeInfo(), typeof(T), false).Cast<T>();
+        return type.GetTypeInfo().GetCustomAttributes<T>(inherit: false);
     }
 
     /// <summary>

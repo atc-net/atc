@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonDirectoryInfoToFullNameConverterTests
+public sealed class DirectoryInfoToFullNameJsonConverterTests
 {
     [Theory]
     [InlineData(@"C:\Temp")]
@@ -8,7 +8,7 @@ public class JsonDirectoryInfoToFullNameConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonDirectoryInfoToFullNameConverter();
+        var jsonConverter = new DirectoryInfoToFullNameJsonConverter();
         var json = $"\"{directory.Replace("\\", "\\\\", StringComparison.Ordinal)}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
@@ -31,7 +31,7 @@ public class JsonDirectoryInfoToFullNameConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonDirectoryInfoToFullNameConverter();
+        var jsonConverter = new DirectoryInfoToFullNameJsonConverter();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
         var directoryInfo = new DirectoryInfo(directory);

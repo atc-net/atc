@@ -7,25 +7,10 @@
 
 <br />
 
-## ITypeDiscriminator
+## CultureInfoToLcidJsonConverter
 
 >```csharp
->public interface ITypeDiscriminator
->```
-
-### Properties
-
-#### TypeDiscriminator
->```csharp
->TypeDiscriminator
->```
-
-<br />
-
-## JsonCultureInfoToLcidConverter
-
->```csharp
->public class JsonCultureInfoToLcidConverter : JsonConverter<CultureInfo>
+>public class CultureInfoToLcidJsonConverter : JsonConverter<CultureInfo>
 >```
 
 ### Methods
@@ -41,10 +26,10 @@
 
 <br />
 
-## JsonCultureInfoToNameConverter
+## CultureInfoToNameJsonConverter
 
 >```csharp
->public class JsonCultureInfoToNameConverter : JsonConverter<CultureInfo>
+>public class CultureInfoToNameJsonConverter : JsonConverter<CultureInfo>
 >```
 
 ### Methods
@@ -60,10 +45,10 @@
 
 <br />
 
-## JsonDateTimeOffsetMinToNullConverter
+## DateTimeOffsetMinToNullJsonConverter
 
 >```csharp
->public class JsonDateTimeOffsetMinToNullConverter : JsonConverter<DateTimeOffset?>
+>public class DateTimeOffsetMinToNullJsonConverter : JsonConverter<DateTimeOffset?>
 >```
 
 ### Methods
@@ -79,10 +64,10 @@
 
 <br />
 
-## JsonDirectoryInfoToFullNameConverter
+## DirectoryInfoToFullNameJsonConverter
 
 >```csharp
->public class JsonDirectoryInfoToFullNameConverter : JsonConverter<DirectoryInfo>
+>public class DirectoryInfoToFullNameJsonConverter : JsonConverter<DirectoryInfo>
 >```
 
 ### Methods
@@ -98,10 +83,10 @@
 
 <br />
 
-## JsonElementObjectConverter
+## ElementObjectJsonConverter
 
 >```csharp
->public class JsonElementObjectConverter : JsonConverter<object>
+>public class ElementObjectJsonConverter : JsonConverter<object>
 >```
 
 ### Methods
@@ -117,10 +102,10 @@
 
 <br />
 
-## JsonFileInfoToFullNameConverter
+## FileInfoToFullNameJsonConverter
 
 >```csharp
->public class JsonFileInfoToFullNameConverter : JsonConverter<FileInfo>
+>public class FileInfoToFullNameJsonConverter : JsonConverter<FileInfo>
 >```
 
 ### Methods
@@ -136,10 +121,44 @@
 
 <br />
 
-## JsonNumberToStringConverter
+## ITypeDiscriminator
 
 >```csharp
->public class JsonNumberToStringConverter : JsonConverter<object>
+>public interface ITypeDiscriminator
+>```
+
+### Properties
+
+#### TypeDiscriminator
+>```csharp
+>TypeDiscriminator
+>```
+
+<br />
+
+## InterfaceJsonConverter&lt;TInterface&gt;
+
+>```csharp
+>public class InterfaceJsonConverter&lt;TInterface&gt; : JsonConverter<TInterface>
+>```
+
+### Methods
+
+#### Read
+>```csharp
+>TInterface Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, TInterface value, JsonSerializerOptions options)
+>```
+
+<br />
+
+## NumberToStringJsonConverter
+
+>```csharp
+>public class NumberToStringJsonConverter : JsonConverter<object>
 >```
 
 ### Methods
@@ -159,29 +178,29 @@
 
 <br />
 
-## JsonStringEnumMemberConverter&lt;T&gt;
+## StringEnumMemberJsonConverter&lt;TEnum&gt;
 
 >```csharp
->public class JsonStringEnumMemberConverter&lt;T&gt; : JsonConverter<T>
+>public class StringEnumMemberJsonConverter&lt;TEnum&gt; : JsonConverter<TEnum>
 >```
 
 ### Methods
 
 #### Read
 >```csharp
->T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 >```
 #### Write
 >```csharp
->void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+>void Write(Utf8JsonWriter writer, TEnum value, JsonSerializerOptions options)
 >```
 
 <br />
 
-## JsonTimeSpanConverter
+## TimeSpanJsonConverter
 
 >```csharp
->public class JsonTimeSpanConverter : JsonConverter<TimeSpan>
+>public class TimeSpanJsonConverter : JsonConverter<TimeSpan>
 >```
 
 ### Methods
@@ -197,10 +216,10 @@
 
 <br />
 
-## JsonTypeDiscriminatorConverter&lt;T&gt;
+## TypeDiscriminatorJsonConverter&lt;T&gt;
 
 >```csharp
->public class JsonTypeDiscriminatorConverter&lt;T&gt; : JsonConverter<T>
+>public class TypeDiscriminatorJsonConverter&lt;T&gt; : JsonConverter<T>
 >```
 
 ### Methods
@@ -216,10 +235,10 @@
 
 <br />
 
-## JsonUnixDateTimeOffsetConverter
+## UnixDateTimeOffsetJsonConverter
 
 >```csharp
->public class JsonUnixDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
+>public class UnixDateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset?>
 >```
 
 ### Methods
@@ -235,10 +254,10 @@
 
 <br />
 
-## JsonUriToAbsoluteUriConverter
+## UriToAbsoluteUriJsonConverter
 
 >```csharp
->public class JsonUriToAbsoluteUriConverter : JsonConverter<Uri>
+>public class UriToAbsoluteUriJsonConverter : JsonConverter<Uri>
 >```
 
 ### Methods
@@ -254,10 +273,10 @@
 
 <br />
 
-## JsonVersionConverter
+## VersionJsonConverter
 
 >```csharp
->public class JsonVersionConverter : JsonConverter<Version>
+>public class VersionJsonConverter : JsonConverter<Version>
 >```
 
 ### Methods

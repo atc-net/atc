@@ -1,6 +1,6 @@
 namespace Demo.Atc.Console.Spectre.Cli.Settings;
 
-public class LogCommandSettings : CommandSettings
+internal sealed class LogCommandSettings : CommandSettings
 {
     [CommandArgument(0, "[Message]")]
     public string Message { get; set; } = string.Empty;

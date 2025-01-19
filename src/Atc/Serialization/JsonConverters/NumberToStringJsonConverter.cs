@@ -1,7 +1,7 @@
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonNumberToStringConverter : JsonConverter<object>
+public sealed class NumberToStringJsonConverter : JsonConverter<object>
 {
     public override bool CanConvert(Type typeToConvert)
     {

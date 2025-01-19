@@ -1,8 +1,8 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonFileInfoToFullNameConverter : JsonConverter<FileInfo?>
+public sealed class DirectoryInfoToFullNameJsonConverter : JsonConverter<DirectoryInfo?>
 {
-    public override FileInfo? Read(
+    public override DirectoryInfo? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
@@ -10,12 +10,12 @@ public class JsonFileInfoToFullNameConverter : JsonConverter<FileInfo?>
         var fillName = reader.GetString();
         return string.IsNullOrEmpty(fillName)
             ? null
-            : new FileInfo(fillName);
+            : new DirectoryInfo(fillName);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        FileInfo? value,
+        DirectoryInfo? value,
         JsonSerializerOptions options)
     {
         if (writer is null)

@@ -4837,59 +4837,63 @@
 
 ## [Atc.Serialization.JsonConverters](Atc.Serialization.JsonConverters.md)
 
-- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
-  -  Properties
-     - TypeDiscriminator
-- [JsonCultureInfoToLcidConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotolcidconverter)
+- [CultureInfoToLcidJsonConverter](Atc.Serialization.JsonConverters.md#cultureinfotolcidjsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
-- [JsonCultureInfoToNameConverter](Atc.Serialization.JsonConverters.md#jsoncultureinfotonameconverter)
+- [CultureInfoToNameJsonConverter](Atc.Serialization.JsonConverters.md#cultureinfotonamejsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, CultureInfo value, JsonSerializerOptions options)
-- [JsonDateTimeOffsetMinToNullConverter](Atc.Serialization.JsonConverters.md#jsondatetimeoffsetmintonullconverter)
+- [DateTimeOffsetMinToNullJsonConverter](Atc.Serialization.JsonConverters.md#datetimeoffsetmintonulljsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
-- [JsonDirectoryInfoToFullNameConverter](Atc.Serialization.JsonConverters.md#jsondirectoryinfotofullnameconverter)
+- [DirectoryInfoToFullNameJsonConverter](Atc.Serialization.JsonConverters.md#directoryinfotofullnamejsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DirectoryInfo value, JsonSerializerOptions options)
-- [JsonElementObjectConverter](Atc.Serialization.JsonConverters.md#jsonelementobjectconverter)
+- [ElementObjectJsonConverter](Atc.Serialization.JsonConverters.md#elementobjectjsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
-- [JsonFileInfoToFullNameConverter](Atc.Serialization.JsonConverters.md#jsonfileinfotofullnameconverter)
+- [FileInfoToFullNameJsonConverter](Atc.Serialization.JsonConverters.md#fileinfotofullnamejsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, FileInfo value, JsonSerializerOptions options)
-- [JsonNumberToStringConverter](Atc.Serialization.JsonConverters.md#jsonnumbertostringconverter)
+- [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
+  -  Properties
+     - TypeDiscriminator
+- [InterfaceJsonConverter&lt;TInterface&gt;](Atc.Serialization.JsonConverters.md#interfacejsonconverter&lt;tinterface&gt;)
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, TInterface value, JsonSerializerOptions options)
+- [NumberToStringJsonConverter](Atc.Serialization.JsonConverters.md#numbertostringjsonconverter)
   -  Methods
      - CanConvert(Type typeToConvert)
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
-- [JsonStringEnumMemberConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsonstringenummemberconverter&lt;t&gt;)
+- [StringEnumMemberJsonConverter&lt;TEnum&gt;](Atc.Serialization.JsonConverters.md#stringenummemberjsonconverter&lt;tenum&gt;)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-     - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
-- [JsonTimeSpanConverter](Atc.Serialization.JsonConverters.md#jsontimespanconverter)
+     - Write(Utf8JsonWriter writer, TEnum value, JsonSerializerOptions options)
+- [TimeSpanJsonConverter](Atc.Serialization.JsonConverters.md#timespanjsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
-- [JsonTypeDiscriminatorConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#jsontypediscriminatorconverter&lt;t&gt;)
+- [TypeDiscriminatorJsonConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#typediscriminatorjsonconverter&lt;t&gt;)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
-- [JsonUnixDateTimeOffsetConverter](Atc.Serialization.JsonConverters.md#jsonunixdatetimeoffsetconverter)
+- [UnixDateTimeOffsetJsonConverter](Atc.Serialization.JsonConverters.md#unixdatetimeoffsetjsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
-- [JsonUriToAbsoluteUriConverter](Atc.Serialization.JsonConverters.md#jsonuritoabsoluteuriconverter)
+- [UriToAbsoluteUriJsonConverter](Atc.Serialization.JsonConverters.md#uritoabsoluteurijsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, Uri value, JsonSerializerOptions options)
-- [JsonVersionConverter](Atc.Serialization.JsonConverters.md#jsonversionconverter)
+- [VersionJsonConverter](Atc.Serialization.JsonConverters.md#versionjsonconverter)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, Version value, JsonSerializerOptions options)
@@ -5214,6 +5218,7 @@
      - TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = None)
      - TryParseDateFromIso8601(this string value, out DateTime dateTime)
      - TryParseToHttpStatusCode(this string value, out HttpStatusCode httpStatusCode)
+     - TryParseVersion(this string value, out Version version)
      - WordCount(this string value)
      - XmlDecode(this string xml)
      - XmlEncode(this string xml)

@@ -1,7 +1,7 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
 [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:OpeningBracesMustNotBePrecededByBlankLine", Justification = "OK.")]
-public static class TestMemberDataForOpenApiSchemaExtensions
+internal static class TestMemberDataForOpenApiSchemaExtensions
 {
     public static TheoryData<bool, List<OpenApiSchema>> HasDataTypeListItemData
         => new()

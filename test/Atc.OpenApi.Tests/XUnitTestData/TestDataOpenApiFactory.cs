@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestDataOpenApiFactory
+internal static class TestDataOpenApiFactory
 {
     public static OpenApiComponents CreateComponents()
         => new()

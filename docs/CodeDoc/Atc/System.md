@@ -2481,6 +2481,17 @@ Extensions for the string class.
 >```csharp
 >bool TryParseToHttpStatusCode(this string value, out HttpStatusCode httpStatusCode)
 >```
+#### TryParseVersion
+>```csharp
+>bool TryParseVersion(this string value, out Version version)
+>```
+><b>Summary:</b> Attempts to parse a string into a `System.Version` object. Handles input with brackets or braces and varying number of version components.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The version string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the  object if parsing succeeded, or a default version if parsing failed.<br />
+>
+><b>Returns:</b> `true` if the string was successfully parsed; otherwise, `false`.
 #### WordCount
 >```csharp
 >int WordCount(this string value)

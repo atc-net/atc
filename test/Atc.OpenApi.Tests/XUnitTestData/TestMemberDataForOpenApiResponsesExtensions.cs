@@ -1,6 +1,6 @@
 namespace Atc.OpenApi.Tests.XUnitTestData;
 
-public static class TestMemberDataForOpenApiResponsesExtensions
+internal static class TestMemberDataForOpenApiResponsesExtensions
 {
     public static TheoryData<List<HttpStatusCode>, OpenApiResponses> GetHttpStatusCodesItemData
         => new()

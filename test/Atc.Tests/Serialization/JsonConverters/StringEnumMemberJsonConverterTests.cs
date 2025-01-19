@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonStringEnumMemberConverterTests
+public sealed class StringEnumMemberJsonConverterTests
 {
     [Theory]
     [InlineData(ChargePointState.BusyNonCharging, "busy-non-charging")]
@@ -9,7 +9,7 @@ public class JsonStringEnumMemberConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonStringEnumMemberConverter<ChargePointState>();
+        var jsonConverter = new StringEnumMemberJsonConverter<ChargePointState>();
         var json = $"\"{enumValue.Replace("\\", "\\\\", StringComparison.Ordinal)}\"";
         var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
 
@@ -32,7 +32,7 @@ public class JsonStringEnumMemberConverterTests
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
-        var jsonConverter = new JsonStringEnumMemberConverter<ChargePointState>();
+        var jsonConverter = new StringEnumMemberJsonConverter<ChargePointState>();
         var memoryStream = new MemoryStream();
         using var utf8JsonWriter = new Utf8JsonWriter(memoryStream);
 

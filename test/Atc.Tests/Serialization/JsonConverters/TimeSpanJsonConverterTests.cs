@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonTimeSpanConverterTests
+public sealed class TimeSpanJsonConverterTests
 {
     [Theory]
     [InlineData(false)]

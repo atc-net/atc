@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.XUnitTestTypes;
 
-public class ComplexData
+internal sealed class ComplexData
 {
     public CultureInfo? MyCulture { get; set; }
 

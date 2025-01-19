@@ -1,6 +1,6 @@
 namespace Atc.Tests.Serialization.JsonConverters;
 
-public class JsonComplexDataTests
+public sealed class JsonComplexDataTests
 {
     [Fact]
     public void ToJson()
@@ -12,14 +12,14 @@ public class JsonComplexDataTests
         };
 
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(jsonSerializerFactorySettings);
-        jsonSerializerOptions.Converters.Add(new JsonCultureInfoToNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonDirectoryInfoToFullNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonFileInfoToFullNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
-        jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
-        jsonSerializerOptions.Converters.Add(new JsonUriToAbsoluteUriConverter());
-        jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
-        jsonSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter<ChargePointState>());
+        jsonSerializerOptions.Converters.Add(new CultureInfoToNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new DirectoryInfoToFullNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new FileInfoToFullNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new TimeSpanJsonConverter());
+        jsonSerializerOptions.Converters.Add(new DateTimeOffsetMinToNullJsonConverter());
+        jsonSerializerOptions.Converters.Add(new UriToAbsoluteUriJsonConverter());
+        jsonSerializerOptions.Converters.Add(new VersionJsonConverter());
+        jsonSerializerOptions.Converters.Add(new StringEnumMemberJsonConverter<ChargePointState>());
 
         var data = new ComplexData
         {
@@ -65,14 +65,14 @@ public class JsonComplexDataTests
         };
 
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(jsonSerializerFactorySettings);
-        jsonSerializerOptions.Converters.Add(new JsonCultureInfoToNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonDirectoryInfoToFullNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonFileInfoToFullNameConverter());
-        jsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
-        jsonSerializerOptions.Converters.Add(new JsonDateTimeOffsetMinToNullConverter());
-        jsonSerializerOptions.Converters.Add(new JsonUriToAbsoluteUriConverter());
-        jsonSerializerOptions.Converters.Add(new JsonVersionConverter());
-        jsonSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter<ChargePointState>());
+        jsonSerializerOptions.Converters.Add(new CultureInfoToNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new DirectoryInfoToFullNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new FileInfoToFullNameJsonConverter());
+        jsonSerializerOptions.Converters.Add(new TimeSpanJsonConverter());
+        jsonSerializerOptions.Converters.Add(new DateTimeOffsetMinToNullJsonConverter());
+        jsonSerializerOptions.Converters.Add(new UriToAbsoluteUriJsonConverter());
+        jsonSerializerOptions.Converters.Add(new VersionJsonConverter());
+        jsonSerializerOptions.Converters.Add(new StringEnumMemberJsonConverter<ChargePointState>());
 
         const string data = "{\r\n" +
                                 "  \"myCulture\": \"en-US\",\r\n" +

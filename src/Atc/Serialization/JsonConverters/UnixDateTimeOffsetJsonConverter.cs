@@ -1,21 +1,18 @@
 namespace Atc.Serialization.JsonConverters;
 
-public class JsonDirectoryInfoToFullNameConverter : JsonConverter<DirectoryInfo?>
+public sealed class UnixDateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset?>
 {
-    public override DirectoryInfo? Read(
+    public override DateTimeOffset? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
-    {
-        var fillName = reader.GetString();
-        return string.IsNullOrEmpty(fillName)
-            ? null
-            : new DirectoryInfo(fillName);
-    }
+        => reader.TryGetInt64(out var value)
+            ? DateTimeOffset.FromUnixTimeSeconds(value)
+            : default;
 
     public override void Write(
         Utf8JsonWriter writer,
-        DirectoryInfo? value,
+        DateTimeOffset? value,
         JsonSerializerOptions options)
     {
         if (writer is null)
@@ -23,13 +20,13 @@ public class JsonDirectoryInfoToFullNameConverter : JsonConverter<DirectoryInfo?
             throw new ArgumentNullException(nameof(writer));
         }
 
-        if (string.IsNullOrEmpty(value?.FullName))
+        if (!value.HasValue || value == DateTimeOffset.MinValue)
         {
             writer.WriteNullValue();
         }
         else
         {
-            writer.WriteStringValue(value.FullName);
+            writer.WriteNumberValue(value.Value.ToUnixTimeSeconds());
         }
     }
 }

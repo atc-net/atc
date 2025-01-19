@@ -1,5 +1,6 @@
 namespace Demo.Atc.Console.Spectre.Cli;
 
+[SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "OK - false/positive")]
 public static class Program
 {
     public static Task<int> Main(string[] args)
