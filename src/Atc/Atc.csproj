@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
     <PackageId>Atc</PackageId>
     <PackageTags>netstandard;common</PackageTags>
     <Description>Atc is a collection of classes and extension methods for common functionality.</Description>
