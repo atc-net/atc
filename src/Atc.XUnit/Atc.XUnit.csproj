@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>Atc.XUnit</PackageId>
     <PackageTags>xunit;test</PackageTags>
     <Description>Atc.XUnit is a collection of helper method for code compliance of documentation and tests.</Description>
