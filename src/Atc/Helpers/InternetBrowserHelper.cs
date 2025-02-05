@@ -162,7 +162,7 @@ public static class InternetBrowserHelper
     /// Only url with the http or https protocol is supported.
     /// </remarks>
     /// <returns>
-    ///   <c>true</c> if the url is started in a browser; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
     /// </returns>
     public static bool OpenUrl(
         string url)
@@ -183,7 +183,7 @@ public static class InternetBrowserHelper
     /// Only url with the http or https protocol is supported.
     /// </remarks>
     /// <returns>
-    ///   <c>true</c> if the url is started in a browser; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
     /// </returns>
     public static bool OpenUrl(
         Uri uri)

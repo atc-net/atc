@@ -11,7 +11,7 @@ public static class MethodInfoExtensions
     /// </summary>
     /// <param name="methodInfo">The method information.</param>
     /// <returns>
-    ///   <c>true</c> if the specified method information is override; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified method information is override; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
     public static bool IsOverride(this MethodInfo methodInfo)
@@ -29,7 +29,7 @@ public static class MethodInfoExtensions
     /// </summary>
     /// <param name="methodInfo">The method information.</param>
     /// <returns>
-    ///   <c>true</c> if [has declaring type validation attributes] [the specified method information]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has declaring type validation attributes] [the specified method information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
     public static bool HasDeclaringTypeValidationAttributes(this MethodInfo methodInfo)
@@ -54,7 +54,7 @@ public static class MethodInfoExtensions
     /// </summary>
     /// <param name="methodInfo">The method information.</param>
     /// <returns>
-    ///   <c>true</c> if [has generic parameters] [the specified method information]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has generic parameters] [the specified method information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
     public static bool HasGenericParameters(this MethodInfo methodInfo)
@@ -71,9 +71,9 @@ public static class MethodInfoExtensions
     /// Beautifies the name.
     /// </summary>
     /// <param name="methodInfo">The method information.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
-    /// <param name="useHtmlFormat">if set to <c>true</c> [use HTML format].</param>
-    /// <param name="includeReturnType">if set to <c>true</c> [include return type].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
+    /// <param name="includeReturnType">if set to <see langword="true" /> [include return type].</param>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
     public static string BeautifyName(this MethodInfo methodInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
     {

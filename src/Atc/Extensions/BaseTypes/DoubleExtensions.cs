@@ -12,12 +12,12 @@ public static class DoubleExtensions
     public const double DoubleEpsilon = double.Epsilon;
 
     /// <summary>
-    /// Compare two values. Return <c>true</c> if they are equals.
+    /// Compare two values. Return <see langword="true" /> if they are equals.
     /// </summary>
     /// <param name="a">The first value.</param>
     /// <param name="b">The second value.</param>
     /// <returns>
-    /// <c>true</c> if the two values are equals, <c>false</c> otherwise.
+    /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
     public static bool IsEqual(this double a, double b)
     {
@@ -25,12 +25,12 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    /// Compare two values. Return <c>true</c> if they are equals.
+    /// Compare two values. Return <see langword="true" /> if they are equals.
     /// </summary>
     /// <param name="a">The first value.</param>
     /// <param name="b">The second value.</param>
     /// <returns>
-    /// <c>true</c> if the two values are equals, <c>false</c> otherwise.
+    /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
     public static bool IsEqual(this double? a, double? b)
     {
@@ -49,7 +49,7 @@ public static class DoubleExtensions
     /// <param name="b">The b.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
     /// <returns>
-    ///   <c>true</c> if the specified b is equal; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified b is equal; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEqual(this double a, double b, int decimalPrecision)
     {

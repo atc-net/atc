@@ -72,7 +72,7 @@ public static class TestResultHelper
     /// </summary>
     /// <param name="assemblyName">Name of the assembly.</param>
     /// <param name="methodsWithMissingTests">The methods with missing tests.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertOnTestResultsFromMethodsWithMissingTests(
         string assemblyName,
         MethodInfo[] methodsWithMissingTests,
@@ -154,7 +154,7 @@ public static class TestResultHelper
     /// </summary>
     /// <param name="assemblyName">Name of the assembly.</param>
     /// <param name="methodsWithWrongNaming">The methods with wrong naming.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertOnTestResultsFromMethodsWithWrongDefinitions(
         string assemblyName,
         IDictionary<MethodInfo, string> methodsWithWrongNaming,

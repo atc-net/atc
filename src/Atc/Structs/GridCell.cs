@@ -12,7 +12,7 @@ public record struct GridCell(int X = 0, int Y = 0)
     /// Gets a value indicating whether this instance is default.
     /// </summary>
     /// <returns>
-    ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
     /// </returns>
     public readonly bool IsDefault => X == 0 && Y == 0;
 

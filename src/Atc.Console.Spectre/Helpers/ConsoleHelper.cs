@@ -22,8 +22,8 @@ public static class ConsoleHelper
     /// <summary>Writes the log item through the logger.</summary>
     /// <param name="logger">The logger.</param>
     /// <param name="logItem">The log item.</param>
-    /// <param name="includeKey">if set to <c>true</c> [include key].</param>
-    /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+    /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
+    /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     public static void WriteLog(
         ILogger logger,
         LogKeyValueItem logItem,
@@ -34,8 +34,8 @@ public static class ConsoleHelper
     /// <summary>Writes the log items through the logger.</summary>
     /// <param name="logger">The logger.</param>
     /// <param name="logItems">The log items.</param>
-    /// <param name="includeKey">if set to <c>true</c> [include key].</param>
-    /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+    /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
+    /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     public static void WriteLogs(
         ILogger logger,
         List<LogKeyValueItem> logItems,

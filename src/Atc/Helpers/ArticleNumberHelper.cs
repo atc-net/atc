@@ -48,7 +48,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="asin">The asin.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid asin] [the specified asin]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid asin] [the specified asin]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsValidAsin(string asin)
     {
@@ -71,7 +71,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="code">The code.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid ean] [the specified code]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid ean] [the specified code]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsValidEan(string code)
     {
@@ -89,7 +89,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="code">The code.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid gtin] [the specified code]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid gtin] [the specified code]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsValidGtin(string code)
     {
@@ -140,7 +140,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="code">The code.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid issn] [the specified code]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid issn] [the specified code]; otherwise, <see langword="false" />.
     /// </returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static bool IsValidIssn(string code)
@@ -188,7 +188,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="isbn10">The isbn10.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid isbn10] [the specified isbn10]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid isbn10] [the specified isbn10]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsValidIsbn10(string isbn10)
     {
@@ -239,7 +239,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="isbn13">The isbn13.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid isbn13] [the specified isbn13]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid isbn13] [the specified isbn13]; otherwise, <see langword="false" />.
     /// </returns>
     [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "TODO: Fix, then we have a UT that covers the senearios")]
     public static bool IsValidIsbn13(string isbn13)
@@ -286,7 +286,7 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="code">The code.</param>
     /// <returns>
-    ///   <c>true</c> if [is valid upc] [the specified code]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is valid upc] [the specified code]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsValidUpc(string code)
     {

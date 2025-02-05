@@ -11,7 +11,7 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
     /// Gets a value indicating whether this instance is default.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
     /// </value>
     [JsonIgnore]
     public readonly bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);

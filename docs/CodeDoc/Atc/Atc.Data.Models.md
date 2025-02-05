@@ -329,8 +329,8 @@ LogKeyValueItem.
 ><b>Summary:</b> Gets the log message.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include description].<br />
 #### ToString
 >```csharp
 >string ToString()

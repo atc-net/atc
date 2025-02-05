@@ -10,9 +10,9 @@ public static class FieldInfoExtensions
     /// Beautifies the name.
     /// </summary>
     /// <param name="fieldInfo">The field information.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
-    /// <param name="useHtmlFormat">if set to <c>true</c> [use HTML format].</param>
-    /// <param name="includeReturnType">if set to <c>true</c> [include return type].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
+    /// <param name="includeReturnType">if set to <see langword="true" /> [include return type].</param>
     public static string BeautifyName(this FieldInfo fieldInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
     {
         if (fieldInfo is null)

@@ -23,7 +23,7 @@ public static class EnumHelper
     /// </summary>
     /// <typeparam name="T">The type.</typeparam>
     /// <param name="value">The value.</param>
-    /// <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
+    /// <param name="ignoreCase">if set to <see langword="true" /> [ignore case].</param>
     /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.</returns>
     public static T GetEnumValue<T>(string value, bool ignoreCase = true)
         where T : Enum
@@ -132,11 +132,11 @@ public static class EnumHelper
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     public static Array ConvertEnumToArray(
         Type enumType,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
@@ -165,11 +165,11 @@ public static class EnumHelper
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<int, string> ConvertEnumToDictionary(
@@ -285,11 +285,11 @@ public static class EnumHelper
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<string, string> ConvertEnumToDictionaryWithStringKey(

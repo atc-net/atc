@@ -11,7 +11,7 @@ public sealed class RequestResponseLoggerOptions
     /// <summary>
     /// Gets or sets a value indicating whether Swagger requests should be exempt from logging.
     /// </summary>
-    /// <value><c>true</c> if Swagger requests should be skipped; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if Swagger requests should be skipped; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     /// <remarks>
     /// Skipping Swagger requests can reduce noise in logs from automated or development-time API exploration.
     /// </remarks>
@@ -20,7 +20,7 @@ public sealed class RequestResponseLoggerOptions
     /// <summary>
     /// Gets or sets a value indicating whether SignalR requests should be exempt from logging.
     /// </summary>
-    /// <value><c>true</c> if SignalR requests should be skipped; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if SignalR requests should be skipped; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     /// <remarks>
     /// Skipping SignalR requests can reduce noise in logs from real-time communications.
     /// </remarks>
@@ -29,25 +29,25 @@ public sealed class RequestResponseLoggerOptions
     /// <summary>
     /// Gets or sets a value indicating whether request query parameters should be included in logs.
     /// </summary>
-    /// <value><c>true</c> if request query parameters should be logged; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if request query parameters should be logged; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     public bool IncludeRequestQueryParameters { get; set; } = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether request header parameters should be included in logs.
     /// </summary>
-    /// <value><c>true</c> if request header parameters should be logged; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if request header parameters should be logged; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     public bool IncludeRequestHeaderParameters { get; set; } = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether response header parameters should be included in logs.
     /// </summary>
-    /// <value><c>true</c> if response header parameters should be logged; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if response header parameters should be logged; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     public bool IncludeResponseHeaderParameters { get; set; } = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether the response body should be logged.
     /// </summary>
-    /// <value><c>true</c> if the response body should be logged; otherwise, <c>false</c>. The default is <c>true</c>.</value>
+    /// <value><see langword="true" /> if the response body should be logged; otherwise, <see langword="false" />. The default is <see langword="true" />.</value>
     /// <remarks>
     /// Logging the response body can be useful for debugging responses but may increase the size of log files.
     /// </remarks>

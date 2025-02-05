@@ -12,7 +12,7 @@ public record struct Point2D(double X = 0, double Y = 0)
     /// Gets a value indicating whether this instance is default.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if this instance is default; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
     /// </value>
     public readonly bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
 

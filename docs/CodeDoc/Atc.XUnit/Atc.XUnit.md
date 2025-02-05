@@ -62,7 +62,7 @@ CodeComplianceNamingHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertExportedTypesWithWrongDefinitions
 >```csharp
 >void AssertExportedTypesWithWrongDefinitions(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
@@ -71,7 +71,7 @@ CodeComplianceNamingHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertLocalizationResources
 >```csharp
 >void AssertLocalizationResources(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)
@@ -123,7 +123,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decompilerType`&nbsp;&nbsp;-&nbsp;&nbsp;The decompiler type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the source.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the test.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertExportedMethodsWithMissingTests
 >```csharp
 >void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Assembly testAssembly, bool useFullName = False)
@@ -134,7 +134,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decompilerType`&nbsp;&nbsp;-&nbsp;&nbsp;The decompiler type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the source.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the test.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertExportedMethodsWithMissingTests
 >```csharp
 >void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
@@ -145,7 +145,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decompilerType`&nbsp;&nbsp;-&nbsp;&nbsp;The decompiler type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the source.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the test.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### CollectExportedMethodsWithMissingTestsAndGenerateText
 >```csharp
 >string CollectExportedMethodsWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
@@ -157,7 +157,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude source types.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### CollectExportedMethodsWithMissingTestsAndGenerateTextLines
 >```csharp
 >string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
@@ -169,7 +169,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude source types.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### CollectExportedMethodsWithMissingTestsFromAssembly
 >```csharp
 >MethodInfo[] CollectExportedMethodsWithMissingTestsFromAssembly(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null)
@@ -225,7 +225,7 @@ CodeComplianceTestHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;The exclude source types.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 
 <br />
 
@@ -477,7 +477,7 @@ TestResultHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodsWithMissingTests`&nbsp;&nbsp;-&nbsp;&nbsp;The methods with missing tests.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertOnTestResultsFromMethodsWithWrongDefinitions
 >```csharp
 >void AssertOnTestResultsFromMethodsWithWrongDefinitions(string assemblyName, IDictionary<MethodInfo, string> methodsWithWrongNaming, bool useFullName = False)
@@ -487,7 +487,7 @@ TestResultHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the assembly.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodsWithWrongNaming`&nbsp;&nbsp;-&nbsp;&nbsp;The methods with wrong naming.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders
 >```csharp
 >void AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(string assemblyName, IDictionary<string, Dictionary<string, List<string>>> missingTranslations, IDictionary<string, Dictionary<string, List<string>>> invalidKeysSuffixWithPlaceholders)

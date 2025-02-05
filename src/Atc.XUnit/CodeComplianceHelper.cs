@@ -9,7 +9,7 @@ public static class CodeComplianceHelper
     /// Asserts the exported types with wrong definitions.
     /// </summary>
     /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertExportedTypesWithWrongDefinitions(
         Type type,
         bool useFullName = false)
@@ -22,7 +22,7 @@ public static class CodeComplianceHelper
     /// </summary>
     /// <param name="assembly">The assembly.</param>
     /// <param name="excludeTypes">The exclude types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertExportedTypesWithWrongDefinitions(
         Assembly assembly,
         List<Type>? excludeTypes = null,

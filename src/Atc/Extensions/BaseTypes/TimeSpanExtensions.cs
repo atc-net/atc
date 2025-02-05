@@ -40,7 +40,7 @@ public static class TimeSpanExtensions
     /// </summary>
     /// <param name="timeSpan">The timeSpan.</param>
     /// <returns>
-    ///   <c>true</c> if [is seconds is zero] otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is seconds is zero] otherwise, <see langword="false" />.
     /// </returns>
     public static bool SecondsNotZero(this TimeSpan timeSpan)
     {

@@ -13,7 +13,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <returns>
-    ///   <c>true</c> if [has validation attributes] [the specified type]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has validation attributes] [the specified type]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">type.</exception>
     public static bool HasValidationAttributes(this Type type)
@@ -33,7 +33,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <returns>
-    ///   <c>true</c> if the specified type is delegate; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified type is delegate; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsDelegate(this Type type)
     {
@@ -50,7 +50,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <returns>
-    ///   <c>true</c> if the specified type is nullable; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified type is nullable; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">type.</exception>
     public static bool IsNullable(this Type type)
@@ -79,7 +79,7 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <returns>
-    ///   <c>true</c> if the specified type is simple; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified type is simple; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">type.</exception>
     public static bool IsSimple(this Type type)
@@ -108,7 +108,7 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="inheritType">Type of the inherit.</param>
     /// <returns>
-    ///   <c>true</c> if [is inherited from] [the specified inherit type]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is inherited from] [the specified inherit type]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsInheritedFrom(this Type type, Type inheritType)
     {
@@ -163,9 +163,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="inheritType">Type of the inherit.</param>
     /// <param name="argumentType">Type of the argument.</param>
-    /// <param name="matchAlsoOnArgumentTypeInterface">if set to <c>true</c> [match also on argument type interface].</param>
+    /// <param name="matchAlsoOnArgumentTypeInterface">if set to <see langword="true" /> [match also on argument type interface].</param>
     /// <returns>
-    ///   <c>true</c> if [is inherited from generic with argument type] [the specified inherit type]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is inherited from generic with argument type] [the specified inherit type]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = true)
     {
@@ -444,7 +444,7 @@ public static class TypeExtensions
     /// Get the name of the type without generic part.
     /// </summary>
     /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     /// <exception cref="ArgumentNullException">type.</exception>
     public static string? GetNameWithoutGenericType(this Type type, bool useFullName = false)
     {
@@ -477,8 +477,8 @@ public static class TypeExtensions
     /// Beautifies the name of the type of.
     /// </summary>
     /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
-    /// <param name="useHtmlFormat">if set to <c>true</c> [use HTML format].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
     public static string BeautifyTypeOfName(this Type type, bool useFullName = false, bool useHtmlFormat = false)
     {
         return $"typeof({type.BeautifyName(useFullName, useHtmlFormat)})";
@@ -488,10 +488,10 @@ public static class TypeExtensions
     /// Beautifies the name.
     /// </summary>
     /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
-    /// <param name="useHtmlFormat">if set to <c>true</c> [use HTML format].</param>
-    /// <param name="useGenericParameterNamesAsT">if set to <c>true</c> [use generic parameter names as t].</param>
-    /// <param name="useSuffixQuestionMarkForGeneric">if set to <c>true</c> [use suffix question mark for generic].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
+    /// <param name="useGenericParameterNamesAsT">if set to <see langword="true" /> [use generic parameter names as t].</param>
+    /// <param name="useSuffixQuestionMarkForGeneric">if set to <see langword="true" /> [use suffix question mark for generic].</param>
     /// <exception cref="ArgumentNullException">type.</exception>
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     public static string BeautifyName(this Type type, bool useFullName = false, bool useHtmlFormat = false, bool useGenericParameterNamesAsT = false, bool useSuffixQuestionMarkForGeneric = false)
@@ -542,7 +542,7 @@ public static class TypeExtensions
     /// Beautifies the name of the type.
     /// </summary>
     /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string BeautifyTypeName(this Type? type, bool useFullName = false)
     {
         if (type is null || "Object".Equals(type.Name, StringComparison.Ordinal))
@@ -657,7 +657,7 @@ public static class TypeExtensions
     /// <param name="baseType">Type of the base.</param>
     /// <param name="derivedType">Type of the derived.</param>
     /// <returns>
-    ///   <c>true</c> if [is sub class of raw generic] [the specified derived type]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is sub class of raw generic] [the specified derived type]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
     {

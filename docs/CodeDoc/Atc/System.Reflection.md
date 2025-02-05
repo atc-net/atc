@@ -59,7 +59,7 @@ Extensions for the `System.Reflection.Assembly` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
 >
-><b>Returns:</b> `true` if assembly is a debug compilation, `false` if the assembly is a release compilation.
+><b>Returns:</b> <see langword="true" /> if assembly is a debug compilation, <see langword="false" /> if the assembly is a release compilation.
 
 <br />
 
@@ -80,9 +80,9 @@ Extensions for the `System.Reflection.FieldInfo` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fieldInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The field information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeReturnType`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include return type].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use HTML format].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeReturnType`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include return type].<br />
 
 <br />
 
@@ -116,7 +116,7 @@ Extensions for the `System.Reflection.MemberInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
 >
-><b>Returns:</b> `true` if [has exclude from code coverage attribute] [the specified member information]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has exclude from code coverage attribute] [the specified member information]; otherwise, <see langword="false" />.
 #### HasIgnoreDisplayAttribute
 >```csharp
 >bool HasIgnoreDisplayAttribute(this MemberInfo memberInfo)
@@ -126,7 +126,7 @@ Extensions for the `System.Reflection.MemberInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
 >
-><b>Returns:</b> `true` if [has ignore display attribute] [the specified member information]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has ignore display attribute] [the specified member information]; otherwise, <see langword="false" />.
 #### HasRequiredAttribute
 >```csharp
 >bool HasRequiredAttribute(this MemberInfo memberInfo)
@@ -136,7 +136,7 @@ Extensions for the `System.Reflection.MemberInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information.<br />
 >
-><b>Returns:</b> `true` if [has required attribute] [the specified member information]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has required attribute] [the specified member information]; otherwise, <see langword="false" />.
 #### IsPropertyWithSetter
 >```csharp
 >bool IsPropertyWithSetter(this MemberInfo member)
@@ -165,9 +165,9 @@ Extensions for the `System.Reflection.MethodInfo` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeReturnType`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include return type].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use HTML format].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeReturnType`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include return type].<br />
 #### HasDeclaringTypeValidationAttributes
 >```csharp
 >bool HasDeclaringTypeValidationAttributes(this MethodInfo methodInfo)
@@ -177,7 +177,7 @@ Extensions for the `System.Reflection.MethodInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
 >
-><b>Returns:</b> `true` if [has declaring type validation attributes] [the specified method information]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has declaring type validation attributes] [the specified method information]; otherwise, <see langword="false" />.
 #### HasGenericParameters
 >```csharp
 >bool HasGenericParameters(this MethodInfo methodInfo)
@@ -187,7 +187,7 @@ Extensions for the `System.Reflection.MethodInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
 >
-><b>Returns:</b> `true` if [has generic parameters] [the specified method information]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has generic parameters] [the specified method information]; otherwise, <see langword="false" />.
 #### IsOverride
 >```csharp
 >bool IsOverride(this MethodInfo methodInfo)
@@ -197,7 +197,7 @@ Extensions for the `System.Reflection.MethodInfo` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The method information.<br />
 >
-><b>Returns:</b> `true` if the specified method information is override; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified method information is override; otherwise, <see langword="false" />.
 
 <br />
 
@@ -226,7 +226,7 @@ Extensions for the `System.Reflection.PropertyInfo` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useLocalizedIfPossible`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use localized if possible].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useLocalizedIfPossible`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use localized if possible].<br />
 #### GetName
 >```csharp
 >string GetName(this PropertyInfo propertyInfo)

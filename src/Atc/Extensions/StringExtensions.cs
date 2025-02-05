@@ -43,8 +43,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="pattern">The pattern.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> [ignore case sensitive].</param>
-    /// <param name="useEndOfPatternToMatch">if set to <c>true</c> [use end of pattern to match].</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> [ignore case sensitive].</param>
+    /// <param name="useEndOfPatternToMatch">if set to <see langword="true" /> [use end of pattern to match].</param>
     /// <exception cref="ArgumentNullException">
     /// value
     /// or
@@ -229,7 +229,7 @@ public static class StringExtensions
     /// Gets the string format parameter template placeholders.
     /// </summary>
     /// <param name="value">The value.</param>
-    /// <param name="useDoubleBracket">Use double bracket if <c>true</c>;otherwise <c>false</c>.</param>
+    /// <param name="useDoubleBracket">Use double bracket if <see langword="true" />;otherwise <see langword="false" />.</param>
     /// <exception cref="ArgumentNullException">value.</exception>
     public static List<string> GetStringFormatParameterTemplatePlaceholders(
         this string value,
@@ -254,7 +254,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="replacements">The replacements.</param>
-    /// <param name="useDoubleBracket">Use double bracket if <c>true</c>;otherwise <c>false</c>.</param>
+    /// <param name="useDoubleBracket">Use double bracket if <see langword="true" />;otherwise <see langword="false" />.</param>
     /// <exception cref="ArgumentNullException">
     /// value
     /// or
@@ -691,7 +691,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The version string to parse.</param>
     /// <param name="version">When this method returns, contains the <see cref="Version"/> object if parsing succeeded, or a default version if parsing failed.</param>
-    /// <returns><c>true</c> if the string was successfully parsed; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the string was successfully parsed; otherwise, <see langword="false" />.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="value"/> is <c>null</c>.</exception>
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static bool TryParseVersion(
@@ -792,7 +792,7 @@ public static class StringExtensions
     /// Javas the script encode.
     /// </summary>
     /// <param name="javaScript">The java script.</param>
-    /// <param name="htmlEncode">if set to <c>true</c> [HTML encode].</param>
+    /// <param name="htmlEncode">if set to <see langword="true" /> [HTML encode].</param>
     public static string JavaScriptEncode(
         this string javaScript,
         bool htmlEncode)
@@ -814,7 +814,7 @@ public static class StringExtensions
     /// Javas the script decode.
     /// </summary>
     /// <param name="javaScript">The java script.</param>
-    /// <param name="htmlDecode">if set to <c>true</c> [HTML decode].</param>
+    /// <param name="htmlDecode">if set to <see langword="true" /> [HTML decode].</param>
     public static string JavaScriptDecode(
         this string javaScript,
         bool htmlDecode)
@@ -914,9 +914,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="letterAccentType">Type of the letter accent.</param>
-    /// <param name="decode">if set to <c>true</c> [decode].</param>
-    /// <param name="forLower">if set to <c>true</c> [for lower].</param>
-    /// <param name="forUpper">if set to <c>true</c> [for upper].</param>
+    /// <param name="decode">if set to <see langword="true" /> [decode].</param>
+    /// <param name="forLower">if set to <see langword="true" /> [for lower].</param>
+    /// <param name="forUpper">if set to <see langword="true" /> [for upper].</param>
     /// <returns>The string that is normalize for accent-letter.</returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
@@ -1482,9 +1482,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="containsValue">The string to compare with.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if input string contains a value from specified value; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if input string contains a value from specified value; otherwise, <see langword="false" />.
     /// </returns>
     public static bool Contains(
         this string value,
@@ -1505,9 +1505,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="containsValues">The chars to compare with.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if input string contains a value from specified char-values; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if input string contains a value from specified char-values; otherwise, <see langword="false" />.
     /// </returns>
     public static bool Contains(
         this string value,
@@ -1529,9 +1529,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="containsValues">The strings to compare with.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> ignore case sensitive.</param>
     /// <returns>
-    ///   <c>true</c> if input string contains a value from specified string-values; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if input string contains a value from specified string-values; otherwise, <see langword="false" />.
     /// </returns>
     public static bool Contains(
         this string value,
@@ -1686,7 +1686,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="startValue">The string to compare with.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> ignore case sensitive.</param>
     /// <returns>The string that remains after a specified string are removed from the start of the current string.</returns>
     public static string RemoveStart(
         this string value,
@@ -1712,7 +1712,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="endValue">The string to compare with.</param>
-    /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
+    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> ignore case sensitive.</param>
     /// <returns>The string that remains after a specified string are removed from the end of the current string.</returns>
     public static string RemoveEnd(
         this string value,

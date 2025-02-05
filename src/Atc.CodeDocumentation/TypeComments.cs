@@ -72,7 +72,7 @@ public class TypeComments
     /// Gets a value indicating whether this instance has comments.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if this instance has comments; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if this instance has comments; otherwise, <see langword="false" />.
     /// </value>
     public bool HasComments => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException());
 

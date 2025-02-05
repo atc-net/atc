@@ -34,7 +34,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`asin`&nbsp;&nbsp;-&nbsp;&nbsp;The asin.<br />
 >
-><b>Returns:</b> `true` if [is valid asin] [the specified asin]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid asin] [the specified asin]; otherwise, <see langword="false" />.
 #### IsValidEan
 >```csharp
 >bool IsValidEan(string code)
@@ -44,7 +44,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
 >
-><b>Returns:</b> `true` if [is valid ean] [the specified code]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid ean] [the specified code]; otherwise, <see langword="false" />.
 #### IsValidGtin
 >```csharp
 >bool IsValidGtin(string code)
@@ -54,7 +54,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
 >
-><b>Returns:</b> `true` if [is valid gtin] [the specified code]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid gtin] [the specified code]; otherwise, <see langword="false" />.
 #### IsValidIsbn10
 >```csharp
 >bool IsValidIsbn10(string isbn10)
@@ -64,7 +64,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isbn10`&nbsp;&nbsp;-&nbsp;&nbsp;The isbn10.<br />
 >
-><b>Returns:</b> `true` if [is valid isbn10] [the specified isbn10]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid isbn10] [the specified isbn10]; otherwise, <see langword="false" />.
 #### IsValidIsbn13
 >```csharp
 >bool IsValidIsbn13(string isbn13)
@@ -74,7 +74,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isbn13`&nbsp;&nbsp;-&nbsp;&nbsp;The isbn13.<br />
 >
-><b>Returns:</b> `true` if [is valid isbn13] [the specified isbn13]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid isbn13] [the specified isbn13]; otherwise, <see langword="false" />.
 #### IsValidIssn
 >```csharp
 >bool IsValidIssn(string code)
@@ -84,7 +84,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
 >
-><b>Returns:</b> `true` if [is valid issn] [the specified code]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid issn] [the specified code]; otherwise, <see langword="false" />.
 #### IsValidUpc
 >```csharp
 >bool IsValidUpc(string code)
@@ -94,7 +94,7 @@ BarcodeHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`code`&nbsp;&nbsp;-&nbsp;&nbsp;The code.<br />
 >
-><b>Returns:</b> `true` if [is valid upc] [the specified code]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is valid upc] [the specified code]; otherwise, <see langword="false" />.
 #### TryConvertToGtin
 >```csharp
 >bool TryConvertToGtin(string code, out string gtin)
@@ -715,7 +715,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortDateUsingSpecificCulture
 >```csharp
 >bool TryParseShortDateUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
@@ -730,7 +730,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingCurrentUiCulture
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
@@ -744,7 +744,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingCurrentUiCultureUtc
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCultureUtc(string value, out DateTime result)
@@ -758,7 +758,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingSpecificCulture
 >```csharp
 >bool TryParseShortTimeUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
@@ -773,7 +773,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingSpecificCultureUtc
 >```csharp
 >bool TryParseShortTimeUsingSpecificCultureUtc(string value, CultureInfo cultureInfo, out DateTime result)
@@ -788,7 +788,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseUsingCurrentUiCulture
 >```csharp
 >bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
@@ -802,7 +802,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseUsingSpecificCulture
 >```csharp
 >bool TryParseUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
@@ -817,7 +817,7 @@ DateTimeHelper.
             if the parse operation was successful; otherwise, contains the default DateTime.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 
 <br />
 
@@ -843,7 +843,7 @@ DateTimeOffsetHelper.
             if the parse operation was successful; otherwise, contains the default DateTimeOffset.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingCurrentUiCulture
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
@@ -857,7 +857,7 @@ DateTimeOffsetHelper.
             if the parse operation was successful; otherwise, contains the default DateTimeOffset.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingCurrentUiCultureUtc
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCultureUtc(string value, out DateTime result)
@@ -871,7 +871,7 @@ DateTimeOffsetHelper.
             if the parse operation was successful; otherwise, contains the default DateTimeOffset.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseUsingCurrentUiCulture
 >```csharp
 >bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
@@ -885,7 +885,7 @@ DateTimeOffsetHelper.
             if the parse operation was successful; otherwise, contains the default DateTimeOffset.
             <br />
 >
-><b>Returns:</b> `true` if the parsing was successful; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 
 <br />
 
@@ -1008,11 +1008,11 @@ Enumeration Helper: EnumHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use description attribute].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include combined].<br />
 #### ConvertEnumToDictionary
 >```csharp
 >Dictionary<int, string> ConvertEnumToDictionary(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
@@ -1022,11 +1022,11 @@ Enumeration Helper: EnumHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use description attribute].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include combined].<br />
 #### ConvertEnumToDictionaryWithStringKey
 >```csharp
 >Dictionary<string, string> ConvertEnumToDictionaryWithStringKey(Type enumType, DropDownFirstItemType dropDownFirstItemType = None, bool useDescriptionAttribute = False, bool includeDefault = True, SortDirectionType sortDirectionType = None, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
@@ -1036,11 +1036,11 @@ Enumeration Helper: EnumHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use description attribute].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include base].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [by flag include combined].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include base].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include combined].<br />
 #### GetDescription
 >```csharp
 >string GetDescription(Enum enumeration)
@@ -1057,7 +1057,7 @@ Enumeration Helper: EnumHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [ignore case].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [ignore case].<br />
 >
 ><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.
 #### GetIndividualValues
@@ -1439,7 +1439,7 @@ FileHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
 >
-><b>Returns:</b> `true` if the url is started in a browser; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
 >
 ><b>Remarks:</b> Only url with the http or https protocol is supported.
 #### OpenUrl
@@ -1451,7 +1451,7 @@ FileHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`url`&nbsp;&nbsp;-&nbsp;&nbsp;The URL.<br />
 >
-><b>Returns:</b> `true` if the url is started in a browser; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
 >
 ><b>Remarks:</b> Only url with the http or https protocol is supported.
 
@@ -1555,7 +1555,7 @@ The MathHelper module contains procedures used to preform math operations.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [is equal to zero] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is equal to zero] [the specified value]; otherwise, <see langword="false" />.
 #### IsEquals
 >```csharp
 >bool IsEquals(double value1, double value2)
@@ -1566,7 +1566,7 @@ The MathHelper module contains procedures used to preform math operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
 >
-><b>Returns:</b> `true` if the specified value1 is equals; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value1 is equals; otherwise, <see langword="false" />.
 #### Max
 >```csharp
 >int Max(int[] values)

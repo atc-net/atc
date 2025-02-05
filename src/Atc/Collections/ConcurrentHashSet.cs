@@ -107,7 +107,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// </summary>
     /// <param name="item">The item.</param>
     /// <returns>
-    ///   <c>true</c> if [contains] [the specified item]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [contains] [the specified item]; otherwise, <see langword="false" />.
     /// </returns>
     public bool Contains(T item)
     {
@@ -177,7 +177,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// <summary>
     /// Releases unmanaged and - optionally - managed resources.
     /// </summary>
-    /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+    /// <param name="disposing"><see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)

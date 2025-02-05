@@ -7,12 +7,12 @@ namespace System;
 public static class DecimalExtensions
 {
     /// <summary>
-    /// Compare two values. Return <c>true</c> if they are equals.
+    /// Compare two values. Return <see langword="true" /> if they are equals.
     /// </summary>
     /// <param name="a">The first value.</param>
     /// <param name="b">The second value.</param>
     /// <returns>
-    /// <c>true</c> if the two values are equals, <c>false</c> otherwise.
+    /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
     public static bool IsEqual(this decimal a, decimal b)
     {
@@ -20,12 +20,12 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    /// Compare two values. Return <c>true</c> if they are equals.
+    /// Compare two values. Return <see langword="true" /> if they are equals.
     /// </summary>
     /// <param name="a">The first value.</param>
     /// <param name="b">The second value.</param>
     /// <returns>
-    /// <c>true</c> if the two values are equals, <c>false</c> otherwise.
+    /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
     public static bool IsEqual(this decimal? a, decimal? b)
     {

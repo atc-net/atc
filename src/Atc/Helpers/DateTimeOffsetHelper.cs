@@ -19,7 +19,7 @@ public static class DateTimeOffsetHelper
     /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
     /// </param>
     /// <returns>
-    ///   <c>true</c> if the parsing was successful; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
     public static bool TryParseUsingCurrentUiCulture(
         string value,
@@ -55,7 +55,7 @@ public static class DateTimeOffsetHelper
     /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
     /// </param>
     /// <returns>
-    ///   <c>true</c> if the parsing was successful; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
     public static bool TryParseShortDateUsingCurrentUiCulture(
         string value,
@@ -91,7 +91,7 @@ public static class DateTimeOffsetHelper
     /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
     /// </param>
     /// <returns>
-    ///   <c>true</c> if the parsing was successful; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
     public static bool TryParseShortTimeUsingCurrentUiCulture(
         string value,
@@ -134,7 +134,7 @@ public static class DateTimeOffsetHelper
     /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
     /// </param>
     /// <returns>
-    ///   <c>true</c> if the parsing was successful; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
     public static bool TryParseShortTimeUsingCurrentUiCultureUtc(
         string value,

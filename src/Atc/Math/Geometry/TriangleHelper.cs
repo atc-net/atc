@@ -12,7 +12,7 @@ public static class TriangleHelper
     /// <param name="angleB">The angle B.</param>
     /// <param name="angleC">The angle C.</param>
     /// <returns>
-    ///   <c>true</c> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
     {
@@ -41,7 +41,7 @@ public static class TriangleHelper
     /// <param name="angleB">The angle B.</param>
     /// <param name="angleC">The angle C.</param>
     /// <returns>
-    ///   <c>true</c> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
     {

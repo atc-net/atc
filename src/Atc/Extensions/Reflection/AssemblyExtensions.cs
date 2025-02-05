@@ -29,7 +29,7 @@ public static class AssemblyExtensions
     /// Diagnostics a assembly to find out, is this complied a debug assembly.
     /// </summary>
     /// <param name="assembly">The assembly.</param>
-    /// <returns><c>true</c> if assembly is a debug compilation, <c>false</c> if the assembly is a release compilation.</returns>
+    /// <returns><see langword="true" /> if assembly is a debug compilation, <see langword="false" /> if the assembly is a release compilation.</returns>
     public static bool IsDebugBuild(this Assembly assembly)
     {
         if (assembly is null)

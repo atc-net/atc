@@ -238,7 +238,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting part.</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public int CompareTo(
         SemanticVersion? otherVersion,
         int significantParts,
@@ -332,7 +332,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting part.</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public bool GreaterThan(
         SemanticVersion? otherVersion,
         int significantParts = 4,
@@ -372,8 +372,8 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Is newer than.
     /// </summary>
     /// <param name="otherVersion">The other version.</param>
-    /// <param name="withinMinorReleaseOnly">if set to <c>true</c> [within minor release only].</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="withinMinorReleaseOnly">if set to <see langword="true" /> [within minor release only].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public bool IsNewerThan(
         SemanticVersion? otherVersion,
         bool withinMinorReleaseOnly = false,

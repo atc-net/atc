@@ -34,7 +34,7 @@ public static class DocumentationHelper
     /// </summary>
     /// <param name="assembly">The assembly.</param>
     /// <param name="excludeTypes">The exclude types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(
         Assembly assembly,
         List<Type>? excludeTypes = null,
@@ -52,7 +52,7 @@ public static class DocumentationHelper
     /// </summary>
     /// <param name="assembly">The assembly.</param>
     /// <param name="excludeTypes">The exclude types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string[] CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(
         Assembly assembly,
         List<Type>? excludeTypes = null,

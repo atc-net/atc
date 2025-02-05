@@ -21,7 +21,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [has HTML tags] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has HTML tags] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool HasHtmlTags(this string value)
     {
@@ -34,10 +34,10 @@ public static class StringHasIsExtensions
     /// <param name="a">a.</param>
     /// <param name="b">The b.</param>
     /// <param name="comparison">The string comparison - default is 'Ordinal'.</param>
-    /// <param name="treatNullAsEmpty">if set to <c>true</c> [treat null as empty].</param>
-    /// <param name="useNormalizeAccents">if set to <c>true</c> [use normalize accents].</param>
+    /// <param name="treatNullAsEmpty">if set to <see langword="true" /> [treat null as empty].</param>
+    /// <param name="useNormalizeAccents">if set to <see langword="true" /> [use normalize accents].</param>
     /// <returns>
-    ///   <c>true</c> if the specified b is equal; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified b is equal; otherwise, <see langword="false" />.
     /// </returns>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     [SuppressMessage("Major Bug", "S2259:Null pointers should not be dereferenced", Justification = "OK.")]
@@ -103,7 +103,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>
-    ///    <c>true</c> if the specified value is alpha [a-zA-Z]; otherwise, <c>false</c>.
+    ///    <see langword="true" /> if the specified value is alpha [a-zA-Z]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaOnly(this string value)
     {
@@ -115,7 +115,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>
-    ///    <c>true</c> if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, <c>false</c>.
+    ///    <see langword="true" /> if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaNumericOnly(this string value)
     {
@@ -126,7 +126,7 @@ public static class StringHasIsExtensions
     /// Determines whether the specified value is a date.
     /// </summary>
     /// <param name="value">The string to work on.</param>
-    /// <returns><c>true</c> if the specified value is a date; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified value is a date; otherwise, <see langword="false" />.</returns>
     public static bool IsDate(this string value)
     {
         return !string.IsNullOrEmpty(value) &&
@@ -139,7 +139,7 @@ public static class StringHasIsExtensions
     /// <param name="value">The value.</param>
     /// <param name="cultureInfo">The culture information.</param>
     /// <returns>
-    ///   <c>true</c> if the specified culture information is date; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified culture information is date; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsDate(this string value, CultureInfo cultureInfo)
     {
@@ -152,7 +152,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value is digit [0-9]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value is digit [0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsDigitOnly(this string value)
     {
@@ -164,7 +164,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [is format json] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is format json] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFormatJson(this string value)
     {
@@ -183,7 +183,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [is format XML] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is format XML] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFormatXml(this string value)
     {
@@ -200,7 +200,7 @@ public static class StringHasIsExtensions
     /// Determines whether the specified string is a System.Guid.
     /// </summary>
     /// <param name="value">The string to work on.</param>
-    /// <returns><c>true</c> if the specified string is a System.Guid; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.</returns>
     public static bool IsGuid(this string value)
     {
         return RxGuid.Value.IsMatch(value);
@@ -211,7 +211,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <param name="output">If value is valid, output will be System.Guid passed from value; otherwise output will be System.Guid.Empty.</param>
-    /// <returns><c>true</c> if the specified string is a System.Guid; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.</returns>
     public static bool IsGuid(this string value, out Guid output)
     {
         output = Guid.Empty;
@@ -229,7 +229,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value is key; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value is key; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsKey(this string value)
     {
@@ -240,7 +240,7 @@ public static class StringHasIsExtensions
     /// Determines whether the specified string length is even.
     /// </summary>
     /// <param name="value">The string to work on.</param>
-    /// <returns><c>true</c> if the specified string length is even; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified string length is even; otherwise, <see langword="false" />.</returns>
     public static bool IsLengthEven(this string value)
     {
         return !string.IsNullOrEmpty(value) && value.Length.IsEven();
@@ -251,7 +251,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value is numeric [0-9]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value is numeric [0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsNumericOnly(this string value)
     {
@@ -263,7 +263,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value is sentence; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value is sentence; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsSentence(this string value)
     {
@@ -274,9 +274,9 @@ public static class StringHasIsExtensions
     /// Determines whether [is string format parameters balanced] [the specified value].
     /// </summary>
     /// <param name="value">The value.</param>
-    /// <param name="isNumeric">if set to <c>true</c> [is numeric].</param>
+    /// <param name="isNumeric">if set to <see langword="true" /> [is numeric].</param>
     /// <returns>
-    ///   <c>true</c> if [is string format parameters balanced] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is string format parameters balanced] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsStringFormatParametersBalanced(this string value, bool isNumeric = true)
     {
@@ -327,7 +327,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value is word; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value is word; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsWord(this string value)
     {
@@ -339,7 +339,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [is first character lower case] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is first character lower case] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFirstCharacterLowerCase(this string value)
     {
@@ -351,7 +351,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [is first character upper case] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is first character upper case] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFirstCharacterUpperCase(this string value)
     {
@@ -364,7 +364,7 @@ public static class StringHasIsExtensions
     /// <param name="value">The value.</param>
     /// <param name="casingStyle">The casing style.</param>
     /// <returns>
-    ///   <c>true</c> if [is casing style valid] [the specified casing style]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is casing style valid] [the specified casing style]; otherwise, <see langword="false" />.
     /// </returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
@@ -438,7 +438,7 @@ public static class StringHasIsExtensions
     /// <remarks>This works only for Danish companies.</remarks>
     /// <param name="cvrNumber">The CVR number.</param>
     /// <returns>
-    ///   <c>true</c> if the specified company CVR number is a valid number; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified company CVR number is a valid number; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsCompanyCvrNumber(this string cvrNumber)
     {
@@ -474,7 +474,7 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="pNumber">The p number.</param>
     /// <returns>
-    /// <c>true</c> if the specified company P number is a valid number; otherwise, <c>false</c>.
+    /// <see langword="true" /> if the specified company P number is a valid number; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsCompanyPNumber(this string pNumber)
     {
@@ -492,7 +492,7 @@ public static class StringHasIsExtensions
     /// Determines whether the specified person CPR number is a valid number.
     /// </summary>
     /// <param name="cprNumber">The CPR number.</param>
-    /// <returns><c>true</c> if the specified person CPR number is a valid number; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified person CPR number is a valid number; otherwise, <see langword="false" />.</returns>
     public static bool IsPersonCprNumber(this string cprNumber)
     {
         if (string.IsNullOrEmpty(cprNumber))
@@ -536,7 +536,7 @@ public static class StringHasIsExtensions
     /// Determines whether the specified value is a valid email address.
     /// </summary>
     /// <param name="value">The string to work on.</param>
-    /// <returns><c>true</c> if the specified value is a valid email address; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified value is a valid email address; otherwise, <see langword="false" />.</returns>
     public static bool IsEmailAddress(this string value)
     {
         return !string.IsNullOrEmpty(value) && RxEmailAddress.Value.IsMatch(value);

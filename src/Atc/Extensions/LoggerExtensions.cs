@@ -6,8 +6,8 @@ public static class LoggerExtensions
     /// <summary>Logs the key value item.</summary>
     /// <param name="logger">The logger.</param>
     /// <param name="logKeyValueItem">The log key value item.</param>
-    /// <param name="includeKey">if set to <c>true</c> [include key].</param>
-    /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+    /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
+    /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     public static void LogKeyValueItem(
         this ILogger logger,
         LogKeyValueItem logKeyValueItem,
@@ -58,8 +58,8 @@ public static class LoggerExtensions
     /// <summary>Logs the key value items.</summary>
     /// <param name="logger">The logger.</param>
     /// <param name="logKeyValueItems">The log key value items.</param>
-    /// <param name="includeKey">if set to <c>true</c> [include key].</param>
-    /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+    /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
+    /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     public static void LogKeyValueItems(
         this ILogger logger,
         List<LogKeyValueItem> logKeyValueItems,
