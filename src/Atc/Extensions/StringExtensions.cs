@@ -2006,6 +2006,45 @@ public static class StringExtensions
            !NumberHelper.IsInt(httpStatusCode.ToString());
 
 #if NET8_0_OR_GREATER
+    /// <summary>
+    /// Formats a string template by replacing placeholders with corresponding argument values.
+    /// </summary>
+    /// <param name="template">The format string containing placeholders.</param>
+    /// <param name="arg0">The first required argument to replace a placeholder.</param>
+    /// <param name="arg1">Optional argument for placeholder replacement.</param>
+    /// <param name="arg2">Optional argument for placeholder replacement.</param>
+    /// <param name="arg3">Optional argument for placeholder replacement.</param>
+    /// <param name="arg4">Optional argument for placeholder replacement.</param>
+    /// <param name="arg5">Optional argument for placeholder replacement.</param>
+    /// <param name="arg6">Optional argument for placeholder replacement.</param>
+    /// <param name="arg7">Optional argument for placeholder replacement.</param>
+    /// <param name="arg8">Optional argument for placeholder replacement.</param>
+    /// <param name="arg9">Optional argument for placeholder replacement.</param>
+    /// <param name="arg0Name">The name of <paramref name="arg0"/>, provided via <see cref="CallerArgumentExpressionAttribute"/>.</param>
+    /// <param name="arg1Name">The name of <paramref name="arg1"/> (if provided), automatically inferred.</param>
+    /// <param name="arg2Name">The name of <paramref name="arg2"/> (if provided), automatically inferred.</param>
+    /// <param name="arg3Name">The name of <paramref name="arg3"/> (if provided), automatically inferred.</param>
+    /// <param name="arg4Name">The name of <paramref name="arg4"/> (if provided), automatically inferred.</param>
+    /// <param name="arg5Name">The name of <paramref name="arg5"/> (if provided), automatically inferred.</param>
+    /// <param name="arg6Name">The name of <paramref name="arg6"/> (if provided), automatically inferred.</param>
+    /// <param name="arg7Name">The name of <paramref name="arg7"/> (if provided), automatically inferred.</param>
+    /// <param name="arg8Name">The name of <paramref name="arg8"/> (if provided), automatically inferred.</param>
+    /// <param name="arg9Name">The name of <paramref name="arg9"/> (if provided), automatically inferred.</param>
+    /// <returns>
+    /// A formatted string where placeholders in <paramref name="template"/> are replaced with corresponding argument values.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="template"/> or <paramref name="arg0"/> is null.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if the number of provided arguments does not match the number of placeholders in the template, 
+    /// or if a placeholder does not match any argument.
+    /// </exception>
+    /// <remarks>
+    /// - The method extracts placeholders from the template and ensures that the provided arguments match the placeholders.<br/>
+    /// - Named placeholders (e.g., '{argName}') and indexed placeholders (e.g., '{0}') are supported.<br/>
+    /// - Argument names are inferred using the <see cref="CallerArgumentExpressionAttribute"/> for better debugging.
+    /// </remarks>
     public static string FormatWith(
         this string template,
         string arg0,

@@ -331,7 +331,8 @@ internal static class ParametersNamingMatchHelper
         }
 
         if (methodParameterTypeName.Equals(testParameterTypeName, StringComparison.Ordinal) ||
-            methodParameter.ParameterType.FullName!.Equals(testParameterTypeName, StringComparison.Ordinal))
+            (methodParameter.ParameterType.FullName is not null &&
+             methodParameter.ParameterType.FullName.Equals(testParameterTypeName, StringComparison.Ordinal)))
         {
             return true;
         }

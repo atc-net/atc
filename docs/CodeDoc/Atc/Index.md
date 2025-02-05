@@ -227,6 +227,7 @@
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
+- [DictionaryExtensions](System.Collections.Generic.md#dictionaryextensions)
 - [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
 

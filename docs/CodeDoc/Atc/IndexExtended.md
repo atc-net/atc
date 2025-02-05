@@ -5306,6 +5306,12 @@
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
+- [DictionaryExtensions](System.Collections.Generic.md#dictionaryextensions)
+  -  Static Methods
+     - GetOrAdd(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, Func&lt;TKey, TValue&gt; valueFactory)
+     - GetOrAdd(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, TValue value)
+     - TryUpdate(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, Func&lt;TKey, TValue, TValue&gt; valueFactory)
+     - TryUpdate(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, TValue value)
 - [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
   -  Static Methods
      - CountAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)

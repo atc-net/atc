@@ -2103,6 +2103,34 @@ Extensions for the string class.
 >```csharp
 >string FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
 >```
+><b>Summary:</b> Formats a string template by replacing placeholders with corresponding argument values.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`template`&nbsp;&nbsp;-&nbsp;&nbsp;The format string containing placeholders.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg0`&nbsp;&nbsp;-&nbsp;&nbsp;The first required argument to replace a placeholder.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg1`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg2`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg3`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg4`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg5`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg6`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg7`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg8`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg9`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg0Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of , provided via .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg1Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg2Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg3Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg4Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg5Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg6Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg7Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg8Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg9Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>
+><b>Returns:</b> A formatted string where placeholders in `template` are replaced with corresponding argument values.
+>
+><b>Remarks:</b> - The method extracts placeholders from the template and ensures that the provided arguments match the placeholders.<br /> - Named placeholders (e.g., '{argName}') and indexed placeholders (e.g., '{0}') are supported.<br /> - Argument names are inferred using the `System.Runtime.CompilerServices.CallerArgumentExpressionAttribute` for better debugging.
 #### GetStringFormatParameterLiteralCount
 >```csharp
 >int GetStringFormatParameterLiteralCount(this string value)
