@@ -25,7 +25,8 @@ public static class StringExtensions
     /// "\r" (\u000D) for Mac
     /// </remarks>
     private static readonly Lazy<Regex> RxSplitLines = new(() => new Regex("\r\n|\n|\r", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
-    private static readonly Lazy<Regex> RxStringFormatParameterTemplatePlaceholder = new(() => new Regex("{{.*?}}", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
+    private static readonly Lazy<Regex> RxStringFormatParameterSingleTemplatePlaceholder = new(() => new Regex("{.*?}", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
+    private static readonly Lazy<Regex> RxStringFormatParameterDoubleTemplatePlaceholder = new(() => new Regex("{{.*?}}", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
     private static readonly Lazy<Regex> RxUnderscore = new(() => new Regex(@"_", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxCamelCase = new(() => new Regex(@"[a-z][A-Z]", RegexOptions.Multiline, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<MatchEvaluator> SplitCamelCaseString = new(() => m =>
@@ -48,7 +49,11 @@ public static class StringExtensions
     /// or
     /// pattern.
     /// </exception>
-    public static int[] IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = true, bool useEndOfPatternToMatch = false)
+    public static int[] IndexersOf(
+        this string value,
+        string pattern,
+        bool ignoreCaseSensitive = true,
+        bool useEndOfPatternToMatch = false)
     {
         if (value is null)
         {
@@ -85,7 +90,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The count of words in the string.</returns>
-    public static int WordCount(this string value)
+    public static int WordCount(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -99,10 +105,36 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Gets the value between less and greater than chars if exist.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    public static string GetValueBetweenLessAndGreaterThanCharsIfExist(
+        this string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return value;
+        }
+
+        var indexStart = value.IndexOf('<', StringComparison.Ordinal);
+        if (indexStart == -1)
+        {
+            return value;
+        }
+
+        indexStart++;
+        var indexEnd = value.IndexOf('>', StringComparison.Ordinal);
+        return indexEnd > indexStart
+            ? value.Substring(indexStart, indexEnd - indexStart)
+            : value;
+    }
+
+    /// <summary>
     /// Gets the string format parameter numeric count.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static int GetStringFormatParameterNumericCount(this string value)
+    public static int GetStringFormatParameterNumericCount(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -148,7 +180,8 @@ public static class StringExtensions
     /// Gets the string format parameter literal count.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static int GetStringFormatParameterLiteralCount(this string value)
+    public static int GetStringFormatParameterLiteralCount(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -195,15 +228,21 @@ public static class StringExtensions
     /// Gets the string format parameter template placeholders.
     /// </summary>
     /// <param name="value">The value.</param>
+    /// <param name="useDoubleBracket">Use double bracket if <c>true</c>;otherwise <c>false</c>.</param>
     /// <exception cref="ArgumentNullException">value.</exception>
-    public static List<string> GetStringFormatParameterTemplatePlaceholders(this string value)
+    public static List<string> GetStringFormatParameterTemplatePlaceholders(
+        this string value,
+        bool useDoubleBracket = true)
     {
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
 
-        var matches = RxStringFormatParameterTemplatePlaceholder.Value.Matches(value);
+        var matches = useDoubleBracket
+                ? RxStringFormatParameterDoubleTemplatePlaceholder.Value.Matches(value)
+                : RxStringFormatParameterSingleTemplatePlaceholder.Value.Matches(value);
+
         return (from Match match
                 in matches
                 select match.Value).ToList();
@@ -214,12 +253,16 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="replacements">The replacements.</param>
+    /// <param name="useDoubleBracket">Use double bracket if <c>true</c>;otherwise <c>false</c>.</param>
     /// <exception cref="ArgumentNullException">
     /// value
     /// or
     /// replacementData.
     /// </exception>
-    public static string SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary<string, string> replacements)
+    public static string SetStringFormatParameterTemplatePlaceholders(
+        this string value,
+        IDictionary<string, string> replacements,
+        bool useDoubleBracket = true)
     {
         if (value is null)
         {
@@ -231,17 +274,35 @@ public static class StringExtensions
             throw new ArgumentNullException(nameof(replacements));
         }
 
-        var placeholders = value.GetStringFormatParameterTemplatePlaceholders();
-        foreach (var pair in replacements)
+        var placeholders = value.GetStringFormatParameterTemplatePlaceholders(useDoubleBracket: useDoubleBracket);
+        if (useDoubleBracket)
         {
-            var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
-                     pair.Key.EndsWith("}}", StringComparison.Ordinal)
-                ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
-                : placeholders.Find(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
-
-            if (!string.IsNullOrEmpty(s))
+            foreach (var pair in replacements)
             {
-                value = value.Replace(s, pair.Value, StringComparison.Ordinal);
+                var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
+                         pair.Key.EndsWith("}}", StringComparison.Ordinal)
+                    ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
+                    : placeholders.Find(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
+
+                if (!string.IsNullOrEmpty(s))
+                {
+                    value = value.Replace(s, pair.Value, StringComparison.Ordinal);
+                }
+            }
+        }
+        else
+        {
+            foreach (var pair in replacements)
+            {
+                var s = (pair.Key.StartsWith("{", StringComparison.Ordinal) &&
+                         pair.Key.EndsWith("}", StringComparison.Ordinal)
+                    ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
+                    : placeholders.Find(x => string.Equals(x, "{" + pair.Key + "}", StringComparison.Ordinal)))!;
+
+                if (!string.IsNullOrEmpty(s))
+                {
+                    value = value.Replace(s, pair.Value, StringComparison.Ordinal);
+                }
             }
         }
 
@@ -549,7 +610,8 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <exception cref="ArgumentNullException">value.</exception>
     /// <exception cref="FormatException">Invalid ISO8601 format.</exception>
-    public static DateTime ParseDateFromIso8601(this string value)
+    public static DateTime ParseDateFromIso8601(
+        this string value)
     {
         if (value is null)
         {
@@ -570,7 +632,9 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <param name="dateTime">The date time.</param>
     /// <exception cref="ArgumentNullException">value.</exception>
-    public static bool TryParseDateFromIso8601(this string value, out DateTime dateTime)
+    public static bool TryParseDateFromIso8601(
+        this string value,
+        out DateTime dateTime)
     {
         if (value is null)
         {
@@ -590,7 +654,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="dateTime">The date time.</param>
-    public static bool TryParseDate(this string value, out DateTime dateTime)
+    public static bool TryParseDate(
+        this string value,
+        out DateTime dateTime)
     {
         return TryParseDate(value, out dateTime, GlobalizationConstants.EnglishCultureInfo);
     }
@@ -602,7 +668,11 @@ public static class StringExtensions
     /// <param name="dateTime">The date time.</param>
     /// <param name="cultureInfo">The culture information.</param>
     /// <param name="dateTimeStyles">The date time styles.</param>
-    public static bool TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = DateTimeStyles.None)
+    public static bool TryParseDate(
+        this string value,
+        out DateTime dateTime,
+        CultureInfo cultureInfo,
+        DateTimeStyles dateTimeStyles = DateTimeStyles.None)
     {
         if (value is null)
         {
@@ -623,7 +693,9 @@ public static class StringExtensions
     /// <returns><c>true</c> if the string was successfully parsed; otherwise, <c>false</c>.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="value"/> is <c>null</c>.</exception>
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static bool TryParseVersion(this string value, out Version version)
+    public static bool TryParseVersion(
+        this string value,
+        out Version version)
     {
         if (value is null)
         {
@@ -665,7 +737,8 @@ public static class StringExtensions
     /// Encodes the <paramref name="value"/> to Base64 in UTF8.
     /// </summary>
     /// <param name="value">The string value to encode</param>
-    public static string Base64Encode(this string value)
+    public static string Base64Encode(
+        this string value)
     {
         return value.Base64Encode(Encoding.UTF8);
     }
@@ -675,7 +748,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string value to encode.</param>
     /// <param name="encoding">The encoding.</param>
-    public static string Base64Encode(this string value, Encoding encoding)
+    public static string Base64Encode(
+        this string value,
+        Encoding encoding)
     {
         if (encoding is null)
         {
@@ -689,7 +764,8 @@ public static class StringExtensions
     /// Decodes the <paramref name="base64EncodedData"/> <see langword="string"/> using UTF8.
     /// </summary>
     /// <param name="base64EncodedData">The Base64 encoded data.</param>
-    public static string Base64Decode(this string base64EncodedData)
+    public static string Base64Decode(
+        this string base64EncodedData)
     {
         return base64EncodedData.Base64Decode(Encoding.UTF8);
     }
@@ -699,7 +775,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="base64EncodedData">The Base64 encoded data.</param>
     /// <param name="encoding">The encoding.</param>
-    public static string Base64Decode(this string base64EncodedData, Encoding encoding)
+    public static string Base64Decode(
+        this string base64EncodedData,
+        Encoding encoding)
     {
         if (encoding is null)
         {
@@ -714,7 +792,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="javaScript">The java script.</param>
     /// <param name="htmlEncode">if set to <c>true</c> [HTML encode].</param>
-    public static string JavaScriptEncode(this string javaScript, bool htmlEncode)
+    public static string JavaScriptEncode(
+        this string javaScript,
+        bool htmlEncode)
     {
         if (string.IsNullOrEmpty(javaScript))
         {
@@ -734,7 +814,9 @@ public static class StringExtensions
     /// </summary>
     /// <param name="javaScript">The java script.</param>
     /// <param name="htmlDecode">if set to <c>true</c> [HTML decode].</param>
-    public static string JavaScriptDecode(this string javaScript, bool htmlDecode)
+    public static string JavaScriptDecode(
+        this string javaScript,
+        bool htmlDecode)
     {
         if (string.IsNullOrEmpty(javaScript))
         {
@@ -755,7 +837,8 @@ public static class StringExtensions
     /// XMLs the encode.
     /// </summary>
     /// <param name="xml">The XML.</param>
-    public static string XmlEncode(this string xml)
+    public static string XmlEncode(
+        this string xml)
     {
         if (string.IsNullOrEmpty(xml))
         {
@@ -774,7 +857,8 @@ public static class StringExtensions
     /// XMLs the decode.
     /// </summary>
     /// <param name="xml">The XML.</param>
-    public static string XmlDecode(this string xml)
+    public static string XmlDecode(
+        this string xml)
     {
         return string.IsNullOrEmpty(xml)
             ? xml
@@ -791,7 +875,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string sorted alphabetically.</returns>
-    public static string Alphabetize(this string value)
+    public static string Alphabetize(
+        this string value)
     {
         if (!value.IsAlphaNumericOnly())
         {
@@ -816,7 +901,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>The string that is normalize for accent-letter.</returns>
-    public static string NormalizeAccents(this string value)
+    public static string NormalizeAccents(
+        this string value)
     {
         // ReSharper disable once IntroduceOptionalParameters.Global
         return NormalizeAccents(value, LetterAccentType.All, decode: true, forLower: true, forUpper: true);
@@ -833,7 +919,12 @@ public static class StringExtensions
     /// <returns>The string that is normalize for accent-letter.</returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static string NormalizeAccents(this string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
+    public static string NormalizeAccents(
+        this string value,
+        LetterAccentType letterAccentType,
+        bool decode,
+        bool forLower,
+        bool forUpper)
     {
         //// http://symbolcodes.tlt.psu.edu/web/codehtml.html
         ////-------------------------------------------------------------
@@ -984,7 +1075,8 @@ public static class StringExtensions
     /// <returns>The string with space inserted before each capital letter.</returns>
     /// [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
-    public static string NormalizePascalCase(this string value)
+    public static string NormalizePascalCase(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1022,7 +1114,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The identifier-style string.</param>
     /// <returns>A <see cref="string" /> humanized.</returns>
-    public static string Humanize(this string value)
+    public static string Humanize(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1067,7 +1160,8 @@ public static class StringExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns>The string with camel-case format.</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
-    public static string CamelCase(this string value)
+    public static string CamelCase(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1085,7 +1179,9 @@ public static class StringExtensions
     /// <param name="value">The string to work on.</param>
     /// <param name="removeSeparators">If true, remove all separators.</param>
     /// <returns>The string with pascal-case format.</returns>
-    public static string PascalCase(this string value, bool removeSeparators = false)
+    public static string PascalCase(
+        this string value,
+        bool removeSeparators = false)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1106,7 +1202,10 @@ public static class StringExtensions
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static string PascalCase(this string value, char[]? separators, bool removeSeparators = false)
+    public static string PascalCase(
+        this string value,
+        char[]? separators,
+        bool removeSeparators = false)
     {
         if (string.IsNullOrEmpty(value) || separators is null)
         {
@@ -1170,7 +1269,8 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    public static string EnsureEnvironmentNewLines(this string value)
+    public static string EnsureEnvironmentNewLines(
+        this string value)
     {
         if (value is null)
         {
@@ -1208,7 +1308,8 @@ public static class StringExtensions
     /// Ensures the first character to upper.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToUpper(this string value)
+    public static string EnsureFirstCharacterToUpper(
+        this string value)
     {
         if (value is null)
         {
@@ -1227,7 +1328,8 @@ public static class StringExtensions
     /// Ensures the first character to lower.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToLower(this string value)
+    public static string EnsureFirstCharacterToLower(
+        this string value)
     {
         if (value is null)
         {
@@ -1246,7 +1348,8 @@ public static class StringExtensions
     /// Ensures the string-value ends with a '.'.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureEndsWithDot(this string value)
+    public static string EnsureEndsWithDot(
+        this string value)
     {
         if (value is null)
         {
@@ -1262,7 +1365,8 @@ public static class StringExtensions
     /// Ensures the string-value ends with a ':'.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureEndsWithColon(this string value)
+    public static string EnsureEndsWithColon(
+        this string value)
     {
         if (value is null)
         {
@@ -1278,7 +1382,8 @@ public static class StringExtensions
     /// Ensures the singular.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureSingular(this string value)
+    public static string EnsureSingular(
+        this string value)
     {
         if (value is null)
         {
@@ -1299,7 +1404,8 @@ public static class StringExtensions
     /// Ensures the plural.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsurePlural(this string value)
+    public static string EnsurePlural(
+        this string value)
     {
         if (value is null)
         {
@@ -1320,7 +1426,8 @@ public static class StringExtensions
     /// Ensures the first character to upper and singular.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToUpperAndSingular(this string value)
+    public static string EnsureFirstCharacterToUpperAndSingular(
+        this string value)
     {
         if (value is null)
         {
@@ -1334,7 +1441,8 @@ public static class StringExtensions
     /// Ensures the first character to upper and plural.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToUpperAndPlural(this string value)
+    public static string EnsureFirstCharacterToUpperAndPlural(
+        this string value)
     {
         if (value is null)
         {
@@ -1353,7 +1461,10 @@ public static class StringExtensions
     /// <returns>
     ///   <c>true</c> if input string contains a value from specified value; otherwise, <c>false</c>.
     /// </returns>
-    public static bool Contains(this string value, string containsValue, bool ignoreCaseSensitive = true)
+    public static bool Contains(
+        this string value,
+        string containsValue,
+        bool ignoreCaseSensitive = true)
     {
         if (string.IsNullOrEmpty(value) ||
             string.IsNullOrEmpty(containsValue))
@@ -1373,7 +1484,10 @@ public static class StringExtensions
     /// <returns>
     ///   <c>true</c> if input string contains a value from specified char-values; otherwise, <c>false</c>.
     /// </returns>
-    public static bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = true)
+    public static bool Contains(
+        this string value,
+        char[] containsValues,
+        bool ignoreCaseSensitive = true)
     {
         if (string.IsNullOrEmpty(value) ||
             containsValues is null ||
@@ -1394,7 +1508,10 @@ public static class StringExtensions
     /// <returns>
     ///   <c>true</c> if input string contains a value from specified string-values; otherwise, <c>false</c>.
     /// </returns>
-    public static bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = true)
+    public static bool Contains(
+        this string value,
+        string[] containsValues,
+        bool ignoreCaseSensitive = true)
     {
         if (string.IsNullOrEmpty(value) ||
             containsValues is null ||
@@ -1413,7 +1530,10 @@ public static class StringExtensions
     /// <param name="maxLength">Length of the max.</param>
     /// <param name="appendValue">The append value.</param>
     /// <returns>The string that is cutoff by the max-length and appended with the appendValue.</returns>
-    public static string Cut(this string value, int maxLength, string appendValue = "...")
+    public static string Cut(
+        this string value,
+        int maxLength,
+        string appendValue = "...")
     {
         return Truncate(value, maxLength, appendValue);
     }
@@ -1424,7 +1544,10 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <param name="index">The index.</param>
     /// <param name="newChar">The new character.</param>
-    public static string ReplaceAt(this string value, int index, char newChar)
+    public static string ReplaceAt(
+        this string value,
+        int index,
+        char newChar)
     {
         if (value is null)
         {
@@ -1442,7 +1565,9 @@ public static class StringExtensions
     /// <param name="value">The string to filter.</param>
     /// <param name="replacements">The replacements definition.</param>
     /// <returns>The filtered string.</returns>
-    public static string ReplaceMany(this string value, IDictionary<string, string> replacements)
+    public static string ReplaceMany(
+        this string value,
+        IDictionary<string, string> replacements)
     {
         if (value is null)
         {
@@ -1464,7 +1589,10 @@ public static class StringExtensions
     /// <param name="chars">The characters to replace.</param>
     /// <param name="replacement">The replacement character.</param>
     /// <returns>The filtered string.</returns>
-    public static string ReplaceMany(this string value, char[] chars, char replacement)
+    public static string ReplaceMany(
+        this string value,
+        char[] chars,
+        char replacement)
     {
         if (value is null)
         {
@@ -1491,7 +1619,9 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    public static string ReplaceNewLines(this string value, string newValue)
+    public static string ReplaceNewLines(
+        this string value,
+        string newValue)
     {
         if (value is null)
         {
@@ -1515,7 +1645,8 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    public static string RemoveNewLines(this string value)
+    public static string RemoveNewLines(
+        this string value)
     {
         if (value is null)
         {
@@ -1532,7 +1663,10 @@ public static class StringExtensions
     /// <param name="startValue">The string to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>The string that remains after a specified string are removed from the start of the current string.</returns>
-    public static string RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = true)
+    public static string RemoveStart(
+        this string value,
+        string startValue,
+        bool ignoreCaseSensitive = true)
     {
         if (string.IsNullOrEmpty(value) ||
             string.IsNullOrEmpty(startValue))
@@ -1555,7 +1689,10 @@ public static class StringExtensions
     /// <param name="endValue">The string to compare with.</param>
     /// <param name="ignoreCaseSensitive">if set to <c>true</c> ignore case sensitive.</param>
     /// <returns>The string that remains after a specified string are removed from the end of the current string.</returns>
-    public static string RemoveEnd(this string value, string endValue, bool ignoreCaseSensitive = true)
+    public static string RemoveEnd(
+        this string value,
+        string endValue,
+        bool ignoreCaseSensitive = true)
     {
         if (string.IsNullOrEmpty(value) ||
             string.IsNullOrEmpty(endValue))
@@ -1576,7 +1713,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <exception cref="System.ArgumentNullException">value.</exception>
-    public static string RemoveEndingSlashIfExist(this string value)
+    public static string RemoveEndingSlashIfExist(
+        this string value)
     {
         if (value is null)
         {
@@ -1593,7 +1731,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without non-printable character.</returns>
-    public static string RemoveDataCrap(this string value)
+    public static string RemoveDataCrap(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1641,7 +1780,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without non-printable character.</returns>
-    public static string RemoveNonPrintableCharacter(this string value)
+    public static string RemoveNonPrintableCharacter(
+        this string value)
     {
         if (value is null)
         {
@@ -1661,7 +1801,10 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <param name="maxLength">The maximum length.</param>
     /// <param name="appendValue">The append value.</param>
-    public static string Truncate(this string value, int maxLength, string appendValue = "...")
+    public static string Truncate(
+        this string value,
+        int maxLength,
+        string appendValue = "...")
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1682,7 +1825,8 @@ public static class StringExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without none readable chars etc.</returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    public static string TrimSpecial(this string value)
+    public static string TrimSpecial(
+        this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1757,7 +1901,8 @@ public static class StringExtensions
     /// are removed from the start and end and multi-space characters  of the current string.
     /// If no characters can be trimmed from the current instance, the method returns the current instance unchanged.
     /// </returns>
-    public static string TrimExtended(this string value)
+    public static string TrimExtended(
+        this string value)
     {
         if (value is null)
         {
@@ -1786,7 +1931,8 @@ public static class StringExtensions
     /// An array whose elements contain the substrings from this instance
     /// that are delimited by one or more characters in separator.
     /// </returns>
-    public static string[] ToLines(this string value)
+    public static string[] ToLines(
+        this string value)
     {
         return string.IsNullOrEmpty(value)
             ? Array.Empty<string>()
@@ -1809,7 +1955,8 @@ public static class StringExtensions
     /// Converts to stream from base64.
     /// </summary>
     /// <param name="base64Data">The base64 data.</param>
-    public static Stream? ToStreamFromBase64(this string base64Data)
+    public static Stream? ToStreamFromBase64(
+        this string base64Data)
     {
         if (string.IsNullOrEmpty(base64Data))
         {
@@ -1829,33 +1976,83 @@ public static class StringExtensions
         => Enum<HttpStatusCode>.TryParse(value, false, out httpStatusCode) &&
            !NumberHelper.IsInt(httpStatusCode.ToString());
 
-    /// <summary>
-    /// Gets the value between less and greater than chars if exist.
-    /// </summary>
-    /// <param name="value">The value.</param>
-    public static string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
+#if NET8_0_OR_GREATER
+    public static string FormatWith(
+        this string template,
+        string arg0,
+        string? arg1 = null,
+        string? arg2 = null,
+        string? arg3 = null,
+        string? arg4 = null,
+        string? arg5 = null,
+        string? arg6 = null,
+        string? arg7 = null,
+        string? arg8 = null,
+        string? arg9 = null,
+        [CallerArgumentExpression("arg0")] string arg0Name = null!,
+        [CallerArgumentExpression("arg1")] string? arg1Name = null,
+        [CallerArgumentExpression("arg2")] string? arg2Name = null,
+        [CallerArgumentExpression("arg3")] string? arg3Name = null,
+        [CallerArgumentExpression("arg4")] string? arg4Name = null,
+        [CallerArgumentExpression("arg5")] string? arg5Name = null,
+        [CallerArgumentExpression("arg6")] string? arg6Name = null,
+        [CallerArgumentExpression("arg7")] string? arg7Name = null,
+        [CallerArgumentExpression("arg8")] string? arg8Name = null,
+        [CallerArgumentExpression("arg9")] string? arg9Name = null)
     {
-        if (string.IsNullOrEmpty(value))
+        //ArgumentNullException.ThrowIfNull(template);
+        //ArgumentNullException.ThrowIfNull(arg1);
+
+        var usedArgsCount = 1 + new[] { arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 }
+            .TakeWhile(x => x is not null)
+            .Count();
+
+        var placeholders = template.GetStringFormatParameterTemplatePlaceholders(useDoubleBracket: false);
+        if (usedArgsCount != placeholders.Count)
         {
-            return value;
+            throw new InvalidOperationException($"The template contains {placeholders.Count} placeholders, and the provided values are {usedArgsCount}");
         }
 
-        var indexStart = value.IndexOf('<', StringComparison.Ordinal);
-        if (indexStart == -1)
+        var argValues = new[] { arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 };
+        var argNames = new[] { arg0Name, arg1Name, arg2Name, arg3Name, arg4Name, arg5Name, arg6Name, arg7Name, arg8Name, arg9Name };
+
+        var dictionary = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var placeholder in placeholders)
         {
-            return value;
+            var key = placeholder.Trim('{', '}');
+
+            var index = Array.IndexOf(argNames, key);
+            if (index != -1 && index < usedArgsCount)
+            {
+                dictionary.Add(key, argValues[index]!);
+            }
+            else if (int.TryParse(key, out var pos))
+            {
+                if (pos < 0 || pos >= usedArgsCount)
+                {
+                    throw new InvalidOperationException($"Placeholder index {pos} is out of range.");
+                }
+
+                dictionary.Add(placeholder, argValues[pos]!);
+            }
+            else
+            {
+                throw new InvalidOperationException($"No argument matching placeholder '{key}'.");
+            }
         }
 
-        indexStart++;
-        var indexEnd = value.IndexOf('>', StringComparison.Ordinal);
-        return indexEnd > indexStart
-            ? value.Substring(indexStart, indexEnd - indexStart)
-            : value;
+        return template.SetStringFormatParameterTemplatePlaceholders(dictionary, useDoubleBracket: false);
     }
+#endif
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static string NormalizeAccentsHelper(string value, LetterAccentType letterAccentType, bool decode, bool forLower, bool forUpper)
+    private static string NormalizeAccentsHelper(
+        string value,
+        LetterAccentType letterAccentType,
+        bool decode,
+        bool forLower,
+        bool forUpper)
     {
         //// http://symbolcodes.tlt.psu.edu/web/codehtml.html
         ////-------------------------------------------------------------
