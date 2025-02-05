@@ -8,7 +8,7 @@ public static class DataFactory
     /// <summary>
     /// Create the key/value data table of integer and string.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The <see cref="DataTable" />.
     /// </returns>
@@ -57,7 +57,7 @@ public static class DataFactory
     /// <summary>
     /// Create the key/value data table of global identifier and string.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The <see cref="DataTable" />.
     /// </returns>
@@ -106,7 +106,7 @@ public static class DataFactory
     /// <summary>
     /// Create the key/value dictionary of integer and string.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The Dictionary.
     /// </returns>
@@ -142,7 +142,7 @@ public static class DataFactory
     /// <summary>
     /// Create the key/value dictionary of global identifier and string.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The Dictionary.
     /// </returns>
@@ -178,7 +178,7 @@ public static class DataFactory
     /// <summary>
     /// Creates the key value dictionary of string string.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The Dictionary.
     /// </returns>

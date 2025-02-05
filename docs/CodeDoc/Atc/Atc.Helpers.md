@@ -413,7 +413,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCountryNames
 >```csharp
 >Dictionary<int, string> GetCountryNames(int displayLanguageLcid, DropDownFirstItemType dropDownFirstItemType = None)
@@ -421,7 +421,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCountryNames
 >```csharp
 >Dictionary<int, string> GetCountryNames(List<int> includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
@@ -429,7 +429,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCountryNames
 >```csharp
 >Dictionary<int, string> GetCountryNames(int displayLanguageLcid, List<int> includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
@@ -437,7 +437,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCountryNames
 >```csharp
 >Dictionary<int, string> GetCountryNames(List<string> includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
@@ -445,7 +445,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCountryNames
 >```csharp
 >Dictionary<int, string> GetCountryNames(int displayLanguageLcid, List<string> includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
@@ -453,7 +453,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the country names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetCultureByCountryCodeA2
 >```csharp
 >Culture GetCultureByCountryCodeA2(string value)
@@ -607,7 +607,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(int displayLanguageLcid, DropDownFirstItemType dropDownFirstItemType = None)
@@ -615,7 +615,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(List<int> includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
@@ -623,7 +623,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(int displayLanguageLcid, List<int> includeOnlyLcids, DropDownFirstItemType dropDownFirstItemType = None)
@@ -631,7 +631,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(List<string> includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
@@ -639,7 +639,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetLanguageNames
 >```csharp
 >Dictionary<int, string> GetLanguageNames(int displayLanguageLcid, List<string> includeOnlyCultureNames, DropDownFirstItemType dropDownFirstItemType = None)
@@ -647,7 +647,7 @@ CultureHelper.
 ><b>Summary:</b> Gets the language names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetSupportedCultures
 >```csharp
 >IList<Culture> GetSupportedCultures(int displayLanguageLcid = 1033)
@@ -964,7 +964,7 @@ Enumeration Helper: DropDownFirstItemTypeHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`list`&nbsp;&nbsp;-&nbsp;&nbsp;The list.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 #### GetEnumGuid
 >```csharp
 >Guid GetEnumGuid(DropDownFirstItemType dropDownFirstItemType)
@@ -972,7 +972,7 @@ Enumeration Helper: DropDownFirstItemTypeHelper.
 ><b>Summary:</b> Gets the enumeration GUID.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The `System.Guid`.
 #### GetItemFromEnumGuid
@@ -1007,7 +1007,7 @@ Enumeration Helper: EnumHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
@@ -1021,7 +1021,7 @@ Enumeration Helper: EnumHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
@@ -1035,7 +1035,7 @@ Enumeration Helper: EnumHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the enum.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDescriptionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use description attribute].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include default].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />

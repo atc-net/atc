@@ -38,7 +38,7 @@ Data Helper.
 ><b>Summary:</b> Create the key/value data table of global identifier and string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The `System.Data.DataTable`.
 #### CreateKeyValueDataTableOfIntString
@@ -48,7 +48,7 @@ Data Helper.
 ><b>Summary:</b> Create the key/value data table of integer and string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The `System.Data.DataTable`.
 #### CreateKeyValueDictionaryOfGuidString
@@ -58,7 +58,7 @@ Data Helper.
 ><b>Summary:</b> Create the key/value dictionary of global identifier and string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The Dictionary.
 #### CreateKeyValueDictionaryOfIntString
@@ -68,7 +68,7 @@ Data Helper.
 ><b>Summary:</b> Create the key/value dictionary of integer and string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The Dictionary.
 #### CreateKeyValueDictionaryOfStringString
@@ -78,7 +78,7 @@ Data Helper.
 ><b>Summary:</b> Creates the key value dictionary of string string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the drop down first item.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dropDownFirstItemType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the dropdown first item.<br />
 >
 ><b>Returns:</b> The Dictionary.
 

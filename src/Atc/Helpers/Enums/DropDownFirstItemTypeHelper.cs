@@ -9,7 +9,7 @@ public static class DropDownFirstItemTypeHelper
     /// <summary>
     /// Gets the enumeration GUID.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <returns>
     /// The <see cref="Guid" />.
     /// </returns>
@@ -62,7 +62,7 @@ public static class DropDownFirstItemTypeHelper
     /// Ensures the first type of the item.
     /// </summary>
     /// <param name="list">The list.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     [SuppressMessage("Microsoft.Performance", "CA1820:TestForEmptyStringsUsingStringLength", Justification = "OK.")]
     public static List<string> EnsureFirstItemType(List<string> list, DropDownFirstItemType dropDownFirstItemType)
     {

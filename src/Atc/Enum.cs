@@ -148,7 +148,7 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to array.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -182,7 +182,7 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to dictionary.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -213,7 +213,7 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to dictionary with key as string.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -244,7 +244,7 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to list of key value pairs.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -278,7 +278,7 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to list of key value pairs with key as string.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>

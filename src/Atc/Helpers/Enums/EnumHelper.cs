@@ -131,7 +131,7 @@ public static class EnumHelper
     /// Converts the enum to array.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
     /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -164,7 +164,7 @@ public static class EnumHelper
     /// Converts the enum to dictionary.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
     /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
@@ -284,7 +284,7 @@ public static class EnumHelper
     /// Converts the enum to dictionary with string key.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
     /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>

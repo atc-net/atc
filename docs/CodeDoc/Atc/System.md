@@ -2099,6 +2099,10 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### FormatWith
+>```csharp
+>string FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
+>```
 #### GetStringFormatParameterLiteralCount
 >```csharp
 >int GetStringFormatParameterLiteralCount(this string value)
@@ -2117,12 +2121,13 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### GetStringFormatParameterTemplatePlaceholders
 >```csharp
->List<string> GetStringFormatParameterTemplatePlaceholders(this string value)
+>List<string> GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
 >```
 ><b>Summary:</b> Gets the string format parameter template placeholders.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if true;otherwise false.<br />
 #### GetTemplateKeys
 >```csharp
 >IList<string> GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
@@ -2387,13 +2392,14 @@ Extensions for the string class.
 ><b>Returns:</b> The modified input string with template keys replaced by their corresponding template values.
 #### SetStringFormatParameterTemplatePlaceholders
 >```csharp
->string SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary<string, string> replacements)
+>string SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary<string, string> replacements, bool useDoubleBracket = True)
 >```
 ><b>Summary:</b> Sets the string format parameter template placeholders.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;The replacements.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if true;otherwise false.<br />
 #### ToLines
 >```csharp
 >string[] ToLines(this string value)

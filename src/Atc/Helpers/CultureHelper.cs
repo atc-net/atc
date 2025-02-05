@@ -527,7 +527,7 @@ public static class CultureHelper
     /// <summary>
     /// Gets the country names.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetCountryNames(
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
         => GetCountryNames(
@@ -539,7 +539,7 @@ public static class CultureHelper
     /// Gets the country names.
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetCountryNames(
         int displayLanguageLcid,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -552,7 +552,7 @@ public static class CultureHelper
     /// Gets the country names.
     /// </summary>
     /// <param name="includeOnlyLcids">The include only lcids.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetCountryNames(
         List<int> includeOnlyLcids,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -566,7 +566,7 @@ public static class CultureHelper
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
     /// <param name="includeOnlyLcids">The include only lcids.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetCountryNames(
         int displayLanguageLcid,
         List<int>? includeOnlyLcids,
@@ -585,7 +585,7 @@ public static class CultureHelper
     /// Gets the country names.
     /// </summary>
     /// <param name="includeOnlyCultureNames">The include only culture names.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetCountryNames(
         List<string> includeOnlyCultureNames,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -599,7 +599,7 @@ public static class CultureHelper
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
     /// <param name="includeOnlyCultureNames">The include only culture names.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<int, string> GetCountryNames(
         int displayLanguageLcid,
@@ -660,7 +660,7 @@ public static class CultureHelper
     /// <summary>
     /// Gets the language names.
     /// </summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetLanguageNames(
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
         => GetLanguageNames(
@@ -672,7 +672,7 @@ public static class CultureHelper
     /// Gets the language names.
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetLanguageNames(
         int displayLanguageLcid,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -685,7 +685,7 @@ public static class CultureHelper
     /// Gets the language names.
     /// </summary>
     /// <param name="includeOnlyLcids">The include only lcids.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetLanguageNames(
         List<int> includeOnlyLcids,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -699,7 +699,7 @@ public static class CultureHelper
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
     /// <param name="includeOnlyLcids">The include only lcids.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetLanguageNames(
         int displayLanguageLcid,
         List<int>? includeOnlyLcids,
@@ -718,7 +718,7 @@ public static class CultureHelper
     /// Gets the language names.
     /// </summary>
     /// <param name="includeOnlyCultureNames">The include only culture names.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     public static Dictionary<int, string> GetLanguageNames(
         List<string> includeOnlyCultureNames,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
@@ -732,7 +732,7 @@ public static class CultureHelper
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
     /// <param name="includeOnlyCultureNames">The include only culture names.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<int, string> GetLanguageNames(
         int displayLanguageLcid,
