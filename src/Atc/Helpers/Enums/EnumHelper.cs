@@ -24,7 +24,7 @@ public static class EnumHelper
     /// <typeparam name="T">The type.</typeparam>
     /// <param name="value">The value.</param>
     /// <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
-    /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</returns>
+    /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.</returns>
     public static T GetEnumValue<T>(string value, bool ignoreCase = true)
         where T : Enum
     {
@@ -77,7 +77,7 @@ public static class EnumHelper
             throw new ArgumentNullException(nameof(description));
         }
 
-        if (description.Length == default)
+        if (description.Length == 0)
         {
             throw new ArgumentOutOfRangeException(nameof(description));
         }
@@ -92,35 +92,35 @@ public static class EnumHelper
         {
             if (fieldInfo.Name.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var localizedDescriptionAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(LocalizedDescriptionAttribute)) as LocalizedDescriptionAttribute;
             if (localizedDescriptionAttribute?.Description is not null &&
                 localizedDescriptionAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var descriptionAttributeOrg = Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
             if (descriptionAttributeOrg?.Description is not null &&
                 descriptionAttributeOrg.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var displayNameAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
             if (displayNameAttribute?.DisplayName is not null &&
                 displayNameAttribute.DisplayName.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var displayAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayAttribute)) as DisplayAttribute;
             if (displayAttribute?.Description is not null &&
                 displayAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
         }
 
@@ -202,7 +202,7 @@ public static class EnumHelper
                 continue;
             }
 
-            var value = objEnumValue.ToString();
+            var value = objEnumValue.ToString() ?? string.Empty;
             if (useDescriptionAttribute)
             {
                 var description = ((objEnumValue as Enum)!).GetDescription();
@@ -322,7 +322,7 @@ public static class EnumHelper
                 continue;
             }
 
-            var value = objEnumValue.ToString();
+            var value = objEnumValue.ToString()!;
             if (useDescriptionAttribute)
             {
                 var description = ((objEnumValue as Enum)!).GetDescription();
@@ -334,14 +334,14 @@ public static class EnumHelper
 
             if (dropDownFirstItemType == DropDownFirstItemType.None)
             {
-                if (!list.ContainsKey(objEnumValue.ToString()))
+                if (!list.ContainsKey(objEnumValue.ToString()!))
                 {
-                    list.Add(objEnumValue.ToString(), value);
+                    list.Add(objEnumValue.ToString()!, value);
                 }
             }
-            else if (!list.ContainsKey(objEnumValue.ToString()))
+            else if (!list.ContainsKey(objEnumValue.ToString()!))
             {
-                list.Add(objEnumValue.ToString(), value);
+                list.Add(objEnumValue.ToString()!, value);
             }
         }
 

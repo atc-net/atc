@@ -32,23 +32,23 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     /// Gets the description stored in this attribute.
     /// </summary>
     /// <returns>The description stored in this attribute.</returns>
-    public override string? Description
+    public override string Description
     {
         get
         {
             if (resourceKey is null)
             {
-                return null;
+                return string.Empty;
             }
 
-            if (resourceKey.Length == default)
+            if (resourceKey.Length == 0)
             {
                 return string.Empty;
             }
 
             var displayName = resource.GetString(resourceKey, CultureInfo.CurrentUICulture);
             return string.IsNullOrEmpty(displayName)
-                ? null
+                ? string.Empty
                 : displayName;
         }
     }

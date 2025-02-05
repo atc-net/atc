@@ -123,14 +123,14 @@ public static class DataTableExtensions
         var dataColumns = dataTable.Columns.Cast<DataColumn>().ToList();
         foreach (DataRow item in dataTable.Rows)
         {
-            var cn = (T)Activator.CreateInstance(typeClass);
+            var cn = (T)Activator.CreateInstance(typeClass)!;
             foreach (var propertyInfo in
                      from pc in propertyInfos
                      let d = dataColumns.Find(c => string.Equals(c.ColumnName, pc.Name, StringComparison.Ordinal))
                      where d is not null
                      select pc)
             {
-                propertyInfo.SetValue(cn, item[propertyInfo.Name], null);
+                propertyInfo.SetValue(cn, item[propertyInfo.Name], index: null);
             }
 
             list.Add(cn);
@@ -158,7 +158,7 @@ public static class DataTableExtensions
             xmlDocument.LoadXml(ds.GetXml());
         }
 
-        var xPathNavigator = xmlDocument.CreateNavigator();
+        var xPathNavigator = xmlDocument.CreateNavigator()!;
         return xPathNavigator.Select(".");
     }
 }

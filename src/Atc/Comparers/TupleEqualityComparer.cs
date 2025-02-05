@@ -16,7 +16,7 @@ public class TupleEqualityComparer<T1, T2> : EqualityComparer<Tuple<T1, T2>>
     /// <returns>
     /// true if the specified objects are equal; otherwise, false.
     /// </returns>
-    public override bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
+    public override bool Equals(Tuple<T1, T2>? x, Tuple<T1, T2>? y)
     {
         if (x is null)
         {

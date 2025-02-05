@@ -5,7 +5,7 @@ internal static class DecompilerHelper
 {
     internal static CSharpDecompiler GetDecompiler(Assembly assembly)
     {
-        var assemblyFileName = new Uri(assembly.CodeBase).AbsolutePath;
+        var assemblyFileName = assembly.Location;
         using var module = new PEFile(assemblyFileName);
         var resolver = new UniversalAssemblyResolver(assemblyFileName, false, targetFramework: null);
         return new CSharpDecompiler(assemblyFileName, resolver, GetSettings());

@@ -36,7 +36,7 @@ public static class AssemblyInformationFactory
         }
 
         return new AssemblyInformation(
-            assembly.FullName,
+            assembly.FullName!,
             assemblyName.Name!,
             assemblyName.Version!,
             isDebugBuild,

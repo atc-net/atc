@@ -1,12 +1,13 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+// ReSharper disable ConvertIfStatementToReturnStatement
+// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+// ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable ReplaceSubstringWithRangeIndexer
-// ReSharper disable once CheckNamespace
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
-// ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-// ReSharper disable LoopCanBeConvertedToQuery
+// ReSharper disable once CheckNamespace
 namespace System;
 
 /// <summary>
@@ -1168,9 +1169,21 @@ public static class StringExtensions
             return value;
         }
 
+#if NETSTANDARD2_1
         return value.Length <= 1
             ? value
             : value.Substring(0, 1).ToLowerInvariant() + value.Substring(1);
+#else
+        if (value.Length == 1)
+        {
+            return value.ToLowerInvariant();
+        }
+
+        Span<char> buffer = stackalloc char[1];
+        buffer[0] = char.ToLowerInvariant(value[0]);
+
+        return string.Concat(buffer, value.AsSpan(1));
+#endif
     }
 
     /// <summary>
@@ -1283,7 +1296,7 @@ public static class StringExtensions
                 // Windows - Streamline to '\n' and then to '\r\n'
                 value = value
                     .Replace("\r\n", "\n", StringComparison.Ordinal)
-                    .Replace("\r", "\n", StringComparison.Ordinal);
+                    .Replace('\r', '\n');
                 value = value
                     .Replace("\n", "\r\n", StringComparison.Ordinal);
                 break;
@@ -1291,13 +1304,13 @@ public static class StringExtensions
                 // Unix
                 value = value
                     .Replace("\r\n", "\n", StringComparison.Ordinal)
-                    .Replace("\r", "\n", StringComparison.Ordinal);
+                    .Replace('\r', '\n');
                 break;
             case "\r":
                 // Mac
                 value = value
                     .Replace("\r\n", "\r", StringComparison.Ordinal)
-                    .Replace("\n", "\r", StringComparison.Ordinal);
+                    .Replace('\n', '\r');
                 break;
         }
 
@@ -1320,7 +1333,13 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + value.Substring(1),
+#if NETSTANDARD2_1
+            _ => char.ToUpper(value[0], CultureInfo.CurrentCulture).ToString() + value.Substring(1),
+#else
+            _ => string.Concat(
+                new string(char.ToUpper(value[0], CultureInfo.CurrentCulture), 1),
+                value.AsSpan(1)),
+#endif
         };
     }
 
@@ -1340,7 +1359,13 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
-            _ => value.Substring(0, 1).ToLower(CultureInfo.CurrentCulture) + value.Substring(1),
+#if NETSTANDARD2_1
+            _ => char.ToLower(value[0], CultureInfo.CurrentCulture).ToString() + value.Substring(1),
+#else
+            _ => string.Concat(
+                new string(char.ToLower(value[0], CultureInfo.CurrentCulture), 1),
+                value.AsSpan(1)),
+#endif
         };
     }
 
@@ -1813,7 +1838,11 @@ public static class StringExtensions
 
         if (value.Length > maxLength)
         {
+#if NETSTANDARD2_1
             return value.Substring(0, maxLength) + appendValue;
+#else
+            return string.Concat(value.AsSpan(0, maxLength), appendValue);
+#endif
         }
 
         return value;
@@ -2000,8 +2029,8 @@ public static class StringExtensions
         [CallerArgumentExpression("arg8")] string? arg8Name = null,
         [CallerArgumentExpression("arg9")] string? arg9Name = null)
     {
-        //ArgumentNullException.ThrowIfNull(template);
-        //ArgumentNullException.ThrowIfNull(arg1);
+        ArgumentNullException.ThrowIfNull(template);
+        ArgumentNullException.ThrowIfNull(arg0);
 
         var usedArgsCount = 1 + new[] { arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 }
             .TakeWhile(x => x is not null)

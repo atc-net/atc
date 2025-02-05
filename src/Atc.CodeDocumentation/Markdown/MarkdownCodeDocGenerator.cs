@@ -16,7 +16,7 @@ public static class MarkdownCodeDocGenerator
     public static void Run(Assembly assemblyToCodeDoc, DirectoryInfo? outputPath = null)
     {
         // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
-        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (!OperatingSystem.IsWindows())
         {
             return;
         }
@@ -39,7 +39,7 @@ public static class MarkdownCodeDocGenerator
 
     private static DirectoryInfo? GetOutputPath(Assembly assembly)
     {
-        var assemblyName = assembly.GetName().Name;
+        var assemblyName = assembly.GetName().Name!;
         var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var index = baseDirectory.IndexOf(assemblyName, StringComparison.Ordinal);
         if (index == -1)
@@ -47,7 +47,7 @@ public static class MarkdownCodeDocGenerator
             return null;
         }
 
-        baseDirectory = baseDirectory.Substring(0, index + assemblyName.Length);
+        baseDirectory = baseDirectory[..(index + assemblyName.Length)];
         return new DirectoryInfo(Path.Combine(baseDirectory, "CodeDoc"));
     }
 
@@ -102,7 +102,8 @@ public static class MarkdownCodeDocGenerator
             sb.AppendLine("</div>");
             sb.AppendLine();
 
-            sb.AppendLine($"# {g.Key}");
+            var hashKey = $"# {g.Key}";
+            sb.AppendLine(hashKey);
             foreach (var item in g.OrderBy(x => x.Name, StringComparer.Ordinal))
             {
                 var beautifyItemName1 = item.BeautifyHtmlName;

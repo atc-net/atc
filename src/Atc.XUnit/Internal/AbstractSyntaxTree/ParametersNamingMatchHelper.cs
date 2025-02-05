@@ -105,7 +105,7 @@ internal static class ParametersNamingMatchHelper
         IReadOnlyList<AstNode> astNodeForTestParameters)
     {
         // Check org-parameter-name in test-method-parameters
-        var astNode = astNodeForTestParameters.FirstOrDefault(x => parameter.Name.Equals(x.ToString(), StringComparison.Ordinal));
+        var astNode = astNodeForTestParameters.FirstOrDefault(x => parameter.Name!.Equals(x.ToString(), StringComparison.Ordinal));
         if (astNode is not null)
         {
             return true;

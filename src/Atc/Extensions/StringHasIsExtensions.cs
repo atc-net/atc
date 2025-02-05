@@ -526,7 +526,7 @@ public static class StringHasIsExtensions
         var temp = 0;
         for (var i = 0; i < 10; i++)
         {
-            temp += c[i] * int.Parse(cprNumber.Substring(i, 1), Thread.CurrentThread.CurrentCulture);
+            temp += c[i] * (cprNumber[i] - '0');
         }
 
         return temp % 11 == 0;

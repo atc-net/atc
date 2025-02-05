@@ -68,32 +68,44 @@ internal static class TypeAndMethodAndParameterHelper
 
         if (p1C > 0)
         {
-            sb.Append($", In({p1C})");
+            sb.Append(", In(");
+            sb.Append(p1C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (p2C > 0)
         {
-            sb.Append($", Out({p2C})");
+            sb.Append(", Out(");
+            sb.Append(p2C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (p3C > 0)
         {
-            sb.Append($", RetVal({p3C})");
+            sb.Append(", RetVal(");
+            sb.Append(p3C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (p4C > 0)
         {
-            sb.Append($", Optional({p4C})");
+            sb.Append(", Optional(");
+            sb.Append(p4C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (p5C > 0)
         {
-            sb.Append($", IsAbstract({p5C})");
+            sb.Append(", IsAbstract(");
+            sb.Append(p5C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (p6C > 0)
         {
-            sb.Append($", Delegate({p6C})");
+            sb.Append(", Delegate(");
+            sb.Append(p6C.ToString(CultureInfo.InvariantCulture));
+            sb.Append(')');
         }
 
         if (sb.Length > 0)

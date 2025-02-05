@@ -38,7 +38,7 @@ public static class CodeComplianceHelper
             excludeTypes);
 
         TestResultHelper.AssertOnTestResultsFromMethodsWithWrongDefinitions(
-            assembly.GetName().Name,
+            assembly.GetName().Name!,
             methodsWithWrongNaming,
             useFullName);
     }
@@ -69,7 +69,7 @@ public static class CodeComplianceHelper
             allowSuffixTermsForKeySuffixWithPlaceholders);
 
         TestResultHelper.AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(
-            assembly.GetName().Name,
+            assembly.GetName().Name!,
             missingTranslations,
             invalidKeysSuffixWithPlaceholders);
     }
@@ -93,7 +93,7 @@ public static class CodeComplianceHelper
             cultureNames);
 
         TestResultHelper.AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(
-            assembly.GetName().Name,
+            assembly.GetName().Name!,
             missingTranslations,
             invalidKeysSuffixWithPlaceholders: null);
     }
@@ -120,7 +120,7 @@ public static class CodeComplianceHelper
             allowSuffixTermsForKeySuffixWithPlaceholders);
 
         TestResultHelper.AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(
-            assembly.GetName().Name,
+            assembly.GetName().Name!,
             missingTranslations: null,
             invalidKeysSuffixWithPlaceholders);
     }

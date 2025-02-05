@@ -22,14 +22,14 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
             {
                 case null when
                     field.Name.Equals(enumValue, StringComparison.OrdinalIgnoreCase):
-                    return (TEnum)field.GetValue(null);
+                    return (TEnum)field.GetValue(null)!;
                 case null:
                     continue;
             }
 
-            if (enumMemberAttribute.Value.Equals(enumValue, StringComparison.OrdinalIgnoreCase))
+            if (enumMemberAttribute.Value!.Equals(enumValue, StringComparison.OrdinalIgnoreCase))
             {
-                return (TEnum)field.GetValue(null);
+                return (TEnum)field.GetValue(null)!;
             }
         }
 
@@ -46,6 +46,11 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
             throw new ArgumentNullException(nameof(writer));
         }
 
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
         if (options is null)
         {
             throw new ArgumentNullException(nameof(options));
@@ -53,7 +58,7 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
 
         var enumMemberAttribute = value
             .GetType()
-            .GetField(value.ToString())
+            .GetField(value.ToString())!
             .GetCustomAttribute<EnumMemberAttribute>();
 
         var enumValue = enumMemberAttribute?.Value ?? value.ToString();

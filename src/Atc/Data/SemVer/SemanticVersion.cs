@@ -196,7 +196,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Compares two versions are semantically.
     /// </summary>
     /// <param name="obj">The other.</param>
-    public int CompareTo(object obj)
+    public int CompareTo(object? obj)
     {
         switch (obj)
         {
@@ -303,7 +303,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// </summary>
     /// <param name="obj">The object.</param>
     public override bool Equals(
-        object obj)
+        object? obj)
         => Equals(obj as SemanticVersion);
 
     /// <summary>

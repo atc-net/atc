@@ -21,7 +21,7 @@ public static class DataFactory
 
         dt.Columns.Add("key", typeof(int));
         dt.Columns.Add("value", typeof(string));
-        dt.PrimaryKey = new[] { dt.Columns["key"] };
+        dt.PrimaryKey = new[] { dt.Columns["key"] }!;
         dt.AcceptChanges();
 
         DataRow dr;
@@ -70,7 +70,7 @@ public static class DataFactory
 
         dt.Columns.Add("key", typeof(Guid));
         dt.Columns.Add("value", typeof(string));
-        dt.PrimaryKey = new[] { dt.Columns["key"] };
+        dt.PrimaryKey = new[] { dt.Columns["key"] }!;
         dt.AcceptChanges();
 
         DataRow dr;

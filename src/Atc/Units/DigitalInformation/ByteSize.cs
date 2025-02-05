@@ -156,7 +156,7 @@ public struct ByteSize : IEquatable<ByteSize>
     public readonly bool Equals(ByteSize other) => Value == other.Value;
 
     /// <inheritdoc />
-    public override readonly bool Equals(object obj) => obj is ByteSize x && Equals(x);
+    public override readonly bool Equals(object? obj) => obj is ByteSize x && Equals(x);
 
     /// <inheritdoc />
     public override readonly int GetHashCode() => base.GetHashCode();

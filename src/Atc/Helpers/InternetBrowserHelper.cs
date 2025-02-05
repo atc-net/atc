@@ -213,6 +213,8 @@ public static class InternetBrowserHelper
         try
         {
             var url = uri.AbsoluteUri.Replace("&", "^&", StringComparison.Ordinal);
+
+#if NETSTANDARD2_1
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Process.Start(
@@ -229,6 +231,24 @@ public static class InternetBrowserHelper
             {
                 Process.Start("open", url);
             }
+#else
+            if (OperatingSystem.IsWindows())
+            {
+                Process.Start(
+                    new ProcessStartInfo("cmd", $"/c start {url}")
+                    {
+                        CreateNoWindow = true,
+                    });
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+                Process.Start("xdg-open", url);
+            }
+            else if (OperatingSystem.IsMacOS())
+            {
+                Process.Start("open", url);
+            }
+#endif
 
             return true;
         }

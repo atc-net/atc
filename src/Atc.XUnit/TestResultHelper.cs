@@ -64,7 +64,7 @@ public static class TestResultHelper
             sb.AppendLine(lines[i]);
         }
 
-        Assert.True(false, sb.ToString());
+        Assert.Fail(sb.ToString());
     }
 
     /// <summary>

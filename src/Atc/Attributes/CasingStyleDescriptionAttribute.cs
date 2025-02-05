@@ -23,16 +23,32 @@ public sealed class CasingStyleDescriptionAttribute : DescriptionAttribute
     {
         get
         {
-            var values = Enum.GetNames(typeof(CasingStyle))
-                .Where(enumValue => !string.Equals(enumValue, CasingStyle.None.ToString(), StringComparison.Ordinal))
-                .Select(enumValue => enumValue.Equals(Default.ToString(), StringComparison.Ordinal)
-                    ? $"{enumValue} (default)"
-                    : enumValue)
-                .ToList();
+#if NETSTANDARD2_1
+            var enumNames = Enum.GetNames(typeof(CasingStyle));
+#else
+            var enumNames = Enum.GetNames<CasingStyle>();
+#endif
 
-            return string.IsNullOrEmpty(Prefix)
-                ? $"Valid values are: {string.Join(", ", values)}"
-                : $"{Prefix}. Valid values are: {string.Join(", ", values)}".Replace("..", ".", StringComparison.Ordinal);
+            var values = string.Join(
+                ", ",
+                enumNames
+                    .Where(enumValue => !string.Equals(enumValue, nameof(CasingStyle.None), StringComparison.Ordinal))
+                    .Select(enumValue => enumValue.Equals(Default.ToString(), StringComparison.Ordinal)
+                        ? $"{enumValue} (default)"
+                        : enumValue));
+
+            if (string.IsNullOrEmpty(Prefix))
+            {
+                return $"Valid values are: {values}";
+            }
+
+            var sb = new StringBuilder(Prefix)
+                .Append(". Valid values are: ")
+                .Append(values);
+
+            return sb
+                .ToString()
+                .Replace("..", ".", StringComparison.Ordinal);
         }
     }
 }

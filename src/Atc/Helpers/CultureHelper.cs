@@ -995,7 +995,7 @@ public static class CultureHelper
     {
         var assembly = AppDomain.CurrentDomain
             .GetAssemblies()
-            .Single(x => x.FullName.StartsWith(ResourceBaseName + ", Version", StringComparison.Ordinal));
+            .Single(x => x.FullName!.StartsWith(ResourceBaseName + ", Version", StringComparison.Ordinal));
         return new ResourceManager($"{ResourceBaseName}.Resources.{resource}", assembly);
     }
 }

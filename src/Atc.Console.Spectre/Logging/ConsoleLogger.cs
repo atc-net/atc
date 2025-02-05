@@ -38,10 +38,7 @@ public class ConsoleLogger : ILogger
         Exception? exception,
         Func<TState, Exception, string> formatter)
     {
-        if (formatter is null)
-        {
-            throw new ArgumentNullException(nameof(formatter));
-        }
+        ArgumentNullException.ThrowIfNull(formatter);
 
         if (!IsEnabled(logLevel))
         {

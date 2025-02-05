@@ -76,7 +76,7 @@ internal static class AssemblyLocalizationResourcesHelper
             var dictionaryEntry = defaultDictionaryEntries.Find(x => (string)x.Key == key);
             if (!ValidateKeySuffixWithPlaceholders(
                     (string)dictionaryEntry.Key,
-                    (string)dictionaryEntry.Value,
+                    dictionaryEntry.Value?.ToString() ?? string.Empty,
                     allowSuffixTerms))
             {
                 invalidKeysInDefault.Add(key);

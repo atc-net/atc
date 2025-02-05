@@ -150,9 +150,9 @@ internal static class AssemblyCommentHelper
                         && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
                         && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
                         && !excludeTypes.Contains(x))
-            .OrderBy(x => x.FullName, StringComparer.Ordinal)
+            .OrderBy(x => x!.FullName!, StringComparer.Ordinal)
             .ToArray();
 
-        return types;
+        return types!;
     }
 }

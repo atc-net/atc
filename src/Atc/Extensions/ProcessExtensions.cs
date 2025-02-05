@@ -17,7 +17,7 @@ public static class ProcessExtensions
 
         var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-        void ProcessExited(object sender, EventArgs e)
+        void ProcessExited(object? sender, EventArgs e)
         {
             tcs.TrySetResult(true);
         }
@@ -52,7 +52,11 @@ public static class ProcessExtensions
             throw new ArgumentNullException(nameof(process));
         }
 
+#if NETSTANDARD2_1
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#else
+        if (OperatingSystem.IsWindows())
+#endif
         {
             // /T => Terminates the specified process and any child processes which were started by it.
             // /F => Specifies to forcefully terminate the process(es).

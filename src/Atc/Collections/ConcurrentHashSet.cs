@@ -150,7 +150,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     /// Firsts the or default.
     /// </summary>
     /// <param name="predicate">The predicate.</param>
-    public T FirstOrDefault(Func<T, bool> predicate)
+    public T? FirstOrDefault(Func<T, bool> predicate)
     {
         readerWriterLock.EnterReadLock();
 

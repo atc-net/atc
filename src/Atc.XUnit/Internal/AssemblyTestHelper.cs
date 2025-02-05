@@ -34,7 +34,7 @@ internal static class AssemblyTestHelper
 
         return methodsWithMissingTestsGroups
             .OrderBy(x => x.Key?.Name, StringComparer.Ordinal)
-            .Select(item => item.Key)
+            .Select(item => item.Key!)
             .ToArray();
     }
 

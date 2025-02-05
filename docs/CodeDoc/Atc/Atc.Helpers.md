@@ -1059,7 +1059,7 @@ Enumeration Helper: EnumHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [ignore case].<br />
 >
-><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.
+><b>Returns:</b> If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.
 #### GetIndividualValues
 >```csharp
 >IList<T> GetIndividualValues(bool includeDefault = True)

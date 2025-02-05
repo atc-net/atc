@@ -1,3 +1,4 @@
+// ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable once CheckNamespace
 namespace System;
 
@@ -42,7 +43,7 @@ public static class ArrayExtensions
         var list = new List<string>(array.Length);
         for (var i = 0; i < array.Length; i++)
         {
-            var s = array.GetValue(i).ToString();
+            var s = array.GetValue(i)?.ToString() ?? string.Empty;
             if (removeDuplicates)
             {
                 if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))

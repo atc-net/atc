@@ -1,3 +1,4 @@
+// ReSharper disable MergeIntoPattern
 namespace Atc.XUnit.Internal;
 
 internal static class AssemblyAnalyzerHelper
@@ -111,10 +112,10 @@ internal static class AssemblyAnalyzerHelper
                         && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
                         && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
                         && !excludeTypes.Contains(x))
-            .OrderBy(x => x.FullName, StringComparer.Ordinal)
+            .OrderBy(x => x!.FullName!, StringComparer.Ordinal)
             .ToArray();
 
-        return types;
+        return types!;
     }
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
@@ -238,7 +239,7 @@ internal static class AssemblyAnalyzerHelper
         var i = beautifyName.IndexOf('<', StringComparison.Ordinal);
         if (i != -1)
         {
-            beautifyName = beautifyName.Substring(0, i);
+            beautifyName = beautifyName[..i];
         }
 
         return beautifyName;

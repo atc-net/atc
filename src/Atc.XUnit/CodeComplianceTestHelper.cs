@@ -33,7 +33,7 @@ public static class CodeComplianceTestHelper
             sourceType,
             testType);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceType.Assembly.GetName().Name,
+            sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -61,7 +61,7 @@ public static class CodeComplianceTestHelper
             sourceType,
             testAssembly);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceType.Assembly.GetName().Name,
+            sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -97,7 +97,7 @@ public static class CodeComplianceTestHelper
             testAssembly,
             excludeSourceTypes);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceAssembly.GetName().Name,
+            sourceAssembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -343,7 +343,7 @@ public static class CodeComplianceTestHelper
             excludeSourceTypes);
         TestResultHelper.ToExcelTestResultsFromMethodsWithMissingTests(
             reportDirectory,
-            sourceAssembly.GetName().Name,
+            sourceAssembly.GetName().Name!,
             methodsWithMissingTests);
     }
 }
