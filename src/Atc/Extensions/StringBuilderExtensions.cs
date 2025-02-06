@@ -121,4 +121,33 @@ public static class StringBuilderExtensions
 
         sb.AppendLine(value.PadLeft(value.Length + indentSpaces));
     }
+
+    /// <summary>
+    /// Appends a new line with indented spaces to the string builder.
+    /// </summary>
+    /// <param name="sb">The <see cref="StringBuilder"/>.</param>
+    /// <param name="value">The value.</param>
+    public static void AppendLine(
+        this StringBuilder sb,
+        char value)
+    {
+        if (sb is null)
+        {
+            throw new ArgumentNullException(nameof(sb));
+        }
+
+        sb.AppendLine(value.ToString());
+    }
+
+    /// <summary>
+    /// Appends a new line with indented spaces to the string builder.
+    /// </summary>
+    /// <param name="sb">The <see cref="StringBuilder"/>.</param>
+    /// <param name="indentSpaces">The indent spaces.</param>
+    /// <param name="value">The value.</param>
+    public static void AppendLine(
+        this StringBuilder sb,
+        int indentSpaces,
+        char value)
+        => AppendLine(sb, indentSpaces, value.ToString());
 }
