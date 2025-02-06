@@ -70,7 +70,7 @@ public class ConsoleEmojiConstantsTests
         sb.AppendLine($"/// Generated from: {SourceUrl}");
         sb.AppendLine("/// </Remarks>");
         sb.AppendLine("public static partial class EmojiConstants");
-        sb.AppendLine("{");
+        sb.AppendLine('{');
         var isFirst = true;
         foreach (var groupName in groupNames)
         {

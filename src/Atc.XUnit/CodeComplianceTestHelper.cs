@@ -165,7 +165,7 @@ public static class CodeComplianceTestHelper
 
         var sb = new StringBuilder();
         sb.AppendLine(12, "var excludeTypes = new List<Type>");
-        sb.AppendLine(12, "{");
+        sb.AppendLine(12, '{');
         sb.AppendLine(12, "{    // TODO: Implement tests on the following types, and then remove the type from the exclude list.");
         for (var i = 0; i < typesWithMissingTests.Length; i++)
         {

@@ -73,15 +73,15 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         sb.AppendLine("using System;");
         sb.AppendLine();
         sb.AppendLine("namespace Test");
-        sb.AppendLine("{");
+        sb.AppendLine('{');
         sb.AppendLine(4, "class Program");
-        sb.AppendLine(4, "{");
+        sb.AppendLine(4, '{');
         sb.AppendLine(8, "static void Main(string[] args)");
-        sb.AppendLine(8, "{");
+        sb.AppendLine(8, '{');
         sb.AppendLine(12, withError ? "QQConsole.WriteLine(\"Hello World!\");" : "Console.WriteLine(\"Hello World!\");");
-        sb.AppendLine(8, "}");
-        sb.AppendLine(4, "}");
-        sb.AppendLine("}");
+        sb.AppendLine(8, '}');
+        sb.AppendLine(4, '}');
+        sb.AppendLine('}');
 
         return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
     }
