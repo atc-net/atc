@@ -13,6 +13,8 @@ namespace System;
 /// <summary>
 /// Extensions for the string class.
 /// </summary>
+[SuppressMessage("Spacing Rules", "SA1028:Code should not contain trailing whitespace", Justification = "OK - #if")]
+[SuppressMessage("Documentation Rules", "SA1625:Element documentation should not be copied and pasted", Justification = "OK - #if")]
 public static class StringExtensions
 {
     /// <summary>
