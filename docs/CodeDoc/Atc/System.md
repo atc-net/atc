@@ -2101,7 +2101,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### FormatWith
 >```csharp
->string FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
+>string FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, StringComparison comparison = OrdinalIgnoreCase, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
 >```
 ><b>Summary:</b> Formats a string template by replacing placeholders with corresponding argument values.
 >
@@ -2117,6 +2117,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg7`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg8`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg9`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;Use comparison with default  for key matching.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg0Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of , provided via .<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg1Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg2Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
@@ -2420,7 +2421,7 @@ Extensions for the string class.
 ><b>Returns:</b> The modified input string with template keys replaced by their corresponding template values.
 #### SetStringFormatParameterTemplatePlaceholders
 >```csharp
->string SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary<string, string> replacements, bool useDoubleBracket = True)
+>string SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary<string, string> replacements, bool useDoubleBracket = True, StringComparison comparison = Ordinal)
 >```
 ><b>Summary:</b> Sets the string format parameter template placeholders.
 >
@@ -2428,6 +2429,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;The replacements.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if ;otherwise .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;Use comparison with default  for key matching.<br />
 #### ToLines
 >```csharp
 >string[] ToLines(this string value)

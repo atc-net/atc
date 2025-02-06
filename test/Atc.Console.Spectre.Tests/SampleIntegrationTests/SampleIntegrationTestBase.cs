@@ -32,9 +32,9 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         var jsonPart = json.Replace(Environment.NewLine, $"{Environment.NewLine}  ", StringComparison.Ordinal);
 
         var sbJson = new StringBuilder();
-        sbJson.AppendLine("{");
+        sbJson.AppendLine('{');
         sbJson.AppendLine("  \"ConsoleLogger\": " + jsonPart);
-        sbJson.AppendLine("}");
+        sbJson.AppendLine('}');
 
         var jsonOutput = sbJson.ToString();
         File.WriteAllText(appSettingsFile.FullName, jsonOutput);

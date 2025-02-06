@@ -65,4 +65,36 @@ public class StringBuilderExtensionsTests
         // Assert
         Assert.Equal(expected + Environment.NewLine, actual);
     }
+
+    [Theory]
+    [InlineData("H", 'H')]
+    public void AppendLine_Char(string expected, char value)
+    {
+        // Arrange
+        var sb = new StringBuilder();
+
+        // Act
+        sb.AppendLine(value);
+        var actual = sb.ToString();
+
+        // Assert
+        Assert.Equal(expected + Environment.NewLine, actual);
+    }
+
+    [Theory]
+    [InlineData("H", 'H', 0)]
+    [InlineData(" H", 'H', 1)]
+    [InlineData("     H", 'H', 5)]
+    public void AppendLine_Char_IndentSpaces(string expected, char value, int indentSpaces)
+    {
+        // Arrange
+        var sb = new StringBuilder();
+
+        // Act
+        sb.AppendLine(indentSpaces, value);
+        var actual = sb.ToString();
+
+        // Assert
+        Assert.Equal(expected + Environment.NewLine, actual);
+    }
 }

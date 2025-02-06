@@ -710,10 +710,10 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine();
         sb.AppendLine("var app = builder.Build();");
         sb.AppendLine("if (!app.Environment.IsDevelopment())");
-        sb.AppendLine("{");
+        sb.AppendLine('{');
         sb.AppendLine("    app.UseExceptionHandler(\"/Error\");");
         sb.AppendLine("    app.UseHsts();");
-        sb.AppendLine("}");
+        sb.AppendLine('}');
         sb.AppendLine();
         sb.AppendLine("app.UseHttpsRedirection();");
         sb.AppendLine("app.UseStaticFiles();");
