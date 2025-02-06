@@ -5179,7 +5179,7 @@
      - EnsureFirstCharacterToUpperAndSingular(this string value)
      - EnsurePlural(this string value)
      - EnsureSingular(this string value)
-     - FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
+     - FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, StringComparison comparison = OrdinalIgnoreCase, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
      - GetStringFormatParameterLiteralCount(this string value)
      - GetStringFormatParameterNumericCount(this string value)
      - GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
@@ -5208,7 +5208,7 @@
      - ReplaceNewLines(this string value, string newValue)
      - ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
      - ReplaceTemplateKeysWithValues(this string value, IDictionary&lt;string, string&gt; templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
-     - SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary&lt;string, string&gt; replacements, bool useDoubleBracket = True)
+     - SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary&lt;string, string&gt; replacements, bool useDoubleBracket = True, StringComparison comparison = Ordinal)
      - ToLines(this string value)
      - ToStream(this string value)
      - ToStreamFromBase64(this string base64Data)
@@ -5482,6 +5482,8 @@
   -  Static Methods
      - Append(this StringBuilder sb, int indentSpaces, string value)
      - Append(this StringBuilder sb, string format, object[] args)
+     - AppendLine(this StringBuilder sb, char value)
+     - AppendLine(this StringBuilder sb, int indentSpaces, char value)
      - AppendLine(this StringBuilder sb, int indentSpaces, string value)
      - AppendLine(this StringBuilder sb, string format, object[] args)
 

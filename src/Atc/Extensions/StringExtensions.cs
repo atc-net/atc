@@ -257,6 +257,7 @@ public static class StringExtensions
     /// <param name="value">The value.</param>
     /// <param name="replacements">The replacements.</param>
     /// <param name="useDoubleBracket">Use double bracket if <see langword="true" />;otherwise <see langword="false" />.</param>
+    /// <param name="comparison">Use comparison with default <see langword="StringComparison.Ordinal" /> for key matching.</param>
     /// <exception cref="ArgumentNullException">
     /// value
     /// or
@@ -265,7 +266,8 @@ public static class StringExtensions
     public static string SetStringFormatParameterTemplatePlaceholders(
         this string value,
         IDictionary<string, string> replacements,
-        bool useDoubleBracket = true)
+        bool useDoubleBracket = true,
+        StringComparison comparison = StringComparison.Ordinal)
     {
         if (value is null)
         {
@@ -284,8 +286,8 @@ public static class StringExtensions
             {
                 var s = (pair.Key.StartsWith("{{", StringComparison.Ordinal) &&
                          pair.Key.EndsWith("}}", StringComparison.Ordinal)
-                    ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
-                    : placeholders.Find(x => string.Equals(x, "{{" + pair.Key + "}}", StringComparison.Ordinal)))!;
+                    ? placeholders.Find(x => string.Equals(x, pair.Key, comparison))
+                    : placeholders.Find(x => string.Equals(x, "{{" + pair.Key + "}}", comparison)))!;
 
                 if (!string.IsNullOrEmpty(s))
                 {
@@ -297,10 +299,10 @@ public static class StringExtensions
         {
             foreach (var pair in replacements)
             {
-                var s = (pair.Key.StartsWith("{", StringComparison.Ordinal) &&
-                         pair.Key.EndsWith("}", StringComparison.Ordinal)
-                    ? placeholders.Find(x => string.Equals(x, pair.Key, StringComparison.Ordinal))
-                    : placeholders.Find(x => string.Equals(x, "{" + pair.Key + "}", StringComparison.Ordinal)))!;
+                var s = (pair.Key.StartsWith('{') &&
+                         pair.Key.EndsWith('}')
+                    ? placeholders.Find(x => string.Equals(x, pair.Key, comparison))
+                    : placeholders.Find(x => string.Equals(x, '{' + pair.Key + '}', comparison)))!;
 
                 if (!string.IsNullOrEmpty(s))
                 {
@@ -2022,6 +2024,7 @@ public static class StringExtensions
     /// <param name="arg7">Optional argument for placeholder replacement.</param>
     /// <param name="arg8">Optional argument for placeholder replacement.</param>
     /// <param name="arg9">Optional argument for placeholder replacement.</param>
+    /// <param name="comparison">Use comparison with default <see langword="StringComparison.OrdinalIgnoreCase" /> for key matching.</param>
     /// <param name="arg0Name">The name of <paramref name="arg0"/>, provided via <see cref="CallerArgumentExpressionAttribute"/>.</param>
     /// <param name="arg1Name">The name of <paramref name="arg1"/> (if provided), automatically inferred.</param>
     /// <param name="arg2Name">The name of <paramref name="arg2"/> (if provided), automatically inferred.</param>
@@ -2047,6 +2050,8 @@ public static class StringExtensions
     /// - Named placeholders (e.g., '{argName}') and indexed placeholders (e.g., '{0}') are supported.<br/>
     /// - Argument names are inferred using the <see cref="CallerArgumentExpressionAttribute"/> for better debugging.
     /// </remarks>
+    [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static string FormatWith(
         this string template,
         string arg0,
@@ -2059,6 +2064,7 @@ public static class StringExtensions
         string? arg7 = null,
         string? arg8 = null,
         string? arg9 = null,
+        StringComparison comparison = StringComparison.OrdinalIgnoreCase,
         [CallerArgumentExpression("arg0")] string arg0Name = null!,
         [CallerArgumentExpression("arg1")] string? arg1Name = null,
         [CallerArgumentExpression("arg2")] string? arg2Name = null,
@@ -2092,6 +2098,23 @@ public static class StringExtensions
             var key = placeholder.Trim('{', '}');
 
             var index = Array.IndexOf(argNames, key);
+            if (index == -1)
+            {
+                for (var i = 0; i < argNames.Length; i++)
+                {
+                    if (argNames[i] == null)
+                    {
+                        break;
+                    }
+
+                    if (argNames[i]!.Contains('.', StringComparison.Ordinal) &&
+                        argNames[i]!.EndsWith(key, comparison))
+                    {
+                        index = i;
+                    }
+                }
+            }
+
             if (index != -1 && index < usedArgsCount)
             {
                 dictionary.Add(key, argValues[index]!);
@@ -2111,7 +2134,10 @@ public static class StringExtensions
             }
         }
 
-        return template.SetStringFormatParameterTemplatePlaceholders(dictionary, useDoubleBracket: false);
+        return template.SetStringFormatParameterTemplatePlaceholders(
+            dictionary,
+            useDoubleBracket: false,
+            comparison: StringComparison.OrdinalIgnoreCase);
     }
 #endif
 

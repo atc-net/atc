@@ -17,6 +17,8 @@ internal sealed class TestPerson
     [Range(1, 99)]
     public int Age { get; set; }
 
+    public string? Email { get; set; }
+
     public override string ToString()
-        => $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Age)}: {Age}";
+        => $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Age)}: {Age}, {nameof(Email)}: {Email}";
 }
