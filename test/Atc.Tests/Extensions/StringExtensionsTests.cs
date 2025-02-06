@@ -31,6 +31,15 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.WordCount());
 
     [Theory]
+    [InlineData("MyData", "MyData")]
+    [InlineData("MyData", "List<MyData>")]
+    [InlineData("MyData", "Hallo world List<MyData> HalloFoo")]
+    [InlineData("MyData Foo", "MyData Foo")]
+    [InlineData("MyDataListFoo", "MyDataListFoo")]
+    public void GetValueBetweenLessAndGreaterThanCharsIfExist(string expected, string input)
+        => Assert.Equal(expected, input.GetValueBetweenLessAndGreaterThanCharsIfExist());
+
+    [Theory]
     [InlineData(0, "Hallo world")]
     [InlineData(2, "Hest {0}, {1}")]
     [InlineData(-1, "Hest {0, {1}")]
@@ -65,6 +74,16 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders());
 
     [Theory]
+    [InlineData(new string[] { }, "Hallo World", true)]
+    [InlineData(new string[] { }, "Hallo World {0}-{1}", true)]
+    [InlineData(new[] { "{{0}}", "{{1}}", "{{A1}}" }, "Hallo World {{0}}-{{1}}-{{A1}}", true)]
+    [InlineData(new string[] { }, "Hallo World", false)]
+    [InlineData(new[] { "{0}", "{1}" }, "Hallo World {0}-{1}", false)]
+    [InlineData(new[] { "{0}", "{1}", "{A1}" }, "Hallo World {0}-{1}-{A1}", false)]
+    public void GetStringFormatParameterTemplatePlaceholders_UseDoubleBracket(string[] expected, string input, bool useDoubleBracket)
+        => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders(useDoubleBracket));
+
+    [Theory]
     [InlineData("Hallo World John-Doe-42", "Hallo World {{0}}-{{1}}-{{A1}}", new[] { "0", "John", "1", "Doe", "A1", "42" })]
     [InlineData("Hallo World John-Doe-42", "Hallo World {{0}}-{{1}}-{{A1}}", new[] { "{{0}}", "John", "{{1}}", "Doe", "{{A1}}", "42" })]
     public void SetStringFormatParameterTemplatePlaceholders(string expected, string input, string[] data)
@@ -78,6 +97,27 @@ public class StringExtensionsTests
 
         // Act
         var actual = input.SetStringFormatParameterTemplatePlaceholders(replacements);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("Hallo World John-Doe-42", "Hallo World {{0}}-{{1}}-{{A1}}", new[] { "0", "John", "1", "Doe", "A1", "42" }, true)]
+    [InlineData("Hallo World John-Doe-42", "Hallo World {{0}}-{{1}}-{{A1}}", new[] { "{{0}}", "John", "{{1}}", "Doe", "{{A1}}", "42" }, true)]
+    [InlineData("Hallo World John-Doe-42", "Hallo World {0}-{1}-{A1}", new[] { "0", "John", "1", "Doe", "A1", "42" }, false)]
+    [InlineData("Hallo World John-Doe-42", "Hallo World {0}-{1}-{A1}", new[] { "{0}", "John", "{1}", "Doe", "{A1}", "42" }, false)]
+    public void SetStringFormatParameterTemplatePlaceholders_UseDoubleBracket(string expected, string input, string[] data, bool useDoubleBracket)
+    {
+        // Arrange
+        var replacements = new Dictionary<string, string>(StringComparer.Ordinal);
+        for (var i = 0; i < data.Length; i += 2)
+        {
+            replacements.Add(data[i], data[i + 1]);
+        }
+
+        // Act
+        var actual = input.SetStringFormatParameterTemplatePlaceholders(replacements, useDoubleBracket);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -533,6 +573,71 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.Cut(maxLength, appendValue));
 
     [Theory]
+    [InlineData("Hallo foo world", "Hallo {0} world", "foo", null, null, null, null, null, null, null, null, null)]
+    [InlineData("Hallo foo world fooX1-fooX2-fooX3-fooX4-fooX5-fooX6-fooX7-fooX8-fooX9", "Hallo {0} world {1}-{2}-{3}-{4}-{5}-{6}-{7}-{8}-{9}", "foo", "fooX1", "fooX2", "fooX3", "fooX4", "fooX5", "fooX6", "fooX7", "fooX8", "fooX9")]
+    [InlineData("Hallo foo world fooX1-fooX2-fooX3-fooX4-fooX5-fooX6-fooX7-fooX8-fooX9", "Hallo {arg0} world {arg1}-{arg2}-{arg3}-{arg4}-{arg5}-{arg6}-{arg7}-{arg8}-{arg9}", "foo", "fooX1", "fooX2", "fooX3", "fooX4", "fooX5", "fooX6", "fooX7", "fooX8", "fooX9")]
+    public void FormatWith_Name(
+        string expected,
+        string template,
+        string arg0,
+        string? arg1,
+        string? arg2,
+        string? arg3,
+        string? arg4,
+        string? arg5,
+        string? arg6,
+        string? arg7,
+        string? arg8,
+        string? arg9)
+    {
+        // Act
+        var actual = template.FormatWith(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("Hallo foo world bar", "Hallo {foo} world {bar}", "foo", "bar")]
+    [InlineData("Hallo foo world bar", "Hallo {0} world {1}", "foo", "bar")]
+    [InlineData("Hallo foo world bar", "Hallo {foo} world {1}", "foo", "bar")]
+    [InlineData("Hallo foo world bar", "Hallo {0} world {bar}", "foo", "bar")]
+    public void FormatWith_Name2(string expected, string template, string foo, string bar)
+    {
+        // Act
+        var actual = template.FormatWith(foo, bar);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("Hallo, my name is John Doe and my john@doe.com", "Hallo, my name is {firstName} {lastName} and my {email}", "John", "Doe", "john@doe.com")]
+    [InlineData("Hallo, my name is John Doe and my john@doe.com", "Hallo, my name is {0} {1} and my {2}", "John", "Doe", "john@doe.com")]
+    [InlineData("Hallo, my name is John Doe and my john@doe.com", "Hallo, my name is {firstName} {1} and my {2}", "John", "Doe", "john@doe.com")]
+    [InlineData("Hallo, my name is John Doe and my john@doe.com", "Hallo, my name is {0} {lastName} and my {2}", "John", "Doe", "john@doe.com")]
+    [InlineData("Hallo, my name is John Doe and my john@doe.com", "Hallo, my name is {0} {1} and my {email}", "John", "Doe", "john@doe.com")]
+    public void FormatWith_Name3(string expected, string template, string firstName, string lastName, string email)
+    {
+        // Act
+        var actual = template.FormatWith(firstName, lastName, email);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("Hallo foo world bar", "Hallo {foo} world {bar}", "foo", "bar")]
+    public void FormatWith_Name2Swap(string expected, string template, string foo, string bar)
+    {
+        // Act
+        var actual = template.FormatWith(bar, foo);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [InlineData("Hallo Wo#ld", "Hallo World", 8, '#')]
     public void ReplaceAt(string expected, string input, int index, char newChar)
         => Assert.Equal(expected, input.ReplaceAt(index, newChar));
@@ -643,15 +748,6 @@ public class StringExtensionsTests
     [InlineData(new[] { "Hallo", "World" }, "Hallo\r\nWorld")]
     public void ToLines(string[] expected, string input)
         => Assert.Equal(expected, input.ToLines());
-
-    [Theory]
-    [InlineData("MyData", "MyData")]
-    [InlineData("MyData", "List<MyData>")]
-    [InlineData("MyData", "Hallo world List<MyData> HalloFoo")]
-    [InlineData("MyData Foo", "MyData Foo")]
-    [InlineData("MyDataListFoo", "MyDataListFoo")]
-    public void GetValueBetweenLessAndGreaterThanCharsIfExist(string expected, string input)
-        => Assert.Equal(expected, input.GetValueBetweenLessAndGreaterThanCharsIfExist());
 
     [Fact]
     public void ToStream()

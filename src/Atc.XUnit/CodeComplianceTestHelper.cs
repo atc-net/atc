@@ -11,7 +11,7 @@ public static class CodeComplianceTestHelper
     /// <param name="decompilerType">The decompiler type.</param>
     /// <param name="sourceType">Type of the source.</param>
     /// <param name="testType">Type of the test.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
@@ -33,7 +33,7 @@ public static class CodeComplianceTestHelper
             sourceType,
             testType);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceType.Assembly.GetName().Name,
+            sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -44,7 +44,7 @@ public static class CodeComplianceTestHelper
     /// <param name="decompilerType">The decompiler type.</param>
     /// <param name="sourceType">Type of the source.</param>
     /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
@@ -61,7 +61,7 @@ public static class CodeComplianceTestHelper
             sourceType,
             testAssembly);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceType.Assembly.GetName().Name,
+            sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -73,7 +73,7 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly.</param>
     /// <param name="testAssembly">The test assembly.</param>
     /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -97,7 +97,7 @@ public static class CodeComplianceTestHelper
             testAssembly,
             excludeSourceTypes);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
-            sourceAssembly.GetName().Name,
+            sourceAssembly.GetName().Name!,
             methodsWithMissingTests,
             useFullName);
     }
@@ -139,7 +139,7 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly.</param>
     /// <param name="testAssembly">The test assembly.</param>
     /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string CollectExportedTypesWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -223,7 +223,7 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly.</param>
     /// <param name="testAssembly">The test assembly.</param>
     /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -252,7 +252,7 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly.</param>
     /// <param name="testAssembly">The test assembly.</param>
     /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <c>true</c> [use full name].</param>
+    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     public static string CollectExportedMethodsWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -343,7 +343,7 @@ public static class CodeComplianceTestHelper
             excludeSourceTypes);
         TestResultHelper.ToExcelTestResultsFromMethodsWithMissingTests(
             reportDirectory,
-            sourceAssembly.GetName().Name,
+            sourceAssembly.GetName().Name!,
             methodsWithMissingTests);
     }
 }

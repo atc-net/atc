@@ -86,7 +86,7 @@ public static class Enum<T>
     /// <param name="value">The value.</param>
     /// <param name="hasValue">The has value.</param>
     /// <returns>
-    ///     <c>true</c> if the specified value has flag; otherwise, <c>false</c>.
+    ///     <see langword="true" /> if the specified value has flag; otherwise, <see langword="false" />.
     /// </returns>
     public static bool HasFlag(T value, T hasValue)
         => value.HasFlag(hasValue);
@@ -148,12 +148,12 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to array.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     /// <returns>An array of names from the enum.</returns>
     /// <code><![CDATA[Array array = Enum<DayOfWeek>.ToArray();]]></code>
     /// <example><![CDATA[
@@ -182,12 +182,12 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to dictionary.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     /// <returns>An dictionary of enum values as int and names from the enum.</returns>
     /// <code><![CDATA[Dictionary<int, string> dictionary = Enum<DayOfWeek>.ToDictionary();]]></code>
     /// <example><![CDATA[
@@ -213,12 +213,12 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to dictionary with key as string.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     /// <returns>An dictionary of enum values as string and names from the enum.</returns>
     /// <code><![CDATA[Dictionary<string, string> dictionary = Enum<DayOfWeek>.ToDictionaryWithStringKey();]]></code>
     /// <example><![CDATA[
@@ -244,12 +244,12 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to list of key value pairs.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     /// <returns>An list of KeyValuePair of the enum with the key as int.</returns>
     /// <code><![CDATA[List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairs();]]></code>
     /// <example><![CDATA[
@@ -278,12 +278,12 @@ public static class Enum<T>
     }
 
     /// <summary>Converts the enum to list of key value pairs with key as string.</summary>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
     /// <param name="includeDefault">true to include the default enumeration value; false to skip it.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     /// <returns>An list of KeyValuePair of the enum with the key as string.</returns>
     /// <code><![CDATA[List<KeyValuePair<string, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();]]></code>
     /// <example><![CDATA[

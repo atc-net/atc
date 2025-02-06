@@ -41,8 +41,8 @@ ConsoleHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logger`&nbsp;&nbsp;-&nbsp;&nbsp;The logger.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logItem`&nbsp;&nbsp;-&nbsp;&nbsp;The log item.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include description].<br />
 #### WriteLogs
 >```csharp
 >void WriteLogs(ILogger logger, List<LogKeyValueItem> logItems, bool includeKey = True, bool includeDescription = True)
@@ -52,8 +52,8 @@ ConsoleHelper.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logger`&nbsp;&nbsp;-&nbsp;&nbsp;The logger.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logItems`&nbsp;&nbsp;-&nbsp;&nbsp;The log items.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include key].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include description].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeKey`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include key].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDescription`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include description].<br />
 
 <br />
 

@@ -11,7 +11,7 @@ public static class MemberInfoExtensions
     /// </summary>
     /// <param name="memberInfo">The member information.</param>
     /// <returns>
-    ///   <c>true</c> if [has exclude from code coverage attribute] [the specified member information]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has exclude from code coverage attribute] [the specified member information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">memberInfo.</exception>
     public static bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
@@ -41,7 +41,7 @@ public static class MemberInfoExtensions
     /// </summary>
     /// <param name="memberInfo">The member information.</param>
     /// <returns>
-    ///   <c>true</c> if [has ignore display attribute] [the specified member information]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has ignore display attribute] [the specified member information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">memberInfo.</exception>
     public static bool HasIgnoreDisplayAttribute(this MemberInfo memberInfo)
@@ -60,7 +60,7 @@ public static class MemberInfoExtensions
     /// </summary>
     /// <param name="memberInfo">The member information.</param>
     /// <returns>
-    ///   <c>true</c> if [has required attribute] [the specified member information]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [has required attribute] [the specified member information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">memberInfo.</exception>
     public static bool HasRequiredAttribute(this MemberInfo memberInfo)
@@ -100,7 +100,7 @@ public static class MemberInfoExtensions
 
         return member.MemberType switch
         {
-            MemberTypes.Event => ((EventInfo)member).EventHandlerType,
+            MemberTypes.Event => ((EventInfo)member).EventHandlerType!,
             MemberTypes.Field => ((FieldInfo)member).FieldType,
             MemberTypes.Method => ((MethodInfo)member).ReturnType,
             MemberTypes.Property => ((PropertyInfo)member).PropertyType,

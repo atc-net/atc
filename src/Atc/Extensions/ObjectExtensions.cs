@@ -25,7 +25,7 @@ public static class ObjectExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        return source.GetType().FullName;
+        return source.GetType().FullName!;
     }
 
     public static object? GetPropertyValue(

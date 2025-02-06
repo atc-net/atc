@@ -12,7 +12,7 @@ public static class BooleanExtensions
     /// Determines if the nullable boolean has a value and it is true.
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
-    /// <returns><c>true</c> if the source has a value and it is true; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the source has a value and it is true; otherwise, <see langword="false" />.</returns>
     public static bool HasValueAndTrue(
         this bool? source)
         => source.HasValue &&
@@ -22,7 +22,7 @@ public static class BooleanExtensions
     /// Determines if the nullable boolean has a value and it is false.
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
-    /// <returns><c>true</c> if the source has a value and it is false; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the source has a value and it is false; otherwise, <see langword="false" />.</returns>
     public static bool HasValueAndFalse(
         this bool? source)
         => source.HasValue &&
@@ -32,7 +32,7 @@ public static class BooleanExtensions
     /// Determines if the nullable boolean does not have a value.
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
-    /// <returns><c>true</c> if the source does not have a value; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the source does not have a value; otherwise, <see langword="false" />.</returns>
     public static bool HasNoValue(
         this bool? source)
         => !source.HasValue;
@@ -41,7 +41,7 @@ public static class BooleanExtensions
     /// Determines if the nullable boolean does not have a value or is true.
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
-    /// <returns><c>true</c> if the source does not have a value or is true; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the source does not have a value or is true; otherwise, <see langword="false" />.</returns>
     public static bool HasNoValueOrTrue(
         this bool? source)
         => !source.HasValue ||
@@ -51,7 +51,7 @@ public static class BooleanExtensions
     /// Determines if the nullable boolean does not have a value or is false.
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
-    /// <returns><c>true</c> if the source does not have a value or is false; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the source does not have a value or is false; otherwise, <see langword="false" />.</returns>
     public static bool HasNoValueOrFalse(
         this bool? source)
         => !source.HasValue ||
@@ -62,7 +62,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="a">The first nullable boolean.</param>
     /// <param name="b">The second nullable boolean.</param>
-    /// <returns><c>true</c> if both nullable booleans are equal; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if both nullable booleans are equal; otherwise, <see langword="false" />.</returns>
     public static bool IsEqual(
         this bool? a,
         bool? b)

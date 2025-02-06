@@ -329,7 +329,7 @@ public static class MathHelper
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>
-    ///   <c>true</c> if [is equal to zero] [the specified value]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is equal to zero] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEqualToZero(double value)
     {
@@ -342,7 +342,7 @@ public static class MathHelper
     /// <param name="value1">The value1.</param>
     /// <param name="value2">The value2.</param>
     /// <returns>
-    ///   <c>true</c> if the specified value1 is equals; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified value1 is equals; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEquals(double value1, double value2)
     {

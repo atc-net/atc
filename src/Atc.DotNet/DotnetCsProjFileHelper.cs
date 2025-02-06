@@ -141,19 +141,22 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectSdkElement(
         XElement rootElement)
     {
-        if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.BlazorWebAssembly", StringComparison.Ordinal))
+        if (rootElement.FirstAttribute is not null)
         {
-            return DotnetProjectType.BlazorWAsmApp;
-        }
+            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.BlazorWebAssembly", StringComparison.Ordinal))
+            {
+                return DotnetProjectType.BlazorWAsmApp;
+            }
 
-        if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Razor", StringComparison.Ordinal))
-        {
-            return DotnetProjectType.RazorLibrary;
-        }
+            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Razor", StringComparison.Ordinal))
+            {
+                return DotnetProjectType.RazorLibrary;
+            }
 
-        if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Worker", StringComparison.Ordinal))
-        {
-            return DotnetProjectType.WorkerService;
+            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Worker", StringComparison.Ordinal))
+            {
+                return DotnetProjectType.WorkerService;
+            }
         }
 
         var projectType = ProjectElementForSdkTest(rootElement);
@@ -180,7 +183,8 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectElementForSdk(
         XElement rootElement)
     {
-        if (!rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
+        if (rootElement.FirstAttribute is not null &&
+            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
         {
             return DotnetProjectType.None;
         }
@@ -230,7 +234,8 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectElementForSdkTest(
         XElement rootElement)
     {
-        if (!rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
+        if (rootElement.FirstAttribute is not null &&
+            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
         {
             return DotnetProjectType.None;
         }
@@ -261,7 +266,8 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectElementForSdkWeb(
         XElement rootElement)
     {
-        if (!rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Web", StringComparison.Ordinal))
+        if (rootElement.FirstAttribute is not null &&
+            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Web", StringComparison.Ordinal))
         {
             return DotnetProjectType.None;
         }

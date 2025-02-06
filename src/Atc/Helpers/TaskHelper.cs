@@ -33,7 +33,11 @@ public static class TaskHelper
             .WhenAny(originalTask, delayTask)
             .ConfigureAwait(false);
 
+#if NET8_0_OR_GREATER
+        await timeoutCancellation.CancelAsync();
+#else
         timeoutCancellation.Cancel();
+#endif
         if (completedTask == originalTask)
         {
             return await originalTask.ConfigureAwait(false);

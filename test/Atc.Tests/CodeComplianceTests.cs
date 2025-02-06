@@ -49,6 +49,7 @@ public class CodeComplianceTests
         typeof(StringCaseFormatter),
         typeof(NumberHelper),
         typeof(InternetBrowserHelper),
+        typeof(DictionaryExtensions),
         typeof(DirectoryInfoExtensions),
         typeof(FileInfoExtensions),
         typeof(HttpClientRequestResult<>),

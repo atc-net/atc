@@ -23,8 +23,8 @@ public static class EnumHelper
     /// </summary>
     /// <typeparam name="T">The type.</typeparam>
     /// <param name="value">The value.</param>
-    /// <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
-    /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned. Otherwise the default value is returned.</returns>
+    /// <param name="ignoreCase">if set to <see langword="true" /> [ignore case].</param>
+    /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.</returns>
     public static T GetEnumValue<T>(string value, bool ignoreCase = true)
         where T : Enum
     {
@@ -77,7 +77,7 @@ public static class EnumHelper
             throw new ArgumentNullException(nameof(description));
         }
 
-        if (description.Length == default)
+        if (description.Length == 0)
         {
             throw new ArgumentOutOfRangeException(nameof(description));
         }
@@ -92,35 +92,35 @@ public static class EnumHelper
         {
             if (fieldInfo.Name.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var localizedDescriptionAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(LocalizedDescriptionAttribute)) as LocalizedDescriptionAttribute;
             if (localizedDescriptionAttribute?.Description is not null &&
                 localizedDescriptionAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var descriptionAttributeOrg = Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
             if (descriptionAttributeOrg?.Description is not null &&
                 descriptionAttributeOrg.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var displayNameAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
             if (displayNameAttribute?.DisplayName is not null &&
                 displayNameAttribute.DisplayName.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
 
             var displayAttribute = Attribute.GetCustomAttribute(fieldInfo, typeof(DisplayAttribute)) as DisplayAttribute;
             if (displayAttribute?.Description is not null &&
                 displayAttribute.Description.Equals(description, StringComparison.OrdinalIgnoreCase))
             {
-                return (T)fieldInfo.GetValue(null);
+                return (T)fieldInfo.GetValue(null)!;
             }
         }
 
@@ -131,12 +131,12 @@ public static class EnumHelper
     /// Converts the enum to array.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     public static Array ConvertEnumToArray(
         Type enumType,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None,
@@ -164,12 +164,12 @@ public static class EnumHelper
     /// Converts the enum to dictionary.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<int, string> ConvertEnumToDictionary(
@@ -202,7 +202,7 @@ public static class EnumHelper
                 continue;
             }
 
-            var value = objEnumValue.ToString();
+            var value = objEnumValue.ToString() ?? string.Empty;
             if (useDescriptionAttribute)
             {
                 var description = ((objEnumValue as Enum)!).GetDescription();
@@ -284,12 +284,12 @@ public static class EnumHelper
     /// Converts the enum to dictionary with string key.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>
-    /// <param name="dropDownFirstItemType">Type of the drop down first item.</param>
-    /// <param name="useDescriptionAttribute">if set to <c>true</c> [use description attribute].</param>
-    /// <param name="includeDefault">if set to <c>true</c> [include default].</param>
+    /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
+    /// <param name="useDescriptionAttribute">if set to <see langword="true" /> [use description attribute].</param>
+    /// <param name="includeDefault">if set to <see langword="true" /> [include default].</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="byFlagIncludeBase">if set to <c>true</c> [by flag include base].</param>
-    /// <param name="byFlagIncludeCombined">if set to <c>true</c> [by flag include combined].</param>
+    /// <param name="byFlagIncludeBase">if set to <see langword="true" /> [by flag include base].</param>
+    /// <param name="byFlagIncludeCombined">if set to <see langword="true" /> [by flag include combined].</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     public static Dictionary<string, string> ConvertEnumToDictionaryWithStringKey(
@@ -322,7 +322,7 @@ public static class EnumHelper
                 continue;
             }
 
-            var value = objEnumValue.ToString();
+            var value = objEnumValue.ToString()!;
             if (useDescriptionAttribute)
             {
                 var description = ((objEnumValue as Enum)!).GetDescription();
@@ -334,14 +334,14 @@ public static class EnumHelper
 
             if (dropDownFirstItemType == DropDownFirstItemType.None)
             {
-                if (!list.ContainsKey(objEnumValue.ToString()))
+                if (!list.ContainsKey(objEnumValue.ToString()!))
                 {
-                    list.Add(objEnumValue.ToString(), value);
+                    list.Add(objEnumValue.ToString()!, value);
                 }
             }
-            else if (!list.ContainsKey(objEnumValue.ToString()))
+            else if (!list.ContainsKey(objEnumValue.ToString()!))
             {
-                list.Add(objEnumValue.ToString(), value);
+                list.Add(objEnumValue.ToString()!, value);
             }
         }
 

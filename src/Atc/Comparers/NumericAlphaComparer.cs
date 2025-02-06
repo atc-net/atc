@@ -10,7 +10,7 @@ public class NumericAlphaComparer : IComparer<string>
     [SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    public int Compare(string x, string y)
+    public int Compare(string? x, string? y)
     {
         if (string.IsNullOrEmpty(x) && string.IsNullOrEmpty(y))
         {

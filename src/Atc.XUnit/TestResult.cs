@@ -36,7 +36,7 @@ public class TestResult
     /// <summary>
     /// Initializes a new instance of the <see cref="TestResult"/> class.
     /// </summary>
-    /// <param name="isError">if set to <c>true</c> [is error].</param>
+    /// <param name="isError">if set to <see langword="true" /> [is error].</param>
     /// <param name="indentLevel">The indent level.</param>
     /// <param name="text">The text.</param>
     public TestResult(bool isError, int indentLevel, string text)
@@ -74,7 +74,7 @@ public class TestResult
     /// Gets a value indicating whether this instance is error.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if this instance is error; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if this instance is error; otherwise, <see langword="false" />.
     /// </value>
     public bool IsError { get; }
 

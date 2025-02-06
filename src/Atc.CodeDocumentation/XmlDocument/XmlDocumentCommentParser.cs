@@ -34,13 +34,13 @@ internal static class XmlDocumentCommentParser
                 var returns = x.ParseElementText("returns", namespaceMatch);
                 var remarks = x.ParseElementText("remarks", namespaceMatch);
 
-                var code = (string)x.Element("code") ?? string.Empty;
+                var code = x.Element("code")?.Value ?? string.Empty;
                 if (code.Length > 0)
                 {
                     code = TrimCode(code, trimEachLine: true);
                 }
 
-                var example = (string)x.Element("example") ?? string.Empty;
+                var example = x.Element("example")?.Value ?? string.Empty;
                 if (example.Length > 0)
                 {
                     example = TrimCode(example, trimEachLine: false);

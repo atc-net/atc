@@ -196,7 +196,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Compares two versions are semantically.
     /// </summary>
     /// <param name="obj">The other.</param>
-    public int CompareTo(object obj)
+    public int CompareTo(object? obj)
     {
         switch (obj)
         {
@@ -238,7 +238,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting part.</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public int CompareTo(
         SemanticVersion? otherVersion,
         int significantParts,
@@ -303,7 +303,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// </summary>
     /// <param name="obj">The object.</param>
     public override bool Equals(
-        object obj)
+        object? obj)
         => Equals(obj as SemanticVersion);
 
     /// <summary>
@@ -332,7 +332,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// <param name="otherVersion">The other version.</param>
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting part.</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public bool GreaterThan(
         SemanticVersion? otherVersion,
         int significantParts = 4,
@@ -372,8 +372,8 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Is newer than.
     /// </summary>
     /// <param name="otherVersion">The other version.</param>
-    /// <param name="withinMinorReleaseOnly">if set to <c>true</c> [within minor release only].</param>
-    /// <param name="looseMode">if set to <c>true</c> [loose mode].</param>
+    /// <param name="withinMinorReleaseOnly">if set to <see langword="true" /> [within minor release only].</param>
+    /// <param name="looseMode">if set to <see langword="true" /> [loose mode].</param>
     public bool IsNewerThan(
         SemanticVersion? otherVersion,
         bool withinMinorReleaseOnly = false,

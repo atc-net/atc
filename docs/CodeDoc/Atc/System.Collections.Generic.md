@@ -7,6 +7,66 @@
 
 <br />
 
+## DictionaryExtensions
+Provides extension methods for working with `System.Collections.Generic.Dictionary`2`. These methods enhance dictionary functionality with efficient retrieval, addition, and updating of values.
+
+>```csharp
+>public static class DictionaryExtensions
+>```
+
+### Static Methods
+
+#### GetOrAdd
+>```csharp
+>TValue GetOrAdd(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+>```
+><b>Summary:</b> Retrieves the value associated with the specified key or adds a new value if the key does not exist.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dict`&nbsp;&nbsp;-&nbsp;&nbsp;The dictionary instance.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The key whose value to get or add.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to add if the key does not exist.<br />
+>
+><b>Returns:</b> The existing or newly added value.
+#### GetOrAdd
+>```csharp
+>TValue GetOrAdd(this Dictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> valueFactory)
+>```
+><b>Summary:</b> Retrieves the value associated with the specified key or adds a new value if the key does not exist.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dict`&nbsp;&nbsp;-&nbsp;&nbsp;The dictionary instance.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The key whose value to get or add.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to add if the key does not exist.<br />
+>
+><b>Returns:</b> The existing or newly added value.
+#### TryUpdate
+>```csharp
+>bool TryUpdate(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+>```
+><b>Summary:</b> Attempts to update the value of an existing key in the dictionary.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dict`&nbsp;&nbsp;-&nbsp;&nbsp;The dictionary instance.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The key whose value should be updated.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The new value to assign.<br />
+>
+><b>Returns:</b> `true` if the key exists and the value was updated; otherwise, `false`.
+#### TryUpdate
+>```csharp
+>bool TryUpdate(this Dictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue, TValue> valueFactory)
+>```
+><b>Summary:</b> Attempts to update the value of an existing key in the dictionary.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dict`&nbsp;&nbsp;-&nbsp;&nbsp;The dictionary instance.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The key whose value should be updated.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The new value to assign.<br />
+>
+><b>Returns:</b> `true` if the key exists and the value was updated; otherwise, `false`.
+
+<br />
+
 ## EnumerableExtensions
 Provides extension methods for asynchronous enumeration of collections.
 

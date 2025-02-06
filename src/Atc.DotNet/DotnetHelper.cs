@@ -61,7 +61,7 @@ public static class DotnetHelper
     {
         var dotnetDirectory = GetDotnetDirectory();
 
-        var dotnetFilename = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+        var dotnetFilename = OperatingSystem.IsWindows()
             ? "dotnet.exe"
             : "dotnet";
 

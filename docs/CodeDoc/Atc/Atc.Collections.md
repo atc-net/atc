@@ -37,7 +37,7 @@ ConcurrentHashSet.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`item`&nbsp;&nbsp;-&nbsp;&nbsp;The item.<br />
 >
-><b>Returns:</b> `true` if [contains] [the specified item]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [contains] [the specified item]; otherwise, <see langword="false" />.
 #### Dispose
 >```csharp
 >void Dispose()

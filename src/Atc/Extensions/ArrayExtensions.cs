@@ -1,3 +1,4 @@
+// ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable once CheckNamespace
 namespace System;
 
@@ -20,7 +21,7 @@ public static class ArrayExtensions
     /// </summary>
     /// <param name="array">The array.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
+    /// <param name="removeDuplicates">if set to <see langword="true" /> [remove duplicates].</param>
     public static Array ToArray(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
     {
         return ToList(array, sortDirectionType, removeDuplicates).ToArray();
@@ -31,7 +32,7 @@ public static class ArrayExtensions
     /// </summary>
     /// <param name="array">The array.</param>
     /// <param name="sortDirectionType">Type of the sort direction.</param>
-    /// <param name="removeDuplicates">if set to <c>true</c> [remove duplicates].</param>
+    /// <param name="removeDuplicates">if set to <see langword="true" /> [remove duplicates].</param>
     public static List<string> ToList(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
     {
         if (array is null)
@@ -42,7 +43,7 @@ public static class ArrayExtensions
         var list = new List<string>(array.Length);
         for (var i = 0; i < array.Length; i++)
         {
-            var s = array.GetValue(i).ToString();
+            var s = array.GetValue(i)?.ToString() ?? string.Empty;
             if (removeDuplicates)
             {
                 if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))

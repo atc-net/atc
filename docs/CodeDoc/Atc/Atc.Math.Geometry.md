@@ -73,7 +73,7 @@ The TriangleHelper module contains procedures used to preform math operations on
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
 >
-><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
 #### IsSumOfTheAnglesATriangle
 >```csharp
 >bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
@@ -85,7 +85,7 @@ The TriangleHelper module contains procedures used to preform math operations on
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleB`&nbsp;&nbsp;-&nbsp;&nbsp;The angle B.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angleC`&nbsp;&nbsp;-&nbsp;&nbsp;The angle C.<br />
 >
-><b>Returns:</b> `true` if [is sum of the angles A triangle] [the specified angle A]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
 #### Pythagorean
 >```csharp
 >double Pythagorean(double? sideA, double? sideB, double? sideC)

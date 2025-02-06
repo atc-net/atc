@@ -12,7 +12,7 @@ public static class IntegerExtensions
     /// <param name="a">a.</param>
     /// <param name="b">The b.</param>
     /// <returns>
-    ///   <c>true</c> if the specified a is equal; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if the specified a is equal; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEqual(this int? a, int? b)
     {
@@ -28,7 +28,7 @@ public static class IntegerExtensions
     /// Determines whether the specified number is even.
     /// </summary>
     /// <param name="number">The number.</param>
-    /// <returns><c>true</c> if the specified number is even; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified number is even; otherwise, <see langword="false" />.</returns>
     public static bool IsEven(this int number)
     {
         return (number & 1) == 0;
@@ -38,7 +38,7 @@ public static class IntegerExtensions
     /// Determines whether the specified number is odd.
     /// </summary>
     /// <param name="number">The number.</param>
-    /// <returns><c>true</c> if the specified number is odd; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified number is odd; otherwise, <see langword="false" />.</returns>
     public static bool IsOdd(this int number)
     {
         return (number & 1) == 1;
@@ -48,7 +48,7 @@ public static class IntegerExtensions
     /// Determines whether the specified number is prime.
     /// </summary>
     /// <param name="number">The number.</param>
-    /// <returns><c>true</c> if the specified number is prime; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true" /> if the specified number is prime; otherwise, <see langword="false" />.</returns>
     public static bool IsPrime(this int number)
     {
         if (number < 2)
@@ -73,7 +73,7 @@ public static class IntegerExtensions
     /// </summary>
     /// <param name="number">The number.</param>
     /// <returns>
-    ///   <c>true</c> if [is binary sequence] [the specified number]; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if [is binary sequence] [the specified number]; otherwise, <see langword="false" />.
     /// </returns>
     /// <code><![CDATA[bool value = number.IsBinarySequence();]]></code>
     /// <example><![CDATA[
@@ -102,7 +102,7 @@ public static class IntegerExtensions
     /// Gets the month name by month number.
     /// </summary>
     /// <param name="month">The month.</param>
-    /// <param name="pascalCased">if set to <c>true</c> [pascal cased].</param>
+    /// <param name="pascalCased">if set to <see langword="true" /> [pascal cased].</param>
     /// <returns>The name of the month.</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
     public static string GetMonthNameByMonthNumber(this int month, bool pascalCased = false)

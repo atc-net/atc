@@ -156,7 +156,7 @@ Represents a version object, compliant with the Semantic Version standard 2.0 (h
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`significantParts`&nbsp;&nbsp;-&nbsp;&nbsp;The significant parts.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting part.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`looseMode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [loose mode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`looseMode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [loose mode].<br />
 #### GreaterThanOrEqualTo
 >```csharp
 >bool GreaterThanOrEqualTo(SemanticVersion otherVersion, int significantParts = 4, int startingPart = 1)
@@ -175,8 +175,8 @@ Represents a version object, compliant with the Semantic Version standard 2.0 (h
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`withinMinorReleaseOnly`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [within minor release only].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`looseMode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [loose mode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`withinMinorReleaseOnly`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [within minor release only].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`looseMode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [loose mode].<br />
 #### ToString
 >```csharp
 >string ToString()

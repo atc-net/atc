@@ -176,7 +176,7 @@ Extensions for the `System.Array` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [remove duplicates].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [remove duplicates].<br />
 #### ToList
 >```csharp
 >List<string> ToList(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
@@ -186,7 +186,7 @@ Extensions for the `System.Array` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [remove duplicates].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [remove duplicates].<br />
 
 <br />
 
@@ -208,7 +208,7 @@ Extensions for the `System.Boolean` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
 >
-><b>Returns:</b> `true` if the source does not have a value; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the source does not have a value; otherwise, <see langword="false" />.
 #### HasNoValueOrFalse
 >```csharp
 >bool HasNoValueOrFalse(this bool? source)
@@ -218,7 +218,7 @@ Extensions for the `System.Boolean` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
 >
-><b>Returns:</b> `true` if the source does not have a value or is false; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the source does not have a value or is false; otherwise, <see langword="false" />.
 #### HasNoValueOrTrue
 >```csharp
 >bool HasNoValueOrTrue(this bool? source)
@@ -228,7 +228,7 @@ Extensions for the `System.Boolean` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
 >
-><b>Returns:</b> `true` if the source does not have a value or is true; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the source does not have a value or is true; otherwise, <see langword="false" />.
 #### HasValueAndFalse
 >```csharp
 >bool HasValueAndFalse(this bool? source)
@@ -238,7 +238,7 @@ Extensions for the `System.Boolean` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
 >
-><b>Returns:</b> `true` if the source has a value and it is false; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the source has a value and it is false; otherwise, <see langword="false" />.
 #### HasValueAndTrue
 >```csharp
 >bool HasValueAndTrue(this bool? source)
@@ -248,7 +248,7 @@ Extensions for the `System.Boolean` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The nullable boolean source.<br />
 >
-><b>Returns:</b> `true` if the source has a value and it is true; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the source has a value and it is true; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this bool? a, bool? b)
@@ -259,7 +259,7 @@ Extensions for the `System.Boolean` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first nullable boolean.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second nullable boolean.<br />
 >
-><b>Returns:</b> `true` if both nullable booleans are equal; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if both nullable booleans are equal; otherwise, <see langword="false" />.
 #### ToInt
 >```csharp
 >int ToInt(this bool source)
@@ -966,46 +966,46 @@ Extensions for the `System.Decimal` class.
 >```csharp
 >bool IsEqual(this decimal a, decimal b)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this decimal? a, decimal? b)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this decimal a, decimal b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### RoundOff
 >```csharp
 >decimal RoundOff(this decimal value, int numberOfDecimals)
@@ -1122,46 +1122,46 @@ Extensions for the `System.Double` class.
 >```csharp
 >bool IsEqual(this double a, double b)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double? a, double? b)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double a, double b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double? a, double? b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return `true` if they are equals.
+><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> `true` if the two values are equals, `false` otherwise.
+><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
 #### IsZero
 >```csharp
 >bool IsZero(this double value)
@@ -1643,7 +1643,7 @@ Extension methods for the `System.Exception` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`&nbsp;&nbsp;-&nbsp;&nbsp;The message.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeStackTrace`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true include stack trace.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeStackTrace`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  include stack trace.<br />
 >
 ><b>Returns:</b> The flatten message.
 #### GetLastInnerMessage
@@ -1654,7 +1654,7 @@ Extension methods for the `System.Exception` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include exception name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include exception name].<br />
 #### GetMessage
 >```csharp
 >string GetMessage(this Exception exception, bool includeInnerMessage = False, bool includeExceptionName = False)
@@ -1663,8 +1663,8 @@ Extension methods for the `System.Exception` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeInnerMessage`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include inner message].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [include exception name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeInnerMessage`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include inner message].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include exception name].<br />
 #### ToXml
 >```csharp
 >XDocument ToXml(this Exception exception)
@@ -1715,7 +1715,7 @@ Extensions for the `System.Int32` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`month`&nbsp;&nbsp;-&nbsp;&nbsp;The month.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pascalCased`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [pascal cased].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pascalCased`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [pascal cased].<br />
 >
 ><b>Returns:</b> The name of the month.
 #### GetNumberOfWeeksByYear
@@ -1737,7 +1737,7 @@ Extensions for the `System.Int32` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
 >
-><b>Returns:</b> `true` if [is binary sequence] [the specified number]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is binary sequence] [the specified number]; otherwise, <see langword="false" />.
 >
 ><b>Code usage:</b>
 >```csharp
@@ -1759,7 +1759,7 @@ Extensions for the `System.Int32` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
 >
-><b>Returns:</b> `true` if the specified a is equal; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified a is equal; otherwise, <see langword="false" />.
 #### IsEven
 >```csharp
 >bool IsEven(this int number)
@@ -1769,7 +1769,7 @@ Extensions for the `System.Int32` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
 >
-><b>Returns:</b> `true` if the specified number is even; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified number is even; otherwise, <see langword="false" />.
 #### IsOdd
 >```csharp
 >bool IsOdd(this int number)
@@ -1779,7 +1779,7 @@ Extensions for the `System.Int32` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
 >
-><b>Returns:</b> `true` if the specified number is odd; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified number is odd; otherwise, <see langword="false" />.
 #### IsPrime
 >```csharp
 >bool IsPrime(this int number)
@@ -1789,7 +1789,7 @@ Extensions for the `System.Int32` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number.<br />
 >
-><b>Returns:</b> `true` if the specified number is prime; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified number is prime; otherwise, <see langword="false" />.
 
 <br />
 
@@ -1975,9 +1975,9 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if input string contains a value from specified value; otherwise, <see langword="false" />.
 #### Contains
 >```csharp
 >bool Contains(this string value, char[] containsValues, bool ignoreCaseSensitive = True)
@@ -1987,9 +1987,9 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if input string contains a value from specified value; otherwise, <see langword="false" />.
 #### Contains
 >```csharp
 >bool Contains(this string value, string[] containsValues, bool ignoreCaseSensitive = True)
@@ -1999,9 +1999,9 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`containsValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
-><b>Returns:</b> `true` if input string contains a value from specified value; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if input string contains a value from specified value; otherwise, <see langword="false" />.
 #### ContainsTemplatePattern
 >```csharp
 >bool ContainsTemplatePattern(this string value, TemplatePatternType templatePatternType = HardBrackets)
@@ -2099,6 +2099,38 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### FormatWith
+>```csharp
+>string FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
+>```
+><b>Summary:</b> Formats a string template by replacing placeholders with corresponding argument values.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`template`&nbsp;&nbsp;-&nbsp;&nbsp;The format string containing placeholders.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg0`&nbsp;&nbsp;-&nbsp;&nbsp;The first required argument to replace a placeholder.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg1`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg2`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg3`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg4`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg5`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg6`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg7`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg8`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg9`&nbsp;&nbsp;-&nbsp;&nbsp;Optional argument for placeholder replacement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg0Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of , provided via .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg1Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg2Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg3Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg4Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg5Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg6Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg7Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg8Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arg9Name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of  (if provided), automatically inferred.<br />
+>
+><b>Returns:</b> A formatted string where placeholders in `template` are replaced with corresponding argument values.
+>
+><b>Remarks:</b> - The method extracts placeholders from the template and ensures that the provided arguments match the placeholders.<br /> - Named placeholders (e.g., '{argName}') and indexed placeholders (e.g., '{0}') are supported.<br /> - Argument names are inferred using the `System.Runtime.CompilerServices.CallerArgumentExpressionAttribute` for better debugging.
 #### GetStringFormatParameterLiteralCount
 >```csharp
 >int GetStringFormatParameterLiteralCount(this string value)
@@ -2117,12 +2149,13 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 #### GetStringFormatParameterTemplatePlaceholders
 >```csharp
->List<string> GetStringFormatParameterTemplatePlaceholders(this string value)
+>List<string> GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
 >```
 ><b>Summary:</b> Gets the string format parameter template placeholders.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if ;otherwise .<br />
 #### GetTemplateKeys
 >```csharp
 >IList<string> GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
@@ -2174,8 +2207,8 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pattern`&nbsp;&nbsp;-&nbsp;&nbsp;The pattern.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [ignore case sensitive].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useEndOfPatternToMatch`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use end of pattern to match].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [ignore case sensitive].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useEndOfPatternToMatch`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use end of pattern to match].<br />
 #### JavaScriptDecode
 >```csharp
 >string JavaScriptDecode(this string javaScript, bool htmlDecode)
@@ -2184,7 +2217,7 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The java script.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlDecode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [HTML decode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlDecode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [HTML decode].<br />
 #### JavaScriptEncode
 >```csharp
 >string JavaScriptEncode(this string javaScript, bool htmlEncode)
@@ -2193,7 +2226,7 @@ Extensions for the string class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The java script.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlEncode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [HTML encode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlEncode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [HTML encode].<br />
 #### NormalizeAccents
 >```csharp
 >string NormalizeAccents(this string value)
@@ -2273,7 +2306,7 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
 ><b>Returns:</b> The string that remains after a specified string are removed from the end of the current string.
 #### RemoveEndingSlashIfExist
@@ -2313,7 +2346,7 @@ Extensions for the string class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to compare with.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true ignore case sensitive.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
 ><b>Returns:</b> The string that remains after a specified string are removed from the start of the current string.
 #### ReplaceAt
@@ -2387,13 +2420,14 @@ Extensions for the string class.
 ><b>Returns:</b> The modified input string with template keys replaced by their corresponding template values.
 #### SetStringFormatParameterTemplatePlaceholders
 >```csharp
->string SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary<string, string> replacements)
+>string SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary<string, string> replacements, bool useDoubleBracket = True)
 >```
 ><b>Summary:</b> Sets the string format parameter template placeholders.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;The replacements.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if ;otherwise .<br />
 #### ToLines
 >```csharp
 >string[] ToLines(this string value)
@@ -2491,7 +2525,7 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The version string to parse.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the  object if parsing succeeded, or a default version if parsing failed.<br />
 >
-><b>Returns:</b> `true` if the string was successfully parsed; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the string was successfully parsed; otherwise, <see langword="false" />.
 #### WordCount
 >```csharp
 >int WordCount(this string value)
@@ -2539,7 +2573,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [has HTML tags] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has HTML tags] [the specified value]; otherwise, <see langword="false" />.
 #### IsAlphaNumericOnly
 >```csharp
 >bool IsAlphaNumericOnly(this string value)
@@ -2549,7 +2583,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, <see langword="false" />.
 #### IsAlphaOnly
 >```csharp
 >bool IsAlphaOnly(this string value)
@@ -2559,7 +2593,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is alpha [a-zA-Z]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is alpha [a-zA-Z]; otherwise, <see langword="false" />.
 #### IsCasingStyleValid
 >```csharp
 >bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
@@ -2570,7 +2604,7 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`casingStyle`&nbsp;&nbsp;-&nbsp;&nbsp;The casing style.<br />
 >
-><b>Returns:</b> `true` if [is casing style valid] [the specified casing style]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is casing style valid] [the specified casing style]; otherwise, <see langword="false" />.
 #### IsCompanyCvrNumber
 >```csharp
 >bool IsCompanyCvrNumber(this string cvrNumber)
@@ -2580,7 +2614,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cvrNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The CVR number.<br />
 >
-><b>Returns:</b> `true` if the specified company CVR number is a valid number; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified company CVR number is a valid number; otherwise, <see langword="false" />.
 >
 ><b>Remarks:</b> This works only for Danish companies.
 #### IsCompanyPNumber
@@ -2592,7 +2626,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The p number.<br />
 >
-><b>Returns:</b> `true` if the specified company P number is a valid number; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified company P number is a valid number; otherwise, <see langword="false" />.
 #### IsDate
 >```csharp
 >bool IsDate(this string value)
@@ -2602,7 +2636,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is a date; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is a date; otherwise, <see langword="false" />.
 #### IsDate
 >```csharp
 >bool IsDate(this string value, CultureInfo cultureInfo)
@@ -2612,7 +2646,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is a date; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is a date; otherwise, <see langword="false" />.
 #### IsDigitOnly
 >```csharp
 >bool IsDigitOnly(this string value)
@@ -2622,7 +2656,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is digit [0-9]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is digit [0-9]; otherwise, <see langword="false" />.
 #### IsEmailAddress
 >```csharp
 >bool IsEmailAddress(this string value)
@@ -2632,7 +2666,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is a valid email address; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is a valid email address; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this string a, string b, StringComparison comparison = Ordinal, bool treatNullAsEmpty = True, bool useNormalizeAccents = False)
@@ -2643,10 +2677,10 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;a.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The b.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison - default is 'Ordinal'.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`treatNullAsEmpty`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [treat null as empty].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNormalizeAccents`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use normalize accents].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`treatNullAsEmpty`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [treat null as empty].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNormalizeAccents`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use normalize accents].<br />
 >
-><b>Returns:</b> `true` if the specified b is equal; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified b is equal; otherwise, <see langword="false" />.
 #### IsFalse
 >```csharp
 >bool IsFalse(this string value)
@@ -2664,7 +2698,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [is first character lower case] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is first character lower case] [the specified value]; otherwise, <see langword="false" />.
 #### IsFirstCharacterUpperCase
 >```csharp
 >bool IsFirstCharacterUpperCase(this string value)
@@ -2674,7 +2708,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [is first character upper case] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is first character upper case] [the specified value]; otherwise, <see langword="false" />.
 #### IsFormatJson
 >```csharp
 >bool IsFormatJson(this string value)
@@ -2684,7 +2718,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [is format json] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is format json] [the specified value]; otherwise, <see langword="false" />.
 #### IsFormatXml
 >```csharp
 >bool IsFormatXml(this string value)
@@ -2694,7 +2728,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if [is format XML] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is format XML] [the specified value]; otherwise, <see langword="false" />.
 #### IsGuid
 >```csharp
 >bool IsGuid(this string value)
@@ -2704,7 +2738,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified string is a System.Guid; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.
 #### IsGuid
 >```csharp
 >bool IsGuid(this string value, out Guid output)
@@ -2714,7 +2748,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified string is a System.Guid; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.
 #### IsKey
 >```csharp
 >bool IsKey(this string value)
@@ -2724,7 +2758,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if the specified value is key; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is key; otherwise, <see langword="false" />.
 #### IsLengthEven
 >```csharp
 >bool IsLengthEven(this string value)
@@ -2734,7 +2768,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified string length is even; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified string length is even; otherwise, <see langword="false" />.
 #### IsNumericOnly
 >```csharp
 >bool IsNumericOnly(this string value)
@@ -2744,7 +2778,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
-><b>Returns:</b> `true` if the specified value is numeric [0-9]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is numeric [0-9]; otherwise, <see langword="false" />.
 #### IsPersonCprNumber
 >```csharp
 >bool IsPersonCprNumber(this string cprNumber)
@@ -2754,7 +2788,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cprNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The CPR number.<br />
 >
-><b>Returns:</b> `true` if the specified person CPR number is a valid number; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified person CPR number is a valid number; otherwise, <see langword="false" />.
 #### IsSentence
 >```csharp
 >bool IsSentence(this string value)
@@ -2764,7 +2798,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if the specified value is sentence; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is sentence; otherwise, <see langword="false" />.
 #### IsStringFormatParametersBalanced
 >```csharp
 >bool IsStringFormatParametersBalanced(this string value, bool isNumeric = True)
@@ -2773,9 +2807,9 @@ StringHasIsExtensions.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isNumeric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [is numeric].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`isNumeric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [is numeric].<br />
 >
-><b>Returns:</b> `true` if [is string format parameters balanced] [the specified value]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is string format parameters balanced] [the specified value]; otherwise, <see langword="false" />.
 #### IsTrue
 >```csharp
 >bool IsTrue(this string value)
@@ -2793,7 +2827,7 @@ StringHasIsExtensions.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
-><b>Returns:</b> `true` if the specified value is word; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified value is word; otherwise, <see langword="false" />.
 
 <br />
 
@@ -2920,7 +2954,7 @@ Extensions for the `System.TimeSpan` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
 >
-><b>Returns:</b> `true` if [is seconds is zero] otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is seconds is zero] otherwise, <see langword="false" />.
 
 <br />
 
@@ -2941,10 +2975,10 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useGenericParameterNamesAsT`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use generic parameter names as t].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useSuffixQuestionMarkForGeneric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use suffix question mark for generic].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use HTML format].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useGenericParameterNamesAsT`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use generic parameter names as t].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useSuffixQuestionMarkForGeneric`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use suffix question mark for generic].<br />
 #### BeautifyTypeName
 >```csharp
 >string BeautifyTypeName(this Type type, bool useFullName = False)
@@ -2953,7 +2987,7 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### BeautifyTypeOfName
 >```csharp
 >string BeautifyTypeOfName(this Type type, bool useFullName = False, bool useHtmlFormat = False)
@@ -2962,8 +2996,8 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use HTML format].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use HTML format].<br />
 #### GetAttribute
 >```csharp
 >T GetAttribute(this Type type)
@@ -3004,7 +3038,7 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [use full name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use full name].<br />
 #### GetNonNullableType
 >```csharp
 >Type GetNonNullableType(this Type type)
@@ -3091,7 +3125,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Returns:</b> `true` if [has validation attributes] [the specified type]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [has validation attributes] [the specified type]; otherwise, <see langword="false" />.
 #### IsDelegate
 >```csharp
 >bool IsDelegate(this Type type)
@@ -3101,7 +3135,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Returns:</b> `true` if the specified type is delegate; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified type is delegate; otherwise, <see langword="false" />.
 #### IsInheritedFrom
 >```csharp
 >bool IsInheritedFrom(this Type type, Type inheritType)
@@ -3112,7 +3146,7 @@ Extensions for the `System.Type` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
 >
-><b>Returns:</b> `true` if [is inherited from] [the specified inherit type]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is inherited from] [the specified inherit type]; otherwise, <see langword="false" />.
 #### IsInheritedFromGenericWithArgumentType
 >```csharp
 >bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = True)
@@ -3123,9 +3157,9 @@ Extensions for the `System.Type` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inheritType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the inherit.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argumentType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the argument.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchAlsoOnArgumentTypeInterface`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true [match also on argument type interface].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchAlsoOnArgumentTypeInterface`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [match also on argument type interface].<br />
 >
-><b>Returns:</b> `true` if [is inherited from generic with argument type] [the specified inherit type]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is inherited from generic with argument type] [the specified inherit type]; otherwise, <see langword="false" />.
 #### IsNullable
 >```csharp
 >bool IsNullable(this Type type)
@@ -3135,7 +3169,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Returns:</b> `true` if the specified type is nullable; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified type is nullable; otherwise, <see langword="false" />.
 #### IsSimple
 >```csharp
 >bool IsSimple(this Type type)
@@ -3145,7 +3179,7 @@ Extensions for the `System.Type` class.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
 >
-><b>Returns:</b> `true` if the specified type is simple; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if the specified type is simple; otherwise, <see langword="false" />.
 #### IsSubClassOfRawGeneric
 >```csharp
 >bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
@@ -3156,7 +3190,7 @@ Extensions for the `System.Type` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`baseType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the base.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`derivedType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the derived.<br />
 >
-><b>Returns:</b> `true` if [is sub class of raw generic] [the specified derived type]; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if [is sub class of raw generic] [the specified derived type]; otherwise, <see langword="false" />.
 #### TryGetAttribute
 >```csharp
 >T TryGetAttribute(this Type type)
@@ -3238,7 +3272,7 @@ The exception that is thrown when an user is not found.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`significantParts`&nbsp;&nbsp;-&nbsp;&nbsp;The significant parts.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting parts.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is greater than the current 'version'; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if 'otherVersion' is greater than the current 'version'; otherwise, <see langword="false" />.
 #### GreaterThanOrEqualTo
 >```csharp
 >bool GreaterThanOrEqualTo(this Version version, Version otherVersion, int significantParts = 4, int startingPart = 1)
@@ -3251,7 +3285,7 @@ The exception that is thrown when an user is not found.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`significantParts`&nbsp;&nbsp;-&nbsp;&nbsp;The significant parts.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startingPart`&nbsp;&nbsp;-&nbsp;&nbsp;The starting parts.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is greater than or equal to the current 'version'; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if 'otherVersion' is greater than or equal to the current 'version'; otherwise, <see langword="false" />.
 #### IsNewerThan
 >```csharp
 >bool IsNewerThan(this Version version, Version otherVersion, bool withinMinorReleaseOnly = False)
@@ -3261,9 +3295,9 @@ The exception that is thrown when an user is not found.
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`otherVersion`&nbsp;&nbsp;-&nbsp;&nbsp;The other version.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`withinMinorReleaseOnly`&nbsp;&nbsp;-&nbsp;&nbsp;if set to true Than major has to be the same or smaller.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`withinMinorReleaseOnly`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  Than major has to be the same or smaller.<br />
 >
-><b>Returns:</b> `true` if 'otherVersion' is newer than the 'version'; otherwise, `false`.
+><b>Returns:</b> <see langword="true" /> if 'otherVersion' is newer than the 'version'; otherwise, <see langword="false" />.
 >
 ><b>Code example:</b>
 >```csharp

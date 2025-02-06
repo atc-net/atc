@@ -83,7 +83,7 @@ public static class VersionExtensions
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting parts.</param>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is greater than the current 'version'; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if 'otherVersion' is greater than the current 'version'; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">version.</exception>
     public static bool GreaterThan(
@@ -113,7 +113,7 @@ public static class VersionExtensions
     /// <param name="significantParts">The significant parts.</param>
     /// <param name="startingPart">The starting parts.</param>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is greater than or equal to the current 'version'; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if 'otherVersion' is greater than or equal to the current 'version'; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">version.</exception>
     public static bool GreaterThanOrEqualTo(
@@ -138,7 +138,7 @@ public static class VersionExtensions
     /// <summary>Determines whether 'version' is newer than the 'otherVersion'.</summary>
     /// <param name="version">The version.</param>
     /// <param name="otherVersion">The other version.</param>
-    /// <param name="withinMinorReleaseOnly">if set to <c>true</c> Than major has to be the same or smaller.</param>
+    /// <param name="withinMinorReleaseOnly">if set to <see langword="true" /> Than major has to be the same or smaller.</param>
     /// <example>
     ///   For withinMinorReleaseOnly = true:
     ///     4.8.8.0 is newer than 4.5.3.3
@@ -157,7 +157,7 @@ public static class VersionExtensions
     ///     5.8.8.0 is newer than 4.5.3.3
     /// </example>
     /// <returns>
-    ///   <c>true</c> if 'otherVersion' is newer than the 'version'; otherwise, <c>false</c>.
+    ///   <see langword="true" /> if 'otherVersion' is newer than the 'version'; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsNewerThan(
         this Version version,

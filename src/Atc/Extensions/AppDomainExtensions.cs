@@ -110,7 +110,7 @@ public static class AppDomainExtensions
 
         return appDomain
             .GetAssemblies()
-            .Where(x => !x.FullName.StartsWith("System", StringComparison.Ordinal) &&
+            .Where(x => !x.FullName!.StartsWith("System", StringComparison.Ordinal) &&
                         !x.FullName.StartsWith("Microsoft", StringComparison.Ordinal) &&
                         !x.FullName.StartsWith("netstandard", StringComparison.Ordinal) &&
                         !x.FullName.StartsWith("mscorlib", StringComparison.Ordinal) &&
@@ -177,7 +177,7 @@ public static class AppDomainExtensions
 
         return appDomain
             .GetAssemblies()
-            .Where(x => x.FullName.StartsWith(value, StringComparison.Ordinal))
+            .Where(x => x.FullName!.StartsWith(value, StringComparison.Ordinal))
             .Select(AssemblyInformationFactory.Create)
             .OrderBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();

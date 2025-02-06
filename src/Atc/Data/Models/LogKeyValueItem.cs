@@ -57,8 +57,8 @@ public class LogKeyValueItem : KeyValueItem
     /// <summary>
     /// Gets the log message.
     /// </summary>
-    /// <param name="includeKey">if set to <c>true</c> [include key].</param>
-    /// <param name="includeDescription">if set to <c>true</c> [include description].</param>
+    /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
+    /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     public string GetLogMessage(bool includeKey = true, bool includeDescription = true)
         => includeKey switch

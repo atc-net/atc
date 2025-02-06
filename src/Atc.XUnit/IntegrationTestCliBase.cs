@@ -216,10 +216,10 @@ public abstract class IntegrationTestCliBase
                 .GetCallingAssembly();
         }
 
-        var executingAssemblyFullName = Assembly.GetExecutingAssembly().FullName;
+        var executingAssemblyFullName = Assembly.GetExecutingAssembly().FullName!;
 
         return (from frame in stackFrames
-                select frame.GetMethod().DeclaringType.Assembly
+                select frame.GetMethod()!.DeclaringType!.Assembly
                 into assembly
                 where !executingAssemblyFullName.Equals(assembly.FullName, StringComparison.Ordinal)
                 select assembly)
@@ -231,9 +231,9 @@ public abstract class IntegrationTestCliBase
         var cliProjectName = programTypeForCliExe
             .Assembly
             .GetName()
-            .Name;
+            .Name!;
 
-        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+        return OperatingSystem.IsWindows()
             ? cliProjectName + ".exe"
             : cliProjectName;
     }

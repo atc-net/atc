@@ -5179,9 +5179,10 @@
      - EnsureFirstCharacterToUpperAndSingular(this string value)
      - EnsurePlural(this string value)
      - EnsureSingular(this string value)
+     - FormatWith(this string template, string arg0, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null, string arg7 = null, string arg8 = null, string arg9 = null, string arg0Name = null, string arg1Name = null, string arg2Name = null, string arg3Name = null, string arg4Name = null, string arg5Name = null, string arg6Name = null, string arg7Name = null, string arg8Name = null, string arg9Name = null)
      - GetStringFormatParameterLiteralCount(this string value)
      - GetStringFormatParameterNumericCount(this string value)
-     - GetStringFormatParameterTemplatePlaceholders(this string value)
+     - GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
      - GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
      - GetUniqueTemplateKeysWithOccurrence(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
      - GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
@@ -5207,7 +5208,7 @@
      - ReplaceNewLines(this string value, string newValue)
      - ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
      - ReplaceTemplateKeysWithValues(this string value, IDictionary&lt;string, string&gt; templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
-     - SetStringFormatParameterTemplatePlaceholders(this string value, Dictionary&lt;string, string&gt; replacements)
+     - SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary&lt;string, string&gt; replacements, bool useDoubleBracket = True)
      - ToLines(this string value)
      - ToStream(this string value)
      - ToStreamFromBase64(this string base64Data)
@@ -5305,6 +5306,12 @@
 
 ## [System.Collections.Generic](System.Collections.Generic.md)
 
+- [DictionaryExtensions](System.Collections.Generic.md#dictionaryextensions)
+  -  Static Methods
+     - GetOrAdd(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, Func&lt;TKey, TValue&gt; valueFactory)
+     - GetOrAdd(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, TValue value)
+     - TryUpdate(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, Func&lt;TKey, TValue, TValue&gt; valueFactory)
+     - TryUpdate(this Dictionary&lt;TKey, TValue&gt; dict, TKey key, TValue value)
 - [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
   -  Static Methods
      - CountAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)

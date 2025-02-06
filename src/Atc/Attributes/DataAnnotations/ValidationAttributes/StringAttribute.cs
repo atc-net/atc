@@ -91,7 +91,7 @@ public class StringAttribute : ValidationAttribute
             return true;
         }
 
-        var str = value.ToString();
+        var str = value.ToString()!;
         if (str.Length < MinLength ||
             str.Length > MaxLength)
         {

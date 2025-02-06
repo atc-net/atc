@@ -37,7 +37,7 @@ public static class CodeComplianceDocumentationHelper
         }
 
         // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
-        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (!OperatingSystem.IsWindows())
         {
             return;
         }

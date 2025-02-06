@@ -10,8 +10,8 @@ public static class ExceptionExtensions
     /// Gets the exception message.
     /// </summary>
     /// <param name="exception">The exception.</param>
-    /// <param name="includeInnerMessage">if set to <c>true</c> [include inner message].</param>
-    /// <param name="includeExceptionName">if set to <c>true</c> [include exception name].</param>
+    /// <param name="includeInnerMessage">if set to <see langword="true" /> [include inner message].</param>
+    /// <param name="includeExceptionName">if set to <see langword="true" /> [include exception name].</param>
     public static string GetMessage(
         this Exception exception,
         bool includeInnerMessage = false,
@@ -34,7 +34,7 @@ public static class ExceptionExtensions
     /// Gets the last inner exception message.
     /// </summary>
     /// <param name="exception">The exception.</param>
-    /// <param name="includeExceptionName">if set to <c>true</c> [include exception name].</param>
+    /// <param name="includeExceptionName">if set to <see langword="true" /> [include exception name].</param>
     public static string GetLastInnerMessage(
         this Exception exception,
         bool includeExceptionName = false)
@@ -60,7 +60,7 @@ public static class ExceptionExtensions
     /// </summary>
     /// <param name="exception">The exception.</param>
     /// <param name="message">The message.</param>
-    /// <param name="includeStackTrace">if set to <c>true</c> include stack trace.</param>
+    /// <param name="includeStackTrace">if set to <see langword="true" /> include stack trace.</param>
     /// <returns>The flatten message.</returns>
     public static string Flatten(this Exception exception, string message = "", bool includeStackTrace = false)
     {

@@ -68,7 +68,7 @@ public static class PropertyInfoExtensions
     /// Gets the description.
     /// </summary>
     /// <param name="propertyInfo">The property information.</param>
-    /// <param name="useLocalizedIfPossible">if set to <c>true</c> [use localized if possible].</param>
+    /// <param name="useLocalizedIfPossible">if set to <see langword="true" /> [use localized if possible].</param>
     public static string GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = true)
     {
         if (propertyInfo is null)

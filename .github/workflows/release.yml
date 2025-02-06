@@ -41,6 +41,9 @@ jobs:
       - name: 🛠️ Building library in release mode
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true
 
+      - name: 🛠️ Building library in release mode for netstandard2.1
+        run: dotnet build -c Release --no-restore -f netstandard2.1 src/Atc/Atc.csproj
+
       - name: ⏩ Merge to release-branch
         run: |
           git config --local user.email ${{ env.ATC_EMAIL }}

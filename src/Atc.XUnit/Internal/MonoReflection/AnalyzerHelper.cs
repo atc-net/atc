@@ -116,7 +116,7 @@ internal static class AnalyzerHelper
         {
             var notFound = debugLimitData.ClassMethodNames
                 .Where(x => x.Item2 is not null)
-                .All(x => !x.Item2.Any(m => method.BeautifyName().Equals(m, StringComparison.Ordinal)));
+                .All(x => !x.Item2.Exists(m => method.BeautifyName().Equals(m, StringComparison.Ordinal)));
 
             if (notFound)
             {
@@ -125,7 +125,9 @@ internal static class AnalyzerHelper
         }
 
         var isEqual = usedSourceMethods.Any(x =>
-            x.DeclaringType!.GetNameWithoutGenericType(true)!.Equals(method.DeclaringType!.GetNameWithoutGenericType(true), StringComparison.Ordinal) &&
+            x.DeclaringType!.GetNameWithoutGenericType(useFullName: true)!.Equals(
+                method.DeclaringType!.GetNameWithoutGenericType(useFullName: true),
+                StringComparison.Ordinal) &&
             x.BeautifyName().Equals(method.BeautifyName(), StringComparison.Ordinal));
         if (isEqual)
         {
@@ -134,7 +136,10 @@ internal static class AnalyzerHelper
 
         var methodParameters = method.GetParameters();
         var usedMethodsByDeclaredType = usedSourceMethods
-            .Where(x => string.Equals(x.DeclaringType!.BeautifyName(false, false, true), method.DeclaringType!.BeautifyName(false, false, true), StringComparison.Ordinal))
+            .Where(x => string.Equals(
+                x.DeclaringType!.BeautifyName(useFullName: false, useHtmlFormat: false, useGenericParameterNamesAsT: true),
+                method.DeclaringType!.BeautifyName(useGenericParameterNamesAsT: true),
+                StringComparison.Ordinal))
             .ToList();
         if (usedMethodsByDeclaredType.Count == 0)
         {
@@ -155,7 +160,7 @@ internal static class AnalyzerHelper
                  usedMethod.ReturnType == method.ReturnType) &&
                 usedMethodParameters.Length == methodParameters.Length)
             {
-                return !usedMethodParameters.Where((t, i) => !t.Name.Equals(methodParameters[i].Name, StringComparison.Ordinal)).Any();
+                return !usedMethodParameters.Where((t, i) => !t.Name!.Equals(methodParameters[i].Name, StringComparison.Ordinal)).Any();
             }
         }
 
