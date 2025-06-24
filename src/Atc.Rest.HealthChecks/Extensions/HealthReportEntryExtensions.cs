@@ -3,37 +3,25 @@ namespace Atc.Rest.HealthChecks.Extensions;
 public static class HealthReportEntryExtensions
 {
     public static HealthCheck ToHealthCheck(
-        this KeyValuePair<string, HealthReportEntry> healthReportEntry)
+        this KeyValuePair<string, HealthReportEntry> kvp)
     {
-        var resourceHealthChecks = new List<ResourceHealthCheck>();
-        foreach (var item in healthReportEntry.Value.Data)
-        {
-            switch (item.Value)
-            {
-                case ResourceHealthCheck resourceHealthCheck:
-                    resourceHealthChecks.Add(resourceHealthCheck);
-                    break;
-                case string stringContent:
-                    resourceHealthChecks.Add(
-                        new ResourceHealthCheck(
-                            item.Key,
-                            healthReportEntry.Value.Status,
-                            stringContent,
-                            TimeSpan.Zero));
-                    break;
-            }
-        }
+        var entry = kvp.Value;
+
+        var data = entry.Data.Count > 0
+            ? entry.Data
+            : null;
 
         return new HealthCheck(
-                healthReportEntry.Key,
-                resourceHealthChecks,
-                healthReportEntry.Value.Status,
-                healthReportEntry.Value.Duration);
+            Name: kvp.Key,
+            Status: entry.Status,
+            Duration: entry.Duration,
+            Description: entry.Description,
+            Data: data);
     }
 
     public static IList<HealthCheck> ToHealthChecks(
-        this IReadOnlyDictionary<string, HealthReportEntry> healthReportEntries)
-        => healthReportEntries
-            .Select(x => x.ToHealthCheck())
+        this IReadOnlyDictionary<string, HealthReportEntry> entries)
+        => entries
+            .Select(ToHealthCheck)
             .ToList();
 }

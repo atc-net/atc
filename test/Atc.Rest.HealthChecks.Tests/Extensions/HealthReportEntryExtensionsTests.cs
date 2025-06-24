@@ -6,155 +6,134 @@ public class HealthReportEntryExtensionsTests
     public void ToHealthCheck_Without_Data()
     {
         // Arrange
-        const string myHealthCheckName = "MyTestHealthCheckName";
-        const HealthStatus myHealthStatus = HealthStatus.Healthy;
-        const string myDescription = "MyMessage";
-        var myTimeSpan = TimeSpan.FromSeconds(1);
+        const string name = "MyHealthCheck";
+        const string description = "No data";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Healthy;
 
-        var myHealthReport = new KeyValuePair<string, HealthReportEntry>(
-            myHealthCheckName,
+        var entry = new KeyValuePair<string, HealthReportEntry>(
+            name,
             new HealthReportEntry(
-                myHealthStatus,
-                myDescription,
-                myTimeSpan,
+                status,
+                description,
+                duration,
                 exception: null,
                 data: null));
 
         // Act
-        var actual = myHealthReport.ToHealthCheck();
+        var actual = entry.ToHealthCheck();
 
         // Assert
-        actual
-            .Should().NotBeNull()
-            .And.Subject.Should().BeAssignableTo<HealthCheck>();
-
-        Assert.Empty(actual.Resources);
-        Assert.Equal(myHealthCheckName, actual.Name);
-        Assert.Equal(myHealthStatus, actual.Status);
-        Assert.Equal(myTimeSpan, actual.Duration);
+        actual.Should().NotBeNull();
+        actual.Name.Should().Be(name);
+        actual.Status.Should().Be(status);
+        actual.Duration.Should().Be(duration);
+        actual.Description.Should().Be(description);
+        actual.Data.Should().BeNull();
     }
 
     [Fact]
     public void ToHealthCheck_With_Data()
     {
         // Arrange
-        const string myHealthCheckName = "MyTestHealthCheckName";
-        const HealthStatus myHealthStatus = HealthStatus.Healthy;
-        const string myDescription = "MyMessage";
-        var myTimeSpan = TimeSpan.FromSeconds(1);
+        const string name = "MyHealthCheck";
+        const string description = "Has data";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Degraded;
 
-        var resourceHealthChecksInput = new List<ResourceHealthCheck>()
+        var data = new Dictionary<string, object>(StringComparer.Ordinal)
         {
-            new(myHealthCheckName, myHealthStatus, myDescription, myTimeSpan),
+            ["isRunning"] = true,
+            ["duration"] = duration,
         };
 
-        var data = resourceHealthChecksInput.ToIReadOnlyDictionary();
-
-        var myHealthReport = new KeyValuePair<string, HealthReportEntry>(
-            myHealthCheckName,
+        var entry = new KeyValuePair<string, HealthReportEntry>(
+            name,
             new HealthReportEntry(
-                myHealthStatus,
-                myDescription,
-                myTimeSpan,
+                status,
+                description,
+                duration,
                 exception: null,
                 data));
 
         // Act
-        var actual = myHealthReport.ToHealthCheck();
+        var actual = entry.ToHealthCheck();
 
         // Assert
-        actual
-            .Should().NotBeNull()
-            .And.Subject.Should().BeAssignableTo<HealthCheck>();
+        actual.Name.Should().Be(name);
+        actual.Status.Should().Be(status);
+        actual.Duration.Should().Be(duration);
+        actual.Description.Should().Be(description);
 
-        Assert.Single(actual.Resources);
+        actual.Data.Should().NotBeNull();
+        actual.Data.Should().HaveCount(2)
+               .And.ContainKey("isRunning")
+               .And.ContainKey("duration");
 
-        Assert.Equal(myHealthCheckName, actual.Name);
-        Assert.Equal(myHealthStatus, actual.Status);
-        Assert.Equal(myTimeSpan, actual.Duration);
-
-        var (healthCheckName, healthCheckStatus, message, duration) = actual.Resources[0];
-
-        Assert.Equal(myHealthCheckName, healthCheckName);
-        Assert.Equal(myHealthStatus, healthCheckStatus);
-        Assert.Equal(myDescription, message);
-        Assert.Equal(myTimeSpan, duration);
+        actual.Data!["isRunning"].Should().Be(true);
+        actual.Data!["duration"].Should().Be(duration);
     }
 
     [Fact]
     public void ToHealthChecks_Without_Data()
     {
         // Arrange
-        const string myReportName = "MyTestReportName";
-        const HealthStatus myHealthStatus = HealthStatus.Healthy;
-        const string myDescription = "MyMessage";
-        var myTimeSpan = TimeSpan.FromSeconds(1);
+        const string name = "Report1";
+        const string description = "No data";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Healthy;
 
-        var myHealthReportEntries = new Dictionary<string, HealthReportEntry>(StringComparer.Ordinal)
+        var entries = new Dictionary<string, HealthReportEntry>(StringComparer.Ordinal)
         {
-            [myReportName] = new(myHealthStatus, myDescription, myTimeSpan, exception: null, data: null),
+            [name] = new(status, description, duration, exception: null, data: null),
         };
 
         // Act
-        var actual = myHealthReportEntries.ToHealthChecks();
+        var actual = entries.ToHealthChecks();
 
         // Assert
-        actual
-            .Should().NotBeNull()
-            .And.Subject.Should().BeAssignableTo<IList<HealthCheck>>()
-            .And.HaveCount(1);
+        actual.Should().HaveCount(1);
+        var (n, s, d, desc, data) = actual[0];
 
-        var (name, resourceHealthChecks, healthStatus, timeSpan) = actual[0];
-
-        Assert.Empty(resourceHealthChecks);
-        Assert.Equal(myReportName, name);
-        Assert.Equal(myHealthStatus, healthStatus);
-        Assert.Equal(myTimeSpan, timeSpan);
+        n.Should().Be(name);
+        s.Should().Be(status);
+        d.Should().Be(duration);
+        desc.Should().Be(description);
+        data.Should().BeNull();
     }
 
     [Fact]
     public void ToHealthChecks_With_Data()
     {
         // Arrange
-        const string myReportName = "MyTestReportName";
-        const string myHealthCheckName = "MyTestHealthCheck";
-        const HealthStatus myHealthStatus = HealthStatus.Healthy;
-        const string myDescription = "MyDescription";
-        var myTimeSpan = TimeSpan.FromSeconds(1);
+        const string name = "Report1";
+        const string description = "With data";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Unhealthy;
 
-        var resourceHealthChecksInput = new List<ResourceHealthCheck>()
+        var data = new Dictionary<string, object>(StringComparer.Ordinal)
         {
-            new(myHealthCheckName, myHealthStatus, myDescription, myTimeSpan),
+            ["failures"] = 3,
         };
 
-        var data = resourceHealthChecksInput.ToIReadOnlyDictionary();
-
-        var myHealthReportEntries = new Dictionary<string, HealthReportEntry>(StringComparer.Ordinal)
+        var entries = new Dictionary<string, HealthReportEntry>(StringComparer.Ordinal)
         {
-            [myReportName] = new(myHealthStatus, myDescription, myTimeSpan, exception: null, data),
+            [name] = new(status, description, duration, exception: null, data),
         };
 
         // Act
-        var actual = myHealthReportEntries.ToHealthChecks();
+        var actual = entries.ToHealthChecks();
 
         // Assert
-        actual
-            .Should().NotBeNull()
-            .And.Subject.Should().BeAssignableTo<IList<HealthCheck>>()
-            .And.HaveCount(1);
+        actual.Should().HaveCount(1);
+        var (n, s, d, desc, dataBag) = actual[0];
 
-        var (name, resources, healthStatus, timeSpan) = actual[0];
+        n.Should().Be(name);
+        s.Should().Be(status);
+        d.Should().Be(duration);
+        desc.Should().Be(description);
 
-        Assert.Equal(myReportName, name);
-        Assert.Single(resources);
-        Assert.Equal(myHealthStatus, healthStatus);
-        Assert.Equal(myTimeSpan, timeSpan);
-
-        var (healthCheckName, healthCheckStatus, message, duration) = resources[0];
-
-        Assert.Equal(myHealthCheckName, healthCheckName);
-        Assert.Equal(myHealthStatus, healthCheckStatus);
-        Assert.Equal(myDescription, message);
-        Assert.Equal(myTimeSpan, duration);
+        dataBag.Should().NotBeNull().And.HaveCount(1);
+        dataBag!["failures"].Should().Be(3);
     }
 }

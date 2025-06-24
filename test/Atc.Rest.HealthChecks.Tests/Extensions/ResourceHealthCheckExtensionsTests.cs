@@ -3,34 +3,60 @@ namespace Atc.Rest.HealthChecks.Tests.Extensions;
 public class ResourceHealthCheckExtensionsTests
 {
     [Fact]
-    public void ToIReadOnlyDictionary()
+    public void ToIReadOnlyDictionary_SingleItem()
     {
         // Arrange
-        const string myHealthCheckName = "MyTestHealthCheck";
-        const HealthStatus myHealthStatus = HealthStatus.Healthy;
-        const string myMessage = "MyMessage";
-        var myTimeSpan = TimeSpan.FromSeconds(1);
+        const string name = "MyTestHealthCheck";
+        const string description = "MyMessage";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Healthy;
 
-        var resourceHealthChecks = new List<ResourceHealthCheck>()
+        var resourceHealthChecks = new List<ResourceHealthCheck>
         {
-            new(myHealthCheckName, myHealthStatus, myMessage, myTimeSpan),
+            new(name, status, description, duration),
         };
 
         // Act
-        var actual = resourceHealthChecks.ToIReadOnlyDictionary();
+        var dict = resourceHealthChecks.ToIReadOnlyDictionary();
 
         // Assert
-        actual
-            .Should().NotBeNull()
-            .And.Subject.Should().BeAssignableTo<IReadOnlyDictionary<string, object>>()
-            .And.HaveCount(1);
+        dict.Should().NotBeNull()
+            .And.BeAssignableTo<IReadOnlyDictionary<string, object>>()
+            .And.HaveCount(1)
+            .And.ContainKey(name);
 
-        var objects = actual.Values.ToList();
-        var (name, healthStatus, message, timeSpan) = (ResourceHealthCheck)objects[0];
+        var value = dict[name];
 
-        Assert.Equal(myHealthCheckName, name);
-        Assert.Equal(myHealthStatus, healthStatus);
-        Assert.Equal(myMessage, message);
-        Assert.Equal(myTimeSpan, timeSpan);
+        value.Should().BeEquivalentTo(new
+        {
+            Status = status,
+            Duration = duration,
+            Description = description,
+        });
+    }
+
+    [Fact]
+    public void ToIReadOnlyDictionary_MultipleItems()
+    {
+        // Arrange
+        var checks = new[]
+        {
+            new ResourceHealthCheck("One", HealthStatus.Healthy,   "Running",  TimeSpan.FromMilliseconds(5)),
+            new ResourceHealthCheck("Two", HealthStatus.Unhealthy, "Stopped",  TimeSpan.FromMilliseconds(7)),
+        };
+
+        // Act
+        var dict = checks.ToIReadOnlyDictionary();
+
+        // Assert
+        dict.Should().HaveCount(2);
+        dict.Keys.Should().BeEquivalentTo("One", "Two");
+
+        dict["Two"].Should().BeEquivalentTo(new
+        {
+            Status = HealthStatus.Unhealthy,
+            Duration = TimeSpan.FromMilliseconds(7),
+            Description = "Stopped",
+        });
     }
 }
