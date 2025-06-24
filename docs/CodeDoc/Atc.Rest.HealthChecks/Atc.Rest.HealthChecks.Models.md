@@ -15,6 +15,14 @@
 
 ### Properties
 
+#### Data
+>```csharp
+>Data
+>```
+#### Description
+>```csharp
+>Description
+>```
 #### Duration
 >```csharp
 >Duration
@@ -22,10 +30,6 @@
 #### Name
 >```csharp
 >Name
->```
-#### Resources
->```csharp
->Resources
 >```
 #### Status
 >```csharp
@@ -39,7 +43,7 @@
 >```
 #### Deconstruct
 >```csharp
->void Deconstruct(out string Name, out IList`1 Resources, out HealthStatus Status, out TimeSpan Duration)
+>void Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out IReadOnlyDictionary`2 Data)
 >```
 #### Equals
 >```csharp
@@ -121,13 +125,13 @@
 
 ### Properties
 
+#### Description
+>```csharp
+>Description
+>```
 #### Duration
 >```csharp
 >Duration
->```
-#### Message
->```csharp
->Message
 >```
 #### Name
 >```csharp
@@ -145,7 +149,7 @@
 >```
 #### Deconstruct
 >```csharp
->void Deconstruct(out string Name, out HealthStatus Status, out string Message, out TimeSpan Duration)
+>void Deconstruct(out string Name, out HealthStatus Status, out string Description, out TimeSpan Duration)
 >```
 #### Equals
 >```csharp

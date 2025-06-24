@@ -17,11 +17,11 @@
 
 #### ToHealthCheck
 >```csharp
->HealthCheck ToHealthCheck(this KeyValuePair<string, HealthReportEntry> healthReportEntry)
+>HealthCheck ToHealthCheck(this KeyValuePair<string, HealthReportEntry> kvp)
 >```
 #### ToHealthChecks
 >```csharp
->IList<HealthCheck> ToHealthChecks(this IReadOnlyDictionary<string, HealthReportEntry> healthReportEntries)
+>IList<HealthCheck> ToHealthChecks(this IReadOnlyDictionary<string, HealthReportEntry> entries)
 >```
 
 <br />

@@ -12,8 +12,8 @@
 
 - [HealthReportEntryExtensions](Atc.Rest.HealthChecks.Extensions.md#healthreportentryextensions)
   -  Static Methods
-     - ToHealthCheck(this KeyValuePair&lt;string, HealthReportEntry&gt; healthReportEntry)
-     - ToHealthChecks(this IReadOnlyDictionary&lt;string, HealthReportEntry&gt; healthReportEntries)
+     - ToHealthCheck(this KeyValuePair&lt;string, HealthReportEntry&gt; kvp)
+     - ToHealthChecks(this IReadOnlyDictionary&lt;string, HealthReportEntry&gt; entries)
 - [ResourceHealthCheckExtensions](Atc.Rest.HealthChecks.Extensions.md#resourcehealthcheckextensions)
   -  Static Methods
      - ToIReadOnlyDictionary(this IEnumerable&lt;ResourceHealthCheck&gt; resourceHealthCheck)
@@ -28,13 +28,14 @@
 
 - [HealthCheck](Atc.Rest.HealthChecks.Models.md#healthcheck)
   -  Properties
+     - Data
+     - Description
      - Duration
      - Name
-     - Resources
      - Status
   -  Methods
      - <Clone>$()
-     - Deconstruct(out string Name, out IList`1 Resources, out HealthStatus Status, out TimeSpan Duration)
+     - Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out IReadOnlyDictionary`2 Data)
      - Equals(HealthCheck other)
      - Equals(object obj)
      - GetHashCode()
@@ -54,13 +55,13 @@
      - ToString()
 - [ResourceHealthCheck](Atc.Rest.HealthChecks.Models.md#resourcehealthcheck)
   -  Properties
+     - Description
      - Duration
-     - Message
      - Name
      - Status
   -  Methods
      - <Clone>$()
-     - Deconstruct(out string Name, out HealthStatus Status, out string Message, out TimeSpan Duration)
+     - Deconstruct(out string Name, out HealthStatus Status, out string Description, out TimeSpan Duration)
      - Equals(ResourceHealthCheck other)
      - Equals(object obj)
      - GetHashCode()
