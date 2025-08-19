@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/docs/">
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/sample/">
+    <Project Path="sample/Demo.Atc.Console.Spectre.Cli/Demo.Atc.Console.Spectre.Cli.csproj" />
+    <Project Path="sample/Demo.Atc.Dotnet.Cli/Demo.Atc.Dotnet.Cli.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Atc.CodeAnalysis.CSharp/Atc.CodeAnalysis.CSharp.csproj" />
+    <Project Path="src/Atc.CodeDocumentation/Atc.CodeDocumentation.csproj" />
+    <Project Path="src/Atc.Console.Spectre/Atc.Console.Spectre.csproj" />
+    <Project Path="src/Atc.DotNet/Atc.DotNet.csproj" />
+    <Project Path="src/Atc.OpenApi/Atc.OpenApi.csproj" />
+    <Project Path="src/Atc.Rest.Extended/Atc.Rest.Extended.csproj" />
+    <Project Path="src/Atc.Rest.FluentAssertions/Atc.Rest.FluentAssertions.csproj" />
+    <Project Path="src/Atc.Rest.HealthChecks/Atc.Rest.HealthChecks.csproj" />
+    <Project Path="src/Atc.Rest/Atc.Rest.csproj" />
+    <Project Path="src/Atc.XUnit/Atc.XUnit.csproj" />
+    <Project Path="src/Atc/Atc.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="test/Atc.CodeAnalysis.CSharp.Tests/Atc.CodeAnalysis.CSharp.Tests.csproj" />
+    <Project Path="test/Atc.CodeDocumentation.Tests/Atc.CodeDocumentation.Tests.csproj" />
+    <Project Path="test/Atc.Console.Spectre.Tests/Atc.Console.Spectre.Tests.csproj" />
+    <Project Path="test/Atc.DotNet.Tests/Atc.DotNet.Tests.csproj" />
+    <Project Path="test/Atc.OpenApi.Tests/Atc.OpenApi.Tests.csproj" />
+    <Project Path="test/Atc.Rest.Extended.Tests/Atc.Rest.Extended.Tests.csproj" />
+    <Project Path="test/Atc.Rest.FluentAssertions.Tests/Atc.Rest.FluentAssertions.Tests.csproj" />
+    <Project Path="test/Atc.Rest.HealthChecks.Tests/Atc.Rest.HealthChecks.Tests.csproj" />
+    <Project Path="test/Atc.Rest.Tests/Atc.Rest.Tests.csproj" />
+    <Project Path="test/Atc.Tests/Atc.Tests.csproj" />
+    <Project Path="test/Atc.XUnit.Tests/Atc.XUnit.Tests.csproj" />
+  </Folder>
+</Solution>
