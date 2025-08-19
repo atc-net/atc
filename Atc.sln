@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc", "src\Atc\Atc.csproj", "{3BB4CC11-C811-4EEC-99C0-7E45311212E5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F39DCB66-0A9F-47BA-A916-301EC83F26EA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F39DCB66-0A9F-47BA-A916-301EC83F26EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Tests", "test\Atc.Tests\Atc.Tests.csproj", "{F703B1BB-7C61-4FE3-88CB-F1B22C72B987}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{A4F3156B-9E74-4710-ADBC-4628DF389F68}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A4F3156B-9E74-4710-ADBC-4628DF389F68}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.OpenApi", "src\Atc.OpenApi\Atc.OpenApi.csproj", "{B6407C8E-E8E5-4D60-8A61-71D72678DFBE}"
 EndProject
@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.Extended.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.XUnit.Tests", "test\Atc.XUnit.Tests\Atc.XUnit.Tests.csproj", "{66B5DE03-50F1-44CA-98A0-3C3A225C02F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{1575FE97-3F0C-4E58-963E-30B06A03133F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{1575FE97-3F0C-4E58-963E-30B06A03133F}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
@@ -44,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.FluentAssertions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Rest.FluentAssertions.Tests", "test\Atc.Rest.FluentAssertions.Tests\Atc.Rest.FluentAssertions.Tests.csproj", "{11AEA0E2-74F3-458F-B7C3-9A9A6487AD30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{56B2A698-7E71-45B3-A989-78013EDD9306}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{56B2A698-7E71-45B3-A989-78013EDD9306}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atc.Console.Spectre", "src\Atc.Console.Spectre\Atc.Console.Spectre.csproj", "{7E372E2E-2377-4947-ABC2-46A578F4F217}"
 EndProject
