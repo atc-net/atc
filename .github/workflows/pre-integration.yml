@@ -46,7 +46,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup .NET 8.0 and 9.0
+      - name: ⚙️ Setup .NET 8.0 and 9.0
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
