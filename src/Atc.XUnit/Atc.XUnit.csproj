@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="7.5.3" />
-    <PackageReference Include="ICSharpCode.Decompiler" Version="9.0.0.7889" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="9.1.0.7988" />
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>

@@ -54,7 +54,7 @@ public class UnexpectedTypeException : Exception
         }
 
         var expectedTypeName = expectedType.FullName!;
-        if (actualType.IsSimple())
+        if (expectedType.IsSimple())
         {
             expectedTypeName = expectedType.BeautifyTypeName();
         }
@@ -96,7 +96,7 @@ public class UnexpectedTypeException : Exception
         }
 
         var expectedTypeName = expectedType.FullName!;
-        if (actualType.IsSimple())
+        if (expectedType.IsSimple())
         {
             expectedTypeName = expectedType.BeautifyTypeName();
         }

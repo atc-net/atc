@@ -1,19 +1,51 @@
+// ReSharper disable GrammarMistakeInComment
 namespace Atc.Helpers;
 
 /// <summary>
-/// FileHelper.
+/// File-related helper methods with safe wrappers around common I/O operations.
 /// </summary>
+/// <remarks>
+/// - All text read/write operations use UTF-8 encoding.
+/// - Methods that read from a non-existing file return an empty result rather than throwing.
+/// - <see cref="GetFiles(string,string,SearchOption)"/> and its overload delegate to
+///   an extension method <c>GetFilesForAuthorizedAccess</c> that skips folders/files
+///   where access is unauthorized.
+/// </remarks>
+/// <example>
+/// <code>
+/// var dir = new DirectoryInfo(@"C:\Logs");
+/// var files = FileHelper.GetFiles(dir, "*.log");
+///
+/// foreach (var file in files)
+/// {
+///     var lines = await FileHelper.ReadAllTextToLinesAsync(file, cancellationToken);
+///     // process lines…
+/// }
+///
+/// var output = new FileInfo(@"C:\out\data.txt");
+/// await FileHelper.WriteAllTextAsync(output, "Hello", cancellationToken);
+/// </code>
+/// </example>
 public static class FileHelper
 {
-    /// <summary>The line breaks.</summary>
+    /// <summary>
+    /// Line-break tokens recognized when splitting text into lines.
+    /// </summary>
     public static readonly string[] LineBreaks = { "\r\n", "\r", "\n" };
 
     /// <summary>
-    /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
+    /// Gets files under <paramref name="path"/> that match <paramref name="searchPattern"/>,
+    /// recursively if <paramref name="searchOption"/> is <see cref="SearchOption.AllDirectories"/>,
+    /// skipping any files or directories where access is unauthorized.
     /// </summary>
-    /// <param name="path">The directory.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="path">The root directory path.</param>
+    /// <param name="searchPattern">The search pattern. Default is <c>*.*</c>.</param>
+    /// <param name="searchOption">
+    /// The directory search option. Default is <see cref="SearchOption.AllDirectories"/>.
+    /// </param>
+    /// <returns>Matching files with inaccessible paths skipped.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="path"/> is <see langword="null"/> or empty.</exception>
+    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
     public static FileInfo[] GetFiles(
         string path,
         string searchPattern = "*.*",
@@ -21,20 +53,31 @@ public static class FileHelper
         => new DirectoryInfo(path).GetFilesForAuthorizedAccess(searchPattern, searchOption);
 
     /// <summary>
-    /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
+    /// Gets files under <paramref name="path"/> that match <paramref name="searchPattern"/>,
+    /// recursively if <paramref name="searchOption"/> is <see cref="SearchOption.AllDirectories"/>,
+    /// skipping any files or directories where access is unauthorized.
     /// </summary>
-    /// <param name="path">The directory information.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="path">The root directory.</param>
+    /// <param name="searchPattern">The search pattern. Default is <c>*.*</c>.</param>
+    /// <param name="searchOption">
+    /// The directory search option. Default is <see cref="SearchOption.AllDirectories"/>.
+    /// </param>
+    /// <returns>Matching files with inaccessible paths skipped.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="path"/> is <see langword="null"/>.</exception>
     public static FileInfo[] GetFiles(
         DirectoryInfo path,
         string searchPattern = "*.*",
         SearchOption searchOption = SearchOption.AllDirectories)
         => path.GetFilesForAuthorizedAccess(searchPattern, searchOption);
 
-    /// <summary>Reads all text in the file with UTF8 encoding.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return the content from the file, if the file don't exist a empty string will be returned.</returns>
+    /// <summary>
+    /// Reads the entire file as UTF-8 text.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <returns>
+    /// The file contents. If the file does not exist, returns <see cref="string.Empty"/>.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static string ReadAllText(
         FileInfo fileInfo)
     {
@@ -48,10 +91,15 @@ public static class FileHelper
             : string.Empty;
     }
 
-    /// <summary>Reads all text in the file with UTF8 encoding.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return the content from the file, if the file don't exist a empty string will be returned.</returns>
-    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <summary>
+    /// Asynchronously reads the entire file as UTF-8 text.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>
+    /// A task producing the file contents. If the file does not exist, the task returns <see cref="string.Empty"/>.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static Task<string> ReadAllTextAsync(
         FileInfo fileInfo,
         CancellationToken cancellationToken = default)
@@ -66,9 +114,15 @@ public static class FileHelper
             : Task.FromResult(string.Empty);
     }
 
-    /// <summary>Reads all text in the file with UTF8 encoding and split it to lines.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return the content as lines from the file, if the file don't exist a empty string array will be returned.</returns>
+    /// <summary>
+    /// Reads the entire file as UTF-8 text and splits it into lines,
+    /// preserving empty lines and original line-breaks boundaries.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <returns>
+    /// An array of lines. If the file does not exist, returns <see cref="Array.Empty{T}"/>.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static string[] ReadAllTextToLines(
         FileInfo fileInfo)
     {
@@ -86,10 +140,16 @@ public static class FileHelper
         return content.Split(LineBreaks, StringSplitOptions.None);
     }
 
-    /// <summary>Reads all text in the file with UTF8 encoding and split it to lines.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return the content as lines from the file, if the file don't exist a empty string array will be returned.</returns>
-    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <summary>
+    /// Asynchronously reads the entire file as UTF-8 text and splits it into lines,
+    /// preserving empty lines and original line-breaks boundaries.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>
+    /// A task producing an array of lines. If the file does not exist, returns <see cref="Array.Empty{T}"/>.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static Task<string[]> ReadAllTextToLinesAsync(
         FileInfo fileInfo,
         CancellationToken cancellationToken = default)
@@ -102,41 +162,54 @@ public static class FileHelper
         return InvokeReadAllTextToLinesAsync(fileInfo, cancellationToken);
     }
 
-    /// <summary>Reads to byte array.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return a byte array from the file</returns>
+    /// <summary>
+    /// Reads the file into a byte array.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <returns>The file contents as a byte array.</returns>
+    /// <exception cref="ArgumentNullException">Potentially thrown by the underlying extension method if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static byte[] ReadToByteArray(
         FileInfo fileInfo)
         => fileInfo.ReadToByteArray();
 
-    /// <summary>Reads to byte array.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>Return a byte array from the file</returns>
+    /// <summary>
+    /// Asynchronously reads the file into a byte array.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task producing the file contents as a byte array.</returns>
     public static Task<byte[]> ReadToByteArrayAsync(
         FileInfo fileInfo,
         CancellationToken cancellationToken = default)
         => fileInfo.ReadToByteArrayAsync(cancellationToken);
 
-    /// <summary>Reads to <see cref="MemoryStream"/>.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <returns>Return a <see cref="MemoryStream"/> from the file</returns>
+    /// <summary>
+    /// Reads the file into a <see cref="MemoryStream"/>.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <returns>A <see cref="MemoryStream"/> containing the file contents.</returns>
     public static MemoryStream ReadToMemoryStream(
         FileInfo fileInfo)
         => fileInfo.ReadToMemoryStream();
 
-    /// <summary>Reads to <see cref="MemoryStream"/>.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>Return a <see cref="MemoryStream"/> from the file</returns>
+    /// <summary>
+    /// Asynchronously reads the file into a <see cref="MemoryStream"/>.
+    /// </summary>
+    /// <param name="fileInfo">The file to read.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task producing a <see cref="MemoryStream"/> containing the file contents.</returns>
     public static Task<MemoryStream> ReadToMemoryStreamAsync(
         FileInfo fileInfo,
         CancellationToken cancellationToken = default)
         => fileInfo.ReadToMemoryStreamAsync(cancellationToken);
 
-    /// <summary>Writes all text to the file with UTF8 encoding.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <param name="content">The content.</param>
+    /// <summary>
+    /// Writes <paramref name="content"/> to <paramref name="fileInfo"/> using UTF-8 encoding.
+    /// Creates the file if it does not exist, and overwrites if it does.
+    /// </summary>
+    /// <param name="fileInfo">The destination file.</param>
+    /// <param name="content">The content to write.</param>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static void WriteAllText(
         FileInfo fileInfo,
         string content)
@@ -149,10 +222,15 @@ public static class FileHelper
         File.WriteAllText(fileInfo.FullName, content, Encoding.UTF8);
     }
 
-    /// <summary>Writes all text to the file with UTF8 encoding.</summary>
-    /// <param name="fileInfo">The file information.</param>
-    /// <param name="content">The content.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <summary>
+    /// Asynchronously writes <paramref name="content"/> to <paramref name="fileInfo"/> using UTF-8 encoding.
+    /// Creates the file if it does not exist, and overwrites if it does.
+    /// </summary>
+    /// <param name="fileInfo">The destination file.</param>
+    /// <param name="content">The content to write.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that completes when the write has finished.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     public static Task WriteAllTextAsync(
         FileInfo fileInfo,
         string content,
@@ -166,6 +244,9 @@ public static class FileHelper
         return File.WriteAllTextAsync(fileInfo.FullName, content, Encoding.UTF8, cancellationToken);
     }
 
+    /// <summary>
+    /// Internal helper to implement <see cref="ReadAllTextToLinesAsync(FileInfo,System.Threading.CancellationToken)"/>.
+    /// </summary>
     private static async Task<string[]> InvokeReadAllTextToLinesAsync(
         FileInfo fileInfo,
         CancellationToken cancellationToken = default)
@@ -175,7 +256,9 @@ public static class FileHelper
             return Array.Empty<string>();
         }
 
-        var content = await File.ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken);
+        var content = await File
+            .ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken)
+            .ConfigureAwait(false);
         return content.Split(LineBreaks, StringSplitOptions.None);
     }
 }
