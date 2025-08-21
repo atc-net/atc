@@ -124,6 +124,7 @@ public static class VisualStudioSolutionFileHelper
     /// <c>MinimumVisualStudioVersion</c>.
     /// </para>
     /// </remarks>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static VisualStudioSolutionFileMetadata GetSolutionFileMetadata(
         string fileContent)
     {
