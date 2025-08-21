@@ -1123,7 +1123,22 @@ Enumeration Helper: EnumHelper.
 <br />
 
 ## FileHelper
-FileHelper.
+File-related helper methods with safe wrappers around common I/O operations.
+><b>Remarks:</b> - All text read/write operations use UTF-8 encoding. - Methods that read from a non-existing file return an empty result rather than throwing. - `Atc.Helpers.FileHelper.GetFiles(System.String,System.String,System.IO.SearchOption)` and its overload delegate to an extension method `GetFilesForAuthorizedAccess` that skips folders/files where access is unauthorized.
+<b>Code example:</b>
+>```csharp
+> var dir = new DirectoryInfo(@"C:\Logs");
+> var files = FileHelper.GetFiles(dir, "*.log");
+>
+> foreach (var file in files)
+> {
+>     var lines = await FileHelper.ReadAllTextToLinesAsync(file, cancellationToken);
+>     // process lines…
+> }
+>
+> var output = new FileInfo(@"C:\out\data.txt");
+> await FileHelper.WriteAllTextAsync(output, "Hello", cancellationToken);
+>```
 
 >```csharp
 >public static class FileHelper
@@ -1135,137 +1150,156 @@ FileHelper.
 >```csharp
 >string[] LineBreaks
 >```
-><b>Summary:</b> The line breaks.
+><b>Summary:</b> Line-break tokens recognized when splitting text into lines.
 ### Static Methods
 
 #### GetFiles
 >```csharp
 >FileInfo[] GetFiles(string path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
 >```
-><b>Summary:</b> Gets the files as GetFiles, but skip files and folders with unauthorized access.
+><b>Summary:</b> Gets files under `path` that match `searchPattern`, recursively if `searchOption` is `System.IO.SearchOption.AllDirectories`, skipping any files or directories where access is unauthorized.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The directory.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The root directory path.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern. Default is *.*.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;
+            The directory search option. Default is .
+            <br />
+>
+><b>Returns:</b> Matching files with inaccessible paths skipped.
 #### GetFiles
 >```csharp
 >FileInfo[] GetFiles(DirectoryInfo path, string searchPattern = *.*, SearchOption searchOption = AllDirectories)
 >```
-><b>Summary:</b> Gets the files as GetFiles, but skip files and folders with unauthorized access.
+><b>Summary:</b> Gets files under `path` that match `searchPattern`, recursively if `searchOption` is `System.IO.SearchOption.AllDirectories`, skipping any files or directories where access is unauthorized.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The directory.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;The search option.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The root directory path.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchPattern`&nbsp;&nbsp;-&nbsp;&nbsp;The search pattern. Default is *.*.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`searchOption`&nbsp;&nbsp;-&nbsp;&nbsp;
+            The directory search option. Default is .
+            <br />
+>
+><b>Returns:</b> Matching files with inaccessible paths skipped.
 #### ReadAllText
 >```csharp
 >string ReadAllText(FileInfo fileInfo)
 >```
-><b>Summary:</b> Reads all text in the file with UTF8 encoding.
+><b>Summary:</b> Reads the entire file as UTF-8 text.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
 >
-><b>Returns:</b> Return the content from the file, if the file don't exist a empty string will be returned.
+><b>Returns:</b> The file contents. If the file does not exist, returns `System.String.Empty`.
 #### ReadAllTextAsync
 >```csharp
 >Task<string> ReadAllTextAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Reads all text in the file with UTF8 encoding.
+><b>Summary:</b> Asynchronously reads the entire file as UTF-8 text.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
-><b>Returns:</b> Return the content from the file, if the file don't exist a empty string will be returned.
+><b>Returns:</b> A task producing the file contents. If the file does not exist, the task returns `System.String.Empty`.
 #### ReadAllTextToLines
 >```csharp
 >string[] ReadAllTextToLines(FileInfo fileInfo)
 >```
-><b>Summary:</b> Reads all text in the file with UTF8 encoding and split it to lines.
+><b>Summary:</b> Reads the entire file as UTF-8 text and splits it into lines, preserving empty lines and original line-breaks boundaries.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
 >
-><b>Returns:</b> Return the content as lines from the file, if the file don't exist a empty string array will be returned.
+><b>Returns:</b> An array of lines. If the file does not exist, returns `System.Array.Empty``1`.
 #### ReadAllTextToLinesAsync
 >```csharp
 >Task<string[]> ReadAllTextToLinesAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Reads all text in the file with UTF8 encoding and split it to lines.
+><b>Summary:</b> Asynchronously reads the entire file as UTF-8 text and splits it into lines, preserving empty lines and original line-breaks boundaries.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
-><b>Returns:</b> Return the content as lines from the file, if the file don't exist a empty string array will be returned.
+><b>Returns:</b> A task producing an array of lines. If the file does not exist, returns `System.Array.Empty``1`.
 #### ReadToByteArray
 >```csharp
 >byte[] ReadToByteArray(FileInfo fileInfo)
 >```
-><b>Summary:</b> Reads to byte array.
+><b>Summary:</b> Reads the file into a byte array.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
 >
-><b>Returns:</b> Return a byte array from the file
+><b>Returns:</b> The file contents as a byte array.
 #### ReadToByteArrayAsync
 >```csharp
 >Task<byte[]> ReadToByteArrayAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Reads to byte array.
+><b>Summary:</b> Asynchronously reads the file into a byte array.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
-><b>Returns:</b> Return a byte array from the file
+><b>Returns:</b> A task producing the file contents as a byte array.
 #### ReadToMemoryStream
 >```csharp
 >MemoryStream ReadToMemoryStream(FileInfo fileInfo)
 >```
-><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+><b>Summary:</b> Reads the file into a `System.IO.MemoryStream`.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
 >
-><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
+><b>Returns:</b> A `System.IO.MemoryStream` containing the file contents.
 #### ReadToMemoryStreamAsync
 >```csharp
 >Task<MemoryStream> ReadToMemoryStreamAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Reads to `System.IO.MemoryStream`.
+><b>Summary:</b> Asynchronously reads the file into a `System.IO.MemoryStream`.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
-><b>Returns:</b> Return a `System.IO.MemoryStream` from the file
+><b>Returns:</b> A task producing a `System.IO.MemoryStream` containing the file contents.
 #### WriteAllText
 >```csharp
 >void WriteAllText(FileInfo fileInfo, string content)
 >```
-><b>Summary:</b> Writes all text to the file with UTF8 encoding.
+><b>Summary:</b> Writes `content` to `fileInfo` using UTF-8 encoding. Creates the file if it does not exist, and overwrites if it does.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content to write.<br />
 #### WriteAllTextAsync
 >```csharp
 >Task WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Writes all text to the file with UTF8 encoding.
+><b>Summary:</b> Asynchronously writes `content` to `fileInfo` using UTF-8 encoding. Creates the file if it does not exist, and overwrites if it does.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;The cancellation token.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content to write.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
 
 <br />
 
 ## FileHelper&lt;T&gt;
-FileHelper.
+JSON file helper for reading/writing a model of type `T`.
+><b>Remarks:</b> - Uses `System.Text.Json.JsonSerializer`. - Default overloads obtain options from `JsonSerializerOptionsFactory.Create()`. - Read methods require the file to exist; otherwise a `System.IO.FileNotFoundException` is thrown. - Write methods overwrite the destination file if it exists. - Text I/O uses UTF-8 encoding.
+<b>Code example:</b>
+>```csharp
+> var fi = new FileInfo("settings.json");
+> var settings = FileHelper<AppSettings>.ReadJsonFileToModel(fi);
+>
+> // Modify and save
+> FileHelper<AppSettings>.WriteModelToJsonFile(fi, settings);
+>```
 
 >```csharp
 >public static class FileHelper&lt;T&gt;
@@ -1273,44 +1307,174 @@ FileHelper.
 
 ### Static Methods
 
-#### ReadJsonFileAndDeserializeAsync
->```csharp
->Task<T> ReadJsonFileAndDeserializeAsync(FileInfo fileInfo)
->```
-><b>Summary:</b> Read the json file and deserialize to the specified type.
->
-><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
->
-><b>Returns:</b> The model.
 #### ReadJsonFileToModel
 >```csharp
 >T ReadJsonFileToModel(FileInfo fileInfo)
 >```
-><b>Summary:</b> Read the json file and deserialize to the specified type.
+><b>Summary:</b> Reads the JSON file and deserializes it to `T` using default serializer options.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
 >
-><b>Returns:</b> The model.
+><b>Returns:</b> The deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModel
+>```csharp
+>T ReadJsonFileToModel(FileInfo fileInfo, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>
+><b>Returns:</b> The deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModel
+>```csharp
+>T ReadJsonFileToModel(Stream utf8Json)
+>```
+><b>Summary:</b> Reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>
+><b>Returns:</b> The deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModel
+>```csharp
+>T ReadJsonFileToModel(Stream utf8Json, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>
+><b>Returns:</b> The deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModelAsync
+>```csharp
+>Task<T> ReadJsonFileToModelAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task whose result is the deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModelAsync
+>```csharp
+>Task<T> ReadJsonFileToModelAsync(FileInfo fileInfo, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task whose result is the deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModelAsync
+>```csharp
+>Task<T> ReadJsonFileToModelAsync(Stream utf8Json, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task whose result is the deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
+#### ReadJsonFileToModelAsync
+>```csharp
+>Task<T> ReadJsonFileToModelAsync(Stream utf8Json, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously reads the JSON file and deserializes it to `T` using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The JSON file to read.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task whose result is the deserialized model, or <see langword="null" /> if the payload is JSON <see langword="null" /> .
 #### WriteModelToJsonFile
 >```csharp
 >void WriteModelToJsonFile(FileInfo fileInfo, T model)
 >```
-><b>Summary:</b> Write the model to a json file.
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(Stream utf8Json, T model)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(Stream utf8Json, T model, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
 #### WriteModelToJsonFileAsync
 >```csharp
->Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model)
+>Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Write the model to a json file.
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The file information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(Stream utf8Json, T model, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(Stream utf8Json, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
 
 <br />
 
