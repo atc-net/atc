@@ -261,4 +261,152 @@ public static class FileHelper
             .ConfigureAwait(false);
         return content.Split(LineBreaks, StringSplitOptions.None);
     }
+
+    /// <summary>
+    /// Writes <paramref name="model"/> to <paramref name="fileInfo"/> as JSON using default serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFile(FileInfo,T)"/>.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="fileInfo">The destination JSON file.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    public static void WriteModelToJsonFile<T>(
+        FileInfo fileInfo,
+        T model)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFile(fileInfo, model);
+
+    /// <summary>
+    /// Writes <paramref name="model"/> to <paramref name="fileInfo"/> as JSON using the provided serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFile(FileInfo,T,JsonSerializerOptions)"/>.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="fileInfo">The destination JSON file.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="serializeOptions">The <see cref="JsonSerializerOptions"/> to use.</param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="fileInfo"/> or <paramref name="serializeOptions"/> is <see langword="null"/>.
+    /// </exception>
+    public static void WriteModelToJsonFile<T>(
+        FileInfo fileInfo,
+        T model,
+        JsonSerializerOptions serializeOptions)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFile(fileInfo, model, serializeOptions);
+
+    /// <summary>
+    /// Serializes <paramref name="model"/> as JSON to a writable stream using default serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFile(Stream,T)"/>.
+    /// The stream is <b>not</b> disposed.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="utf8Json">A writable stream that will receive UTF-8 JSON.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="utf8Json"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="utf8Json"/> is not writable.</exception>
+    public static void WriteModelToJsonFile<T>(
+        Stream utf8Json,
+        T model)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFile(utf8Json, model);
+
+    /// <summary>
+    /// Serializes <paramref name="model"/> as JSON to a writable stream using the provided serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFile(Stream,T,JsonSerializerOptions)"/>.
+    /// The stream is <b>not</b> disposed.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="utf8Json">A writable stream that will receive UTF-8 JSON.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="serializeOptions">The <see cref="JsonSerializerOptions"/> to use.</param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="utf8Json"/> or <paramref name="serializeOptions"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="utf8Json"/> is not writable.</exception>
+    public static void WriteModelToJsonFile<T>(
+        Stream utf8Json,
+        T model,
+        JsonSerializerOptions serializeOptions)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFile(utf8Json, model, serializeOptions);
+
+    /// <summary>
+    /// Asynchronously writes <paramref name="model"/> to <paramref name="fileInfo"/> as JSON using default serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFileAsync(FileInfo,T,System.Threading.CancellationToken)"/>.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="fileInfo">The destination JSON file.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that completes when the write has finished.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    public static Task WriteModelToJsonFileAsync<T>(
+        FileInfo fileInfo,
+        T model,
+        CancellationToken cancellationToken = default)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFileAsync(fileInfo, model, cancellationToken);
+
+    /// <summary>
+    /// Asynchronously writes <paramref name="model"/> to <paramref name="fileInfo"/> as JSON using the provided serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFileAsync(FileInfo,T,JsonSerializerOptions,System.Threading.CancellationToken)"/>.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="fileInfo">The destination JSON file.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="serializeOptions">The <see cref="JsonSerializerOptions"/> to use.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that completes when the write has finished.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="fileInfo"/> or <paramref name="serializeOptions"/> is <see langword="null"/>.
+    /// </exception>
+    public static Task WriteModelToJsonFileAsync<T>(
+        FileInfo fileInfo,
+        T model,
+        JsonSerializerOptions serializeOptions,
+        CancellationToken cancellationToken = default)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFileAsync(fileInfo, model, serializeOptions, cancellationToken);
+
+    /// <summary>
+    /// Asynchronously serializes <paramref name="model"/> as JSON to a writable stream using default serializer options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFileAsync(Stream,T,System.Threading.CancellationToken)"/>.
+    /// The stream is <b>not</b> disposed.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="utf8Json">A writable stream that will receive UTF-8 JSON.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that completes when the write has finished.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="utf8Json"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="utf8Json"/> is not writable.</exception>
+    public static Task WriteModelToJsonFileAsync<T>(
+        Stream utf8Json,
+        T model,
+        CancellationToken cancellationToken = default)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFileAsync(utf8Json, model, cancellationToken);
+
+    /// <summary>
+    /// Asynchronously serializes <paramref name="model"/> as JSON to a writable stream using the provided options.
+    /// Delegates to <see cref="FileHelper{T}.WriteModelToJsonFileAsync(Stream,T,JsonSerializerOptions,System.Threading.CancellationToken)"/>.
+    /// The stream is <b>not</b> disposed.
+    /// </summary>
+    /// <typeparam name="T">The model type to serialize.</typeparam>
+    /// <param name="utf8Json">A writable stream that will receive UTF-8 JSON.</param>
+    /// <param name="model">The model instance to serialize.</param>
+    /// <param name="serializeOptions">The <see cref="JsonSerializerOptions"/> to use.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that completes when the write has finished.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="utf8Json"/> or <paramref name="serializeOptions"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="utf8Json"/> is not writable.</exception>
+    public static Task WriteModelToJsonFileAsync<T>(
+        Stream utf8Json,
+        T model,
+        JsonSerializerOptions serializeOptions,
+        CancellationToken cancellationToken = default)
+        where T : class
+        => FileHelper<T>.WriteModelToJsonFileAsync(utf8Json, model, serializeOptions, cancellationToken);
 }
