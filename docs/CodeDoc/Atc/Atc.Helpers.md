@@ -1286,6 +1286,90 @@ File-related helper methods with safe wrappers around common I/O operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(FileInfo fileInfo, T model)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFile(System.IO.FileInfo,`0)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFile(System.IO.FileInfo,`0)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(Stream utf8Json, T model)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFile(System.IO.FileInfo,`0)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFile
+>```csharp
+>void WriteModelToJsonFile(Stream utf8Json, T model, JsonSerializerOptions serializeOptions)
+>```
+><b>Summary:</b> Writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFile(System.IO.FileInfo,`0)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFileAsync(System.IO.FileInfo,`0,System.Threading.CancellationToken)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFileAsync(System.IO.FileInfo,`0,System.Threading.CancellationToken)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(Stream utf8Json, T model, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFileAsync(System.IO.FileInfo,`0,System.Threading.CancellationToken)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
+#### WriteModelToJsonFileAsync
+>```csharp
+>Task WriteModelToJsonFileAsync(Stream utf8Json, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously writes `model` to `fileInfo` as JSON using default serializer options. Delegates to `Atc.Helpers.FileHelper`1.WriteModelToJsonFileAsync(System.IO.FileInfo,`0,System.Threading.CancellationToken)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination JSON file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`model`&nbsp;&nbsp;-&nbsp;&nbsp;The model instance to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that completes when the write has finished.
 
 <br />
 
