@@ -345,4 +345,30 @@ internal static class TestDataOpenApiSchemaOfTypeFactory
         schema.Minimum = 2;
         return schema;
     }
+
+    /// <summary>
+    /// Inline/anonymous object: type: object, no $ref.
+    /// Expected model name: "object".
+    /// </summary>
+    public static OpenApiSchema CreateInlineObject()
+        => new()
+        {
+            Type = "object",
+            Reference = null,
+        };
+
+    /// <summary>
+    /// Array of inline/anonymous objects: items.type: object, no $ref.
+    /// Expected model name: "object".
+    /// </summary>
+    public static OpenApiSchema CreateListInlineObject()
+        => new()
+        {
+            Type = "array",
+            Items = new OpenApiSchema
+            {
+                Type = "object",
+                Reference = null,
+            },
+        };
 }

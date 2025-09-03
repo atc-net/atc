@@ -1292,21 +1292,19 @@ internal static class TestMemberDataForOpenApiSchemaExtensions
             { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("Hallo.World_") },
             { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("HalloWorld_") },
             { "HalloWorld",  TestDataOpenApiFactory.CreateSchemaWithModelName("HalloWorld.") },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateInlineObject() },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateListInlineObject() },
         };
 
     public static TheoryData<string, OpenApiSchema, bool> GetModelNameEnsureFirstCharacterToUpperItemData
         => new()
         {
-            {
-                "pet",
-                TestDataOpenApiFactory.CreateSchemaPet(),
-                false
-            },
-            {
-                "Pet",
-                TestDataOpenApiFactory.CreateSchemaPet(),
-                true
-            },
+            { "pet", TestDataOpenApiFactory.CreateSchemaPet(), false },
+            { "Pet", TestDataOpenApiFactory.CreateSchemaPet(), true },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateInlineObject(), false },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateInlineObject(), true },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateListInlineObject(), false },
+            { "object", TestDataOpenApiSchemaOfTypeFactory.CreateListInlineObject(), true },
         };
 
     public static TheoryData<string, OpenApiSchema> GetModelTypeItemData

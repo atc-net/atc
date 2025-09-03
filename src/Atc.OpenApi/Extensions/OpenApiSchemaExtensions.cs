@@ -1,7 +1,9 @@
+// ReSharper disable ConvertIfStatementToReturnStatement
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable InvertIf
 // ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable TailRecursiveCall
 // ReSharper disable UseDeconstruction
 // ReSharper disable UseDeconstructionOnParameter
 // ReSharper disable once CheckNamespace
@@ -752,46 +754,56 @@ public static class OpenApiSchemaExtensions
             throw new ArgumentNullException(nameof(schema));
         }
 
-        if (schema.AllOf.Count == 2 &&
+        // Special-case: pagination wrapper composed via allOf
+        if (schema.AllOf?.Count == 2 &&
             (NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase) ||
              NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase)))
         {
             if (!NameConstants.Pagination.Equals(schema.AllOf[0].Reference?.Id, StringComparison.OrdinalIgnoreCase))
             {
-                return schema.AllOf[0].GetModelName();
+                return schema.AllOf[0].GetModelName(ensureFirstCharacterToUpper);
             }
 
             if (!NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase))
             {
-                return schema.AllOf[1].GetModelName();
+                return schema.AllOf[1].GetModelName(ensureFirstCharacterToUpper);
             }
         }
 
-        if (schema.Items is null && schema.Reference is null)
-        {
-            return string.Empty;
-        }
-
+        // If it's an array, only accept arrays of objects; otherwise we don't produce a model name.
         if (schema.Items is not null &&
-            !OpenApiDataTypeConstants.Object.Equals(schema.Items.Type, StringComparison.Ordinal))
+            !string.Equals(schema.Items.Type, OpenApiDataTypeConstants.Object, StringComparison.Ordinal))
         {
             return string.Empty;
         }
 
-        if (ensureFirstCharacterToUpper)
-        {
-            var dataType = schema.Items is null
-                ? schema.Reference.Id
-                : schema.Items.Reference.Id;
+        // Use the item schema for arrays; otherwise the schema itself.
+        var target = schema.Items ?? schema;
 
+        // If we have a $ref, use it as the model name (optionally PascalCased)
+        if (target.Reference is not null)
+        {
+            var dataType = target.Reference.Id;
+
+            if (!ensureFirstCharacterToUpper)
+            {
+                return dataType;
+            }
+
+            // Preserve "string" as-is; otherwise PascalCase the model name.
             return string.Equals(dataType, OpenApiDataTypeConstants.String, StringComparison.Ordinal)
                 ? dataType
                 : dataType.PascalCase(ModelNameSeparators, removeSeparators: true);
         }
 
-        return schema.Items is null
-            ? schema.Reference.Id
-            : schema.Items.Reference.Id;
+        // Inline object (anonymous object) => "object"
+        if (string.Equals(target.Type, OpenApiDataTypeConstants.Object, StringComparison.Ordinal))
+        {
+            return OpenApiDataTypeConstants.Object;
+        }
+
+        // Primitive or array without object items => no model name
+        return string.Empty;
     }
 
     public static string? GetModelType(this OpenApiSchema schema)
@@ -1009,7 +1021,12 @@ public static class OpenApiSchemaExtensions
 
     private static bool HasAnyPropertiesFormatTypeFromSystemNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
     {
-        var modelName = schema.Value?.GetModelName();
+        if (schema.Value is null)
+        {
+            return false;
+        }
+
+        var modelName = schema.Value.GetModelName();
         if (string.IsNullOrEmpty(modelName))
         {
             return false;
@@ -1022,7 +1039,12 @@ public static class OpenApiSchemaExtensions
 
     private static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
     {
-        var modelName = schema.Value?.GetModelName();
+        if (schema.Value is null)
+        {
+            return false;
+        }
+
+        var modelName = schema.Value.GetModelName();
         if (string.IsNullOrEmpty(modelName))
         {
             return false;
