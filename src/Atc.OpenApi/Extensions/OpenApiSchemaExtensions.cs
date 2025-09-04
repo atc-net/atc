@@ -844,6 +844,21 @@ public static class OpenApiSchemaExtensions
         switch (schema.Type)
         {
             case OpenApiDataTypeConstants.Number:
+                if (string.Equals(schema.Format, OpenApiFormatTypeConstants.Int64, StringComparison.Ordinal))
+                {
+                    return "long";
+                }
+
+                if (string.Equals(schema.Format, OpenApiFormatTypeConstants.Int32, StringComparison.Ordinal))
+                {
+                    return "int";
+                }
+
+                if (string.Equals(schema.Format, OpenApiFormatTypeConstants.Float, StringComparison.Ordinal))
+                {
+                    return "float";
+                }
+
                 return "double";
             case OpenApiDataTypeConstants.Integer:
                 return string.Equals(schema.Format, OpenApiFormatTypeConstants.Int64, StringComparison.Ordinal)
