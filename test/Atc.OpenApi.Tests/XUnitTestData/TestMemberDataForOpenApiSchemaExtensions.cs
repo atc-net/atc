@@ -1338,7 +1338,7 @@ internal static class TestMemberDataForOpenApiSchemaExtensions
             { "int",  TestDataOpenApiSchemaOfTypeFactory.CreateListInt32() },
             { "long",  TestDataOpenApiSchemaOfTypeFactory.CreateListInt64() },
             { "double",  TestDataOpenApiSchemaOfTypeFactory.CreateListNumber() },
-            { "double",  TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
+            { "float",  TestDataOpenApiSchemaOfTypeFactory.CreateListNumberFloat() },
         };
 
     public static TheoryData<string, OpenApiSchema> GetSimpleDataTypeFromPaginationItemData
@@ -1352,7 +1352,7 @@ internal static class TestMemberDataForOpenApiSchemaExtensions
             { "int",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt32() },
             { "long",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationInt64() },
             { "double",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumber() },
-            { "double",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
+            { "float",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationNumberFloat() },
             { "Guid",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringUuid() },
             { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDate() },
             { "DateTimeOffset",  TestDataOpenApiSchemaOfTypeFactory.CreatePaginationStringDateTime() },
