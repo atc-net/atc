@@ -907,15 +907,16 @@ public static class OpenApiSchemaExtensions
             dataType = schema.OneOf[0].Reference.Id;
         }
 
-        if (dataType is null &&
-            schema.AllOf is not null &&
-            schema.AllOf.Count > 0)
+        if (schema.AllOf is not null &&
+            schema.AllOf.Count > 0 &&
+            (dataType is null || dataType is "string"))
         {
             foreach (var apiSchema in schema.AllOf)
             {
-                dataType = apiSchema.GetDataType();
-                if (!string.IsNullOrEmpty(dataType))
+                var subDataType = apiSchema.GetDataType();
+                if (!string.IsNullOrEmpty(subDataType))
                 {
+                    dataType = subDataType;
                     break;
                 }
             }
