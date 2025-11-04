@@ -20,7 +20,8 @@ public class CodeComplianceTests
         typeof(TestResultHelper),
         typeof(SerializeAndDeserializeHelper),
         typeof(XUnitLogger),
-        typeof(XUnitLoggerProvider ),
+        typeof(XUnitLoggerProvider),
+        typeof(AssemblyLocalizationResourcesHelper),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

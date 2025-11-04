@@ -17,7 +17,7 @@ public static class ClassDeclarationSyntaxExtensions
 
         if (string.IsNullOrEmpty(suppressMessage.Justification))
         {
-            throw new ArgumentPropertyNullException(nameof(suppressMessage), "Justification is invalid.");
+            throw new ArgumentException("Justification is invalid.", nameof(suppressMessage));
         }
 
         var attributeArgumentList = SyntaxFactory.AttributeArgumentList(

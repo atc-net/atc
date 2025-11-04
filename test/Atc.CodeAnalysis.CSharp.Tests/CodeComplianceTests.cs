@@ -1,6 +1,3 @@
-using Atc.CodeAnalysis.CSharp.Factories;
-using SyntaxNodeExtensions = Microsoft.CodeAnalysis.CSharp.Syntax.SyntaxNodeExtensions;
-
 namespace Atc.CodeAnalysis.CSharp.Tests;
 
 public class CodeComplianceTests
@@ -13,34 +10,6 @@ public class CodeComplianceTests
     private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
-        typeof(ClassDeclarationSyntaxExtensions),
-        typeof(EnumDeclarationSyntaxExtensions),
-        typeof(MethodDeclarationSyntaxExtensions),
-        typeof(SyntaxNodeExtensions),
-        typeof(InterfaceDeclarationSyntaxExtensions),
-        typeof(CompilationUnitSyntaxExtensions),
-        typeof(SuppressMessageAttributeFactory),
-        typeof(SyntaxAccessorDeclarationFactory),
-        typeof(SyntaxArgumentListFactory),
-        typeof(SyntaxAssignmentExpressionFactory),
-        typeof(SyntaxAttributeArgumentFactory),
-        typeof(SyntaxAttributeArgumentListFactory),
-        typeof(SyntaxAttributeFactory),
-        typeof(SyntaxAttributeListFactory),
-        typeof(SyntaxClassDeclarationFactory),
-        typeof(SyntaxIfStatementFactory),
-        typeof(SyntaxInterfaceDeclarationFactory),
-        typeof(SyntaxInterpolatedFactory),
-        typeof(SyntaxMemberAccessExpressionFactory),
-        typeof(SyntaxNameEqualsFactory),
-        typeof(SyntaxObjectCreationExpressionFactory),
-        typeof(SyntaxParameterFactory),
-        typeof(SyntaxParameterListFactory),
-        typeof(SyntaxThrowStatementFactory),
-        typeof(SyntaxTokenFactory),
-        typeof(SyntaxTokenListFactory),
-        typeof(SyntaxTypeArgumentListFactory),
-        typeof(SyntaxVariableDeclarationFactory),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

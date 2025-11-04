@@ -123,6 +123,20 @@ internal static class DecompilerMethodHelper
                 .Where(x => x.Item1.DeclaringType is not null &&
                             x.Item1.DeclaringType.Name.StartsWith(mn, StringComparison.Ordinal))
                 .ToArray();
+
+            // If no exact match found, try without common suffixes like "Factory", "Helper", etc.
+            if (tuples.Length == 0)
+            {
+                var mnWithoutSuffix = mn.Replace("Factory", string.Empty, StringComparison.Ordinal)
+                                        .Replace("Helper", string.Empty, StringComparison.Ordinal);
+                if (mnWithoutSuffix != mn)
+                {
+                    tuples = testMethodsWithDeclaration
+                        .Where(x => x.Item1.DeclaringType is not null &&
+                                    x.Item1.DeclaringType.Name.StartsWith(mnWithoutSuffix, StringComparison.Ordinal))
+                        .ToArray();
+                }
+            }
         }
 
         return tuples;
@@ -193,12 +207,66 @@ internal static class DecompilerMethodHelper
             return new List<AstNode>();
         }
 
-        return astNode.DescendantsAndSelf
+        // Check if there are complex expressions (DirectionExpression or ObjectCreateExpression) as direct children
+        // If so, we need to extract from direct children to get these nodes properly
+        var hasComplexExpressions = astNode.Children
+            .Any(x => x.IsType(typeof(DirectionExpression)) || x.IsType(typeof(ObjectCreateExpression)));
+
+        if (hasComplexExpressions)
+        {
+            // Extract all direct child arguments (both complex and simple)
+            // Skip the first child which is the method reference (MemberReferenceExpression)
+            var directArguments = astNode.Children
+                .Skip(1)
+                .Where(x => x.IsType(typeof(InvocationExpression)) ||
+                            x.IsType(typeof(ObjectCreateExpression)) ||
+                            x.IsType(typeof(DirectionExpression)) ||
+                            x.IsType(typeof(IdentifierExpression)) ||
+                            x.IsType(typeof(PrimitiveExpression)) ||
+                            x.IsType(typeof(NullReferenceExpression)) ||
+                            x.IsType(typeof(MemberReferenceExpression)))
+                .ToList();
+
+            if (directArguments.Count > 0)
+            {
+                return directArguments;
+            }
+        }
+
+        // Original logic: Extract simple parameters from descendants, avoiding nested invocations
+        var potentialParams = astNode.DescendantsAndSelf
             .Where(x => (x.IsType(typeof(IdentifierExpression)) ||
                          x.IsType(typeof(PrimitiveExpression)) ||
                          x.IsType(typeof(NullReferenceExpression)) ||
                          (x.IsType(typeof(MemberReferenceExpression)) && x != astNode.FirstChild)) &&
                         (x.Parent is not null && !x.Parent.ToString().StartsWith(x + ".", StringComparison.Ordinal)))
             .ToList();
+
+        // If we didn't find simple parameters, check if the arguments are invocation expressions
+        if (potentialParams.Count == 0 || AllParamsArePartOfInvocations(potentialParams))
+        {
+            // Find top-level invocation expressions or complex expressions that are direct arguments
+            // Skip the first child which is typically the method reference
+            var complexExpressions = astNode.Children
+                .Skip(1) // Skip the method reference
+                .Where(x => x.IsType(typeof(InvocationExpression)) ||
+                            x.IsType(typeof(ObjectCreateExpression)) ||
+                            x.IsType(typeof(DirectionExpression)))
+                .ToList();
+
+            if (complexExpressions.Count > 0)
+            {
+                return complexExpressions;
+            }
+        }
+
+        return potentialParams;
+    }
+
+    private static bool AllParamsArePartOfInvocations(List<AstNode> parameters)
+    {
+        // Check if all parameters are part of invocation expressions
+        // This indicates the parameters are method call results
+        return parameters.All(p => p.Ancestors.Any(a => a.IsType(typeof(InvocationExpression))));
     }
 }

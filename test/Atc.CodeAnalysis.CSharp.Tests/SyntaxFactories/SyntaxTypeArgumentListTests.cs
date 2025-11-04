@@ -36,4 +36,33 @@ public class SyntaxTypeArgumentListTests
         // Assert
         Assert.Equal(expected.ToFullString(), actual.ToFullString());
     }
+
+    [Fact]
+    public void CreateWithOneItem_Direct()
+    {
+        // Arrange
+        const string typeName = "MyType";
+
+        // Act
+        var result = SyntaxTypeArgumentListFactory.CreateWithOneItem(typeName);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Single(result.Arguments);
+    }
+
+    [Fact]
+    public void CreateWithTwoItems_Direct()
+    {
+        // Arrange
+        const string typeName1 = "Type1";
+        const string typeName2 = "Type2";
+
+        // Act
+        var result = SyntaxTypeArgumentListFactory.CreateWithTwoItems(typeName1, typeName2);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Arguments.Count);
+    }
 }
