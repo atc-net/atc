@@ -18,9 +18,26 @@ internal static class ParametersNamingMatchHelper
             astNodeForTestParameters = DecompilerMethodHelper.GetAstNodesForMethodParameters(astNodeForTestMethodAndParameters.Item1);
         }
 
+        // Handle optional parameters - allow fewer arguments if remaining parameters are optional
         if (parameters.Length != astNodeForTestParameters.Count)
         {
-            return false;
+            // Count required (non-optional) parameters
+            var requiredParamCount = parameters.Count(p => !p.IsOptional);
+
+            // If we have fewer arguments than required parameters, it's a mismatch
+            if (astNodeForTestParameters.Count < requiredParamCount)
+            {
+                return false;
+            }
+
+            // If we have more arguments than total parameters, it's a mismatch
+            if (astNodeForTestParameters.Count > parameters.Length)
+            {
+                return false;
+            }
+
+            // If all extra parameters (beyond what was passed) are optional, it's a match
+            // Just check the parameters that were actually passed
         }
 
         // ReSharper disable once LoopCanBeConvertedToQuery
@@ -39,6 +56,7 @@ internal static class ParametersNamingMatchHelper
 
     internal static bool Extension(
         ParameterInfo[] parameters,
+        MethodInfo testMethod,
         Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters)
     {
         var filteredParameters = parameters.Where(x => !x.IsOut).Skip(1).ToArray();
@@ -53,9 +71,23 @@ internal static class ParametersNamingMatchHelper
             .TakeLast(filteredParameters.Length)
             .ToList();
 
+        // Handle optional parameters in extension methods
         if (filteredParameters.Length != filteredAstParameters.Count)
         {
-            return false;
+            // Count required (non-optional) parameters
+            var requiredParamCount = filteredParameters.Count(p => !p.IsOptional);
+
+            // If we have fewer arguments than required parameters, it's a mismatch
+            if (filteredAstParameters.Count < requiredParamCount)
+            {
+                return false;
+            }
+
+            // If we have more arguments than total parameters, it's a mismatch
+            if (filteredAstParameters.Count > filteredParameters.Length)
+            {
+                return false;
+            }
         }
 
         // ReSharper disable once LoopCanBeConvertedToQuery
@@ -124,6 +156,21 @@ internal static class ParametersNamingMatchHelper
         }
 
         if (ParameterCheckForNullReferenceExpression(parameter, astNode))
+        {
+            return true;
+        }
+
+        if (ParameterCheckForInvocationExpression(parameter, astNode))
+        {
+            return true;
+        }
+
+        if (ParameterCheckForObjectCreateExpression(parameter, astNode))
+        {
+            return true;
+        }
+
+        if (ParameterCheckForDirectionExpression(parameter, astNode))
         {
             return true;
         }
@@ -216,6 +263,14 @@ internal static class ParametersNamingMatchHelper
             return true;
         }
 
+        // Handle numeric types (int, long, short, byte, uint, ulong, ushort, sbyte, decimal, float, double)
+        if (parameter.ParameterType.IsPrimitive || parameter.ParameterType == typeof(decimal))
+        {
+            // For primitive numeric types, any numeric literal in the AST can match
+            // We don't need to validate the actual value, just that it's a numeric literal
+            return true;
+        }
+
         return false;
     }
 
@@ -227,6 +282,56 @@ internal static class ParametersNamingMatchHelper
         }
 
         return parameter.ParameterType.IsNullable();
+    }
+
+    private static bool ParameterCheckForInvocationExpression(ParameterInfo parameter, AstNode astNode)
+    {
+        if (!astNode.IsType(typeof(InvocationExpression)))
+        {
+            return false;
+        }
+
+        // Accept invocation expressions (method calls) as valid parameters for complex reference types
+        // This handles cases like SyntaxFactory.IdentifierName("foo") being passed as ExpressionSyntax parameter
+        if (!parameter.ParameterType.IsPrimitive &&
+            parameter.ParameterType != typeof(string) &&
+            !parameter.ParameterType.IsValueType)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool ParameterCheckForObjectCreateExpression(ParameterInfo parameter, AstNode astNode)
+    {
+        if (!astNode.IsType(typeof(ObjectCreateExpression)))
+        {
+            return false;
+        }
+
+        // Accept object creation expressions like new CultureInfo(...) for reference type parameters
+        // This handles cases like new CultureInfo(cultureInfoLcid) being passed as CultureInfo parameter
+        if (!parameter.ParameterType.IsPrimitive &&
+            parameter.ParameterType != typeof(string) &&
+            !parameter.ParameterType.IsValueType)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool ParameterCheckForDirectionExpression(ParameterInfo parameter, AstNode astNode)
+    {
+        if (!astNode.IsType(typeof(DirectionExpression)))
+        {
+            return false;
+        }
+
+        // Accept direction expressions (out/ref parameters) for any parameter type
+        // This handles cases like out _ or out var result
+        return parameter.IsOut || parameter.ParameterType.IsByRef;
     }
 
     private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(AstNode astNode, string parameterName)
@@ -322,6 +427,13 @@ internal static class ParametersNamingMatchHelper
 
         if (methodParameter.ParameterType.IsInterface)
         {
+            // For generic interfaces, try exact match first
+            if (methodParameterTypeName.Equals(testParameterTypeName, StringComparison.Ordinal))
+            {
+                return true;
+            }
+
+            // For non-generic interfaces, check if method param starts with "I" and matches test param
             return methodParameterTypeName.Equals("I" + testParameterTypeName, StringComparison.Ordinal);
         }
 

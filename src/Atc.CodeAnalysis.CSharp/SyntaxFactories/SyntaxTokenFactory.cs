@@ -17,6 +17,6 @@ public static partial class SyntaxTokenFactory
 
     public static SyntaxToken TokenWithTrailing(SyntaxKind syntaxKind, SyntaxTrivia syntaxTrivia)
     {
-        return SyntaxFactory.Token(SyntaxTriviaList.Empty, syntaxKind, new SyntaxTriviaList(syntaxTrivia));
+        return SyntaxFactory.Token(syntaxKind).WithTrailingTrivia(syntaxTrivia);
     }
 }

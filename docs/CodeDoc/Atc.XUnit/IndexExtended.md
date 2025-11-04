@@ -6,6 +6,11 @@
 
 ## [Atc.XUnit](Atc.XUnit.md)
 
+- [AssemblyLocalizationResourcesHelper](Atc.XUnit.md#assemblylocalizationresourceshelper)
+  -  Static Methods
+     - CollectInvalidKeySuffixWithPlaceholders(Assembly assembly, IList&lt;string&gt; cultureNames, IList&lt;string&gt; allowSuffixTerms = null)
+     - CollectMissingTranslations(Assembly assembly, IList&lt;string&gt; cultureNames)
+     - ValidateKeySuffixWithPlaceholders(string key, string value, IList&lt;string&gt; allowSuffixTerms = null)
 - [AtcXUnitAssemblyTypeInitializer](Atc.XUnit.md#atcxunitassemblytypeinitializer)
 - [CodeComplianceDocumentationHelper](Atc.XUnit.md#codecompliancedocumentationhelper)
   -  Static Methods

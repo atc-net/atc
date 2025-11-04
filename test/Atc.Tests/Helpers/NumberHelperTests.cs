@@ -61,6 +61,13 @@ public class NumberHelperTests
         => Assert.Equal(expected, NumberHelper.ParseToInt(value));
 
     [Theory]
+    [InlineData(true, "123")]
+    [InlineData(true, "-123")]
+    [InlineData(false, "abc")]
+    public void TryParseToInt(bool expected, string value)
+        => Assert.Equal(expected, NumberHelper.TryParseToInt(value, out _));
+
+    [Theory]
     [InlineData(true, "123.45")]
     [InlineData(true, "-123.45")]
     [InlineData(false, "abc")]

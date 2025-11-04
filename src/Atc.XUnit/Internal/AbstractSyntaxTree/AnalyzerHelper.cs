@@ -127,7 +127,7 @@ internal static class AnalyzerHelper
                 continue;
             }
 
-            if (IsMethodUsedByTestMethod(method, astNodeForTestMethod, testMethodsWithDeclaration))
+            if (IsMethodUsedByTestMethod(method, tuple.Item1, astNodeForTestMethod, testMethodsWithDeclaration))
             {
                 return true;
             }
@@ -139,6 +139,7 @@ internal static class AnalyzerHelper
     [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
     private static bool IsMethodUsedByTestMethod(
         MethodInfo method,
+        MethodInfo testMethod,
         Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters,
         Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
     {
@@ -152,7 +153,7 @@ internal static class AnalyzerHelper
         {
             if (method.IsDefined(typeof(ExtensionAttribute)))
             {
-                return ParametersNamingMatchHelper.Extension(parameters, astNodeForTestMethodAndParameters);
+                return ParametersNamingMatchHelper.Extension(parameters, testMethod, astNodeForTestMethodAndParameters);
             }
 
             if (method.DeclaringType is not null && method.DeclaringType.IsGenericType)

@@ -87,7 +87,6 @@ public static class SyntaxAttributeFactory
             RegularExpressionAttribute attribute => CreateWithOneItemWithOneArgument(nameof(RegularExpressionAttribute), attribute.Pattern),
             RequiredAttribute _ => Create(nameof(RequiredAttribute)),
             StringLengthAttribute attribute => CreateWithOneItemWithOneArgument(nameof(StringLengthAttribute), attribute.MaximumLength),
-            UriAttribute _ => Create(nameof(UriAttribute)),
             UrlAttribute _ => Create(nameof(UrlAttribute)),
             _ => throw new NotImplementedException($"{nameof(ValidationAttribute)} {validationAttribute.GetType()} must be implemented."),
         };

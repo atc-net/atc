@@ -189,4 +189,94 @@ public class SyntaxArgumentListFactoryTests
         // Assert
         Assert.Equal(expected.ToFullString(), actual.ToFullString());
     }
+
+    [Fact]
+    public void CreateWithOneArgumentItem_Direct()
+    {
+        // Arrange
+        var argument = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test"));
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithOneArgumentItem(argument);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Single(result.Arguments);
+    }
+
+    [Fact]
+    public void CreateWithTwoArgumentItems_Direct()
+    {
+        // Arrange
+        var argument1 = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test1"));
+        var argument2 = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test2"));
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithTwoArgumentItems(argument1, argument2);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Arguments.Count);
+    }
+
+    [Fact]
+    public void CreateWithThreeArgumentItems_Direct()
+    {
+        // Arrange
+        var argument1 = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test1"));
+        var argument2 = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test2"));
+        var argument3 = SyntaxFactory.Argument(SyntaxFactory.IdentifierName("test3"));
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithThreeArgumentItems(argument1, argument2, argument3);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(3, result.Arguments.Count);
+    }
+
+    [Fact]
+    public void CreateWithOneExpressionItem_Direct()
+    {
+        // Arrange
+        var expression = SyntaxFactory.IdentifierName("test");
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithOneExpressionItem(expression);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Single(result.Arguments);
+    }
+
+    [Fact]
+    public void CreateWithTwoExpressionItems_Direct()
+    {
+        // Arrange
+        var expression1 = SyntaxFactory.IdentifierName("test1");
+        var expression2 = SyntaxFactory.IdentifierName("test2");
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithTwoExpressionItems(expression1, expression2);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Arguments.Count);
+    }
+
+    [Fact]
+    public void CreateWithThreeExpressionItems_Direct()
+    {
+        // Arrange
+        var expression1 = SyntaxFactory.IdentifierName("test1");
+        var expression2 = SyntaxFactory.IdentifierName("test2");
+        var expression3 = SyntaxFactory.IdentifierName("test3");
+
+        // Act
+        var result = SyntaxArgumentListFactory.CreateWithThreeExpressionItems(expression1, expression2, expression3);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(3, result.Arguments.Count);
+    }
 }

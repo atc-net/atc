@@ -45,9 +45,7 @@ public class CodeComplianceTests
         typeof(EnumerableExtensions),
         typeof(EnumAtcExtensions),
         typeof(DynamicJson),
-        typeof(EnumHelper),
         typeof(StringCaseFormatter),
-        typeof(NumberHelper),
         typeof(InternetBrowserHelper),
         typeof(DictionaryExtensions),
         typeof(DirectoryInfoExtensions),
@@ -63,6 +61,7 @@ public class CodeComplianceTests
         typeof(ThreadExtensions),
         typeof(VersionExtensions),
         typeof(StringEnumMemberJsonConverter<>),
+        typeof(NumberHelper), // AST has limitations with 3-parameter methods containing out parameters
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)

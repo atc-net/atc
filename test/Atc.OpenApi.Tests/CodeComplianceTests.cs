@@ -7,10 +7,9 @@ public class CodeComplianceTests
     private readonly Assembly sourceAssembly = typeof(AtcOpenApiAssemblyTypeInitializer).Assembly;
     private readonly Assembly testAssembly = typeof(CodeComplianceTests).Assembly;
 
-    private readonly List<Type> excludeTypesForAbstractSyntaxTree = new()
+    private readonly List<Type> excludeTypes = new()
     {
         // TODO: Add UnitTest and remove from this list!!
-        typeof(OpenApiSchemaExtensions),
     };
 
     public CodeComplianceTests(ITestOutputHelper testOutputHelper)
@@ -26,7 +25,7 @@ public class CodeComplianceTests
             DecompilerType.AbstractSyntaxTree,
             sourceAssembly,
             testAssembly,
-            excludeTypesForAbstractSyntaxTree);
+            excludeTypes);
     }
 
     [Fact]
@@ -36,7 +35,8 @@ public class CodeComplianceTests
         CodeComplianceTestHelper.AssertExportedMethodsWithMissingTests(
             DecompilerType.MonoReflection,
             sourceAssembly,
-            testAssembly);
+            testAssembly,
+            excludeTypes);
     }
 
     [Fact]

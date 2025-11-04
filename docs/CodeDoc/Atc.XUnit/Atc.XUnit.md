@@ -7,6 +7,29 @@
 
 <br />
 
+## AssemblyLocalizationResourcesHelper
+
+>```csharp
+>public static class AssemblyLocalizationResourcesHelper
+>```
+
+### Static Methods
+
+#### CollectInvalidKeySuffixWithPlaceholders
+>```csharp
+>Dictionary<string, Dictionary<string, List<string>>> CollectInvalidKeySuffixWithPlaceholders(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTerms = null)
+>```
+#### CollectMissingTranslations
+>```csharp
+>Dictionary<string, Dictionary<string, List<string>>> CollectMissingTranslations(Assembly assembly, IList<string> cultureNames)
+>```
+#### ValidateKeySuffixWithPlaceholders
+>```csharp
+>bool ValidateKeySuffixWithPlaceholders(string key, string value, IList<string> allowSuffixTerms = null)
+>```
+
+<br />
+
 ## AtcXUnitAssemblyTypeInitializer
 
 >```csharp

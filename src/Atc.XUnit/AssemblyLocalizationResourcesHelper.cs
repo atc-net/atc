@@ -1,8 +1,8 @@
-namespace Atc.XUnit.Internal;
+namespace Atc.XUnit;
 
-internal static class AssemblyLocalizationResourcesHelper
+public static class AssemblyLocalizationResourcesHelper
 {
-    private static readonly Lazy<Regex> ArgIndexCaptureRegex = new Lazy<Regex>(() => new Regex(@"\{(\d+)", RegexOptions.Multiline, TimeSpan.FromMilliseconds(10)));
+    private static readonly Lazy<Regex> ArgIndexCaptureRegex = new(() => new Regex(@"\{(\d+)", RegexOptions.Multiline, TimeSpan.FromMilliseconds(10)));
 
     public static Dictionary<string, Dictionary<string, List<string>>> CollectMissingTranslations(
         Assembly assembly,
@@ -46,6 +46,78 @@ internal static class AssemblyLocalizationResourcesHelper
         }
 
         return result;
+    }
+
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    public static bool ValidateKeySuffixWithPlaceholders(
+        string key,
+        string value,
+        IList<string>? allowSuffixTerms = null)
+    {
+        if (key is null)
+        {
+            throw new ArgumentNullException(nameof(key));
+        }
+
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        var suffix = string.Empty;
+        for (var i = key.Length - 1; i >= 0; i--)
+        {
+            if (char.IsDigit(key[i]))
+            {
+                suffix = key[i] + suffix;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (string.IsNullOrEmpty(suffix) &&
+            value.Contains('{', StringComparison.Ordinal) &&
+            value.Contains('}', StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        if (allowSuffixTerms is not null &&
+            allowSuffixTerms.Any(allowSuffixTerm => key.EndsWith(allowSuffixTerm + suffix, StringComparison.Ordinal)))
+        {
+            return true;
+        }
+
+        var maxIndex = -1;
+        var formatArgsIndex = ArgIndexCaptureRegex.Value
+            .Matches(value)
+            .Select(x => x.Groups[1].Value)
+            .ToList();
+
+        foreach (var indexString in formatArgsIndex)
+        {
+            if (NumberHelper.TryParseToInt(indexString, out var index))
+            {
+                maxIndex = System.Math.Max(maxIndex, index);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        if (string.IsNullOrEmpty(suffix))
+        {
+            return maxIndex == -1;
+        }
+
+        return int.TryParse(
+            suffix,
+            NumberStyles.Any,
+            GlobalizationConstants.EnglishCultureInfo,
+            out var numericSuffix) && numericSuffix == maxIndex + 1;
     }
 
     private static List<string> GetMissingKeysInDefault(
@@ -261,66 +333,5 @@ internal static class AssemblyLocalizationResourcesHelper
         }
 
         return result;
-    }
-
-    internal static bool ValidateKeySuffixWithPlaceholders(
-        string key,
-        string value,
-        IList<string>? allowSuffixTerms = null)
-    {
-        var suffix = string.Empty;
-        for (var i = key.Length - 1; i >= 0; i--)
-        {
-            if (char.IsDigit(key[i]))
-            {
-                suffix = key[i] + suffix;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        if (string.IsNullOrEmpty(suffix) &&
-            value.Contains('{', StringComparison.Ordinal) &&
-            value.Contains('}', StringComparison.Ordinal))
-        {
-            return false;
-        }
-
-        if (allowSuffixTerms is not null &&
-            allowSuffixTerms.Any(allowSuffixTerm => key.EndsWith(allowSuffixTerm + suffix, StringComparison.Ordinal)))
-        {
-            return true;
-        }
-
-        var maxIndex = -1;
-        var formatArgsIndex = ArgIndexCaptureRegex.Value
-            .Matches(value)
-            .Select(x => x.Groups[1].Value)
-            .ToList();
-
-        foreach (var indexString in formatArgsIndex)
-        {
-            if (NumberHelper.TryParseToInt(indexString, out var index))
-            {
-                maxIndex = System.Math.Max(maxIndex, index);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        if (string.IsNullOrEmpty(suffix))
-        {
-            return maxIndex == -1;
-        }
-
-        return int.TryParse(
-            suffix,
-            NumberStyles.Any,
-            GlobalizationConstants.EnglishCultureInfo,
-            out var numericSuffix) && numericSuffix == maxIndex + 1;
     }
 }

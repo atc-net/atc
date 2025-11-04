@@ -6,6 +6,7 @@
 
 ## [Atc.XUnit](Atc.XUnit.md)
 
+- [AssemblyLocalizationResourcesHelper](Atc.XUnit.md#assemblylocalizationresourceshelper)
 - [AtcXUnitAssemblyTypeInitializer](Atc.XUnit.md#atcxunitassemblytypeinitializer)
 - [CodeComplianceDocumentationHelper](Atc.XUnit.md#codecompliancedocumentationhelper)
 - [CodeComplianceHelper](Atc.XUnit.md#codecompliancehelper)
