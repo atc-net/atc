@@ -1,5 +1,7 @@
 # Atc.DotNet
 
+**Target Framework:** `net9.0`
+
 This library contains extensions to wrap the usage of `dotnet.exe` from .NET code, extract metadata from `.sln` and `.csproj` files.
 
 ## Code documentation

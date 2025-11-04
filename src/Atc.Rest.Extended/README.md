@@ -1,5 +1,7 @@
 # Atc.Rest.Extended
 
+**Target Framework:** `net9.0`
+
 This library extends the `Atc.Rest` library with the following features
 
 - Versioning
@@ -8,7 +10,7 @@ This library extends the `Atc.Rest` library with the following features
 
 ### Requirements
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ## Code documentation
 

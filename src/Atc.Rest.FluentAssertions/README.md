@@ -1,10 +1,12 @@
 ﻿# Atc.Rest.FluentAssertions
 
+**Target Framework:** `net9.0`
+
 This library contains extensions to the FluentAssertions library, that makes it easier to assert against the `ResultBase` types returned from domain handlers.
 
 ### Requirements
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ## Code documentation
 

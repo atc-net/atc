@@ -1,5 +1,7 @@
 # Atc.OpenApi
 
+**Target Framework:** `net9.0`
+
 This library contains extensions to the Microsoft.OpenApi library.
 
 ## Code documentation

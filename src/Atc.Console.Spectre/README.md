@@ -1,5 +1,7 @@
 # Atc.Console.Spectre
 
+**Target Framework:** `net9.0`
+
 This library contains extensions to the Spectre.Console library.
 
 ## Code documentation
