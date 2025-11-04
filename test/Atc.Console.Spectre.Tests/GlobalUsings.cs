@@ -16,6 +16,3 @@ global using Atc.Serialization;
 global using Atc.XUnit;
 
 global using Microsoft.Extensions.Logging;
-
-global using Xunit.Abstractions;
-global using Xunit.Sdk;

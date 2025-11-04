@@ -32,7 +32,7 @@ public class TypeExtensionsTests
     public void IsNullable(bool expected, Type type)
     {
         // Act
-        var actual = type.IsNullable();
+        var actual = System.TypeExtensions.IsNullable(type);
 
         // Assert
         Assert.Equal(expected, actual);

@@ -36,5 +36,4 @@ global using Atc.Units.DigitalInformation;
 global using Atc.Units.InternationalSystemOfUnits;
 global using Atc.XUnit;
 
-global using Xunit.Abstractions;
 global using Xunit.Sdk;

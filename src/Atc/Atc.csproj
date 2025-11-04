@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net9.0</TargetFrameworks>
     <PackageId>Atc</PackageId>
     <PackageTags>netstandard;common</PackageTags>
     <Description>Atc is a collection of classes and extension methods for common functionality.</Description>
@@ -9,13 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Polyfill" Version="1.0.49">
+    <PackageReference Include="Meziantou.Polyfill" Version="1.0.62">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Text.Json" Version="9.0.8" />
+    <PackageReference Include="System.Text.Json" Version="9.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,5 +78,5 @@
   <PropertyGroup>
     <MeziantouPolyfill_IncludedPolyfills>T:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute</MeziantouPolyfill_IncludedPolyfills>
   </PropertyGroup>
-  
+
 </Project>

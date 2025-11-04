@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <PackageId>Atc.Rest.FluentAssertions</PackageId>
     <PackageTags>rest;fluentassertions</PackageTags>
     <Description>Atc.Rest.FluentAssertions is a collection of assertion helpers for writing tests of Atc types.</Description>
@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="[7.1.0]" /> <!-- FluentAssertions is version-pinned because versions newer than 7.1.0 require a paid license -->
+    <PackageReference Include="FluentAssertions" Version="[7.2.0]" /> <!-- FluentAssertions is version-pinned because versions newer than 7.2.0 require a paid license -->
   </ItemGroup>
 
   <ItemGroup>

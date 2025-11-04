@@ -7,7 +7,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
 {
     private static readonly DirectoryInfo WorkingDirectory = new(Path.Combine(Path.GetTempPath(), "atc-integration-test-csproj-file-helper"));
 
-    public Task InitializeAsync()
+    public ValueTask InitializeAsync()
     {
         if (Directory.Exists(WorkingDirectory.FullName))
         {
@@ -16,17 +16,17 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
 
         Directory.CreateDirectory(WorkingDirectory.FullName);
 
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 
-    public Task DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         if (Directory.Exists(WorkingDirectory.FullName))
         {
             Directory.Delete(WorkingDirectory.FullName, recursive: true);
         }
 
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 
     [Theory]
@@ -767,7 +767,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             sb.AppendLine("<UseWPF>true</UseWPF>");
         }
 
-        sb.AppendLine(4, "<TargetFramework>net8.0</TargetFramework>");
+        sb.AppendLine(4, "<TargetFramework>net9.0</TargetFramework>");
         sb.AppendLine(2, "</PropertyGroup>");
     }
 

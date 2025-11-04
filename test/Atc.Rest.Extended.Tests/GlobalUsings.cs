@@ -13,5 +13,3 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Options;
-
-global using Xunit.Abstractions;

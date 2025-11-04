@@ -4,21 +4,37 @@
   <!--
     Add any shared properties you want for the projects under this directory that need to be set before the auto imported Directory.Build.props
   -->
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., Directory.Build.props))\Directory.Build.props" />
 
   <PropertyGroup Label="Compile settings">
     <Nullable>annotations</Nullable>
+    <NoWarn>$(NoWarn);xUnit1051;CA1816</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Atc.Test" Version="1.1.18" />
-    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" PrivateAssets="All" />
+    <PackageReference Include="Atc.Test" Version="2.0.16" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.1.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.0.1" />
+    <PackageReference Include="xunit.v3.mtp-v2" Version="3.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Atc.Test" />
     <Using Include="AutoFixture" />
-    <Using Include="AutoFixture.Xunit2" />
+    <Using Include="AutoFixture.Xunit3" />
     <Using Include="FluentAssertions" />
     <Using Include="NSubstitute" />
     <Using Include="Xunit" />
