@@ -10,7 +10,10 @@ internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConso
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public override int Execute(CommandContext context, BuildDemoConsoleSpectreCliCommandSettings settings)
+    public override int Execute(
+        CommandContext context,
+        BuildDemoConsoleSpectreCliCommandSettings settings,
+        CancellationToken cancellationToken)
     {
         var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
         do
@@ -30,7 +33,8 @@ internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConso
                 logger,
                 demoDirectory,
                 1,
-                demoCsproj));
+                demoCsproj,
+                cancellationToken: cancellationToken));
 
         AnsiConsole.MarkupLine(string.Empty);
         if (buildAndCollectErrors.Any())

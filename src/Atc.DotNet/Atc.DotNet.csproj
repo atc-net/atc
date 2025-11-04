@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <PackageId>Atc.DotNet</PackageId>
     <PackageTags>dotnet,build</PackageTags>
     <Description>Atc.DotNet is a collection of helper method for working with dotnet.exe.</Description>

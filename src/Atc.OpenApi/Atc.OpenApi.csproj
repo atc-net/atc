@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <PackageId>Atc.OpenApi</PackageId>
     <PackageTags>openapi;extension</PackageTags>
     <Description>Atc.OpenApi is a collection of classes and extension methods for Microsoft.OpenApi.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.25" />
+    <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.28" />
   </ItemGroup>
 
   <ItemGroup>

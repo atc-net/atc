@@ -1,6 +1,6 @@
 namespace Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spectre.Cli;
 
-[Collection(nameof(TestCollection))]
+[Collection("TestCollection")]
 [Trait(Traits.Category, Traits.Categories.Integration)]
 [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class CommandTests : SampleIntegrationTestBase

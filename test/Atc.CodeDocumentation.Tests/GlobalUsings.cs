@@ -3,5 +3,3 @@ global using System.Reflection;
 global using Atc.CodeDocumentation.CodeComment;
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.XUnit;
-
-global using Xunit.Abstractions;

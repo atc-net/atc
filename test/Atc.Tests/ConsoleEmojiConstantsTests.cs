@@ -10,7 +10,7 @@ namespace Atc.Tests;
 /// For documentation and usage, see https://www.unicode.org/reports/tr51
 /// https://www.unicode.org/reports/tr51
 /// </remarks>
-[Collection(nameof(Xunit.Sdk.TestCollection))]
+[Collection("TestCollection")]
 [Trait(Traits.Category, Traits.Categories.Integration)]
 [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class ConsoleEmojiConstantsTests

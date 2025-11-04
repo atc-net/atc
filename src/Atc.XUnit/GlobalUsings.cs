@@ -27,4 +27,3 @@ global using Mono.Reflection;
 global using OfficeOpenXml;
 
 global using Xunit;
-global using Xunit.Abstractions;

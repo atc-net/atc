@@ -14,5 +14,4 @@ global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Net.Http.Headers;
 
-global using Xunit.Abstractions;
 global using Xunit.Sdk;

@@ -22,5 +22,3 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Primitives;
-
-global using Xunit.Abstractions;

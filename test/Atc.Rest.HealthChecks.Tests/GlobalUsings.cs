@@ -9,5 +9,3 @@ global using Atc.Serialization;
 global using Atc.XUnit;
 
 global using Microsoft.Extensions.Diagnostics.HealthChecks;
-
-global using Xunit.Abstractions;

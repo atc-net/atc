@@ -2,7 +2,10 @@ namespace Demo.Atc.Console.Spectre.Cli.Commands;
 
 internal sealed class HelloCommand : Command<HelloCommandSettings>
 {
-    public override int Execute(CommandContext context, HelloCommandSettings settings)
+    public override int Execute(
+        CommandContext context,
+        HelloCommandSettings settings,
+        CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(settings);
 

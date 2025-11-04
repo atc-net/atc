@@ -9,5 +9,3 @@ global using Atc.XUnit;
 
 global using Microsoft.OpenApi.Any;
 global using Microsoft.OpenApi.Models;
-
-global using Xunit.Abstractions;
