@@ -1,10 +1,12 @@
 # Atc.Rest.HealthChecks
 
+**Target Framework:** `net9.0`
+
 This library contains features related to ASP-NET HealthChecks.
 
 ### Requirements
 
-* [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ## Code documentation
 

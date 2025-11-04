@@ -1,5 +1,7 @@
 # Atc.Rest
 
+**Target Framework:** `net9.0`
+
 This library can be used to simplify a base setup for creating a Web-API in a .NET solution with feature-options:
 
 - Allow anonymous access in debug-mode
@@ -17,7 +19,7 @@ This library can be used to simplify a base setup for creating a Web-API in a .N
 
 ### Requirements
 
-* [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ## Code documentation
 

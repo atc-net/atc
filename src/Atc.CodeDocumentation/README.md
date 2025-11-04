@@ -1,5 +1,7 @@
 # Atc.CodeDocumentation
 
+**Target Framework:** `net9.0`
+
 This library contains helpers classes which can help with generating code documentation as Markdown (`.md files`) from an assembly.
 The content is based on assembly reflection combined with a assembly-documentation xml file.
 
