@@ -214,19 +214,7 @@ internal static class DecompilerMethodHelper
 
         if (hasComplexExpressions)
         {
-            // Extract all direct child arguments (both complex and simple)
-            // Skip the first child which is the method reference (MemberReferenceExpression)
-            var directArguments = astNode.Children
-                .Skip(1)
-                .Where(x => x.IsType(typeof(InvocationExpression)) ||
-                            x.IsType(typeof(ObjectCreateExpression)) ||
-                            x.IsType(typeof(DirectionExpression)) ||
-                            x.IsType(typeof(IdentifierExpression)) ||
-                            x.IsType(typeof(PrimitiveExpression)) ||
-                            x.IsType(typeof(NullReferenceExpression)) ||
-                            x.IsType(typeof(MemberReferenceExpression)))
-                .ToList();
-
+            var directArguments = FilterDirectChildArguments(astNode);
             if (directArguments.Count > 0)
             {
                 return directArguments;
@@ -246,12 +234,13 @@ internal static class DecompilerMethodHelper
         if (potentialParams.Count == 0 || AllParamsArePartOfInvocations(potentialParams))
         {
             // Find top-level invocation expressions or complex expressions that are direct arguments
-            // Skip the first child which is typically the method reference
-            var complexExpressions = astNode.Children
-                .Skip(1) // Skip the method reference
+            var complexExpressions = FilterDirectChildArguments(astNode)
                 .Where(x => x.IsType(typeof(InvocationExpression)) ||
                             x.IsType(typeof(ObjectCreateExpression)) ||
-                            x.IsType(typeof(DirectionExpression)))
+                            x.IsType(typeof(DirectionExpression)) ||
+                            x.IsType(typeof(LambdaExpression)) ||
+                            x.IsType(typeof(AnonymousMethodExpression)) ||
+                            x.ToString().Contains("=>", StringComparison.Ordinal))
                 .ToList();
 
             if (complexExpressions.Count > 0)
@@ -268,5 +257,39 @@ internal static class DecompilerMethodHelper
         // Check if all parameters are part of invocation expressions
         // This indicates the parameters are method call results
         return parameters.All(p => p.Ancestors.Any(a => a.IsType(typeof(InvocationExpression))));
+    }
+
+    private static List<AstNode> FilterDirectChildArguments(AstNode astNode)
+    {
+        // Extract all direct child arguments (both complex and simple)
+        // Filter out the method/member reference which is the target of the invocation
+        // For InvocationExpression, this is typically a MemberReferenceExpression or TypeReferenceExpression
+        var allChildren = astNode.Children.ToList();
+        return allChildren
+            .Where((child, index) =>
+            {
+                // If this is an InvocationExpression and the first child is a method/type reference, skip it
+                if (astNode.IsType(typeof(InvocationExpression)) && index == 0 &&
+                    (child.IsType(typeof(MemberReferenceExpression)) || child.IsType(typeof(TypeReferenceExpression))))
+                {
+                    return false;
+                }
+
+                // Include nodes that represent actual parameters
+                // Check the node's string representation for lambda pattern as a fallback
+                var childString = child.ToString();
+                return child.IsType(typeof(InvocationExpression)) ||
+                       child.IsType(typeof(ObjectCreateExpression)) ||
+                       child.IsType(typeof(DirectionExpression)) ||
+                       child.IsType(typeof(IdentifierExpression)) ||
+                       child.IsType(typeof(PrimitiveExpression)) ||
+                       child.IsType(typeof(NullReferenceExpression)) ||
+                       child.IsType(typeof(MemberReferenceExpression)) ||
+                       child.IsType(typeof(LambdaExpression)) ||
+                       child.IsType(typeof(AnonymousMethodExpression)) ||
+                       child.IsType(typeof(CastExpression)) ||
+                       childString.Contains("=>", StringComparison.Ordinal); // Catch any lambda representations
+            })
+            .ToList();
     }
 }

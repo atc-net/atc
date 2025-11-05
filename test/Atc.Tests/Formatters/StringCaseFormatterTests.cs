@@ -142,4 +142,57 @@ public class StringCaseFormatterTests
         => Assert.Equal(
             expected,
             StringCaseFormatter.Format($"{{0:{formatSpecifier1}}} {{1:{formatSpecifier2}}}", input1, input2));
+
+    [Fact]
+    public void GetFormat_ReturnsThis_WhenTypeIsICustomFormatter()
+    {
+        // Arrange
+        var sut = new StringCaseFormatter();
+
+        // Act
+        var actual = sut.GetFormat(typeof(ICustomFormatter));
+
+        // Assert
+        Assert.Same(sut, actual);
+    }
+
+    [Fact]
+    public void GetFormat_ReturnsNull_WhenTypeIsNotICustomFormatter()
+    {
+        // Arrange
+        var sut = new StringCaseFormatter();
+
+        // Act
+        var actual = sut.GetFormat(typeof(IFormatProvider));
+
+        // Assert
+        Assert.Null(actual);
+    }
+
+    [Theory]
+    [InlineData("TEST", "test", "U")]
+    [InlineData("Test", "test", "u")]
+    [InlineData("test", "TEST", "L")]
+    [InlineData("tEST", "TEST", "l")]
+    [InlineData("Test", "TEST", "Lu")]
+    [InlineData("tEST", "test", "Ul")]
+    [InlineData("TEST.", "test", "U.")]
+    [InlineData("test:", "TEST", "L:")]
+    [InlineData("", null, "U")]
+    [InlineData("unchanged", "unchanged", "")]
+    [InlineData("unchanged", "unchanged", null)]
+    public void Format_DirectCall(
+        string expected,
+        string input,
+        string formatSpecifier)
+    {
+        // Arrange
+        var sut = new StringCaseFormatter();
+
+        // Act
+        var actual = sut.Format(formatSpecifier, input, null);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
 }

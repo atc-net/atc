@@ -3,6 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace System.ComponentModel.DataAnnotations;
 
+[ExcludeFromCodeCoverage]
 [SuppressMessage("Performance", "CA1813:Avoid unsealed attributes", Justification = "OK.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class IsoCurrencySymbolAttribute : ValidationAttribute

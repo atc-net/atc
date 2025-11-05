@@ -70,4 +70,174 @@ public class MathExTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData(0, -1, 1, 1)]
+    [InlineData(1, 0, 1, 1)]
+    [InlineData(0, 1, 1, 1)]
+    [InlineData(0, 5, 1, 1)]
+    [InlineData(5, 0, 10, 5)]
+    [InlineData(5, 5, 10, 5)]
+    [InlineData(0, 10, 10, 5)]
+    public void Rect(int expected, int x, int width, int height)
+    {
+        // Act
+        var actual = MathEx.Rect(x, width, height);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0, 0, 1, 1)]
+    [InlineData(0, 5, 10, 5)]
+    [InlineData(0, -1, 10, 5)]
+    [InlineData(5, 10, 10, 5)]
+    public void Hysteron(int expected, int x, int width, int height)
+    {
+        // Arrange
+        int state = 0;
+
+        // Act
+        var actual = MathEx.Hysteron(ref state, x, width, height);
+
+        // Assert
+        Assert.Equal(expected, actual);
+        Assert.Equal(expected, state);
+    }
+
+    [Theory]
+    [InlineData(0, 0, 5)]
+    [InlineData(5, 1, 5)]
+    [InlineData(5, 5, 5)]
+    [InlineData(10, 6, 5)]
+    [InlineData(-5, -5, 5)]
+    [InlineData(-5, -6, 5)]
+    public void Ceiling_Int(int expected, int x, int period)
+    {
+        // Act
+        var actual = MathEx.Ceiling(x, period);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0, 0, 5)]
+    [InlineData(0, 1, 5)]
+    [InlineData(5, 5, 5)]
+    [InlineData(5, 6, 5)]
+    [InlineData(-5, -5, 5)]
+    [InlineData(-10, -6, 5)]
+    public void Floor_Int(int expected, int x, int period)
+    {
+        // Act
+        var actual = MathEx.Floor(x, period);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0, 0, 5)]
+    [InlineData(1, 1, 5)]
+    [InlineData(4, 4, 5)]
+    [InlineData(0, 5, 5)]
+    [InlineData(1, 6, 5)]
+    [InlineData(4, -1, 5)]
+    [InlineData(0, -5, 5)]
+    public void SawTooth(int expected, int x, int period)
+    {
+        // Act
+        var actual = MathEx.SawTooth(x, period);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void Multiply()
+    {
+        // Arrange
+        Func<int, int> f = x => x * 2;
+        Func<int, int> g = x => x + 3;
+
+        // Act
+        var actual = MathEx.Multiply(f, g);
+
+        // Assert
+        Assert.Equal(20, actual(2)); // f(2) * g(2) = 4 * 5 = 20
+    }
+
+    [Fact]
+    public void Compose()
+    {
+        // Arrange
+        Func<int, int> f = x => x * 2;
+        Func<int, int> g = x => x + 3;
+
+        // Act
+        var actual = MathEx.Compose(f, g);
+
+        // Assert
+        Assert.Equal(10, actual(2)); // f(g(2)) = f(5) = 10
+    }
+
+    [Fact]
+    public void Floor_Func()
+    {
+        // Arrange
+        Func<int, int> f = x => x * 2;
+        int period = 5;
+
+        // Act
+        var actual = MathEx.Floor(f, period);
+
+        // Assert
+        Assert.Equal(10, actual(7)); // Floor(7, 5) = 5, f(5) = 10
+    }
+
+    [Fact]
+    public void Ceiling_Func()
+    {
+        // Arrange
+        Func<int, int> f = x => x * 2;
+        int period = 5;
+
+        // Act
+        var actual = MathEx.Ceiling(f, period);
+
+        // Assert
+        Assert.Equal(20, actual(7)); // Ceiling(7, 5) = 10, f(10) = 20
+    }
+
+    [Fact]
+    public void Periodic()
+    {
+        // Arrange
+        Func<int, int> f = x => x * 2;
+        int period = 5;
+
+        // Act
+        var actual = MathEx.Periodic(f, period);
+
+        // Assert
+        Assert.Equal(4, actual(7)); // SawTooth(7, 5) = 2, f(2) = 4
+    }
+
+    [Fact]
+    public void Modulate()
+    {
+        // Arrange
+        Func<int, int> carrier = x => x;
+        Func<int, int> cellFunction = x => x;
+        int period = 10;
+
+        // Act
+        var actual = MathEx.Modulate(carrier, cellFunction, period);
+
+        // Assert
+        var result = actual(5);
+        Assert.True(result >= 0);
+    }
 }

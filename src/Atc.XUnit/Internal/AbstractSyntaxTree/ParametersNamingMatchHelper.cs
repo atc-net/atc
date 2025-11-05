@@ -175,17 +175,28 @@ internal static class ParametersNamingMatchHelper
             return true;
         }
 
-        var astNodeName = astNode.ToString();
-        var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent!, astNodeName) ??
-                       FindTypeNameForIdentifierExpressionOutsideMethodScope(astNode.GetRoot(), astNodeName);
-
-        if (typeName is not null &&
-            HasParameterTypeNameMatch(parameter, typeName))
+        if (ParameterCheckForCastExpression(parameter, astNode))
         {
             return true;
         }
 
-        return false;
+        // Check for lambda expressions early, before other type checks
+        // This handles Func<>, Action<>, and other delegate parameters
+        var astNodeString = astNode.ToString();
+        if (astNodeString.Contains("=>", StringComparison.Ordinal) && IsDelegateParameter(parameter))
+        {
+            return true;
+        }
+
+        return ParameterCheckForIdentifierWithTypeMatching(parameter, astNode, astNodeString);
+    }
+
+    private static bool ParameterCheckForIdentifierWithTypeMatching(ParameterInfo parameter, AstNode astNode, string astNodeName)
+    {
+        var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent!, astNodeName) ??
+                       FindTypeNameForIdentifierExpressionOutsideMethodScope(astNode.GetRoot(), astNodeName);
+
+        return typeName is not null && HasParameterTypeNameMatch(parameter, typeName);
     }
 
     private static bool ParameterCheckForMemberReferenceExpression(ParameterInfo parameter, AstNode astNode)
@@ -246,6 +257,13 @@ internal static class ParametersNamingMatchHelper
         if (!astNode.IsType(typeof(PrimitiveExpression)))
         {
             return false;
+        }
+
+        // For generic type parameters (like TKey, TValue), accept any primitive expression
+        // since we can't determine the concrete type at compile time
+        if (parameter.ParameterType.IsGenericParameter)
+        {
+            return true;
         }
 
         var astNodeName = astNode.ToString();
@@ -332,6 +350,70 @@ internal static class ParametersNamingMatchHelper
         // Accept direction expressions (out/ref parameters) for any parameter type
         // This handles cases like out _ or out var result
         return parameter.IsOut || parameter.ParameterType.IsByRef;
+    }
+
+    private static bool ParameterCheckForCastExpression(ParameterInfo parameter, AstNode astNode)
+    {
+        if (!astNode.IsType(typeof(CastExpression)))
+        {
+            return false;
+        }
+
+        // CastExpression might wrap a lambda, so check its content
+        var astNodeString = astNode.ToString();
+        if (astNodeString.Contains("=>", StringComparison.Ordinal) && IsDelegateParameter(parameter))
+        {
+            return true;
+        }
+
+        // Accept cast expressions for reference types
+        return !parameter.ParameterType.IsPrimitive &&
+               parameter.ParameterType != typeof(string) &&
+               !parameter.ParameterType.IsValueType;
+    }
+
+    private static bool IsDelegateParameter(ParameterInfo parameter)
+    {
+        // Check if parameter is a delegate type
+        // 1. Generic type parameters (might be delegates)
+        if (parameter.ParameterType.IsGenericParameter)
+        {
+            return true;
+        }
+
+        // 2. Constructed generic types with generic type arguments (like Func<TKey, TValue>)
+        if (parameter.ParameterType.IsGenericType)
+        {
+            var genericArgs = parameter.ParameterType.GetGenericArguments();
+            if (genericArgs.Any(arg => arg.IsGenericParameter))
+            {
+                // This is a generic type like Func<TKey, TValue> where TKey/TValue are generic parameters
+                var typeName = parameter.ParameterType.Name;
+                if (typeName.StartsWith("Func`", StringComparison.Ordinal) ||
+                    typeName.StartsWith("Action`", StringComparison.Ordinal))
+                {
+                    return true;
+                }
+            }
+        }
+
+        // 3. Func<> and Action<> types (check by name for generic delegates)
+        var paramTypeName = parameter.ParameterType.Name;
+        if (paramTypeName.StartsWith("Func`", StringComparison.Ordinal) ||
+            paramTypeName.StartsWith("Action`", StringComparison.Ordinal) ||
+            paramTypeName == "Func" ||
+            paramTypeName == "Action")
+        {
+            return true;
+        }
+
+        // 4. Other delegate types
+        if (typeof(Delegate).IsAssignableFrom(parameter.ParameterType))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(AstNode astNode, string parameterName)

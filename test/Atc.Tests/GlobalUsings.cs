@@ -9,7 +9,6 @@ global using System.Reflection;
 global using System.Runtime.Serialization;
 global using System.Runtime.Versioning;
 global using System.Security.Claims;
-global using System.Security.Cryptography.X509Certificates;
 global using System.Text;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
@@ -35,5 +34,5 @@ global using Atc.Tests.XUnitTestTypes;
 global using Atc.Units.DigitalInformation;
 global using Atc.Units.InternationalSystemOfUnits;
 global using Atc.XUnit;
-
+global using Microsoft.Extensions.Logging;
 global using Xunit.Sdk;

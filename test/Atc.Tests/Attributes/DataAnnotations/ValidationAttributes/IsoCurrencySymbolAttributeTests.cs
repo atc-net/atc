@@ -1,6 +1,6 @@
 namespace Atc.Tests.Attributes.DataAnnotations.ValidationAttributes;
 
-public static class IsoCurrencySymbolAttributeTests
+public class IsoCurrencySymbolAttributeTests
 {
     [Theory]
     [InlineData(true, null)]
@@ -8,7 +8,7 @@ public static class IsoCurrencySymbolAttributeTests
     [InlineData(false, "H")]
     [InlineData(false, "ABC")]
     [InlineData(true, "DKK")]
-    public static void IsValid(
+    public void IsValid(
         bool expected,
         string input)
     {
@@ -28,7 +28,7 @@ public static class IsoCurrencySymbolAttributeTests
     [InlineData(false, "H")]
     [InlineData(false, "ABC")]
     [InlineData(true, "DKK")]
-    public static void IsValid_Required(
+    public void IsValid_Required(
         bool expected,
         string input)
     {
@@ -51,7 +51,7 @@ public static class IsoCurrencySymbolAttributeTests
     [InlineData(false, "H")]
     [InlineData(false, "ABC")]
     [InlineData(true, "DKK")]
-    public static void IsValid_IsoCurrencySymbols(
+    public void IsValid_IsoCurrencySymbols(
         bool expected,
         string input)
     {

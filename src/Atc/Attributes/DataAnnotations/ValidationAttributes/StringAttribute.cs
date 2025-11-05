@@ -3,6 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace System.ComponentModel.DataAnnotations;
 
+[ExcludeFromCodeCoverage]
 [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
 [SuppressMessage("Performance", "CA1813:Avoid unsealed attributes", Justification = "OK.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]

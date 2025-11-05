@@ -1,6 +1,6 @@
 namespace Atc.Tests.Attributes.DataAnnotations.ValidationAttributes;
 
-public static class StringAttributeTests
+public class StringAttributeTests
 {
     [Theory]
     [InlineData(true, null)]
@@ -14,7 +14,7 @@ public static class StringAttributeTests
     [InlineData(true, "Hal.lo")]
     [InlineData(true, "Hal@lo")]
     [InlineData(true, "Hal\'lo")]
-    public static void IsValid(
+    public void IsValid(
         bool expected,
         string input)
     {
@@ -40,7 +40,7 @@ public static class StringAttributeTests
     [InlineData(true, "", "Hal.lo")]
     [InlineData(true, "", "Hal@lo")]
     [InlineData(true, "", "Hal\'lo")]
-    public static void TryIsValid(
+    public void TryIsValid(
         bool expected,
         string expectedMessage,
         string input)
@@ -65,7 +65,7 @@ public static class StringAttributeTests
     [InlineData(false, "Hal.lo")]
     [InlineData(false, "Hal@lo")]
     [InlineData(false, "Hal\'lo")]
-    public static void IsValid_WithInvalidFilters(
+    public void IsValid_WithInvalidFilters(
         bool expected,
         string input)
     {
@@ -95,7 +95,7 @@ public static class StringAttributeTests
     [InlineData(false, "Hal.lo")]
     [InlineData(false, "Hal@lo")]
     [InlineData(false, "Hal\'lo")]
-    public static void StringAttribute_FirstName(
+    public void StringAttribute_FirstName(
         bool expected,
         string? value)
     {
@@ -159,7 +159,7 @@ public static class StringAttributeTests
     [InlineData(false, "Hal.lo")]
     [InlineData(false, "Hal@lo")]
     [InlineData(false, "Hal\'lo")]
-    public static void StringAttribute_MiddleName(
+    public void StringAttribute_MiddleName(
         bool expected,
         string? value)
     {
@@ -227,7 +227,7 @@ public static class StringAttributeTests
     [InlineData(true, "Hal.lo")]
     [InlineData(true, "Hal@lo")]
     [InlineData(true, "Hal\'lo")]
-    public static void StringAttribute_LastName(
+    public void StringAttribute_LastName(
         bool expected,
         string? value)
     {
@@ -298,7 +298,7 @@ public static class StringAttributeTests
     [InlineData(false, "Mr Hallo")]
     [InlineData(false, "mr. Hallo")]
     [InlineData(true, "Mr. Hallo")]
-    public static void StringAttribute_Title(
+    public void StringAttribute_Title(
         bool expected,
         string? value)
     {

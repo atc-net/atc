@@ -432,4 +432,63 @@ public class SemanticVersionTests
         // Assert
         Assert.Equal(expected, actual.ToString());
     }
+
+    [Theory]
+    [InlineData("1.2.3-beta01+build123", "1.2.3")]
+    [InlineData("2.0.0+build456", "2.0.0")]
+    [InlineData("1.2.3", "1.2.3")]
+    public void BaseVersion(string version, string expected)
+    {
+        // Arrange
+        var semanticVersion = new SemanticVersion(version);
+
+        // Act
+        var actual = semanticVersion.BaseVersion();
+
+        // Assert
+        Assert.Equal(expected, actual.ToString());
+    }
+
+    [Theory]
+    [InlineData("1.2.3", "1.2.3", 0)]
+    [InlineData("1.2.3", "1.2.4", -1)]
+    [InlineData("1.2.4", "1.2.3", 1)]
+    [InlineData("1.2.3", null, 1)]
+    public void CompareTo_Object(string version1, string? version2, int expected)
+    {
+        // Arrange
+        var semanticVersion = new SemanticVersion(version1);
+        object? other = version2 is not null ? new SemanticVersion(version2) : null;
+
+        // Act
+        var actual = semanticVersion.CompareTo(other);
+
+        // Assert
+        Assert.Equal(expected, System.Math.Sign(actual));
+    }
+
+    [Theory]
+    [InlineData("1.2.3", "1.2.4", 4, 1, false, -1)]
+    [InlineData("1.2.4", "1.2.3", 4, 1, false, 1)]
+    [InlineData("1.2.3", "1.2.3", 4, 1, false, 0)]
+    [InlineData("1.2.3", "1.3.0", 2, 2, false, -1)]
+    [InlineData("1.2.3", null, 4, 1, false, 1)]
+    public void CompareTo_WithSignificantParts(
+        string version1,
+        string? version2,
+        int significantParts,
+        int startingPart,
+        bool looseMode,
+        int expected)
+    {
+        // Arrange
+        var semanticVersion = new SemanticVersion(version1);
+        var other = version2 is not null ? new SemanticVersion(version2) : null;
+
+        // Act
+        var actual = semanticVersion.CompareTo(other, significantParts, startingPart, looseMode);
+
+        // Assert
+        Assert.Equal(expected, System.Math.Sign(actual));
+    }
 }

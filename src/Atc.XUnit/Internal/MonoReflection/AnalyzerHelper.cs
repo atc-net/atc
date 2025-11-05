@@ -388,7 +388,7 @@ internal static class AnalyzerHelper
         {
             if (method.Name.Equals("IsValid", StringComparison.Ordinal))
             {
-                if (!usedSourceMethods.Contains(method))
+                if (usedSourceMethods.Contains(method))
                 {
                     methodsWithTest.Add(method);
                 }
