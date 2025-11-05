@@ -91,4 +91,17 @@ public class AppDomainExtensionsTests
 
         Assert.Equal(expectedCount, actual.Length);
     }
+
+    [Fact]
+    public void TryLoadAssemblyIfNeeded()
+    {
+        // Arrange - Use an already loaded assembly (Atc.dll)
+        var dllFileName = "Atc.dll";
+
+        // Act
+        var actual = AppDomain.CurrentDomain.TryLoadAssemblyIfNeeded(dllFileName);
+
+        // Assert
+        Assert.True(actual);
+    }
 }

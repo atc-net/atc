@@ -3,6 +3,99 @@ namespace Atc.Tests.Helpers;
 public class AssemblyHelperTests
 {
     [Fact]
+    public void GetProjectRootDirectory()
+    {
+        // Act
+        var actual = AssemblyHelper.GetProjectRootDirectory();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.True(actual.Exists);
+    }
+
+    [Fact]
+    public void Load()
+    {
+        // Arrange
+        var assemblyFile = new FileInfo(typeof(AssemblyHelper).Assembly.Location);
+
+        // Act
+        var actual = AssemblyHelper.Load(assemblyFile);
+
+        // Assert
+        Assert.NotNull(actual);
+    }
+
+    [Fact]
+    public void ReadAsBytes()
+    {
+        // Arrange
+        var assemblyFile = new FileInfo(typeof(AssemblyHelper).Assembly.Location);
+
+        // Act
+        var actual = AssemblyHelper.ReadAsBytes(assemblyFile);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotEmpty(actual);
+    }
+
+    [Fact]
+    public void GetSystemName()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemName();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotEmpty(actual);
+    }
+
+    [Fact]
+    public void GetSystemNameAsKebabCasing()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemNameAsKebabCasing();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotEmpty(actual);
+        Assert.Equal(actual.ToLower(GlobalizationConstants.EnglishCultureInfo), actual);
+    }
+
+    [Fact]
+    public void GetSystemVersion()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemVersion();
+
+        // Assert
+        Assert.NotNull(actual);
+    }
+
+    [Fact]
+    public void GetSystemLocation()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemLocation();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotEmpty(actual);
+    }
+
+    [Fact]
+    public void GetSystemLocationPath()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemLocationPath();
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.NotEmpty(actual);
+    }
+
+    [Fact]
     public void GetAssemblyInformations()
     {
         // Act

@@ -92,17 +92,35 @@ public class HttpClientRequestResultTests
         Assert.True(actual.HasException);
     }
 
-    [Fact]
-    public void GetErrorMessageOrMessage()
+    [Theory]
+    [InlineData("Exception message", null, true, "Exception message")]
+    [InlineData(null, "Test message", false, "Test message")]
+    [InlineData(null, null, false, "")]
+    public void GetErrorMessageOrMessage(
+        string? exceptionMessage,
+        string? message,
+        bool hasException,
+        string expected)
     {
         // Arrange
-        var sut = new HttpClientRequestResult<int[]>(new HttpRequestException("Hello World"));
+        HttpClientRequestResult<int> sut;
+        if (hasException)
+        {
+            sut = new HttpClientRequestResult<int>(new HttpRequestException(exceptionMessage!));
+        }
+        else if (message is not null)
+        {
+            sut = new HttpClientRequestResult<int>(HttpStatusCode.OK, 0, message);
+        }
+        else
+        {
+            sut = new HttpClientRequestResult<int>(HttpStatusCode.OK);
+        }
 
         // Act
         var actual = sut.GetErrorMessageOrMessage();
 
         // Assert
-        Assert.NotNull(actual);
-        Assert.Equal("Hello World", actual);
+        Assert.Equal(expected, actual);
     }
 }

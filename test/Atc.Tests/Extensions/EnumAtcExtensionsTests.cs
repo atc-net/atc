@@ -98,4 +98,154 @@ public class EnumAtcExtensionsTests
     [InlineData(YesNoType.None, YesNoType.None)]
     public void Opposite_YesNoType(YesNoType expected, YesNoType input)
         => Assert.Equal(expected, input.Opposite());
+
+    [Theory]
+    [InlineData(ArrowDirectionType.Left, CardinalDirectionType.West)]
+    [InlineData(ArrowDirectionType.Up, CardinalDirectionType.North)]
+    [InlineData(ArrowDirectionType.Right, CardinalDirectionType.East)]
+    [InlineData(ArrowDirectionType.Down, CardinalDirectionType.South)]
+    [InlineData(ArrowDirectionType.None, CardinalDirectionType.None)]
+    public void ToArrowDirectionType_FromCardinalDirectionType(ArrowDirectionType expected, CardinalDirectionType input)
+        => Assert.Equal(expected, input.ToArrowDirectionType());
+
+    [Theory]
+    [InlineData(ArrowDirectionType.Left, LeftTopRightBottomType.Left)]
+    [InlineData(ArrowDirectionType.Up, LeftTopRightBottomType.Top)]
+    [InlineData(ArrowDirectionType.Right, LeftTopRightBottomType.Right)]
+    [InlineData(ArrowDirectionType.Down, LeftTopRightBottomType.Bottom)]
+    [InlineData(ArrowDirectionType.None, LeftTopRightBottomType.None)]
+    public void ToArrowDirectionType_FromLeftTopRightBottomType(ArrowDirectionType expected, LeftTopRightBottomType input)
+        => Assert.Equal(expected, input.ToArrowDirectionType());
+
+    [Theory]
+    [InlineData(ArrowDirectionType.Left, LeftUpRightDownType.Left)]
+    [InlineData(ArrowDirectionType.Up, LeftUpRightDownType.Up)]
+    [InlineData(ArrowDirectionType.Right, LeftUpRightDownType.Right)]
+    [InlineData(ArrowDirectionType.Down, LeftUpRightDownType.Down)]
+    [InlineData(ArrowDirectionType.None, LeftUpRightDownType.None)]
+    public void ToArrowDirectionType_FromLeftUpRightDownType(ArrowDirectionType expected, LeftUpRightDownType input)
+        => Assert.Equal(expected, input.ToArrowDirectionType());
+
+    [Theory]
+    [InlineData(CardinalDirectionType.West, ArrowDirectionType.Left)]
+    [InlineData(CardinalDirectionType.North, ArrowDirectionType.Up)]
+    [InlineData(CardinalDirectionType.East, ArrowDirectionType.Right)]
+    [InlineData(CardinalDirectionType.South, ArrowDirectionType.Down)]
+    [InlineData(CardinalDirectionType.None, ArrowDirectionType.None)]
+    public void ToCardinalDirectionType_FromArrowDirectionType(CardinalDirectionType expected, ArrowDirectionType input)
+        => Assert.Equal(expected, input.ToCardinalDirectionType());
+
+    [Theory]
+    [InlineData(CardinalDirectionType.West, LeftTopRightBottomType.Left)]
+    [InlineData(CardinalDirectionType.North, LeftTopRightBottomType.Top)]
+    [InlineData(CardinalDirectionType.East, LeftTopRightBottomType.Right)]
+    [InlineData(CardinalDirectionType.South, LeftTopRightBottomType.Bottom)]
+    [InlineData(CardinalDirectionType.None, LeftTopRightBottomType.None)]
+    public void ToCardinalDirectionType_FromLeftTopRightBottomType(CardinalDirectionType expected, LeftTopRightBottomType input)
+        => Assert.Equal(expected, input.ToCardinalDirectionType());
+
+    [Theory]
+    [InlineData(CardinalDirectionType.West, LeftUpRightDownType.Left)]
+    [InlineData(CardinalDirectionType.North, LeftUpRightDownType.Up)]
+    [InlineData(CardinalDirectionType.East, LeftUpRightDownType.Right)]
+    [InlineData(CardinalDirectionType.South, LeftUpRightDownType.Down)]
+    [InlineData(CardinalDirectionType.None, LeftUpRightDownType.None)]
+    public void ToCardinalDirectionType_FromLeftUpRightDownType(CardinalDirectionType expected, LeftUpRightDownType input)
+        => Assert.Equal(expected, input.ToCardinalDirectionType());
+
+    [Theory]
+    [InlineData(LeftTopRightBottomType.Left, ArrowDirectionType.Left)]
+    [InlineData(LeftTopRightBottomType.Top, ArrowDirectionType.Up)]
+    [InlineData(LeftTopRightBottomType.Right, ArrowDirectionType.Right)]
+    [InlineData(LeftTopRightBottomType.Bottom, ArrowDirectionType.Down)]
+    [InlineData(LeftTopRightBottomType.None, ArrowDirectionType.None)]
+    public void ToLeftTopRightBottomType_FromArrowDirectionType(LeftTopRightBottomType expected, ArrowDirectionType input)
+        => Assert.Equal(expected, input.ToLeftTopRightBottomType());
+
+    [Theory]
+    [InlineData(LeftTopRightBottomType.Left, CardinalDirectionType.West)]
+    [InlineData(LeftTopRightBottomType.Top, CardinalDirectionType.North)]
+    [InlineData(LeftTopRightBottomType.Right, CardinalDirectionType.East)]
+    [InlineData(LeftTopRightBottomType.Bottom, CardinalDirectionType.South)]
+    [InlineData(LeftTopRightBottomType.None, CardinalDirectionType.None)]
+    public void ToLeftTopRightBottomType_FromCardinalDirectionType(LeftTopRightBottomType expected, CardinalDirectionType input)
+        => Assert.Equal(expected, input.ToLeftTopRightBottomType());
+
+    [Theory]
+    [InlineData(LeftTopRightBottomType.Left, LeftRightType.Left)]
+    [InlineData(LeftTopRightBottomType.Right, LeftRightType.Right)]
+    [InlineData(LeftTopRightBottomType.None, LeftRightType.None)]
+    public void ToLeftTopRightBottomType_FromLeftRightType(LeftTopRightBottomType expected, LeftRightType input)
+        => Assert.Equal(expected, input.ToLeftTopRightBottomType());
+
+    [Theory]
+    [InlineData(LeftTopRightBottomType.Left, LeftUpRightDownType.Left)]
+    [InlineData(LeftTopRightBottomType.Top, LeftUpRightDownType.Up)]
+    [InlineData(LeftTopRightBottomType.Right, LeftUpRightDownType.Right)]
+    [InlineData(LeftTopRightBottomType.Bottom, LeftUpRightDownType.Down)]
+    [InlineData(LeftTopRightBottomType.None, LeftUpRightDownType.None)]
+    public void ToLeftTopRightBottomType_FromLeftUpRightDownType(LeftTopRightBottomType expected, LeftUpRightDownType input)
+        => Assert.Equal(expected, input.ToLeftTopRightBottomType());
+
+    [Theory]
+    [InlineData(LeftTopRightBottomType.Top, UpDownType.Up)]
+    [InlineData(LeftTopRightBottomType.Bottom, UpDownType.Down)]
+    [InlineData(LeftTopRightBottomType.None, UpDownType.None)]
+    public void ToLeftTopRightBottomType_FromUpDownType(LeftTopRightBottomType expected, UpDownType input)
+        => Assert.Equal(expected, input.ToLeftTopRightBottomType());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Left, ArrowDirectionType.Left)]
+    [InlineData(LeftUpRightDownType.Up, ArrowDirectionType.Up)]
+    [InlineData(LeftUpRightDownType.Right, ArrowDirectionType.Right)]
+    [InlineData(LeftUpRightDownType.Down, ArrowDirectionType.Down)]
+    [InlineData(LeftUpRightDownType.None, ArrowDirectionType.None)]
+    public void ToLeftUpRightDownType_FromArrowDirectionType(LeftUpRightDownType expected, ArrowDirectionType input)
+        => Assert.Equal(expected, input.ToLeftUpRightDownType());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Left, CardinalDirectionType.West)]
+    [InlineData(LeftUpRightDownType.Up, CardinalDirectionType.North)]
+    [InlineData(LeftUpRightDownType.Right, CardinalDirectionType.East)]
+    [InlineData(LeftUpRightDownType.Down, CardinalDirectionType.South)]
+    [InlineData(LeftUpRightDownType.None, CardinalDirectionType.None)]
+    public void ToLeftUpRightDownType_FromCardinalDirectionType(LeftUpRightDownType expected, CardinalDirectionType input)
+        => Assert.Equal(expected, input.ToLeftUpRightDownType());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Left, LeftRightType.Left)]
+    [InlineData(LeftUpRightDownType.Right, LeftRightType.Right)]
+    [InlineData(LeftUpRightDownType.None, LeftRightType.None)]
+    public void ToLeftUpRightDownType_FromLeftRightType(LeftUpRightDownType expected, LeftRightType input)
+        => Assert.Equal(expected, input.ToLeftUpRightDownType());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Left, LeftTopRightBottomType.Left)]
+    [InlineData(LeftUpRightDownType.Up, LeftTopRightBottomType.Top)]
+    [InlineData(LeftUpRightDownType.Right, LeftTopRightBottomType.Right)]
+    [InlineData(LeftUpRightDownType.Down, LeftTopRightBottomType.Bottom)]
+    [InlineData(LeftUpRightDownType.None, LeftTopRightBottomType.None)]
+    public void ToLeftUpRightDownType_FromLeftTopRightBottomType(LeftUpRightDownType expected, LeftTopRightBottomType input)
+        => Assert.Equal(expected, input.ToLeftUpRightDownType());
+
+    [Theory]
+    [InlineData(LeftUpRightDownType.Up, UpDownType.Up)]
+    [InlineData(LeftUpRightDownType.Down, UpDownType.Down)]
+    [InlineData(LeftUpRightDownType.None, UpDownType.None)]
+    public void ToLeftUpRightDownType_FromUpDownType(LeftUpRightDownType expected, UpDownType input)
+        => Assert.Equal(expected, input.ToLeftUpRightDownType());
+
+    [Theory]
+    [InlineData(SortDirectionType.Ascending, UpDownType.Up)]
+    [InlineData(SortDirectionType.Descending, UpDownType.Down)]
+    [InlineData(SortDirectionType.None, UpDownType.None)]
+    public void ToSortDirectionType_FromUpDownType(SortDirectionType expected, UpDownType input)
+        => Assert.Equal(expected, input.ToSortDirectionType());
+
+    [Theory]
+    [InlineData(UpDownType.Up, SortDirectionType.Ascending)]
+    [InlineData(UpDownType.Down, SortDirectionType.Descending)]
+    [InlineData(UpDownType.None, SortDirectionType.None)]
+    public void ToUpDownType_FromSortDirectionType(UpDownType expected, SortDirectionType input)
+        => Assert.Equal(expected, input.ToUpDownType());
 }

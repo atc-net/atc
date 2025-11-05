@@ -296,4 +296,80 @@ public class DateTimeExtensionsTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData("Sunday, October 15, 2023", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("Sunday, 15 October 2023", GlobalizationLcidConstants.GreatBritain)]
+    [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
+    [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
+    public void ToLongDateStringUsingSpecificCulture(
+        string expected, int cultureInfoLcid)
+    {
+        // Arrange
+        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var cultureInfo = new CultureInfo(cultureInfoLcid);
+
+        // Act
+        var actual = dateTime.ToLongDateStringUsingSpecificCulture(cultureInfo);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("3:30:45 PM", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("15:30:45", GlobalizationLcidConstants.GreatBritain)]
+    [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
+    [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
+    public void ToLongTimeStringUsingSpecificCulture(
+        string expected, int cultureInfoLcid)
+    {
+        // Arrange
+        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var cultureInfo = new CultureInfo(cultureInfoLcid);
+
+        // Act
+        var actual = dateTime.ToLongTimeStringUsingSpecificCulture(cultureInfo);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("10/15/2023", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("15/10/2023", GlobalizationLcidConstants.GreatBritain)]
+    [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
+    [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
+    public void ToShortDateStringUsingSpecificCulture(
+        string expected, int cultureInfoLcid)
+    {
+        // Arrange
+        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var cultureInfo = new CultureInfo(cultureInfoLcid);
+
+        // Act
+        var actual = dateTime.ToShortDateStringUsingSpecificCulture(cultureInfo);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("3:30 PM", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("15:30", GlobalizationLcidConstants.GreatBritain)]
+    [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
+    [InlineData("15:30", GlobalizationLcidConstants.Germany)]
+    public void ToShortTimeStringUsingSpecificCulture(
+        string expected, int cultureInfoLcid)
+    {
+        // Arrange
+        var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
+        var cultureInfo = new CultureInfo(cultureInfoLcid);
+
+        // Act
+        var actual = dateTime.ToShortTimeStringUsingSpecificCulture(cultureInfo);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
 }

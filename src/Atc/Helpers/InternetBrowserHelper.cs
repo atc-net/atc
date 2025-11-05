@@ -1,5 +1,6 @@
 namespace Atc.Helpers;
 
+[ExcludeFromCodeCoverage]
 public static class InternetBrowserHelper
 {
     private const string ProcessNameBrave = "brave";

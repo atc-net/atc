@@ -6,18 +6,17 @@ namespace Atc.Tests.Serialization;
 [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
 public class DynamicJsonTests
 {
+    private const string JsonPropertyValue = """
+                                             {
+                                               "property": "value"
+                                             }
+                                             """;
+
     [Fact]
     public void CanInitializeFromJson()
     {
-        // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
         // Act
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Assert
         Assert.Equal("value", dynamicJson.GetValue("property"));
@@ -38,12 +37,12 @@ public class DynamicJsonTests
     {
         // Arrange
         const string json = """
-{
-  "property": {
-      "nestedProperty": "value"
-    }
-}
-""";
+                            {
+                              "property": {
+                                  "nestedProperty": "value"
+                                }
+                            }
+                            """;
 
         var dynamicJson = new DynamicJson(json);
 
@@ -58,13 +57,7 @@ public class DynamicJsonTests
     public void ReturnsNullForNoneExistentPath()
     {
         // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act
         var actual = dynamicJson.GetValue("noneExistentProperty");
@@ -77,13 +70,7 @@ public class DynamicJsonTests
     public void CanSetValueAtPath()
     {
         // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act
         dynamicJson.SetValue("property", "newValue");
@@ -92,17 +79,34 @@ public class DynamicJsonTests
         Assert.Equal("newValue", dynamicJson.GetValue("property"));
     }
 
+    [Theory]
+    [InlineData("property", "newValue", true, true, null)]
+    [InlineData("newProperty", "newValue", true, true, null)]
+    [InlineData("newProperty", "newValue", false, true, null)]
+    [InlineData("nested.property", "nestedValue", true, true, null)]
+    public void SetValue_WithParameters(
+        string path,
+        object value,
+        bool createKeyIfNotExist,
+        bool expectedIsSucceeded,
+        string? expectedErrorMessage)
+    {
+        // Arrange
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
+
+        // Act
+        var result = dynamicJson.SetValue(path, value, createKeyIfNotExist);
+
+        // Assert
+        Assert.Equal(expectedIsSucceeded, result.IsSucceeded);
+        Assert.Equal(expectedErrorMessage, result.ErrorMessage);
+    }
+
     [Fact]
     public void CanCreateKeyAndSetValue()
     {
         // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act
         dynamicJson.SetValue("newProperty", "newValue", createKeyIfNotExist: true);
@@ -116,12 +120,12 @@ public class DynamicJsonTests
     {
         // Arrange
         const string json = """
-{
-  "property": {
-      "nestedProperty": "value"
-    }
-}
-""";
+                            {
+                              "property": {
+                                  "nestedProperty": "value"
+                                }
+                            }
+                            """;
 
         var dynamicJson = new DynamicJson(json);
 
@@ -137,13 +141,7 @@ public class DynamicJsonTests
     public void CannotRemoveNonexistentPath()
     {
         // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act
         var result = dynamicJson.RemovePath("nonexistentProperty");
@@ -157,13 +155,7 @@ public class DynamicJsonTests
     public void ThrowsOnNullPath()
     {
         // Arrange
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => dynamicJson.RemovePath(null!));
@@ -173,51 +165,27 @@ public class DynamicJsonTests
     public void CanConvertToJson()
     {
         // Arrange
-        const string expectedJson = """
-{
-  "property": "value"
-}
-""";
-
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
 
         // Act
         var outputJson = dynamicJson.ToJson();
 
         // Assert
-        Assert.Equal(expectedJson, outputJson);
+        Assert.Equal(JsonPropertyValue, outputJson);
     }
 
     [Fact]
     public void CanConvertToJson_CustomSerializerOptions()
     {
         // Arrange
-        const string expectedJson = """
-{
-  "property": "value"
-}
-""";
-
-        const string json = """
-{
-  "property": "value"
-}
-""";
-
-        var dynamicJson = new DynamicJson(json);
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
         var customOptions = JsonSerializerOptionsFactory.Create();
 
         // Act
         var outputJson = dynamicJson.ToJson(customOptions);
 
         // Assert
-        Assert.Equal(expectedJson, outputJson);
+        Assert.Equal(JsonPropertyValue, outputJson);
     }
 
     [Fact]
@@ -225,18 +193,18 @@ public class DynamicJsonTests
     {
         // Arrange
         const string expectedJson = """
-{
-  "property1": "valueOne",
-  "property2": "valueTwo"
-}
-""";
+                                    {
+                                      "property1": "valueOne",
+                                      "property2": "valueTwo"
+                                    }
+                                    """;
 
         const string json = """
-{
-  "property2": "valueTwo",
-  "property1": "valueOne"
-}
-""";
+                            {
+                              "property2": "valueTwo",
+                              "property1": "valueOne"
+                            }
+                            """;
 
         var dynamicJson = new DynamicJson(json);
         var customOptions = JsonSerializerOptionsFactory.Create();
@@ -254,18 +222,18 @@ public class DynamicJsonTests
     {
         // Arrange
         const string expectedJson = """
-{
-  "property1": "valueOne",
-  "property2": "valueTwo"
-}
-""";
+                                    {
+                                      "property1": "valueOne",
+                                      "property2": "valueTwo"
+                                    }
+                                    """;
 
         const string json = """
-{
-  "property2": "valueTwo",
-  "property1": "valueOne"
-}
-""";
+                            {
+                              "property2": "valueTwo",
+                              "property1": "valueOne"
+                            }
+                            """;
 
         var dynamicJson = new DynamicJson(json);
 
@@ -281,31 +249,31 @@ public class DynamicJsonTests
     {
         // Arrange
         const string expectedJson = """
-{
-  "Property0": "StrValue1",
-  "Property1": {
-    "Property2": "StrValue2",
-    "Property3": "StrValue3",
-    "Property4": {
-      "Items": [
-        {
-          "Id": 1,
-          "Name": "ItemName1"
-        },
-        {
-          "Id": 2,
-          "Name": "ItemName2",
-          "Metadata": {
-            "MetadataItem1": "StrMetadataItem1",
-            "MetadataItem2": 42,
-            "MetadataItem3": true
-          }
-        }
-      ]
-    }
-  }
-}
-""";
+                                    {
+                                      "Property0": "StrValue1",
+                                      "Property1": {
+                                        "Property2": "StrValue2",
+                                        "Property3": "StrValue3",
+                                        "Property4": {
+                                          "Items": [
+                                            {
+                                              "Id": 1,
+                                              "Name": "ItemName1"
+                                            },
+                                            {
+                                              "Id": 2,
+                                              "Name": "ItemName2",
+                                              "Metadata": {
+                                                "MetadataItem1": "StrMetadataItem1",
+                                                "MetadataItem2": 42,
+                                                "MetadataItem3": true
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                    """;
         const string json = "{}";
         var dynamicJson = new DynamicJson(json);
 
@@ -333,48 +301,48 @@ public class DynamicJsonTests
     {
         // Arrange
         const string expectedJson = """
-{
-  "Property0": "StrValue1",
-  "Property1": {
-    "Property2": "StrValue2",
-    "Property3": "StrValue3",
-    "Property4": {
-      "Items": [
-        {
-          "Id": 1,
-          "Name": "ItemName1"
-        },
-        {
-          "Id": 2,
-          "Name": "ItemName2",
-          "Metadata": {
-            "MetadataItem1": "StrMetadataItem1",
-            "MetadataItem2": 42,
-            "MetadataItem3": true
-          }
-        }
-      ]
-    }
-  }
-}
-""";
+                                    {
+                                      "Property0": "StrValue1",
+                                      "Property1": {
+                                        "Property2": "StrValue2",
+                                        "Property3": "StrValue3",
+                                        "Property4": {
+                                          "Items": [
+                                            {
+                                              "Id": 1,
+                                              "Name": "ItemName1"
+                                            },
+                                            {
+                                              "Id": 2,
+                                              "Name": "ItemName2",
+                                              "Metadata": {
+                                                "MetadataItem1": "StrMetadataItem1",
+                                                "MetadataItem2": 42,
+                                                "MetadataItem3": true
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                    """;
         const string json = """
-{
-  "Property0": "StrValue1x",
-  "Property1": {
-    "Property2": "StrValue2x",
-    "Property3": "StrValue3x",
-    "Property4": {
-      "Items": [
-        {
-          "Id": 11,
-          "Name": "ItemName1x"
-        }
-      ]
-    }
-  }
-}
-""";
+                            {
+                              "Property0": "StrValue1x",
+                              "Property1": {
+                                "Property2": "StrValue2x",
+                                "Property3": "StrValue3x",
+                                "Property4": {
+                                  "Items": [
+                                    {
+                                      "Id": 11,
+                                      "Name": "ItemName1x"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                            """;
 
         var dynamicJson = new DynamicJson(json);
 

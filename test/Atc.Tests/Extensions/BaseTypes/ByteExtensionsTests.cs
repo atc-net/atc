@@ -4,6 +4,73 @@ namespace Atc.Tests.Extensions.BaseTypes;
 
 public class ByteExtensionsTests
 {
+    [Theory]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 0, 3, new byte[] { 1, 2, 3 })]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 2, 2, new byte[] { 3, 4 })]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 0, 0, new byte[] { })]
+    public void TakeBytes(byte[] value, int startPosition, int length, byte[] expected)
+    {
+        // Act
+        var actual = value.TakeBytes(startPosition, length);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(new byte[] { 1, 0, 0, 0 }, 0, 4, 1)]
+    [InlineData(new byte[] { 255, 0, 0, 0 }, 0, 4, 255)]
+    public void TakeBytesAndConvertToInt(byte[] value, int startPosition, int length, int expected)
+    {
+        // Act
+        var actual = value.TakeBytesAndConvertToInt(startPosition, length);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(new byte[] { 1, 0, 0, 0, 0, 0, 0, 0 }, 0, 8, 1L)]
+    [InlineData(new byte[] { 255, 0, 0, 0, 0, 0, 0, 0 }, 0, 8, 255L)]
+    public void TakeBytesAndConvertToLong(byte[] value, int startPosition, int length, long expected)
+    {
+        // Act
+        var actual = value.TakeBytesAndConvertToLong(startPosition, length);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 0, new byte[] { 1, 2, 3, 4, 5 })]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 2, new byte[] { 3, 4, 5 })]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 5, new byte[] { })]
+    public void TakeRemainingBytes(byte[] value, int startPosition, byte[] expected)
+    {
+        // Act
+        var actual = value.TakeRemainingBytes(startPosition);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void Split()
+    {
+        // Arrange
+        byte[] value = { 1, 2, 0, 3, 4, 0, 5 };
+        byte splitByte = 0;
+
+        // Act
+        var actual = value.Split(splitByte).ToList();
+
+        // Assert
+        Assert.Equal(3, actual.Count);
+        Assert.Equal(new byte[] { 1, 2 }, actual[0]);
+        Assert.Equal(new byte[] { 3, 4 }, actual[1]);
+        Assert.Equal(new byte[] { 5 }, actual[2]);
+    }
+
     [Fact]
     public void ToHex_NullByteArray()
     {
