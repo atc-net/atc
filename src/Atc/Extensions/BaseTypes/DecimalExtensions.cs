@@ -38,11 +38,12 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    /// Determines whether the specified a is equal.
+    /// Compares two decimal values for equality with a specified precision.
     /// </summary>
-    /// <param name="a">a.</param>
-    /// <param name="b">The b.</param>
-    /// <param name="decimalPrecision">The decimal precision.</param>
+    /// <param name="a">The first decimal value.</param>
+    /// <param name="b">The second decimal value.</param>
+    /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
+    /// <returns><see langword="true"/> if the values are equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
     public static bool IsEqual(this decimal a, decimal b, int decimalPrecision)
     {
         var sa = a.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
@@ -87,11 +88,12 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    /// Determines whether the specified a is equal.
+    /// Compares two nullable decimal values for equality with a specified precision.
     /// </summary>
-    /// <param name="a">a.</param>
-    /// <param name="b">The b.</param>
-    /// <param name="decimalPrecision">The decimal precision.</param>
+    /// <param name="a">The first nullable decimal value.</param>
+    /// <param name="b">The second nullable decimal value.</param>
+    /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
+    /// <returns><see langword="true"/> if both values are null or equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
     public static bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
     {
         if (a is null || b is null)
@@ -103,28 +105,31 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    /// Currencies the rounding as integer.
+    /// Rounds a decimal value using currency rounding rules and returns it as an integer.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <returns>The rounded value as an integer.</returns>
     public static int CurrencyRoundingAsInteger(this decimal value)
     {
         return (int)CurrencyRounding(value, 0);
     }
 
     /// <summary>
-    /// Currencies the rounding.
+    /// Rounds a decimal value using the currency decimal digits of the current UI culture.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <returns>The rounded decimal value.</returns>
     public static decimal CurrencyRounding(this decimal value)
     {
         return CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
     }
 
     /// <summary>
-    /// Currencies the rounding.
+    /// Rounds a decimal value to a specified number of decimal digits using midpoint rounding away from zero.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="digits">The digits.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <param name="digits">The number of decimal digits to round to (negative values are treated as 0).</param>
+    /// <returns>The rounded decimal value.</returns>
     public static decimal CurrencyRounding(this decimal value, int digits)
     {
         if (digits < 0)
@@ -136,37 +141,41 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    /// Rounds the off2.
+    /// Rounds a decimal value to 2 decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <returns>The value rounded to 2 decimal places.</returns>
     public static decimal RoundOff2(this decimal value)
     {
         return RoundOff(value, 2);
     }
 
     /// <summary>
-    /// Rounds the off10.
+    /// Rounds a decimal value to 10 decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <returns>The value rounded to 10 decimal places.</returns>
     public static decimal RoundOff10(this decimal value)
     {
         return RoundOff(value, 10);
     }
 
     /// <summary>
-    /// Rounds the off.
+    /// Rounds a decimal value to a specified number of decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="numberOfDecimals">The number of decimals.</param>
+    /// <param name="value">The decimal value to round.</param>
+    /// <param name="numberOfDecimals">The number of decimal places to round to.</param>
+    /// <returns>The rounded decimal value.</returns>
     public static decimal RoundOff(this decimal value, int numberOfDecimals)
     {
         return Math.Round(value, numberOfDecimals);
     }
 
     /// <summary>
-    /// Rounds the off percent.
+    /// Rounds a percentage value to 2 decimal places.
     /// </summary>
-    /// <param name="percent">The percent.</param>
+    /// <param name="percent">The percentage value to round.</param>
+    /// <returns>The percentage value rounded to 2 decimal places.</returns>
     public static decimal RoundOffPercent(this decimal percent)
     {
         return RoundOff(percent, 2);

@@ -8,6 +8,7 @@
 <br />
 
 ## DotnetNugetPackageMetadataBase
+Represents the base metadata for a .NET NuGet package.
 
 >```csharp
 >public class DotnetNugetPackageMetadataBase
@@ -19,10 +20,12 @@
 >```csharp
 >PackageId
 >```
+><b>Summary:</b> Gets or sets the NuGet package identifier.
 #### Version
 >```csharp
 >Version
 >```
+><b>Summary:</b> Gets or sets the package version.
 ### Methods
 
 #### ToString
@@ -33,6 +36,7 @@
 <br />
 
 ## VisualStudioSolutionFileMetadata
+Represents metadata extracted from a Visual Studio solution (.sln) file.
 
 >```csharp
 >public class VisualStudioSolutionFileMetadata
@@ -44,22 +48,27 @@
 >```csharp
 >FileFormatVersion
 >```
+><b>Summary:</b> Gets or sets the solution file format version.
 #### MinimumVisualStudioVersion
 >```csharp
 >MinimumVisualStudioVersion
 >```
+><b>Summary:</b> Gets or sets the minimum Visual Studio version required to open this solution.
 #### VisualStudioName
 >```csharp
 >VisualStudioName
 >```
+><b>Summary:</b> Gets the human-readable name of the Visual Studio version based on the version number.
 #### VisualStudioVersion
 >```csharp
 >VisualStudioVersion
 >```
+><b>Summary:</b> Gets or sets the Visual Studio version.
 #### VisualStudioVersionNumber
 >```csharp
 >VisualStudioVersionNumber
 >```
+><b>Summary:</b> Gets or sets the Visual Studio version number.
 ### Methods
 
 #### ToString

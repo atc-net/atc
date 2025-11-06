@@ -3,16 +3,20 @@
 namespace System;
 
 /// <summary>
-/// ArgumentPropertyNullException.
+/// The exception that is thrown when a property argument is null.
 /// </summary>
-/// <seealso cref="Exception" />
+/// <remarks>
+/// This exception is similar to <see cref="ArgumentNullException"/>, but is specifically designed for validating property values
+/// rather than method parameters. It inherits from <see cref="ArgumentException"/> to maintain consistency with standard .NET exception hierarchy.
+/// </remarks>
+/// <seealso cref="ArgumentException" />
 [Serializable]
 public sealed class ArgumentPropertyNullException : ArgumentException
 {
     private const string ExceptionMessage = "Value cannot be null.";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class with a default error message.
     /// </summary>
     public ArgumentPropertyNullException()
         : base(ExceptionMessage)
@@ -20,9 +24,9 @@ public sealed class ArgumentPropertyNullException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class with the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
+    /// <param name="paramName">The name of the property that is null.</param>
     public ArgumentPropertyNullException(
         string paramName)
         : base(ExceptionMessage, paramName)
@@ -30,10 +34,10 @@ public sealed class ArgumentPropertyNullException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class with a specified error message and the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
-    /// <param name="message">The message.</param>
+    /// <param name="paramName">The name of the property that is null.</param>
+    /// <param name="message">The error message that explains the reason for the exception.</param>
     public ArgumentPropertyNullException(
         string paramName,
         string message)
@@ -53,6 +57,11 @@ public sealed class ArgumentPropertyNullException : ArgumentException
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     private ArgumentPropertyNullException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

@@ -8,7 +8,7 @@
 <br />
 
 ## CircleHelper
-The CircleHelper module contains procedures used to preform math operations on a circle.
+Provides utility methods for performing geometric calculations on circles.
 
 >```csharp
 >public static class CircleHelper
@@ -20,36 +20,44 @@ The CircleHelper module contains procedures used to preform math operations on a
 >```csharp
 >double ArcLength(double radius, double angle)
 >```
-><b>Summary:</b> Arcs the length.
+><b>Summary:</b> Calculates the arc length of a circular arc given the radius and central angle.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius of the circle.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The central angle in degrees.<br />
+>
+><b>Returns:</b> The length of the arc.
 #### Area
 >```csharp
 >double Area(double radius)
 >```
-><b>Summary:</b> Areas the specified radius.
+><b>Summary:</b> Calculates the area of a circle given its radius.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius of the circle.<br />
+>
+><b>Returns:</b> The area of the circle (π * r²).
 #### ChordLength
 >```csharp
 >double ChordLength(double radius, double angle)
 >```
-><b>Summary:</b> Chords the length.
+><b>Summary:</b> Calculates the chord length of a circular arc given the radius and central angle.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The angle.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius of the circle.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`angle`&nbsp;&nbsp;-&nbsp;&nbsp;The central angle in degrees.<br />
+>
+><b>Returns:</b> The straight-line distance between the endpoints of the arc.
 #### Circumference
 >```csharp
 >double Circumference(double radius)
 >```
-><b>Summary:</b> Circumferences the specified radius.
+><b>Summary:</b> Calculates the circumference of a circle given its radius.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`radius`&nbsp;&nbsp;-&nbsp;&nbsp;The radius of the circle.<br />
+>
+><b>Returns:</b> The circumference of the circle (2πr).
 
 <br />
 

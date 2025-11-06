@@ -1,7 +1,16 @@
 namespace Atc.Data;
 
+/// <summary>
+/// Factory for creating <see cref="AssemblyInformation"/> instances from <see cref="Assembly"/> objects.
+/// </summary>
 public static class AssemblyInformationFactory
 {
+    /// <summary>
+    /// Creates an <see cref="AssemblyInformation"/> instance from the specified assembly.
+    /// </summary>
+    /// <param name="assembly">The assembly to extract information from.</param>
+    /// <returns>An <see cref="AssemblyInformation"/> object containing assembly metadata.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
     public static AssemblyInformation Create(
         Assembly assembly)
     {

@@ -2,8 +2,12 @@
 namespace System;
 
 /// <summary>
-/// The exception.
+/// The exception that is thrown when an unexpected value is encountered in a switch statement's default case.
 /// </summary>
+/// <remarks>
+/// This exception is typically used to handle unexpected enum values or cases that should not occur in a switch statement.
+/// It provides specialized constructors for enum values that automatically format detailed error messages.
+/// </remarks>
 /// <seealso cref="Exception" />
 [Serializable]
 public class SwitchCaseDefaultException : Exception
@@ -11,7 +15,7 @@ public class SwitchCaseDefaultException : Exception
     private const string ExceptionMessage = "Unexpected value.";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
+    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with a default error message.
     /// </summary>
     public SwitchCaseDefaultException()
         : base(ExceptionMessage)
@@ -29,9 +33,10 @@ public class SwitchCaseDefaultException : Exception
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
+    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with an enum value.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The unexpected enum value that was encountered.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public SwitchCaseDefaultException(
         Enum value)
@@ -45,10 +50,11 @@ public class SwitchCaseDefaultException : Exception
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
+    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with an enum value and a custom error message.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="message">The message.</param>
+    /// <param name="value">The unexpected enum value that was encountered.</param>
+    /// <param name="message">The custom error message that describes the error.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> or <paramref name="message"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public SwitchCaseDefaultException(
         Enum value,
@@ -79,6 +85,11 @@ public class SwitchCaseDefaultException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected SwitchCaseDefaultException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         : base(ExceptionMessage)
     {

@@ -2,7 +2,84 @@
 
 **Target Framework:** `net9.0`
 
-This library contains extensions to wrap the usage of `dotnet.exe` from .NET code, extract metadata from `.sln` and `.csproj` files.
+Programmatic interface to dotnet.exe and utilities for parsing .NET project files. Provides helpers for executing dotnet commands, analyzing project structure, and extracting metadata from solution and project files.
+
+## Why Use This Library?
+
+Automating .NET build processes and analyzing project files requires executing dotnet.exe and parsing project XML. Atc.DotNet simplifies this by providing:
+
+- **DotnetHelper**: Locate and execute dotnet.exe programmatically
+- **DotnetBuildHelper**: Build projects and collect compilation errors
+- **DotnetCsProjFileHelper**: Parse and analyze .csproj files
+- **DotnetNugetHelper**: Extract NuGet package references
+- **VisualStudioSolutionFileHelper**: Parse .sln files and extract metadata
+- **Project Type Detection**: Identify console apps, libraries, test projects, etc.
+
+Perfect for:
+- Build automation tools
+- Code generators analyzing project structure
+- CI/CD pipeline utilities
+- DevOps tooling for .NET projects
+- Project scaffolding and templates
+- Dependency analysis tools
+
+## Installation
+
+```bash
+dotnet add package Atc.DotNet
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
+
+- Locate dotnet.exe installation directory and executable
+- Execute dotnet build with error collection
+- Parse .csproj files and extract project type
+- Extract NuGet package references from projects
+- Parse Visual Studio solution files
+- Detect project types (Console, Library, Web, Test, etc.)
+- Analyze project dependencies
+- Support for both file-based and content-based parsing
+
+## Requirements
+
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
+## Key Dependencies
+
+- Atc (foundation library)
+
+## Main Components
+
+### DotnetHelper
+
+Utilities for locating and working with dotnet.exe:
+- `GetDotnetDirectory()`: Finds the dotnet installation directory
+- `GetDotnetExecutable()`: Gets the full path to dotnet.exe
+
+### DotnetBuildHelper
+
+Build automation and error collection:
+- `BuildAndCollectErrors()`: Builds project and returns compilation errors
+
+### DotnetCsProjFileHelper
+
+Project file analysis:
+- `PredictProjectType()`: Determines project type with file analytics
+- `GetProjectType()`: Determines project type from .csproj content
+
+### DotnetNugetHelper
+
+NuGet package analysis:
+- `GetAllPackageReferences()`: Extracts all package references from project
+
+### VisualStudioSolutionFileHelper
+
+Solution file parsing:
+- `GetSolutionFileMetadata()`: Extracts metadata from .sln files
 
 ## Code documentation
 
@@ -108,3 +185,7 @@ var fileContent = File.ReadAllText(file.FullName);
 
 VisualStudioSolutionFileMetadata metadata = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(file);
 ```
+
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

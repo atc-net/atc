@@ -1,8 +1,12 @@
 // ReSharper disable ConvertIfStatementToConditionalTernaryExpression
 namespace Atc.CodeDocumentation.CodeComment;
 
+/// <summary>
+/// Generates formatted XML documentation comment tags from structured code documentation data.
+/// </summary>
 public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
 {
+    /// <inheritdoc/>
     public bool ShouldGenerateTags(
         CodeDocumentationTags codeDocumentationTags)
     {
@@ -25,6 +29,7 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
                !codeDocumentationTags.Summary.StartsWith(Constants.UndefinedDescription, StringComparison.Ordinal);
     }
 
+    /// <inheritdoc/>
     public string GenerateTags(
         ushort indentSpaces,
         CodeDocumentationTags codeDocumentationTags)

@@ -1,17 +1,18 @@
 namespace Atc.XUnit;
 
 /// <summary>
-/// CodeComplianceTestHelper.
+/// Provides helper methods for asserting code compliance related to test coverage.
 /// </summary>
 public static class CodeComplianceTestHelper
 {
     /// <summary>
-    /// Asserts the exported methods with missing tests.
+    /// Asserts that all public methods in a source type have corresponding unit tests.
+    /// Fails the test if any methods are missing test coverage.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceType">Type of the source.</param>
-    /// <param name="testType">Type of the test.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceType">The source type to validate for test coverage.</param>
+    /// <param name="testType">The test type containing unit tests for the source type.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
@@ -39,12 +40,13 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Asserts the exported methods with missing tests.
+    /// Asserts that all public methods in a source type have corresponding unit tests.
+    /// Searches the entire test assembly for tests covering the source type.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceType">Type of the source.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceType">The source type to validate for test coverage.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
@@ -67,13 +69,14 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Asserts the exported methods with missing tests.
+    /// Asserts that all public methods in a source assembly have corresponding unit tests.
+    /// Fails the test if any methods are missing test coverage.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to validate for test coverage.</param>
+    /// <param name="testAssembly">The test assembly containing unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from validation.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -103,12 +106,13 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported types with missing tests.
+    /// Collects all exported types that have at least one method missing test coverage.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <returns>An array of types that have methods missing test coverage.</returns>
     public static Type[] CollectExportedTypesWithMissingTests(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -133,13 +137,15 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported types with missing tests and generate text.
+    /// Collects exported types with missing tests and generates a C# code snippet for an exclude list.
+    /// Useful for generating initial exclude lists when adding test coverage validation.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <returns>A formatted C# code snippet containing a list of typeof() expressions for types missing tests.</returns>
     public static string CollectExportedTypesWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -191,12 +197,13 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported methods with missing tests from assembly.
+    /// Collects all exported methods from an assembly that are missing test coverage.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <returns>An array of <see cref="MethodInfo"/> objects representing methods missing test coverage.</returns>
     public static MethodInfo[] CollectExportedMethodsWithMissingTestsFromAssembly(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -217,13 +224,14 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported methods with missing tests and generate text lines.
+    /// Collects exported methods with missing tests and generates an array of formatted method signatures.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <returns>An array of strings containing beautified method signatures.</returns>
     public static string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -246,13 +254,14 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported methods with missing tests and generate text.
+    /// Collects exported methods with missing tests and generates a formatted text report.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <returns>A multi-line string containing all method signatures missing tests.</returns>
     public static string CollectExportedMethodsWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -275,12 +284,12 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported methods with missing tests to excel.
+    /// Collects exported methods with missing tests and exports them to an Excel file at C:\Temp.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
     public static void CollectExportedMethodsWithMissingTestsToExcel(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
@@ -306,14 +315,13 @@ public static class CodeComplianceTestHelper
     }
 
     /// <summary>
-    /// Collects the exported methods with missing tests to excel.
+    /// Collects exported methods with missing tests and exports them to an Excel file in the specified directory.
     /// </summary>
-    /// <param name="decompilerType">The decompiler type.</param>
-    /// <param name="reportDirectory">The report directory.</param>
-    /// <param name="sourceAssembly">The source assembly.</param>
-    /// <param name="testAssembly">The test assembly.</param>
-    /// <param name="excludeSourceTypes">The exclude source types.</param>
-    /// <exception cref="ArgumentNullException">reportDirectory.</exception>
+    /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
+    /// <param name="reportDirectory">The directory where the Excel report will be saved.</param>
+    /// <param name="sourceAssembly">The source assembly to analyze.</param>
+    /// <param name="testAssembly">The test assembly to search for unit tests.</param>
+    /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
     public static void CollectExportedMethodsWithMissingTestsToExcel(
         DecompilerType decompilerType,
         DirectoryInfo reportDirectory,

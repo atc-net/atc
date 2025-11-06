@@ -25,6 +25,19 @@ Perfect for:
 dotnet add package Atc.XUnit
 ```
 
+## Target Framework
+
+- .NET 9.0
+
+## Key Dependencies
+
+- xUnit.v3 (assert, common, extensibility.core)
+- ICSharpCode.Decompiler (for code analysis)
+- EPPlus 7.5.3 (version-pinned for licensing)
+- Mono.Reflection
+- Atc.CodeDocumentation
+- Atc (foundation library)
+
 ## Code Documentation
 
 - [API References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.XUnit/Index.md)

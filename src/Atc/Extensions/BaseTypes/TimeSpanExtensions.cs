@@ -7,51 +7,53 @@ namespace System;
 public static class TimeSpanExtensions
 {
     /// <summary>
-    /// Minimums the specified t1.
+    /// Returns the smaller of two TimeSpan values.
     /// </summary>
-    /// <param name="t1">The t1.</param>
-    /// <param name="t2">The t2.</param>
+    /// <param name="t1">The first TimeSpan to compare.</param>
+    /// <param name="t2">The second TimeSpan to compare.</param>
+    /// <returns>The smaller of the two TimeSpan values.</returns>
     public static TimeSpan Min(this TimeSpan t1, TimeSpan t2)
     {
         return t1 < t2 ? t1 : t2;
     }
 
     /// <summary>
-    /// Maximums the specified t1.
+    /// Returns the larger of two TimeSpan values.
     /// </summary>
-    /// <param name="t1">The t1.</param>
-    /// <param name="t2">The t2.</param>
+    /// <param name="t1">The first TimeSpan to compare.</param>
+    /// <param name="t2">The second TimeSpan to compare.</param>
+    /// <returns>The larger of the two TimeSpan values.</returns>
     public static TimeSpan Max(this TimeSpan t1, TimeSpan t2)
     {
         return t1 > t2 ? t1 : t2;
     }
 
     /// <summary>
-    /// Removes the millisecond part of the timeSpan.
+    /// Removes the millisecond component from the TimeSpan.
     /// </summary>
-    /// <param name="timeSpan">The timeSpan.</param>
+    /// <param name="timeSpan">The TimeSpan to modify.</param>
+    /// <returns>A TimeSpan with the milliseconds set to zero.</returns>
     public static TimeSpan RemoveMilliseconds(this TimeSpan timeSpan)
     {
         return timeSpan.Subtract(TimeSpan.FromMilliseconds(timeSpan.Milliseconds));
     }
 
     /// <summary>
-    /// Determines whether the seconds part of the datetime is zero.
+    /// Determines whether the total seconds of the TimeSpan is greater than zero.
     /// </summary>
-    /// <param name="timeSpan">The timeSpan.</param>
-    /// <returns>
-    ///   <see langword="true" /> if [is seconds is zero] otherwise, <see langword="false" />.
-    /// </returns>
+    /// <param name="timeSpan">The TimeSpan to check.</param>
+    /// <returns><see langword="true"/> if the total seconds is greater than zero; otherwise, <see langword="false"/>.</returns>
     public static bool SecondsNotZero(this TimeSpan timeSpan)
     {
         return timeSpan.TotalSeconds > 0;
     }
 
     /// <summary>
-    /// Gets the pretty time.
+    /// Converts a TimeSpan to a human-readable string representation with appropriate time units.
     /// </summary>
-    /// <param name="timeSpan">The timeSpan.</param>
-    /// <param name="decimalPrecision">The decimal precision.</param>
+    /// <param name="timeSpan">The TimeSpan to format.</param>
+    /// <param name="decimalPrecision">The number of decimal places to display (default is 3).</param>
+    /// <returns>A formatted string representing the time in the most appropriate unit (days, hours, minutes, seconds, or milliseconds).</returns>
     [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
     public static string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
     {

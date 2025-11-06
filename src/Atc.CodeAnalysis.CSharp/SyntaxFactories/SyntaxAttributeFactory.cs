@@ -9,6 +9,12 @@ namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 /// </remarks>
 public static class SyntaxAttributeFactory
 {
+    /// <summary>
+    /// Creates an attribute from a name.
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute (with or without "Attribute" suffix).</param>
+    /// <returns>An <see cref="AttributeSyntax"/> node.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
     public static AttributeSyntax Create(string attributeName)
     {
         if (attributeName is null)
@@ -19,6 +25,13 @@ public static class SyntaxAttributeFactory
         return SyntaxFactory.Attribute(SyntaxFactory.IdentifierName(RemoveSuffix(attributeName)));
     }
 
+    /// <summary>
+    /// Creates an attribute with a single string argument.
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute (with or without "Attribute" suffix).</param>
+    /// <param name="argumentValue">The string value for the argument.</param>
+    /// <returns>An <see cref="AttributeSyntax"/> node with one argument.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> or <paramref name="argumentValue"/> is null.</exception>
     public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
     {
         if (attributeName is null)
@@ -38,6 +51,13 @@ public static class SyntaxAttributeFactory
                         SyntaxAttributeArgumentFactory.Create(argumentValue))));
     }
 
+    /// <summary>
+    /// Creates an attribute with a single integer argument.
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute (with or without "Attribute" suffix).</param>
+    /// <param name="argumentValue">The integer value for the argument.</param>
+    /// <returns>An <see cref="AttributeSyntax"/> node with one argument.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
     public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, int argumentValue)
     {
         if (attributeName is null)
@@ -52,6 +72,14 @@ public static class SyntaxAttributeFactory
                         SyntaxAttributeArgumentFactory.Create(argumentValue))));
     }
 
+    /// <summary>
+    /// Creates an attribute with two arguments.
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute (with or without "Attribute" suffix).</param>
+    /// <param name="argumentValue1">The first argument value.</param>
+    /// <param name="argumentValue2">The second argument value.</param>
+    /// <returns>An <see cref="AttributeSyntax"/> node with two arguments.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
     public static AttributeSyntax CreateWithOneItemWithTwoArgument(string attributeName, object argumentValue1, object argumentValue2)
     {
         if (attributeName is null)
@@ -71,6 +99,13 @@ public static class SyntaxAttributeFactory
                         })));
     }
 
+    /// <summary>
+    /// Creates an attribute syntax from a <see cref="ValidationAttribute"/> instance.
+    /// </summary>
+    /// <param name="validationAttribute">The validation attribute to convert.</param>
+    /// <returns>An <see cref="AttributeSyntax"/> node representing the validation attribute.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="validationAttribute"/> is null.</exception>
+    /// <exception cref="NotImplementedException">Thrown when the validation attribute type is not supported.</exception>
     public static AttributeSyntax CreateFromValidationAttribute(ValidationAttribute validationAttribute)
     {
         if (validationAttribute is null)
@@ -94,6 +129,12 @@ public static class SyntaxAttributeFactory
         return attributeSyntax;
     }
 
+    /// <summary>
+    /// Removes the "Attribute" suffix from an attribute name if present.
+    /// </summary>
+    /// <param name="attributeName">The attribute name to process.</param>
+    /// <returns>The attribute name without the "Attribute" suffix.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
     public static string RemoveSuffix(string attributeName)
     {
         if (attributeName is null)

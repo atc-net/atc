@@ -1,8 +1,17 @@
 // ReSharper disable ConstantConditionalAccessQualifier
 namespace Atc.Rest.Extended.Filters;
 
+/// <summary>
+/// Swagger <see cref="IOperationFilter"/> that configures API version parameters in OpenAPI operations.
+/// Sets default values and enumerates available versions for version parameters.
+/// </summary>
 public class ApiVersionOperationFilter : IOperationFilter
 {
+    /// <summary>
+    /// Applies the filter to configure API version parameters in the operation.
+    /// </summary>
+    /// <param name="operation">The <see cref="OpenApiOperation"/> to modify.</param>
+    /// <param name="context">The <see cref="OperationFilterContext"/> containing operation metadata.</param>
     public void Apply(
         OpenApiOperation operation,
         OperationFilterContext context)
@@ -20,6 +29,11 @@ public class ApiVersionOperationFilter : IOperationFilter
         }
     }
 
+    /// <summary>
+    /// Configures the API version parameter with description, default value, and required flag.
+    /// </summary>
+    /// <param name="apiVersionParameter">The API version parameter to configure.</param>
+    /// <param name="context">The <see cref="OperationFilterContext"/> containing parameter descriptions.</param>
     protected static void ConfigureApiVersion(
         OpenApiParameter apiVersionParameter,
         OperationFilterContext context)

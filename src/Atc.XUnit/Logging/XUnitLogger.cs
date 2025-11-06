@@ -2,20 +2,40 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.XUnit.Logging;
 
+/// <summary>
+/// An <see cref="ILogger"/> implementation that writes log messages to xUnit's <see cref="ITestOutputHelper"/>.
+/// </summary>
 public class XUnitLogger : ILogger
 {
     private readonly ITestOutputHelper testOutputHelper;
     private readonly string categoryName;
     private readonly LoggerExternalScopeProvider scopeProvider;
 
+    /// <summary>
+    /// Creates a non-generic logger instance for xUnit test output.
+    /// </summary>
+    /// <param name="testOutputHelper">The xUnit test output helper.</param>
+    /// <returns>An <see cref="ILogger"/> instance.</returns>
     public static ILogger Create(
         ITestOutputHelper testOutputHelper)
         => new XUnitLogger(testOutputHelper, new LoggerExternalScopeProvider(), string.Empty);
 
+    /// <summary>
+    /// Creates a generic logger instance for xUnit test output.
+    /// </summary>
+    /// <typeparam name="T">The type to use for the logger category name.</typeparam>
+    /// <param name="testOutputHelper">The xUnit test output helper.</param>
+    /// <returns>An <see cref="ILogger{T}"/> instance.</returns>
     public static ILogger<T> Create<T>(
         ITestOutputHelper testOutputHelper)
         => new XUnitLogger<T>(testOutputHelper, new LoggerExternalScopeProvider());
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="XUnitLogger"/> class.
+    /// </summary>
+    /// <param name="testOutputHelper">The xUnit test output helper.</param>
+    /// <param name="scopeProvider">The logger scope provider.</param>
+    /// <param name="categoryName">The category name for the logger.</param>
     public XUnitLogger(
         ITestOutputHelper testOutputHelper,
         LoggerExternalScopeProvider scopeProvider,
@@ -26,14 +46,17 @@ public class XUnitLogger : ILogger
         this.categoryName = categoryName;
     }
 
+    /// <inheritdoc />
     public bool IsEnabled(
         LogLevel logLevel)
         => logLevel != LogLevel.None;
 
+    /// <inheritdoc />
     public IDisposable BeginScope<TState>(
         TState state)
             => scopeProvider.Push(state);
 
+    /// <inheritdoc />
     public void Log<TState>(
         LogLevel logLevel,
         EventId eventId,

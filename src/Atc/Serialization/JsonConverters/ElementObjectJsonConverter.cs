@@ -1,7 +1,16 @@
 namespace Atc.Serialization.JsonConverters;
 
+/// <summary>
+/// JSON converter that deserializes JSON elements into appropriate CLR object types (dictionaries, lists, primitives).
+/// </summary>
+/// <remarks>
+/// This converter is used internally by <see cref="DynamicJson"/> to convert JSON structures into dynamic objects.
+/// It maps JSON objects to <see cref="Dictionary{TKey, TValue}"/>, JSON arrays to <see cref="List{T}"/>,
+/// and JSON primitives to their corresponding CLR types. This converter only supports reading; writing is not supported.
+/// </remarks>
 public sealed class ElementObjectJsonConverter : JsonConverter<object>
 {
+    /// <inheritdoc />
     public override object? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
@@ -11,6 +20,8 @@ public sealed class ElementObjectJsonConverter : JsonConverter<object>
         return ConvertElementToObject(doc.RootElement);
     }
 
+    /// <inheritdoc />
+    /// <exception cref="InvalidOperationException">This converter does not support writing.</exception>
     public override void Write(
         Utf8JsonWriter writer,
         object value,

@@ -1,5 +1,11 @@
 namespace Atc.Helpers;
 
+/// <summary>
+/// Provides utility methods for detecting, controlling, and opening URLs in common internet browsers.
+/// </summary>
+/// <remarks>
+/// Supports Brave, Firefox, Ghost Browser, Chrome, Edge, Internet Explorer, Opera, and Safari.
+/// </remarks>
 [ExcludeFromCodeCoverage]
 public static class InternetBrowserHelper
 {
@@ -12,6 +18,10 @@ public static class InternetBrowserHelper
     private const string ProcessNameOpera = "opera";
     private const string ProcessNameSafari = "safari";
 
+    /// <summary>
+    /// Gets a list of currently running internet browsers.
+    /// </summary>
+    /// <returns>A list of browser names that are currently running.</returns>
     public static IList<string> GetRunningInternetBrowsers()
     {
         var result = new List<string>();
@@ -59,6 +69,9 @@ public static class InternetBrowserHelper
         return result;
     }
 
+    /// <summary>
+    /// Closes the main window on all running internet browser instances.
+    /// </summary>
     public static void CloseMainWindowOnAllRunningInternetBrowsers()
     {
         CloseMainWindowOnRunningBraveInstances();
@@ -71,6 +84,9 @@ public static class InternetBrowserHelper
         CloseMainWindowOnRunningSafariInstances();
     }
 
+    /// <summary>
+    /// Terminates all running internet browser processes.
+    /// </summary>
     public static void KillAllRunningInternetBrowsers()
     {
         KillRunningBraveInstances();
@@ -83,75 +99,155 @@ public static class InternetBrowserHelper
         KillRunningSafariInstances();
     }
 
+    /// <summary>
+    /// Determines whether Brave browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Brave is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsBraveRunning()
         => IsProcessRunning(ProcessNameBrave);
 
+    /// <summary>
+    /// Determines whether Firefox browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Firefox is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsFirefoxRunning()
         => IsProcessRunning(ProcessNameFirefox);
 
+    /// <summary>
+    /// Determines whether Ghost Browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Ghost Browser is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsGhostBrowserRunning()
         => IsProcessRunning(ProcessNameGhostBrowser);
 
+    /// <summary>
+    /// Determines whether Google Chrome browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Google Chrome is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsGoogleChromeRunning()
         => IsProcessRunning(ProcessNameChrome);
 
+    /// <summary>
+    /// Determines whether Microsoft Edge browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Microsoft Edge is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsMicrosoftEdgeRunning()
         => IsProcessRunning(ProcessNameMicrosoftEdge);
 
+    /// <summary>
+    /// Determines whether Microsoft Internet Explorer is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Internet Explorer is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsMicrosoftInternetExplorerRunning()
         => IsProcessRunning(ProcessNameMicrosoftInternetExplorer);
 
+    /// <summary>
+    /// Determines whether Opera browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Opera is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsOperaRunning()
         => IsProcessRunning(ProcessNameOpera);
 
+    /// <summary>
+    /// Determines whether Safari browser is currently running.
+    /// </summary>
+    /// <returns><see langword="true"/> if Safari is running; otherwise, <see langword="false"/>.</returns>
     public static bool IsSafariRunning()
         => IsProcessRunning(ProcessNameSafari);
 
+    /// <summary>
+    /// Closes the main window on all running Brave browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningBraveInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameBrave);
 
+    /// <summary>
+    /// Closes the main window on all running Firefox browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningFirefoxInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameFirefox);
 
+    /// <summary>
+    /// Closes the main window on all running Ghost Browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningGhostBrowserInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameGhostBrowser);
 
+    /// <summary>
+    /// Closes the main window on all running Google Chrome browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningGoogleChromeInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameChrome);
 
+    /// <summary>
+    /// Closes the main window on all running Microsoft Edge browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningMicrosoftEdgeInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameMicrosoftEdge);
 
+    /// <summary>
+    /// Closes the main window on all running Microsoft Internet Explorer instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningMicrosoftInternetExplorerInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameMicrosoftInternetExplorer);
 
+    /// <summary>
+    /// Closes the main window on all running Opera browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningOperaInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameOpera);
 
+    /// <summary>
+    /// Closes the main window on all running Safari browser instances.
+    /// </summary>
     public static void CloseMainWindowOnRunningSafariInstances()
         => CloseMainWindowOnRunningInstances(ProcessNameSafari);
 
+    /// <summary>
+    /// Terminates all running Brave browser processes.
+    /// </summary>
     public static void KillRunningBraveInstances()
         => KillRunningInstances(ProcessNameBrave);
 
+    /// <summary>
+    /// Terminates all running Firefox browser processes.
+    /// </summary>
     public static void KillRunningFirefoxInstances()
         => KillRunningInstances(ProcessNameFirefox);
 
+    /// <summary>
+    /// Terminates all running Ghost Browser processes.
+    /// </summary>
     public static void KillRunningGhostBrowserInstances()
         => KillRunningInstances(ProcessNameGhostBrowser);
 
+    /// <summary>
+    /// Terminates all running Google Chrome browser processes.
+    /// </summary>
     public static void KillRunningGoogleChromeInstances()
         => KillRunningInstances(ProcessNameChrome);
 
+    /// <summary>
+    /// Terminates all running Microsoft Edge browser processes.
+    /// </summary>
     public static void KillRunningMicrosoftEdgeInstances()
         => KillRunningInstances(ProcessNameMicrosoftEdge);
 
+    /// <summary>
+    /// Terminates all running Microsoft Internet Explorer processes.
+    /// </summary>
     public static void KillRunningMicrosoftInternetExplorerInstances()
         => KillRunningInstances(ProcessNameMicrosoftInternetExplorer);
 
+    /// <summary>
+    /// Terminates all running Opera browser processes.
+    /// </summary>
     public static void KillRunningOperaInstances()
         => KillRunningInstances(ProcessNameOpera);
 
+    /// <summary>
+    /// Terminates all running Safari browser processes.
+    /// </summary>
     public static void KillRunningSafariInstances()
         => KillRunningInstances(ProcessNameSafari);
 

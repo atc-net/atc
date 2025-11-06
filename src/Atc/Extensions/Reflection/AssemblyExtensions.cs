@@ -7,6 +7,12 @@ namespace System.Reflection;
 /// </summary>
 public static class AssemblyExtensions
 {
+    /// <summary>
+    /// Gets the file version of the assembly.
+    /// </summary>
+    /// <param name="assembly">The assembly to query.</param>
+    /// <returns>The file version, or 1.0.0.0 if the version cannot be determined.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
     public static Version GetFileVersion(this Assembly assembly)
     {
         if (assembly is null)
@@ -44,10 +50,12 @@ public static class AssemblyExtensions
     }
 
     /// <summary>
-    /// Gets the name of the exported type by typeName.
+    /// Gets an exported type from the assembly by its type name.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="typeName">Name of the type.</param>
+    /// <param name="assembly">The assembly to search.</param>
+    /// <param name="typeName">The name of the type to find.</param>
+    /// <returns>The type if found; otherwise, null.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="typeName"/> is null.</exception>
     public static Type? GetExportedTypeByName(this Assembly assembly, string typeName)
     {
         if (assembly is null)
@@ -66,9 +74,11 @@ public static class AssemblyExtensions
     }
 
     /// <summary>
-    /// Gets the beautified name of the assembly.
+    /// Gets a beautified name of the assembly by replacing dots with spaces.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
+    /// <param name="assembly">The assembly to beautify.</param>
+    /// <returns>The beautified assembly name with dots replaced by spaces.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
     public static string GetBeautifiedName(this Assembly assembly)
     {
         if (assembly is null)
@@ -80,10 +90,12 @@ public static class AssemblyExtensions
     }
 
     /// <summary>
-    /// Gets the types inheriting from a specific type.
+    /// Gets all types in the assembly that inherit from a specific type.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="type">The type from which other types are inheriting.</param>
+    /// <param name="assembly">The assembly to search.</param>
+    /// <param name="type">The base type to search for inherited types.</param>
+    /// <returns>An array of types that inherit from the specified type.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="type"/> is null.</exception>
     public static Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)
     {
         if (assembly is null)
@@ -102,6 +114,12 @@ public static class AssemblyExtensions
             .ToArray();
     }
 
+    /// <summary>
+    /// Gets all resource managers from the assembly.
+    /// </summary>
+    /// <param name="assembly">The assembly to search for resource managers.</param>
+    /// <returns>An array of resource managers sorted by base name.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
     public static ResourceManager[] GetResourceManagers(
         this Assembly assembly)
     {

@@ -4,16 +4,32 @@
 // ReSharper disable StaticMemberInGenericType
 namespace Atc.Rest.FluentAssertions;
 
+/// <summary>
+/// Base class for content result assertions that provides common functionality for verifying <see cref="ContentResult"/> objects.
+/// </summary>
+/// <typeparam name="TAssertions">The type of the derived assertion class for fluent chaining.</typeparam>
 public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAssertions<ContentResult, ContentResultAssertionsBase<TAssertions>>
 {
     [SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types", Justification = "This can safely be shared by all inherited types")]
     private static readonly JsonSerializerOptions JsonSerializerOptions = JsonSerializerOptionsFactory.Create();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ContentResultAssertionsBase{TAssertions}"/> class.
+    /// </summary>
+    /// <param name="subject">The <see cref="ContentResult"/> to assert against.</param>
     protected ContentResultAssertionsBase(ContentResult subject)
         : base(subject)
     {
     }
 
+    /// <summary>
+    /// Asserts that the content result contains content equivalent to the specified expected content.
+    /// </summary>
+    /// <typeparam name="T">The type of the expected content.</typeparam>
+    /// <param name="expectedContent">The expected content value to compare against.</param>
+    /// <param name="because">Optional explanation of why the assertion is needed.</param>
+    /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
+    /// <returns>An <see cref="AndWhichConstraint{TAssertions, ContentResult}"/> for further assertions.</returns>
     public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
     {
         var ofType = WithContentOfType<T>(because, becauseArgs);
@@ -33,6 +49,13 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         return CreateAndWhichConstraint();
     }
 
+    /// <summary>
+    /// Asserts that the content result contains content of the specified type.
+    /// </summary>
+    /// <typeparam name="T">The expected type of the content.</typeparam>
+    /// <param name="because">Optional explanation of why the assertion is needed.</param>
+    /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
+    /// <returns>An <see cref="AndWhichConstraint{ObjectAssertions, T}"/> for further assertions on the typed content.</returns>
     public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
     {
         var expectedType = typeof(T);
@@ -63,8 +86,18 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         return new AndWhichConstraint<ObjectAssertions, T>(new ObjectAssertions(result), result!);
     }
 
+    /// <summary>
+    /// When implemented in a derived class, creates an <see cref="AndWhichConstraint{TAssertions, ContentResult}"/> for fluent chaining.
+    /// </summary>
+    /// <returns>An <see cref="AndWhichConstraint{TAssertions, ContentResult}"/> instance.</returns>
     protected abstract AndWhichConstraint<TAssertions, ContentResult> CreateAndWhichConstraint();
 
+    /// <summary>
+    /// Attempts to deserialize the content result's content as the specified type.
+    /// </summary>
+    /// <typeparam name="T">The type to deserialize the content as.</typeparam>
+    /// <param name="content">When this method returns, contains the deserialized content if successful; otherwise, the default value.</param>
+    /// <returns><see langword="true"/> if the content was successfully deserialized; otherwise, <see langword="false"/>.</returns>
     protected bool TryContentValueAs<T>([NotNullWhen(true)] out T content)
     {
         content = default!;

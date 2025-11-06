@@ -1,22 +1,19 @@
 namespace Atc.Collections;
 
 /// <summary>
-/// ConcurrentHashSet.
+/// Provides a thread-safe hash set implementation using reader-writer locks.
+/// This collection allows multiple concurrent readers or a single writer at a time.
 /// </summary>
-/// <typeparam name="T">The generic type.</typeparam>
-/// <seealso cref="System.Collections.Generic.IEnumerable{T}" />
-/// <seealso cref="System.IDisposable" />
+/// <typeparam name="T">The type of elements in the hash set.</typeparam>
 public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
 {
     private readonly ReaderWriterLockSlim readerWriterLock = new(LockRecursionPolicy.SupportsRecursion);
     private readonly HashSet<T> hashSet = new();
 
     /// <summary>
-    /// Gets the count.
+    /// Gets the number of elements contained in the hash set.
+    /// This operation acquires a read lock.
     /// </summary>
-    /// <value>
-    /// The count.
-    /// </value>
     public int Count
     {
         get
@@ -61,9 +58,11 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <summary>
-    /// Tries the add.
+    /// Attempts to add an element to the hash set in a thread-safe manner.
+    /// This operation acquires a write lock.
     /// </summary>
-    /// <param name="item">The item.</param>
+    /// <param name="item">The element to add to the hash set.</param>
+    /// <returns><c>true</c> if the element was added successfully; <c>false</c> if the element already exists.</returns>
     public bool TryAdd(T item)
     {
         readerWriterLock.EnterWriteLock();
@@ -82,9 +81,11 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <summary>
-    /// Tries the remove.
+    /// Attempts to remove an element from the hash set in a thread-safe manner.
+    /// This operation acquires a write lock.
     /// </summary>
-    /// <param name="item">The item.</param>
+    /// <param name="item">The element to remove from the hash set.</param>
+    /// <returns><c>true</c> if the element was removed successfully; <c>false</c> if the element was not found.</returns>
     public bool TryRemove(T item)
     {
         readerWriterLock.EnterWriteLock();
@@ -103,12 +104,11 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <summary>
-    /// Determines whether [contains] [the specified item].
+    /// Determines whether the hash set contains the specified element.
+    /// This operation acquires a read lock.
     /// </summary>
-    /// <param name="item">The item.</param>
-    /// <returns>
-    ///   <see langword="true" /> if [contains] [the specified item]; otherwise, <see langword="false" />.
-    /// </returns>
+    /// <param name="item">The element to locate in the hash set.</param>
+    /// <returns><c>true</c> if the hash set contains the specified element; otherwise, <c>false</c>.</returns>
     public bool Contains(T item)
     {
         readerWriterLock.EnterReadLock();
@@ -127,7 +127,8 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <summary>
-    /// Clears this instance.
+    /// Removes all elements from the hash set in a thread-safe manner.
+    /// This operation acquires a write lock.
     /// </summary>
     public void Clear()
     {
@@ -147,9 +148,11 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <summary>
-    /// Firsts the or default.
+    /// Returns the first element in the hash set that satisfies the specified condition, or a default value if no such element is found.
+    /// This operation acquires a read lock.
     /// </summary>
-    /// <param name="predicate">The predicate.</param>
+    /// <param name="predicate">A function to test each element for a condition.</param>
+    /// <returns>The first element that satisfies the condition, or the default value for type <typeparamref name="T"/> if no such element is found.</returns>
     public T? FirstOrDefault(Func<T, bool> predicate)
     {
         readerWriterLock.EnterReadLock();

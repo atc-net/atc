@@ -9,10 +9,10 @@ namespace Atc;
 public record struct GridCell(int X = 0, int Y = 0)
 {
     /// <summary>
-    /// Gets a value indicating whether this instance is default.
+    /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).
     /// </summary>
     /// <returns>
-    ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
+    ///   <see langword="true" /> if both X and Y are zero; otherwise, <see langword="false" />.
     /// </returns>
     public readonly bool IsDefault => X == 0 && Y == 0;
 
@@ -23,9 +23,9 @@ public record struct GridCell(int X = 0, int Y = 0)
     }
 
     /// <summary>
-    /// To the string short.
+    /// Returns a short string representation of the grid cell in the format "x, y".
     /// </summary>
-    /// <returns>Return a short format of x and y.</returns>
+    /// <returns>A comma-separated string containing the X and Y coordinates.</returns>
     public readonly string ToStringShort()
         => $"{X}, {Y}";
 }

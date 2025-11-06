@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: OnOffType.
+/// Represents a binary on/off state.
 /// </summary>
 public enum OnOffType
 {
     /// <summary>
-    /// Default None.
+    /// No state specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Off.
+    /// Off state (disabled or inactive).
     /// </summary>
     [LocalizedDescription("OnOffTypeOff", typeof(EnumResources))]
     Off = 1,
 
     /// <summary>
-    /// ON.
+    /// On state (enabled or active).
     /// </summary>
     [LocalizedDescription("OnOffTypeOn", typeof(EnumResources))]
     On = 2,

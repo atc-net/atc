@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an value is null.
+/// The exception that is thrown when a value is null.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -40,6 +40,11 @@ public class NullException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NullException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected NullException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

@@ -1,14 +1,15 @@
 namespace Atc.XUnit;
 
 /// <summary>
-/// CodeComplianceDocumentationHelper.
+/// Provides helper methods for asserting code compliance related to XML documentation comments.
 /// </summary>
 public static class CodeComplianceDocumentationHelper
 {
     /// <summary>
-    /// Asserts the exported type with missing comments.
+    /// Asserts that the specified exported type has XML documentation comments.
+    /// Fails the test if comments are missing.
     /// </summary>
-    /// <param name="type">The type.</param>
+    /// <param name="type">The type to validate for XML documentation.</param>
     public static void AssertExportedTypeWithMissingComments(Type type)
     {
         var typeComments = DocumentationHelper.CollectExportedTypeWithCommentsFromType(type);
@@ -23,10 +24,11 @@ public static class CodeComplianceDocumentationHelper
     }
 
     /// <summary>
-    /// Asserts the exported types with missing comments.
+    /// Asserts that all exported types in an assembly have XML documentation comments.
+    /// Fails the test if any types are missing documentation.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="excludeTypes">The exclude types.</param>
+    /// <param name="assembly">The assembly to validate.</param>
+    /// <param name="excludeTypes">Optional list of types to exclude from validation.</param>
     public static void AssertExportedTypesWithMissingComments(
         Assembly assembly,
         List<Type>? excludeTypes = null)

@@ -1,10 +1,26 @@
 // ReSharper disable ConvertIfStatementToReturnStatement
 namespace Atc.DotNet;
 
+/// <summary>
+/// Provides helper methods for building .NET projects and solutions using the dotnet CLI.
+/// </summary>
 public static class DotnetBuildHelper
 {
     private const int DefaultTimeoutInSec = 1200;
 
+    /// <summary>
+    /// Builds a .NET project or solution and collects compilation errors grouped by error code.
+    /// </summary>
+    /// <param name="rootPath">The root directory containing the project or solution to build.</param>
+    /// <param name="runNumber">Optional run number for logging purposes.</param>
+    /// <param name="buildFile">Optional specific solution or project file to build. If not specified, discovers the build file automatically.</param>
+    /// <param name="useNugetRestore">Whether to perform NuGet restore before building. Default is true.</param>
+    /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
+    /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
+    /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="cancellationToken">Token to cancel the build operation.</param>
+    /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
     public static Task<Dictionary<string, int>> BuildAndCollectErrors(
         DirectoryInfo rootPath,
         int? runNumber = null,
@@ -32,6 +48,20 @@ public static class DotnetBuildHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Builds a .NET project or solution with logging support and collects compilation errors grouped by error code.
+    /// </summary>
+    /// <param name="logger">The logger to use for build progress and results.</param>
+    /// <param name="rootPath">The root directory containing the project or solution to build.</param>
+    /// <param name="runNumber">Optional run number for logging purposes.</param>
+    /// <param name="buildFile">Optional specific solution or project file to build. If not specified, discovers the build file automatically.</param>
+    /// <param name="useNugetRestore">Whether to perform NuGet restore before building. Default is true.</param>
+    /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
+    /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
+    /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="cancellationToken">Token to cancel the build operation.</param>
+    /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="logger"/> or <paramref name="rootPath"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     public static Task<Dictionary<string, int>> BuildAndCollectErrors(
         ILogger logger,

@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: YesNoType.
+/// Represents a binary yes/no choice or answer.
 /// </summary>
 public enum YesNoType
 {
     /// <summary>
-    /// Default None.
+    /// No answer specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// No.
+    /// Negative response (No).
     /// </summary>
     [LocalizedDescription("YesNoTypeNo", typeof(EnumResources))]
     No = 1,
 
     /// <summary>
-    /// Yes.
+    /// Affirmative response (Yes).
     /// </summary>
     [LocalizedDescription("YesNoTypeYes", typeof(EnumResources))]
     Yes = 2,

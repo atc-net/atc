@@ -3,36 +3,36 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: BooleanOperatorType.
+/// Represents boolean operators commonly used in search queries and logical expressions.
 /// </summary>
 public enum BooleanOperatorType
 {
     /// <summary>
-    /// Default None, and it's not a BooleanOperator.
+    /// No boolean operator specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None,
 
     /// <summary>
-    /// AND.
+    /// Logical AND operator requiring all conditions to be true.
     /// </summary>
     [LocalizedDescription("BooleanOperatorTypeAnd", typeof(EnumResources))]
     AND,
 
     /// <summary>
-    /// OR.
+    /// Logical OR operator requiring at least one condition to be true.
     /// </summary>
     [LocalizedDescription("BooleanOperatorTypeOr", typeof(EnumResources))]
     OR,
 
     /// <summary>
-    /// NOT.
+    /// Logical NOT operator for negating a condition.
     /// </summary>
     [LocalizedDescription("BooleanOperatorTypeNot", typeof(EnumResources))]
     NOT,
 
     /// <summary>
-    /// NEAR.
+    /// Proximity operator for searching terms near each other.
     /// </summary>
     [LocalizedDescription("BooleanOperatorTypeNear", typeof(EnumResources))]
     NEAR,

@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an value is null or empty.
+/// The exception that is thrown when a string value is null or empty.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -40,6 +40,11 @@ public class StringNullOrEmptyException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StringNullOrEmptyException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected StringNullOrEmptyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

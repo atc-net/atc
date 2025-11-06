@@ -2,23 +2,27 @@
 namespace Atc;
 
 /// <summary>
-/// CasingStyle Description Attribute.
+/// Provides a description attribute that generates documentation text listing valid <see cref="CasingStyle"/> values.
+/// This attribute is useful for documenting properties that accept casing style values, showing all valid options with the default highlighted.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
 public sealed class CasingStyleDescriptionAttribute : DescriptionAttribute
 {
-    /// <summary>Gets or sets the default.</summary>
-    /// <value>The default.</value>
+    /// <summary>
+    /// Gets or sets the default casing style to be indicated in the generated description.
+    /// The default value is <see cref="CasingStyle.CamelCase"/>.
+    /// </summary>
     public new CasingStyle Default { get; set; } = CasingStyle.CamelCase;
 
-    /// <summary>Gets or sets the prefix.</summary>
-    /// <value>The prefix.</value>
+    /// <summary>
+    /// Gets or sets an optional prefix to prepend to the generated description text.
+    /// </summary>
     public string? Prefix { get; set; }
 
     /// <summary>
-    /// Gets the description stored in this attribute.
+    /// Gets the generated description listing all valid <see cref="CasingStyle"/> values (excluding None) with the default value marked.
+    /// If a prefix is set, it will be prepended to the description.
     /// </summary>
-    /// <returns>The description stored in this attribute.</returns>
     public override string Description
     {
         get

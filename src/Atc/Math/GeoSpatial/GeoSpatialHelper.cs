@@ -1,16 +1,17 @@
 namespace Atc.Math.GeoSpatial;
 
 /// <summary>
-/// GeoSpatialHelper
+/// Provides utility methods for geospatial calculations including distance measurements between geographic coordinates.
 /// </summary>
 public static class GeoSpatialHelper
 {
     /// <summary>
-    /// Calculate distance.
+    /// Calculates the great-circle distance between two geographic coordinates.
     /// </summary>
-    /// <param name="coordinate1">The coordinate1.</param>
-    /// <param name="coordinate2">The coordinate2.</param>
-    /// <param name="measurement">The measurement.</param>
+    /// <param name="coordinate1">The first coordinate.</param>
+    /// <param name="coordinate2">The second coordinate.</param>
+    /// <param name="measurement">The unit of measurement for the result.</param>
+    /// <returns>The distance between the two coordinates in the specified measurement unit.</returns>
     public static double Distance(
         CartesianCoordinate coordinate1,
         CartesianCoordinate coordinate2,
@@ -18,13 +19,18 @@ public static class GeoSpatialHelper
         Distance(coordinate1.Longitude, coordinate1.Latitude, coordinate2.Longitude, coordinate2.Latitude, measurement);
 
     /// <summary>
-    /// Calculate distance.
+    /// Calculates the great-circle distance between two geographic points using the Haversine formula.
     /// </summary>
-    /// <param name="longitude1">The longitude1.</param>
-    /// <param name="latitude1">The latitude1.</param>
-    /// <param name="longitude2">The longitude2.</param>
-    /// <param name="latitude2">The latitude2.</param>
-    /// <param name="measurement">The measurement.</param>
+    /// <param name="longitude1">The longitude of the first point in degrees.</param>
+    /// <param name="latitude1">The latitude of the first point in degrees.</param>
+    /// <param name="longitude2">The longitude of the second point in degrees.</param>
+    /// <param name="latitude2">The latitude of the second point in degrees.</param>
+    /// <param name="measurement">The unit of measurement for the result. Default is kilometers.</param>
+    /// <returns>The great-circle distance between the two points in the specified measurement unit.</returns>
+    /// <remarks>
+    /// This method assumes a spherical Earth and uses the Haversine formula for calculation.
+    /// The result represents the shortest distance over the Earth's surface.
+    /// </remarks>
     public static double Distance(
         double longitude1,
         double latitude1,

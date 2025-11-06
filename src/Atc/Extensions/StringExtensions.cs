@@ -41,17 +41,14 @@ public static class StringExtensions
     private static readonly char[] TrimCharsForTryParseVersion = { '[', ']', '(', ')', ',' };
 
     /// <summary>
-    /// Indexers the of.
+    /// Finds all indexes of a pattern within the string.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="pattern">The pattern.</param>
-    /// <param name="ignoreCaseSensitive">if set to <see langword="true" /> [ignore case sensitive].</param>
-    /// <param name="useEndOfPatternToMatch">if set to <see langword="true" /> [use end of pattern to match].</param>
-    /// <exception cref="ArgumentNullException">
-    /// value
-    /// or
-    /// pattern.
-    /// </exception>
+    /// <param name="value">The string to search within.</param>
+    /// <param name="pattern">The pattern to search for.</param>
+    /// <param name="ignoreCaseSensitive">If set to <see langword="true" />, performs case-insensitive matching.</param>
+    /// <param name="useEndOfPatternToMatch">If set to <see langword="true" />, returns the index at the end of each pattern match; otherwise returns the start index.</param>
+    /// <returns>An array of integers representing all indexes where the pattern was found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> or <paramref name="pattern"/> is <see langword="null"/>.</exception>
     public static int[] IndexersOf(
         this string value,
         string pattern,
@@ -89,10 +86,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Words count.
+    /// Counts the number of words in the string, excluding special characters.
     /// </summary>
-    /// <param name="value">The string to work on.</param>
-    /// <returns>The count of words in the string.</returns>
+    /// <param name="value">The string to count words in.</param>
+    /// <returns>The count of words in the string, or -1 if the string is <see langword="null"/> or empty.</returns>
     public static int WordCount(
         this string value)
     {
@@ -108,9 +105,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets the value between less and greater than chars if exist.
+    /// Extracts the content between the first less-than (&lt;) and greater-than (&gt;) characters if they exist.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The string to extract from.</param>
+    /// <returns>The content between &lt; and &gt; characters, or the original string if no such pattern exists.</returns>
     public static string GetValueBetweenLessAndGreaterThanCharsIfExist(
         this string value)
     {
@@ -133,9 +131,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets the string format parameter numeric count.
+    /// Counts the unique numeric placeholders in a string format pattern (e.g., {0}, {1}, {2}).
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The string format pattern to analyze.</param>
+    /// <returns>The count of unique numeric placeholders, or -1 if the string is invalid or placeholders are unbalanced.</returns>
     public static int GetStringFormatParameterNumericCount(
         this string value)
     {
@@ -180,9 +179,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets the string format parameter literal count.
+    /// Counts the unique literal (non-numeric) placeholders in a string format pattern (e.g., {name}, {value}).
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The string format pattern to analyze.</param>
+    /// <returns>The count of unique literal placeholders, or -1 if the string is invalid or placeholders are unbalanced.</returns>
     public static int GetStringFormatParameterLiteralCount(
         this string value)
     {
@@ -228,11 +228,12 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets the string format parameter template placeholders.
+    /// Extracts all template placeholders from a string format pattern using curly braces notation.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="useDoubleBracket">Use double bracket if <see langword="true" />;otherwise <see langword="false" />.</param>
-    /// <exception cref="ArgumentNullException">value.</exception>
+    /// <param name="value">The string format pattern to extract placeholders from.</param>
+    /// <param name="useDoubleBracket">If set to <see langword="true" />, matches double-bracket placeholders ({{placeholder}}); otherwise matches single-bracket placeholders ({placeholder}).</param>
+    /// <returns>A list of all template placeholders found in the string.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is <see langword="null"/>.</exception>
     public static List<string> GetStringFormatParameterTemplatePlaceholders(
         this string value,
         bool useDoubleBracket = true)
@@ -252,17 +253,14 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Sets the string format parameter template placeholders.
+    /// Replaces template placeholders in a string with their corresponding values from a dictionary.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="replacements">The replacements.</param>
-    /// <param name="useDoubleBracket">Use double bracket if <see langword="true" />;otherwise <see langword="false" />.</param>
-    /// <param name="comparison">Use comparison with default <see langword="StringComparison.Ordinal" /> for key matching.</param>
-    /// <exception cref="ArgumentNullException">
-    /// value
-    /// or
-    /// replacementData.
-    /// </exception>
+    /// <param name="value">The string containing template placeholders.</param>
+    /// <param name="replacements">A dictionary mapping placeholder names to their replacement values.</param>
+    /// <param name="useDoubleBracket">If set to <see langword="true" />, replaces double-bracket placeholders ({{placeholder}}); otherwise replaces single-bracket placeholders ({placeholder}).</param>
+    /// <param name="comparison">The string comparison method used for key matching. Defaults to <see cref="StringComparison.Ordinal"/>.</param>
+    /// <returns>The string with all matched placeholders replaced by their corresponding values.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> or <paramref name="replacements"/> is <see langword="null"/>.</exception>
     public static string SetStringFormatParameterTemplatePlaceholders(
         this string value,
         IDictionary<string, string> replacements,
@@ -610,11 +608,12 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Parses the date from iso8601.
+    /// Parses a string in ISO 8601 format to a <see cref="DateTime"/> object.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <exception cref="ArgumentNullException">value.</exception>
-    /// <exception cref="FormatException">Invalid ISO8601 format.</exception>
+    /// <param name="value">The string in ISO 8601 format to parse.</param>
+    /// <returns>A <see cref="DateTime"/> object representing the parsed date.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FormatException">Thrown when the string is not in valid ISO 8601 format.</exception>
     public static DateTime ParseDateFromIso8601(
         this string value)
     {
@@ -632,11 +631,12 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Tries the parse date from iso8601.
+    /// Attempts to parse a string in ISO 8601 format to a <see cref="DateTime"/> object.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="dateTime">The date time.</param>
-    /// <exception cref="ArgumentNullException">value.</exception>
+    /// <param name="value">The string in ISO 8601 format to parse.</param>
+    /// <param name="dateTime">When this method returns, contains the <see cref="DateTime"/> object if parsing succeeded; otherwise, the default value.</param>
+    /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is <see langword="null"/>.</exception>
     public static bool TryParseDateFromIso8601(
         this string value,
         out DateTime dateTime)
@@ -655,10 +655,11 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Tries the parse date.
+    /// Attempts to parse a string to a <see cref="DateTime"/> object using the English culture.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="dateTime">The date time.</param>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="dateTime">When this method returns, contains the <see cref="DateTime"/> object if parsing succeeded; otherwise, <see cref="DateTime.MinValue"/>.</param>
+    /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
     public static bool TryParseDate(
         this string value,
         out DateTime dateTime)
@@ -667,12 +668,14 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Tries the parse date.
+    /// Attempts to parse a string to a <see cref="DateTime"/> object using the specified culture and styles.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="dateTime">The date time.</param>
-    /// <param name="cultureInfo">The culture information.</param>
-    /// <param name="dateTimeStyles">The date time styles.</param>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="dateTime">When this method returns, contains the <see cref="DateTime"/> object if parsing succeeded; otherwise, <see cref="DateTime.MinValue"/>.</param>
+    /// <param name="cultureInfo">The culture-specific format information.</param>
+    /// <param name="dateTimeStyles">The style elements that can be present in the input string. Defaults to <see cref="DateTimeStyles.None"/>.</param>
+    /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is <see langword="null"/>.</exception>
     public static bool TryParseDate(
         this string value,
         out DateTime dateTime,
@@ -793,10 +796,11 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Javas the script encode.
+    /// Encodes a JavaScript string by escaping special characters.
     /// </summary>
-    /// <param name="javaScript">The java script.</param>
-    /// <param name="htmlEncode">if set to <see langword="true" /> [HTML encode].</param>
+    /// <param name="javaScript">The JavaScript string to encode.</param>
+    /// <param name="htmlEncode">If set to <see langword="true" />, also performs HTML encoding on the result.</param>
+    /// <returns>The encoded JavaScript string.</returns>
     public static string JavaScriptEncode(
         this string javaScript,
         bool htmlEncode)
@@ -815,10 +819,11 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Javas the script decode.
+    /// Decodes a JavaScript string by unescaping special characters.
     /// </summary>
-    /// <param name="javaScript">The java script.</param>
-    /// <param name="htmlDecode">if set to <see langword="true" /> [HTML decode].</param>
+    /// <param name="javaScript">The JavaScript string to decode.</param>
+    /// <param name="htmlDecode">If set to <see langword="true" />, also performs HTML decoding before unescaping JavaScript characters.</param>
+    /// <returns>The decoded JavaScript string.</returns>
     public static string JavaScriptDecode(
         this string javaScript,
         bool htmlDecode)
@@ -839,9 +844,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// XMLs the encode.
+    /// Encodes an XML string by escaping special characters (&amp;, ', &lt;, &gt;, ").
     /// </summary>
-    /// <param name="xml">The XML.</param>
+    /// <param name="xml">The XML string to encode.</param>
+    /// <returns>The encoded XML string with special characters escaped.</returns>
     public static string XmlEncode(
         this string xml)
     {
@@ -859,9 +865,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// XMLs the decode.
+    /// Decodes an XML string by unescaping special character entities (&amp;amp, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot).
     /// </summary>
-    /// <param name="xml">The XML.</param>
+    /// <param name="xml">The XML string to decode.</param>
+    /// <returns>The decoded XML string with special character entities replaced.</returns>
     public static string XmlDecode(
         this string xml)
     {
@@ -1160,10 +1167,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets as camel case.
+    /// Converts the string to camel case format (first letter lowercase, subsequent words capitalized).
     /// </summary>
-    /// <param name="value">The string to work on.</param>
-    /// <returns>The string with camel-case format.</returns>
+    /// <param name="value">The string to convert.</param>
+    /// <returns>The string in camel case format (e.g., "helloWorld").</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     public static string CamelCase(
         this string value)
@@ -1191,11 +1198,11 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets as pascal case.
+    /// Converts the string to Pascal case format (each word capitalized) using default separators (space, hyphen, underscore).
     /// </summary>
-    /// <param name="value">The string to work on.</param>
-    /// <param name="removeSeparators">If true, remove all separators.</param>
-    /// <returns>The string with pascal-case format.</returns>
+    /// <param name="value">The string to convert.</param>
+    /// <param name="removeSeparators">If set to <see langword="true" />, removes all separator characters from the result.</param>
+    /// <returns>The string in Pascal case format (e.g., "HelloWorld" or "Hello World").</returns>
     public static string PascalCase(
         this string value,
         bool removeSeparators = false)
@@ -1210,12 +1217,12 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Gets as pascal case.
+    /// Converts the string to Pascal case format (each word capitalized) using custom separator characters.
     /// </summary>
-    /// <param name="value">The string to work on.</param>
-    /// <param name="separators">A char array to separate on.</param>
-    /// <param name="removeSeparators">If true, remove all separators.</param>
-    /// <returns>The string with pascal-case format.</returns>
+    /// <param name="value">The string to convert.</param>
+    /// <param name="separators">An array of characters to use as word separators.</param>
+    /// <param name="removeSeparators">If set to <see langword="true" />, removes all separator characters from the result.</param>
+    /// <returns>The string in Pascal case format.</returns>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]

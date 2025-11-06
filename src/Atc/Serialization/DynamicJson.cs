@@ -14,13 +14,29 @@ namespace Atc.Serialization;
 /// </example>
 public class DynamicJson
 {
+    /// <summary>
+    /// Gets the underlying JSON dictionary representation.
+    /// </summary>
+    /// <value>
+    /// A dictionary containing the JSON structure where keys are property names and values can be primitives,
+    /// nested dictionaries, or lists.
+    /// </value>
     public IDictionary<string, object?> JsonDictionary { get; private set; } = new Dictionary<string, object?>(StringComparer.Ordinal);
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DynamicJson"/> class with an empty JSON object.
+    /// </summary>
     public DynamicJson()
     {
         SerializableAndSetJsonDictionary("{}");
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DynamicJson"/> class from a JSON string.
+    /// </summary>
+    /// <param name="jsonString">The JSON string to parse.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="jsonString"/> is null.</exception>
+    /// <exception cref="FormatException">Thrown when <paramref name="jsonString"/> is not valid JSON format.</exception>
     public DynamicJson(
         string jsonString)
     {
@@ -37,6 +53,12 @@ public class DynamicJson
         SerializableAndSetJsonDictionary(jsonString);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DynamicJson"/> class from a JSON file.
+    /// </summary>
+    /// <param name="jsonFile">The JSON file to read and parse.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="jsonFile"/> is null.</exception>
+    /// <exception cref="FormatException">Thrown when the file contents are not valid JSON format.</exception>
     public DynamicJson(
         FileInfo jsonFile)
     {
@@ -54,6 +76,12 @@ public class DynamicJson
         SerializableAndSetJsonDictionary(jsonString);
     }
 
+    /// <summary>
+    /// Gets the value at the specified path in the JSON structure.
+    /// </summary>
+    /// <param name="path">The dot-notation path to the value (e.g., "Property1.Property2" or "Array[0].Property").</param>
+    /// <returns>The value at the specified path, or null if the path does not exist.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
     public object? GetValue(
         string path)
     {
@@ -70,6 +98,14 @@ public class DynamicJson
             0);
     }
 
+    /// <summary>
+    /// Sets the value at the specified path in the JSON structure.
+    /// </summary>
+    /// <param name="path">The dot-notation path to the value (e.g., "Property1.Property2" or "Array[0].Property").</param>
+    /// <param name="value">The value to set at the specified path.</param>
+    /// <param name="createKeyIfNotExist">If true, creates intermediate objects and properties as needed. Default is true.</param>
+    /// <returns>A tuple indicating whether the operation succeeded and an error message if it failed.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
     public (bool IsSucceeded, string? ErrorMessage) SetValue(
         string path,
         object? value,
@@ -90,6 +126,12 @@ public class DynamicJson
             createKeyIfNotExist);
     }
 
+    /// <summary>
+    /// Removes the property at the specified path from the JSON structure.
+    /// </summary>
+    /// <param name="path">The dot-notation path to the property to remove (e.g., "Property1.Property2").</param>
+    /// <returns>A tuple indicating whether the operation succeeded and an error message if it failed.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
     public (bool IsSucceeded, string? ErrorMessage) RemovePath(
         string path)
     {
@@ -106,12 +148,23 @@ public class DynamicJson
             0);
     }
 
+    /// <summary>
+    /// Converts the JSON structure to a JSON string representation.
+    /// </summary>
+    /// <param name="orderByKey">If true, sorts the JSON properties alphabetically by key. Default is false.</param>
+    /// <returns>A JSON string representation of the structure.</returns>
     public string ToJson(
         bool orderByKey = false)
         => ToJson(
             JsonSerializerOptionsFactory.Create(),
             orderByKey);
 
+    /// <summary>
+    /// Converts the JSON structure to a JSON string representation using the specified serializer options.
+    /// </summary>
+    /// <param name="serializerOptions">The <see cref="JsonSerializerOptions"/> to use for serialization.</param>
+    /// <param name="orderByKey">If true, sorts the JSON properties alphabetically by key. Default is false.</param>
+    /// <returns>A JSON string representation of the structure.</returns>
     public string ToJson(
         JsonSerializerOptions serializerOptions,
         bool orderByKey = false)
@@ -123,9 +176,15 @@ public class DynamicJson
                 JsonDictionary,
                 serializerOptions);
 
+    /// <inheritdoc />
     public override string ToString()
         => ToJson();
 
+    /// <summary>
+    /// Converts the JSON structure to a JSON string representation using the specified serializer options.
+    /// </summary>
+    /// <param name="serializerOptions">The <see cref="JsonSerializerOptions"/> to use for serialization.</param>
+    /// <returns>A JSON string representation of the structure.</returns>
     public string ToString(
         JsonSerializerOptions serializerOptions)
         => ToJson(serializerOptions);

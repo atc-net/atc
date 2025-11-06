@@ -7,10 +7,11 @@ namespace System.Reflection;
 public static class PropertyInfoExtensions
 {
     /// <summary>
-    /// Beautifies the name.
+    /// Gets a beautified name of the property's type.
     /// </summary>
     /// <param name="propertyInfo">The property information.</param>
-    /// <exception cref="ArgumentNullException">propertyInfo.</exception>
+    /// <returns>A beautified string representation of the property's type.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="propertyInfo"/> is null.</exception>
     public static string BeautifyName(this PropertyInfo propertyInfo)
     {
         if (propertyInfo is null)
@@ -40,9 +41,11 @@ public static class PropertyInfoExtensions
     }
 
     /// <summary>
-    /// Gets the name.
+    /// Gets the display name of the property from DisplayName, Display, or the property name itself.
     /// </summary>
     /// <param name="propertyInfo">The property information.</param>
+    /// <returns>The display name of the property.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="propertyInfo"/> is null.</exception>
     public static string GetName(this PropertyInfo propertyInfo)
     {
         if (propertyInfo is null)
@@ -65,10 +68,12 @@ public static class PropertyInfoExtensions
     }
 
     /// <summary>
-    /// Gets the description.
+    /// Gets the description of the property from various description attributes or the property name.
     /// </summary>
     /// <param name="propertyInfo">The property information.</param>
-    /// <param name="useLocalizedIfPossible">if set to <see langword="true" /> [use localized if possible].</param>
+    /// <param name="useLocalizedIfPossible">If set to <see langword="true"/>, attempts to use localized description first.</param>
+    /// <returns>The description of the property.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="propertyInfo"/> is null.</exception>
     public static string GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = true)
     {
         if (propertyInfo is null)
@@ -105,6 +110,12 @@ public static class PropertyInfoExtensions
         return attributeValue;
     }
 
+    /// <summary>
+    /// Determines whether the property type is a nullable value type.
+    /// </summary>
+    /// <param name="propertyInfo">The property information.</param>
+    /// <returns><see langword="true"/> if the property is a nullable value type; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="propertyInfo"/> is null.</exception>
     public static bool IsNullable(this PropertyInfo propertyInfo)
     {
         if (propertyInfo is null)

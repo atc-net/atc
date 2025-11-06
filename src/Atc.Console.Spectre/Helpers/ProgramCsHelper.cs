@@ -1,13 +1,16 @@
 namespace Atc.Console.Spectre.Helpers;
 
 /// <summary>
-/// ProgramCsHelper.
+/// Helper methods for Program.cs setup in Spectre.Console CLI applications.
 /// </summary>
 public static class ProgramCsHelper
 {
-    /// <summary>Sets the minimum log level if needed from the verbose argument.</summary>
-    /// <param name="args">The arguments.</param>
-    /// <param name="consoleLoggerConfiguration">The console logger configuration.</param>
+    /// <summary>
+    /// Sets the minimum log level to Trace if the verbose argument is present in the command-line arguments.
+    /// </summary>
+    /// <param name="args">The command-line arguments to check.</param>
+    /// <param name="consoleLoggerConfiguration">The console logger configuration to modify.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="consoleLoggerConfiguration"/> is null.</exception>
     public static void SetMinimumLogLevelIfNeeded(
         string[] args,
         ConsoleLoggerConfiguration consoleLoggerConfiguration)

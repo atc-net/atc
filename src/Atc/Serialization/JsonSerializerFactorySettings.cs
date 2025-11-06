@@ -1,5 +1,13 @@
 namespace Atc.Serialization;
 
+/// <summary>
+/// Configuration settings for creating <see cref="JsonSerializerOptions"/> instances via <see cref="JsonSerializerOptionsFactory"/>.
+/// </summary>
+/// <remarks>
+/// This class provides a strongly-typed way to configure JSON serialization behavior including naming policies,
+/// null value handling, formatting, and custom converter registration. All settings have sensible defaults
+/// optimized for typical API scenarios.
+/// </remarks>
 public class JsonSerializerFactorySettings
 {
     /// <summary>

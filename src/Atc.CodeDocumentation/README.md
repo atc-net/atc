@@ -2,10 +2,61 @@
 
 **Target Framework:** `net9.0`
 
-This library contains helpers classes which can help with generating code documentation as Markdown (`.md files`) from an assembly.
-The content is based on assembly reflection combined with a assembly-documentation xml file.
+Markdown documentation generator for .NET assemblies. Automatically generates comprehensive API documentation in Markdown format from assembly reflection and XML documentation comments.
 
-## `MarkdownCodeDocGenerator` examples
+## Why Use This Library?
+
+Maintaining up-to-date API documentation is challenging and time-consuming. Atc.CodeDocumentation automates this process by:
+
+- **Generating Markdown Documentation**: Creates Markdown files from assemblies
+- **XML Documentation Integration**: Combines reflection with XML documentation comments
+- **Automated Updates**: Generate docs as part of your build/test process
+- **GitHub-Ready**: Output is optimized for GitHub documentation
+- **Type Discovery**: Documents all public types, methods, properties, and more
+- **Organized Output**: Creates structured index and reference files
+
+Perfect for:
+- Open source projects requiring API documentation
+- Libraries shared across teams
+- Maintaining docs in sync with code
+- Generating documentation for NuGet packages
+- Creating developer-friendly API references
+
+## Installation
+
+```bash
+dotnet add package Atc.CodeDocumentation
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
+
+- `MarkdownCodeDocGenerator` for generating documentation
+- Support for classes, interfaces, enums, structs, and delegates
+- Documentation of methods, properties, fields, and events
+- XML comment extraction and formatting
+- Index file generation with type listings
+- Extended reference documentation
+- Customizable output directory structure
+
+## Requirements
+
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- XML documentation file generated during build
+
+## Key Dependencies
+
+- Atc (foundation library)
+
+## Main Components
+
+### MarkdownCodeDocGenerator
+
+The primary class for generating documentation:
+- `Run(Assembly, DirectoryInfo)`: Generates documentation for an assembly
 
 ## Code documentation
 
@@ -33,3 +84,7 @@ public class CodeDocumentationTests
     }
 }
 ```
+
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

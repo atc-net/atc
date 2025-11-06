@@ -1,8 +1,17 @@
 // ReSharper disable UseDeconstruction
 namespace Atc.Rest.Extended.Filters;
 
+/// <summary>
+/// Swagger <see cref="IDocumentFilter"/> that removes API version parameters from the OpenAPI document.
+/// Cleans up version parameters that appear in headers and query strings to avoid duplication.
+/// </summary>
 public class ApiVersionDocumentFilter : IDocumentFilter
 {
+    /// <summary>
+    /// Applies the filter to remove API version parameters from the Swagger document.
+    /// </summary>
+    /// <param name="swaggerDoc">The <see cref="OpenApiDocument"/> to modify.</param>
+    /// <param name="context">The <see cref="DocumentFilterContext"/> containing API descriptions.</param>
     public void Apply(
         OpenApiDocument swaggerDoc,
         DocumentFilterContext context)

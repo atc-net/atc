@@ -25,6 +25,12 @@ public static class MemberInfoExtensions
         return attributeData is not null;
     }
 
+    /// <summary>
+    /// Determines whether the member has the CompilerGenerated attribute.
+    /// </summary>
+    /// <param name="memberInfo">The member information to check.</param>
+    /// <returns><see langword="true"/> if the member has the CompilerGenerated attribute; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="memberInfo"/> is null.</exception>
     public static bool HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
     {
         if (memberInfo is null)
@@ -75,9 +81,10 @@ public static class MemberInfoExtensions
     }
 
     /// <summary>
-    /// Determines whether [is property with setter].
+    /// Determines whether the member is a property with a setter method.
     /// </summary>
-    /// <param name="member">The member.</param>
+    /// <param name="member">The member to check.</param>
+    /// <returns><see langword="true"/> if the member is a property with a setter; otherwise, <see langword="false"/>.</returns>
     public static bool IsPropertyWithSetter(this MemberInfo member)
     {
         var property = member as PropertyInfo;
@@ -86,11 +93,12 @@ public static class MemberInfoExtensions
     }
 
     /// <summary>
-    /// Gets the type of the underlying.
+    /// Gets the underlying type of the member (event, field, method return, or property type).
     /// </summary>
-    /// <param name="member">The member.</param>
-    /// <exception cref="ArgumentNullException">member.</exception>
-    /// <exception cref="ArgumentException">Input MemberInfo must be if type EventInfo, FieldInfo, MethodInfo, or PropertyInfo.</exception>
+    /// <param name="member">The member whose underlying type to retrieve.</param>
+    /// <returns>The underlying type of the member.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="member"/> is null.</exception>
+    /// <exception cref="UnexpectedTypeException">Thrown when the member is not an EventInfo, FieldInfo, MethodInfo, or PropertyInfo.</exception>
     public static Type GetUnderlyingType(this MemberInfo member)
     {
         if (member is null)

@@ -43,25 +43,24 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    /// Determines whether the specified b is equal.
+    /// Compares two double values for equality with a specified precision.
     /// </summary>
-    /// <param name="a">a.</param>
-    /// <param name="b">The b.</param>
-    /// <param name="decimalPrecision">The decimal precision.</param>
-    /// <returns>
-    ///   <see langword="true" /> if the specified b is equal; otherwise, <see langword="false" />.
-    /// </returns>
+    /// <param name="a">The first double value.</param>
+    /// <param name="b">The second double value.</param>
+    /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
+    /// <returns><see langword="true"/> if the values are equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
     public static bool IsEqual(this double a, double b, int decimalPrecision)
     {
         return ((decimal)a).IsEqual((decimal)b, decimalPrecision);
     }
 
     /// <summary>
-    /// Determines whether the specified a is equal.
+    /// Compares two nullable double values for equality with a specified precision.
     /// </summary>
-    /// <param name="a">a.</param>
-    /// <param name="b">The b.</param>
-    /// <param name="decimalPrecision">The decimal precision.</param>
+    /// <param name="a">The first nullable double value.</param>
+    /// <param name="b">The second nullable double value.</param>
+    /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
+    /// <returns><see langword="true"/> if both values are null or equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
     public static bool IsEqual(this double? a, double? b, int decimalPrecision)
     {
         if (a is null || b is null)
@@ -73,10 +72,11 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    /// Ares the close.
+    /// Determines whether two double values are approximately equal within a calculated tolerance.
     /// </summary>
-    /// <param name="value1">The value1.</param>
-    /// <param name="value2">The value2.</param>
+    /// <param name="value1">The first value to compare.</param>
+    /// <param name="value2">The second value to compare.</param>
+    /// <returns><see langword="true"/> if the values are within a calculated tolerance of each other; otherwise, <see langword="false"/>.</returns>
     public static bool AreClose(this double value1, double value2)
     {
         if (value1.IsEqual(value2))
@@ -90,47 +90,52 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    /// Greater the than or close.
+    /// Determines whether the first value is greater than or approximately equal to the second value.
     /// </summary>
-    /// <param name="value1">The value1.</param>
-    /// <param name="value2">The value2.</param>
+    /// <param name="value1">The first value to compare.</param>
+    /// <param name="value2">The second value to compare.</param>
+    /// <returns><see langword="true"/> if value1 is greater than value2 or approximately equal; otherwise, <see langword="false"/>.</returns>
     public static bool GreaterThanOrClose(this double value1, double value2)
     {
         return (value1 > value2) || AreClose(value1, value2);
     }
 
     /// <summary>
-    /// Determines whether the specified value is zero.
+    /// Determines whether the specified double value is approximately zero.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The value to check.</param>
+    /// <returns><see langword="true"/> if the absolute value is less than epsilon; otherwise, <see langword="false"/>.</returns>
     public static bool IsZero(this double value)
     {
         return Math.Abs(value) < DoubleEpsilon;
     }
 
     /// <summary>
-    /// Currencies the rounding as integer.
+    /// Rounds a double value using currency rounding rules and returns it as an integer.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <returns>The rounded value as an integer.</returns>
     public static int CurrencyRoundingAsInteger(this double value)
     {
         return (int)CurrencyRounding(value, 0);
     }
 
     /// <summary>
-    /// Currencies the rounding.
+    /// Rounds a double value using the currency decimal digits of the current UI culture.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <returns>The rounded double value.</returns>
     public static double CurrencyRounding(this double value)
     {
         return CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
     }
 
     /// <summary>
-    /// Currencies the rounding.
+    /// Rounds a double value to a specified number of decimal digits using midpoint rounding away from zero.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="digits">The digits.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <param name="digits">The number of decimal digits to round to (negative values are treated as 0).</param>
+    /// <returns>The rounded double value.</returns>
     public static double CurrencyRounding(this double value, int digits)
     {
         if (digits < 0)
@@ -142,46 +147,51 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    /// Rounds the off2.
+    /// Rounds a double value to 2 decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <returns>The value rounded to 2 decimal places.</returns>
     public static double RoundOff2(this double value)
     {
         return RoundOff(value, 2);
     }
 
     /// <summary>
-    /// Rounds the off10.
+    /// Rounds a double value to 10 decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <returns>The value rounded to 10 decimal places.</returns>
     public static double RoundOff10(this double value)
     {
         return RoundOff(value, 10);
     }
 
     /// <summary>
-    /// Rounds the off.
+    /// Rounds a double value to a specified number of decimal places.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="numberOfDecimals">The number of decimals.</param>
+    /// <param name="value">The double value to round.</param>
+    /// <param name="numberOfDecimals">The number of decimal places to round to.</param>
+    /// <returns>The rounded double value.</returns>
     public static double RoundOff(this double value, int numberOfDecimals)
     {
         return Math.Round(value, numberOfDecimals);
     }
 
     /// <summary>
-    /// Rounds the off percent.
+    /// Rounds a percentage value to 2 decimal places.
     /// </summary>
-    /// <param name="percent">The percent.</param>
+    /// <param name="percent">The percentage value to round.</param>
+    /// <returns>The percentage value rounded to 2 decimal places.</returns>
     public static double RoundOffPercent(this double percent)
     {
         return RoundOff(percent, 2);
     }
 
     /// <summary>
-    /// Returns the numbers of decimal points in the value.
+    /// Counts the number of decimal places in the double value.
     /// </summary>
-    /// <param name="value">The value.</param>
+    /// <param name="value">The double value to analyze.</param>
+    /// <returns>The number of decimal places in the value.</returns>
     public static int CountDecimalPoints(this double value)
     {
         var precision = 0;

@@ -28,7 +28,7 @@ DistanceMeasurementType
 <br />
 
 ## GeoSpatialHelper
-GeoSpatialHelper
+Provides utility methods for geospatial calculations including distance measurements between geographic coordinates.
 
 >```csharp
 >public static class GeoSpatialHelper
@@ -40,22 +40,26 @@ GeoSpatialHelper
 >```csharp
 >double Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
 >```
-><b>Summary:</b> Calculate distance.
+><b>Summary:</b> Calculates the great-circle distance between two geographic coordinates.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The first coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The second coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The unit of measurement for the result.<br />
+>
+><b>Returns:</b> The distance between the two coordinates in the specified measurement unit.
 #### Distance
 >```csharp
 >double Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
 >```
-><b>Summary:</b> Calculate distance.
+><b>Summary:</b> Calculates the great-circle distance between two geographic coordinates.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate2.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The measurement.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The first coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The second coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`measurement`&nbsp;&nbsp;-&nbsp;&nbsp;The unit of measurement for the result.<br />
+>
+><b>Returns:</b> The distance between the two coordinates in the specified measurement unit.
 
 <br />
 

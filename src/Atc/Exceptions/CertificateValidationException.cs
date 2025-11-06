@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an certificate is not valid.
+/// The exception that is thrown when a certificate is not valid or fails validation.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -40,6 +40,11 @@ public class CertificateValidationException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CertificateValidationException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected CertificateValidationException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

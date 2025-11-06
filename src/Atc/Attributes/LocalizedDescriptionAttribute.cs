@@ -2,7 +2,8 @@
 namespace Atc;
 
 /// <summary>
-/// Localized Description Attribute.
+/// Provides a description attribute that retrieves localized text from resource files based on the current UI culture.
+/// This attribute extends <see cref="DescriptionAttribute"/> to support internationalization.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Delegate)]
 public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
@@ -14,8 +15,9 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     /// <summary>
     /// Initializes a new instance of the <see cref="LocalizedDescriptionAttribute"/> class.
     /// </summary>
-    /// <param name="resourceKey">The resource key.</param>
-    /// <param name="resourceType">Type of the resource.</param>
+    /// <param name="resourceKey">The resource key used to retrieve the localized description text.</param>
+    /// <param name="resourceType">The type containing the resource file with localized strings.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="resourceType"/> is null.</exception>
     [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
     public LocalizedDescriptionAttribute(string? resourceKey, Type resourceType)
     {
@@ -29,9 +31,9 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     }
 
     /// <summary>
-    /// Gets the description stored in this attribute.
+    /// Gets the localized description text based on the current UI culture.
+    /// Returns an empty string if the resource key is null, empty, or the localized text cannot be found.
     /// </summary>
-    /// <returns>The description stored in this attribute.</returns>
     public override string Description
     {
         get

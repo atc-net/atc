@@ -2,7 +2,8 @@
 namespace Atc;
 
 /// <summary>
-/// NumericAlphaComparer.
+/// Provides natural sorting comparison for strings containing both numeric and alphabetic characters.
+/// Numbers are compared numerically rather than alphabetically (e.g., "file2" comes before "file10").
 /// </summary>
 public class NumericAlphaComparer : IComparer<string>
 {

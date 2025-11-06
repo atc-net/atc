@@ -1,8 +1,17 @@
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 namespace Atc.Serialization.JsonConverters;
 
+/// <summary>
+/// JSON converter that serializes <see cref="Version"/> objects to and from their string representation.
+/// </summary>
+/// <remarks>
+/// This converter supports reading <see cref="Version"/> from both string format (e.g., "1.2.3.4") and object format
+/// with internal fields (_Major, _Minor, _Build, _Revision). During writing, <see cref="Version"/> is always serialized
+/// as a string. If parsing fails, a default empty <see cref="Version"/> is returned.
+/// </remarks>
 public sealed class VersionJsonConverter : JsonConverter<Version>
 {
+    /// <inheritdoc />
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public override Version Read(
         ref Utf8JsonReader reader,
@@ -41,6 +50,7 @@ public sealed class VersionJsonConverter : JsonConverter<Version>
         return new Version();
     }
 
+    /// <inheritdoc />
     public override void Write(
         Utf8JsonWriter writer,
         Version value,

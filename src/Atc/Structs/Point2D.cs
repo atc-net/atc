@@ -9,10 +9,10 @@ namespace Atc;
 public record struct Point2D(double X = 0, double Y = 0)
 {
     /// <summary>
-    /// Gets a value indicating whether this instance is default.
+    /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).
     /// </summary>
     /// <value>
-    ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
+    ///   <see langword="true" /> if both X and Y are approximately zero; otherwise, <see langword="false" />.
     /// </value>
     public readonly bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
 
@@ -21,9 +21,9 @@ public record struct Point2D(double X = 0, double Y = 0)
         => $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
 
     /// <summary>
-    /// To the string short.
+    /// Returns a short string representation of the point in the format "x, y".
     /// </summary>
-    /// <returns>Return a short format of x and y.</returns>
+    /// <returns>A comma-separated string containing the X and Y coordinates.</returns>
     public readonly string ToStringShort()
         => $"{X}, {Y}";
 }

@@ -8,6 +8,7 @@
 <br />
 
 ## ApiVersionDocumentFilter
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter` that removes API version parameters from the OpenAPI document. Cleans up version parameters that appear in headers and query strings to avoid duplication.
 
 >```csharp
 >public class ApiVersionDocumentFilter : IDocumentFilter
@@ -19,10 +20,16 @@
 >```csharp
 >void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to remove API version parameters from the Swagger document.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`swaggerDoc`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing API descriptions.<br />
 
 <br />
 
 ## ApiVersionOperationFilter
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter` that configures API version parameters in OpenAPI operations. Sets default values and enumerates available versions for version parameters.
 
 >```csharp
 >public class ApiVersionOperationFilter : IOperationFilter
@@ -34,10 +41,16 @@
 >```csharp
 >void Apply(OpenApiOperation operation, OperationFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to configure API version parameters in the operation.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`operation`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing operation metadata.<br />
 
 <br />
 
 ## AuthorizeResponseOperationFilter
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter` that adds 401 and 403 response codes to operations requiring authorization. Automatically documents authentication and authorization responses for secured endpoints.
 
 >```csharp
 >public class AuthorizeResponseOperationFilter : IOperationFilter
@@ -49,12 +62,17 @@
 >```csharp
 >void Apply(OpenApiOperation operation, OperationFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to add authorization response codes to the operation.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`operation`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing operation metadata.<br />
 
 <br />
 
 ## DefaultResponseOperationFilter
-Bad request as default response.
-><b>Remarks:</b> REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1278 .
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter` that adds a default response with `Microsoft.AspNetCore.Mvc.ProblemDetails` to operations. Ensures all operations have a documented error response format.
+><b>Remarks:</b> Reference: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1278.
 
 >```csharp
 >public class DefaultResponseOperationFilter : IOperationFilter
@@ -66,10 +84,16 @@ Bad request as default response.
 >```csharp
 >void Apply(OpenApiOperation operation, OperationFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to add a default response to the operation if not already present.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`operation`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing operation metadata.<br />
 
 <br />
 
 ## SecurityRequirementsOperationFilter
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter` that adds OAuth2 security requirements to operations requiring authorization. Maps authorization policies to OAuth2 scopes and documents security requirements in the OpenAPI specification.
 
 >```csharp
 >public class SecurityRequirementsOperationFilter : IOperationFilter
@@ -81,10 +105,16 @@ Bad request as default response.
 >```csharp
 >void Apply(OpenApiOperation operation, OperationFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to add security requirements to the operation.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`operation`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing operation metadata.<br />
 
 <br />
 
 ## SwaggerEnumDescriptionsDocumentFilter
+Swagger `Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter` that enriches enum types with descriptions showing their numeric values and names. Adds detailed enum value mappings to both schema definitions and operation parameters.
 
 >```csharp
 >public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
@@ -96,4 +126,9 @@ Bad request as default response.
 >```csharp
 >void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 >```
+><b>Summary:</b> Applies the filter to add enum descriptions to the Swagger document.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`swaggerDoc`&nbsp;&nbsp;-&nbsp;&nbsp;The  to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The  containing API descriptions.<br />
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

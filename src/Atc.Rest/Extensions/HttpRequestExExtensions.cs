@@ -1,13 +1,17 @@
 // ReSharper disable CheckNamespace
 namespace Microsoft.AspNetCore.Http;
 
+/// <summary>
+/// Extension methods for <see cref="HttpRequest"/> to retrieve raw request body content.
+/// </summary>
 public static class HttpRequestExExtensions
 {
     /// <summary>
-    /// Retrieve the raw body as a string from the Request.Body stream
+    /// Retrieves the raw body as a string from the Request.Body stream.
     /// </summary>
-    /// <param name="request">Request instance to applies to</param>
-    /// <param name="encoding">Optional - Encoding, defaults to UTF8</param>
+    /// <param name="request">The HTTP request instance.</param>
+    /// <param name="encoding">The encoding to use for reading the stream. Defaults to UTF8 if not specified.</param>
+    /// <returns>A task representing the asynchronous operation, containing the request body as a string.</returns>
     public static async Task<string> GetRawBodyStringAsync(
         this HttpRequest request,
         Encoding? encoding = null)
@@ -21,9 +25,10 @@ public static class HttpRequestExExtensions
     }
 
     /// <summary>
-    /// Retrieves the raw body as a byte array from the Request.Body stream
+    /// Retrieves the raw body as a byte array from the Request.Body stream.
     /// </summary>
-    /// <param name="request">Request instance to applies to</param>
+    /// <param name="request">The HTTP request instance.</param>
+    /// <returns>A task representing the asynchronous operation, containing the request body as a byte array.</returns>
     public static async Task<byte[]> GetRawBodyBytesAsync(
         this HttpRequest request)
     {

@@ -1,11 +1,17 @@
 namespace Atc.DotNet;
 
+/// <summary>
+/// Provides helper methods for extracting NuGet package references from .NET project files.
+/// </summary>
 public static class DotnetNugetHelper
 {
     /// <summary>
-    /// Get all PackageReferences from file.
+    /// Extracts all PackageReference elements from a .csproj or similar project file.
     /// </summary>
-    /// <param name="fileInfo">The file.</param>
+    /// <param name="fileInfo">The project file to parse.</param>
+    /// <returns>A sorted list of <see cref="DotnetNugetPackageMetadataBase"/> containing package IDs and versions.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is null.</exception>
+    /// <exception cref="FileNotFoundException">Thrown when the file does not exist.</exception>
     public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(FileInfo fileInfo)
     {
         if (fileInfo is null)
@@ -23,9 +29,12 @@ public static class DotnetNugetHelper
     }
 
     /// <summary>
-    /// Get all PackageReferences from file-content.
+    /// Extracts all PackageReference elements from project file content.
     /// </summary>
-    /// <param name="fileContent">The file as text.</param>
+    /// <param name="fileContent">The XML content of a project file.</param>
+    /// <returns>A sorted list of <see cref="DotnetNugetPackageMetadataBase"/> containing package IDs and versions.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileContent"/> is null.</exception>
+    /// <exception cref="DataException">Thrown when the content is not valid XML (does not start with '&lt;').</exception>
     public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(string fileContent)
     {
         if (fileContent is null)

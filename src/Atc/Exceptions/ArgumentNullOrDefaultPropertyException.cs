@@ -3,16 +3,20 @@
 namespace System;
 
 /// <summary>
-/// ArgumentNullOrDefaultPropertyException.
+/// The exception that is thrown when a property argument is null or contains the default value for its type.
 /// </summary>
-/// <seealso cref="Exception" />
+/// <remarks>
+/// This exception is useful when validating property values that should not be null or their type's default value
+/// (e.g., 0 for int, Guid.Empty for Guid, etc.).
+/// </remarks>
+/// <seealso cref="ArgumentException" />
 [Serializable]
 public sealed class ArgumentNullOrDefaultPropertyException : ArgumentException
 {
     private const string ExceptionMessage = "Value cannot be null or default.";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class with a default error message.
     /// </summary>
     public ArgumentNullOrDefaultPropertyException()
         : base(ExceptionMessage)
@@ -20,9 +24,9 @@ public sealed class ArgumentNullOrDefaultPropertyException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class with the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
+    /// <param name="paramName">The name of the property that is null or has a default value.</param>
     public ArgumentNullOrDefaultPropertyException(
         string paramName)
         : base(ExceptionMessage, paramName)
@@ -30,10 +34,10 @@ public sealed class ArgumentNullOrDefaultPropertyException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class with a specified error message and the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
-    /// <param name="message">The message.</param>
+    /// <param name="paramName">The name of the property that is null or has a default value.</param>
+    /// <param name="message">The error message that explains the reason for the exception.</param>
     public ArgumentNullOrDefaultPropertyException(
         string paramName,
         string message)
@@ -53,10 +57,15 @@ public sealed class ArgumentNullOrDefaultPropertyException : ArgumentException
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     private ArgumentNullOrDefaultPropertyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
-        : base("Value cannot be null or default.")
+        : base(ExceptionMessage)
     {
     }
 }

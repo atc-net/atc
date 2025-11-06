@@ -1,8 +1,19 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
+/// <summary>
+/// Extension methods for <see cref="MethodDeclarationSyntax"/>.
+/// </summary>
 public static class MethodDeclarationSyntaxExtensions
 {
+    /// <summary>
+    /// Adds a <see cref="SuppressMessageAttribute"/> to the method declaration.
+    /// </summary>
+    /// <param name="methodDeclaration">The method declaration to modify.</param>
+    /// <param name="suppressMessage">The suppress message attribute to add.</param>
+    /// <returns>A new <see cref="MethodDeclarationSyntax"/> with the attribute added.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="methodDeclaration"/> or <paramref name="suppressMessage"/> is null.</exception>
+    /// <exception cref="ArgumentException">Thrown when the justification in <paramref name="suppressMessage"/> is invalid.</exception>
     public static MethodDeclarationSyntax AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
     {
         if (methodDeclaration is null)

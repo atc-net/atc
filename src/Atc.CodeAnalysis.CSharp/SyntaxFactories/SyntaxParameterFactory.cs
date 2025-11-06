@@ -1,7 +1,18 @@
 namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
+/// <summary>
+/// Factory for creating <see cref="ParameterSyntax"/> nodes.
+/// </summary>
 public static class SyntaxParameterFactory
 {
+    /// <summary>
+    /// Creates a parameter with an optional generic list type.
+    /// </summary>
+    /// <param name="parameterTypeName">The type name of the parameter.</param>
+    /// <param name="parameterName">The name of the parameter.</param>
+    /// <param name="genericListTypeName">The generic list type name (e.g., "List", "IEnumerable").</param>
+    /// <returns>A <see cref="ParameterSyntax"/> node.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when any parameter (except genericListTypeName) is null.</exception>
     public static ParameterSyntax Create(string parameterTypeName, string parameterName, string? genericListTypeName = null)
     {
         if (parameterTypeName is null)
@@ -31,6 +42,14 @@ public static class SyntaxParameterFactory
             .WithType(SyntaxFactory.IdentifierName(parameterTypeName));
     }
 
+    /// <summary>
+    /// Creates a parameter with an attribute.
+    /// </summary>
+    /// <param name="attributeTypeName">The type name of the attribute to apply.</param>
+    /// <param name="parameterTypeName">The type name of the parameter.</param>
+    /// <param name="parameterName">The name of the parameter.</param>
+    /// <returns>A <see cref="ParameterSyntax"/> node with an attribute.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
     public static ParameterSyntax CreateWithAttribute(string attributeTypeName, string parameterTypeName, string parameterName)
     {
         if (attributeTypeName is null)

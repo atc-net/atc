@@ -1,10 +1,13 @@
 // ReSharper disable once CheckNamespace
 namespace Atc;
 
+/// <summary>
+/// Defines different text casing styles commonly used in programming and naming conventions.
+/// </summary>
 public enum CasingStyle
 {
     /// <summary>
-    /// Default None.
+    /// No specific casing style specified.
     /// </summary>
     None,
 

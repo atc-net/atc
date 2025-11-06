@@ -2,6 +2,9 @@
 namespace System;
 #pragma warning restore IDE0130
 
+/// <summary>
+/// Extension methods for <see cref="string"/>.
+/// </summary>
 public static class StringExtensions
 {
 #if NETSTANDARD2_0

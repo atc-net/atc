@@ -5,6 +5,9 @@
 // ReSharper disable MemberCanBeMadeStatic.Local
 namespace Atc.Console.Spectre.Logging;
 
+/// <summary>
+/// A logger implementation that writes colorful, formatted output using Spectre.Console.
+/// </summary>
 [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
 public class ConsoleLogger : ILogger
 {
@@ -12,6 +15,12 @@ public class ConsoleLogger : ILogger
     private readonly ConsoleLoggerConfiguration config;
     private readonly IAnsiConsole console;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConsoleLogger"/> class.
+    /// </summary>
+    /// <param name="categoryName">The category name for the logger.</param>
+    /// <param name="config">The console logger configuration.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="config"/> is null.</exception>
     public ConsoleLogger(string categoryName, ConsoleLoggerConfiguration config)
     {
         this.categoryName = categoryName;
@@ -27,10 +36,13 @@ public class ConsoleLogger : ILogger
         config.ConsoleConfiguration?.Invoke(console);
     }
 
+    /// <inheritdoc />
     public IDisposable BeginScope<TState>(TState state) => default!;
 
+    /// <inheritdoc />
     public bool IsEnabled(LogLevel logLevel) => logLevel >= config.MinimumLogLevel;
 
+    /// <inheritdoc />
     public void Log<TState>(
         LogLevel logLevel,
         EventId eventId,

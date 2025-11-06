@@ -8,7 +8,7 @@
 <br />
 
 ## AddressType
-Flag-Enumeration: AddressType.
+Represents different types and precision levels of geocoded addresses. This is a flags enumeration that allows multiple address types to be combined.
 
 >```csharp
 >public enum AddressType
@@ -17,14 +17,14 @@ Flag-Enumeration: AddressType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
+| 0 | None | None | No address type specified. | 
 | 1 | Address | Address | The address indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision. - With floor and door, if specified. | 
 | 2 | AccessAddress | Access Address | The access address indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision. - No floor and door. | 
-| 3 | AllRegularly | All Regularly | All regularly | 
+| 3 | AllRegularly | All Regularly | Combines all regularly validated address types (Address and AccessAddress). | 
 | 4 | PreliminaryAddress | Preliminary Address | The preliminary address - same as AccessAddress, but preliminary. | 
 | 8 | PreliminaryAccessAddress | Preliminary Access Address | The preliminary access address - same as Address, but preliminary. | 
-| 12 | AllPreliminary | All Preliminary | All preliminary | 
-| 15 | All | All | All | 
+| 12 | AllPreliminary | All Preliminary | Combines all preliminary address types (PreliminaryAddress and PreliminaryAccessAddress). | 
+| 15 | All | All | All address types combined (both regular and preliminary addresses). | 
 | 16 | RangeInterpolated | Range Interpolated | The range interpolated indicates that the returned result reflects an approximation (usually on a road) interpolated between two precise points (such as intersections). Interpolated results are generally returned when rooftop geocodes are unavailable for a street address. | 
 | 32 | GeometricCenter | Geometric Center | The geometric center indicates that the returned result is the geometric center of a result such as a polyline (for example, a street) or polygon (region). | 
 | 64 | Approximate | Approximate | The approximate indicates that the returned result is approximate. | 
@@ -35,6 +35,7 @@ Flag-Enumeration: AddressType.
 <br />
 
 ## ArrowDirectionType
+Represents directional arrows that can be combined using bitwise operations. This is a flags enumeration that allows multiple directions to be combined.
 
 >```csharp
 >public enum ArrowDirectionType
@@ -43,18 +44,18 @@ Flag-Enumeration: AddressType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Left | Left | Left. | 
-| 2 | Up | Up | Up. | 
-| 4 | Right | Right | Right. | 
-| 8 | Down | Down | Down. | 
+| 0 | None | None | No direction specified. | 
+| 1 | Left | Left | Arrow pointing to the left. | 
+| 2 | Up | Up | Arrow pointing upward. | 
+| 4 | Right | Right | Arrow pointing to the right. | 
+| 8 | Down | Down | Arrow pointing downward. | 
 
 
 
 <br />
 
 ## ArticleNumberType
-ArticleNumberType.
+Represents different types of product identification numbers and barcodes used in commerce.
 
 >```csharp
 >public enum ArticleNumberType
@@ -63,16 +64,16 @@ ArticleNumberType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | Unknown | Unknown | Default Unknown. | 
-| 1 | ASIN | ASIN | Amazon Standard Identification Number | 
-| 2 | EAN8 | EAN8 | European Article Number | 
-| 3 | EAN13 | EAN13 | European Article Number | 
-| 4 | GTIN | GTIN | Global Trade Item Number (previously EAN - European Article Number) | 
-| 5 | ISBN10 | ISBN10 | International Standard Book Number | 
-| 6 | ISBN13 | ISBN13 | International Standard Book Number | 
-| 7 | SKU | SKU | Stock keeping unit | 
-| 8 | UPC | UPC | Universal Product Code | 
-| 9 | ISSN | ISSN | International Standard Serial Number | 
+| 0 | Unknown | Unknown | Unknown or unspecified article number type. | 
+| 1 | ASIN | ASIN | Amazon Standard Identification Number - a 10-character alphanumeric unique identifier assigned by Amazon. | 
+| 2 | EAN8 | EAN8 | European Article Number - 8-digit barcode standard for product identification. | 
+| 3 | EAN13 | EAN13 | European Article Number - 13-digit barcode standard for product identification. | 
+| 4 | GTIN | GTIN | Global Trade Item Number - international product identification standard (formerly EAN/UPC). | 
+| 5 | ISBN10 | ISBN10 | International Standard Book Number - 10-digit unique identifier for books (legacy format). | 
+| 6 | ISBN13 | ISBN13 | International Standard Book Number - 13-digit unique identifier for books (current format). | 
+| 7 | SKU | SKU | Stock Keeping Unit - internal product identification number used for inventory management. | 
+| 8 | UPC | UPC | Universal Product Code - 12-digit barcode standard primarily used in North America. | 
+| 9 | ISSN | ISSN | International Standard Serial Number - 8-digit identifier for periodical publications. | 
 
 
 
@@ -88,7 +89,7 @@ ArticleNumberType.
 <br />
 
 ## BooleanOperatorType
-Enumeration: BooleanOperatorType.
+Represents boolean operators commonly used in search queries and logical expressions.
 
 >```csharp
 >public enum BooleanOperatorType
@@ -97,18 +98,18 @@ Enumeration: BooleanOperatorType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None, and it's not a BooleanOperator. | 
-| 1 | AND | And | AND. | 
-| 2 | OR | Or | OR. | 
-| 3 | NOT | Not | NOT. | 
-| 4 | NEAR | Near | NEAR. | 
+| 0 | None | None | No boolean operator specified. | 
+| 1 | AND | And | Logical AND operator requiring all conditions to be true. | 
+| 2 | OR | Or | Logical OR operator requiring at least one condition to be true. | 
+| 3 | NOT | Not | Logical NOT operator for negating a condition. | 
+| 4 | NEAR | Near | Proximity operator for searching terms near each other. | 
 
 
 
 <br />
 
 ## ByteArrayEqualityComparer
-ByteArrayEqualityComparer.
+Provides equality comparison for byte arrays based on their content. Two byte arrays are considered equal if they have the same length and all corresponding bytes are equal.
 
 >```csharp
 >public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
@@ -120,15 +121,28 @@ ByteArrayEqualityComparer.
 >```csharp
 >bool Equals(byte[] x, byte[] y)
 >```
+><b>Summary:</b> Determines whether two byte arrays are equal by comparing their contents.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`x`&nbsp;&nbsp;-&nbsp;&nbsp;The first byte array to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`y`&nbsp;&nbsp;-&nbsp;&nbsp;The second byte array to compare.<br />
+>
+><b>Returns:</b> `true` if the byte arrays have the same length and all corresponding bytes are equal; otherwise, `false`.
 #### GetHashCode
 >```csharp
 >int GetHashCode(byte[] obj)
 >```
+><b>Summary:</b> Returns a hash code for the specified byte array based on its content.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;&nbsp;-&nbsp;&nbsp;The byte array for which to generate a hash code.<br />
+>
+><b>Returns:</b> A hash code for the byte array, or 0 if the array is null.
 
 <br />
 
 ## CardinalDirectionType
-Flag-Enumeration: CardinalDirectionType.
+Represents compass directions including the four cardinal points and intermediate directions. This is a flags enumeration that allows multiple directions to be combined.
 
 >```csharp
 >public enum CardinalDirectionType
@@ -137,7 +151,7 @@ Flag-Enumeration: CardinalDirectionType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
+| 0 | None | None | No direction specified. | 
 | 1 | North | North | North. | 
 | 2 | NorthNorthEast | North North East | NorthNorthEast. | 
 | 4 | NorthEast | North East | NorthEast. | 
@@ -153,7 +167,7 @@ Flag-Enumeration: CardinalDirectionType.
 | 4096 | West | West | West. | 
 | 4625 | Simple | Simple | Simple = North | East | South | West. | 
 | 8192 | WestNorthWest | West North West | WestNorthWest. | 
-| 16384 | NorthWest | North West | NorthWest | 
+| 16384 | NorthWest | North West | NorthWest. | 
 | 22101 | Medium | Medium | Medium = North | NorthEast | East | SouthEast | South | SouthWest | West | NorthWest. | 
 | 32768 | NorthNorthWest | North North West | NorthNorthWest. | 
 | 65535 | Advanced | Advanced | Advanced = North | NorthNorthEast | NorthEast | EastNorthEast | East | EastSouthEast | SouthEast | SouthSouthEast | South | SouthSouthWest | SouthWest | WestSouthWest | West | WestNorthWest | NorthWest | NorthNorthWest. | 
@@ -163,6 +177,7 @@ Flag-Enumeration: CardinalDirectionType.
 <br />
 
 ## CasingStyle
+Defines different text casing styles commonly used in programming and naming conventions.
 
 >```csharp
 >public enum CasingStyle
@@ -171,7 +186,7 @@ Flag-Enumeration: CardinalDirectionType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
+| 0 | None | None | No specific casing style specified. | 
 | 1 | CamelCase | Camel Case | The camel case is formatted like this: "camelCase". | 
 | 2 | KebabCase | Kebab Case | The kebab case is formatted like this: "kebab-case". | 
 | 3 | PascalCase | Pascal Case | The pascal case is formatted like this: "PascalCase". | 
@@ -182,7 +197,7 @@ Flag-Enumeration: CardinalDirectionType.
 <br />
 
 ## CasingStyleDescriptionAttribute
-CasingStyle Description Attribute.
+Provides a description attribute that generates documentation text listing valid `Atc.CasingStyle` values. This attribute is useful for documenting properties that accept casing style values, showing all valid options with the default highlighted.
 
 >```csharp
 >public class CasingStyleDescriptionAttribute : DescriptionAttribute
@@ -194,23 +209,22 @@ CasingStyle Description Attribute.
 >```csharp
 >Default
 >```
-><b>Summary:</b> Gets or sets the default.
+><b>Summary:</b> Gets or sets the default casing style to be indicated in the generated description. The default value is `Atc.CasingStyle.CamelCase`.
 #### Description
 >```csharp
 >Description
 >```
-><b>Summary:</b> Gets the description stored in this attribute.
->
-><b>Returns:</b> The description stored in this attribute.
+><b>Summary:</b> Gets the generated description listing all valid `Atc.CasingStyle` values (excluding None) with the default value marked. If a prefix is set, it will be prepended to the description.
 #### Prefix
 >```csharp
 >Prefix
 >```
-><b>Summary:</b> Gets or sets the prefix.
+><b>Summary:</b> Gets or sets an optional prefix to prepend to the generated description text.
 
 <br />
 
 ## CloneStrategyType
+Defines different strategies for cloning objects.
 
 >```csharp
 >public enum CloneStrategyType
@@ -219,15 +233,15 @@ CasingStyle Description Attribute.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None |  | 
-| 1 | Json | Json |  | 
+| 0 | None | None | No cloning strategy specified. | 
+| 1 | Json | Json | Uses JSON serialization and deserialization to create a deep copy of an object. | 
 
 
 
 <br />
 
 ## CollectionActionType
-Enumeration: CollectionActionType.
+Represents actions that can be performed on a collection of items.
 
 >```csharp
 >public enum CollectionActionType
@@ -236,19 +250,20 @@ Enumeration: CollectionActionType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Added | Added | Added. | 
-| 2 | Updated | Updated | Updated. | 
-| 3 | Removed | Removed | Removed. | 
-| 4 | Cleared | Cleared | Cleared. | 
-| 5 | Saved | Saved | Saved. | 
-| 6 | Loaded | Loaded | Loaded. | 
+| 0 | None | None | No action specified. | 
+| 1 | Added | Added | An item was added to the collection. | 
+| 2 | Updated | Updated | An item in the collection was updated. | 
+| 3 | Removed | Removed | An item was removed from the collection. | 
+| 4 | Cleared | Cleared | All items were removed from the collection. | 
+| 5 | Saved | Saved | The collection was saved to persistent storage. | 
+| 6 | Loaded | Loaded | The collection was loaded from persistent storage. | 
 
 
 
 <br />
 
 ## ConsoleExitStatusCodes
+Defines standard exit status codes for console applications.
 
 >```csharp
 >public static class ConsoleExitStatusCodes
@@ -260,15 +275,17 @@ Enumeration: CollectionActionType.
 >```csharp
 >int Failure
 >```
+><b>Summary:</b> Exit code indicating program execution failed.
 #### Success
 >```csharp
 >int Success
 >```
+><b>Summary:</b> Exit code indicating successful program execution.
 
 <br />
 
 ## DateTimeDiffCompareType
-Enumeration: DateTimeDiffCompareType.
+Defines the unit of time used for comparing or calculating differences between DateTime values.
 
 >```csharp
 >public enum DateTimeDiffCompareType
@@ -277,21 +294,21 @@ Enumeration: DateTimeDiffCompareType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | Ticks | Ticks | Ticks. | 
-| 1 | Milliseconds | Milliseconds | Milliseconds. | 
-| 2 | Seconds | Seconds | Seconds. | 
-| 3 | Minutes | Minutes | Minutes. | 
-| 4 | Hours | Hours | Hours. | 
-| 5 | Days | Days | Days. | 
-| 6 | Year | Year | Year. | 
-| 7 | Quartal | Quartal | Quartal. | 
+| 0 | Ticks | Ticks | Compare using ticks (100 nanosecond intervals). | 
+| 1 | Milliseconds | Milliseconds | Compare using milliseconds. | 
+| 2 | Seconds | Seconds | Compare using seconds. | 
+| 3 | Minutes | Minutes | Compare using minutes. | 
+| 4 | Hours | Hours | Compare using hours. | 
+| 5 | Days | Days | Compare using days. | 
+| 6 | Year | Year | Compare using years. | 
+| 7 | Quartal | Quartal | Compare using quarters (three-month periods). | 
 
 
 
 <br />
 
 ## DropDownFirstItemType
-Enumeration: DropDownFirstItemType.
+Defines the type of placeholder item to display as the first option in a dropdown list.
 
 >```csharp
 >public enum DropDownFirstItemType
@@ -300,17 +317,17 @@ Enumeration: DropDownFirstItemType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| -4 | IncludeAll | -- All -- | IncludeAll. | 
-| -3 | PleaseSelect | -- Select -- | PleaseSelect. | 
-| -2 | Blank | Blank | Blank. | 
-| -1 | None | None | Default None. | 
+| -4 | IncludeAll | -- All -- | Display "Include All" as the first item to allow selecting all options. | 
+| -3 | PleaseSelect | -- Select -- | Display "Please Select" as the first item prompting user to make a selection. | 
+| -2 | Blank | Blank | Display a blank/empty first item in the dropdown. | 
+| -1 | None | None | No first item placeholder specified. | 
 
 
 
 <br />
 
 ## EnumGuidAttribute
-Enum Guid Attribute.
+Associates a globally unique identifier (GUID) with an enum value, property, field, interface, or delegate. This attribute is useful for assigning stable, unique identifiers to enum values that persist across code changes.
 
 >```csharp
 >public class EnumGuidAttribute : Attribute
@@ -322,7 +339,7 @@ Enum Guid Attribute.
 >```csharp
 >GlobalIdentifier
 >```
-><b>Summary:</b> Gets the global identifier.
+><b>Summary:</b> Gets the globally unique identifier associated with this attribute.
 
 <br />
 
@@ -621,7 +638,7 @@ Extension methods for enums.
 <br />
 
 ## FileSystemWatcherChangeType
-Flag-Enumeration: FileSystemWatcherChangeType.
+Represents the types of changes that can occur to files and directories in the file system. This is a flags enumeration that allows multiple change types to be combined.
 
 >```csharp
 >public enum FileSystemWatcherChangeType
@@ -630,19 +647,19 @@ Flag-Enumeration: FileSystemWatcherChangeType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Added | Added | Added. | 
-| 2 | Deleted | Deleted | Deleted. | 
-| 4 | Renamed | Renamed | Renamed. | 
-| 8 | Changed | Changed | Changed. | 
-| 15 | All | All | All = Added | Deleted | Renamed | Changed. | 
+| 0 | None | None | No change type specified. | 
+| 1 | Added | Added | A file or directory was added to the file system. | 
+| 2 | Deleted | Deleted | A file or directory was deleted from the file system. | 
+| 4 | Renamed | Renamed | A file or directory was renamed in the file system. | 
+| 8 | Changed | Changed | A file or directory's contents or attributes were changed. | 
+| 15 | All | All | All change types combined (Added, Deleted, Renamed, and Changed). | 
 
 
 
 <br />
 
 ## ForwardReverseType
-Enumeration: ForwardReverseType.
+Represents a direction of movement or traversal (forward or reverse/backward).
 
 >```csharp
 >public enum ForwardReverseType
@@ -651,9 +668,9 @@ Enumeration: ForwardReverseType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Forward | Forward | Forward. | 
-| 2 | Reverse | Reverse | Reverse. | 
+| 0 | None | None | No direction specified. | 
+| 1 | Forward | Forward | Forward direction or normal sequence. | 
+| 2 | Reverse | Reverse | Reverse direction or backward sequence. | 
 
 
 
@@ -733,9 +750,9 @@ Represents an x- and y-coordinate point in 2-D grid.
 >```csharp
 >IsDefault
 >```
-><b>Summary:</b> Gets a value indicating whether this instance is default.
+><b>Summary:</b> Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).
 >
-><b>Returns:</b> <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
+><b>Returns:</b> <see langword="true" /> if both X and Y are zero; otherwise, <see langword="false" />.
 #### X
 >```csharp
 >X
@@ -770,14 +787,14 @@ Represents an x- and y-coordinate point in 2-D grid.
 >```csharp
 >string ToStringShort()
 >```
-><b>Summary:</b> To the string short.
+><b>Summary:</b> Returns a short string representation of the grid cell in the format "x, y".
 >
-><b>Returns:</b> Return a short format of x and y.
+><b>Returns:</b> A comma-separated string containing the X and Y coordinates.
 
 <br />
 
 ## IdentityRoleType
-Flag-Enumeration: IdentityRoleType.
+Represents different user roles and privilege levels in an identity/authentication system. This is a flags enumeration that allows multiple roles to be combined.
 
 >```csharp
 >public enum IdentityRoleType
@@ -786,19 +803,19 @@ Flag-Enumeration: IdentityRoleType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Anonymous | Anonymous | Indicates that the identity role is anonymous. | 
-| 2 | User | User | Indicates that the identity role is a normal user. | 
-| 4 | SuperUser | Super User | Indicates that the identity role is a normal user. | 
-| 8 | Admin | Administrator | Indicates that the identity role is administrator. | 
-| 16 | SuperAdmin | Super Administrator | Indicates that the identity role is super administrator. | 
+| 0 | None | None | No role specified. | 
+| 1 | Anonymous | Anonymous | Anonymous user with no authenticated identity. | 
+| 2 | User | User | Standard authenticated user with basic privileges. | 
+| 4 | SuperUser | Super User | User with elevated privileges beyond a standard user. | 
+| 8 | Admin | Administrator | Administrator with management and configuration privileges. | 
+| 16 | SuperAdmin | Super Administrator | Super administrator with full system access and highest-level privileges. | 
 
 
 
 <br />
 
 ## IgnoreDisplayAttribute
-Ignore Display Attribute.
+Specifies that the decorated member should be excluded from display operations. This attribute can be used to mark properties, fields, enums, interfaces, or delegates that should not be shown in user interfaces or documentation.
 
 >```csharp
 >public class IgnoreDisplayAttribute : Attribute
@@ -808,7 +825,7 @@ Ignore Display Attribute.
 <br />
 
 ## InsertRemoveType
-Enumeration: InsertRemoveType.
+Represents an operation to insert or remove an item.
 
 >```csharp
 >public enum InsertRemoveType
@@ -817,16 +834,16 @@ Enumeration: InsertRemoveType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Insert | Insert | Insert. | 
-| 2 | Remove | Remove | Remove. | 
+| 0 | None | None | No operation specified. | 
+| 1 | Insert | Insert | Insert operation to add an item. | 
+| 2 | Remove | Remove | Remove operation to delete an item. | 
 
 
 
 <br />
 
 ## LeftRightType
-Enumeration: LeftRightType.
+Represents a horizontal direction or position (left or right).
 
 >```csharp
 >public enum LeftRightType
@@ -835,16 +852,16 @@ Enumeration: LeftRightType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None | 
-| 1 | Left | Left | Left | 
-| 2 | Right | Right | Right | 
+| 0 | None | None | No direction specified. | 
+| 1 | Left | Left | Left direction or position. | 
+| 2 | Right | Right | Right direction or position. | 
 
 
 
 <br />
 
 ## LeftTopRightBottomType
-Enumeration: LeftTopRightBottomType.
+Represents a position or alignment relative to a rectangle (left, top, right, or bottom).
 
 >```csharp
 >public enum LeftTopRightBottomType
@@ -853,18 +870,18 @@ Enumeration: LeftTopRightBottomType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None | 
-| 1 | Left | Left | Left | 
-| 2 | Top | Top | Top. | 
-| 3 | Right | Right | Right | 
-| 4 | Bottom | Bottom | Bottom. | 
+| 0 | None | None | No position specified. | 
+| 1 | Left | Left | Left side position. | 
+| 2 | Top | Top | Top position. | 
+| 3 | Right | Right | Right side position. | 
+| 4 | Bottom | Bottom | Bottom position. | 
 
 
 
 <br />
 
 ## LeftUpRightDownType
-Enumeration: LeftUpRightDownType.
+Represents a directional position in four cardinal directions (left, up, right, or down).
 
 >```csharp
 >public enum LeftUpRightDownType
@@ -873,18 +890,18 @@ Enumeration: LeftUpRightDownType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None | 
-| 1 | Left | Left | Left | 
-| 2 | Up | Up | Up. | 
-| 3 | Right | Right | Right | 
-| 4 | Down | Down | Down. | 
+| 0 | None | None | No direction specified. | 
+| 1 | Left | Left | Left direction. | 
+| 2 | Up | Up | Upward direction. | 
+| 3 | Right | Right | Right direction. | 
+| 4 | Down | Down | Downward direction. | 
 
 
 
 <br />
 
 ## LetterAccentType
-Flag-Enumeration: LetterAccentType.
+Represents different types of diacritical marks (accents) that can be applied to letters. This is a flags enumeration that allows multiple accent types to be combined.
 
 >```csharp
 >public enum LetterAccentType
@@ -893,20 +910,20 @@ Flag-Enumeration: LetterAccentType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Grave | Grave | Grave. | 
-| 2 | Acute | Acute | Acute. | 
-| 4 | Circumflex | Circumflex | Circumflex. | 
-| 8 | Tilde | Tilde | Tilde. | 
-| 16 | Umlaut | Umlaut | Umlaut. | 
-| 31 | All | All | All. | 
+| 0 | None | None | No accent type specified. | 
+| 1 | Grave | Grave | Grave accent (e.g., à, è, ù). | 
+| 2 | Acute | Acute | Acute accent (e.g., á, é, ú). | 
+| 4 | Circumflex | Circumflex | Circumflex accent (e.g., â, ê, û). | 
+| 8 | Tilde | Tilde | Tilde accent (e.g., ã, ñ, õ). | 
+| 16 | Umlaut | Umlaut | Umlaut or diaeresis (e.g., ä, ë, ü). | 
+| 31 | All | All | All accent types combined. | 
 
 
 
 <br />
 
 ## LocalizedDescriptionAttribute
-Localized Description Attribute.
+Provides a description attribute that retrieves localized text from resource files based on the current UI culture. This attribute extends `System.ComponentModel.DescriptionAttribute` to support internationalization.
 
 >```csharp
 >public class LocalizedDescriptionAttribute : DescriptionAttribute
@@ -918,14 +935,12 @@ Localized Description Attribute.
 >```csharp
 >Description
 >```
-><b>Summary:</b> Gets the description stored in this attribute.
->
-><b>Returns:</b> The description stored in this attribute.
+><b>Summary:</b> Gets the localized description text based on the current UI culture. Returns an empty string if the resource key is null, empty, or the localized text cannot be found.
 
 <br />
 
 ## LogCategoryType
-Enumeration: LogCategoryType categories available for logging.
+Defines different categories of log messages for classification and filtering purposes.
 
 >```csharp
 >public enum LogCategoryType
@@ -934,16 +949,16 @@ Enumeration: LogCategoryType categories available for logging.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | Critical | Critical | Critical. | 
-| 1 | Error | Error | Error. | 
-| 2 | Warning | Warning | Warning. | 
-| 3 | Security | Security | Security. | 
-| 4 | Audit | Audit | Audit. | 
-| 5 | Service | Service | Service. | 
-| 6 | UI | UI | UI. | 
-| 7 | Information | Information | Information. | 
-| 8 | Debug | Debug | Debug. | 
-| 9 | Trace | Trace | Trace. | 
+| 0 | Critical | Critical | Critical issues that require immediate attention and may cause system failure. | 
+| 1 | Error | Error | Error conditions that prevent normal operation but don't cause system failure. | 
+| 2 | Warning | Warning | Warning messages about potentially problematic situations. | 
+| 3 | Security | Security | Security-related events such as authentication or authorization issues. | 
+| 4 | Audit | Audit | Audit trail entries for compliance and tracking purposes. | 
+| 5 | Service | Service | Service-level events and operations. | 
+| 6 | UI | UI | User interface related events and interactions. | 
+| 7 | Information | Information | General informational messages about normal operations. | 
+| 8 | Debug | Debug | Detailed debugging information for development purposes. | 
+| 9 | Trace | Trace | Very detailed diagnostic information for tracing execution flow. | 
 
 
 
@@ -983,7 +998,7 @@ Enumeration: LogCategoryType categories available for logging.
 <br />
 
 ## NumericAlphaComparer
-NumericAlphaComparer.
+Provides natural sorting comparison for strings containing both numeric and alphabetic characters. Numbers are compared numerically rather than alphabetically (e.g., "file2" comes before "file10").
 
 >```csharp
 >public class NumericAlphaComparer : IComparer<string>
@@ -999,7 +1014,7 @@ NumericAlphaComparer.
 <br />
 
 ## OnOffType
-Enumeration: OnOffType.
+Represents a binary on/off state.
 
 >```csharp
 >public enum OnOffType
@@ -1008,9 +1023,9 @@ Enumeration: OnOffType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Off | Off | Off. | 
-| 2 | On | On | ON. | 
+| 0 | None | None | No state specified. | 
+| 1 | Off | Off | Off state (disabled or inactive). | 
+| 2 | On | On | On state (enabled or active). | 
 
 
 
@@ -1029,7 +1044,7 @@ Represents an x- and y-coordinate point in 2-D space.
 >```csharp
 >IsDefault
 >```
-><b>Summary:</b> Gets a value indicating whether this instance is default.
+><b>Summary:</b> Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).
 #### X
 >```csharp
 >X
@@ -1064,9 +1079,9 @@ Represents an x- and y-coordinate point in 2-D space.
 >```csharp
 >string ToStringShort()
 >```
-><b>Summary:</b> To the string short.
+><b>Summary:</b> Returns a short string representation of the point in the format "x, y".
 >
-><b>Returns:</b> Return a short format of x and y.
+><b>Returns:</b> A comma-separated string containing the X and Y coordinates.
 
 <br />
 
@@ -1083,7 +1098,7 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 >```csharp
 >IsDefault
 >```
-><b>Summary:</b> Gets a value indicating whether this instance is default.
+><b>Summary:</b> Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0, 0).
 #### X
 >```csharp
 >X
@@ -1122,14 +1137,14 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 >```csharp
 >string ToStringShort()
 >```
-><b>Summary:</b> To the string short.
+><b>Summary:</b> Returns a short string representation of the point in the format "x, y, z".
 >
-><b>Returns:</b> Return a short format of x, y, and z.
+><b>Returns:</b> A comma-separated string containing the X, Y, and Z coordinates.
 
 <br />
 
 ## SortDirectionType
-Enumeration: SortDirectionType.
+Defines the direction for sorting data (ascending or descending).
 
 >```csharp
 >public enum SortDirectionType
@@ -1138,9 +1153,9 @@ Enumeration: SortDirectionType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Ascending | Ascending | Ascending. | 
-| 2 | Descending | Descending | Descending. | 
+| 0 | None | None | No sort direction specified. | 
+| 1 | Ascending | Ascending | Sort in ascending order (smallest to largest, A to Z). | 
+| 2 | Descending | Descending | Sort in descending order (largest to smallest, Z to A). | 
 
 
 
@@ -1204,6 +1219,7 @@ Provides custom string formatting based on specified case formatting options.<br
 <br />
 
 ## TemplatePatternType
+Defines template placeholder patterns that can be used for string replacement and templating. This is a flags enumeration that allows multiple pattern types to be combined.
 
 >```csharp
 >public enum TemplatePatternType
@@ -1212,21 +1228,21 @@ Provides custom string formatting based on specified case formatting options.<br
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None |  | 
+| 0 | None | None | No template pattern specified. | 
 | 1 | SingleHardBrackets | Single Hard Brackets | The single hard brackets pattern: [ * ] | 
 | 2 | DoubleHardBrackets | Double Hard Brackets | The double hard brackets pattern: [[ * ]] | 
-| 3 | HardBrackets | Hard Brackets | The hard brackets pattern: [ * ] or [[ * ]] | 
+| 3 | HardBrackets | Hard Brackets | Combines both single and double hard bracket patterns: [ * ] or [[ * ]] | 
 | 4 | SingleCurlyBraces | Single Curly Braces | The single curly braces: { * } | 
 | 8 | DoubleCurlyBraces | Double Curly Braces | The double curly braces pattern: {{ * }} | 
-| 12 | CurlyBraces | Curly Braces | The curly braces pattern: { * } or {{ * }} | 
-| 15 | All | All |  | 
+| 12 | CurlyBraces | Curly Braces | Combines both single and double curly brace patterns: { * } or {{ * }} | 
+| 15 | All | All | All template patterns combined. | 
 
 
 
 <br />
 
 ## TriggerActionType
-Enumeration: TriggerActionType.
+Represents database trigger actions (insert, update, delete).
 
 >```csharp
 >public enum TriggerActionType
@@ -1235,17 +1251,17 @@ Enumeration: TriggerActionType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Insert | Insert | Insert. | 
-| 2 | Update | Update | Update. | 
-| 3 | Delete | Delete | Delete. | 
+| 0 | None | None | No trigger action specified. | 
+| 1 | Insert | Insert | Insert action when a new record is added. | 
+| 2 | Update | Update | Update action when an existing record is modified. | 
+| 3 | Delete | Delete | Delete action when a record is removed. | 
 
 
 
 <br />
 
 ## TupleEqualityComparer&lt;T1, T2&gt;
-TupleEqualityComparer.
+Provides equality comparison for tuples by comparing both items. Two tuples are considered equal if both Item1 and Item2 are equal.
 
 >```csharp
 >public class TupleEqualityComparer&lt;T1, T2&gt; : EqualityComparer<Tuple<T1, T2>>, IEqualityComparer, IEqualityComparer<Tuple<T1, T2>>
@@ -1257,28 +1273,28 @@ TupleEqualityComparer.
 >```csharp
 >bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
 >```
-><b>Summary:</b> When overridden in a derived class, determines whether two objects of type are equal.
+><b>Summary:</b> Determines whether two tuples are equal by comparing both items.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`x`&nbsp;&nbsp;-&nbsp;&nbsp;The first object to compare.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`y`&nbsp;&nbsp;-&nbsp;&nbsp;The second object to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`x`&nbsp;&nbsp;-&nbsp;&nbsp;The first tuple to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`y`&nbsp;&nbsp;-&nbsp;&nbsp;The second tuple to compare.<br />
 >
-><b>Returns:</b> true if the specified objects are equal; otherwise, false.
+><b>Returns:</b> `true` if both Item1 and Item2 of the tuples are equal; otherwise, `false`.
 #### GetHashCode
 >```csharp
 >int GetHashCode(Tuple<T1, T2> obj)
 >```
-><b>Summary:</b> Returns a hash code for this instance.
+><b>Summary:</b> Returns a hash code for the specified tuple by combining the hash codes of both items.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;&nbsp;-&nbsp;&nbsp;The object.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;&nbsp;-&nbsp;&nbsp;The tuple for which to generate a hash code.<br />
 >
-><b>Returns:</b> A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+><b>Returns:</b> A hash code calculated from both items in the tuple.
 
 <br />
 
 ## UpDownType
-Enumeration: UpDownType.
+Represents a vertical direction or position (up or down).
 
 >```csharp
 >public enum UpDownType
@@ -1287,16 +1303,16 @@ Enumeration: UpDownType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | Up | Up | Up. | 
-| 2 | Down | Down | Down. | 
+| 0 | None | None | No direction specified. | 
+| 1 | Up | Up | Upward direction or position. | 
+| 2 | Down | Down | Downward direction or position. | 
 
 
 
 <br />
 
 ## YesNoType
-Enumeration: YesNoType.
+Represents a binary yes/no choice or answer.
 
 >```csharp
 >public enum YesNoType
@@ -1305,9 +1321,9 @@ Enumeration: YesNoType.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None | Default None. | 
-| 1 | No | No | No. | 
-| 2 | Yes | Yes | Yes. | 
+| 0 | None | None | No answer specified. | 
+| 1 | No | No | Negative response (No). | 
+| 2 | Yes | Yes | Affirmative response (Yes). | 
 
 
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

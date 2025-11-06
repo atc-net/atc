@@ -3,66 +3,66 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: LogCategoryType categories available for logging.
+/// Defines different categories of log messages for classification and filtering purposes.
 /// </summary>
 public enum LogCategoryType
 {
     /// <summary>
-    /// Critical.
+    /// Critical issues that require immediate attention and may cause system failure.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeCritical", typeof(EnumResources))]
     Critical,
 
     /// <summary>
-    /// Error.
+    /// Error conditions that prevent normal operation but don't cause system failure.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeError", typeof(EnumResources))]
     Error,
 
     /// <summary>
-    /// Warning.
+    /// Warning messages about potentially problematic situations.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeWarning", typeof(EnumResources))]
     Warning,
 
     /// <summary>
-    /// Security.
+    /// Security-related events such as authentication or authorization issues.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeSecurity", typeof(EnumResources))]
     Security,
 
     /// <summary>
-    /// Audit.
+    /// Audit trail entries for compliance and tracking purposes.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeAudit", typeof(EnumResources))]
     Audit,
 
     /// <summary>
-    /// Service.
+    /// Service-level events and operations.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeService", typeof(EnumResources))]
     Service,
 
     /// <summary>
-    /// UI.
+    /// User interface related events and interactions.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeUI", typeof(EnumResources))]
     UI,
 
     /// <summary>
-    /// Information.
+    /// General informational messages about normal operations.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeInformation", typeof(EnumResources))]
     Information,
 
     /// <summary>
-    /// Debug.
+    /// Detailed debugging information for development purposes.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeDebug", typeof(EnumResources))]
     Debug,
 
     /// <summary>
-    /// Trace.
+    /// Very detailed diagnostic information for tracing execution flow.
     /// </summary>
     [LocalizedDescription("LogCategoryTypeTrace", typeof(EnumResources))]
     Trace,

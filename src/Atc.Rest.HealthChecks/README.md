@@ -2,11 +2,52 @@
 
 **Target Framework:** `net9.0`
 
-This library contains features related to ASP-NET HealthChecks.
+Health check implementations and utilities for ASP.NET Core applications. Provides factories and helpers for creating JSON-formatted health check endpoints with detailed resource status information.
 
-### Requirements
+## Why Use This Library?
 
-* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+Building robust health check endpoints requires consistent formatting and detailed status information. Atc.Rest.HealthChecks simplifies this by providing:
+
+- **JSON Health Check Responses**: Factory methods for JSON-formatted health checks
+- **Resource Health Tracking**: Track individual service/resource health status
+- **Detailed Diagnostics**: Include timing, status, and error details for each check
+- **IReadOnlyDictionary Conversion**: Helper extensions for health check data
+- **Production-Ready Endpoints**: Standardized health check responses
+
+Perfect for:
+- Microservices requiring health endpoints
+- Kubernetes/container orchestration health probes
+- Load balancer health checks
+- Monitoring and observability solutions
+- API management platforms
+
+## Installation
+
+```bash
+dotnet add package Atc.Rest.HealthChecks
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
+
+- `HealthCheckOptionsFactory` for creating JSON health check endpoints
+- `ResourceHealthCheck` class for tracking individual resource status
+- Extension methods for converting health data to IReadOnlyDictionary
+- Integration with Microsoft.Extensions.Diagnostics.HealthChecks
+- Support for custom health check implementations
+
+## Requirements
+
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
+## Key Dependencies
+
+- Microsoft.AspNetCore.App (framework reference)
+- Microsoft.Extensions.Diagnostics.HealthChecks
+- Atc (foundation library)
 
 ## Code documentation
 
@@ -108,3 +149,6 @@ public class MyHealthCheck : IHealthCheck
     }
 }
 ```
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

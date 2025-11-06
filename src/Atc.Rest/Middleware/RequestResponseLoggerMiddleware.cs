@@ -1,6 +1,20 @@
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 namespace Atc.Rest.Middleware;
 
+/// <summary>
+/// Middleware that logs HTTP request and response details for debugging and monitoring purposes.
+/// </summary>
+/// <remarks>
+/// This middleware captures request and response information including headers, query parameters, and body content.
+/// It supports configurable logging options through <see cref="RequestResponseLoggerOptions"/>, such as:
+/// <list type="bullet">
+/// <item>Skipping Swagger and SignalR requests</item>
+/// <item>Including/excluding query parameters, headers, and response body</item>
+/// <item>Automatic redaction of binary content</item>
+/// <item>Exception tracking</item>
+/// </list>
+/// Binary content is replaced with "# BINARY-DATA-REDACTED #" to prevent large log entries.
+/// </remarks>
 [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
 [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
 [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
@@ -14,6 +28,12 @@ public class RequestResponseLoggerMiddleware
     private readonly JsonSerializerOptions jsonSerializerOptions;
     private readonly RestApiOptions apiOptions;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RequestResponseLoggerMiddleware"/> class.
+    /// </summary>
+    /// <param name="next">The next middleware delegate in the pipeline.</param>
+    /// <param name="logger">The logger instance.</param>
+    /// <param name="apiOptions">The REST API configuration options.</param>
     public RequestResponseLoggerMiddleware(
         RequestDelegate next,
         ILogger<RequestResponseLoggerMiddleware> logger,
@@ -25,6 +45,11 @@ public class RequestResponseLoggerMiddleware
         jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
     }
 
+    /// <summary>
+    /// Invokes the middleware to log request and response details.
+    /// </summary>
+    /// <param name="httpContext">The HTTP context.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task InvokeAsync(
         HttpContext httpContext)
     {

@@ -26,6 +26,22 @@ Perfect for:
 dotnet add package Atc.CodeAnalysis.CSharp
 ```
 
+## Target Frameworks
+
+- .NET Standard 2.0
+- .NET 9.0
+
+The library multi-targets to support:
+- .NET Framework 4.6.1+ (for Roslyn analyzers and source generators)
+- .NET Core 2.0+
+- .NET 5+
+- .NET 9.0
+
+## Key Dependencies
+
+- Microsoft.CodeAnalysis.CSharp (Roslyn)
+- System.ComponentModel.Annotations
+
 ## Code Documentation
 
 - [API References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.CodeAnalysis.CSharp/Index.md)

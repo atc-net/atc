@@ -2,8 +2,12 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an user is not found.
+/// The exception that is thrown when a method or constructor meant for design-time use only is invoked at runtime.
 /// </summary>
+/// <remarks>
+/// This exception is typically used to prevent runtime execution of design-time-only constructors in ViewModels or other components
+/// that are intended for use in visual designers (e.g., WPF/XAML designers, Blazor designers).
+/// </remarks>
 /// <seealso cref="Exception" />
 [Serializable]
 public class DesignTimeUseOnlyException : Exception
@@ -40,6 +44,11 @@ public class DesignTimeUseOnlyException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DesignTimeUseOnlyException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected DesignTimeUseOnlyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

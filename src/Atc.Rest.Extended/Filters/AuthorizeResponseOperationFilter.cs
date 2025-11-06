@@ -1,7 +1,16 @@
 namespace Atc.Rest.Extended.Filters;
 
+/// <summary>
+/// Swagger <see cref="IOperationFilter"/> that adds 401 and 403 response codes to operations requiring authorization.
+/// Automatically documents authentication and authorization responses for secured endpoints.
+/// </summary>
 public class AuthorizeResponseOperationFilter : IOperationFilter
 {
+    /// <summary>
+    /// Applies the filter to add authorization response codes to the operation.
+    /// </summary>
+    /// <param name="operation">The <see cref="OpenApiOperation"/> to modify.</param>
+    /// <param name="context">The <see cref="OperationFilterContext"/> containing operation metadata.</param>
     public void Apply(
         OpenApiOperation operation,
         OperationFilterContext context)

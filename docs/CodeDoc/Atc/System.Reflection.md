@@ -20,36 +20,54 @@ Extensions for the `System.Reflection.Assembly` class.
 >```csharp
 >string GetBeautifiedName(this Assembly assembly)
 >```
-><b>Summary:</b> Gets the beautified name of the assembly.
+><b>Summary:</b> Gets a beautified name of the assembly by replacing dots with spaces.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to beautify.<br />
+>
+><b>Returns:</b> The beautified assembly name with dots replaced by spaces.
 #### GetExportedTypeByName
 >```csharp
 >Type GetExportedTypeByName(this Assembly assembly, string typeName)
 >```
-><b>Summary:</b> Gets the name of the exported type by typeName.
+><b>Summary:</b> Gets an exported type from the assembly by its type name.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to search.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type to find.<br />
+>
+><b>Returns:</b> The type if found; otherwise, null.
 #### GetFileVersion
 >```csharp
 >Version GetFileVersion(this Assembly assembly)
 >```
+><b>Summary:</b> Gets the file version of the assembly.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to query.<br />
+>
+><b>Returns:</b> The file version, or 1.0.0.0 if the version cannot be determined.
 #### GetResourceManagers
 >```csharp
 >ResourceManager[] GetResourceManagers(this Assembly assembly)
 >```
+><b>Summary:</b> Gets all resource managers from the assembly.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to search for resource managers.<br />
+>
+><b>Returns:</b> An array of resource managers sorted by base name.
 #### GetTypesInheritingFromType
 >```csharp
 >Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)
 >```
-><b>Summary:</b> Gets the types inheriting from a specific type.
+><b>Summary:</b> Gets all types in the assembly that inherit from a specific type.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type from which other types are inheriting.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to search.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The base type to search for inherited types.<br />
+>
+><b>Returns:</b> An array of types that inherit from the specified type.
 #### IsDebugBuild
 >```csharp
 >bool IsDebugBuild(this Assembly assembly)
@@ -99,14 +117,22 @@ Extensions for the `System.Reflection.MemberInfo` class.
 >```csharp
 >Type GetUnderlyingType(this MemberInfo member)
 >```
-><b>Summary:</b> Gets the type of the underlying.
+><b>Summary:</b> Gets the underlying type of the member (event, field, method return, or property type).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member whose underlying type to retrieve.<br />
+>
+><b>Returns:</b> The underlying type of the member.
 #### HasCompilerGeneratedAttribute
 >```csharp
 >bool HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
 >```
+><b>Summary:</b> Determines whether the member has the CompilerGenerated attribute.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`memberInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The member information to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the member has the CompilerGenerated attribute; otherwise, <see langword="false" />.
 #### HasExcludeFromCodeCoverageAttribute
 >```csharp
 >bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
@@ -141,10 +167,12 @@ Extensions for the `System.Reflection.MemberInfo` class.
 >```csharp
 >bool IsPropertyWithSetter(this MemberInfo member)
 >```
-><b>Summary:</b> Determines whether [is property with setter].
+><b>Summary:</b> Determines whether the member is a property with a setter method.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`member`&nbsp;&nbsp;-&nbsp;&nbsp;The member to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the member is a property with a setter; otherwise, <see langword="false" />.
 
 <br />
 
@@ -214,29 +242,41 @@ Extensions for the `System.Reflection.PropertyInfo` class.
 >```csharp
 >string BeautifyName(this PropertyInfo propertyInfo)
 >```
-><b>Summary:</b> Beautifies the name.
+><b>Summary:</b> Gets a beautified name of the property's type.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
+>
+><b>Returns:</b> A beautified string representation of the property's type.
 #### GetDescription
 >```csharp
 >string GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = True)
 >```
-><b>Summary:</b> Gets the description.
+><b>Summary:</b> Gets the description of the property from various description attributes or the property name.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useLocalizedIfPossible`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use localized if possible].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useLocalizedIfPossible`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , attempts to use localized description first.<br />
+>
+><b>Returns:</b> The description of the property.
 #### GetName
 >```csharp
 >string GetName(this PropertyInfo propertyInfo)
 >```
-><b>Summary:</b> Gets the name.
+><b>Summary:</b> Gets the display name of the property from DisplayName, Display, or the property name itself.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
+>
+><b>Returns:</b> The display name of the property.
 #### IsNullable
 >```csharp
 >bool IsNullable(this PropertyInfo propertyInfo)
 >```
+><b>Summary:</b> Determines whether the property type is a nullable value type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The property information.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the property is a nullable value type; otherwise, <see langword="false" />.
 <hr /><div style='text-align: right'><i>Generated by MarkdownCodeDoc version 1.2</i></div>

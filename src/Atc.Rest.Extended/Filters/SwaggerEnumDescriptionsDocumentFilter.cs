@@ -2,8 +2,17 @@
 // ReSharper disable LoopCanBeConvertedToQuery
 namespace Atc.Rest.Extended.Filters;
 
+/// <summary>
+/// Swagger <see cref="IDocumentFilter"/> that enriches enum types with descriptions showing their numeric values and names.
+/// Adds detailed enum value mappings to both schema definitions and operation parameters.
+/// </summary>
 public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 {
+    /// <summary>
+    /// Applies the filter to add enum descriptions to the Swagger document.
+    /// </summary>
+    /// <param name="swaggerDoc">The <see cref="OpenApiDocument"/> to modify.</param>
+    /// <param name="context">The <see cref="DocumentFilterContext"/> containing API descriptions.</param>
     [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK. For now.")]
     public void Apply(
         OpenApiDocument swaggerDoc,

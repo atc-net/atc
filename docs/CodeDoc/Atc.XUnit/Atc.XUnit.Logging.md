@@ -8,6 +8,7 @@
 <br />
 
 ## XUnitLogger
+An `Microsoft.Extensions.Logging.ILogger` implementation that writes log messages to xUnit's `Xunit.ITestOutputHelper`.
 
 >```csharp
 >public class XUnitLogger : ILogger
@@ -19,10 +20,22 @@
 >```csharp
 >ILogger Create(ITestOutputHelper testOutputHelper)
 >```
+><b>Summary:</b> Creates a non-generic logger instance for xUnit test output.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testOutputHelper`&nbsp;&nbsp;-&nbsp;&nbsp;The xUnit test output helper.<br />
+>
+><b>Returns:</b> An `Microsoft.Extensions.Logging.ILogger` instance.
 #### Create
 >```csharp
 >ILogger<T> Create(ITestOutputHelper testOutputHelper)
 >```
+><b>Summary:</b> Creates a non-generic logger instance for xUnit test output.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testOutputHelper`&nbsp;&nbsp;-&nbsp;&nbsp;The xUnit test output helper.<br />
+>
+><b>Returns:</b> An `Microsoft.Extensions.Logging.ILogger` instance.
 ### Methods
 
 #### BeginScope
@@ -41,6 +54,7 @@
 <br />
 
 ## XUnitLoggerProvider
+A logger provider that creates `Atc.XUnit.Logging.XUnitLogger` instances for xUnit test output.
 
 >```csharp
 >public class XUnitLoggerProvider : ILoggerProvider, IDisposable
@@ -60,6 +74,7 @@
 <br />
 
 ## XUnitLogger&lt;T&gt;
+A generic `Microsoft.Extensions.Logging.ILogger`1` implementation that writes log messages to xUnit's `Xunit.ITestOutputHelper`.
 
 >```csharp
 >public class XUnitLogger&lt;T&gt; : XUnitLogger, ILogger, ILogger<T>

@@ -2,24 +2,59 @@
 
 **Target Framework:** `net9.0`
 
-This library can be used to simplify a base setup for creating a Web-API in a .NET solution with feature-options:
+Foundation library for building ASP.NET Core Web APIs with standardized configuration, middleware, and error handling. Provides a streamlined setup for REST APIs with built-in support for common scenarios like JSON serialization, exception handling, and service registration.
+
+## Why Use This Library?
+
+Atc.Rest eliminates repetitive Web API configuration boilerplate and provides consistent, production-ready defaults for REST APIs. Instead of configuring the same middleware and services in every project, Atc.Rest provides:
+
+- **Simplified Configuration**: Single-line setup with `RestApiOptions`
+- **Standardized Error Handling**: ProblemDetails support with customizable exception filters
+- **Automatic Service Registration**: Convention-based service discovery and registration
+- **JSON Serialization Defaults**: Configurable casing styles, null handling, and enum serialization
+- **Application Insights Integration**: Built-in telemetry support
+- **Development Tools**: Anonymous access for debugging and detailed error messages
+
+Perfect for:
+- Building REST APIs with consistent patterns
+- Microservices that need standardized configuration
+- APIs requiring ProblemDetails RFC compliance
+- Projects using Application Insights for monitoring
+
+## Installation
+
+```bash
+dotnet add package Atc.Rest
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
 
 - Allow anonymous access in debug-mode
-- Enable ApplicationInsights
-- Enable auto service registrering of services
-- Enable validation service registration
-- Enable Enum-As-String in serialization
-- Enable ignore-null-values in serialization
-- Set `CasingStyle` in serialization
-- Enable HttpContextAccessor
-- Enable exception handling
-- Enable exception format as `ProblemDetails`
-- Enable full detailed exception message with stack information
-- Enforce Https over Http
+- Enable ApplicationInsights telemetry
+- Auto service registration using reflection
+- Validation service registration
+- Enum-as-string serialization
+- Ignore null values in JSON responses
+- Configurable JSON casing styles (camelCase, PascalCase, etc.)
+- HttpContextAccessor registration
+- Exception handling with middleware
+- ProblemDetails RFC 7807 support
+- Detailed exception messages for debugging
+- HTTPS enforcement
 
-### Requirements
+## Requirements
 
-* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
+## Key Dependencies
+
+- Microsoft.AspNetCore.App (framework reference)
+- Microsoft.ApplicationInsights.AspNetCore
+- Atc (foundation library)
 
 ## Code documentation
 
@@ -117,3 +152,6 @@ public class Startup
     }
 }
 ```
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

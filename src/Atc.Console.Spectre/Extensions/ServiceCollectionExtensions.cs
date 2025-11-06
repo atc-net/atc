@@ -1,8 +1,15 @@
 namespace Atc.Console.Spectre.Extensions;
 
+/// <summary>
+/// Extension methods for <see cref="IServiceCollection"/> to configure console logging and command settings.
+/// </summary>
 [SuppressMessage("Log Injection", "S4792:Configuring loggers is security-sensitive", Justification = "OK.")]
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds console logging to the service collection using default configuration.
+    /// </summary>
+    /// <param name="serviceCollection">The service collection to configure.</param>
     public static void AddConsoleLogging(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddLogging(logger =>
@@ -14,6 +21,12 @@ public static class ServiceCollectionExtensions
         });
     }
 
+    /// <summary>
+    /// Adds console logging to the service collection using custom configuration.
+    /// </summary>
+    /// <param name="serviceCollection">The service collection to configure.</param>
+    /// <param name="consoleLoggerConfiguration">The custom console logger configuration.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="consoleLoggerConfiguration"/> is null.</exception>
     public static void AddConsoleLogging(this IServiceCollection serviceCollection, ConsoleLoggerConfiguration consoleLoggerConfiguration)
     {
         if (consoleLoggerConfiguration is null)
@@ -29,6 +42,10 @@ public static class ServiceCollectionExtensions
         });
     }
 
+    /// <summary>
+    /// Automatically registers all <see cref="global::Spectre.Console.Cli.CommandSettings"/> types from loaded assemblies as singletons.
+    /// </summary>
+    /// <param name="serviceCollection">The service collection to configure.</param>
     public static void AutoRegisterCliCommandSettings(this IServiceCollection serviceCollection)
     {
         var assemblies = AppDomain.CurrentDomain.GetCustomAssemblies();

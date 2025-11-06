@@ -3,16 +3,20 @@
 namespace System;
 
 /// <summary>
-/// ArgumentPropertyException.
+/// The exception that is thrown when a property argument value does not fall within the expected range.
 /// </summary>
-/// <seealso cref="Exception" />
+/// <remarks>
+/// This exception is similar to <see cref="ArgumentException"/>, but is specifically designed for validating property values
+/// rather than method parameters.
+/// </remarks>
+/// <seealso cref="ArgumentException" />
 [Serializable]
 public sealed class ArgumentPropertyException : ArgumentException
 {
     private const string ExceptionMessage = "Value does not fall within the expected range.";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class with a default error message.
     /// </summary>
     public ArgumentPropertyException()
         : base(ExceptionMessage)
@@ -20,9 +24,9 @@ public sealed class ArgumentPropertyException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class with the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
+    /// <param name="paramName">The name of the property that caused the exception.</param>
     public ArgumentPropertyException(
         string paramName)
         : base(ExceptionMessage, paramName)
@@ -30,10 +34,10 @@ public sealed class ArgumentPropertyException : ArgumentException
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class.
+    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class with a specified error message and the name of the property that caused the exception.
     /// </summary>
-    /// <param name="paramName">Name of the parameter.</param>
-    /// <param name="message">The message.</param>
+    /// <param name="paramName">The name of the property that caused the exception.</param>
+    /// <param name="message">The error message that explains the reason for the exception.</param>
     public ArgumentPropertyException(
         string paramName,
         string message)
@@ -53,6 +57,11 @@ public sealed class ArgumentPropertyException : ArgumentException
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     private ArgumentPropertyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

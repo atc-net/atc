@@ -1,8 +1,18 @@
 namespace Atc.Serialization.JsonConverters;
 
+/// <summary>
+/// JSON converter that serializes enum values to and from their string representation, respecting <see cref="EnumMemberAttribute"/> values.
+/// </summary>
+/// <typeparam name="TEnum">The enum type to convert.</typeparam>
+/// <remarks>
+/// This converter reads enum values from their string representation and respects <see cref="EnumMemberAttribute"/> values if present.
+/// During serialization, it writes the <see cref="EnumMemberAttribute.Value"/> if present, otherwise the enum's name.
+/// The casing of the output string respects the <see cref="JsonSerializerOptions.PropertyNamingPolicy"/>.
+/// </remarks>
 public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
     where TEnum : Enum
 {
+    /// <inheritdoc />
     public override TEnum Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
@@ -36,6 +46,7 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
         throw new JsonException($"Unable to convert \"{enumValue}\" to Enum \"{typeToConvert}\".");
     }
 
+    /// <inheritdoc />
     public override void Write(
         Utf8JsonWriter writer,
         TEnum value,

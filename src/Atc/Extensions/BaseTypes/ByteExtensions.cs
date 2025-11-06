@@ -7,11 +7,13 @@ namespace System;
 public static class ByteExtensions
 {
     /// <summary>
-    /// Take some bytes from a given start position and for the given length.
+    /// Extracts a subset of bytes from the byte array starting at the specified position.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="startPosition">The start position.</param>
-    /// <param name="length">The length.</param>
+    /// <param name="value">The source byte array.</param>
+    /// <param name="startPosition">The zero-based starting position.</param>
+    /// <param name="length">The number of bytes to extract.</param>
+    /// <returns>A byte array containing the extracted bytes, or an empty array if the range is invalid.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
     public static byte[] TakeBytes(
         this byte[] value,
         int startPosition = 0,
@@ -34,12 +36,12 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take some bytes from a given start position and for the given length and convert to Int.
-    /// and convert to a <see cref="int"/> value.
+    /// Extracts bytes from the array and converts them to a 32-bit integer.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="startPosition">The start position.</param>
-    /// <param name="length">The length.</param>
+    /// <param name="value">The source byte array.</param>
+    /// <param name="startPosition">The zero-based starting position.</param>
+    /// <param name="length">The number of bytes to extract (must not exceed 4 bytes).</param>
+    /// <returns>The converted integer value, or -1 if the conversion fails or the length exceeds 4 bytes.</returns>
     public static int TakeBytesAndConvertToInt(
         this byte[] value,
         int startPosition = 0,
@@ -67,12 +69,12 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take some bytes from a given start position and for the given length and convert to Long.
-    /// and convert to a <see cref="long"/> value.
+    /// Extracts bytes from the array and converts them to a 64-bit integer.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="startPosition">The start position.</param>
-    /// <param name="length">The length.</param>
+    /// <param name="value">The source byte array.</param>
+    /// <param name="startPosition">The zero-based starting position.</param>
+    /// <param name="length">The number of bytes to extract (must not exceed 8 bytes).</param>
+    /// <returns>The converted long value, or -1 if the conversion fails or the length exceeds 8 bytes.</returns>
     public static long TakeBytesAndConvertToLong(
         this byte[] value,
         int startPosition = 0,
@@ -100,10 +102,12 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Take the remaining bytes from a given start position.
+    /// Extracts all remaining bytes from the array starting at the specified position.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <param name="startPosition">The start position.</param>
+    /// <param name="value">The source byte array.</param>
+    /// <param name="startPosition">The zero-based starting position.</param>
+    /// <returns>A byte array containing all bytes from the start position to the end, or an empty array if the position is invalid.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
     public static byte[] TakeRemainingBytes(
         this byte[] value,
         int startPosition = 0)
@@ -124,10 +128,12 @@ public static class ByteExtensions
     }
 
     /// <summary>
-    /// Splits a byte array by a specific byte into multiple byte arrays.
+    /// Splits a byte sequence by a specific byte delimiter into multiple byte arrays.
     /// </summary>
-    /// <param name="source">The source byte array to split.</param>
-    /// <param name="splitByte">The byte to split on.</param>
+    /// <param name="source">The source byte sequence to split.</param>
+    /// <param name="splitByte">The delimiter byte to split on.</param>
+    /// <returns>An enumerable sequence of byte arrays, split at each occurrence of the delimiter byte.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> is null.</exception>
     public static IEnumerable<byte[]> Split(
         this IEnumerable<byte> source,
         byte splitByte)

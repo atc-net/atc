@@ -1,7 +1,16 @@
 namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
+/// <summary>
+/// Factory for creating <see cref="SyntaxTokenList"/> modifier lists.
+/// </summary>
 public static class SyntaxTokenListFactory
 {
+    /// <summary>
+    /// Creates a token list with the public keyword.
+    /// </summary>
+    /// <param name="withLeadingLineFeed">If <c>true</c>, adds a leading line feed.</param>
+    /// <param name="withTrailingSpace">If <c>true</c>, adds a trailing space.</param>
+    /// <returns>A <see cref="SyntaxTokenList"/> containing the public modifier.</returns>
     public static SyntaxTokenList PublicKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
