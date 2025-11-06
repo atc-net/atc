@@ -37,20 +37,45 @@ public class AuthorizationOptions
 {
     public const string ConfigurationSectionName = "Authorization";
 
+    /// <summary>
+    /// Gets or sets the Azure AD Application (client) ID.
+    /// </summary>
     public string ClientId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the Azure AD Tenant ID or special values (common, organizations, consumers, adfs).
+    /// </summary>
     public string TenantId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the authentication authority instance URL (e.g., https://login.microsoftonline.com for Azure AD).
+    /// </summary>
     public string Instance { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the expected audience for token validation (typically the App ID URI).
+    /// </summary>
     public string Audience { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the expected token issuer for validation.
+    /// </summary>
     public string Issuer { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets a collection of valid audiences for token validation.
+    /// </summary>
     public List<string> ValidAudiences { get; set; } = new();
 
+    /// <summary>
+    /// Gets or sets a collection of valid issuers for token validation.
+    /// </summary>
     public List<string> ValidIssuers { get; set; } = new();
 
+    /// <summary>
+    /// Determines whether any security settings are configured.
+    /// </summary>
+    /// <returns>True if at least one security setting is configured; otherwise, false.</returns>
     public bool IsSecurityEnabled()
         => !string.IsNullOrEmpty(ClientId) ||
            !string.IsNullOrEmpty(TenantId) ||

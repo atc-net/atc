@@ -1,15 +1,16 @@
 namespace Atc.XUnit;
 
 /// <summary>
-/// CodeComplianceNamingHelper.
+/// Provides helper methods for asserting code compliance related to naming conventions and localization resources.
 /// </summary>
 public static class CodeComplianceHelper
 {
     /// <summary>
-    /// Asserts the exported types with wrong definitions.
+    /// Asserts that exported types have correct naming definitions.
+    /// Currently not implemented.
     /// </summary>
-    /// <param name="type">The type.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="type">The type to validate.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
     public static void AssertExportedTypesWithWrongDefinitions(
         Type type,
         bool useFullName = false)
@@ -18,11 +19,12 @@ public static class CodeComplianceHelper
     }
 
     /// <summary>
-    /// Asserts the exported types with wrong definitions.
+    /// Asserts that exported types in an assembly have correct naming definitions.
+    /// Validates that extension methods follow proper naming conventions.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="excludeTypes">The exclude types.</param>
-    /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
+    /// <param name="assembly">The assembly to validate.</param>
+    /// <param name="excludeTypes">Optional list of types to exclude from validation.</param>
+    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
     public static void AssertExportedTypesWithWrongDefinitions(
         Assembly assembly,
         List<Type>? excludeTypes = null,
@@ -44,11 +46,12 @@ public static class CodeComplianceHelper
     }
 
     /// <summary>
-    /// Asserts the localization resources with missing translations or invalid keys with placeholders in value.
+    /// Asserts that localization resources have all required translations and valid placeholder key suffixes.
+    /// Validates both missing translations and invalid key suffix patterns for resources with placeholders.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="cultureNames">The culture names.</param>
-    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">The allow suffix terms for key suffix with placeholders.</param>
+    /// <param name="assembly">The assembly containing localization resources.</param>
+    /// <param name="cultureNames">The list of culture names to validate (e.g., "en-US", "da-DK").</param>
+    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">Optional list of suffix terms allowed before numeric suffixes in keys with placeholders.</param>
     public static void AssertLocalizationResources(
         Assembly assembly,
         IList<string> cultureNames,
@@ -75,10 +78,10 @@ public static class CodeComplianceHelper
     }
 
     /// <summary>
-    /// Asserts the localization resources with missing translations.
+    /// Asserts that localization resources have all required translations across specified cultures.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="cultureNames">The culture names.</param>
+    /// <param name="assembly">The assembly containing localization resources.</param>
+    /// <param name="cultureNames">The list of culture names to validate.</param>
     public static void AssertLocalizationResourcesForMissingTranslations(
         Assembly assembly,
         IList<string> cultureNames)
@@ -99,11 +102,12 @@ public static class CodeComplianceHelper
     }
 
     /// <summary>
-    /// Asserts the localization resources with invalid keys with placeholders in value.
+    /// Asserts that localization resource keys with placeholders have valid numeric suffixes.
+    /// Validates that keys like "Message2" have exactly 2 placeholders ({0} and {1}).
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
-    /// <param name="cultureNames">The culture names.</param>
-    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">The allow suffix terms for key suffix with placeholders.</param>
+    /// <param name="assembly">The assembly containing localization resources.</param>
+    /// <param name="cultureNames">The list of culture names to validate.</param>
+    /// <param name="allowSuffixTermsForKeySuffixWithPlaceholders">Optional list of suffix terms allowed before numeric suffixes in keys with placeholders.</param>
     public static void AssertLocalizationResourcesForInvalidKeysSuffixWithPlaceholders(
         Assembly assembly,
         IList<string> cultureNames,

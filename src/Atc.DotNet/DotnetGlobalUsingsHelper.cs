@@ -1,7 +1,18 @@
 namespace Atc.DotNet;
 
+/// <summary>
+/// Provides helper methods for creating and updating GlobalUsings.cs files in .NET projects.
+/// </summary>
 public static class DotnetGlobalUsingsHelper
 {
+    /// <summary>
+    /// Creates or updates a GlobalUsings.cs file in the specified directory with the required namespaces.
+    /// </summary>
+    /// <param name="directoryInfo">The directory where GlobalUsings.cs should be created or updated.</param>
+    /// <param name="requiredNamespaces">The list of namespaces to include in the global usings file.</param>
+    /// <param name="setSystemFirst">Whether to place System namespaces before other namespaces. Default is true.</param>
+    /// <param name="addNamespaceSeparator">Whether to add blank lines between namespace groups. Default is true.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> or <paramref name="requiredNamespaces"/> is null.</exception>
     public static void CreateOrUpdate(
         DirectoryInfo directoryInfo,
         IReadOnlyList<string> requiredNamespaces,
@@ -37,6 +48,15 @@ public static class DotnetGlobalUsingsHelper
         FileHelper.WriteAllText(globalUsingFile, content);
     }
 
+    /// <summary>
+    /// Generates global usings content by merging existing namespaces (if the file exists) with required namespaces.
+    /// </summary>
+    /// <param name="directoryInfo">The directory to check for an existing GlobalUsings.cs file.</param>
+    /// <param name="requiredNamespaces">The list of namespaces that must be included.</param>
+    /// <param name="setSystemFirst">Whether to place System namespaces before other namespaces. Default is true.</param>
+    /// <param name="addNamespaceSeparator">Whether to add blank lines between namespace groups. Default is true.</param>
+    /// <returns>The formatted global usings content ready to be written to a file.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> or <paramref name="requiredNamespaces"/> is null.</exception>
     public static string GetNewContentByReadingExistingIfExistAndMergeWithRequired(
         DirectoryInfo directoryInfo,
         IReadOnlyList<string> requiredNamespaces,

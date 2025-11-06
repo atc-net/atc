@@ -1,9 +1,22 @@
 namespace Atc.Rest.Extensions;
 
+/// <summary>
+/// Extension methods for <see cref="IEndpointRouteBuilder"/> to map API specification and assembly information endpoints.
+/// </summary>
 public static class EndpointRouteBuilderExExtensions
 {
     private static readonly Dictionary<string, string> YamlCache = new(StringComparer.Ordinal);
 
+    /// <summary>
+    /// Maps endpoints for serving OpenAPI specification YAML files from embedded assembly resources.
+    /// </summary>
+    /// <param name="endpoints">The endpoint route builder.</param>
+    /// <param name="assemblyPairs">The list of assembly pairs containing API specifications.</param>
+    /// <remarks>
+    /// This method creates an endpoint for each assembly's embedded YAML specification and a summary endpoint
+    /// at /ApiSpecifications that returns a list of all available specification URLs.
+    /// The YAML files are cached in memory for performance.
+    /// </remarks>
     [SuppressMessage("Performance", "CA1849:Call async methods when in an async method", Justification = "OK. The async method is a sub-method.")]
     public static void MapApiSpecificationEndpoint(
         this IEndpointRouteBuilder endpoints,
@@ -69,10 +82,23 @@ public static class EndpointRouteBuilderExExtensions
         }
     }
 
+    /// <summary>
+    /// Maps an endpoint at /management/assembly-informations to serve assembly information.
+    /// </summary>
+    /// <param name="endpoints">The endpoint route builder.</param>
     public static void MapApiManagementAssemblyInformations(
         this IEndpointRouteBuilder endpoints)
         => endpoints.MapApiAssemblyInformations("/management/assembly-informations");
 
+    /// <summary>
+    /// Maps an endpoint to serve assembly information for all loaded assemblies in the current application domain.
+    /// </summary>
+    /// <param name="endpoints">The endpoint route builder.</param>
+    /// <param name="pattern">The URL pattern for the endpoint. Defaults to /assembly-informations if null or empty.</param>
+    /// <remarks>
+    /// The endpoint is tagged with "API-Management" and allows anonymous access.
+    /// Returns a JSON array of assembly information including name, version, and other metadata.
+    /// </remarks>
     public static void MapApiAssemblyInformations(
         this IEndpointRouteBuilder endpoints,
         string pattern)

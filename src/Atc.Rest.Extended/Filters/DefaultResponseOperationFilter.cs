@@ -1,14 +1,19 @@
 namespace Atc.Rest.Extended.Filters;
 
 /// <summary>
-/// Bad request as default response.
+/// Swagger <see cref="IOperationFilter"/> that adds a default response with <see cref="ProblemDetails"/> to operations.
+/// Ensures all operations have a documented error response format.
 /// </summary>
 /// <remarks>
-/// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1278 .
+/// Reference: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1278.
 /// </remarks>
-/// <seealso cref="Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter" />
 public class DefaultResponseOperationFilter : IOperationFilter
 {
+    /// <summary>
+    /// Applies the filter to add a default response to the operation if not already present.
+    /// </summary>
+    /// <param name="operation">The <see cref="OpenApiOperation"/> to modify.</param>
+    /// <param name="context">The <see cref="OperationFilterContext"/> containing operation metadata.</param>
     public void Apply(
         OpenApiOperation operation,
         OperationFilterContext context)

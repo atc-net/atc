@@ -28,10 +28,11 @@ public class UnexpectedTypeException : Exception
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class.
+    /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class with the actual and expected types.
     /// </summary>
-    /// <param name="actualType">The actual type.</param>
-    /// <param name="expectedType">The expected type.</param>
+    /// <param name="actualType">The actual type that was encountered.</param>
+    /// <param name="expectedType">The type that was expected.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="actualType"/> or <paramref name="expectedType"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public UnexpectedTypeException(
         Type actualType,
@@ -63,11 +64,12 @@ public class UnexpectedTypeException : Exception
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class.
+    /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class with the actual and expected types and a custom error message.
     /// </summary>
-    /// <param name="actualType">The actual type.</param>
-    /// <param name="expectedType">The expected type.</param>
-    /// <param name="message">The message.</param>
+    /// <param name="actualType">The actual type that was encountered.</param>
+    /// <param name="expectedType">The type that was expected.</param>
+    /// <param name="message">The custom error message that describes the error.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="actualType"/>, <paramref name="expectedType"/>, or <paramref name="message"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public UnexpectedTypeException(
         Type actualType,
@@ -116,6 +118,11 @@ public class UnexpectedTypeException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UnexpectedTypeException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected UnexpectedTypeException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

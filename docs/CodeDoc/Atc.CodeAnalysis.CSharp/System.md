@@ -8,6 +8,7 @@
 <br />
 
 ## StringExtensions
+Extension methods for `System.String`.
 
 >```csharp
 >public static class StringExtensions

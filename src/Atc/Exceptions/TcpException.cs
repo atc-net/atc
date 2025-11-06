@@ -40,6 +40,11 @@ public class TcpException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TcpException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected TcpException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

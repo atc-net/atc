@@ -9,6 +9,13 @@ namespace Atc.CodeAnalysis.CSharp.Factories;
 /// </remarks>
 public static class SuppressMessageAttributeFactory
 {
+    /// <summary>
+    /// Creates a <see cref="SuppressMessageAttribute"/> for a Code Analysis (CA) rule suppression.
+    /// </summary>
+    /// <param name="checkId">The numeric identifier of the CA rule to suppress (e.g., 1062 for CA1062).</param>
+    /// <param name="justification">The justification for suppressing the rule. If null or empty, defaults to "OK."</param>
+    /// <returns>A <see cref="SuppressMessageAttribute"/> configured for the specified Code Analysis rule.</returns>
+    /// <exception cref="NotImplementedException">Thrown when the specified <paramref name="checkId"/> is not implemented in the factory.</exception>
     [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
     public static SuppressMessageAttribute CreateCodeAnalysisSuppression(int checkId, string? justification)
     {
@@ -26,6 +33,13 @@ public static class SuppressMessageAttributeFactory
         };
     }
 
+    /// <summary>
+    /// Creates a <see cref="SuppressMessageAttribute"/> for a StyleCop (SA) rule suppression.
+    /// </summary>
+    /// <param name="checkId">The numeric identifier of the SA rule to suppress (e.g., 1413 for SA1413).</param>
+    /// <param name="justification">The justification for suppressing the rule. If null or empty, defaults to "OK."</param>
+    /// <returns>A <see cref="SuppressMessageAttribute"/> configured for the specified StyleCop rule.</returns>
+    /// <exception cref="NotImplementedException">Thrown when the specified <paramref name="checkId"/> is not implemented in the factory.</exception>
     [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
     public static SuppressMessageAttribute CreateStyleCopSuppression(int checkId, string? justification)
     {

@@ -1,7 +1,15 @@
 namespace Atc.CodeAnalysis.CSharp.SyntaxFactories;
 
+/// <summary>
+/// Factory for creating <see cref="ThrowStatementSyntax"/> nodes.
+/// </summary>
 public static class SyntaxThrowStatementFactory
 {
+    /// <summary>
+    /// Creates a throw statement for <see cref="NotImplementedException"/>.
+    /// </summary>
+    /// <param name="includeSystem">If <c>true</c>, includes the System namespace prefix.</param>
+    /// <returns>A <see cref="ThrowStatementSyntax"/> node throwing NotImplementedException.</returns>
     public static ThrowStatementSyntax CreateNotImplementedException(bool includeSystem = true)
     {
         if (includeSystem)
@@ -16,6 +24,12 @@ public static class SyntaxThrowStatementFactory
                 .WithArgumentList(SyntaxFactory.ArgumentList()));
     }
 
+    /// <summary>
+    /// Creates a throw statement for <see cref="ArgumentNullException"/> with a parameter name.
+    /// </summary>
+    /// <param name="parameterName">The name of the null parameter.</param>
+    /// <param name="includeSystem">If <c>true</c>, includes the System namespace prefix.</param>
+    /// <returns>A <see cref="ThrowStatementSyntax"/> node throwing ArgumentNullException.</returns>
     public static ThrowStatementSyntax CreateArgumentNullException(string parameterName, bool includeSystem = true)
     {
         if (includeSystem)

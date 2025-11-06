@@ -1,6 +1,9 @@
 // ReSharper disable InvertIf
 namespace Atc.Rest.Extended.Options;
 
+/// <summary>
+/// Configures Swagger UI and Swagger generation options with API versioning, security filters, and custom styling.
+/// </summary>
 internal sealed class ConfigureSwaggerOptions :
     IConfigureOptions<SwaggerUIOptions>,
     IConfigureOptions<SwaggerGenOptions>
@@ -8,6 +11,11 @@ internal sealed class ConfigureSwaggerOptions :
     private readonly IApiVersionDescriptionProvider versionDescriptionProvider;
     private readonly RestApiExtendedOptions restApiOptions;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigureSwaggerOptions"/> class.
+    /// </summary>
+    /// <param name="versionDescriptionProvider">The API version description provider.</param>
+    /// <param name="restApiOptions">The REST API extended options.</param>
     public ConfigureSwaggerOptions(
         IApiVersionDescriptionProvider versionDescriptionProvider,
         RestApiExtendedOptions restApiOptions)
@@ -16,6 +24,10 @@ internal sealed class ConfigureSwaggerOptions :
         this.restApiOptions = restApiOptions ?? throw new ArgumentNullException(nameof(restApiOptions));
     }
 
+    /// <summary>
+    /// Configures Swagger UI options including endpoints, styling, and behavior settings.
+    /// </summary>
+    /// <param name="options">The <see cref="SwaggerUIOptions"/> to configure.</param>
     public void Configure(SwaggerUIOptions options)
     {
         ConfigureSwaggerEndpointPerApiVersion(options);
@@ -31,6 +43,10 @@ internal sealed class ConfigureSwaggerOptions :
         options.InjectJavascript("/swagger-ui/main.js");
     }
 
+    /// <summary>
+    /// Configures Swagger generation options including API versioning, XML documentation, and security filters.
+    /// </summary>
+    /// <param name="options">The <see cref="SwaggerGenOptions"/> to configure.</param>
     public void Configure(SwaggerGenOptions options)
     {
         options.TagActionsBy(api =>

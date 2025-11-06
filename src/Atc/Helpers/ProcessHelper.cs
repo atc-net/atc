@@ -3,6 +3,12 @@
 // ReSharper disable StringLiteralTypo
 namespace Atc.Helpers;
 
+/// <summary>
+/// Provides utility methods for executing external processes, managing process lifecycles, and handling process termination.
+/// </summary>
+/// <remarks>
+/// Supports executing processes with timeouts, capturing output, running as administrator, and killing processes by ID or name.
+/// </remarks>
 [ExcludeFromCodeCoverage]
 [SuppressMessage("Major Bug", "S2583:Conditionally executed code should be reachable", Justification = "OK - False/Positive")]
 public static class ProcessHelper
@@ -10,6 +16,17 @@ public static class ProcessHelper
     private const ushort DefaultTimeoutInSec = 30;
     private const ushort DefaultKillTimeoutInSec = 30;
 
+    /// <summary>
+    /// Executes a process with the specified file and arguments, with an optional timeout.
+    /// </summary>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
     public static Task<(bool IsSuccessful, string Output)> Execute(
         FileInfo fileInfo,
         string arguments,
@@ -41,6 +58,18 @@ public static class ProcessHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Executes a process with the specified working directory, file, and arguments, with an optional timeout.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/>, or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
     public static Task<(bool IsSuccessful, string Output)> Execute(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
@@ -78,6 +107,18 @@ public static class ProcessHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Executes a process without capturing its output, returning only success status.
+    /// </summary>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns <see langword="true"/> if the process executed successfully; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="timeoutInSec"/> is less than 1.</exception>
     public static Task<bool> ExecuteAndIgnoreOutput(
         FileInfo fileInfo,
         string arguments,
@@ -114,6 +155,19 @@ public static class ProcessHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Executes a process with a working directory without capturing its output, returning only success status.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns <see langword="true"/> if the process executed successfully; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if any required parameter is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="timeoutInSec"/> is less than 1.</exception>
     public static Task<bool> ExecuteAndIgnoreOutput(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
@@ -156,6 +210,20 @@ public static class ProcessHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Executes a process that requires interactive input, sending the specified input lines to standard input.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="inputLines">The lines of input to send to the process's standard input stream.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 1 second.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if any required parameter is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="timeoutInSec"/> is less than 1.</exception>
     public static Task<(bool IsSuccessful, string Output)> ExecutePrompt(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
@@ -205,6 +273,11 @@ public static class ProcessHelper
             cancellationToken);
     }
 
+    /// <summary>
+    /// Terminates the entry assembly's process (the current application).
+    /// </summary>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.</param>
+    /// <returns>A tuple containing success status and a descriptive message.</returns>
     public static (bool IsSuccessful, string Output) KillEntryCaller(
         int timeoutInSec = DefaultKillTimeoutInSec)
     {
@@ -212,6 +285,12 @@ public static class ProcessHelper
         return KillByName(processName, allowMultiKill: true, timeoutInSec);
     }
 
+    /// <summary>
+    /// Terminates a process by its process ID.
+    /// </summary>
+    /// <param name="processId">The process ID of the process to terminate.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.</param>
+    /// <returns>A tuple containing success status and a descriptive message.</returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static (bool IsSuccessful, string Output) KillById(
         int processId,
@@ -246,6 +325,15 @@ public static class ProcessHelper
         }
     }
 
+    /// <summary>
+    /// Terminates processes by their process name.
+    /// </summary>
+    /// <param name="processName">The name of the process(es) to terminate (without .exe extension).</param>
+    /// <param name="allowMultiKill">If <see langword="true"/>, allows terminating multiple processes with the same name; otherwise, fails if more than one match is found.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for each process to terminate. Default is 30 seconds.</param>
+    /// <returns>A tuple containing success status and a descriptive message.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="processName"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="timeoutInSec"/> is less than 1.</exception>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static (bool IsSuccessful, string Output) KillByName(

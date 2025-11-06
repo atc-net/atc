@@ -1,7 +1,15 @@
 namespace Atc.Serialization.JsonConverters;
 
+/// <summary>
+/// JSON converter that serializes <see cref="FileInfo"/> objects to and from their full file path string representation.
+/// </summary>
+/// <remarks>
+/// This converter writes <see cref="FileInfo"/> as its FullName property value
+/// and reads file path strings back into <see cref="FileInfo"/> objects. Null or empty values are preserved.
+/// </remarks>
 public sealed class FileInfoToFullNameJsonConverter : JsonConverter<FileInfo?>
 {
+    /// <inheritdoc />
     public override FileInfo? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
@@ -13,6 +21,7 @@ public sealed class FileInfoToFullNameJsonConverter : JsonConverter<FileInfo?>
             : new FileInfo(fillName);
     }
 
+    /// <inheritdoc />
     public override void Write(
         Utf8JsonWriter writer,
         FileInfo? value,

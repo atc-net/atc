@@ -1,7 +1,7 @@
 namespace Atc.Data.Models;
 
 /// <summary>
-/// LogKeyValueItem.
+/// Represents a log entry with timestamp, severity, and message.
 /// </summary>
 [Serializable]
 public class LogItem

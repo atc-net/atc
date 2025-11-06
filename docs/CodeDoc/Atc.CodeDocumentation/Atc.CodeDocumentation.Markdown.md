@@ -8,7 +8,7 @@
 <br />
 
 ## MarkdownCodeDocGenerator
-MarkdownCodeDocGenerator.
+Generates markdown documentation files from assembly XML documentation comments.
 
 >```csharp
 >public static class MarkdownCodeDocGenerator
@@ -20,11 +20,11 @@ MarkdownCodeDocGenerator.
 >```csharp
 >void Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null)
 >```
-><b>Summary:</b> Runs on the specified assembly to document the code in markdown files.
+><b>Summary:</b> Generates markdown documentation files for all public types in the specified assembly.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyToCodeDoc`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to code document.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`outputPath`&nbsp;&nbsp;-&nbsp;&nbsp;The output path.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyToCodeDoc`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to document.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`outputPath`&nbsp;&nbsp;-&nbsp;&nbsp;The output directory for generated markdown files. If not specified, defaults to a CodeDoc folder relative to the assembly location.<br />
 >
 ><b>Code usage:</b>
 >```csharp

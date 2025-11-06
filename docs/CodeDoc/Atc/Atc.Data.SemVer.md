@@ -77,7 +77,7 @@ Represents a version object, compliant with the Semantic Version standard 2.0 (h
 >```csharp
 >Minor
 >```
-><b>Summary:</b> The minor part of the version.uu
+><b>Summary:</b> The minor part of the version.
 >
 ><b>Remarks:</b> Increment the minor version part - when you add functionality in a backwards compatible manner.
 #### Patch

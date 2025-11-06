@@ -1,7 +1,19 @@
 namespace Atc.Data.SemVer;
 
+/// <summary>
+/// Provides utility methods for comparing and building pre-release version identifiers according to Semantic Versioning 2.0 specification.
+/// </summary>
 internal static class PreReleaseVersion
 {
+    /// <summary>
+    /// Compares two pre-release version strings according to Semantic Versioning 2.0 precedence rules.
+    /// </summary>
+    /// <param name="a">The first pre-release version string.</param>
+    /// <param name="b">The second pre-release version string.</param>
+    /// <returns>
+    /// A negative value if <paramref name="a"/> is less than <paramref name="b"/>,
+    /// zero if they are equal, or a positive value if <paramref name="a"/> is greater than <paramref name="b"/>.
+    /// </returns>
     public static int Compare(string? a, string? b)
     {
         if (a == null && b == null)
@@ -22,6 +34,11 @@ internal static class PreReleaseVersion
         return IdentifierComparisons(Identifiers(a), Identifiers(b)).FirstOrDefault(c => c != 0);
     }
 
+    /// <summary>
+    /// Builds a normalized pre-release version string from the input by cleaning all identifiers.
+    /// </summary>
+    /// <param name="input">The pre-release version string to build.</param>
+    /// <returns>The normalized pre-release version string.</returns>
     public static string Build(string input)
     {
         var identifierStrings = Identifiers(input).Select(i => i.Clean());

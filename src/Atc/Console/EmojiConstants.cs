@@ -1,9 +1,10 @@
 // ReSharper disable IdentifierTypo
 namespace Atc.Console;
 
-/// <Summery>
-/// Emojis (not from unicode.org).
-/// </Summery>
+/// <summary>
+/// Provides a collection of emoji constants for console applications.
+/// These emojis are not sourced from unicode.org and represent commonly used symbols.
+/// </summary>
 [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1605:Partial element documentation should have summary", Justification = "OK.")]
 public static partial class EmojiConstants
 {

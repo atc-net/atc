@@ -1,7 +1,7 @@
 namespace Atc.CodeDocumentation;
 
 /// <summary>
-/// TypeComments.
+/// Represents a type along with its associated XML documentation comments and member information.
 /// </summary>
 public class TypeComments
 {
@@ -21,64 +21,47 @@ public class TypeComments
     }
 
     /// <summary>
-    /// Gets the type.
+    /// Gets the <see cref="System.Type"/> being documented.
     /// </summary>
-    /// <value>
-    /// The type.
-    /// </value>
     public Type Type { get; }
 
     /// <summary>
-    /// Gets the comment lookup.
+    /// Gets the lookup table mapping class names to their XML documentation comments.
     /// </summary>
-    /// <value>
-    /// The comment lookup.
-    /// </value>
     public ILookup<string, XmlDocumentComment> CommentLookup { get; }
 
     /// <summary>
-    /// Gets the namespace.
+    /// Gets the namespace of the type.
     /// </summary>
-    /// <value>
-    /// The namespace.
-    /// </value>
     public string Namespace => Type.Namespace!;
 
     /// <summary>
-    /// Gets the name.
+    /// Gets the simple name of the type.
     /// </summary>
-    /// <value>
-    /// The name.
-    /// </value>
     public string Name => Type.Name;
 
     /// <summary>
-    /// Gets the full name.
+    /// Gets the fully qualified name of the type.
     /// </summary>
-    /// <value>
-    /// The full name.
-    /// </value>
     public string FullName => Type.FullName!;
 
     /// <summary>
-    /// Gets the name of the beautify HTML.
+    /// Gets the HTML-formatted beautified name of the type.
     /// </summary>
-    /// <value>
-    /// The name of the beautify HTML.
-    /// </value>
     public string BeautifyHtmlName => Type.BeautifyName(useFullName: false, useHtmlFormat: true);
 
     /// <summary>
-    /// Gets a value indicating whether this instance has comments.
+    /// Gets a value indicating whether this type has XML documentation comments.
     /// </summary>
     /// <value>
-    ///   <see langword="true" /> if this instance has comments; otherwise, <see langword="false" />.
+    /// <see langword="true"/> if documentation comments exist for this type; otherwise, <see langword="false"/>.
     /// </value>
     public bool HasComments => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException());
 
     /// <summary>
-    /// Gets the XML document comments.
+    /// Retrieves all XML documentation comments associated with this type.
     /// </summary>
+    /// <returns>An array of XML documentation comments, or <see langword="null"/> if no comments exist.</returns>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     public XmlDocumentComment[]? GetXmlDocumentComments()
     {
@@ -87,12 +70,7 @@ public class TypeComments
             : null;
     }
 
-    /// <summary>
-    /// Converts to string.
-    /// </summary>
-    /// <returns>
-    /// A string that represents this instance.
-    /// </returns>
+    /// <inheritdoc/>
     public override string ToString()
     {
         return Name;

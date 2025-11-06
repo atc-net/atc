@@ -1,11 +1,14 @@
 namespace Atc.Data.Models;
 
 /// <summary>
-/// Culture.
+/// Represents culture information including country, language, currency, and formatting details.
 /// </summary>
 [Serializable]
 public class Culture
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Culture"/> class with default values.
+    /// </summary>
     public Culture()
     {
         Lcid = 0;
@@ -25,6 +28,24 @@ public class Culture
         LongTimePattern = string.Empty;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Culture"/> class with specified values.
+    /// </summary>
+    /// <param name="lcid">The locale identifier (LCID).</param>
+    /// <param name="name">The culture name.</param>
+    /// <param name="countryEnglishName">The country name in English.</param>
+    /// <param name="countryDisplayName">The country display name.</param>
+    /// <param name="countryCodeA2">The two-letter country code (ISO 3166-1 alpha-2).</param>
+    /// <param name="countryCodeA3">The three-letter country code (ISO 3166-1 alpha-3).</param>
+    /// <param name="languageEnglishName">The language name in English.</param>
+    /// <param name="languageDisplayName">The language display name.</param>
+    /// <param name="languageCodeA3">The three-letter language code (ISO 639-2).</param>
+    /// <param name="languageCodeA2">The two-letter language code (ISO 639-1).</param>
+    /// <param name="currencySymbol">The currency symbol.</param>
+    /// <param name="isoCurrencySymbol">The ISO currency symbol (ISO 4217).</param>
+    /// <param name="numberDecimalSeparator">The number decimal separator.</param>
+    /// <param name="shortDatePattern">The short date pattern.</param>
+    /// <param name="longTimePattern">The long time pattern.</param>
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     public Culture(
         int lcid,

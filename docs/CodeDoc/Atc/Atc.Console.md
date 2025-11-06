@@ -8,6 +8,8 @@
 <br />
 
 ## EmojiConstants
+Provides a collection of emoji constants for console applications. These emojis are not sourced from unicode.org and represent commonly used symbols.
+><b>Remarks:</b> Generated from: https://unicode.org/Public/emoji/15.0/emoji-test.txt
 
 >```csharp
 >public static class EmojiConstants

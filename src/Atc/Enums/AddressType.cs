@@ -2,14 +2,15 @@
 namespace Atc;
 
 /// <summary>
-/// Flag-Enumeration: AddressType.
+/// Represents different types and precision levels of geocoded addresses.
+/// This is a flags enumeration that allows multiple address types to be combined.
 /// </summary>
 [SuppressMessage("Minor Code Smell", "S2342:Enumeration types should comply with a naming convention", Justification = "OK.")]
 [Flags]
 public enum AddressType
 {
     /// <summary>
-    /// Default None.
+    /// No address type specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0x00,
@@ -63,17 +64,17 @@ public enum AddressType
     Partial = 0x80,
 
     /// <summary>
-    /// All regularly
+    /// Combines all regularly validated address types (Address and AccessAddress).
     /// </summary>
     AllRegularly = Address | AccessAddress,
 
     /// <summary>
-    /// All preliminary
+    /// Combines all preliminary address types (PreliminaryAddress and PreliminaryAccessAddress).
     /// </summary>
     AllPreliminary = PreliminaryAddress | PreliminaryAccessAddress,
 
     /// <summary>
-    /// All
+    /// All address types combined (both regular and preliminary addresses).
     /// </summary>
     [LocalizedDescription("All", typeof(EnumResources))]
     All = Address | AccessAddress | PreliminaryAddress | PreliminaryAccessAddress,

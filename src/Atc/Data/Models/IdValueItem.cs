@@ -1,7 +1,7 @@
 namespace Atc.Data.Models;
 
 /// <summary>
-/// IdValueItem.
+/// Represents a key-value pair with a GUID identifier and a string value.
 /// </summary>
 [Serializable]
 public class IdValueItem
@@ -27,10 +27,10 @@ public class IdValueItem
     }
 
     /// <summary>
-    /// Gets or sets the key.
+    /// Gets or sets the unique identifier.
     /// </summary>
     /// <value>
-    /// The key.
+    /// The unique identifier.
     /// </value>
     public Guid Id { get; set; }
 

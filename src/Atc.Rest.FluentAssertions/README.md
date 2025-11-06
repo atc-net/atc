@@ -1,12 +1,53 @@
-﻿# Atc.Rest.FluentAssertions
+# Atc.Rest.FluentAssertions
 
 **Target Framework:** `net9.0`
 
-This library contains extensions to the FluentAssertions library, that makes it easier to assert against the `ResultBase` types returned from domain handlers.
+FluentAssertions extensions for testing REST API domain handlers. Provides expressive assertion methods for verifying result types, status codes, and response content returned from domain handlers.
 
-### Requirements
+## Why Use This Library?
 
-* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+Testing domain handler results requires checking status codes, result types, and content. Atc.Rest.FluentAssertions makes this intuitive and readable by providing:
+
+- **Expressive Assertions**: Natural language methods for common scenarios
+- **Type-Safe Checks**: Strongly-typed assertion methods for result types
+- **Content Verification**: Easy comparison of expected vs actual response data
+- **Error Message Testing**: Verify custom error messages in failed results
+- **Fluent Chaining**: Combine multiple assertions for comprehensive testing
+
+Perfect for:
+- Testing REST API domain handlers
+- Unit testing API business logic
+- Integration testing API responses
+- Test-driven API development
+- Maintaining high test coverage
+
+## Installation
+
+```bash
+dotnet add package Atc.Rest.FluentAssertions
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
+
+- Assertion methods for all HTTP status codes (OK, NotFound, BadRequest, etc.)
+- Content verification with `WithContent()`
+- Error message verification with `WithErrorMessage()`
+- Support for all ResultBase-derived types
+- Integration with FluentAssertions ecosystem
+- Readable test failure messages
+
+## Requirements
+
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
+## Key Dependencies
+
+- FluentAssertions 7.2.0 (version-pinned for licensing)
+- Atc.Rest (base library)
 
 ## Code documentation
 
@@ -137,3 +178,6 @@ public async Task Should_Return_NotFound_When_Category_Isnt_In_Repository()
 In the example above, the `BeNotFoundResult` method is used to check that the result type is a `ContentResult` type, with a status code of 404.
 
 If you provide a custom error message to the `NotFound` method in the handler, this can be verified with the `WithErrorMessage` method, as shown here.
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

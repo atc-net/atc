@@ -1,7 +1,7 @@
 namespace Atc.Data.Models;
 
 /// <summary>
-/// KeyValueItem.
+/// Represents a key-value pair with string key and value.
 /// </summary>
 [Serializable]
 public class KeyValueItem

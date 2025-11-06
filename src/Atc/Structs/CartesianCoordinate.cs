@@ -17,9 +17,13 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
     public readonly bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
 
     /// <summary>
-    /// Equals the specified other.
+    /// Determines whether the specified <see cref="CartesianCoordinate"/> is equal to the current instance
+    /// using approximate floating-point comparison.
     /// </summary>
-    /// <param name="other">The other.</param>
+    /// <param name="other">The coordinate to compare with the current instance.</param>
+    /// <returns>
+    /// <see langword="true"/> if the latitude and longitude values are approximately equal; otherwise, <see langword="false"/>.
+    /// </returns>
     public readonly bool Equals(CartesianCoordinate other) =>
         Latitude.AreClose(other.Latitude) &&
         Longitude.AreClose(other.Longitude);
@@ -33,9 +37,9 @@ public record struct CartesianCoordinate(double Latitude = 0, double Longitude =
         => $"{nameof(Latitude)}: {Latitude}, {nameof(Longitude)}: {Longitude}";
 
     /// <summary>
-    /// To the string short.
+    /// Returns a short string representation of the coordinate in the format "latitude, longitude".
     /// </summary>
-    /// <returns>Return a short format of x and y.</returns>
+    /// <returns>A comma-separated string containing the latitude and longitude values.</returns>
     public readonly string ToStringShort()
         => $"{Latitude}, {Longitude}";
 }

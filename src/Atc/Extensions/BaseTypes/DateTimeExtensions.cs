@@ -118,6 +118,13 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    /// <summary>
+    /// Converts a DateTime to a string using the long date pattern of a specific culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="cultureInfo">The culture whose date format to use.</param>
+    /// <returns>A string representation of the DateTime using the long date pattern of the specified culture.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
     public static string ToLongDateStringUsingSpecificCulture(
         this DateTime dateTime,
         CultureInfo cultureInfo)
@@ -164,6 +171,13 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    /// <summary>
+    /// Converts a DateTime to a string using the long time pattern of a specific culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="cultureInfo">The culture whose time format to use.</param>
+    /// <returns>A string representation of the DateTime using the long time pattern of the specified culture.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
     public static string ToLongTimeStringUsingSpecificCulture(
         this DateTime dateTime,
         CultureInfo cultureInfo)
@@ -209,6 +223,13 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    /// <summary>
+    /// Converts a DateTime to a string using the short date pattern of a specific culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="cultureInfo">The culture whose date format to use.</param>
+    /// <returns>A string representation of the DateTime using the short date pattern of the specified culture.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
     public static string ToShortDateStringUsingSpecificCulture(
         this DateTime dateTime,
         CultureInfo cultureInfo)
@@ -254,6 +275,13 @@ public static class DateTimeExtensions
         this DateTime dateTime)
         => dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
 
+    /// <summary>
+    /// Converts a DateTime to a string using the short time pattern of a specific culture.
+    /// </summary>
+    /// <param name="dateTime">The DateTime to format.</param>
+    /// <param name="cultureInfo">The culture whose time format to use.</param>
+    /// <returns>A string representation of the DateTime using the short time pattern of the specified culture.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
     public static string ToShortTimeStringUsingSpecificCulture(
         this DateTime dateTime,
         CultureInfo cultureInfo)

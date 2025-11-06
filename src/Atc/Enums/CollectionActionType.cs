@@ -2,48 +2,48 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: CollectionActionType.
+/// Represents actions that can be performed on a collection of items.
 /// </summary>
 public enum CollectionActionType
 {
     /// <summary>
-    /// Default None.
+    /// No action specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None,
 
     /// <summary>
-    /// Added.
+    /// An item was added to the collection.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeAdded", typeof(EnumResources))]
     Added,
 
     /// <summary>
-    /// Updated.
+    /// An item in the collection was updated.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeUpdated", typeof(EnumResources))]
     Updated,
 
     /// <summary>
-    /// Removed.
+    /// An item was removed from the collection.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeRemoved", typeof(EnumResources))]
     Removed,
 
     /// <summary>
-    /// Cleared.
+    /// All items were removed from the collection.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeCleared", typeof(EnumResources))]
     Cleared,
 
     /// <summary>
-    /// Saved.
+    /// The collection was saved to persistent storage.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeSaved", typeof(EnumResources))]
     Saved,
 
     /// <summary>
-    /// Loaded.
+    /// The collection was loaded from persistent storage.
     /// </summary>
     [LocalizedDescription("CollectionActionTypeLoaded", typeof(EnumResources))]
     Loaded,

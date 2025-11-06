@@ -2,14 +2,15 @@
 namespace Atc;
 
 /// <summary>
-/// Flag-Enumeration: CardinalDirectionType.
+/// Represents compass directions including the four cardinal points and intermediate directions.
+/// This is a flags enumeration that allows multiple directions to be combined.
 /// </summary>
 [SuppressMessage("Minor Code Smell", "S2342:Enumeration types should comply with a naming convention", Justification = "OK.")]
 [Flags]
 public enum CardinalDirectionType
 {
     /// <summary>
-    /// Default None.
+    /// No direction specified.
     /// </summary>
     None = 0,
 
@@ -84,7 +85,7 @@ public enum CardinalDirectionType
     WestNorthWest = 0x2000,
 
     /// <summary>
-    /// NorthWest
+    /// NorthWest.
     /// </summary>
     NorthWest = 0x4000,
 

@@ -20,41 +20,43 @@ Extensions for the `System.AppDomain` class.
 >```csharp
 >Type[] GetAllExportedTypes(this AppDomain appDomain)
 >```
-><b>Summary:</b> Gets all exported types.
+><b>Summary:</b> Gets all exported types from non-dynamic assemblies in the application domain.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to search.<br />
+>
+><b>Returns:</b> An array of all exported types from non-dynamic assemblies.
 #### GetAssemblyInformations
 >```csharp
 >AssemblyInformation[] GetAssemblyInformations(this AppDomain appDomain)
 >```
-><b>Summary:</b> Gets the assembly informations.
+><b>Summary:</b> Gets assembly information for all non-dynamic assemblies in the application domain.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to query.<br />
 >
-><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+><b>Returns:</b> An array of `Atc.Data.Models.AssemblyInformation` objects sorted by full name.
 #### GetAssemblyInformationsByStartsWith
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsByStartsWith(this AppDomain appDomain, string value)
 >```
-><b>Summary:</b> Gets the assembly informations by assembly fullname should start with value.
+><b>Summary:</b> Gets assembly information for assemblies whose full name starts with the specified value.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to query.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The prefix to match against assembly full names.<br />
 >
-><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+><b>Returns:</b> An array of `Atc.Data.Models.AssemblyInformation` for matching assemblies sorted by name.
 #### GetAssemblyInformationsBySystem
 >```csharp
 >AssemblyInformation[] GetAssemblyInformationsBySystem(this AppDomain appDomain)
 >```
-><b>Summary:</b> Gets the assembly informations by system.
+><b>Summary:</b> Gets assembly information for system assemblies in the application domain.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to query.<br />
 >
-><b>Returns:</b> The array of `Atc.Data.Models.AssemblyInformation`.
+><b>Returns:</b> An array of `Atc.Data.Models.AssemblyInformation` for system assemblies.
 #### GetCustomAssemblies
 >```csharp
 >Assembly[] GetCustomAssemblies(this AppDomain appDomain)
@@ -69,39 +71,44 @@ Extensions for the `System.AppDomain` class.
 >```csharp
 >Type GetExportedPropertyTypeByName(this AppDomain appDomain, string typeName, string propertyName)
 >```
-><b>Summary:</b> Gets the name of the exported property type by.
+><b>Summary:</b> Gets the type of a specific property from an exported type by name.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the property.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to search.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type containing the property.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`propertyName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the property whose type to retrieve.<br />
+>
+><b>Returns:</b> The property type if found; otherwise, null.
 #### GetExportedTypeByName
 >```csharp
 >Type GetExportedTypeByName(this AppDomain appDomain, string typeName)
 >```
-><b>Summary:</b> Gets the name of the exported type by.
+><b>Summary:</b> Searches for an exported type by name across all non-dynamic assemblies in the application domain.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;Name of the type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to search.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type to find.<br />
+>
+><b>Returns:</b> The type if found; otherwise, null.
 #### TryLoadAssemblyIfNeeded
 >```csharp
 >bool TryLoadAssemblyIfNeeded(this AppDomain appDomain, string dllFileName)
 >```
-><b>Summary:</b> Load the specified assembly file, with a reference to memory and not the specified file.
+><b>Summary:</b> Attempts to load the specified assembly file if it is not already loaded in the application domain.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dllFileName`&nbsp;&nbsp;-&nbsp;&nbsp;The name for the assembly file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appDomain`&nbsp;&nbsp;-&nbsp;&nbsp;The application domain to check and load into.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dllFileName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the assembly file (DLL) to load.<br />
 >
-><b>Returns:</b> The Assembly that is loaded.
+><b>Returns:</b> <see langword="true" /> if the assembly was already loaded or successfully loaded; otherwise, <see langword="false" />.
 >
-><b>Remarks:</b> The assembly is never directly loaded, to avoid holding a instance as "assembly = Assembly.Load(file)" do.
+><b>Remarks:</b> The assembly is loaded into memory without holding a direct reference to the file, avoiding file locking issues.
 
 <br />
 
 ## ArgumentNullOrDefaultException
-ArgumentNullOrDefaultException.
+The exception that is thrown when an argument is null or contains the default value for its type.
+><b>Remarks:</b> This exception is useful when validating method parameters that should not be null or their type's default value (e.g., 0 for int, Guid.Empty for Guid, etc.).
 
 >```csharp
 >public class ArgumentNullOrDefaultException : ArgumentException, ISerializable
@@ -111,7 +118,8 @@ ArgumentNullOrDefaultException.
 <br />
 
 ## ArgumentNullOrDefaultPropertyException
-ArgumentNullOrDefaultPropertyException.
+The exception that is thrown when a property argument is null or contains the default value for its type.
+><b>Remarks:</b> This exception is useful when validating property values that should not be null or their type's default value (e.g., 0 for int, Guid.Empty for Guid, etc.).
 
 >```csharp
 >public class ArgumentNullOrDefaultPropertyException : ArgumentException, ISerializable
@@ -121,7 +129,8 @@ ArgumentNullOrDefaultPropertyException.
 <br />
 
 ## ArgumentNullPropertyException
-ArgumentNullPropertyException.
+The exception that is thrown when a null argument is passed to a property.
+><b>Remarks:</b> This exception is specifically designed for validating property setter arguments rather than method parameters.
 
 >```csharp
 >public class ArgumentNullPropertyException : ArgumentException, ISerializable
@@ -131,7 +140,8 @@ ArgumentNullPropertyException.
 <br />
 
 ## ArgumentPropertyException
-ArgumentPropertyException.
+The exception that is thrown when a property argument value does not fall within the expected range.
+><b>Remarks:</b> This exception is similar to `System.ArgumentException`, but is specifically designed for validating property values rather than method parameters.
 
 >```csharp
 >public class ArgumentPropertyException : ArgumentException, ISerializable
@@ -141,7 +151,8 @@ ArgumentPropertyException.
 <br />
 
 ## ArgumentPropertyNullException
-ArgumentPropertyNullException.
+The exception that is thrown when a property argument is null.
+><b>Remarks:</b> This exception is similar to `System.ArgumentNullException`, but is specifically designed for validating property values rather than method parameters. It inherits from `System.ArgumentException` to maintain consistency with standard .NET exception hierarchy.
 
 >```csharp
 >public class ArgumentPropertyNullException : ArgumentException, ISerializable
@@ -163,30 +174,36 @@ Extensions for the `System.Array` class.
 >```csharp
 >Array RemoveDuplicates(this Array array)
 >```
-><b>Summary:</b> Removes the duplicates.
+><b>Summary:</b> Removes duplicate elements from the array.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array to process.<br />
+>
+><b>Returns:</b> An array with duplicate elements removed.
 #### ToArray
 >```csharp
 >Array ToArray(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
 >```
-><b>Summary:</b> To the array.
+><b>Summary:</b> Converts the array to a sorted array, optionally removing duplicates.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [remove duplicates].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The source array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The sort direction (None, Ascending, or Descending).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , removes duplicate elements.<br />
+>
+><b>Returns:</b> A new array with the specified sorting and duplicate removal applied.
 #### ToList
 >```csharp
 >List<string> ToList(this Array array, SortDirectionType sortDirectionType = None, bool removeDuplicates = False)
 >```
-><b>Summary:</b> To the list.
+><b>Summary:</b> Converts the array to a list of strings, optionally sorting and removing duplicates.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The array.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [remove duplicates].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`array`&nbsp;&nbsp;-&nbsp;&nbsp;The source array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;The sort direction (None, Ascending, or Descending).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeDuplicates`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , removes duplicate elements.<br />
+>
+><b>Returns:</b> A list of strings with the specified sorting and duplicate removal applied.
 
 <br />
 
@@ -326,50 +343,60 @@ Extensions for the byte class.
 >```csharp
 >IEnumerable<byte[]> Split(this IEnumerable<byte> source, byte splitByte)
 >```
-><b>Summary:</b> Splits a byte array by a specific byte into multiple byte arrays.
+><b>Summary:</b> Splits a byte sequence by a specific byte delimiter into multiple byte arrays.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array to split.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`splitByte`&nbsp;&nbsp;-&nbsp;&nbsp;The byte to split on.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte sequence to split.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`splitByte`&nbsp;&nbsp;-&nbsp;&nbsp;The delimiter byte to split on.<br />
+>
+><b>Returns:</b> An enumerable sequence of byte arrays, split at each occurrence of the delimiter byte.
 #### TakeBytes
 >```csharp
 >byte[] TakeBytes(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes from a given start position and for the given length.
+><b>Summary:</b> Extracts a subset of bytes from the byte array starting at the specified position.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The zero-based starting position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The number of bytes to extract.<br />
+>
+><b>Returns:</b> A byte array containing the extracted bytes, or an empty array if the range is invalid.
 #### TakeBytesAndConvertToInt
 >```csharp
 >int TakeBytesAndConvertToInt(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Int. and convert to a `System.Int32` value.
+><b>Summary:</b> Extracts bytes from the array and converts them to a 32-bit integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The zero-based starting position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The number of bytes to extract (must not exceed 4 bytes).<br />
+>
+><b>Returns:</b> The converted integer value, or -1 if the conversion fails or the length exceeds 4 bytes.
 #### TakeBytesAndConvertToLong
 >```csharp
 >long TakeBytesAndConvertToLong(this byte[] value, int startPosition = 0, int length = 0)
 >```
-><b>Summary:</b> Take some bytes from a given start position and for the given length and convert to Long. and convert to a `System.Int64` value.
+><b>Summary:</b> Extracts bytes from the array and converts them to a 64-bit integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The length.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The zero-based starting position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`length`&nbsp;&nbsp;-&nbsp;&nbsp;The number of bytes to extract (must not exceed 8 bytes).<br />
+>
+><b>Returns:</b> The converted long value, or -1 if the conversion fails or the length exceeds 8 bytes.
 #### TakeRemainingBytes
 >```csharp
 >byte[] TakeRemainingBytes(this byte[] value, int startPosition = 0)
 >```
-><b>Summary:</b> Take the remaining bytes from a given start position.
+><b>Summary:</b> Extracts all remaining bytes from the array starting at the specified position.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The start position.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The source byte array.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`startPosition`&nbsp;&nbsp;-&nbsp;&nbsp;The zero-based starting position.<br />
+>
+><b>Returns:</b> A byte array containing all bytes from the start position to the end, or an empty array if the position is invalid.
 #### ToHex
 >```csharp
 >string ToHex(this byte[] value, string separator = null, bool showHexSign = False)
@@ -503,7 +530,7 @@ Extensions for the byte class.
 <br />
 
 ## CertificateValidationException
-The exception that is thrown when an certificate is not valid.
+The exception that is thrown when a certificate is not valid or fails validation.
 
 >```csharp
 >public class CertificateValidationException : Exception, ISerializable
@@ -513,6 +540,7 @@ The exception that is thrown when an certificate is not valid.
 <br />
 
 ## CharExtensions
+Extensions for the `System.Char` type.
 
 >```csharp
 >public static class CharExtensions
@@ -524,11 +552,17 @@ The exception that is thrown when an certificate is not valid.
 >```csharp
 >bool IsAscii(this char value)
 >```
+><b>Summary:</b> Determines whether the specified character is an ASCII character.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the character value is less than or equal to 127 (ASCII range); otherwise, <see langword="false" />.
 
 <br />
 
 ## ConfigurationException
-The exception that is thrown when a TCP error occurred.
+The exception that is thrown when a configuration error occurs, such as missing or invalid configuration settings.
 
 >```csharp
 >public class ConfigurationException : Exception, ISerializable
@@ -644,6 +678,13 @@ Extensions for the `System.DateTime` class.
 >```csharp
 >string ToLongDateStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of a specific culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture whose date format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long date pattern of the specified culture.
 #### ToLongTimeString
 >```csharp
 >string ToLongTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -669,6 +710,13 @@ Extensions for the `System.DateTime` class.
 >```csharp
 >string ToLongTimeStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of a specific culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture whose time format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the long time pattern of the specified culture.
 #### ToShortDateString
 >```csharp
 >string ToShortDateString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -694,6 +742,13 @@ Extensions for the `System.DateTime` class.
 >```csharp
 >string ToShortDateStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of a specific culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture whose date format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short date pattern of the specified culture.
 #### ToShortTimeString
 >```csharp
 >string ToShortTimeString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -719,6 +774,13 @@ Extensions for the `System.DateTime` class.
 >```csharp
 >string ToShortTimeStringUsingSpecificCulture(this DateTime dateTime, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of a specific culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture whose time format to use.<br />
+>
+><b>Returns:</b> A string representation of the DateTime using the short time pattern of the specified culture.
 
 <br />
 
@@ -942,26 +1004,32 @@ Extensions for the `System.Decimal` class.
 >```csharp
 >decimal CurrencyRounding(this decimal value)
 >```
-><b>Summary:</b> Currencies the rounding.
+><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current UI culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The rounded decimal value.
 #### CurrencyRounding
 >```csharp
 >decimal CurrencyRounding(this decimal value, int digits)
 >```
-><b>Summary:</b> Currencies the rounding.
+><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current UI culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The rounded decimal value.
 #### CurrencyRoundingAsInteger
 >```csharp
 >int CurrencyRoundingAsInteger(this decimal value)
 >```
-><b>Summary:</b> Currencies the rounding as integer.
+><b>Summary:</b> Rounds a decimal value using currency rounding rules and returns it as an integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The rounded value as an integer.
 #### IsEqual
 >```csharp
 >bool IsEqual(this decimal a, decimal b)
@@ -1010,40 +1078,49 @@ Extensions for the `System.Decimal` class.
 >```csharp
 >decimal RoundOff(this decimal value, int numberOfDecimals)
 >```
-><b>Summary:</b> Rounds the off.
+><b>Summary:</b> Rounds a decimal value to a specified number of decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimals.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to round to.<br />
+>
+><b>Returns:</b> The rounded decimal value.
 #### RoundOff10
 >```csharp
 >decimal RoundOff10(this decimal value)
 >```
-><b>Summary:</b> Rounds the off10.
+><b>Summary:</b> Rounds a decimal value to 10 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The value rounded to 10 decimal places.
 #### RoundOff2
 >```csharp
 >decimal RoundOff2(this decimal value)
 >```
-><b>Summary:</b> Rounds the off2.
+><b>Summary:</b> Rounds a decimal value to 2 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The value rounded to 2 decimal places.
 #### RoundOffPercent
 >```csharp
 >decimal RoundOffPercent(this decimal percent)
 >```
-><b>Summary:</b> Rounds the off percent.
+><b>Summary:</b> Rounds a percentage value to 2 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percent.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percentage value to round.<br />
+>
+><b>Returns:</b> The percentage value rounded to 2 decimal places.
 
 <br />
 
 ## DesignTimeUseOnlyException
-The exception that is thrown when an user is not found.
+The exception that is thrown when a method or constructor meant for design-time use only is invoked at runtime.
+><b>Remarks:</b> This exception is typically used to prevent runtime execution of design-time-only constructors in ViewModels or other components that are intended for use in visual designers (e.g., WPF/XAML designers, Blazor designers).
 
 >```csharp
 >public class DesignTimeUseOnlyException : Exception, ISerializable
@@ -1072,52 +1149,64 @@ Extensions for the `System.Double` class.
 >```csharp
 >bool AreClose(this double value1, double value2)
 >```
-><b>Summary:</b> Ares the close.
+><b>Summary:</b> Determines whether two double values are approximately equal within a calculated tolerance.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The first value to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The second value to compare.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the values are within a calculated tolerance of each other; otherwise, <see langword="false" />.
 #### CountDecimalPoints
 >```csharp
 >int CountDecimalPoints(this double value)
 >```
-><b>Summary:</b> Returns the numbers of decimal points in the value.
+><b>Summary:</b> Counts the number of decimal places in the double value.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to analyze.<br />
+>
+><b>Returns:</b> The number of decimal places in the value.
 #### CurrencyRounding
 >```csharp
 >double CurrencyRounding(this double value)
 >```
-><b>Summary:</b> Currencies the rounding.
+><b>Summary:</b> Rounds a double value using the currency decimal digits of the current UI culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The rounded double value.
 #### CurrencyRounding
 >```csharp
 >double CurrencyRounding(this double value, int digits)
 >```
-><b>Summary:</b> Currencies the rounding.
+><b>Summary:</b> Rounds a double value using the currency decimal digits of the current UI culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The rounded double value.
 #### CurrencyRoundingAsInteger
 >```csharp
 >int CurrencyRoundingAsInteger(this double value)
 >```
-><b>Summary:</b> Currencies the rounding as integer.
+><b>Summary:</b> Rounds a double value using currency rounding rules and returns it as an integer.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The rounded value as an integer.
 #### GreaterThanOrClose
 >```csharp
 >bool GreaterThanOrClose(this double value1, double value2)
 >```
-><b>Summary:</b> Greater the than or close.
+><b>Summary:</b> Determines whether the first value is greater than or approximately equal to the second value.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The value1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The value2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value1`&nbsp;&nbsp;-&nbsp;&nbsp;The first value to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value2`&nbsp;&nbsp;-&nbsp;&nbsp;The second value to compare.<br />
+>
+><b>Returns:</b> <see langword="true" /> if value1 is greater than value2 or approximately equal; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double a, double b)
@@ -1166,43 +1255,53 @@ Extensions for the `System.Double` class.
 >```csharp
 >bool IsZero(this double value)
 >```
-><b>Summary:</b> Determines whether the specified value is zero.
+><b>Summary:</b> Determines whether the specified double value is approximately zero.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the absolute value is less than epsilon; otherwise, <see langword="false" />.
 #### RoundOff
 >```csharp
 >double RoundOff(this double value, int numberOfDecimals)
 >```
-><b>Summary:</b> Rounds the off.
+><b>Summary:</b> Rounds a double value to a specified number of decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimals.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to round to.<br />
+>
+><b>Returns:</b> The rounded double value.
 #### RoundOff10
 >```csharp
 >double RoundOff10(this double value)
 >```
-><b>Summary:</b> Rounds the off10.
+><b>Summary:</b> Rounds a double value to 10 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The value rounded to 10 decimal places.
 #### RoundOff2
 >```csharp
 >double RoundOff2(this double value)
 >```
-><b>Summary:</b> Rounds the off2.
+><b>Summary:</b> Rounds a double value to 2 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The value rounded to 2 decimal places.
 #### RoundOffPercent
 >```csharp
 >double RoundOffPercent(this double percent)
 >```
-><b>Summary:</b> Rounds the off percent.
+><b>Summary:</b> Rounds a percentage value to 2 decimal places.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percent.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`percent`&nbsp;&nbsp;-&nbsp;&nbsp;The percentage value to round.<br />
+>
+><b>Returns:</b> The percentage value rounded to 2 decimal places.
 
 <br />
 
@@ -1650,29 +1749,35 @@ Extension methods for the `System.Exception` class.
 >```csharp
 >string GetLastInnerMessage(this Exception exception, bool includeExceptionName = False)
 >```
-><b>Summary:</b> Gets the last inner exception message.
+><b>Summary:</b> Recursively traverses the inner exception chain and returns the message from the deepest inner exception.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include exception name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception to traverse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , prefixes the message with the exception type name.<br />
+>
+><b>Returns:</b> The message from the deepest inner exception, or the current exception's message if no inner exceptions exist.
 #### GetMessage
 >```csharp
 >string GetMessage(this Exception exception, bool includeInnerMessage = False, bool includeExceptionName = False)
 >```
-><b>Summary:</b> Gets the exception message.
+><b>Summary:</b> Gets a formatted message from the exception, optionally including inner exception messages and exception names.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeInnerMessage`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include inner message].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [include exception name].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception to extract the message from.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeInnerMessage`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , recursively includes inner exception messages separated by " # ".<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , prefixes the message with the exception type name.<br />
+>
+><b>Returns:</b> A formatted string containing the exception message(s).
 #### ToXml
 >```csharp
 >XDocument ToXml(this Exception exception)
 >```
-><b>Summary:</b> To the XML.
+><b>Summary:</b> Converts the exception and all its inner exceptions to an XML document representation.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception to convert.<br />
+>
+><b>Returns:</b> An `System.Xml.Linq.XDocument` containing the exception's message, stack trace, data, and inner exceptions in XML format.
 
 <br />
 
@@ -1858,7 +1963,7 @@ Extensions for the `System.Int64` class.
 <br />
 
 ## NullException
-The exception that is thrown when an value is null.
+The exception that is thrown when a value is null.
 
 >```csharp
 >public class NullException : Exception, ISerializable
@@ -1960,12 +2065,12 @@ Extensions for the string class.
 >```csharp
 >string CamelCase(this string value)
 >```
-><b>Summary:</b> Gets as camel case.
+><b>Summary:</b> Converts the string to camel case format (first letter lowercase, subsequent words capitalized).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to convert.<br />
 >
-><b>Returns:</b> The string with camel-case format.
+><b>Returns:</b> The string in camel case format (e.g., "helloWorld").
 #### Contains
 >```csharp
 >bool Contains(this string value, string containsValue, bool ignoreCaseSensitive = True)
@@ -2136,27 +2241,33 @@ Extensions for the string class.
 >```csharp
 >int GetStringFormatParameterLiteralCount(this string value)
 >```
-><b>Summary:</b> Gets the string format parameter literal count.
+><b>Summary:</b> Counts the unique literal (non-numeric) placeholders in a string format pattern (e.g., {name}, {value}).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string format pattern to analyze.<br />
+>
+><b>Returns:</b> The count of unique literal placeholders, or -1 if the string is invalid or placeholders are unbalanced.
 #### GetStringFormatParameterNumericCount
 >```csharp
 >int GetStringFormatParameterNumericCount(this string value)
 >```
-><b>Summary:</b> Gets the string format parameter numeric count.
+><b>Summary:</b> Counts the unique numeric placeholders in a string format pattern (e.g., {0}, {1}, {2}).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string format pattern to analyze.<br />
+>
+><b>Returns:</b> The count of unique numeric placeholders, or -1 if the string is invalid or placeholders are unbalanced.
 #### GetStringFormatParameterTemplatePlaceholders
 >```csharp
 >List<string> GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
 >```
-><b>Summary:</b> Gets the string format parameter template placeholders.
+><b>Summary:</b> Extracts all template placeholders from a string format pattern using curly braces notation.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if ;otherwise .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string format pattern to extract placeholders from.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , matches double-bracket placeholders ({{placeholder}}); otherwise matches single-bracket placeholders ({placeholder}).<br />
+>
+><b>Returns:</b> A list of all template placeholders found in the string.
 #### GetTemplateKeys
 >```csharp
 >IList<string> GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
@@ -2185,10 +2296,12 @@ Extensions for the string class.
 >```csharp
 >string GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
 >```
-><b>Summary:</b> Gets the value between less and greater than chars if exist.
+><b>Summary:</b> Extracts the content between the first less-than (&lt;) and greater-than (&gt;) characters if they exist.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to extract from.<br />
+>
+><b>Returns:</b> The content between &lt; and &gt; characters, or the original string if no such pattern exists.
 #### Humanize
 >```csharp
 >string Humanize(this string value)
@@ -2203,31 +2316,37 @@ Extensions for the string class.
 >```csharp
 >int[] IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
 >```
-><b>Summary:</b> Indexers the of.
+><b>Summary:</b> Finds all indexes of a pattern within the string.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pattern`&nbsp;&nbsp;-&nbsp;&nbsp;The pattern.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [ignore case sensitive].<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useEndOfPatternToMatch`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [use end of pattern to match].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to search within.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pattern`&nbsp;&nbsp;-&nbsp;&nbsp;The pattern to search for.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , performs case-insensitive matching.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useEndOfPatternToMatch`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , returns the index at the end of each pattern match; otherwise returns the start index.<br />
+>
+><b>Returns:</b> An array of integers representing all indexes where the pattern was found.
 #### JavaScriptDecode
 >```csharp
 >string JavaScriptDecode(this string javaScript, bool htmlDecode)
 >```
-><b>Summary:</b> Javas the script decode.
+><b>Summary:</b> Decodes a JavaScript string by unescaping special characters.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The java script.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlDecode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [HTML decode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The JavaScript string to decode.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlDecode`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , also performs HTML decoding before unescaping JavaScript characters.<br />
+>
+><b>Returns:</b> The decoded JavaScript string.
 #### JavaScriptEncode
 >```csharp
 >string JavaScriptEncode(this string javaScript, bool htmlEncode)
 >```
-><b>Summary:</b> Javas the script encode.
+><b>Summary:</b> Encodes a JavaScript string by escaping special characters.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The java script.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlEncode`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [HTML encode].<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`javaScript`&nbsp;&nbsp;-&nbsp;&nbsp;The JavaScript string to encode.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`htmlEncode`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , also performs HTML encoding on the result.<br />
+>
+><b>Returns:</b> The encoded JavaScript string.
 #### NormalizeAccents
 >```csharp
 >string NormalizeAccents(this string value)
@@ -2262,32 +2381,34 @@ Extensions for the string class.
 >```csharp
 >DateTime ParseDateFromIso8601(this string value)
 >```
-><b>Summary:</b> Parses the date from iso8601.
+><b>Summary:</b> Parses a string in ISO 8601 format to a `System.DateTime` object.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string in ISO 8601 format to parse.<br />
+>
+><b>Returns:</b> A `System.DateTime` object representing the parsed date.
 #### PascalCase
 >```csharp
 >string PascalCase(this string value, bool removeSeparators = False)
 >```
-><b>Summary:</b> Gets as pascal case.
+><b>Summary:</b> Converts the string to Pascal case format (each word capitalized) using default separators (space, hyphen, underscore).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If true, remove all separators.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , removes all separator characters from the result.<br />
 >
-><b>Returns:</b> The string with pascal-case format.
+><b>Returns:</b> The string in Pascal case format (e.g., "HelloWorld" or "Hello World").
 #### PascalCase
 >```csharp
 >string PascalCase(this string value, char[] separators, bool removeSeparators = False)
 >```
-><b>Summary:</b> Gets as pascal case.
+><b>Summary:</b> Converts the string to Pascal case format (each word capitalized) using default separators (space, hyphen, underscore).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If true, remove all separators.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`removeSeparators`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , removes all separator characters from the result.<br />
 >
-><b>Returns:</b> The string with pascal-case format.
+><b>Returns:</b> The string in Pascal case format (e.g., "HelloWorld" or "Hello World").
 #### RemoveDataCrap
 >```csharp
 >string RemoveDataCrap(this string value)
@@ -2423,13 +2544,15 @@ Extensions for the string class.
 >```csharp
 >string SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary<string, string> replacements, bool useDoubleBracket = True, StringComparison comparison = Ordinal)
 >```
-><b>Summary:</b> Sets the string format parameter template placeholders.
+><b>Summary:</b> Replaces template placeholders in a string with their corresponding values from a dictionary.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;The replacements.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;Use double bracket if ;otherwise .<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;Use comparison with default  for key matching.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string containing template placeholders.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`replacements`&nbsp;&nbsp;-&nbsp;&nbsp;A dictionary mapping placeholder names to their replacement values.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useDoubleBracket`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , replaces double-bracket placeholders ({{placeholder}}); otherwise replaces single-bracket placeholders ({placeholder}).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison method used for key matching. Defaults to .<br />
+>
+><b>Returns:</b> The string with all matched placeholders replaced by their corresponding values.
 #### ToLines
 >```csharp
 >string[] ToLines(this string value)
@@ -2490,29 +2613,35 @@ Extensions for the string class.
 >```csharp
 >bool TryParseDate(this string value, out DateTime dateTime)
 >```
-><b>Summary:</b> Tries the parse date.
+><b>Summary:</b> Attempts to parse a string to a `System.DateTime` object using the English culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the  object if parsing succeeded; otherwise, .<br />
+>
+><b>Returns:</b> <see langword="true" /> if the string was successfully parsed; otherwise, <see langword="false" />.
 #### TryParseDate
 >```csharp
 >bool TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = None)
 >```
-><b>Summary:</b> Tries the parse date.
+><b>Summary:</b> Attempts to parse a string to a `System.DateTime` object using the English culture.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the  object if parsing succeeded; otherwise, .<br />
+>
+><b>Returns:</b> <see langword="true" /> if the string was successfully parsed; otherwise, <see langword="false" />.
 #### TryParseDateFromIso8601
 >```csharp
 >bool TryParseDateFromIso8601(this string value, out DateTime dateTime)
 >```
-><b>Summary:</b> Tries the parse date from iso8601.
+><b>Summary:</b> Attempts to parse a string in ISO 8601 format to a `System.DateTime` object.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date time.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string in ISO 8601 format to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the  object if parsing succeeded; otherwise, the default value.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the string was successfully parsed; otherwise, <see langword="false" />.
 #### TryParseToHttpStatusCode
 >```csharp
 >bool TryParseToHttpStatusCode(this string value, out HttpStatusCode httpStatusCode)
@@ -2532,28 +2661,32 @@ Extensions for the string class.
 >```csharp
 >int WordCount(this string value)
 >```
-><b>Summary:</b> Words count.
+><b>Summary:</b> Counts the number of words in the string, excluding special characters.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to count words in.<br />
 >
-><b>Returns:</b> The count of words in the string.
+><b>Returns:</b> The count of words in the string, or -1 if the string is <see langword="null" /> or empty.
 #### XmlDecode
 >```csharp
 >string XmlDecode(this string xml)
 >```
-><b>Summary:</b> XMLs the decode.
+><b>Summary:</b> Decodes an XML string by unescaping special character entities (&amp;amp, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot).
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xml`&nbsp;&nbsp;-&nbsp;&nbsp;The XML.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xml`&nbsp;&nbsp;-&nbsp;&nbsp;The XML string to decode.<br />
+>
+><b>Returns:</b> The decoded XML string with special character entities replaced.
 #### XmlEncode
 >```csharp
 >string XmlEncode(this string xml)
 >```
-><b>Summary:</b> XMLs the encode.
+><b>Summary:</b> Encodes an XML string by escaping special characters (&amp;, ', &lt;, &gt;, ").
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xml`&nbsp;&nbsp;-&nbsp;&nbsp;The XML.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xml`&nbsp;&nbsp;-&nbsp;&nbsp;The XML string to encode.<br />
+>
+><b>Returns:</b> The encoded XML string with special characters escaped.
 
 <br />
 
@@ -2834,7 +2967,7 @@ StringHasIsExtensions.
 <br />
 
 ## StringNullOrEmptyException
-The exception that is thrown when an value is null or empty.
+The exception that is thrown when a string value is null or empty.
 
 >```csharp
 >public class StringNullOrEmptyException : Exception, ISerializable
@@ -2844,7 +2977,8 @@ The exception that is thrown when an value is null or empty.
 <br />
 
 ## SwitchCaseDefaultException
-The exception.
+The exception that is thrown when an unexpected value is encountered in a switch statement's default case.
+><b>Remarks:</b> This exception is typically used to handle unexpected enum values or cases that should not occur in a switch statement. It provides specialized constructors for enum values that automatically format detailed error messages.
 
 >```csharp
 >public class SwitchCaseDefaultException : Exception, ISerializable
@@ -2916,47 +3050,55 @@ Extensions for the `System.TimeSpan` class.
 >```csharp
 >string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
 >```
-><b>Summary:</b> Gets the pretty time.
+><b>Summary:</b> Converts a TimeSpan to a human-readable string representation with appropriate time units.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal precision.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The TimeSpan to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to display (default is 3).<br />
+>
+><b>Returns:</b> A formatted string representing the time in the most appropriate unit (days, hours, minutes, seconds, or milliseconds).
 #### Max
 >```csharp
 >TimeSpan Max(this TimeSpan t1, TimeSpan t2)
 >```
-><b>Summary:</b> Maximums the specified t1.
+><b>Summary:</b> Returns the larger of two TimeSpan values.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The t1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The t2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The first TimeSpan to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The second TimeSpan to compare.<br />
+>
+><b>Returns:</b> The larger of the two TimeSpan values.
 #### Min
 >```csharp
 >TimeSpan Min(this TimeSpan t1, TimeSpan t2)
 >```
-><b>Summary:</b> Minimums the specified t1.
+><b>Summary:</b> Returns the smaller of two TimeSpan values.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The t1.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The t2.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t1`&nbsp;&nbsp;-&nbsp;&nbsp;The first TimeSpan to compare.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`t2`&nbsp;&nbsp;-&nbsp;&nbsp;The second TimeSpan to compare.<br />
+>
+><b>Returns:</b> The smaller of the two TimeSpan values.
 #### RemoveMilliseconds
 >```csharp
 >TimeSpan RemoveMilliseconds(this TimeSpan timeSpan)
 >```
-><b>Summary:</b> Removes the millisecond part of the timeSpan.
+><b>Summary:</b> Removes the millisecond component from the TimeSpan.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The TimeSpan to modify.<br />
+>
+><b>Returns:</b> A TimeSpan with the milliseconds set to zero.
 #### SecondsNotZero
 >```csharp
 >bool SecondsNotZero(this TimeSpan timeSpan)
 >```
-><b>Summary:</b> Determines whether the seconds part of the datetime is zero.
+><b>Summary:</b> Determines whether the total seconds of the TimeSpan is greater than zero.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The timeSpan.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The TimeSpan to check.<br />
 >
-><b>Returns:</b> <see langword="true" /> if [is seconds is zero] otherwise, <see langword="false" />.
+><b>Returns:</b> <see langword="true" /> if the total seconds is greater than zero; otherwise, <see langword="false" />.
 
 <br />
 
@@ -3224,7 +3366,7 @@ The exception that is thrown when actual type differs from expected type.
 <br />
 
 ## UserNotFoundException
-The exception that is thrown when an user is not found.
+The exception that is thrown when a user is not found.
 
 >```csharp
 >public class UserNotFoundException : Exception, ISerializable
@@ -3234,6 +3376,7 @@ The exception that is thrown when an user is not found.
 <br />
 
 ## VersionExtensions
+Extensions for the `System.Version` class.
 
 >```csharp
 >public static class VersionExtensions
@@ -3323,7 +3466,7 @@ The exception that is thrown when an user is not found.
 <br />
 
 ## ViewModelException
-The exception that is thrown when an ViewModel is not as expected.
+The exception that is thrown when a ViewModel is not as expected or is in an invalid state.
 
 >```csharp
 >public class ViewModelException : Exception, ISerializable

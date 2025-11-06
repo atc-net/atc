@@ -7,9 +7,11 @@ namespace System;
 public static class AppDomainExtensions
 {
     /// <summary>
-    /// Gets all exported types.
+    /// Gets all exported types from non-dynamic assemblies in the application domain.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
+    /// <param name="appDomain">The application domain to search.</param>
+    /// <returns>An array of all exported types from non-dynamic assemblies.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> is null.</exception>
     public static Type[] GetAllExportedTypes(
         this AppDomain appDomain)
     {
@@ -30,10 +32,12 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Gets the name of the exported type by.
+    /// Searches for an exported type by name across all non-dynamic assemblies in the application domain.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
-    /// <param name="typeName">Name of the type.</param>
+    /// <param name="appDomain">The application domain to search.</param>
+    /// <param name="typeName">The name of the type to find.</param>
+    /// <returns>The type if found; otherwise, null.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> or <paramref name="typeName"/> is null.</exception>
     public static Type? GetExportedTypeByName(
         this AppDomain appDomain,
         string typeName)
@@ -64,11 +68,13 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Gets the name of the exported property type by.
+    /// Gets the type of a specific property from an exported type by name.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
-    /// <param name="typeName">Name of the type.</param>
-    /// <param name="propertyName">Name of the property.</param>
+    /// <param name="appDomain">The application domain to search.</param>
+    /// <param name="typeName">The name of the type containing the property.</param>
+    /// <param name="propertyName">The name of the property whose type to retrieve.</param>
+    /// <returns>The property type if found; otherwise, null.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/>, <paramref name="typeName"/>, or <paramref name="propertyName"/> is null.</exception>
     public static Type? GetExportedPropertyTypeByName(
         this AppDomain appDomain,
         string typeName,
@@ -121,10 +127,11 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Gets the assembly informations.
+    /// Gets assembly information for all non-dynamic assemblies in the application domain.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
-    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
+    /// <param name="appDomain">The application domain to query.</param>
+    /// <returns>An array of <see cref="AssemblyInformation"/> objects sorted by full name.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> is null.</exception>
     public static AssemblyInformation[] GetAssemblyInformations(
         this AppDomain appDomain)
     {
@@ -142,10 +149,11 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Gets the assembly informations by system.
+    /// Gets assembly information for system assemblies in the application domain.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
-    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
+    /// <param name="appDomain">The application domain to query.</param>
+    /// <returns>An array of <see cref="AssemblyInformation"/> for system assemblies.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> is null.</exception>
     public static AssemblyInformation[] GetAssemblyInformationsBySystem(
         this AppDomain appDomain)
     {
@@ -161,11 +169,12 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Gets the assembly informations by assembly fullname should start with value.
+    /// Gets assembly information for assemblies whose full name starts with the specified value.
     /// </summary>
-    /// <param name="appDomain">The application domain.</param>
-    /// <param name="value">The value.</param>
-    /// <returns>The array of <see cref="AssemblyInformation"/>.</returns>
+    /// <param name="appDomain">The application domain to query.</param>
+    /// <param name="value">The prefix to match against assembly full names.</param>
+    /// <returns>An array of <see cref="AssemblyInformation"/> for matching assemblies sorted by name.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> is null.</exception>
     public static AssemblyInformation[] GetAssemblyInformationsByStartsWith(
         this AppDomain appDomain,
         string value)
@@ -184,15 +193,15 @@ public static class AppDomainExtensions
     }
 
     /// <summary>
-    /// Load the specified assembly file, with a reference to memory and not the specified file.
+    /// Attempts to load the specified assembly file if it is not already loaded in the application domain.
     /// </summary>
     /// <remarks>
-    /// The assembly is never directly loaded, to avoid
-    /// holding a instance as "assembly = Assembly.Load(file)" do.
+    /// The assembly is loaded into memory without holding a direct reference to the file,
+    /// avoiding file locking issues.
     /// </remarks>
-    /// <param name="appDomain">The application domain.</param>
-    /// <param name="dllFileName">The name for the assembly file.</param>
-    /// <returns>The Assembly that is loaded.</returns>
+    /// <param name="appDomain">The application domain to check and load into.</param>
+    /// <param name="dllFileName">The name of the assembly file (DLL) to load.</param>
+    /// <returns><see langword="true"/> if the assembly was already loaded or successfully loaded; otherwise, <see langword="false"/>.</returns>
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static bool TryLoadAssemblyIfNeeded(
         this AppDomain appDomain,

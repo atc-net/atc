@@ -3,6 +3,10 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 namespace Atc.Rest.Extended.Options;
 
+/// <summary>
+/// Post-configures JWT Bearer authentication and authorization options based on <see cref="RestApiExtendedOptions"/>.
+/// Handles issuer signing key retrieval from OpenID Connect configuration and token validation setup.
+/// </summary>
 public class ConfigureAuthorizationOptions :
     IPostConfigureOptions<JwtBearerOptions>,
     IPostConfigureOptions<AuthenticationOptions>
@@ -11,6 +15,11 @@ public class ConfigureAuthorizationOptions :
     private readonly IWebHostEnvironment? environment;
     private readonly RestApiExtendedOptions apiOptions;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigureAuthorizationOptions"/> class.
+    /// </summary>
+    /// <param name="options">The REST API extended options containing authorization configuration.</param>
+    /// <param name="environment">The web host environment for checking development mode.</param>
     public ConfigureAuthorizationOptions(
         RestApiExtendedOptions options,
         IWebHostEnvironment? environment)
@@ -19,6 +28,11 @@ public class ConfigureAuthorizationOptions :
         apiOptions = options ?? throw new ArgumentNullException(nameof(options));
     }
 
+    /// <summary>
+    /// Post-configures JWT Bearer options with token validation parameters and issuer signing keys.
+    /// </summary>
+    /// <param name="name">The name of the options instance being configured.</param>
+    /// <param name="options">The <see cref="JwtBearerOptions"/> to configure.</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     [SuppressMessage("Design", "CA5404:Do not disable token validation checks", Justification = "OK.")]
@@ -92,6 +106,11 @@ public class ConfigureAuthorizationOptions :
         options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
     }
 
+    /// <summary>
+    /// Post-configures authentication options to use JWT Bearer as the default authentication scheme.
+    /// </summary>
+    /// <param name="name">The name of the options instance being configured.</param>
+    /// <param name="options">The <see cref="AuthenticationOptions"/> to configure.</param>
     public void PostConfigure(string? name, AuthenticationOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -99,6 +118,11 @@ public class ConfigureAuthorizationOptions :
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     }
 
+    /// <summary>
+    /// Retrieves issuer signing keys from the OpenID Connect configuration endpoint.
+    /// </summary>
+    /// <param name="issuer">The issuer URL.</param>
+    /// <returns>A collection of security keys for token validation.</returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(string issuer)
     {

@@ -1,14 +1,26 @@
 namespace Atc.Rest.Extended.Options;
 
+/// <summary>
+/// Configures API versioning options for ASP.NET Core API versioning.
+/// Sets up version readers for header, media type, query string, and URL segment versioning.
+/// </summary>
 public class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOptions>
 {
     private readonly TelemetryClient telemetry;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigureApiVersioningOptions"/> class.
+    /// </summary>
+    /// <param name="telemetry">The Application Insights telemetry client.</param>
     public ConfigureApiVersioningOptions(TelemetryClient telemetry)
     {
         this.telemetry = telemetry;
     }
 
+    /// <summary>
+    /// Configures the API versioning options with multiple version reading strategies.
+    /// </summary>
+    /// <param name="options">The <see cref="ApiVersioningOptions"/> to configure.</param>
     public void Configure(ApiVersioningOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);

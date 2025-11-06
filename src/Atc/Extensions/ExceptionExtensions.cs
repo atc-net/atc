@@ -7,11 +7,13 @@ namespace System;
 public static class ExceptionExtensions
 {
     /// <summary>
-    /// Gets the exception message.
+    /// Gets a formatted message from the exception, optionally including inner exception messages and exception names.
     /// </summary>
-    /// <param name="exception">The exception.</param>
-    /// <param name="includeInnerMessage">if set to <see langword="true" /> [include inner message].</param>
-    /// <param name="includeExceptionName">if set to <see langword="true" /> [include exception name].</param>
+    /// <param name="exception">The exception to extract the message from.</param>
+    /// <param name="includeInnerMessage">If set to <see langword="true" />, recursively includes inner exception messages separated by " # ".</param>
+    /// <param name="includeExceptionName">If set to <see langword="true" />, prefixes the message with the exception type name.</param>
+    /// <returns>A formatted string containing the exception message(s).</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="exception"/> is <see langword="null"/>.</exception>
     public static string GetMessage(
         this Exception exception,
         bool includeInnerMessage = false,
@@ -31,10 +33,12 @@ public static class ExceptionExtensions
     }
 
     /// <summary>
-    /// Gets the last inner exception message.
+    /// Recursively traverses the inner exception chain and returns the message from the deepest inner exception.
     /// </summary>
-    /// <param name="exception">The exception.</param>
-    /// <param name="includeExceptionName">if set to <see langword="true" /> [include exception name].</param>
+    /// <param name="exception">The exception to traverse.</param>
+    /// <param name="includeExceptionName">If set to <see langword="true" />, prefixes the message with the exception type name.</param>
+    /// <returns>The message from the deepest inner exception, or the current exception's message if no inner exceptions exist.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="exception"/> is <see langword="null"/>.</exception>
     public static string GetLastInnerMessage(
         this Exception exception,
         bool includeExceptionName = false)
@@ -95,9 +99,11 @@ public static class ExceptionExtensions
     }
 
     /// <summary>
-    /// To the XML.
+    /// Converts the exception and all its inner exceptions to an XML document representation.
     /// </summary>
-    /// <param name="exception">The exception.</param>
+    /// <param name="exception">The exception to convert.</param>
+    /// <returns>An <see cref="XDocument"/> containing the exception's message, stack trace, data, and inner exceptions in XML format.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="exception"/> is <see langword="null"/>.</exception>
     public static XDocument ToXml(this Exception exception)
     {
         if (exception is null)

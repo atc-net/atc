@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when a TCP error occurred.
+/// The exception that is thrown when a configuration error occurs, such as missing or invalid configuration settings.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -28,6 +28,12 @@ public class ConfigurationException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigurationException"/> class with a configuration section, key, and status.
+    /// </summary>
+    /// <param name="section">The configuration section name.</param>
+    /// <param name="key">The configuration key name.</param>
+    /// <param name="isMissing">A value indicating whether the configuration is missing (true) or invalid (false).</param>
     public ConfigurationException(
         string section,
         string key,
@@ -48,6 +54,11 @@ public class ConfigurationException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigurationException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected ConfigurationException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

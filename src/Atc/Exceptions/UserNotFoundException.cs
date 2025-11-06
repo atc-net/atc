@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an user is not found.
+/// The exception that is thrown when a user is not found.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -40,6 +40,11 @@ public class UserNotFoundException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UserNotFoundException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected UserNotFoundException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)

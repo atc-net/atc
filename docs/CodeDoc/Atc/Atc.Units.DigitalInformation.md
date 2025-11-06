@@ -162,7 +162,7 @@ Defines rounding rules for byte sizes
 <br />
 
 ## ByteSizeSuffixType
-Enumeration: Format the suffix word.
+Defines the suffix format for displaying byte sizes.
 
 >```csharp
 >public enum ByteSizeSuffixType
@@ -171,9 +171,9 @@ Enumeration: Format the suffix word.
 
 | Value | Name | Description | Summary | 
 | --- | --- | --- | --- | 
-| 0 | None | None |  | 
-| 1 | Short | Short | Short like: KB, GB etc. | 
-| 2 | Full | Full | Full like: Kilobyte, Gigabyte etc. | 
+| 0 | None | None | No suffix is appended to the numeric value. | 
+| 1 | Short | Short | Short suffix format (e.g., "B", "KB", "MB", "GB"). | 
+| 2 | Full | Full | Full suffix format (e.g., "byte", "Kilobyte", "Megabyte", "Gigabyte"). | 
 
 
 

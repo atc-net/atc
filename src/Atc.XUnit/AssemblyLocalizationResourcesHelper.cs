@@ -1,9 +1,18 @@
 namespace Atc.XUnit;
 
+/// <summary>
+/// Provides helper methods for validating localization resources in assemblies.
+/// </summary>
 public static class AssemblyLocalizationResourcesHelper
 {
     private static readonly Lazy<Regex> ArgIndexCaptureRegex = new(() => new Regex(@"\{(\d+)", RegexOptions.Multiline, TimeSpan.FromMilliseconds(10)));
 
+    /// <summary>
+    /// Collects missing translations across specified cultures for all resource managers in an assembly.
+    /// </summary>
+    /// <param name="assembly">The assembly containing resource files to validate.</param>
+    /// <param name="cultureNames">The list of culture names (e.g., "en-US", "da-DK") to check for translations.</param>
+    /// <returns>A dictionary mapping resource manager names to dictionaries of culture names and their missing translation keys.</returns>
     public static Dictionary<string, Dictionary<string, List<string>>> CollectMissingTranslations(
         Assembly assembly,
         IList<string> cultureNames)
@@ -25,6 +34,14 @@ public static class AssemblyLocalizationResourcesHelper
         return result;
     }
 
+    /// <summary>
+    /// Collects resource keys with invalid suffix patterns when placeholders are present.
+    /// Validates that resource keys ending with numbers match the placeholder count in their values.
+    /// </summary>
+    /// <param name="assembly">The assembly containing resource files to validate.</param>
+    /// <param name="cultureNames">The list of culture names to check.</param>
+    /// <param name="allowSuffixTerms">Optional list of suffix terms that are allowed to appear before numeric suffixes.</param>
+    /// <returns>A dictionary mapping resource manager names to dictionaries of culture names and their invalid keys.</returns>
     public static Dictionary<string, Dictionary<string, List<string>>> CollectInvalidKeySuffixWithPlaceholders(
         Assembly assembly,
         IList<string> cultureNames,
@@ -48,6 +65,14 @@ public static class AssemblyLocalizationResourcesHelper
         return result;
     }
 
+    /// <summary>
+    /// Validates that a resource key's numeric suffix matches the number of placeholders in its value.
+    /// For example, "Message2" should have placeholders {0} and {1} in its value.
+    /// </summary>
+    /// <param name="key">The resource key to validate.</param>
+    /// <param name="value">The resource value containing placeholders.</param>
+    /// <param name="allowSuffixTerms">Optional list of suffix terms that are allowed to appear before numeric suffixes.</param>
+    /// <returns><c>true</c> if the key suffix is valid for the placeholders in the value; otherwise, <c>false</c>.</returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static bool ValidateKeySuffixWithPlaceholders(
         string key,

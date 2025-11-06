@@ -1,7 +1,15 @@
 namespace Atc.CodeDocumentation;
 
+/// <summary>
+/// Provides helper methods for collecting and processing XML documentation comments from assemblies.
+/// </summary>
 internal static class AssemblyCommentHelper
 {
+    /// <summary>
+    /// Collects XML documentation comments for a specific type.
+    /// </summary>
+    /// <param name="type">The type to collect documentation for.</param>
+    /// <returns>The type comments, or <see langword="null"/> if the type was not found.</returns>
     public static TypeComments? CollectExportedTypeWithComments(Type type)
     {
         if (type is null)
@@ -14,6 +22,13 @@ internal static class AssemblyCommentHelper
             .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
     }
 
+    /// <summary>
+    /// Collects all public types from an assembly that are missing XML documentation comments.
+    /// </summary>
+    /// <param name="assembly">The assembly to scan for types.</param>
+    /// <param name="namespaceMatch">Optional regex pattern to filter types by namespace.</param>
+    /// <param name="excludeSourceTypes">Optional list of types to exclude from the results.</param>
+    /// <returns>An array of type comments for types missing documentation.</returns>
     public static TypeComments[] CollectExportedTypesWithMissingComments(
         Assembly assembly,
         string? namespaceMatch = null,
@@ -28,6 +43,13 @@ internal static class AssemblyCommentHelper
         return CollectExportedTypesWithMissingComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
     }
 
+    /// <summary>
+    /// Collects all public types from an assembly along with their XML documentation comments.
+    /// </summary>
+    /// <param name="assembly">The assembly to scan for types.</param>
+    /// <param name="namespaceMatch">Optional regex pattern to filter types by namespace.</param>
+    /// <param name="excludeSourceTypes">Optional list of types to exclude from the results.</param>
+    /// <returns>An array of type comments for all matching types.</returns>
     public static TypeComments[] CollectExportedTypesWithComments(
         Assembly assembly,
         string? namespaceMatch = null,
@@ -42,6 +64,12 @@ internal static class AssemblyCommentHelper
         return CollectExportedTypesWithComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
     }
 
+    /// <summary>
+    /// Converts an array of type comments to a formatted text string, one type per line.
+    /// </summary>
+    /// <param name="typesWithMissingComments">The array of type comments to render.</param>
+    /// <param name="useFullName">If <see langword="true"/>, uses fully qualified type names; otherwise uses simple names.</param>
+    /// <returns>A string containing one type name per line.</returns>
     public static string GetTypesAsRenderText(TypeComments[] typesWithMissingComments, bool useFullName)
     {
         var sb = new StringBuilder();

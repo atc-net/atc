@@ -27,6 +27,64 @@ Perfect for:
 dotnet add package Atc
 ```
 
+## Target Frameworks
+
+- .NET Standard 2.1
+- .NET 9.0
+
+The library multi-targets to provide broad compatibility with:
+- .NET Framework 4.7.2+
+- .NET Core 2.1+
+- .NET 5+
+- .NET 9.0
+
+## Key Dependencies
+
+- Microsoft.Extensions.Logging.Abstractions
+- System.Text.Json
+- System.ComponentModel.Annotations
+- Meziantou.Polyfill (for backward compatibility)
+
+## Main Components
+
+### Extension Methods (Extensions/)
+
+Organized by category:
+- **BaseTypes**: String, Int, Double, Bool, Enum, DateTime, TimeSpan
+- **Collections**: List, Dictionary, IEnumerable, Array
+- **Reflection**: Type, Assembly, MethodInfo
+- **Serialization**: JSON serialization helpers
+- **Stream**: Stream and byte array operations
+
+### Logging (Logging/)
+
+- `ILogger` extensions for structured logging
+- `LogKeyValueItem` for key-value pair logging
+- `LogItemFactory` for creating log items
+
+### Math & Geometry (Math/)
+
+- `MathEx`: Extended math operations
+- GeoSpatial calculations and coordinates
+- Cartesian and geographic coordinate systems
+
+### Helpers
+
+- `NetworkInformationHelper`: Network connectivity and IP address utilities
+- `JsonSerializerOptionsFactory`: Preconfigured JSON serialization options
+
+### Data Structures
+
+- Specialized collections
+- Custom data structures for common scenarios
+
+### Resources
+
+Localized resources for:
+- English (default)
+- Danish (da-DK)
+- German (de-DE)
+
 ## Code Documentation
 
 - [API References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc/Index.md)

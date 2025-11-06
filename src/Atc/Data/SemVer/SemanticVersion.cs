@@ -150,7 +150,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     public int Major { get; set; }
 
     /// <summary>
-    /// The minor part of the version.uu
+    /// The minor part of the version.
     /// </summary>
     /// <remarks>
     /// Increment the minor version part - when you add functionality in a backwards compatible manner.

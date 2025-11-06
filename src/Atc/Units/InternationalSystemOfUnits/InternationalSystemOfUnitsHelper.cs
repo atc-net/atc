@@ -2,28 +2,24 @@
 namespace Atc.Units.InternationalSystemOfUnits;
 
 /// <summary>
-/// Convert Util
+/// Provides utility methods for converting between International System of Units (SI) prefixes.
 /// </summary>
+/// <remarks>
+/// This helper class supports conversions between various SI unit prefixes such as kilo, mega, giga, milli, centi, etc.
+/// Note that not all prefix combinations are currently supported.
+/// </remarks>
 public static class InternationalSystemOfUnitsHelper
 {
     /// <summary>
-    /// Converts the specified prefix type from.
+    /// Converts a value from one SI prefix type to another with optional decimal precision.
     /// </summary>
-    /// <param name="prefixTypeFrom">
-    /// The prefix type from.
-    /// </param>
-    /// <param name="prefixTypeTo">
-    /// The prefix type to.
-    /// </param>
-    /// <param name="numberOfDecimals">
-    /// The number of decimals.
-    /// </param>
-    /// <param name="value">
-    /// The value.
-    /// </param>
-    /// <returns>
-    /// The <see cref="double"/>.
-    /// </returns>
+    /// <param name="prefixTypeFrom">The source SI prefix type.</param>
+    /// <param name="prefixTypeTo">The target SI prefix type.</param>
+    /// <param name="numberOfDecimals">The number of decimal places to round to (0 for no rounding).</param>
+    /// <param name="value">The value to convert.</param>
+    /// <returns>The converted value in the target prefix type.</returns>
+    /// <exception cref="NotSupportedException">Thrown when the specified conversion is not supported.</exception>
+    /// <exception cref="ArithmeticException">Thrown when the conversion results in NaN.</exception>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "OK. For now.")]
     public static double Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)

@@ -2,8 +2,17 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models;
 
+/// <summary>
+/// Extension methods for <see cref="OpenApiResponses"/>.
+/// </summary>
 public static class OpenApiResponsesExtensions
 {
+    /// <summary>
+    /// Extracts all HTTP status codes defined in the <see cref="OpenApiResponses"/> collection.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to process.</param>
+    /// <returns>A list of <see cref="HttpStatusCode"/> values parsed from the response keys.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
     public static List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
     {
         if (responses is null)
@@ -25,6 +34,12 @@ public static class OpenApiResponsesExtensions
         return result;
     }
 
+    /// <summary>
+    /// Retrieves the model name from the schema associated with the specified HTTP status code.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to search.</param>
+    /// <param name="httpStatusCode">The HTTP status code to retrieve the model name for.</param>
+    /// <returns>The model name of the response schema, or an empty string if not found.</returns>
     public static string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
         var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
@@ -33,6 +48,12 @@ public static class OpenApiResponsesExtensions
             : responseSchema.GetModelName();
     }
 
+    /// <summary>
+    /// Retrieves the data type from the schema associated with the specified HTTP status code.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to search.</param>
+    /// <param name="httpStatusCode">The HTTP status code to retrieve the data type for.</param>
+    /// <returns>The data type of the response schema, or an empty string if not found.</returns>
     public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
         var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
@@ -41,6 +62,12 @@ public static class OpenApiResponsesExtensions
             : responseSchema.GetDataType();
     }
 
+    /// <summary>
+    /// Determines whether any response in the collection has a schema with array type.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <returns>True if any response schema is an array type; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
     public static bool HasSchemaTypeArray(this OpenApiResponses responses)
     {
         if (responses is null)
@@ -64,6 +91,13 @@ public static class OpenApiResponsesExtensions
         return false;
     }
 
+    /// <summary>
+    /// Determines whether the responses contain any HTTP status codes that require the System.Net namespace.
+    /// These include error status codes like BadRequest, InternalServerError, etc.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <returns>True if any response uses a System.Net HTTP status code; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
     public static bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
     {
         if (responses is null)
@@ -90,6 +124,13 @@ public static class OpenApiResponsesExtensions
         return false;
     }
 
+    /// <summary>
+    /// Determines whether the responses contain any HTTP status codes that require the Microsoft.AspNetCore.Http namespace.
+    /// Currently checks for the Created (201) status code.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <returns>True if any response uses an ASP.NET Core HTTP status code; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
     public static bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
     {
         if (responses is null)
@@ -110,6 +151,13 @@ public static class OpenApiResponsesExtensions
         return false;
     }
 
+    /// <summary>
+    /// Retrieves the <see cref="OpenApiSchema"/> for the specified HTTP status code and content type.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to search.</param>
+    /// <param name="httpStatusCode">The HTTP status code to retrieve the schema for.</param>
+    /// <param name="contentType">The content type to retrieve the schema for. Defaults to application/json.</param>
+    /// <returns>The <see cref="OpenApiSchema"/> for the specified status code and content type, or null if not found.</returns>
     public static OpenApiSchema? GetSchemaForStatusCode(
         this OpenApiResponses responses,
         HttpStatusCode httpStatusCode,
@@ -134,12 +182,25 @@ public static class OpenApiResponsesExtensions
         return null;
     }
 
+    /// <summary>
+    /// Determines whether the schema for the specified HTTP status code is an array type.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
+    /// <returns>True if the response schema is an array type; otherwise, false.</returns>
     public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
         var schema = responses.GetSchemaForStatusCode(httpStatusCode);
         return schema is not null && schema.IsTypeArray();
     }
 
+    /// <summary>
+    /// Determines whether the schema for the specified HTTP status code is a pagination wrapper type.
+    /// A pagination type is identified by having two allOf schemas where one references "Pagination".
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
+    /// <returns>True if the response schema is a pagination type; otherwise, false.</returns>
     public static bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
         var schema = responses.GetSchemaForStatusCode(httpStatusCode);
@@ -149,11 +210,22 @@ public static class OpenApiResponsesExtensions
                 NameConstants.Pagination.Equals(schema.AllOf[1].Reference?.Id, StringComparison.OrdinalIgnoreCase));
     }
 
+    /// <summary>
+    /// Determines whether the schema for the specified HTTP status code references ProblemDetails.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
+    /// <returns>True if the response schema references ProblemDetails; otherwise, false.</returns>
     public static bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
     {
         return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, "ProblemDetails", StringComparison.Ordinal);
     }
 
+    /// <summary>
+    /// Determines whether the OK (200) response uses a binary format type schema.
+    /// </summary>
+    /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
+    /// <returns>True if the OK response schema uses binary format; otherwise, false.</returns>
     public static bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
     {
         foreach (var (key, value) in responses.OrderBy(x => x.Key, StringComparer.Ordinal))

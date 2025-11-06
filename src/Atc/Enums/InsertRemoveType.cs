@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: InsertRemoveType.
+/// Represents an operation to insert or remove an item.
 /// </summary>
 public enum InsertRemoveType
 {
     /// <summary>
-    /// Default None.
+    /// No operation specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None,
 
     /// <summary>
-    /// Insert.
+    /// Insert operation to add an item.
     /// </summary>
     [LocalizedDescription("InsertRemoveTypeInsert", typeof(EnumResources))]
     Insert,
 
     /// <summary>
-    /// Remove.
+    /// Remove operation to delete an item.
     /// </summary>
     [LocalizedDescription("InsertRemoveTypeRemove", typeof(EnumResources))]
     Remove,

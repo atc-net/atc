@@ -1,7 +1,16 @@
 namespace Atc.Helpers;
 
+/// <summary>
+/// Provides utility methods for working with <see cref="CultureInfo"/> objects.
+/// </summary>
 public static class CultureInfoHelper
 {
+    /// <summary>
+    /// Creates a list of <see cref="CultureInfo"/> objects from culture names or locale IDs (LCIDs).
+    /// </summary>
+    /// <param name="cultureNames">An enumerable collection of culture names (e.g., "en-US") or LCID strings (e.g., "1033").</param>
+    /// <returns>A list of <see cref="CultureInfo"/> objects corresponding to the provided names or LCIDs.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="cultureNames"/> is <see langword="null"/>.</exception>
     public static IList<CultureInfo> GetCulturesFromNames(
         IEnumerable<string> cultureNames)
     {

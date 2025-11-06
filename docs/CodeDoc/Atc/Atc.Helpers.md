@@ -656,6 +656,7 @@ CultureHelper.
 <br />
 
 ## CultureInfoHelper
+Provides utility methods for working with `System.Globalization.CultureInfo` objects.
 
 >```csharp
 >public static class CultureInfoHelper
@@ -667,10 +668,17 @@ CultureHelper.
 >```csharp
 >IList<CultureInfo> GetCulturesFromNames(IEnumerable<string> cultureNames)
 >```
+><b>Summary:</b> Creates a list of `System.Globalization.CultureInfo` objects from culture names or locale IDs (LCIDs).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureNames`&nbsp;&nbsp;-&nbsp;&nbsp;An enumerable collection of culture names (e.g., "en-US") or LCID strings (e.g., "1033").<br />
+>
+><b>Returns:</b> A list of `System.Globalization.CultureInfo` objects corresponding to the provided names or LCIDs.
 
 <br />
 
 ## DataAnnotationHelper
+Provides utility methods for validating objects using Data Annotations validation attributes.
 
 >```csharp
 >public static class DataAnnotationHelper
@@ -682,14 +690,38 @@ CultureHelper.
 >```csharp
 >bool TryValidate(T data, out IList`1 validationResults, bool validateAllProperties = True)
 >```
+><b>Summary:</b> Attempts to validate an object using Data Annotations and returns the validation results.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data`&nbsp;&nbsp;-&nbsp;&nbsp;The object to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validationResults`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the validation results if validation failed; otherwise, an empty list.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validateAllProperties`&nbsp;&nbsp;-&nbsp;&nbsp;If , validates all properties; otherwise, validates only required properties.<br />
+>
+><b>Returns:</b> <see langword="true" /> if validation succeeded; otherwise, <see langword="false" />.
 #### TryValidateOutToString
 >```csharp
 >bool TryValidateOutToString(T data, out string validationMessage, bool validateAllProperties = True)
 >```
+><b>Summary:</b> Attempts to validate an object and returns a formatted string of validation error messages.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data`&nbsp;&nbsp;-&nbsp;&nbsp;The object to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validationMessage`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains a formatted string of error messages if validation failed; otherwise, an empty string.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validateAllProperties`&nbsp;&nbsp;-&nbsp;&nbsp;If , validates all properties; otherwise, validates only required properties.<br />
+>
+><b>Returns:</b> <see langword="true" /> if validation succeeded; otherwise, <see langword="false" />.
 #### TryValidateOutToValidationException
 >```csharp
 >bool TryValidateOutToValidationException(T data, out ValidationException validationException, bool validateAllProperties = True)
 >```
+><b>Summary:</b> Attempts to validate an object and returns a `System.ComponentModel.DataAnnotations.ValidationException` containing error messages if validation fails.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data`&nbsp;&nbsp;-&nbsp;&nbsp;The object to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validationException`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains a  with error messages if validation failed; otherwise, an empty exception.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`validateAllProperties`&nbsp;&nbsp;-&nbsp;&nbsp;If , validates all properties; otherwise, validates only required properties.<br />
+>
+><b>Returns:</b> <see langword="true" /> if validation succeeded; otherwise, <see langword="false" />.
 
 <br />
 
@@ -929,6 +961,7 @@ DayOfWeekHelper.
 <br />
 
 ## DirectoryInfoHelper
+Provides utility methods for working with `System.IO.DirectoryInfo` objects.
 
 >```csharp
 >public static class DirectoryInfoHelper
@@ -940,10 +973,19 @@ DayOfWeekHelper.
 >```csharp
 >DirectoryInfo GetTempPath()
 >```
+><b>Summary:</b> Gets a `System.IO.DirectoryInfo` object representing the system's temporary folder.
+>
+><b>Returns:</b> A `System.IO.DirectoryInfo` for the temp path.
 #### GetTempPathWithSubFolder
 >```csharp
 >DirectoryInfo GetTempPathWithSubFolder(string folderName)
 >```
+><b>Summary:</b> Gets a `System.IO.DirectoryInfo` object representing a subfolder within the system's temporary folder.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`folderName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the subfolder within the temp directory.<br />
+>
+><b>Returns:</b> A `System.IO.DirectoryInfo` for the temp path with the specified subfolder.
 
 <br />
 
@@ -1563,6 +1605,8 @@ JSON file helper for reading/writing a model of type `T`.
 <br />
 
 ## InternetBrowserHelper
+Provides utility methods for detecting, controlling, and opening URLs in common internet browsers.
+><b>Remarks:</b> Supports Brave, Firefox, Ghost Browser, Chrome, Edge, Internet Explorer, Opera, and Safari.
 
 >```csharp
 >public static class InternetBrowserHelper
@@ -1574,110 +1618,155 @@ JSON file helper for reading/writing a model of type `T`.
 >```csharp
 >void CloseMainWindowOnAllRunningInternetBrowsers()
 >```
+><b>Summary:</b> Closes the main window on all running internet browser instances.
 #### CloseMainWindowOnRunningBraveInstances
 >```csharp
 >void CloseMainWindowOnRunningBraveInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Brave browser instances.
 #### CloseMainWindowOnRunningFirefoxInstances
 >```csharp
 >void CloseMainWindowOnRunningFirefoxInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Firefox browser instances.
 #### CloseMainWindowOnRunningGhostBrowserInstances
 >```csharp
 >void CloseMainWindowOnRunningGhostBrowserInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Ghost Browser instances.
 #### CloseMainWindowOnRunningGoogleChromeInstances
 >```csharp
 >void CloseMainWindowOnRunningGoogleChromeInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Google Chrome browser instances.
 #### CloseMainWindowOnRunningMicrosoftEdgeInstances
 >```csharp
 >void CloseMainWindowOnRunningMicrosoftEdgeInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Microsoft Edge browser instances.
 #### CloseMainWindowOnRunningMicrosoftInternetExplorerInstances
 >```csharp
 >void CloseMainWindowOnRunningMicrosoftInternetExplorerInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Microsoft Internet Explorer instances.
 #### CloseMainWindowOnRunningOperaInstances
 >```csharp
 >void CloseMainWindowOnRunningOperaInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Opera browser instances.
 #### CloseMainWindowOnRunningSafariInstances
 >```csharp
 >void CloseMainWindowOnRunningSafariInstances()
 >```
+><b>Summary:</b> Closes the main window on all running Safari browser instances.
 #### GetRunningInternetBrowsers
 >```csharp
 >IList<string> GetRunningInternetBrowsers()
 >```
+><b>Summary:</b> Gets a list of currently running internet browsers.
+>
+><b>Returns:</b> A list of browser names that are currently running.
 #### IsBraveRunning
 >```csharp
 >bool IsBraveRunning()
 >```
+><b>Summary:</b> Determines whether Brave browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Brave is running; otherwise, <see langword="false" />.
 #### IsFirefoxRunning
 >```csharp
 >bool IsFirefoxRunning()
 >```
+><b>Summary:</b> Determines whether Firefox browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Firefox is running; otherwise, <see langword="false" />.
 #### IsGhostBrowserRunning
 >```csharp
 >bool IsGhostBrowserRunning()
 >```
+><b>Summary:</b> Determines whether Ghost Browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Ghost Browser is running; otherwise, <see langword="false" />.
 #### IsGoogleChromeRunning
 >```csharp
 >bool IsGoogleChromeRunning()
 >```
+><b>Summary:</b> Determines whether Google Chrome browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Google Chrome is running; otherwise, <see langword="false" />.
 #### IsMicrosoftEdgeRunning
 >```csharp
 >bool IsMicrosoftEdgeRunning()
 >```
+><b>Summary:</b> Determines whether Microsoft Edge browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Microsoft Edge is running; otherwise, <see langword="false" />.
 #### IsMicrosoftInternetExplorerRunning
 >```csharp
 >bool IsMicrosoftInternetExplorerRunning()
 >```
+><b>Summary:</b> Determines whether Microsoft Internet Explorer is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Internet Explorer is running; otherwise, <see langword="false" />.
 #### IsOperaRunning
 >```csharp
 >bool IsOperaRunning()
 >```
+><b>Summary:</b> Determines whether Opera browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Opera is running; otherwise, <see langword="false" />.
 #### IsSafariRunning
 >```csharp
 >bool IsSafariRunning()
 >```
+><b>Summary:</b> Determines whether Safari browser is currently running.
+>
+><b>Returns:</b> <see langword="true" /> if Safari is running; otherwise, <see langword="false" />.
 #### KillAllRunningInternetBrowsers
 >```csharp
 >void KillAllRunningInternetBrowsers()
 >```
+><b>Summary:</b> Terminates all running internet browser processes.
 #### KillRunningBraveInstances
 >```csharp
 >void KillRunningBraveInstances()
 >```
+><b>Summary:</b> Terminates all running Brave browser processes.
 #### KillRunningFirefoxInstances
 >```csharp
 >void KillRunningFirefoxInstances()
 >```
+><b>Summary:</b> Terminates all running Firefox browser processes.
 #### KillRunningGhostBrowserInstances
 >```csharp
 >void KillRunningGhostBrowserInstances()
 >```
+><b>Summary:</b> Terminates all running Ghost Browser processes.
 #### KillRunningGoogleChromeInstances
 >```csharp
 >void KillRunningGoogleChromeInstances()
 >```
+><b>Summary:</b> Terminates all running Google Chrome browser processes.
 #### KillRunningMicrosoftEdgeInstances
 >```csharp
 >void KillRunningMicrosoftEdgeInstances()
 >```
+><b>Summary:</b> Terminates all running Microsoft Edge browser processes.
 #### KillRunningMicrosoftInternetExplorerInstances
 >```csharp
 >void KillRunningMicrosoftInternetExplorerInstances()
 >```
+><b>Summary:</b> Terminates all running Microsoft Internet Explorer processes.
 #### KillRunningOperaInstances
 >```csharp
 >void KillRunningOperaInstances()
 >```
+><b>Summary:</b> Terminates all running Opera browser processes.
 #### KillRunningSafariInstances
 >```csharp
 >void KillRunningSafariInstances()
 >```
+><b>Summary:</b> Terminates all running Safari browser processes.
 #### OpenUrl
 >```csharp
 >bool OpenUrl(string url)
@@ -1964,6 +2053,7 @@ The MathHelper module contains procedures used to preform math operations.
 <br />
 
 ## NetworkInformationHelper
+Provides utility methods for checking network connectivity and retrieving network information.
 
 >```csharp
 >public static class NetworkInformationHelper
@@ -1975,30 +2065,54 @@ The MathHelper module contains procedures used to preform math operations.
 >```csharp
 >IPAddress GetPublicIpAddress()
 >```
+><b>Summary:</b> Retrieves the public IP address of the current machine by querying an external service (api.ipify.org).
+>
+><b>Returns:</b> The public `System.Net.IPAddress` if retrieval succeeds; otherwise, <see langword="null" />.
 #### HasConnection
 >```csharp
 >bool HasConnection()
 >```
+><b>Summary:</b> Determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
+>
+><b>Returns:</b> <see langword="true" /> if a ping response is received; otherwise, <see langword="false" />.
 #### HasConnection
 >```csharp
 >bool HasConnection(IPAddress ipAddress)
 >```
+><b>Summary:</b> Determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
+>
+><b>Returns:</b> <see langword="true" /> if a ping response is received; otherwise, <see langword="false" />.
 #### HasHttpConnection
 >```csharp
 >bool HasHttpConnection()
 >```
+><b>Summary:</b> Determines whether there is HTTP connectivity by making a request to Google's website.
+>
+><b>Returns:</b> <see langword="true" /> if the HTTP request succeeds; otherwise, <see langword="false" />.
 #### HasHttpConnection
 >```csharp
 >bool HasHttpConnection(Uri uri)
 >```
+><b>Summary:</b> Determines whether there is HTTP connectivity by making a request to Google's website.
+>
+><b>Returns:</b> <see langword="true" /> if the HTTP request succeeds; otherwise, <see langword="false" />.
 #### HasTcpConnection
 >```csharp
 >bool HasTcpConnection(IPAddress ipAddress, int port)
 >```
+><b>Summary:</b> Determines whether a TCP connection can be established to the specified IP address and port.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ipAddress`&nbsp;&nbsp;-&nbsp;&nbsp;The IP address to connect to.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`port`&nbsp;&nbsp;-&nbsp;&nbsp;The port number to connect to.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the TCP connection succeeds; otherwise, <see langword="false" />.
 
 <br />
 
 ## NumberHelper
+Provides utility methods for parsing and validating numeric string values across different cultures.
+><b>Remarks:</b> This helper supports parsing to int, decimal, double, and float types with optional culture-specific formatting.
 
 >```csharp
 >public static class NumberHelper
@@ -2010,138 +2124,348 @@ The MathHelper module contains procedures used to preform math operations.
 >```csharp
 >bool IsDecimal(string value)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a decimal; otherwise, <see langword="false" />.
 #### IsDecimal
 >```csharp
 >bool IsDecimal(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a decimal; otherwise, <see langword="false" />.
 #### IsDecimal
 >```csharp
 >bool IsDecimal(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a decimal; otherwise, <see langword="false" />.
 #### IsDouble
 >```csharp
 >bool IsDouble(string value)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a double; otherwise, <see langword="false" />.
 #### IsDouble
 >```csharp
 >bool IsDouble(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a double; otherwise, <see langword="false" />.
 #### IsDouble
 >```csharp
 >bool IsDouble(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a double; otherwise, <see langword="false" />.
 #### IsFloat
 >```csharp
 >bool IsFloat(string value)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a float; otherwise, <see langword="false" />.
 #### IsFloat
 >```csharp
 >bool IsFloat(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a float; otherwise, <see langword="false" />.
 #### IsFloat
 >```csharp
 >bool IsFloat(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a float; otherwise, <see langword="false" />.
 #### IsInt
 >```csharp
 >bool IsInt(string value)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as an integer.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as an integer; otherwise, <see langword="false" />.
 #### IsNumber
 >```csharp
 >bool IsNumber(string value)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as any numeric type (int, decimal, double, or float).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a number; otherwise, <see langword="false" />.
 #### IsNumber
 >```csharp
 >bool IsNumber(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as any numeric type (int, decimal, double, or float).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a number; otherwise, <see langword="false" />.
 #### IsNumber
 >```csharp
 >bool IsNumber(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Determines whether the specified string can be parsed as any numeric type (int, decimal, double, or float).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value can be parsed as a number; otherwise, <see langword="false" />.
 #### ParseToDecimal
 >```csharp
 >decimal ParseToDecimal(string value)
 >```
+><b>Summary:</b> Parses the specified string to a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed decimal value, or -1 if parsing fails.
 #### ParseToDecimal
 >```csharp
 >decimal ParseToDecimal(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Parses the specified string to a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed decimal value, or -1 if parsing fails.
 #### ParseToDecimal
 >```csharp
 >decimal ParseToDecimal(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Parses the specified string to a decimal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed decimal value, or -1 if parsing fails.
 #### ParseToDouble
 >```csharp
 >double ParseToDouble(string value)
 >```
+><b>Summary:</b> Parses the specified string to a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed double value, or -1 if parsing fails.
 #### ParseToDouble
 >```csharp
 >double ParseToDouble(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Parses the specified string to a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed double value, or -1 if parsing fails.
 #### ParseToDouble
 >```csharp
 >double ParseToDouble(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Parses the specified string to a double.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed double value, or -1 if parsing fails.
 #### ParseToFloat
 >```csharp
 >float ParseToFloat(string value)
 >```
+><b>Summary:</b> Parses the specified string to a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed float value, or -1 if parsing fails.
 #### ParseToFloat
 >```csharp
 >float ParseToFloat(string value, bool useUiCulture)
 >```
+><b>Summary:</b> Parses the specified string to a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed float value, or -1 if parsing fails.
 #### ParseToFloat
 >```csharp
 >float ParseToFloat(string value, CultureInfo cultureInfo)
 >```
+><b>Summary:</b> Parses the specified string to a float.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed float value, or -1 if parsing fails.
 #### ParseToInt
 >```csharp
 >int ParseToInt(string value)
 >```
+><b>Summary:</b> Parses the specified string to an integer.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>
+><b>Returns:</b> The parsed integer value, or -1 if parsing fails.
 #### TryParseToDecimal
 >```csharp
 >bool TryParseToDecimal(string value, out decimal result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a decimal using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed decimal value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToDecimal
 >```csharp
 >bool TryParseToDecimal(string value, bool useUiCulture, out decimal result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a decimal using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed decimal value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToDecimal
 >```csharp
 >bool TryParseToDecimal(string value, CultureInfo cultureInfo, out decimal result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a decimal using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed decimal value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToDouble
 >```csharp
 >bool TryParseToDouble(string value, out double result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a double using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed double value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToDouble
 >```csharp
 >bool TryParseToDouble(string value, bool useUiCulture, out double result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a double using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed double value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToDouble
 >```csharp
 >bool TryParseToDouble(string value, CultureInfo cultureInfo, out double result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a double using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed double value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToFloat
 >```csharp
 >bool TryParseToFloat(string value, out float result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a float using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed float value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToFloat
 >```csharp
 >bool TryParseToFloat(string value, bool useUiCulture, out float result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a float using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed float value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToFloat
 >```csharp
 >bool TryParseToFloat(string value, CultureInfo cultureInfo, out float result)
 >```
+><b>Summary:</b> Tries to parse the specified string to a float using CurrentCulture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed float value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 #### TryParseToInt
 >```csharp
 >bool TryParseToInt(string value, out int result)
 >```
+><b>Summary:</b> Tries to parse the specified string to an integer using English culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;When this method returns, contains the parsed integer value if successful; otherwise, 0.<br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 
 <br />
 
 ## ProcessHelper
+Provides utility methods for executing external processes, managing process lifecycles, and handling process termination.
+><b>Remarks:</b> Supports executing processes with timeouts, capturing output, running as administrator, and killing processes by ID or name.
 
 >```csharp
 >public static class ProcessHelper
@@ -2153,34 +2477,107 @@ The MathHelper module contains procedures used to preform math operations.
 >```csharp
 >Task<ValueTuple<bool, string>> Execute(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
+><b>Summary:</b> Executes a process with the specified file and arguments, with an optional timeout.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns a tuple containing success status and output/error messages.
 #### Execute
 >```csharp
 >Task<ValueTuple<bool, string>> Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
+><b>Summary:</b> Executes a process with the specified file and arguments, with an optional timeout.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns a tuple containing success status and output/error messages.
 #### ExecuteAndIgnoreOutput
 >```csharp
 >Task<bool> ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
+><b>Summary:</b> Executes a process without capturing its output, returning only success status.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns <see langword="true" /> if the process executed successfully; otherwise, <see langword="false" />.
 #### ExecuteAndIgnoreOutput
 >```csharp
 >Task<bool> ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
+><b>Summary:</b> Executes a process without capturing its output, returning only success status.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns <see langword="true" /> if the process executed successfully; otherwise, <see langword="false" />.
 #### ExecutePrompt
 >```csharp
 >Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
 >```
+><b>Summary:</b> Executes a process that requires interactive input, sending the specified input lines to standard input.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`workingDirectory`&nbsp;&nbsp;-&nbsp;&nbsp;The working directory for the process.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inputLines`&nbsp;&nbsp;-&nbsp;&nbsp;The lines of input to send to the process's standard input stream.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 1 second.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns a tuple containing success status and output/error messages.
 #### KillById
 >```csharp
 >ValueTuple<bool, string> KillById(int processId, int timeoutInSec = 30)
 >```
+><b>Summary:</b> Terminates a process by its process ID.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`processId`&nbsp;&nbsp;-&nbsp;&nbsp;The process ID of the process to terminate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.<br />
+>
+><b>Returns:</b> A tuple containing success status and a descriptive message.
 #### KillByName
 >```csharp
 >ValueTuple<bool, string> KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
 >```
+><b>Summary:</b> Terminates processes by their process name.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`processName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the process(es) to terminate (without .exe extension).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`allowMultiKill`&nbsp;&nbsp;-&nbsp;&nbsp;If , allows terminating multiple processes with the same name; otherwise, fails if more than one match is found.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for each process to terminate. Default is 30 seconds.<br />
+>
+><b>Returns:</b> A tuple containing success status and a descriptive message.
 #### KillEntryCaller
 >```csharp
 >ValueTuple<bool, string> KillEntryCaller(int timeoutInSec = 30)
 >```
+><b>Summary:</b> Terminates the entry assembly's process (the current application).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.<br />
+>
+><b>Returns:</b> A tuple containing success status and a descriptive message.
 
 <br />
 

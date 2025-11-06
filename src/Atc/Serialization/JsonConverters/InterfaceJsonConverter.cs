@@ -1,7 +1,19 @@
 namespace Atc.Serialization.JsonConverters;
 
+/// <summary>
+/// JSON converter that enables deserialization of interface types by using the runtime type information provided during deserialization.
+/// </summary>
+/// <typeparam name="TInterface">The interface type to deserialize.</typeparam>
+/// <remarks>
+/// This converter allows JSON payloads to be deserialized into interface types by determining the concrete type at runtime.
+/// During serialization, it reflects over the runtime type's properties to write all public readable properties to JSON.
+/// </remarks>
 public sealed class InterfaceJsonConverter<TInterface> : JsonConverter<TInterface>
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InterfaceJsonConverter{TInterface}"/> class.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">Thrown when <typeparamref name="TInterface"/> is not an interface type.</exception>
     public InterfaceJsonConverter()
     {
         if (!typeof(TInterface).IsInterface)
@@ -10,6 +22,7 @@ public sealed class InterfaceJsonConverter<TInterface> : JsonConverter<TInterfac
         }
     }
 
+    /// <inheritdoc />
     public override TInterface Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
@@ -45,6 +58,7 @@ public sealed class InterfaceJsonConverter<TInterface> : JsonConverter<TInterfac
         return (TInterface)JsonSerializer.Deserialize(jsonObject.GetRawText(), typeToConvert, modifiedOptions)!;
     }
 
+    /// <inheritdoc />
     public override void Write(
         Utf8JsonWriter writer,
         TInterface value,

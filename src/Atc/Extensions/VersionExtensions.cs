@@ -2,6 +2,9 @@
 // ReSharper disable once CheckNamespace
 namespace System;
 
+/// <summary>
+/// Extensions for the <see cref="Version"/> class.
+/// </summary>
 public static class VersionExtensions
 {
     /// <summary>

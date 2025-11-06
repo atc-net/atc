@@ -26,11 +26,14 @@ public static class DirectoryInfoExtensions
     }
 
     /// <summary>
-    /// Gets the files as GetFiles, but skip files and folders with unauthorized access.
+    /// Gets all files matching the search pattern while gracefully skipping files and folders with unauthorized access.
     /// </summary>
-    /// <param name="directoryInfo">The directory information.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="directoryInfo">The directory to search in.</param>
+    /// <param name="searchPattern">The search pattern to match file names against (e.g., "*.txt"). Defaults to "*.*" for all files.</param>
+    /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.</param>
+    /// <returns>An array of <see cref="FileInfo"/> objects representing the files found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="IOException">Thrown when the directory does not exist.</exception>
     public static FileInfo[] GetFilesForAuthorizedAccess(
         this DirectoryInfo directoryInfo,
         string searchPattern = "*.*",
@@ -93,11 +96,14 @@ public static class DirectoryInfoExtensions
     }
 
     /// <summary>
-    /// Gets the files count.
+    /// Counts the total number of files in the directory matching the search pattern.
     /// </summary>
-    /// <param name="directoryInfo">The directory information.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="directoryInfo">The directory to search in.</param>
+    /// <param name="searchPattern">The search pattern to match file names against (e.g., "*.txt"). Defaults to "*.*" for all files.</param>
+    /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories. Defaults to <see cref="SearchOption.AllDirectories"/>.</param>
+    /// <returns>The total number of files found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="IOException">Thrown when the directory does not exist.</exception>
     public static long GetFilesCount(
         this DirectoryInfo directoryInfo,
         string searchPattern = "*.*",
@@ -124,11 +130,14 @@ public static class DirectoryInfoExtensions
     }
 
     /// <summary>
-    /// Gets the folders count.
+    /// Counts the total number of subdirectories in the directory matching the search pattern.
     /// </summary>
-    /// <param name="directoryInfo">The directory information.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="directoryInfo">The directory to search in.</param>
+    /// <param name="searchPattern">The search pattern to match directory names against (e.g., "temp*"). Defaults to "*" for all directories.</param>
+    /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories. Defaults to <see cref="SearchOption.AllDirectories"/>.</param>
+    /// <returns>The total number of subdirectories found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="IOException">Thrown when the directory does not exist.</exception>
     public static long GetFoldersCount(
         this DirectoryInfo directoryInfo,
         string searchPattern = "*",
@@ -155,11 +164,14 @@ public static class DirectoryInfoExtensions
     }
 
     /// <summary>
-    /// Gets the byte size.
+    /// Calculates the total size in bytes of all files in the directory matching the search pattern.
     /// </summary>
-    /// <param name="directoryInfo">The directory information.</param>
-    /// <param name="searchPattern">The search pattern.</param>
-    /// <param name="searchOption">The search option.</param>
+    /// <param name="directoryInfo">The directory to calculate size for.</param>
+    /// <param name="searchPattern">The search pattern to match file names against (e.g., "*.txt"). Defaults to "*.*" for all files.</param>
+    /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories. Defaults to <see cref="SearchOption.AllDirectories"/>.</param>
+    /// <returns>The total size in bytes of all matching files.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="IOException">Thrown when the directory does not exist.</exception>
     public static long GetByteSize(
         this DirectoryInfo directoryInfo,
         string searchPattern = "*.*",
@@ -256,10 +268,13 @@ public static class DirectoryInfoExtensions
     }
 
     /// <summary>
-    /// Get the file information.
+    /// Creates a <see cref="FileInfo"/> object for a file within the directory.
     /// </summary>
-    /// <param name="directoryInfo">The directory information.</param>
-    /// <param name="file">The file.</param>
+    /// <param name="directoryInfo">The directory containing the file.</param>
+    /// <param name="file">The file name (without path) to get information for.</param>
+    /// <returns>A <see cref="FileInfo"/> object representing the combined directory and file name.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="file"/> contains path separators (/ or \).</exception>
     public static FileInfo GetFileInfo(
         this DirectoryInfo directoryInfo,
         string file)

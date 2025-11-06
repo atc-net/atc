@@ -2,54 +2,54 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: DateTimeDiffCompareType.
+/// Defines the unit of time used for comparing or calculating differences between DateTime values.
 /// </summary>
 public enum DateTimeDiffCompareType
 {
     /// <summary>
-    /// Ticks.
+    /// Compare using ticks (100 nanosecond intervals).
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeTicks", typeof(EnumResources))]
     Ticks,
 
     /// <summary>
-    /// Milliseconds.
+    /// Compare using milliseconds.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeMilliseconds", typeof(EnumResources))]
     Milliseconds,
 
     /// <summary>
-    /// Seconds.
+    /// Compare using seconds.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeSeconds", typeof(EnumResources))]
     Seconds,
 
     /// <summary>
-    /// Minutes.
+    /// Compare using minutes.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeMinutes", typeof(EnumResources))]
     Minutes,
 
     /// <summary>
-    /// Hours.
+    /// Compare using hours.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeHours", typeof(EnumResources))]
     Hours,
 
     /// <summary>
-    /// Days.
+    /// Compare using days.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeDays", typeof(EnumResources))]
     Days,
 
     /// <summary>
-    /// Year.
+    /// Compare using years.
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeYear", typeof(EnumResources))]
     Year,
 
     /// <summary>
-    /// Quartal.
+    /// Compare using quarters (three-month periods).
     /// </summary>
     [LocalizedDescription("DateTimeDiffCompareTypeQuartal", typeof(EnumResources))]
     Quartal,

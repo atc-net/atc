@@ -1,6 +1,9 @@
 // ReSharper disable CommentTypo
 namespace Atc.DotNet;
 
+/// <summary>
+/// Provides helper methods for working with the .NET SDK and runtime.
+/// </summary>
 public static class DotnetHelper
 {
     /// <summary>

@@ -184,6 +184,12 @@ public static class TestResultHelper
         AssertOnTestResults(testResults);
     }
 
+    /// <summary>
+    /// Asserts on test results from missing translations and invalid resource keys with placeholder suffix issues.
+    /// </summary>
+    /// <param name="assemblyName">Name of the assembly.</param>
+    /// <param name="missingTranslations">Dictionary of resource managers with missing translations by culture.</param>
+    /// <param name="invalidKeysSuffixWithPlaceholders">Dictionary of resource managers with invalid key suffixes for placeholders.</param>
     public static void AssertOnTestResultsFromMissingTranslationsAndInvalidKeysSuffixWithPlaceholders(
         string assemblyName,
         IDictionary<string, Dictionary<string, List<string>>>? missingTranslations,

@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: SortDirectionType.
+/// Defines the direction for sorting data (ascending or descending).
 /// </summary>
 public enum SortDirectionType
 {
     /// <summary>
-    /// Default None.
+    /// No sort direction specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Ascending.
+    /// Sort in ascending order (smallest to largest, A to Z).
     /// </summary>
     [LocalizedDescription("SortDirectionTypeAscending", typeof(EnumResources))]
     Ascending,
 
     /// <summary>
-    /// Descending.
+    /// Sort in descending order (largest to smallest, Z to A).
     /// </summary>
     [LocalizedDescription("SortDirectionTypeDescending", typeof(EnumResources))]
     Descending,

@@ -7,10 +7,19 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.OpenApi.Models;
 
+/// <summary>
+/// Extension methods for <see cref="OpenApiOperation"/>.
+/// </summary>
 public static class OpenApiOperationExtensions
 {
     private const string RegexPatternUppercase = @"(?<!^)(?=[A-Z])";
 
+    /// <summary>
+    /// Retrieves the operation name from the <see cref="OpenApiOperation"/> in PascalCase format.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the name from.</param>
+    /// <returns>The operation name in PascalCase format, or an empty string if OperationId is null.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static string GetOperationName(this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
@@ -29,6 +38,12 @@ public static class OpenApiOperationExtensions
             .EnsureFirstCharacterToUpper();
     }
 
+    /// <summary>
+    /// Retrieves the model schema from the operation's response for successful status codes (OK or Created).
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the schema from.</param>
+    /// <returns>The <see cref="OpenApiSchema"/> from the response, or null if not found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static OpenApiSchema? GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
@@ -53,6 +68,12 @@ public static class OpenApiOperationExtensions
         return null;
     }
 
+    /// <summary>
+    /// Retrieves the model schema from the operation's request body.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the schema from.</param>
+    /// <returns>The <see cref="OpenApiSchema"/> from the request body, or null if not found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static OpenApiSchema? GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
@@ -63,6 +84,12 @@ public static class OpenApiOperationExtensions
         return openApiOperation.RequestBody?.Content?.GetSchema();
     }
 
+    /// <summary>
+    /// Determines whether the operation has any parameters or a request body defined.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
+    /// <returns>True if the operation has parameters or a request body; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
@@ -73,6 +100,12 @@ public static class OpenApiOperationExtensions
         return openApiOperation.Parameters.Any() || openApiOperation.RequestBody is not null;
     }
 
+    /// <summary>
+    /// Determines whether the operation's request body contains any binary format type data.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
+    /// <returns>True if the request body contains binary format data; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
@@ -84,6 +117,13 @@ public static class OpenApiOperationExtensions
         return schema is not null && schema.HasAnythingAsFormatTypeBinary();
     }
 
+    /// <summary>
+    /// Determines whether the operation references the specified schema in its request body or responses.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
+    /// <param name="schemaKey">The schema reference ID to search for.</param>
+    /// <returns>True if the operation references the schema; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> or <paramref name="schemaKey"/> is null.</exception>
     public static bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
     {
         if (openApiOperation is null)
@@ -111,6 +151,14 @@ public static class OpenApiOperationExtensions
         return false;
     }
 
+    /// <summary>
+    /// Determines whether the operation name is pluralized based on naming conventions.
+    /// This checks if the operation name ends with 's' or contains plural forms, excluding common exceptions like "Ids", "Identifiers", and "Status".
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
+    /// <param name="operationType">The HTTP operation type (GET, POST, etc.) used to strip the verb prefix.</param>
+    /// <returns>True if the operation name is pluralized; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
     {
         if (openApiOperation is null)
@@ -164,6 +212,14 @@ public static class OpenApiOperationExtensions
         return false;
     }
 
+    /// <summary>
+    /// Determines whether the operation ID is pluralized based on naming conventions.
+    /// This is an alias for <see cref="IsOperationNamePluralized"/>.
+    /// </summary>
+    /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
+    /// <param name="operationType">The HTTP operation type (GET, POST, etc.) used to strip the verb prefix.</param>
+    /// <returns>True if the operation ID is pluralized; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
     public static bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
     {
         if (openApiOperation is null)
@@ -174,6 +230,12 @@ public static class OpenApiOperationExtensions
         return IsOperationNamePluralized(openApiOperation, operationType);
     }
 
+    /// <summary>
+    /// Determines whether any operation in the collection has a response with array data type, requiring System.Collections.Generic namespace.
+    /// </summary>
+    /// <param name="apiOperations">The collection of <see cref="OpenApiOperation"/> to check.</param>
+    /// <returns>True if any operation response contains array data types; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="apiOperations"/> is null.</exception>
     public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
     {
         if (apiOperations is null)

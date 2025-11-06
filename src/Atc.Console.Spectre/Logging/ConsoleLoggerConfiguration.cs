@@ -1,8 +1,14 @@
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 namespace Atc.Console.Spectre.Logging;
 
+/// <summary>
+/// Configuration options for the console logger used in Spectre.Console CLI applications.
+/// </summary>
 public class ConsoleLoggerConfiguration
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConsoleLoggerConfiguration"/> class with default settings.
+    /// </summary>
     public ConsoleLoggerConfiguration()
     {
         ConsoleConfiguration = null;
@@ -18,9 +24,15 @@ public class ConsoleLoggerConfiguration
         TimestampFormat = "yyyy-MM-dd HH:mm:ss";
     }
 
+    /// <summary>
+    /// Gets or sets an optional configuration action to customize the <see cref="IAnsiConsole"/> instance.
+    /// </summary>
     [JsonIgnore]
     public Action<IAnsiConsole>? ConsoleConfiguration { get; set; }
 
+    /// <summary>
+    /// Gets or sets the <see cref="AnsiConsoleSettings"/> for console configuration.
+    /// </summary>
     [JsonIgnore]
     public AnsiConsoleSettings? ConsoleSettings { get; set; }
 
@@ -86,6 +98,7 @@ public class ConsoleLoggerConfiguration
     /// </remarks>
     public string? TimestampFormat { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
         => $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseTimestamp)}: {UseTimestamp}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}, {nameof(UseTimestampUtc)}: {UseTimestampUtc}, {nameof(TimestampFormat)}: {TimestampFormat}";
 }

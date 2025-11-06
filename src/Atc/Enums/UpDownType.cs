@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: UpDownType.
+/// Represents a vertical direction or position (up or down).
 /// </summary>
 public enum UpDownType
 {
     /// <summary>
-    /// Default None.
+    /// No direction specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Up.
+    /// Upward direction or position.
     /// </summary>
     [LocalizedDescription("UpDownTypeUp", typeof(EnumResources))]
     Up = 1,
 
     /// <summary>
-    /// Down.
+    /// Downward direction or position.
     /// </summary>
     [LocalizedDescription("UpDownTypeDown", typeof(EnumResources))]
     Down = 2,

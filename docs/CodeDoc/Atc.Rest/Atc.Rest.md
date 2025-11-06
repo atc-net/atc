@@ -17,6 +17,8 @@
 <br />
 
 ## IRequestContext
+Provides access to HTTP request context information including identity and correlation identifiers.
+><b>Remarks:</b> This interface is typically used in service layers to access request-scoped information without directly depending on `Microsoft.AspNetCore.Http.HttpContext`.
 
 >```csharp
 >public interface IRequestContext
@@ -28,28 +30,41 @@
 >```csharp
 >CallingIdentity
 >```
-><b>Summary:</b> Gets the identity of the caller.
+><b>Summary:</b> Gets the identity of the current caller from the authentication principal.
 #### CorrelationId
 >```csharp
 >CorrelationId
 >```
+><b>Summary:</b> Gets the correlation ID that tracks a request across multiple services.
+>
+><b>Remarks:</b> The correlation ID is propagated across service boundaries to enable distributed tracing and tracking of a logical operation that spans multiple microservices.
 #### OnBehalfOfIdentity
 >```csharp
 >OnBehalfOfIdentity
 >```
-><b>Summary:</b> Gets the identity of original caller when running as core service, otherwise its the same Identity.
+><b>Summary:</b> Gets the identity of the original caller when the service is acting on behalf of another user or service.
+>
+><b>Remarks:</b> In service-to-service scenarios, this represents the end-user identity when a core service makes the request. If not acting on behalf of another identity, this returns the same value as `Atc.Rest.IRequestContext.CallingIdentity`.
 #### RequestCancellationToken
 >```csharp
 >RequestCancellationToken
 >```
+><b>Summary:</b> Gets the cancellation token that is triggered when the HTTP request is aborted.
+>
+><b>Remarks:</b> This token should be passed to asynchronous operations to allow graceful cancellation when the client disconnects or the request times out.
 #### RequestId
 >```csharp
 >RequestId
 >```
+><b>Summary:</b> Gets the unique request ID for the current HTTP request.
+>
+><b>Remarks:</b> This ID is used for tracking individual requests and correlating log entries.
 
 <br />
 
 ## RequestContext
+Default implementation of `Atc.Rest.IRequestContext` that provides access to HTTP request context information.
+><b>Remarks:</b> This class uses `Microsoft.AspNetCore.Http.IHttpContextAccessor` to access the current HTTP context and extract identity, correlation, and request identifiers. It is registered as a transient service when `Atc.Rest.Options.RestApiOptions.UseHttpContextAccessor` is enabled.
 
 >```csharp
 >public class RequestContext : IRequestContext

@@ -1,7 +1,8 @@
 namespace Atc.Data.Models;
 
 /// <summary>
-/// LogKeyValueItem.
+/// Represents a log entry with a key-value pair, log category, and optional description.
+/// Extends <see cref="KeyValueItem"/> to add logging-specific functionality.
 /// </summary>
 [Serializable]
 public class LogKeyValueItem : KeyValueItem

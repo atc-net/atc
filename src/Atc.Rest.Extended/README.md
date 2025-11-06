@@ -2,19 +2,60 @@
 
 **Target Framework:** `net9.0`
 
-This library extends the `Atc.Rest` library with the following features
+Advanced REST API features extending Atc.Rest with API versioning, FluentValidation, Swagger/OpenAPI documentation, and JWT authentication. This library builds on the foundation of Atc.Rest to provide enterprise-ready API capabilities.
 
-- Versioning
-- Fluent validation (on top on data-annotations validation)
-- OpenApi specification (Swagger)
+## Why Use This Library?
 
-### Requirements
+Atc.Rest.Extended adds production-ready features on top of Atc.Rest, providing everything needed for modern, versioned, and well-documented APIs. Instead of manually configuring multiple libraries, Atc.Rest.Extended provides:
 
-* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- **API Versioning**: Built-in support for versioning your REST APIs
+- **FluentValidation**: Advanced validation beyond data annotations
+- **Swagger/OpenAPI**: Automatic API documentation with SwaggerUI
+- **JWT Authentication**: Integrated JWT bearer token authentication
+- **Extended Configuration**: All Atc.Rest features plus advanced options
+
+Perfect for:
+- Enterprise APIs requiring versioning
+- APIs needing comprehensive request validation
+- Public APIs requiring OpenAPI/Swagger documentation
+- Microservices with JWT authentication
+- Teams adopting API-first development
+
+## Installation
+
+```bash
+dotnet add package Atc.Rest.Extended
+```
+
+## Target Framework
+
+- .NET 9.0
+
+## Key Features
+
+- API versioning with Asp.Versioning
+- FluentValidation for complex validation rules
+- Swagger/OpenAPI specification generation
+- SwaggerUI for interactive API documentation
+- JWT Bearer authentication support
+- All features from Atc.Rest
+
+## Requirements
+
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
+## Key Dependencies
+
+- Atc.Rest (base library)
+- Asp.Versioning.Mvc.ApiExplorer
+- FluentValidation.AspNetCore
+- Swashbuckle.AspNetCore
+- Microsoft.AspNetCore.Authentication.JwtBearer
+- Microsoft.ApplicationInsights.AspNetCore
 
 ## Code documentation
 
-[References](dhttps://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest.Extended/Index.md)
+[References](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest.Extended/Index.md)
 
 [References extended](https://github.com/atc-net/atc/blob/main/docs/CodeDoc/Atc.Rest.Extended/IndexExtended.md)
 
@@ -114,3 +155,6 @@ public class Startup
     }
 }
 ```
+## Contributing
+
+Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

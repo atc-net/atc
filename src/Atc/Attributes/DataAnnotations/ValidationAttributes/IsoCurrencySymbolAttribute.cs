@@ -3,11 +3,19 @@
 // ReSharper disable once CheckNamespace
 namespace System.ComponentModel.DataAnnotations;
 
+/// <summary>
+/// Validates that a property, field, or parameter contains a valid ISO 4217 currency code.
+/// The value must be a three-character uppercase string (e.g., USD, EUR, GBP).
+/// Optionally validates against a specific set of allowed currency codes.
+/// </summary>
 [ExcludeFromCodeCoverage]
 [SuppressMessage("Performance", "CA1813:Avoid unsealed attributes", Justification = "OK.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class IsoCurrencySymbolAttribute : ValidationAttribute
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IsoCurrencySymbolAttribute"/> class with optional validation.
+    /// </summary>
     public IsoCurrencySymbolAttribute()
         : base("The {0} field requires a ISO-Currency-Symbol value.")
     {
@@ -15,8 +23,15 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
         IsoCurrencySymbols = Array.Empty<string>();
     }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the currency code value is required.
+    /// </summary>
     public bool Required { get; set; }
 
+    /// <summary>
+    /// Gets or sets an optional array of specific ISO currency codes that are allowed.
+    /// If empty, all valid ISO currency codes from available cultures are accepted.
+    /// </summary>
     public string[] IsoCurrencySymbols { get; set; }
 
     public override bool IsValid(

@@ -66,7 +66,7 @@ AssemblyInformation.
 <br />
 
 ## Culture
-Culture.
+Represents culture information including country, language, currency, and formatting details.
 
 >```csharp
 >public class Culture
@@ -159,7 +159,7 @@ Culture.
 <br />
 
 ## HttpClientRequestResult&lt;TData&gt;
-HttpClientRequestResult.
+Represents the result of an HTTP client request, including status, data, and error information.
 
 >```csharp
 >public class HttpClientRequestResult&lt;TData&gt;
@@ -171,40 +171,51 @@ HttpClientRequestResult.
 >```csharp
 >CommunicationSucceeded
 >```
+><b>Summary:</b> Gets or sets a value indicating whether the communication succeeded.
 #### Data
 >```csharp
 >Data
 >```
+><b>Summary:</b> Gets or sets the response data.
 #### Exception
 >```csharp
 >Exception
 >```
+><b>Summary:</b> Gets or sets the exception that occurred during the request.
 #### HasData
 >```csharp
 >HasData
 >```
+><b>Summary:</b> Gets a value indicating whether the result contains data.
 #### HasException
 >```csharp
 >HasException
 >```
+><b>Summary:</b> Gets a value indicating whether the result contains an exception.
 #### HasMessage
 >```csharp
 >HasMessage
 >```
+><b>Summary:</b> Gets a value indicating whether the result contains a message.
 #### Message
 >```csharp
 >Message
 >```
+><b>Summary:</b> Gets or sets the result message.
 #### StatusCode
 >```csharp
 >StatusCode
 >```
+><b>Summary:</b> Gets or sets the HTTP status code.
 ### Methods
 
 #### GetErrorMessageOrMessage
 >```csharp
 >string GetErrorMessageOrMessage()
 >```
+><b>Summary:</b> Gets the error message from the exception, or the result message if no exception exists.
+>
+><b>Returns:</b> The error message or result message, or an empty string if neither exists.
 #### ToString
 >```csharp
 >string ToString()
@@ -213,7 +224,7 @@ HttpClientRequestResult.
 <br />
 
 ## IdValueItem
-IdValueItem.
+Represents a key-value pair with a GUID identifier and a string value.
 
 >```csharp
 >public class IdValueItem
@@ -225,7 +236,7 @@ IdValueItem.
 >```csharp
 >Id
 >```
-><b>Summary:</b> Gets or sets the key.
+><b>Summary:</b> Gets or sets the unique identifier.
 #### Value
 >```csharp
 >Value
@@ -241,7 +252,7 @@ IdValueItem.
 <br />
 
 ## KeyValueItem
-KeyValueItem.
+Represents a key-value pair with string key and value.
 
 >```csharp
 >public class KeyValueItem
@@ -269,7 +280,7 @@ KeyValueItem.
 <br />
 
 ## LogItem
-LogKeyValueItem.
+Represents a log entry with timestamp, severity, and message.
 
 >```csharp
 >public class LogItem
@@ -302,7 +313,7 @@ LogKeyValueItem.
 <br />
 
 ## LogKeyValueItem
-LogKeyValueItem.
+Represents a log entry with a key-value pair, log category, and optional description. Extends `Atc.Data.Models.KeyValueItem` to add logging-specific functionality.
 
 >```csharp
 >public class LogKeyValueItem : KeyValueItem

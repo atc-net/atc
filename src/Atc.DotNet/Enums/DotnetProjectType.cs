@@ -1,6 +1,10 @@
 // ReSharper disable once CheckNamespace
 namespace Atc.DotNet;
 
+/// <summary>
+/// Defines the types of .NET projects.
+/// This enum uses flags to allow combining multiple project types.
+/// </summary>
 [Flags]
 [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:Code should not contain multiple whitespace in a row", Justification = "OK.")]
 public enum DotnetProjectType

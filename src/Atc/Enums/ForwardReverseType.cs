@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: ForwardReverseType.
+/// Represents a direction of movement or traversal (forward or reverse/backward).
 /// </summary>
 public enum ForwardReverseType
 {
     /// <summary>
-    /// Default None.
+    /// No direction specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Forward.
+    /// Forward direction or normal sequence.
     /// </summary>
     [LocalizedDescription("ForwardReverseTypeForward", typeof(EnumResources))]
     Forward = 1,
 
     /// <summary>
-    /// Reverse.
+    /// Reverse direction or backward sequence.
     /// </summary>
     [LocalizedDescription("ForwardReverseTypeReverse", typeof(EnumResources))]
     Reverse = 2,

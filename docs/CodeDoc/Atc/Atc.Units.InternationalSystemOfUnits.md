@@ -32,7 +32,8 @@ Enumeration: BaseUnitType
 <br />
 
 ## InternationalSystemOfUnitsHelper
-Convert Util
+Provides utility methods for converting between International System of Units (SI) prefixes.
+><b>Remarks:</b> This helper class supports conversions between various SI unit prefixes such as kilo, mega, giga, milli, centi, etc. Note that not all prefix combinations are currently supported.
 
 >```csharp
 >public static class InternationalSystemOfUnitsHelper
@@ -44,23 +45,15 @@ Convert Util
 >```csharp
 >double Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
 >```
-><b>Summary:</b> Converts the specified prefix type from.
+><b>Summary:</b> Converts a value from one SI prefix type to another with optional decimal precision.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeFrom`&nbsp;&nbsp;-&nbsp;&nbsp;
-            The prefix type from.
-            <br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeTo`&nbsp;&nbsp;-&nbsp;&nbsp;
-            The prefix type to.
-            <br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;
-            The number of decimals.
-            <br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;
-            The value.
-            <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeFrom`&nbsp;&nbsp;-&nbsp;&nbsp;The source SI prefix type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeTo`&nbsp;&nbsp;-&nbsp;&nbsp;The target SI prefix type.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to round to (0 for no rounding).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to convert.<br />
 >
-><b>Returns:</b> The `System.Double`.
+><b>Returns:</b> The converted value in the target prefix type.
 
 <br />
 

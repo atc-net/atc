@@ -8,6 +8,7 @@
 <br />
 
 ## HealthCheck
+Represents the result of a single health check execution.
 
 >```csharp
 >public class HealthCheck : IEquatable<HealthCheck>
@@ -19,22 +20,27 @@
 >```csharp
 >Data
 >```
+><b>Summary:</b> Optional key-value data associated with the health check result.
 #### Description
 >```csharp
 >Description
 >```
+><b>Summary:</b> An optional description providing additional context about the health check result.
 #### Duration
 >```csharp
 >Duration
 >```
+><b>Summary:</b> The time taken to execute the health check.
 #### Name
 >```csharp
 >Name
 >```
+><b>Summary:</b> The name of the health check.
 #### Status
 >```csharp
 >Status
 >```
+><b>Summary:</b> The status of the health check (Healthy, Degraded, or Unhealthy).
 ### Methods
 
 #### <Clone>$
@@ -65,6 +71,7 @@
 <br />
 
 ## HealthCheckResponse
+Represents the aggregate health check response for an application.
 
 >```csharp
 >public class HealthCheckResponse : IEquatable<HealthCheckResponse>
@@ -76,18 +83,22 @@
 >```csharp
 >ApplicationName
 >```
+><b>Summary:</b> The name of the application being health checked.
 #### HealthChecks
 >```csharp
 >HealthChecks
 >```
+><b>Summary:</b> The collection of individual health check results.
 #### Status
 >```csharp
 >Status
 >```
+><b>Summary:</b> The overall health status of the application, derived from all health checks.
 #### TotalDuration
 >```csharp
 >TotalDuration
 >```
+><b>Summary:</b> The total time taken to execute all health checks.
 ### Methods
 
 #### <Clone>$
@@ -118,6 +129,7 @@
 <br />
 
 ## ResourceHealthCheck
+Represents a health check result for a specific resource or dependency.
 
 >```csharp
 >public class ResourceHealthCheck : IEquatable<ResourceHealthCheck>
@@ -129,18 +141,22 @@
 >```csharp
 >Description
 >```
+><b>Summary:</b> A description providing details about the resource health check result.
 #### Duration
 >```csharp
 >Duration
 >```
+><b>Summary:</b> The time taken to execute the resource health check.
 #### Name
 >```csharp
 >Name
 >```
+><b>Summary:</b> The name of the resource being checked.
 #### Status
 >```csharp
 >Status
 >```
+><b>Summary:</b> The health status of the resource (Healthy, Degraded, or Unhealthy).
 ### Methods
 
 #### <Clone>$

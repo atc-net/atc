@@ -2,24 +2,24 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: LeftRightType.
+/// Represents a horizontal direction or position (left or right).
 /// </summary>
 public enum LeftRightType
 {
     /// <summary>
-    /// Default None
+    /// No direction specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Left
+    /// Left direction or position.
     /// </summary>
     [LocalizedDescription("LeftRightTypeLeft", typeof(EnumResources))]
     Left = 1,
 
     /// <summary>
-    /// Right
+    /// Right direction or position.
     /// </summary>
     [LocalizedDescription("LeftRightTypeRight", typeof(EnumResources))]
     Right = 2,

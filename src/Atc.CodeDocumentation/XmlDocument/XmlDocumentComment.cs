@@ -1,89 +1,57 @@
 namespace Atc.CodeDocumentation.XmlDocument;
 
 /// <summary>
-/// XmlDocumentComment.
+/// Represents a parsed XML documentation comment from an assembly's XML documentation file.
 /// </summary>
 public class XmlDocumentComment
 {
     /// <summary>
-    /// Gets or sets the type of the member.
+    /// Gets or sets the type of the member (Field, Property, Type, Event, or Method).
     /// </summary>
-    /// <value>
-    /// The type of the member.
-    /// </value>
     public MemberType MemberType { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the class.
+    /// Gets or sets the fully qualified name of the class containing this member.
     /// </summary>
-    /// <value>
-    /// The name of the class.
-    /// </value>
     public string? ClassName { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the member.
+    /// Gets or sets the name of the documented member.
     /// </summary>
-    /// <value>
-    /// The name of the member.
-    /// </value>
     public string? MemberName { get; set; }
 
     /// <summary>
-    /// Gets or sets the summary.
+    /// Gets or sets the summary documentation text.
     /// </summary>
-    /// <value>
-    /// The summary.
-    /// </value>
     public string? Summary { get; set; }
 
     /// <summary>
-    /// Gets or sets the remarks.
+    /// Gets or sets the remarks documentation text.
     /// </summary>
-    /// <value>
-    /// The remarks.
-    /// </value>
     public string? Remarks { get; set; }
 
     /// <summary>
-    /// Gets or sets the code.
+    /// Gets or sets the code usage documentation text.
     /// </summary>
-    /// <value>
-    /// The code.
-    /// </value>
     public string? Code { get; set; }
 
     /// <summary>
-    /// Gets or sets the example.
+    /// Gets or sets the example documentation text.
     /// </summary>
-    /// <value>
-    /// The example.
-    /// </value>
     public string? Example { get; set; }
 
     /// <summary>
-    /// Gets or sets the parameters.
+    /// Gets or sets the parameter documentation, mapped by parameter name.
     /// </summary>
-    /// <value>
-    /// The parameters.
-    /// </value>
     [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
     public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>
-    /// Gets or sets the returns.
+    /// Gets or sets the return value documentation text.
     /// </summary>
-    /// <value>
-    /// The returns.
-    /// </value>
     public string? Returns { get; set; }
 
-    /// <summary>
-    /// Converts to string.
-    /// </summary>
-    /// <returns>
-    /// A string that represents this instance.
-    /// </returns>
+    /// <inheritdoc/>
     public override string ToString()
     {
         return MemberType + ":" + ClassName + "." + MemberName;

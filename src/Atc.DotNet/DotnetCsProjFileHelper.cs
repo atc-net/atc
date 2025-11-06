@@ -6,8 +6,18 @@
 // ReSharper disable SuggestBaseTypeForParameter
 namespace Atc.DotNet;
 
+/// <summary>
+/// Provides helper methods for discovering and analyzing .NET C# project files (.csproj).
+/// </summary>
 public static class DotnetCsProjFileHelper
 {
+    /// <summary>
+    /// Finds all .csproj files within the specified directory.
+    /// </summary>
+    /// <param name="directoryInfo">The directory to search in.</param>
+    /// <param name="searchOption">Specifies whether to search the current directory only or all subdirectories. Default is <see cref="SearchOption.AllDirectories"/>.</param>
+    /// <returns>A collection of <see cref="FileInfo"/> objects representing found .csproj files.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is null.</exception>
     public static Collection<FileInfo> FindAllInPath(
         DirectoryInfo directoryInfo,
         SearchOption searchOption = SearchOption.AllDirectories)
@@ -31,6 +41,13 @@ public static class DotnetCsProjFileHelper
         return result;
     }
 
+    /// <summary>
+    /// Finds all .csproj files within the specified directory and predicts their project types.
+    /// </summary>
+    /// <param name="directoryInfo">The directory to search in.</param>
+    /// <param name="searchOption">Specifies whether to search the current directory only or all subdirectories. Default is <see cref="SearchOption.AllDirectories"/>.</param>
+    /// <returns>A collection of tuples containing the .csproj file and its predicted <see cref="DotnetProjectType"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is null.</exception>
     public static Collection<(FileInfo CsProjFile, DotnetProjectType ProjectType)> FindAllInPathAndPredictProjectTypes(
         DirectoryInfo directoryInfo,
         SearchOption searchOption = SearchOption.AllDirectories)
@@ -55,6 +72,15 @@ public static class DotnetCsProjFileHelper
         return result;
     }
 
+    /// <summary>
+    /// Predicts the project type of a .csproj file by analyzing its content and related files.
+    /// </summary>
+    /// <param name="fileInfo">The .csproj file to analyze.</param>
+    /// <returns>The predicted <see cref="DotnetProjectType"/>.</returns>
+    /// <remarks>
+    /// This method enhances <see cref="GetProjectType(FileInfo)"/> by examining additional context,
+    /// such as checking for Blazor Server patterns in Program.cs files.
+    /// </remarks>
     public static DotnetProjectType PredictProjectType(
         FileInfo fileInfo)
     {
@@ -80,6 +106,13 @@ public static class DotnetCsProjFileHelper
         return projectType;
     }
 
+    /// <summary>
+    /// Determines the project type by analyzing the .csproj file content.
+    /// </summary>
+    /// <param name="fileInfo">The .csproj file to analyze.</param>
+    /// <returns>The <see cref="DotnetProjectType"/> determined from the project file.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is null.</exception>
+    /// <exception cref="FileNotFoundException">Thrown when the file does not exist or is not a .csproj file.</exception>
     public static DotnetProjectType GetProjectType(
         FileInfo fileInfo)
     {
@@ -103,6 +136,12 @@ public static class DotnetCsProjFileHelper
         return GetProjectType(fileContent);
     }
 
+    /// <summary>
+    /// Determines the project type by analyzing .csproj file content as a string.
+    /// </summary>
+    /// <param name="fileContent">The XML content of a .csproj file.</param>
+    /// <returns>The <see cref="DotnetProjectType"/> determined from the file content.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileContent"/> is null or empty.</exception>
     [SuppressMessage("Performance", "MA0031:Optimize Enumerable.Count() usage", Justification = "OK.")]
     public static DotnetProjectType GetProjectType(
         string fileContent)

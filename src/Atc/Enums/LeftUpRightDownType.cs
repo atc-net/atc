@@ -2,36 +2,36 @@
 namespace Atc;
 
 /// <summary>
-/// Enumeration: LeftUpRightDownType.
+/// Represents a directional position in four cardinal directions (left, up, right, or down).
 /// </summary>
 public enum LeftUpRightDownType
 {
     /// <summary>
-    /// Default None
+    /// No direction specified.
     /// </summary>
     [LocalizedDescription(null, typeof(EnumResources))]
     None = 0,
 
     /// <summary>
-    /// Left
+    /// Left direction.
     /// </summary>
     [LocalizedDescription("LeftRightTypeLeft", typeof(EnumResources))]
     Left = 1,
 
     /// <summary>
-    /// Up.
+    /// Upward direction.
     /// </summary>
     [LocalizedDescription("UpDownTypeUp", typeof(EnumResources))]
     Up = 2,
 
     /// <summary>
-    /// Right
+    /// Right direction.
     /// </summary>
     [LocalizedDescription("LeftRightTypeRight", typeof(EnumResources))]
     Right = 3,
 
     /// <summary>
-    /// Down.
+    /// Downward direction.
     /// </summary>
     [LocalizedDescription("UpDownTypeDown", typeof(EnumResources))]
     Down = 4,

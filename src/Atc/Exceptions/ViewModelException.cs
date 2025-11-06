@@ -2,7 +2,7 @@
 namespace System;
 
 /// <summary>
-/// The exception that is thrown when an ViewModel is not as expected.
+/// The exception that is thrown when a ViewModel is not as expected or is in an invalid state.
 /// </summary>
 /// <seealso cref="Exception" />
 [Serializable]
@@ -40,6 +40,11 @@ public class ViewModelException : Exception
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ViewModelException"/> class with serialized data.
+    /// </summary>
+    /// <param name="serializationInfo">The serialization information.</param>
+    /// <param name="streamingContext">The streaming context.</param>
     protected ViewModelException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
