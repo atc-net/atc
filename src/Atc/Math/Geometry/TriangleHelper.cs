@@ -14,7 +14,10 @@ public static class TriangleHelper
     /// <returns>
     ///   <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsSumOfTheAnglesATriangle(double? angleA, double? angleB, double? angleC)
+    public static bool IsSumOfTheAnglesATriangle(
+        double? angleA,
+        double? angleB,
+        double? angleC)
     {
         if (angleA is null)
         {
@@ -43,7 +46,10 @@ public static class TriangleHelper
     /// <returns>
     ///   <see langword="true" /> if [is sum of the angles A triangle] [the specified angle A]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsSumOfTheAnglesATriangle(double angleA, double angleB, double angleC)
+    public static bool IsSumOfTheAnglesATriangle(
+        double angleA,
+        double angleB,
+        double angleC)
     {
         return (angleA + angleB + angleC).IsEqual(180);
     }
@@ -54,7 +60,10 @@ public static class TriangleHelper
     /// <param name="sideA">The side A.</param>
     /// <param name="sideB">The side B.</param>
     /// <param name="sideC">The side C.</param>
-    public static double Pythagorean(double? sideA, double? sideB, double? sideC)
+    public static double Pythagorean(
+        double? sideA,
+        double? sideB,
+        double? sideC)
     {
         var i = Convert.ToInt32(sideA.HasValue) + Convert.ToInt32(sideB.HasValue) + Convert.ToInt32(sideC.HasValue);
 

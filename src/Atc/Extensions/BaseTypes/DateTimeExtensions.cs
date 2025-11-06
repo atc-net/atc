@@ -13,7 +13,10 @@ public static class DateTimeExtensions
     /// <param name="startDate">Start date to check for.</param>
     /// <param name="endDate">End date to check for.</param>
     /// <returns>boolean value indicating if the date is between or equal to one of the two values.</returns>
-    public static bool IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
+    public static bool IsBetween(
+        this DateTime date,
+        DateTime startDate,
+        DateTime endDate)
     {
         var ticks = date.Ticks;
         return ticks >= startDate.Ticks && ticks <= endDate.Ticks;
@@ -24,7 +27,9 @@ public static class DateTimeExtensions
     /// </summary>
     /// <param name="startDate">The start date.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    public static string GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
+    public static string GetPrettyTimeDiff(
+        this DateTime startDate,
+        int decimalPrecision = 3)
     {
         return GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
     }
@@ -35,7 +40,10 @@ public static class DateTimeExtensions
     /// <param name="startDate">The start date.</param>
     /// <param name="endDate">The end date.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    public static string GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
+    public static string GetPrettyTimeDiff(
+        this DateTime startDate,
+        DateTime endDate,
+        int decimalPrecision = 3)
     {
         var timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
         return timeSpan.GetPrettyTime(decimalPrecision);
@@ -59,7 +67,10 @@ public static class DateTimeExtensions
     /// <param name="howToCompare">The how to compare.</param>
     /// <returns>The number between start date and end date, depend on the DiffCompareType.</returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static double DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
+    public static double DateTimeDiff(
+        this DateTime startDate,
+        DateTime endDate,
+        DateTimeDiffCompareType howToCompare)
     {
         double diff;
         try

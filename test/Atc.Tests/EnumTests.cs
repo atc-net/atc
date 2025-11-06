@@ -7,7 +7,9 @@ public class EnumTests
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday")]
     [InlineData(DayOfWeek.Monday, "MONDAY")]
-    public void GetEnumValue(DayOfWeek expected, string value)
+    public void GetEnumValue(
+        DayOfWeek expected,
+        string value)
     {
         Assert.Equal(expected, Enum<DayOfWeek>.GetEnumValue(value));
     }
@@ -17,7 +19,10 @@ public class EnumTests
     [InlineData(DayOfWeek.Sunday, "MONDAY", false)]
     [InlineData(DayOfWeek.Monday, "Monday", true)]
     [InlineData(DayOfWeek.Monday, "MONDAY", true)]
-    public void GetEnumValue_IgnoreCase(DayOfWeek expected, string value, bool ignoreCase)
+    public void GetEnumValue_IgnoreCase(
+        DayOfWeek expected,
+        string value,
+        bool ignoreCase)
     {
         Assert.Equal(expected, Enum<DayOfWeek>.GetEnumValue(value, ignoreCase));
     }
@@ -28,7 +33,10 @@ public class EnumTests
     [InlineData(false, AddressType.AllRegularly, AddressType.PreliminaryAddress)]
     [InlineData(true, AddressType.AllPreliminary, AddressType.PreliminaryAddress)]
     [InlineData(true, AddressType.All, AddressType.PreliminaryAddress)]
-    public void HasFlag(bool expected, AddressType value, AddressType hasValue)
+    public void HasFlag(
+        bool expected,
+        AddressType value,
+        AddressType hasValue)
     {
         var actual = Enum<AddressType>.HasFlag(value, hasValue);
         Assert.Equal(expected, actual);
@@ -37,7 +45,10 @@ public class EnumTests
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday", true)]
     [InlineData(DayOfWeek.Monday, "MONDAY", true)]
-    public void TryGetEnumValue(DayOfWeek expected, string value, bool ignoreCase)
+    public void TryGetEnumValue(
+        DayOfWeek expected,
+        string value,
+        bool ignoreCase)
     {
         var isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, ignoreCase, out var dayOfWeek);
         Assert.True(isParsed, "Can parse");
@@ -46,7 +57,9 @@ public class EnumTests
 
     [Theory]
     [InlineData(DayOfWeek.Monday, DayOfWeek.Monday)]
-    public void TryGetEnumFromEnumType(DayOfWeek expected, Enum value)
+    public void TryGetEnumFromEnumType(
+        DayOfWeek expected,
+        Enum value)
     {
         var isParsed = Enum<DayOfWeek>.TryGetEnumValue(value, out var dayOfWeek);
         Assert.True(isParsed, "Can parse");
@@ -56,14 +69,18 @@ public class EnumTests
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday")]
     [InlineData(DayOfWeek.Monday, "MONDAY")]
-    public void ParseWithDefaultIgnoreCase(DayOfWeek expected, string value)
+    public void ParseWithDefaultIgnoreCase(
+        DayOfWeek expected,
+        string value)
     {
         Assert.Equal(expected, Enum<DayOfWeek>.Parse(value));
     }
 
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday")]
-    public void ParseWithCaseSensitive(DayOfWeek expected, string value)
+    public void ParseWithCaseSensitive(
+        DayOfWeek expected,
+        string value)
     {
         Assert.Equal(expected, Enum<DayOfWeek>.Parse(value, ignoreCase: false));
     }
@@ -78,7 +95,9 @@ public class EnumTests
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday")]
     [InlineData(DayOfWeek.Monday, "MONDAY")]
-    public void TryParseWithDefaultIgnoreCase(DayOfWeek expectedOut, string value)
+    public void TryParseWithDefaultIgnoreCase(
+        DayOfWeek expectedOut,
+        string value)
     {
         var isParsed = Enum<DayOfWeek>.TryParse(value, out var dayOfWeek);
         Assert.True(isParsed);
@@ -88,7 +107,10 @@ public class EnumTests
     [Theory]
     [InlineData(DayOfWeek.Monday, "Monday", true)]
     [InlineData(DayOfWeek.Monday, "MONDAY", true)]
-    public void TryParse(DayOfWeek expected, string value, bool ignoreCase)
+    public void TryParse(
+        DayOfWeek expected,
+        string value,
+        bool ignoreCase)
     {
         var isParsed = Enum<DayOfWeek>.TryParse(value, ignoreCase, out var dayOfWeek);
         Assert.True(isParsed, "Can parse");

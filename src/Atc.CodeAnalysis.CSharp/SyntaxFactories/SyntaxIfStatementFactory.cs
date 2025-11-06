@@ -11,7 +11,9 @@ public static class SyntaxIfStatementFactory
     /// <param name="parameterName">The name of the parameter to check for null.</param>
     /// <param name="includeSystem">If <c>true</c>, includes the System namespace prefix for ArgumentNullException.</param>
     /// <returns>A <see cref="StatementSyntax"/> representing the null check.</returns>
-    public static StatementSyntax CreateParameterArgumentNullCheck(string parameterName, bool includeSystem = true)
+    public static StatementSyntax CreateParameterArgumentNullCheck(
+        string parameterName,
+        bool includeSystem = true)
     {
         return SyntaxFactory.IfStatement(
             SyntaxFactory.IsPatternExpression(

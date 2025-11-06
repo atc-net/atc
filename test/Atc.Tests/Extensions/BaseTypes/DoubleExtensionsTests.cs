@@ -4,7 +4,10 @@ public class DoubleExtensionsTests
 {
     [Theory]
     [InlineData(true, 12.3, 12.3)]
-    public void IsEqual(bool expected, double a, double b)
+    public void IsEqual(
+        bool expected,
+        double a,
+        double b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -18,7 +21,10 @@ public class DoubleExtensionsTests
     [InlineData(false, 12.3, null)]
     [InlineData(false, null, 12.3)]
     [InlineData(true, null, null)]
-    public void IsEqual_Nullable(bool expected, double? a, double? b)
+    public void IsEqual_Nullable(
+        bool expected,
+        double? a,
+        double? b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -31,7 +37,11 @@ public class DoubleExtensionsTests
     [InlineData(true, 12.3, 12.3, 2)]
     [InlineData(true, 12.31, 12.3, 1)]
     [InlineData(true, 12.311, 12.31, 2)]
-    public void IsEqual_DecimalPrecision(bool expected, double a, double b, int decimalPrecision)
+    public void IsEqual_DecimalPrecision(
+        bool expected,
+        double a,
+        double b,
+        int decimalPrecision)
     {
         // Act
         var actual = a.IsEqual(b, decimalPrecision);
@@ -47,7 +57,11 @@ public class DoubleExtensionsTests
     [InlineData(true, null, null, 2)]
     [InlineData(true, 12.31, 12.3, 1)]
     [InlineData(true, 12.311, 12.31, 2)]
-    public void IsEqual_Nullable_DecimalPrecision(bool expected, double? a, double? b, int decimalPrecision)
+    public void IsEqual_Nullable_DecimalPrecision(
+        bool expected,
+        double? a,
+        double? b,
+        int decimalPrecision)
     {
         // Act
         var actual = a.IsEqual(b, decimalPrecision);
@@ -59,7 +73,10 @@ public class DoubleExtensionsTests
     [Theory]
     [InlineData(true, 12.3, 12.30000000000000001)]
     [InlineData(false, 12, 12.3)]
-    public void AreClose(bool expected, double a, double b)
+    public void AreClose(
+        bool expected,
+        double a,
+        double b)
     {
         // Act
         var actual = a.AreClose(b);
@@ -72,7 +89,10 @@ public class DoubleExtensionsTests
     [InlineData(true, 12.31, 12)]
     [InlineData(true, 12.30000000000000001, 12.3)]
     [InlineData(false, 12, 12.3)]
-    public void GreaterThanOrClose(bool expected, double a, double b)
+    public void GreaterThanOrClose(
+        bool expected,
+        double a,
+        double b)
     {
         // Act
         var actual = a.GreaterThanOrClose(b);
@@ -85,7 +105,9 @@ public class DoubleExtensionsTests
     [InlineData(false, -0.1)]
     [InlineData(true, 0)]
     [InlineData(false, 0.1)]
-    public void IsZero(bool expected, double input)
+    public void IsZero(
+        bool expected,
+        double input)
     {
         // Act
         var actual = input.IsZero();
@@ -103,7 +125,9 @@ public class DoubleExtensionsTests
     [InlineData(12, 12.49)]
     [InlineData(13, 12.50)]
     [InlineData(13, 12.51)]
-    public void CurrencyRoundingAsInteger(int expected, double input)
+    public void CurrencyRoundingAsInteger(
+        int expected,
+        double input)
     {
         // Act
         var actual = input.CurrencyRoundingAsInteger();
@@ -127,7 +151,9 @@ public class DoubleExtensionsTests
     [InlineData(12.44, 12.4449)]
     [InlineData(12.45, 12.4450)]
     [InlineData(12.45, 12.4451)]
-    public void CurrencyRounding(double expected, double input)
+    public void CurrencyRounding(
+        double expected,
+        double input)
     {
         // Act
         var actual = input.CurrencyRounding();
@@ -193,7 +219,10 @@ public class DoubleExtensionsTests
     [InlineData(12.445, 12.4449, 3)]
     [InlineData(12.4450, 12.4450, 3)]
     [InlineData(12.445, 12.4451, 3)]
-    public void CurrencyRounding_Digits(double expected, double input, int digits)
+    public void CurrencyRounding_Digits(
+        double expected,
+        double input,
+        int digits)
     {
         // Act
         var actual = input.CurrencyRounding(digits);
@@ -209,7 +238,9 @@ public class DoubleExtensionsTests
     [InlineData(1.11, 1.11)]
     [InlineData(1.11, 1.111)]
     [InlineData(1.12, 1.115)]
-    public void RoundOff2(double expected, double input)
+    public void RoundOff2(
+        double expected,
+        double input)
     {
         // Act
         var actual = input.RoundOff2();
@@ -225,7 +256,9 @@ public class DoubleExtensionsTests
     [InlineData(1.0000000011, 1.0000000011)]
     [InlineData(1.0000000011, 1.00000000111)]
     [InlineData(1.0000000012, 1.00000000115)]
-    public void RoundOff10(double expected, double input)
+    public void RoundOff10(
+        double expected,
+        double input)
     {
         // Act
         var actual = input.RoundOff10();
@@ -248,7 +281,10 @@ public class DoubleExtensionsTests
     [InlineData(1.0000000011, 1.0000000011, 10)]
     [InlineData(1.0000000011, 1.00000000111, 10)]
     [InlineData(1.0000000012, 1.00000000115, 10)]
-    public void RoundOff_NumberOfDecimals(double expected, double input, int numberOfDecimals)
+    public void RoundOff_NumberOfDecimals(
+        double expected,
+        double input,
+        int numberOfDecimals)
     {
         // Act
         var actual = input.RoundOff(numberOfDecimals);
@@ -264,7 +300,9 @@ public class DoubleExtensionsTests
     [InlineData(1.11, 1.11)]
     [InlineData(1.11, 1.111)]
     [InlineData(1.12, 1.115)]
-    public void RoundOffPercent(double expected, double input)
+    public void RoundOffPercent(
+        double expected,
+        double input)
     {
         // Act
         var actual = input.RoundOffPercent();
@@ -281,7 +319,9 @@ public class DoubleExtensionsTests
     [InlineData(4, 9.9999000000)]
     [InlineData(15, 9.1234567891012345)]
     [InlineData(30, 5.821e-27)]
-    public void CountDecimalPoints(int expected, double input)
+    public void CountDecimalPoints(
+        int expected,
+        double input)
     {
         // Act
         var actual = input.CountDecimalPoints();

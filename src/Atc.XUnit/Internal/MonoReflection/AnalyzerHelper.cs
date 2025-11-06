@@ -139,7 +139,9 @@ internal static class AnalyzerHelper
     }
 
     [SuppressMessage("Performance", "MA0009:Regular expressions should not be vulnerable to Denial of Service attacks", Justification = "OK - Simple pattern for compiler-generated names")]
-    private static MethodInfo? TryGetOriginalMethodFromStateMachine(Type stateMachineType, Type[] sourceTypes)
+    private static MethodInfo? TryGetOriginalMethodFromStateMachine(
+        Type stateMachineType,
+        Type[] sourceTypes)
     {
         // State machine types are nested within the declaring type
         var declaringType = stateMachineType.DeclaringType;
@@ -246,7 +248,9 @@ internal static class AnalyzerHelper
         });
     }
 
-    private static bool AreGenericMethodsEqual(MethodInfo method, MethodInfo usedMethod)
+    private static bool AreGenericMethodsEqual(
+        MethodInfo method,
+        MethodInfo usedMethod)
     {
         // Both should already be generic definitions from GetUsedSourceMethods and source reflection
         // Compare name and generic arity
@@ -335,7 +339,9 @@ internal static class AnalyzerHelper
         return true;
     }
 
-    private static MethodInfo[] DebugFilterTypeNames(DebugLimitData debugLimitData, MethodInfo[] usedSourceMethods)
+    private static MethodInfo[] DebugFilterTypeNames(
+        DebugLimitData debugLimitData,
+        MethodInfo[] usedSourceMethods)
     {
         if (!debugLimitData.HasClassNames)
         {

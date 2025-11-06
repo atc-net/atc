@@ -149,7 +149,9 @@ public static class DotnetBuildHelper
         return parsedErrors;
     }
 
-    private static async Task<(bool IsSuccessful, string Output)> RunBuildCommand(
+    private static async Task<(
+        bool IsSuccessful,
+        string Output)> RunBuildCommand(
         DirectoryInfo rootPath,
         FileInfo? buildFile,
         bool useNugetRestore,

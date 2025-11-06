@@ -83,7 +83,9 @@ internal static class AssemblyAnalyzerHelper
     }
 
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static Type[] CollectFilteredAssemblyTypes(Assembly assembly, List<Type>? excludeTypes)
+    private static Type[] CollectFilteredAssemblyTypes(
+        Assembly assembly,
+        List<Type>? excludeTypes)
     {
         excludeTypes ??= new List<Type>();
 

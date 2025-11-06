@@ -47,7 +47,9 @@ public static class SyntaxAttributeArgumentFactory
     /// <param name="attributeName">The name of the attribute property.</param>
     /// <param name="attributeValue">The string value for the attribute argument.</param>
     /// <returns>An <see cref="AttributeArgumentSyntax"/> node with a name-equals clause.</returns>
-    public static AttributeArgumentSyntax CreateWithNameEquals(string attributeName, string attributeValue)
+    public static AttributeArgumentSyntax CreateWithNameEquals(
+        string attributeName,
+        string attributeValue)
     {
         return SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(attributeValue))
             .WithNameEquals(SyntaxFactory.NameEquals(SyntaxFactory.IdentifierName(attributeName)));
@@ -59,7 +61,9 @@ public static class SyntaxAttributeArgumentFactory
     /// <param name="attributeName">The name of the attribute property.</param>
     /// <param name="attributeValue">The integer value for the attribute argument.</param>
     /// <returns>An <see cref="AttributeArgumentSyntax"/> node with a name-equals clause.</returns>
-    public static AttributeArgumentSyntax CreateWithNameEquals(string attributeName, int attributeValue)
+    public static AttributeArgumentSyntax CreateWithNameEquals(
+        string attributeName,
+        int attributeValue)
     {
         return SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(attributeValue))
             .WithNameEquals(SyntaxFactory.NameEquals(SyntaxFactory.IdentifierName(attributeName)));

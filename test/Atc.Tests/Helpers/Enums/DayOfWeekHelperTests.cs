@@ -37,7 +37,10 @@ public class DayOfWeekHelperTests
     [InlineData(GlobalizationLcidConstants.Germany, "Donnerstag", DayOfWeek.Thursday)]
     [InlineData(GlobalizationLcidConstants.Germany, "Freitag", DayOfWeek.Friday)]
     [InlineData(GlobalizationLcidConstants.Germany, "Samstag", DayOfWeek.Saturday)]
-    public void GetDescription(int arrangeUiLcid, string expected, DayOfWeek input)
+    public void GetDescription(
+        int arrangeUiLcid,
+        string expected,
+        DayOfWeek input)
     {
         // Arrange
         var culture = arrangeUiLcid == 0
@@ -53,7 +56,9 @@ public class DayOfWeekHelperTests
 
     [Theory]
     [InlineData(GlobalizationLcidConstants.Invariant, 7)]
-    public void GetDescriptions(int arrangeUiLcid, int expected)
+    public void GetDescriptions(
+        int arrangeUiLcid,
+        int expected)
     {
         // Arrange
         CultureInfo? culture = null;
@@ -78,7 +83,10 @@ public class DayOfWeekHelperTests
     [InlineData(GlobalizationLcidConstants.UnitedStates, false, "Mandag")]
     [InlineData(GlobalizationLcidConstants.Denmark, false, "Monday")]
     [InlineData(GlobalizationLcidConstants.Denmark, true, "Mandag")]
-    public void TryParseDescription(int arrangeUiLcid, bool expected, string input)
+    public void TryParseDescription(
+        int arrangeUiLcid,
+        bool expected,
+        string input)
     {
         // Arrange
         var culture = arrangeUiLcid == 0

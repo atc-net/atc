@@ -29,7 +29,9 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="inheritClassTypeName">The name of the base class to inherit from.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with inheritance.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> or <paramref name="inheritClassTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateWithInheritClassType(string classTypeName, string inheritClassTypeName)
+    public static ClassDeclarationSyntax CreateWithInheritClassType(
+        string classTypeName,
+        string inheritClassTypeName)
     {
         if (classTypeName is null)
         {
@@ -53,7 +55,9 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="interfaceTypeName">The name of the interface to implement.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with interface implementation.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ClassDeclarationSyntax CreateWithInterface(string classTypeName, string interfaceTypeName)
+    public static ClassDeclarationSyntax CreateWithInterface(
+        string classTypeName,
+        string interfaceTypeName)
     {
         if (classTypeName is null)
         {
@@ -78,7 +82,10 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="interfaceTypeName">The name of the interface to implement.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with inheritance and interface implementation.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(string classTypeName, string inheritClassTypeName, string interfaceTypeName)
+    public static ClassDeclarationSyntax CreateWithInheritClassAndInterface(
+        string classTypeName,
+        string inheritClassTypeName,
+        string interfaceTypeName)
     {
         if (classTypeName is null)
         {
@@ -158,7 +165,9 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="suppressMessage">The suppress message attribute to add.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with the suppress message attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ClassDeclarationSyntax CreateWithSuppressMessageAttribute(string classTypeName, SuppressMessageAttribute suppressMessage)
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttribute(
+        string classTypeName,
+        SuppressMessageAttribute suppressMessage)
     {
         if (classTypeName is null)
         {
@@ -182,7 +191,10 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="justification">The justification for suppressing the check.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with the suppress message attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, int checkId, string justification = "")
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByCodeAnalysisCheckId(
+        string classTypeName,
+        int checkId,
+        string justification = "")
     {
         if (classTypeName is null)
         {
@@ -202,7 +214,11 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="justification">The justification for suppressing the check.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with inheritance and the suppress message attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByCodeAnalysisCheckId(
+        string classTypeName,
+        string inheritClassTypeName,
+        int checkId,
+        string justification = "")
     {
         if (classTypeName is null)
         {
@@ -226,7 +242,10 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="justification">The justification for suppressing the check.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with the suppress message attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(string classTypeName, int checkId, string justification = "")
+    public static ClassDeclarationSyntax CreateWithSuppressMessageAttributeByStyleCopCheckId(
+        string classTypeName,
+        int checkId,
+        string justification = "")
     {
         if (classTypeName is null)
         {
@@ -246,7 +265,11 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="justification">The justification for suppressing the check.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with inheritance and the suppress message attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(string classTypeName, string inheritClassTypeName, int checkId, string justification = "")
+    public static ClassDeclarationSyntax CreateWithInheritClassTypeAndSuppressMessageAttributeByStyleCopCheckId(
+        string classTypeName,
+        string inheritClassTypeName,
+        int checkId,
+        string justification = "")
     {
         if (classTypeName is null)
         {

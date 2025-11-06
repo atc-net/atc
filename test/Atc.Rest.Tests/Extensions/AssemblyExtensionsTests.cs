@@ -18,7 +18,9 @@ public class AssemblyExtensionsTests
     [Theory]
     [InlineData("Atc Rest Tests", false)]
     [InlineData("Atc Rest", true)]
-    public void GetApiName_RemoveLastVerb(string expected, bool removeLastVerb)
+    public void GetApiName_RemoveLastVerb(
+        string expected,
+        bool removeLastVerb)
     {
         // Arrange
         var assembly = Assembly.GetExecutingAssembly();

@@ -20,7 +20,9 @@ public class RegionInfoHelperTests
     [InlineData("GB", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("DK", GlobalizationLcidConstants.Denmark)]
     [InlineData("DE", GlobalizationLcidConstants.Germany)]
-    public void GetRegionInfoByLcid(string expected, int input)
+    public void GetRegionInfoByLcid(
+        string expected,
+        int input)
     {
         // Act
         var actual = RegionInfoHelper.GetRegionInfoByLcid(input);
@@ -36,7 +38,9 @@ public class RegionInfoHelperTests
     [InlineData("GB", "GBR")]
     [InlineData("DK", "DNK")]
     [InlineData("DE", "DEU")]
-    public void GetRegionInfoByIsoAlpha3(string expected, string input)
+    public void GetRegionInfoByIsoAlpha3(
+        string expected,
+        string input)
     {
         // Act
         var actual = RegionInfoHelper.GetRegionInfoByIsoAlpha3(input);
@@ -52,7 +56,9 @@ public class RegionInfoHelperTests
     [InlineData("en-GB", "GBR")]
     [InlineData("da-DK", "DNK")]
     [InlineData("de-DE", "DEU")]
-    public void GetCultureInfoByIsoAlpha3(string expected, string input)
+    public void GetCultureInfoByIsoAlpha3(
+        string expected,
+        string input)
     {
         // Act
         var actual = RegionInfoHelper.GetCultureInfoByIsoAlpha3(input);
@@ -68,7 +74,9 @@ public class RegionInfoHelperTests
     [InlineData(GlobalizationLcidConstants.GreatBritain, GlobalizationLcidConstants.GreatBritain)]
     [InlineData(GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.Denmark)]
     [InlineData(GlobalizationLcidConstants.Germany, GlobalizationLcidConstants.Germany)]
-    public void GetLcidFromRegionInfo(int expected, int input)
+    public void GetLcidFromRegionInfo(
+        int expected,
+        int input)
     {
         // Arrange
         var regionInfo = new RegionInfo(input);

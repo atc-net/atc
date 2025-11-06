@@ -12,7 +12,10 @@ public static class DataTableExtensions
     /// <param name="dataTable">The data table.</param>
     /// <param name="sortOnColumn">The sort on column.</param>
     /// <param name="sortDirection">The sort direction.</param>
-    public static DataTable SortTable(this DataTable dataTable, string sortOnColumn, SortDirectionType sortDirection)
+    public static DataTable SortTable(
+        this DataTable dataTable,
+        string sortOnColumn,
+        SortDirectionType sortDirection)
     {
         if (dataTable is null)
         {
@@ -37,7 +40,10 @@ public static class DataTableExtensions
     /// <param name="dataTable">The data table.</param>
     /// <param name="filterExpression">The filter expression.</param>
     /// <param name="sortExpression">The sort expression.</param>
-    public static DataTable FilterTable(this DataTable dataTable, string filterExpression, string sortExpression)
+    public static DataTable FilterTable(
+        this DataTable dataTable,
+        string filterExpression,
+        string sortExpression)
     {
         if (dataTable is null)
         {
@@ -75,7 +81,9 @@ public static class DataTableExtensions
     /// </summary>
     /// <param name="dataTable">The data table.</param>
     /// <param name="countOnColumn">The count on column.</param>
-    public static Dictionary<string, int> GetGroupCount(this DataTable dataTable, string countOnColumn)
+    public static Dictionary<string, int> GetGroupCount(
+        this DataTable dataTable,
+        string countOnColumn)
     {
         if (dataTable is null)
         {

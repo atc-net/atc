@@ -191,7 +191,10 @@ internal static class ParametersNamingMatchHelper
         return ParameterCheckForIdentifierWithTypeMatching(parameter, astNode, astNodeString);
     }
 
-    private static bool ParameterCheckForIdentifierWithTypeMatching(ParameterInfo parameter, AstNode astNode, string astNodeName)
+    private static bool ParameterCheckForIdentifierWithTypeMatching(
+        ParameterInfo parameter,
+        AstNode astNode,
+        string astNodeName)
     {
         var typeName = FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent!, astNodeName) ??
                        FindTypeNameForIdentifierExpressionOutsideMethodScope(astNode.GetRoot(), astNodeName);
@@ -199,7 +202,9 @@ internal static class ParametersNamingMatchHelper
         return typeName is not null && HasParameterTypeNameMatch(parameter, typeName);
     }
 
-    private static bool ParameterCheckForMemberReferenceExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForMemberReferenceExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(MemberReferenceExpression)))
         {
@@ -252,7 +257,9 @@ internal static class ParametersNamingMatchHelper
         return false;
     }
 
-    private static bool ParameterCheckForPrimitiveExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForPrimitiveExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(PrimitiveExpression)))
         {
@@ -292,7 +299,9 @@ internal static class ParametersNamingMatchHelper
         return false;
     }
 
-    private static bool ParameterCheckForNullReferenceExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForNullReferenceExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(NullReferenceExpression)))
         {
@@ -302,7 +311,9 @@ internal static class ParametersNamingMatchHelper
         return parameter.ParameterType.IsNullable();
     }
 
-    private static bool ParameterCheckForInvocationExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForInvocationExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(InvocationExpression)))
         {
@@ -321,7 +332,9 @@ internal static class ParametersNamingMatchHelper
         return false;
     }
 
-    private static bool ParameterCheckForObjectCreateExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForObjectCreateExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(ObjectCreateExpression)))
         {
@@ -340,7 +353,9 @@ internal static class ParametersNamingMatchHelper
         return false;
     }
 
-    private static bool ParameterCheckForDirectionExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForDirectionExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(DirectionExpression)))
         {
@@ -352,7 +367,9 @@ internal static class ParametersNamingMatchHelper
         return parameter.IsOut || parameter.ParameterType.IsByRef;
     }
 
-    private static bool ParameterCheckForCastExpression(ParameterInfo parameter, AstNode astNode)
+    private static bool ParameterCheckForCastExpression(
+        ParameterInfo parameter,
+        AstNode astNode)
     {
         if (!astNode.IsType(typeof(CastExpression)))
         {
@@ -416,7 +433,9 @@ internal static class ParametersNamingMatchHelper
         return false;
     }
 
-    private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(AstNode astNode, string parameterName)
+    private static string? FindTypeNameForIdentifierExpressionInTestMethodScope(
+        AstNode astNode,
+        string parameterName)
     {
         var s = astNode.ToString();
         var stopRecursive = astNode.Parent is null ||
@@ -467,7 +486,9 @@ internal static class ParametersNamingMatchHelper
         return FindTypeNameForIdentifierExpressionInTestMethodScope(astNode.Parent, parameterName);
     }
 
-    private static string? FindTypeNameForIdentifierExpressionOutsideMethodScope(AstNode astNode, string parameterName)
+    private static string? FindTypeNameForIdentifierExpressionOutsideMethodScope(
+        AstNode astNode,
+        string parameterName)
     {
         var foundAstNode = astNode.Descendants
             .FirstOrDefault(x =>
@@ -488,7 +509,9 @@ internal static class ParametersNamingMatchHelper
         return null;
     }
 
-    private static bool HasParameterTypeNameMatch(ParameterInfo methodParameter, string testParameterTypeName)
+    private static bool HasParameterTypeNameMatch(
+        ParameterInfo methodParameter,
+        string testParameterTypeName)
     {
         if (methodParameter.Member.DeclaringType is not null && methodParameter.Member.DeclaringType.IsGenericType)
         {

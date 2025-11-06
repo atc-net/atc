@@ -5,7 +5,10 @@ public class UniversalTransverseMercatorConverterTests
 {
     [Theory]
     [ClassData(typeof(TestClassDataForGeoSpatialToUtm))]
-    public void ToUtm_CartesianCoordinate(string description, CartesianCoordinate input, UniversalTransverseMercatorResult expected)
+    public void ToUtm_CartesianCoordinate(
+        string description,
+        CartesianCoordinate input,
+        UniversalTransverseMercatorResult expected)
     {
         // Arrange
         var converter = new UniversalTransverseMercatorConverter(); // Default is WGS84
@@ -23,7 +26,10 @@ public class UniversalTransverseMercatorConverterTests
 
     [Theory]
     [ClassData(typeof(TestClassDataForGeoSpatialToUtm))]
-    public void ToUtm(string description, CartesianCoordinate input, UniversalTransverseMercatorResult expected)
+    public void ToUtm(
+        string description,
+        CartesianCoordinate input,
+        UniversalTransverseMercatorResult expected)
     {
         // Arrange
         var converter = new UniversalTransverseMercatorConverter(); // Default is WGS84
@@ -41,7 +47,11 @@ public class UniversalTransverseMercatorConverterTests
 
     [Theory]
     [ClassData(typeof(TestClassDataForGeoSpatialToWgs84))]
-    public void ToWgs84(string description, UniversalTransverseMercatorResult input, int maxDecimalPrecision, CartesianCoordinate expected)
+    public void ToWgs84(
+        string description,
+        UniversalTransverseMercatorResult input,
+        int maxDecimalPrecision,
+        CartesianCoordinate expected)
     {
         // Arrange
         var converter = new UniversalTransverseMercatorConverter();

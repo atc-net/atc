@@ -13,7 +13,11 @@ public static class FieldInfoExtensions
     /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
     /// <param name="includeReturnType">if set to <see langword="true" /> [include return type].</param>
-    public static string BeautifyName(this FieldInfo fieldInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
+    public static string BeautifyName(
+        this FieldInfo fieldInfo,
+        bool useFullName = false,
+        bool useHtmlFormat = false,
+        bool includeReturnType = false)
     {
         if (fieldInfo is null)
         {

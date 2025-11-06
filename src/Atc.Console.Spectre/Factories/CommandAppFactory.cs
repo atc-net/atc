@@ -23,7 +23,9 @@ public static class CommandAppFactory
     /// <param name="serviceCollection">The service collection containing registered services and command settings.</param>
     /// <param name="encoding">The console output encoding to use.</param>
     /// <returns>A configured <see cref="CommandApp"/> instance.</returns>
-    public static CommandApp Create(ServiceCollection serviceCollection, Encoding encoding)
+    public static CommandApp Create(
+        ServiceCollection serviceCollection,
+        Encoding encoding)
     {
         SetCultureAndConsoleSettings(encoding);
 

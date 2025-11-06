@@ -11,7 +11,9 @@ public static class SyntaxTokenListFactory
     /// <param name="withLeadingLineFeed">If <c>true</c>, adds a leading line feed.</param>
     /// <param name="withTrailingSpace">If <c>true</c>, adds a trailing space.</param>
     /// <returns>A <see cref="SyntaxTokenList"/> containing the public modifier.</returns>
-    public static SyntaxTokenList PublicKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList PublicKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -24,7 +26,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.PublicKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList PublicStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList PublicStaticKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -39,7 +43,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList PublicOverrideKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList PublicOverrideKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -54,7 +60,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.OverrideKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList PublicAsyncKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList PublicAsyncKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -69,7 +77,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.AsyncKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList InternalStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList InternalStaticKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -84,7 +94,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList ProtectedStaticKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList ProtectedStaticKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -99,7 +111,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.StaticKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList ProtectedReadOnlyKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList ProtectedReadOnlyKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {
@@ -121,7 +135,9 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList PrivateAsyncKeyword(bool withLeadingLineFeed = false, bool withTrailingSpace = true)
+    public static SyntaxTokenList PrivateAsyncKeyword(
+        bool withLeadingLineFeed = false,
+        bool withTrailingSpace = true)
     {
         if (withLeadingLineFeed)
         {

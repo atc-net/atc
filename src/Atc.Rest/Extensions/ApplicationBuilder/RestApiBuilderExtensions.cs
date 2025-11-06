@@ -12,7 +12,9 @@ public static class RestApiBuilderExtensions
     /// <param name="app">The application builder.</param>
     /// <param name="env">The web host environment.</param>
     /// <returns>The application builder for method chaining.</returns>
-    public static IApplicationBuilder UseRestApi(this IApplicationBuilder app, IWebHostEnvironment env)
+    public static IApplicationBuilder UseRestApi(
+        this IApplicationBuilder app,
+        IWebHostEnvironment env)
     {
         return app.ConfigureRestApi(env, new RestApiOptions(), _ => { });
     }

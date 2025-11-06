@@ -39,7 +39,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="indentSpaces">The number of non-breaking spaces to use for indentation.</param>
     /// <param name="text">The text to append.</param>
-    public void AppendLine(int indentSpaces, string text)
+    public void AppendLine(
+        int indentSpaces,
+        string text)
     {
         var sbLocal = new StringBuilder();
         for (var i = 0; i < indentSpaces; i++)
@@ -64,7 +66,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="level">The header level (1-6, where 1 is largest).</param>
     /// <param name="text">The header text.</param>
-    public void Header(int level, string text)
+    public void Header(
+        int level,
+        string text)
     {
         for (var i = 0; i < level; i++)
         {
@@ -80,7 +84,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="level">The header level (1-6, where 1 is largest).</param>
     /// <param name="code">The code text to display in the header.</param>
-    public void HeaderWithCode(int level, string code)
+    public void HeaderWithCode(
+        int level,
+        string code)
     {
         for (var i = 0; i < level; i++)
         {
@@ -98,7 +104,10 @@ internal sealed class MarkdownBuilder
     /// <param name="level">The header level (1-6, where 1 is largest).</param>
     /// <param name="text">The link text to display.</param>
     /// <param name="url">The URL the link points to.</param>
-    public void HeaderWithLink(int level, string text, string url)
+    public void HeaderWithLink(
+        int level,
+        string text,
+        string url)
     {
         for (var i = 0; i < level; i++)
         {
@@ -115,7 +124,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="text">The link text to display.</param>
     /// <param name="url">The URL the link points to.</param>
-    public void Link(string text, string url)
+    public void Link(
+        string text,
+        string url)
     {
         sb.Append('[');
         sb.Append(text);
@@ -130,7 +141,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="altText">The alternative text for the image.</param>
     /// <param name="imageUrl">The URL of the image.</param>
-    public void Image(string altText, string imageUrl)
+    public void Image(
+        string altText,
+        string imageUrl)
     {
         sb.Append('!');
         Link(altText, imageUrl);
@@ -141,7 +154,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="language">The programming language for syntax highlighting.</param>
     /// <param name="code">The code content to display.</param>
-    public void Code(string language, string code)
+    public void Code(
+        string language,
+        string code)
     {
         if (code.EndsWith('.'))
         {
@@ -178,7 +193,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="headers">The column headers for the table.</param>
     /// <param name="items">The table rows, where each row is an array of cell values.</param>
-    public void Table(string[] headers, List<string[]> items)
+    public void Table(
+        string[] headers,
+        List<string[]> items)
     {
         sb.Append("| ");
         foreach (var item in headers)
@@ -228,7 +245,9 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="text">The link text to display.</param>
     /// <param name="url">The URL the link points to.</param>
-    public void ListLink(string text, string url) // nest zero
+    public void ListLink(
+        string text,
+        string url) // nest zero
     {
         sb.Append("- ");
         Link(text, url);

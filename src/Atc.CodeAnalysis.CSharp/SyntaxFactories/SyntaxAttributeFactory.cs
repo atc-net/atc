@@ -32,7 +32,9 @@ public static class SyntaxAttributeFactory
     /// <param name="argumentValue">The string value for the argument.</param>
     /// <returns>An <see cref="AttributeSyntax"/> node with one argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> or <paramref name="argumentValue"/> is null.</exception>
-    public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
+    public static AttributeSyntax CreateWithOneItemWithOneArgument(
+        string attributeName,
+        string argumentValue)
     {
         if (attributeName is null)
         {
@@ -58,7 +60,9 @@ public static class SyntaxAttributeFactory
     /// <param name="argumentValue">The integer value for the argument.</param>
     /// <returns>An <see cref="AttributeSyntax"/> node with one argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
-    public static AttributeSyntax CreateWithOneItemWithOneArgument(string attributeName, int argumentValue)
+    public static AttributeSyntax CreateWithOneItemWithOneArgument(
+        string attributeName,
+        int argumentValue)
     {
         if (attributeName is null)
         {
@@ -80,7 +84,10 @@ public static class SyntaxAttributeFactory
     /// <param name="argumentValue2">The second argument value.</param>
     /// <returns>An <see cref="AttributeSyntax"/> node with two arguments.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
-    public static AttributeSyntax CreateWithOneItemWithTwoArgument(string attributeName, object argumentValue1, object argumentValue2)
+    public static AttributeSyntax CreateWithOneItemWithTwoArgument(
+        string attributeName,
+        object argumentValue1,
+        object argumentValue2)
     {
         if (attributeName is null)
         {

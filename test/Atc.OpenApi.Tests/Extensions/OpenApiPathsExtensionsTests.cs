@@ -4,7 +4,10 @@ public class OpenApiPathsExtensionsTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiPathsExtensions.GetPathsStartingWithSegmentName), MemberType = typeof(TestMemberDataForOpenApiPathsExtensions))]
-    public void GetPathsStartingWithSegmentName(int expected, OpenApiPaths urlPath, string segmentName)
+    public void GetPathsStartingWithSegmentName(
+        int expected,
+        OpenApiPaths urlPath,
+        string segmentName)
     {
         // Act
         var actual = urlPath.GetPathsStartingWithSegmentName(segmentName);

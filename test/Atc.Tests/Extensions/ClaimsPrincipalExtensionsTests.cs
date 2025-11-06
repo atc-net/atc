@@ -5,7 +5,9 @@ public class ClaimsPrincipalExtensionsTests
     [Theory]
     [InlineData("Hello World", "Hello World")]
     [InlineData("Hello.World", "Hello.World")]
-    public void GetIdentity(string expected, string claimIdentifierValue)
+    public void GetIdentity(
+        string expected,
+        string claimIdentifierValue)
     {
         // Arrange
         var objectIdentifierClaim = new Claim("http://schemas.microsoft.com/identity/claims/objectidentifier", claimIdentifierValue);

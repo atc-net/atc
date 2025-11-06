@@ -4,7 +4,9 @@ public class ReadOnlyListExtensionsTests
 {
     [Theory]
     [InlineData(15, new[] { "a", "b", "c", "d" })]
-    public void GetUniqueCombinations(int expected, string[] input)
+    public void GetUniqueCombinations(
+        int expected,
+        string[] input)
     {
         // Act
         var actual = input.GetUniqueCombinations();
@@ -15,7 +17,9 @@ public class ReadOnlyListExtensionsTests
 
     [Theory]
     [InlineData(15, new[] { "a", "b", "c", "d" })]
-    public void GetUniqueCombinationsAsCommaSeparated(int expected, string[] input)
+    public void GetUniqueCombinationsAsCommaSeparated(
+        int expected,
+        string[] input)
     {
         // Act
         var actual = input.GetUniqueCombinationsAsCommaSeparated();
@@ -26,7 +30,9 @@ public class ReadOnlyListExtensionsTests
 
     [Theory]
     [InlineData(16, new[] { "a", "b", "c", "d" })]
-    public void GetPowerSet(int expected, string[] input)
+    public void GetPowerSet(
+        int expected,
+        string[] input)
     {
         // Act
         var actual = input.GetPowerSet();

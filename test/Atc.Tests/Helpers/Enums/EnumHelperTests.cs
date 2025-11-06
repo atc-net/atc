@@ -5,7 +5,9 @@ public class EnumHelperTests
     [Theory]
     [InlineData("On", OnOffType.On)]
     [InlineData("Off", OnOffType.Off)]
-    public void GetName(string expected, Enum input)
+    public void GetName(
+        string expected,
+        Enum input)
     {
         // Act
         var actual = EnumHelper.GetName(input);
@@ -17,7 +19,9 @@ public class EnumHelperTests
     [Theory]
     [InlineData("On", "On")]
     [InlineData("Off", "Off")]
-    public void GetEnumValue_OnOffType(string expected, string input)
+    public void GetEnumValue_OnOffType(
+        string expected,
+        string input)
     {
         // Act
         var actual = EnumHelper.GetEnumValue<OnOffType>(input);
@@ -33,7 +37,10 @@ public class EnumHelperTests
     [InlineData("Off", "off", true)]
     [InlineData("None", "on", false)]
     [InlineData("None", "off", false)]
-    public void GetEnumValue_OnOffType_IgnoreCase(string expected, string input, bool ignoreCase)
+    public void GetEnumValue_OnOffType_IgnoreCase(
+        string expected,
+        string input,
+        bool ignoreCase)
     {
         // Act
         var actual = EnumHelper.GetEnumValue<OnOffType>(input, ignoreCase);
@@ -44,7 +51,9 @@ public class EnumHelperTests
 
     [Theory]
     [InlineData("Monday", DayOfWeek.Monday)]
-    public void GetDescription(string expected, DayOfWeek value)
+    public void GetDescription(
+        string expected,
+        DayOfWeek value)
     {
         Assert.Equal(expected, EnumHelper.GetDescription(value));
     }
@@ -56,7 +65,10 @@ public class EnumHelperTests
     [InlineData(GlobalizationLcidConstants.UnitedStates, ForwardReverseType.Forward, "forward")]
     [InlineData(GlobalizationLcidConstants.Denmark, ForwardReverseType.Forward, "Fremad")]
     [InlineData(GlobalizationLcidConstants.Denmark, ForwardReverseType.Forward, "fremad")]
-    public void GetValueFromDescription_ForwardReverseType(int arrangeUiLcid, ForwardReverseType expected, string input)
+    public void GetValueFromDescription_ForwardReverseType(
+        int arrangeUiLcid,
+        ForwardReverseType expected,
+        string input)
     {
         // Arrange
         if (arrangeUiLcid > 0)

@@ -27,7 +27,11 @@ public class PaginationTests
     [InlineData(2, 10, 11, 9)]
     [InlineData(2, 10, 11, 10)]
     [InlineData(2, 10, 11, 11)]
-    public void Calculate_TotalPages(int expectedTotalPages, int pageSize, int elementsToCreate, int elementsToTake)
+    public void Calculate_TotalPages(
+        int expectedTotalPages,
+        int pageSize,
+        int elementsToCreate,
+        int elementsToTake)
     {
         // Arrange
         var data = Fixture

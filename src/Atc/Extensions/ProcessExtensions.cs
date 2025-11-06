@@ -8,7 +8,9 @@ public static class ProcessExtensions
     private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
 
     [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
-    public static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
+    public static async Task WaitForExitAsync(
+        this Process process,
+        CancellationToken cancellationToken = default)
     {
         if (process is null)
         {
@@ -45,7 +47,9 @@ public static class ProcessExtensions
 
     public static void KillTree(this Process process) => process.KillTree(DefaultKillTimeout);
 
-    public static void KillTree(this Process process, TimeSpan timeout)
+    public static void KillTree(
+        this Process process,
+        TimeSpan timeout)
     {
         if (process is null)
         {
@@ -76,12 +80,17 @@ public static class ProcessExtensions
         }
     }
 
-    private static void UnixKillProcess(int processId, TimeSpan timeout)
+    private static void UnixKillProcess(
+        int processId,
+        TimeSpan timeout)
     {
         RunProcessAndIgnoreOutput("kill", $"-TERM {processId}", timeout);
     }
 
-    private static void UnixGetAllChildIds(int parentId, ISet<int> children, TimeSpan timeout)
+    private static void UnixGetAllChildIds(
+        int parentId,
+        ISet<int> children,
+        TimeSpan timeout)
     {
         var (exitCode, stdout) = RunProcessAndReadOutput("pgrep", $"-P {parentId}", timeout);
 
@@ -110,7 +119,10 @@ public static class ProcessExtensions
         }
     }
 
-    private static (int ExitCode, string Output) RunProcessAndReadOutput(string fileName, string arguments, TimeSpan timeout)
+    private static (int ExitCode, string Output) RunProcessAndReadOutput(
+        string fileName,
+        string arguments,
+        TimeSpan timeout)
     {
         var startInfo = new ProcessStartInfo
         {
@@ -135,7 +147,10 @@ public static class ProcessExtensions
             string.Empty);
     }
 
-    private static void RunProcessAndIgnoreOutput(string fileName, string arguments, TimeSpan timeout)
+    private static void RunProcessAndIgnoreOutput(
+        string fileName,
+        string arguments,
+        TimeSpan timeout)
     {
         var startInfo = new ProcessStartInfo
         {

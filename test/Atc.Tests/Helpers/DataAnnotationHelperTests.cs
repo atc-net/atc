@@ -6,7 +6,12 @@ public class DataAnnotationHelperTests
     [Theory]
     [InlineData(false, "", "", 0, true)]
     [InlineData(true, "John", "Doe", 42, true)]
-    public void TryValidate(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
+    public void TryValidate(
+        bool expected,
+        string firstName,
+        string lastName,
+        int age,
+        bool validateAllProperties)
     {
         // Arrange
         var person = new TestPerson
@@ -32,7 +37,12 @@ public class DataAnnotationHelperTests
     [Theory]
     [InlineData(false, "", "", 0, true)]
     [InlineData(true, "John", "Doe", 42, true)]
-    public void TryValidateOutToString(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
+    public void TryValidateOutToString(
+        bool expected,
+        string firstName,
+        string lastName,
+        int age,
+        bool validateAllProperties)
     {
         // Arrange
         var person = new TestPerson
@@ -58,7 +68,12 @@ public class DataAnnotationHelperTests
     [Theory]
     [InlineData(false, "", "", 0, true)]
     [InlineData(true, "John", "Doe", 42, true)]
-    public void TryValidateOutToValidationException(bool expected, string firstName, string lastName, int age, bool validateAllProperties)
+    public void TryValidateOutToValidationException(
+        bool expected,
+        string firstName,
+        string lastName,
+        int age,
+        bool validateAllProperties)
     {
         // Arrange
         var person = new TestPerson

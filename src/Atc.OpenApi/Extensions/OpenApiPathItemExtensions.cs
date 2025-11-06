@@ -15,7 +15,9 @@ public static class OpenApiPathItemExtensions
     /// <param name="segmentName">The segment name to match against the first path segment.</param>
     /// <returns>True if the path starts with the specified segment name; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="segmentName"/> is null.</exception>
-    public static bool IsPathStartingSegmentName(this KeyValuePair<string, OpenApiPathItem> urlPath, string segmentName)
+    public static bool IsPathStartingSegmentName(
+        this KeyValuePair<string, OpenApiPathItem> urlPath,
+        string segmentName)
     {
         if (segmentName is null)
         {

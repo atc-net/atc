@@ -21,7 +21,9 @@ public class ConsoleLogger : ILogger
     /// <param name="categoryName">The category name for the logger.</param>
     /// <param name="config">The console logger configuration.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="config"/> is null.</exception>
-    public ConsoleLogger(string categoryName, ConsoleLoggerConfiguration config)
+    public ConsoleLogger(
+        string categoryName,
+        ConsoleLoggerConfiguration config)
     {
         this.categoryName = categoryName;
         this.config = config ?? throw new ArgumentNullException(nameof(config));
@@ -87,7 +89,10 @@ public class ConsoleLogger : ILogger
         }
     }
 
-    private void OutputWithLogLevelAndCategoryName(LogLevel logLevel, string message, string? exceptionMessage)
+    private void OutputWithLogLevelAndCategoryName(
+        LogLevel logLevel,
+        string message,
+        string? exceptionMessage)
     {
         var spaces = GetSpacesForLogLevel(logLevel);
 
@@ -113,7 +118,10 @@ public class ConsoleLogger : ILogger
         }
     }
 
-    private void OutputWithLogLevel(LogLevel logLevel, string message, string? exceptionMessage)
+    private void OutputWithLogLevel(
+        LogLevel logLevel,
+        string message,
+        string? exceptionMessage)
     {
         var spaces = GetSpacesForLogLevel(logLevel);
 
@@ -139,7 +147,10 @@ public class ConsoleLogger : ILogger
         }
     }
 
-    private void OutputWithCategoryName(LogLevel logLevel, string message, string? exceptionMessage)
+    private void OutputWithCategoryName(
+        LogLevel logLevel,
+        string message,
+        string? exceptionMessage)
     {
         if (config.UseTimestamp)
         {
@@ -163,7 +174,10 @@ public class ConsoleLogger : ILogger
         }
     }
 
-    private void OutputDefault(LogLevel logLevel, string message, string? exceptionMessage)
+    private void OutputDefault(
+        LogLevel logLevel,
+        string message,
+        string? exceptionMessage)
     {
         if (config.UseTimestamp)
         {
@@ -221,7 +235,9 @@ public class ConsoleLogger : ILogger
             ? 10
             : 13;
 
-    private static int GetShortLogLevelCharCount(LogLevel logLevel, bool useShort)
+    private static int GetShortLogLevelCharCount(
+        LogLevel logLevel,
+        bool useShort)
     {
         if (useShort)
         {
@@ -252,7 +268,9 @@ public class ConsoleLogger : ILogger
             _ => throw new SwitchCaseDefaultException(logLevel),
         };
 
-    private static string GetLogLevelWithMarkup(LogLevel logLevel, bool useShort)
+    private static string GetLogLevelWithMarkup(
+        LogLevel logLevel,
+        bool useShort)
     {
         var startTag = GetLogLevelMarkupStartTag(logLevel);
 
@@ -282,6 +300,8 @@ public class ConsoleLogger : ILogger
     private string GetTimeStampAndCategoryNameWithMarkup()
         => $"{GetTimeStampWithMarkup()} {GetCategoryNameWithMarkup()}";
 
-    private string GetMessageWithMarkup(LogLevel logLevel, string message)
+    private string GetMessageWithMarkup(
+        LogLevel logLevel,
+        string message)
         => $"{GetLogLevelMarkupStartTag(logLevel)}{message}[/]";
 }

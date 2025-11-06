@@ -24,7 +24,10 @@ public static class ArrayExtensions
     /// <param name="sortDirectionType">The sort direction (None, Ascending, or Descending).</param>
     /// <param name="removeDuplicates">If set to <see langword="true"/>, removes duplicate elements.</param>
     /// <returns>A new array with the specified sorting and duplicate removal applied.</returns>
-    public static Array ToArray(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
+    public static Array ToArray(
+        this Array array,
+        SortDirectionType sortDirectionType = SortDirectionType.None,
+        bool removeDuplicates = false)
     {
         return ToList(array, sortDirectionType, removeDuplicates).ToArray();
     }
@@ -37,7 +40,10 @@ public static class ArrayExtensions
     /// <param name="removeDuplicates">If set to <see langword="true"/>, removes duplicate elements.</param>
     /// <returns>A list of strings with the specified sorting and duplicate removal applied.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="array"/> is null.</exception>
-    public static List<string> ToList(this Array array, SortDirectionType sortDirectionType = SortDirectionType.None, bool removeDuplicates = false)
+    public static List<string> ToList(
+        this Array array,
+        SortDirectionType sortDirectionType = SortDirectionType.None,
+        bool removeDuplicates = false)
     {
         if (array is null)
         {

@@ -31,7 +31,9 @@ public static partial class SyntaxTokenFactory
     /// <param name="syntaxKind">The kind of token to create.</param>
     /// <param name="syntaxTrivia">The trailing trivia to add.</param>
     /// <returns>A <see cref="SyntaxToken"/> with the specified trailing trivia.</returns>
-    public static SyntaxToken TokenWithTrailing(SyntaxKind syntaxKind, SyntaxTrivia syntaxTrivia)
+    public static SyntaxToken TokenWithTrailing(
+        SyntaxKind syntaxKind,
+        SyntaxTrivia syntaxTrivia)
     {
         return SyntaxFactory.Token(syntaxKind).WithTrailingTrivia(syntaxTrivia);
     }

@@ -18,7 +18,9 @@ public class ConcurrentHashSetTests
 
     [Theory]
     [InlineData(true, 27)]
-    public void TryAdd(bool expected, int input)
+    public void TryAdd(
+        bool expected,
+        int input)
     {
         // Arrange
         var list = new ConcurrentHashSet<int>();
@@ -33,7 +35,9 @@ public class ConcurrentHashSetTests
 
     [Theory]
     [InlineData(false, 27)]
-    public void TryRemove(bool expected, int input)
+    public void TryRemove(
+        bool expected,
+        int input)
     {
         // Arrange
         var list = new ConcurrentHashSet<int>();
@@ -48,7 +52,9 @@ public class ConcurrentHashSetTests
 
     [Theory]
     [InlineData(false, 27)]
-    public void Contains(bool expected, int input)
+    public void Contains(
+        bool expected,
+        int input)
     {
         // Arrange
         var list = new ConcurrentHashSet<int>();
@@ -77,7 +83,9 @@ public class ConcurrentHashSetTests
 
     [Theory]
     [InlineData(0, 27)]
-    public void FirstOrDefault(int expected, int input)
+    public void FirstOrDefault(
+        int expected,
+        int input)
     {
         // Arrange
         var list = new ConcurrentHashSet<int>();

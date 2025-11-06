@@ -38,7 +38,9 @@ public class SimpleTypeHelperTests
     [InlineData("uint?", typeof(uint?))]
     [InlineData("ulong?", typeof(ulong?))]
     [InlineData("ushort?", typeof(ushort?))]
-    public void GetBeautifyTypeName(string expected, Type type)
+    public void GetBeautifyTypeName(
+        string expected,
+        Type type)
         => Assert.Equal(expected, SimpleTypeHelper.GetBeautifyTypeName(type));
 
     [Theory]
@@ -82,7 +84,9 @@ public class SimpleTypeHelperTests
     [InlineData("ulong[]", typeof(ulong[]))]
     [InlineData("ushort[]", typeof(ushort[]))]
 
-    public void GetBeautifyArrayTypeName(string expected, Type type)
+    public void GetBeautifyArrayTypeName(
+        string expected,
+        Type type)
         => Assert.Equal(expected, SimpleTypeHelper.GetBeautifyArrayTypeName(type));
 
     [Theory]
@@ -106,7 +110,9 @@ public class SimpleTypeHelperTests
     [InlineData(true, "ushort")]
     [InlineData(true, "void")]
     [InlineData(false, "hallo")]
-    public void IsSimpleType(bool expected, string typeName)
+    public void IsSimpleType(
+        bool expected,
+        string typeName)
         => Assert.Equal(expected, SimpleTypeHelper.IsSimpleType(typeName));
 
     [Theory]
@@ -114,6 +120,9 @@ public class SimpleTypeHelperTests
     [InlineData(true, "bool", StringComparison.OrdinalIgnoreCase)]
     [InlineData(false, "BOOL", StringComparison.Ordinal)]
     [InlineData(true, "BOOL", StringComparison.OrdinalIgnoreCase)]
-    public void IsSimpleType_Comparison(bool expected, string typeName, StringComparison comparison)
+    public void IsSimpleType_Comparison(
+        bool expected,
+        string typeName,
+        StringComparison comparison)
         => Assert.Equal(expected, SimpleTypeHelper.IsSimpleType(typeName, comparison));
 }

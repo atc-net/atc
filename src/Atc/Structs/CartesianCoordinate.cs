@@ -5,7 +5,9 @@ namespace Atc.Structs;
 /// </summary>
 [Serializable]
 [StructLayout(LayoutKind.Auto)]
-public record struct CartesianCoordinate(double Latitude = 0, double Longitude = 0)
+public record struct CartesianCoordinate(
+    double Latitude = 0,
+    double Longitude = 0)
 {
     /// <summary>
     /// Gets a value indicating whether this instance is default.

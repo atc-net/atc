@@ -12,7 +12,9 @@ public static class UsingDirectiveSyntaxExtensions
     /// <param name="usingDirectives">The list of using directives to sort.</param>
     /// <param name="placeSystemNamespaceFirst">If <c>true</c>, places System namespace directives first; otherwise, sorts alphabetically.</param>
     /// <returns>A sorted <see cref="SyntaxList{T}"/> of <see cref="UsingDirectiveSyntax"/>.</returns>
-    internal static SyntaxList<UsingDirectiveSyntax> Sort(this SyntaxList<UsingDirectiveSyntax> usingDirectives, bool placeSystemNamespaceFirst = true) =>
+    internal static SyntaxList<UsingDirectiveSyntax> Sort(
+        this SyntaxList<UsingDirectiveSyntax> usingDirectives,
+        bool placeSystemNamespaceFirst = true) =>
         SyntaxFactory.List(
             usingDirectives
                 .OrderBy(Compare)

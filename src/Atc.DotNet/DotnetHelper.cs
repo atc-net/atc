@@ -109,7 +109,9 @@ public static class DotnetHelper
                value.Equals(".dotnet", StringComparison.Ordinal);
     }
 
-    private static bool TryGetDirectoryFromEnvVariable(string envVariable, out DirectoryInfo? directory)
+    private static bool TryGetDirectoryFromEnvVariable(
+        string envVariable,
+        out DirectoryInfo? directory)
     {
         directory = null;
         var value = Environment.GetEnvironmentVariable(envVariable);

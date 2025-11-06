@@ -32,7 +32,9 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the operator.
     /// </returns>
-    public static bool operator ==(ByteSize byteSize1, ByteSize byteSize2)
+    public static bool operator ==(
+        ByteSize byteSize1,
+        ByteSize byteSize2)
     {
         return byteSize1.Equals(byteSize2);
     }
@@ -45,7 +47,9 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <returns>
     /// The result of the operator.
     /// </returns>
-    public static bool operator !=(ByteSize byteSize1, ByteSize byteSize2)
+    public static bool operator !=(
+        ByteSize byteSize1,
+        ByteSize byteSize2)
     {
         return !(byteSize1 == byteSize2);
     }

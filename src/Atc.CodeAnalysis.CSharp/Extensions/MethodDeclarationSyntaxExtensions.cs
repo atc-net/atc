@@ -14,7 +14,9 @@ public static class MethodDeclarationSyntaxExtensions
     /// <returns>A new <see cref="MethodDeclarationSyntax"/> with the attribute added.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="methodDeclaration"/> or <paramref name="suppressMessage"/> is null.</exception>
     /// <exception cref="ArgumentException">Thrown when the justification in <paramref name="suppressMessage"/> is invalid.</exception>
-    public static MethodDeclarationSyntax AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
+    public static MethodDeclarationSyntax AddSuppressMessageAttribute(
+        this MethodDeclarationSyntax methodDeclaration,
+        SuppressMessageAttribute suppressMessage)
     {
         if (methodDeclaration is null)
         {

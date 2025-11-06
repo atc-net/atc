@@ -110,7 +110,9 @@ public static class TypeExtensions
     /// <returns>
     ///   <see langword="true" /> if [is inherited from] [the specified inherit type]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsInheritedFrom(this Type type, Type inheritType)
+    public static bool IsInheritedFrom(
+        this Type type,
+        Type inheritType)
     {
         if (type is null)
         {
@@ -167,7 +169,11 @@ public static class TypeExtensions
     /// <returns>
     ///   <see langword="true" /> if [is inherited from generic with argument type] [the specified inherit type]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsInheritedFromGenericWithArgumentType(this Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface = true)
+    public static bool IsInheritedFromGenericWithArgumentType(
+        this Type type,
+        Type inheritType,
+        Type argumentType,
+        bool matchAlsoOnArgumentTypeInterface = true)
     {
         if (type is null)
         {
@@ -349,7 +355,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="name">The name.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    public static MethodInfo? GetPrivateDeclaredOnlyMethod(this Type type, string name)
+    public static MethodInfo? GetPrivateDeclaredOnlyMethod(
+        this Type type,
+        string name)
     {
         if (type is null)
         {
@@ -397,7 +405,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="name">The name.</param>
     /// <exception cref="System.ArgumentNullException">type</exception>
-    public static object? GetPublicDeclaredOnlyPropertyValue(this Type type, string name)
+    public static object? GetPublicDeclaredOnlyPropertyValue(
+        this Type type,
+        string name)
     {
         if (type is null)
         {
@@ -430,7 +440,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="name">The name.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    public static PropertyInfo? GetPrivateDeclaredOnlyProperty(this Type type, string name)
+    public static PropertyInfo? GetPrivateDeclaredOnlyProperty(
+        this Type type,
+        string name)
     {
         if (type is null)
         {
@@ -446,7 +458,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     /// <exception cref="ArgumentNullException">type.</exception>
-    public static string? GetNameWithoutGenericType(this Type type, bool useFullName = false)
+    public static string? GetNameWithoutGenericType(
+        this Type type,
+        bool useFullName = false)
     {
         if (type is null)
         {
@@ -479,7 +493,10 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
     /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
-    public static string BeautifyTypeOfName(this Type type, bool useFullName = false, bool useHtmlFormat = false)
+    public static string BeautifyTypeOfName(
+        this Type type,
+        bool useFullName = false,
+        bool useHtmlFormat = false)
     {
         return $"typeof({type.BeautifyName(useFullName, useHtmlFormat)})";
     }
@@ -494,7 +511,12 @@ public static class TypeExtensions
     /// <param name="useSuffixQuestionMarkForGeneric">if set to <see langword="true" /> [use suffix question mark for generic].</param>
     /// <exception cref="ArgumentNullException">type.</exception>
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-    public static string BeautifyName(this Type type, bool useFullName = false, bool useHtmlFormat = false, bool useGenericParameterNamesAsT = false, bool useSuffixQuestionMarkForGeneric = false)
+    public static string BeautifyName(
+        this Type type,
+        bool useFullName = false,
+        bool useHtmlFormat = false,
+        bool useGenericParameterNamesAsT = false,
+        bool useSuffixQuestionMarkForGeneric = false)
     {
         if (type is null)
         {
@@ -543,7 +565,9 @@ public static class TypeExtensions
     /// </summary>
     /// <param name="type">The type.</param>
     /// <param name="useFullName">if set to <see langword="true" /> [use full name].</param>
-    public static string BeautifyTypeName(this Type? type, bool useFullName = false)
+    public static string BeautifyTypeName(
+        this Type? type,
+        bool useFullName = false)
     {
         if (type is null || "Object".Equals(type.Name, StringComparison.Ordinal))
         {
@@ -602,7 +626,9 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="enumType">Type of the enum.</param>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static bool TryGetEnumType(this Type type, out Type enumType)
+    public static bool TryGetEnumType(
+        this Type type,
+        out Type enumType)
     {
         if (type is null)
         {
@@ -659,7 +685,9 @@ public static class TypeExtensions
     /// <returns>
     ///   <see langword="true" /> if [is sub class of raw generic] [the specified derived type]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsSubClassOfRawGeneric(this Type baseType, Type derivedType)
+    public static bool IsSubClassOfRawGeneric(
+        this Type baseType,
+        Type derivedType)
     {
         while (derivedType is not null && derivedType != typeof(object))
         {
@@ -695,7 +723,13 @@ public static class TypeExtensions
             : null!;
     }
 
-    private static bool IsInheritedFromGenericWithArgumentTypeHelper(Type type, Type inheritType, Type argumentType, bool matchAlsoOnArgumentTypeInterface, string inheritTypeFullName, string baseTypeFullName)
+    private static bool IsInheritedFromGenericWithArgumentTypeHelper(
+        Type type,
+        Type inheritType,
+        Type argumentType,
+        bool matchAlsoOnArgumentTypeInterface,
+        string inheritTypeFullName,
+        string baseTypeFullName)
     {
         if (inheritType.IsGenericType)
         {

@@ -8,7 +8,9 @@ public class CommandTests : SampleIntegrationTestBase
     [Theory]
     [InlineData("Hello, Phil", "hello Phil")]
     [InlineData("Hello, Phil - 4", "hello Phil --count 4")]
-    public async Task Hello_Command(string expected, string arguments)
+    public async Task Hello_Command(
+        string expected,
+        string arguments)
     {
         // Arrange & Act
         var (isCliExecutedCorrectly, output) = await ExecuteCli(arguments);
@@ -21,7 +23,10 @@ public class CommandTests : SampleIntegrationTestBase
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCommandTests.LogCommand), MemberType = typeof(TestMemberDataForCommandTests))]
-    public async Task Log_Command(string[] expectedList, string arguments, ConsoleLoggerConfiguration config)
+    public async Task Log_Command(
+        string[] expectedList,
+        string arguments,
+        ConsoleLoggerConfiguration config)
     {
         // Arrange
         PrepareCliAppSettings(config);
@@ -38,7 +43,9 @@ public class CommandTests : SampleIntegrationTestBase
         }
     }
 
-    private static void AssertInLines(string expected, string[] lines)
+    private static void AssertInLines(
+        string expected,
+        string[] lines)
     {
         var found = lines.Any(x => x.Equals(expected, StringComparison.Ordinal));
         Assert.True(found, $"\nExpectedLine:  '{expected}'\nin ActualData: '{string.Join('\n', lines)}'");

@@ -14,7 +14,10 @@ public static class TaskExtensions
     /// <param name="tasksToRun">The tasks to run.</param>
     /// <param name="maxTasksToRunInParallel">The maximum number of tasks to run in parallel.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
-    public static void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, CancellationToken cancellationToken = default)
+    public static void StartAndWaitAllThrottled(
+        this IEnumerable<Task> tasksToRun,
+        int maxTasksToRunInParallel,
+        CancellationToken cancellationToken = default)
     {
         StartAndWaitAllThrottled(tasksToRun, maxTasksToRunInParallel, -1, cancellationToken);
     }
@@ -28,7 +31,11 @@ public static class TaskExtensions
     /// <param name="timeoutInMilliseconds">The maximum milliseconds we should allow the max tasks to run in parallel before allowing another task to start. Specify -1 to wait indefinitely.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     [SuppressMessage("Reliability", "CA2008:Do not create tasks without passing a TaskScheduler", Justification = "OK.")]
-    public static void StartAndWaitAllThrottled(this IEnumerable<Task> tasksToRun, int maxTasksToRunInParallel, int timeoutInMilliseconds, CancellationToken cancellationToken = default)
+    public static void StartAndWaitAllThrottled(
+        this IEnumerable<Task> tasksToRun,
+        int maxTasksToRunInParallel,
+        int timeoutInMilliseconds,
+        CancellationToken cancellationToken = default)
     {
         if (tasksToRun is null)
         {

@@ -6,7 +6,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData("Accepted", HttpStatusCode.Accepted)]
     [InlineData("Ok", HttpStatusCode.OK)]
     [InlineData("ImUsed", HttpStatusCode.IMUsed)]
-    public void ToNormalizedString(string expected, HttpStatusCode httpStatusCode)
+    public void ToNormalizedString(
+        string expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.ToNormalizedString());
 
     [Theory]
@@ -70,7 +72,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(HttpStatusCode.LoopDetected, "Status508LoopDetected")]
     [InlineData(HttpStatusCode.NotExtended, "Status510NotExtended")]
     [InlineData(HttpStatusCode.NetworkAuthenticationRequired, "Status511NetworkAuthenticationRequired")]
-    public void ToStatusCodesConstant(HttpStatusCode httpStatusCode, string expected)
+    public void ToStatusCodesConstant(
+        HttpStatusCode httpStatusCode,
+        string expected)
         => Assert.Equal(expected, httpStatusCode.ToStatusCodesConstant());
 
     [Theory]
@@ -79,7 +83,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(false, HttpStatusCode.Ambiguous)]
     [InlineData(false, HttpStatusCode.BadRequest)]
     [InlineData(false, HttpStatusCode.InternalServerError)]
-    public void IsInformational(bool expected, HttpStatusCode httpStatusCode)
+    public void IsInformational(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsInformational());
 
     [Theory]
@@ -88,7 +94,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(false, HttpStatusCode.Ambiguous)]
     [InlineData(false, HttpStatusCode.BadRequest)]
     [InlineData(false, HttpStatusCode.InternalServerError)]
-    public void IsSuccessful(bool expected, HttpStatusCode httpStatusCode)
+    public void IsSuccessful(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsSuccessful());
 
     [Theory]
@@ -97,7 +105,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(true, HttpStatusCode.Ambiguous)]
     [InlineData(false, HttpStatusCode.BadRequest)]
     [InlineData(false, HttpStatusCode.InternalServerError)]
-    public void IsRedirect(bool expected, HttpStatusCode httpStatusCode)
+    public void IsRedirect(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsRedirect());
 
     [Theory]
@@ -106,7 +116,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(false, HttpStatusCode.Ambiguous)]
     [InlineData(true, HttpStatusCode.BadRequest)]
     [InlineData(false, HttpStatusCode.InternalServerError)]
-    public void IsClientError(bool expected, HttpStatusCode httpStatusCode)
+    public void IsClientError(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsClientError());
 
     [Theory]
@@ -115,7 +127,9 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(false, HttpStatusCode.Ambiguous)]
     [InlineData(false, HttpStatusCode.BadRequest)]
     [InlineData(true, HttpStatusCode.InternalServerError)]
-    public void IsServerError(bool expected, HttpStatusCode httpStatusCode)
+    public void IsServerError(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsServerError());
 
     [Theory]
@@ -124,6 +138,8 @@ public class HttpStatusCodeExtensionsTests
     [InlineData(false, HttpStatusCode.Ambiguous)]
     [InlineData(true, HttpStatusCode.BadRequest)]
     [InlineData(true, HttpStatusCode.InternalServerError)]
-    public void IsClientOrServerError(bool expected, HttpStatusCode httpStatusCode)
+    public void IsClientOrServerError(
+        bool expected,
+        HttpStatusCode httpStatusCode)
         => Assert.Equal(expected, httpStatusCode.IsClientOrServerError());
 }

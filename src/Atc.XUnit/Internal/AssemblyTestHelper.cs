@@ -23,7 +23,11 @@ internal static class AssemblyTestHelper
         ////DebugLimitData = new DebugLimitData(classMethodNames);
     }
 
-    internal static Type[] CollectExportedTypesWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type>? excludeSourceTypes)
+    internal static Type[] CollectExportedTypesWithMissingTests(
+        DecompilerType decompilerType,
+        Assembly sourceAssembly,
+        Assembly testAssembly,
+        List<Type>? excludeSourceTypes)
     {
         var methodsWithMissingTests = CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
 
@@ -38,7 +42,10 @@ internal static class AssemblyTestHelper
             .ToArray();
     }
 
-    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Type testType)
+    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(
+        DecompilerType decompilerType,
+        Type sourceType,
+        Type testType)
     {
         if (sourceType is null)
         {
@@ -68,7 +75,10 @@ internal static class AssemblyTestHelper
         }
     }
 
-    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Assembly testAssembly)
+    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(
+        DecompilerType decompilerType,
+        Type sourceType,
+        Assembly testAssembly)
     {
         if (sourceType is null)
         {
@@ -99,7 +109,11 @@ internal static class AssemblyTestHelper
     }
 
     [SuppressMessage("Performance", "MA0020:Use direct methods instead of LINQ methods", Justification = "OK.")]
-    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type>? excludeSourceTypes)
+    internal static MethodInfo[] CollectExportedMethodsWithMissingTests(
+        DecompilerType decompilerType,
+        Assembly sourceAssembly,
+        Assembly testAssembly,
+        List<Type>? excludeSourceTypes)
     {
         if (sourceAssembly is null)
         {
@@ -146,7 +160,9 @@ internal static class AssemblyTestHelper
         }
     }
 
-    internal static string[] GetMethodsAsRenderTextLines(MethodInfo[] methods, bool useFullName)
+    internal static string[] GetMethodsAsRenderTextLines(
+        MethodInfo[] methods,
+        bool useFullName)
     {
         return methods
             .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
@@ -156,7 +172,9 @@ internal static class AssemblyTestHelper
             .ToArray();
     }
 
-    internal static string GetMethodsAsRenderText(MethodInfo[] methods, bool useFullName)
+    internal static string GetMethodsAsRenderText(
+        MethodInfo[] methods,
+        bool useFullName)
     {
         var methodsAsRenderTextItems = GetMethodsAsRenderTextLines(methods, useFullName);
         var sb = new StringBuilder();

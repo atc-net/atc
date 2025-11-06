@@ -32,7 +32,12 @@ public class Pagination<T>
     /// <param name="queryString">The original query string from the request.</param>
     /// <param name="pageIndex">The zero-based page index.</param>
     /// <param name="totalCount">The total number of items across all pages.</param>
-    public Pagination(IEnumerable<T> items, int pageSize, string? queryString, int pageIndex, int totalCount)
+    public Pagination(
+        IEnumerable<T> items,
+        int pageSize,
+        string? queryString,
+        int pageIndex,
+        int totalCount)
     {
         ArgumentNullException.ThrowIfNull(items);
 
@@ -50,7 +55,11 @@ public class Pagination<T>
     /// <param name="pageSize">The number of items per page.</param>
     /// <param name="queryString">The original query string from the request.</param>
     /// <param name="continuationToken">The continuation token for fetching the next page.</param>
-    public Pagination(IEnumerable<T> items, int pageSize, string? queryString, string? continuationToken)
+    public Pagination(
+        IEnumerable<T> items,
+        int pageSize,
+        string? queryString,
+        string? continuationToken)
     {
         ArgumentNullException.ThrowIfNull(items);
 

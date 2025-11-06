@@ -5,7 +5,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateProblemDetails_Message(HttpStatusCode statusCode, string? message)
+    public void CreateProblemDetails_Message(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Act
         var actual = ResultFactory.CreateProblemDetails(statusCode, message);
@@ -23,7 +25,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateValidationProblemDetails_Message(HttpStatusCode statusCode, string? message)
+    public void CreateValidationProblemDetails_Message(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Act
         var actual = ResultFactory.CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message);
@@ -41,7 +45,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateContentResultWithProblemDetails_Message(HttpStatusCode statusCode, string? message)
+    public void CreateContentResultWithProblemDetails_Message(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Act
         var actual = ResultFactory.CreateContentResultWithProblemDetails(statusCode, message);
@@ -60,7 +66,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.Conflict, null)]
     [InlineData(HttpStatusCode.Conflict, "Hallo World")]
-    public void CreateContentResultWithProblemDetails_Value(HttpStatusCode statusCode, object? value)
+    public void CreateContentResultWithProblemDetails_Value(
+        HttpStatusCode statusCode,
+        object? value)
     {
         // Act
         var actual = ResultFactory.CreateContentResultWithProblemDetails(statusCode, value);
@@ -79,7 +87,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateContentResultWithValidationProblemDetails_Message(HttpStatusCode statusCode, string? message)
+    public void CreateContentResultWithValidationProblemDetails_Message(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Act
         var actual = ResultFactory.CreateContentResultWithValidationProblemDetails(statusCode, message);
@@ -98,7 +108,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateContentResultWithValidationProblemDetails_Message_Errors(HttpStatusCode statusCode, string? message)
+    public void CreateContentResultWithValidationProblemDetails_Message_Errors(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Arrange
         var errors = new Dictionary<string, string[]>(StringComparer.Ordinal) { { "firstName", new[] { "length" } } };
@@ -121,7 +133,10 @@ public class ResultFactoryTests
     [InlineData(HttpStatusCode.OK, null, MediaTypeNames.Application.Json)]
     [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Application.Json)]
     [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Text.Html)]
-    public void CreateContentResultWithProblemDetails_Message_ContentType(HttpStatusCode statusCode, string? message, string contentType)
+    public void CreateContentResultWithProblemDetails_Message_ContentType(
+        HttpStatusCode statusCode,
+        string? message,
+        string contentType)
     {
         // Act
         var actual = ResultFactory.CreateContentResultWithProblemDetails(statusCode, message, contentType);
@@ -140,7 +155,9 @@ public class ResultFactoryTests
     [Theory]
     [InlineData(HttpStatusCode.OK, null)]
     [InlineData(HttpStatusCode.OK, "Hallo World")]
-    public void CreateContentResult_Message(HttpStatusCode statusCode, string? message)
+    public void CreateContentResult_Message(
+        HttpStatusCode statusCode,
+        string? message)
     {
         // Act
         var actual = ResultFactory.CreateContentResult(statusCode, message);
@@ -159,7 +176,10 @@ public class ResultFactoryTests
     [InlineData(HttpStatusCode.OK, null, MediaTypeNames.Application.Json)]
     [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Application.Json)]
     [InlineData(HttpStatusCode.OK, "Hallo World", MediaTypeNames.Text.Html)]
-    public void CreateContentResult_Message_ContentType(HttpStatusCode statusCode, string? message, string contentType)
+    public void CreateContentResult_Message_ContentType(
+        HttpStatusCode statusCode,
+        string? message,
+        string contentType)
     {
         // Act
         var actual = ResultFactory.CreateContentResult(statusCode, message, contentType);
@@ -177,7 +197,9 @@ public class ResultFactoryTests
 
     [Theory]
     [InlineData("Hallo World", "dummy.txt")]
-    public void CreateFileContentResult(string data, string fileName)
+    public void CreateFileContentResult(
+        string data,
+        string fileName)
     {
         // Arrange
         var bytes = Encoding.UTF8.GetBytes(data);

@@ -7,7 +7,10 @@ public class IntegerExtensionsTests
     [InlineData(false, 5, 2)]
     [InlineData(false, 2, 5)]
     [InlineData(true, null, null)]
-    public void IsEqual(bool expected, int? a, int? b)
+    public void IsEqual(
+        bool expected,
+        int? a,
+        int? b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -23,7 +26,9 @@ public class IntegerExtensionsTests
     [InlineData(true, 2)]
     [InlineData(true, 22)]
     [InlineData(false, 23)]
-    public void IsEven(bool expected, int input)
+    public void IsEven(
+        bool expected,
+        int input)
     {
         // Act
         var actual = input.IsEven();
@@ -39,7 +44,9 @@ public class IntegerExtensionsTests
     [InlineData(false, 2)]
     [InlineData(false, 22)]
     [InlineData(true, 23)]
-    public void IsOdd(bool expected, int input)
+    public void IsOdd(
+        bool expected,
+        int input)
     {
         // Act
         var actual = input.IsOdd();
@@ -62,7 +69,9 @@ public class IntegerExtensionsTests
     [InlineData(false, 9)]
     [InlineData(false, 10)]
     [InlineData(true, 11)]
-    public void IsPrime(bool expected, int input)
+    public void IsPrime(
+        bool expected,
+        int input)
     {
         // Act
         var actual = input.IsPrime();
@@ -83,7 +92,9 @@ public class IntegerExtensionsTests
     [InlineData(false, 7)]
     [InlineData(true, 8)]
     [InlineData(false, 9)]
-    public void IsBinarySequence(bool expected, int input)
+    public void IsBinarySequence(
+        bool expected,
+        int input)
     {
         // Act
         var actual = input.IsBinarySequence();
@@ -94,7 +105,11 @@ public class IntegerExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForExtensionsInteger.MonthNameData), MemberType = typeof(TestMemberDataForExtensionsInteger))]
-    public void GetMonthNameByMonthNumber(int arrangeUiLcid, string expected, int input, bool pascalCased)
+    public void GetMonthNameByMonthNumber(
+        int arrangeUiLcid,
+        string expected,
+        int input,
+        bool pascalCased)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -111,7 +126,9 @@ public class IntegerExtensionsTests
     [InlineData(53, 2020)]
     [InlineData(52, 2021)]
     [InlineData(52, 2022)]
-    public void GetNumberOfWeeksByYear(int expected, int input)
+    public void GetNumberOfWeeksByYear(
+        int expected,
+        int input)
     {
         // Act
         var actual = input.GetNumberOfWeeksByYear();
@@ -125,7 +142,12 @@ public class IntegerExtensionsTests
     [InlineData(2019, 12, 30, 2020, 1)]
     [InlineData(2021, 1, 4, 2021, 1)]
     [InlineData(2022, 1, 3, 2022, 1)]
-    public void GetFirstDayOfWeekNumberByYear(int expectedYear, int expectedMonth, int expectedDay, int input, int weekNumber)
+    public void GetFirstDayOfWeekNumberByYear(
+        int expectedYear,
+        int expectedMonth,
+        int expectedDay,
+        int input,
+        int weekNumber)
     {
         // Assert
         var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);
@@ -142,7 +164,12 @@ public class IntegerExtensionsTests
     [InlineData(2020, 1, 5, 2020, 1)]
     [InlineData(2021, 1, 10, 2021, 1)]
     [InlineData(2022, 1, 9, 2022, 1)]
-    public void GetLastDayOfWeekNumberByYear(int expectedYear, int expectedMonth, int expectedDay, int input, int weekNumber)
+    public void GetLastDayOfWeekNumberByYear(
+        int expectedYear,
+        int expectedMonth,
+        int expectedDay,
+        int input,
+        int weekNumber)
     {
         // Assert
         var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);

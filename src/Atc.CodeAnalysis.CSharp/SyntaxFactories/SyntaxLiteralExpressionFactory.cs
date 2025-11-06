@@ -14,7 +14,9 @@ public static class SyntaxLiteralExpressionFactory
     /// <returns>A <see cref="LiteralExpressionSyntax"/> node.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when value cannot be parsed as a numeric literal when syntaxKind is NumericLiteralExpression.</exception>
-    public static LiteralExpressionSyntax Create(string value, SyntaxKind syntaxKind = SyntaxKind.StringLiteralExpression)
+    public static LiteralExpressionSyntax Create(
+        string value,
+        SyntaxKind syntaxKind = SyntaxKind.StringLiteralExpression)
     {
         if (value is null)
         {

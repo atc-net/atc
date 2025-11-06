@@ -4,7 +4,9 @@ public class PropertyInfoExtensionsTests
 {
     [Theory]
     [InlineData("string", typeof(UnexpectedTypeException))]
-    public void BeautifyName(string expected, Type type)
+    public void BeautifyName(
+        string expected,
+        Type type)
     {
         // Arrange
         var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
@@ -18,7 +20,9 @@ public class PropertyInfoExtensionsTests
 
     [Theory]
     [InlineData("Message", typeof(UnexpectedTypeException))]
-    public void GetName(string expected, Type type)
+    public void GetName(
+        string expected,
+        Type type)
     {
         // Arrange
         var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
@@ -33,7 +37,10 @@ public class PropertyInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestNullableVsNonNullable), "NonNullableInt")]
     [InlineData(true, typeof(TestNullableVsNonNullable), "NullableInt")]
-    public void IsNullable(bool expected, Type type, string propertyName)
+    public void IsNullable(
+        bool expected,
+        Type type,
+        string propertyName)
     {
         // Arrange
         var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, propertyName, StringComparison.Ordinal));
@@ -47,7 +54,9 @@ public class PropertyInfoExtensionsTests
 
     [Theory]
     [InlineData("Message", typeof(UnexpectedTypeException))]
-    public void GetDescription(string expected, Type type)
+    public void GetDescription(
+        string expected,
+        Type type)
     {
         // Arrange
         var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
@@ -62,7 +71,10 @@ public class PropertyInfoExtensionsTests
     [Theory]
     [InlineData("Message", typeof(UnexpectedTypeException), false)]
     [InlineData("Message", typeof(UnexpectedTypeException), true)]
-    public void GetDescription_UseLocalizedIfPossible(string expected, Type type, bool useLocalizedIfPossible)
+    public void GetDescription_UseLocalizedIfPossible(
+        string expected,
+        Type type,
+        bool useLocalizedIfPossible)
     {
         // Arrange
         var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));

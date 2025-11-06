@@ -6,7 +6,9 @@ namespace Atc;
 /// </summary>
 [Serializable]
 [StructLayout(LayoutKind.Auto)]
-public record struct Point2D(double X = 0, double Y = 0)
+public record struct Point2D(
+    double X = 0,
+    double Y = 0)
 {
     /// <summary>
     /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).

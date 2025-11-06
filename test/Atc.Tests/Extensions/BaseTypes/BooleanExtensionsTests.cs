@@ -6,7 +6,9 @@ public class BooleanExtensionsTests
     [InlineData(true, true)]
     [InlineData(false, false)]
     [InlineData(false, null)]
-    public void HasValueAndTrue(bool expected, bool? source)
+    public void HasValueAndTrue(
+        bool expected,
+        bool? source)
     {
         // Act
         var actual = source.HasValueAndTrue();
@@ -19,7 +21,9 @@ public class BooleanExtensionsTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, null)]
-    public void HasValueAndFalse(bool expected, bool? source)
+    public void HasValueAndFalse(
+        bool expected,
+        bool? source)
     {
         // Act
         var actual = source.HasValueAndFalse();
@@ -32,7 +36,9 @@ public class BooleanExtensionsTests
     [InlineData(false, false)]
     [InlineData(false, true)]
     [InlineData(true, null)]
-    public void HasNoValue(bool expected, bool? source)
+    public void HasNoValue(
+        bool expected,
+        bool? source)
     {
         // Act
         var actual = source.HasNoValue();
@@ -45,7 +51,9 @@ public class BooleanExtensionsTests
     [InlineData(false, false)]
     [InlineData(true, true)]
     [InlineData(true, null)]
-    public void HasNoValueOrTrue(bool expected, bool? source)
+    public void HasNoValueOrTrue(
+        bool expected,
+        bool? source)
     {
         // Act
         var actual = source.HasNoValueOrTrue();
@@ -58,7 +66,9 @@ public class BooleanExtensionsTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(true, null)]
-    public void HasNoValueOrFalse(bool expected, bool? source)
+    public void HasNoValueOrFalse(
+        bool expected,
+        bool? source)
     {
         // Act
         var actual = source.HasNoValueOrFalse();
@@ -72,7 +82,10 @@ public class BooleanExtensionsTests
     [InlineData(false, true, false)]
     [InlineData(false, false, true)]
     [InlineData(true, false, false)]
-    public void IsEqual(bool expected, bool? a, bool? b)
+    public void IsEqual(
+        bool expected,
+        bool? a,
+        bool? b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -84,7 +97,9 @@ public class BooleanExtensionsTests
     [Theory]
     [InlineData(0, false)]
     [InlineData(1, true)]
-    public void ToInt(int expected, bool input)
+    public void ToInt(
+        int expected,
+        bool input)
     {
         // Act
         var actual = input.ToInt();
@@ -97,7 +112,9 @@ public class BooleanExtensionsTests
     [InlineData(0, null)]
     [InlineData(0, false)]
     [InlineData(1, true)]
-    public void ToInt_Nullable(int expected, bool? input)
+    public void ToInt_Nullable(
+        int expected,
+        bool? input)
     {
         // Act
         var actual = input.ToInt();
@@ -109,7 +126,9 @@ public class BooleanExtensionsTests
     [Theory]
     [InlineData("Yes", true)]
     [InlineData("No", false)]
-    public void ToYesNoString(string expected, bool source)
+    public void ToYesNoString(
+        string expected,
+        bool source)
     {
         // Act
         var actual = source.ToYesNoString();
@@ -121,7 +140,9 @@ public class BooleanExtensionsTests
     [Theory]
     [InlineData(YesNoType.Yes, true)]
     [InlineData(YesNoType.No, false)]
-    public void ToYesNoType(YesNoType expected, bool source)
+    public void ToYesNoType(
+        YesNoType expected,
+        bool source)
     {
         // Act
         var actual = source.ToYesNoType();
@@ -134,7 +155,9 @@ public class BooleanExtensionsTests
     [InlineData(YesNoType.Yes, true)]
     [InlineData(YesNoType.No, false)]
     [InlineData(YesNoType.None, null)]
-    public void ToYesNoTypeForNullable(YesNoType expected, bool? source)
+    public void ToYesNoTypeForNullable(
+        YesNoType expected,
+        bool? source)
     {
         // Act
         var actual = source.ToYesNoType();

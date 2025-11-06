@@ -107,7 +107,9 @@ public static class ArticleNumberHelper
     /// </summary>
     /// <param name="code">The code.</param>
     /// <param name="gtin">The gtin.</param>
-    public static bool TryConvertToGtin(string code, out string gtin)
+    public static bool TryConvertToGtin(
+        string code,
+        out string gtin)
     {
         if (string.IsNullOrEmpty(code))
         {

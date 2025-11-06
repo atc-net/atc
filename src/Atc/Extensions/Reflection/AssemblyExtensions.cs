@@ -56,7 +56,9 @@ public static class AssemblyExtensions
     /// <param name="typeName">The name of the type to find.</param>
     /// <returns>The type if found; otherwise, null.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="typeName"/> is null.</exception>
-    public static Type? GetExportedTypeByName(this Assembly assembly, string typeName)
+    public static Type? GetExportedTypeByName(
+        this Assembly assembly,
+        string typeName)
     {
         if (assembly is null)
         {
@@ -96,7 +98,9 @@ public static class AssemblyExtensions
     /// <param name="type">The base type to search for inherited types.</param>
     /// <returns>An array of types that inherit from the specified type.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="type"/> is null.</exception>
-    public static Type[] GetTypesInheritingFromType(this Assembly assembly, Type type)
+    public static Type[] GetTypesInheritingFromType(
+        this Assembly assembly,
+        Type type)
     {
         if (assembly is null)
         {

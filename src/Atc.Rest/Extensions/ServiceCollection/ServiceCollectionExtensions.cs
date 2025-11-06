@@ -84,7 +84,9 @@ public static class ServiceCollectionExtensions
         throw new ItemNotFoundException($"Missing registrations for {apiAssembly.GetName().Name}: {string.Join(", ", missingRegistrations)}");
     }
 
-    private static bool IsImplementationTypeRegistered(IServiceCollection services, Type type)
+    private static bool IsImplementationTypeRegistered(
+        IServiceCollection services,
+        Type type)
     {
         return services.Any(item => item.ImplementationType == type);
     }

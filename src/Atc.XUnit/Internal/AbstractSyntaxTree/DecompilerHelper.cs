@@ -19,7 +19,9 @@ internal static class DecompilerHelper
         };
     }
 
-    internal static Tuple<MethodInfo, MethodDeclaration>[] GetTestMethodsWithDecompiled(CSharpDecompiler decompiler, Tuple<Type, MethodInfo[]>[] testTypeMethods)
+    internal static Tuple<MethodInfo, MethodDeclaration>[] GetTestMethodsWithDecompiled(
+        CSharpDecompiler decompiler,
+        Tuple<Type, MethodInfo[]>[] testTypeMethods)
     {
         var testMethods = new List<Tuple<MethodInfo, MethodDeclaration>>();
         foreach ((Type testType, MethodInfo[] testMethodInfos) in testTypeMethods)

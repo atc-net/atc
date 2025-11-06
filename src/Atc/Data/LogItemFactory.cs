@@ -14,7 +14,9 @@ public static class LogItemFactory
     /// <param name="message">The log message.</param>
     /// <returns>A new <see cref="LogItem"/> instance.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="message"/> is null.</exception>
-    public static LogItem Create(LogCategoryType logCategoryType, string message)
+    public static LogItem Create(
+        LogCategoryType logCategoryType,
+        string message)
     {
         if (message is null)
         {
@@ -192,7 +194,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
-    public static LogKeyValueItem Create(LogCategoryType logCategoryType, string key, string value)
+    public static LogKeyValueItem Create(
+        LogCategoryType logCategoryType,
+        string key,
+        string value)
     {
         if (key is null)
         {
@@ -216,7 +221,11 @@ public static class LogItemFactory
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="key"/>, <paramref name="value"/>, or <paramref name="description"/> is null.</exception>
-    public static LogKeyValueItem Create(LogCategoryType logCategoryType, string key, string value, string description)
+    public static LogKeyValueItem Create(
+        LogCategoryType logCategoryType,
+        string key,
+        string value,
+        string description)
     {
         if (key is null)
         {
@@ -242,7 +251,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with critical severity.</returns>
-    public static LogKeyValueItem CreateCritical(string key, string value)
+    public static LogKeyValueItem CreateCritical(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Critical, key, value);
     }
@@ -254,7 +265,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with critical severity.</returns>
-    public static LogKeyValueItem CreateCritical(string key, string value, string description)
+    public static LogKeyValueItem CreateCritical(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Critical, key, value, description);
     }
@@ -265,7 +279,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with error severity.</returns>
-    public static LogKeyValueItem CreateError(string key, string value)
+    public static LogKeyValueItem CreateError(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Error, key, value);
     }
@@ -277,7 +293,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with error severity.</returns>
-    public static LogKeyValueItem CreateError(string key, string value, string description)
+    public static LogKeyValueItem CreateError(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Error, key, value, description);
     }
@@ -288,7 +307,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with warning severity.</returns>
-    public static LogKeyValueItem CreateWarning(string key, string value)
+    public static LogKeyValueItem CreateWarning(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Warning, key, value);
     }
@@ -300,7 +321,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with warning severity.</returns>
-    public static LogKeyValueItem CreateWarning(string key, string value, string description)
+    public static LogKeyValueItem CreateWarning(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Warning, key, value, description);
     }
@@ -311,7 +335,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with security severity.</returns>
-    public static LogKeyValueItem CreateSecurity(string key, string value)
+    public static LogKeyValueItem CreateSecurity(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Security, key, value);
     }
@@ -323,7 +349,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with security severity.</returns>
-    public static LogKeyValueItem CreateSecurity(string key, string value, string description)
+    public static LogKeyValueItem CreateSecurity(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Security, key, value, description);
     }
@@ -334,7 +363,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with audit severity.</returns>
-    public static LogKeyValueItem CreateAudit(string key, string value)
+    public static LogKeyValueItem CreateAudit(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Audit, key, value);
     }
@@ -346,7 +377,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with audit severity.</returns>
-    public static LogKeyValueItem CreateAudit(string key, string value, string description)
+    public static LogKeyValueItem CreateAudit(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Audit, key, value, description);
     }
@@ -357,7 +391,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with service severity.</returns>
-    public static LogKeyValueItem CreateService(string key, string value)
+    public static LogKeyValueItem CreateService(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Service, key, value);
     }
@@ -369,7 +405,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with service severity.</returns>
-    public static LogKeyValueItem CreateService(string key, string value, string description)
+    public static LogKeyValueItem CreateService(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Service, key, value, description);
     }
@@ -380,7 +419,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with UI severity.</returns>
-    public static LogKeyValueItem CreateUi(string key, string value)
+    public static LogKeyValueItem CreateUi(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.UI, key, value);
     }
@@ -392,7 +433,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with UI severity.</returns>
-    public static LogKeyValueItem CreateUi(string key, string value, string description)
+    public static LogKeyValueItem CreateUi(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.UI, key, value, description);
     }
@@ -403,7 +447,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with information severity.</returns>
-    public static LogKeyValueItem CreateInformation(string key, string value)
+    public static LogKeyValueItem CreateInformation(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Information, key, value);
     }
@@ -415,7 +461,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with information severity.</returns>
-    public static LogKeyValueItem CreateInformation(string key, string value, string description)
+    public static LogKeyValueItem CreateInformation(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Information, key, value, description);
     }
@@ -426,7 +475,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with debug severity.</returns>
-    public static LogKeyValueItem CreateDebug(string key, string value)
+    public static LogKeyValueItem CreateDebug(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Debug, key, value);
     }
@@ -438,7 +489,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with debug severity.</returns>
-    public static LogKeyValueItem CreateDebug(string key, string value, string description)
+    public static LogKeyValueItem CreateDebug(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Debug, key, value, description);
     }
@@ -449,7 +503,9 @@ public static class LogItemFactory
     /// <param name="key">The log item key.</param>
     /// <param name="value">The log item value.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with trace severity.</returns>
-    public static LogKeyValueItem CreateTrace(string key, string value)
+    public static LogKeyValueItem CreateTrace(
+        string key,
+        string value)
     {
         return Create(LogCategoryType.Trace, key, value);
     }
@@ -461,7 +517,10 @@ public static class LogItemFactory
     /// <param name="value">The log item value.</param>
     /// <param name="description">The log item description.</param>
     /// <returns>A new <see cref="LogKeyValueItem"/> instance with trace severity.</returns>
-    public static LogKeyValueItem CreateTrace(string key, string value, string description)
+    public static LogKeyValueItem CreateTrace(
+        string key,
+        string value,
+        string description)
     {
         return Create(LogCategoryType.Trace, key, value, description);
     }

@@ -10,7 +10,9 @@ public static class CartesianHelper
     /// </summary>
     /// <param name="angle">The angle.</param>
     /// <param name="radius">The radius.</param>
-    public static Point2D ComputeCoordinateFromPolar(double angle, double radius)
+    public static Point2D ComputeCoordinateFromPolar(
+        double angle,
+        double radius)
     {
         // Convert angle to radians
         double angleRad = System.Math.PI / 180.0 * (angle - 90);
@@ -29,7 +31,9 @@ public static class CartesianHelper
     /// <param name="pointA">The first point2d</param>
     /// <param name="pointB">The second point2d</param>
     /// <returns>The distance</returns>
-    public static double DistanceBetweenTwoPoints(Point2D pointA, Point2D pointB)
+    public static double DistanceBetweenTwoPoints(
+        Point2D pointA,
+        Point2D pointB)
     {
         return DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointB.X, pointB.Y);
     }
@@ -41,7 +45,9 @@ public static class CartesianHelper
     /// <param name="pointA">The first point</param>
     /// <param name="pointB">The second point</param>
     /// <returns>The distance</returns>
-    public static double DistanceBetweenTwoPoints(Point3D pointA, Point3D pointB)
+    public static double DistanceBetweenTwoPoints(
+        Point3D pointA,
+        Point3D pointB)
     {
         return DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointA.Z, pointB.X, pointB.Y, pointB.Z);
     }
@@ -52,7 +58,9 @@ public static class CartesianHelper
     /// <param name="coordinateA">The coordinate a.</param>
     /// <param name="coordinateB">The coordinate b.</param>
     /// <returns>Returns the distance between two points.</returns>
-    public static double DistanceBetweenTwoPoints(CartesianCoordinate coordinateA, CartesianCoordinate coordinateB)
+    public static double DistanceBetweenTwoPoints(
+        CartesianCoordinate coordinateA,
+        CartesianCoordinate coordinateB)
     {
         return DistanceBetweenTwoPoints(coordinateA.Longitude, coordinateA.Latitude, coordinateB.Longitude, coordinateB.Latitude);
     }
@@ -66,7 +74,11 @@ public static class CartesianHelper
     /// <param name="x2">The point on the x-axis of the second point</param>
     /// <param name="y2">The point on the y-axis of the second point</param>
     /// <returns>Returns the distance between two points.</returns>
-    public static double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
+    public static double DistanceBetweenTwoPoints(
+        double x1,
+        double y1,
+        double x2,
+        double y2)
     {
         // Take x2-x1, then square it
         var part1 = System.Math.Pow(x2 - x1, 2);
@@ -92,7 +104,13 @@ public static class CartesianHelper
     /// <param name="y2">The point on the y-axis of the second point</param>
     /// <param name="z2">The point on the z-axis of the second point</param>
     /// <returns>Returns the distance between two points.</returns>
-    public static double DistanceBetweenTwoPoints(double x1, double y1, double z1, double x2, double y2, double z2)
+    public static double DistanceBetweenTwoPoints(
+        double x1,
+        double y1,
+        double z1,
+        double x2,
+        double y2,
+        double z2)
     {
         // Take x2-x1, then square it
         var part1 = System.Math.Pow(x2 - x1, 2);

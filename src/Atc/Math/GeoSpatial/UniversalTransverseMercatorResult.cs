@@ -14,7 +14,11 @@ public class UniversalTransverseMercatorResult
     /// <param name="zoneLetter">The zone letter.</param>
     /// <param name="utmEasting">The utm easting.</param>
     /// <param name="utmNorthing">The utm northing.</param>
-    public UniversalTransverseMercatorResult(int zoneNumber, string zoneLetter, double utmEasting, double utmNorthing)
+    public UniversalTransverseMercatorResult(
+        int zoneNumber,
+        string zoneLetter,
+        double utmEasting,
+        double utmNorthing)
     {
         ZoneNumber = zoneNumber;
         ZoneLetter = zoneLetter ?? throw new ArgumentNullException(nameof(zoneLetter));

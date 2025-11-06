@@ -6,7 +6,9 @@ namespace Atc;
 /// </summary>
 [Serializable]
 [StructLayout(LayoutKind.Auto)]
-public record struct GridCell(int X = 0, int Y = 0)
+public record struct GridCell(
+    int X = 0,
+    int Y = 0)
 {
     /// <summary>
     /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).

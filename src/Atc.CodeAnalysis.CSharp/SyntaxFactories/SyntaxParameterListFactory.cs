@@ -13,7 +13,10 @@ public static class SyntaxParameterListFactory
     /// <param name="genericListTypeName">The generic list type name (e.g., "List", "IEnumerable").</param>
     /// <returns>A <see cref="ParameterListSyntax"/> containing one parameter.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter (except genericListTypeName) is null.</exception>
-    public static ParameterListSyntax CreateWithOneItem(string parameterTypeName, string parameterName, string? genericListTypeName = null)
+    public static ParameterListSyntax CreateWithOneItem(
+        string parameterTypeName,
+        string parameterName,
+        string? genericListTypeName = null)
     {
         if (parameterTypeName is null)
         {

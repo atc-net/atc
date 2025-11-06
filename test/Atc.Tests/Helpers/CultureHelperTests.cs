@@ -24,7 +24,9 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(2, new[] { 1030, 1033 })]
-    public void GetCultures_IncludeOnlyLcids(int expected, int[] input)
+    public void GetCultures_IncludeOnlyLcids(
+        int expected,
+        int[] input)
     {
         // Arrange
         var inputList = input.ToList();
@@ -40,7 +42,9 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(2, new[] { "da-DK", "en-US" })]
-    public void GetCultures_IncludeOnlyCultureNames(int expected, string[] input)
+    public void GetCultures_IncludeOnlyCultureNames(
+        int expected,
+        string[] input)
     {
         // Arrange
         var inputList = input.ToList();
@@ -56,7 +60,12 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCulturesDisplayLanguageLcidIncludeOnlyLcidsData), MemberType = typeof(TestMemberDataForCultureHelper))]
-    public void GetCultures_DisplayLanguageLcid_IncludeOnlyLcids(int expectedCount, string[] expectedCountryNames, string[] expectedLanguageNames, int displayLanguageLcid, int[] includeOnlyLcids)
+    public void GetCultures_DisplayLanguageLcid_IncludeOnlyLcids(
+        int expectedCount,
+        string[] expectedCountryNames,
+        string[] expectedLanguageNames,
+        int displayLanguageLcid,
+        int[] includeOnlyLcids)
     {
         // Arrange
         var inputList = includeOnlyLcids.ToList();
@@ -78,7 +87,12 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCulturesDisplayLanguageLcidIncludeOnlyCultureNamesData), MemberType = typeof(TestMemberDataForCultureHelper))]
-    public void GetCultures_DisplayLanguageLcid_IncludeCultureNames(int expectedCount, string[] expectedCountryNames, string[] expectedLanguageNames, int displayLanguageLcid, string[] includeOnlyCultureNames)
+    public void GetCultures_DisplayLanguageLcid_IncludeCultureNames(
+        int expectedCount,
+        string[] expectedCountryNames,
+        string[] expectedLanguageNames,
+        int displayLanguageLcid,
+        string[] includeOnlyCultureNames)
     {
         // Arrange
         var inputList = includeOnlyCultureNames.ToList();
@@ -100,7 +114,9 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(200, GlobalizationLcidConstants.UnitedStates)]
-    public void GetCultures_DisplayLanguageLcid(int expectedAtLeast, int displayLanguageLcid)
+    public void GetCultures_DisplayLanguageLcid(
+        int expectedAtLeast,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultures(displayLanguageLcid);
@@ -142,7 +158,9 @@ public class CultureHelperTests
     [InlineData("GB", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("DK", GlobalizationLcidConstants.Denmark)]
     [InlineData("DE", GlobalizationLcidConstants.Germany)]
-    public void GetCultureByLcid(string expected, int input)
+    public void GetCultureByLcid(
+        string expected,
+        int input)
     {
         // Act
         var actual = CultureHelper.GetCultureByLcid(input);
@@ -155,7 +173,11 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByLcidDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper))]
-    public void GetCultureByLcid_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, int input, int displayLanguageLcid)
+    public void GetCultureByLcid_DisplayLanguageLcid(
+        string expectedCountryName,
+        string expectedLanguageName,
+        int input,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
@@ -172,7 +194,11 @@ public class CultureHelperTests
     [Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
     [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "OK - same code as GetCultureByLcid_DisplayLanguageLcid - but other test data.")]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByLcidDisplayLanguageLcidWindowsData), MemberType = typeof(TestMemberDataForCultureHelper))]
-    public void GetCultureByLcid_DisplayLanguageLcid_Windows(string expectedCountryName, string expectedLanguageName, int input, int displayLanguageLcid)
+    public void GetCultureByLcid_DisplayLanguageLcid_Windows(
+        string expectedCountryName,
+        string expectedLanguageName,
+        int input,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
@@ -189,7 +215,9 @@ public class CultureHelperTests
     [InlineData(GlobalizationLcidConstants.GreatBritain, "GB")]
     [InlineData(GlobalizationLcidConstants.Denmark, "DK")]
     [InlineData(GlobalizationLcidConstants.Germany, "DE")]
-    public void GetCultureByCountryCodeA2(int expected, string input)
+    public void GetCultureByCountryCodeA2(
+        int expected,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCultureByCountryCodeA2(input);
@@ -202,7 +230,11 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureByCountryCodeA2LcidDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper))]
-    public void GetCultureByCountryCodeA2_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, string input, int displayLanguageLcid)
+    public void GetCultureByCountryCodeA2_DisplayLanguageLcid(
+        string expectedCountryName,
+        string expectedLanguageName,
+        string input,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultureByCountryCodeA2(displayLanguageLcid, input);
@@ -219,7 +251,9 @@ public class CultureHelperTests
     [InlineData(1, "dk")]
     [InlineData(0, "en")]
     [InlineData(0, "da")]
-    public void GetCulturesByCountryCodeA2(int expected, string input)
+    public void GetCulturesByCountryCodeA2(
+        int expected,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCulturesByCountryCodeA2(input);
@@ -244,7 +278,10 @@ public class CultureHelperTests
     [InlineData(1, GlobalizationLcidConstants.UnitedStates, "dk")]
     [InlineData(0, GlobalizationLcidConstants.UnitedStates, "en")]
     [InlineData(0, GlobalizationLcidConstants.UnitedStates, "da")]
-    public void GetCulturesByCountryCodeA2_DisplayLanguageLcid(int expected, int displayLanguageLcid, string input)
+    public void GetCulturesByCountryCodeA2_DisplayLanguageLcid(
+        int expected,
+        int displayLanguageLcid,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCulturesByCountryCodeA2(displayLanguageLcid, input);
@@ -269,7 +306,9 @@ public class CultureHelperTests
     [InlineData(0, "dk")]
     [InlineData(17, "en")]
     [InlineData(1, "da")]
-    public void GetCulturesByLanguageCodeA2(int expected, string input)
+    public void GetCulturesByLanguageCodeA2(
+        int expected,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCulturesByLanguageCodeA2(input);
@@ -294,7 +333,10 @@ public class CultureHelperTests
     [InlineData(0, GlobalizationLcidConstants.UnitedStates, "dk")]
     [InlineData(17, GlobalizationLcidConstants.UnitedStates, "en")]
     [InlineData(1, GlobalizationLcidConstants.UnitedStates, "da")]
-    public void GetCulturesByLanguageCodeA2_DisplayLanguageLcid(int expected, int displayLanguageLcid, string input)
+    public void GetCulturesByLanguageCodeA2_DisplayLanguageLcid(
+        int expected,
+        int displayLanguageLcid,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCulturesByLanguageCodeA2(displayLanguageLcid, input);
@@ -319,7 +361,9 @@ public class CultureHelperTests
     [InlineData(GlobalizationLcidConstants.GreatBritain, "GB")]
     [InlineData(GlobalizationLcidConstants.Denmark, "DK")]
     [InlineData(GlobalizationLcidConstants.Germany, "DE")]
-    public void GetCultureFromValue(int expected, string input)
+    public void GetCultureFromValue(
+        int expected,
+        string input)
     {
         // Act
         var actual = CultureHelper.GetCultureFromValue(input);
@@ -332,7 +376,11 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
-    public void GetCultureFromValue_DisplayLanguageLcid(string expectedCountryName, string expectedLanguageName, string input, int displayLanguageLcid)
+    public void GetCultureFromValue_DisplayLanguageLcid(
+        string expectedCountryName,
+        string expectedLanguageName,
+        string input,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetCultureFromValue(displayLanguageLcid, input);
@@ -346,7 +394,12 @@ public class CultureHelperTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForCultureHelper.GetCultureFromValueDisplayLanguageLcidIncludeLcidsData), MemberType = typeof(TestMemberDataForCultureHelper), DisableDiscoveryEnumeration = true)]
-    public void GetCultureFromValue_DisplayLanguageLcid_IncludeLcids(string expectedCountryName, string expectedLanguageName, string input, int[] includeLcids, int displayLanguageLcid)
+    public void GetCultureFromValue_DisplayLanguageLcid_IncludeLcids(
+        string expectedCountryName,
+        string expectedLanguageName,
+        string input,
+        int[] includeLcids,
+        int displayLanguageLcid)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -379,7 +432,9 @@ public class CultureHelperTests
     [InlineData(1, DropDownFirstItemType.Blank)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
-    public void GetCountryNames(int expectedExtraOnCultureCount, DropDownFirstItemType input)
+    public void GetCountryNames(
+        int expectedExtraOnCultureCount,
+        DropDownFirstItemType input)
     {
         // Arrange
         var culturesCount = CultureHelper.GetCultures().Count;
@@ -398,7 +453,10 @@ public class CultureHelperTests
     [InlineData(1, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates)]
     [InlineData(1, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates)]
-    public void GetCountryNames_DisplayLanguageLcid(int expectedExtraOnCultureCount, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid)
+    public void GetCountryNames_DisplayLanguageLcid(
+        int expectedExtraOnCultureCount,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid)
     {
         // Arrange
         var culturesCount = CultureHelper.GetCultures().Count;
@@ -417,7 +475,10 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetCountryNames_IncludeOnlyLcids(int expected, DropDownFirstItemType dropDownFirstItemType, int[] includeLcids)
+    public void GetCountryNames_IncludeOnlyLcids(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -436,7 +497,11 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetCountryNames_DisplayLanguageLcid_IncludeOnlyLcids(int expected, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid, int[] includeLcids)
+    public void GetCountryNames_DisplayLanguageLcid_IncludeOnlyLcids(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -455,7 +520,10 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
-    public void GetCountryNames_IncludeOnlyNames(int expected, DropDownFirstItemType dropDownFirstItemType, string[] includeNames)
+    public void GetCountryNames_IncludeOnlyNames(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        string[] includeNames)
     {
         // Arrange
         var inputList = includeNames.ToList();
@@ -474,7 +542,11 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
-    public void GetCountryNames_DisplayLanguageLcid_IncludeOnlyNames(int expected, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid, string[] includeNames)
+    public void GetCountryNames_DisplayLanguageLcid_IncludeOnlyNames(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid,
+        string[] includeNames)
     {
         // Arrange
         var inputList = includeNames.ToList();
@@ -506,7 +578,9 @@ public class CultureHelperTests
     [InlineData(1, DropDownFirstItemType.Blank)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
-    public void GetLanguageNames(int expectedExtraOnCultureCount, DropDownFirstItemType input)
+    public void GetLanguageNames(
+        int expectedExtraOnCultureCount,
+        DropDownFirstItemType input)
     {
         // Arrange
         var culturesCount = CultureHelper.GetCultures().Count;
@@ -525,7 +599,10 @@ public class CultureHelperTests
     [InlineData(1, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates)]
     [InlineData(1, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates)]
-    public void GetLanguageNames_DisplayLanguageLcid(int expectedExtraOnCultureCount, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid)
+    public void GetLanguageNames_DisplayLanguageLcid(
+        int expectedExtraOnCultureCount,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid)
     {
         // Arrange
         var culturesCount = CultureHelper.GetCultures().Count;
@@ -544,7 +621,10 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetLanguageNames_IncludeOnlyLcids(int expected, DropDownFirstItemType dropDownFirstItemType, int[] includeLcids)
+    public void GetLanguageNames_IncludeOnlyLcids(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -563,7 +643,11 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetLanguageNames_DisplayLanguageLcid_IncludeOnlyLcids(int expected, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid, int[] includeLcids)
+    public void GetLanguageNames_DisplayLanguageLcid_IncludeOnlyLcids(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -582,7 +666,10 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
-    public void GetLanguageNames_IncludeOnlyNames(int expected, DropDownFirstItemType dropDownFirstItemType, string[] includeNames)
+    public void GetLanguageNames_IncludeOnlyNames(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        string[] includeNames)
     {
         // Arrange
         var inputList = includeNames.ToList();
@@ -601,7 +688,11 @@ public class CultureHelperTests
     [InlineData(5, DropDownFirstItemType.Blank, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.PleaseSelect, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
     [InlineData(5, DropDownFirstItemType.IncludeAll, GlobalizationLcidConstants.UnitedStates, new[] { "en-US", "en-GB", "da-DK", "de-DE" })]
-    public void GetLanguageNames_DisplayLanguageLcid_IncludeOnlyNames(int expected, DropDownFirstItemType dropDownFirstItemType, int displayLanguageLcid, string[] includeNames)
+    public void GetLanguageNames_DisplayLanguageLcid_IncludeOnlyNames(
+        int expected,
+        DropDownFirstItemType dropDownFirstItemType,
+        int displayLanguageLcid,
+        string[] includeNames)
     {
         // Arrange
         var inputList = includeNames.ToList();
@@ -617,7 +708,10 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(0, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetCultureLcidsWhereCountryIsNotTranslated_DisplayLanguageLcid_IncludeOnlyLcids(int expected, int displayLanguageLcid, int[] includeLcids)
+    public void GetCultureLcidsWhereCountryIsNotTranslated_DisplayLanguageLcid_IncludeOnlyLcids(
+        int expected,
+        int displayLanguageLcid,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -633,7 +727,10 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(0, GlobalizationLcidConstants.UnitedStates, new[] { 1030, 1031, 1033, 2057 })]
-    public void GetCultureLcidsWhereLanguageIsNotTranslated_DisplayLanguageLcid_IncludeOnlyLcids(int expected, int displayLanguageLcid, int[] includeLcids)
+    public void GetCultureLcidsWhereLanguageIsNotTranslated_DisplayLanguageLcid_IncludeOnlyLcids(
+        int expected,
+        int displayLanguageLcid,
+        int[] includeLcids)
     {
         // Arrange
         var inputList = includeLcids.ToList();
@@ -662,7 +759,9 @@ public class CultureHelperTests
 
     [Theory]
     [InlineData(4, GlobalizationLcidConstants.Denmark)]
-    public void GetSupportedCultures_DisplayLanguageLcid(int expected, int displayLanguageLcid)
+    public void GetSupportedCultures_DisplayLanguageLcid(
+        int expected,
+        int displayLanguageLcid)
     {
         // Act
         var actual = CultureHelper.GetSupportedCultures(displayLanguageLcid);

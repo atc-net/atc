@@ -4,7 +4,9 @@ public class ArrayExtensionsTests
 {
     [Theory]
     [InlineData(new[] { "a", "b" }, new[] { "a", "b", "a" })]
-    public void RemoveDuplicates(string[] expected, string[] input)
+    public void RemoveDuplicates(
+        string[] expected,
+        string[] input)
     {
         // Act
         var actual = input.RemoveDuplicates();
@@ -22,7 +24,11 @@ public class ArrayExtensionsTests
     [InlineData(new[] { "a", "b" }, new[] { "a", "b", "a" }, SortDirectionType.None, true)]
     [InlineData(new[] { "a", "b" }, new[] { "a", "b", "a" }, SortDirectionType.Ascending, true)]
     [InlineData(new[] { "b", "a" }, new[] { "a", "b", "a" }, SortDirectionType.Descending, true)]
-    public void ToArray(string[] expected, string[] input, SortDirectionType sortDirectionType, bool removeDuplicates)
+    public void ToArray(
+        string[] expected,
+        string[] input,
+        SortDirectionType sortDirectionType,
+        bool removeDuplicates)
     {
         // Act
         var actual = input.ToArray(sortDirectionType, removeDuplicates);
@@ -41,7 +47,11 @@ public class ArrayExtensionsTests
     [InlineData(new[] { "a", "b" }, new[] { "a", "b", "a" }, SortDirectionType.None, true)]
     [InlineData(new[] { "a", "b" }, new[] { "a", "b", "a" }, SortDirectionType.Ascending, true)]
     [InlineData(new[] { "b", "a" }, new[] { "a", "b", "a" }, SortDirectionType.Descending, true)]
-    public void ToList(string[] expected, string[] input, SortDirectionType sortDirectionType, bool removeDuplicates)
+    public void ToList(
+        string[] expected,
+        string[] input,
+        SortDirectionType sortDirectionType,
+        bool removeDuplicates)
     {
         // Act
         var actual = input.ToList(sortDirectionType, removeDuplicates);

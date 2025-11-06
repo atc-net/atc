@@ -12,7 +12,9 @@ public static class TimeSpanExtensions
     /// <param name="t1">The first TimeSpan to compare.</param>
     /// <param name="t2">The second TimeSpan to compare.</param>
     /// <returns>The smaller of the two TimeSpan values.</returns>
-    public static TimeSpan Min(this TimeSpan t1, TimeSpan t2)
+    public static TimeSpan Min(
+        this TimeSpan t1,
+        TimeSpan t2)
     {
         return t1 < t2 ? t1 : t2;
     }
@@ -23,7 +25,9 @@ public static class TimeSpanExtensions
     /// <param name="t1">The first TimeSpan to compare.</param>
     /// <param name="t2">The second TimeSpan to compare.</param>
     /// <returns>The larger of the two TimeSpan values.</returns>
-    public static TimeSpan Max(this TimeSpan t1, TimeSpan t2)
+    public static TimeSpan Max(
+        this TimeSpan t1,
+        TimeSpan t2)
     {
         return t1 > t2 ? t1 : t2;
     }
@@ -55,7 +59,9 @@ public static class TimeSpanExtensions
     /// <param name="decimalPrecision">The number of decimal places to display (default is 3).</param>
     /// <returns>A formatted string representing the time in the most appropriate unit (days, hours, minutes, seconds, or milliseconds).</returns>
     [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
-    public static string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
+    public static string GetPrettyTime(
+        this TimeSpan timeSpan,
+        int decimalPrecision = 3)
     {
         if ((int)timeSpan.TotalDays > 0)
         {

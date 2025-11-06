@@ -40,7 +40,9 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to search.</param>
     /// <param name="httpStatusCode">The HTTP status code to retrieve the model name for.</param>
     /// <returns>The model name of the response schema, or an empty string if not found.</returns>
-    public static string GetModelNameForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    public static string GetModelNameForStatusCode(
+        this OpenApiResponses responses,
+        HttpStatusCode httpStatusCode)
     {
         var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
         return responseSchema is null
@@ -54,7 +56,9 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to search.</param>
     /// <param name="httpStatusCode">The HTTP status code to retrieve the data type for.</param>
     /// <returns>The data type of the response schema, or an empty string if not found.</returns>
-    public static string GetDataTypeForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    public static string GetDataTypeForStatusCode(
+        this OpenApiResponses responses,
+        HttpStatusCode httpStatusCode)
     {
         var responseSchema = responses.GetSchemaForStatusCode(httpStatusCode);
         return responseSchema is null
@@ -188,7 +192,9 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
     /// <returns>True if the response schema is an array type; otherwise, false.</returns>
-    public static bool IsSchemaTypeArrayForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    public static bool IsSchemaTypeArrayForStatusCode(
+        this OpenApiResponses responses,
+        HttpStatusCode httpStatusCode)
     {
         var schema = responses.GetSchemaForStatusCode(httpStatusCode);
         return schema is not null && schema.IsTypeArray();
@@ -201,7 +207,9 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
     /// <returns>True if the response schema is a pagination type; otherwise, false.</returns>
-    public static bool IsSchemaTypePaginationForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    public static bool IsSchemaTypePaginationForStatusCode(
+        this OpenApiResponses responses,
+        HttpStatusCode httpStatusCode)
     {
         var schema = responses.GetSchemaForStatusCode(httpStatusCode);
         return schema is not null &&
@@ -216,7 +224,9 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <param name="httpStatusCode">The HTTP status code to check the schema type for.</param>
     /// <returns>True if the response schema references ProblemDetails; otherwise, false.</returns>
-    public static bool IsSchemaTypeProblemDetailsForStatusCode(this OpenApiResponses responses, HttpStatusCode httpStatusCode)
+    public static bool IsSchemaTypeProblemDetailsForStatusCode(
+        this OpenApiResponses responses,
+        HttpStatusCode httpStatusCode)
     {
         return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, "ProblemDetails", StringComparison.Ordinal);
     }

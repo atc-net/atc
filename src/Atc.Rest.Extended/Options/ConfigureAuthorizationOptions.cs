@@ -36,7 +36,9 @@ public class ConfigureAuthorizationOptions :
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     [SuppressMessage("Design", "CA5404:Do not disable token validation checks", Justification = "OK.")]
-    public void PostConfigure(string? name, JwtBearerOptions options)
+    public void PostConfigure(
+        string? name,
+        JwtBearerOptions options)
     {
         if (apiOptions.Authorization is not null &&
             !apiOptions.Authorization.IsSecurityEnabled())
@@ -111,7 +113,9 @@ public class ConfigureAuthorizationOptions :
     /// </summary>
     /// <param name="name">The name of the options instance being configured.</param>
     /// <param name="options">The <see cref="AuthenticationOptions"/> to configure.</param>
-    public void PostConfigure(string? name, AuthenticationOptions options)
+    public void PostConfigure(
+        string? name,
+        AuthenticationOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
 

@@ -14,7 +14,9 @@ public class SampleIntegrationTestBase : IntegrationTestCliBase
         jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create(useCamelCase: false);
     }
 
-    public static Task<(bool IsSuccessful, string Output)> ExecuteCli(string arguments)
+    public static Task<(
+        bool IsSuccessful,
+        string Output)> ExecuteCli(string arguments)
     {
         ArgumentNullException.ThrowIfNull(arguments);
 

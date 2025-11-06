@@ -10,7 +10,11 @@ public class DirectoryInfoExtensionsTests
     [InlineData(@"C:\Projects\Extensions\ServiceCollectionExtensions.cs", @"C:\Projects", "Extensions", "ServiceCollectionExtensions.cs")]
     [InlineData(@"C:\Projects\Config\appsettings.json", @"C:\Projects", "Config", "appsettings.json")]
     [InlineData(@"C:\Users\User\Documents\Reports\AnnualReport.pdf", @"C:\Users\User\Documents", "Reports", "AnnualReport.pdf")]
-    public void CombineFileInfo(string expected, string baseDir, string subPath1, string subPath2)
+    public void CombineFileInfo(
+        string expected,
+        string baseDir,
+        string subPath1,
+        string subPath2)
     {
         // Arrange
         var baseDirectoryInfo = new DirectoryInfo(baseDir);
@@ -24,7 +28,10 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(1, 1, 0)]
-    public void GetFilesForAuthorizedAccess(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess(
+        int expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -39,7 +46,11 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(1, "*.*", 1, 0)]
-    public void GetFilesForAuthorizedAccess_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess_SearchPattern(
+        int expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -54,7 +65,12 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(1, "*.*", SearchOption.TopDirectoryOnly, 1, 0)]
-    public void GetFilesForAuthorizedAccess_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesForAuthorizedAccess_SearchPattern_SearchOptions(
+        int expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -72,7 +88,10 @@ public class DirectoryInfoExtensionsTests
     [InlineData(0, 0, 1)]
     [InlineData(1, 1, 1)]
     [InlineData(3, 3, 4)]
-    public void GetFilesCount(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesCount(
+        int expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -89,7 +108,11 @@ public class DirectoryInfoExtensionsTests
     [InlineData(1, "*.*", 1, 0)]
     [InlineData(0, "*.cs", 1, 0)]
     [InlineData(1, "*.txt", 1, 0)]
-    public void GetFilesCount_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesCount_SearchPattern(
+        int expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -106,7 +129,12 @@ public class DirectoryInfoExtensionsTests
     [InlineData(1, "*.*", SearchOption.TopDirectoryOnly, 1, 0)]
     [InlineData(0, "*.cs", SearchOption.TopDirectoryOnly, 1, 0)]
     [InlineData(1, "*.txt", SearchOption.TopDirectoryOnly, 1, 0)]
-    public void GetFilesCount_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFilesCount_SearchPattern_SearchOptions(
+        int expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -124,7 +152,11 @@ public class DirectoryInfoExtensionsTests
     [InlineData(0, "*", 1, 0)]
     [InlineData(1, "*", 1, 1)]
     [InlineData(4, "*", 3, 4)]
-    public void GetFoldersCount_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFoldersCount_SearchPattern(
+        int expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -142,7 +174,12 @@ public class DirectoryInfoExtensionsTests
     [InlineData(0, "*", SearchOption.TopDirectoryOnly, 1, 0)]
     [InlineData(1, "*", SearchOption.TopDirectoryOnly, 1, 1)]
     [InlineData(4, "*", SearchOption.TopDirectoryOnly, 3, 4)]
-    public void GetFoldersCount_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFoldersCount_SearchPattern_SearchOptions(
+        int expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -160,7 +197,10 @@ public class DirectoryInfoExtensionsTests
     [InlineData(0, 1, 0)]
     [InlineData(1, 1, 1)]
     [InlineData(4, 3, 4)]
-    public void GetFoldersCount(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetFoldersCount(
+        int expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -175,7 +215,10 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(11, 1, 0)]
-    public void GetByteSize(int expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetByteSize(
+        int expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -190,7 +233,11 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(11, "*.*", 1, 0)]
-    public void GetByteSize_SearchPattern(int expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetByteSize_SearchPattern(
+        int expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -205,7 +252,12 @@ public class DirectoryInfoExtensionsTests
 
     [Theory]
     [InlineData(11, "*.*", SearchOption.TopDirectoryOnly, 1, 0)]
-    public void GetByteSize_SearchPattern_SearchOptions(int expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    public void GetByteSize_SearchPattern_SearchOptions(
+        int expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -221,7 +273,11 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 B", 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1,08 KB", 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettySize(string expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettySize(
+        string expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -238,7 +294,12 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 B", "*.*", 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1,08 KB", "*.*", 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettySize_SearchPattern(string expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettySize_SearchPattern(
+        string expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -255,7 +316,13 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 B", "*.*", SearchOption.TopDirectoryOnly, 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1,08 KB", "*.*", SearchOption.TopDirectoryOnly, 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettySize_SearchPattern_SearchOptions(string expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettySize_SearchPattern_SearchOptions(
+        string expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -272,7 +339,12 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 bytes", "*.*", 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1.111 bytes", "*.*", 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettyByteSize_SearchPattern(string expected, string searchPattern, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettyByteSize_SearchPattern(
+        string expected,
+        string searchPattern,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -289,7 +361,13 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 bytes", "*.*", SearchOption.TopDirectoryOnly, 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1.111 bytes", "*.*", SearchOption.TopDirectoryOnly, 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettyByteSize_SearchPattern_SearchOptions(string expected, string searchPattern, SearchOption searchOption, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettyByteSize_SearchPattern_SearchOptions(
+        string expected,
+        string searchPattern,
+        SearchOption searchOption,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -306,7 +384,11 @@ public class DirectoryInfoExtensionsTests
     [Theory]
     [InlineData("11 bytes", 1, 0, GlobalizationLcidConstants.Denmark)]
     [InlineData("1.111 bytes", 101, 0, GlobalizationLcidConstants.Denmark)]
-    public void GetPrettyByteSize(string expected, int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate, int lcid)
+    public void GetPrettyByteSize(
+        string expected,
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate,
+        int lcid)
     {
         // Arrange
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
@@ -335,7 +417,9 @@ public class DirectoryInfoExtensionsTests
         Assert.Equal(expected, actual.FullName);
     }
 
-    private static void PrepareTempFiles(int numberOfTempFilesToCreate, int numberOfTempFoldersToCreate)
+    private static void PrepareTempFiles(
+        int numberOfTempFilesToCreate,
+        int numberOfTempFoldersToCreate)
     {
         var root = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
         if (root.Exists)

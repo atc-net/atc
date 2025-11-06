@@ -20,7 +20,9 @@ public class IdValueItem
     /// <param name="id">The identifier.</param>
     /// <param name="value">The value.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public IdValueItem(Guid id, string value)
+    public IdValueItem(
+        Guid id,
+        string value)
     {
         Id = id;
         Value = value ?? throw new ArgumentNullException(nameof(value));

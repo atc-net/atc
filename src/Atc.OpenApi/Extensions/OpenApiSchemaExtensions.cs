@@ -45,7 +45,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="componentSchemas">The dictionary of component schemas from the OpenAPI document.</param>
     /// <returns>True if the schema uses System.Collections.Generic types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasDataTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+    public static bool HasDataTypeFromSystemCollectionGenericNamespace(
+        this OpenApiSchema schema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (schema is null)
         {
@@ -69,7 +71,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="componentSchemas">The dictionary of component schemas from the OpenAPI document.</param>
     /// <returns>True if any schema uses System.Collections.Generic types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schemas"/> is null.</exception>
-    public static bool HasDataTypeFromSystemCollectionGenericNamespace(this IList<OpenApiSchema> schemas, IDictionary<string, OpenApiSchema> componentSchemas)
+    public static bool HasDataTypeFromSystemCollectionGenericNamespace(
+        this IList<OpenApiSchema> schemas,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (schemas is null)
         {
@@ -340,7 +344,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="modelName">The model name to search for.</param>
     /// <returns>True if the schema or any of its properties has the specified model name; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="modelName"/> is null.</exception>
-    public static bool HasModelNameOrAnyPropertiesWithModelName(this OpenApiSchema schema, string modelName)
+    public static bool HasModelNameOrAnyPropertiesWithModelName(
+        this OpenApiSchema schema,
+        string modelName)
     {
         if (modelName is null)
         {
@@ -587,7 +593,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <param name="componentSchemas">The dictionary of component schemas from the OpenAPI document.</param>
     /// <returns>True if any property has a System namespace format type; otherwise, false.</returns>
-    public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+    public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(
+        this OpenApiSchema schema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (!schema.HasAnyProperties())
         {
@@ -623,7 +631,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <param name="componentSchemas">The dictionary of component schemas from the OpenAPI document.</param>
     /// <returns>True if any property uses System.Collections.Generic types; otherwise, false.</returns>
-    public static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(this OpenApiSchema schema, IDictionary<string, OpenApiSchema> componentSchemas)
+    public static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(
+        this OpenApiSchema schema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (!schema.HasAnyProperties())
         {
@@ -1061,7 +1071,9 @@ public static class OpenApiSchemaExtensions
     /// <returns>True if the schema is shared across multiple parent schemas; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> or <paramref name="openApiComponents"/> is null.</exception>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static bool IsSharedContract(this OpenApiSchema schema, OpenApiComponents openApiComponents)
+    public static bool IsSharedContract(
+        this OpenApiSchema schema,
+        OpenApiComponents openApiComponents)
     {
         if (schema is null)
         {
@@ -1118,7 +1130,9 @@ public static class OpenApiSchemaExtensions
     /// <returns>The model name, or empty string if the schema doesn't represent a model.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static string GetModelName(this OpenApiSchema schema, bool ensureFirstCharacterToUpper = true)
+    public static string GetModelName(
+        this OpenApiSchema schema,
+        bool ensureFirstCharacterToUpper = true)
     {
         if (schema is null)
         {
@@ -1374,7 +1388,9 @@ public static class OpenApiSchemaExtensions
     /// <returns>The title of the property.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> or <paramref name="propertyKey"/> is null.</exception>
     /// <exception cref="ItemNotFoundException">Thrown when no property with the specified key is found.</exception>
-    public static string GetTitleFromPropertyByPropertyKey(this OpenApiSchema schema, string propertyKey)
+    public static string GetTitleFromPropertyByPropertyKey(
+        this OpenApiSchema schema,
+        string propertyKey)
     {
         if (schema is null)
         {
@@ -1438,7 +1454,9 @@ public static class OpenApiSchemaExtensions
     /// <param name="modelName">The model name to search for.</param>
     /// <returns>The matching schema.</returns>
     /// <exception cref="InvalidOperationException">Thrown when no schema with the specified model name is found.</exception>
-    public static OpenApiSchema GetSchemaByModelName(this IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+    public static OpenApiSchema GetSchemaByModelName(
+        this IDictionary<string, OpenApiSchema> componentSchemas,
+        string modelName)
         => componentSchemas.First(x => x.Key.Equals(modelName, StringComparison.OrdinalIgnoreCase)).Value;
 
     /// <summary>
@@ -1466,7 +1484,9 @@ public static class OpenApiSchemaExtensions
         return string.Empty;
     }
 
-    private static bool HasAnyPropertiesFormatTypeFromSystemNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
+    private static bool HasAnyPropertiesFormatTypeFromSystemNamespaceHelper(
+        KeyValuePair<string, OpenApiSchema> schema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (schema.Value is null)
         {
@@ -1484,7 +1504,9 @@ public static class OpenApiSchemaExtensions
                componentSchema.Value.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
     }
 
-    private static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(KeyValuePair<string, OpenApiSchema> schema, IDictionary<string, OpenApiSchema> componentSchemas)
+    private static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(
+        KeyValuePair<string, OpenApiSchema> schema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         if (schema.Value is null)
         {

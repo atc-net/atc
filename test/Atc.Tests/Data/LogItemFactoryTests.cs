@@ -13,7 +13,10 @@ public class LogItemFactoryTests
     [InlineData("MyValue", LogCategoryType.Information, "MyValue")]
     [InlineData("MyValue", LogCategoryType.Debug, "MyValue")]
     [InlineData("MyValue", LogCategoryType.Trace, "MyValue")]
-    public void LogItemCreate(string expected, LogCategoryType logCategoryType, string message)
+    public void LogItemCreate(
+        string expected,
+        LogCategoryType logCategoryType,
+        string message)
     {
         // Act
         var actual = LogItemFactory.Create(logCategoryType, message);
@@ -27,7 +30,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateCritical(string expected, string message)
+    public void LogItemCreateCritical(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateCritical(message);
@@ -42,7 +47,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateError(string expected, string message)
+    public void LogItemCreateError(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateError(message);
@@ -57,7 +64,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateWarning(string expected, string message)
+    public void LogItemCreateWarning(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateWarning(message);
@@ -72,7 +81,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateSecurity(string expected, string message)
+    public void LogItemCreateSecurity(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateSecurity(message);
@@ -87,7 +98,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateAudit(string expected, string message)
+    public void LogItemCreateAudit(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateAudit(message);
@@ -102,7 +115,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateService(string expected, string message)
+    public void LogItemCreateService(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateService(message);
@@ -117,7 +132,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateUi(string expected, string message)
+    public void LogItemCreateUi(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateUi(message);
@@ -132,7 +149,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateInformation(string expected, string message)
+    public void LogItemCreateInformation(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateInformation(message);
@@ -147,7 +166,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateDebug(string expected, string message)
+    public void LogItemCreateDebug(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateDebug(message);
@@ -162,7 +183,9 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("MyValue", "MyValue")]
-    public void LogItemCreateTrace(string expected, string message)
+    public void LogItemCreateTrace(
+        string expected,
+        string message)
     {
         // Act
         var actual = LogItemFactory.CreateTrace(message);
@@ -186,7 +209,11 @@ public class LogItemFactoryTests
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Information, Description: ", LogCategoryType.Information, "MyKey", "MyValue")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Debug, Description: ", LogCategoryType.Debug, "MyKey", "MyValue")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Trace, Description: ", LogCategoryType.Trace, "MyKey", "MyValue")]
-    public void Create(string expected, LogCategoryType logCategoryType, string key, string value)
+    public void Create(
+        string expected,
+        LogCategoryType logCategoryType,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.Create(logCategoryType, key, value);
@@ -207,7 +234,12 @@ public class LogItemFactoryTests
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Information, Description: MyDescription", LogCategoryType.Information, "MyKey", "MyValue", "MyDescription")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Debug, Description: MyDescription", LogCategoryType.Debug, "MyKey", "MyValue", "MyDescription")]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Trace, Description: MyDescription", LogCategoryType.Trace, "MyKey", "MyValue", "MyDescription")]
-    public void Create_Description(string expected, LogCategoryType logCategoryType, string key, string value, string description)
+    public void Create_Description(
+        string expected,
+        LogCategoryType logCategoryType,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.Create(logCategoryType, key, value, description);
@@ -219,7 +251,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Critical, Description: ", "MyKey", "MyValue")]
-    public void CreateCritical(string expected, string key, string value)
+    public void CreateCritical(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateCritical(key, value);
@@ -231,7 +266,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Critical, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateCritical_Description(string expected, string key, string value, string description)
+    public void CreateCritical_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateCritical(key, value, description);
@@ -243,7 +282,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Error, Description: ", "MyKey", "MyValue")]
-    public void CreateError(string expected, string key, string value)
+    public void CreateError(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateError(key, value);
@@ -255,7 +297,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Error, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateError_Description(string expected, string key, string value, string description)
+    public void CreateError_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateError(key, value, description);
@@ -267,7 +313,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Warning, Description: ", "MyKey", "MyValue")]
-    public void CreateWarning(string expected, string key, string value)
+    public void CreateWarning(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateWarning(key, value);
@@ -279,7 +328,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Warning, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateWarning_Description(string expected, string key, string value, string description)
+    public void CreateWarning_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateWarning(key, value, description);
@@ -291,7 +344,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Security, Description: ", "MyKey", "MyValue")]
-    public void CreateSecurity(string expected, string key, string value)
+    public void CreateSecurity(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateSecurity(key, value);
@@ -303,7 +359,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Security, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateSecurity_Description(string expected, string key, string value, string description)
+    public void CreateSecurity_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateSecurity(key, value, description);
@@ -315,7 +375,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Audit, Description: ", "MyKey", "MyValue")]
-    public void CreateAudit(string expected, string key, string value)
+    public void CreateAudit(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateAudit(key, value);
@@ -327,7 +390,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Audit, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateAudit_Description(string expected, string key, string value, string description)
+    public void CreateAudit_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateAudit(key, value, description);
@@ -339,7 +406,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Service, Description: ", "MyKey", "MyValue")]
-    public void CreateService(string expected, string key, string value)
+    public void CreateService(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateService(key, value);
@@ -351,7 +421,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Service, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateService_Description(string expected, string key, string value, string description)
+    public void CreateService_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateService(key, value, description);
@@ -363,7 +437,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: UI, Description: ", "MyKey", "MyValue")]
-    public void CreateUi(string expected, string key, string value)
+    public void CreateUi(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateUi(key, value);
@@ -375,7 +452,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: UI, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateUi_Description(string expected, string key, string value, string description)
+    public void CreateUi_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateUi(key, value, description);
@@ -387,7 +468,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Information, Description: ", "MyKey", "MyValue")]
-    public void CreateInformation(string expected, string key, string value)
+    public void CreateInformation(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateInformation(key, value);
@@ -399,7 +483,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Information, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateInformation_Description(string expected, string key, string value, string description)
+    public void CreateInformation_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateInformation(key, value, description);
@@ -411,7 +499,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Debug, Description: ", "MyKey", "MyValue")]
-    public void CreateDebug(string expected, string key, string value)
+    public void CreateDebug(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateDebug(key, value);
@@ -423,7 +514,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Debug, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateDebug_Description(string expected, string key, string value, string description)
+    public void CreateDebug_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateDebug(key, value, description);
@@ -435,7 +530,10 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Trace, Description: ", "MyKey", "MyValue")]
-    public void CreateTrace(string expected, string key, string value)
+    public void CreateTrace(
+        string expected,
+        string key,
+        string value)
     {
         // Act
         var actual = LogItemFactory.CreateTrace(key, value);
@@ -447,7 +545,11 @@ public class LogItemFactoryTests
 
     [Theory]
     [InlineData("Key: MyKey, Value: MyValue, LogCategory: Trace, Description: MyDescription", "MyKey", "MyValue", "MyDescription")]
-    public void CreateTrace_Description(string expected, string key, string value, string description)
+    public void CreateTrace_Description(
+        string expected,
+        string key,
+        string value,
+        string description)
     {
         // Act
         var actual = LogItemFactory.CreateTrace(key, value, description);

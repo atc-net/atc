@@ -14,7 +14,9 @@ public static class OpenApiDocumentExtensions
     /// <param name="basePathSegmentName">The base path segment name to filter paths by.</param>
     /// <returns>An ordered list of key-value pairs containing paths that start with the specified segment name.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="document"/> or <paramref name="basePathSegmentName"/> is null.</exception>
-    public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsByBasePathSegmentName(this OpenApiDocument document, string basePathSegmentName)
+    public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsByBasePathSegmentName(
+        this OpenApiDocument document,
+        string basePathSegmentName)
     {
         if (document is null)
         {

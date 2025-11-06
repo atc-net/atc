@@ -8,7 +8,9 @@ internal static class TypeAndMethodAndParameterHelper
         typeof(Exception).Module.ScopeName,
     };
 
-    internal static Type[] DebugFilterTypeNames(DebugLimitData debugLimitData, Type[] sourceTypes)
+    internal static Type[] DebugFilterTypeNames(
+        DebugLimitData debugLimitData,
+        Type[] sourceTypes)
     {
         if (!debugLimitData.HasClassNames)
         {
@@ -166,7 +168,10 @@ internal static class TypeAndMethodAndParameterHelper
         return false;
     }
 
-    internal static MethodInfo[] FilterMethodsWithMissingTests(Type[] sourceTypes, List<MethodInfo> methodsToExclude, List<MethodInfo> methodsWithTest)
+    internal static MethodInfo[] FilterMethodsWithMissingTests(
+        Type[] sourceTypes,
+        List<MethodInfo> methodsToExclude,
+        List<MethodInfo> methodsWithTest)
     {
         var list = new List<MethodInfo>();
 

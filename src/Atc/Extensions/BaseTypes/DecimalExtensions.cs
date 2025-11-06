@@ -14,7 +14,9 @@ public static class DecimalExtensions
     /// <returns>
     /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
-    public static bool IsEqual(this decimal a, decimal b)
+    public static bool IsEqual(
+        this decimal a,
+        decimal b)
     {
         return decimal.Equals(a, b);
     }
@@ -27,7 +29,9 @@ public static class DecimalExtensions
     /// <returns>
     /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
-    public static bool IsEqual(this decimal? a, decimal? b)
+    public static bool IsEqual(
+        this decimal? a,
+        decimal? b)
     {
         if (a is null || b is null)
         {
@@ -44,7 +48,10 @@ public static class DecimalExtensions
     /// <param name="b">The second decimal value.</param>
     /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
     /// <returns><see langword="true"/> if the values are equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
-    public static bool IsEqual(this decimal a, decimal b, int decimalPrecision)
+    public static bool IsEqual(
+        this decimal a,
+        decimal b,
+        int decimalPrecision)
     {
         var sa = a.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
         var sb = b.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
@@ -94,7 +101,10 @@ public static class DecimalExtensions
     /// <param name="b">The second nullable decimal value.</param>
     /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
     /// <returns><see langword="true"/> if both values are null or equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
-    public static bool IsEqual(this decimal? a, decimal? b, int decimalPrecision)
+    public static bool IsEqual(
+        this decimal? a,
+        decimal? b,
+        int decimalPrecision)
     {
         if (a is null || b is null)
         {
@@ -130,7 +140,9 @@ public static class DecimalExtensions
     /// <param name="value">The decimal value to round.</param>
     /// <param name="digits">The number of decimal digits to round to (negative values are treated as 0).</param>
     /// <returns>The rounded decimal value.</returns>
-    public static decimal CurrencyRounding(this decimal value, int digits)
+    public static decimal CurrencyRounding(
+        this decimal value,
+        int digits)
     {
         if (digits < 0)
         {
@@ -166,7 +178,9 @@ public static class DecimalExtensions
     /// <param name="value">The decimal value to round.</param>
     /// <param name="numberOfDecimals">The number of decimal places to round to.</param>
     /// <returns>The rounded decimal value.</returns>
-    public static decimal RoundOff(this decimal value, int numberOfDecimals)
+    public static decimal RoundOff(
+        this decimal value,
+        int numberOfDecimals)
     {
         return Math.Round(value, numberOfDecimals);
     }

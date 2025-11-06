@@ -20,7 +20,9 @@ public static class Enum<T>
     /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("Monday"));
     /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.GetEnumValue("MONDAY"));
     /// ]]></example>
-    public static T GetEnumValue(string value, bool ignoreCase = true)
+    public static T GetEnumValue(
+        string value,
+        bool ignoreCase = true)
     {
         if (value is null)
         {
@@ -54,7 +56,10 @@ public static class Enum<T>
     /// Assert.True(isParsed);
     /// Assert.Equal(expectedOut, dayOfWeek);
     /// ]]></example>
-    public static bool TryGetEnumValue(string value, bool ignoreCase, out T returnedValue)
+    public static bool TryGetEnumValue(
+        string value,
+        bool ignoreCase,
+        out T returnedValue)
     {
         if (!string.IsNullOrEmpty(value))
         {
@@ -76,7 +81,9 @@ public static class Enum<T>
     /// Assert.True(isParsed);
     /// Assert.Equal(expectedOut, dayOfWeek);
     /// ]]></example>
-    public static bool TryGetEnumValue(Enum? value, out T returnedValue)
+    public static bool TryGetEnumValue(
+        Enum? value,
+        out T returnedValue)
     {
         returnedValue = default!;
         return value is not null && TryGetEnumValue(value.ToString(), ignoreCase: false, out returnedValue);
@@ -88,7 +95,9 @@ public static class Enum<T>
     /// <returns>
     ///     <see langword="true" /> if the specified value has flag; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool HasFlag(T value, T hasValue)
+    public static bool HasFlag(
+        T value,
+        T hasValue)
         => value.HasFlag(hasValue);
 
     /// <summary>Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.</summary>
@@ -99,7 +108,9 @@ public static class Enum<T>
     /// <example><![CDATA[
     /// Assert.Equal(DayOfWeek.Monday, Enum<DayOfWeek>.Parse("Monday"));
     /// ]]></example>
-    public static T Parse(string value, bool ignoreCase = true)
+    public static T Parse(
+        string value,
+        bool ignoreCase = true)
     {
         return (T)Enum.Parse(typeof(T), value, ignoreCase);
     }
@@ -115,7 +126,9 @@ public static class Enum<T>
     /// Assert.True(isParsed);
     /// Assert.Equal(expectedOut, dayOfWeek);
     /// ]]></example>
-    public static bool TryParse(string value, out T returnedValue)
+    public static bool TryParse(
+        string value,
+        out T returnedValue)
     {
         return TryParse(value, ignoreCase: true, out returnedValue);
     }
@@ -133,7 +146,10 @@ public static class Enum<T>
     /// Assert.Equal(expectedOut, dayOfWeek);
     /// ]]></example>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static bool TryParse(string value, bool ignoreCase, out T returnedValue)
+    public static bool TryParse(
+        string value,
+        bool ignoreCase,
+        out T returnedValue)
     {
         try
         {

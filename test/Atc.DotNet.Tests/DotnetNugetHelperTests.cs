@@ -59,7 +59,9 @@ public class DotnetNugetHelperTests : IAsyncLifetime
             .And.HaveCount(3);
     }
 
-    private static Task CreateCsprojFile(DirectoryInfo workingDirectory, string fileName)
+    private static Task CreateCsprojFile(
+        DirectoryInfo workingDirectory,
+        string fileName)
     {
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, fileName));
         return File.WriteAllTextAsync(

@@ -11,7 +11,9 @@ public static class SyntaxAttributeArgumentListFactory
     /// <param name="attributeName">The name of the attribute property.</param>
     /// <param name="attributeValue">The string value for the attribute argument.</param>
     /// <returns>An <see cref="AttributeArgumentListSyntax"/> containing one named argument.</returns>
-    public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(string attributeName, string attributeValue)
+    public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(
+        string attributeName,
+        string attributeValue)
     {
         return SyntaxFactory.AttributeArgumentList(
             SyntaxFactory.SingletonSeparatedList(
@@ -24,7 +26,9 @@ public static class SyntaxAttributeArgumentListFactory
     /// <param name="attributeName">The name of the attribute property.</param>
     /// <param name="attributeValue">The integer value for the attribute argument.</param>
     /// <returns>An <see cref="AttributeArgumentListSyntax"/> containing one named argument.</returns>
-    public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(string attributeName, int attributeValue)
+    public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(
+        string attributeName,
+        int attributeValue)
     {
         return SyntaxFactory.AttributeArgumentList(
             SyntaxFactory.SingletonSeparatedList(

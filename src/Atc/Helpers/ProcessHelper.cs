@@ -27,7 +27,9 @@ public static class ProcessHelper
     /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
-    public static Task<(bool IsSuccessful, string Output)> Execute(
+    public static Task<(
+        bool IsSuccessful,
+        string Output)> Execute(
         FileInfo fileInfo,
         string arguments,
         bool runAsAdministrator = false,
@@ -70,7 +72,9 @@ public static class ProcessHelper
     /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/>, or <paramref name="arguments"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
-    public static Task<(bool IsSuccessful, string Output)> Execute(
+    public static Task<(
+        bool IsSuccessful,
+        string Output)> Execute(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -224,7 +228,9 @@ public static class ProcessHelper
     /// <exception cref="ArgumentNullException">Thrown if any required parameter is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
     /// <exception cref="ArgumentException">Thrown if <paramref name="timeoutInSec"/> is less than 1.</exception>
-    public static Task<(bool IsSuccessful, string Output)> ExecutePrompt(
+    public static Task<(
+        bool IsSuccessful,
+        string Output)> ExecutePrompt(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -418,7 +424,9 @@ public static class ProcessHelper
         }
     }
 
-    private static async Task<(bool IsSuccessful, string Output)> InvokeExecuteWithTimeout(
+    private static async Task<(
+        bool IsSuccessful,
+        string Output)> InvokeExecuteWithTimeout(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -533,7 +541,9 @@ public static class ProcessHelper
         }
     }
 
-    private static async Task<(bool IsSuccessful, string Output)> InvokeExecutePromptWithTimeout(
+    private static async Task<(
+        bool IsSuccessful,
+        string Output)> InvokeExecutePromptWithTimeout(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -590,7 +600,10 @@ public static class ProcessHelper
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task<(bool IsSuccessful, string Output, int ProcessId)> InvokeExecuteWithProcessId(
+    private static async Task<(
+        bool IsSuccessful,
+        string Output,
+        int ProcessId)> InvokeExecuteWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
@@ -648,7 +661,10 @@ public static class ProcessHelper
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task<(bool IsSuccessful, string Output, int ProcessId)> InvokeExecutePromptWithProcessId(
+    private static async Task<(
+        bool IsSuccessful,
+        string Output,
+        int ProcessId)> InvokeExecutePromptWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
