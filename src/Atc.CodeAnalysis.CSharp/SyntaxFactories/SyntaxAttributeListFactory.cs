@@ -30,7 +30,9 @@ public static class SyntaxAttributeListFactory
     /// <param name="attributeArgumentList">The argument list for the attribute.</param>
     /// <returns>An <see cref="AttributeListSyntax"/> containing one attribute with arguments.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
-    public static AttributeListSyntax Create(string attributeName, AttributeArgumentListSyntax attributeArgumentList)
+    public static AttributeListSyntax Create(
+        string attributeName,
+        AttributeArgumentListSyntax attributeArgumentList)
     {
         if (attributeName is null)
         {
@@ -50,7 +52,9 @@ public static class SyntaxAttributeListFactory
     /// <param name="argumentValue">The string value for the argument.</param>
     /// <returns>An <see cref="AttributeListSyntax"/> containing one attribute with one argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
-    public static AttributeListSyntax CreateWithOneItemWithOneArgument(string attributeName, string argumentValue)
+    public static AttributeListSyntax CreateWithOneItemWithOneArgument(
+        string attributeName,
+        string argumentValue)
     {
         if (attributeName is null)
         {
@@ -74,7 +78,10 @@ public static class SyntaxAttributeListFactory
     /// <param name="argumentValue">The string value for the argument.</param>
     /// <returns>An <see cref="AttributeListSyntax"/> containing one attribute with a named argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeName"/> is null.</exception>
-    public static AttributeListSyntax CreateWithOneItemWithOneArgumentWithNameEquals(string attributeName, string argumentName, string argumentValue)
+    public static AttributeListSyntax CreateWithOneItemWithOneArgumentWithNameEquals(
+        string attributeName,
+        string argumentName,
+        string argumentValue)
     {
         if (attributeName is null)
         {

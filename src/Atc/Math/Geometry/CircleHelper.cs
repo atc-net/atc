@@ -31,7 +31,9 @@ public static class CircleHelper
     /// <param name="radius">The radius of the circle.</param>
     /// <param name="angle">The central angle in degrees.</param>
     /// <returns>The length of the arc.</returns>
-    public static double ArcLength(double radius, double angle)
+    public static double ArcLength(
+        double radius,
+        double angle)
     {
         return Circumference(radius) / 360 * angle;
     }
@@ -42,7 +44,9 @@ public static class CircleHelper
     /// <param name="radius">The radius of the circle.</param>
     /// <param name="angle">The central angle in degrees.</param>
     /// <returns>The straight-line distance between the endpoints of the arc.</returns>
-    public static double ChordLength(double radius, double angle)
+    public static double ChordLength(
+        double radius,
+        double angle)
     {
         return 2 * radius * System.Math.Sin(MathHelper.DegreesToRadians(angle) / 2);
     }

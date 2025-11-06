@@ -28,7 +28,9 @@ public static class SyntaxObjectCreationExpressionFactory
     /// <param name="identifierName">The name of the type to instantiate.</param>
     /// <returns>An <see cref="ObjectCreationExpressionSyntax"/> node.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ObjectCreationExpressionSyntax Create(string namespaceName, string identifierName)
+    public static ObjectCreationExpressionSyntax Create(
+        string namespaceName,
+        string identifierName)
     {
         if (namespaceName is null)
         {

@@ -66,7 +66,10 @@ public static class ExceptionExtensions
     /// <param name="message">The message.</param>
     /// <param name="includeStackTrace">if set to <see langword="true" /> include stack trace.</param>
     /// <returns>The flatten message.</returns>
-    public static string Flatten(this Exception exception, string message = "", bool includeStackTrace = false)
+    public static string Flatten(
+        this Exception exception,
+        string message = "",
+        bool includeStackTrace = false)
     {
         if (exception is null)
         {
@@ -147,7 +150,9 @@ public static class ExceptionExtensions
         return new XDocument(root);
     }
 
-    private static string GetExceptionMessageLine(Exception exception, bool includeExceptionName)
+    private static string GetExceptionMessageLine(
+        Exception exception,
+        bool includeExceptionName)
     {
         var msg = exception.Message.Replace(Environment.NewLine, "; ", StringComparison.Ordinal);
 

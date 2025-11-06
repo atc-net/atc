@@ -14,7 +14,9 @@ public static class EnumDeclarationSyntaxExtensions
     /// <returns>A new <see cref="EnumDeclarationSyntax"/> with the attribute added.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="enumDeclaration"/> or <paramref name="suppressMessage"/> is null.</exception>
     /// <exception cref="ArgumentException">Thrown when the justification in <paramref name="suppressMessage"/> is invalid.</exception>
-    public static EnumDeclarationSyntax AddSuppressMessageAttribute(this EnumDeclarationSyntax enumDeclaration, SuppressMessageAttribute suppressMessage)
+    public static EnumDeclarationSyntax AddSuppressMessageAttribute(
+        this EnumDeclarationSyntax enumDeclaration,
+        SuppressMessageAttribute suppressMessage)
     {
         if (enumDeclaration is null)
         {
@@ -70,7 +72,9 @@ public static class EnumDeclarationSyntaxExtensions
     /// <param name="attributeType">The type of attribute to search for.</param>
     /// <returns><c>true</c> if the enum has an attribute of the specified type; otherwise, <c>false</c>.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="attributeType"/> is null.</exception>
-    public static bool HasAttributeOfAttributeType(this EnumDeclarationSyntax enumDeclaration, Type attributeType)
+    public static bool HasAttributeOfAttributeType(
+        this EnumDeclarationSyntax enumDeclaration,
+        Type attributeType)
     {
         if (attributeType is null)
         {

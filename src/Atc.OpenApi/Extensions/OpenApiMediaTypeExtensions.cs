@@ -13,7 +13,9 @@ public static class OpenApiMediaTypeExtensions
     /// <param name="contentType">The content type to retrieve the schema for. Defaults to application/json.</param>
     /// <returns>The <see cref="OpenApiSchema"/> for the specified content type, or null if not found.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> is null.</exception>
-    public static OpenApiSchema? GetSchema(this IDictionary<string, OpenApiMediaType> content, string contentType = MediaTypeNames.Application.Json)
+    public static OpenApiSchema? GetSchema(
+        this IDictionary<string, OpenApiMediaType> content,
+        string contentType = MediaTypeNames.Application.Json)
     {
         if (content is null)
         {

@@ -14,7 +14,10 @@ public static class CardinalDirectionTypeHelper
     /// <param name="cardinalDirectionTypeToInclude">The cardinal direction type to include.</param>
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
     /// <param name="rotationNumber">The rotation number.</param>
-    public static CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+    public static CardinalDirectionType GetWhenRotateRight(
+        CardinalDirectionType cardinalDirectionTypeToInclude,
+        CardinalDirectionType cardinalDirectionType,
+        int rotationNumber)
     {
         if (rotationNumber < 1)
         {
@@ -38,7 +41,9 @@ public static class CardinalDirectionTypeHelper
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Bug", "S2589:Conditionally executed code should be reachable", Justification = "OK.")]
-    public static CardinalDirectionType GetWhenRotateRight(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+    public static CardinalDirectionType GetWhenRotateRight(
+        CardinalDirectionType cardinalDirectionTypeToInclude,
+        CardinalDirectionType cardinalDirectionType)
     {
         var returnValue = CardinalDirectionType.None;
         if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
@@ -108,7 +113,10 @@ public static class CardinalDirectionTypeHelper
     /// <param name="cardinalDirectionTypeToInclude">The cardinal direction type to include.</param>
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
     /// <param name="rotationNumber">The rotation number.</param>
-    public static CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType, int rotationNumber)
+    public static CardinalDirectionType GetWhenRotateLeft(
+        CardinalDirectionType cardinalDirectionTypeToInclude,
+        CardinalDirectionType cardinalDirectionType,
+        int rotationNumber)
     {
         if (rotationNumber < 1)
         {
@@ -131,7 +139,9 @@ public static class CardinalDirectionTypeHelper
     /// <param name="cardinalDirectionTypeToInclude">The cardinal direction type to include.</param>
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
     [SuppressMessage("Major Code Smell", "S2589:Boolean expressions should not be gratuitous", Justification = "OK.")]
-    public static CardinalDirectionType GetWhenRotateLeft(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+    public static CardinalDirectionType GetWhenRotateLeft(
+        CardinalDirectionType cardinalDirectionTypeToInclude,
+        CardinalDirectionType cardinalDirectionType)
     {
         var returnValue = CardinalDirectionType.None;
         if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
@@ -198,7 +208,9 @@ public static class CardinalDirectionTypeHelper
     /// <param name="cardinalDirectionTypeToInclude">The cardinal direction type to include.</param>
     /// <param name="cardinalDirectionType">Type of the cardinal direction.</param>
     [SuppressMessage("Major Code Smell", "S2589:Boolean expressions should not be gratuitous", Justification = "OK.")]
-    public static CardinalDirectionType GetWhenRotate180(CardinalDirectionType cardinalDirectionTypeToInclude, CardinalDirectionType cardinalDirectionType)
+    public static CardinalDirectionType GetWhenRotate180(
+        CardinalDirectionType cardinalDirectionTypeToInclude,
+        CardinalDirectionType cardinalDirectionType)
     {
         var returnValue = CardinalDirectionType.None;
         if (cardinalDirectionTypeToInclude == CardinalDirectionType.Simple ||
@@ -267,7 +279,9 @@ public static class CardinalDirectionTypeHelper
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     [SuppressMessage("Bug", "S2589:Conditionally executed code should be reachable", Justification = "OK.")]
-    public static CardinalDirectionType GetTheClosestByAngle(CardinalDirectionType combinedCardinalDirectionType, double angle)
+    public static CardinalDirectionType GetTheClosestByAngle(
+        CardinalDirectionType combinedCardinalDirectionType,
+        double angle)
     {
         if (angle < 0 || angle > 360)
         {
@@ -461,7 +475,9 @@ public static class CardinalDirectionTypeHelper
     /// <param name="sourceGridCell">The source grid cell.</param>
     /// <param name="targetGridCell">The target grid cell.</param>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static CardinalDirectionType GetTargetCardinalDirectionByGridCells(GridCell sourceGridCell, GridCell targetGridCell)
+    public static CardinalDirectionType GetTargetCardinalDirectionByGridCells(
+        GridCell sourceGridCell,
+        GridCell targetGridCell)
     {
         if (targetGridCell.X < sourceGridCell.X && targetGridCell.Y < sourceGridCell.Y)
         {
@@ -512,7 +528,9 @@ public static class CardinalDirectionTypeHelper
     /// <param name="sourceGridCell">The source grid cell.</param>
     /// <param name="targetGridCell">The target grid cell.</param>
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static CardinalDirectionType GetTargetCardinalDirectionByPoint2Ds(Point2D sourceGridCell, Point2D targetGridCell)
+    public static CardinalDirectionType GetTargetCardinalDirectionByPoint2Ds(
+        Point2D sourceGridCell,
+        Point2D targetGridCell)
     {
         if (targetGridCell.X < sourceGridCell.X && targetGridCell.Y < sourceGridCell.Y)
         {

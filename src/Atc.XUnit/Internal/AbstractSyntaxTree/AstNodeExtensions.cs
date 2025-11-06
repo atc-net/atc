@@ -15,7 +15,9 @@ internal static class AstNodeExtensions
         }
     }
 
-    internal static bool IsType(this AstNode astNode, Type type)
+    internal static bool IsType(
+        this AstNode astNode,
+        Type type)
     {
         if (astNode is null)
         {
@@ -30,7 +32,9 @@ internal static class AstNodeExtensions
         return astNode.GetType() == type;
     }
 
-    internal static AstNode? GetFirstOrDefaultByExpressionType(this AstNode astNode, Type expressionType)
+    internal static AstNode? GetFirstOrDefaultByExpressionType(
+        this AstNode astNode,
+        Type expressionType)
     {
         if (astNode is null)
         {

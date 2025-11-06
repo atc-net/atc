@@ -14,7 +14,10 @@ public static class ReflectionHelper
     /// <param name="value">The value to set on the private field.</param>
     [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
     [ExcludeFromCodeCoverage]
-    public static void SetPrivateField(object target, string fieldName, object value)
+    public static void SetPrivateField(
+        object target,
+        string fieldName,
+        object value)
     {
         if (target is null)
         {
@@ -44,7 +47,9 @@ public static class ReflectionHelper
     /// <returns>The value of the private field, cast to the specified type.</returns>
     [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
     [ExcludeFromCodeCoverage]
-    public static T? GetPrivateField<T>(object target, string fieldName)
+    public static T? GetPrivateField<T>(
+        object target,
+        string fieldName)
     {
         if (target is null)
         {
@@ -77,7 +82,9 @@ public static class ReflectionHelper
     /// <param name="fieldName">The name of the private field.</param>
     /// <returns>FieldInfo object representing the field, or null if not found.</returns>
     [SuppressMessage("Major Code Smell", "S3011:Make sure that this accessibility bypass is safe here", Justification = "OK.")]
-    private static FieldInfo? GetFieldInfo(object target, string fieldName)
+    private static FieldInfo? GetFieldInfo(
+        object target,
+        string fieldName)
     {
         var type = target.GetType();
         while (type is not null)

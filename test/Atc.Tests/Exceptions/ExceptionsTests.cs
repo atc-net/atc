@@ -8,7 +8,11 @@ public class ExceptionsTests
     [InlineData(null, "Value cannot be null or default.", null, null)]
     [InlineData("MyParam", "Value cannot be null or default. (Parameter 'MyParam')", "MyParam", null)]
     [InlineData("MyParam", "MyMessage (Parameter 'MyParam')", "MyParam", "MyMessage")]
-    public void ArgumentNullOrDefaultException(string? expectedParam, string? expectedMessage, string? inputParam, string? inputMessage)
+    public void ArgumentNullOrDefaultException(
+        string? expectedParam,
+        string? expectedMessage,
+        string? inputParam,
+        string? inputMessage)
     {
         // Arrange & Act
         ArgumentNullOrDefaultException sut;
@@ -49,7 +53,11 @@ public class ExceptionsTests
     [InlineData(null, "Value cannot be null or default.", null, null)]
     [InlineData("MyParam", "Value cannot be null or default. (Parameter 'MyParam')", "MyParam", null)]
     [InlineData("MyParam", "MyMessage (Parameter 'MyParam')", "MyParam", "MyMessage")]
-    public void ArgumentNullOrDefaultPropertyException(string? expectedParam, string? expectedMessage, string? inputParam, string? inputMessage)
+    public void ArgumentNullOrDefaultPropertyException(
+        string? expectedParam,
+        string? expectedMessage,
+        string? inputParam,
+        string? inputMessage)
     {
         // Arrange & Act
         ArgumentNullOrDefaultPropertyException sut;
@@ -90,7 +98,11 @@ public class ExceptionsTests
     [InlineData(null, "Value cannot be null.", null, null)]
     [InlineData("MyParam", "Value cannot be null. (Parameter 'MyParam')", "MyParam", null)]
     [InlineData("MyParam", "MyMessage (Parameter 'MyParam')", "MyParam", "MyMessage")]
-    public void ArgumentNullPropertyException(string? expectedParam, string? expectedMessage, string? inputParam, string? inputMessage)
+    public void ArgumentNullPropertyException(
+        string? expectedParam,
+        string? expectedMessage,
+        string? inputParam,
+        string? inputMessage)
     {
         // Arrange & Act
         ArgumentNullPropertyException sut;
@@ -131,7 +143,11 @@ public class ExceptionsTests
     [InlineData(null, "Value does not fall within the expected range.", null, null)]
     [InlineData("MyParam", "Value does not fall within the expected range. (Parameter 'MyParam')", "MyParam", null)]
     [InlineData("MyParam", "MyMessage (Parameter 'MyParam')", "MyParam", "MyMessage")]
-    public void ArgumentPropertyException(string? expectedParam, string? expectedMessage, string? inputParam, string? inputMessage)
+    public void ArgumentPropertyException(
+        string? expectedParam,
+        string? expectedMessage,
+        string? inputParam,
+        string? inputMessage)
     {
         // Arrange & Act
         ArgumentPropertyException sut;
@@ -172,7 +188,11 @@ public class ExceptionsTests
     [InlineData(null, "Value cannot be null.", null, null)]
     [InlineData("MyParam", "Value cannot be null. (Parameter 'MyParam')", "MyParam", null)]
     [InlineData("MyParam", "MyMessage (Parameter 'MyParam')", "MyParam", "MyMessage")]
-    public void ArgumentPropertyNullException(string? expectedParam, string? expectedMessage, string? inputParam, string? inputMessage)
+    public void ArgumentPropertyNullException(
+        string? expectedParam,
+        string? expectedMessage,
+        string? inputParam,
+        string? inputMessage)
     {
         // Arrange & Act
         ArgumentPropertyNullException sut;
@@ -212,7 +232,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Certificate is not valid.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void CertificateValidationException(string? expectedMessage, string? inputMessage)
+    public void CertificateValidationException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -233,7 +255,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("This exception is raised if a method which is only meant to be used at design time is invoked at run-time. The reason can for example be if a constructor has been provided for a ViewModel and it only should be used for design time.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void DesignTimeUseOnlyException(string? expectedMessage, string? inputMessage)
+    public void DesignTimeUseOnlyException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -254,7 +278,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Entity was not stored.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void EntityStoreException(string? expectedMessage, string? inputMessage)
+    public void EntityStoreException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -275,7 +301,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Item not found.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void ItemNotFoundException(string? expectedMessage, string? inputMessage)
+    public void ItemNotFoundException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -296,7 +324,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Value cannot be null.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void NullException(string? expectedMessage, string? inputMessage)
+    public void NullException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -317,7 +347,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Permission is not fulfilled.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void PermissionException(string? expectedMessage, string? inputMessage)
+    public void PermissionException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -338,7 +370,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Value cannot be null or empty.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void StringNullOrEmptyException(string? expectedMessage, string? inputMessage)
+    public void StringNullOrEmptyException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -359,7 +393,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("No user found.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void UserNotFoundException(string? expectedMessage, string? inputMessage)
+    public void UserNotFoundException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null
@@ -380,7 +416,9 @@ public class ExceptionsTests
     [Theory]
     [InlineData("Unexpected ViewModel.", null)]
     [InlineData("MyMessage", "MyMessage")]
-    public void ViewModelException(string? expectedMessage, string? inputMessage)
+    public void ViewModelException(
+        string? expectedMessage,
+        string? inputMessage)
     {
         // Arrange & Act
         var sut = inputMessage is not null

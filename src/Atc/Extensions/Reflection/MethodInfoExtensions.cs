@@ -75,7 +75,11 @@ public static class MethodInfoExtensions
     /// <param name="useHtmlFormat">if set to <see langword="true" /> [use HTML format].</param>
     /// <param name="includeReturnType">if set to <see langword="true" /> [include return type].</param>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
-    public static string BeautifyName(this MethodInfo methodInfo, bool useFullName = false, bool useHtmlFormat = false, bool includeReturnType = false)
+    public static string BeautifyName(
+        this MethodInfo methodInfo,
+        bool useFullName = false,
+        bool useHtmlFormat = false,
+        bool includeReturnType = false)
     {
         if (methodInfo is null)
         {

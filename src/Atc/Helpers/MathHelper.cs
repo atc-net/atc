@@ -16,7 +16,9 @@ public static class MathHelper
     /// double value = 10;
     /// int procentage = MathUtil.PercentageAsInteger(totalValue, value);
     /// ]]></example>
-    public static int PercentageAsInteger(double totalValue, double value)
+    public static int PercentageAsInteger(
+        double totalValue,
+        double value)
     {
         return (int)Percentage(totalValue, value, 0);
     }
@@ -33,7 +35,11 @@ public static class MathHelper
     /// double value = 10;
     /// double procentage = MathUtil.Percentage(totalValue, value);
     /// ]]></example>
-    public static double Percentage(double totalValue, double value, int digits = 2, bool limit0To100 = false)
+    public static double Percentage(
+        double totalValue,
+        double value,
+        int digits = 2,
+        bool limit0To100 = false)
     {
         if (digits < 0)
         {
@@ -344,7 +350,9 @@ public static class MathHelper
     /// <returns>
     ///   <see langword="true" /> if the specified value1 is equals; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsEquals(double value1, double value2)
+    public static bool IsEquals(
+        double value1,
+        double value2)
     {
         return value1.IsEqual(value2);
     }
@@ -354,7 +362,9 @@ public static class MathHelper
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    public static double TruncateToMaxPrecision(double value, int decimalPrecision)
+    public static double TruncateToMaxPrecision(
+        double value,
+        int decimalPrecision)
     {
         var str = value.ToString(GlobalizationConstants.EnglishCultureInfo);
         if (!str.Contains('.', StringComparison.Ordinal))

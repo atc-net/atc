@@ -3,7 +3,9 @@ namespace Atc.CodeDocumentation.XmlDocument;
 internal static class XmlDocumentCommentParser
 {
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    internal static XmlDocumentComment?[] ParseXmlComment(XDocument xDocument, string? namespaceMatch)
+    internal static XmlDocumentComment?[] ParseXmlComment(
+        XDocument xDocument,
+        string? namespaceMatch)
     {
         return xDocument.Descendants("member")
             .Select(x =>
@@ -69,7 +71,9 @@ internal static class XmlDocumentCommentParser
     }
 
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static string TrimCode(string code, bool trimEachLine)
+    private static string TrimCode(
+        string code,
+        bool trimEachLine)
     {
         var sb = new StringBuilder();
         var sa = code.Split(new[] { '\n' }, StringSplitOptions.None);
@@ -116,7 +120,9 @@ internal static class XmlDocumentCommentParser
             : s;
     }
 
-    private static string ResolveSeeElement(Match m, string? ns)
+    private static string ResolveSeeElement(
+        Match m,
+        string? ns)
     {
         var typeName = m.Groups[1].Value;
         if (string.IsNullOrWhiteSpace(ns))
@@ -129,7 +135,10 @@ internal static class XmlDocumentCommentParser
             : $"`{typeName}`";
     }
 
-    private static string ParseElementText(this XElement x, string name, string? @namespace)
+    private static string ParseElementText(
+        this XElement x,
+        string name,
+        string? @namespace)
     {
         var innerXml = x.Element(name)?.ToString();
         if (string.IsNullOrEmpty(innerXml))

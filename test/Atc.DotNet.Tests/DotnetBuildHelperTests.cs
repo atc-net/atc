@@ -65,7 +65,9 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         return File.WriteAllTextAsync(file.FullName, sb.ToString(), Encoding.UTF8);
     }
 
-    private static Task CreateProgramFile(DirectoryInfo workingDirectory, bool withError = false)
+    private static Task CreateProgramFile(
+        DirectoryInfo workingDirectory,
+        bool withError = false)
     {
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Program.cs"));
 

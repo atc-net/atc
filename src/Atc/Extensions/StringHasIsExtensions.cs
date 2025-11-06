@@ -42,7 +42,12 @@ public static class StringHasIsExtensions
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
     [SuppressMessage("Major Bug", "S2259:Null pointers should not be dereferenced", Justification = "OK.")]
     [SuppressMessage("Style", "MA0003:Add parameter name to improve readability", Justification = "OK.")]
-    public static bool IsEqual(this string a, string b, StringComparison comparison = StringComparison.Ordinal, bool treatNullAsEmpty = true, bool useNormalizeAccents = false)
+    public static bool IsEqual(
+        this string a,
+        string b,
+        StringComparison comparison = StringComparison.Ordinal,
+        bool treatNullAsEmpty = true,
+        bool useNormalizeAccents = false)
     {
         if (string.Equals(a, null, StringComparison.Ordinal) && string.Equals(b, null, StringComparison.Ordinal))
         {
@@ -141,7 +146,9 @@ public static class StringHasIsExtensions
     /// <returns>
     ///   <see langword="true" /> if the specified culture information is date; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsDate(this string value, CultureInfo cultureInfo)
+    public static bool IsDate(
+        this string value,
+        CultureInfo cultureInfo)
     {
         return !string.IsNullOrEmpty(value) &&
                DateTime.TryParse(value, cultureInfo, DateTimeStyles.None, out _);
@@ -212,7 +219,9 @@ public static class StringHasIsExtensions
     /// <param name="value">The string to work on.</param>
     /// <param name="output">If value is valid, output will be System.Guid passed from value; otherwise output will be System.Guid.Empty.</param>
     /// <returns><see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.</returns>
-    public static bool IsGuid(this string value, out Guid output)
+    public static bool IsGuid(
+        this string value,
+        out Guid output)
     {
         output = Guid.Empty;
         if (!RxGuid.Value.IsMatch(value))
@@ -278,7 +287,9 @@ public static class StringHasIsExtensions
     /// <returns>
     ///   <see langword="true" /> if [is string format parameters balanced] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsStringFormatParametersBalanced(this string value, bool isNumeric = true)
+    public static bool IsStringFormatParametersBalanced(
+        this string value,
+        bool isNumeric = true)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -368,7 +379,9 @@ public static class StringHasIsExtensions
     /// </returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public static bool IsCasingStyleValid(this string value, CasingStyle casingStyle)
+    public static bool IsCasingStyleValid(
+        this string value,
+        CasingStyle casingStyle)
     {
         if (string.IsNullOrEmpty(value))
         {

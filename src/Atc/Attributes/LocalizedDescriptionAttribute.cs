@@ -19,7 +19,9 @@ public sealed class LocalizedDescriptionAttribute : DescriptionAttribute
     /// <param name="resourceType">The type containing the resource file with localized strings.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="resourceType"/> is null.</exception>
     [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
-    public LocalizedDescriptionAttribute(string? resourceKey, Type resourceType)
+    public LocalizedDescriptionAttribute(
+        string? resourceKey,
+        Type resourceType)
     {
         if (resourceType is null)
         {

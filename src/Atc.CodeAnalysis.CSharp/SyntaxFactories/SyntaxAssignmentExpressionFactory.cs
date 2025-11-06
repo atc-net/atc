@@ -11,7 +11,9 @@ public static class SyntaxAssignmentExpressionFactory
     /// <param name="toIdentifierName">The identifier name on the left side of the assignment.</param>
     /// <param name="fromIdentifierName">The identifier name on the right side of the assignment.</param>
     /// <returns>An <see cref="AssignmentExpressionSyntax"/> node representing the simple assignment.</returns>
-    public static AssignmentExpressionSyntax CreateSimple(string toIdentifierName, string fromIdentifierName)
+    public static AssignmentExpressionSyntax CreateSimple(
+        string toIdentifierName,
+        string fromIdentifierName)
     {
         return SyntaxFactory.AssignmentExpression(
             SyntaxKind.SimpleAssignmentExpression,

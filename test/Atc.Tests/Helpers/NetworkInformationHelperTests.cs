@@ -40,7 +40,9 @@ public class NetworkInformationHelperTests
     [Theory]
     [InlineData("8.8.8.8", 53)]
     [InlineData("1.1.1.1", 53)]
-    public void HasTcpConnection_WithIpAddressAndPort(string ipAddressString, int port)
+    public void HasTcpConnection_WithIpAddressAndPort(
+        string ipAddressString,
+        int port)
     {
         // Arrange
         var ipAddress = IPAddress.Parse(ipAddressString);

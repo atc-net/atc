@@ -25,7 +25,9 @@ public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResu
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndWhichConstraint{ObjectAssertions, T}"/> for further assertions on the typed content.</returns>
-    public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(
+        string because = "",
+        params object[] becauseArgs)
     {
         using (var scope = new AssertionScope($"content type of {Identifier}"))
         {
@@ -41,7 +43,10 @@ public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResu
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndWhichConstraint{OkResultAssertions, OkObjectResult}"/> for further assertions.</returns>
-    public AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<OkResultAssertions, OkObjectResult> WithContent<T>(
+        T expectedContent,
+        string because = "",
+        params object[] becauseArgs)
     {
         using (var scope = new AssertionScope($"content of {Identifier}"))
         {

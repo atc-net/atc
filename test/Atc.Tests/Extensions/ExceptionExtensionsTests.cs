@@ -77,7 +77,11 @@ public class ExceptionExtensionsTests
 
     [Theory]
     [InlineData("mySuper", "myArray", "myArg", "mySuper")]
-    public void GetMessage(string expected, string message1, string message2, string message3)
+    public void GetMessage(
+        string expected,
+        string message1,
+        string message2,
+        string message3)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);
@@ -94,7 +98,12 @@ public class ExceptionExtensionsTests
     [Theory]
     [InlineData("mySuper", "myArray", "myArg", "mySuper", false)]
     [InlineData("mySuper # myArg # myArray", "myArray", "myArg", "mySuper", true)]
-    public void GetMessage_IncludeInnerMessage(string expected, string message1, string message2, string message3, bool includeInnerMessage)
+    public void GetMessage_IncludeInnerMessage(
+        string expected,
+        string message1,
+        string message2,
+        string message3,
+        bool includeInnerMessage)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);
@@ -113,7 +122,13 @@ public class ExceptionExtensionsTests
     [InlineData("mySuper # myArg # myArray", "myArray", "myArg", "mySuper", true, false)]
     [InlineData("Exception: mySuper", "myArray", "myArg", "mySuper", false, true)]
     [InlineData("Exception: mySuper # Argument: myArg # ArrayTypeMismatch: myArray", "myArray", "myArg", "mySuper", true, true)]
-    public void GetMessage_IncludeInnerMessage_IncludeExceptionName(string expected, string message1, string message2, string message3, bool includeInnerMessage, bool includeExceptionName)
+    public void GetMessage_IncludeInnerMessage_IncludeExceptionName(
+        string expected,
+        string message1,
+        string message2,
+        string message3,
+        bool includeInnerMessage,
+        bool includeExceptionName)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);
@@ -129,7 +144,11 @@ public class ExceptionExtensionsTests
 
     [Theory]
     [InlineData("myArray", "myArray", "myArg", "mySuper")]
-    public void GetLastInnerMessage(string expected, string message1, string message2, string message3)
+    public void GetLastInnerMessage(
+        string expected,
+        string message1,
+        string message2,
+        string message3)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);
@@ -146,7 +165,12 @@ public class ExceptionExtensionsTests
     [Theory]
     [InlineData("myArray", "myArray", "myArg", "mySuper", false)]
     [InlineData("ArrayTypeMismatch: myArray", "myArray", "myArg", "mySuper", true)]
-    public void GetLastInnerMessage_IncludeExceptionName(string expected, string message1, string message2, string message3, bool includeExceptionName)
+    public void GetLastInnerMessage_IncludeExceptionName(
+        string expected,
+        string message1,
+        string message2,
+        string message3,
+        bool includeExceptionName)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);
@@ -162,7 +186,11 @@ public class ExceptionExtensionsTests
 
     [Theory]
     [InlineData("mySuper#myArg#myArray#", "myArray", "myArg", "mySuper")]
-    public void Flatten(string expected, string message1, string message2, string message3)
+    public void Flatten(
+        string expected,
+        string message1,
+        string message2,
+        string message3)
     {
         // Arrange
         expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
@@ -179,7 +207,12 @@ public class ExceptionExtensionsTests
 
     [Theory]
     [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper")]
-    public void Flatten_Message(string expected, string message0, string message1, string message2, string message3)
+    public void Flatten_Message(
+        string expected,
+        string message0,
+        string message1,
+        string message2,
+        string message3)
     {
         // Arrange
         expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
@@ -197,7 +230,13 @@ public class ExceptionExtensionsTests
     [Theory]
     [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper", false)]
     [InlineData("Hallo#mySuper#myArg#myArray#", "Hallo", "myArray", "myArg", "mySuper", true)]
-    public void Flatten_Message_IncludeStackTrace(string expected, string message0, string message1, string message2, string message3, bool includeStackTrace)
+    public void Flatten_Message_IncludeStackTrace(
+        string expected,
+        string message0,
+        string message1,
+        string message2,
+        string message3,
+        bool includeStackTrace)
     {
         // Arrange
         expected = expected.Replace("#", Environment.NewLine, StringComparison.Ordinal);
@@ -226,7 +265,11 @@ public class ExceptionExtensionsTests
         "myArray",
         "myArg",
         "mySuper")]
-    public void ToXml(string expected, string message1, string message2, string message3)
+    public void ToXml(
+        string expected,
+        string message1,
+        string message2,
+        string message3)
     {
         // Arrange
         var exception1 = new ArrayTypeMismatchException(message1);

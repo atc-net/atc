@@ -295,7 +295,9 @@ public static class SimpleTypeHelper
     /// </summary>
     /// <param name="value">The value.</param>
     /// <param name="comparison">The string comparison - default is 'Ordinal'.</param>
-    public static bool IsSimpleType(string value, StringComparison comparison = StringComparison.Ordinal)
+    public static bool IsSimpleType(
+        string value,
+        StringComparison comparison = StringComparison.Ordinal)
     {
         var item = BeautifySimpleTypeLookup.FirstOrDefault(x => x.Value.Equals(value, comparison));
         return item.Key is not null;

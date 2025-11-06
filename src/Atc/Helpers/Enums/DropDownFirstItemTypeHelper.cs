@@ -70,7 +70,9 @@ public static class DropDownFirstItemTypeHelper
     /// <param name="list">The list.</param>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     [SuppressMessage("Microsoft.Performance", "CA1820:TestForEmptyStringsUsingStringLength", Justification = "OK.")]
-    public static List<string> EnsureFirstItemType(List<string> list, DropDownFirstItemType dropDownFirstItemType)
+    public static List<string> EnsureFirstItemType(
+        List<string> list,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         if (list is null)
         {

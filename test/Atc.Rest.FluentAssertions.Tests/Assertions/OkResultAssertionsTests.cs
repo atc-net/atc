@@ -18,7 +18,9 @@ public class OkResultAssertionsTests
     [Theory]
     [InlineData("BAR", @"Expected content of OK result to be ""BAR"", but ""FOO"" differs near ""FOO"" (index 0).")]
     [InlineData(42, @"Expected content of OK result to be 42, but found ""FOO"".")]
-    public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(object content, string expectedMessage)
+    public void WithContent_Throws_When_Content_Is_Not_Equivalent_To_Expected(
+        object content,
+        string expectedMessage)
     {
         // Arrange
         var target = new OkObjectResult("FOO");

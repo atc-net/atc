@@ -93,7 +93,9 @@ public class RestApiOptions
     /// </summary>
     /// <param name="apiAssembly">The API assembly containing interfaces.</param>
     /// <param name="domainAssembly">The domain assembly containing implementations.</param>
-    public void AddAssemblyPairs(Assembly? apiAssembly, Assembly? domainAssembly)
+    public void AddAssemblyPairs(
+        Assembly? apiAssembly,
+        Assembly? domainAssembly)
     {
         ArgumentNullException.ThrowIfNull(apiAssembly);
         ArgumentNullException.ThrowIfNull(domainAssembly);

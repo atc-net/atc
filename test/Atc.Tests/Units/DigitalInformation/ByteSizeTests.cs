@@ -11,7 +11,9 @@ public class ByteSizeTests
     [InlineData("1 TB", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 PB", 1024L * 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 EB", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
-    public void Format_Default(string expected, long size)
+    public void Format_Default(
+        string expected,
+        long size)
     {
         // Arrange
         var byteSize = new ByteSize(size);
@@ -33,7 +35,9 @@ public class ByteSizeTests
     [InlineData("1 TB", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 PB", 1024L * 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 EB", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
-    public void Format_Default_Formatter(string expected, long size)
+    public void Format_Default_Formatter(
+        string expected,
+        long size)
     {
         // Arrange
         var byteSize = new ByteSize(size);

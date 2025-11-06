@@ -14,7 +14,10 @@ public static class InterfaceDeclarationSyntaxExtensions
     /// <param name="version">The version of the code generation tool.</param>
     /// <returns>A new <see cref="InterfaceDeclarationSyntax"/> with the attribute added.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="interfaceDeclaration"/>, <paramref name="toolName"/>, or <paramref name="version"/> is null.</exception>
-    public static InterfaceDeclarationSyntax AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
+    public static InterfaceDeclarationSyntax AddGeneratedCodeAttribute(
+        this InterfaceDeclarationSyntax interfaceDeclaration,
+        string toolName,
+        string version)
     {
         if (interfaceDeclaration is null)
         {

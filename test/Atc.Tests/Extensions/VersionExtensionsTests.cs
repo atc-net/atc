@@ -39,7 +39,11 @@ public class VersionExtensionsTests
     [InlineData(0, new[] { 1, 0, 0, 0 }, new[] { 1, 1, 0, 0 }, 1)]
     [InlineData(0, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 1, 0 }, 1)]
     [InlineData(0, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 0, 1 }, 1)]
-    public void CompareTo(int expected, int[] inputA, int[] inputB, int significantParts)
+    public void CompareTo(
+        int expected,
+        int[] inputA,
+        int[] inputB,
+        int significantParts)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -62,7 +66,10 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 1, 0, 0 })]
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 1, 0 })]
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 0, 1 })]
-    public void GreaterThan(bool expected, int[] inputA, int[] inputB)
+    public void GreaterThan(
+        bool expected,
+        int[] inputA,
+        int[] inputB)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -81,7 +88,11 @@ public class VersionExtensionsTests
     [InlineData(true, new[] { 2, 1, 1, 1 }, new[] { 1, 2, 1, 1 }, 4)]
     [InlineData(false, new[] { 1, 1, 1, 1 }, new[] { 2, 1, 1, 1 }, 4)]
     [InlineData(false, new[] { 1, 1, 1, 1 }, new[] { 2, 2, 1, 1 }, 4)]
-    public void GreaterThan_SignificantParts(bool expected, int[] inputA, int[] inputB, int significantParts)
+    public void GreaterThan_SignificantParts(
+        bool expected,
+        int[] inputA,
+        int[] inputB,
+        int significantParts)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -103,7 +114,12 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 1, 2, 1, 1 }, new[] { 1, 3, 1, 1 }, 4, 2)]
     [InlineData(false, new[] { 2, 2, 1, 1 }, new[] { 1, 3, 1, 1 }, 4, 2)]
     [InlineData(true, new[] { 1, 3, 1, 1 }, new[] { 1, 2, 1, 1 }, 4, 2)]
-    public void GreaterThan_SignificantParts_StartingParts(bool expected, int[] inputA, int[] inputB, int significantParts, int startingPart)
+    public void GreaterThan_SignificantParts_StartingParts(
+        bool expected,
+        int[] inputA,
+        int[] inputB,
+        int significantParts,
+        int startingPart)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -126,7 +142,10 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 1, 0, 0 })]
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 1, 0 })]
     [InlineData(false, new[] { 1, 0, 0, 0 }, new[] { 1, 0, 0, 1 })]
-    public void GreaterThanOrEqualTo(bool expected, int[] inputA, int[] inputB)
+    public void GreaterThanOrEqualTo(
+        bool expected,
+        int[] inputA,
+        int[] inputB)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -145,7 +164,11 @@ public class VersionExtensionsTests
     [InlineData(true, new[] { 2, 1, 1, 1 }, new[] { 1, 2, 1, 1 }, 4)]
     [InlineData(false, new[] { 1, 1, 1, 1 }, new[] { 2, 1, 1, 1 }, 4)]
     [InlineData(false, new[] { 1, 1, 1, 1 }, new[] { 2, 2, 1, 1 }, 4)]
-    public void GreaterThanOrEqualTo_SignificantParts(bool expected, int[] inputA, int[] inputB, int significantParts)
+    public void GreaterThanOrEqualTo_SignificantParts(
+        bool expected,
+        int[] inputA,
+        int[] inputB,
+        int significantParts)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -167,7 +190,12 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 1, 2, 1, 1 }, new[] { 1, 3, 1, 1 }, 4, 2)]
     [InlineData(false, new[] { 2, 2, 1, 1 }, new[] { 1, 3, 1, 1 }, 4, 2)]
     [InlineData(true, new[] { 1, 3, 1, 1 }, new[] { 1, 2, 1, 1 }, 4, 2)]
-    public void GreaterThanOrEqualTo_SignificantParts_StartingParts(bool expected, int[] inputA, int[] inputB, int significantParts, int startingPart)
+    public void GreaterThanOrEqualTo_SignificantParts_StartingParts(
+        bool expected,
+        int[] inputA,
+        int[] inputB,
+        int significantParts,
+        int startingPart)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -188,7 +216,10 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 })]
     [InlineData(true, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
     [InlineData(false, new[] { 3, 8, 8, 0 }, new[] { 4, 5, 3, 3 })]
-    public void IsNewerThan(bool expected, int[] inputA, int[] inputB)
+    public void IsNewerThan(
+        bool expected,
+        int[] inputA,
+        int[] inputB)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);
@@ -216,7 +247,11 @@ public class VersionExtensionsTests
     [InlineData(false, new[] { 4, 5, 3, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(false, new[] { 5, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
     [InlineData(false, new[] { 3, 8, 8, 0 }, new[] { 4, 5, 3, 3 }, true)]
-    public void IsNewerThan_WithinMinorReleaseOnly(bool expected, int[] inputA, int[] inputB, bool withinMinorReleaseOnly)
+    public void IsNewerThan_WithinMinorReleaseOnly(
+        bool expected,
+        int[] inputA,
+        int[] inputB,
+        bool withinMinorReleaseOnly)
     {
         // Arrange
         var versionA = new Version(inputA[0], inputA[1], inputA[2], inputA[3]);

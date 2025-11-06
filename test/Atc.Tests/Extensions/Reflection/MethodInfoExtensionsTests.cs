@@ -5,7 +5,9 @@ public class MethodInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(NumericAlphaComparer))]
     [InlineData(true, typeof(TupleEqualityComparer<int, int>))]
-    public void IsOverride(bool expected, Type type)
+    public void IsOverride(
+        bool expected,
+        Type type)
     {
         // Arrange
         var methodInfo = type.GetMethods().First(x => x.Name.Equals("GetHashCode", StringComparison.Ordinal));
@@ -20,7 +22,9 @@ public class MethodInfoExtensionsTests
     [Theory]
     [InlineData(true, typeof(CreditCardAttribute))]
     [InlineData(true, typeof(EmailAddressAttribute))]
-    public void HasDeclaringTypeValidationAttributes(bool expected, Type type)
+    public void HasDeclaringTypeValidationAttributes(
+        bool expected,
+        Type type)
     {
         // Arrange
         var methodInfo = type.GetMethods().First(x => x.Name.Equals("IsValid", StringComparison.Ordinal));
@@ -34,7 +38,10 @@ public class MethodInfoExtensionsTests
 
     [Theory]
     [InlineData(true, typeof(ConcurrentHashSet<>), "TryAdd")]
-    public void HasGenericParameters(bool expected, Type type, string methodName)
+    public void HasGenericParameters(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var methodInfo = type.GetMethods().First(x => x.Name.Equals(methodName, StringComparison.Ordinal));
@@ -48,7 +55,9 @@ public class MethodInfoExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForExtensionsMethodInfo.BeautifyNameData), MemberType = typeof(TestMemberDataForExtensionsMethodInfo))]
-    public void BeautifyName(string expected, MethodInfo methodInfo)
+    public void BeautifyName(
+        string expected,
+        MethodInfo methodInfo)
     {
         // Act
         var actual = methodInfo.BeautifyName();
@@ -59,7 +68,12 @@ public class MethodInfoExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForExtensionsMethodInfo.BeautifyNameWithParametersData), MemberType = typeof(TestMemberDataForExtensionsMethodInfo))]
-    public void BeautifyName_WithParameters(string expected, MethodInfo methodInfo, bool useFullName, bool useHtmlFormat, bool includeReturnType)
+    public void BeautifyName_WithParameters(
+        string expected,
+        MethodInfo methodInfo,
+        bool useFullName,
+        bool useHtmlFormat,
+        bool includeReturnType)
     {
         // Act
         var actual = methodInfo.BeautifyName(useFullName, useHtmlFormat, includeReturnType);

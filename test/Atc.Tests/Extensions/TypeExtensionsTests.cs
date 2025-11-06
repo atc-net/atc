@@ -5,7 +5,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(false, typeof(NumericAlphaComparer))]
     [InlineData(true, typeof(UriAttribute))]
-    public void HasValidationAttributes(bool expected, Type type)
+    public void HasValidationAttributes(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.HasValidationAttributes();
@@ -17,7 +19,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(false, typeof(NumericAlphaComparer))]
     [InlineData(true, typeof(Delegate))]
-    public void IsDelegate(bool expected, Type type)
+    public void IsDelegate(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.IsDelegate();
@@ -29,7 +33,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(false, typeof(double))]
     [InlineData(true, typeof(double?))]
-    public void IsNullable(bool expected, Type type)
+    public void IsNullable(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = System.TypeExtensions.IsNullable(type);
@@ -44,7 +50,9 @@ public class TypeExtensionsTests
     [InlineData(true, typeof(DayOfWeek))]
     [InlineData(true, typeof(int))]
     [InlineData(true, typeof(string))]
-    public void IsSimple(bool expected, Type type)
+    public void IsSimple(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.IsSimple();
@@ -58,7 +66,10 @@ public class TypeExtensionsTests
     [InlineData(false, typeof(DataTypeAttribute), typeof(EmailAddressAttribute))]
     [InlineData(false, typeof(EmailAddressAttribute), typeof(EmailAddressAttribute))]
     [InlineData(true, typeof(EmailAddressAttribute), typeof(DataTypeAttribute))]
-    public void IsInheritedFrom(bool expected, Type type, Type baseType)
+    public void IsInheritedFrom(
+        bool expected,
+        Type type,
+        Type baseType)
     {
         // Act
         var actual = type.IsInheritedFrom(baseType);
@@ -69,7 +80,11 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(UriAttribute), typeof(UriAttribute), typeof(UriAttribute))]
-    public void IsInheritedFromGenericWithArgumentType(bool expected, Type type, Type baseType, Type argumentType)
+    public void IsInheritedFromGenericWithArgumentType(
+        bool expected,
+        Type type,
+        Type baseType,
+        Type argumentType)
     {
         // Act
         var actual = type.IsInheritedFromGenericWithArgumentType(baseType, argumentType);
@@ -80,7 +95,12 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(UriAttribute), typeof(UriAttribute), typeof(UriAttribute), false)]
-    public void IsInheritedFromGenericWithArgumentType_MatchAlsoOnArgumentTypeInterface(bool expected, Type type, Type baseType, Type argumentType, bool matchAlsoOnArgumentTypeInterface)
+    public void IsInheritedFromGenericWithArgumentType_MatchAlsoOnArgumentTypeInterface(
+        bool expected,
+        Type type,
+        Type baseType,
+        Type argumentType,
+        bool matchAlsoOnArgumentTypeInterface)
     {
         // Act
         var actual = type.IsInheritedFromGenericWithArgumentType(baseType, argumentType, matchAlsoOnArgumentTypeInterface);
@@ -92,7 +112,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(typeof(int), typeof(int))]
     [InlineData(typeof(int), typeof(int?))]
-    public void GetNonNullableType(Type expected, Type type)
+    public void GetNonNullableType(
+        Type expected,
+        Type type)
     {
         // Act
         var actual = type.GetNonNullableType();
@@ -103,7 +125,9 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(UriAttribute))]
-    public void GetBaseTypeGenericArgumentType(bool expected, Type type)
+    public void GetBaseTypeGenericArgumentType(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.GetBaseTypeGenericArgumentType();
@@ -121,7 +145,9 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(0, typeof(UriAttribute))]
-    public void GetBaseTypeGenericArgumentTypes(int expected, Type type)
+    public void GetBaseTypeGenericArgumentTypes(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetBaseTypeGenericArgumentTypes();
@@ -141,7 +167,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(true, typeof(UriAttribute))]
     [InlineData(false, typeof(NumericAlphaComparer))]
-    public void GetAttribute(bool expected, Type type)
+    public void GetAttribute(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.GetAttribute<AttributeUsageAttribute>();
@@ -160,7 +188,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(true, typeof(UriAttribute))]
     [InlineData(false, typeof(NumericAlphaComparer))]
-    public void TryGetAttribute(bool expected, Type type)
+    public void TryGetAttribute(
+        bool expected,
+        Type type)
     {
         // Act
         var actual = type.TryGetAttribute<AttributeUsageAttribute>();
@@ -179,7 +209,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(1, typeof(UriAttribute))]
     [InlineData(0, typeof(NumericAlphaComparer))]
-    public void GetAttributes(int expected, Type type)
+    public void GetAttributes(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetAttributes<AttributeUsageAttribute>();
@@ -191,7 +223,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(17, typeof(UriAttribute))]
     [InlineData(6, typeof(LogKeyValueItem))]
-    public void GetPublicDeclaredOnlyMethods(int expected, Type type)
+    public void GetPublicDeclaredOnlyMethods(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetPublicDeclaredOnlyMethods();
@@ -203,7 +237,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(0, typeof(UriAttribute))]
     [InlineData(0, typeof(LogKeyValueItem))]
-    public void GetPrivateDeclaredOnlyMethods(int expected, Type type)
+    public void GetPrivateDeclaredOnlyMethods(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetPrivateDeclaredOnlyMethods();
@@ -214,7 +250,10 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(UriAttribute), "IsValid")]
-    public void GetPrivateDeclaredOnlyMethod(bool expected, Type type, string methodName)
+    public void GetPrivateDeclaredOnlyMethod(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Act
         var actual = type.GetPrivateDeclaredOnlyMethod(methodName);
@@ -233,7 +272,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(12, typeof(UriAttribute))]
     [InlineData(4, typeof(LogKeyValueItem))]
-    public void GetPublicProperties(int expected, Type type)
+    public void GetPublicProperties(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetPublicProperties();
@@ -245,7 +286,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(7, typeof(UriAttribute))]
     [InlineData(2, typeof(LogKeyValueItem))]
-    public void GetPublicDeclaredOnlyProperties(int expected, Type type)
+    public void GetPublicDeclaredOnlyProperties(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetPublicDeclaredOnlyProperties();
@@ -257,7 +300,10 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(null, typeof(UriAttribute), "IsValid")]
     [InlineData(null, typeof(LogKeyValueItem), "Key")]
-    public void GetPublicDeclaredOnlyPropertyValue(object expected, Type type, string propertyName)
+    public void GetPublicDeclaredOnlyPropertyValue(
+        object expected,
+        Type type,
+        string propertyName)
     {
         // Act
         var actual = type.GetPublicDeclaredOnlyPropertyValue(propertyName);
@@ -269,7 +315,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData(0, typeof(UriAttribute))]
     [InlineData(0, typeof(LogKeyValueItem))]
-    public void GetPrivateDeclaredOnlyProperties(int expected, Type type)
+    public void GetPrivateDeclaredOnlyProperties(
+        int expected,
+        Type type)
     {
         // Act
         var actual = type.GetPrivateDeclaredOnlyProperties();
@@ -280,7 +328,10 @@ public class TypeExtensionsTests
 
     [Theory]
     [InlineData(false, typeof(UriAttribute), "IsValid")]
-    public void GetPrivateDeclaredOnlyProperty(bool expected, Type type, string propertyName)
+    public void GetPrivateDeclaredOnlyProperty(
+        bool expected,
+        Type type,
+        string propertyName)
     {
         // Act
         var actual = type.GetPrivateDeclaredOnlyProperty(propertyName);
@@ -300,7 +351,9 @@ public class TypeExtensionsTests
     [InlineData("ConcurrentHashSet", typeof(ConcurrentHashSet<int>))]
     [InlineData("LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute))]
     [InlineData("Dictionary", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>))]
-    public void GetNameWithoutGenericType(string expected, Type type)
+    public void GetNameWithoutGenericType(
+        string expected,
+        Type type)
     {
         Assert.Equal(expected, type.GetNameWithoutGenericType());
     }
@@ -312,7 +365,10 @@ public class TypeExtensionsTests
     [InlineData("Atc.Collections.ConcurrentHashSet", typeof(ConcurrentHashSet<int>), true)]
     [InlineData("Atc.LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute), true)]
     [InlineData("System.Collections.Generic.Dictionary", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), true)]
-    public void GetNameWithoutGenericType_UseFullName(string expected, Type type, bool useFullName)
+    public void GetNameWithoutGenericType_UseFullName(
+        string expected,
+        Type type,
+        bool useFullName)
     {
         Assert.Equal(expected, type.GetNameWithoutGenericType(useFullName));
     }
@@ -323,7 +379,9 @@ public class TypeExtensionsTests
     [InlineData("typeof(LocalizedDescriptionAttribute)", typeof(LocalizedDescriptionAttribute))]
     [InlineData("typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>)", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>))]
     [InlineData("typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>)", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>))]
-    public void BeautifyTypeOfName(string expected, Type type)
+    public void BeautifyTypeOfName(
+        string expected,
+        Type type)
     {
         Assert.Equal(expected, type.BeautifyTypeOfName());
     }
@@ -339,7 +397,10 @@ public class TypeExtensionsTests
     [InlineData("typeof(System.Collections.Generic.Dictionary<Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute>)", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), true)]
     [InlineData("typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>)", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), false)]
     [InlineData("typeof(System.Collections.Generic.List<System.Collections.Generic.Dictionary<Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute>>)", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), true)]
-    public void BeautifyTypeOfName_UseFullName(string expected, Type type, bool useFullName)
+    public void BeautifyTypeOfName_UseFullName(
+        string expected,
+        Type type,
+        bool useFullName)
     {
         Assert.Equal(expected, type.BeautifyTypeOfName(useFullName));
     }
@@ -365,7 +426,11 @@ public class TypeExtensionsTests
     [InlineData("typeof(System.Collections.Generic.Dictionary&lt;Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute&gt;)", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), true, true)]
     [InlineData("typeof(List&lt;Dictionary&lt;LocalizedDescriptionAttribute, LocalizedDescriptionAttribute&gt;&gt;)", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), false, true)]
     [InlineData("typeof(System.Collections.Generic.List&lt;System.Collections.Generic.Dictionary&lt;Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute&gt;&gt;)", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), true, true)]
-    public void BeautifyTypeOfName_UseFullName_UseHtmlFormat(string expected, Type type, bool useFullName, bool useHtmlFormat)
+    public void BeautifyTypeOfName_UseFullName_UseHtmlFormat(
+        string expected,
+        Type type,
+        bool useFullName,
+        bool useHtmlFormat)
     {
         Assert.Equal(expected, type.BeautifyTypeOfName(useFullName, useHtmlFormat));
     }
@@ -376,7 +441,9 @@ public class TypeExtensionsTests
     [InlineData("LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute))]
     [InlineData("Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>))]
     [InlineData("List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>))]
-    public void BeautifyName(string expected, Type type)
+    public void BeautifyName(
+        string expected,
+        Type type)
     {
         Assert.Equal(expected, type.BeautifyName());
     }
@@ -392,7 +459,10 @@ public class TypeExtensionsTests
     [InlineData("System.Collections.Generic.Dictionary<Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute>", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), true)]
     [InlineData("List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), false)]
     [InlineData("System.Collections.Generic.List<System.Collections.Generic.Dictionary<Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute>>", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), true)]
-    public void BeautifyName_UseFullName(string expected, Type type, bool useFullName)
+    public void BeautifyName_UseFullName(
+        string expected,
+        Type type,
+        bool useFullName)
     {
         Assert.Equal(expected, type.BeautifyName(useFullName));
     }
@@ -418,21 +488,36 @@ public class TypeExtensionsTests
     [InlineData("System.Collections.Generic.Dictionary&lt;Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute&gt;", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), true, true)]
     [InlineData("List&lt;Dictionary&lt;LocalizedDescriptionAttribute, LocalizedDescriptionAttribute&gt;&gt;", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), false, true)]
     [InlineData("System.Collections.Generic.List&lt;System.Collections.Generic.Dictionary&lt;Atc.LocalizedDescriptionAttribute, Atc.LocalizedDescriptionAttribute&gt;&gt;", typeof(List<Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>>), true, true)]
-    public void BeautifyName_UseFullName_UseHtmlFormat(string expected, Type type, bool useFullName, bool useHtmlFormat)
+    public void BeautifyName_UseFullName_UseHtmlFormat(
+        string expected,
+        Type type,
+        bool useFullName,
+        bool useHtmlFormat)
     {
         Assert.Equal(expected, type.BeautifyName(useFullName, useHtmlFormat));
     }
 
     [Theory]
     [InlineData("Dictionary<T, LocalizedDescriptionAttribute>", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true)]
-    public void BeautifyName_UseFullName_UseHtmlFormat_UseGenericParameterNamesAsT(string expected, Type type, bool useFullName, bool useHtmlFormat, bool useGenericParameterNamesAsT)
+    public void BeautifyName_UseFullName_UseHtmlFormat_UseGenericParameterNamesAsT(
+        string expected,
+        Type type,
+        bool useFullName,
+        bool useHtmlFormat,
+        bool useGenericParameterNamesAsT)
     {
         Assert.Equal(expected, type.BeautifyName(useFullName, useHtmlFormat, useGenericParameterNamesAsT));
     }
 
     [Theory]
     [InlineData("T, LocalizedDescriptionAttribute?", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true, true)]
-    public void BeautifyName_UseFullName_UseGenericParameterNamesAsT_UseSuffixQuestionMarkForGeneric(string expected, Type type, bool useFullName, bool useHtmlFormat, bool useGenericParameterNamesAsT, bool useSuffixQuestionMarkForGeneric)
+    public void BeautifyName_UseFullName_UseGenericParameterNamesAsT_UseSuffixQuestionMarkForGeneric(
+        string expected,
+        Type type,
+        bool useFullName,
+        bool useHtmlFormat,
+        bool useGenericParameterNamesAsT,
+        bool useSuffixQuestionMarkForGeneric)
     {
         Assert.Equal(expected, type.BeautifyName(useFullName, useHtmlFormat, useGenericParameterNamesAsT, useSuffixQuestionMarkForGeneric));
     }
@@ -483,7 +568,9 @@ public class TypeExtensionsTests
     [InlineData("double[]", typeof(double[]))]
     [InlineData("decimal[]", typeof(decimal[]))]
     [InlineData("LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute))]
-    public void BeautifyTypeName(string expected, Type type)
+    public void BeautifyTypeName(
+        string expected,
+        Type type)
     {
         Assert.Equal(expected, type.BeautifyTypeName());
     }
@@ -495,7 +582,10 @@ public class TypeExtensionsTests
     [InlineData("bool", typeof(bool), true)]
     [InlineData("LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute), false)]
     [InlineData("Atc.LocalizedDescriptionAttribute", typeof(LocalizedDescriptionAttribute), true)]
-    public void BeautifyTypeName_UseFullName(string expected, Type type, bool useFullName)
+    public void BeautifyTypeName_UseFullName(
+        string expected,
+        Type type,
+        bool useFullName)
     {
         Assert.Equal(expected, type.BeautifyTypeName(useFullName));
     }

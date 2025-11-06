@@ -5,7 +5,9 @@ public sealed class NumberToStringJsonConverterTests
     [Theory]
     [InlineData(123, 123)]
     [InlineData(123.45, 123.45)]
-    public void Read_ShouldReturnStringRepresentationOfNumber(double expected, double number)
+    public void Read_ShouldReturnStringRepresentationOfNumber(
+        double expected,
+        double number)
     {
         // Arrange
         Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;

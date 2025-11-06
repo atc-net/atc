@@ -14,7 +14,9 @@ public static class IntegerExtensions
     /// <returns>
     ///   <see langword="true" /> if the specified a is equal; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsEqual(this int? a, int? b)
+    public static bool IsEqual(
+        this int? a,
+        int? b)
     {
         if (a is null || b is null)
         {
@@ -105,7 +107,9 @@ public static class IntegerExtensions
     /// <param name="pascalCased">if set to <see langword="true" /> [pascal cased].</param>
     /// <returns>The name of the month.</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
-    public static string GetMonthNameByMonthNumber(this int month, bool pascalCased = false)
+    public static string GetMonthNameByMonthNumber(
+        this int month,
+        bool pascalCased = false)
     {
         if (month < 1 || month > 12)
         {
@@ -143,7 +147,9 @@ public static class IntegerExtensions
     /// <param name="year">The year.</param>
     /// <param name="weekNumber">The week number.</param>
     /// <returns>The date of the first day in the given year and week number.</returns>
-    public static DateTime GetFirstDayOfWeekNumberByYear(this int year, int weekNumber)
+    public static DateTime GetFirstDayOfWeekNumberByYear(
+        this int year,
+        int weekNumber)
     {
         var calendar = CultureInfo.CurrentUICulture.Calendar;
         var firstOfYear = new DateTime(year, 1, 1, calendar);
@@ -168,7 +174,9 @@ public static class IntegerExtensions
     /// <param name="year">The year.</param>
     /// <param name="weekNumber">The week number.</param>
     /// <returns>The date of the last day in the given year and week number.</returns>
-    public static DateTime GetLastDayOfWeekNumberByYear(this int year, int weekNumber)
+    public static DateTime GetLastDayOfWeekNumberByYear(
+        this int year,
+        int weekNumber)
     {
         return GetFirstDayOfWeekNumberByYear(year, weekNumber).AddDays(6);
     }

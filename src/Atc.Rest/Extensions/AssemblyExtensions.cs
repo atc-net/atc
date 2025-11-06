@@ -16,7 +16,9 @@ public static class AssemblyExtensions
     /// For an assembly named "MyService.Api", this returns "My Service API".
     /// If <paramref name="removeLastVerb"/> is true, it returns "My Service".
     /// </example>
-    public static string GetApiName(this Assembly assembly, bool removeLastVerb = false)
+    public static string GetApiName(
+        this Assembly assembly,
+        bool removeLastVerb = false)
     {
         ArgumentNullException.ThrowIfNull(assembly);
 

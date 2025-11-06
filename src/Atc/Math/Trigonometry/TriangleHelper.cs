@@ -15,7 +15,13 @@ public static class TriangleHelper
     /// <param name="sideA">The side A.</param>
     /// <param name="sideB">The side B.</param>
     /// <param name="sideC">The side C.</param>
-    public static TriangleData SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
+    public static TriangleData SinesAndCosines(
+        double? angleA,
+        double? angleB,
+        double? angleC,
+        double? sideA,
+        double? sideB,
+        double? sideC)
     {
         if (Convert.ToInt32(angleA.HasValue) + Convert.ToInt32(angleB.HasValue) + Convert.ToInt32(angleC.HasValue) +
             Convert.ToInt32(sideA.HasValue) + Convert.ToInt32(sideB.HasValue) + Convert.ToInt32(sideC.HasValue) != 3)

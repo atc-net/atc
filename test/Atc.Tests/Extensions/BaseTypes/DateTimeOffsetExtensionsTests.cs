@@ -9,7 +9,10 @@ public class DateTimeOffsetExtensionsTests
     [Theory]
     [InlineData(10000, 10, DateTimeDiffCompareType.Milliseconds)]
     [InlineData(42000, 42, DateTimeDiffCompareType.Milliseconds)]
-    public void DateTimeDiff(double expected, int seconds, DateTimeDiffCompareType dateTimeDiffCompareType)
+    public void DateTimeDiff(
+        double expected,
+        int seconds,
+        DateTimeDiffCompareType dateTimeDiffCompareType)
     {
         // Arrange
         var inputA = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
@@ -24,7 +27,10 @@ public class DateTimeOffsetExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiff), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
-    public void GetPrettyTimeDiff(string expected, DateTimeOffset start, int arrangeUiLcid)
+    public void GetPrettyTimeDiff(
+        string expected,
+        DateTimeOffset start,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -39,7 +45,11 @@ public class DateTimeOffsetExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
-    public void GetPrettyTimeDiff_DecimalPrecision(string expected, DateTimeOffset start, int decimalPrecision, int arrangeUiLcid)
+    public void GetPrettyTimeDiff_DecimalPrecision(
+        string expected,
+        DateTimeOffset start,
+        int decimalPrecision,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -54,7 +64,11 @@ public class DateTimeOffsetExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithEnd), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
-    public void GetPrettyTimeDiff_EndNow(string expected, DateTimeOffset start, DateTimeOffset end, int arrangeUiLcid)
+    public void GetPrettyTimeDiff_EndNow(
+        string expected,
+        DateTimeOffset start,
+        DateTimeOffset end,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -68,7 +82,12 @@ public class DateTimeOffsetExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForDateTimeOffsetExtensions.GetPrettyTimeDiffWithEndNowAndDecimalPrecision), MemberType = typeof(TestMemberDataForDateTimeOffsetExtensions))]
-    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(string expected, DateTimeOffset start, DateTimeOffset end, int decimalPrecision, int arrangeUiLcid)
+    public void GetPrettyTimeDiff_EndNow_DecimalPrecision(
+        string expected,
+        DateTimeOffset start,
+        DateTimeOffset end,
+        int decimalPrecision,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -83,7 +102,10 @@ public class DateTimeOffsetExtensionsTests
     [Theory]
     [InlineData(1, 1970, 1)]
     [InlineData(48, 2019, 12)]
-    public void GetWeekNumber(int expected, int year, int month)
+    public void GetWeekNumber(
+        int expected,
+        int year,
+        int month)
     {
         // Arrange
         var input = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
@@ -100,7 +122,12 @@ public class DateTimeOffsetExtensionsTests
     [InlineData(true, 2019, 10, 10, 15)]
     [InlineData(true, 2019, 10, 5, 10)]
     [InlineData(false, 2019, 10, 15, 25)]
-    public void IsBetween(bool expected, int year, int inputSeconds, int secondsA, int secondsB)
+    public void IsBetween(
+        bool expected,
+        int year,
+        int inputSeconds,
+        int secondsA,
+        int secondsB)
     {
         // Arrange
         var input = new DateTimeOffset(year, 1, 1, 0, 0, inputSeconds, TimeSpan.Zero);
@@ -156,7 +183,9 @@ public class DateTimeOffsetExtensionsTests
 
     [Theory]
     [InlineData(42, 42)]
-    public void ToUnixTime(int expected, int seconds)
+    public void ToUnixTime(
+        int expected,
+        int seconds)
     {
         // Arrange
         var input = new DateTimeOffset(1970, 1, 1, 0, 0, seconds, TimeSpan.Zero);
@@ -171,7 +200,10 @@ public class DateTimeOffsetExtensionsTests
     [Theory]
     [InlineData("1970-01-01T00:00:42", 1970, 42)]
     [InlineData("2019-01-01T00:00:42", 2019, 42)]
-    public void ToIso8601Date(string expected, int year, int seconds)
+    public void ToIso8601Date(
+        string expected,
+        int year,
+        int seconds)
     {
         // Arrange
         var input = new DateTimeOffset(year, 1, 1, 0, 0, seconds, TimeSpan.Zero);
@@ -187,7 +219,10 @@ public class DateTimeOffsetExtensionsTests
     [InlineData(1970, 0, 42)]
     [InlineData(1970, 2, 42)]
     [InlineData(2019, 0, 42)]
-    public void ToIso8601Utc(int year, int hour, int seconds)
+    public void ToIso8601Utc(
+        int year,
+        int hour,
+        int seconds)
     {
         // Arrange
         var input = new DateTimeOffset(year, 1, 1, hour, 0, seconds, TimeSpan.Zero);

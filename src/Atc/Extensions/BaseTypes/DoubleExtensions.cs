@@ -19,7 +19,9 @@ public static class DoubleExtensions
     /// <returns>
     /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
-    public static bool IsEqual(this double a, double b)
+    public static bool IsEqual(
+        this double a,
+        double b)
     {
         return Math.Abs(a - b) < double.Epsilon;
     }
@@ -32,7 +34,9 @@ public static class DoubleExtensions
     /// <returns>
     /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
     /// </returns>
-    public static bool IsEqual(this double? a, double? b)
+    public static bool IsEqual(
+        this double? a,
+        double? b)
     {
         if (a is null || b is null)
         {
@@ -49,7 +53,10 @@ public static class DoubleExtensions
     /// <param name="b">The second double value.</param>
     /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
     /// <returns><see langword="true"/> if the values are equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
-    public static bool IsEqual(this double a, double b, int decimalPrecision)
+    public static bool IsEqual(
+        this double a,
+        double b,
+        int decimalPrecision)
     {
         return ((decimal)a).IsEqual((decimal)b, decimalPrecision);
     }
@@ -61,7 +68,10 @@ public static class DoubleExtensions
     /// <param name="b">The second nullable double value.</param>
     /// <param name="decimalPrecision">The number of decimal places to consider for comparison.</param>
     /// <returns><see langword="true"/> if both values are null or equal up to the specified precision; otherwise, <see langword="false"/>.</returns>
-    public static bool IsEqual(this double? a, double? b, int decimalPrecision)
+    public static bool IsEqual(
+        this double? a,
+        double? b,
+        int decimalPrecision)
     {
         if (a is null || b is null)
         {
@@ -77,7 +87,9 @@ public static class DoubleExtensions
     /// <param name="value1">The first value to compare.</param>
     /// <param name="value2">The second value to compare.</param>
     /// <returns><see langword="true"/> if the values are within a calculated tolerance of each other; otherwise, <see langword="false"/>.</returns>
-    public static bool AreClose(this double value1, double value2)
+    public static bool AreClose(
+        this double value1,
+        double value2)
     {
         if (value1.IsEqual(value2))
         {
@@ -95,7 +107,9 @@ public static class DoubleExtensions
     /// <param name="value1">The first value to compare.</param>
     /// <param name="value2">The second value to compare.</param>
     /// <returns><see langword="true"/> if value1 is greater than value2 or approximately equal; otherwise, <see langword="false"/>.</returns>
-    public static bool GreaterThanOrClose(this double value1, double value2)
+    public static bool GreaterThanOrClose(
+        this double value1,
+        double value2)
     {
         return (value1 > value2) || AreClose(value1, value2);
     }
@@ -136,7 +150,9 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <param name="digits">The number of decimal digits to round to (negative values are treated as 0).</param>
     /// <returns>The rounded double value.</returns>
-    public static double CurrencyRounding(this double value, int digits)
+    public static double CurrencyRounding(
+        this double value,
+        int digits)
     {
         if (digits < 0)
         {
@@ -172,7 +188,9 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <param name="numberOfDecimals">The number of decimal places to round to.</param>
     /// <returns>The rounded double value.</returns>
-    public static double RoundOff(this double value, int numberOfDecimals)
+    public static double RoundOff(
+        this double value,
+        int numberOfDecimals)
     {
         return Math.Round(value, numberOfDecimals);
     }

@@ -5,7 +5,9 @@ public class ThreadExtensionTests
     [Theory]
     [InlineData("da-DK", 1030)]
     [InlineData("en-US", 1033)]
-    public void SetCulture(string expected, int lcid)
+    public void SetCulture(
+        string expected,
+        int lcid)
     {
         // Arrange
         var cultureInfo = new CultureInfo(lcid);

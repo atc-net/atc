@@ -17,7 +17,9 @@ public static class SuppressMessageAttributeFactory
     /// <returns>A <see cref="SuppressMessageAttribute"/> configured for the specified Code Analysis rule.</returns>
     /// <exception cref="NotImplementedException">Thrown when the specified <paramref name="checkId"/> is not implemented in the factory.</exception>
     [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
-    public static SuppressMessageAttribute CreateCodeAnalysisSuppression(int checkId, string? justification)
+    public static SuppressMessageAttribute CreateCodeAnalysisSuppression(
+        int checkId,
+        string? justification)
     {
         if (string.IsNullOrEmpty(justification))
         {
@@ -41,7 +43,9 @@ public static class SuppressMessageAttributeFactory
     /// <returns>A <see cref="SuppressMessageAttribute"/> configured for the specified StyleCop rule.</returns>
     /// <exception cref="NotImplementedException">Thrown when the specified <paramref name="checkId"/> is not implemented in the factory.</exception>
     [SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "Allow TODO here.")]
-    public static SuppressMessageAttribute CreateStyleCopSuppression(int checkId, string? justification)
+    public static SuppressMessageAttribute CreateStyleCopSuppression(
+        int checkId,
+        string? justification)
     {
         if (string.IsNullOrEmpty(justification))
         {

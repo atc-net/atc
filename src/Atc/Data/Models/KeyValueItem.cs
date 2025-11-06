@@ -21,7 +21,9 @@ public class KeyValueItem
     /// <param name="key">The key.</param>
     /// <param name="value">The value.</param>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public KeyValueItem(string key, string value)
+    public KeyValueItem(
+        string key,
+        string value)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
         Value = value ?? throw new ArgumentNullException(nameof(value));

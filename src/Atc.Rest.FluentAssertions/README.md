@@ -101,7 +101,9 @@ public class GetAllItemsByCategoryHandler : IGetAllItemsByCategoryHandler
         this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public Task<GetAllItemsByCategoryResult> ExecuteAsync(GetAllItemsByCategoryParameters parameters, CancellationToken cancellationToken = default)
+    public Task<GetAllItemsByCategoryResult> ExecuteAsync(
+        GetAllItemsByCategoryParameters parameters,
+        CancellationToken cancellationToken = default)
     {
         if (parameters is null)
         {
@@ -111,7 +113,9 @@ public class GetAllItemsByCategoryHandler : IGetAllItemsByCategoryHandler
         return InvokeExecuteAsync(parameters, cancellationToken);
     }
 
-    private async Task<GetAllItemsByCategoryResult> InvokeExecuteAsync(GetAllItemsByCategoryParameters parameters, CancellationToken cancellationToken)
+    private async Task<GetAllItemsByCategoryResult> InvokeExecuteAsync(
+        GetAllItemsByCategoryParameters parameters,
+        CancellationToken cancellationToken)
     {
         List<Item>? result = await repository.GetByCategory(parameters.Category);
 

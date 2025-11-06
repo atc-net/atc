@@ -131,7 +131,9 @@ public static class RestApiExtensions
         return services;
     }
 
-    private static void HandleAssemblyPairs(IServiceCollection services, RestApiOptions restApiOptions)
+    private static void HandleAssemblyPairs(
+        IServiceCollection services,
+        RestApiOptions restApiOptions)
     {
         ArgumentNullException.ThrowIfNull(restApiOptions);
 

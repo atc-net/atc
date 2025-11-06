@@ -20,7 +20,9 @@ public class DotnetNugetPackageMetadataBase
     /// </summary>
     /// <param name="packageId">The NuGet package identifier.</param>
     /// <param name="version">The package version.</param>
-    public DotnetNugetPackageMetadataBase(string packageId, string version)
+    public DotnetNugetPackageMetadataBase(
+        string packageId,
+        string version)
     {
         PackageId = packageId;
         Version = version;

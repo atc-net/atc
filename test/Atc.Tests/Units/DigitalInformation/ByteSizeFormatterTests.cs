@@ -12,7 +12,9 @@ public class ByteSizeFormatterTests
     [InlineData("1", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1", 1024L * 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
-    public void Format_Suffix_None(string expected, long size)
+    public void Format_Suffix_None(
+        string expected,
+        long size)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -36,7 +38,9 @@ public class ByteSizeFormatterTests
     [InlineData("1 TB", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 PB", 1024L * 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 EB", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
-    public void Format_Suffix_Short(string expected, long size)
+    public void Format_Suffix_Short(
+        string expected,
+        long size)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -60,7 +64,9 @@ public class ByteSizeFormatterTests
     [InlineData("1 Terabyte", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 Petabyte", 1024L * 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 Exabyte", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
-    public void Format_Suffix_Full(string expected, long size)
+    public void Format_Suffix_Full(
+        string expected,
+        long size)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -84,7 +90,10 @@ public class ByteSizeFormatterTests
     [InlineData("2 KB", 1024L + 512, 0)]
     [InlineData("2 KB", 2 * 1024L, 0)]
     [InlineData("353 GB", 378630729272, 0)]
-    public void Format_Rounding_Closest(string expected, long size, int numberOfDecimals)
+    public void Format_Rounding_Closest(
+        string expected,
+        long size,
+        int numberOfDecimals)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -109,7 +118,10 @@ public class ByteSizeFormatterTests
     [InlineData("2 KB", 1024L + 512, 0)]
     [InlineData("2 KB", 2 * 1024L, 0)]
     [InlineData("353 GB", 378630729272, 0)]
-    public void Format_Rounding_Up(string expected, long size, int numberOfDecimals)
+    public void Format_Rounding_Up(
+        string expected,
+        long size,
+        int numberOfDecimals)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -134,7 +146,10 @@ public class ByteSizeFormatterTests
     [InlineData("1 KB", 1024L + 512, 0)]
     [InlineData("2 KB", 2 * 1024L, 0)]
     [InlineData("352 GB", 378630729272, 0)]
-    public void Format_Rounding_Down(string expected, long size, int numberOfDecimals)
+    public void Format_Rounding_Down(
+        string expected,
+        long size,
+        int numberOfDecimals)
     {
         // Arrange
         var formatter = new ByteSizeFormatter
@@ -167,7 +182,13 @@ public class ByteSizeFormatterTests
     [InlineData("1,536 B", 1024L + 512, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
     [InlineData("2,048 B", 2 * 1024L, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
     [InlineData("378,630,729,272 B", 378630729272, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
-    public void Format_MinMax(string expected, long size, int numberOfDecimals, ByteSizeUnitType minUnit, ByteSizeUnitType maxUnit, int lcid)
+    public void Format_MinMax(
+        string expected,
+        long size,
+        int numberOfDecimals,
+        ByteSizeUnitType minUnit,
+        ByteSizeUnitType maxUnit,
+        int lcid)
     {
         // Arrange
         var formatter = new ByteSizeFormatter

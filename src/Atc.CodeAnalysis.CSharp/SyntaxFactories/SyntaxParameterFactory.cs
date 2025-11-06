@@ -13,7 +13,10 @@ public static class SyntaxParameterFactory
     /// <param name="genericListTypeName">The generic list type name (e.g., "List", "IEnumerable").</param>
     /// <returns>A <see cref="ParameterSyntax"/> node.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter (except genericListTypeName) is null.</exception>
-    public static ParameterSyntax Create(string parameterTypeName, string parameterName, string? genericListTypeName = null)
+    public static ParameterSyntax Create(
+        string parameterTypeName,
+        string parameterName,
+        string? genericListTypeName = null)
     {
         if (parameterTypeName is null)
         {
@@ -50,7 +53,10 @@ public static class SyntaxParameterFactory
     /// <param name="parameterName">The name of the parameter.</param>
     /// <returns>A <see cref="ParameterSyntax"/> node with an attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when any parameter is null.</exception>
-    public static ParameterSyntax CreateWithAttribute(string attributeTypeName, string parameterTypeName, string parameterName)
+    public static ParameterSyntax CreateWithAttribute(
+        string attributeTypeName,
+        string parameterTypeName,
+        string parameterName)
     {
         if (attributeTypeName is null)
         {

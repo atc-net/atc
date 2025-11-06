@@ -20,7 +20,10 @@ public class LogKeyValueItem : KeyValueItem
     /// <param name="logCategory">The log category.</param>
     /// <param name="key">The key.</param>
     /// <param name="value">The value.</param>
-    public LogKeyValueItem(LogCategoryType logCategory, string key, string value)
+    public LogKeyValueItem(
+        LogCategoryType logCategory,
+        string key,
+        string value)
         : base(key, value)
     {
         LogCategory = logCategory;
@@ -33,7 +36,11 @@ public class LogKeyValueItem : KeyValueItem
     /// <param name="key">The key.</param>
     /// <param name="value">The value.</param>
     /// <param name="description">The description.</param>
-    public LogKeyValueItem(LogCategoryType logCategory, string key, string value, string description)
+    public LogKeyValueItem(
+        LogCategoryType logCategory,
+        string key,
+        string value,
+        string description)
         : this(logCategory, key, value)
     {
         Description = description;
@@ -61,7 +68,9 @@ public class LogKeyValueItem : KeyValueItem
     /// <param name="includeKey">if set to <see langword="true" /> [include key].</param>
     /// <param name="includeDescription">if set to <see langword="true" /> [include description].</param>
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-    public string GetLogMessage(bool includeKey = true, bool includeDescription = true)
+    public string GetLogMessage(
+        bool includeKey = true,
+        bool includeDescription = true)
         => includeKey switch
         {
             true when includeDescription => string.IsNullOrEmpty(Description)

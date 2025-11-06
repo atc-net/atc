@@ -26,7 +26,10 @@ public class ContentResultAssertions : ContentResultAssertionsBase<ContentResult
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndConstraint{ContentResultAssertions}"/> for further assertions.</returns>
-    public AndConstraint<ContentResultAssertions> WithStatusCode(HttpStatusCode expectedStatusCode, string because = "", params object[] becauseArgs)
+    public AndConstraint<ContentResultAssertions> WithStatusCode(
+        HttpStatusCode expectedStatusCode,
+        string because = "",
+        params object[] becauseArgs)
         => WithStatusCode((int)expectedStatusCode, because, becauseArgs);
 
     /// <summary>
@@ -36,7 +39,10 @@ public class ContentResultAssertions : ContentResultAssertionsBase<ContentResult
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndConstraint{ContentResultAssertions}"/> for further assertions.</returns>
-    public AndConstraint<ContentResultAssertions> WithStatusCode(int expectedStatusCode, string because = "", params object[] becauseArgs)
+    public AndConstraint<ContentResultAssertions> WithStatusCode(
+        int expectedStatusCode,
+        string because = "",
+        params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)

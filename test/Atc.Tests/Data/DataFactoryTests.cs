@@ -8,7 +8,9 @@ public class DataFactoryTests
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
     [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
-    public void CreateKeyValueDataTableOfIntString_DropDownFirstItemType(int expectedCount, DropDownFirstItemType dropDownFirstItemType)
+    public void CreateKeyValueDataTableOfIntString_DropDownFirstItemType(
+        int expectedCount,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         // Act
         var actual = DataFactory.CreateKeyValueDataTableOfIntString(dropDownFirstItemType);
@@ -26,7 +28,9 @@ public class DataFactoryTests
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
     [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "OK.")]
-    public void CreateKeyValueDataTableOfGuidString_DropDownFirstItemType(int expectedCount, DropDownFirstItemType dropDownFirstItemType)
+    public void CreateKeyValueDataTableOfGuidString_DropDownFirstItemType(
+        int expectedCount,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         // Act
         var actual = DataFactory.CreateKeyValueDataTableOfGuidString(dropDownFirstItemType);
@@ -43,7 +47,9 @@ public class DataFactoryTests
     [InlineData(1, DropDownFirstItemType.Blank)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
-    public void CreateKeyValueDictionaryOfIntString_DropDownFirstItemType(int expectedCount, DropDownFirstItemType dropDownFirstItemType)
+    public void CreateKeyValueDictionaryOfIntString_DropDownFirstItemType(
+        int expectedCount,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         // Act
         var actual = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
@@ -60,7 +66,9 @@ public class DataFactoryTests
     [InlineData(1, DropDownFirstItemType.Blank)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
-    public void CreateKeyValueDictionaryOfGuidString_DropDownFirstItemType(int expectedCount, DropDownFirstItemType dropDownFirstItemType)
+    public void CreateKeyValueDictionaryOfGuidString_DropDownFirstItemType(
+        int expectedCount,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         // Act
         var actual = DataFactory.CreateKeyValueDictionaryOfGuidString(dropDownFirstItemType);
@@ -77,7 +85,9 @@ public class DataFactoryTests
     [InlineData(1, DropDownFirstItemType.Blank)]
     [InlineData(1, DropDownFirstItemType.PleaseSelect)]
     [InlineData(1, DropDownFirstItemType.IncludeAll)]
-    public void CreateKeyValueDictionaryOfStringString_DropDownFirstItemType(int expectedCount, DropDownFirstItemType dropDownFirstItemType)
+    public void CreateKeyValueDictionaryOfStringString_DropDownFirstItemType(
+        int expectedCount,
+        DropDownFirstItemType dropDownFirstItemType)
     {
         // Act
         var actual = DataFactory.CreateKeyValueDictionaryOfStringString(dropDownFirstItemType);

@@ -478,26 +478,38 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         return new(Major, Minor, Patch);
     }
 
-    public static bool operator ==(SemanticVersion? a, SemanticVersion? b)
+    public static bool operator ==(
+        SemanticVersion? a,
+        SemanticVersion? b)
         => a?.Equals(b) ?? ReferenceEquals(b, null);
 
-    public static bool operator !=(SemanticVersion a, SemanticVersion b)
+    public static bool operator !=(
+        SemanticVersion a,
+        SemanticVersion b)
         => !(a == b);
 
-    public static bool operator >(SemanticVersion? a, SemanticVersion? b)
+    public static bool operator >(
+        SemanticVersion? a,
+        SemanticVersion? b)
         => !ReferenceEquals(a, null) && a.CompareTo(b) > 0;
 
-    public static bool operator >=(SemanticVersion? a, SemanticVersion? b)
+    public static bool operator >=(
+        SemanticVersion? a,
+        SemanticVersion? b)
         => ReferenceEquals(a, null)
             ? ReferenceEquals(b, null)
             : a.CompareTo(b) >= 0;
 
-    public static bool operator <(SemanticVersion? a, SemanticVersion? b)
+    public static bool operator <(
+        SemanticVersion? a,
+        SemanticVersion? b)
         => ReferenceEquals(a, null)
             ? !ReferenceEquals(b, null)
             : a.CompareTo(b) < 0;
 
-    public static bool operator <=(SemanticVersion? a, SemanticVersion? b)
+    public static bool operator <=(
+        SemanticVersion? a,
+        SemanticVersion? b)
         => ReferenceEquals(a, null) || a.CompareTo(b) <= 0;
 
     private IEnumerable<int> PartComparisons(

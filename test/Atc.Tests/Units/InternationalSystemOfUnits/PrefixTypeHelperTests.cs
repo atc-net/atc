@@ -24,7 +24,9 @@ public class PrefixTypeHelperTests
     [InlineData("a", PrefixType.Atto)]
     [InlineData("z", PrefixType.Zepto)]
     [InlineData("y", PrefixType.Yocto)]
-    public void GetSymbol(string expected, PrefixType input)
+    public void GetSymbol(
+        string expected,
+        PrefixType input)
     {
         // Act
         var actual = PrefixTypeHelper.GetSymbol(input);
@@ -55,7 +57,9 @@ public class PrefixTypeHelperTests
     [InlineData("am", PrefixType.Atto)]
     [InlineData("zm", PrefixType.Zepto)]
     [InlineData("ym", PrefixType.Yocto)]
-    public void GetSymbolForMeter(string expected, PrefixType input)
+    public void GetSymbolForMeter(
+        string expected,
+        PrefixType input)
     {
         // Act
         var actual = PrefixTypeHelper.GetSymbolForMeter(input);

@@ -48,7 +48,9 @@ public static class DotnetCsProjFileHelper
     /// <param name="searchOption">Specifies whether to search the current directory only or all subdirectories. Default is <see cref="SearchOption.AllDirectories"/>.</param>
     /// <returns>A collection of tuples containing the .csproj file and its predicted <see cref="DotnetProjectType"/>.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="directoryInfo"/> is null.</exception>
-    public static Collection<(FileInfo CsProjFile, DotnetProjectType ProjectType)> FindAllInPathAndPredictProjectTypes(
+    public static Collection<(
+        FileInfo CsProjFile,
+        DotnetProjectType ProjectType)> FindAllInPathAndPredictProjectTypes(
         DirectoryInfo directoryInfo,
         SearchOption searchOption = SearchOption.AllDirectories)
     {

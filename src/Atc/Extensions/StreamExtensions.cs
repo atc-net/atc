@@ -13,7 +13,9 @@ public static class StreamExtensions
     /// <param name="bufferSize">The size of the buffer used for copying. Defaults to 4096 bytes.</param>
     /// <returns>A new <see cref="MemoryStream"/> containing the copied data with position set to 0.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="stream"/> is <see langword="null"/>.</exception>
-    public static Stream CopyToStream(this Stream stream, int bufferSize = 4096)
+    public static Stream CopyToStream(
+        this Stream stream,
+        int bufferSize = 4096)
     {
         if (stream is null)
         {

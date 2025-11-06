@@ -90,7 +90,9 @@ public class SwitchCaseDefaultException : Exception
     /// </summary>
     /// <param name="serializationInfo">The serialization information.</param>
     /// <param name="streamingContext">The streaming context.</param>
-    protected SwitchCaseDefaultException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+    protected SwitchCaseDefaultException(
+        SerializationInfo serializationInfo,
+        StreamingContext streamingContext)
         : base(ExceptionMessage)
     {
     }

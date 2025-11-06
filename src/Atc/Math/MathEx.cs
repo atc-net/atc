@@ -14,7 +14,9 @@ public static class MathEx
     /// <param name="v1">The first integer value.</param>
     /// <param name="v2">The second integer value.</param>
     /// <returns>The greatest common divisor of <paramref name="v1"/> and <paramref name="v2"/>.</returns>
-    public static int GreatestCommonDivisor(int v1, int v2)
+    public static int GreatestCommonDivisor(
+        int v1,
+        int v2)
     {
         // Take absolute values
         if (v1 < 0)
@@ -50,7 +52,9 @@ public static class MathEx
     /// <remarks>
     /// This method converts the decimal portions to integers by scaling based on decimal precision before applying the GCD algorithm.
     /// </remarks>
-    public static double GreatestCommonDivisor(double v1, double v2)
+    public static double GreatestCommonDivisor(
+        double v1,
+        double v2)
     {
         var maxDecimalPoints = System.Math.Max(
             v1.CountDecimalPoints(),
@@ -76,7 +80,9 @@ public static class MathEx
     /// </summary>
     /// <param name="value">The value to get divisors of.</param>
     /// <param name="max">The maximum divisor threshold.</param>
-    public static IEnumerable<int> GetDivisorsLessThanOrEqual(int value, int max)
+    public static IEnumerable<int> GetDivisorsLessThanOrEqual(
+        int value,
+        int max)
     {
         if (value < 1)
         {
@@ -127,7 +133,10 @@ public static class MathEx
     /// <param name="width">The width of the rectangular pulse. Default is 1.</param>
     /// <param name="height">The height of the rectangular pulse. Default is 1.</param>
     /// <returns><paramref name="height"/> if <paramref name="x"/> is within [0, <paramref name="width"/>); otherwise, 0.</returns>
-    public static int Rect(int x, int width = 1, int height = 1)
+    public static int Rect(
+        int x,
+        int width = 1,
+        int height = 1)
     {
         return x < 0 || x >= width ? 0 : height;
     }
@@ -143,7 +152,11 @@ public static class MathEx
     /// <remarks>
     /// This function maintains state between calls, implementing memory-like behavior common in control systems.
     /// </remarks>
-    public static int Hysteron(ref int state, int x, int width = 1, int height = 1)
+    public static int Hysteron(
+        ref int state,
+        int x,
+        int width = 1,
+        int height = 1)
     {
         if (x >= width)
         {
@@ -164,7 +177,9 @@ public static class MathEx
     /// <param name="x">The value to round.</param>
     /// <param name="period">The period (interval) to round to.</param>
     /// <returns>The smallest multiple of <paramref name="period"/> that is greater than or equal to <paramref name="x"/>.</returns>
-    public static int Ceiling(int x, int period)
+    public static int Ceiling(
+        int x,
+        int period)
     {
         var n = x / period;
         if (x > 0 && x % period != 0)
@@ -181,7 +196,9 @@ public static class MathEx
     /// <param name="x">The value to round.</param>
     /// <param name="period">The period (interval) to round to.</param>
     /// <returns>The largest multiple of <paramref name="period"/> that is less than or equal to <paramref name="x"/>.</returns>
-    public static int Floor(int x, int period)
+    public static int Floor(
+        int x,
+        int period)
     {
         var n = x / period;
         if (x < 0 && x % period != 0)
@@ -198,7 +215,9 @@ public static class MathEx
     /// <param name="x">The input value.</param>
     /// <param name="period">The period of the sawtooth wave.</param>
     /// <returns>A value in the range [0, <paramref name="period"/>) that repeats in a sawtooth pattern.</returns>
-    public static int SawTooth(int x, int period)
+    public static int SawTooth(
+        int x,
+        int period)
     {
         var y = x % period;
         return y < 0 ? y + period : y;
@@ -210,7 +229,9 @@ public static class MathEx
     /// <param name="f">The first function.</param>
     /// <param name="g">The second function.</param>
     /// <returns>A function that returns <c>f(x) * g(x)</c> for any input <c>x</c>.</returns>
-    public static Func<int, int> Multiply(Func<int, int> f, Func<int, int> g)
+    public static Func<int, int> Multiply(
+        Func<int, int> f,
+        Func<int, int> g)
     {
         return x => f(x) * g(x);
     }
@@ -221,7 +242,9 @@ public static class MathEx
     /// <param name="f">The outer function.</param>
     /// <param name="g">The inner function.</param>
     /// <returns>A function that returns <c>f(g(x))</c> for any input <c>x</c>.</returns>
-    public static Func<int, int> Compose(Func<int, int> f, Func<int, int> g)
+    public static Func<int, int> Compose(
+        Func<int, int> f,
+        Func<int, int> g)
     {
         return x => f(g(x));
     }
@@ -232,7 +255,9 @@ public static class MathEx
     /// <param name="f">The function to quantize.</param>
     /// <param name="period">The quantization period.</param>
     /// <returns>A function that evaluates <paramref name="f"/> at floor-quantized inputs.</returns>
-    public static Func<int, int> Floor(Func<int, int> f, int period)
+    public static Func<int, int> Floor(
+        Func<int, int> f,
+        int period)
     {
         return x => f(Floor(x, period));
     }
@@ -243,7 +268,9 @@ public static class MathEx
     /// <param name="f">The function to quantize.</param>
     /// <param name="period">The quantization period.</param>
     /// <returns>A function that evaluates <paramref name="f"/> at ceiling-quantized inputs.</returns>
-    public static Func<int, int> Ceiling(Func<int, int> f, int period)
+    public static Func<int, int> Ceiling(
+        Func<int, int> f,
+        int period)
     {
         return x => f(Ceiling(x, period));
     }
@@ -254,7 +281,9 @@ public static class MathEx
     /// <param name="f">The function to make periodic.</param>
     /// <param name="period">The period of repetition.</param>
     /// <returns>A function that repeats <paramref name="f"/> every <paramref name="period"/> units.</returns>
-    public static Func<int, int> Periodic(Func<int, int> f, int period)
+    public static Func<int, int> Periodic(
+        Func<int, int> f,
+        int period)
     {
         return x => f(SawTooth(x, period));
     }
@@ -270,7 +299,10 @@ public static class MathEx
     /// This implements a form of amplitude modulation where the carrier is sampled at period boundaries
     /// and interpolated using the cell function.
     /// </remarks>
-    public static Func<int, int> Modulate(Func<int, int> carrier, Func<int, int> cellFunction, int period)
+    public static Func<int, int> Modulate(
+        Func<int, int> carrier,
+        Func<int, int> cellFunction,
+        int period)
     {
         return x =>
         {

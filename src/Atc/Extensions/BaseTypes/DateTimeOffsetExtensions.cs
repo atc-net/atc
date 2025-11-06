@@ -13,7 +13,10 @@ public static class DateTimeOffsetExtensions
     /// <param name="startDate">Start date to check for.</param>
     /// <param name="endDate">End date to check for.</param>
     /// <returns>boolean value indicating if the date is between or equal to one of the two values.</returns>
-    public static bool IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
+    public static bool IsBetween(
+        this DateTimeOffset dateTimeOffset,
+        DateTimeOffset startDate,
+        DateTimeOffset endDate)
     {
         var ticks = dateTimeOffset.Ticks;
         return ticks >= startDate.Ticks && ticks <= endDate.Ticks;
@@ -24,7 +27,9 @@ public static class DateTimeOffsetExtensions
     /// </summary>
     /// <param name="startDate">The start date.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    public static string GetPrettyTimeDiff(this DateTimeOffset startDate, int decimalPrecision = 3)
+    public static string GetPrettyTimeDiff(
+        this DateTimeOffset startDate,
+        int decimalPrecision = 3)
     {
         return GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
     }
@@ -35,7 +40,10 @@ public static class DateTimeOffsetExtensions
     /// <param name="startDate">The start date.</param>
     /// <param name="endDate">The end date.</param>
     /// <param name="decimalPrecision">The decimal precision.</param>
-    public static string GetPrettyTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, int decimalPrecision = 3)
+    public static string GetPrettyTimeDiff(
+        this DateTimeOffset startDate,
+        DateTimeOffset endDate,
+        int decimalPrecision = 3)
     {
         var timeSpan = new TimeSpan(endDate.Ticks - startDate.Ticks);
         return timeSpan.GetPrettyTime(decimalPrecision);
@@ -59,7 +67,10 @@ public static class DateTimeOffsetExtensions
     /// <param name="howToCompare">The how to compare.</param>
     /// <returns>The number between start date and end date, depend on the DiffCompareType.</returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    public static double DateTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, DateTimeDiffCompareType howToCompare)
+    public static double DateTimeDiff(
+        this DateTimeOffset startDate,
+        DateTimeOffset endDate,
+        DateTimeDiffCompareType howToCompare)
     {
         double diff;
         try
@@ -110,7 +121,10 @@ public static class DateTimeOffsetExtensions
     /// <param name="hour">The hour.</param>
     /// <param name="minutes">The minutes.</param>
     /// <returns>The dateTimeOffset with the specified hour and minutes.</returns>
-    public static DateTimeOffset SetHourAndMinutes(this DateTimeOffset dateTimeOffset, int hour, int minutes)
+    public static DateTimeOffset SetHourAndMinutes(
+        this DateTimeOffset dateTimeOffset,
+        int hour,
+        int minutes)
     {
         return new DateTimeOffset(
             dateTimeOffset.Year,

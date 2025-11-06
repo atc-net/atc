@@ -7,7 +7,10 @@ public class GridCellTests
     [InlineData(false, 1, 0)]
     [InlineData(false, 0, 1)]
     [InlineData(false, 1, 1)]
-    public void IsDefault(bool expected, int x, int y)
+    public void IsDefault(
+        bool expected,
+        int x,
+        int y)
     {
         // Arrange
         var input = new GridCell(x, y);
@@ -24,7 +27,10 @@ public class GridCellTests
     [InlineData("X: 1, Y: 0", 1, 0)]
     [InlineData("X: 0, Y: 1", 0, 1)]
     [InlineData("X: 1, Y: 1", 1, 1)]
-    public void ToString_Overload(string expected, int x, int y)
+    public void ToString_Overload(
+        string expected,
+        int x,
+        int y)
     {
         // Arrange
         var input = new GridCell(x, y);
@@ -41,7 +47,10 @@ public class GridCellTests
     [InlineData("1, 0", 1, 0)]
     [InlineData("0, 1", 0, 1)]
     [InlineData("1, 1", 1, 1)]
-    public void ToStringShort(string expected, int x, int y)
+    public void ToStringShort(
+        string expected,
+        int x,
+        int y)
     {
         // Arrange
         var input = new GridCell(x, y);

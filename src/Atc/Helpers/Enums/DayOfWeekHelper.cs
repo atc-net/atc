@@ -11,7 +11,9 @@ public static class DayOfWeekHelper
     /// </summary>
     /// <param name="dayOfWeek">The day of week.</param>
     /// <param name="culture">The culture.</param>
-    public static string GetDescription(DayOfWeek dayOfWeek, CultureInfo? culture = null)
+    public static string GetDescription(
+        DayOfWeek dayOfWeek,
+        CultureInfo? culture = null)
     {
         string? description = null;
         if (culture is null)
@@ -55,7 +57,10 @@ public static class DayOfWeekHelper
     /// <param name="dayOfWeek">The day of week.</param>
     /// <param name="culture">The culture.</param>
     [SuppressMessage("Major Bug", "S1751:Loops with at most one iteration should be refactored", Justification = "OK.")]
-    public static bool TryParseDescription(string value, out DayOfWeek dayOfWeek, CultureInfo? culture = null)
+    public static bool TryParseDescription(
+        string value,
+        out DayOfWeek dayOfWeek,
+        CultureInfo? culture = null)
     {
         dayOfWeek = DayOfWeek.Sunday;
         if (string.IsNullOrEmpty(value))

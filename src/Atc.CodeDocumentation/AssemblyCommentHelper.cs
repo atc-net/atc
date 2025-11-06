@@ -70,7 +70,9 @@ internal static class AssemblyCommentHelper
     /// <param name="typesWithMissingComments">The array of type comments to render.</param>
     /// <param name="useFullName">If <see langword="true"/>, uses fully qualified type names; otherwise uses simple names.</param>
     /// <returns>A string containing one type name per line.</returns>
-    public static string GetTypesAsRenderText(TypeComments[] typesWithMissingComments, bool useFullName)
+    public static string GetTypesAsRenderText(
+        TypeComments[] typesWithMissingComments,
+        bool useFullName)
     {
         var sb = new StringBuilder();
         foreach (var item in typesWithMissingComments)
@@ -92,7 +94,9 @@ internal static class AssemblyCommentHelper
         throw new IOException($"No xml document found for the assembly: {assembly.FullName}, expected file: {xmlFile}");
     }
 
-    private static bool IsRequiredNamespace(Type type, Regex? regex)
+    private static bool IsRequiredNamespace(
+        Type type,
+        Regex? regex)
     {
         return regex is null || regex.IsMatch(type.Namespace ?? string.Empty);
     }
@@ -153,7 +157,9 @@ internal static class AssemblyCommentHelper
     }
 
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static Type[] CollectFilteredAssemblyTypes(Assembly assembly, List<Type>? excludeTypes)
+    private static Type[] CollectFilteredAssemblyTypes(
+        Assembly assembly,
+        List<Type>? excludeTypes)
     {
         excludeTypes ??= new List<Type>();
 

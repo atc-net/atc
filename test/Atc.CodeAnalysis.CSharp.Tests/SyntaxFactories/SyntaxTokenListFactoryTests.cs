@@ -124,7 +124,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void PublicKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void PublicKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.PublicKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -138,7 +140,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void PublicStaticKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void PublicStaticKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.PublicStaticKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -152,7 +156,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void PublicOverrideKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void PublicOverrideKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.PublicOverrideKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -166,7 +172,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void PublicAsyncKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void PublicAsyncKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.PublicAsyncKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -180,7 +188,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void InternalStaticKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void InternalStaticKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.InternalStaticKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -194,7 +204,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void ProtectedStaticKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void ProtectedStaticKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.ProtectedStaticKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -208,7 +220,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void ProtectedReadOnlyKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void ProtectedReadOnlyKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.ProtectedReadOnlyKeyword(withLeadingLineFeed, useTrailingSpace);
@@ -234,7 +248,9 @@ public class SyntaxTokenListFactoryTests
     [InlineData(true, false)]
     [InlineData(false, true)]
     [InlineData(false, false)]
-    public void PrivateAsyncKeyword_Direct(bool withLeadingLineFeed, bool useTrailingSpace)
+    public void PrivateAsyncKeyword_Direct(
+        bool withLeadingLineFeed,
+        bool useTrailingSpace)
     {
         // Act
         var result = SyntaxTokenListFactory.PrivateAsyncKeyword(withLeadingLineFeed, useTrailingSpace);

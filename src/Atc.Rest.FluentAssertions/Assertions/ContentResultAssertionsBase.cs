@@ -30,7 +30,10 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndWhichConstraint{TAssertions, ContentResult}"/> for further assertions.</returns>
-    public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(T expectedContent, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<TAssertions, ContentResult> WithContent<T>(
+        T expectedContent,
+        string because = "",
+        params object[] becauseArgs)
     {
         var ofType = WithContentOfType<T>(because, becauseArgs);
 
@@ -56,7 +59,9 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndWhichConstraint{ObjectAssertions, T}"/> for further assertions on the typed content.</returns>
-    public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<ObjectAssertions, T> WithContentOfType<T>(
+        string because = "",
+        params object[] becauseArgs)
     {
         var expectedType = typeof(T);
 
@@ -111,7 +116,9 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         return false;
     }
 
-    private bool TryContentValueAs(Type type, out object content)
+    private bool TryContentValueAs(
+        Type type,
+        out object content)
     {
         ArgumentNullException.ThrowIfNull(type);
 
@@ -127,7 +134,9 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "On purpose")]
-    private bool TryGetObjectContent(Type type, out object content)
+    private bool TryGetObjectContent(
+        Type type,
+        out object content)
     {
         content = default!;
         try
@@ -142,7 +151,9 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "On purpose")]
-    private bool TryGetPrimitiveContent(Type type, out object content)
+    private bool TryGetPrimitiveContent(
+        Type type,
+        out object content)
     {
         content = default!;
 

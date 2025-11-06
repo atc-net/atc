@@ -13,7 +13,9 @@ public static class OpenApiPathsExtensions
     /// <param name="segmentName">The segment name to match at the beginning of paths.</param>
     /// <returns>A list of key-value pairs containing paths that start with the specified segment name.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="segmentName"/> is null.</exception>
-    public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(this OpenApiPaths urlPaths, string segmentName)
+    public static List<KeyValuePair<string, OpenApiPathItem>> GetPathsStartingWithSegmentName(
+        this OpenApiPaths urlPaths,
+        string segmentName)
     {
         if (segmentName is null)
         {

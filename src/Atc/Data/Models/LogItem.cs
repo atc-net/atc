@@ -31,7 +31,9 @@ public class LogItem
     /// </summary>
     /// <param name="severity">The severity.</param>
     /// <param name="message">The message.</param>
-    public LogItem(LogCategoryType severity, string message)
+    public LogItem(
+        LogCategoryType severity,
+        string message)
         : this(message)
     {
         Severity = severity;
@@ -43,7 +45,10 @@ public class LogItem
     /// <param name="timeStamp">The time stamp.</param>
     /// <param name="severity">The severity.</param>
     /// <param name="message">The message.</param>
-    public LogItem(DateTime timeStamp, LogCategoryType severity, string message)
+    public LogItem(
+        DateTime timeStamp,
+        LogCategoryType severity,
+        string message)
         : this(severity, message)
     {
         TimeStamp = timeStamp;

@@ -7,7 +7,11 @@ public class Point3DTests
     [InlineData(false, 1, 0, 0)]
     [InlineData(false, 0, 1, 0)]
     [InlineData(false, 1, 1, 0)]
-    public void IsDefault(bool expected, int x, int y, int z)
+    public void IsDefault(
+        bool expected,
+        int x,
+        int y,
+        int z)
     {
         // Arrange
         var input = new Point3D(x, y, z);
@@ -24,7 +28,11 @@ public class Point3DTests
     [InlineData("1, 0, 0", 1, 0, 0)]
     [InlineData("0, 1, 0", 0, 1, 0)]
     [InlineData("1, 1, 0", 1, 1, 0)]
-    public void ToStringShort(string expected, int x, int y, int z)
+    public void ToStringShort(
+        string expected,
+        int x,
+        int y,
+        int z)
     {
         // Arrange
         var input = new Point3D(x, y, z);

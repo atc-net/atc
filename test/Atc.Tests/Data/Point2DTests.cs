@@ -7,7 +7,10 @@ public class Point2DTests
     [InlineData(false, 1, 0)]
     [InlineData(false, 0, 1)]
     [InlineData(false, 1, 1)]
-    public void IsDefault(bool expected, int x, int y)
+    public void IsDefault(
+        bool expected,
+        int x,
+        int y)
     {
         // Arrange
         var input = new Point2D(x, y);

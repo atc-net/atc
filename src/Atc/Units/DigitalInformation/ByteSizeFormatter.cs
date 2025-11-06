@@ -123,7 +123,9 @@ public class ByteSizeFormatter
         return $"{displaySizeStr} {prefixes[prefixIndex]}{suffixLastPart}";
     }
 
-    private int GetPrefixIndex(long size, IReadOnlyList<long> multiples)
+    private int GetPrefixIndex(
+        long size,
+        IReadOnlyList<long> multiples)
     {
         var prefixIndex = (int)MinUnit;
         for (int i = prefixIndex; i <= (int)MaxUnit; i++)
@@ -139,7 +141,9 @@ public class ByteSizeFormatter
         return prefixIndex;
     }
 
-    private string BuildSuffixLastPart(long size, int prefixIndex)
+    private string BuildSuffixLastPart(
+        long size,
+        int prefixIndex)
     {
         var text = "B";
         if (SuffixFormat == ByteSizeSuffixType.Full)

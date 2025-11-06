@@ -19,7 +19,9 @@ public class ArticleNumberHelperTests
     [InlineData(ArticleNumberType.GTIN, "00421000052644")]
     [InlineData(ArticleNumberType.UPC, "042100005264")]
     [InlineData(ArticleNumberType.UPC, "614141007349")]
-    public void GetArticleNumberType(ArticleNumberType expected, string input)
+    public void GetArticleNumberType(
+        ArticleNumberType expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.GetArticleNumberType(input);
@@ -45,7 +47,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidAsin(bool expected, string input)
+    public void IsValidAsin(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidAsin(input);
@@ -71,7 +75,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidEan(bool expected, string input)
+    public void IsValidEan(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidEan(input);
@@ -97,7 +103,9 @@ public class ArticleNumberHelperTests
     [InlineData(true, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidGtin(bool expected, string input)
+    public void IsValidGtin(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidGtin(input);
@@ -123,7 +131,9 @@ public class ArticleNumberHelperTests
     [InlineData(true, "00421000052644")]
     [InlineData(true, "042100005264")]
     [InlineData(true, "614141007349")]
-    public void TryConvertToGtin(bool expected, string input)
+    public void TryConvertToGtin(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.TryConvertToGtin(input, out var _);
@@ -149,7 +159,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidIssn(bool expected, string input)
+    public void IsValidIssn(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidIssn(input);
@@ -175,7 +187,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidIsbn10(bool expected, string input)
+    public void IsValidIsbn10(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidIsbn10(input);
@@ -201,7 +215,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(false, "042100005264")]
     [InlineData(false, "614141007349")]
-    public void IsValidIsbn13(bool expected, string input)
+    public void IsValidIsbn13(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidIsbn13(input);
@@ -227,7 +243,9 @@ public class ArticleNumberHelperTests
     [InlineData(false, "00421000052644")]
     [InlineData(true, "042100005264")]
     [InlineData(true, "614141007349")]
-    public void IsValidUpc(bool expected, string input)
+    public void IsValidUpc(
+        bool expected,
+        string input)
     {
         // Act
         var actual = ArticleNumberHelper.IsValidUpc(input);

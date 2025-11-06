@@ -25,7 +25,9 @@ public static class EnumHelper
     /// <param name="value">The value.</param>
     /// <param name="ignoreCase">if set to <see langword="true" /> [ignore case].</param>
     /// <returns>If parsed successfully and defined as a valid enum value, the enum value is returned; Otherwise the default value is returned.</returns>
-    public static T GetEnumValue<T>(string value, bool ignoreCase = true)
+    public static T GetEnumValue<T>(
+        string value,
+        bool ignoreCase = true)
         where T : Enum
     {
         if (value is null)

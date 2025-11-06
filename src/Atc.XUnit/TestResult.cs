@@ -21,7 +21,9 @@ public class TestResult
     /// </summary>
     /// <param name="indentLevel">The indent level.</param>
     /// <param name="text">The text.</param>
-    public TestResult(int indentLevel, string text)
+    public TestResult(
+        int indentLevel,
+        string text)
     {
         if (indentLevel < 0)
         {
@@ -39,7 +41,10 @@ public class TestResult
     /// <param name="isError">if set to <see langword="true" /> [is error].</param>
     /// <param name="indentLevel">The indent level.</param>
     /// <param name="text">The text.</param>
-    public TestResult(bool isError, int indentLevel, string text)
+    public TestResult(
+        bool isError,
+        int indentLevel,
+        string text)
     {
         if (indentLevel < 0)
         {
@@ -57,7 +62,10 @@ public class TestResult
     /// <param name="indentLevel">The indent level.</param>
     /// <param name="text">The text.</param>
     /// <param name="subLines">The sub lines.</param>
-    public TestResult(int indentLevel, string text, List<string> subLines)
+    public TestResult(
+        int indentLevel,
+        string text,
+        List<string> subLines)
     {
         if (indentLevel < 0)
         {

@@ -15,7 +15,9 @@ public class AssemblyPairOptions
     /// </summary>
     /// <param name="apiAssembly">The assembly containing API contracts and interfaces.</param>
     /// <param name="domainAssembly">The assembly containing domain implementations.</param>
-    public AssemblyPairOptions(Assembly apiAssembly, Assembly domainAssembly)
+    public AssemblyPairOptions(
+        Assembly apiAssembly,
+        Assembly domainAssembly)
     {
         ApiAssembly = apiAssembly ?? throw new ArgumentNullException(nameof(apiAssembly));
         DomainAssembly = domainAssembly ?? throw new ArgumentNullException(nameof(domainAssembly));

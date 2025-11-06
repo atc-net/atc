@@ -93,7 +93,9 @@ public static class NetworkInformationHelper
     /// <param name="port">The port number to connect to.</param>
     /// <returns><see langword="true"/> if the TCP connection succeeds; otherwise, <see langword="false"/>.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="ipAddress"/> is <see langword="null"/>.</exception>
-    public static bool HasTcpConnection(IPAddress ipAddress, int port)
+    public static bool HasTcpConnection(
+        IPAddress ipAddress,
+        int port)
     {
         if (ipAddress is null)
         {

@@ -6,7 +6,10 @@ public class TimeSpanExtensionsTests
     [InlineData(true, 2, 3)]
     [InlineData(true, 3, 3)]
     [InlineData(false, 3, 2)]
-    public void Min(bool expected, int seconds1, int seconds2)
+    public void Min(
+        bool expected,
+        int seconds1,
+        int seconds2)
     {
         // Arrange
         var ts1 = new TimeSpan(0, 0, seconds1);
@@ -23,7 +26,10 @@ public class TimeSpanExtensionsTests
     [InlineData(false, 2, 3)]
     [InlineData(false, 3, 3)]
     [InlineData(true, 3, 2)]
-    public void Max(bool expected, int seconds1, int seconds2)
+    public void Max(
+        bool expected,
+        int seconds1,
+        int seconds2)
     {
         // Arrange
         var ts1 = new TimeSpan(0, 0, seconds1);
@@ -53,7 +59,9 @@ public class TimeSpanExtensionsTests
     [Theory]
     [InlineData(true, 2)]
     [InlineData(false, 0)]
-    public void SecondsNotZero(bool expected, int seconds)
+    public void SecondsNotZero(
+        bool expected,
+        int seconds)
     {
         // Arrange
         var input = new TimeSpan(0, 0, seconds);
@@ -67,7 +75,10 @@ public class TimeSpanExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTime), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
-    public void GetPrettyTimeDiff(string expected, TimeSpan timeSpan, int arrangeUiLcid)
+    public void GetPrettyTimeDiff(
+        string expected,
+        TimeSpan timeSpan,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -82,7 +93,11 @@ public class TimeSpanExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTimeWithDecimalPrecision), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
-    public void GetPrettyTimeDiff_DecimalPrecision(string expected, TimeSpan timeSpan, int decimalPrecision, int arrangeUiLcid)
+    public void GetPrettyTimeDiff_DecimalPrecision(
+        string expected,
+        TimeSpan timeSpan,
+        int decimalPrecision,
+        int arrangeUiLcid)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);

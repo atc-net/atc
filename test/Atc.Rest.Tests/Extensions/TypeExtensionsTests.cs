@@ -15,7 +15,9 @@ public class TypeExtensionsTests
     [Theory]
     [InlineData("Atc Rest Extended", false)]
     [InlineData("Atc Rest", true)]
-    public void GetApiName_RemoveLastVerb(string expected, bool removeLastVerb)
+    public void GetApiName_RemoveLastVerb(
+        string expected,
+        bool removeLastVerb)
     {
         // Act
         var actual = typeof(AtcRestExtendedAssemblyTypeInitializer).GetApiName(removeLastVerb);

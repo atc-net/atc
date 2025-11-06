@@ -18,7 +18,9 @@ public class SemanticVersionTests
     [InlineData(false, "1.0.0-01")]
     [InlineData(false, "1.0.0-beta.01")]
     [InlineData(false, "1.0.0+é")]
-    public void Constructor(bool expected, string version)
+    public void Constructor(
+        bool expected,
+        string version)
     {
         if (expected)
         {
@@ -65,7 +67,10 @@ public class SemanticVersionTests
     [InlineData(false, "1.0.0-01", false)]
     [InlineData(false, "1.0.0-beta.01", false)]
     [InlineData(false, "1.0.0+é", false)]
-    public void Constructor_LooseMode(bool expected, string version, bool looseMode)
+    public void Constructor_LooseMode(
+        bool expected,
+        string version,
+        bool looseMode)
     {
         if (expected)
         {
@@ -96,7 +101,9 @@ public class SemanticVersionTests
     [Theory]
     [InlineData(false, "1.2.3")]
     [InlineData(true, "1.2.3-beta01")]
-    public void IsPreRelease(bool expected, string version)
+    public void IsPreRelease(
+        bool expected,
+        string version)
     {
         // Act
         var actual = new SemanticVersion(version);
@@ -115,7 +122,9 @@ public class SemanticVersionTests
     [InlineData(true, "1.0.0-01")]
     [InlineData(true, "1.0.0-beta.01")]
     [InlineData(true, "1.2.3-beta01")]
-    public void IsStrictMode(bool expected, string version)
+    public void IsStrictMode(
+        bool expected,
+        string version)
     {
         // Act
         var actual = new SemanticVersion(version, looseMode: true);
@@ -134,7 +143,10 @@ public class SemanticVersionTests
     [InlineData(-1, "1.2.3-beta01", "2.2.3-beta01")]
     [InlineData(1, "1.2.3-beta02", "1.2.3-beta01")]
     [InlineData(-1, "1.2.3-beta01", "1.2.3-beta02")]
-    public void CompareTo(int expected, string versionA, string versionB)
+    public void CompareTo(
+        int expected,
+        string versionA,
+        string versionB)
     {
         // Arrange
         var objA = new SemanticVersion(versionA);
@@ -154,7 +166,10 @@ public class SemanticVersionTests
     [InlineData(true, "[1.2.3]", "1.2.3")]
     [InlineData(true, "1.2.3", "(1.2.3)")]
     [InlineData(true, "(1.2.3)", "1.2.3")]
-    public void Override_Equals(bool expected, string versionA, string versionB)
+    public void Override_Equals(
+        bool expected,
+        string versionA,
+        string versionB)
     {
         // Arrange
         var objA = new SemanticVersion(versionA);
@@ -169,7 +184,9 @@ public class SemanticVersionTests
 
     [Theory]
     [InlineData(438153817, "1.2.3")]
-    public void OverrideGetHashCode(int expected, string version)
+    public void OverrideGetHashCode(
+        int expected,
+        string version)
     {
         // Arrange
         var obj = new SemanticVersion(version);
@@ -191,7 +208,10 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.1", "1.2.0-alfa406")]
     [InlineData(false, "1.2.0-alfa406", "1.2.1")]
     [InlineData(false, "1.2.0-alfa406", "1.2.0-alfa406")]
-    public void GreaterThan(bool expected, string versionA, string versionB)
+    public void GreaterThan(
+        bool expected,
+        string versionA,
+        string versionB)
     {
         // Arrange
         var objA = new SemanticVersion(versionA, looseMode: true);
@@ -213,7 +233,10 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.1", "1.2.0-alfa406")]
     [InlineData(false, "1.2.0-alfa406", "1.2.1")]
     [InlineData(true, "1.2.0-alfa406", "1.2.0-alfa406")]
-    public void GreaterThanOrEqualTo(bool expected, string versionA, string versionB)
+    public void GreaterThanOrEqualTo(
+        bool expected,
+        string versionA,
+        string versionB)
     {
         // Arrange
         var objA = new SemanticVersion(versionA, looseMode: true);
@@ -251,7 +274,10 @@ public class SemanticVersionTests
     [InlineData(true, "1.2.1", "1.2.0-alfa406")]
     [InlineData(false, "1.2.0-alfa406", "1.2.1")]
     [InlineData(false, "1.2.0-alfa406", "1.2.0-alfa406")]
-    public void IsNewerThan(bool expected, string versionA, string versionB)
+    public void IsNewerThan(
+        bool expected,
+        string versionA,
+        string versionB)
     {
         // Arrange
         var objA = new SemanticVersion(versionA, looseMode: true);
@@ -279,7 +305,11 @@ public class SemanticVersionTests
     [InlineData(false, "4.5.3.0", "4.5.3.3", true)]
     [InlineData(false, "5.8.8.0", "4.5.3.3", true)]
     [InlineData(false, "3.8.8.0", "4.5.3.3", true)]
-    public void IsNewerThan_WithinMinorReleaseOnly(bool expected, string versionA, string versionB, bool withinMinorReleaseOnly)
+    public void IsNewerThan_WithinMinorReleaseOnly(
+        bool expected,
+        string versionA,
+        string versionB,
+        bool withinMinorReleaseOnly)
     {
         // Arrange
         var objA = new SemanticVersion(versionA, looseMode: true);
@@ -307,7 +337,9 @@ public class SemanticVersionTests
     [InlineData(false, "1.0.0-01")]
     [InlineData(false, "1.0.0-beta.01")]
     [InlineData(false, "1.0.0+é")]
-    public void Parse(bool expected, string version)
+    public void Parse(
+        bool expected,
+        string version)
     {
         if (expected)
         {
@@ -342,7 +374,9 @@ public class SemanticVersionTests
     [InlineData(false, "1.0.0-01")]
     [InlineData(false, "1.0.0-beta.01")]
     [InlineData(false, "1.0.0+é")]
-    public void TryParse(bool expected, string version)
+    public void TryParse(
+        bool expected,
+        string version)
     {
         // Act
         var actual = SemanticVersion.TryParse(version, out _);
@@ -378,7 +412,10 @@ public class SemanticVersionTests
     [InlineData(false, "1.0.0-01", false)]
     [InlineData(false, "1.0.0-beta.01", false)]
     [InlineData(false, "1.0.0+é", false)]
-    public void TryParse_LooseMode(bool expected, string version, bool looseMode)
+    public void TryParse_LooseMode(
+        bool expected,
+        string version,
+        bool looseMode)
     {
         // Act
         var actual = SemanticVersion.TryParse(version, looseMode, out _);
@@ -398,7 +435,10 @@ public class SemanticVersionTests
     [InlineData("1.0.0-beta.1", "1.0.0-beta.01", true)]
     [InlineData("1.2.3", "1.2.3", false)]
     [InlineData("1.2.3-beta01", "1.2.3-beta01", false)]
-    public void Override_ToString(string expected, string version, bool looseMode)
+    public void Override_ToString(
+        string expected,
+        string version,
+        bool looseMode)
     {
         // Arrange
         var semanticVersion = new SemanticVersion(version, looseMode);
@@ -421,7 +461,10 @@ public class SemanticVersionTests
     [InlineData("1.0.0", "1.0.0-beta.01", true)]
     [InlineData("1.2.3", "1.2.3", false)]
     [InlineData("1.2.3", "1.2.3-beta01", false)]
-    public void ToVersion(string expected, string version, bool looseMode)
+    public void ToVersion(
+        string expected,
+        string version,
+        bool looseMode)
     {
         // Arrange
         var semanticVersion = new SemanticVersion(version, looseMode);
@@ -437,7 +480,9 @@ public class SemanticVersionTests
     [InlineData("1.2.3-beta01+build123", "1.2.3")]
     [InlineData("2.0.0+build456", "2.0.0")]
     [InlineData("1.2.3", "1.2.3")]
-    public void BaseVersion(string version, string expected)
+    public void BaseVersion(
+        string version,
+        string expected)
     {
         // Arrange
         var semanticVersion = new SemanticVersion(version);
@@ -454,7 +499,10 @@ public class SemanticVersionTests
     [InlineData("1.2.3", "1.2.4", -1)]
     [InlineData("1.2.4", "1.2.3", 1)]
     [InlineData("1.2.3", null, 1)]
-    public void CompareTo_Object(string version1, string? version2, int expected)
+    public void CompareTo_Object(
+        string version1,
+        string? version2,
+        int expected)
     {
         // Arrange
         var semanticVersion = new SemanticVersion(version1);

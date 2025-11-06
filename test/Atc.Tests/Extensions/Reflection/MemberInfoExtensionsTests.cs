@@ -5,7 +5,10 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(TestItem), "World")]
-    public void HasExcludeFromCodeCoverageAttribute(bool expected, Type type, string methodName)
+    public void HasExcludeFromCodeCoverageAttribute(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];
@@ -20,7 +23,10 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(Point2D), "Deconstruct")]
-    public void HasCompilerGeneratedAttribute(bool expected, Type type, string methodName)
+    public void HasCompilerGeneratedAttribute(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];
@@ -35,7 +41,10 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(TestItem), "World")]
-    public void HasIgnoreDisplayAttribute(bool expected, Type type, string methodName)
+    public void HasIgnoreDisplayAttribute(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];
@@ -50,7 +59,10 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(TestItem), "World")]
-    public void HasRequiredAttribute(bool expected, Type type, string methodName)
+    public void HasRequiredAttribute(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];
@@ -65,7 +77,10 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(true, typeof(TestItem), "Hallo")]
     [InlineData(false, typeof(TestItem), "World")]
-    public void IsPropertyWithSetter(bool expected, Type type, string methodName)
+    public void IsPropertyWithSetter(
+        bool expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];
@@ -81,7 +96,10 @@ public class MemberInfoExtensionsTests
     [InlineData(typeof(string), typeof(TestItem), "Hallo")]
     [InlineData(typeof(string), typeof(TestItem), "World")]
     [InlineData(typeof(int), typeof(TestItem), "Age")]
-    public void GetUnderlyingType(Type expected, Type type, string methodName)
+    public void GetUnderlyingType(
+        Type expected,
+        Type type,
+        string methodName)
     {
         // Arrange
         var memberInfo = type.GetMember(methodName)[0];

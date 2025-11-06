@@ -164,7 +164,10 @@ public sealed class StringAttribute : ValidationAttribute
 /// <param name="Name">The name of the health check.</param>
 /// <param name="Status">The status of the health check (Healthy, Degraded, or Unhealthy).</param>
 /// <param name="Duration">The time taken to execute the health check.</param>
-public sealed record HealthCheck(string Name, HealthStatus Status, TimeSpan Duration)
+public sealed record HealthCheck(
+    string Name,
+    HealthStatus Status,
+    TimeSpan Duration)
 ```
 
 **Maintaining Documentation Quality:**

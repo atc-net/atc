@@ -6,7 +6,15 @@ public class TriangleHelperTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForTriangleHelper.GetSinesAndCosinesData), MemberType = typeof(TestMemberDataForTriangleHelper))]
-    public void SinesAndCosines(string testName, TriangleData expected, double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
+    public void SinesAndCosines(
+        string testName,
+        TriangleData expected,
+        double? angleA,
+        double? angleB,
+        double? angleC,
+        double? sideA,
+        double? sideB,
+        double? sideC)
     {
         // Act
         var actual = TriangleHelper.SinesAndCosines(angleA, angleB, angleC, sideA, sideB, sideC);

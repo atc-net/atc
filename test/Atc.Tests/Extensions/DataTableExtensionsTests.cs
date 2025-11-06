@@ -5,7 +5,10 @@ public class DataTableExtensionsTests
     [Theory]
     [InlineData(6, "Patient", SortDirectionType.Ascending)]
     [InlineData(6, "Patient", SortDirectionType.Descending)]
-    public void SortTable(int expected, string sortOnColumn, SortDirectionType sortDirection)
+    public void SortTable(
+        int expected,
+        string sortOnColumn,
+        SortDirectionType sortDirection)
     {
         // Arrange
         var dt = GenerateTestTable();
@@ -39,7 +42,10 @@ public class DataTableExtensionsTests
     [InlineData(6, "", "Drug")]
     [InlineData(1, "Drug='Indocin'", "Patient")]
     [InlineData(2, "Drug='Hydralazine'", "Patient")]
-    public void FilterTable(int expected, string filterExpression, string sortExpression)
+    public void FilterTable(
+        int expected,
+        string filterExpression,
+        string sortExpression)
     {
         // Arrange
         var dt = GenerateTestTable();
@@ -56,7 +62,9 @@ public class DataTableExtensionsTests
     [Theory]
     [InlineData(6, "Patient")]
     [InlineData(5, "Drug")]
-    public void GetGroupCount(int expected, string countOnColumn)
+    public void GetGroupCount(
+        int expected,
+        string countOnColumn)
     {
         // Arrange
         var dt = GenerateTestTable();

@@ -4,7 +4,9 @@ public class OpenApiMediaTypeExtensionsTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiMediaTypeExtensions.GetSchemaItemData), MemberType = typeof(TestMemberDataForOpenApiMediaTypeExtensions))]
-    public void GetSchema(string expectedType, IDictionary<string, OpenApiMediaType> content)
+    public void GetSchema(
+        string expectedType,
+        IDictionary<string, OpenApiMediaType> content)
     {
         // Act
         var actual = content.GetSchema();
@@ -17,7 +19,9 @@ public class OpenApiMediaTypeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiMediaTypeExtensions.GetSchemaByFirstMediaTypeItemData), MemberType = typeof(TestMemberDataForOpenApiMediaTypeExtensions))]
-    public void GetSchemaByFirstMediaType(string expectedType, IDictionary<string, OpenApiMediaType> content)
+    public void GetSchemaByFirstMediaType(
+        string expectedType,
+        IDictionary<string, OpenApiMediaType> content)
     {
         // Act
         var actual = content.GetSchemaByFirstMediaType();
@@ -30,7 +34,10 @@ public class OpenApiMediaTypeExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiMediaTypeExtensions.GetSchemaContentTypeItemData), MemberType = typeof(TestMemberDataForOpenApiMediaTypeExtensions))]
-    public void GetSchema_ContentType(string expectedType, string contentType, IDictionary<string, OpenApiMediaType> content)
+    public void GetSchema_ContentType(
+        string expectedType,
+        string contentType,
+        IDictionary<string, OpenApiMediaType> content)
     {
         // Act
         var actual = content.GetSchema(contentType);

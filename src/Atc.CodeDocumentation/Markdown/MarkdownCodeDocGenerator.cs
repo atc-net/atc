@@ -18,7 +18,9 @@ public static class MarkdownCodeDocGenerator
     /// <exception cref="IOException">Thrown when the output path cannot be determined or created.</exception>
     /// <code><![CDATA[MarkdownCodeDocGenerator.Run(Assembly.GetAssembly(typeof(OneTypeFromTheAssemblyToDocument)));]]></code>
     /// <example><![CDATA[MarkdownCodeDocGenerator.Run(Assembly.GetAssembly(typeof(LocalizedDescriptionAttribute)));]]></example>
-    public static void Run(Assembly assemblyToCodeDoc, DirectoryInfo? outputPath = null)
+    public static void Run(
+        Assembly assemblyToCodeDoc,
+        DirectoryInfo? outputPath = null)
     {
         // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
         if (!OperatingSystem.IsWindows())
@@ -72,7 +74,9 @@ public static class MarkdownCodeDocGenerator
     }
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    private static void GenerateAndWrites(TypeComments[] typeComments, DirectoryInfo outputPath)
+    private static void GenerateAndWrites(
+        TypeComments[] typeComments,
+        DirectoryInfo outputPath)
     {
         var homeBuilder = new MarkdownBuilder();
         homeBuilder.AppendLine("<div style='text-align: right'>");
@@ -136,7 +140,10 @@ public static class MarkdownCodeDocGenerator
         WriteToFile(outputPath, "IndexExtended.md", homeExtendedBuilder.ToString());
     }
 
-    private static void WriteToFile(DirectoryInfo directory, string filename, string content)
+    private static void WriteToFile(
+        DirectoryInfo directory,
+        string filename,
+        string content)
     {
         content = content.Replace("\r\n", "\n", StringComparison.Ordinal);
         File.WriteAllText(Path.Combine(directory.FullName, filename), content);

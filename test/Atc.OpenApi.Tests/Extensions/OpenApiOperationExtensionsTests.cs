@@ -4,7 +4,9 @@ public class OpenApiOperationExtensionsTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetOperationNameItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void GetOperationName(string expected, OpenApiOperation openApiOperation)
+    public void GetOperationName(
+        string expected,
+        OpenApiOperation openApiOperation)
     {
         // Act
         var actual = openApiOperation.GetOperationName();
@@ -16,7 +18,9 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromResponseItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void GetModelSchemaFromResponse(OpenApiSchema? expected, OpenApiOperation openApiOperation)
+    public void GetModelSchemaFromResponse(
+        OpenApiSchema? expected,
+        OpenApiOperation openApiOperation)
     {
         // Act
         var actual = openApiOperation.GetModelSchemaFromResponse();
@@ -37,7 +41,9 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.GetModelSchemaFromRequestItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void GetModelSchemaFromRequest(OpenApiSchema? expected, OpenApiOperation openApiOperation)
+    public void GetModelSchemaFromRequest(
+        OpenApiSchema? expected,
+        OpenApiOperation openApiOperation)
     {
         // Act
         var actual = openApiOperation.GetModelSchemaFromRequest();
@@ -58,7 +64,9 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasParametersOrRequestBodyItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void HasParametersOrRequestBody(bool expected, OpenApiOperation openApiOperation)
+    public void HasParametersOrRequestBody(
+        bool expected,
+        OpenApiOperation openApiOperation)
     {
         // Act
         var actual = openApiOperation.HasParametersOrRequestBody();
@@ -69,7 +77,9 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasRequestBodyWithAnythingAsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void HasRequestBodyWithAnythingAsFormatTypeBinary(bool expected, OpenApiOperation openApiOperation)
+    public void HasRequestBodyWithAnythingAsFormatTypeBinary(
+        bool expected,
+        OpenApiOperation openApiOperation)
     {
         // Act
         var actual = openApiOperation.HasRequestBodyWithAnythingAsFormatTypeBinary();
@@ -80,7 +90,10 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.IsOperationReferencingSchemaItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void IsOperationReferencingSchema(bool expected, OpenApiOperation openApiOperation, string schemaKey)
+    public void IsOperationReferencingSchema(
+        bool expected,
+        OpenApiOperation openApiOperation,
+        string schemaKey)
     {
         // Act
         var actual = openApiOperation.IsOperationReferencingSchema(schemaKey);
@@ -91,7 +104,10 @@ public class OpenApiOperationExtensionsTests
 
     [Theory] // Same test-data-set as IsOperationNamePluralizedItemData
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.IsOperationNamePluralizedItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void IsOperationIdPluralized(bool expected, OpenApiOperation openApiOperation, OperationType operationType)
+    public void IsOperationIdPluralized(
+        bool expected,
+        OpenApiOperation openApiOperation,
+        OperationType operationType)
     {
         // Act
         var actual = openApiOperation.IsOperationIdPluralized(operationType);
@@ -102,7 +118,10 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.IsOperationNamePluralizedItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void IsOperationNamePluralized(bool expected, OpenApiOperation openApiOperation, OperationType operationType)
+    public void IsOperationNamePluralized(
+        bool expected,
+        OpenApiOperation openApiOperation,
+        OperationType operationType)
     {
         // Act
         var actual = openApiOperation.IsOperationNamePluralized(operationType);
@@ -113,7 +132,9 @@ public class OpenApiOperationExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiOperationExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiOperationExtensions))]
-    public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, List<OpenApiOperation> openApiOperations)
+    public void HasDataTypeFromSystemCollectionGenericNamespace(
+        bool expected,
+        List<OpenApiOperation> openApiOperations)
     {
         // Act
         var actual = openApiOperations.HasDataTypeFromSystemCollectionGenericNamespace();

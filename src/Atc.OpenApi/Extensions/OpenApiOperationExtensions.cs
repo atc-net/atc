@@ -124,7 +124,9 @@ public static class OpenApiOperationExtensions
     /// <param name="schemaKey">The schema reference ID to search for.</param>
     /// <returns>True if the operation references the schema; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> or <paramref name="schemaKey"/> is null.</exception>
-    public static bool IsOperationReferencingSchema(this OpenApiOperation openApiOperation, string schemaKey)
+    public static bool IsOperationReferencingSchema(
+        this OpenApiOperation openApiOperation,
+        string schemaKey)
     {
         if (openApiOperation is null)
         {
@@ -159,7 +161,9 @@ public static class OpenApiOperationExtensions
     /// <param name="operationType">The HTTP operation type (GET, POST, etc.) used to strip the verb prefix.</param>
     /// <returns>True if the operation name is pluralized; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static bool IsOperationNamePluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+    public static bool IsOperationNamePluralized(
+        this OpenApiOperation openApiOperation,
+        OperationType operationType)
     {
         if (openApiOperation is null)
         {
@@ -220,7 +224,9 @@ public static class OpenApiOperationExtensions
     /// <param name="operationType">The HTTP operation type (GET, POST, etc.) used to strip the verb prefix.</param>
     /// <returns>True if the operation ID is pluralized; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static bool IsOperationIdPluralized(this OpenApiOperation openApiOperation, OperationType operationType)
+    public static bool IsOperationIdPluralized(
+        this OpenApiOperation openApiOperation,
+        OperationType operationType)
     {
         if (openApiOperation is null)
         {
@@ -261,7 +267,9 @@ public static class OpenApiOperationExtensions
     }
 
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static bool IsOperationReferencingSchemaCheckResponses(OpenApiOperation openApiOperation, string schemaKey)
+    private static bool IsOperationReferencingSchemaCheckResponses(
+        OpenApiOperation openApiOperation,
+        string schemaKey)
     {
         if (openApiOperation is null)
         {
@@ -309,7 +317,9 @@ public static class OpenApiOperationExtensions
     }
 
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static bool IsOperationReferencingSchemaCheckRequestBody(OpenApiOperation openApiOperation, string schemaKey)
+    private static bool IsOperationReferencingSchemaCheckRequestBody(
+        OpenApiOperation openApiOperation,
+        string schemaKey)
     {
         if (openApiOperation is null)
         {

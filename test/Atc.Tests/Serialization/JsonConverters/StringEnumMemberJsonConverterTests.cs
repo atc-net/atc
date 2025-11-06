@@ -5,7 +5,9 @@ public sealed class StringEnumMemberJsonConverterTests
     [Theory]
     [InlineData(ChargePointState.BusyNonCharging, "busy-non-charging")]
     [InlineData(ChargePointState.TestWithoutEnumMember, "testWithoutEnumMember")]
-    public void Read_ShouldReturnExpectedChargePointState(ChargePointState expected, string enumValue)
+    public void Read_ShouldReturnExpectedChargePointState(
+        ChargePointState expected,
+        string enumValue)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
@@ -28,7 +30,9 @@ public sealed class StringEnumMemberJsonConverterTests
     [Theory]
     [InlineData("busy-non-charging", ChargePointState.BusyNonCharging)]
     [InlineData("testWithoutEnumMember", ChargePointState.TestWithoutEnumMember)]
-    public void Write_ShouldWriteChargePointStateToUtf8JsonWriter(string expected, ChargePointState chargePointState)
+    public void Write_ShouldWriteChargePointStateToUtf8JsonWriter(
+        string expected,
+        ChargePointState chargePointState)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();

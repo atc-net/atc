@@ -35,7 +35,9 @@ internal static class TestMemberDataForOpenApiMediaTypeExtensions
             },
         };
 
-    private static IDictionary<string, OpenApiMediaType> CreateMultipleContents(string typeName1, string typeName2)
+    private static IDictionary<string, OpenApiMediaType> CreateMultipleContents(
+        string typeName1,
+        string typeName2)
         => new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
         {
             {

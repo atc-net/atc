@@ -25,7 +25,10 @@ public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultA
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AndWhichConstraint{TAssertions, ContentResult}"/> for further assertions.</returns>
-    public AndWhichConstraint<TAssertions, ContentResult> WithErrorMessage(string expectedErrorMessage, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<TAssertions, ContentResult> WithErrorMessage(
+        string expectedErrorMessage,
+        string because = "",
+        params object[] becauseArgs)
     {
         var actualErrorMessage = string.Empty;
 

@@ -10,7 +10,9 @@ public class TypeComments
     /// </summary>
     /// <param name="type">The type.</param>
     /// <param name="commentLookup">The comment lookup.</param>
-    public TypeComments(Type type, ILookup<string, XmlDocumentComment>? commentLookup)
+    public TypeComments(
+        Type type,
+        ILookup<string, XmlDocumentComment>? commentLookup)
     {
         Type = type ?? throw new ArgumentNullException(nameof(type));
         CommentLookup = commentLookup ?? throw new ArgumentNullException(nameof(commentLookup));

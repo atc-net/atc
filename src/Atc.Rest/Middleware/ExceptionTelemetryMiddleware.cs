@@ -17,7 +17,9 @@ public class ExceptionTelemetryMiddleware
     /// </summary>
     /// <param name="next">The next middleware delegate in the pipeline.</param>
     /// <param name="client">The Application Insights telemetry client.</param>
-    public ExceptionTelemetryMiddleware(RequestDelegate next, TelemetryClient client)
+    public ExceptionTelemetryMiddleware(
+        RequestDelegate next,
+        TelemetryClient client)
     {
         this.next = next;
         this.client = client;

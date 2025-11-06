@@ -60,7 +60,9 @@ public class UniversalTransverseMercatorConverter
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter", Justification = "OK. By design.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    public UniversalTransverseMercatorResult ToUtm(double latitude, double longitude)
+    public UniversalTransverseMercatorResult ToUtm(
+        double latitude,
+        double longitude)
     {
         int zoneNumber;
         var longitudeTemp = longitude;
@@ -149,7 +151,12 @@ public class UniversalTransverseMercatorConverter
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:Arithmetic expressions should declare precedence", Justification = "OK.")]
-    public CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
+    public CartesianCoordinate ToWgs84(
+        int utmZoneNumber,
+        string utmZoneLetter,
+        double utmEasting,
+        double utmNorthing,
+        int maxDecimalPrecision = 8)
     {
         if (utmZoneLetter is null)
         {

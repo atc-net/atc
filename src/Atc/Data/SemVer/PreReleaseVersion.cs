@@ -14,7 +14,9 @@ internal static class PreReleaseVersion
     /// A negative value if <paramref name="a"/> is less than <paramref name="b"/>,
     /// zero if they are equal, or a positive value if <paramref name="a"/> is greater than <paramref name="b"/>.
     /// </returns>
-    public static int Compare(string? a, string? b)
+    public static int Compare(
+        string? a,
+        string? b)
     {
         if (a == null && b == null)
         {

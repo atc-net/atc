@@ -4,7 +4,10 @@ public class DecimalExtensionsTests
 {
     [Theory]
     [InlineData(true, 0, 0)]
-    public void IsEqual(bool expected, decimal a, decimal b)
+    public void IsEqual(
+        bool expected,
+        decimal a,
+        decimal b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -15,7 +18,10 @@ public class DecimalExtensionsTests
 
     [Theory]
     [InlineData(true, null, null)]
-    public void IsEqual_Nullable(bool expected, decimal? a, decimal? b)
+    public void IsEqual_Nullable(
+        bool expected,
+        decimal? a,
+        decimal? b)
     {
         // Act
         var actual = a.IsEqual(b);
@@ -26,7 +32,11 @@ public class DecimalExtensionsTests
 
     [Theory]
     [InlineData(true, 0, 0, 2)]
-    public void IsEqual_DecimalPrecision(bool expected, decimal a, decimal b, int decimalPrecision)
+    public void IsEqual_DecimalPrecision(
+        bool expected,
+        decimal a,
+        decimal b,
+        int decimalPrecision)
     {
         // Act
         var actual = a.IsEqual(b, decimalPrecision);
@@ -37,7 +47,11 @@ public class DecimalExtensionsTests
 
     [Theory]
     [InlineData(true, null, null, 2)]
-    public void IsEqual_Nullable_DecimalPrecision(bool expected, decimal? a, decimal? b, int decimalPrecision)
+    public void IsEqual_Nullable_DecimalPrecision(
+        bool expected,
+        decimal? a,
+        decimal? b,
+        int decimalPrecision)
     {
         // Act
         var actual = a.IsEqual(b, decimalPrecision);
@@ -55,7 +69,9 @@ public class DecimalExtensionsTests
     [InlineData(12, 12.49)]
     [InlineData(13, 12.50)]
     [InlineData(13, 12.51)]
-    public void CurrencyRoundingAsInteger(int expected, decimal input)
+    public void CurrencyRoundingAsInteger(
+        int expected,
+        decimal input)
     {
         // Act
         var actual = input.CurrencyRoundingAsInteger();
@@ -79,7 +95,9 @@ public class DecimalExtensionsTests
     [InlineData(12.44, 12.4449)]
     [InlineData(12.45, 12.4450)]
     [InlineData(12.45, 12.4451)]
-    public void CurrencyRounding(decimal expected, decimal input)
+    public void CurrencyRounding(
+        decimal expected,
+        decimal input)
     {
         // Act
         var actual = input.CurrencyRounding();
@@ -145,7 +163,10 @@ public class DecimalExtensionsTests
     [InlineData(12.445, 12.4449, 3)]
     [InlineData(12.4450, 12.4450, 3)]
     [InlineData(12.445, 12.4451, 3)]
-    public void CurrencyRounding_Digits(decimal expected, decimal input, int digits)
+    public void CurrencyRounding_Digits(
+        decimal expected,
+        decimal input,
+        int digits)
     {
         // Act
         var actual = input.CurrencyRounding(digits);
@@ -161,7 +182,9 @@ public class DecimalExtensionsTests
     [InlineData(1.11, 1.11)]
     [InlineData(1.11, 1.111)]
     [InlineData(1.12, 1.115)]
-    public void RoundOff2(decimal expected, decimal input)
+    public void RoundOff2(
+        decimal expected,
+        decimal input)
     {
         // Act
         var actual = input.RoundOff2();
@@ -177,7 +200,9 @@ public class DecimalExtensionsTests
     [InlineData(1.0000000011, 1.0000000011)]
     [InlineData(1.0000000011, 1.00000000111)]
     [InlineData(1.0000000012, 1.00000000115)]
-    public void RoundOff10(decimal expected, decimal input)
+    public void RoundOff10(
+        decimal expected,
+        decimal input)
     {
         // Act
         var actual = input.RoundOff10();
@@ -200,7 +225,10 @@ public class DecimalExtensionsTests
     [InlineData(1.0000000011, 1.0000000011, 10)]
     [InlineData(1.0000000011, 1.00000000111, 10)]
     [InlineData(1.0000000012, 1.00000000115, 10)]
-    public void RoundOff_NumberOfDecimals(decimal expected, decimal input, int numberOfDecimals)
+    public void RoundOff_NumberOfDecimals(
+        decimal expected,
+        decimal input,
+        int numberOfDecimals)
     {
         // Act
         var actual = input.RoundOff(numberOfDecimals);
@@ -216,7 +244,9 @@ public class DecimalExtensionsTests
     [InlineData(1.11, 1.11)]
     [InlineData(1.11, 1.111)]
     [InlineData(1.12, 1.115)]
-    public void RoundOffPercent(decimal expected, decimal input)
+    public void RoundOffPercent(
+        decimal expected,
+        decimal input)
     {
         // Act
         var actual = input.RoundOffPercent();

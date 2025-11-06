@@ -26,7 +26,9 @@ public static class HeaderDictionaryExtensions
     /// <param name="headers">The headers.</param>
     /// <param name="correlationId">The correlation ID to add.</param>
     /// <returns>The correlation ID that was added.</returns>
-    public static string AddCorrelationId(this IHeaderDictionary headers, string correlationId)
+    public static string AddCorrelationId(
+        this IHeaderDictionary headers,
+        string correlationId)
     {
         ArgumentNullException.ThrowIfNull(headers);
 

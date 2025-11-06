@@ -30,7 +30,9 @@ public sealed class TypeRegistrar : ITypeRegistrar
     /// </summary>
     /// <param name="service">The service type to register.</param>
     /// <param name="implementation">The implementation type.</param>
-    public void Register(Type service, Type implementation)
+    public void Register(
+        Type service,
+        Type implementation)
         => builder.AddSingleton(service, implementation);
 
     /// <summary>
@@ -38,7 +40,9 @@ public sealed class TypeRegistrar : ITypeRegistrar
     /// </summary>
     /// <param name="service">The service type to register.</param>
     /// <param name="implementation">The implementation instance.</param>
-    public void RegisterInstance(Type service, object implementation)
+    public void RegisterInstance(
+        Type service,
+        object implementation)
         => builder.AddSingleton(service, implementation);
 
     /// <summary>
@@ -47,7 +51,9 @@ public sealed class TypeRegistrar : ITypeRegistrar
     /// <param name="service">The service type to register.</param>
     /// <param name="factory">The factory function to create instances.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="factory"/> is null.</exception>
-    public void RegisterLazy(Type service, Func<object> factory)
+    public void RegisterLazy(
+        Type service,
+        Func<object> factory)
     {
         if (factory is null)
         {

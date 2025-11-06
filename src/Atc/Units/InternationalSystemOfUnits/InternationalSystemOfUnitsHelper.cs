@@ -22,7 +22,11 @@ public static class InternationalSystemOfUnitsHelper
     /// <exception cref="ArithmeticException">Thrown when the conversion results in NaN.</exception>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "OK. For now.")]
-    public static double Convert(PrefixType prefixTypeFrom, PrefixType prefixTypeTo, int numberOfDecimals, double value)
+    public static double Convert(
+        PrefixType prefixTypeFrom,
+        PrefixType prefixTypeTo,
+        int numberOfDecimals,
+        double value)
     {
         var d = double.NaN;
 

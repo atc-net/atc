@@ -14,14 +14,18 @@ public static class HttpResponseMessageExtensions
     /// <param name="jsonSerializerOptions">Optional JSON serializer options. Uses default options if not specified.</param>
     /// <returns>A task representing the asynchronous operation, containing the deserialized object.</returns>
     /// <exception cref="SerializationException">Thrown when deserialization fails.</exception>
-    public static Task<T> DeserializeAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions? jsonSerializerOptions = null)
+    public static Task<T> DeserializeAsync<T>(
+        this HttpResponseMessage httpResponseMessage,
+        JsonSerializerOptions? jsonSerializerOptions = null)
     {
         ArgumentNullException.ThrowIfNull(httpResponseMessage);
 
         return InvokeDeserializeAsync<T>(httpResponseMessage, jsonSerializerOptions);
     }
 
-    private static async Task<T> InvokeDeserializeAsync<T>(HttpResponseMessage httpResponseMessage, JsonSerializerOptions? jsonSerializerOptions = null)
+    private static async Task<T> InvokeDeserializeAsync<T>(
+        HttpResponseMessage httpResponseMessage,
+        JsonSerializerOptions? jsonSerializerOptions = null)
     {
         jsonSerializerOptions ??= JsonSerializerOptionsFactory.Create();
 

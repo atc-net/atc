@@ -24,7 +24,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="ContentResultAssertions"/> instance for further assertions.</returns>
-    public ContentResultAssertions BeContentResult(string because = "", params object[] becauseArgs)
+    public ContentResultAssertions BeContentResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         var contentResult = Subject.Should().BeOfType<ContentResult>(because, becauseArgs).Subject;
         return new ContentResultAssertions(contentResult);
@@ -36,7 +38,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="OkResultAssertions"/> instance for further assertions.</returns>
-    public OkResultAssertions BeOkResult(string because = "", params object[] becauseArgs)
+    public OkResultAssertions BeOkResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<OkObjectResult>(HttpStatusCode.OK, because, becauseArgs);
         var okSubject = (OkObjectResult)Subject;
@@ -49,7 +53,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="CreatedResultAssertions"/> instance for further assertions.</returns>
-    public CreatedResultAssertions BeCreatedResult(string because = "", params object[] becauseArgs)
+    public CreatedResultAssertions BeCreatedResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Created, because, becauseArgs);
         var created = (ContentResult)Subject;
@@ -62,7 +68,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>An <see cref="AcceptedResultAssertions"/> instance for further assertions.</returns>
-    public AcceptedResultAssertions BeAcceptedResult(string because = "", params object[] becauseArgs)
+    public AcceptedResultAssertions BeAcceptedResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Accepted, because, becauseArgs);
         var accepted = (ContentResult)Subject;
@@ -75,7 +83,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="NoContentResultAssertions"/> instance for further assertions.</returns>
-    public NoContentResultAssertions BeNoContentResult(string because = "", params object[] becauseArgs)
+    public NoContentResultAssertions BeNoContentResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NoContent, because, becauseArgs);
         var noContent = (ContentResult)Subject;
@@ -88,7 +98,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="BadRequestResultAssertions"/> instance for further assertions.</returns>
-    public BadRequestResultAssertions BeBadRequestResult(string because = "", params object[] becauseArgs)
+    public BadRequestResultAssertions BeBadRequestResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.BadRequest, because, becauseArgs);
         var badRequest = (ContentResult)Subject;
@@ -101,7 +113,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="ForbiddenResultAssertions"/> instance for further assertions.</returns>
-    public ForbiddenResultAssertions BeForbiddenResult(string because = "", params object[] becauseArgs)
+    public ForbiddenResultAssertions BeForbiddenResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Forbidden, because, becauseArgs);
         var forbidden = (ContentResult)Subject;
@@ -114,7 +128,9 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="NotFoundResultAssertions"/> instance for further assertions.</returns>
-    public NotFoundResultAssertions BeNotFoundResult(string because = "", params object[] becauseArgs)
+    public NotFoundResultAssertions BeNotFoundResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.NotFound, because, becauseArgs);
         var notFound = (ContentResult)Subject;
@@ -127,14 +143,19 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     /// <param name="because">Optional explanation of why the assertion is needed.</param>
     /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
     /// <returns>A <see cref="ConflictResultAssertions"/> instance for further assertions.</returns>
-    public ConflictResultAssertions BeConflictResult(string because = "", params object[] becauseArgs)
+    public ConflictResultAssertions BeConflictResult(
+        string because = "",
+        params object[] becauseArgs)
     {
         AssertIsResultTypeWithStatusCode<ContentResult>(HttpStatusCode.Conflict, because, becauseArgs);
         var conflict = (ContentResult)Subject;
         return new ConflictResultAssertions(conflict);
     }
 
-    private void AssertIsResultTypeWithStatusCode<T>(HttpStatusCode expectedStatusCode, string because, object[] becauseArgs)
+    private void AssertIsResultTypeWithStatusCode<T>(
+        HttpStatusCode expectedStatusCode,
+        string because,
+        object[] becauseArgs)
         where T : class, IStatusCodeActionResult
     {
         Execute.Assertion

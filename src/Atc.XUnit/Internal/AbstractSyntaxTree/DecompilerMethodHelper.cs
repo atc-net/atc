@@ -2,7 +2,9 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree;
 
 internal static class DecompilerMethodHelper
 {
-    internal static Tuple<MethodInfo, MethodDeclaration>[] DebugFilterTypeNames(DebugLimitData debugLimitData, Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
+    internal static Tuple<MethodInfo, MethodDeclaration>[] DebugFilterTypeNames(
+        DebugLimitData debugLimitData,
+        Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
     {
         if (!debugLimitData.HasClassNames)
         {
@@ -46,7 +48,10 @@ internal static class DecompilerMethodHelper
     }
 
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
-    internal static Tuple<MethodInfo, MethodDeclaration>[]? DebugFilterMethod(DebugLimitData debugLimitData, MethodInfo method, Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
+    internal static Tuple<MethodInfo, MethodDeclaration>[]? DebugFilterMethod(
+        DebugLimitData debugLimitData,
+        MethodInfo method,
+        Tuple<MethodInfo, MethodDeclaration>[] testMethodsWithDeclaration)
     {
         if (!debugLimitData.HasClassNames)
         {
@@ -99,7 +104,9 @@ internal static class DecompilerMethodHelper
     }
 
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
-    internal static Tuple<MethodInfo, MethodDeclaration>[]? FilterTestMethods(MethodInfo method, Tuple<MethodInfo, MethodDeclaration>[]? testMethodsWithDeclaration)
+    internal static Tuple<MethodInfo, MethodDeclaration>[]? FilterTestMethods(
+        MethodInfo method,
+        Tuple<MethodInfo, MethodDeclaration>[]? testMethodsWithDeclaration)
     {
         if (method.DeclaringType is null ||
             testMethodsWithDeclaration is null ||
@@ -142,7 +149,9 @@ internal static class DecompilerMethodHelper
         return tuples;
     }
 
-    internal static Tuple<AstNode, List<AstNode>>? GetAstNodeForMethod(MethodInfo method, MethodDeclaration declaration)
+    internal static Tuple<AstNode, List<AstNode>>? GetAstNodeForMethod(
+        MethodInfo method,
+        MethodDeclaration declaration)
     {
         var astNodeForMethodWithParameters = GetAstNodeForMethodWithParameters(declaration.Body, method.Name);
         if (astNodeForMethodWithParameters is null)
@@ -156,7 +165,9 @@ internal static class DecompilerMethodHelper
             astNodeForMethodParameters);
     }
 
-    internal static AstNode? GetAstNodeForMethod(AstNode astNode, string methodName)
+    internal static AstNode? GetAstNodeForMethod(
+        AstNode astNode,
+        string methodName)
     {
         return astNode.Descendants
             .Where(x => x.IsType(typeof(InvocationExpression)))
@@ -164,7 +175,9 @@ internal static class DecompilerMethodHelper
             .FirstOrDefault(x => x is not null);
     }
 
-    internal static AstNode? GetAstNodeForParameter(AstNode astNode, string parameterName)
+    internal static AstNode? GetAstNodeForParameter(
+        AstNode astNode,
+        string parameterName)
     {
         return astNode.Descendants
             .Where(x => x.IsType(typeof(ParameterDeclaration)) ||
@@ -195,7 +208,9 @@ internal static class DecompilerMethodHelper
             : GetAstNodeForTestMethodCode(astNode.Parent);
     }
 
-    internal static AstNode? GetAstNodeForMethodWithParameters(AstNode astNode, string methodName)
+    internal static AstNode? GetAstNodeForMethodWithParameters(
+        AstNode astNode,
+        string methodName)
     {
         return GetAstNodeForMethod(astNode, methodName)?.Parent?.Parent;
     }

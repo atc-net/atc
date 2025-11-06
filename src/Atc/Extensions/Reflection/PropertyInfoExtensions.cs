@@ -74,7 +74,9 @@ public static class PropertyInfoExtensions
     /// <param name="useLocalizedIfPossible">If set to <see langword="true"/>, attempts to use localized description first.</param>
     /// <returns>The description of the property.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="propertyInfo"/> is null.</exception>
-    public static string GetDescription(this PropertyInfo propertyInfo, bool useLocalizedIfPossible = true)
+    public static string GetDescription(
+        this PropertyInfo propertyInfo,
+        bool useLocalizedIfPossible = true)
     {
         if (propertyInfo is null)
         {
@@ -127,7 +129,9 @@ public static class PropertyInfoExtensions
     }
 
     // ReSharper disable once SuggestBaseTypeForParameter
-    private static TExpected GetAttributeValue<T, TExpected>(this PropertyInfo propertyInfo, Func<T, TExpected> expression)
+    private static TExpected GetAttributeValue<T, TExpected>(
+        this PropertyInfo propertyInfo,
+        Func<T, TExpected> expression)
         where T : Attribute
     {
         var attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();

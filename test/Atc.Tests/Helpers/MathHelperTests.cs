@@ -4,7 +4,10 @@ public class MathHelperTests
 {
     [Theory]
     [InlineData(75, 127, 95)]
-    public void PercentageAsInteger(int expected, double totalValue, double value)
+    public void PercentageAsInteger(
+        int expected,
+        double totalValue,
+        double value)
     {
         // Act
         var actual = MathHelper.PercentageAsInteger(totalValue, value);
@@ -19,7 +22,10 @@ public class MathHelperTests
     [InlineData(100, 100, 100)]
     [InlineData(101, 100, 101)]
     [InlineData(-1, 100, -1)]
-    public void Percentage(double expected, double totalValue, double value)
+    public void Percentage(
+        double expected,
+        double totalValue,
+        double value)
     {
         // Act
         var actual = MathHelper.Percentage(totalValue, value);
@@ -38,7 +44,11 @@ public class MathHelperTests
     [InlineData(12.4, 100, 12.4, 2)]
     [InlineData(12.5, 100, 12.5, 2)]
     [InlineData(12.6, 100, 12.6, 2)]
-    public void Percentage_Digits(double expected, double totalValue, double value, int digits)
+    public void Percentage_Digits(
+        double expected,
+        double totalValue,
+        double value,
+        int digits)
     {
         // Act
         var actual = MathHelper.Percentage(totalValue, value, digits);
@@ -56,7 +66,12 @@ public class MathHelperTests
     [InlineData(100, 100, 100, 2, true)]
     [InlineData(100, 100, 101, 2, true)]
     [InlineData(0, 100, -1, 2, true)]
-    public void Percentage_Digits_Limit0To100(double expected, double totalValue, double value, int digits, bool limit0To100)
+    public void Percentage_Digits_Limit0To100(
+        double expected,
+        double totalValue,
+        double value,
+        int digits,
+        bool limit0To100)
     {
         // Act
         var actual = MathHelper.Percentage(totalValue, value, digits, limit0To100);
@@ -67,7 +82,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(260.96, 127.2)]
-    public void CelsiusToFahrenheit(double expected, double input)
+    public void CelsiusToFahrenheit(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.CelsiusToFahrenheit(input);
@@ -79,7 +96,9 @@ public class MathHelperTests
     [Theory]
     [InlineData(127.19999999999999, 260.96)]
     [InlineData(37.777777777777779, 100)]
-    public void FahrenheitToCelsius(double expected, double input)
+    public void FahrenheitToCelsius(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.FahrenheitToCelsius(input);
@@ -91,7 +110,9 @@ public class MathHelperTests
     [Theory]
     [InlineData(4.5546112160044023, 260.96)]
     [InlineData(20, 1145.9155902616465)]
-    public void DegreesToRadians(double expected, double input)
+    public void DegreesToRadians(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.DegreesToRadians(input);
@@ -103,7 +124,9 @@ public class MathHelperTests
     [Theory]
     [InlineData(14951.906621733962, 260.96)]
     [InlineData(1145.9155902616465, 20)]
-    public void RadiansToDegrees(double expected, double input)
+    public void RadiansToDegrees(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.RadiansToDegrees(input);
@@ -114,7 +137,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(260.96, 260.96)]
-    public void EnsureDegreesAreBetween0And360(double expected, double input)
+    public void EnsureDegreesAreBetween0And360(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.EnsureDegreesAreBetween0And360(input);
@@ -154,7 +179,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(-0.98757888805121785, 260.96)]
-    public void Sin(double expected, double input)
+    public void Sin(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Sin(input);
@@ -165,7 +192,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(-0.15712396340316789, 260.96)]
-    public void Cos(double expected, double input)
+    public void Cos(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Cos(input);
@@ -176,7 +205,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(6.2853486295859735, 260.96)]
-    public void Tan(double expected, double input)
+    public void Tan(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Tan(input);
@@ -187,7 +218,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(double.NaN, 260.96)]
-    public void Asin(double expected, double input)
+    public void Asin(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Asin(input);
@@ -198,7 +231,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(double.NaN, 260.96)]
-    public void Acos(double expected, double input)
+    public void Acos(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Acos(input);
@@ -209,7 +244,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(89.78044336654348, 260.96)]
-    public void Atan(double expected, double input)
+    public void Atan(
+        double expected,
+        double input)
     {
         // Act
         var actual = MathHelper.Atan(input);
@@ -220,7 +257,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4, new[] { 8, 4, 6 })]
-    public void Min_Array_Int(int expected, int[] input)
+    public void Min_Array_Int(
+        int expected,
+        int[] input)
     {
         // Act
         var actual = MathHelper.Min(input);
@@ -231,7 +270,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4, new[] { 8, 4, 6 })]
-    public void Min_List_Int(int expected, int[] data)
+    public void Min_List_Int(
+        int expected,
+        int[] data)
     {
         // Arrange
         var input = new List<int>();
@@ -246,7 +287,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4.4, new[] { 8.5, 4.4, 6 })]
-    public void Min_Array_Double(double expected, double[] input)
+    public void Min_Array_Double(
+        double expected,
+        double[] input)
     {
         // Act
         var actual = MathHelper.Min(input);
@@ -257,7 +300,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4.4, new[] { 8.5, 4.4, 6 })]
-    public void Min_List_Double(double expected, double[] data)
+    public void Min_List_Double(
+        double expected,
+        double[] data)
     {
         // Arrange
         var input = new List<double>();
@@ -272,7 +317,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8, new[] { 8, 4, 6 })]
-    public void Max_Array_Int(int expected, int[] input)
+    public void Max_Array_Int(
+        int expected,
+        int[] input)
     {
         // Act
         var actual = MathHelper.Max(input);
@@ -283,7 +330,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8, new[] { 8, 4, 6 })]
-    public void Max_List_Int(int expected, int[] data)
+    public void Max_List_Int(
+        int expected,
+        int[] data)
     {
         // Arrange
         var input = new List<int>();
@@ -298,7 +347,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8.5, new[] { 8.5, 4.4, 6 })]
-    public void Max_Array_Double(double expected, double[] input)
+    public void Max_Array_Double(
+        double expected,
+        double[] input)
     {
         // Act
         var actual = MathHelper.Max(input);
@@ -309,7 +360,9 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8.5, new[] { 8.5, 4.4, 6 })]
-    public void Max_List_Double(double expected, double[] data)
+    public void Max_List_Double(
+        double expected,
+        double[] data)
     {
         // Arrange
         var input = new List<double>();
@@ -326,7 +379,9 @@ public class MathHelperTests
     [InlineData(true, 0)]
     [InlineData(true, 0.00000000000001)]
     [InlineData(false, 0.000001)]
-    public void IsEqualToZero(bool expected, double input)
+    public void IsEqualToZero(
+        bool expected,
+        double input)
     {
         // Act
         var actual = MathHelper.IsEqualToZero(input);
@@ -339,7 +394,10 @@ public class MathHelperTests
     [InlineData(true, 1, 1)]
     [InlineData(false, 1, 1.00000000000001)]
     [InlineData(false, 1, 1.000001)]
-    public void IsEquals(bool expected, double inputA, double inputB)
+    public void IsEquals(
+        bool expected,
+        double inputA,
+        double inputB)
     {
         // Act
         var actual = MathHelper.IsEquals(inputA, inputB);
@@ -352,7 +410,10 @@ public class MathHelperTests
     [InlineData(12.12, 12.12, 1)]
     [InlineData(12.12, 12.12, 2)]
     [InlineData(12.12, 12.12, 3)]
-    public void TruncateToMaxPrecision(double expected, double input, int decimalPrecision)
+    public void TruncateToMaxPrecision(
+        double expected,
+        double input,
+        int decimalPrecision)
     {
         // Act
         var actual = MathHelper.TruncateToMaxPrecision(input, decimalPrecision);

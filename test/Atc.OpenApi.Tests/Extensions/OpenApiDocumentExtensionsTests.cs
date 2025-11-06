@@ -4,7 +4,10 @@ public class OpenApiDocumentExtensionsTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiDocumentExtensions.OpenApiPathItemData), MemberType = typeof(TestMemberDataForOpenApiDocumentExtensions))]
-    public void GetPathsByBasePathSegmentName(int expectedCount, string basePathSegmentName, OpenApiDocument openApiDocument)
+    public void GetPathsByBasePathSegmentName(
+        int expectedCount,
+        string basePathSegmentName,
+        OpenApiDocument openApiDocument)
     {
         // Act
         var actual = openApiDocument.GetPathsByBasePathSegmentName(basePathSegmentName);

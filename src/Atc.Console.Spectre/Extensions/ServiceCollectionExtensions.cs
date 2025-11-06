@@ -27,7 +27,9 @@ public static class ServiceCollectionExtensions
     /// <param name="serviceCollection">The service collection to configure.</param>
     /// <param name="consoleLoggerConfiguration">The custom console logger configuration.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="consoleLoggerConfiguration"/> is null.</exception>
-    public static void AddConsoleLogging(this IServiceCollection serviceCollection, ConsoleLoggerConfiguration consoleLoggerConfiguration)
+    public static void AddConsoleLogging(
+        this IServiceCollection serviceCollection,
+        ConsoleLoggerConfiguration consoleLoggerConfiguration)
     {
         if (consoleLoggerConfiguration is null)
         {

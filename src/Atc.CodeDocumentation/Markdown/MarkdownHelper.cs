@@ -131,7 +131,9 @@ internal static class MarkdownHelper
         return mb.ToString();
     }
 
-    private static void AppendIndentedLines(MarkdownBuilder mb, IEnumerable<string> list)
+    private static void AppendIndentedLines(
+        MarkdownBuilder mb,
+        IEnumerable<string> list)
     {
         foreach (var item in list)
         {
@@ -240,7 +242,9 @@ internal static class MarkdownHelper
             .ToArray();
     }
 
-    private static void AppendHeaderForType(MarkdownBuilder mb, TypeComments typeComments)
+    private static void AppendHeaderForType(
+        MarkdownBuilder mb,
+        TypeComments typeComments)
     {
         mb.AppendLine();
         mb.AppendLine("<br />");
@@ -277,7 +281,9 @@ internal static class MarkdownHelper
     }
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
-    private static void AppendTypeBox(MarkdownBuilder mb, TypeComments typeComments)
+    private static void AppendTypeBox(
+        MarkdownBuilder mb,
+        TypeComments typeComments)
     {
         var sb = new StringBuilder();
         var stat = typeComments.Type.IsAbstract && typeComments.Type.IsSealed
@@ -310,14 +316,20 @@ internal static class MarkdownHelper
         }
 
         sb.AppendLine(impl.Length > 0
-            ? $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true)} : {impl}"
-            : $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true)}");
+            ? $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(
+                useFullName: false,
+                useHtmlFormat: true)} : {impl}"
+            : $"public {stat}{@abstract}{classOrStructOrEnumOrInterface} {typeComments.Type.BeautifyName(
+                useFullName: false,
+                useHtmlFormat: true)}");
 
         mb.Code("csharp", sb.ToString());
         mb.AppendLine();
     }
 
-    private static void AppendBodyForEnum(MarkdownBuilder mb, TypeComments typeComments)
+    private static void AppendBodyForEnum(
+        MarkdownBuilder mb,
+        TypeComments typeComments)
     {
         var enums = Enum.GetNames(typeComments.Type)
             .Select(x => new
@@ -332,7 +344,9 @@ internal static class MarkdownHelper
         BuildTable(mb, typeComments, label: null, enums, typeComments.CommentLookup[typeComments.Type.FullName!], x => x.Value.ToString(GlobalizationConstants.EnglishCultureInfo), x => x.Name, x => x.Description);
     }
 
-    private static void AppendBodyForClass(MarkdownBuilder mb, TypeComments typeComments)
+    private static void AppendBodyForClass(
+        MarkdownBuilder mb,
+        TypeComments typeComments)
     {
         Build(mb, typeComments, "Static Fields", GetStaticFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.FieldType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
         Build(mb, typeComments, "Static Properties", GetStaticProperties(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
@@ -346,7 +360,15 @@ internal static class MarkdownHelper
     }
 
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
-    private static void BuildTable<T>(MarkdownBuilder mb, TypeComments typeComments, string? label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)
+    private static void BuildTable<T>(
+        MarkdownBuilder mb,
+        TypeComments typeComments,
+        string? label,
+        T[] array,
+        IEnumerable<XmlDocumentComment> docs,
+        Func<T, string> xType,
+        Func<T, string> name,
+        Func<T, string> finalName)
     {
         if (!array.Any())
         {
@@ -402,7 +424,15 @@ internal static class MarkdownHelper
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static void Build<T>(MarkdownBuilder mb, TypeComments typeComments, string label, T[] array, IEnumerable<XmlDocumentComment> docs, Func<T, string> xType, Func<T, string> name, Func<T, string> finalName)
+    private static void Build<T>(
+        MarkdownBuilder mb,
+        TypeComments typeComments,
+        string label,
+        T[] array,
+        IEnumerable<XmlDocumentComment> docs,
+        Func<T, string> xType,
+        Func<T, string> name,
+        Func<T, string> finalName)
     {
         if (!array.Any())
         {

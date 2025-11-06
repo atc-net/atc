@@ -12,7 +12,11 @@ public class TaskExtensionsTests
     [InlineData(2, 5, 3, 1)]
     [InlineData(2, 6, 3, 1)]
     [InlineData(3, 7, 3, 1)]
-    public void StartAndWaitAllThrottled(int expectedSeconds, int numberOfTasksToRun, int maxTasksToRunInParallel, int jobRunningForSeconds)
+    public void StartAndWaitAllThrottled(
+        int expectedSeconds,
+        int numberOfTasksToRun,
+        int maxTasksToRunInParallel,
+        int jobRunningForSeconds)
     {
         if (numberOfTasksToRun > Environment.ProcessorCount)
         {
@@ -48,7 +52,11 @@ public class TaskExtensionsTests
     [InlineData(2, 5, 3, 1)]
     [InlineData(2, 6, 3, 1)]
     [InlineData(3, 7, 3, 1)]
-    public void StartAndWaitAllThrottledWithTimeout(int expectedSeconds, int numberOfTasksToRun, int maxTasksToRunInParallel, int jobRunningForSeconds)
+    public void StartAndWaitAllThrottledWithTimeout(
+        int expectedSeconds,
+        int numberOfTasksToRun,
+        int maxTasksToRunInParallel,
+        int jobRunningForSeconds)
     {
         if (numberOfTasksToRun > Environment.ProcessorCount)
         {

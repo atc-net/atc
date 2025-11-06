@@ -4,7 +4,9 @@ public class OpenApiSchemaExtensionsTests
 {
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasDataTypeList(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasDataTypeList(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasDataTypeList();
@@ -15,7 +17,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasDataTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
+    public void HasDataTypeFromSystemCollectionGenericNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema,
+        IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
     {
         // Act
         var actual = openApiSchema.HasDataTypeFromSystemCollectionGenericNamespace(componentOpenApiSchemas);
@@ -26,7 +31,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasDataTypeFromSystemCollectionGenericNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasDataTypeFromSystemCollectionGenericNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas, IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
+    public void HasDataTypeFromSystemCollectionGenericNamespace_List(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas,
+        IDictionary<string, OpenApiSchema> componentOpenApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasDataTypeFromSystemCollectionGenericNamespace(componentOpenApiSchemas);
@@ -37,7 +45,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeUuid(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeUuid(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeUuid();
@@ -48,7 +58,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeByte(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeByte(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeByte();
@@ -59,7 +71,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeDate(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeDate(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeDate();
@@ -70,7 +84,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeDateTime(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeDateTime(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeDateTime();
@@ -81,7 +97,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeTime(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeTime(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeTime();
@@ -92,7 +110,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeTimestamp(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeTimestamp(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeTimestamp();
@@ -103,7 +123,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeInt32(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeInt32(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeInt32();
@@ -114,7 +136,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeInt64(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeInt64(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeInt64();
@@ -125,7 +149,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeEmail(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeEmail(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeEmail();
@@ -136,7 +162,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeUri(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeUri(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeUri();
@@ -147,7 +175,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromSystemNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromSystemNamespace(bool expected, OpenApiSchema openApiSchema)
+    public void HasFormatTypeFromSystemNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasFormatTypeFromSystemNamespace();
@@ -158,7 +188,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromSystemNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromSystemNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeFromSystemNamespace_List(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeFromSystemNamespace();
@@ -169,7 +201,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromDataAnnotationsNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromDataAnnotationsNamespace(bool expected, OpenApiSchema openApiSchema)
+    public void HasFormatTypeFromDataAnnotationsNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasFormatTypeFromDataAnnotationsNamespace();
@@ -180,7 +214,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromDataAnnotationsNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromDataAnnotationsNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeFromDataAnnotationsNamespace_List(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeFromDataAnnotationsNamespace();
@@ -191,7 +227,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatType(bool expected, OpenApiSchema openApiSchema)
+    public void HasFormatType(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasFormatType();
@@ -202,7 +240,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasModelNameOrAnyPropertiesWithModelNameItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasModelNameOrAnyPropertiesWithModelName(bool expected, OpenApiSchema openApiSchema, string modelName)
+    public void HasModelNameOrAnyPropertiesWithModelName(
+        bool expected,
+        OpenApiSchema openApiSchema,
+        string modelName)
     {
         // Act
         var actual = openApiSchema.HasModelNameOrAnyPropertiesWithModelName(modelName);
@@ -213,7 +254,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+    public void HasItemsWithSimpleDataType(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasItemsWithSimpleDataType();
@@ -224,7 +267,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasArrayItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasArrayItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+    public void HasArrayItemsWithSimpleDataType(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasArrayItemsWithSimpleDataType();
@@ -235,7 +280,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasPaginationItemsWithSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasPaginationItemsWithSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+    public void HasPaginationItemsWithSimpleDataType(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasPaginationItemsWithSimpleDataType();
@@ -246,7 +293,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasItemsWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasItemsWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+    public void HasItemsWithFormatTypeBinary(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasItemsWithFormatTypeBinary();
@@ -257,7 +306,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyProperties(bool expected, OpenApiSchema openApiSchema)
+    public void HasAnyProperties(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasAnyProperties();
@@ -268,7 +319,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyPropertiesWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+    public void HasAnyPropertiesWithFormatTypeBinary(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasAnyPropertiesWithFormatTypeBinary();
@@ -279,7 +332,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesAsArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyPropertiesAsArrayWithFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+    public void HasAnyPropertiesAsArrayWithFormatTypeBinary(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasAnyPropertiesAsArrayWithFormatTypeBinary();
@@ -290,7 +345,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnythingAsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnythingAsFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+    public void HasAnythingAsFormatTypeBinary(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasAnythingAsFormatTypeBinary();
@@ -301,7 +358,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyPropertiesFormatTypeFromSystemNamespace(bool expected, OpenApiSchema openApiSchema)
+    public void HasAnyPropertiesFormatTypeFromSystemNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemNamespace();
@@ -312,7 +371,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemasItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemas(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
+    public void HasAnyPropertiesFormatTypeFromSystemNamespaceWithComponentSchemas(
+        bool expected,
+        OpenApiSchema openApiSchema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         // Act
         var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
@@ -323,7 +385,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(bool expected, OpenApiSchema openApiSchema, IDictionary<string, OpenApiSchema> componentSchemas)
+    public void HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema,
+        IDictionary<string, OpenApiSchema> componentSchemas)
     {
         // Act
         var actual = openApiSchema.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas);
@@ -334,7 +399,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromAspNetCoreHttpNamespaceItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromAspNetCoreHttpNamespace(bool expected, OpenApiSchema openApiSchema)
+    public void HasFormatTypeFromAspNetCoreHttpNamespace(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.HasFormatTypeFromAspNetCoreHttpNamespace();
@@ -345,7 +412,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.HasFormatTypeFromAspNetCoreHttpNamespaceListItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void HasFormatTypeFromAspNetCoreHttpNamespace_List(bool expected, IList<OpenApiSchema> openApiSchemas)
+    public void HasFormatTypeFromAspNetCoreHttpNamespace_List(
+        bool expected,
+        IList<OpenApiSchema> openApiSchemas)
     {
         // Act
         var actual = openApiSchemas.HasFormatTypeFromAspNetCoreHttpNamespace();
@@ -356,7 +425,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypeArrayItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsTypeArray(bool expected, OpenApiSchema openApiSchema)
+    public void IsTypeArray(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsTypeArray();
@@ -367,7 +438,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypePaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsTypePagination(bool expected, OpenApiSchema openApiSchema)
+    public void IsTypePagination(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsTypePagination();
@@ -378,7 +451,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsTypeArrayOrPaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsTypeArrayOrPagination(bool expected, OpenApiSchema openApiSchema)
+    public void IsTypeArrayOrPagination(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsTypeArrayOrPagination();
@@ -389,7 +464,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeUuidItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeUuid(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeUuid(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeUuid();
@@ -400,7 +477,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeDateItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeDate(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeDate(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeDate();
@@ -411,7 +490,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeTime(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeTime(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeTime();
@@ -422,7 +503,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeTimestampItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeTimestamp(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeTimestamp(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeTimestamp();
@@ -433,7 +516,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeDateTimeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeDateTime(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeDateTime(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeDateTime();
@@ -444,7 +529,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeByteItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeByte(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeByte(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeByte();
@@ -455,7 +542,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeBinary(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeBinary(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeBinary();
@@ -466,7 +555,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeInt32ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeInt32(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeInt32(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeInt32();
@@ -477,7 +568,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeInt64ItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeInt64(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeInt64(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeInt64();
@@ -488,7 +581,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeEmailItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeEmail(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeEmail(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeEmail();
@@ -499,7 +594,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsFormatTypeUriItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsFormatTypeUri(bool expected, OpenApiSchema openApiSchema)
+    public void IsFormatTypeUri(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsFormatTypeUri();
@@ -510,7 +607,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsSimpleDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsSimpleDataType(bool expected, OpenApiSchema openApiSchema)
+    public void IsSimpleDataType(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsSimpleDataType();
@@ -521,7 +620,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsObjectReferenceTypeDeclaredItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsObjectReferenceTypeDeclared(bool expected, OpenApiSchema openApiSchema)
+    public void IsObjectReferenceTypeDeclared(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsObjectReferenceTypeDeclared();
@@ -532,7 +633,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsArrayReferenceTypeDeclaredItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsArrayReferenceTypeDeclared(bool expected, OpenApiSchema openApiSchema)
+    public void IsArrayReferenceTypeDeclared(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsArrayReferenceTypeDeclared();
@@ -543,7 +646,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsSchemaEnumItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsSchemaEnum(bool expected, OpenApiSchema openApiSchema)
+    public void IsSchemaEnum(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsSchemaEnum();
@@ -554,7 +659,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsSchemaEnumOrPropertyEnumItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsSchemaEnumOrPropertyEnum(bool expected, OpenApiSchema openApiSchema)
+    public void IsSchemaEnumOrPropertyEnum(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsSchemaEnumOrPropertyEnum();
@@ -565,7 +672,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsSharedContractItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsSharedContract(bool expected, OpenApiSchema openApiSchema, OpenApiComponents openApiComponents)
+    public void IsSharedContract(
+        bool expected,
+        OpenApiSchema openApiSchema,
+        OpenApiComponents openApiComponents)
     {
         // Act
         var actual = openApiSchema.IsSharedContract(openApiComponents);
@@ -576,7 +686,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetModelNameItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetModelName(string expected, OpenApiSchema openApiSchema)
+    public void GetModelName(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetModelName();
@@ -587,7 +699,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetModelNameEnsureFirstCharacterToUpperItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetModelName_EnsureFirstCharacterToUpper(string expected, OpenApiSchema openApiSchema, bool ensureFirstCharacterToUpper)
+    public void GetModelName_EnsureFirstCharacterToUpper(
+        string expected,
+        OpenApiSchema openApiSchema,
+        bool ensureFirstCharacterToUpper)
     {
         // Act
         var actual = openApiSchema.GetModelName(ensureFirstCharacterToUpper);
@@ -598,7 +713,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetModelTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetModelType(string expected, OpenApiSchema openApiSchema)
+    public void GetModelType(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetModelType();
@@ -609,7 +726,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetDataTypeItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetDataType(string expected, OpenApiSchema openApiSchema)
+    public void GetDataType(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetDataType();
@@ -620,7 +739,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSimpleDataTypeFromArrayItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetSimpleDataTypeFromArray(string expected, OpenApiSchema openApiSchema)
+    public void GetSimpleDataTypeFromArray(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetSimpleDataTypeFromArray();
@@ -631,7 +752,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSimpleDataTypeFromPaginationItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetSimpleDataTypeFromPagination(string expected, OpenApiSchema openApiSchema)
+    public void GetSimpleDataTypeFromPagination(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetSimpleDataTypeFromPagination();
@@ -642,7 +765,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetTitleFromPropertyByPropertyKeyItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetTitleFromPropertyByPropertyKey(string expected, OpenApiSchema openApiSchema, string propertyKey)
+    public void GetTitleFromPropertyByPropertyKey(
+        string expected,
+        OpenApiSchema openApiSchema,
+        string propertyKey)
     {
         // Act
         var actual = openApiSchema.GetTitleFromPropertyByPropertyKey(propertyKey);
@@ -653,7 +779,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetEnumSchemaItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetEnumSchema(Tuple<string, int> expected, OpenApiSchema openApiSchema)
+    public void GetEnumSchema(
+        Tuple<string, int> expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.GetEnumSchema();
@@ -665,7 +793,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationStringItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsRuleValidationString(bool expected, OpenApiSchema openApiSchema)
+    public void IsRuleValidationString(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsRuleValidationString();
@@ -676,7 +806,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.IsRuleValidationNumberItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void IsRuleValidationNumber(bool expected, OpenApiSchema openApiSchema)
+    public void IsRuleValidationNumber(
+        bool expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.IsRuleValidationNumber();
@@ -687,7 +819,10 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.GetSchemaByModelNameItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void GetSchemaByModelName(OpenApiSchema expected, IDictionary<string, OpenApiSchema> componentSchemas, string modelName)
+    public void GetSchemaByModelName(
+        OpenApiSchema expected,
+        IDictionary<string, OpenApiSchema> componentSchemas,
+        string modelName)
     {
         // Act
         var actual = componentSchemas.GetSchemaByModelName(modelName);
@@ -702,7 +837,9 @@ public class OpenApiSchemaExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForOpenApiSchemaExtensions.ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinaryItemData), MemberType = typeof(TestMemberDataForOpenApiSchemaExtensions))]
-    public void ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(string expected, OpenApiSchema openApiSchema)
+    public void ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(
+        string expected,
+        OpenApiSchema openApiSchema)
     {
         // Act
         var actual = openApiSchema.ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary();

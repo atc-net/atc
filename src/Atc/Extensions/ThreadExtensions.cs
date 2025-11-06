@@ -12,7 +12,9 @@ public static class ThreadExtensions
     /// <param name="thread">The thread to modify.</param>
     /// <param name="cultureInfo">The culture information to set.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="thread"/> or <paramref name="cultureInfo"/> is null.</exception>
-    public static void SetCulture(this Thread thread, CultureInfo cultureInfo)
+    public static void SetCulture(
+        this Thread thread,
+        CultureInfo cultureInfo)
     {
         if (thread is null)
         {

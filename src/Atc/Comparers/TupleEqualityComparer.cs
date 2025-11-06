@@ -16,7 +16,9 @@ public class TupleEqualityComparer<T1, T2> : EqualityComparer<Tuple<T1, T2>>
     /// <param name="y">The second tuple to compare.</param>
     /// <returns><c>true</c> if both Item1 and Item2 of the tuples are equal; otherwise, <c>false</c>.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="x"/> or <paramref name="y"/> is null.</exception>
-    public override bool Equals(Tuple<T1, T2>? x, Tuple<T1, T2>? y)
+    public override bool Equals(
+        Tuple<T1, T2>? x,
+        Tuple<T1, T2>? y)
     {
         if (x is null)
         {
