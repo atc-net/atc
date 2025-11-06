@@ -41,10 +41,10 @@ jobs:
       - name: 🛠️ Building library in release mode
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true
 
-      - name: 🛠️ Building library in release mode for netstandard2.0
+      - name: 🛠️ Building library in release mode for netstandard2.0 - Atc.CodeAnalysis.CSharp
         run: dotnet build -c Release --no-restore -f netstandard2.0 src/Atc.CodeAnalysis.CSharp/Atc.CodeAnalysis.CSharp.csproj
 
-      - name: 🛠️ Building library in release mode for netstandard2.1
+      - name: 🛠️ Building library in release mode for netstandard2.1 - Atc
         run: dotnet build -c Release --no-restore -f netstandard2.1 src/Atc/Atc.csproj
 
       - name: ⏩ Merge to release-branch
