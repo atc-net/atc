@@ -7,23 +7,33 @@ namespace Atc.Tests.Extensions;
 public class DirectoryInfoExtensionsTests
 {
     [Theory]
-    [InlineData(@"C:\Projects\Extensions\ServiceCollectionExtensions.cs", @"C:\Projects", "Extensions", "ServiceCollectionExtensions.cs")]
-    [InlineData(@"C:\Projects\Config\appsettings.json", @"C:\Projects", "Config", "appsettings.json")]
-    [InlineData(@"C:\Users\User\Documents\Reports\AnnualReport.pdf", @"C:\Users\User\Documents", "Reports", "AnnualReport.pdf")]
+    [InlineData("Extensions", "ServiceCollectionExtensions.cs")]
+    [InlineData("Config", "appsettings.json")]
+    [InlineData("Reports", "AnnualReport.pdf")]
     public void CombineFileInfo(
-        string expected,
-        string baseDir,
         string subPath1,
         string subPath2)
     {
         // Arrange
-        var baseDirectoryInfo = new DirectoryInfo(baseDir);
+        var tempDir = DirectoryInfoHelper.GetTempPathWithSubFolder(nameof(DirectoryInfoExtensionsTests));
+        if (!tempDir.Exists)
+        {
+            Directory.CreateDirectory(tempDir.FullName);
+        }
+
+        var expected = Path.Combine(tempDir.FullName, subPath1, subPath2);
 
         // Act
-        var result = baseDirectoryInfo.CombineFileInfo(subPath1, subPath2);
+        var result = tempDir.CombineFileInfo(subPath1, subPath2);
 
         // Assert
         Assert.Equal(expected, result.FullName);
+
+        // Cleanup
+        if (tempDir.Exists)
+        {
+            Directory.Delete(tempDir.FullName, recursive: true);
+        }
     }
 
     [Theory]

@@ -1,5 +1,7 @@
 namespace Atc.Tests.Extensions;
 
+[Trait(Traits.Category, Traits.Categories.Integration)]
+[Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class AppDomainExtensionsTests
 {
     [Fact]
