@@ -1,6 +1,8 @@
 // ReSharper disable IdentifierTypo
 namespace Atc.Tests.Helpers;
 
+[Trait(Traits.Category, Traits.Categories.Integration)]
+[Trait(Traits.Category, Traits.Categories.SkipWhenLiveUnitTesting)]
 public class CultureHelperTests
 {
     public CultureHelperTests()
