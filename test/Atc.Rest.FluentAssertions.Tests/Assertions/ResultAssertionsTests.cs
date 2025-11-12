@@ -10,7 +10,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeContentResult())
+        sut
+            .Invoking(x => x.BeContentResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected type to be Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -24,7 +25,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeContentResult())
+        sut
+            .Invoking(x => x.BeContentResult())
             .Should()
             .NotThrow();
     }
@@ -37,7 +39,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeOkResult())
+        sut
+            .Invoking(x => x.BeOkResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.OkObjectResult, but found {target.GetType().FullName}.");
@@ -51,7 +54,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeOkResult())
+        sut
+            .Invoking(x => x.BeOkResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 200, but found {target.StatusCode}.");
@@ -65,7 +69,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeOkResult())
+        sut
+            .Invoking(x => x.BeOkResult())
             .Should()
             .NotThrow();
     }
@@ -78,7 +83,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeCreatedResult())
+        sut
+            .Invoking(x => x.BeCreatedResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -92,7 +98,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeCreatedResult())
+        sut
+            .Invoking(x => x.BeCreatedResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 201, but found {target.StatusCode}.");
@@ -106,7 +113,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeCreatedResult())
+        sut
+            .Invoking(x => x.BeCreatedResult())
             .Should()
             .NotThrow();
     }
@@ -119,7 +127,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeAcceptedResult())
+        sut
+            .Invoking(x => x.BeAcceptedResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -133,7 +142,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeAcceptedResult())
+        sut
+            .Invoking(x => x.BeAcceptedResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 202, but found {target.StatusCode}.");
@@ -147,7 +157,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeAcceptedResult())
+        sut
+            .Invoking(x => x.BeAcceptedResult())
             .Should()
             .NotThrow();
     }
@@ -160,7 +171,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNoContentResult())
+        sut
+            .Invoking(x => x.BeNoContentResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -174,7 +186,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNoContentResult())
+        sut
+            .Invoking(x => x.BeNoContentResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 204, but found {target.StatusCode}.");
@@ -188,7 +201,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNoContentResult())
+        sut
+            .Invoking(x => x.BeNoContentResult())
             .Should()
             .NotThrow();
     }
@@ -201,7 +215,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeBadRequestResult())
+        sut
+            .Invoking(x => x.BeBadRequestResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -215,7 +230,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeBadRequestResult())
+        sut
+            .Invoking(x => x.BeBadRequestResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 400, but found {target.StatusCode}.");
@@ -229,7 +245,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeBadRequestResult())
+        sut
+            .Invoking(x => x.BeBadRequestResult())
             .Should()
             .NotThrow();
     }
@@ -242,7 +259,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNotFoundResult())
+        sut
+            .Invoking(x => x.BeNotFoundResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -256,7 +274,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNotFoundResult())
+        sut
+            .Invoking(x => x.BeNotFoundResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 404, but found {target.StatusCode}.");
@@ -270,7 +289,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeNotFoundResult())
+        sut
+            .Invoking(x => x.BeNotFoundResult())
             .Should()
             .NotThrow();
     }
@@ -283,7 +303,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeConflictResult())
+        sut
+            .Invoking(x => x.BeConflictResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected result to be of type Microsoft.AspNetCore.Mvc.ContentResult, but found {target.GetType().FullName}.");
@@ -297,7 +318,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeConflictResult())
+        sut
+            .Invoking(x => x.BeConflictResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"Expected status code from result to be 409, but found {target.StatusCode}.");
@@ -311,7 +333,8 @@ public class ResultAssertionsTests
         var sut = new ResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.BeConflictResult())
+        sut
+            .Invoking(x => x.BeConflictResult())
             .Should()
             .NotThrow();
     }

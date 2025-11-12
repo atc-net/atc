@@ -122,9 +122,7 @@ public static class MathEx
     /// <param name="x">The input value.</param>
     /// <returns>0 if <paramref name="x"/> is negative; otherwise, 1.</returns>
     public static int Step(int x)
-    {
-        return x < 0 ? 0 : 1;
-    }
+        => x < 0 ? 0 : 1;
 
     /// <summary>
     /// Implements a rectangular (pulse) function that returns a specified height within a defined width, otherwise 0.
@@ -137,9 +135,7 @@ public static class MathEx
         int x,
         int width = 1,
         int height = 1)
-    {
-        return x < 0 || x >= width ? 0 : height;
-    }
+        => x < 0 || x >= width ? 0 : height;
 
     /// <summary>
     /// Implements a hysteresis (hysteron) operator where the output depends on both current input and previous state.
@@ -232,9 +228,7 @@ public static class MathEx
     public static Func<int, int> Multiply(
         Func<int, int> f,
         Func<int, int> g)
-    {
-        return x => f(x) * g(x);
-    }
+        => x => f(x) * g(x);
 
     /// <summary>
     /// Creates a new function that represents the composition of two functions.
@@ -245,9 +239,7 @@ public static class MathEx
     public static Func<int, int> Compose(
         Func<int, int> f,
         Func<int, int> g)
-    {
-        return x => f(g(x));
-    }
+        => x => f(g(x));
 
     /// <summary>
     /// Creates a quantized version of a function by applying floor quantization to its input.
@@ -258,9 +250,7 @@ public static class MathEx
     public static Func<int, int> Floor(
         Func<int, int> f,
         int period)
-    {
-        return x => f(Floor(x, period));
-    }
+        => x => f(Floor(x, period));
 
     /// <summary>
     /// Creates a quantized version of a function by applying ceiling quantization to its input.
@@ -271,9 +261,7 @@ public static class MathEx
     public static Func<int, int> Ceiling(
         Func<int, int> f,
         int period)
-    {
-        return x => f(Ceiling(x, period));
-    }
+        => x => f(Ceiling(x, period));
 
     /// <summary>
     /// Creates a periodic version of a function by applying sawtooth wrapping to its input.
@@ -284,9 +272,7 @@ public static class MathEx
     public static Func<int, int> Periodic(
         Func<int, int> f,
         int period)
-    {
-        return x => f(SawTooth(x, period));
-    }
+        => x => f(SawTooth(x, period));
 
     /// <summary>
     /// Creates a modulated function by combining a carrier function with a cell function.
@@ -303,8 +289,7 @@ public static class MathEx
         Func<int, int> carrier,
         Func<int, int> cellFunction,
         int period)
-    {
-        return x =>
+        => x =>
         {
             var n0 = Floor(carrier, period)(x);
             var n1 = Floor(carrier, period)(x + period);
@@ -312,5 +297,4 @@ public static class MathEx
             // ReSharper disable once StyleCop.SA1407
             return n0 + ((n1 - n0) * Periodic(cellFunction, period)(x));
         };
-    }
 }

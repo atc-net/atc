@@ -74,10 +74,8 @@ public class AssemblyExtensionsTests
 
         // Assert
         types
-            .Should()
-            .NotBeNull()
-            .And
-            .HaveCountGreaterOrEqualTo(1);
+            .Should().NotBeNull()
+            .And.HaveCountGreaterOrEqualTo(1);
     }
 
     [Fact]

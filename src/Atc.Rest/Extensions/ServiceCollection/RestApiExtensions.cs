@@ -13,10 +13,9 @@ public static class RestApiExtensions
     /// <typeparam name="TStartup">The startup class type (used for assembly discovery).</typeparam>
     /// <param name="services">The service collection.</param>
     /// <returns>The service collection for method chaining.</returns>
-    public static IServiceCollection AddRestApi<TStartup>(this IServiceCollection services)
-    {
-        return services.AddRestApi<TStartup>(_ => { }, new RestApiOptions());
-    }
+    public static IServiceCollection AddRestApi<TStartup>(
+        this IServiceCollection services)
+        => services.AddRestApi<TStartup>(_ => { }, new RestApiOptions());
 
     /// <summary>
     /// Registers REST API services with the specified configuration options.
@@ -28,9 +27,7 @@ public static class RestApiExtensions
     public static IServiceCollection AddRestApi<TStartup>(
         this IServiceCollection services,
         RestApiOptions restApiOptions)
-    {
-        return services.AddRestApi<TStartup>(_ => { }, restApiOptions);
-    }
+        => services.AddRestApi<TStartup>(_ => { }, restApiOptions);
 
     /// <summary>
     /// Registers REST API services with custom MVC configuration and options.

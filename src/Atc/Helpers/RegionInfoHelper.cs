@@ -48,9 +48,7 @@ public static class RegionInfoHelper
     /// </summary>
     /// <param name="lcid">The lcid.</param>
     public static RegionInfo GetRegionInfoByLcid(int lcid)
-    {
-        return new RegionInfo(lcid);
-    }
+        => new(lcid);
 
     /// <summary>
     /// Gets the region information by iso alpha3.
@@ -82,13 +80,15 @@ public static class RegionInfoHelper
 
         if ("USA".Equals(isoAlpha3Code, StringComparison.OrdinalIgnoreCase))
         {
-            return CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            return CultureInfo
+                .GetCultures(CultureTypes.SpecificCultures)
                 .FirstOrDefault(x => x.LCID == GlobalizationLcidConstants.UnitedStates);
         }
 
         if ("GBR".Equals(isoAlpha3Code, StringComparison.OrdinalIgnoreCase))
         {
-            return CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            return CultureInfo
+                .GetCultures(CultureTypes.SpecificCultures)
                 .FirstOrDefault(x => x.LCID == GlobalizationLcidConstants.GreatBritain);
         }
 
@@ -141,7 +141,9 @@ public static class RegionInfoHelper
         {
             var regionInfos = GetAllRegionInfos();
             var lcids = new List<int>();
-            foreach (var lcid in regionInfos.Select(GetLcidFromRegionInfo).Where(lcid => lcid != -1 && !lcids.Contains(lcid)))
+            foreach (var lcid in regionInfos
+                         .Select(GetLcidFromRegionInfo)
+                         .Where(lcid => lcid != -1 && !lcids.Contains(lcid)))
             {
                 try
                 {
@@ -153,7 +155,9 @@ public static class RegionInfoHelper
                 }
             }
 
-            return lcids.OrderBy(x => x).ToList();
+            return lcids
+                .OrderBy(x => x)
+                .ToList();
         }
     }
 }

@@ -37,8 +37,7 @@ public class DynamicJson
     /// <param name="jsonString">The JSON string to parse.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="jsonString"/> is null.</exception>
     /// <exception cref="FormatException">Thrown when <paramref name="jsonString"/> is not valid JSON format.</exception>
-    public DynamicJson(
-        string jsonString)
+    public DynamicJson(string jsonString)
     {
         if (jsonString is null)
         {
@@ -59,8 +58,7 @@ public class DynamicJson
     /// <param name="jsonFile">The JSON file to read and parse.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="jsonFile"/> is null.</exception>
     /// <exception cref="FormatException">Thrown when the file contents are not valid JSON format.</exception>
-    public DynamicJson(
-        FileInfo jsonFile)
+    public DynamicJson(FileInfo jsonFile)
     {
         if (jsonFile is null)
         {
@@ -82,8 +80,7 @@ public class DynamicJson
     /// <param name="path">The dot-notation path to the value (e.g., "Property1.Property2" or "Array[0].Property").</param>
     /// <returns>The value at the specified path, or null if the path does not exist.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
-    public object? GetValue(
-        string path)
+    public object? GetValue(string path)
     {
         if (path is null)
         {
@@ -132,8 +129,7 @@ public class DynamicJson
     /// <param name="path">The dot-notation path to the property to remove (e.g., "Property1.Property2").</param>
     /// <returns>A tuple indicating whether the operation succeeded and an error message if it failed.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
-    public (bool IsSucceeded, string? ErrorMessage) RemovePath(
-        string path)
+    public (bool IsSucceeded, string? ErrorMessage) RemovePath(string path)
     {
         if (path is null)
         {
@@ -153,8 +149,7 @@ public class DynamicJson
     /// </summary>
     /// <param name="orderByKey">If true, sorts the JSON properties alphabetically by key. Default is false.</param>
     /// <returns>A JSON string representation of the structure.</returns>
-    public string ToJson(
-        bool orderByKey = false)
+    public string ToJson(bool orderByKey = false)
         => ToJson(
             JsonSerializerOptionsFactory.Create(),
             orderByKey);
@@ -185,12 +180,10 @@ public class DynamicJson
     /// </summary>
     /// <param name="serializerOptions">The <see cref="JsonSerializerOptions"/> to use for serialization.</param>
     /// <returns>A JSON string representation of the structure.</returns>
-    public string ToString(
-        JsonSerializerOptions serializerOptions)
+    public string ToString(JsonSerializerOptions serializerOptions)
         => ToJson(serializerOptions);
 
-    private void SerializableAndSetJsonDictionary(
-        string jsonString)
+    private void SerializableAndSetJsonDictionary(string jsonString)
     {
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
         jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
@@ -199,8 +192,7 @@ public class DynamicJson
         JsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object?>>(jsonString, jsonSerializerOptions)!;
     }
 
-    private static IReadOnlyList<string> GetSegmentsFromPath(
-        string path)
+    private static IReadOnlyList<string> GetSegmentsFromPath(string path)
         => path
             .Replace('[', '.')
             .Replace("]", string.Empty, StringComparison.Ordinal)

@@ -14,7 +14,12 @@ public class SyntaxVariableDeclarationFactoryTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(identifierTypeName, result.Type.ToString().Trim(), StringComparer.Ordinal);
+        var resultTypeAsSt = result
+            .Type
+            .ToString()
+            .Trim();
+
+        Assert.Equal(identifierTypeName, resultTypeAsSt, StringComparer.Ordinal);
         Assert.Single(result.Variables);
         Assert.Equal(identifierName, result.Variables[0].Identifier.Text, StringComparer.Ordinal);
     }

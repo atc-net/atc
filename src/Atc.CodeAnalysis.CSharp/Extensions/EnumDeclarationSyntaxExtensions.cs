@@ -34,15 +34,18 @@ public static class EnumDeclarationSyntaxExtensions
         }
 
         var attributeArgumentList = SyntaxFactory.AttributeArgumentList(
-            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(SyntaxFactory.NodeOrTokenList(
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
-                    .WithNameEquals(
-                        SyntaxNameEqualsFactory.Create(nameof(SuppressMessageAttribute.Justification))
-                            .WithEqualsToken(SyntaxTokenFactory.Equals())))));
+            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(
+                SyntaxFactory.NodeOrTokenList(
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory
+                        .AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
+                        .WithNameEquals(
+                            SyntaxNameEqualsFactory
+                                .Create(nameof(SuppressMessageAttribute.Justification))
+                                .WithEqualsToken(SyntaxTokenFactory.Equals())))));
 
         return enumDeclaration
             .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(SuppressMessageAttribute), attributeArgumentList));
@@ -54,7 +57,8 @@ public static class EnumDeclarationSyntaxExtensions
     /// <param name="enumDeclaration">The enum declaration to modify.</param>
     /// <returns>A new <see cref="EnumDeclarationSyntax"/> with the attribute added.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="enumDeclaration"/> is null.</exception>
-    public static EnumDeclarationSyntax AddFlagAttribute(this EnumDeclarationSyntax enumDeclaration)
+    public static EnumDeclarationSyntax AddFlagAttribute(
+        this EnumDeclarationSyntax enumDeclaration)
     {
         if (enumDeclaration is null)
         {
@@ -82,6 +86,8 @@ public static class EnumDeclarationSyntaxExtensions
         }
 
         var attributeName = attributeType.Name.Replace("Attribute", string.Empty, StringComparison.Ordinal);
-        return enumDeclaration.Select<AttributeSyntax>().Any(x => attributeName.Equals(x.Name.ToString(), StringComparison.Ordinal));
+        return enumDeclaration
+            .Select<AttributeSyntax>()
+            .Any(x => attributeName.Equals(x.Name.ToString(), StringComparison.Ordinal));
     }
 }

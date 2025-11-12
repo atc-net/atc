@@ -7,6 +7,102 @@ namespace Atc.Tests.Extensions;
 public class EnumerableExtensionsTests
 {
     [Fact]
+    public void SelectToArray_ProjectsAndConvertsToArray()
+    {
+        // Arrange
+        var source = new[] { 1, 2, 3, 4, 5 };
+
+        // Act
+        var actual = source.SelectToArray(x => x * 2);
+
+        // Assert
+        Assert.Equal(new[] { 2, 4, 6, 8, 10 }, actual);
+        Assert.IsType<int[]>(actual);
+    }
+
+    [Fact]
+    public void SelectToArray_WithComplexTransformation()
+    {
+        // Arrange
+        var source = new[] { "apple", "banana", "cherry" };
+
+        // Act
+        var actual = source.SelectToArray(x => x.ToUpperInvariant());
+
+        // Assert
+        Assert.Equal(new[] { "APPLE", "BANANA", "CHERRY" }, actual);
+    }
+
+    [Fact]
+    public void SelectToArray_ThrowsArgumentNullException_ForNullSource()
+    {
+        // Arrange
+        IEnumerable<int>? source = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => source!.SelectToArray(x => x * 2));
+    }
+
+    [Fact]
+    public void SelectToArray_ThrowsArgumentNullException_ForNullSelector()
+    {
+        // Arrange
+        var source = new[] { 1, 2, 3 };
+        Func<int, int>? selector = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => source.SelectToArray(selector!));
+    }
+
+    [Fact]
+    public void SelectToList_ProjectsAndConvertsToList()
+    {
+        // Arrange
+        var source = new[] { 1, 2, 3, 4, 5 };
+
+        // Act
+        var actual = source.SelectToList(x => x * 2);
+
+        // Assert
+        Assert.Equal(new List<int> { 2, 4, 6, 8, 10 }, actual);
+        Assert.IsType<List<int>>(actual);
+    }
+
+    [Fact]
+    public void SelectToList_WithComplexTransformation()
+    {
+        // Arrange
+        var source = new[] { "apple", "banana", "cherry" };
+
+        // Act
+        var actual = source.SelectToList(x => x.Length);
+
+        // Assert
+        Assert.Equal(new List<int> { 5, 6, 6 }, actual);
+    }
+
+    [Fact]
+    public void SelectToList_ThrowsArgumentNullException_ForNullSource()
+    {
+        // Arrange
+        IEnumerable<int>? source = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => source!.SelectToList(x => x * 2));
+    }
+
+    [Fact]
+    public void SelectToList_ThrowsArgumentNullException_ForNullSelector()
+    {
+        // Arrange
+        var source = new[] { 1, 2, 3 };
+        Func<int, int>? selector = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => source.SelectToList(selector!));
+    }
+
+    [Fact]
     public async Task ToAsyncEnumerable_ConvertsIEnumerableToIAsyncEnumerable()
     {
         // Arrange

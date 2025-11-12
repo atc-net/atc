@@ -20,7 +20,8 @@ public static class OpenApiOperationExtensions
     /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the name from.</param>
     /// <returns>The operation name in PascalCase format, or an empty string if OperationId is null.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static string GetOperationName(this OpenApiOperation openApiOperation)
+    public static string GetOperationName(
+        this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
         {
@@ -44,7 +45,8 @@ public static class OpenApiOperationExtensions
     /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the schema from.</param>
     /// <returns>The <see cref="OpenApiSchema"/> from the response, or null if not found.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static OpenApiSchema? GetModelSchemaFromResponse(this OpenApiOperation openApiOperation)
+    public static OpenApiSchema? GetModelSchemaFromResponse(
+        this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
         {
@@ -74,7 +76,8 @@ public static class OpenApiOperationExtensions
     /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to extract the schema from.</param>
     /// <returns>The <see cref="OpenApiSchema"/> from the request body, or null if not found.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static OpenApiSchema? GetModelSchemaFromRequest(this OpenApiOperation openApiOperation)
+    public static OpenApiSchema? GetModelSchemaFromRequest(
+        this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
         {
@@ -90,7 +93,8 @@ public static class OpenApiOperationExtensions
     /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
     /// <returns>True if the operation has parameters or a request body; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static bool HasParametersOrRequestBody(this OpenApiOperation openApiOperation)
+    public static bool HasParametersOrRequestBody(
+        this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
         {
@@ -106,7 +110,8 @@ public static class OpenApiOperationExtensions
     /// <param name="openApiOperation">The <see cref="OpenApiOperation"/> to check.</param>
     /// <returns>True if the request body contains binary format data; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="openApiOperation"/> is null.</exception>
-    public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(this OpenApiOperation openApiOperation)
+    public static bool HasRequestBodyWithAnythingAsFormatTypeBinary(
+        this OpenApiOperation openApiOperation)
     {
         if (openApiOperation is null)
         {
@@ -242,7 +247,8 @@ public static class OpenApiOperationExtensions
     /// <param name="apiOperations">The collection of <see cref="OpenApiOperation"/> to check.</param>
     /// <returns>True if any operation response contains array data types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="apiOperations"/> is null.</exception>
-    public static bool HasDataTypeFromSystemCollectionGenericNamespace(this List<OpenApiOperation> apiOperations)
+    public static bool HasDataTypeFromSystemCollectionGenericNamespace(
+        this List<OpenApiOperation> apiOperations)
     {
         if (apiOperations is null)
         {

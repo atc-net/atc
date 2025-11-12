@@ -5,7 +5,8 @@ internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConso
 {
     private readonly ILogger<BuildDemoConsoleSpectreCliCommand> logger;
 
-    public BuildDemoConsoleSpectreCliCommand(ILogger<BuildDemoConsoleSpectreCliCommand> logger)
+    public BuildDemoConsoleSpectreCliCommand(
+        ILogger<BuildDemoConsoleSpectreCliCommand> logger)
     {
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
@@ -25,7 +26,10 @@ internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConso
         }
         while (!directory.Name.Equals("sample", StringComparison.OrdinalIgnoreCase));
 
-        var demoDirectory = directory.GetDirectories("Demo.Atc.Console.Spectre.Cli", SearchOption.AllDirectories).Single();
+        var demoDirectory = directory
+            .GetDirectories("Demo.Atc.Console.Spectre.Cli", SearchOption.AllDirectories)
+            .Single();
+
         var demoCsproj = new FileInfo(Path.Combine(demoDirectory.FullName, "Demo.Atc.Console.Spectre.Cli.csproj"));
 
         var buildAndCollectErrors = TaskHelper.RunSync(() =>

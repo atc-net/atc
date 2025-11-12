@@ -22,8 +22,6 @@ public sealed class TypeDiscriminatorJsonConverterTests
         var actualData = JsonSerializer.Deserialize<List<VehicleBase>>(actualJson, jsonSerializerOptions);
 
         // Assert
-        actualData
-            .Should()
-            .BeEquivalentTo(data);
+        actualData.Should().BeEquivalentTo(data);
     }
 }

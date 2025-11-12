@@ -11,5 +11,6 @@ internal sealed class Car : VehicleBase
 
     public bool HasSunroof { get; set; }
 
-    public override string ToString() => $"{base.ToString()}, {nameof(HasSunroof)}: {HasSunroof}";
+    public override string ToString()
+        => $"{base.ToString()}, {nameof(HasSunroof)}: {HasSunroof}";
 }

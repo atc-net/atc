@@ -20,7 +20,9 @@ public static class UsingDirectiveSyntaxExtensions
                 .OrderBy(Compare)
                 .ThenBy(x => x.Alias?.ToString(), StringComparer.Ordinal)
                 .ThenByDescending(x => placeSystemNamespaceFirst &&
-                                       x.Name!.ToString().StartsWith(nameof(System), StringComparison.Ordinal))
+                                       x.Name!
+                                           .ToString()
+                                           .StartsWith(nameof(System), StringComparison.Ordinal))
                 .ThenBy(x => x.Name!.ToString(), StringComparer.Ordinal));
 
     private static int Compare(UsingDirectiveSyntax directive)

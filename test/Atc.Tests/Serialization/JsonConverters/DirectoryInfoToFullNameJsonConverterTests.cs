@@ -27,7 +27,8 @@ public sealed class DirectoryInfoToFullNameJsonConverterTests
 
     [Theory]
     [InlineData(@"C:\Temp")]
-    public void Write_ShouldWriteDirectoryInfoFullNameToUtf8JsonWriter(string directory)
+    public void Write_ShouldWriteDirectoryInfoFullNameToUtf8JsonWriter(
+        string directory)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();

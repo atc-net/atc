@@ -20,7 +20,8 @@ internal static class TestMemberDataForOpenApiMediaTypeExtensions
             { OpenApiDataTypeConstants.Array, MediaTypeNames.Application.Json, CreateContent(OpenApiDataTypeConstants.Array) },
         };
 
-    private static IDictionary<string, OpenApiMediaType> CreateContent(string typeName)
+    private static IDictionary<string, OpenApiMediaType> CreateContent(
+        string typeName)
         => new Dictionary<string, OpenApiMediaType>(StringComparer.Ordinal)
         {
             {

@@ -88,7 +88,8 @@ public static class TaskHelper
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "OK.")]
     [SuppressMessage("Code Smell", "S112:General exceptions should never be thrown", Justification = "OK.")]
-    public static async Task<IEnumerable<T>> WhenAll<T>(IEnumerable<Task<T>> tasks)
+    public static async Task<IEnumerable<T>> WhenAll<T>(
+        IEnumerable<Task<T>> tasks)
     {
         var allTasks = Task.WhenAll(tasks);
 
@@ -181,15 +182,16 @@ public static class TaskHelper
     /// <param name="action">The action to execute asynchronously.</param>
     /// <exception cref="ArgumentNullException">Thrown if the action is null.</exception>
     [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
-    public static void FireAndForget(
-        Action action)
+    public static void FireAndForget(Action action)
     {
         if (action is null)
         {
             throw new ArgumentNullException(nameof(action));
         }
 
-        Task.Run(action).Forget();
+        Task
+            .Run(action)
+            .Forget();
     }
 
     /// <summary>
@@ -200,8 +202,7 @@ public static class TaskHelper
     /// <param name="task">The task to execute and forget.</param>
     /// <exception cref="ArgumentNullException">Thrown if the task is null.</exception>
     [SuppressMessage("Design", "CA1030:Use events where appropriate", Justification = "OK.")]
-    public static void FireAndForget(
-        Task task)
+    public static void FireAndForget(Task task)
     {
         if (task is null)
         {

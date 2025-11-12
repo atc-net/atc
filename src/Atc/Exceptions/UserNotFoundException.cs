@@ -22,8 +22,7 @@ public class UserNotFoundException : Exception
     /// Initializes a new instance of the <see cref="UserNotFoundException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public UserNotFoundException(
-        string message)
+    public UserNotFoundException(string message)
         : base(message)
     {
     }

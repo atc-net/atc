@@ -28,7 +28,8 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent(content))
+        sut
+            .Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
             .WithMessage(expectedMessage + "*");
@@ -43,7 +44,8 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+        sut
+            .Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content of content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
@@ -62,7 +64,8 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>();
         //// TODO: Waiting for Github issue
@@ -78,7 +81,8 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .NotThrow();
     }
@@ -95,12 +99,14 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithStatusCode(StatusCodes.Status200OK, "FOO {0}", "BAR"))
+        sut
+            .Invoking(x => x.WithStatusCode(StatusCodes.Status200OK, "FOO {0}", "BAR"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected status code to be 200 because FOO BAR, but found 100.");
 
-        sut.Invoking(x => x.WithStatusCode(HttpStatusCode.OK, "FOO {0}", "BAR"))
+        sut
+            .Invoking(x => x.WithStatusCode(HttpStatusCode.OK, "FOO {0}", "BAR"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected status code to be 200 because FOO BAR, but found 100.");
@@ -118,11 +124,13 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithStatusCode(StatusCodes.Status200OK, "FOO", "BAR"))
+        sut
+            .Invoking(x => x.WithStatusCode(StatusCodes.Status200OK, "FOO", "BAR"))
             .Should()
             .NotThrow();
 
-        sut.Invoking(x => x.WithStatusCode(HttpStatusCode.OK, "FOO", "BAR"))
+        sut
+            .Invoking(x => x.WithStatusCode(HttpStatusCode.OK, "FOO", "BAR"))
             .Should()
             .NotThrow();
     }
@@ -136,7 +144,8 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContentOfType<int>("Because of something"))
+        sut
+            .Invoking(x => x.WithContentOfType<int>("Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected type of content in content result to be System.Int32 Because of something, but found """"FOO"""".");
@@ -151,6 +160,10 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ContentResultAssertions(target);
 
         // Act & Assert
-        sut.WithContentOfType<string>().Subject.Should().Be("FOO");
+        sut
+            .WithContentOfType<string>()
+            .Subject
+            .Should()
+            .Be("FOO");
     }
 }

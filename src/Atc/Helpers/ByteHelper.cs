@@ -9,8 +9,7 @@ public static class ByteHelper
     /// Convert the <see cref="int"/> value to two bytes.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static byte[] ConvertToTwoBytes(
-        int value)
+    public static byte[] ConvertToTwoBytes(int value)
     {
         var src = BitConverter.GetBytes(value);
         var dest = new byte[2];
@@ -22,18 +21,14 @@ public static class ByteHelper
     /// Convert the <see cref="int"/> value to four bytes.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static byte[] ConvertToFourBytes(
-        int value)
-    {
-        return BitConverter.GetBytes(value);
-    }
+    public static byte[] ConvertToFourBytes(int value)
+        => BitConverter.GetBytes(value);
 
     /// <summary>
     /// Create a array with the given size that only contains zeros.
     /// </summary>
     /// <param name="size">The size.</param>
-    public static byte[] CreateZeroArray(
-        int size)
+    public static byte[] CreateZeroArray(int size)
         => new byte[size];
 
     /// <summary>
@@ -75,7 +70,6 @@ public static class ByteHelper
     /// Console.WriteLine(hex); // Outputs: 0x1A, 0x2B, 0x3C
     /// </code>
     /// </example>
-    public static string ToStringWithPrefix(
-        byte[] bytes)
+    public static string ToStringWithPrefix(byte[] bytes)
         => bytes.ToHexWithPrefix();
 }

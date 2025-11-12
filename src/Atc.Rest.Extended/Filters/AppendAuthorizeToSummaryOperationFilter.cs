@@ -18,12 +18,13 @@ internal sealed class AppendAuthorizeToSummaryOperationFilter : IOperationFilter
         ArgumentNullException.ThrowIfNull(operation);
         ArgumentNullException.ThrowIfNull(context);
 
-        if (context.GetControllerAndActionAttributes<AllowAnonymousAttribute>().Any())
+        if (context.AnyControllerAndActionAttributes<AllowAnonymousAttribute>())
         {
             return;
         }
 
-        var authorizeAttributes = context.GetControllerAndActionAttributes<AuthorizeAttribute>().ToList();
+        var authorizeAttributes = context.GetControllerAndActionAttributesAsList<AuthorizeAttribute>();
+
         if (!authorizeAttributes.Any())
         {
             return;
@@ -56,7 +57,9 @@ internal sealed class AppendAuthorizeToSummaryOperationFilter : IOperationFilter
             authSummary.Append(GlobalizationConstants.EnglishCultureInfo, $" policies: {string.Join(", ", policies)};");
         }
 
-        operation.Summary += authSummary.ToString().TrimEnd(';') + ")";
+        operation.Summary += authSummary
+            .ToString()
+            .TrimEnd(';') + ")";
     }
 
     private static IEnumerable<string?> GetPolicies(

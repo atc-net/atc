@@ -21,7 +21,9 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15/10/2023")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.20.2023")]
     public void TryParseUsingCurrentUiCulture(
-        bool expected, int arrangeUiLcid, string value)
+        bool expected,
+        int arrangeUiLcid,
+        string value)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -51,7 +53,9 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15/10/2023")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.20.2023")]
     public void TryParseShortDateUsingCurrentUiCulture(
-        bool expected, int arrangeUiLcid, string value)
+        bool expected,
+        int arrangeUiLcid,
+        string value)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -81,7 +85,9 @@ public class DateTimeOffsetHelperTests
     [InlineData(false, GlobalizationLcidConstants.Germany, "24:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.30")]
     public void TryParseShortTimeUsingCurrentUiCulture(
-        bool expected, int arrangeUiLcid, string value)
+        bool expected,
+        int arrangeUiLcid,
+        string value)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
@@ -111,7 +117,9 @@ public class DateTimeOffsetHelperTests
     [InlineData(false, GlobalizationLcidConstants.Germany, "24:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.30")]
     public void TryParseShortTimeUsingCurrentUiCultureUtc(
-        bool expected, int arrangeUiLcid, string value)
+        bool expected,
+        int arrangeUiLcid,
+        string value)
     {
         // Arrange
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);

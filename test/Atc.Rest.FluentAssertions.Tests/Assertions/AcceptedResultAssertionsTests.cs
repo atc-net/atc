@@ -28,7 +28,8 @@ public class AcceptedResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new AcceptedResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent(content))
+        sut
+            .Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
             .WithMessage(expectedMessage + "*");
@@ -43,7 +44,8 @@ public class AcceptedResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new AcceptedResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+        sut
+            .Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content of accepted result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
@@ -62,7 +64,8 @@ public class AcceptedResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new AcceptedResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content type of accepted result to be ""application/json"", but found ""BAZ"".");
@@ -77,7 +80,8 @@ public class AcceptedResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new AcceptedResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .NotThrow();
     }

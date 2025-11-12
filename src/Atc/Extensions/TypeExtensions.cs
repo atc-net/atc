@@ -280,9 +280,7 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     public static T? GetAttribute<T>(this Type type)
         where T : Attribute
-    {
-        return GetAttributes<T>(type).FirstOrDefault();
-    }
+        => GetAttributes<T>(type).FirstOrDefault();
 
     /// <summary>
     /// Tries the get attribute.
@@ -313,8 +311,38 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     public static IEnumerable<T> GetAttributes<T>(this Type type)
         where T : Attribute
+        => type
+            .GetTypeInfo()
+            .GetCustomAttributes<T>(inherit: false);
+
+    /// <summary>
+    /// Gets a method from the type by its name using the specified string comparison.
+    /// </summary>
+    /// <param name="type">The type to search for the method.</param>
+    /// <param name="methodName">The name of the method to find.</param>
+    /// <param name="comparison">The string comparison type to use when matching the method name. Defaults to <see cref="StringComparison.Ordinal"/>.</param>
+    /// <returns>The <see cref="MethodInfo"/> representing the first method with the specified name.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="type"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="methodName"/> is null or empty.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when no method with the specified name is found.</exception>
+    public static MethodInfo GetMethodByName(
+        this Type type,
+        string methodName,
+        StringComparison comparison = StringComparison.Ordinal)
     {
-        return type.GetTypeInfo().GetCustomAttributes<T>(inherit: false);
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        if (string.IsNullOrEmpty(methodName))
+        {
+            throw new ArgumentException("Method name cannot be null or empty.", nameof(methodName));
+        }
+
+        return type
+            .GetMethods()
+            .First(m => m.Name.Equals(methodName, comparison));
     }
 
     /// <summary>
@@ -364,7 +392,9 @@ public static class TypeExtensions
             throw new ArgumentNullException(nameof(type));
         }
 
-        return type.GetPrivateDeclaredOnlyMethods().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+        return type
+            .GetPrivateDeclaredOnlyMethods()
+            .FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
     }
 
     /// <summary>
@@ -414,7 +444,10 @@ public static class TypeExtensions
             throw new ArgumentNullException(nameof(type));
         }
 
-        var propertyInfo = type.GetPublicDeclaredOnlyProperties().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetPublicDeclaredOnlyProperties()
+            .FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+
         return propertyInfo?.GetValue(type, null);
     }
 
@@ -424,7 +457,8 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <exception cref="ArgumentNullException">type.</exception>
     [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "OK.")]
-    public static PropertyInfo[] GetPrivateDeclaredOnlyProperties(this Type type)
+    public static PropertyInfo[] GetPrivateDeclaredOnlyProperties(
+        this Type type)
     {
         if (type is null)
         {
@@ -449,7 +483,9 @@ public static class TypeExtensions
             throw new ArgumentNullException(nameof(type));
         }
 
-        return type.GetPrivateDeclaredOnlyProperties().FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
+        return type
+            .GetPrivateDeclaredOnlyProperties()
+            .FirstOrDefault(x => x.Name.Equals(name, StringComparison.Ordinal));
     }
 
     /// <summary>
@@ -497,9 +533,7 @@ public static class TypeExtensions
         this Type type,
         bool useFullName = false,
         bool useHtmlFormat = false)
-    {
-        return $"typeof({type.BeautifyName(useFullName, useHtmlFormat)})";
-    }
+        => $"typeof({type.BeautifyName(useFullName, useHtmlFormat)})";
 
     /// <summary>
     /// Beautifies the name.
@@ -532,7 +566,8 @@ public static class TypeExtensions
         string genericArguments;
         if (useGenericParameterNamesAsT)
         {
-            var sa = type.GetGenericArguments()
+            var sa = type
+                .GetGenericArguments()
                 .Select(x => x.BeautifyName(useFullName, useHtmlFormat, true))
                 .ToArray();
             for (var i = 0; i < sa.Length; i++)

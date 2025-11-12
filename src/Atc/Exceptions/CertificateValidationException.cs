@@ -22,8 +22,7 @@ public class CertificateValidationException : Exception
     /// Initializes a new instance of the <see cref="CertificateValidationException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public CertificateValidationException(
-        string message)
+    public CertificateValidationException(string message)
         : base(message)
     {
     }

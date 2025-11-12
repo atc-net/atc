@@ -11,7 +11,8 @@ public static class AnonymousAccessExtensions
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <returns>The service collection for method chaining.</returns>
-    public static IServiceCollection AddAnonymousAccessForDevelopment(this IServiceCollection services)
+    public static IServiceCollection AddAnonymousAccessForDevelopment(
+        this IServiceCollection services)
     {
         services.AddSingleton<IAuthorizationHandler, AllowAnonymousAccessForDevelopmentHandler>();
         return services;

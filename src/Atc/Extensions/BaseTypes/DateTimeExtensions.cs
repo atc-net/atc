@@ -30,9 +30,7 @@ public static class DateTimeExtensions
     public static string GetPrettyTimeDiff(
         this DateTime startDate,
         int decimalPrecision = 3)
-    {
-        return GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
-    }
+        => GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
 
     /// <summary>
     /// Gets the pretty time difference.
@@ -55,9 +53,7 @@ public static class DateTimeExtensions
     /// <param name="date">The date.</param>
     /// <returns>The week number from the given date.</returns>
     public static int GetWeekNumber(this DateTime date)
-    {
-        return CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-    }
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
     /// Find the diff between to DateTimes.
@@ -105,18 +101,16 @@ public static class DateTimeExtensions
     /// string isoDate = DateTime.UtcNow.ToIso8601Date();.
     /// </example>
     public static string ToIso8601Date(this DateTime dateTime)
-    {
-        return dateTime.ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
-    }
+        => dateTime.ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
     /// To the iso8601 UTC date.
     /// </summary>
     /// <param name="dateTime">The date time.</param>
     public static string ToIso8601UtcDate(this DateTime dateTime)
-    {
-        return dateTime.ToUniversalTime().ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
-    }
+        => dateTime
+            .ToUniversalTime()
+            .ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
     /// Converts a DateTime to a string using the long date pattern

@@ -78,8 +78,7 @@ public static class FileHelper
     /// The file contents. If the file does not exist, returns <see cref="string.Empty"/>.
     /// </returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
-    public static string ReadAllText(
-        FileInfo fileInfo)
+    public static string ReadAllText(FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -123,8 +122,7 @@ public static class FileHelper
     /// An array of lines. If the file does not exist, returns <see cref="Array.Empty{T}"/>.
     /// </returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
-    public static string[] ReadAllTextToLines(
-        FileInfo fileInfo)
+    public static string[] ReadAllTextToLines(FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -168,8 +166,7 @@ public static class FileHelper
     /// <param name="fileInfo">The file to read.</param>
     /// <returns>The file contents as a byte array.</returns>
     /// <exception cref="ArgumentNullException">Potentially thrown by the underlying extension method if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
-    public static byte[] ReadToByteArray(
-        FileInfo fileInfo)
+    public static byte[] ReadToByteArray(FileInfo fileInfo)
         => fileInfo.ReadToByteArray();
 
     /// <summary>
@@ -188,8 +185,7 @@ public static class FileHelper
     /// </summary>
     /// <param name="fileInfo">The file to read.</param>
     /// <returns>A <see cref="MemoryStream"/> containing the file contents.</returns>
-    public static MemoryStream ReadToMemoryStream(
-        FileInfo fileInfo)
+    public static MemoryStream ReadToMemoryStream(FileInfo fileInfo)
         => fileInfo.ReadToMemoryStream();
 
     /// <summary>

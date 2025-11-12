@@ -33,4 +33,18 @@ public static class OperationFilterContextExtensions
 
         return result;
     }
+
+    public static List<T> GetControllerAndActionAttributesAsList<T>(
+        this OperationFilterContext context)
+        where T : Attribute
+        => context
+            .GetControllerAndActionAttributes<T>()
+            .ToList();
+
+    public static bool AnyControllerAndActionAttributes<T>(
+        this OperationFilterContext context)
+        where T : Attribute
+        => context
+            .GetControllerAndActionAttributes<T>()
+            .Any();
 }

@@ -27,8 +27,7 @@ public sealed class ArgumentPropertyException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentPropertyException"/> class with the name of the property that caused the exception.
     /// </summary>
     /// <param name="paramName">The name of the property that caused the exception.</param>
-    public ArgumentPropertyException(
-        string paramName)
+    public ArgumentPropertyException(string paramName)
         : base(ExceptionMessage, paramName)
     {
     }

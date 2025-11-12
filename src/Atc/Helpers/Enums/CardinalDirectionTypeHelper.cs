@@ -458,7 +458,8 @@ public static class CardinalDirectionTypeHelper
     /// 6 => West
     /// 7 => NorthWest.
     /// </remarks>
-    public static CardinalDirectionType GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
+    public static CardinalDirectionType GetByRotationNumberClockwiseUsingMedium(
+        int rotationNumber)
     {
         if (rotationNumber < 0 || rotationNumber > 7)
         {

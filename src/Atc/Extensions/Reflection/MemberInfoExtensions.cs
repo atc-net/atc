@@ -7,6 +7,19 @@ namespace System.Reflection;
 public static class MemberInfoExtensions
 {
     /// <summary>
+    /// Determines whether the member has any custom attributes of the specified type.
+    /// </summary>
+    /// <typeparam name="T">The attribute type to check for. Must derive from <see cref="Attribute"/>.</typeparam>
+    /// <param name="element">The member to check for custom attributes.</param>
+    /// <returns><see langword="true"/> if the member has one or more custom attributes of type <typeparamref name="T"/>; otherwise, <see langword="false"/>.</returns>
+    [SuppressMessage("", "CA2263:Prefer the generic overload", Justification = "OK")]
+    public static bool AnyCustomAttributes<T>(this MemberInfo element)
+        where T : Attribute
+        => element
+            .GetCustomAttributes(typeof(T))
+            .Any();
+
+    /// <summary>
     /// Determines whether [has exclude from code coverage attribute].
     /// </summary>
     /// <param name="memberInfo">The member information.</param>
@@ -14,7 +27,8 @@ public static class MemberInfoExtensions
     ///   <see langword="true" /> if [has exclude from code coverage attribute] [the specified member information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">memberInfo.</exception>
-    public static bool HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)
+    public static bool HasExcludeFromCodeCoverageAttribute(
+        this MemberInfo memberInfo)
     {
         if (memberInfo is null)
         {

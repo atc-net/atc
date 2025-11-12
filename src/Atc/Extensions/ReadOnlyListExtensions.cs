@@ -4,7 +4,8 @@ namespace System.Collections.Generic;
 [ExcludeFromCodeCoverage]
 public static class ReadOnlyListExtensions
 {
-    public static IEnumerable<IEnumerable<string>> GetUniqueCombinations(this IReadOnlyList<string> list)
+    public static IEnumerable<IEnumerable<string>> GetUniqueCombinations(
+        this IReadOnlyList<string> list)
     {
         if (list is null)
         {
@@ -23,7 +24,8 @@ public static class ReadOnlyListExtensions
         return result;
     }
 
-    public static IEnumerable<string> GetUniqueCombinationsAsCommaSeparated(this IReadOnlyList<string> list)
+    public static IEnumerable<string> GetUniqueCombinationsAsCommaSeparated(
+        this IReadOnlyList<string> list)
     {
         if (list is null)
         {
@@ -36,7 +38,8 @@ public static class ReadOnlyListExtensions
             .ToList();
     }
 
-    public static IEnumerable<IEnumerable<T>> GetPowerSet<T>(this IReadOnlyList<T> list)
+    public static IEnumerable<IEnumerable<T>> GetPowerSet<T>(
+        this IReadOnlyList<T> list)
     {
         if (list is null)
         {

@@ -280,6 +280,6 @@ public class ExceptionExtensionsTests
         var actual = input.ToXml();
 
         // Assert
-        Assert.Equal(expected.EnsureEnvironmentNewLines(), actual.ToString().EnsureEnvironmentNewLines());
+        Assert.Equal(expected.EnsureEnvironmentNewLines(), actual.ToStringNormalized());
     }
 }

@@ -10,7 +10,8 @@ public class RegionInfoHelperTests
         var actual = RegionInfoHelper.GetAllRegionInfos();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<RegionInfo>>()
             .And.HaveCountGreaterThan(expectedAtLeast);
     }
@@ -28,7 +29,8 @@ public class RegionInfoHelperTests
         var actual = RegionInfoHelper.GetRegionInfoByLcid(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<RegionInfo>()
             .Subject.Name.Should().Be(expected);
     }
@@ -46,7 +48,8 @@ public class RegionInfoHelperTests
         var actual = RegionInfoHelper.GetRegionInfoByIsoAlpha3(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<RegionInfo>()
             .Subject.Name.Should().Be(expected);
     }
@@ -64,7 +67,8 @@ public class RegionInfoHelperTests
         var actual = RegionInfoHelper.GetCultureInfoByIsoAlpha3(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<CultureInfo>()
             .Subject.Name.Should().Be(expected);
     }
@@ -96,7 +100,8 @@ public class RegionInfoHelperTests
         var actual = RegionInfoHelper.GetAllRegionInfosAsLcids();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<int>>()
             .And.HaveCountGreaterThan(expectedAtLeast);
     }

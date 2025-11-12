@@ -7,8 +7,7 @@ namespace Atc.CodeDocumentation.CodeComment;
 public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
 {
     /// <inheritdoc/>
-    public bool ShouldGenerateTags(
-        CodeDocumentationTags codeDocumentationTags)
+    public bool ShouldGenerateTags(CodeDocumentationTags codeDocumentationTags)
     {
         if (codeDocumentationTags is null)
         {

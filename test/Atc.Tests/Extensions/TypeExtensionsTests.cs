@@ -616,4 +616,62 @@ public class TypeExtensionsTests
         // Assert
         Assert.True(actual);
     }
+
+    [Fact]
+    public void GetMethodByName()
+    {
+        // Arrange
+        var testType = typeof(string);
+
+        // Act
+        var actual = testType.GetMethodByName("ToString");
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal("ToString", actual.Name);
+    }
+
+    [Fact]
+    public void GetMethodByName_CaseInsensitive()
+    {
+        // Arrange
+        var testType = typeof(string);
+
+        // Act
+        var actual = testType.GetMethodByName("tostring", StringComparison.OrdinalIgnoreCase);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal("ToString", actual.Name);
+    }
+
+    [Fact]
+    public void GetMethodByName_ThrowsWhenNull()
+    {
+        // Arrange
+        Type? testType = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => testType!.GetMethodByName("ToString"));
+    }
+
+    [Fact]
+    public void GetMethodByName_ThrowsWhenMethodNameIsEmpty()
+    {
+        // Arrange
+        var testType = typeof(string);
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => testType.GetMethodByName(string.Empty));
+    }
+
+    [Fact]
+    public void GetMethodByName_ThrowsWhenMethodNotFound()
+    {
+        // Arrange
+        var testType = typeof(string);
+
+        // Act & Assert
+        Assert.Throws<InvalidOperationException>(() => testType.GetMethodByName("NonExistentMethod"));
+    }
 }

@@ -7,6 +7,64 @@ namespace System.Collections.Generic;
 public static class EnumerableExtensions
 {
     /// <summary>
+    /// Projects each element of a sequence into a new form and returns the results as an array.
+    /// </summary>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <typeparam name="TResult">The type of the elements in the result array.</typeparam>
+    /// <param name="source">The sequence of elements to transform.</param>
+    /// <param name="selector">A transform function to apply to each element.</param>
+    /// <returns>An array containing the transformed elements from the source sequence.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="selector"/> is <see langword="null"/>.</exception>
+    /// <remarks>This is a convenience method that combines <see cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/> and <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>.</remarks>
+    public static TResult[] SelectToArray<TSource, TResult>(
+        this IEnumerable<TSource> source,
+        Func<TSource, TResult> selector)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (selector is null)
+        {
+            throw new ArgumentNullException(nameof(selector));
+        }
+
+        return source
+            .Select(selector)
+            .ToArray();
+    }
+
+    /// <summary>
+    /// Projects each element of a sequence into a new form and returns the results as a <see cref="List{T}"/>.
+    /// </summary>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <typeparam name="TResult">The type of the elements in the result list.</typeparam>
+    /// <param name="source">The sequence of elements to transform.</param>
+    /// <param name="selector">A transform function to apply to each element.</param>
+    /// <returns>A <see cref="List{T}"/> containing the transformed elements from the source sequence.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="selector"/> is <see langword="null"/>.</exception>
+    /// <remarks>This is a convenience method that combines <see cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/> and <see cref="Enumerable.ToList{TSource}(IEnumerable{TSource})"/>.</remarks>
+    public static List<TResult> SelectToList<TSource, TResult>(
+        this IEnumerable<TSource> source,
+        Func<TSource, TResult> selector)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (selector is null)
+        {
+            throw new ArgumentNullException(nameof(selector));
+        }
+
+        return source
+            .Select(selector)
+            .ToList();
+    }
+
+    /// <summary>
     /// Converts an <see cref="IEnumerable{T}"/> to an <see cref="IAsyncEnumerable{T}"/>.
     /// </summary>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>

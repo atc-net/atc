@@ -206,6 +206,7 @@
 - [EnumAtcExtensions](System.md#enumatcextensions)
 - [EnumExtensions](System.md#enumextensions)
 - [ExceptionExtensions](System.md#exceptionextensions)
+- [GuidExtensions](System.md#guidextensions)
 - [IntegerExtensions](System.md#integerextensions)
 - [ItemNotFoundException](System.md#itemnotfoundexception)
 - [LongExtensions](System.md#longextensions)

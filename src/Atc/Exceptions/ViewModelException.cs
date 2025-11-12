@@ -22,8 +22,7 @@ public class ViewModelException : Exception
     /// Initializes a new instance of the <see cref="ViewModelException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public ViewModelException(
-        string message)
+    public ViewModelException(string message)
         : base(message)
     {
     }

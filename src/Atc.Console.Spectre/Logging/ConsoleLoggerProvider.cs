@@ -23,9 +23,7 @@ public class ConsoleLoggerProvider : ILoggerProvider
     /// <param name="categoryName">The category name for the logger.</param>
     /// <returns>A <see cref="ConsoleLogger"/> instance.</returns>
     public ILogger CreateLogger(string categoryName)
-    {
-        return loggers.GetOrAdd(categoryName, name => new ConsoleLogger(name, config));
-    }
+        => loggers.GetOrAdd(categoryName, name => new ConsoleLogger(name, config));
 
     /// <inheritdoc />
     public void Dispose()

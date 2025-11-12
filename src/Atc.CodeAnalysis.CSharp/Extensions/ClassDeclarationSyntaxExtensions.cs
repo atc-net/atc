@@ -34,14 +34,17 @@ public static class ClassDeclarationSyntaxExtensions
         }
 
         var attributeArgumentList = SyntaxFactory.AttributeArgumentList(
-            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(SyntaxFactory.NodeOrTokenList(
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
-                    .WithNameEquals(
-                        SyntaxNameEqualsFactory.Create(nameof(SuppressMessageAttribute.Justification))
+            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(
+                SyntaxFactory.NodeOrTokenList(
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory
+                        .AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
+                        .WithNameEquals(
+                        SyntaxNameEqualsFactory
+                            .Create(nameof(SuppressMessageAttribute.Justification))
                             .WithEqualsToken(SyntaxTokenFactory.Equals())))));
 
         return classDeclaration

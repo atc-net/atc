@@ -78,7 +78,5 @@ public static class PrefixTypeHelper
     /// The <see cref="string"/>.
     /// </returns>
     public static string GetSymbolForMeter(PrefixType prefixType)
-    {
-        return GetSymbol(prefixType) + "m";
-    }
+        => GetSymbol(prefixType) + "m";
 }

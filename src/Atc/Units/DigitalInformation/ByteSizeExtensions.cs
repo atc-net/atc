@@ -9,9 +9,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this decimal value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -19,9 +17,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this double value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -29,9 +25,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this float value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -39,9 +33,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this int value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -49,9 +41,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this uint value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -59,9 +49,7 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this long value)
-    {
-        return value;
-    }
+        => value;
 
     /// <summary>
     /// Returns an instance of <see cref="ByteSize"/> that represents the specified size.
@@ -69,7 +57,5 @@ public static class ByteSizeExtensions
     /// <param name="value">The size in bytes.</param>
     /// <returns>An instance of <see cref="ByteSize"/> that represents the specified size.</returns>
     public static ByteSize Bytes(this ulong value)
-    {
-        return value;
-    }
+        => value;
 }

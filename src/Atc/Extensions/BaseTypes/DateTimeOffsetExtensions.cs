@@ -30,9 +30,7 @@ public static class DateTimeOffsetExtensions
     public static string GetPrettyTimeDiff(
         this DateTimeOffset startDate,
         int decimalPrecision = 3)
-    {
-        return GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
-    }
+        => GetPrettyTimeDiff(startDate, DateTime.Now, decimalPrecision);
 
     /// <summary>
     /// Gets the pretty time difference.
@@ -55,9 +53,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="date">The date.</param>
     /// <returns>The week number from the given date.</returns>
     public static int GetWeekNumber(this DateTimeOffset date)
-    {
-        return CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-    }
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
     /// Find the diff between to DateTimes.
@@ -102,9 +98,9 @@ public static class DateTimeOffsetExtensions
     /// </summary>
     /// <param name="dateTimeOffset">The date time offset.</param>
     /// <returns>The dateTimeOffset with the seconds and milliseconds as 0.</returns>
-    public static DateTimeOffset ResetToStartOfCurrentHour(this DateTimeOffset dateTimeOffset)
-    {
-        return new DateTimeOffset(
+    public static DateTimeOffset ResetToStartOfCurrentHour(
+        this DateTimeOffset dateTimeOffset)
+        => new(
             dateTimeOffset.Year,
             dateTimeOffset.Month,
             dateTimeOffset.Day,
@@ -112,7 +108,6 @@ public static class DateTimeOffsetExtensions
             0,
             0,
             dateTimeOffset.Offset);
-    }
 
     /// <summary>
     /// Sets the hour and minutes.
@@ -125,8 +120,7 @@ public static class DateTimeOffsetExtensions
         this DateTimeOffset dateTimeOffset,
         int hour,
         int minutes)
-    {
-        return new DateTimeOffset(
+        => new(
             dateTimeOffset.Year,
             dateTimeOffset.Month,
             dateTimeOffset.Day,
@@ -134,7 +128,6 @@ public static class DateTimeOffsetExtensions
             minutes,
             0,
             TimeSpan.Zero);
-    }
 
     /// <summary>Converts the DateTimeOffset to a unix time - seconds starting from 1-1-1970.</summary>
     /// <param name="dateTimeOffset">The date time offset.</param>
@@ -145,27 +138,23 @@ public static class DateTimeOffsetExtensions
     /// long unixTime = dateTimeOffset.ToUnixTime();
     /// ]]></example>
     public static long ToUnixTime(this DateTimeOffset dateTimeOffset)
-    {
-        return dateTimeOffset.ToUnixTimeSeconds();
-    }
+        => dateTimeOffset.ToUnixTimeSeconds();
 
     /// <summary>
     /// To the iso8601 date.
     /// </summary>
     /// <param name="dateTimeOffset">The date time offset.</param>
     public static string ToIso8601Date(this DateTimeOffset dateTimeOffset)
-    {
-        return dateTimeOffset.ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
-    }
+        => dateTimeOffset.ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
     /// To the iso8601 UTC date.
     /// </summary>
     /// <param name="dateTimeOffset">The date time offset.</param>
     public static string ToIso8601UtcDate(this DateTimeOffset dateTimeOffset)
-    {
-        return dateTimeOffset.ToUniversalTime().ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
-    }
+        => dateTimeOffset
+            .ToUniversalTime()
+            .ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
     /// Converts a DateTime to a string using the long date pattern

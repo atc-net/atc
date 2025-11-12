@@ -22,8 +22,7 @@ public class StringNullOrEmptyException : Exception
     /// Initializes a new instance of the <see cref="StringNullOrEmptyException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public StringNullOrEmptyException(
-        string message)
+    public StringNullOrEmptyException(string message)
         : base(message)
     {
     }

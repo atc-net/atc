@@ -10,7 +10,7 @@ public class MethodInfoExtensionsTests
         Type type)
     {
         // Arrange
-        var methodInfo = type.GetMethods().First(x => x.Name.Equals("GetHashCode", StringComparison.Ordinal));
+        var methodInfo = type.GetMethodByName("GetHashCode");
 
         // Act
         var actual = methodInfo.IsOverride();
@@ -27,7 +27,7 @@ public class MethodInfoExtensionsTests
         Type type)
     {
         // Arrange
-        var methodInfo = type.GetMethods().First(x => x.Name.Equals("IsValid", StringComparison.Ordinal));
+        var methodInfo = type.GetMethodByName("IsValid");
 
         // Act
         var actual = methodInfo.HasDeclaringTypeValidationAttributes();
@@ -44,7 +44,7 @@ public class MethodInfoExtensionsTests
         string methodName)
     {
         // Arrange
-        var methodInfo = type.GetMethods().First(x => x.Name.Equals(methodName, StringComparison.Ordinal));
+        var methodInfo = type.GetMethodByName(methodName);
 
         // Act
         var actual = methodInfo.HasGenericParameters();

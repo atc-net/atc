@@ -27,8 +27,7 @@ public sealed class ArgumentNullOrDefaultException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultException"/> class with the name of the parameter that caused the exception.
     /// </summary>
     /// <param name="paramName">The name of the parameter that is null or has a default value.</param>
-    public ArgumentNullOrDefaultException(
-        string paramName)
+    public ArgumentNullOrDefaultException(string paramName)
         : base(ExceptionMessage, paramName)
     {
     }

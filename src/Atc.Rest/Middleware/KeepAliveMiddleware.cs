@@ -34,11 +34,9 @@ public class KeepAliveMiddleware
     }
 
     private static bool IsKeepAlivePing(HttpRequest request)
-    {
-        return request.Path == "/" &&
-               string.Equals(request.Method, "GET", StringComparison.Ordinal) &&
-               !request.PathBase.HasValue;
-    }
+        => request.Path == "/" &&
+           string.Equals(request.Method, "GET", StringComparison.Ordinal) &&
+           !request.PathBase.HasValue;
 
     private async Task InternalInvokeAsync(HttpContext context)
     {

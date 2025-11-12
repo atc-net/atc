@@ -16,7 +16,8 @@ public record struct CartesianCoordinate(
     ///   <see langword="true" /> if this instance is default; otherwise, <see langword="false" />.
     /// </value>
     [JsonIgnore]
-    public readonly bool IsDefault => Latitude.IsEqual(0) && Longitude.IsEqual(0);
+    public readonly bool IsDefault
+        => Latitude.IsEqual(0) && Longitude.IsEqual(0);
 
     /// <summary>
     /// Determines whether the specified <see cref="CartesianCoordinate"/> is equal to the current instance

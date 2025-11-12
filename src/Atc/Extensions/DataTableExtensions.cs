@@ -128,7 +128,10 @@ public static class DataTableExtensions
         var list = new List<T>();
         var typeClass = typeof(T);
         var propertyInfos = typeClass.GetProperties();
-        var dataColumns = dataTable.Columns.Cast<DataColumn>().ToList();
+        var dataColumns = dataTable
+            .Columns
+            .Cast<DataColumn>()
+            .ToList();
         foreach (DataRow item in dataTable.Rows)
         {
             var cn = (T)Activator.CreateInstance(typeClass)!;
@@ -151,7 +154,8 @@ public static class DataTableExtensions
     /// Convert to XPathNodeIterator from a DataTable.
     /// </summary>
     /// <param name="dataTable">The data table.</param>
-    public static XPathNodeIterator? ToXPathNodeIterator(this DataTable dataTable)
+    public static XPathNodeIterator? ToXPathNodeIterator(
+        this DataTable dataTable)
     {
         if (dataTable is null)
         {

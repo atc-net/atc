@@ -11,8 +11,7 @@ public static class AssemblyExtensions
     /// </summary>
     /// <param name="assembly">The assembly to search for validator types.</param>
     /// <returns>An array of types that are validators.</returns>
-    public static Type[] GetValidationTypes(
-        this Assembly assembly)
+    public static Type[] GetValidationTypes(this Assembly assembly)
     {
         ArgumentNullException.ThrowIfNull(assembly);
 

@@ -28,7 +28,8 @@ public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new NoContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent(content))
+        sut
+            .Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
             .WithMessage(expectedMessage + "*");
@@ -43,7 +44,8 @@ public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new NoContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+        sut
+            .Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content of no content result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
@@ -62,7 +64,8 @@ public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new NoContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content type of no content result to be ""application/json"", but found ""BAZ"".");
@@ -77,7 +80,8 @@ public class NoContentResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new NoContentResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .NotThrow();
     }

@@ -21,9 +21,7 @@ public sealed class TypeRegistrar : ITypeRegistrar
     /// </summary>
     /// <returns>A new <see cref="ITypeResolver"/> instance.</returns>
     public ITypeResolver Build()
-    {
-        return new TypeResolver(builder.BuildServiceProvider());
-    }
+        => new TypeResolver(builder.BuildServiceProvider());
 
     /// <summary>
     /// Registers a service type with its implementation type as a singleton.

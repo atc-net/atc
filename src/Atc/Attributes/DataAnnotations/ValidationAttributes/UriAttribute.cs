@@ -91,8 +91,7 @@ public sealed class UriAttribute : ValidationAttribute
     public bool AllowOpcTcp { get; set; }
 
     /// <inheritdoc />
-    public override bool IsValid(
-        object? value)
+    public override bool IsValid(object? value)
     {
         if (Required &&
             value is null)

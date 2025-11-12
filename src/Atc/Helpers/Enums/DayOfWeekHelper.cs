@@ -35,7 +35,8 @@ public static class DayOfWeekHelper
     /// Gets the descriptions.
     /// </summary>
     /// <param name="culture">The culture.</param>
-    public static Dictionary<DayOfWeek, string> GetDescriptions(CultureInfo? culture = null)
+    public static Dictionary<DayOfWeek, string> GetDescriptions(
+        CultureInfo? culture = null)
     {
         var list = new Dictionary<DayOfWeek, string>
         {

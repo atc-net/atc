@@ -35,7 +35,5 @@ public class AssemblyPairOptions
 
     /// <inheritdoc />
     public override string ToString()
-    {
-        return $"{nameof(ApiAssembly)}: {ApiAssembly?.FullName}, {nameof(DomainAssembly)}: {DomainAssembly?.FullName}";
-    }
+        => $"{nameof(ApiAssembly)}: {ApiAssembly?.FullName}, {nameof(DomainAssembly)}: {DomainAssembly?.FullName}";
 }

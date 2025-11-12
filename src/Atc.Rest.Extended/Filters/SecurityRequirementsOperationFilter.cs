@@ -23,7 +23,7 @@ public class SecurityRequirementsOperationFilter : IOperationFilter
             return;
         }
 
-        var authorizeAttributes = context.GetControllerAndActionAttributes<AuthorizeAttribute>().ToList();
+        var authorizeAttributes = context.GetControllerAndActionAttributesAsList<AuthorizeAttribute>();
         if (!authorizeAttributes.Any())
         {
             return;

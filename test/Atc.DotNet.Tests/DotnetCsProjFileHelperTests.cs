@@ -203,8 +203,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     }
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    private static string CreateCsProjFile(
-        DotnetProjectType dotnetProjectType)
+    private static string CreateCsProjFile(DotnetProjectType dotnetProjectType)
     {
         var sb = new StringBuilder();
         switch (dotnetProjectType)
@@ -288,8 +287,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         return sb.ToString();
     }
 
-    private static void CreateCsProjFileAzureIotEdgeModule(
-        StringBuilder sb)
+    private static void CreateCsProjFileAzureIotEdgeModule(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -307,8 +305,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileAzureFunctionApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileAzureFunctionApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -323,8 +320,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileAndroidApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileAndroidApp(StringBuilder sb)
     {
         sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         sb.AppendLine("<Project ToolsVersion=\"4.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
@@ -337,8 +333,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileCliApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileCliApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -353,8 +348,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileConsoleApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileConsoleApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -369,8 +363,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileBlazorServerApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileBlazorServerApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Web\">");
         AppendPropertyGroupFirst(
@@ -385,8 +378,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileBlazorWAsmApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileBlazorWAsmApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.BlazorWebAssembly\">");
         AppendPropertyGroupFirst(
@@ -401,8 +393,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileIosApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileIosApp(StringBuilder sb)
     {
         sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         sb.AppendLine("<Project ToolsVersion=\"4.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
@@ -415,8 +406,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileMauiApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileMauiApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -431,8 +421,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileLibrary(
-        StringBuilder sb)
+    private static void CreateCsProjFileLibrary(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -447,8 +436,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileRazorLibrary(
-        StringBuilder sb)
+    private static void CreateCsProjFileRazorLibrary(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Razor\">");
         AppendPropertyGroupFirst(
@@ -463,8 +451,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileUwpApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileUwpApp(StringBuilder sb)
     {
         sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
@@ -476,8 +463,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileUwpLibrary(
-        StringBuilder sb)
+    private static void CreateCsProjFileUwpLibrary(StringBuilder sb)
     {
         sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
@@ -509,8 +495,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileVisualStudioExtension(
-        StringBuilder sb)
+    private static void CreateCsProjFileVisualStudioExtension(StringBuilder sb)
     {
         sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         sb.AppendLine("<Project ToolsVersion=\"15.0\" DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">");
@@ -525,8 +510,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWebApi(
-        StringBuilder sb)
+    private static void CreateCsProjFileWebApi(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Web\">");
         AppendPropertyGroupFirst(
@@ -544,8 +528,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWebApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileWebApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Web\">");
         AppendPropertyGroupFirst(
@@ -560,8 +543,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWorkerService(
-         StringBuilder sb)
+    private static void CreateCsProjFileWorkerService(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk.Worker\">");
         AppendPropertyGroupFirst(
@@ -576,8 +558,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWinFormApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileWinFormApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -592,8 +573,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWpfApp(
-        StringBuilder sb)
+    private static void CreateCsProjFileWpfApp(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -608,8 +588,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         sb.AppendLine("</Project>");
     }
 
-    private static void CreateCsProjFileWpfLibrary(
-        StringBuilder sb)
+    private static void CreateCsProjFileWpfLibrary(StringBuilder sb)
     {
         sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
         AppendPropertyGroupFirst(
@@ -696,8 +675,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         return sb.ToString();
     }
 
-    private static void CreateProgramCsFileBlazorServerApp(
-        StringBuilder sb)
+    private static void CreateProgramCsFileBlazorServerApp(StringBuilder sb)
     {
         sb.AppendLine("using BlazorServerApp1.Data;");
         sb.AppendLine("using Microsoft.AspNetCore.Components;");

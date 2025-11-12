@@ -72,7 +72,8 @@ public class UniversalTransverseMercatorResult
     /// <value>
     /// The formatted UTM.
     /// </value>
-    public string FormattedUtm => $"{UtmEasting.ToString(GlobalizationConstants.EnglishCultureInfo)}, {UtmNorthing.ToString(GlobalizationConstants.EnglishCultureInfo)}";
+    public string FormattedUtm
+        => $"{UtmEasting.ToString(GlobalizationConstants.EnglishCultureInfo)}, {UtmNorthing.ToString(GlobalizationConstants.EnglishCultureInfo)}";
 
     /// <inheritdoc />
     public override string ToString() => $"{Zone} {UtmEasting} {UtmNorthing}";

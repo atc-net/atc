@@ -12,7 +12,9 @@
 
 - [OperationFilterContextExtensions](Atc.Rest.Extended.Extensions.md#operationfiltercontextextensions)
   -  Static Methods
+     - AnyControllerAndActionAttributes(this OperationFilterContext context)
      - GetControllerAndActionAttributes(this OperationFilterContext context)
+     - GetControllerAndActionAttributesAsList(this OperationFilterContext context)
 
 ## [Atc.Rest.Extended.Filters](Atc.Rest.Extended.Filters.md)
 

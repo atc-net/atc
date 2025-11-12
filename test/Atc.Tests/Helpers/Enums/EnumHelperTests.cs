@@ -110,7 +110,10 @@ public class EnumHelperTests
             byFlagIncludeCombined);
 
         // Assert
-        actual.Cast<string>().Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Cast<string>()
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -140,7 +143,9 @@ public class EnumHelperTests
             byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -170,7 +175,9 @@ public class EnumHelperTests
             byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]

@@ -25,8 +25,7 @@ public sealed class IPAddressAttribute : ValidationAttribute
     /// Initializes a new instance of the <see cref="IPAddressAttribute"/> class.
     /// </summary>
     /// <param name="required">Indicates whether the IP address value is required.</param>
-    public IPAddressAttribute(
-        bool required)
+    public IPAddressAttribute(bool required)
         : this()
     {
         Required = required;
@@ -38,8 +37,7 @@ public sealed class IPAddressAttribute : ValidationAttribute
     public bool Required { get; set; }
 
     /// <inheritdoc />
-    public override bool IsValid(
-        object? value)
+    public override bool IsValid(object? value)
     {
         if (Required &&
             value is null)

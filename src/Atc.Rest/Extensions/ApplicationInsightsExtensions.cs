@@ -18,7 +18,8 @@ public static class ApplicationInsightsExtensions
     /// <item><see cref="Accept4xxResponseAsSuccessInitializer"/> - Treats certain 4xx responses (BadRequest, NotFound) as successful requests.</item>
     /// </list>
     /// </remarks>
-    public static IServiceCollection AddCallingIdentityTelemetryInitializer(this IServiceCollection services)
+    public static IServiceCollection AddCallingIdentityTelemetryInitializer(
+        this IServiceCollection services)
     {
         services.AddSingleton<ITelemetryInitializer, CallingIdentityTelemetryInitializer>();
         services.AddSingleton<ITelemetryInitializer, Accept4xxResponseAsSuccessInitializer>();

@@ -57,7 +57,8 @@ public static class RestApiExtendedExtensions
         if (restApiOptions.UseApiVersioning)
         {
             services.ConfigureOptions<ConfigureApiVersioningOptions>();
-            services.AddApiVersioning(options =>
+            services
+                .AddApiVersioning(options =>
                 {
                     options.DefaultApiVersion = new ApiVersion(1, 0);
                     options.AssumeDefaultVersionWhenUnspecified = true;
@@ -87,7 +88,9 @@ public static class RestApiExtendedExtensions
         {
             configuration.Bind(Atc.Rest.Options.AuthorizationOptions.ConfigurationSectionName, restApiOptions.Authorization);
             services.ConfigureOptions<ConfigureAuthorizationOptions>();
-            services.AddAuthentication().AddJwtBearer();
+            services
+                .AddAuthentication()
+                .AddJwtBearer();
         }
 
         return services;

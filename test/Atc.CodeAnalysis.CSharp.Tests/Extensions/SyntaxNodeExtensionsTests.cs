@@ -115,7 +115,8 @@ public class SyntaxNodeExtensionsTests
     public void GetUsedUsingStatements_Should_Return_All_Using_Statements()
     {
         // Arrange
-        var syntaxNode = SyntaxFactory.CompilationUnit()
+        var syntaxNode = SyntaxFactory
+            .CompilationUnit()
             .AddUsings(
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Linq")));
@@ -159,7 +160,8 @@ public class SyntaxNodeExtensionsTests
     public void GetUsedUsingStatementsWithoutAlias_Should_Exclude_Aliased_Usings()
     {
         // Arrange
-        var syntaxNode = SyntaxFactory.CompilationUnit()
+        var syntaxNode = SyntaxFactory
+            .CompilationUnit()
             .AddUsings(
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System")),
                 SyntaxFactory.UsingDirective(

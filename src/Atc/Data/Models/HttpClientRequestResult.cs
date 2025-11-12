@@ -20,8 +20,7 @@ public sealed class HttpClientRequestResult<TData>
     /// Initializes a new instance of the <see cref="HttpClientRequestResult{TData}"/> class with a status code.
     /// </summary>
     /// <param name="statusCode">The HTTP status code.</param>
-    public HttpClientRequestResult(
-        HttpStatusCode? statusCode)
+    public HttpClientRequestResult(HttpStatusCode? statusCode)
     {
         CommunicationSucceeded = true;
         StatusCode = statusCode;
@@ -31,8 +30,7 @@ public sealed class HttpClientRequestResult<TData>
     /// Initializes a new instance of the <see cref="HttpClientRequestResult{TData}"/> class with data.
     /// </summary>
     /// <param name="data">The response data.</param>
-    public HttpClientRequestResult(
-        TData data)
+    public HttpClientRequestResult(TData data)
     {
         CommunicationSucceeded = true;
         StatusCode = HttpStatusCode.OK;
@@ -74,8 +72,7 @@ public sealed class HttpClientRequestResult<TData>
     /// Initializes a new instance of the <see cref="HttpClientRequestResult{TData}"/> class with an exception.
     /// </summary>
     /// <param name="exception">The exception that occurred during the request.</param>
-    public HttpClientRequestResult(
-        Exception exception)
+    public HttpClientRequestResult(Exception exception)
     {
         CommunicationSucceeded = false;
         Exception = exception;

@@ -11,9 +11,7 @@ public static class CircleHelper
     /// <param name="radius">The radius of the circle.</param>
     /// <returns>The area of the circle (π * r²).</returns>
     public static double Area(double radius)
-    {
-        return System.Math.PI * System.Math.Pow(radius, 2);
-    }
+        => System.Math.PI * System.Math.Pow(radius, 2);
 
     /// <summary>
     /// Calculates the circumference of a circle given its radius.
@@ -21,9 +19,7 @@ public static class CircleHelper
     /// <param name="radius">The radius of the circle.</param>
     /// <returns>The circumference of the circle (2πr).</returns>
     public static double Circumference(double radius)
-    {
-        return 2 * radius * System.Math.PI;
-    }
+        => 2 * radius * System.Math.PI;
 
     /// <summary>
     /// Calculates the arc length of a circular arc given the radius and central angle.
@@ -34,9 +30,7 @@ public static class CircleHelper
     public static double ArcLength(
         double radius,
         double angle)
-    {
-        return Circumference(radius) / 360 * angle;
-    }
+        => Circumference(radius) / 360 * angle;
 
     /// <summary>
     /// Calculates the chord length of a circular arc given the radius and central angle.
@@ -47,7 +41,5 @@ public static class CircleHelper
     public static double ChordLength(
         double radius,
         double angle)
-    {
-        return 2 * radius * System.Math.Sin(MathHelper.DegreesToRadians(angle) / 2);
-    }
+        => 2 * radius * System.Math.Sin(MathHelper.DegreesToRadians(angle) / 2);
 }

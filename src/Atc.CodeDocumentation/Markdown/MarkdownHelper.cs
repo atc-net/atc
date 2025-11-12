@@ -143,17 +143,15 @@ internal static class MarkdownHelper
     }
 
     private static MethodInfo[] GetMethods(Type type)
-    {
-        return type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => type
+            .GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     private static PropertyInfo[] GetProperties(Type type)
-    {
-        return type
+        => type
             .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .Where(y =>
             {
                 var get = y.GetGetMethod(nonPublic: true);
@@ -176,34 +174,29 @@ internal static class MarkdownHelper
                 return false;
             })
             .ToArray();
-    }
 
     private static FieldInfo[] GetFields(Type type)
-    {
-        return type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => type
+            .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     private static EventInfo[] GetEvents(Type type)
-    {
-        return type.GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => type
+            .GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .ToArray();
-    }
 
     private static FieldInfo[] GetStaticFields(Type type)
-    {
-        return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => type
+            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     private static PropertyInfo[] GetStaticProperties(Type type)
-    {
-        return type
+        => type
             .GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .Where(y =>
             {
                 var get = y.GetGetMethod(nonPublic: true);
@@ -226,21 +219,18 @@ internal static class MarkdownHelper
                 return false;
             })
             .ToArray();
-    }
 
     private static MethodInfo[] GetStaticMethods(Type type)
-    {
-        return type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => type
+            .GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     private static EventInfo[] GetStaticEvents(Type type)
-    {
-        return type.GetEvents(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => type
+            .GetEvents(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .ToArray();
-    }
 
     private static void AppendHeaderForType(
         MarkdownBuilder mb,
@@ -331,7 +321,8 @@ internal static class MarkdownHelper
         MarkdownBuilder mb,
         TypeComments typeComments)
     {
-        var enums = Enum.GetNames(typeComments.Type)
+        var enums = Enum
+            .GetNames(typeComments.Type)
             .Select(x => new
             {
                 Value = (int)Enum.Parse(typeComments.Type, x),
@@ -385,17 +376,19 @@ internal static class MarkdownHelper
         if (typeComments.Type.IsEnum)
         {
             string[] head = { "Value", "Name", "Description", "Summary" };
-            var data = seq.Select(item =>
-            {
-                var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
-                return new[]
+            var data = seq
+                .Select(item =>
                 {
-                    xType(item),
-                    name(item),
-                    finalName(item),
-                    summary,
-                };
-            }).ToList();
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    return new[]
+                    {
+                        xType(item),
+                        name(item),
+                        finalName(item),
+                        summary,
+                    };
+                })
+                .ToList();
 
             mb.Table(head, data);
             mb.AppendLine();
@@ -405,16 +398,18 @@ internal static class MarkdownHelper
             seq = array.OrderBy(name, StringComparer.Ordinal);
             string[] head = { "Type", "Name", "Summary" };
 
-            var data = seq.Select(item =>
-            {
-                var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
-                return new[]
+            var data = seq
+                .Select(item =>
                 {
-                    xType(item),
-                    finalName(item),
-                    summary,
-                };
-            }).ToList();
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    return new[]
+                    {
+                        xType(item),
+                        finalName(item),
+                        summary,
+                    };
+                })
+                .ToList();
 
             mb.Table(head, data);
             mb.AppendLine();

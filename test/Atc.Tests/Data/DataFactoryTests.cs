@@ -16,10 +16,12 @@ public class DataFactoryTests
         var actual = DataFactory.CreateKeyValueDataTableOfIntString(dropDownFirstItemType);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<DataTable>();
-        actual.Rows.Cast<DataRow>().Should().HaveCount(expectedCount);
+        actual
+            .Rows.Cast<DataRow>()
+            .Should().HaveCount(expectedCount);
     }
 
     [Theory]
@@ -36,10 +38,14 @@ public class DataFactoryTests
         var actual = DataFactory.CreateKeyValueDataTableOfGuidString(dropDownFirstItemType);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<DataTable>();
-        actual.Rows.Cast<DataRow>().Should().HaveCount(expectedCount);
+        actual
+            .Rows
+            .Cast<DataRow>()
+            .Should()
+            .HaveCount(expectedCount);
     }
 
     [Theory]
@@ -55,8 +61,8 @@ public class DataFactoryTests
         var actual = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>();
         actual.Should().HaveCount(expectedCount);
     }
@@ -74,8 +80,8 @@ public class DataFactoryTests
         var actual = DataFactory.CreateKeyValueDictionaryOfGuidString(dropDownFirstItemType);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<Guid, string>>();
         actual.Should().HaveCount(expectedCount);
     }
@@ -93,8 +99,8 @@ public class DataFactoryTests
         var actual = DataFactory.CreateKeyValueDictionaryOfStringString(dropDownFirstItemType);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<string, string>>();
         actual.Should().HaveCount(expectedCount);
     }

@@ -34,9 +34,7 @@ public static class CartesianHelper
     public static double DistanceBetweenTwoPoints(
         Point2D pointA,
         Point2D pointB)
-    {
-        return DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointB.X, pointB.Y);
-    }
+        => DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointB.X, pointB.Y);
 
     /// <summary>
     /// This is the Cartesian version of Pythagoras' theorem. In three-dimensional space, the distance between points (x1,y1,z1) and (x2,y2,z2).
@@ -48,9 +46,7 @@ public static class CartesianHelper
     public static double DistanceBetweenTwoPoints(
         Point3D pointA,
         Point3D pointB)
-    {
-        return DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointA.Z, pointB.X, pointB.Y, pointB.Z);
-    }
+        => DistanceBetweenTwoPoints(pointA.X, pointA.Y, pointA.Z, pointB.X, pointB.Y, pointB.Z);
 
     /// <summary>
     /// Calculate the distance between two points.
@@ -61,9 +57,7 @@ public static class CartesianHelper
     public static double DistanceBetweenTwoPoints(
         CartesianCoordinate coordinateA,
         CartesianCoordinate coordinateB)
-    {
-        return DistanceBetweenTwoPoints(coordinateA.Longitude, coordinateA.Latitude, coordinateB.Longitude, coordinateB.Latitude);
-    }
+        => DistanceBetweenTwoPoints(coordinateA.Longitude, coordinateA.Latitude, coordinateB.Longitude, coordinateB.Latitude);
 
     /// <summary>
     /// The Euclidean distance between two points of the plane with Cartesian coordinates (x1,y1) and (x2,y2).

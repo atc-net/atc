@@ -178,7 +178,10 @@ public static class DotnetBuildHelper
             var slnFiles = Directory.GetFiles(rootPath.FullName, "*.sln");
             if (slnFiles.Length > 1)
             {
-                var files = slnFiles.Select(x => new FileInfo(x).Name).ToListAsync(cancellationToken);
+                var files = slnFiles
+                    .Select(x => new FileInfo(x).Name)
+                    .ToListAsync(cancellationToken);
+
                 return (
                     IsSuccessful: false,
                     Output: $"Please specify which solution file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the solution file using this option: --buildFile");
@@ -187,7 +190,10 @@ public static class DotnetBuildHelper
             var csprojFiles = Directory.GetFiles(rootPath.FullName, "*.csproj");
             if (csprojFiles.Length > 1)
             {
-                var files = csprojFiles.Select(x => new FileInfo(x).Name).ToListAsync(cancellationToken);
+                var files = csprojFiles
+                    .Select(x => new FileInfo(x).Name)
+                    .ToListAsync(cancellationToken);
+
                 return (
                     IsSuccessful: false,
                     Output: $"Please specify which C# project file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the C# project file using this option: --buildFile");

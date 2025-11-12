@@ -59,7 +59,11 @@ internal static class ParametersNamingMatchHelper
         MethodInfo testMethod,
         Tuple<AstNode, List<AstNode>> astNodeForTestMethodAndParameters)
     {
-        var filteredParameters = parameters.Where(x => !x.IsOut).Skip(1).ToArray();
+        var filteredParameters = parameters
+            .Where(x => !x.IsOut)
+            .Skip(1)
+            .ToArray();
+
         if (filteredParameters.Length == 0 &&
             parameters.Count(x => x.IsOut) == astNodeForTestMethodAndParameters.Item2.Count)
         {
@@ -460,11 +464,14 @@ internal static class ParametersNamingMatchHelper
                         if (tmp.StartsWith('[') && tmp.EndsWith(']'))
                         {
                             // FirstChild is a DataAnnotation attribute, then take the next one
-                            tmp = astNodeForParameter.Parent!.Children.ToArray()[1].ToString().Trim();
+                            tmp = astNodeForParameter
+                                .Parent!
+                                .Children.ToArray()[1]
+                                .ToStringTrimmed();
                         }
                         else if (string.Equals(tmp, parameterName, StringComparison.Ordinal))
                         {
-                            tmp = astNodeForParameter.Parent!.Parent!.FirstChild!.ToString().Trim();
+                            tmp = astNodeForParameter.Parent!.Parent!.FirstChild!.ToStringTrimmed();
                         }
 
                         return tmp;
@@ -496,7 +503,7 @@ internal static class ParametersNamingMatchHelper
                 string.Equals((x as VariableInitializer)?.Name, parameterName, StringComparison.Ordinal));
         if (foundAstNode?.Parent is not null)
         {
-            var sa = foundAstNode.Parent.Children.Select(x => x.ToString()).ToArray();
+            var sa = foundAstNode.Parent.Children.SelectToArray(x => x.ToString());
             for (var i = 1; i < sa.Length; i++)
             {
                 if (string.Equals(sa[i], parameterName, StringComparison.Ordinal))

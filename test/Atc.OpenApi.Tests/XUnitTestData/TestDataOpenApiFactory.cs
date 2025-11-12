@@ -210,7 +210,8 @@ internal static class TestDataOpenApiFactory
             },
         };
 
-    public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(string path)
+    public static KeyValuePair<string, OpenApiPathItem> CreatePathItemWithOperationResponseOkPet(
+        string path)
         => new(
             path,
             new OpenApiPathItem
@@ -222,7 +223,8 @@ internal static class TestDataOpenApiFactory
                 },
             });
 
-    public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(List<OpenApiParameter> parameters)
+    public static OpenApiPathItem CreatePathItemWithOperationResponseOkPetWithParameters(
+        List<OpenApiParameter> parameters)
         => new()
         {
             Summary = "Get a pet",

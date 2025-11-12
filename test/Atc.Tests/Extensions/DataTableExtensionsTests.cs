@@ -18,8 +18,13 @@ public class DataTableExtensionsTests
         dt.Dispose();
 
         // Assert
-        actual.Should().NotBeNull().And.BeOfType<DataTable>();
-        actual.Rows.Cast<DataRow>().Should().HaveCount(expected);
+        actual
+            .Should().NotBeNull()
+            .And.BeOfType<DataTable>();
+        actual
+            .Rows
+            .Cast<DataRow>()
+            .Should().HaveCount(expected);
         var sortOnColumnArray = (
                 from DataRow row
                     in actual.Rows
@@ -55,8 +60,12 @@ public class DataTableExtensionsTests
         dt.Dispose();
 
         // Assert
-        actual.Should().NotBeNull().And.BeOfType<DataTable>();
-        actual.Rows.Cast<DataRow>().Should().HaveCount(expected);
+        actual
+            .Should().NotBeNull()
+            .And.BeOfType<DataTable>();
+        actual
+            .Rows.Cast<DataRow>()
+            .Should().HaveCount(expected);
     }
 
     [Theory]
@@ -74,7 +83,9 @@ public class DataTableExtensionsTests
         dt.Dispose();
 
         // Assert
-        actual.Should().NotBeNull().And.BeOfType<Dictionary<string, int>>();
+        actual
+            .Should().NotBeNull()
+            .And.BeOfType<Dictionary<string, int>>();
         actual.Should().HaveCount(expected);
     }
 
@@ -90,7 +101,8 @@ public class DataTableExtensionsTests
         dt.Dispose();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<TestItem>>()
             .And.HaveCount(expected);
     }

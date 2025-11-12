@@ -28,7 +28,8 @@ public sealed class CultureInfoToNameJsonConverterTests
     [InlineData("en-US")]
     [InlineData("fr-FR")]
     [InlineData("ja-JP")]
-    public void Write_ShouldWriteCultureInfoNameToUtf8JsonWriter(string cultureName)
+    public void Write_ShouldWriteCultureInfoNameToUtf8JsonWriter(
+        string cultureName)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();

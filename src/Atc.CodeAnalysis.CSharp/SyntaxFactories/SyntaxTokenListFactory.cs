@@ -128,12 +128,11 @@ public static class SyntaxTokenListFactory
             SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
     }
 
-    public static SyntaxTokenList PrivateReadonlyKeyword(bool withTrailingSpace = true)
-    {
-        return SyntaxFactory.TokenList(
+    public static SyntaxTokenList PrivateReadonlyKeyword(
+        bool withTrailingSpace = true)
+        => SyntaxFactory.TokenList(
             SyntaxTokenFactory.PrivateKeyword(),
             SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace));
-    }
 
     public static SyntaxTokenList PrivateAsyncKeyword(
         bool withLeadingLineFeed = false,

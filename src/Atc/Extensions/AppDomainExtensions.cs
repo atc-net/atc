@@ -12,8 +12,7 @@ public static class AppDomainExtensions
     /// <param name="appDomain">The application domain to search.</param>
     /// <returns>An array of all exported types from non-dynamic assemblies.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="appDomain"/> is null.</exception>
-    public static Type[] GetAllExportedTypes(
-        this AppDomain appDomain)
+    public static Type[] GetAllExportedTypes(this AppDomain appDomain)
     {
         if (appDomain is null)
         {
@@ -106,8 +105,7 @@ public static class AppDomainExtensions
     /// </summary>
     /// <param name="appDomain">The application domain.</param>
     /// <returns>The array of <see cref="Assembly"/>.</returns>
-    public static Assembly[] GetCustomAssemblies(
-        this AppDomain appDomain)
+    public static Assembly[] GetCustomAssemblies(this AppDomain appDomain)
     {
         if (appDomain is null)
         {
@@ -162,7 +160,10 @@ public static class AppDomainExtensions
             throw new ArgumentNullException(nameof(appDomain));
         }
 
-        var sa = AssemblyHelper.GetSystemName().Split('.');
+        var sa = AssemblyHelper
+            .GetSystemName()
+            .Split('.');
+
         return sa.Length < 1
             ? Array.Empty<AssemblyInformation>()
             : appDomain.GetAssemblyInformationsByStartsWith(sa[0]);

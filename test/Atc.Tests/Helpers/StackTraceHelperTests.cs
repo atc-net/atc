@@ -129,38 +129,30 @@ public class StackTraceHelperTests
 
     private sealed class TestClassWithProperty
     {
-        public bool CheckFromMethod()
-        {
-            return TestProperty();
-        }
+        public bool CheckFromMethod() => TestProperty();
 
         private bool TestProperty()
-        {
-            return StackTraceHelper.ContainsPropertyName(nameof(TestProperty));
-        }
+            => StackTraceHelper.ContainsPropertyName(nameof(TestProperty));
     }
 
     private sealed class TestClassWithPropertyDrillDown
     {
-        public bool CheckFromMethod()
-        {
-            return TestProperty();
-        }
+        public bool CheckFromMethod() => TestProperty();
 
         private bool TestProperty()
-        {
-            return StackTraceHelper.ContainsPropertyName(nameof(TestProperty), drillDownFrameMax: 10);
-        }
+            => StackTraceHelper.ContainsPropertyName(nameof(TestProperty), drillDownFrameMax: 10);
     }
 
     private sealed class TestClassWithGetter
     {
-        public bool TestProperty => StackTraceHelper.ContainsPropertyGetterName(nameof(TestProperty));
+        public bool TestProperty
+            => StackTraceHelper.ContainsPropertyGetterName(nameof(TestProperty));
     }
 
     private sealed class TestClassWithGetterDrillDown
     {
-        public bool TestProperty => StackTraceHelper.ContainsPropertyGetterName(nameof(TestProperty), drillDownFrameMax: 10);
+        public bool TestProperty
+            => StackTraceHelper.ContainsPropertyGetterName(nameof(TestProperty), drillDownFrameMax: 10);
     }
 
     private sealed class TestClassWithSetter

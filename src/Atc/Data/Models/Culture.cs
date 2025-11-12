@@ -203,7 +203,5 @@ public class Culture
 
     /// <inheritdoc />
     public override string ToString()
-    {
-        return $"{nameof(Lcid)}: {Lcid}, {nameof(Name)}: {Name}, {nameof(CountryEnglishName)}: {CountryEnglishName}, {nameof(CountryDisplayName)}: {CountryDisplayName}, {nameof(CountryCodeA2)}: {CountryCodeA2}, {nameof(CountryCodeA3)}: {CountryCodeA3}, {nameof(LanguageEnglishName)}: {LanguageEnglishName}, {nameof(LanguageDisplayName)}: {LanguageDisplayName}, {nameof(LanguageCodeA3)}: {LanguageCodeA3}, {nameof(LanguageCodeA2)}: {LanguageCodeA2}, {nameof(CurrencySymbol)}: {CurrencySymbol}, {nameof(IsoCurrencySymbol)}: {IsoCurrencySymbol}, {nameof(NumberDecimalSeparator)}: {NumberDecimalSeparator}, {nameof(ShortDatePattern)}: {ShortDatePattern}, {nameof(LongTimePattern)}: {LongTimePattern}";
-    }
+        => $"{nameof(Lcid)}: {Lcid}, {nameof(Name)}: {Name}, {nameof(CountryEnglishName)}: {CountryEnglishName}, {nameof(CountryDisplayName)}: {CountryDisplayName}, {nameof(CountryCodeA2)}: {CountryCodeA2}, {nameof(CountryCodeA3)}: {CountryCodeA3}, {nameof(LanguageEnglishName)}: {LanguageEnglishName}, {nameof(LanguageDisplayName)}: {LanguageDisplayName}, {nameof(LanguageCodeA3)}: {LanguageCodeA3}, {nameof(LanguageCodeA2)}: {LanguageCodeA2}, {nameof(CurrencySymbol)}: {CurrencySymbol}, {nameof(IsoCurrencySymbol)}: {IsoCurrencySymbol}, {nameof(NumberDecimalSeparator)}: {NumberDecimalSeparator}, {nameof(ShortDatePattern)}: {ShortDatePattern}, {nameof(LongTimePattern)}: {LongTimePattern}";
 }

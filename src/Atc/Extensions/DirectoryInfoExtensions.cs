@@ -22,7 +22,11 @@ public static class DirectoryInfoExtensions
             throw new ArgumentNullException(nameof(directoryInfo));
         }
 
-        return new FileInfo(Path.Combine(new[] { directoryInfo.FullName }.Concat(paths).ToArray()));
+        var sa = new[] { directoryInfo.FullName }
+            .Concat(paths)
+            .ToArray();
+
+        return new FileInfo(Path.Combine(sa));
     }
 
     /// <summary>

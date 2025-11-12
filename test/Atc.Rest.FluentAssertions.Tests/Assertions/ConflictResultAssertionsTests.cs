@@ -28,7 +28,8 @@ public class ConflictResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent(content))
+        sut
+            .Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
             .WithMessage(expectedMessage + "*");
@@ -43,7 +44,8 @@ public class ConflictResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+        sut
+            .Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content of conflict result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
@@ -62,7 +64,8 @@ public class ConflictResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content type of conflict result to be ""application/json"", but found ""BAZ"".");
@@ -77,21 +80,24 @@ public class ConflictResultAssertionsTests : ContentResultAssertionsBaseFixture
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .NotThrow();
     }
 
     [Theory]
     [MemberData(nameof(TestDataAssertions.ErrorMessageContent), MemberType = typeof(TestDataAssertions))]
-    public void WithErrorMessage_Throws_When_Content_Doenst_Match_Expected(object content)
+    public void WithErrorMessage_Throws_When_Content_Doenst_Match_Expected(
+        object content)
     {
         // Arrange
         var target = CreateWithJsonContent(content);
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithErrorMessage("BAR"))
+        sut
+            .Invoking(x => x.WithErrorMessage("BAR"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected error message of conflict result to be ""BAR"", but found ""FOO"".");
@@ -99,14 +105,16 @@ public class ConflictResultAssertionsTests : ContentResultAssertionsBaseFixture
 
     [Theory]
     [MemberData(nameof(TestDataAssertions.ErrorMessageContent), MemberType = typeof(TestDataAssertions))]
-    public void WithErrorMessage_Does_Not_Throw_When_Expected_Match(object content)
+    public void WithErrorMessage_Does_Not_Throw_When_Expected_Match(
+        object content)
     {
         // Arrange
         var target = CreateWithJsonContent(content);
         var sut = new ConflictResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithErrorMessage("FOO"))
+        sut
+            .Invoking(x => x.WithErrorMessage("FOO"))
             .Should()
             .NotThrow();
     }

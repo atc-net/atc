@@ -5,6 +5,60 @@ public class MemberInfoExtensionsTests
     [Theory]
     [InlineData(false, typeof(TestItem), "Hallo")]
     [InlineData(true, typeof(TestItem), "World")]
+    public void AnyCustomAttributes_ExcludeFromCodeCoverageAttribute(
+        bool expected,
+        Type type,
+        string methodName)
+    {
+        // Arrange
+        var memberInfo = type.GetMember(methodName)[0];
+
+        // Act
+        var actual = memberInfo.AnyCustomAttributes<ExcludeFromCodeCoverageAttribute>();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(false, typeof(TestItem), "Hallo")]
+    [InlineData(true, typeof(TestItem), "World")]
+    public void AnyCustomAttributes_IgnoreDisplayAttribute(
+        bool expected,
+        Type type,
+        string methodName)
+    {
+        // Arrange
+        var memberInfo = type.GetMember(methodName)[0];
+
+        // Act
+        var actual = memberInfo.AnyCustomAttributes<IgnoreDisplayAttribute>();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(false, typeof(TestItem), "Hallo")]
+    [InlineData(true, typeof(TestItem), "World")]
+    public void AnyCustomAttributes_RequiredAttribute(
+        bool expected,
+        Type type,
+        string methodName)
+    {
+        // Arrange
+        var memberInfo = type.GetMember(methodName)[0];
+
+        // Act
+        var actual = memberInfo.AnyCustomAttributes<RequiredAttribute>();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(false, typeof(TestItem), "Hallo")]
+    [InlineData(true, typeof(TestItem), "World")]
     public void HasExcludeFromCodeCoverageAttribute(
         bool expected,
         Type type,

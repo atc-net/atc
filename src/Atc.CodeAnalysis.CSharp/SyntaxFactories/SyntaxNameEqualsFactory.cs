@@ -11,12 +11,10 @@ public static class SyntaxNameEqualsFactory
     /// <param name="value">The identifier name for the name-equals clause.</param>
     /// <returns>A <see cref="NameEqualsSyntax"/> node.</returns>
     public static NameEqualsSyntax Create(string value)
-    {
-        return SyntaxFactory.NameEquals(
+        => SyntaxFactory.NameEquals(
             SyntaxFactory.IdentifierName(
                 SyntaxFactory.Identifier(
                     SyntaxFactory.TriviaList(),
                     value,
                     new SyntaxTriviaList(SyntaxFactory.Space))));
-    }
 }

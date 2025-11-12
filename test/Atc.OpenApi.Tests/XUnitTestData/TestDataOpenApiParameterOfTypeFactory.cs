@@ -3,100 +3,76 @@ namespace Atc.OpenApi.Tests.XUnitTestData;
 internal static class TestDataOpenApiParameterOfTypeFactory
 {
     public static OpenApiParameter CreateString()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateString(),
         };
-    }
 
     public static OpenApiParameter CreateInt32()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt32(),
         };
-    }
 
     public static OpenApiParameter CreateInt64()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateInt64(),
         };
-    }
 
     public static OpenApiParameter CreateNumberFloat()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateNumberFloat(),
         };
-    }
 
     public static OpenApiParameter CreateStringByte()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringByte(),
         };
-    }
 
     public static OpenApiParameter CreateStringDate()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDate(),
         };
-    }
 
     public static OpenApiParameter CreateStringDateTime()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringDateTime(),
         };
-    }
 
     public static OpenApiParameter CreateStringEmail()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringEmail(),
         };
-    }
 
     public static OpenApiParameter CreateStringTime()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTime(),
         };
-    }
 
     public static OpenApiParameter CreateStringTimestamp()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringTimestamp(),
         };
-    }
 
     public static OpenApiParameter CreateStringUri()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUri(),
         };
-    }
 
     public static OpenApiParameter CreateStringUuid()
-    {
-        return new OpenApiParameter
+        => new()
         {
             Schema = TestDataOpenApiSchemaOfTypeFactory.CreateStringUuid(),
         };
-    }
 
     public static OpenApiParameter CreateRouteIntId()
     {

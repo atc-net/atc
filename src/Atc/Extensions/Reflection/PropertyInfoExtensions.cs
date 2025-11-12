@@ -134,7 +134,11 @@ public static class PropertyInfoExtensions
         Func<T, TExpected> expression)
         where T : Attribute
     {
-        var attribute = propertyInfo.GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
+        var attribute = propertyInfo
+            .GetCustomAttributes(typeof(T), true)
+            .Cast<T>()
+            .SingleOrDefault();
+
         return (attribute is null
             ? default
             : expression(attribute))!;

@@ -42,7 +42,8 @@ public class ConsoleLogger : ILogger
     public IDisposable BeginScope<TState>(TState state) => default!;
 
     /// <inheritdoc />
-    public bool IsEnabled(LogLevel logLevel) => logLevel >= config.MinimumLogLevel;
+    public bool IsEnabled(LogLevel logLevel)
+        => logLevel >= config.MinimumLogLevel;
 
     /// <inheritdoc />
     public void Log<TState>(

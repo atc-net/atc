@@ -160,7 +160,8 @@ public struct ByteSize : IEquatable<ByteSize>
     public readonly bool Equals(ByteSize other) => Value == other.Value;
 
     /// <inheritdoc />
-    public override readonly bool Equals(object? obj) => obj is ByteSize x && Equals(x);
+    public override readonly bool Equals(object? obj)
+        => obj is ByteSize x && Equals(x);
 
     /// <inheritdoc />
     public override readonly int GetHashCode() => base.GetHashCode();
@@ -174,7 +175,8 @@ public struct ByteSize : IEquatable<ByteSize>
     /// <remarks>
     /// The size is formatted to a human readable format using the default formatter (<see cref="ByteSizeFormatter.Default"/>).
     /// </remarks>
-    public override readonly string ToString() => ByteSizeFormatter.Default.Format(Value);
+    public override readonly string ToString()
+        => ByteSizeFormatter.Default.Format(Value);
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance, using the specified formatter.
@@ -184,7 +186,8 @@ public struct ByteSize : IEquatable<ByteSize>
     /// A <see cref="string" /> that represents this instance.
     /// </returns>
     /// <exception cref="System.ArgumentNullException"><c>formatter</c> is null.</exception>
-    public readonly string ToString(ByteSizeFormatter formatter) => Format(formatter);
+    public readonly string ToString(ByteSizeFormatter formatter)
+        => Format(formatter);
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance.

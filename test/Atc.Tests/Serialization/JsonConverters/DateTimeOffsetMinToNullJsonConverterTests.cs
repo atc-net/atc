@@ -5,7 +5,8 @@ public sealed class DateTimeOffsetMinToNullJsonConverterTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public void SerializeAndDeserialize(bool useConverterDatetimeOffsetMinToNull)
+    public void SerializeAndDeserialize(
+        bool useConverterDatetimeOffsetMinToNull)
     {
         // Arrange
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create(
@@ -26,9 +27,7 @@ public sealed class DateTimeOffsetMinToNullJsonConverterTests
         var actualData = JsonSerializer.Deserialize<List<VehicleBase>>(actualJson, jsonSerializerOptions);
 
         // Assert
-        actualData
-            .Should()
-            .NotBeNull();
+        actualData.Should().NotBeNull();
 
         var vehicle1 = actualData!
             .First(x => x.PlateNumber == "CB12345");

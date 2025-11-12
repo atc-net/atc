@@ -86,7 +86,7 @@ public class CompilationUnitSyntaxExtensionsTests
         Assert.Equal(3, result.Usings.Count);
 
         // Verify sorted order (System namespaces typically come first)
-        var usings = result.Usings.Select(u => u.Name!.ToString()).ToArray();
+        var usings = result.Usings.SelectToArray(u => u.Name!.ToString());
         Assert.NotNull(usings);
     }
 }

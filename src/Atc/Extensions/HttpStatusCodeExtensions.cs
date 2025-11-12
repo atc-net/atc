@@ -11,8 +11,7 @@ public static class HttpStatusCodeExtensions
     /// </summary>
     /// <param name="httpStatusCode">The HTTP status code to convert.</param>
     /// <returns>A normalized string representation of the HTTP status code (e.g., "Ok" instead of "OK").</returns>
-    public static string ToNormalizedString(
-        this HttpStatusCode httpStatusCode)
+    public static string ToNormalizedString(this HttpStatusCode httpStatusCode)
         => httpStatusCode switch
         {
             HttpStatusCode.OK => "Ok",

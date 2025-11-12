@@ -97,9 +97,8 @@ internal static class AssemblyCommentHelper
     private static bool IsRequiredNamespace(
         Type type,
         Regex? regex)
-    {
-        return regex is null || regex.IsMatch(type.Namespace ?? string.Empty);
-    }
+        => regex is null ||
+           regex.IsMatch(type.Namespace ?? string.Empty);
 
     private static TypeComments[] CollectExportedTypesWithMissingComments(
         Assembly assembly,
@@ -181,8 +180,8 @@ internal static class AssemblyCommentHelper
             })
             .Where(x => x is not null
                         && x.IsPublic
-                        && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
-                        && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
+                        && !x.AnyCustomAttributes<ObsoleteAttribute>()
+                        && !x.AnyCustomAttributes<CompilerGeneratedAttribute>()
                         && !excludeTypes.Contains(x))
             .OrderBy(x => x!.FullName!, StringComparer.Ordinal)
             .ToArray();

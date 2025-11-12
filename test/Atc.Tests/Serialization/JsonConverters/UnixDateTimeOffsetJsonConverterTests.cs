@@ -26,9 +26,7 @@ public sealed class UnixDateTimeOffsetJsonConverterTests
         var actualData = JsonSerializer.Deserialize<List<VehicleBase>>(actualJson, jsonSerializerOptions);
 
         // Assert
-        actualData
-            .Should()
-            .NotBeNull();
+        actualData.Should().NotBeNull();
 
         var vehicle1 = actualData!
             .First(x => x.PlateNumber == "CB12345");

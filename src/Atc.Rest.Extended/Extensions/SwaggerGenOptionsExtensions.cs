@@ -11,8 +11,7 @@ public static class SwaggerGenOptionsExtensions
     /// Removes any existing <see cref="ApiVersionOperationFilter"/> before adding the custom one.
     /// </summary>
     /// <param name="options">The <see cref="SwaggerGenOptions"/> instance.</param>
-    public static void ApplyApiVersioningFilters(
-        this SwaggerGenOptions options)
+    public static void ApplyApiVersioningFilters(this SwaggerGenOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
 

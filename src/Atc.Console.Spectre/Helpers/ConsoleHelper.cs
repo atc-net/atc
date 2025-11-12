@@ -9,8 +9,7 @@ public static class ConsoleHelper
     /// Writes a header in ASCII art format with cornflower blue color.
     /// </summary>
     /// <param name="text">The text to render as an ASCII header.</param>
-    public static void WriteHeader(
-        string text)
+    public static void WriteHeader(string text)
         => AnsiConsole.Write(new FigletText(text).Color(Color.CornflowerBlue));
 
     /// <summary>

@@ -12,15 +12,13 @@ public sealed class XUnitLoggerProvider : ILoggerProvider
     /// Initializes a new instance of the <see cref="XUnitLoggerProvider"/> class.
     /// </summary>
     /// <param name="testOutputHelper">The xUnit test output helper.</param>
-    public XUnitLoggerProvider(
-        ITestOutputHelper testOutputHelper)
+    public XUnitLoggerProvider(ITestOutputHelper testOutputHelper)
     {
         this.testOutputHelper = testOutputHelper;
     }
 
     /// <inheritdoc />
-    public ILogger CreateLogger(
-        string categoryName)
+    public ILogger CreateLogger(string categoryName)
         => new XUnitLogger(testOutputHelper, scopeProvider, categoryName);
 
     /// <inheritdoc />

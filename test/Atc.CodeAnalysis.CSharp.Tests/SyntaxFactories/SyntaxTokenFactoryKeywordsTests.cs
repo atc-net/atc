@@ -225,7 +225,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void AbstractKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void AbstractKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.AbstractKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.AbstractKeyword, result.Kind());
@@ -234,7 +235,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void PublicKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void PublicKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.PublicKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.PublicKeyword, result.Kind());
@@ -243,7 +245,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void PrivateKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void PrivateKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.PrivateKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.PrivateKeyword, result.Kind());
@@ -252,7 +255,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void PartialKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void PartialKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.PartialKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.PartialKeyword, result.Kind());
@@ -261,7 +265,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void OverrideKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void OverrideKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.OverrideKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.OverrideKeyword, result.Kind());
@@ -270,7 +275,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void InternalKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void InternalKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.InternalKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.InternalKeyword, result.Kind());
@@ -279,7 +285,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void ProtectedKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void ProtectedKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.ProtectedKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.ProtectedKeyword, result.Kind());
@@ -288,7 +295,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void StaticKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void StaticKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.StaticKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.StaticKeyword, result.Kind());
@@ -297,7 +305,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void AsyncKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void AsyncKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.AsyncKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.AsyncKeyword, result.Kind());
@@ -306,7 +315,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void ReadOnlyKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void ReadOnlyKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.ReadOnlyKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.ReadOnlyKeyword, result.Kind());
@@ -324,7 +334,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void DefaultKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void DefaultKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.DefaultKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.DefaultKeyword, result.Kind());
@@ -333,7 +344,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void ImplicitKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void ImplicitKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.ImplicitKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.ImplicitKeyword, result.Kind());
@@ -342,7 +354,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void OperatorKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void OperatorKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.OperatorKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.OperatorKeyword, result.Kind());
@@ -351,7 +364,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void StringKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void StringKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.StringKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.StringKeyword, result.Kind());
@@ -369,7 +383,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void DoubleKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void DoubleKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.DoubleKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.DoubleKeyword, result.Kind());
@@ -387,7 +402,8 @@ public class SyntaxTokenFactoryKeywordsTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void ObjectKeyword_With_TrailingSpace_Parameter(bool withTrailingSpace)
+    public void ObjectKeyword_With_TrailingSpace_Parameter(
+        bool withTrailingSpace)
     {
         var result = SyntaxTokenFactory.ObjectKeyword(withTrailingSpace);
         Assert.Equal(SyntaxKind.ObjectKeyword, result.Kind());

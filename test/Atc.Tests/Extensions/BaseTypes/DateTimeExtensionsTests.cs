@@ -184,7 +184,8 @@ public class DateTimeExtensionsTests
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
     public void ToLongDateStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -203,7 +204,8 @@ public class DateTimeExtensionsTests
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
     public void ToLongDateString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -222,7 +224,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
     public void ToLongTimeStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -241,7 +244,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
     public void ToLongTimeString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -260,7 +264,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
     public void ToShortDateStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -279,7 +284,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
     public void ToShortDateString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -298,7 +304,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
     public void ToShortTimeStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -317,7 +324,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
     public void ToShortTimeString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -336,7 +344,8 @@ public class DateTimeExtensionsTests
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
     public void ToLongDateStringUsingSpecificCulture(
-        string expected, int cultureInfoLcid)
+        string expected,
+        int cultureInfoLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -355,7 +364,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
     public void ToLongTimeStringUsingSpecificCulture(
-        string expected, int cultureInfoLcid)
+        string expected,
+        int cultureInfoLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -374,7 +384,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
     public void ToShortDateStringUsingSpecificCulture(
-        string expected, int cultureInfoLcid)
+        string expected,
+        int cultureInfoLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
@@ -393,7 +404,8 @@ public class DateTimeExtensionsTests
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
     public void ToShortTimeStringUsingSpecificCulture(
-        string expected, int cultureInfoLcid)
+        string expected,
+        int cultureInfoLcid)
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);

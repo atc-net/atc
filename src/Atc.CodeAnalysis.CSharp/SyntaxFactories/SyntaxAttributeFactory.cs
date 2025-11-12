@@ -113,7 +113,8 @@ public static class SyntaxAttributeFactory
     /// <returns>An <see cref="AttributeSyntax"/> node representing the validation attribute.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="validationAttribute"/> is null.</exception>
     /// <exception cref="NotImplementedException">Thrown when the validation attribute type is not supported.</exception>
-    public static AttributeSyntax CreateFromValidationAttribute(ValidationAttribute validationAttribute)
+    public static AttributeSyntax CreateFromValidationAttribute(
+        ValidationAttribute validationAttribute)
     {
         if (validationAttribute is null)
         {

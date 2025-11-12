@@ -12,7 +12,9 @@ public class ReadOnlyListExtensionsTests
         var actual = input.GetUniqueCombinations();
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expected);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expected);
     }
 
     [Theory]
@@ -25,7 +27,9 @@ public class ReadOnlyListExtensionsTests
         var actual = input.GetUniqueCombinationsAsCommaSeparated();
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expected);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expected);
     }
 
     [Theory]
@@ -38,6 +42,8 @@ public class ReadOnlyListExtensionsTests
         var actual = input.GetPowerSet();
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expected);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expected);
     }
 }

@@ -32,6 +32,7 @@ public class CodeComplianceTests
         typeof(UnixDateTimeOffsetJsonConverter), // JsonConverter override methods with ref parameters
         typeof(UriToAbsoluteUriJsonConverter), // JsonConverter override methods with ref parameters
         typeof(VersionJsonConverter), // JsonConverter override methods with ref parameters
+        typeof(System.TypeExtensions),
         typeof(AsyncEnumerableFactory),
         typeof(EnumerableExtensions),
         typeof(StringCaseFormatter), // AST has limitations with IFormatProvider/ICustomFormatter interface method detection

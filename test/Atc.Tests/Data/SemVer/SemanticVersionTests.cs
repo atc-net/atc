@@ -35,8 +35,7 @@ public class SemanticVersionTests
             // Act & Assert
             new Func<object>(()
                     => new SemanticVersion(version))
-                .Should()
-                .ThrowExactly<ArgumentException>();
+                .Should().ThrowExactly<ArgumentException>();
         }
     }
 
@@ -85,8 +84,7 @@ public class SemanticVersionTests
             // Act & Assert
             new Func<object>(()
                     => new SemanticVersion(version, looseMode))
-                .Should()
-                .ThrowExactly<ArgumentException>();
+                .Should().ThrowExactly<ArgumentException>();
         }
     }
 
@@ -354,8 +352,7 @@ public class SemanticVersionTests
             // Act & Assert
             new Func<object>(()
                 => SemanticVersion.Parse(version))
-                .Should()
-                .ThrowExactly<ArgumentException>();
+                .Should().ThrowExactly<ArgumentException>();
         }
     }
 

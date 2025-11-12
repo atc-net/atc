@@ -25,11 +25,15 @@ public class AuthorizeResponseOperationFilter : IOperationFilter
             .OfType<AuthorizeAttribute>()
             .Any() ?? false;
 
-        var actionAuthorized = context.MethodInfo.GetCustomAttributes(inherit: true)
+        var actionAuthorized = context
+            .MethodInfo
+            .GetCustomAttributes(inherit: true)
             .OfType<AuthorizeAttribute>()
             .Any();
 
-        var actionAllowAnonymous = context.MethodInfo.GetCustomAttributes(inherit: true)
+        var actionAllowAnonymous = context
+            .MethodInfo
+            .GetCustomAttributes(inherit: true)
             .OfType<AllowAnonymousAttribute>()
             .Any();
 

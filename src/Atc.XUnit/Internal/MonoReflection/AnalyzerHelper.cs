@@ -55,7 +55,10 @@ internal static class AnalyzerHelper
             {
                 if (!sourceType.HasValidationAttributes())
                 {
-                    methodsToExclude.AddRange(sourceType.GetPublicDeclaredOnlyMethods().Where(TypeAndMethodAndParameterHelper.ShouldMethodBeExcluded));
+                    methodsToExclude.AddRange(
+                        sourceType
+                            .GetPublicDeclaredOnlyMethods()
+                            .Where(TypeAndMethodAndParameterHelper.ShouldMethodBeExcluded));
                 }
             }
         }
@@ -168,7 +171,9 @@ internal static class AnalyzerHelper
 
         // Find all methods with this name in the declaring type
         var methods = declaringType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
-        var candidateMethods = methods.Where(m => m.Name.Equals(methodName, StringComparison.Ordinal)).ToArray();
+        var candidateMethods = methods
+            .Where(m => m.Name.Equals(methodName, StringComparison.Ordinal))
+            .ToArray();
 
         if (candidateMethods.Length == 0)
         {
@@ -207,7 +212,10 @@ internal static class AnalyzerHelper
         {
             var notFound = debugLimitData.ClassMethodNames
                 .Where(x => x.Item2 is not null)
-                .All(x => !x.Item2.Exists(m => method.BeautifyName().Equals(m, StringComparison.Ordinal)));
+                .All(x => !x.Item2.Exists(m =>
+                    method
+                        .BeautifyName()
+                        .Equals(m, StringComparison.Ordinal)));
 
             if (notFound)
             {
@@ -226,13 +234,12 @@ internal static class AnalyzerHelper
     private static bool IsMethodMatchedByDirectComparison(
         MethodInfo method,
         MethodInfo[] usedSourceMethods)
-    {
-        return usedSourceMethods.Any(x =>
+        => usedSourceMethods.Any(x =>
         {
             // Check if declaring types match
             if (!x.DeclaringType!.GetNameWithoutGenericType(useFullName: true)!.Equals(
-                method.DeclaringType!.GetNameWithoutGenericType(useFullName: true),
-                StringComparison.Ordinal))
+                    method.DeclaringType!.GetNameWithoutGenericType(useFullName: true),
+                    StringComparison.Ordinal))
             {
                 return false;
             }
@@ -244,9 +251,10 @@ internal static class AnalyzerHelper
             }
 
             // For non-generic methods, compare beautified names
-            return x.BeautifyName().Equals(method.BeautifyName(), StringComparison.Ordinal);
+            return x
+                .BeautifyName()
+                .Equals(method.BeautifyName(), StringComparison.Ordinal);
         });
-    }
 
     private static bool AreGenericMethodsEqual(
         MethodInfo method,
@@ -290,7 +298,10 @@ internal static class AnalyzerHelper
             return false;
         }
 
-        var usedMethods = usedMethodsByDeclaredType.Where(x => x.Name.Equals(method.Name, StringComparison.Ordinal)).ToList();
+        var usedMethods = usedMethodsByDeclaredType
+            .Where(x => x.Name.Equals(method.Name, StringComparison.Ordinal))
+            .ToList();
+
         if (usedMethods.Count == 0)
         {
             return false;

@@ -70,8 +70,7 @@ public static class CultureHelper
     /// Gets the cultures.
     /// </summary>
     /// <param name="includeOnlyLcids">The include only lcids.</param>
-    public static List<Culture> GetCultures(
-        List<int> includeOnlyLcids)
+    public static List<Culture> GetCultures(List<int> includeOnlyLcids)
         => GetCultures(
             Thread.CurrentThread.CurrentUICulture.LCID,
             includeOnlyLcids);
@@ -90,8 +89,7 @@ public static class CultureHelper
     /// Gets the cultures.
     /// </summary>
     /// <param name="displayLanguageLcid">The display language lcid.</param>
-    public static List<Culture> GetCultures(
-        int displayLanguageLcid)
+    public static List<Culture> GetCultures(int displayLanguageLcid)
         => GetCultures(
             displayLanguageLcid,
             new List<string>()).ToList();
@@ -105,12 +103,14 @@ public static class CultureHelper
         int displayLanguageLcid,
         List<int>? includeOnlyLcids)
     {
-        if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
+        if (includeOnlyLcids is null || includeOnlyLcids.Count == 0)
         {
             return GetCultures(displayLanguageLcid, new List<string>());
         }
 
-        var includeOnlyCultureNames = includeOnlyLcids.Select(lcid => new CultureInfo(lcid).Name).ToList();
+        var includeOnlyCultureNames = includeOnlyLcids
+            .Select(lcid => new CultureInfo(lcid).Name)
+            .ToList();
         return GetCultures(displayLanguageLcid, includeOnlyCultureNames);
     }
 
@@ -161,7 +161,8 @@ public static class CultureHelper
             GetCultures(new List<int> { GlobalizationLcidConstants.UnitedStates })[0],
         };
 
-        foreach (var culture in GetCultures().OrderBy(x => x.CountryDisplayName, StringComparer.Ordinal))
+        var orderedCultures = GetCultures().OrderBy(x => x.CountryDisplayName, StringComparer.Ordinal);
+        foreach (var culture in orderedCultures)
         {
             if (data.Find(x => string.Equals(x.CountryCodeA2, culture.CountryCodeA2, StringComparison.Ordinal)) is null)
             {
@@ -198,8 +199,7 @@ public static class CultureHelper
     /// Gets the culture by lcid.
     /// </summary>
     /// <param name="lcid">The lcid.</param>
-    public static Culture? GetCultureByLcid(
-        int lcid)
+    public static Culture? GetCultureByLcid(int lcid)
         => GetCultures().SingleOrDefault(x => x.Lcid == lcid);
 
     /// <summary>
@@ -221,8 +221,7 @@ public static class CultureHelper
     /// Gets the culture by country code a2.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static Culture? GetCultureByCountryCodeA2(
-        string value)
+    public static Culture? GetCultureByCountryCodeA2(string value)
         => GetCultureByCountryCodeA2(
             Thread.CurrentThread.CurrentUICulture.LCID,
             value);
@@ -253,8 +252,7 @@ public static class CultureHelper
     /// Gets the cultures by country code a2.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static List<Culture> GetCulturesByCountryCodeA2(
-        string value)
+    public static List<Culture> GetCulturesByCountryCodeA2(string value)
         => GetCulturesByCountryCodeA2(
             Thread.CurrentThread.CurrentUICulture.LCID,
             value);
@@ -293,8 +291,7 @@ public static class CultureHelper
     /// Gets the cultures by language code a2.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static List<Culture> GetCulturesByLanguageCodeA2(
-        string value)
+    public static List<Culture> GetCulturesByLanguageCodeA2(string value)
         => GetCulturesByLanguageCodeA2(
             Thread.CurrentThread.CurrentUICulture.LCID,
             value);
@@ -333,8 +330,7 @@ public static class CultureHelper
     /// Gets the culture from value.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static Culture? GetCultureFromValue(
-        string value)
+    public static Culture? GetCultureFromValue(string value)
         => GetCultureFromValue(
             Thread.CurrentThread.CurrentUICulture.LCID,
             value);
@@ -348,7 +344,10 @@ public static class CultureHelper
         int displayLanguageLcid,
         string value)
     {
-        var list = GetCultures().Select(culture => culture.Lcid).ToList();
+        var list = GetCultures()
+            .Select(culture => culture.Lcid)
+            .ToList();
+
         return GetCultureFromValue(displayLanguageLcid, list, value);
     }
 
@@ -365,7 +364,7 @@ public static class CultureHelper
         List<int> includeLcids,
         string value)
     {
-        if (displayLanguageLcid == default)
+        if (displayLanguageLcid == 0)
         {
             throw new ArgumentOutOfRangeException(nameof(displayLanguageLcid));
         }
@@ -572,12 +571,14 @@ public static class CultureHelper
         List<int>? includeOnlyLcids,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
-        if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
+        if (includeOnlyLcids is null || includeOnlyLcids.Count == 0)
         {
             return GetCountryNames(displayLanguageLcid, dropDownFirstItemType);
         }
 
-        var includeOnlyCultureNames = includeOnlyLcids.Select(lcid => new CultureInfo(lcid).Name).ToList();
+        var includeOnlyCultureNames = includeOnlyLcids
+            .Select(lcid => new CultureInfo(lcid).Name)
+            .ToList();
         return GetCountryNames(displayLanguageLcid, includeOnlyCultureNames, dropDownFirstItemType);
     }
 
@@ -705,12 +706,14 @@ public static class CultureHelper
         List<int>? includeOnlyLcids,
         DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
-        if (includeOnlyLcids is null || includeOnlyLcids.Count == default)
+        if (includeOnlyLcids is null || includeOnlyLcids.Count == 0)
         {
             return GetLanguageNames(displayLanguageLcid, dropDownFirstItemType);
         }
 
-        var includeOnlyCultureNames = includeOnlyLcids.Select(lcid => new CultureInfo(lcid).Name).ToList();
+        var includeOnlyCultureNames = includeOnlyLcids
+            .Select(lcid => new CultureInfo(lcid).Name)
+            .ToList();
         return GetLanguageNames(displayLanguageLcid, includeOnlyCultureNames, dropDownFirstItemType);
     }
 
@@ -826,7 +829,9 @@ public static class CultureHelper
             return data;
         }
 
-        return includeOnlyLcids.Where(lcid => data.Contains(lcid)).ToList();
+        return includeOnlyLcids
+            .Where(lcid => data.Contains(lcid))
+            .ToList();
     }
 
     /// <summary>
@@ -933,8 +938,7 @@ public static class CultureHelper
         return data;
     }
 
-    private static string ExtractCountryEnglishName(
-        CultureInfo cultureInfo)
+    private static string ExtractCountryEnglishName(CultureInfo cultureInfo)
     {
         var x = cultureInfo.EnglishName.IndexOf('(', StringComparison.Ordinal);
         return x == -1
@@ -942,8 +946,7 @@ public static class CultureHelper
             : cultureInfo.EnglishName[(x + 1)..].Replace(")", string.Empty, StringComparison.Ordinal);
     }
 
-    private static string ExtractLanguageEnglishName(
-        CultureInfo cultureInfo)
+    private static string ExtractLanguageEnglishName(CultureInfo cultureInfo)
     {
         var x = cultureInfo.EnglishName.IndexOf('(', StringComparison.Ordinal);
         return x == -1

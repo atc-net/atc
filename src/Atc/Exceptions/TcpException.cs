@@ -22,8 +22,7 @@ public class TcpException : Exception
     /// Initializes a new instance of the <see cref="TcpException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public TcpException(
-        string message)
+    public TcpException(string message)
         : base(message)
     {
     }

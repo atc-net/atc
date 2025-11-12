@@ -43,7 +43,8 @@ public static class SyntaxClassDeclarationFactory
             throw new ArgumentNullException(nameof(inheritClassTypeName));
         }
 
-        return SyntaxFactory.ClassDeclaration(classTypeName)
+        return SyntaxFactory
+            .ClassDeclaration(classTypeName)
             .AddModifiers(SyntaxTokenFactory.PublicKeyword())
             .AddBaseListTypes(SyntaxSimpleBaseTypeFactory.Create(inheritClassTypeName));
     }
@@ -69,7 +70,8 @@ public static class SyntaxClassDeclarationFactory
             throw new ArgumentNullException(nameof(interfaceTypeName));
         }
 
-        return SyntaxFactory.ClassDeclaration(classTypeName)
+        return SyntaxFactory
+            .ClassDeclaration(classTypeName)
             .AddModifiers(SyntaxTokenFactory.PublicKeyword())
             .WithBaseList(SyntaxBaseListFactory.CreateOneSimpleBaseType(interfaceTypeName));
     }
@@ -102,7 +104,8 @@ public static class SyntaxClassDeclarationFactory
             throw new ArgumentNullException(nameof(interfaceTypeName));
         }
 
-        return SyntaxFactory.ClassDeclaration(classTypeName)
+        return SyntaxFactory
+            .ClassDeclaration(classTypeName)
             .AddModifiers(SyntaxTokenFactory.PublicKeyword())
             .WithBaseList(SyntaxBaseListFactory.CreateTwoSimpleBaseTypes(inheritClassTypeName, interfaceTypeName));
     }
@@ -113,7 +116,8 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="classTypeName">The name of the class.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with public and partial modifiers.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateAsPublicPartial(string classTypeName)
+    public static ClassDeclarationSyntax CreateAsPublicPartial(
+        string classTypeName)
     {
         if (classTypeName is null)
         {
@@ -130,7 +134,8 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="classTypeName">The name of the class.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with public and static modifiers.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateAsPublicStatic(string classTypeName)
+    public static ClassDeclarationSyntax CreateAsPublicStatic(
+        string classTypeName)
     {
         if (classTypeName is null)
         {
@@ -147,7 +152,8 @@ public static class SyntaxClassDeclarationFactory
     /// <param name="classTypeName">The name of the class.</param>
     /// <returns>A <see cref="ClassDeclarationSyntax"/> with internal and static modifiers.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="classTypeName"/> is null.</exception>
-    public static ClassDeclarationSyntax CreateAsInternalStatic(string classTypeName)
+    public static ClassDeclarationSyntax CreateAsInternalStatic(
+        string classTypeName)
     {
         if (classTypeName is null)
         {

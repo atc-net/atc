@@ -11,11 +11,9 @@ public static class SyntaxTypeArgumentListFactory
     /// <param name="typeName">The name of the type argument.</param>
     /// <returns>A <see cref="TypeArgumentListSyntax"/> containing one type.</returns>
     public static TypeArgumentListSyntax CreateWithOneItem(string typeName)
-    {
-        return SyntaxFactory.TypeArgumentList(
+        => SyntaxFactory.TypeArgumentList(
             SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
                 SyntaxFactory.IdentifierName(typeName)));
-    }
 
     /// <summary>
     /// Creates a type argument list with two types.

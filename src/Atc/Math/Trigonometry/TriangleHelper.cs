@@ -75,14 +75,12 @@ public static class TriangleHelper
     }
 
     private static bool IsAngleAndSidesCalculated(TriangleData result)
-    {
-        return !MathHelper.IsEqualToZero(result.A)
-               && !MathHelper.IsEqualToZero(result.B)
-               && !MathHelper.IsEqualToZero(result.C)
-               && !MathHelper.IsEqualToZero(result.a)
-               && !MathHelper.IsEqualToZero(result.b)
-               && !MathHelper.IsEqualToZero(result.c);
-    }
+        => !MathHelper.IsEqualToZero(result.A)
+           && !MathHelper.IsEqualToZero(result.B)
+           && !MathHelper.IsEqualToZero(result.C)
+           && !MathHelper.IsEqualToZero(result.a)
+           && !MathHelper.IsEqualToZero(result.b)
+           && !MathHelper.IsEqualToZero(result.c);
 
     /// <summary>
     /// Calculates the angles and sides.

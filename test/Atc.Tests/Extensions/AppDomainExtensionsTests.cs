@@ -46,9 +46,7 @@ public class AppDomainExtensionsTests
         Assert.NotNull(assemblies);
         Assert.NotNull(customAssemblies);
 
-        assemblies
-            .Should()
-            .HaveCountGreaterThan(customAssemblies.Length);
+        assemblies.Should().HaveCountGreaterThan(customAssemblies.Length);
     }
 
     [Fact]
@@ -62,7 +60,8 @@ public class AppDomainExtensionsTests
 
         var expectedCount = AppDomain
             .CurrentDomain
-            .GetAssemblies().Count(x => !x.IsDynamic);
+            .GetAssemblies()
+            .Count(x => !x.IsDynamic);
 
         Assert.Equal(expectedCount, actual.Length);
     }

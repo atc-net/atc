@@ -9,7 +9,9 @@ public class PropertyInfoExtensionsTests
         Type type)
     {
         // Arrange
-        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetProperties()
+            .First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
         // Act
         var actual = propertyInfo.BeautifyName();
@@ -25,7 +27,9 @@ public class PropertyInfoExtensionsTests
         Type type)
     {
         // Arrange
-        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetProperties()
+            .First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
         // Act
         var actual = propertyInfo.GetName();
@@ -43,7 +47,9 @@ public class PropertyInfoExtensionsTests
         string propertyName)
     {
         // Arrange
-        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, propertyName, StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetProperties()
+            .First(x => string.Equals(x.Name, propertyName, StringComparison.Ordinal));
 
         // Act
         var actual = propertyInfo.IsNullable();
@@ -59,7 +65,9 @@ public class PropertyInfoExtensionsTests
         Type type)
     {
         // Arrange
-        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetProperties()
+            .First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
         // Act
         var actual = propertyInfo.GetDescription();
@@ -77,7 +85,9 @@ public class PropertyInfoExtensionsTests
         bool useLocalizedIfPossible)
     {
         // Arrange
-        var propertyInfo = type.GetProperties().First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
+        var propertyInfo = type
+            .GetProperties()
+            .First(x => string.Equals(x.Name, "Message", StringComparison.Ordinal));
 
         // Act
         var actual = propertyInfo.GetDescription(useLocalizedIfPossible);

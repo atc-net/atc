@@ -83,8 +83,7 @@ public static class EnumAtcExtensions
     /// </summary>
     /// <param name="leftRightType">The LeftRightType to find the opposite for.</param>
     /// <returns>The opposite LeftRightType. Returns LeftRightType.None if no opposite is defined.</returns>
-    public static LeftRightType Opposite(
-        this LeftRightType leftRightType)
+    public static LeftRightType Opposite(this LeftRightType leftRightType)
         => leftRightType switch
         {
             LeftRightType.Left => LeftRightType.Right,
@@ -129,8 +128,7 @@ public static class EnumAtcExtensions
     /// </summary>
     /// <param name="onOffType">The OnOffType to find the opposite for.</param>
     /// <returns>The opposite OnOffType. Returns OnOffType.None if no opposite is defined.</returns>
-    public static OnOffType Opposite(
-        this OnOffType onOffType)
+    public static OnOffType Opposite(this OnOffType onOffType)
         => onOffType switch
         {
             OnOffType.On => OnOffType.Off,
@@ -157,8 +155,7 @@ public static class EnumAtcExtensions
     /// </summary>
     /// <param name="upDownType">The UpDownType to find the opposite for.</param>
     /// <returns>The opposite UpDownType. Returns UpDownType.None if no opposite is defined.</returns>
-    public static UpDownType Opposite(
-        this UpDownType upDownType)
+    public static UpDownType Opposite(this UpDownType upDownType)
         => upDownType switch
         {
             UpDownType.Up => UpDownType.Down,
@@ -171,8 +168,7 @@ public static class EnumAtcExtensions
     /// </summary>
     /// <param name="yesNoType">The YesNoType to find the opposite for.</param>
     /// <returns>The opposite YesNoType. Returns YesNoType.None if no opposite is defined.</returns>
-    public static YesNoType Opposite(
-        this YesNoType yesNoType)
+    public static YesNoType Opposite(this YesNoType yesNoType)
         => yesNoType switch
         {
             YesNoType.Yes => YesNoType.No,

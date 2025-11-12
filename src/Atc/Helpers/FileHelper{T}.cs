@@ -35,8 +35,7 @@ public static class FileHelper<T>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the file does not exist.</exception>
     /// <exception cref="JsonException">Thrown if the content is not valid JSON for <typeparamref name="T"/>.</exception>
-    public static T? ReadJsonFileToModel(
-        FileInfo fileInfo)
+    public static T? ReadJsonFileToModel(FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -95,8 +94,7 @@ public static class FileHelper<T>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="utf8Json"/> is null.</exception>
     /// <exception cref="ArgumentException">Thrown if <paramref name="utf8Json"/> is not readable.</exception>
     /// <exception cref="JsonException">Thrown if the content is not valid JSON for <typeparamref name="T"/>.</exception>
-    public static T? ReadJsonFileToModel(
-        Stream utf8Json)
+    public static T? ReadJsonFileToModel(Stream utf8Json)
         => ReadJsonFileToModel(
             utf8Json,
             JsonSerializerOptionsFactory.Create());

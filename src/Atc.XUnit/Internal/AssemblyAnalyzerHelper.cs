@@ -111,8 +111,8 @@ internal static class AssemblyAnalyzerHelper
                         && !x.IsNested
                         && !(x.IsAbstract && !x.IsSealed)
                         && !x.IsDelegate()
-                        && !x.GetCustomAttributes<ObsoleteAttribute>().Any()
-                        && !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any()
+                        && !x.AnyCustomAttributes<ObsoleteAttribute>()
+                        && !x.AnyCustomAttributes<CompilerGeneratedAttribute>()
                         && !excludeTypes.Contains(x))
             .OrderBy(x => x!.FullName!, StringComparer.Ordinal)
             .ToArray();
@@ -171,7 +171,10 @@ internal static class AssemblyAnalyzerHelper
                 return null;
             }
 
-            var sa = className.Humanize().Split(' ');
+            var sa = className
+                .Humanize()
+                .Split(' ');
+
             if (sa.Length <= 1)
             {
                 return "Extension parameter type should match the class name-prefix.";

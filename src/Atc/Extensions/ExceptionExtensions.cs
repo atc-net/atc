@@ -114,7 +114,10 @@ public static class ExceptionExtensions
             throw new ArgumentNullException(nameof(exception));
         }
 
-        var root = new XElement(exception.GetType().ToString());
+        var root = new XElement(
+            exception
+                .GetType()
+                .ToString());
 
         if (!string.IsNullOrEmpty(exception.Message))
         {
@@ -125,7 +128,7 @@ public static class ExceptionExtensions
         {
             var xElements = from frame
                     in exception.StackTrace.Split('\n')
-                let prettierFrame = frame.Substring(6).Trim()
+                let prettierFrame = frame[6..].Trim()
                 select new XElement("Frame", prettierFrame);
             root.Add(new XElement("StackTrace", xElements));
         }
@@ -165,7 +168,7 @@ public static class ExceptionExtensions
     {
         var exceptionName = exception.GetType().Name;
         return exceptionName.Equals("Exception", StringComparison.Ordinal)
-            ? $"{exception.GetType().Name}: {exception.Message}"
-            : $"{exception.GetType().Name.Replace("Exception", string.Empty, StringComparison.Ordinal)}: {exception.Message}";
+            ? $"{exceptionName}: {exception.Message}"
+            : $"{exceptionName.Replace("Exception", string.Empty, StringComparison.Ordinal)}: {exception.Message}";
     }
 }

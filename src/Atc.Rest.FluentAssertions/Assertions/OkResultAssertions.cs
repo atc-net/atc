@@ -54,14 +54,19 @@ public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResu
                 .And.BeAssignableTo<T>(because, becauseArgs)
                 .And.BeEquivalentTo(expectedContent, because, becauseArgs);
 
-            var error = scope.Discard().FirstOrDefault();
-            if (error is not null)
+            var error = scope
+                .Discard()
+                .FirstOrDefault();
+
+            if (error is null)
             {
-                var fixedErrorMessage = error
-                    .Replace("Subject.Value", $"content of {Identifier}", StringComparison.InvariantCulture)
-                    .Replace("Expected root", $"Expected content of {Identifier}", StringComparison.InvariantCulture);
-                Execute.Assertion.FailWith(fixedErrorMessage);
+                return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, Subject);
             }
+
+            var fixedErrorMessage = error
+                .Replace("Subject.Value", $"content of {Identifier}", StringComparison.InvariantCulture)
+                .Replace("Expected root", $"Expected content of {Identifier}", StringComparison.InvariantCulture);
+            Execute.Assertion.FailWith(fixedErrorMessage);
         }
 
         return new AndWhichConstraint<OkResultAssertions, OkObjectResult>(this, Subject);

@@ -17,7 +17,10 @@ public sealed class DateTimeOffsetMinToNullJsonConverter : JsonConverter<DateTim
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        var result = new DateTimeOffset(reader.GetDateTime().ToUniversalTime());
+        var result = new DateTimeOffset(
+            reader
+                .GetDateTime()
+                .ToUniversalTime());
         return result == DateTimeOffset.MinValue
             ? null
             : result;

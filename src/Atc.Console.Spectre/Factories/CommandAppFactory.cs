@@ -13,9 +13,7 @@ public static class CommandAppFactory
     /// <param name="serviceCollection">The service collection containing registered services and command settings.</param>
     /// <returns>A configured <see cref="CommandApp"/> instance.</returns>
     public static CommandApp Create(ServiceCollection serviceCollection)
-    {
-        return Create(serviceCollection, Encoding.UTF8);
-    }
+        => Create(serviceCollection, Encoding.UTF8);
 
     /// <summary>
     /// Creates a new <see cref="CommandApp"/> with specified encoding and English culture.
@@ -46,7 +44,8 @@ public static class CommandAppFactory
     /// <typeparam name="T">The type of the root command that implements <see cref="ICommand"/>.</typeparam>
     /// <param name="serviceCollection">The service collection containing registered services and command settings.</param>
     /// <returns>A configured <see cref="CommandApp{T}"/> instance with the specified root command.</returns>
-    public static CommandApp<T> CreateWithRootCommand<T>(ServiceCollection serviceCollection)
+    public static CommandApp<T> CreateWithRootCommand<T>(
+        ServiceCollection serviceCollection)
         where T : class, ICommand
     {
         SetCultureAndConsoleSettings(Encoding.UTF8);
