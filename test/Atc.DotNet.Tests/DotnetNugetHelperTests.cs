@@ -39,8 +39,8 @@ public class DotnetNugetHelperTests : IAsyncLifetime
         var actual = DotnetNugetHelper.GetAllPackageReferences(file);
 
         // Assert
-        actual.Should()
-            .NotBeEmpty()
+        actual
+            .Should().NotBeEmpty()
             .And.HaveCount(3);
     }
 
@@ -54,8 +54,8 @@ public class DotnetNugetHelperTests : IAsyncLifetime
         var actual = DotnetNugetHelper.GetAllPackageReferences(fileContent);
 
         // Assert
-        actual.Should()
-            .NotBeEmpty()
+        actual
+            .Should().NotBeEmpty()
             .And.HaveCount(3);
     }
 

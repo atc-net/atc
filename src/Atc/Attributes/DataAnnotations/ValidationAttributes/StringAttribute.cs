@@ -125,8 +125,7 @@ public class StringAttribute : ValidationAttribute
     /// </summary>
     public string RegularExpression { get; set; }
 
-    public override bool IsValid(
-        object? value)
+    public override bool IsValid(object? value)
     {
         if (Required &&
             value is null)

@@ -4,6 +4,7 @@ namespace Atc.Rest.FluentAssertions.Tests.XUnitTestData
     {
         private static readonly JsonSerializerOptions JsonSerializerOptions = JsonSerializerOptionsFactory.Create();
 
-        public static string Serialize<T>(T content) => JsonSerializer.Serialize(content, JsonSerializerOptions);
+        public static string Serialize<T>(T content)
+            => JsonSerializer.Serialize(content, JsonSerializerOptions);
     }
 }

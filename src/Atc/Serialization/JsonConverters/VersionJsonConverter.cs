@@ -25,10 +25,22 @@ public sealed class VersionJsonConverter : JsonConverter<Version>
             {
                 case JsonValueKind.Object:
                 {
-                    var major = jsonDocument.RootElement.GetProperty("_Major").GetInt32();
-                    var minor = jsonDocument.RootElement.GetProperty("_Minor").GetInt32();
-                    var build = jsonDocument.RootElement.GetProperty("_Build").GetInt32();
-                    var revision = jsonDocument.RootElement.GetProperty("_Revision").GetInt32();
+                    var major = jsonDocument
+                        .RootElement
+                        .GetProperty("_Major")
+                        .GetInt32();
+                    var minor = jsonDocument
+                        .RootElement
+                        .GetProperty("_Minor")
+                        .GetInt32();
+                    var build = jsonDocument
+                        .RootElement
+                        .GetProperty("_Build")
+                        .GetInt32();
+                    var revision = jsonDocument
+                        .RootElement
+                        .GetProperty("_Revision")
+                        .GetInt32();
                     return new Version(major, minor, build, revision);
                 }
 

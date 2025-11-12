@@ -14,7 +14,9 @@ public static class Program
             .Build();
 
         var consoleLoggerConfiguration = new ConsoleLoggerConfiguration();
-        configuration.GetSection("ConsoleLogger").Bind(consoleLoggerConfiguration);
+        configuration
+            .GetSection("ConsoleLogger")
+            .Bind(consoleLoggerConfiguration);
 
         ProgramCsHelper.SetMinimumLogLevelIfNeeded(args, consoleLoggerConfiguration);
 
@@ -22,12 +24,14 @@ public static class Program
         var app = CommandAppFactory.Create(serviceCollection);
         app.Configure(config =>
         {
-            config.AddCommand<HelloCommand>("hello")
+            config
+                .AddCommand<HelloCommand>("hello")
                 .WithDescription("Say hello")
                 .WithExample("hello Phil")
                 .WithExample("hello Phil --count 4");
 
-            config.AddCommand<LogCommand>("log")
+            config
+                .AddCommand<LogCommand>("log")
                 .WithDescription("Write a log message")
                 .WithExample("log Hello world")
                 .WithExample("log Hello world --logLevel Trace")
@@ -41,11 +45,8 @@ public static class Program
         return app.RunAsync(args);
     }
 
-    private static string[] SetHelpArgumentIfNeeded(
-        string[] args)
-    {
-        return args.Length == 0
+    private static string[] SetHelpArgumentIfNeeded(string[] args)
+        => args.Length == 0
             ? new[] { CommandConstants.ArgumentShortHelp }
             : args;
-    }
 }

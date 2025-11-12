@@ -142,7 +142,9 @@ public static class VisualStudioSolutionFileHelper
         // Fallback: classic .sln text parsing (your original logic, with tiny hardening).
         var data = new VisualStudioSolutionFileMetadata();
 
-        foreach (var rawLine in fileContent.EnsureEnvironmentNewLines().Split(Environment.NewLine))
+        foreach (var rawLine in fileContent
+                     .EnsureEnvironmentNewLines()
+                     .Split(Environment.NewLine))
         {
             var line = rawLine.Trim();
 
@@ -232,6 +234,7 @@ public static class VisualStudioSolutionFileHelper
     /// </list>
     /// </remarks>
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     private static bool TryParseSlnx(
         string content,
         out VisualStudioSolutionFileMetadata data)
@@ -269,15 +272,18 @@ public static class VisualStudioSolutionFileHelper
             return false;
         }
 
-        var vsProps = root.Elements()
+        var vsProps = root
+            .Elements()
             .FirstOrDefault(e => e.Name.LocalName.Equals("Properties", StringComparison.Ordinal) &&
                                  string.Equals((string?)e.Attribute("Name"), "Visual Studio", StringComparison.Ordinal));
 
         if (vsProps is not null)
         {
-            var openWith = vsProps.Elements().FirstOrDefault(e =>
-                e.Name.LocalName.Equals("Property", StringComparison.Ordinal) &&
-                string.Equals((string?)e.Attribute("Name"), "OpenWith", StringComparison.Ordinal));
+            var openWith = vsProps
+                .Elements()
+                .FirstOrDefault(e =>
+                    e.Name.LocalName.Equals("Property", StringComparison.Ordinal) &&
+                    string.Equals((string?)e.Attribute("Name"), "OpenWith", StringComparison.Ordinal));
 
             var value = (string?)openWith?.Attribute("Value");
             if (!string.IsNullOrWhiteSpace(value) &&

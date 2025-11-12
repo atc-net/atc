@@ -50,7 +50,8 @@ public class TypeComments
     /// <summary>
     /// Gets the HTML-formatted beautified name of the type.
     /// </summary>
-    public string BeautifyHtmlName => Type.BeautifyName(useFullName: false, useHtmlFormat: true);
+    public string BeautifyHtmlName
+        => Type.BeautifyName(useFullName: false, useHtmlFormat: true);
 
     /// <summary>
     /// Gets a value indicating whether this type has XML documentation comments.
@@ -58,7 +59,8 @@ public class TypeComments
     /// <value>
     /// <see langword="true"/> if documentation comments exist for this type; otherwise, <see langword="false"/>.
     /// </value>
-    public bool HasComments => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException());
+    public bool HasComments
+        => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException());
 
     /// <summary>
     /// Retrieves all XML documentation comments associated with this type.
@@ -66,29 +68,23 @@ public class TypeComments
     /// <returns>An array of XML documentation comments, or <see langword="null"/> if no comments exist.</returns>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     public XmlDocumentComment[]? GetXmlDocumentComments()
-    {
-        return CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException())
+        => CommentLookup.Contains(Type.FullName ?? throw new InvalidOperationException())
             ? CommentLookup[Type.FullName].ToArray()
             : null;
-    }
 
     /// <inheritdoc/>
-    public override string ToString()
-    {
-        return Name;
-    }
+    public override string ToString() => Name;
 
     internal MethodInfo[] GetMethods()
-    {
-        return Type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => Type
+            .GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     internal PropertyInfo[] GetProperties()
-    {
-        return Type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => Type
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .Where(y =>
             {
                 var get = y.GetGetMethod(nonPublic: true);
@@ -111,33 +107,29 @@ public class TypeComments
                 return false;
             })
             .ToArray();
-    }
 
     internal FieldInfo[] GetFields()
-    {
-        return Type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => Type
+            .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     internal EventInfo[] GetEvents()
-    {
-        return Type.GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => Type
+            .GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .ToArray();
-    }
 
     internal FieldInfo[] GetStaticFields()
-    {
-        return Type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => Type
+            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetField | BindingFlags.SetField)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     internal PropertyInfo[] GetStaticProperties()
-    {
-        return Type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => Type
+            .GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.GetProperty | BindingFlags.SetProperty)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .Where(y =>
             {
                 var get = y.GetGetMethod(nonPublic: true);
@@ -160,19 +152,16 @@ public class TypeComments
                 return false;
             })
             .ToArray();
-    }
 
     internal MethodInfo[] GetStaticMethods()
-    {
-        return Type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any() && !x.IsPrivate)
+        => Type
+            .GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.InvokeMethod)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>() && !x.IsPrivate)
             .ToArray();
-    }
 
     internal EventInfo[] GetStaticEvents()
-    {
-        return Type.GetEvents(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
-            .Where(x => !x.IsSpecialName && !x.GetCustomAttributes<ObsoleteAttribute>().Any())
+        => Type
+            .GetEvents(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
+            .Where(x => !x.IsSpecialName && !x.AnyCustomAttributes<ObsoleteAttribute>())
             .ToArray();
-    }
 }

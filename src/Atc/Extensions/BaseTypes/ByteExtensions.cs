@@ -243,7 +243,6 @@ public static class ByteExtensions
     /// Console.WriteLine(hex); // Outputs: 0x1A, 0x2B, 0x3C
     /// </code>
     /// </example>
-    public static string ToHexWithPrefix(
-        this byte[] value)
+    public static string ToHexWithPrefix(this byte[] value)
         => ToHex(value, separator: ", ", showHexSign: true);
 }

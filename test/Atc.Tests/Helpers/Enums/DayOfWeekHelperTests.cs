@@ -71,8 +71,8 @@ public class DayOfWeekHelperTests
         var actual = DayOfWeekHelper.GetDescriptions(culture);
 
         // Assert
-        actual.Should()
-            .BeOfType<Dictionary<DayOfWeek, string>>()
+        actual
+            .Should().BeOfType<Dictionary<DayOfWeek, string>>()
             .And.HaveCount(expected);
     }
 

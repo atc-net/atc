@@ -154,8 +154,6 @@ public sealed class VersionJsonConverterTests
         var actualData = JsonSerializer.Deserialize<List<AssemblyInformation>>(actualJson, jsonSerializerOptions);
 
         // Assert
-        actualData
-            .Should()
-            .NotBeNull();
+        actualData.Should().NotBeNull();
     }
 }

@@ -14,8 +14,7 @@ public static class X509Certificate2Extensions
     /// The FriendlyName of the certificate if not null or empty; otherwise, a substring of the SubjectName starting
     /// from "CN=" if it exists, or the full SubjectName if "CN=" is not found.
     /// </returns>
-    public static string GetNameIdentifier(
-        this X509Certificate2 certificate)
+    public static string GetNameIdentifier(this X509Certificate2 certificate)
     {
         if (certificate is null)
         {
@@ -48,8 +47,7 @@ public static class X509Certificate2Extensions
     /// <returns>
     /// True if the certificate is valid; otherwise, false.
     /// </returns>
-    public static bool IsValid(
-        this X509Certificate2 certificate)
+    public static bool IsValid(this X509Certificate2 certificate)
     {
         if (certificate is null)
         {

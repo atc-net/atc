@@ -113,6 +113,16 @@ Extensions for the `System.Reflection.MemberInfo` class.
 
 ### Static Methods
 
+#### AnyCustomAttributes
+>```csharp
+>bool AnyCustomAttributes(this MemberInfo element)
+>```
+><b>Summary:</b> Determines whether the member has any custom attributes of the specified type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`element`&nbsp;&nbsp;-&nbsp;&nbsp;The member to check for custom attributes.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the member has one or more custom attributes of type `T`; otherwise, <see langword="false" />.
 #### GetUnderlyingType
 >```csharp
 >Type GetUnderlyingType(this MemberInfo member)

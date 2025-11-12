@@ -52,10 +52,7 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
         }
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     /// <summary>
     /// Attempts to add an element to the hash set in a thread-safe manner.

@@ -49,7 +49,5 @@ public static class SyntaxLiteralExpressionFactory
     /// <param name="value">The integer value for the literal expression.</param>
     /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing the integer.</returns>
     public static LiteralExpressionSyntax Create(int value)
-    {
-        return SyntaxFactory.LiteralExpression(SyntaxKind.NumericLiteralExpression, SyntaxFactory.Literal(value));
-    }
+        => SyntaxFactory.LiteralExpression(SyntaxKind.NumericLiteralExpression, SyntaxFactory.Literal(value));
 }

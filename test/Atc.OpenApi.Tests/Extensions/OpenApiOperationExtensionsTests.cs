@@ -28,13 +28,12 @@ public class OpenApiOperationExtensionsTests
         // Assert
         if (expected is null)
         {
-            actual.Should()
-                .BeNull();
+            actual.Should().BeNull();
         }
         else
         {
-            actual.Should()
-                .NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeEquivalentTo(expected);
         }
     }
@@ -51,13 +50,12 @@ public class OpenApiOperationExtensionsTests
         // Assert
         if (expected is null)
         {
-            actual.Should()
-                .BeNull();
+            actual.Should().BeNull();
         }
         else
         {
-            actual.Should()
-                .NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeEquivalentTo(expected);
         }
     }

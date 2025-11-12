@@ -32,7 +32,8 @@ public class LoggerExtensionsTests
     [InlineData(LogCategoryType.Information)]
     [InlineData(LogCategoryType.Debug)]
     [InlineData(LogCategoryType.Trace)]
-    public void LogKeyValueItem_LogsWithCorrectLevel(LogCategoryType logCategory)
+    public void LogKeyValueItem_LogsWithCorrectLevel(
+        LogCategoryType logCategory)
     {
         // Arrange
         var logger = Substitute.For<ILogger>();

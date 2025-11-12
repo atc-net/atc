@@ -272,7 +272,8 @@ public abstract class IntegrationTestCliBase
         return (cliFileNameExe, searchFromPath);
     }
 
-    private static FileInfo GetAppSettingsFilePathFromCliFileExe(FileInfo cliFileExe)
+    private static FileInfo GetAppSettingsFilePathFromCliFileExe(
+        FileInfo cliFileExe)
         => new(
             Path.Combine(
                 cliFileExe.Directory!.FullName,

@@ -104,10 +104,8 @@ public static class DotnetHelper
     /// "dotnet" is the default name, but Github Actions installs to ".dotnet" ("/home/runner/.dotnet")
     /// </remarks>
     private static bool IsDefaultDotnetDirectoryName(string value)
-    {
-        return value.Equals("dotnet", StringComparison.Ordinal) ||
-               value.Equals(".dotnet", StringComparison.Ordinal);
-    }
+        => value.Equals("dotnet", StringComparison.Ordinal) ||
+           value.Equals(".dotnet", StringComparison.Ordinal);
 
     private static bool TryGetDirectoryFromEnvVariable(
         string envVariable,

@@ -11,11 +11,9 @@ public static class SyntaxBaseListFactory
     /// <param name="typeName">The name of the base type.</param>
     /// <returns>A <see cref="BaseListSyntax"/> containing one base type.</returns>
     public static BaseListSyntax CreateOneSimpleBaseType(string typeName)
-    {
-        return SyntaxFactory.BaseList(
+        => SyntaxFactory.BaseList(
             SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(
                 SyntaxSimpleBaseTypeFactory.Create(typeName)));
-    }
 
     /// <summary>
     /// Creates a base list with two base types.
@@ -26,8 +24,7 @@ public static class SyntaxBaseListFactory
     public static BaseListSyntax CreateTwoSimpleBaseTypes(
         string typeName1,
         string typeName2)
-    {
-        return SyntaxFactory.BaseList(
+        => SyntaxFactory.BaseList(
             SyntaxFactory.SeparatedList<BaseTypeSyntax>(
                 new SyntaxNodeOrToken[]
                 {
@@ -35,5 +32,4 @@ public static class SyntaxBaseListFactory
                     SyntaxTokenFactory.Comma(),
                     SyntaxSimpleBaseTypeFactory.Create(typeName2),
                 }));
-    }
 }

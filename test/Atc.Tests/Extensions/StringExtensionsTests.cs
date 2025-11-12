@@ -243,7 +243,12 @@ public class StringExtensionsTests
     [InlineData("World", 2, "Hello {World} and {World} again.", TemplatePatternType.SingleCurlyBraces, false)]
     [InlineData("{World}", 2, "Hello {World} and {World} again.", TemplatePatternType.SingleCurlyBraces, true)]
     public void GetUniqueTemplateKeysWithOccurrence(
-        string expectedString, int expectedCount, string input, TemplatePatternType patternType, bool includePattern)
+        string expectedString,
+        int expectedCount,
+        string input,
+        TemplatePatternType
+            patternType,
+        bool includePattern)
     {
         // Act
         var result = input.GetUniqueTemplateKeysWithOccurrence(patternType, includePattern);
@@ -253,6 +258,81 @@ public class StringExtensionsTests
         Assert.Single(result);
         Assert.Equal(expectedString, result.Keys.First());
         Assert.Equal(expectedCount, result.Values.First());
+    }
+
+    [Fact]
+    public void Replace_MultipleOldValues()
+    {
+        // Arrange
+        var input = "Hello World, Hallo there!";
+        var oldValues = new[] { "Hello", "Hallo" };
+        var newValue = "Hi";
+
+        // Act
+        var actual = input.Replace(oldValues, newValue);
+
+        // Assert
+        Assert.Equal("Hi World, Hi there!", actual);
+    }
+
+    [Fact]
+    public void Replace_WithStringComparison()
+    {
+        // Arrange
+        var input = "Hello World, HELLO there!";
+        var oldValues = new[] { "hello" };
+        var newValue = "Hi";
+
+        // Act
+        var actual = input.Replace(oldValues, newValue, StringComparison.OrdinalIgnoreCase);
+
+        // Assert
+        Assert.Equal("Hi World, Hi there!", actual);
+    }
+
+    [Fact]
+    public void Replace_NullSource()
+    {
+        // Arrange
+        string? input = null;
+        var oldValues = new[] { "Hello" };
+        var newValue = "Hi";
+
+        // Act
+        var actual = input!.Replace(oldValues, newValue);
+
+        // Assert
+        Assert.Null(actual);
+    }
+
+    [Fact]
+    public void Replace_NullOldValues()
+    {
+        // Arrange
+        var input = "Hello World";
+        IEnumerable<string>? oldValues = null;
+        var newValue = "Hi";
+
+        // Act
+        var actual = input.Replace(oldValues!, newValue);
+
+        // Assert
+        Assert.Equal("Hello World", actual);
+    }
+
+    [Fact]
+    public void Replace_EmptyOldValueInCollection()
+    {
+        // Arrange
+        var input = "Hello World";
+        var oldValues = new[] { "Hello", "", "World" };
+        var newValue = "X";
+
+        // Act
+        var actual = input.Replace(oldValues, newValue);
+
+        // Assert
+        Assert.Equal("X X", actual);
     }
 
     [Theory]
@@ -266,7 +346,11 @@ public class StringExtensionsTests
     [InlineData("Hello John!", "Hello {{Name}}!", "Name", "John", TemplatePatternType.CurlyBraces)]
     [InlineData("Hello John John!", "Hello [[Name]] {{Name}}!", "Name", "John", TemplatePatternType.All)]
     public void ReplaceTemplateKeyWithValue(
-        string expected, string input, string templateKey, string templateValue, TemplatePatternType patternType)
+        string expected,
+        string input,
+        string templateKey,
+        string templateValue,
+        TemplatePatternType patternType)
         => Assert.Equal(expected, input.ReplaceTemplateKeyWithValue(templateKey, templateValue, patternType));
 
     [Theory]
@@ -609,6 +693,37 @@ public class StringExtensionsTests
         string expected,
         string input)
         => Assert.Equal(expected.Replace("{{NEWLINE}}", Environment.NewLine, StringComparison.Ordinal), input.EnsureEnvironmentNewLines());
+
+    [Fact]
+    public void EnsureEnvironmentNewLinesAndSplit()
+    {
+        // Arrange
+        var input = "Hallo\nWorld\r\nJohn\rDoe";
+
+        // Act
+        var actual = input.EnsureEnvironmentNewLinesAndSplit();
+
+        // Assert
+        Assert.Equal(4, actual.Length);
+        Assert.Equal("Hallo", actual[0]);
+        Assert.Equal("World", actual[1]);
+        Assert.Equal("John", actual[2]);
+        Assert.Equal("Doe", actual[3]);
+    }
+
+    [Fact]
+    public void EnsureEnvironmentNewLinesAndSplit_SingleLine()
+    {
+        // Arrange
+        var input = "Hallo World";
+
+        // Act
+        var actual = input.EnsureEnvironmentNewLinesAndSplit();
+
+        // Assert
+        Assert.Single(actual);
+        Assert.Equal("Hallo World", actual[0]);
+    }
 
     [Theory]
     [InlineData("Hallo", "hallo")]

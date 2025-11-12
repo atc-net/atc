@@ -6,8 +6,8 @@ internal static class XmlDocumentCommentParser
     internal static XmlDocumentComment?[] ParseXmlComment(
         XDocument xDocument,
         string? namespaceMatch)
-    {
-        return xDocument.Descendants("member")
+        => xDocument
+            .Descendants("member")
             .Select(x =>
             {
                 var attributeValue = x.Attribute("name")?.Value;
@@ -48,7 +48,8 @@ internal static class XmlDocumentCommentParser
                     example = TrimCode(example, trimEachLine: false);
                 }
 
-                var parameters = x.Elements("param")
+                var parameters = x
+                    .Elements("param")
                     .Select(e => Tuple.Create(e.Attribute("name")?.Value ?? "Unknown", e))
                     .Distinct(new TupleEqualityComparer<string, XElement>())
                     .ToDictionary(e => e.Item1, e => e.Item2.Value, StringComparer.Ordinal);
@@ -68,7 +69,6 @@ internal static class XmlDocumentCommentParser
             })
             .Where(x => x is not null)
             .ToArray();
-    }
 
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
     private static string TrimCode(
@@ -98,7 +98,7 @@ internal static class XmlDocumentCommentParser
             else
             {
                 sb.AppendLine(sa[i].StartsWith(lineStartOverheadSpaces, StringComparison.Ordinal)
-                    ? sa[i].Substring(lineStartOverheadSpaces.Length)
+                    ? sa[i][lineStartOverheadSpaces.Length..]
                     : sa[i]);
             }
         }
@@ -116,10 +116,11 @@ internal static class XmlDocumentCommentParser
         }
 
         return charsToRemove > 0
-            ? s.Substring(0, s.Length - charsToRemove)
+            ? s[..^charsToRemove]
             : s;
     }
 
+    [SuppressMessage("Style", "ATC203:Method chains with 2 or more calls should be broken down to separate lines", Justification = "OK")]
     private static string ResolveSeeElement(
         Match m,
         string? ns)
@@ -154,6 +155,11 @@ internal static class XmlDocumentCommentParser
         innerXml = Regex.Replace(innerXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[2].Value}`", RegexOptions.None, TimeSpan.FromSeconds(1));
         innerXml = Regex.Replace(innerXml, @"<c\b[^>]*>(.*?)<\/c>", e => $"`{e.Groups[1].Value}`", RegexOptions.None, TimeSpan.FromSeconds(1));
         innerXml = innerXml.TrimExtended();
-        return string.Join("  ", innerXml.Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim()));
+
+        var lines = innerXml
+            .Split(new[] { "\r", "\n", "\t" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(y => y.Trim());
+
+        return string.Join("  ", lines);
     }
 }

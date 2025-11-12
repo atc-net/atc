@@ -27,8 +27,7 @@ public sealed class ArgumentNullOrDefaultPropertyException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentNullOrDefaultPropertyException"/> class with the name of the property that caused the exception.
     /// </summary>
     /// <param name="paramName">The name of the property that is null or has a default value.</param>
-    public ArgumentNullOrDefaultPropertyException(
-        string paramName)
+    public ArgumentNullOrDefaultPropertyException(string paramName)
         : base(ExceptionMessage, paramName)
     {
     }

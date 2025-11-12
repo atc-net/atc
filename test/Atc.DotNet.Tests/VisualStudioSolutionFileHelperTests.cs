@@ -44,8 +44,8 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
         var actual = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(file);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeEquivalentTo(expected);
     }
 
@@ -62,8 +62,8 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
         var actual = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(fileContent);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeEquivalentTo(expected);
     }
 
@@ -91,8 +91,8 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
         var actual = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(file);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeEquivalentTo(expected);
     }
 
@@ -118,8 +118,8 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
         var actual = VisualStudioSolutionFileHelper.GetSolutionFileMetadata(xml);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeEquivalentTo(expected);
     }
 
@@ -135,8 +135,10 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
 
         // Assert
         files.Should().NotBeNull();
-        files.Select(f => f.Extension)
-             .Should().Contain(new[] { ".sln", ".slnx" });
+        files
+            .Select(f => f.Extension)
+            .Should()
+            .Contain(new[] { ".sln", ".slnx" });
         files.Should().HaveCount(2);
     }
 
@@ -152,7 +154,8 @@ public class VisualStudioSolutionFileHelperTests : IAsyncLifetime
             Encoding.UTF8);
     }
 
-    private static string CreateSolutionFileContent(int visualStudioVersionNumber)
+    private static string CreateSolutionFileContent(
+        int visualStudioVersionNumber)
     {
         var sb = new StringBuilder();
         sb.AppendLine(string.Empty);

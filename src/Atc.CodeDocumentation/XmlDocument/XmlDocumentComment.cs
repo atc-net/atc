@@ -53,7 +53,5 @@ public class XmlDocumentComment
 
     /// <inheritdoc/>
     public override string ToString()
-    {
-        return MemberType + ":" + ClassName + "." + MemberName;
-    }
+        => MemberType + ":" + ClassName + "." + MemberName;
 }

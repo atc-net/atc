@@ -55,7 +55,8 @@ public static class SyntaxArgumentListFactory
     /// <param name="argument">The argument to include.</param>
     /// <returns>An <see cref="ArgumentListSyntax"/> containing one argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="argument"/> is null.</exception>
-    public static ArgumentListSyntax CreateWithOneArgumentItem(ArgumentSyntax argument)
+    public static ArgumentListSyntax CreateWithOneArgumentItem(
+        ArgumentSyntax argument)
     {
         if (argument is null)
         {
@@ -147,7 +148,8 @@ public static class SyntaxArgumentListFactory
     /// <param name="argumentExpression1">The expression to use as the argument.</param>
     /// <returns>An <see cref="ArgumentListSyntax"/> containing one argument.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="argumentExpression1"/> is null.</exception>
-    public static ArgumentListSyntax CreateWithOneExpressionItem(ExpressionSyntax argumentExpression1)
+    public static ArgumentListSyntax CreateWithOneExpressionItem(
+        ExpressionSyntax argumentExpression1)
     {
         if (argumentExpression1 is null)
         {

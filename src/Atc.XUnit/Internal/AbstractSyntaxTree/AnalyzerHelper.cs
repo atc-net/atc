@@ -57,7 +57,10 @@ internal static class AnalyzerHelper
             {
                 if (!sourceType.HasValidationAttributes())
                 {
-                    methodsToExclude.AddRange(sourceType.GetPublicDeclaredOnlyMethods().Where(TypeAndMethodAndParameterHelper.ShouldMethodBeExcluded));
+                    methodsToExclude.AddRange(
+                        sourceType
+                            .GetPublicDeclaredOnlyMethods()
+                            .Where(TypeAndMethodAndParameterHelper.ShouldMethodBeExcluded));
                 }
             }
         }

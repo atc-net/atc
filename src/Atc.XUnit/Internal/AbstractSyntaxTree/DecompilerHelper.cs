@@ -12,12 +12,10 @@ internal static class DecompilerHelper
     }
 
     internal static DecompilerSettings GetSettings()
-    {
-        return new DecompilerSettings
+        => new()
         {
             ThrowOnAssemblyResolveErrors = false,
         };
-    }
 
     internal static Tuple<MethodInfo, MethodDeclaration>[] GetTestMethodsWithDecompiled(
         CSharpDecompiler decompiler,
@@ -28,7 +26,11 @@ internal static class DecompilerHelper
         {
             var fullTypeName = new FullTypeName(testType.FullName);
             var syntaxTree = decompiler.DecompileType(fullTypeName);
-            var astNodes = syntaxTree.Descendants.Where(x => x.NodeType == NodeType.Member).ToArray();
+            var astNodes = syntaxTree
+                .Descendants
+                .Where(x => x.NodeType == NodeType.Member)
+                .ToArray();
+
             foreach (var testMethodInfo in testMethodInfos)
             {
                 foreach (var astNode in astNodes)

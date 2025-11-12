@@ -16,8 +16,7 @@ public class XUnitLogger : ILogger
     /// </summary>
     /// <param name="testOutputHelper">The xUnit test output helper.</param>
     /// <returns>An <see cref="ILogger"/> instance.</returns>
-    public static ILogger Create(
-        ITestOutputHelper testOutputHelper)
+    public static ILogger Create(ITestOutputHelper testOutputHelper)
         => new XUnitLogger(testOutputHelper, new LoggerExternalScopeProvider(), string.Empty);
 
     /// <summary>
@@ -26,8 +25,7 @@ public class XUnitLogger : ILogger
     /// <typeparam name="T">The type to use for the logger category name.</typeparam>
     /// <param name="testOutputHelper">The xUnit test output helper.</param>
     /// <returns>An <see cref="ILogger{T}"/> instance.</returns>
-    public static ILogger<T> Create<T>(
-        ITestOutputHelper testOutputHelper)
+    public static ILogger<T> Create<T>(ITestOutputHelper testOutputHelper)
         => new XUnitLogger<T>(testOutputHelper, new LoggerExternalScopeProvider());
 
     /// <summary>
@@ -47,13 +45,11 @@ public class XUnitLogger : ILogger
     }
 
     /// <inheritdoc />
-    public bool IsEnabled(
-        LogLevel logLevel)
+    public bool IsEnabled(LogLevel logLevel)
         => logLevel != LogLevel.None;
 
     /// <inheritdoc />
-    public IDisposable BeginScope<TState>(
-        TState state)
+    public IDisposable BeginScope<TState>(TState state)
             => scopeProvider.Push(state);
 
     /// <inheritdoc />
@@ -76,11 +72,15 @@ public class XUnitLogger : ILogger
 
         var sb = new StringBuilder();
         sb.Append(DateTime.Now.ToString("HH:mm:ss", GlobalizationConstants.EnglishCultureInfo));
-        sb.Append(" [").Append(GetLogLevelString(logLevel)).Append("] ");
+        sb.Append(" [");
+        sb.Append(GetLogLevelString(logLevel));
+        sb.Append("] ");
 
         if (!string.IsNullOrEmpty(categoryName))
         {
-          sb.Append('[').Append(categoryName).Append("] ");
+            sb.Append('[');
+            sb.Append(categoryName);
+            sb.Append("] ");
         }
 
         var message = state?.ToString() ?? string.Empty;
@@ -91,7 +91,8 @@ public class XUnitLogger : ILogger
 
         if (exception is not null)
         {
-            sb.Append(Environment.NewLine).Append(exception);
+            sb.Append(Environment.NewLine);
+            sb.Append(exception);
         }
 
         // Append scopes
@@ -107,8 +108,7 @@ public class XUnitLogger : ILogger
         testOutputHelper.WriteLine(sb.ToString());
     }
 
-    private static string GetLogLevelString(
-        LogLevel logLevel)
+    private static string GetLogLevelString(LogLevel logLevel)
         => logLevel switch
         {
             LogLevel.Trace => "trce",

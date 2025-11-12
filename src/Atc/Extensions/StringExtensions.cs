@@ -90,8 +90,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to count words in.</param>
     /// <returns>The count of words in the string, or -1 if the string is <see langword="null"/> or empty.</returns>
-    public static int WordCount(
-        this string value)
+    public static int WordCount(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -135,8 +134,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string format pattern to analyze.</param>
     /// <returns>The count of unique numeric placeholders, or -1 if the string is invalid or placeholders are unbalanced.</returns>
-    public static int GetStringFormatParameterNumericCount(
-        this string value)
+    public static int GetStringFormatParameterNumericCount(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -183,8 +181,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string format pattern to analyze.</param>
     /// <returns>The count of unique literal placeholders, or -1 if the string is invalid or placeholders are unbalanced.</returns>
-    public static int GetStringFormatParameterLiteralCount(
-        this string value)
+    public static int GetStringFormatParameterLiteralCount(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -530,6 +527,38 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Replaces multiple old string values with a single new value using the specified string comparison type.
+    /// </summary>
+    /// <param name="source">The source string to perform replacements on.</param>
+    /// <param name="oldValues">An enumerable collection of strings to be replaced. Null or empty values in the collection are ignored.</param>
+    /// <param name="newValue">The string to replace all occurrences of the old values with.</param>
+    /// <param name="comparison">The string comparison type to use when finding matches. Defaults to <see cref="StringComparison.Ordinal"/>.</param>
+    /// <returns>A string with all occurrences of the old values replaced with the new value, or the original source if it is null/empty or oldValues is null.</returns>
+    public static string Replace(
+        this string source,
+        IEnumerable<string> oldValues,
+        string newValue,
+        StringComparison comparison = StringComparison.Ordinal)
+    {
+        if (string.IsNullOrEmpty(source) || oldValues is null)
+        {
+            return source;
+        }
+
+        var result = source;
+
+        foreach (var oldValue in oldValues)
+        {
+            if (!string.IsNullOrEmpty(oldValue))
+            {
+                result = result.Replace(oldValue, newValue, comparison);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// Replaces a template key in the input string with a specified template value based on the given template pattern type.
     /// </summary>
     /// <param name="value">The input string containing template keys.</param>
@@ -614,8 +643,7 @@ public static class StringExtensions
     /// <returns>A <see cref="DateTime"/> object representing the parsed date.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is <see langword="null"/>.</exception>
     /// <exception cref="FormatException">Thrown when the string is not in valid ISO 8601 format.</exception>
-    public static DateTime ParseDateFromIso8601(
-        this string value)
+    public static DateTime ParseDateFromIso8601(this string value)
     {
         if (value is null)
         {
@@ -663,9 +691,7 @@ public static class StringExtensions
     public static bool TryParseDate(
         this string value,
         out DateTime dateTime)
-    {
-        return TryParseDate(value, out dateTime, GlobalizationConstants.EnglishCultureInfo);
-    }
+        => TryParseDate(value, out dateTime, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
     /// Attempts to parse a string to a <see cref="DateTime"/> object using the specified culture and styles.
@@ -745,11 +771,8 @@ public static class StringExtensions
     /// Encodes the <paramref name="value"/> to Base64 in UTF8.
     /// </summary>
     /// <param name="value">The string value to encode</param>
-    public static string Base64Encode(
-        this string value)
-    {
-        return value.Base64Encode(Encoding.UTF8);
-    }
+    public static string Base64Encode(this string value)
+        => value.Base64Encode(Encoding.UTF8);
 
     /// <summary>
     /// Encodes the <paramref name="value"/> to Base64 using the specified <paramref name="encoding"/>.
@@ -772,11 +795,8 @@ public static class StringExtensions
     /// Decodes the <paramref name="base64EncodedData"/> <see langword="string"/> using UTF8.
     /// </summary>
     /// <param name="base64EncodedData">The Base64 encoded data.</param>
-    public static string Base64Decode(
-        this string base64EncodedData)
-    {
-        return base64EncodedData.Base64Decode(Encoding.UTF8);
-    }
+    public static string Base64Decode(this string base64EncodedData)
+        => base64EncodedData.Base64Decode(Encoding.UTF8);
 
     /// <summary>
     /// Decodes the <paramref name="base64EncodedData"/> using the specified <paramref name="encoding"/>
@@ -848,8 +868,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="xml">The XML string to encode.</param>
     /// <returns>The encoded XML string with special characters escaped.</returns>
-    public static string XmlEncode(
-        this string xml)
+    public static string XmlEncode(this string xml)
     {
         if (string.IsNullOrEmpty(xml))
         {
@@ -869,10 +888,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="xml">The XML string to decode.</param>
     /// <returns>The decoded XML string with special character entities replaced.</returns>
-    public static string XmlDecode(
-        this string xml)
-    {
-        return string.IsNullOrEmpty(xml)
+    public static string XmlDecode(this string xml)
+        => string.IsNullOrEmpty(xml)
             ? xml
             : xml
                 .Replace("&amp", "&", StringComparison.Ordinal)
@@ -880,15 +897,13 @@ public static class StringExtensions
                 .Replace("&lt;", "<", StringComparison.Ordinal)
                 .Replace("&gt;", ">", StringComparison.Ordinal)
                 .Replace("&quot", "\"", StringComparison.Ordinal);
-    }
 
     /// <summary>
     /// Sorts letters in the string alphabetically.
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string sorted alphabetically.</returns>
-    public static string Alphabetize(
-        this string value)
+    public static string Alphabetize(this string value)
     {
         if (!value.IsAlphaNumericOnly())
         {
@@ -913,12 +928,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>The string that is normalize for accent-letter.</returns>
-    public static string NormalizeAccents(
-        this string value)
-    {
-        // ReSharper disable once IntroduceOptionalParameters.Global
-        return NormalizeAccents(value, LetterAccentType.All, decode: true, forLower: true, forUpper: true);
-    }
+    public static string NormalizeAccents(this string value)
+        => NormalizeAccents(value, LetterAccentType.All, decode: true, forLower: true, forUpper: true);
 
     /// <summary>
     /// Normalizes the accents.
@@ -1087,8 +1098,7 @@ public static class StringExtensions
     /// <returns>The string with space inserted before each capital letter.</returns>
     /// [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
-    public static string NormalizePascalCase(
-        this string value)
+    public static string NormalizePascalCase(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1107,7 +1117,9 @@ public static class StringExtensions
                 }
                 else
                 {
-                    sb.Append(value[i].ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
+                    sb.Append(value[i]
+                        .ToString(CultureInfo.InvariantCulture)
+                        .ToLowerInvariant());
                 }
 
                 continue;
@@ -1126,8 +1138,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The identifier-style string.</param>
     /// <returns>A <see cref="string" /> humanized.</returns>
-    public static string Humanize(
-        this string value)
+    public static string Humanize(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1172,8 +1183,7 @@ public static class StringExtensions
     /// <param name="value">The string to convert.</param>
     /// <returns>The string in camel case format (e.g., "helloWorld").</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
-    public static string CamelCase(
-        this string value)
+    public static string CamelCase(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1183,7 +1193,10 @@ public static class StringExtensions
 #if NETSTANDARD2_1
         return value.Length <= 1
             ? value
-            : value.Substring(0, 1).ToLowerInvariant() + value.Substring(1);
+            : value
+                .Substring(0, 1)
+                .ToLowerInvariant() +
+                value.Substring(1);
 #else
         if (value.Length == 1)
         {
@@ -1226,6 +1239,7 @@ public static class StringExtensions
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "OK.")]
     [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public static string PascalCase(
         this string value,
         char[]? separators,
@@ -1238,18 +1252,34 @@ public static class StringExtensions
 
         if (separators.Length <= 0)
         {
-            return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1).ToLowerInvariant();
+            return value
+                       .Substring(0, 1)
+                       .ToUpperInvariant() +
+                   value
+                       .Substring(1)
+                       .ToLowerInvariant();
         }
 
         if (separators.Length == 1 && value.IndexOfAny(separators) == -1)
         {
-            return value.Substring(0, 1).ToUpperInvariant() + value.Substring(1).ToLowerInvariant();
+            return value
+                       .Substring(0, 1)
+                       .ToUpperInvariant() +
+                   value
+                       .Substring(1)
+                       .ToLowerInvariant();
         }
 
         var strArray = value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         for (var i = 0; i < strArray.Length; i++)
         {
-            var tmp = strArray[i].Substring(0, 1).ToUpperInvariant() + strArray[i].Substring(1).ToLowerInvariant();
+            var tmp = strArray[i]
+                          .Substring(0, 1)
+                          .ToUpperInvariant() +
+                      strArray[i]
+                          .Substring(1)
+                          .ToLowerInvariant();
+
             for (var j = 1; j < strArray[i].Length - 1; j++)
             {
                 var c1 = strArray[i][j - 1];
@@ -1293,8 +1323,7 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    public static string EnsureEnvironmentNewLines(
-        this string value)
+    public static string EnsureEnvironmentNewLines(this string value)
     {
         if (value is null)
         {
@@ -1329,11 +1358,20 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Normalizes all line endings to the current environment's newline format and splits the string into an array of lines.
+    /// </summary>
+    /// <param name="value">The string to normalize and split.</param>
+    /// <returns>An array of strings where each element represents a line from the original string, split using <see cref="Environment.NewLine"/>.</returns>
+    public static string[] EnsureEnvironmentNewLinesAndSplit(this string value)
+        => value
+            .EnsureEnvironmentNewLines()
+            .Split(Environment.NewLine);
+
+    /// <summary>
     /// Ensures the first character to upper.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToUpper(
-        this string value)
+    public static string EnsureFirstCharacterToUpper(this string value)
     {
         if (value is null)
         {
@@ -1345,7 +1383,10 @@ public static class StringExtensions
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
 #if NETSTANDARD2_1
-            _ => char.ToUpper(value[0], CultureInfo.CurrentCulture).ToString() + value.Substring(1),
+            _ => char
+                    .ToUpper(value[0], CultureInfo.CurrentCulture)
+                    .ToString() +
+                value.Substring(1),
 #else
             _ => string.Concat(
                 new string(char.ToUpper(value[0], CultureInfo.CurrentCulture), 1),
@@ -1358,8 +1399,7 @@ public static class StringExtensions
     /// Ensures the first character to lower.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToLower(
-        this string value)
+    public static string EnsureFirstCharacterToLower(this string value)
     {
         if (value is null)
         {
@@ -1371,7 +1411,10 @@ public static class StringExtensions
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
 #if NETSTANDARD2_1
-            _ => char.ToLower(value[0], CultureInfo.CurrentCulture).ToString() + value.Substring(1),
+            _ => char
+                    .ToLower(value[0], CultureInfo.CurrentCulture)
+                    .ToString() +
+                    value.Substring(1),
 #else
             _ => string.Concat(
                 new string(char.ToLower(value[0], CultureInfo.CurrentCulture), 1),
@@ -1384,8 +1427,7 @@ public static class StringExtensions
     /// Ensures the string-value ends with a '.'.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureEndsWithDot(
-        this string value)
+    public static string EnsureEndsWithDot(this string value)
     {
         if (value is null)
         {
@@ -1401,8 +1443,7 @@ public static class StringExtensions
     /// Ensures the string-value ends with a ':'.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureEndsWithColon(
-        this string value)
+    public static string EnsureEndsWithColon(this string value)
     {
         if (value is null)
         {
@@ -1418,8 +1459,7 @@ public static class StringExtensions
     /// Ensures the singular.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureSingular(
-        this string value)
+    public static string EnsureSingular(this string value)
     {
         if (value is null)
         {
@@ -1440,8 +1480,7 @@ public static class StringExtensions
     /// Ensures the plural.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsurePlural(
-        this string value)
+    public static string EnsurePlural(this string value)
     {
         if (value is null)
         {
@@ -1477,8 +1516,7 @@ public static class StringExtensions
     /// Ensures the first character to upper and plural.
     /// </summary>
     /// <param name="value">The value.</param>
-    public static string EnsureFirstCharacterToUpperAndPlural(
-        this string value)
+    public static string EnsureFirstCharacterToUpperAndPlural(this string value)
     {
         if (value is null)
         {
@@ -1570,9 +1608,7 @@ public static class StringExtensions
         this string value,
         int maxLength,
         string appendValue = "...")
-    {
-        return Truncate(value, maxLength, appendValue);
-    }
+        => Truncate(value, maxLength, appendValue);
 
     /// <summary>
     /// Replaces at.
@@ -1681,8 +1717,7 @@ public static class StringExtensions
     /// "\n" (\u000A) for Unix
     /// "\r" (\u000D) for Mac
     /// </remarks>
-    public static string RemoveNewLines(
-        this string value)
+    public static string RemoveNewLines(this string value)
     {
         if (value is null)
         {
@@ -1749,8 +1784,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The value.</param>
     /// <exception cref="System.ArgumentNullException">value.</exception>
-    public static string RemoveEndingSlashIfExist(
-        this string value)
+    public static string RemoveEndingSlashIfExist(this string value)
     {
         if (value is null)
         {
@@ -1767,8 +1801,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without non-printable character.</returns>
-    public static string RemoveDataCrap(
-        this string value)
+    public static string RemoveDataCrap(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1816,8 +1849,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without non-printable character.</returns>
-    public static string RemoveNonPrintableCharacter(
-        this string value)
+    public static string RemoveNonPrintableCharacter(this string value)
     {
         if (value is null)
         {
@@ -1865,8 +1897,7 @@ public static class StringExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns>The string without none readable chars etc.</returns>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    public static string TrimSpecial(
-        this string value)
+    public static string TrimSpecial(this string value)
     {
         if (string.IsNullOrEmpty(value))
         {
@@ -1941,8 +1972,7 @@ public static class StringExtensions
     /// are removed from the start and end and multi-space characters  of the current string.
     /// If no characters can be trimmed from the current instance, the method returns the current instance unchanged.
     /// </returns>
-    public static string TrimExtended(
-        this string value)
+    public static string TrimExtended(this string value)
     {
         if (value is null)
         {
@@ -1971,32 +2001,26 @@ public static class StringExtensions
     /// An array whose elements contain the substrings from this instance
     /// that are delimited by one or more characters in separator.
     /// </returns>
-    public static string[] ToLines(
-        this string value)
-    {
-        return string.IsNullOrEmpty(value)
+    public static string[] ToLines(this string value)
+        => string.IsNullOrEmpty(value)
             ? Array.Empty<string>()
             : RxSplitLines.Value
                 .Split(value)
                 .Where(x => !string.IsNullOrEmpty(x))
                 .ToArray();
-    }
 
     /// <summary>
     /// Converts to stream.
     /// </summary>
     /// <param name="value">The value.</param>
     public static Stream ToStream(this string value)
-    {
-        return new MemoryStream(Encoding.UTF8.GetBytes(value));
-    }
+        => new MemoryStream(Encoding.UTF8.GetBytes(value));
 
     /// <summary>
     /// Converts to stream from base64.
     /// </summary>
     /// <param name="base64Data">The base64 data.</param>
-    public static Stream? ToStreamFromBase64(
-        this string base64Data)
+    public static Stream? ToStreamFromBase64(this string base64Data)
     {
         if (string.IsNullOrEmpty(base64Data))
         {

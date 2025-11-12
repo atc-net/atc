@@ -15,7 +15,8 @@ public static class ThreadHelper
     /// Gets the parallel options.
     /// </summary>
     /// <param name="exemptProcessorCount">The exempt processor count.</param>
-    public static ParallelOptions GetParallelOptions(int exemptProcessorCount = 2)
+    public static ParallelOptions GetParallelOptions(
+        int exemptProcessorCount = 2)
     {
         if (exemptProcessorCount > 0 && Environment.ProcessorCount > exemptProcessorCount)
         {

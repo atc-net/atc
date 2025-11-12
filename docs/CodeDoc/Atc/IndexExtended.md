@@ -5153,6 +5153,10 @@
      - GetLastInnerMessage(this Exception exception, bool includeExceptionName = False)
      - GetMessage(this Exception exception, bool includeInnerMessage = False, bool includeExceptionName = False)
      - ToXml(this Exception exception)
+- [GuidExtensions](System.md#guidextensions)
+  -  Static Methods
+     - ToStringLower(this Guid value)
+     - ToStringUpper(this Guid value)
 - [IntegerExtensions](System.md#integerextensions)
   -  Static Methods
      - GetFirstDayOfWeekNumberByYear(this int year, int weekNumber)
@@ -5176,6 +5180,8 @@
      - GetPropertyValue(this object source, string propertyName)
      - GetTypeFullName(this object source)
      - GetTypeName(this object source)
+     - ToStringNormalized(this object value)
+     - ToStringTrimmed(this object source)
 - [PermissionException](System.md#permissionexception)
 - [StringExtensions](System.md#stringextensions)
   -  Static Methods
@@ -5193,6 +5199,7 @@
      - EnsureEndsWithColon(this string value)
      - EnsureEndsWithDot(this string value)
      - EnsureEnvironmentNewLines(this string value)
+     - EnsureEnvironmentNewLinesAndSplit(this string value)
      - EnsureFirstCharacterToLower(this string value)
      - EnsureFirstCharacterToUpper(this string value)
      - EnsureFirstCharacterToUpperAndPlural(this string value)
@@ -5222,6 +5229,7 @@
      - RemoveNewLines(this string value)
      - RemoveNonPrintableCharacter(this string value)
      - RemoveStart(this string value, string startValue, bool ignoreCaseSensitive = True)
+     - Replace(this string source, IEnumerable&lt;string&gt; oldValues, string newValue, StringComparison comparison = Ordinal)
      - ReplaceAt(this string value, int index, char newChar)
      - ReplaceMany(this string value, IDictionary&lt;string, string&gt; replacements)
      - ReplaceMany(this string value, char[] chars, char replacement)
@@ -5295,6 +5303,7 @@
      - GetAttributes(this Type type)
      - GetBaseTypeGenericArgumentType(this Type type)
      - GetBaseTypeGenericArgumentTypes(this Type type)
+     - GetMethodByName(this Type type, string methodName, StringComparison comparison = Ordinal)
      - GetNameWithoutGenericType(this Type type, bool useFullName = False)
      - GetNonNullableType(this Type type)
      - GetPrivateDeclaredOnlyMethod(this Type type, string name)
@@ -5335,6 +5344,8 @@
 - [EnumerableExtensions](System.Collections.Generic.md#enumerableextensions)
   -  Static Methods
      - CountAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
+     - SelectToArray(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TResult&gt; selector)
+     - SelectToList(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TResult&gt; selector)
      - ToAsyncEnumerable(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
      - ToListAsync(this IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
 - [ReadOnlyListExtensions](System.Collections.Generic.md#readonlylistextensions)
@@ -5464,6 +5475,7 @@
      - BeautifyName(this FieldInfo fieldInfo, bool useFullName = False, bool useHtmlFormat = False, bool includeReturnType = False)
 - [MemberInfoExtensions](System.Reflection.md#memberinfoextensions)
   -  Static Methods
+     - AnyCustomAttributes(this MemberInfo element)
      - GetUnderlyingType(this MemberInfo member)
      - HasCompilerGeneratedAttribute(this MemberInfo memberInfo)
      - HasExcludeFromCodeCoverageAttribute(this MemberInfo memberInfo)

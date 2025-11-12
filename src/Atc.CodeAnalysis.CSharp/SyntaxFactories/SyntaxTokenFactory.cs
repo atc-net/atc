@@ -11,9 +11,7 @@ public static partial class SyntaxTokenFactory
     /// <param name="syntaxKind">The kind of token to create.</param>
     /// <returns>A <see cref="SyntaxToken"/>.</returns>
     public static SyntaxToken Token(SyntaxKind syntaxKind)
-    {
-        return SyntaxFactory.Token(syntaxKind);
-    }
+        => SyntaxFactory.Token(syntaxKind);
 
     /// <summary>
     /// Creates a syntax token with a trailing space.
@@ -21,9 +19,7 @@ public static partial class SyntaxTokenFactory
     /// <param name="syntaxKind">The kind of token to create.</param>
     /// <returns>A <see cref="SyntaxToken"/> with trailing space trivia.</returns>
     public static SyntaxToken TokenWithTrailingSpace(SyntaxKind syntaxKind)
-    {
-        return TokenWithTrailing(syntaxKind, SyntaxFactory.Space);
-    }
+        => TokenWithTrailing(syntaxKind, SyntaxFactory.Space);
 
     /// <summary>
     /// Creates a syntax token with trailing trivia.
@@ -34,7 +30,5 @@ public static partial class SyntaxTokenFactory
     public static SyntaxToken TokenWithTrailing(
         SyntaxKind syntaxKind,
         SyntaxTrivia syntaxTrivia)
-    {
-        return SyntaxFactory.Token(syntaxKind).WithTrailingTrivia(syntaxTrivia);
-    }
+        => SyntaxFactory.Token(syntaxKind).WithTrailingTrivia(syntaxTrivia);
 }

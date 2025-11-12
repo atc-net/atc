@@ -128,7 +128,8 @@ public class ConfigureAuthorizationOptions :
     /// <param name="issuer">The issuer URL.</param>
     /// <returns>A collection of security keys for token validation.</returns>
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(string issuer)
+    private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
+        string issuer)
     {
         try
         {
@@ -146,7 +147,8 @@ public class ConfigureAuthorizationOptions :
         }
     }
 
-    private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(JwtBearerOptions options)
+    private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
+        JwtBearerOptions options)
     {
         var issuerSigningKeys = new List<SecurityKey>();
 

@@ -107,7 +107,9 @@ public sealed class RequestLogModel
     {
         var pairs = new List<KeyValuePair<string, string>>();
 
-        foreach (var query in queryString.TrimStart('?').Split("&"))
+        foreach (var query in queryString
+                     .TrimStart('?')
+                     .Split("&"))
         {
             var items = query.Split("=", StringSplitOptions.RemoveEmptyEntries);
             if (items.Length == 2)

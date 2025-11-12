@@ -15,7 +15,7 @@ public class DropDownFirstItemTypeHelperTests
         var actual = DropDownFirstItemTypeHelper.GetEnumGuid(input);
 
         // Assert
-        Assert.Equal(expected, actual.ToString().ToUpperInvariant());
+        Assert.Equal(expected, actual.ToStringUpper());
     }
 
     [Theory]

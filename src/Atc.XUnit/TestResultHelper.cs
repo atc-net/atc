@@ -10,7 +10,8 @@ public static class TestResultHelper
     /// </summary>
     /// <param name="testResults">The test results.</param>
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "OK.")]
-    public static void AssertOnTestResults(IReadOnlyCollection<TestResult> testResults)
+    public static void AssertOnTestResults(
+        IReadOnlyCollection<TestResult> testResults)
     {
         Assert.NotNull(testResults);
         if (!testResults.Any(x => x.IsError))
@@ -143,8 +144,12 @@ public static class TestResultHelper
             }
         }
 
-        ws.Column(1).AutoFit();
-        ws.Column(2).AutoFit();
+        ws
+            .Column(1)
+            .AutoFit();
+        ws
+            .Column(2)
+            .AutoFit();
 
         p.SaveAs(file);
     }

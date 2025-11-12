@@ -26,8 +26,7 @@ public class SwitchCaseDefaultException : Exception
     /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public SwitchCaseDefaultException(
-        string message)
+    public SwitchCaseDefaultException(string message)
         : base(message)
     {
     }
@@ -38,8 +37,7 @@ public class SwitchCaseDefaultException : Exception
     /// <param name="value">The unexpected enum value that was encountered.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
     [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
-    public SwitchCaseDefaultException(
-        Enum value)
+    public SwitchCaseDefaultException(Enum value)
     {
         if (value is null)
         {

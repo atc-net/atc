@@ -10,7 +10,8 @@ public static class ServiceCollectionExtensions
     /// Adds console logging to the service collection using default configuration.
     /// </summary>
     /// <param name="serviceCollection">The service collection to configure.</param>
-    public static void AddConsoleLogging(this IServiceCollection serviceCollection)
+    public static void AddConsoleLogging(
+        this IServiceCollection serviceCollection)
     {
         serviceCollection.AddLogging(logger =>
         {
@@ -48,7 +49,8 @@ public static class ServiceCollectionExtensions
     /// Automatically registers all <see cref="global::Spectre.Console.Cli.CommandSettings"/> types from loaded assemblies as singletons.
     /// </summary>
     /// <param name="serviceCollection">The service collection to configure.</param>
-    public static void AutoRegisterCliCommandSettings(this IServiceCollection serviceCollection)
+    public static void AutoRegisterCliCommandSettings(
+        this IServiceCollection serviceCollection)
     {
         var assemblies = AppDomain.CurrentDomain.GetCustomAssemblies();
         foreach (var assembly in assemblies)

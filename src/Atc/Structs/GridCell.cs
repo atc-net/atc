@@ -20,9 +20,7 @@ public record struct GridCell(
 
     /// <inheritdoc />
     public override readonly string ToString()
-    {
-        return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
-    }
+        => $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
 
     /// <summary>
     /// Returns a short string representation of the grid cell in the format "x, y".

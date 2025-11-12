@@ -43,7 +43,8 @@ public static class AssemblyExtensions
             throw new ArgumentNullException(nameof(assembly));
         }
 
-        return assembly.GetCustomAttributes(false)
+        return assembly
+            .GetCustomAttributes(false)
             .OfType<DebuggableAttribute>()
             .Select(att => att.IsJITTrackingEnabled)
             .FirstOrDefault();
@@ -124,8 +125,7 @@ public static class AssemblyExtensions
     /// <param name="assembly">The assembly to search for resource managers.</param>
     /// <returns>An array of resource managers sorted by base name.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
-    public static ResourceManager[] GetResourceManagers(
-        this Assembly assembly)
+    public static ResourceManager[] GetResourceManagers(this Assembly assembly)
     {
         if (assembly is null)
         {

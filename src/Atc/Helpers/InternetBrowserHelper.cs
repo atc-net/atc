@@ -261,8 +261,7 @@ public static class InternetBrowserHelper
     /// <returns>
     ///   <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool OpenUrl(
-        string url)
+    public static bool OpenUrl(string url)
     {
         if (url is null)
         {
@@ -282,8 +281,7 @@ public static class InternetBrowserHelper
     /// <returns>
     ///   <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool OpenUrl(
-        Uri uri)
+    public static bool OpenUrl(Uri uri)
     {
         if (uri is null)
         {
@@ -294,8 +292,7 @@ public static class InternetBrowserHelper
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static bool ProcessStartOpenUrl(
-        Uri uri)
+    private static bool ProcessStartOpenUrl(Uri uri)
     {
         if (uri is null)
         {
@@ -355,12 +352,10 @@ public static class InternetBrowserHelper
         }
     }
 
-    private static bool IsProcessRunning(
-        string processName)
+    private static bool IsProcessRunning(string processName)
         => Process.GetProcessesByName(processName).Length > 0;
 
-    private static void CloseMainWindowOnRunningInstances(
-        string processName)
+    private static void CloseMainWindowOnRunningInstances(string processName)
     {
         var instances = Process.GetProcessesByName(processName);
         foreach (var instance in instances)
@@ -369,8 +364,7 @@ public static class InternetBrowserHelper
         }
     }
 
-    private static void KillRunningInstances(
-        string processName)
+    private static void KillRunningInstances(string processName)
     {
         var instances = Process.GetProcessesByName(processName);
         foreach (var instance in instances)

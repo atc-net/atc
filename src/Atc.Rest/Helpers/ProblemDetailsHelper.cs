@@ -14,8 +14,7 @@ public static class ProblemDetailsHelper
     /// </summary>
     /// <param name="value">The string to check.</param>
     /// <returns>True if the value is valid JSON containing Status, Title, and Detail properties; otherwise, false.</returns>
-    public static bool IsFormatJsonAndProblemDetailsModel(
-        string value)
+    public static bool IsFormatJsonAndProblemDetailsModel(string value)
         => !string.IsNullOrEmpty(value) &&
            value.IsFormatJson() &&
            value.Contains(new[] { "Status", "Title", "Detail" });

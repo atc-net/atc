@@ -18,8 +18,7 @@ public class BaseCommandSettings : global::Spectre.Console.Cli.CommandSettings
     /// <param name="value">The nullable boolean value to check.</param>
     /// <returns>True if the value is not null and is true; otherwise, false.</returns>
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK. Will be used in a none-static context.")]
-    public bool IsOptionValueTrue(
-        bool? value)
+    public bool IsOptionValueTrue(bool? value)
         => value is not null &&
            value.Value;
 }

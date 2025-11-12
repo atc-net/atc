@@ -77,7 +77,9 @@ public class ByteExtensionsTests
         byte splitByte = 0;
 
         // Act
-        var actual = value.Split(splitByte).ToList();
+        var actual = value
+            .Split(splitByte)
+            .ToList();
 
         // Assert
         Assert.Equal(3, actual.Count);

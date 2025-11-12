@@ -22,8 +22,7 @@ public class PermissionException : Exception
     /// Initializes a new instance of the <see cref="PermissionException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public PermissionException(
-        string message)
+    public PermissionException(string message)
         : base(message)
     {
     }

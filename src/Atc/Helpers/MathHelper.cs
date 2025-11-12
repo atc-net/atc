@@ -19,9 +19,7 @@ public static class MathHelper
     public static int PercentageAsInteger(
         double totalValue,
         double value)
-    {
-        return (int)Percentage(totalValue, value, 0);
-    }
+        => (int)Percentage(totalValue, value, 0);
 
     /// <summary>Percentages the specified total value.</summary>
     /// <param name="totalValue">The total value.</param>
@@ -71,36 +69,28 @@ public static class MathHelper
     /// </summary>
     /// <param name="celsius">The celsius.</param>
     public static double CelsiusToFahrenheit(double celsius)
-    {
-        return (celsius * 9 / 5) + 32;
-    }
+        => (celsius * 9 / 5) + 32;
 
     /// <summary>
     /// Fahrenheit to celsius.
     /// </summary>
     /// <param name="fahrenheit">The fahrenheit.</param>
     public static double FahrenheitToCelsius(double fahrenheit)
-    {
-        return (fahrenheit - 32) * 5 / 9;
-    }
+        => (fahrenheit - 32) * 5 / 9;
 
     /// <summary>
     /// This function converts degrees to radians.
     /// </summary>
     /// <param name="degrees">An angle, measured in degrees.</param>
     public static double DegreesToRadians(double degrees)
-    {
-        return System.Math.PI / 180 * degrees;
-    }
+        => System.Math.PI / 180 * degrees;
 
     /// <summary>
     /// This function converts radians to degrees.
     /// </summary>
     /// <param name="radians">An angle, measured in radians.</param>
     public static double RadiansToDegrees(double radians)
-    {
-        return 180 / System.Math.PI * radians;
-    }
+        => 180 / System.Math.PI * radians;
 
     /// <summary>
     /// Returns the specified angle in the same angle between 0 and 360.
@@ -169,54 +159,42 @@ public static class MathHelper
     /// </summary>
     /// <param name="degrees">An angle, measured in degrees.</param>
     public static double Sin(double degrees)
-    {
-        return System.Math.Sin(DegreesToRadians(degrees));
-    }
+        => System.Math.Sin(DegreesToRadians(degrees));
 
     /// <summary>
     /// Returns the cosine of the specified angle.
     /// </summary>
     /// <param name="degrees">An angle, measured in degrees.</param>
     public static double Cos(double degrees)
-    {
-        return System.Math.Cos(DegreesToRadians(degrees));
-    }
+        => System.Math.Cos(DegreesToRadians(degrees));
 
     /// <summary>
     /// Returns the tangent of the specified angle.
     /// </summary>
     /// <param name="degrees">An angle, measured in degrees.</param>
     public static double Tan(double degrees)
-    {
-        return System.Math.Tan(DegreesToRadians(degrees));
-    }
+        => System.Math.Tan(DegreesToRadians(degrees));
 
     /// <summary>
     /// Returns the angle whose sine is the specified number.
     /// </summary>
     /// <param name="value">A number representing a sine, where -1 ≤d≤ 1.</param>
     public static double Asin(double value)
-    {
-        return RadiansToDegrees(System.Math.Asin(value));
-    }
+        => RadiansToDegrees(System.Math.Asin(value));
 
     /// <summary>
     /// Returns the angle whose cosine is the specified number.
     /// </summary>
     /// <param name="value">A number representing a cosine, where -1 ≤d≤ 1.</param>
     public static double Acos(double value)
-    {
-        return RadiansToDegrees(System.Math.Acos(value));
-    }
+        => RadiansToDegrees(System.Math.Acos(value));
 
     /// <summary>
     /// Returns the angle whose tangent is the specified number.
     /// </summary>
     /// <param name="value">A number representing a tangent.</param>
     public static double Atan(double value)
-    {
-        return RadiansToDegrees(System.Math.Atan(value));
-    }
+        => RadiansToDegrees(System.Math.Atan(value));
 
     /// <summary>
     /// Min the specified values.
@@ -229,7 +207,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new[] { int.MaxValue }).Min();
+        return values
+            .Concat(new[] { int.MaxValue })
+            .Min();
     }
 
     /// <summary>
@@ -243,7 +223,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new[] { int.MaxValue }).Min();
+        return values
+            .Concat(new[] { int.MaxValue })
+            .Min();
     }
 
     /// <summary>
@@ -257,7 +239,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new double[] { int.MaxValue }).Min();
+        return values
+            .Concat(new double[] { int.MaxValue })
+            .Min();
     }
 
     /// <summary>
@@ -271,7 +255,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new double[] { int.MaxValue }).Min();
+        return values
+            .Concat(new double[] { int.MaxValue })
+            .Min();
     }
 
     /// <summary>
@@ -285,7 +271,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new[] { int.MinValue }).Max();
+        return values
+            .Concat(new[] { int.MinValue })
+            .Max();
     }
 
     /// <summary>
@@ -299,7 +287,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new[] { int.MinValue }).Max();
+        return values
+            .Concat(new[] { int.MinValue })
+            .Max();
     }
 
     /// <summary>
@@ -313,7 +303,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new double[] { int.MinValue }).Max();
+        return values
+            .Concat(new double[] { int.MinValue })
+            .Max();
     }
 
     /// <summary>
@@ -327,7 +319,9 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values.Concat(new double[] { int.MinValue }).Max();
+        return values
+            .Concat(new double[] { int.MinValue })
+            .Max();
     }
 
     /// <summary>
@@ -338,9 +332,7 @@ public static class MathHelper
     ///   <see langword="true" /> if [is equal to zero] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEqualToZero(double value)
-    {
-        return System.Math.Abs(value) <= 0.0000001;
-    }
+        => System.Math.Abs(value) <= 0.0000001;
 
     /// <summary>
     /// Determines whether the specified value1 is equals.
@@ -353,9 +345,7 @@ public static class MathHelper
     public static bool IsEquals(
         double value1,
         double value2)
-    {
-        return value1.IsEqual(value2);
-    }
+        => value1.IsEqual(value2);
 
     /// <summary>
     /// Truncates to maximum precision.

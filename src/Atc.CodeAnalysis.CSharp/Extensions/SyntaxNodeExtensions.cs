@@ -21,7 +21,9 @@ public static class SyntaxNodeExtensions
             throw new ArgumentNullException(nameof(syntaxNode));
         }
 
-        return syntaxNode.DescendantNodes().OfType<T>();
+        return syntaxNode
+            .DescendantNodes()
+            .OfType<T>();
     }
 
     /// <summary>
@@ -38,7 +40,9 @@ public static class SyntaxNodeExtensions
             throw new ArgumentNullException(nameof(syntaxNode));
         }
 
-        return syntaxNode.Select<T>().ToArray();
+        return syntaxNode
+            .Select<T>()
+            .ToArray();
     }
 
     /// <summary>
@@ -54,7 +58,8 @@ public static class SyntaxNodeExtensions
             throw new ArgumentNullException(nameof(syntaxNode));
         }
 
-        return syntaxNode.Select<UsingDirectiveSyntax>()
+        return syntaxNode
+            .Select<UsingDirectiveSyntax>()
             .Select(x => x.Name!.ToFullString())
             .ToArray();
     }
@@ -65,14 +70,16 @@ public static class SyntaxNodeExtensions
     /// <param name="syntaxNode">The syntax node to search.</param>
     /// <returns>An array of using directive strings without aliases.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="syntaxNode"/> is null.</exception>
-    public static string[] GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
+    public static string[] GetUsedUsingStatementsWithoutAlias(
+        this SyntaxNode syntaxNode)
     {
         if (syntaxNode is null)
         {
             throw new ArgumentNullException(nameof(syntaxNode));
         }
 
-        return syntaxNode.Select<UsingDirectiveSyntax>()
+        return syntaxNode
+            .Select<UsingDirectiveSyntax>()
             .Where(x => x.Alias is null)
             .Select(x => x.Name!.ToFullString())
             .ToArray();

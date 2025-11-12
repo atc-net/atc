@@ -22,8 +22,7 @@ public class EntityStoreException : Exception
     /// Initializes a new instance of the <see cref="EntityStoreException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public EntityStoreException(
-        string message)
+    public EntityStoreException(string message)
         : base(message)
     {
     }

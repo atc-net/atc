@@ -49,9 +49,10 @@ public static class DropDownFirstItemTypeHelper
     {
         foreach (var item
 #if NETSTANDARD2_1
-                 in Enum.GetValues(typeof(DropDownFirstItemType))
-                     .Cast<DropDownFirstItemType>()
-                     .Where(item => key == GetEnumGuid(item)))
+                 in Enum
+                    .GetValues(typeof(DropDownFirstItemType))
+                    .Cast<DropDownFirstItemType>()
+                    .Where(item => key == GetEnumGuid(item)))
 #else
                  in Enum
                      .GetValues<DropDownFirstItemType>()

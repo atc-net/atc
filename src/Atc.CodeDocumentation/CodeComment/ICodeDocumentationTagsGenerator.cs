@@ -10,8 +10,7 @@ public interface ICodeDocumentationTagsGenerator
     /// </summary>
     /// <param name="codeDocumentationTags">The code documentation tags to evaluate.</param>
     /// <returns><see langword="true"/> if tags should be generated; otherwise, <see langword="false"/>.</returns>
-    bool ShouldGenerateTags(
-        CodeDocumentationTags codeDocumentationTags);
+    bool ShouldGenerateTags(CodeDocumentationTags codeDocumentationTags);
 
     /// <summary>
     /// Generates formatted XML documentation comment tags from the specified documentation data.

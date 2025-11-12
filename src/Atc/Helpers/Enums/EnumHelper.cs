@@ -14,9 +14,7 @@ public static class EnumHelper
     /// </summary>
     /// <param name="enumeration">The enumeration.</param>
     public static string GetName(Enum enumeration)
-    {
-        return enumeration.GetName();
-    }
+        => enumeration.GetName();
 
     /// <summary>
     /// Gets the enum value.
@@ -61,9 +59,7 @@ public static class EnumHelper
     /// </summary>
     /// <param name="enumeration">The enumeration.</param>
     public static string GetDescription(Enum enumeration)
-    {
-        return enumeration.GetDescription();
-    }
+        => enumeration.GetDescription();
 
     /// <summary>
     /// Gets the value from the description.
@@ -230,8 +226,12 @@ public static class EnumHelper
         var orderList = sortDirectionType switch
         {
             SortDirectionType.None => list.ToList(),
-            SortDirectionType.Ascending => list.OrderBy(x => x.Value, StringComparer.Ordinal).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x.Value, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Ascending => list
+                .OrderBy(x => x.Value, StringComparer.Ordinal)
+                .ToList(),
+            SortDirectionType.Descending => list
+                .OrderByDescending(x => x.Value, StringComparer.Ordinal)
+                .ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 
@@ -350,8 +350,12 @@ public static class EnumHelper
         var orderList = sortDirectionType switch
         {
             SortDirectionType.None => list.ToList(),
-            SortDirectionType.Ascending => list.OrderBy(x => x.Value, StringComparer.Ordinal).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x.Value, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Ascending => list
+                .OrderBy(x => x.Value, StringComparer.Ordinal)
+                .ToList(),
+            SortDirectionType.Descending => list
+                .OrderByDescending(x => x.Value, StringComparer.Ordinal)
+                .ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
 
@@ -409,8 +413,7 @@ public static class EnumHelper
     /// <param name="includeDefault">Includes the default '0' value if true.</param>
     /// <returns>A list of individual values.</returns>
     /// <exception cref="InvalidOperationException">Thrown if T is not an enum.</exception>
-    public static IList<T> GetIndividualValues<T>(
-        bool includeDefault = true)
+    public static IList<T> GetIndividualValues<T>(bool includeDefault = true)
         where T : Enum
     {
         if (!typeof(T).IsEnum)
@@ -573,8 +576,7 @@ public static class EnumHelper
         return individualValues;
     }
 
-    private static int CountBitsForEnumValue(
-        long value)
+    private static int CountBitsForEnumValue(long value)
     {
         var count = 0;
         while (value != 0)

@@ -13,26 +13,20 @@ internal sealed class MarkdownBuilder
     /// <param name="code">The code text to format.</param>
     /// <returns>The code text wrapped in backticks.</returns>
     public static string MarkdownCodeQuote(string code)
-    {
-        return "`" + code + "`";
-    }
+        => "`" + code + "`";
 
     /// <summary>
     /// Appends text to the markdown output without adding a line break.
     /// </summary>
     /// <param name="text">The text to append.</param>
     public void Append(string text)
-    {
-        sb.Append(text);
-    }
+        => sb.Append(text);
 
     /// <summary>
     /// Appends a line break to the markdown output.
     /// </summary>
     public void AppendLine()
-    {
-        sb.AppendLine();
-    }
+        => sb.AppendLine();
 
     /// <summary>
     /// Appends text with HTML non-breaking space indentation.
@@ -57,9 +51,7 @@ internal sealed class MarkdownBuilder
     /// </summary>
     /// <param name="text">The text to append.</param>
     public void AppendLine(string text)
-    {
-        sb.AppendLine(text);
-    }
+        => sb.AppendLine(text);
 
     /// <summary>
     /// Appends a markdown header of the specified level.
@@ -269,7 +261,5 @@ internal sealed class MarkdownBuilder
 
     /// <inheritdoc/>
     public override string ToString()
-    {
-        return sb.ToString();
-    }
+        => sb.ToString();
 }

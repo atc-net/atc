@@ -117,7 +117,5 @@ public class TestResult
     /// A string that represents this instance.
     /// </returns>
     public override string ToString()
-    {
-        return $"{nameof(IsError)}: {IsError}, {nameof(IndentLevel)}: {IndentLevel}, {nameof(Text)}: {Text}, {nameof(SubLines)}: {SubLines?.Count}";
-    }
+        => $"{nameof(IsError)}: {IsError}, {nameof(IndentLevel)}: {IndentLevel}, {nameof(Text)}: {Text}, {nameof(SubLines)}: {SubLines?.Count}";
 }

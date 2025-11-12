@@ -34,15 +34,18 @@ public static class MethodDeclarationSyntaxExtensions
         }
 
         var attributeArgumentList = SyntaxFactory.AttributeArgumentList(
-            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(SyntaxFactory.NodeOrTokenList(
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
-                SyntaxTokenFactory.Comma(),
-                SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
-                    .WithNameEquals(
-                        SyntaxNameEqualsFactory.Create(nameof(SuppressMessageAttribute.Justification))
-                            .WithEqualsToken(SyntaxTokenFactory.Equals())))));
+            SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(
+                SyntaxFactory.NodeOrTokenList(
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Category)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.CheckId)),
+                    SyntaxTokenFactory.Comma(),
+                    SyntaxFactory
+                        .AttributeArgument(SyntaxLiteralExpressionFactory.Create(suppressMessage.Justification!))
+                        .WithNameEquals(
+                            SyntaxNameEqualsFactory
+                                .Create(nameof(SuppressMessageAttribute.Justification))
+                                .WithEqualsToken(SyntaxTokenFactory.Equals())))));
 
         return methodDeclaration
             .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(SuppressMessageAttribute), attributeArgumentList));

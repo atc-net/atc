@@ -15,9 +15,7 @@ public static class RestApiBuilderExtensions
     public static IApplicationBuilder UseRestApi(
         this IApplicationBuilder app,
         IWebHostEnvironment env)
-    {
-        return app.ConfigureRestApi(env, new RestApiOptions(), _ => { });
-    }
+        => app.ConfigureRestApi(env, new RestApiOptions(), _ => { });
 
     /// <summary>
     /// Configures the REST API middleware pipeline with the specified options.
@@ -30,9 +28,7 @@ public static class RestApiBuilderExtensions
         this IApplicationBuilder app,
         IWebHostEnvironment env,
         RestApiOptions restApiOptions)
-    {
-        return app.ConfigureRestApi(env, restApiOptions, _ => { });
-    }
+        => app.ConfigureRestApi(env, restApiOptions, _ => { });
 
     /// <summary>
     /// Configures the REST API middleware pipeline with custom setup action.

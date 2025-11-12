@@ -77,6 +77,7 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
     /// The string representation of the value of <paramref name="arg"/>, formatted as
     /// specified by <paramref name="format"/> and <paramref name="formatProvider"/>.
     /// </returns>
+    [SuppressMessage("Style", "ATC203:Method chains with 2 or more calls should be broken down to separate lines", Justification = "OK")]
     public string Format(
         string? format,
         object? arg,

@@ -19,7 +19,9 @@ public static class ProcessExtensions
 
         var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-        void ProcessExited(object? sender, EventArgs e)
+        void ProcessExited(
+            object? sender,
+            EventArgs e)
         {
             tcs.TrySetResult(true);
         }
@@ -45,7 +47,8 @@ public static class ProcessExtensions
         }
     }
 
-    public static void KillTree(this Process process) => process.KillTree(DefaultKillTimeout);
+    public static void KillTree(this Process process)
+        => process.KillTree(DefaultKillTimeout);
 
     public static void KillTree(
         this Process process,

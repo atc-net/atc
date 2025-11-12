@@ -1,3 +1,4 @@
+// ReSharper disable InvertIf
 namespace Atc.XUnit.Internal.AbstractSyntaxTree;
 
 internal static class DecompilerMethodHelper
@@ -125,7 +126,11 @@ internal static class DecompilerMethodHelper
         }
         else
         {
-            var mn = method.DeclaringType.BeautifyName().Replace("<T>", string.Empty, StringComparison.Ordinal);
+            var mn = method
+                .DeclaringType
+                .BeautifyName()
+                .Replace("<T>", string.Empty, StringComparison.Ordinal);
+
             tuples = testMethodsWithDeclaration
                 .Where(x => x.Item1.DeclaringType is not null &&
                             x.Item1.DeclaringType.Name.StartsWith(mn, StringComparison.Ordinal))
@@ -134,8 +139,7 @@ internal static class DecompilerMethodHelper
             // If no exact match found, try without common suffixes like "Factory", "Helper", etc.
             if (tuples.Length == 0)
             {
-                var mnWithoutSuffix = mn.Replace("Factory", string.Empty, StringComparison.Ordinal)
-                                        .Replace("Helper", string.Empty, StringComparison.Ordinal);
+                var mnWithoutSuffix = mn.Replace(new[] { "Factory", "Helper" }, string.Empty, StringComparison.Ordinal);
                 if (mnWithoutSuffix != mn)
                 {
                     tuples = testMethodsWithDeclaration
@@ -168,29 +172,23 @@ internal static class DecompilerMethodHelper
     internal static AstNode? GetAstNodeForMethod(
         AstNode astNode,
         string methodName)
-    {
-        return astNode.Descendants
+        => astNode.Descendants
             .Where(x => x.IsType(typeof(InvocationExpression)))
             .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && string.Equals(x.ToString(), methodName, StringComparison.Ordinal)))
             .FirstOrDefault(x => x is not null);
-    }
 
     internal static AstNode? GetAstNodeForParameter(
         AstNode astNode,
         string parameterName)
-    {
-        return astNode.Descendants
+        => astNode.Descendants
             .Where(x => x.IsType(typeof(ParameterDeclaration)) ||
                         x.IsType(typeof(VariableInitializer)) ||
                         x.IsType(typeof(MemberReferenceExpression)))
             .Select(node => node.Descendants.FirstOrDefault(x => string.Equals(x.ToString(), parameterName, StringComparison.Ordinal)))
             .FirstOrDefault(x => x is not null);
-    }
 
     internal static string? GetTestMethodCode(AstNode astNode)
-    {
-        return GetAstNodeForTestMethodCode(astNode)?.ToString();
-    }
+        => GetAstNodeForTestMethodCode(astNode)?.ToString();
 
     internal static AstNode? GetAstNodeForTestMethodCode(AstNode astNode)
     {
@@ -211,11 +209,11 @@ internal static class DecompilerMethodHelper
     internal static AstNode? GetAstNodeForMethodWithParameters(
         AstNode astNode,
         string methodName)
-    {
-        return GetAstNodeForMethod(astNode, methodName)?.Parent?.Parent;
-    }
+        => GetAstNodeForMethod(astNode, methodName)?.Parent?.Parent;
 
-    internal static List<AstNode> GetAstNodesForMethodParameters(AstNode astNode)
+    [SuppressMessage("Style", "ATC203:Method chains with 2 or more calls should be broken down to separate lines", Justification = "OK")]
+    internal static List<AstNode> GetAstNodesForMethodParameters(
+        AstNode astNode)
     {
         if (astNode.ToString().EndsWith(" ()", StringComparison.Ordinal))
         {
@@ -268,12 +266,9 @@ internal static class DecompilerMethodHelper
     }
 
     private static bool AllParamsArePartOfInvocations(List<AstNode> parameters)
-    {
-        // Check if all parameters are part of invocation expressions
-        // This indicates the parameters are method call results
-        return parameters.All(p => p.Ancestors.Any(a => a.IsType(typeof(InvocationExpression))));
-    }
+        => parameters.All(p => p.Ancestors.Any(a => a.IsType(typeof(InvocationExpression))));
 
+    [SuppressMessage("Style", "ATC203:Method chains with 2 or more calls should be broken down to separate lines", Justification = "OK")]
     private static List<AstNode> FilterDirectChildArguments(AstNode astNode)
     {
         // Extract all direct child arguments (both complex and simple)

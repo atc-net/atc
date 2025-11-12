@@ -26,8 +26,7 @@ public class DesignTimeUseOnlyException : Exception
     /// Initializes a new instance of the <see cref="DesignTimeUseOnlyException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public DesignTimeUseOnlyException(
-        string message)
+    public DesignTimeUseOnlyException(string message)
         : base(message)
     {
     }

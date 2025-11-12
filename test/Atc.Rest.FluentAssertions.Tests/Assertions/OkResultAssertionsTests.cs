@@ -28,7 +28,8 @@ public class OkResultAssertionsTests
         var sut = new OkResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent(content))
+        sut
+            .Invoking(x => x.WithContent(content))
             .Should()
             .Throw<XunitException>()
             .WithMessage(expectedMessage + "*");
@@ -43,7 +44,8 @@ public class OkResultAssertionsTests
         var sut = new OkResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("BAR", "Because of something"))
+        sut
+            .Invoking(x => x.WithContent("BAR", "Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content of OK result to be ""BAR"" Because of something, but ""FOO"" differs near ""FOO"" (index 0)." + "*");
@@ -57,7 +59,8 @@ public class OkResultAssertionsTests
         var sut = new OkResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContentOfType<List<string>>("Because of something"))
+        sut
+            .Invoking(x => x.WithContentOfType<List<string>>("Because of something"))
             .Should()
             .Throw<XunitException>()
             .WithMessage(@"Expected content type of OK result to be assignable to System.Collections.Generic.List`1[System.String] Because of something, but System.String is not.");
@@ -72,7 +75,8 @@ public class OkResultAssertionsTests
         var sut = new OkResultAssertions(target);
 
         // Act & Assert
-        sut.Invoking(x => x.WithContent("FOO"))
+        sut
+            .Invoking(x => x.WithContent("FOO"))
             .Should()
             .NotThrow();
     }

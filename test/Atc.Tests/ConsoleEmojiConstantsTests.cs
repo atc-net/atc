@@ -51,7 +51,8 @@ public class ConsoleEmojiConstantsTests
     }
 
     [SuppressMessage("Major Bug", "S2583:Conditionally executed code should be reachable", Justification = "OK.")]
-    private static string GenerateContent(IList<(string Group, string SubGroup, string Name, string Value)> emojis)
+    private static string GenerateContent(
+        IList<(string Group, string SubGroup, string Name, string Value)> emojis)
     {
         var groupNames = emojis
             .Select(x => x.Group)
@@ -151,8 +152,7 @@ public class ConsoleEmojiConstantsTests
         return data;
     }
 
-    private static string FormatName(
-        string source)
+    private static string FormatName(string source)
     {
         var parts = source
             .Replace(':', '_')
@@ -172,8 +172,7 @@ public class ConsoleEmojiConstantsTests
         return string.Concat(parts);
     }
 
-    private static (string Name, string Value)? ParseEmoji(
-        string line)
+    private static (string Name, string Value)? ParseEmoji(string line)
     {
         var parts = line.Split(new[] { ';', '#' }, 3);
 
@@ -197,7 +196,8 @@ public class ConsoleEmojiConstantsTests
             name = "Number" + name;
         }
 
-        var surrogates = parts[0].Trim()
+        var surrogates = parts[0]
+            .Trim()
             .Split(' ', StringSplitOptions.RemoveEmptyEntries)
             .Select(x => int.Parse(x, NumberStyles.HexNumber, GlobalizationConstants.EnglishCultureInfo))
             .Select(char.ConvertFromUtf32);

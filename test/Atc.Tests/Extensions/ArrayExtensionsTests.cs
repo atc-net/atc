@@ -12,9 +12,13 @@ public class ArrayExtensionsTests
         var actual = input.RemoveDuplicates();
 
         // Assert
-        actual.Cast<string>().Should().NotBeNull().And.HaveCount(expected.Length);
-        actual.Cast<string>().Should()
-            .NotBeNull()
+        actual
+            .Cast<string>()
+            .Should().NotBeNull()
+            .And.HaveCount(expected.Length);
+        actual
+            .Cast<string>()
+            .Should().NotBeNull()
             .And.HaveCount(expected.Length)
             .And.Contain(expected);
     }
@@ -36,8 +40,7 @@ public class ArrayExtensionsTests
         // Assert
         actual
             .Cast<string>()
-            .Should()
-            .NotBeNull()
+            .Should().NotBeNull()
             .And.HaveCount(expected.Length)
             .And.Contain(expected);
     }
@@ -57,8 +60,8 @@ public class ArrayExtensionsTests
         var actual = input.ToList(sortDirectionType, removeDuplicates);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.HaveCount(expected.Length)
             .And.Contain(expected);
     }

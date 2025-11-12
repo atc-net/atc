@@ -12,7 +12,8 @@ public static class DataFactory
     /// <returns>
     /// The <see cref="DataTable" />.
     /// </returns>
-    public static DataTable CreateKeyValueDataTableOfIntString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
+    public static DataTable CreateKeyValueDataTableOfIntString(
+        DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
         var dt = new DataTable
         {
@@ -61,7 +62,8 @@ public static class DataFactory
     /// <returns>
     /// The <see cref="DataTable" />.
     /// </returns>
-    public static DataTable CreateKeyValueDataTableOfGuidString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
+    public static DataTable CreateKeyValueDataTableOfGuidString(
+        DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
         var dt = new DataTable
         {
@@ -110,7 +112,8 @@ public static class DataFactory
     /// <returns>
     /// The Dictionary.
     /// </returns>
-    public static Dictionary<int, string> CreateKeyValueDictionaryOfIntString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
+    public static Dictionary<int, string> CreateKeyValueDictionaryOfIntString(
+        DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
         var dictionary = new Dictionary<int, string>();
         switch (dropDownFirstItemType)
@@ -146,7 +149,8 @@ public static class DataFactory
     /// <returns>
     /// The Dictionary.
     /// </returns>
-    public static Dictionary<Guid, string> CreateKeyValueDictionaryOfGuidString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
+    public static Dictionary<Guid, string> CreateKeyValueDictionaryOfGuidString(
+        DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
         var dictionary = new Dictionary<Guid, string>();
         switch (dropDownFirstItemType)
@@ -182,7 +186,8 @@ public static class DataFactory
     /// <returns>
     /// The Dictionary.
     /// </returns>
-    public static Dictionary<string, string> CreateKeyValueDictionaryOfStringString(DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
+    public static Dictionary<string, string> CreateKeyValueDictionaryOfStringString(
+        DropDownFirstItemType dropDownFirstItemType = DropDownFirstItemType.None)
     {
         var dictionary = new Dictionary<string, string>(StringComparer.Ordinal);
         switch (dropDownFirstItemType)

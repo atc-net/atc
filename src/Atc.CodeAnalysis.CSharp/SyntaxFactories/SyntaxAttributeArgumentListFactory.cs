@@ -14,11 +14,9 @@ public static class SyntaxAttributeArgumentListFactory
     public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(
         string attributeName,
         string attributeValue)
-    {
-        return SyntaxFactory.AttributeArgumentList(
+        => SyntaxFactory.AttributeArgumentList(
             SyntaxFactory.SingletonSeparatedList(
                 SyntaxAttributeArgumentFactory.CreateWithNameEquals(attributeName, attributeValue)));
-    }
 
     /// <summary>
     /// Creates an attribute argument list with a single named argument from an integer value.
@@ -29,9 +27,7 @@ public static class SyntaxAttributeArgumentListFactory
     public static AttributeArgumentListSyntax CreateWithOneItemWithNameEquals(
         string attributeName,
         int attributeValue)
-    {
-        return SyntaxFactory.AttributeArgumentList(
+        => SyntaxFactory.AttributeArgumentList(
             SyntaxFactory.SingletonSeparatedList(
                 SyntaxAttributeArgumentFactory.CreateWithNameEquals(attributeName, attributeValue)));
-    }
 }

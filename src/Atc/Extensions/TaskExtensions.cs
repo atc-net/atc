@@ -84,8 +84,7 @@ public static class TaskExtensions
     /// </summary>
     /// <param name="task">The task to be forgotten.</param>
     /// <exception cref="ArgumentNullException">Thrown if the task is null.</exception>
-    public static void Forget(
-        this Task task)
+    public static void Forget(this Task task)
     {
         if (task is null)
         {
@@ -99,8 +98,7 @@ public static class TaskExtensions
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task ForgetAwaited(
-        Task task)
+    private static async Task ForgetAwaited(Task task)
     {
         try
         {

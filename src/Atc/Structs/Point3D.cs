@@ -17,7 +17,8 @@ public record struct Point3D(
     /// <value>
     ///   <see langword="true" /> if X, Y, and Z are all approximately zero; otherwise, <see langword="false" />.
     /// </value>
-    public readonly bool IsDefault => X.IsEqual(0) && Y.IsEqual(0) && Z.IsEqual(0);
+    public readonly bool IsDefault
+        => X.IsEqual(0) && Y.IsEqual(0) && Z.IsEqual(0);
 
     /// <inheritdoc />
     public override readonly string ToString()

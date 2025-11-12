@@ -51,8 +51,7 @@ public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
     /// </summary>
     /// <param name="obj">The byte array for which to generate a hash code.</param>
     /// <returns>A hash code for the byte array, or 0 if the array is null.</returns>
-    public int GetHashCode(
-        byte[]? obj)
+    public int GetHashCode(byte[]? obj)
     {
         if (obj is null)
         {

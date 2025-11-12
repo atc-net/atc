@@ -37,7 +37,8 @@ public class UniversalTransverseMercatorConverter
     /// Initializes a new instance of the <see cref="UniversalTransverseMercatorConverter"/> class.
     /// </summary>
     /// <param name="referenceEllipsoidType">Type of the reference ellipsoid.</param>
-    public UniversalTransverseMercatorConverter(ReferenceEllipsoidType referenceEllipsoidType = ReferenceEllipsoidType.Wgs84)
+    public UniversalTransverseMercatorConverter(
+        ReferenceEllipsoidType referenceEllipsoidType = ReferenceEllipsoidType.Wgs84)
     {
         SetEllipsoide(referenceEllipsoidType);
     }
@@ -46,10 +47,9 @@ public class UniversalTransverseMercatorConverter
     /// To UTM.
     /// </summary>
     /// <param name="coordinate">The coordinate.</param>
-    public UniversalTransverseMercatorResult ToUtm(CartesianCoordinate coordinate)
-    {
-        return ToUtm(coordinate.Latitude, coordinate.Longitude);
-    }
+    public UniversalTransverseMercatorResult ToUtm(
+        CartesianCoordinate coordinate)
+        => ToUtm(coordinate.Latitude, coordinate.Longitude);
 
     /// <summary>
     /// To UTM.

@@ -20,7 +20,8 @@ public class ResourceHealthCheckExtensionsTests
         var dict = resourceHealthChecks.ToIReadOnlyDictionary();
 
         // Assert
-        dict.Should().NotBeNull()
+        dict
+            .Should().NotBeNull()
             .And.BeAssignableTo<IReadOnlyDictionary<string, object>>()
             .And.HaveCount(1)
             .And.ContainKey(name);

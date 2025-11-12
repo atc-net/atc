@@ -80,14 +80,14 @@ public static class ServiceCollectionExtensions
             return;
         }
 
-        var missingRegistrations = notRegistered.Select(typeInfo => typeInfo.Name).ToArray();
+        var missingRegistrations = notRegistered
+            .Select(typeInfo => typeInfo.Name)
+            .ToArray();
         throw new ItemNotFoundException($"Missing registrations for {apiAssembly.GetName().Name}: {string.Join(", ", missingRegistrations)}");
     }
 
     private static bool IsImplementationTypeRegistered(
         IServiceCollection services,
         Type type)
-    {
-        return services.Any(item => item.ImplementationType == type);
-    }
+        => services.Any(item => item.ImplementationType == type);
 }

@@ -11,7 +11,5 @@ internal sealed class TestItem
     public DateTime Date { get; set; }
 
     public override string ToString()
-    {
-        return $"{nameof(Dosage)}: {Dosage}, {nameof(Drug)}: {Drug}, {nameof(Patient)}: {Patient}, {nameof(Date)}: {Date}";
-    }
+        => $"{nameof(Dosage)}: {Dosage}, {nameof(Drug)}: {Drug}, {nameof(Patient)}: {Patient}, {nameof(Date)}: {Date}";
 }

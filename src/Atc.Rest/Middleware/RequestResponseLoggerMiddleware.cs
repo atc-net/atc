@@ -50,8 +50,7 @@ public class RequestResponseLoggerMiddleware
     /// </summary>
     /// <param name="httpContext">The HTTP context.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public async Task InvokeAsync(
-        HttpContext httpContext)
+    public async Task InvokeAsync(HttpContext httpContext)
     {
         if (!httpContext.Request.Path.HasValue ||
             (apiOptions.RequestResponseLoggerOptions.SkipSwaggerRequests &&
@@ -141,8 +140,7 @@ public class RequestResponseLoggerMiddleware
             },
         };
 
-    private static async Task<string> ReadBodyFromRequest(
-        HttpRequest request)
+    private static async Task<string> ReadBodyFromRequest(HttpRequest request)
     {
         // Ensure the request's body can be read multiple times for the next middleware in the pipeline
         request.EnableBuffering();
@@ -217,8 +215,7 @@ public class RequestResponseLoggerMiddleware
         bodyContent = sb.ToString();
     }
 
-    private void Log(
-        RequestResponseLogModel logModel)
+    private void Log(RequestResponseLogModel logModel)
     {
         if (string.IsNullOrEmpty(logModel.ExceptionMessage))
         {
@@ -245,8 +242,7 @@ public class RequestResponseLoggerMiddleware
         }
     }
 
-    private static bool IsBinaryContent(
-        string contentType)
+    private static bool IsBinaryContent(string contentType)
         => !contentType.Equals(MediaTypeNames.Application.Json, StringComparison.OrdinalIgnoreCase) &&
            !contentType.Equals(MediaTypeNames.Application.JsonPatch, StringComparison.OrdinalIgnoreCase) &&
            !contentType.Equals(MediaTypeNames.Application.Xml, StringComparison.OrdinalIgnoreCase) &&

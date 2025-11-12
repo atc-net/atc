@@ -22,9 +22,7 @@ public static class DoubleExtensions
     public static bool IsEqual(
         this double a,
         double b)
-    {
-        return Math.Abs(a - b) < double.Epsilon;
-    }
+        => Math.Abs(a - b) < double.Epsilon;
 
     /// <summary>
     /// Compare two values. Return <see langword="true" /> if they are equals.
@@ -57,9 +55,7 @@ public static class DoubleExtensions
         this double a,
         double b,
         int decimalPrecision)
-    {
-        return ((decimal)a).IsEqual((decimal)b, decimalPrecision);
-    }
+        => ((decimal)a).IsEqual((decimal)b, decimalPrecision);
 
     /// <summary>
     /// Compares two nullable double values for equality with a specified precision.
@@ -110,9 +106,7 @@ public static class DoubleExtensions
     public static bool GreaterThanOrClose(
         this double value1,
         double value2)
-    {
-        return (value1 > value2) || AreClose(value1, value2);
-    }
+        => value1 > value2 || AreClose(value1, value2);
 
     /// <summary>
     /// Determines whether the specified double value is approximately zero.
@@ -120,9 +114,7 @@ public static class DoubleExtensions
     /// <param name="value">The value to check.</param>
     /// <returns><see langword="true"/> if the absolute value is less than epsilon; otherwise, <see langword="false"/>.</returns>
     public static bool IsZero(this double value)
-    {
-        return Math.Abs(value) < DoubleEpsilon;
-    }
+        => Math.Abs(value) < DoubleEpsilon;
 
     /// <summary>
     /// Rounds a double value using currency rounding rules and returns it as an integer.
@@ -130,9 +122,7 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <returns>The rounded value as an integer.</returns>
     public static int CurrencyRoundingAsInteger(this double value)
-    {
-        return (int)CurrencyRounding(value, 0);
-    }
+        => (int)CurrencyRounding(value, 0);
 
     /// <summary>
     /// Rounds a double value using the currency decimal digits of the current UI culture.
@@ -140,9 +130,7 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <returns>The rounded double value.</returns>
     public static double CurrencyRounding(this double value)
-    {
-        return CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
-    }
+        => CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
 
     /// <summary>
     /// Rounds a double value to a specified number of decimal digits using midpoint rounding away from zero.
@@ -168,9 +156,7 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <returns>The value rounded to 2 decimal places.</returns>
     public static double RoundOff2(this double value)
-    {
-        return RoundOff(value, 2);
-    }
+        => RoundOff(value, 2);
 
     /// <summary>
     /// Rounds a double value to 10 decimal places.
@@ -178,9 +164,7 @@ public static class DoubleExtensions
     /// <param name="value">The double value to round.</param>
     /// <returns>The value rounded to 10 decimal places.</returns>
     public static double RoundOff10(this double value)
-    {
-        return RoundOff(value, 10);
-    }
+        => RoundOff(value, 10);
 
     /// <summary>
     /// Rounds a double value to a specified number of decimal places.
@@ -191,9 +175,7 @@ public static class DoubleExtensions
     public static double RoundOff(
         this double value,
         int numberOfDecimals)
-    {
-        return Math.Round(value, numberOfDecimals);
-    }
+        => Math.Round(value, numberOfDecimals);
 
     /// <summary>
     /// Rounds a percentage value to 2 decimal places.
@@ -201,9 +183,7 @@ public static class DoubleExtensions
     /// <param name="percent">The percentage value to round.</param>
     /// <returns>The percentage value rounded to 2 decimal places.</returns>
     public static double RoundOffPercent(this double percent)
-    {
-        return RoundOff(percent, 2);
-    }
+        => RoundOff(percent, 2);
 
     /// <summary>
     /// Counts the number of decimal places in the double value.

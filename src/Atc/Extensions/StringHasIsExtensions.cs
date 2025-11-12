@@ -24,9 +24,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if [has HTML tags] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool HasHtmlTags(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && RxHtmlTags.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           RxHtmlTags.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified b is equal.
@@ -65,7 +64,9 @@ public static class StringHasIsExtensions
         }
 
         return useNormalizeAccents
-            ? a.NormalizeAccents().Equals(b.NormalizeAccents(), comparison)
+            ? a
+                .NormalizeAccents()
+                .Equals(b.NormalizeAccents(), comparison)
             : a.Equals(b, comparison);
     }
 
@@ -111,9 +112,7 @@ public static class StringHasIsExtensions
     ///    <see langword="true" /> if the specified value is alpha [a-zA-Z]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaOnly(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && !RxAlpha.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) && !RxAlpha.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified value is alpha-numeric [a- z, A-Z, 0-9].
@@ -123,9 +122,7 @@ public static class StringHasIsExtensions
     ///    <see langword="true" /> if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaNumericOnly(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && !RxAlphaNumeric.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) && !RxAlphaNumeric.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified value is a date.
@@ -133,10 +130,8 @@ public static class StringHasIsExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns><see langword="true" /> if the specified value is a date; otherwise, <see langword="false" />.</returns>
     public static bool IsDate(this string value)
-    {
-        return !string.IsNullOrEmpty(value) &&
-               value.IsDate(CultureInfo.InvariantCulture);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           value.IsDate(CultureInfo.InvariantCulture);
 
     /// <summary>
     /// Determines whether the specified culture information is date.
@@ -149,10 +144,8 @@ public static class StringHasIsExtensions
     public static bool IsDate(
         this string value,
         CultureInfo cultureInfo)
-    {
-        return !string.IsNullOrEmpty(value) &&
-               DateTime.TryParse(value, cultureInfo, DateTimeStyles.None, out _);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           DateTime.TryParse(value, cultureInfo, DateTimeStyles.None, out _);
 
     /// <summary>
     /// Determines whether the specified value is digit [0-9].
@@ -162,9 +155,7 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is digit [0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsDigitOnly(this string value)
-    {
-        return IsNumericOnly(value);
-    }
+        => IsNumericOnly(value);
 
     /// <summary>
     /// Determines whether [is format json].
@@ -209,9 +200,7 @@ public static class StringHasIsExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns><see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.</returns>
     public static bool IsGuid(this string value)
-    {
-        return RxGuid.Value.IsMatch(value);
-    }
+        => RxGuid.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified string is a System.Guid.
@@ -241,9 +230,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is key; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsKey(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && RxKey.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           RxKey.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified string length is even.
@@ -251,9 +239,8 @@ public static class StringHasIsExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns><see langword="true" /> if the specified string length is even; otherwise, <see langword="false" />.</returns>
     public static bool IsLengthEven(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && value.Length.IsEven();
-    }
+        => !string.IsNullOrEmpty(value) &&
+           value.Length.IsEven();
 
     /// <summary>
     /// Determines whether the specified value is numeric [0-9].
@@ -263,9 +250,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is numeric [0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsNumericOnly(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && !RxNumeric.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           !RxNumeric.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether the specified value is sentence.
@@ -275,9 +261,10 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is sentence; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsSentence(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && value.TrimExtended().Split(' ').Length > 1;
-    }
+        => !string.IsNullOrEmpty(value) &&
+           value
+               .TrimExtended()
+               .Split(' ').Length > 1;
 
     /// <summary>
     /// Determines whether [is string format parameters balanced] [the specified value].
@@ -341,9 +328,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is word; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsWord(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && RxSingleWord.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           RxSingleWord.Value.IsMatch(value);
 
     /// <summary>
     /// Determines whether [is first character lower case].
@@ -353,9 +339,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if [is first character lower case] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFirstCharacterLowerCase(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && char.IsLower(value[0]);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           char.IsLower(value[0]);
 
     /// <summary>
     /// Determines whether [is first character upper case].
@@ -365,9 +350,8 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if [is first character upper case] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsFirstCharacterUpperCase(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && char.IsUpper(value[0]);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           char.IsUpper(value[0]);
 
     /// <summary>
     /// Determines whether [is casing style valid] [the specified casing style].
@@ -551,7 +535,6 @@ public static class StringHasIsExtensions
     /// <param name="value">The string to work on.</param>
     /// <returns><see langword="true" /> if the specified value is a valid email address; otherwise, <see langword="false" />.</returns>
     public static bool IsEmailAddress(this string value)
-    {
-        return !string.IsNullOrEmpty(value) && RxEmailAddress.Value.IsMatch(value);
-    }
+        => !string.IsNullOrEmpty(value) &&
+           RxEmailAddress.Value.IsMatch(value);
 }

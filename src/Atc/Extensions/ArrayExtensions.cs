@@ -13,9 +13,7 @@ public static class ArrayExtensions
     /// <param name="array">The array to process.</param>
     /// <returns>An array with duplicate elements removed.</returns>
     public static Array RemoveDuplicates(this Array array)
-    {
-        return ToList(array, SortDirectionType.None, removeDuplicates: true).ToArray();
-    }
+        => ToList(array, SortDirectionType.None, removeDuplicates: true).ToArray();
 
     /// <summary>
     /// Converts the array to a sorted array, optionally removing duplicates.
@@ -28,9 +26,7 @@ public static class ArrayExtensions
         this Array array,
         SortDirectionType sortDirectionType = SortDirectionType.None,
         bool removeDuplicates = false)
-    {
-        return ToList(array, sortDirectionType, removeDuplicates).ToArray();
-    }
+        => ToList(array, sortDirectionType, removeDuplicates).ToArray();
 
     /// <summary>
     /// Converts the array to a list of strings, optionally sorting and removing duplicates.
@@ -70,8 +66,12 @@ public static class ArrayExtensions
         return sortDirectionType switch
         {
             SortDirectionType.None => list,
-            SortDirectionType.Ascending => list.OrderBy(x => x, StringComparer.Ordinal).ToList(),
-            SortDirectionType.Descending => list.OrderByDescending(x => x, StringComparer.Ordinal).ToList(),
+            SortDirectionType.Ascending => list
+                .OrderBy(x => x, StringComparer.Ordinal)
+                .ToList(),
+            SortDirectionType.Descending => list
+                .OrderByDescending(x => x, StringComparer.Ordinal)
+                .ToList(),
             _ => throw new SwitchCaseDefaultException(sortDirectionType),
         };
     }

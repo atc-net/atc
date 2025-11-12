@@ -111,9 +111,7 @@ public static class Enum<T>
     public static T Parse(
         string value,
         bool ignoreCase = true)
-    {
-        return (T)Enum.Parse(typeof(T), value, ignoreCase);
-    }
+        => (T)Enum.Parse(typeof(T), value, ignoreCase);
 
     /// <summary>Converts the string representation of a enum. A return value indicates whether the conversion succeeded.</summary>
     /// <param name="value">A string containing a enum to convert.</param>
@@ -129,9 +127,7 @@ public static class Enum<T>
     public static bool TryParse(
         string value,
         out T returnedValue)
-    {
-        return TryParse(value, ignoreCase: true, out returnedValue);
-    }
+        => TryParse(value, ignoreCase: true, out returnedValue);
 
     /// <summary>Converts the string representation of a enum. A return value indicates whether the conversion succeeded.</summary>
     /// <param name="value">A string containing a enum to convert.</param>
@@ -192,9 +188,7 @@ public static class Enum<T>
             byFlagIncludeBase,
             byFlagIncludeCombined);
 
-        return dictionary
-            .Select(pair => pair.Value)
-            .ToArray();
+        return dictionary.SelectToArray(pair => pair.Value);
     }
 
     /// <summary>Converts the enum to dictionary.</summary>
@@ -217,8 +211,7 @@ public static class Enum<T>
         SortDirectionType sortDirectionType = SortDirectionType.None,
         bool byFlagIncludeBase = true,
         bool byFlagIncludeCombined = true)
-    {
-        return EnumHelper.ConvertEnumToDictionary(
+        => EnumHelper.ConvertEnumToDictionary(
             typeof(T),
             dropDownFirstItemType,
             useDescriptionAttribute,
@@ -226,7 +219,6 @@ public static class Enum<T>
             sortDirectionType,
             byFlagIncludeBase,
             byFlagIncludeCombined);
-    }
 
     /// <summary>Converts the enum to dictionary with key as string.</summary>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
@@ -248,8 +240,7 @@ public static class Enum<T>
         SortDirectionType sortDirectionType = SortDirectionType.None,
         bool byFlagIncludeBase = true,
         bool byFlagIncludeCombined = true)
-    {
-        return EnumHelper.ConvertEnumToDictionaryWithStringKey(
+        => EnumHelper.ConvertEnumToDictionaryWithStringKey(
             typeof(T),
             dropDownFirstItemType,
             useDescriptionAttribute,
@@ -257,7 +248,6 @@ public static class Enum<T>
             sortDirectionType,
             byFlagIncludeBase,
             byFlagIncludeCombined);
-    }
 
     /// <summary>Converts the enum to list of key value pairs.</summary>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>

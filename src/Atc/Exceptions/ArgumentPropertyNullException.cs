@@ -27,8 +27,7 @@ public sealed class ArgumentPropertyNullException : ArgumentException
     /// Initializes a new instance of the <see cref="ArgumentPropertyNullException"/> class with the name of the property that caused the exception.
     /// </summary>
     /// <param name="paramName">The name of the property that is null.</param>
-    public ArgumentPropertyNullException(
-        string paramName)
+    public ArgumentPropertyNullException(string paramName)
         : base(ExceptionMessage, paramName)
     {
     }

@@ -10,7 +10,8 @@ public static class SyntaxThrowStatementFactory
     /// </summary>
     /// <param name="includeSystem">If <c>true</c>, includes the System namespace prefix.</param>
     /// <returns>A <see cref="ThrowStatementSyntax"/> node throwing NotImplementedException.</returns>
-    public static ThrowStatementSyntax CreateNotImplementedException(bool includeSystem = true)
+    public static ThrowStatementSyntax CreateNotImplementedException(
+        bool includeSystem = true)
     {
         if (includeSystem)
         {

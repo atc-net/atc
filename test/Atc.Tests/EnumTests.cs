@@ -137,7 +137,10 @@ public class EnumTests
         var actual = Enum<T>.ToArray(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
         // Assert
-        actual.Cast<string>().Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Cast<string>()
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -160,7 +163,9 @@ public class EnumTests
         var actual = Enum<T>.ToDictionary(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -183,7 +188,9 @@ public class EnumTests
         var actual = Enum<T>.ToDictionaryWithStringKey(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -206,7 +213,9 @@ public class EnumTests
         var actual = Enum<T>.ToKeyValuePairs(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 
     [Theory]
@@ -229,6 +238,8 @@ public class EnumTests
         var actual = Enum<T>.ToKeyValuePairsWithStringKey(dropDownFirstItemType, useDescriptionAttribute, includeDefault, sortDirectionType, byFlagIncludeBase, byFlagIncludeCombined);
 
         // Assert
-        actual.Should().NotBeNull().And.HaveCount(expectedCount);
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
     }
 }

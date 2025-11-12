@@ -9,7 +9,9 @@ internal static class Program
             .Build();
 
         var consoleLoggerConfiguration = new ConsoleLoggerConfiguration();
-        configuration.GetSection("ConsoleLogger").Bind(consoleLoggerConfiguration);
+        configuration
+            .GetSection("ConsoleLogger")
+            .Bind(consoleLoggerConfiguration);
 
         var serviceCollection = ServiceCollectionFactory.Create(consoleLoggerConfiguration);
         var app = CommandAppFactory.Create(serviceCollection);
@@ -17,7 +19,8 @@ internal static class Program
         {
             config.AddBranch<CommandSettings>("build", add =>
             {
-                add.AddCommand<BuildDemoConsoleSpectreCliCommand>("demo")
+                add
+                    .AddCommand<BuildDemoConsoleSpectreCliCommand>("demo")
                     .WithDescription("Build the Demo.Atc.Console.Spectre.Cli project")
                     .WithExample("build demo");
             });

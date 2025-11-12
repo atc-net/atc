@@ -19,7 +19,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
     }
@@ -37,7 +38,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures(inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }
@@ -55,7 +57,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures(inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }
@@ -76,14 +79,21 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures(displayLanguageLcid, inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expectedCount);
 
-        var countryNames = actual.Select(x => x.CountryDisplayName).ToArray();
+        var countryNames = actual
+            .Select(x => x.CountryDisplayName)
+            .ToArray();
+
         countryNames.Should().Equal(expectedCountryNames);
 
-        var languageNames = actual.Select(x => x.LanguageDisplayName).ToArray();
+        var languageNames = actual
+            .Select(x => x.LanguageDisplayName)
+            .ToArray();
+
         languageNames.Should().Equal(expectedLanguageNames);
     }
 
@@ -103,14 +113,21 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures(displayLanguageLcid, inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expectedCount);
 
-        var countryNames = actual.Select(x => x.CountryDisplayName).ToArray();
+        var countryNames = actual
+            .Select(x => x.CountryDisplayName)
+            .ToArray();
+
         countryNames.Should().Equal(expectedCountryNames);
 
-        var languageNames = actual.Select(x => x.LanguageDisplayName).ToArray();
+        var languageNames = actual
+            .Select(x => x.LanguageDisplayName)
+            .ToArray();
+
         languageNames.Should().Equal(expectedLanguageNames);
     }
 
@@ -124,7 +141,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultures(displayLanguageLcid);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
     }
@@ -137,7 +155,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCulturesForCountries();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCountGreaterThan(expected);
     }
@@ -150,7 +169,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCulturesForLanguages();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCountGreaterThan(expected);
     }
@@ -168,7 +188,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureByLcid(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expected, actual!.CountryCodeA2);
     }
@@ -185,7 +206,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
         Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
@@ -206,7 +228,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureByLcid(displayLanguageLcid, input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
         Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
@@ -225,7 +248,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureByCountryCodeA2(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expected, actual!.Lcid);
     }
@@ -242,7 +266,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureByCountryCodeA2(displayLanguageLcid, input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
         Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
@@ -263,13 +288,15 @@ public class CultureHelperTests
         // Assert
         if ("us".Equals(input, StringComparison.Ordinal))
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCountGreaterOrEqualTo(expected - 1);
         }
         else
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCount(expected);
         }
@@ -291,13 +318,15 @@ public class CultureHelperTests
         // Assert
         if ("us".Equals(input, StringComparison.Ordinal))
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCountGreaterOrEqualTo(expected - 1);
         }
         else
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCount(expected);
         }
@@ -318,13 +347,15 @@ public class CultureHelperTests
         // Assert
         if (string.Equals(input, "en", StringComparison.Ordinal))
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCountGreaterOrEqualTo(expected - 1);
         }
         else
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCount(expected);
         }
@@ -346,13 +377,15 @@ public class CultureHelperTests
         // Assert
         if (string.Equals(input, "en", StringComparison.Ordinal))
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCountGreaterOrEqualTo(expected - 1);
         }
         else
         {
-            actual.Should().NotBeNull()
+            actual
+                .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
                 .And.HaveCount(expected);
         }
@@ -371,7 +404,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureFromValue(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expected, actual!.Lcid);
     }
@@ -388,7 +422,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureFromValue(displayLanguageLcid, input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
         Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
@@ -410,7 +445,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureFromValue(displayLanguageLcid, inputList, input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Culture>();
         Assert.Equal(expectedCountryName, actual!.CountryDisplayName);
         Assert.Equal(expectedLanguageName, actual.LanguageDisplayName);
@@ -424,7 +460,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
     }
@@ -445,7 +482,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(culturesCount + expectedExtraOnCultureCount);
     }
@@ -467,7 +505,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(displayLanguageLcid, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(culturesCount + expectedExtraOnCultureCount);
     }
@@ -489,7 +528,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -512,7 +552,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(displayLanguageLcid, inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -534,7 +575,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -557,7 +599,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCountryNames(displayLanguageLcid, inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -570,7 +613,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
     }
@@ -591,7 +635,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(input);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(culturesCount + expectedExtraOnCultureCount);
     }
@@ -613,7 +658,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(displayLanguageLcid, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(culturesCount + expectedExtraOnCultureCount);
     }
@@ -635,7 +681,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -658,7 +705,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(displayLanguageLcid, inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -680,7 +728,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -703,7 +752,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetLanguageNames(displayLanguageLcid, inputList, dropDownFirstItemType);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
             .And.HaveCount(expected);
     }
@@ -722,7 +772,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureLcidsWhereCountryIsNotTranslated(displayLanguageLcid, inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<int>>()
             .And.HaveCount(expected);
     }
@@ -741,7 +792,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetCultureLcidsWhereLanguageIsNotTranslated(displayLanguageLcid, inputList);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<int>>()
             .And.HaveCount(expected);
     }
@@ -754,7 +806,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetSupportedCultures();
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }
@@ -769,7 +822,8 @@ public class CultureHelperTests
         var actual = CultureHelper.GetSupportedCultures(displayLanguageLcid);
 
         // Assert
-        actual.Should().NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
             .And.HaveCount(expected);
     }

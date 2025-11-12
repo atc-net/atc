@@ -32,9 +32,7 @@ public static class IntegerExtensions
     /// <param name="number">The number.</param>
     /// <returns><see langword="true" /> if the specified number is even; otherwise, <see langword="false" />.</returns>
     public static bool IsEven(this int number)
-    {
-        return (number & 1) == 0;
-    }
+        => (number & 1) == 0;
 
     /// <summary>
     /// Determines whether the specified number is odd.
@@ -42,9 +40,7 @@ public static class IntegerExtensions
     /// <param name="number">The number.</param>
     /// <returns><see langword="true" /> if the specified number is odd; otherwise, <see langword="false" />.</returns>
     public static bool IsOdd(this int number)
-    {
-        return (number & 1) == 1;
-    }
+        => (number & 1) == 1;
 
     /// <summary>
     /// Determines whether the specified number is prime.
@@ -137,9 +133,7 @@ public static class IntegerExtensions
     /// <param name="year">The year.</param>
     /// <returns>The get number of weeks.</returns>
     public static int GetNumberOfWeeksByYear(this int year)
-    {
-        return CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-    }
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
     /// Get the date of the first day in the given year and week number.
@@ -177,7 +171,5 @@ public static class IntegerExtensions
     public static DateTime GetLastDayOfWeekNumberByYear(
         this int year,
         int weekNumber)
-    {
-        return GetFirstDayOfWeekNumberByYear(year, weekNumber).AddDays(6);
-    }
+        => GetFirstDayOfWeekNumberByYear(year, weekNumber).AddDays(6);
 }

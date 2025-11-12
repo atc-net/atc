@@ -22,10 +22,12 @@ public static class AssemblyExtensions
     {
         ArgumentNullException.ThrowIfNull(assembly);
 
-        var assemblyName = assembly.GetBeautifiedName().Replace("Api", "API", StringComparison.Ordinal);
+        var assemblyName = assembly
+            .GetBeautifiedName()
+            .Replace("Api", "API", StringComparison.Ordinal);
 
         return removeLastVerb
-            ? assemblyName.Substring(0, assemblyName.LastIndexOf(' '))
+            ? assemblyName[..assemblyName.LastIndexOf(' ')]
             : assemblyName;
     }
 }

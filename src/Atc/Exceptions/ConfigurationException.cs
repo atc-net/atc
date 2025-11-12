@@ -22,8 +22,7 @@ public class ConfigurationException : Exception
     /// Initializes a new instance of the <see cref="ConfigurationException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public ConfigurationException(
-        string message)
+    public ConfigurationException(string message)
         : base(message)
     {
     }
@@ -66,8 +65,7 @@ public class ConfigurationException : Exception
     {
     }
 
-    private static string GetTermForIsMissing(
-        bool isMissing)
+    private static string GetTermForIsMissing(bool isMissing)
         => isMissing
             ? "missing"
             : "invalid";

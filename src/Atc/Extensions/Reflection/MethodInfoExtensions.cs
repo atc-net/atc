@@ -32,7 +32,8 @@ public static class MethodInfoExtensions
     ///   <see langword="true" /> if [has declaring type validation attributes] [the specified method information]; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">methodInfo.</exception>
-    public static bool HasDeclaringTypeValidationAttributes(this MethodInfo methodInfo)
+    public static bool HasDeclaringTypeValidationAttributes(
+        this MethodInfo methodInfo)
     {
         if (methodInfo is null)
         {
@@ -64,7 +65,9 @@ public static class MethodInfoExtensions
             throw new ArgumentNullException(nameof(methodInfo));
         }
 
-        return methodInfo.GetParameters().Any(parameterInfo => parameterInfo.ParameterType.IsGenericParameter);
+        return methodInfo
+            .GetParameters()
+            .Any(parameterInfo => parameterInfo.ParameterType.IsGenericParameter);
     }
 
     /// <summary>
@@ -86,7 +89,9 @@ public static class MethodInfoExtensions
             throw new ArgumentNullException(nameof(methodInfo));
         }
 
-        var seq = methodInfo.GetParameters().Select(x =>
+        var seq = methodInfo
+            .GetParameters()
+            .Select(x =>
         {
             var suffix = x.HasDefaultValue
                 ? " = " + (x.DefaultValue ?? "null")
@@ -113,7 +118,10 @@ public static class MethodInfoExtensions
             return typeName + " " + x.Name + suffix;
         });
 
-        var isExtension = methodInfo.GetCustomAttributes<ExtensionAttribute>(false).Any();
+        var isExtension = methodInfo
+            .GetCustomAttributes<ExtensionAttribute>(false)
+            .Any();
+
         var text = isExtension
             ? $"{methodInfo.Name}(this {string.Join(", ", seq)})"
             : $"{methodInfo.Name}({string.Join(", ", seq)})";

@@ -139,7 +139,9 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotEmpty(result.AttributeLists);
         Assert.Contains(
             result.AttributeLists.SelectMany(al => al.Attributes),
-            attr => attr.Name.ToString().Contains("SuppressMessage", StringComparison.Ordinal));
+            attr => attr.Name
+                .ToString()
+                .Contains("SuppressMessage", StringComparison.Ordinal));
     }
 
     [Fact]

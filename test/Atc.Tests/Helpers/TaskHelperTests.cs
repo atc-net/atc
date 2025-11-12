@@ -51,10 +51,8 @@ public class TaskHelperTests
 
         // Assert
         actual
-            .Should()
-            .NotBeNull()
-            .And
-            .NotBeEmpty()
+            .Should().NotBeNull()
+            .And.NotBeEmpty()
             .And.HaveCount(2);
 
         Assert.Equal(expected, actual[0]);
@@ -77,10 +75,8 @@ public class TaskHelperTests
 
         // Assert
         actual
-            .Should()
-            .NotBeNull()
-            .And
-            .NotBeEmpty()
+            .Should().NotBeNull()
+            .And.NotBeEmpty()
             .And.HaveCount(2);
 
         Assert.Equal(expected, actual[0]);
@@ -105,16 +101,13 @@ public class TaskHelperTests
         var actual = await Assert.ThrowsAsync<AggregateException>(async () => await TaskHelper.WhenAll(taskCompletionSource.Task));
 
         actual
-            .Should()
-            .NotBeNull();
+            .Should().NotBeNull();
 
         Assert.Equal(typeof(AggregateException), actual.GetType());
 
         actual.InnerExceptions
-            .Should()
-            .NotBeEmpty()
-            .And
-            .HaveCount(2);
+            .Should().NotBeEmpty()
+            .And.HaveCount(2);
 
         Assert.Equal(firstExceptionMessage, actual.InnerExceptions[0].Message);
         Assert.Equal(secondExceptionMessage, actual.InnerExceptions[1].Message);
@@ -170,10 +163,7 @@ public class TaskHelperTests
         TaskHelper.FireAndForget(doSomethingTask);
     }
 
-    private static Task DoSomethingAsync()
-    {
-        return Task.Delay(100);
-    }
+    private static Task DoSomethingAsync() => Task.Delay(100);
 
     private static async Task<int> DoSomethingAndReturnResultAsync()
     {

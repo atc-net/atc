@@ -50,9 +50,7 @@ public static class TriangleHelper
         double angleA,
         double angleB,
         double angleC)
-    {
-        return (angleA + angleB + angleC).IsEqual(180);
-    }
+        => (angleA + angleB + angleC).IsEqual(180);
 
     /// <summary>
     /// Calculate the unspecified side (unspecified with NULL).

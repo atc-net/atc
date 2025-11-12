@@ -14,8 +14,7 @@ public static class SyntaxIfStatementFactory
     public static StatementSyntax CreateParameterArgumentNullCheck(
         string parameterName,
         bool includeSystem = true)
-    {
-        return SyntaxFactory.IfStatement(
+        => SyntaxFactory.IfStatement(
             SyntaxFactory.IsPatternExpression(
                 SyntaxFactory.IdentifierName(parameterName),
                 SyntaxFactory.ConstantPattern(
@@ -23,5 +22,4 @@ public static class SyntaxIfStatementFactory
             SyntaxFactory.Block(
                 SyntaxFactory.SingletonList<StatementSyntax>(
                     SyntaxThrowStatementFactory.CreateArgumentNullException(parameterName, includeSystem))));
-    }
 }

@@ -13,8 +13,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns><see langword="true" /> if the source has a value and it is true; otherwise, <see langword="false" />.</returns>
-    public static bool HasValueAndTrue(
-        this bool? source)
+    public static bool HasValueAndTrue(this bool? source)
         => source.HasValue &&
            source.Value;
 
@@ -23,8 +22,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns><see langword="true" /> if the source has a value and it is false; otherwise, <see langword="false" />.</returns>
-    public static bool HasValueAndFalse(
-        this bool? source)
+    public static bool HasValueAndFalse(this bool? source)
         => source.HasValue &&
            !source.Value;
 
@@ -33,8 +31,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns><see langword="true" /> if the source does not have a value; otherwise, <see langword="false" />.</returns>
-    public static bool HasNoValue(
-        this bool? source)
+    public static bool HasNoValue(this bool? source)
         => !source.HasValue;
 
     /// <summary>
@@ -42,8 +39,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns><see langword="true" /> if the source does not have a value or is true; otherwise, <see langword="false" />.</returns>
-    public static bool HasNoValueOrTrue(
-        this bool? source)
+    public static bool HasNoValueOrTrue(this bool? source)
         => !source.HasValue ||
            source.Value;
 
@@ -52,8 +48,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns><see langword="true" /> if the source does not have a value or is false; otherwise, <see langword="false" />.</returns>
-    public static bool HasNoValueOrFalse(
-        this bool? source)
+    public static bool HasNoValueOrFalse(this bool? source)
         => !source.HasValue ||
            !source.Value;
 
@@ -75,8 +70,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The boolean source.</param>
     /// <returns>1 if the source is true; otherwise, 0.</returns>
-    public static int ToInt(
-        this bool source)
+    public static int ToInt(this bool source)
         => source
             ? 1
             : 0;
@@ -86,8 +80,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The nullable boolean source.</param>
     /// <returns>1 if the source is true; otherwise, 0.</returns>
-    public static int ToInt(
-        this bool? source)
+    public static int ToInt(this bool? source)
         => source?.ToInt() ?? 0;
 
     /// <summary>
@@ -95,8 +88,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The boolean source.</param>
     /// <returns>"Yes" if the source is true; otherwise, "No".</returns>
-    public static string ToYesNoString(
-        this bool source)
+    public static string ToYesNoString(this bool source)
         => source
             ? nameof(YesNoType.Yes)
             : nameof(YesNoType.No);
@@ -106,8 +98,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="source">The boolean source.</param>
     /// <returns><see cref="YesNoType.Yes"/> if the source is true; otherwise, <see cref="YesNoType.No"/>.</returns>
-    public static YesNoType ToYesNoType(
-        this bool source)
+    public static YesNoType ToYesNoType(this bool source)
         => source
             ? YesNoType.Yes
             : YesNoType.No;
@@ -121,8 +112,7 @@ public static class BooleanExtensions
     /// <see cref="YesNoType.No"/> if the source is false;
     /// <see cref="YesNoType.None"/> if the source is null.
     /// </returns>
-    public static YesNoType ToYesNoType(
-        this bool? source)
+    public static YesNoType ToYesNoType(this bool? source)
         => source is null
             ? YesNoType.None
             : source.Value

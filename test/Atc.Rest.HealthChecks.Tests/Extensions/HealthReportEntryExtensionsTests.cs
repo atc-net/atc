@@ -66,9 +66,10 @@ public class HealthReportEntryExtensionsTests
         actual.Description.Should().Be(description);
 
         actual.Data.Should().NotBeNull();
-        actual.Data.Should().HaveCount(2)
-               .And.ContainKey("isRunning")
-               .And.ContainKey("duration");
+        actual
+            .Data.Should().HaveCount(2)
+            .And.ContainKey("isRunning")
+            .And.ContainKey("duration");
 
         actual.Data!["isRunning"].Should().Be(true);
         actual.Data!["duration"].Should().Be(duration);
@@ -133,7 +134,9 @@ public class HealthReportEntryExtensionsTests
         d.Should().Be(duration);
         desc.Should().Be(description);
 
-        dataBag.Should().NotBeNull().And.HaveCount(1);
+        dataBag
+            .Should().NotBeNull()
+            .And.HaveCount(1);
         dataBag!["failures"].Should().Be(3);
     }
 }

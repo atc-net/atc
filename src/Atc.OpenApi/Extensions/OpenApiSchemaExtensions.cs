@@ -250,7 +250,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if the schema uses System namespace format types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasFormatTypeFromSystemNamespace(this OpenApiSchema schema)
+    public static bool HasFormatTypeFromSystemNamespace(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -273,7 +274,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schemas">The collection of <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any schema uses System namespace format types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schemas"/> is null.</exception>
-    public static bool HasFormatTypeFromSystemNamespace(this IList<OpenApiSchema> schemas)
+    public static bool HasFormatTypeFromSystemNamespace(
+        this IList<OpenApiSchema> schemas)
     {
         if (schemas is null)
         {
@@ -290,7 +292,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if the schema uses DataAnnotations format types or validation rules; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasFormatTypeFromDataAnnotationsNamespace(this OpenApiSchema schema)
+    public static bool HasFormatTypeFromDataAnnotationsNamespace(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -310,7 +313,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schemas">The collection of <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any schema uses DataAnnotations format types or validation rules; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schemas"/> is null.</exception>
-    public static bool HasFormatTypeFromDataAnnotationsNamespace(this IList<OpenApiSchema> schemas)
+    public static bool HasFormatTypeFromDataAnnotationsNamespace(
+        this IList<OpenApiSchema> schemas)
     {
         if (schemas is null)
         {
@@ -412,7 +416,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if the schema is an array with simple data type items; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasArrayItemsWithSimpleDataType(this OpenApiSchema schema)
+    public static bool HasArrayItemsWithSimpleDataType(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -429,7 +434,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if the schema is a pagination type with simple data type items; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasPaginationItemsWithSimpleDataType(this OpenApiSchema schema)
+    public static bool HasPaginationItemsWithSimpleDataType(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -496,7 +502,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any property has binary format type; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasAnyPropertiesWithFormatTypeBinary(this OpenApiSchema schema)
+    public static bool HasAnyPropertiesWithFormatTypeBinary(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -526,7 +533,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any property is an array with binary format type items; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasAnyPropertiesAsArrayWithFormatTypeBinary(this OpenApiSchema schema)
+    public static bool HasAnyPropertiesAsArrayWithFormatTypeBinary(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -579,11 +587,10 @@ public static class OpenApiSchemaExtensions
     /// </summary>
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any property has a System namespace format type; otherwise, false.</returns>
-    public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(this OpenApiSchema schema)
-    {
-        return schema.HasAnyProperties() &&
-               schema.Properties.Any(x => x.Value.HasFormatTypeFromSystemNamespace());
-    }
+    public static bool HasAnyPropertiesFormatTypeFromSystemNamespace(
+        this OpenApiSchema schema)
+        => schema.HasAnyProperties() &&
+           schema.Properties.Any(x => x.Value.HasFormatTypeFromSystemNamespace());
 
     /// <summary>
     /// Determines whether the schema has any properties with format types from the System namespace,
@@ -673,7 +680,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if the schema uses AspNetCore.Http format types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this OpenApiSchema schema)
+    public static bool HasFormatTypeFromAspNetCoreHttpNamespace(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -690,7 +698,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schemas">The collection of <see cref="OpenApiSchema"/> to check.</param>
     /// <returns>True if any schema uses AspNetCore.Http format types; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schemas"/> is null.</exception>
-    public static bool HasFormatTypeFromAspNetCoreHttpNamespace(this IList<OpenApiSchema> schemas)
+    public static bool HasFormatTypeFromAspNetCoreHttpNamespace(
+        this IList<OpenApiSchema> schemas)
     {
         if (schemas is null)
         {
@@ -1363,7 +1372,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to extract the data type from.</param>
     /// <returns>The simple data type of the paginated items, or empty string if not a pagination type.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    public static string GetSimpleDataTypeFromPagination(this OpenApiSchema schema)
+    public static string GetSimpleDataTypeFromPagination(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -1421,7 +1431,8 @@ public static class OpenApiSchemaExtensions
     /// <returns>A tuple containing the enum name and the enum schema.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
     /// <exception cref="ItemNotFoundException">Thrown when the schema does not contain an enum.</exception>
-    public static Tuple<string, OpenApiSchema> GetEnumSchema(this OpenApiSchema schema)
+    public static Tuple<string, OpenApiSchema> GetEnumSchema(
+        this OpenApiSchema schema)
     {
         if (schema is null)
         {
@@ -1466,7 +1477,8 @@ public static class OpenApiSchemaExtensions
     /// <param name="apiSchema">The <see cref="OpenApiSchema"/> to search.</param>
     /// <returns>The property name with first character uppercase, or empty string if no array properties exist.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="apiSchema"/> is null.</exception>
-    public static string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(this OpenApiSchema apiSchema)
+    public static string ExtractPropertyNameWhenHasAnyPropertiesOfArrayWithFormatTypeBinary(
+        this OpenApiSchema apiSchema)
     {
         if (apiSchema is null)
         {

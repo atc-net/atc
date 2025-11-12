@@ -39,7 +39,8 @@ public static class SyntaxParameterListFactory
     /// <param name="parameter">The parameter to include.</param>
     /// <returns>A <see cref="ParameterListSyntax"/> containing one parameter.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="parameter"/> is null.</exception>
-    public static ParameterListSyntax CreateWithOneParameterItem(ParameterSyntax parameter)
+    public static ParameterListSyntax CreateWithOneParameterItem(
+        ParameterSyntax parameter)
     {
         if (parameter is null)
         {

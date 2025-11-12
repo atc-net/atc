@@ -34,8 +34,7 @@ public class IsoCurrencySymbolAttribute : ValidationAttribute
     /// </summary>
     public string[] IsoCurrencySymbols { get; set; }
 
-    public override bool IsValid(
-        object? value)
+    public override bool IsValid(object? value)
     {
         if (Required &&
             value is null)

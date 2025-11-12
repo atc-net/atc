@@ -41,7 +41,8 @@ public static class JsonSerializerOptionsFactory
     /// <param name="settings">The settings to use for configuration.</param>
     /// <returns>A configured <see cref="JsonSerializerOptions"/> instance with converters registered as specified in the settings.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="settings"/> is null.</exception>
-    public static JsonSerializerOptions Create(JsonSerializerFactorySettings settings)
+    public static JsonSerializerOptions Create(
+        JsonSerializerFactorySettings settings)
     {
         if (settings is null)
         {

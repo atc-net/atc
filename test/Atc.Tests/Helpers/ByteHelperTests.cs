@@ -36,8 +36,7 @@ public class ByteHelperTests
     [InlineData(0)]
     [InlineData(10)]
     [InlineData(255)]
-    public void CreateZeroArray(
-        int size)
+    public void CreateZeroArray(int size)
     {
         // Arrange & Act
         var actual = ByteHelper.CreateZeroArray(size);

@@ -10,10 +10,9 @@ public static class DocumentationHelper
     /// </summary>
     /// <param name="type">The type to collect documentation for.</param>
     /// <returns>The type comments, or <see langword="null"/> if the type was not found.</returns>
-    public static TypeComments? CollectExportedTypeWithCommentsFromType(Type type)
-    {
-        return AssemblyCommentHelper.CollectExportedTypeWithComments(type);
-    }
+    public static TypeComments? CollectExportedTypeWithCommentsFromType(
+        Type type)
+        => AssemblyCommentHelper.CollectExportedTypeWithComments(type);
 
     /// <summary>
     /// Collects all public types from an assembly that are missing XML documentation comments.
@@ -24,12 +23,10 @@ public static class DocumentationHelper
     public static TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(
         Assembly assembly,
         List<Type>? excludeTypes = null)
-    {
-        return AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
+        => AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
             assembly,
             namespaceMatch: null,
             excludeTypes);
-    }
 
     /// <summary>
     /// Collects all public types from an assembly that are missing XML documentation and generates a formatted text report.
@@ -67,7 +64,8 @@ public static class DocumentationHelper
             throw new ArgumentNullException(nameof(assembly));
         }
 
-        return AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
+        return AssemblyCommentHelper
+            .CollectExportedTypesWithMissingComments(
                 assembly,
                 namespaceMatch: null,
                 excludeTypes)

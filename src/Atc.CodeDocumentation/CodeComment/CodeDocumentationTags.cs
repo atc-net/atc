@@ -9,8 +9,7 @@ public class CodeDocumentationTags
     /// Initializes a new instance of the <see cref="CodeDocumentationTags"/> class with only a summary.
     /// </summary>
     /// <param name="summary">The summary description of the code member.</param>
-    public CodeDocumentationTags(
-        string summary)
+    public CodeDocumentationTags(string summary)
     {
         Summary = summary;
         Parameters = null;

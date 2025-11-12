@@ -65,8 +65,7 @@ public sealed class RequestResponseLogModel
     /// Sets exception information from the specified exception.
     /// </summary>
     /// <param name="exception">The exception that occurred during request processing.</param>
-    public void SetException(
-        Exception exception)
+    public void SetException(Exception exception)
     {
         ExceptionMessage = exception.Message;
         ExceptionStackTrace = exception.StackTrace;

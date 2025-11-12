@@ -52,7 +52,10 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 
         path = path.Trim('/');
 
-        var pathDescriptions = apiDescriptions.Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal)).ToList();
+        var pathDescriptions = apiDescriptions
+            .Where(a => string.Equals(a.RelativePath, path, StringComparison.Ordinal))
+            .ToList();
+
         foreach (var operation in operations)
         {
             var operationDescription = pathDescriptions.Find(a => a.HttpMethod!.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
@@ -116,7 +119,9 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
     private static Type? GetEnumTypeByName(string enumTypeName)
         => AppDomain.CurrentDomain
                 .GetAssemblies()
-                .SelectMany(x => x.GetTypes().Where(t => t.IsEnum))
+                .SelectMany(x => x
+                    .GetTypes()
+                    .Where(t => t.IsEnum))
                 .Where(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal))
                 .ToArray()
             switch

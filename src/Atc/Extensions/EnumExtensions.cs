@@ -55,8 +55,7 @@ public static class EnumExtensions
     /// <example><![CDATA[
     /// Assert.Equal("Monday", DayOfWeek.Monday.GetName());
     /// ]]></example>
-    public static string GetName(
-        this Enum enumeration)
+    public static string GetName(this Enum enumeration)
     {
         if (enumeration is null)
         {
@@ -121,7 +120,9 @@ public static class EnumExtensions
         }
 
         return string.IsNullOrEmpty(attributeValue)
-            ? enumeration.ToString().Humanize()
+            ? enumeration
+                .ToString()
+                .Humanize()
             : attributeValue;
     }
 
@@ -129,15 +130,16 @@ public static class EnumExtensions
     /// Converts the named constant to <see langword="string"/> in upper case.
     /// </summary>
     /// <param name="enumeration">The enum.</param>
-    public static string ToStringUpperCase(
-        this Enum enumeration)
+    public static string ToStringUpperCase(this Enum enumeration)
     {
         if (enumeration is null)
         {
             throw new ArgumentNullException(nameof(enumeration));
         }
 
-        return enumeration.ToString().ToUpperInvariant();
+        return enumeration
+            .ToString()
+            .ToUpperInvariant();
     }
 
     /// <summary>
@@ -145,15 +147,16 @@ public static class EnumExtensions
     /// </summary>
     /// <param name="enumeration">The enum.</param>
     [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "Triggers warnings, but is irrelevant for this case.")]
-    public static string ToStringLowerCase(
-        this Enum enumeration)
+    public static string ToStringLowerCase(this Enum enumeration)
     {
         if (enumeration is null)
         {
             throw new ArgumentNullException(nameof(enumeration));
         }
 
-        return enumeration.ToString().ToLowerInvariant();
+        return enumeration
+            .ToString()
+            .ToLowerInvariant();
     }
 
     /// <summary>Gets the attribute value.</summary>
@@ -177,7 +180,13 @@ public static class EnumExtensions
             throw new ArgumentNullException(nameof(expression));
         }
 
-        var attribute = enumeration.GetType().GetMember(enumeration.ToString())[0].GetCustomAttributes(typeof(T), true).Cast<T>().SingleOrDefault();
+        var attribute = enumeration
+            .GetType()
+            .GetMember(enumeration.ToString())[0]
+            .GetCustomAttributes(typeof(T), true)
+            .Cast<T>()
+            .SingleOrDefault();
+
         return (attribute is null
             ? default
             : expression(attribute))!;

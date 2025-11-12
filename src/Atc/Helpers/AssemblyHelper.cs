@@ -43,8 +43,7 @@ public static class AssemblyHelper
     /// </remarks>
     /// <param name="assemblyFile">The assembly file.</param>
     /// <returns>The Assembly that is loaded.</returns>
-    public static Assembly Load(
-        FileInfo assemblyFile)
+    public static Assembly Load(FileInfo assemblyFile)
     {
         if (assemblyFile is null)
         {
@@ -92,8 +91,7 @@ public static class AssemblyHelper
     /// </summary>
     /// <param name="assemblyFile">The assembly file.</param>
     /// <returns>The Assembly in a byte array.</returns>
-    public static byte[] ReadAsBytes(
-        FileInfo assemblyFile)
+    public static byte[] ReadAsBytes(FileInfo assemblyFile)
     {
         if (assemblyFile is null)
         {

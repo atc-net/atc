@@ -37,8 +37,8 @@ public class EnumTranslationTests
         var actual = Enum<T>.ToDictionary(DropDownFirstItemType.None, useDescriptionAttribute: true, includeDefault: includeDefault);
 
         // Assert
-        actual.Should()
-            .NotBeNull()
+        actual
+            .Should().NotBeNull()
             .And.HaveCount(expectedKeyValues.Count)
             .And.Contain(expectedKeyValues);
     }

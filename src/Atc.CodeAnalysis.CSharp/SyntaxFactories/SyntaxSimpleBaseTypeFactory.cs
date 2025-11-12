@@ -11,8 +11,6 @@ public static class SyntaxSimpleBaseTypeFactory
     /// <param name="typeName">The name of the base type.</param>
     /// <returns>A <see cref="SimpleBaseTypeSyntax"/> node.</returns>
     public static SimpleBaseTypeSyntax Create(string typeName)
-    {
-        return SyntaxFactory.SimpleBaseType(
+        => SyntaxFactory.SimpleBaseType(
             SyntaxFactory.ParseTypeName(typeName));
-    }
 }

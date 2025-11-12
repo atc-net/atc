@@ -1781,6 +1781,38 @@ Extension methods for the `System.Exception` class.
 
 <br />
 
+## GuidExtensions
+Extensions for the `System.Guid` struct.
+
+>```csharp
+>public static class GuidExtensions
+>```
+
+### Static Methods
+
+#### ToStringLower
+>```csharp
+>string ToStringLower(this Guid value)
+>```
+><b>Summary:</b> Converts a GUID to its lowercase string representation in the format "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx".
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The GUID value to convert.<br />
+>
+><b>Returns:</b> A lowercase string representation of the GUID using the "D" format specifier (32 digits separated by hyphens).
+#### ToStringUpper
+>```csharp
+>string ToStringUpper(this Guid value)
+>```
+><b>Summary:</b> Converts a GUID to its uppercase string representation in the format "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX".
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The GUID value to convert.<br />
+>
+><b>Returns:</b> An uppercase string representation of the GUID using the "D" format specifier (32 digits separated by hyphens).
+
+<br />
+
 ## IntegerExtensions
 Extensions for the `System.Int32` class.
 
@@ -1997,6 +2029,28 @@ Extensions for the `System.Object` class.
 >```csharp
 >string GetTypeName(this object source)
 >```
+#### ToStringNormalized
+>```csharp
+>string ToStringNormalized(this object value)
+>```
+><b>Summary:</b> Converts an object to its string representation with normalized line endings.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The object to convert. Can be .<br />
+>
+><b>Returns:</b> A string representation of the object with environment-specific line endings, or `System.String.Empty` if the value or its string representation is <see langword="null" />.
+>
+><b>Remarks:</b> This method ensures that all line endings in the resulting string are normalized to `System.Environment.NewLine`.
+#### ToStringTrimmed
+>```csharp
+>string ToStringTrimmed(this object source)
+>```
+><b>Summary:</b> Converts an object to its string representation with leading and trailing whitespace removed.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The object to convert. Can be .<br />
+>
+><b>Returns:</b> A trimmed string representation of the object, or `System.String.Empty` if the source or its string representation is <see langword="null" />.
 
 <br />
 
@@ -2156,6 +2210,16 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
 >
 ><b>Remarks:</b> This method transform Windows, Unix, Mac newline characters to the platform dependent System.Environment.Newline. "\r\n" (\u000D\u000A) for Windows "\n" (\u000A) for Unix "\r" (\u000D) for Mac
+#### EnsureEnvironmentNewLinesAndSplit
+>```csharp
+>string[] EnsureEnvironmentNewLinesAndSplit(this string value)
+>```
+><b>Summary:</b> Normalizes all line endings to the current environment's newline format and splits the string into an array of lines.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to normalize and split.<br />
+>
+><b>Returns:</b> An array of strings where each element represents a line from the original string, split using `System.Environment.NewLine`.
 #### EnsureFirstCharacterToLower
 >```csharp
 >string EnsureFirstCharacterToLower(this string value)
@@ -2471,6 +2535,19 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  ignore case sensitive.<br />
 >
 ><b>Returns:</b> The string that remains after a specified string are removed from the start of the current string.
+#### Replace
+>```csharp
+>string Replace(this string source, IEnumerable<string> oldValues, string newValue, StringComparison comparison = Ordinal)
+>```
+><b>Summary:</b> Replaces multiple old string values with a single new value using the specified string comparison type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source string to perform replacements on.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`oldValues`&nbsp;&nbsp;-&nbsp;&nbsp;An enumerable collection of strings to be replaced. Null or empty values in the collection are ignored.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`newValue`&nbsp;&nbsp;-&nbsp;&nbsp;The string to replace all occurrences of the old values with.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison type to use when finding matches. Defaults to .<br />
+>
+><b>Returns:</b> A string with all occurrences of the old values replaced with the new value, or the original source if it is null/empty or oldValues is null.
 #### ReplaceAt
 >```csharp
 >string ReplaceAt(this string value, int index, char newChar)
@@ -3174,6 +3251,18 @@ Extensions for the `System.Type` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type.<br />
+#### GetMethodByName
+>```csharp
+>MethodInfo GetMethodByName(this Type type, string methodName, StringComparison comparison = Ordinal)
+>```
+><b>Summary:</b> Gets a method from the type by its name using the specified string comparison.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to search for the method.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`methodName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the method to find.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison type to use when matching the method name. Defaults to .<br />
+>
+><b>Returns:</b> The `System.Reflection.MethodInfo` representing the first method with the specified name.
 #### GetNameWithoutGenericType
 >```csharp
 >string GetNameWithoutGenericType(this Type type, bool useFullName = False)

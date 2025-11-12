@@ -92,9 +92,7 @@ public class FileInfoExtensionsTests
     }
 
     private static DirectoryInfo GetTempTestPath()
-    {
-        return new DirectoryInfo(Path.Combine(Path.GetTempPath(), nameof(FileInfoExtensionsTests)));
-    }
+        => new(Path.Combine(Path.GetTempPath(), nameof(FileInfoExtensionsTests)));
 
     private static IEnumerable<FileInfo> PrepareTempFiles(
         int numberOfTempFilesToCreate)

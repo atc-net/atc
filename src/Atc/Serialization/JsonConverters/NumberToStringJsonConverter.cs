@@ -13,9 +13,7 @@ public sealed class NumberToStringJsonConverter : JsonConverter<object>
 {
     /// <inheritdoc />
     public override bool CanConvert(Type typeToConvert)
-    {
-        return typeof(string) == typeToConvert;
-    }
+        => typeof(string) == typeToConvert;
 
     /// <inheritdoc />
     public override object Read(
@@ -28,13 +26,18 @@ public sealed class NumberToStringJsonConverter : JsonConverter<object>
             case JsonTokenType.Number:
                 return reader.TryGetInt64(out var l)
                     ? l.ToString(Thread.CurrentThread.CurrentCulture)
-                    : reader.GetDouble().ToString(Thread.CurrentThread.CurrentCulture);
+                    : reader
+                        .GetDouble()
+                        .ToString(Thread.CurrentThread.CurrentCulture);
             case JsonTokenType.String:
                 return reader.GetString() ?? string.Empty;
             default:
             {
                 using var document = JsonDocument.ParseValue(ref reader);
-                return document.RootElement.Clone().ToString();
+                return document
+                    .RootElement
+                    .Clone()
+                    .ToString();
             }
         }
     }

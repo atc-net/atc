@@ -34,7 +34,8 @@ public static class OpenApiMediaTypeExtensions
     /// <param name="content">The dictionary of media types and their schemas.</param>
     /// <returns>The <see cref="OpenApiSchema"/> from the first media type, or null if the dictionary is empty.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> is null.</exception>
-    public static OpenApiSchema? GetSchemaByFirstMediaType(this IDictionary<string, OpenApiMediaType> content)
+    public static OpenApiSchema? GetSchemaByFirstMediaType(
+        this IDictionary<string, OpenApiMediaType> content)
     {
         if (content is null)
         {

@@ -88,4 +88,82 @@ public class ObjectExtensionsTests
         Assert.NotNull(actual);
         Assert.Equal(JsonSerializer.Serialize(sut), JsonSerializer.Serialize(actual));
     }
+
+    [Fact]
+    public void ToStringNormalized_WithValue()
+    {
+        // Arrange
+        object sut = "Hello\r\nWorld";
+
+        // Act
+        var actual = sut.ToStringNormalized();
+
+        // Assert
+        Assert.Equal($"Hello{Environment.NewLine}World", actual);
+    }
+
+    [Fact]
+    public void ToStringNormalized_WithNull()
+    {
+        // Arrange
+        object? sut = null;
+
+        // Act
+        var actual = sut.ToStringNormalized();
+
+        // Assert
+        Assert.Equal(string.Empty, actual);
+    }
+
+    [Fact]
+    public void ToStringNormalized_WithInteger()
+    {
+        // Arrange
+        object sut = 123;
+
+        // Act
+        var actual = sut.ToStringNormalized();
+
+        // Assert
+        Assert.Equal("123", actual);
+    }
+
+    [Fact]
+    public void ToStringTrimmed_WithValue()
+    {
+        // Arrange
+        object sut = "  Hello World  ";
+
+        // Act
+        var actual = sut.ToStringTrimmed();
+
+        // Assert
+        Assert.Equal("Hello World", actual);
+    }
+
+    [Fact]
+    public void ToStringTrimmed_WithNull()
+    {
+        // Arrange
+        object? sut = null;
+
+        // Act
+        var actual = sut.ToStringTrimmed();
+
+        // Assert
+        Assert.Equal(string.Empty, actual);
+    }
+
+    [Fact]
+    public void ToStringTrimmed_WithNoWhitespace()
+    {
+        // Arrange
+        object sut = "Hello";
+
+        // Act
+        var actual = sut.ToStringTrimmed();
+
+        // Assert
+        Assert.Equal("Hello", actual);
+    }
 }

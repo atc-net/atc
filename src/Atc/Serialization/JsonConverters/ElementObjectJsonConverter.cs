@@ -30,8 +30,7 @@ public sealed class ElementObjectJsonConverter : JsonConverter<object>
         throw new InvalidOperationException("Should not get here.");
     }
 
-    private static object? ConvertElementToObject(
-        JsonElement element)
+    private static object? ConvertElementToObject(JsonElement element)
         => element.ValueKind switch
         {
             JsonValueKind.Object => element

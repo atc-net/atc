@@ -41,7 +41,10 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         {
             ofType.And.BeEquivalentTo(expectedContent, because, becauseArgs);
 
-            var error = scope.Discard().FirstOrDefault();
+            var error = scope
+                .Discard()
+                .FirstOrDefault();
+
             if (error is not null)
             {
                 var fixedErrorMessage = error.Replace("Expected root", $"Expected content of {Identifier}", StringComparison.InvariantCulture);

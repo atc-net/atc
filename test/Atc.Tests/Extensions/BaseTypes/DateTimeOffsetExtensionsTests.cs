@@ -240,7 +240,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
     public void ToLongDateStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -259,7 +260,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
     public void ToLongDateString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -278,7 +280,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
     public void ToLongTimeStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -297,7 +300,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
     public void ToLongTimeString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -316,7 +320,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
     public void ToShortDateStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -335,7 +340,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
     public void ToShortDateString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -354,7 +360,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
     public void ToShortTimeStringUsingCurrentUiCulture(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
@@ -373,7 +380,8 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
     public void ToShortTimeString(
-        string expected, int arrangeUiLcid)
+        string expected,
+        int arrangeUiLcid)
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);

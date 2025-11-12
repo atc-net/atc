@@ -83,8 +83,7 @@ public static class DotnetCsProjFileHelper
     /// This method enhances <see cref="GetProjectType(FileInfo)"/> by examining additional context,
     /// such as checking for Blazor Server patterns in Program.cs files.
     /// </remarks>
-    public static DotnetProjectType PredictProjectType(
-        FileInfo fileInfo)
+    public static DotnetProjectType PredictProjectType(FileInfo fileInfo)
     {
         var projectType = GetProjectType(fileInfo);
         if (projectType == DotnetProjectType.None)
@@ -115,8 +114,7 @@ public static class DotnetCsProjFileHelper
     /// <returns>The <see cref="DotnetProjectType"/> determined from the project file.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is null.</exception>
     /// <exception cref="FileNotFoundException">Thrown when the file does not exist or is not a .csproj file.</exception>
-    public static DotnetProjectType GetProjectType(
-        FileInfo fileInfo)
+    public static DotnetProjectType GetProjectType(FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -145,8 +143,7 @@ public static class DotnetCsProjFileHelper
     /// <returns>The <see cref="DotnetProjectType"/> determined from the file content.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileContent"/> is null or empty.</exception>
     [SuppressMessage("Performance", "MA0031:Optimize Enumerable.Count() usage", Justification = "OK.")]
-    public static DotnetProjectType GetProjectType(
-        string fileContent)
+    public static DotnetProjectType GetProjectType(string fileContent)
     {
         if (string.IsNullOrEmpty(fileContent))
         {
@@ -179,8 +176,7 @@ public static class DotnetCsProjFileHelper
         return DotnetProjectType.None;
     }
 
-    private static DotnetProjectType ProjectSdkElement(
-        XElement rootElement)
+    private static DotnetProjectType ProjectSdkElement(XElement rootElement)
     {
         if (rootElement.FirstAttribute is not null)
         {
@@ -221,8 +217,7 @@ public static class DotnetCsProjFileHelper
         return DotnetProjectType.None;
     }
 
-    private static DotnetProjectType ProjectElementForSdk(
-        XElement rootElement)
+    private static DotnetProjectType ProjectElementForSdk(XElement rootElement)
     {
         if (rootElement.FirstAttribute is not null &&
             !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
@@ -386,8 +381,7 @@ public static class DotnetCsProjFileHelper
                HasPackageReference(rootElement, testLibraryName);
     }
 
-    private static bool IsPackAsTool(
-        XElement rootElement)
+    private static bool IsPackAsTool(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -399,8 +393,7 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
-    private static bool IsAndroid(
-        XElement rootElement)
+    private static bool IsAndroid(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -412,8 +405,7 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
-    private static bool IsAzureFunction(
-        XElement rootElement)
+    private static bool IsAzureFunction(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -424,8 +416,7 @@ public static class DotnetCsProjFileHelper
         return element is not null;
     }
 
-    private static bool IsIos(
-        XElement rootElement)
+    private static bool IsIos(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -437,8 +428,7 @@ public static class DotnetCsProjFileHelper
                element.Value.Equals("Resources", StringComparison.Ordinal);
     }
 
-    private static bool IsVisualStudioExtension(
-        XElement rootElement)
+    private static bool IsVisualStudioExtension(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -450,8 +440,7 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
-    private static bool IsUwp(
-        XElement rootElement)
+    private static bool IsUwp(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -463,8 +452,7 @@ public static class DotnetCsProjFileHelper
                element.Value.Equals("UAP", StringComparison.Ordinal);
     }
 
-    private static bool IsWinForms(
-        XElement rootElement)
+    private static bool IsWinForms(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -476,8 +464,7 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
-    private static bool IsMaui(
-        XElement rootElement)
+    private static bool IsMaui(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -489,8 +476,7 @@ public static class DotnetCsProjFileHelper
                element.Value.IsTrue();
     }
 
-    private static bool IsWpf(
-        XElement rootElement)
+    private static bool IsWpf(XElement rootElement)
     {
         var element = rootElement
             .Elements()
@@ -525,8 +511,8 @@ public static class DotnetCsProjFileHelper
     }
 
     private static bool IsOutputType(
-            XElement rootElement,
-            string value)
+        XElement rootElement,
+        string value)
     {
         var element = rootElement
             .Elements()

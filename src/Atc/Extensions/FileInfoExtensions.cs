@@ -14,8 +14,7 @@ public static class FileInfoExtensions
     /// <returns>A byte array containing all data from the file.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown when the file does not exist.</exception>
-    public static byte[] ReadToByteArray(
-        this FileInfo fileInfo)
+    public static byte[] ReadToByteArray(this FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -62,8 +61,7 @@ public static class FileInfoExtensions
     /// <returns>A <see cref="MemoryStream"/> containing the file content with position set to 0.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown when the file does not exist.</exception>
-    public static MemoryStream ReadToMemoryStream(
-        this FileInfo fileInfo)
+    public static MemoryStream ReadToMemoryStream(this FileInfo fileInfo)
     {
         if (fileInfo is null)
         {

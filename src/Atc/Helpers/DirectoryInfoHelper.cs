@@ -18,8 +18,7 @@ public static class DirectoryInfoHelper
     /// <param name="folderName">The name of the subfolder within the temp directory.</param>
     /// <returns>A <see cref="DirectoryInfo"/> for the temp path with the specified subfolder.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="folderName"/> is <see langword="null"/>.</exception>
-    public static DirectoryInfo GetTempPathWithSubFolder(
-        string folderName)
+    public static DirectoryInfo GetTempPathWithSubFolder(string folderName)
     {
         if (folderName is null)
         {

@@ -12,7 +12,8 @@ public static class DotnetNugetHelper
     /// <returns>A sorted list of <see cref="DotnetNugetPackageMetadataBase"/> containing package IDs and versions.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileInfo"/> is null.</exception>
     /// <exception cref="FileNotFoundException">Thrown when the file does not exist.</exception>
-    public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(FileInfo fileInfo)
+    public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(
+        FileInfo fileInfo)
     {
         if (fileInfo is null)
         {
@@ -35,7 +36,8 @@ public static class DotnetNugetHelper
     /// <returns>A sorted list of <see cref="DotnetNugetPackageMetadataBase"/> containing package IDs and versions.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="fileContent"/> is null.</exception>
     /// <exception cref="DataException">Thrown when the content is not valid XML (does not start with '&lt;').</exception>
-    public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(string fileContent)
+    public static List<DotnetNugetPackageMetadataBase> GetAllPackageReferences(
+        string fileContent)
     {
         if (fileContent is null)
         {
@@ -48,7 +50,7 @@ public static class DotnetNugetHelper
         }
 
         var data = new List<DotnetNugetPackageMetadataBase>();
-        foreach (var line in fileContent.EnsureEnvironmentNewLines().Split(Environment.NewLine))
+        foreach (var line in fileContent.EnsureEnvironmentNewLinesAndSplit())
         {
             if (!line.Contains("<PackageReference ", StringComparison.Ordinal) ||
                 !line.Contains("Include=", StringComparison.Ordinal) ||

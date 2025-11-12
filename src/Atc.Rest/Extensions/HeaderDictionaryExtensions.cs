@@ -17,7 +17,11 @@ public static class HeaderDictionaryExtensions
 
         return headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header)
             ? header.FirstOrDefault()!
-            : headers.AddCorrelationId(Guid.NewGuid().ToString().ToUpperInvariant());
+            : headers.AddCorrelationId(
+                Guid
+                    .NewGuid()
+                    .ToString()
+                    .ToUpperInvariant());
     }
 
     /// <summary>
@@ -50,7 +54,9 @@ public static class HeaderDictionaryExtensions
             return header.FirstOrDefault();
         }
 
-        var requestId = Guid.NewGuid().ToString().ToUpperInvariant();
+        var requestId = Guid
+            .NewGuid()
+            .ToStringUpper();
         headers[WellKnownHttpHeaders.RequestId] = requestId;
         return requestId;
     }
@@ -63,7 +69,8 @@ public static class HeaderDictionaryExtensions
     /// <remarks>
     /// This header is used in scenarios where a service acts on behalf of a user or another service.
     /// </remarks>
-    public static string? GetCallingOnBehalfOfIdentity(this IHeaderDictionary headers)
+    public static string? GetCallingOnBehalfOfIdentity(
+        this IHeaderDictionary headers)
     {
         ArgumentNullException.ThrowIfNull(headers);
 

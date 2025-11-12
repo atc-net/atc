@@ -87,6 +87,32 @@ Provides extension methods for asynchronous enumeration of collections.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A  to observe while waiting for the asynchronous operation to complete.<br />
 >
 ><b>Returns:</b> A task that represents the asynchronous operation. The task result contains the number of elements in the sequence.
+#### SelectToArray
+>```csharp
+>TResult[] SelectToArray(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+>```
+><b>Summary:</b> Projects each element of a sequence into a new form and returns the results as an array.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The sequence of elements to transform.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`selector`&nbsp;&nbsp;-&nbsp;&nbsp;A transform function to apply to each element.<br />
+>
+><b>Returns:</b> An array containing the transformed elements from the source sequence.
+>
+><b>Remarks:</b> This is a convenience method that combines `System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})` and `System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})`.
+#### SelectToList
+>```csharp
+>List<TResult> SelectToList(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+>```
+><b>Summary:</b> Projects each element of a sequence into a new form and returns the results as a `System.Collections.Generic.List`1`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The sequence of elements to transform.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`selector`&nbsp;&nbsp;-&nbsp;&nbsp;A transform function to apply to each element.<br />
+>
+><b>Returns:</b> A `System.Collections.Generic.List`1` containing the transformed elements from the source sequence.
+>
+><b>Remarks:</b> This is a convenience method that combines `System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})` and `System.Linq.Enumerable.ToList``1(System.Collections.Generic.IEnumerable{``0})`.
 #### ToAsyncEnumerable
 >```csharp
 >IAsyncEnumerable<T> ToAsyncEnumerable(this IEnumerable<T> source, CancellationToken cancellationToken = null)

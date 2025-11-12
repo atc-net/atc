@@ -11,8 +11,7 @@ public static class AssemblyInformationFactory
     /// <param name="assembly">The assembly to extract information from.</param>
     /// <returns>An <see cref="AssemblyInformation"/> object containing assembly metadata.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> is null.</exception>
-    public static AssemblyInformation Create(
-        Assembly assembly)
+    public static AssemblyInformation Create(Assembly assembly)
     {
         if (assembly is null)
         {
@@ -55,7 +54,8 @@ public static class AssemblyInformationFactory
             assembly.Location);
     }
 
-    private static bool IsAssemblyCompliedToDebug(ICustomAttributeProvider assembly)
+    private static bool IsAssemblyCompliedToDebug(
+        ICustomAttributeProvider assembly)
     {
         try
         {

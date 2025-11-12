@@ -48,7 +48,9 @@ internal static class PreReleaseVersion
     }
 
     private static IEnumerable<Identifier> Identifiers(string input)
-        => input.Split('.').Select(identifier => new Identifier(identifier));
+        => input
+            .Split('.')
+            .Select(identifier => new Identifier(identifier));
 
     private static IEnumerable<int> IdentifierComparisons(
             IEnumerable<Identifier> firstIdentifiers,

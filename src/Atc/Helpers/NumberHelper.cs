@@ -16,8 +16,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true"/> if the value can be parsed as a number; otherwise, <see langword="false"/>.</returns>
-    public static bool IsNumber(
-        string value)
+    public static bool IsNumber(string value)
     {
         if (TryParseToInt(value, out _))
         {
@@ -113,8 +112,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true"/> if the value can be parsed as an integer; otherwise, <see langword="false"/>.</returns>
-    public static bool IsInt(
-        string value)
+    public static bool IsInt(string value)
         => TryParseToInt(value, out _);
 
     /// <summary>
@@ -122,8 +120,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <returns>The parsed integer value, or -1 if parsing fails.</returns>
-    public static int ParseToInt(
-        string value)
+    public static int ParseToInt(string value)
         => TryParseToInt(value, out var result)
             ? result
             : -1;
@@ -154,8 +151,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true"/> if the value can be parsed as a decimal; otherwise, <see langword="false"/>.</returns>
-    public static bool IsDecimal(
-        string value)
+    public static bool IsDecimal(string value)
         => TryParseToDecimal(value, out _);
 
     /// <summary>
@@ -185,8 +181,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <returns>The parsed decimal value, or -1 if parsing fails.</returns>
-    public static decimal ParseToDecimal(
-        string value)
+    public static decimal ParseToDecimal(string value)
         => TryParseToDecimal(value, out var result)
             ? result
             : -1;
@@ -300,8 +295,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true"/> if the value can be parsed as a double; otherwise, <see langword="false"/>.</returns>
-    public static bool IsDouble(
-        string value)
+    public static bool IsDouble(string value)
         => TryParseToDouble(value, out _);
 
     /// <summary>
@@ -331,8 +325,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <returns>The parsed double value, or -1 if parsing fails.</returns>
-    public static double ParseToDouble(
-        string value)
+    public static double ParseToDouble(string value)
         => TryParseToDouble(value, out var result)
             ? result
             : -1;
@@ -446,8 +439,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true"/> if the value can be parsed as a float; otherwise, <see langword="false"/>.</returns>
-    public static bool IsFloat(
-        string value)
+    public static bool IsFloat(string value)
         => TryParseToFloat(value, out _);
 
     /// <summary>
@@ -477,8 +469,7 @@ public static class NumberHelper
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <returns>The parsed float value, or -1 if parsing fails.</returns>
-    public static float ParseToFloat(
-        string value)
+    public static float ParseToFloat(string value)
         => TryParseToFloat(value, out var result)
             ? result
             : -1;

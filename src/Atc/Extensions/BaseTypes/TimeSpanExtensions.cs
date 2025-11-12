@@ -15,9 +15,9 @@ public static class TimeSpanExtensions
     public static TimeSpan Min(
         this TimeSpan t1,
         TimeSpan t2)
-    {
-        return t1 < t2 ? t1 : t2;
-    }
+        => t1 < t2
+            ? t1
+            : t2;
 
     /// <summary>
     /// Returns the larger of two TimeSpan values.
@@ -28,9 +28,9 @@ public static class TimeSpanExtensions
     public static TimeSpan Max(
         this TimeSpan t1,
         TimeSpan t2)
-    {
-        return t1 > t2 ? t1 : t2;
-    }
+        => t1 > t2
+            ? t1
+            : t2;
 
     /// <summary>
     /// Removes the millisecond component from the TimeSpan.
@@ -38,9 +38,7 @@ public static class TimeSpanExtensions
     /// <param name="timeSpan">The TimeSpan to modify.</param>
     /// <returns>A TimeSpan with the milliseconds set to zero.</returns>
     public static TimeSpan RemoveMilliseconds(this TimeSpan timeSpan)
-    {
-        return timeSpan.Subtract(TimeSpan.FromMilliseconds(timeSpan.Milliseconds));
-    }
+        => timeSpan.Subtract(TimeSpan.FromMilliseconds(timeSpan.Milliseconds));
 
     /// <summary>
     /// Determines whether the total seconds of the TimeSpan is greater than zero.
@@ -48,9 +46,7 @@ public static class TimeSpanExtensions
     /// <param name="timeSpan">The TimeSpan to check.</param>
     /// <returns><see langword="true"/> if the total seconds is greater than zero; otherwise, <see langword="false"/>.</returns>
     public static bool SecondsNotZero(this TimeSpan timeSpan)
-    {
-        return timeSpan.TotalSeconds > 0;
-    }
+        => timeSpan.TotalSeconds > 0;
 
     /// <summary>
     /// Converts a TimeSpan to a human-readable string representation with appropriate time units.

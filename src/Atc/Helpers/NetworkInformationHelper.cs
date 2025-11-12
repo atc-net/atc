@@ -48,9 +48,7 @@ public static class NetworkInformationHelper
     /// </summary>
     /// <returns><see langword="true"/> if the HTTP request succeeds; otherwise, <see langword="false"/>.</returns>
     public static bool HasHttpConnection()
-    {
-        return HasHttpConnection(new Uri("https://www.google.com/"));
-    }
+        => HasHttpConnection(new Uri("https://www.google.com/"));
 
     /// <summary>
     /// Determines whether there is HTTP connectivity to a specified URI.

@@ -254,9 +254,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateCritical(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Critical, key, value);
-    }
+        => Create(LogCategoryType.Critical, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with critical severity and a description.
@@ -269,9 +267,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Critical, key, value, description);
-    }
+        => Create(LogCategoryType.Critical, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with error severity.
@@ -282,9 +278,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateError(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Error, key, value);
-    }
+        => Create(LogCategoryType.Error, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with error severity and a description.
@@ -297,9 +291,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Error, key, value, description);
-    }
+        => Create(LogCategoryType.Error, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with warning severity.
@@ -310,9 +302,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateWarning(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Warning, key, value);
-    }
+        => Create(LogCategoryType.Warning, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with warning severity and a description.
@@ -325,9 +315,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Warning, key, value, description);
-    }
+        => Create(LogCategoryType.Warning, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with security severity.
@@ -338,9 +326,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateSecurity(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Security, key, value);
-    }
+        => Create(LogCategoryType.Security, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with security severity and a description.
@@ -353,9 +339,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Security, key, value, description);
-    }
+        => Create(LogCategoryType.Security, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with audit severity.
@@ -366,9 +350,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateAudit(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Audit, key, value);
-    }
+        => Create(LogCategoryType.Audit, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with audit severity and a description.
@@ -381,9 +363,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Audit, key, value, description);
-    }
+        => Create(LogCategoryType.Audit, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with service severity.
@@ -394,9 +374,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateService(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Service, key, value);
-    }
+        => Create(LogCategoryType.Service, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with service severity and a description.
@@ -409,9 +387,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Service, key, value, description);
-    }
+        => Create(LogCategoryType.Service, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with UI severity.
@@ -422,9 +398,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateUi(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.UI, key, value);
-    }
+        => Create(LogCategoryType.UI, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with UI severity and a description.
@@ -437,9 +411,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.UI, key, value, description);
-    }
+        => Create(LogCategoryType.UI, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with information severity.
@@ -450,9 +422,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateInformation(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Information, key, value);
-    }
+        => Create(LogCategoryType.Information, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with information severity and a description.
@@ -465,9 +435,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Information, key, value, description);
-    }
+        => Create(LogCategoryType.Information, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with debug severity.
@@ -478,9 +446,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateDebug(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Debug, key, value);
-    }
+        => Create(LogCategoryType.Debug, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with debug severity and a description.
@@ -493,9 +459,7 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Debug, key, value, description);
-    }
+        => Create(LogCategoryType.Debug, key, value, description);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with trace severity.
@@ -506,9 +470,7 @@ public static class LogItemFactory
     public static LogKeyValueItem CreateTrace(
         string key,
         string value)
-    {
-        return Create(LogCategoryType.Trace, key, value);
-    }
+        => Create(LogCategoryType.Trace, key, value);
 
     /// <summary>
     /// Creates a new <see cref="LogKeyValueItem"/> with trace severity and a description.
@@ -521,7 +483,5 @@ public static class LogItemFactory
         string key,
         string value,
         string description)
-    {
-        return Create(LogCategoryType.Trace, key, value, description);
-    }
+        => Create(LogCategoryType.Trace, key, value, description);
 }

@@ -13,7 +13,8 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to process.</param>
     /// <returns>A list of <see cref="HttpStatusCode"/> values parsed from the response keys.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
-    public static List<HttpStatusCode> GetHttpStatusCodes(this OpenApiResponses responses)
+    public static List<HttpStatusCode> GetHttpStatusCodes(
+        this OpenApiResponses responses)
     {
         if (responses is null)
         {
@@ -102,7 +103,8 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <returns>True if any response uses a System.Net HTTP status code; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
-    public static bool HasSchemaHttpStatusCodeUsingSystemNet(this OpenApiResponses responses)
+    public static bool HasSchemaHttpStatusCodeUsingSystemNet(
+        this OpenApiResponses responses)
     {
         if (responses is null)
         {
@@ -135,7 +137,8 @@ public static class OpenApiResponsesExtensions
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <returns>True if any response uses an ASP.NET Core HTTP status code; otherwise, false.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="responses"/> is null.</exception>
-    public static bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(this OpenApiResponses responses)
+    public static bool HasSchemaHttpStatusCodeUsingAspNetCoreHttp(
+        this OpenApiResponses responses)
     {
         if (responses is null)
         {
@@ -227,16 +230,15 @@ public static class OpenApiResponsesExtensions
     public static bool IsSchemaTypeProblemDetailsForStatusCode(
         this OpenApiResponses responses,
         HttpStatusCode httpStatusCode)
-    {
-        return string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, "ProblemDetails", StringComparison.Ordinal);
-    }
+        => string.Equals(responses.GetSchemaForStatusCode(httpStatusCode)?.Reference?.Id, "ProblemDetails", StringComparison.Ordinal);
 
     /// <summary>
     /// Determines whether the OK (200) response uses a binary format type schema.
     /// </summary>
     /// <param name="responses">The <see cref="OpenApiResponses"/> collection to check.</param>
     /// <returns>True if the OK response schema uses binary format; otherwise, false.</returns>
-    public static bool IsSchemaUsingBinaryFormatForOkResponse(this OpenApiResponses responses)
+    public static bool IsSchemaUsingBinaryFormatForOkResponse(
+        this OpenApiResponses responses)
     {
         foreach (var (key, value) in responses.OrderBy(x => x.Key, StringComparer.Ordinal))
         {

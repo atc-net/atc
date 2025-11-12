@@ -213,8 +213,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Compares two versions are semantically.
     /// </summary>
     /// <param name="other">The other version.</param>
-    public int CompareTo(
-        SemanticVersion? other)
+    public int CompareTo(SemanticVersion? other)
     {
         if (ReferenceEquals(other, null))
         {
@@ -294,16 +293,14 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     /// Test whether two versions are semantically equivalent.
     /// </summary>
     /// <param name="other">The other.</param>
-    public bool Equals(
-        SemanticVersion? other)
+    public bool Equals(SemanticVersion? other)
         => !ReferenceEquals(other, null) && CompareTo(other) == 0;
 
     /// <summary>
     /// Test whether two versions are semantically equivalent.
     /// </summary>
     /// <param name="obj">The object.</param>
-    public override bool Equals(
-        object? obj)
+    public override bool Equals(object? obj)
         => Equals(obj as SemanticVersion);
 
     /// <summary>
@@ -512,8 +509,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         SemanticVersion? b)
         => ReferenceEquals(a, null) || a.CompareTo(b) <= 0;
 
-    private IEnumerable<int> PartComparisons(
-        SemanticVersion other)
+    private IEnumerable<int> PartComparisons(SemanticVersion other)
     {
         if (other is null)
         {
@@ -627,8 +623,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         return false;
     }
 
-    private static string GetBuildPreReleaseValue(
-        SemanticVersion version)
+    private static string GetBuildPreReleaseValue(SemanticVersion version)
     {
         var value = string.Empty;
         if (!string.IsNullOrEmpty(version.Build))
@@ -643,8 +638,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         return value;
     }
 
-    private static string EnsureDotSeparator(
-        string value)
+    private static string EnsureDotSeparator(string value)
     {
         if (value.StartsWith("alfa", StringComparison.Ordinal) &&
             !value.Equals("alfa", StringComparison.Ordinal) &&

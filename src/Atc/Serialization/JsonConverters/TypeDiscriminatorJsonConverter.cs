@@ -25,7 +25,9 @@ public sealed class TypeDiscriminatorJsonConverter<T> : JsonConverter<T>
     public TypeDiscriminatorJsonConverter()
     {
         var type = typeof(T);
-        types = AppDomain.CurrentDomain.GetAssemblies()
+        types = AppDomain
+            .CurrentDomain
+            .GetAssemblies()
             .SelectMany(s => s.GetTypes())
             .Where(p => type.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
             .ToList();

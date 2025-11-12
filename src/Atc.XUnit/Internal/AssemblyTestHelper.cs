@@ -163,14 +163,12 @@ internal static class AssemblyTestHelper
     internal static string[] GetMethodsAsRenderTextLines(
         MethodInfo[] methods,
         bool useFullName)
-    {
-        return methods
+        => methods
             .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
             .ThenBy(x => x.Name, StringComparer.Ordinal)
             .ThenBy(x => x.GetParameters().Length)
             .Select(method => method.BeautifyName(useFullName))
             .ToArray();
-    }
 
     internal static string GetMethodsAsRenderText(
         MethodInfo[] methods,

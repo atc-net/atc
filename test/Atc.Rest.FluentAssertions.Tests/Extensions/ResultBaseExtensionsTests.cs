@@ -12,7 +12,8 @@ public class ResultBaseExtensionsTests
         var actual = target.Should();
 
         // Assert
-        actual.Invoking(x => x.BeOkResult())
+        actual
+            .Invoking(x => x.BeOkResult())
             .Should()
             .Throw<XunitException>()
             .WithMessage($"*{typeof(DummyResult).FullName}*");

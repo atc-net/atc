@@ -63,7 +63,8 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
         telemetryClient.TrackException(context.Exception);
     }
 
-    private static HttpStatusCode GetHttpStatusCodeByExceptionType(ExceptionContext context)
+    private static HttpStatusCode GetHttpStatusCodeByExceptionType(
+        ExceptionContext context)
     {
         var statusCode = HttpStatusCode.InternalServerError;
         if (context.Exception is null)

@@ -20,8 +20,7 @@ public static class StackTraceHelper
     /// </summary>
     /// <param name="drillDownFrameMax">The maximum number of frames to inspect.</param>
     /// <returns>True if a constructor call is found within the specified frames; otherwise, false.</returns>
-    public static bool ContainsConstructor(
-        int drillDownFrameMax)
+    public static bool ContainsConstructor(int drillDownFrameMax)
         => ContainsNameWithinFrameCount(
             ".ctor",
             drillDownFrameMax);
@@ -31,8 +30,7 @@ public static class StackTraceHelper
     /// </summary>
     /// <param name="propertyName">The name of the property to check.</param>
     /// <returns>True if a call is found for the specified property; otherwise, false.</returns>
-    public static bool ContainsPropertyName(
-        string propertyName)
+    public static bool ContainsPropertyName(string propertyName)
         => ContainsPropertyName(
             propertyName,
             DrillDownFrameDefault);
@@ -62,8 +60,7 @@ public static class StackTraceHelper
     /// </summary>
     /// <param name="propertyName">The name of the property to check.</param>
     /// <returns>True if a getter call is found for the specified property; otherwise, false.</returns>
-    public static bool ContainsPropertyGetterName(
-        string propertyName)
+    public static bool ContainsPropertyGetterName(string propertyName)
         => ContainsPropertyGetterName(
             propertyName,
             DrillDownFrameDefault);
@@ -86,8 +83,7 @@ public static class StackTraceHelper
     /// </summary>
     /// <param name="propertyName">The name of the property to check.</param>
     /// <returns>True if a setter call is found for the specified property; otherwise, false.</returns>
-    public static bool ContainsPropertySetterName(
-        string propertyName)
+    public static bool ContainsPropertySetterName(string propertyName)
         => ContainsPropertySetterName(
             propertyName,
             DrillDownFrameDefault);

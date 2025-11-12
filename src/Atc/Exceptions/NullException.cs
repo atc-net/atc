@@ -22,8 +22,7 @@ public class NullException : Exception
     /// Initializes a new instance of the <see cref="NullException"/> class.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    public NullException(
-        string message)
+    public NullException(string message)
         : base(message)
     {
     }

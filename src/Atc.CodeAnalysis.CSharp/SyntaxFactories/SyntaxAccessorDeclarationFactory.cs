@@ -11,11 +11,13 @@ public static class SyntaxAccessorDeclarationFactory
     /// <param name="withSemicolon">If <c>true</c>, includes a semicolon token; otherwise, uses a missing token.</param>
     /// <returns>An <see cref="AccessorDeclarationSyntax"/> representing a get accessor.</returns>
     public static AccessorDeclarationSyntax Get(bool withSemicolon = true)
-    {
-        return withSemicolon
-            ? SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration).WithSemicolonToken(SyntaxTokenFactory.Semicolon())
-            : SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration).WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken));
-    }
+        => withSemicolon
+            ? SyntaxFactory
+                .AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                .WithSemicolonToken(SyntaxTokenFactory.Semicolon())
+            : SyntaxFactory
+                .AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                .WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken));
 
     /// <summary>
     /// Creates a set accessor declaration.
@@ -23,9 +25,11 @@ public static class SyntaxAccessorDeclarationFactory
     /// <param name="withSemicolon">If <c>true</c>, includes a semicolon token; otherwise, uses a missing token.</param>
     /// <returns>An <see cref="AccessorDeclarationSyntax"/> representing a set accessor.</returns>
     public static AccessorDeclarationSyntax Set(bool withSemicolon = true)
-    {
-        return withSemicolon
-            ? SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration).WithSemicolonToken(SyntaxTokenFactory.Semicolon())
-            : SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration).WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken));
-    }
+        => withSemicolon
+            ? SyntaxFactory
+                .AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                .WithSemicolonToken(SyntaxTokenFactory.Semicolon())
+            : SyntaxFactory
+                .AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                .WithSemicolonToken(SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken));
 }

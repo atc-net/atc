@@ -21,7 +21,9 @@ internal static class TypeAndMethodAndParameterHelper
                     in sourceTypes
                 from classMethodNames
                     in debugLimitData.ClassMethodNames
-                where sourceType.BeautifyName().Equals(classMethodNames.Item1, StringComparison.Ordinal)
+                where sourceType
+                    .BeautifyName()
+                    .Equals(classMethodNames.Item1, StringComparison.Ordinal)
                 select sourceType)
             .OrderBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();
@@ -118,20 +120,20 @@ internal static class TypeAndMethodAndParameterHelper
         return debugMethodInfo;
     }
 
-    internal static Tuple<Type, MethodInfo[]>[] GetTypeMethodsWithTestAttributes(Type[] types)
-    {
-        return (
-                from type
-                    in types
-                let methods = type.GetPublicDeclaredOnlyMethods()
-                    .Where(x =>
-                        x.IsDefined(typeof(FactAttribute)) ||
-                        x.IsDefined(typeof(TheoryAttribute)))
-                    .ToArray()
-                where methods.Length > 0
-                select new Tuple<Type, MethodInfo[]>(type, methods))
-            .ToArray();
-    }
+    internal static Tuple<Type, MethodInfo[]>[] GetTypeMethodsWithTestAttributes(
+        Type[] types)
+        => (
+            from type
+                in types
+            let methods = type
+                .GetPublicDeclaredOnlyMethods()
+                .Where(x =>
+                    x.IsDefined(typeof(FactAttribute)) ||
+                    x.IsDefined(typeof(TheoryAttribute)))
+                .ToArray()
+            where methods.Length > 0
+            select new Tuple<Type, MethodInfo[]>(type, methods))
+        .ToArray();
 
     internal static bool ShouldMethodBeExcluded(MethodInfo method)
     {
