@@ -51,7 +51,7 @@ jobs:
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true -f netstandard2.1 src/Atc/Atc.csproj
 
       - name: 🧪 Run unit tests
-        run: dotnet test -c Release --no-build -- --filter-query "/[category!=integration]"
+        run: dotnet test -c Release --no-build --filter-query "/[category!=integration]"
 
       - name: ⏩ Merge to stable-branch
         run: |
