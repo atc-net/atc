@@ -180,7 +180,7 @@ public static class OpenApiOperationExtensions
         // Remove Http-verb
         if (operationName.StartsWith(operationType.ToString(), StringComparison.Ordinal))
         {
-            operationName = operationName.Substring(operationType.ToString().Length);
+            operationName = operationName[operationType.ToString().Length..];
         }
 
         // Split by uppercase
@@ -192,6 +192,7 @@ public static class OpenApiOperationExtensions
             if (termWord.EndsWith('s') &&
                 !(termWord.Equals("Ids", StringComparison.Ordinal) ||
                   termWord.Equals("Identifiers", StringComparison.Ordinal) ||
+                  termWord.Equals("Details", StringComparison.Ordinal) ||
                   termWord.Equals("Status", StringComparison.Ordinal)))
             {
                 return true;
@@ -210,6 +211,12 @@ public static class OpenApiOperationExtensions
                 if (index > 1)
                 {
                     termWord = sa[index - 1];
+                    if (termWord.Equals("Details", StringComparison.Ordinal) ||
+                        termWord.Equals("Status", StringComparison.Ordinal))
+                    {
+                        return false;
+                    }
+
                     if (termWord.EndsWith('s'))
                     {
                         return true;

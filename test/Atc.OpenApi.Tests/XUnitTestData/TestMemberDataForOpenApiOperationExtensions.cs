@@ -274,6 +274,22 @@ internal static class TestMemberDataForOpenApiOperationExtensions
                 },
                 OperationType.Get
             },
+            {
+                false,
+                new OpenApiOperation
+                {
+                    OperationId = "getDeviceDetailsById",
+                },
+                OperationType.Get
+            },
+            {
+                false,
+                new OpenApiOperation
+                {
+                    OperationId = "getDeviceStatusById",
+                },
+                OperationType.Get
+            },
         };
 
     public static TheoryData<bool, List<OpenApiOperation>> HasDataTypeFromSystemCollectionGenericNamespaceItemData
