@@ -3,6 +3,7 @@ namespace Atc.Helpers;
 /// <summary>
 /// RegionInfoHelper.
 /// </summary>
+[SuppressMessage("", "MA0158:System.Threading.Lock", Justification = "OK.")]
 public static class RegionInfoHelper
 {
     private static readonly object Lock = new();

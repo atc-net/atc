@@ -8,6 +8,7 @@ namespace Atc.Helpers;
 /// CultureHelper.
 /// </summary>
 [SuppressMessage("Design", "CA1002:Do not expose generic lists", Justification = "OK.")]
+[SuppressMessage("", "MA0158:System.Threading.Lock", Justification = "OK.")]
 [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1615:Element return value should be documented", Justification = "OK.")]
 public static class CultureHelper
 {
