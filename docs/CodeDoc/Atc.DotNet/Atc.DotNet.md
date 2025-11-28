@@ -258,17 +258,20 @@ Defines the types of .NET projects. This enum uses flags to allow combining mult
 | 16384 | UwpLibrary | Uwp Library |  | 
 | 32768 | WpfLibrary | Wpf Library |  | 
 | 61440 | Libraries | Libraries |  | 
-| 65536 | AzureIotEdgeModule | Modules |  | 
-| 65536 | Modules | Modules |  | 
+| 65536 | Modules | Azure Iot Edge Module |  | 
+| 65536 | AzureIotEdgeModule | Azure Iot Edge Module |  | 
 | 131072 | VisualStudioExtension | Visual Studio Extension |  | 
 | 262144 | WebApi | Web Api |  | 
 | 524288 | WorkerService | Worker Service |  | 
 | 786432 | Services | Services |  | 
-| 1048576 | BUnitTest | BUnit Test |  | 
-| 2097152 | MsTest | Ms Test |  | 
-| 4194304 | NUnitTest | NUnit Test |  | 
-| 8388608 | XUnitTest | XUnit Test |  | 
-| 15728640 | Tests | Tests |  | 
+| 1048576 | AspireAppHost | Aspire App Host |  | 
+| 2097152 | AspireServiceDefaults | Aspire Service Defaults |  | 
+| 3145728 | Aspire | Aspire |  | 
+| 4194304 | BUnitTest | BUnit Test |  | 
+| 8388608 | MsTest | Ms Test |  | 
+| 16777216 | NUnitTest | NUnit Test |  | 
+| 33554432 | XUnitTest | XUnit Test |  | 
+| 62914560 | Tests | Tests |  | 
 
 
 

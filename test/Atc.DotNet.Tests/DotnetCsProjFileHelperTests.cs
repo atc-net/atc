@@ -50,6 +50,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
+    [InlineData(DotnetProjectType.AspireAppHost, DotnetProjectType.AspireAppHost)]
+    [InlineData(DotnetProjectType.AspireServiceDefaults, DotnetProjectType.AspireServiceDefaults)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
     [InlineData(DotnetProjectType.MsTest, DotnetProjectType.MsTest)]
     [InlineData(DotnetProjectType.NUnitTest, DotnetProjectType.NUnitTest)]
@@ -95,6 +97,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
+    [InlineData(DotnetProjectType.AspireAppHost, DotnetProjectType.AspireAppHost)]
+    [InlineData(DotnetProjectType.AspireServiceDefaults, DotnetProjectType.AspireServiceDefaults)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
     [InlineData(DotnetProjectType.MsTest, DotnetProjectType.MsTest)]
     [InlineData(DotnetProjectType.NUnitTest, DotnetProjectType.NUnitTest)]
@@ -135,6 +139,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
     [InlineData(DotnetProjectType.VisualStudioExtension, DotnetProjectType.VisualStudioExtension)]
     [InlineData(DotnetProjectType.WebApi, DotnetProjectType.WebApi)]
     [InlineData(DotnetProjectType.WorkerService, DotnetProjectType.WorkerService)]
+    [InlineData(DotnetProjectType.AspireAppHost, DotnetProjectType.AspireAppHost)]
+    [InlineData(DotnetProjectType.AspireServiceDefaults, DotnetProjectType.AspireServiceDefaults)]
     [InlineData(DotnetProjectType.BUnitTest, DotnetProjectType.BUnitTest)]
     [InlineData(DotnetProjectType.MsTest, DotnetProjectType.MsTest)]
     [InlineData(DotnetProjectType.NUnitTest, DotnetProjectType.NUnitTest)]
@@ -268,6 +274,12 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             case DotnetProjectType.WorkerService:
                 CreateCsProjFileWorkerService(sb);
                 break;
+            case DotnetProjectType.AspireAppHost:
+                CreateCsProjFileAspireAppHost(sb);
+                break;
+            case DotnetProjectType.AspireServiceDefaults:
+                CreateCsProjFileAspireServiceDefaults(sb);
+                break;
             case DotnetProjectType.BUnitTest:
                 CreateCsProjFileTest(sb, "bunit");
                 break;
@@ -297,7 +309,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         AppendItemGroupPackageReference(
             sb,
             new[] { "Atc", "Microsoft.Azure.Devices.Client" });
@@ -315,7 +328,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: true,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -343,7 +357,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -358,7 +373,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -373,7 +389,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -388,7 +405,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -416,7 +434,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: true,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -431,7 +450,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -446,7 +466,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -487,10 +508,11 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         AppendItemGroupPackageReference(
             sb,
-            new[] { "Atc", testLibraryName });
+            ["Atc", testLibraryName]);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -520,10 +542,11 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         AppendItemGroupPackageReference(
             sb,
-            new[] { "Atc", "Swashbuckle.AspNetCore" });
+            ["Atc", "Swashbuckle.AspNetCore"]);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -538,7 +561,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -553,7 +577,44 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
+        sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
+    private static void CreateCsProjFileAspireAppHost(StringBuilder sb)
+    {
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
+        sb.AppendLine("  <Sdk Name=\"Aspire.AppHost.Sdk\" Version=\"9.0.0\" />");
+        AppendPropertyGroupFirst(
+            sb,
+            outputType: "Exe",
+            packAsTool: false,
+            useAzureFunction: false,
+            useMaui: false,
+            useWinForm: false,
+            useWpf: false,
+            useAspireSharedProject: false);
+        sb.AppendLine();
+        sb.AppendLine("</Project>");
+    }
+
+    private static void CreateCsProjFileAspireServiceDefaults(StringBuilder sb)
+    {
+        sb.AppendLine("<Project Sdk=\"Microsoft.NET.Sdk\">");
+        AppendPropertyGroupFirst(
+            sb,
+            outputType: "Library",
+            packAsTool: false,
+            useAzureFunction: false,
+            useMaui: false,
+            useWinForm: false,
+            useWpf: false,
+            useAspireSharedProject: true);
+        AppendItemGroupPackageReference(
+            sb,
+            ["Aspire.Hosting.AppHost"]);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -568,7 +629,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: true,
-            useWpf: false);
+            useWpf: false,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -583,7 +645,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: true);
+            useWpf: true,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -598,7 +661,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             useAzureFunction: false,
             useMaui: false,
             useWinForm: false,
-            useWpf: true);
+            useWpf: true,
+            useAspireSharedProject: false);
         sb.AppendLine();
         sb.AppendLine("</Project>");
     }
@@ -709,7 +773,8 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         bool useAzureFunction,
         bool useMaui,
         bool useWinForm,
-        bool useWpf)
+        bool useWpf,
+        bool useAspireSharedProject)
     {
         sb.AppendLine();
         sb.AppendLine(2, "<PropertyGroup>");
@@ -743,6 +808,11 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
         if (useWpf)
         {
             sb.AppendLine("<UseWPF>true</UseWPF>");
+        }
+
+        if (useAspireSharedProject)
+        {
+            sb.AppendLine("<IsAspireSharedProject>true</IsAspireSharedProject>");
         }
 
         sb.AppendLine(4, "<TargetFramework>net9.0</TargetFramework>");

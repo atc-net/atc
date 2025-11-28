@@ -180,6 +180,11 @@ public static class DotnetCsProjFileHelper
     {
         if (rootElement.FirstAttribute is not null)
         {
+            if (rootElement.FirstAttribute.Value.StartsWith("Aspire.AppHost.Sdk", StringComparison.OrdinalIgnoreCase))
+            {
+                return DotnetProjectType.AspireAppHost;
+            }
+
             if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.BlazorWebAssembly", StringComparison.Ordinal))
             {
                 return DotnetProjectType.BlazorWAsmApp;
@@ -229,6 +234,16 @@ public static class DotnetCsProjFileHelper
             HasPackageReference(rootElement, "Microsoft.Azure.Devices.Client"))
         {
             return DotnetProjectType.AzureIotEdgeModule;
+        }
+
+        if (IsAspireAppHost(rootElement))
+        {
+            return DotnetProjectType.AspireAppHost;
+        }
+
+        if (IsAspireServiceDefaults(rootElement))
+        {
+            return DotnetProjectType.AspireServiceDefaults;
         }
 
         if (IsAzureFunction(rootElement))
@@ -309,6 +324,7 @@ public static class DotnetCsProjFileHelper
         }
 
         if (HasPackageReference(rootElement, "Swashbuckle.AspNetCore") ||
+            HasPackageReference(rootElement, "Scalar.AspNetCore") ||
             HasPackageReference(rootElement, "Atc.Rest.Extended") ||
             HasPackageReference(rootElement, "Atc.Rest"))
         {
@@ -528,5 +544,29 @@ public static class DotnetCsProjFileHelper
 
         return element is not null &&
                element.Value.Equals(value, StringComparison.Ordinal);
+    }
+
+    private static bool IsAspireAppHost(XElement rootElement)
+    {
+        var sdkElement = rootElement
+            .Elements()
+            .FirstOrDefault(x =>
+                x.Name.LocalName == "Sdk" &&
+                x.Attribute("Name") is not null &&
+                x.Attribute("Name")!.Value.StartsWith("Aspire.AppHost.Sdk", StringComparison.OrdinalIgnoreCase));
+
+        return sdkElement is not null;
+    }
+
+    private static bool IsAspireServiceDefaults(XElement rootElement)
+    {
+        var element = rootElement
+            .Elements()
+            .Where(x => x.Name.LocalName == "PropertyGroup")
+            .Descendants()
+            .FirstOrDefault(x => x.Name.LocalName == "IsAspireSharedProject");
+
+        return element is not null &&
+               element.Value.IsTrue();
     }
 }
