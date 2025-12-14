@@ -4432,6 +4432,13 @@
      - HasBit(byte value, byte checkValue)
      - HasBit(byte value, int checkValue)
      - ToStringWithPrefix(byte[] bytes)
+- [CSharpTypeHelper](Atc.Helpers.md#csharptypehelper)
+  -  Static Methods
+     - GetBaseType(string typeName)
+     - IsBasicValueType(string typeName)
+     - IsExtendedValueType(string typeName)
+     - IsNullable(string typeName)
+     - IsNumericType(string typeName)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
   -  Static Methods
      - GetByRotationNumberClockwiseUsingMedium(int rotationNumber)
@@ -5374,6 +5381,9 @@
   -  Static Methods
      - TryIsValid(string value, KeyStringAttribute attribute, out string errorMessage)
      - TryIsValid(string value, out string errorMessage)
+- [RegularExpressionAttributeExtensions](System.ComponentModel.DataAnnotations.md#regularexpressionattributeextensions)
+  -  Static Methods
+     - GetEscapedPattern(this RegularExpressionAttribute regularExpressionAttribute, bool ensureQuotes = True)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
   -  Static Methods
      - TryIsValid(string value, StringAttribute attribute, out string errorMessage)

@@ -116,6 +116,29 @@ Validates that a property or field contains a valid key string. By default, excl
 
 <br />
 
+## RegularExpressionAttributeExtensions
+Extension methods for `System.ComponentModel.DataAnnotations.RegularExpressionAttribute`.
+
+>```csharp
+>public static class RegularExpressionAttributeExtensions
+>```
+
+### Static Methods
+
+#### GetEscapedPattern
+>```csharp
+>string GetEscapedPattern(this RegularExpressionAttribute regularExpressionAttribute, bool ensureQuotes = True)
+>```
+><b>Summary:</b> Gets the escaped pattern from a `System.ComponentModel.DataAnnotations.RegularExpressionAttribute` suitable for code generation.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`regularExpressionAttribute`&nbsp;&nbsp;-&nbsp;&nbsp;The regular expression attribute.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ensureQuotes`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , ensures the result is wrapped in double quotes.<br />
+>
+><b>Returns:</b> The escaped pattern string.
+
+<br />
+
 ## StringAttribute
 Validates that a property, field, or parameter contains a string value meeting specified constraints. Supports validation of length, invalid characters, invalid prefixes, and regular expression patterns.
 

@@ -280,6 +280,68 @@ ByteHelper.
 
 <br />
 
+## CSharpTypeHelper
+Helper methods for C# type classification and checking.
+
+>```csharp
+>public static class CSharpTypeHelper
+>```
+
+### Static Methods
+
+#### GetBaseType
+>```csharp
+>string GetBaseType(string typeName)
+>```
+><b>Summary:</b> Gets the base type by removing the nullable marker (?).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "int?").<br />
+>
+><b>Returns:</b> The base type (e.g., "int").
+#### IsBasicValueType
+>```csharp
+>bool IsBasicValueType(string typeName)
+>```
+><b>Summary:</b> Determines if a type is a basic value type (numeric + bool). Handles nullable types by checking the base type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "int", "bool?").<br />
+>
+><b>Returns:</b> True if the type is a basic value type.
+#### IsExtendedValueType
+>```csharp
+>bool IsExtendedValueType(string typeName)
+>```
+><b>Summary:</b> Determines if a type is an extended value type (includes Guid, DateTimeOffset). Handles nullable types by checking the base type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "Guid", "DateTimeOffset?").<br />
+>
+><b>Returns:</b> True if the type is an extended value type.
+#### IsNullable
+>```csharp
+>bool IsNullable(string typeName)
+>```
+><b>Summary:</b> Determines if a type is nullable (ends with ?).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name.<br />
+>
+><b>Returns:</b> True if the type is nullable.
+#### IsNumericType
+>```csharp
+>bool IsNumericType(string typeName)
+>```
+><b>Summary:</b> Determines if a type is a numeric type (int, long, float, double, decimal). Handles nullable types by checking the base type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "int", "long?").<br />
+>
+><b>Returns:</b> True if the type is numeric.
+
+<br />
+
 ## CardinalDirectionTypeHelper
 Enumeration Helper: CardinalDirectionTypeHelper.
 
