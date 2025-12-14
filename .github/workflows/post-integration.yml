@@ -30,10 +30,10 @@ jobs:
         with:
           setAllVars: true
 
-      - name: ⚙️ Setup .NET 9.0
+      - name: ⚙️ Setup .NET 10.0
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
 
       - name: 🧹 Clean
         run: dotnet clean -c Release && dotnet nuget locals all --clear
@@ -44,11 +44,11 @@ jobs:
       - name: 🛠️ Build
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true
 
+      - name: 🛠️ Build netstandard2.0 - Atc
+        run: dotnet build -c Release --no-restore /p:UseSourceLink=true -f netstandard2.0 src/Atc/Atc.csproj
+
       - name: 🛠️ Build netstandard2.0 - Atc.CodeAnalysis.CSharp
         run: dotnet build -c Release --no-restore /p:UseSourceLink=true -f netstandard2.0 src/Atc.CodeAnalysis.CSharp/Atc.CodeAnalysis.CSharp.csproj
-
-      - name: 🛠️ Build netstandard2.1 - Atc
-        run: dotnet build -c Release --no-restore /p:UseSourceLink=true -f netstandard2.1 src/Atc/Atc.csproj
 
       - name: 🧪 Run unit tests
         run: dotnet test -c Release --no-build --filter-query "/[category!=integration]"

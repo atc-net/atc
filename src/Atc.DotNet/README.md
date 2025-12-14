@@ -1,6 +1,6 @@
 # Atc.DotNet
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Programmatic interface to dotnet.exe and utilities for parsing .NET project files. Provides helpers for executing dotnet commands, analyzing project structure, and extracting metadata from solution and project files.
 

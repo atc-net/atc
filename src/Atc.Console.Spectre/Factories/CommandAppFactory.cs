@@ -1,5 +1,3 @@
-using Atc.Console.Spectre.Factories.Infrastructure;
-
 namespace Atc.Console.Spectre.Factories;
 
 /// <summary>

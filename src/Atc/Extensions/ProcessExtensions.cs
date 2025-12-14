@@ -63,7 +63,7 @@ public static class ProcessExtensions
             throw new ArgumentNullException(nameof(process));
         }
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 #else
         if (OperatingSystem.IsWindows())

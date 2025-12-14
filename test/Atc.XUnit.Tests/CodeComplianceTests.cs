@@ -1,5 +1,3 @@
-using Atc.CodeDocumentation;
-
 namespace Atc.XUnit.Tests;
 
 public class CodeComplianceTests

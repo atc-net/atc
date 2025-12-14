@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="xunit.v3.mtp-v2" Version="3.2.1" />
   </ItemGroup>
 
 </Project>

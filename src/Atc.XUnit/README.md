@@ -1,6 +1,6 @@
 # Atc.XUnit
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Testing utilities and code compliance helpers for xUnit v3 tests. This library helps ensure code quality by detecting missing tests, verifying documentation coverage, and providing custom test output helpers.
 

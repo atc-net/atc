@@ -9,6 +9,8 @@ global using System.Reflection;
 global using System.Runtime.Serialization;
 global using System.Runtime.Versioning;
 global using System.Security.Claims;
+global using System.Security.Cryptography;
+global using System.Security.Cryptography.X509Certificates;
 global using System.Text;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;

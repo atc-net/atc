@@ -1190,7 +1190,7 @@ public static class StringExtensions
             return value;
         }
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
         return value.Length <= 1
             ? value
             : value
@@ -1386,7 +1386,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
             _ => char
                     .ToUpper(value[0], CultureInfo.CurrentCulture)
                     .ToString() +
@@ -1414,7 +1414,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
             _ => char
                     .ToLower(value[0], CultureInfo.CurrentCulture)
                     .ToString() +
@@ -1885,7 +1885,7 @@ public static class StringExtensions
 
         if (value.Length > maxLength)
         {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
             return value.Substring(0, maxLength) + appendValue;
 #else
             return string.Concat(value.AsSpan(0, maxLength), appendValue);

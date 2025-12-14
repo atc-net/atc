@@ -308,7 +308,7 @@ public static class InternetBrowserHelper
         {
             var url = uri.AbsoluteUri.Replace("&", "^&", StringComparison.Ordinal);
 
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Process.Start(

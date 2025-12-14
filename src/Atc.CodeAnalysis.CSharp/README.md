@@ -1,6 +1,6 @@
 # Atc.CodeAnalysis.CSharp
 
-**Target Frameworks:** `netstandard2.0`, `net9.0`
+**Target Frameworks:** `netstandard2.0`, `net9.0`, `net10.0`
 
 Roslyn-based utilities for programmatically working with C# code. This library provides factories and extensions for generating C# syntax trees, making it easier to create code generators, analyzers, and source generators. Multi-targeting enables use in .NET Framework 4.6.1+ projects and modern .NET applications.
 
@@ -14,6 +14,7 @@ When building source generators, code generators, or code analysis tools, you of
 - **Fluent Interface**: Chain operations together for cleaner code generation
 
 Perfect for:
+
 - Source generators
 - Code migration tools
 - API client generators
@@ -32,6 +33,7 @@ dotnet add package Atc.CodeAnalysis.CSharp
 - .NET 9.0
 
 The library multi-targets to support:
+
 - .NET Framework 4.6.1+ (for Roslyn analyzers and source generators)
 - .NET Core 2.0+
 - .NET 5+
@@ -60,6 +62,7 @@ var classDeclaration = SyntaxClassDeclarationFactory.CreateAsPublicPartial("MyCl
 ```
 
 **Output:**
+
 ```csharp
 public partial class MyClass
 {
@@ -76,6 +79,7 @@ var classDeclaration = SyntaxClassDeclarationFactory.Create(
 ```
 
 **Output:**
+
 ```csharp
 public class MyClass : BaseClass, IMyInterface, IDisposable
 {
@@ -93,6 +97,7 @@ var attribute = SyntaxAttributeFactory.Create("Obsolete");
 ```
 
 **Output:**
+
 ```csharp
 [Obsolete]
 ```
@@ -107,6 +112,7 @@ var attribute = SyntaxAttributeFactory.Create(
 ```
 
 **Output:**
+
 ```csharp
 [GeneratedCode("MyGenerator", "1.0.0")]
 ```
@@ -123,6 +129,7 @@ var attribute = SuppressMessageAttributeFactory.Create(
 ```
 
 **Output:**
+
 ```csharp
 [SuppressMessage("Design", "CA1034:NestedTypesShouldNotBeVisible", Justification = "Justification for suppression")]
 ```
@@ -136,6 +143,7 @@ var parameter = SyntaxParameterFactory.Create("string", "name");
 ```
 
 **Output:**
+
 ```csharp
 string name
 ```
@@ -150,6 +158,7 @@ var parameter = SyntaxParameterFactory.CreateWithDefaultValue(
 ```
 
 **Output:**
+
 ```csharp
 int count = 10
 ```
@@ -212,6 +221,7 @@ Console.WriteLine(code);
 ```
 
 **Output:**
+
 ```csharp
 using System;
 
@@ -235,6 +245,7 @@ var interpolated = SyntaxInterpolatedFactory.Create(
 ```
 
 **Output:**
+
 ```csharp
 $"The value is: {myVariable}"
 ```

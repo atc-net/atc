@@ -6,6 +6,7 @@ global using System.Text;
 global using System.Text.Json.Serialization;
 
 global using Atc.Console.Spectre.Extensions;
+global using Atc.Console.Spectre.Factories.Infrastructure;
 global using Atc.Console.Spectre.Logging;
 global using Atc.Data.Models;
 
