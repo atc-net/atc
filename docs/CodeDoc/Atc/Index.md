@@ -86,6 +86,7 @@
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
 - [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
+- [CSharpTypeHelper](Atc.Helpers.md#csharptypehelper)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)
 - [CultureHelper](Atc.Helpers.md#culturehelper)
@@ -237,6 +238,7 @@
 - [IPAddressAttribute](System.ComponentModel.DataAnnotations.md#ipaddressattribute)
 - [IsoCurrencySymbolAttribute](System.ComponentModel.DataAnnotations.md#isocurrencysymbolattribute)
 - [KeyStringAttribute](System.ComponentModel.DataAnnotations.md#keystringattribute)
+- [RegularExpressionAttributeExtensions](System.ComponentModel.DataAnnotations.md#regularexpressionattributeextensions)
 - [StringAttribute](System.ComponentModel.DataAnnotations.md#stringattribute)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
 
