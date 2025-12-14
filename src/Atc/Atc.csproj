@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net9.0</TargetFrameworks>
     <PackageId>Atc</PackageId>
     <PackageTags>netstandard;common</PackageTags>
     <Description>Atc is a collection of classes and extension methods for common functionality.</Description>
@@ -75,8 +75,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <PropertyGroup>
-    <MeziantouPolyfill_IncludedPolyfills>T:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute</MeziantouPolyfill_IncludedPolyfills>
-  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.10" />
+  </ItemGroup>
 
 </Project>

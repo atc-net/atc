@@ -31,13 +31,13 @@ public class NumericAlphaComparer : IComparer<string>
         }
 
         int? a = null;
-        if (x.IsDigitOnly() && int.TryParse(x, out var i1))
+        if (x!.IsDigitOnly() && int.TryParse(x, out var i1))
         {
             a = i1;
         }
 
         int? b = null;
-        if (y.IsDigitOnly() && int.TryParse(y, out var i2))
+        if (y!.IsDigitOnly() && int.TryParse(y, out var i2))
         {
             b = i2;
         }
@@ -62,10 +62,10 @@ public class NumericAlphaComparer : IComparer<string>
 
         var tupleA = a.HasValue
             ? new Tuple<int, string>(a.Value, null!)
-            : new Tuple<int, string>(ExtractNumber(x), ExtractLetters(x));
+            : new Tuple<int, string>(ExtractNumber(x!), ExtractLetters(x!));
         var tupleB = b.HasValue
             ? new Tuple<int, string>(b.Value, null!)
-            : new Tuple<int, string>(ExtractNumber(y), ExtractLetters(y));
+            : new Tuple<int, string>(ExtractNumber(y!), ExtractLetters(y!));
 
         if (tupleA.Item1 > tupleB.Item1)
         {

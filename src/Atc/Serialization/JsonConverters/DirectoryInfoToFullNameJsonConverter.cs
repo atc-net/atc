@@ -38,7 +38,7 @@ public sealed class DirectoryInfoToFullNameJsonConverter : JsonConverter<Directo
         }
         else
         {
-            writer.WriteStringValue(value.FullName);
+            writer.WriteStringValue(value!.FullName);
         }
     }
 }

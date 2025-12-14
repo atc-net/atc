@@ -108,9 +108,19 @@ public static class FileHelper
             throw new ArgumentNullException(nameof(fileInfo));
         }
 
+#if NETSTANDARD2_0
+        if (!fileInfo.Exists)
+        {
+            return Task.FromResult(string.Empty);
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(File.ReadAllText(fileInfo.FullName, Encoding.UTF8));
+#else
         return fileInfo.Exists
             ? File.ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken)
             : Task.FromResult(string.Empty);
+#endif
     }
 
     /// <summary>
@@ -237,7 +247,13 @@ public static class FileHelper
             throw new ArgumentNullException(nameof(fileInfo));
         }
 
+#if NETSTANDARD2_0
+        cancellationToken.ThrowIfCancellationRequested();
+        File.WriteAllText(fileInfo.FullName, content, Encoding.UTF8);
+        return Task.CompletedTask;
+#else
         return File.WriteAllTextAsync(fileInfo.FullName, content, Encoding.UTF8, cancellationToken);
+#endif
     }
 
     /// <summary>
@@ -252,9 +268,14 @@ public static class FileHelper
             return Array.Empty<string>();
         }
 
+#if NETSTANDARD2_0
+        cancellationToken.ThrowIfCancellationRequested();
+        var content = File.ReadAllText(fileInfo.FullName, Encoding.UTF8);
+#else
         var content = await File
             .ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken)
             .ConfigureAwait(false);
+#endif
         return content.Split(LineBreaks, StringSplitOptions.None);
     }
 

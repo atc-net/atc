@@ -38,7 +38,7 @@ public sealed class UriToAbsoluteUriJsonConverter : JsonConverter<Uri?>
         }
         else
         {
-            writer.WriteStringValue(value.AbsoluteUri);
+            writer.WriteStringValue(value!.AbsoluteUri);
         }
     }
 }

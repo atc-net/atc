@@ -38,7 +38,7 @@ public sealed class FileInfoToFullNameJsonConverter : JsonConverter<FileInfo?>
         }
         else
         {
-            writer.WriteStringValue(value.FullName);
+            writer.WriteStringValue(value!.FullName);
         }
     }
 }

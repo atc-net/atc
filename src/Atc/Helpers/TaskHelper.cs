@@ -33,10 +33,12 @@ public static class TaskHelper
             .WhenAny(originalTask, delayTask)
             .ConfigureAwait(false);
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
         await timeoutCancellation.CancelAsync();
 #else
+#pragma warning disable CA1849 // CancellationTokenSource.CancelAsync not available in netstandard
         timeoutCancellation.Cancel();
+#pragma warning restore CA1849
 #endif
         if (completedTask == originalTask)
         {

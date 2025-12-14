@@ -8,7 +8,7 @@ namespace System.Collections.Generic;
 /// </summary>
 public static class DictionaryExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     /// <summary>
     /// Retrieves the value associated with the specified key or adds a new value if the key does not exist.
     /// </summary>

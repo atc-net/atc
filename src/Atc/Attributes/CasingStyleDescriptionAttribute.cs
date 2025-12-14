@@ -27,7 +27,7 @@ public sealed class CasingStyleDescriptionAttribute : DescriptionAttribute
     {
         get
         {
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             var enumNames = Enum.GetNames(typeof(CasingStyle));
 #else
             var enumNames = Enum.GetNames<CasingStyle>();

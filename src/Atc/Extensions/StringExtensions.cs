@@ -1190,7 +1190,7 @@ public static class StringExtensions
             return value;
         }
 
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
         return value.Length <= 1
             ? value
             : value
@@ -1365,7 +1365,11 @@ public static class StringExtensions
     public static string[] EnsureEnvironmentNewLinesAndSplit(this string value)
         => value
             .EnsureEnvironmentNewLines()
+#if NETSTANDARD2_0
+            .Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+#else
             .Split(Environment.NewLine);
+#endif
 
     /// <summary>
     /// Ensures the first character to upper.
@@ -1382,7 +1386,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToUpper(CultureInfo.CurrentCulture),
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             _ => char
                     .ToUpper(value[0], CultureInfo.CurrentCulture)
                     .ToString() +
@@ -1410,7 +1414,7 @@ public static class StringExtensions
         {
             0 => value,
             1 => value.ToLower(CultureInfo.CurrentCulture),
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             _ => char
                     .ToLower(value[0], CultureInfo.CurrentCulture)
                     .ToString() +
@@ -1881,7 +1885,7 @@ public static class StringExtensions
 
         if (value.Length > maxLength)
         {
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
             return value.Substring(0, maxLength) + appendValue;
 #else
             return string.Concat(value.AsSpan(0, maxLength), appendValue);
@@ -2040,7 +2044,7 @@ public static class StringExtensions
         => Enum<HttpStatusCode>.TryParse(value, false, out httpStatusCode) &&
            !NumberHelper.IsInt(httpStatusCode.ToString());
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     /// <summary>
     /// Formats a string template by replacing placeholders with corresponding argument values.
     /// </summary>

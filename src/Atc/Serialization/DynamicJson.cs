@@ -270,7 +270,11 @@ public class DynamicJson
 
         return (
             IsSucceeded: false,
+#if NETSTANDARD2_0
+            ErrorMessage: $"The path does not exist: {string.Join(".", segments.Take(index + 1))}");
+#else
             ErrorMessage: $"The path does not exist: {string.Join('.', segments, 0, index + 1)}");
+#endif
     }
 
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
@@ -310,7 +314,11 @@ public class DynamicJson
         {
             result = (
                 IsSucceeded: false,
+#if NETSTANDARD2_0
+                ErrorMessage: $"The index is out of range: {string.Join(".", segments.Take(index + 2))}");
+#else
                 ErrorMessage: $"The index is out of range: {string.Join('.', segments, 0, index + 2)}");
+#endif
 
             return true;
         }
@@ -346,7 +354,11 @@ public class DynamicJson
 
         result = (
             IsSucceeded: false,
+#if NETSTANDARD2_0
+            ErrorMessage: $"The path does not exist: {string.Join(".", segments.Take(index + 2))}");
+#else
             ErrorMessage: $"The path does not exist: {string.Join('.', segments, 0, index + 2)}");
+#endif
 
         return true;
     }
@@ -415,6 +427,10 @@ public class DynamicJson
 
         return (
             IsSucceeded: false,
+#if NETSTANDARD2_0
+            ErrorMessage: $"The path does not exist: {string.Join(".", segments.Take(index + 1))}");
+#else
             ErrorMessage: $"The path does not exist: {string.Join('.', segments, 0, index + 1)}");
+#endif
     }
 }

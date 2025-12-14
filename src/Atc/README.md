@@ -1,6 +1,6 @@
 # Atc
 
-**Target Frameworks:** `netstandard2.1`, `net9.0`
+**Target Frameworks:** `netstandard2.0`, `netstandard2.1`, `net9.0`
 
 The foundation library for .NET development, providing a comprehensive collection of common utilities, extension methods, and helpers. Multi-targeting ensures compatibility with a wide range of .NET applications, from .NET Framework 4.7.2+ to the latest .NET versions.
 

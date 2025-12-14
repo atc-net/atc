@@ -209,7 +209,11 @@ public static class ArticleNumberHelper
             return false;
         }
 
+#if NETSTANDARD2_0
+        if (!long.TryParse(isbn10.Substring(0, isbn10.Length - 1), NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
+#else
         if (!long.TryParse(isbn10.AsSpan(0, isbn10.Length - 1), NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out _))
+#endif
         {
             return false;
         }

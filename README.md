@@ -10,7 +10,7 @@ This repository contains common libraries for .NET. Detailed information for eac
 
 #### [Atc](src/Atc) [![Nuget](https://img.shields.io/nuget/dt/Atc?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc)
 
-**Target Frameworks:** `netstandard2.1`, `net9.0`
+**Target Frameworks:** `netstandard2.0`, `netstandard2.1`, `net9.0`
 
 The foundation library providing common utilities, extensions, and helpers for .NET development. Includes extensive extension methods for base types (String, DateTime, Enum, etc.), data structures, serialization, and more.
 
