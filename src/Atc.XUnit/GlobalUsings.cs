@@ -13,7 +13,7 @@ global using Atc.CodeDocumentation;
 global using Atc.Helpers;
 global using Atc.Serialization;
 global using Atc.XUnit.Internal;
-
+global using Atc.XUnit.Internal.AbstractSyntaxTree;
 global using ICSharpCode.Decompiler;
 global using ICSharpCode.Decompiler.CSharp;
 global using ICSharpCode.Decompiler.CSharp.Syntax;

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <PackageId>Atc.Rest</PackageId>
     <PackageTags>api;rest</PackageTags>
     <Description>Atc.Rest is a basic collection of classes and extension methods for ASP.NET Core WebApi.</Description>

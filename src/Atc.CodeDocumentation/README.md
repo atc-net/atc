@@ -1,6 +1,6 @@
 # Atc.CodeDocumentation
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Markdown documentation generator for .NET assemblies. Automatically generates comprehensive API documentation in Markdown format from assembly reflection and XML documentation comments.
 

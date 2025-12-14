@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <PackageId>Atc.OpenApi</PackageId>
     <PackageTags>openapi;extension</PackageTags>
     <Description>Atc.OpenApi is a collection of classes and extension methods for Microsoft.OpenApi.</Description>

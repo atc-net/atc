@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <PackageId>Atc.XUnit</PackageId>
     <PackageTags>xunit;test</PackageTags>
     <Description>Atc.XUnit is a collection of helper method for code compliance of documentation and tests.</Description>
@@ -17,9 +17,9 @@
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="xunit.v3.assert" Version="3.2.0" />
-    <PackageReference Include="xunit.v3.common" Version="3.2.0" />
-    <PackageReference Include="xunit.v3.extensibility.core" Version="3.2.0" />
+    <PackageReference Include="xunit.v3.assert" Version="3.2.1" />
+    <PackageReference Include="xunit.v3.common" Version="3.2.1" />
+    <PackageReference Include="xunit.v3.extensibility.core" Version="3.2.1" />
   </ItemGroup>
 
   <ItemGroup>

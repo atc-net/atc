@@ -14,5 +14,5 @@ global using Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.S
 global using Atc.Helpers;
 global using Atc.Serialization;
 global using Atc.XUnit;
-
+global using Demo.Atc.Console.Spectre.Cli;
 global using Microsoft.Extensions.Logging;

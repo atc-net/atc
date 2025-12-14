@@ -10,7 +10,7 @@ This repository contains common libraries for .NET. Detailed information for eac
 
 #### [Atc](src/Atc) [![Nuget](https://img.shields.io/nuget/dt/Atc?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc)
 
-**Target Frameworks:** `netstandard2.0`, `netstandard2.1`, `net9.0`
+**Target Frameworks:** `netstandard2.0`, `net9.0`, `net10.0`
 
 The foundation library providing common utilities, extensions, and helpers for .NET development. Includes extensive extension methods for base types (String, DateTime, Enum, etc.), data structures, serialization, and more.
 
@@ -22,7 +22,7 @@ The foundation library providing common utilities, extensions, and helpers for .
 
 #### [Atc.Rest](src/Atc.Rest) [![Nuget](https://img.shields.io/nuget/dt/Atc.Rest?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Rest)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Foundation for ASP.NET Core WebApi development with middleware, filters, exception handling, and service registration. Simplifies base setup with features like auto-registration, problem details, and serialization configuration.
 
@@ -30,7 +30,7 @@ Foundation for ASP.NET Core WebApi development with middleware, filters, excepti
 
 #### [Atc.Rest.Extended](src/Atc.Rest.Extended) [![Nuget](https://img.shields.io/nuget/dt/Atc.Rest.Extended?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Rest.Extended)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Advanced REST features including Swagger/OpenAPI documentation, FluentValidation, API versioning, and JWT authentication. Builds on Atc.Rest for production-ready APIs.
 
@@ -38,7 +38,7 @@ Advanced REST features including Swagger/OpenAPI documentation, FluentValidation
 
 #### [Atc.Rest.HealthChecks](src/Atc.Rest.HealthChecks) [![Nuget](https://img.shields.io/nuget/dt/Atc.Rest.HealthChecks?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Rest.HealthChecks)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Health check implementations and extensions for ASP.NET Core applications, providing monitoring and diagnostics capabilities.
 
@@ -50,7 +50,7 @@ Health check implementations and extensions for ASP.NET Core applications, provi
 
 #### [Atc.CodeAnalysis.CSharp](src/Atc.CodeAnalysis.CSharp) [![Nuget](https://img.shields.io/nuget/dt/Atc.CodeAnalysis.CSharp?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.CodeAnalysis.CSharp)
 
-**Target Frameworks:** `netstandard2.0`, `net9.0`
+**Target Frameworks:** `netstandard2.0`, `net9.0`, `net10.0`
 
 Roslyn-based utilities for working with C# syntax trees and semantic models. Includes factories for generating syntax nodes, attributes, class declarations, and more programmatically.
 
@@ -58,7 +58,7 @@ Roslyn-based utilities for working with C# syntax trees and semantic models. Inc
 
 #### [Atc.CodeDocumentation](src/Atc.CodeDocumentation) [![Nuget](https://img.shields.io/nuget/dt/Atc.CodeDocumentation?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.CodeDocumentation)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Markdown documentation generator from XML documentation comments and source code. Automatically generates comprehensive API documentation from your codebase.
 
@@ -66,7 +66,7 @@ Markdown documentation generator from XML documentation comments and source code
 
 #### [Atc.OpenApi](src/Atc.OpenApi) [![Nuget](https://img.shields.io/nuget/dt/Atc.OpenApi?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.OpenApi)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Extensions for Microsoft.OpenApi library, including schema extensions, data type handling, and utilities for working with OpenAPI specifications.
 
@@ -78,7 +78,7 @@ Extensions for Microsoft.OpenApi library, including schema extensions, data type
 
 #### [Atc.Console.Spectre](src/Atc.Console.Spectre) [![Nuget](https://img.shields.io/nuget/dt/Atc.Console.Spectre?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Console.Spectre)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Wrappers and extensions for Spectre.Console to simplify building beautiful command-line applications with rich terminal UI.
 
@@ -86,7 +86,7 @@ Wrappers and extensions for Spectre.Console to simplify building beautiful comma
 
 #### [Atc.DotNet](src/Atc.DotNet) [![Nuget](https://img.shields.io/nuget/dt/Atc.DotNet?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.DotNet)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Programmatic interface to dotnet.exe for build automation and tooling. Execute dotnet commands, parse project files, and manage .NET solutions programmatically.
 
@@ -98,7 +98,7 @@ Programmatic interface to dotnet.exe for build automation and tooling. Execute d
 
 #### [Atc.XUnit](src/Atc.XUnit) [![Nuget](https://img.shields.io/nuget/dt/Atc.XUnit?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.XUnit)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Testing utilities and code compliance helpers for xUnit tests. Includes methods for ensuring documentation coverage, test coverage, and custom test output helpers.
 
@@ -106,7 +106,7 @@ Testing utilities and code compliance helpers for xUnit tests. Includes methods 
 
 #### [Atc.Rest.FluentAssertions](src/Atc.Rest.FluentAssertions) [![Nuget](https://img.shields.io/nuget/dt/Atc.Rest.FluentAssertions?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Atc.Rest.FluentAssertions)
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net9.0`, `net10.0`
 
 Custom FluentAssertions extensions for testing REST APIs and Atc types, providing expressive and readable test assertions.
 

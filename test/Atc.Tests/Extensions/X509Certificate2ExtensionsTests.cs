@@ -1,6 +1,3 @@
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-
 namespace Atc.Tests.Extensions;
 
 [Trait(Traits.Category, Traits.Categories.Integration)]

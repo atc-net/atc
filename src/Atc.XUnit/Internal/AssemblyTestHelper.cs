@@ -1,5 +1,3 @@
-using Atc.XUnit.Internal.AbstractSyntaxTree;
-
 namespace Atc.XUnit.Internal;
 
 internal static class AssemblyTestHelper
