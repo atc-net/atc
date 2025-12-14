@@ -38,7 +38,7 @@ public sealed class CultureInfoToNameJsonConverter : JsonConverter<CultureInfo?>
         }
         else
         {
-            writer.WriteStringValue(value.Name);
+            writer.WriteStringValue(value!.Name);
         }
     }
 }

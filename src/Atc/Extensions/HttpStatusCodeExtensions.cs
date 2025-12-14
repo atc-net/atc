@@ -15,7 +15,9 @@ public static class HttpStatusCodeExtensions
         => httpStatusCode switch
         {
             HttpStatusCode.OK => "Ok",
+#if !NETSTANDARD2_0
             HttpStatusCode.IMUsed => "ImUsed",
+#endif
             _ => httpStatusCode.ToString(),
         };
 

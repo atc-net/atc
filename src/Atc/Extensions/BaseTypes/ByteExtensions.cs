@@ -65,7 +65,11 @@ public static class ByteExtensions
                 .ToArray();
         }
 
+#if NETSTANDARD2_0
+        return BitConverter.ToInt32(bytes, 0);
+#else
         return BitConverter.ToInt32(bytes);
+#endif
     }
 
     /// <summary>
@@ -98,7 +102,11 @@ public static class ByteExtensions
                 .ToArray();
         }
 
+#if NETSTANDARD2_0
+        return BitConverter.ToInt64(bytes, 0);
+#else
         return BitConverter.ToInt64(bytes);
+#endif
     }
 
     /// <summary>

@@ -51,7 +51,12 @@ public static class FileInfoExtensions
             throw new FileNotFoundException();
         }
 
+#if NETSTANDARD2_0
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(File.ReadAllBytes(fileInfo.FullName));
+#else
         return File.ReadAllBytesAsync(fileInfo.FullName, cancellationToken);
+#endif
     }
 
     /// <summary>

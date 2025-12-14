@@ -461,9 +461,15 @@ public static class FileHelper<T>
         JsonSerializerOptions serializeOptions,
         CancellationToken cancellationToken)
     {
+#if NETSTANDARD2_0
+        cancellationToken.ThrowIfCancellationRequested();
+        var json = File.ReadAllText(fileInfo.FullName, Encoding.UTF8);
+        await Task.CompletedTask.ConfigureAwait(false);
+#else
         var json = await File
             .ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken)
             .ConfigureAwait(false);
+#endif
 
         return JsonSerializer.Deserialize<T>(json, serializeOptions);
     }

@@ -36,7 +36,11 @@ public static class ProcessExtensions
                 return;
             }
 
+#if NETSTANDARD2_0
+            using (cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken)))
+#else
             await using (cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken)))
+#endif
             {
                 await tcs.Task.ConfigureAwait(false);
             }
@@ -59,7 +63,7 @@ public static class ProcessExtensions
             throw new ArgumentNullException(nameof(process));
         }
 
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 #else
         if (OperatingSystem.IsWindows())

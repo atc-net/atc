@@ -123,7 +123,7 @@ public static class EnumExtensions
             ? enumeration
                 .ToString()
                 .Humanize()
-            : attributeValue;
+            : attributeValue!;
     }
 
     /// <summary>

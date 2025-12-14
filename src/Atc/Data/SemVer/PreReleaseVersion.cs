@@ -44,7 +44,11 @@ internal static class PreReleaseVersion
     public static string Build(string input)
     {
         var identifierStrings = Identifiers(input).Select(i => i.Clean());
+#if NETSTANDARD2_0
+        return string.Join(".", identifierStrings.ToArray());
+#else
         return string.Join('.', identifierStrings.ToArray());
+#endif
     }
 
     private static IEnumerable<Identifier> Identifiers(string input)

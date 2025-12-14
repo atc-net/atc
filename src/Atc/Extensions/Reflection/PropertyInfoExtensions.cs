@@ -109,7 +109,7 @@ public static class PropertyInfoExtensions
             attributeValue = propertyInfo.Name;
         }
 
-        return attributeValue;
+        return attributeValue!;
     }
 
     /// <summary>
