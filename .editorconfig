@@ -1,8 +1,8 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
 # Version: 1.0.0
-# Updated: 01-03-2025
+# Updated: 27-11-2025
 # Location: Root
-# Distribution: DotNet9
+# Distribution: DotNet10
 # Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 
 ##########################################
@@ -494,6 +494,10 @@ dotnet_diagnostic.CA1869.severity = suggestion      # Cache and reuse 'JsonSeria
 dotnet_diagnostic.CA1870.severity = suggestion      # Use a cached 'SearchValues' instance
 dotnet_diagnostic.CA1871.severity = suggestion      # Do not pass a nullable struct to 'ArgumentNullException.ThrowIfNull'
 dotnet_diagnostic.CA1872.severity = suggestion      # Prefer 'Convert.ToHexString' and 'Convert.ToHexStringLower' over call chains based on 'BitConverter.ToString'
+dotnet_diagnostic.CA1873.severity = suggestion      # Avoid potentially expensive logging (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1873)
+dotnet_diagnostic.CA1874.severity = suggestion      # Use 'Regex.IsMatch' instead of 'Regex.Match(...).Success' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1874)
+dotnet_diagnostic.CA1875.severity = suggestion      # Use 'Regex.Count' instead of 'Regex.Matches(...).Count' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1875)
+dotnet_diagnostic.CA1877.severity = suggestion      # Use 'Path.Combine' or 'Path.Join' overloads (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1877)
 dotnet_diagnostic.CA2007.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA2007.md
 dotnet_diagnostic.CA2017.severity = error           # Parameter count mismatch
 dotnet_diagnostic.CA2018.severity = error           # The count argument to Buffer.BlockCopy should specify the number of bytes to copy
@@ -510,6 +514,7 @@ dotnet_diagnostic.CA2261.severity = error           # Do not use ConfigureAwaitO
 dotnet_diagnostic.CA2262.severity = suggestion      # Set 'MaxResponseHeadersLength' properly
 dotnet_diagnostic.CA2263.severity = suggestion      # Prefer generic overload when type is known
 dotnet_diagnostic.CA2264.severity = error           # Do not pass a non-nullable value to 'ArgumentNullException.ThrowIfNull'
+dotnet_diagnostic.CA2265.severity = error           # Do not compare Sp an<T> to 'null' or 'default' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2265)
 dotnet_diagnostic.IDE0005.severity = warning        # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/IDE0005.md
 dotnet_diagnostic.IDE0010.severity = suggestion     # Populate switch
 dotnet_diagnostic.IDE0028.severity = suggestion     # Collection initialization can be simplified

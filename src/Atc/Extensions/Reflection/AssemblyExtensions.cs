@@ -113,8 +113,23 @@ public static class AssemblyExtensions
             throw new ArgumentNullException(nameof(type));
         }
 
-        return assembly
-            .GetTypes()
+        Type[] types;
+
+        try
+        {
+            types = assembly.GetTypes();
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            // When some types can't be loaded due to missing dependencies,
+            // use only the types that were successfully loaded
+            types = ex
+                .Types
+                .Where(t => t is not null)
+                .ToArray()!;
+        }
+
+        return types
             .Where(x => x.IsInheritedFrom(type))
             .ToArray();
     }

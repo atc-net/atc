@@ -77,9 +77,13 @@ public class ByteExtensionsTests
         byte splitByte = 0;
 
         // Act
-        var actual = value
-            .Split(splitByte)
-            .ToList();
+        var actual = new List<byte[]>();
+        foreach (var range in value
+                     .AsSpan()
+                     .Split(splitByte))
+        {
+            actual.Add(value[range].ToArray());
+        }
 
         // Assert
         Assert.Equal(3, actual.Count);

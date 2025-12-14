@@ -34,6 +34,7 @@ public class CodeComplianceTests
         typeof(VersionJsonConverter), // JsonConverter override methods with ref parameters
         typeof(System.TypeExtensions),
         typeof(AsyncEnumerableFactory),
+        typeof(ByteExtensions),
         typeof(EnumerableExtensions),
         typeof(StringCaseFormatter), // AST has limitations with IFormatProvider/ICustomFormatter interface method detection
         typeof(DictionaryExtensions), // Both AST & MonoReflection have limitations detecting lambdas with unused parameters (2/4 methods work)
