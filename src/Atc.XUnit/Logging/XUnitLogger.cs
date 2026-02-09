@@ -83,7 +83,7 @@ public class XUnitLogger : ILogger
             sb.Append("] ");
         }
 
-        var message = state?.ToString() ?? string.Empty;
+        var message = formatter(state, exception!);
         if (!string.IsNullOrEmpty(message))
         {
             sb.Append(message);

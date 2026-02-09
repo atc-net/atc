@@ -60,7 +60,7 @@ public class ConsoleLogger : ILogger
             return;
         }
 
-        var stateStr = state?.ToString() ?? string.Empty;
+        var stateStr = formatter(state, exception!);
         var message = config.AllowMarkup
             ? stateStr
             : Markup.Escape(stateStr);
@@ -68,6 +68,7 @@ public class ConsoleLogger : ILogger
         var exceptionMessage = exception?.GetMessage(
             includeInnerMessage: config.IncludeInnerMessageForException,
             includeExceptionName: config.IncludeInnerMessageForException);
+
         if (!string.IsNullOrEmpty(exceptionMessage))
         {
             exceptionMessage = Markup.Escape(exceptionMessage);
