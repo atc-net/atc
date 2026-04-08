@@ -177,14 +177,14 @@
      - CreateProblemDetails(HttpStatusCode statusCode, string message)
      - CreateValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message)
 
-## [Microsoft.ApplicationInsights.Extensibility](Microsoft.ApplicationInsights.Extensibility.md)
+## [Atc.Rest.TelemetryInitializers](Atc.Rest.TelemetryInitializers.md)
 
-- [Accept4xxResponseAsSuccessInitializer](Microsoft.ApplicationInsights.Extensibility.md#accept4xxresponseassuccessinitializer)
+- [Accept4xxResponseAsSuccessProcessor](Atc.Rest.TelemetryInitializers.md#accept4xxresponseassuccessprocessor)
   -  Methods
-     - Initialize(ITelemetry telemetry)
-- [CallingIdentityTelemetryInitializer](Microsoft.ApplicationInsights.Extensibility.md#callingidentitytelemetryinitializer)
+     - OnEnd(Activity activity)
+- [CallingIdentityTelemetryProcessor](Atc.Rest.TelemetryInitializers.md#callingidentitytelemetryprocessor)
   -  Methods
-     - Initialize(ITelemetry telemetry)
+     - OnEnd(Activity activity)
 
 ## [Microsoft.AspNetCore.Builder](Microsoft.AspNetCore.Builder.md)
 
