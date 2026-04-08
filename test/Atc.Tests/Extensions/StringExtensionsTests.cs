@@ -36,6 +36,15 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.IndexersOf(pattern, ignoreCaseSensitive, useEndOfPatternToMatch));
 
     [Theory]
+    [InlineData(new[] { 4, 7 }, "Hallo world", "o")]
+    [InlineData(new[] { 4, 7, 13, 24 }, "Hallo world. Over the  top.", "o")]
+    public void IndexersOf_Span(
+        int[] expected,
+        string input,
+        string pattern)
+        => Assert.Equal(expected, input.AsSpan().IndexersOf(pattern.AsSpan()));
+
+    [Theory]
     [InlineData(1, "Hallo-world")]
     [InlineData(2, "Hallo world")]
     [InlineData(2, "Hallo world .")]
@@ -54,6 +63,14 @@ public class StringExtensionsTests
         string expected,
         string input)
         => Assert.Equal(expected, input.GetValueBetweenLessAndGreaterThanCharsIfExist());
+
+    [Theory]
+    [InlineData("MyData", "List<MyData>")]
+    [InlineData("MyData", "MyData")]
+    public void GetValueBetweenLessAndGreaterThanCharsIfExist_Span(
+        string expected,
+        string input)
+        => Assert.Equal(expected, input.AsSpan().GetValueBetweenLessAndGreaterThanCharsIfExist().ToString());
 
     [Theory]
     [InlineData(0, "Hallo world")]
@@ -1099,6 +1116,15 @@ public class StringExtensionsTests
         int maxLength,
         string appendValue)
         => Assert.Equal(expected, input.Truncate(maxLength, appendValue));
+
+    [Theory]
+    [InlineData("Hallo Wo", "Hallo World", 8)]
+    [InlineData("Hallo World", "Hallo World", 20)]
+    public void Truncate_Span(
+        string expected,
+        string input,
+        int maxLength)
+        => Assert.Equal(expected, input.AsSpan().Truncate(maxLength).ToString());
 
     [Theory]
     [InlineData("Hallo World.", "   Hallo\tWorld..   ")]

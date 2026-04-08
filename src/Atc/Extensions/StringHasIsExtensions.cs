@@ -7,11 +7,18 @@ namespace System;
 /// </summary>
 public static class StringHasIsExtensions
 {
+#if NET9_0_OR_GREATER
+    private static readonly System.Buffers.SearchValues<char> AlphaChars = System.Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    private static readonly System.Buffers.SearchValues<char> AlphaNumericChars = System.Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    private static readonly System.Buffers.SearchValues<char> NumericChars = System.Buffers.SearchValues.Create("0123456789");
+#else
     private static readonly Lazy<Regex> RxAlpha = new(() => new Regex("[^a-zA-Z]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxAlphaNumeric = new(() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxNumeric = new(() => new Regex("[^0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+#endif
+
     private static readonly Lazy<Regex> RxEmailAddress = new(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxGuid = new(() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxNumeric = new(() => new Regex("[^0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxKey = new(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxHtmlTags = new(() => new Regex(@"<[^>]+>", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(5)));
     private static readonly Lazy<Regex> RxSingleWord = new(() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
@@ -112,7 +119,11 @@ public static class StringHasIsExtensions
     ///    <see langword="true" /> if the specified value is alpha [a-zA-Z]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaOnly(this string value)
+#if NET9_0_OR_GREATER
+        => !string.IsNullOrEmpty(value) && !value.AsSpan().ContainsAnyExcept(AlphaChars);
+#else
         => !string.IsNullOrEmpty(value) && !RxAlpha.Value.IsMatch(value);
+#endif
 
     /// <summary>
     /// Determines whether the specified value is alpha-numeric [a- z, A-Z, 0-9].
@@ -122,7 +133,11 @@ public static class StringHasIsExtensions
     ///    <see langword="true" /> if the specified value is alpha-numeric [a- z, A-Z, 0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsAlphaNumericOnly(this string value)
+#if NET9_0_OR_GREATER
+        => !string.IsNullOrEmpty(value) && !value.AsSpan().ContainsAnyExcept(AlphaNumericChars);
+#else
         => !string.IsNullOrEmpty(value) && !RxAlphaNumeric.Value.IsMatch(value);
+#endif
 
     /// <summary>
     /// Determines whether the specified value is a date.
@@ -250,8 +265,11 @@ public static class StringHasIsExtensions
     ///   <see langword="true" /> if the specified value is numeric [0-9]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsNumericOnly(this string value)
-        => !string.IsNullOrEmpty(value) &&
-           !RxNumeric.Value.IsMatch(value);
+#if NET9_0_OR_GREATER
+        => !string.IsNullOrEmpty(value) && !value.AsSpan().ContainsAnyExcept(NumericChars);
+#else
+        => !string.IsNullOrEmpty(value) && !RxNumeric.Value.IsMatch(value);
+#endif
 
     /// <summary>
     /// Determines whether the specified value is sentence.

@@ -308,6 +308,11 @@ public static class SimpleTypeHelper
         return item.Key is not null;
     }
 
+#if NET9_0_OR_GREATER
+    private static readonly FrozenDictionary<string, Type> ReverseSimpleTypeLookup =
+        BeautifySimpleTypeLookup.ToFrozenDictionary(x => x.Value, x => x.Key, StringComparer.Ordinal);
+#else
     private static readonly Dictionary<string, Type> ReverseSimpleTypeLookup =
         BeautifySimpleTypeLookup.ToDictionary(x => x.Value, x => x.Key, StringComparer.Ordinal);
+#endif
 }
