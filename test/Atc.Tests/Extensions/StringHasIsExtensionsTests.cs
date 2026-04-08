@@ -304,6 +304,11 @@ public class StringHasIsExtensionsTests
     [InlineData(false, "Hest")]
     [InlineData(false, "240300-7260")]
     [InlineData(true, "240300-7261")]
+    [InlineData(true, "2403007261")]
+    [InlineData(true, "240300/7261")]
+    [InlineData(true, "240300.7261")]
+    [InlineData(true, "240300:7261")]
+    [InlineData(true, "240300 7261")]
     public void IsPersonCprNumber(
         bool expected,
         string input)
