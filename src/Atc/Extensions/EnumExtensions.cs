@@ -96,12 +96,7 @@ public static class EnumExtensions
         string? attributeValue = null;
         if (useLocalizedIfPossible)
         {
-            attributeValue = GetAttributeValue<LocalizedDescriptionAttribute, string>(enumeration, arg => arg.Description!);
-        }
-
-        if (string.IsNullOrEmpty(attributeValue))
-        {
-            attributeValue = GetAttributeValue<DescriptionAttribute, string>(enumeration, arg => arg.Description);
+            attributeValue = GetAttributeValue<LocalizedDescriptionAttribute, string>(enumeration, arg => arg.Description);
         }
 
         if (string.IsNullOrEmpty(attributeValue))
@@ -157,6 +152,32 @@ public static class EnumExtensions
         return enumeration
             .ToString()
             .ToLowerInvariant();
+    }
+
+    /// <summary>
+    /// Maps the current enum value to a target enum type by matching the name (case-insensitive).
+    /// Returns <paramref name="defaultValue"/> if no matching name is found,
+    /// or throws an <see cref="InvalidOperationException"/> when <paramref name="defaultValue"/> is <see langword="null"/>.
+    /// </summary>
+    /// <typeparam name="TTarget">The target enum type.</typeparam>
+    /// <param name="source">The source enum value.</param>
+    /// <param name="defaultValue">The default value if no match is found, or <see langword="null"/> to throw on mismatch.</param>
+    /// <returns>The matched target enum value, or <paramref name="defaultValue"/>.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when no matching name is found and <paramref name="defaultValue"/> is <see langword="null"/>.</exception>
+    public static TTarget MapTo<TTarget>(
+        this Enum source,
+        TTarget? defaultValue = null)
+        where TTarget : struct, Enum
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
+        if (Enum.TryParse<TTarget>(source.ToString(), ignoreCase: true, out var result) &&
+            Enum.IsDefined(typeof(TTarget), result))
+        {
+            return result;
+        }
+
+        return defaultValue ?? throw new InvalidOperationException($"Cannot map '{source}' from {source.GetType().Name} to {typeof(TTarget).Name}.");
     }
 
     /// <summary>Gets the attribute value.</summary>
