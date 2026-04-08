@@ -183,6 +183,13 @@ Configures ASP.NET Core API behavior options for model validation and error resp
 >IncludeResponseHeaderParameters
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether response header parameters should be included in logs.
+#### MaxRequestBodyBufferSize
+>```csharp
+>MaxRequestBodyBufferSize
+>```
+><b>Summary:</b> Gets or sets the maximum request body size in bytes that will be buffered for logging.
+>
+><b>Remarks:</b> When the request body exceeds this limit, buffering is still enabled but the body content is not captured in logs. This prevents memory exhaustion from excessively large request bodies.
 #### SkipSignalrRequests
 >```csharp
 >SkipSignalrRequests
@@ -221,6 +228,13 @@ Configuration options for the REST API framework.
 >AllowAnonymousAccessForDevelopment
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether to allow anonymous access in Development environment.
+#### AllowedCorsOrigins
+>```csharp
+>AllowedCorsOrigins
+>```
+><b>Summary:</b> Gets or sets the allowed CORS origins for the API.
+>
+><b>Remarks:</b> When null or empty, a permissive policy (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is used. When specified, only the listed origins are allowed. Set this in production to prevent CSRF attacks.
 #### AssemblyPairs
 >```csharp
 >AssemblyPairs
@@ -321,7 +335,7 @@ Configuration options for the error handling exception filter.
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether to include exception details in error responses.
 >
-><b>Remarks:</b> When true, includes exception messages in the response. Set to false in production environments to avoid exposing internal implementation details.
+><b>Remarks:</b> When true, includes exception messages in the response. Defaults to false to avoid exposing internal implementation details in production. Set to true in development environments for easier debugging.
 #### UseProblemDetailsAsResponseBody
 >```csharp
 >UseProblemDetailsAsResponseBody
