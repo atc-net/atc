@@ -506,7 +506,7 @@ public static class ProcessHelper
             KillByName(processName);
 
             return await Task
-                .FromResult(true)
+                .FromResult(false)
                 .ConfigureAwait(false);
         }
     }

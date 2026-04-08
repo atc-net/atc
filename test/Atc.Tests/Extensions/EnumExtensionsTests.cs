@@ -16,6 +16,15 @@ public class EnumExtensionsTests
         bool expected,
         DayOfWeek value1,
         DayOfWeek value2)
+        => Assert.Equal(expected, ((Enum)value1).IsSet(value2));
+
+    [Theory]
+    [InlineData(true, DayOfWeek.Monday, DayOfWeek.Monday)]
+    [InlineData(false, DayOfWeek.Monday, DayOfWeek.Tuesday)]
+    public void IsSet_Generic(
+        bool expected,
+        DayOfWeek value1,
+        DayOfWeek value2)
         => Assert.Equal(expected, value1.IsSet(value2));
 
     [Theory]
