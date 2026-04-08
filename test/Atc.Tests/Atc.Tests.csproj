@@ -7,17 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.Decompiler" Version="9.1.0.7988" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="10.0.0.8330" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Atc.CodeDocumentation\Atc.CodeDocumentation.csproj" />
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
     <ProjectReference Include="..\..\src\Atc\Atc.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="xunit.v3.mtp-v2" Version="3.2.1" />
   </ItemGroup>
 
 </Project>
