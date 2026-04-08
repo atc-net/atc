@@ -2398,6 +2398,16 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to extract from.<br />
 >
 ><b>Returns:</b> The content between &lt; and &gt; characters, or the original string if no such pattern exists.
+#### GetValueBetweenLessAndGreaterThanCharsIfExist
+>```csharp
+>ReadOnlySpan<char> GetValueBetweenLessAndGreaterThanCharsIfExist(this ReadOnlySpan<char> value)
+>```
+><b>Summary:</b> Extracts the content between the first less-than (&lt;) and greater-than (&gt;) characters if they exist.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to extract from.<br />
+>
+><b>Returns:</b> The content between &lt; and &gt; characters, or the original string if no such pattern exists.
 #### Humanize
 >```csharp
 >string Humanize(this string value)
@@ -2411,6 +2421,19 @@ Extensions for the string class.
 #### IndexersOf
 >```csharp
 >int[] IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
+>```
+><b>Summary:</b> Finds all indexes of a pattern within the string.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to search within.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pattern`&nbsp;&nbsp;-&nbsp;&nbsp;The pattern to search for.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCaseSensitive`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , performs case-insensitive matching.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useEndOfPatternToMatch`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , returns the index at the end of each pattern match; otherwise returns the start index.<br />
+>
+><b>Returns:</b> An array of integers representing all indexes where the pattern was found.
+#### IndexersOf
+>```csharp
+>int[] IndexersOf(this ReadOnlySpan<char> value, ReadOnlySpan<char> pattern, StringComparison comparison = OrdinalIgnoreCase)
 >```
 ><b>Summary:</b> Finds all indexes of a pattern within the string.
 >
@@ -2711,6 +2734,16 @@ Extensions for the string class.
 #### Truncate
 >```csharp
 >string Truncate(this string value, int maxLength, string appendValue = ...)
+>```
+><b>Summary:</b> Truncates the specified maximum length.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxLength`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum length.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`appendValue`&nbsp;&nbsp;-&nbsp;&nbsp;The append value.<br />
+#### Truncate
+>```csharp
+>ReadOnlySpan<char> Truncate(this ReadOnlySpan<char> value, int maxLength)
 >```
 ><b>Summary:</b> Truncates the specified maximum length.
 >
