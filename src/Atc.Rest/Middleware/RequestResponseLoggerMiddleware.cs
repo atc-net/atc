@@ -66,10 +66,11 @@ public class RequestResponseLoggerMiddleware
         var logModel = await CreateRequestResponseLogModel(httpContext);
 
         Stream? originalResponseBody = null;
-        using var swapStream = new MemoryStream();
+        MemoryStream? swapStream = null;
         if (apiOptions.RequestResponseLoggerOptions.IncludeResponseBody)
         {
             // Temporarily replace the HttpResponseStream, which is a write-only stream, with a MemoryStream to capture its value in-flight.
+            swapStream = new MemoryStream();
             var response = httpContext.Response;
             originalResponseBody = response.Body;
             response.Body = swapStream;
@@ -91,29 +92,37 @@ public class RequestResponseLoggerMiddleware
             apiOptions.RequestResponseLoggerOptions.IncludeResponseHeaderParameters);
 
         if (apiOptions.RequestResponseLoggerOptions.IncludeResponseBody &&
-            originalResponseBody is not null)
+            originalResponseBody is not null &&
+            swapStream is not null)
         {
-            if (logModel.Response.ContentType is not null &&
-                IsBinaryContent(logModel.Response.ContentType))
+            try
             {
-                swapStream.Seek(0, SeekOrigin.Begin);
-                await swapStream.CopyToAsync(originalResponseBody);
-                httpContext.Response.Body = originalResponseBody;
+                if (logModel.Response.ContentType is not null &&
+                    IsBinaryContent(logModel.Response.ContentType))
+                {
+                    swapStream.Seek(0, SeekOrigin.Begin);
+                    await swapStream.CopyToAsync(originalResponseBody);
+                    httpContext.Response.Body = originalResponseBody;
 
-                logModel.Response.Body = BinaryDataRedactedString;
+                    logModel.Response.Body = BinaryDataRedactedString;
+                }
+                else
+                {
+                    swapStream.Seek(0, SeekOrigin.Begin);
+                    var responseBodyText = await new StreamReader(swapStream).ReadToEndAsync();
+
+                    swapStream.Seek(0, SeekOrigin.Begin);
+                    await swapStream.CopyToAsync(originalResponseBody);
+                    httpContext.Response.Body = originalResponseBody;
+
+                    StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
+
+                    logModel.Response.Body = responseBodyText;
+                }
             }
-            else
+            finally
             {
-                swapStream.Seek(0, SeekOrigin.Begin);
-                var responseBodyText = await new StreamReader(swapStream).ReadToEndAsync();
-
-                swapStream.Seek(0, SeekOrigin.Begin);
-                await swapStream.CopyToAsync(originalResponseBody);
-                httpContext.Response.Body = originalResponseBody;
-
-                StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
-
-                logModel.Response.Body = responseBodyText;
+                await swapStream.DisposeAsync();
             }
         }
 
