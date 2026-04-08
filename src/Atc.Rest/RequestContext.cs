@@ -23,7 +23,7 @@ public class RequestContext : IRequestContext
 
     /// <inheritdoc />
     public string CallingIdentity
-        => accessor.HttpContext?.User!.GetIdentity() ?? string.Empty;
+        => accessor.HttpContext?.User?.GetIdentity() ?? string.Empty;
 
     /// <inheritdoc />
     public string OnBehalfOfIdentity

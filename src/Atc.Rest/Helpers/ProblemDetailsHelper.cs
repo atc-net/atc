@@ -25,7 +25,6 @@ public static class ProblemDetailsHelper
     /// <param name="value">The JSON string to deserialize.</param>
     /// <param name="problemDetails">When this method returns, contains the deserialized ProblemDetails if successful; otherwise, null.</param>
     /// <returns>True if deserialization succeeded; otherwise, false.</returns>
-    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static bool TrySerializeToProblemDetails(
         string value,
         out ProblemDetails? problemDetails)
@@ -37,7 +36,7 @@ public static class ProblemDetailsHelper
                 problemDetails = JsonSerializer.Deserialize<ProblemDetails>(value, JsonSerializerOptionsFactory.Create())!;
                 return true;
             }
-            catch
+            catch (JsonException)
             {
                 problemDetails = null;
                 return false;
