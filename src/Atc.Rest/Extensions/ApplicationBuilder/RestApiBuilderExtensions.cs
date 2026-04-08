@@ -73,8 +73,6 @@ public static class RestApiBuilderExtensions
             app.UseDeveloperExceptionPage();
         }
 
-        setupAction(app);
-
         if (restApiOptions.AllowedCorsOrigins is { Count: > 0 })
         {
             app.UseCors(options =>
@@ -103,6 +101,8 @@ public static class RestApiBuilderExtensions
         {
             app.UseMiddleware<RequestResponseLoggerMiddleware>();
         }
+
+        setupAction(app);
 
         if (!env.IsDevelopment())
         {

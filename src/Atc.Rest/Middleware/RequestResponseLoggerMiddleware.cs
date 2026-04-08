@@ -236,29 +236,26 @@ public class RequestResponseLoggerMiddleware
 
     private void Log(RequestResponseLogModel logModel)
     {
-        if (string.IsNullOrEmpty(logModel.ExceptionMessage))
+        var logLevel = string.IsNullOrEmpty(logModel.ExceptionMessage)
+            ? apiOptions.RequestResponseLoggerOptions.DefaultLogLevel
+            : LogLevel.Error;
+
+        if (!logger.IsEnabled(logLevel))
         {
-            switch (apiOptions.RequestResponseLoggerOptions.DefaultLogLevel)
-            {
-                case LogLevel.Trace:
-                    logger.LogTrace(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
-                    break;
-                case LogLevel.Debug:
-                    logger.LogDebug(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
-                    break;
-                case LogLevel.Information:
-                case LogLevel.Warning:
-                case LogLevel.Error:
-                case LogLevel.Critical:
-                case LogLevel.None:
-                    logger.LogInformation(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
-                    break;
-            }
+            return;
         }
-        else
-        {
-            logger.LogError(JsonSerializer.Serialize(logModel, jsonSerializerOptions));
-        }
+
+#pragma warning disable CA2254 // Template should be a static expression
+        logger.Log(
+            logLevel,
+            "{System} {Method} {Path} {Status} {ExecutionTime} {RequestResponseLog}",
+            logModel.System,
+            logModel.Request.Method,
+            logModel.Request.Path,
+            logModel.Response?.Status,
+            logModel.ExecutionTime,
+            JsonSerializer.Serialize(logModel, jsonSerializerOptions));
+#pragma warning restore CA2254
     }
 
     private static bool IsBinaryContent(string contentType)
