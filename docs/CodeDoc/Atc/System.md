@@ -1705,6 +1705,27 @@ Extension methods for enumerations.
 >```csharp
 >Assert.True(DayOfWeek.Monday.IsSet(DayOfWeek.Monday));
 >```
+#### IsSet
+>```csharp
+>bool IsSet(this T enumeration, T flags)
+>```
+><b>Summary:</b> Determines whether the specified enumeration match another enumeration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchTo`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to match.<br />
+>
+><b>Returns:</b> true on match; otherwise false.
+>
+><b>Code usage:</b>
+>```csharp
+>bool match = DayOfWeek.Monday.IsSet(DayOfWeek.Monday);
+>```
+>
+><b>Code example:</b>
+>```csharp
+>Assert.True(DayOfWeek.Monday.IsSet(DayOfWeek.Monday));
+>```
 #### MapTo
 >```csharp
 >TTarget MapTo(this Enum source, TTarget? defaultValue = null)
