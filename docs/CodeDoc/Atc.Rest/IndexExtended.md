@@ -123,6 +123,7 @@
      - IncludeRequestQueryParameters
      - IncludeResponseBody
      - IncludeResponseHeaderParameters
+     - MaxRequestBodyBufferSize
      - SkipSignalrRequests
      - SkipSwaggerRequests
   -  Methods
@@ -130,6 +131,7 @@
 - [RestApiOptions](Atc.Rest.Options.md#restapioptions)
   -  Properties
      - AllowAnonymousAccessForDevelopment
+     - AllowedCorsOrigins
      - AssemblyPairs
      - Authorization
      - EnableRequestResponseLogger
