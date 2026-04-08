@@ -30,6 +30,18 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(selector));
         }
 
+        if (source is ICollection<TSource> collection)
+        {
+            var result = new TResult[collection.Count];
+            var i = 0;
+            foreach (var item in collection)
+            {
+                result[i++] = selector(item);
+            }
+
+            return result;
+        }
+
         return source
             .Select(selector)
             .ToArray();
@@ -59,9 +71,16 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(selector));
         }
 
-        return source
-            .Select(selector)
-            .ToList();
+        var list = source is ICollection<TSource> collection
+            ? new List<TResult>(collection.Count)
+            : new List<TResult>();
+
+        foreach (var item in source)
+        {
+            list.Add(selector(item));
+        }
+
+        return list;
     }
 
     /// <summary>
@@ -106,12 +125,13 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
+        await Task.Yield();
+
         var count = 0;
         foreach (var _ in source)
         {
             cancellationToken.ThrowIfCancellationRequested();
             count++;
-            await Task.Yield();
         }
 
         return count;
@@ -134,12 +154,13 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
+        await Task.Yield();
+
         var list = new List<T>();
         foreach (var item in source)
         {
             cancellationToken.ThrowIfCancellationRequested();
             list.Add(item);
-            await Task.Yield();
         }
 
         return list;
@@ -156,11 +177,12 @@ public static class EnumerableExtensions
         IEnumerable<T> source,
         [EnumeratorCancellation] CancellationToken cancellationToken)
     {
+        await Task.Yield();
+
         foreach (var item in source)
         {
             cancellationToken.ThrowIfCancellationRequested();
             yield return item;
-            await Task.Yield();
         }
     }
 }

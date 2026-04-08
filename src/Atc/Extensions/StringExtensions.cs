@@ -32,6 +32,8 @@ public static class StringExtensions
     private static readonly Lazy<Regex> RxStringFormatParameterDoubleTemplatePlaceholder = new(() => new Regex("{{.*?}}", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(5)));
     private static readonly Lazy<Regex> RxUnderscore = new(() => new Regex(@"_", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxCamelCase = new(() => new Regex(@"[a-z][A-Z]", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxWordCountClean = new(() => new Regex("[^a-zA-Z0-9 ]", RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxWordCountSplit = new(() => new Regex(@"[\S]+", RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<MatchEvaluator> SplitCamelCaseString = new(() => m =>
     {
         var x = m.ToString();
@@ -130,10 +132,9 @@ public static class StringExtensions
             return -1;
         }
 
-        var rgx = new Regex("[^a-zA-Z0-9 ]", RegexOptions.None, TimeSpan.FromSeconds(1));
-        value = rgx.Replace(value, string.Empty);
+        value = RxWordCountClean.Value.Replace(value, string.Empty);
 
-        return Regex.Matches(value, @"[\S]+", RegexOptions.None, TimeSpan.FromSeconds(1)).Count;
+        return RxWordCountSplit.Value.Matches(value).Count;
     }
 
     /// <summary>
