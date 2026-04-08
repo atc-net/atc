@@ -299,7 +299,15 @@ public static class SimpleTypeHelper
         string value,
         StringComparison comparison = StringComparison.Ordinal)
     {
+        if (comparison == StringComparison.Ordinal)
+        {
+            return ReverseSimpleTypeLookup.ContainsKey(value);
+        }
+
         var item = BeautifySimpleTypeLookup.FirstOrDefault(x => x.Value.Equals(value, comparison));
         return item.Key is not null;
     }
+
+    private static readonly Dictionary<string, Type> ReverseSimpleTypeLookup =
+        BeautifySimpleTypeLookup.ToDictionary(x => x.Value, x => x.Key, StringComparer.Ordinal);
 }
