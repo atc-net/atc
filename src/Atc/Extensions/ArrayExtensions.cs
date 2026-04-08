@@ -47,17 +47,11 @@ public static class ArrayExtensions
         }
 
         var list = new List<string>(array.Length);
+        var seen = removeDuplicates ? new HashSet<string>(StringComparer.OrdinalIgnoreCase) : null;
         for (var i = 0; i < array.Length; i++)
         {
             var s = array.GetValue(i)?.ToString() ?? string.Empty;
-            if (removeDuplicates)
-            {
-                if (!list.Contains(s, StringComparer.OrdinalIgnoreCase))
-                {
-                    list.Add(s);
-                }
-            }
-            else
+            if (seen is null || seen.Add(s))
             {
                 list.Add(s);
             }

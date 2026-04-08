@@ -7,14 +7,14 @@ namespace System;
 /// </summary>
 public static class StringHasIsExtensions
 {
-    private static readonly Lazy<Regex> RxAlpha = new(() => new Regex("[^a-zA-Z]", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxAlphaNumeric = new(() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxEmailAddress = new(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxGuid = new(() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxNumeric = new(() => new Regex("[^0-9]", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxKey = new(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
-    private static readonly Lazy<Regex> RxHtmlTags = new(() => new Regex(@"<[^>]+>", RegexOptions.Multiline, TimeSpan.FromSeconds(5)));
-    private static readonly Lazy<Regex> RxSingleWord = new(() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxAlpha = new(() => new Regex("[^a-zA-Z]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxAlphaNumeric = new(() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxEmailAddress = new(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxGuid = new(() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxNumeric = new(() => new Regex("[^0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxKey = new(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxHtmlTags = new(() => new Regex(@"<[^>]+>", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(5)));
+    private static readonly Lazy<Regex> RxSingleWord = new(() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
 
     /// <summary>
     /// Determines whether [has HTML tags] [the specified value].
@@ -283,8 +283,20 @@ public static class StringHasIsExtensions
             return false;
         }
 
-        var countLeft = value.Count(x => x == '{');
-        var countRight = value.Count(x => x == '}');
+        var countLeft = 0;
+        var countRight = 0;
+        foreach (var c in value)
+        {
+            if (c == '{')
+            {
+                countLeft++;
+            }
+            else if (c == '}')
+            {
+                countRight++;
+            }
+        }
+
         if (countLeft != countRight)
         {
             return false;
@@ -455,15 +467,16 @@ public static class StringHasIsExtensions
         var sum = 0;
         for (var i = 0; i < 7; i++)
         {
-            sum += int.Parse(cvrNumber[i].ToString(Thread.CurrentThread.CurrentCulture), Thread.CurrentThread.CurrentCulture) * validate[i];
+            sum += (cvrNumber[i] - '0') * validate[i];
         }
 
-        if (sum % 11 == 0 && int.Parse(cvrNumber[7].ToString(Thread.CurrentThread.CurrentCulture), Thread.CurrentThread.CurrentCulture) == 0)
+        var lastDigit = cvrNumber[7] - '0';
+        if (sum % 11 == 0 && lastDigit == 0)
         {
             return true;
         }
 
-        return (11 - (sum % 11)).Equals(int.Parse(cvrNumber[7].ToString(Thread.CurrentThread.CurrentCulture), Thread.CurrentThread.CurrentCulture));
+        return (11 - (sum % 11)) == lastDigit;
     }
 
     /// <summary>
@@ -497,13 +510,7 @@ public static class StringHasIsExtensions
             return false;
         }
 
-        cprNumber = cprNumber
-            .Replace(" ", string.Empty, StringComparison.Ordinal)
-            .Replace("-", string.Empty, StringComparison.Ordinal)
-            .Replace("/", string.Empty, StringComparison.Ordinal)
-            .Replace(".", string.Empty, StringComparison.Ordinal)
-            .Replace(":", string.Empty, StringComparison.Ordinal)
-            .Trim();
+        cprNumber = string.Concat(cprNumber.Where(static c => c is not (' ' or '-' or '/' or '.' or ':')));
         if (!IsDigitOnly(cprNumber))
         {
             return false;
