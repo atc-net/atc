@@ -6,7 +6,10 @@ public class ExceptionTelemetryMiddlewareTests
     public async Task InvokeAsync()
     {
         // Arrange
-        using var telemetryConfiguration = new TelemetryConfiguration();
+        using var telemetryConfiguration = new TelemetryConfiguration
+        {
+            ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+        };
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
         var middleware = new ExceptionTelemetryMiddleware(
             async innerHttpContext =>

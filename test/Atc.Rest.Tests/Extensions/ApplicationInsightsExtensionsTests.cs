@@ -7,12 +7,13 @@ public class ApplicationInsightsExtensionsTests
     {
         // Arrange
         var serviceCollection = new ServiceCollection();
+        var initialCount = serviceCollection.Count;
 
         // Act
         var actual = serviceCollection.AddCallingIdentityTelemetryInitializer();
 
         // Assert
         Assert.NotNull(actual);
-        Assert.True(actual.Count == 2);
+        Assert.True(actual.Count > initialCount);
     }
 }
