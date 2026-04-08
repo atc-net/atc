@@ -20,7 +20,7 @@ public class ApiVersionOperationFilter : IOperationFilter
         ArgumentNullException.ThrowIfNull(context);
 
         var apiVersionParameter = operation
-            .Parameters
+            .Parameters?
             .FirstOrDefault(p => string.Equals(p.Name, ApiVersionConstants.ApiVersionQueryParameter, StringComparison.Ordinal));
 
         if (apiVersionParameter is not null)
@@ -35,7 +35,7 @@ public class ApiVersionOperationFilter : IOperationFilter
     /// <param name="apiVersionParameter">The API version parameter to configure.</param>
     /// <param name="context">The <see cref="OperationFilterContext"/> containing parameter descriptions.</param>
     protected static void ConfigureApiVersion(
-        OpenApiParameter apiVersionParameter,
+        IOpenApiParameter apiVersionParameter,
         OperationFilterContext context)
     {
         ArgumentNullException.ThrowIfNull(apiVersionParameter);
@@ -47,17 +47,15 @@ public class ApiVersionOperationFilter : IOperationFilter
 
         apiVersionParameter.Description ??= description?.ModelMetadata?.Description;
 
-        if (apiVersionParameter.Schema.Default is null && description is not null)
+        if (apiVersionParameter.Schema?.Default is null && description is not null && apiVersionParameter.Schema is OpenApiSchema schema)
         {
-            apiVersionParameter.Schema.Default = new OpenApiString(description.DefaultValue!.ToString());
-
-            var openApiVersionList = new List<IOpenApiAny> { new OpenApiString(description.DefaultValue.ToString()) };
-            apiVersionParameter.Schema.Enum = openApiVersionList;
+            schema.Default = JsonValue.Create(description.DefaultValue!.ToString());
+            schema.Enum = new List<JsonNode> { JsonValue.Create(description.DefaultValue.ToString())! };
         }
 
-        if (description is not null)
+        if (description is not null && apiVersionParameter is OpenApiParameter concreteParameter)
         {
-            apiVersionParameter.Required |= description.IsRequired;
+            concreteParameter.Required |= description.IsRequired;
         }
     }
 }

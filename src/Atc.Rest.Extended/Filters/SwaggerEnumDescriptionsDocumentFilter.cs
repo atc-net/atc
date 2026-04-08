@@ -22,7 +22,7 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
         ArgumentNullException.ThrowIfNull(context);
 
         // Add enum descriptions to result models
-        foreach (var item in swaggerDoc.Components.Schemas.Where(x => x.Value?.Enum?.Count > 0))
+        foreach (var item in (swaggerDoc.Components?.Schemas ?? new Dictionary<string, IOpenApiSchema>(StringComparer.Ordinal)).Where(x => x.Value?.Enum?.Count > 0))
         {
             var propertyEnums = item.Value.Enum;
             if (propertyEnums is not null && propertyEnums.Count > 0)
@@ -40,7 +40,7 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 
     [SuppressMessage("Minor Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "OK.")]
     private static void DescribeEnumParameters(
-        IDictionary<OperationType, OpenApiOperation>? operations,
+        IDictionary<HttpMethod, OpenApiOperation>? operations,
         OpenApiDocument document,
         IEnumerable<ApiDescription> apiDescriptions,
         string path)
@@ -58,8 +58,8 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 
         foreach (var operation in operations)
         {
-            var operationDescription = pathDescriptions.Find(a => a.HttpMethod!.Equals(operation.Key.ToString(), StringComparison.OrdinalIgnoreCase));
-            foreach (var param in operation.Value.Parameters)
+            var operationDescription = pathDescriptions.Find(a => a.HttpMethod!.Equals(operation.Key.Method, StringComparison.OrdinalIgnoreCase));
+            foreach (var param in operation.Value.Parameters ?? [])
             {
                 var parameterDescription = operationDescription?.ParameterDescriptions.FirstOrDefault(a => string.Equals(a.Name, param.Name, StringComparison.Ordinal));
 
@@ -73,17 +73,17 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
                     continue;
                 }
 
-                var paramEnum = document.Components.Schemas.FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
-                if (paramEnum.Value is not null)
+                var paramEnum = (document.Components?.Schemas ?? new Dictionary<string, IOpenApiSchema>(StringComparer.Ordinal)).FirstOrDefault(x => string.Equals(x.Key, enumType.Name, StringComparison.Ordinal));
+                if (paramEnum.Value?.Enum is not null)
                 {
-                    param.Description += DescribeEnum(paramEnum.Value.Enum, paramEnum.Key);
+                    param.Description += DescribeEnum(paramEnum.Value.Enum!, paramEnum.Key);
                 }
             }
         }
     }
 
     private static string DescribeEnum(
-        IEnumerable<IOpenApiAny> enums,
+        IEnumerable<JsonNode> enums,
         string propertyTypeName)
     {
         var enumDescriptions = new List<string>();
@@ -95,20 +95,16 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
 
         foreach (var item in enums)
         {
-            switch (item)
+            if (item is JsonValue jsonValue)
             {
-                case OpenApiInteger intItem:
+                if (jsonValue.TryGetValue<int>(out var intValue))
                 {
-                    var enumInt = intItem.Value;
-                    enumDescriptions.Add($"{enumInt} = {Enum.GetName(enumType, enumInt)}");
-                    break;
+                    enumDescriptions.Add($"{intValue} = {Enum.GetName(enumType, intValue)}");
                 }
-
-                case OpenApiString stringItem:
+                else if (jsonValue.TryGetValue<string>(out var stringValue))
                 {
-                    var enumInt = (int)Enum.Parse(enumType, stringItem.Value);
-                    enumDescriptions.Add($"{enumInt} = {stringItem.Value}");
-                    break;
+                    var enumInt = (int)Enum.Parse(enumType, stringValue);
+                    enumDescriptions.Add($"{enumInt} = {stringValue}");
                 }
             }
         }

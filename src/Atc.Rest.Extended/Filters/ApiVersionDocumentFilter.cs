@@ -43,12 +43,12 @@ public class ApiVersionDocumentFilter : IDocumentFilter
 
         foreach (var swaggerDocPath in swaggerDoc.Paths)
         {
-            foreach (var openApiOperation in swaggerDocPath.Value.Operations)
+            foreach (var openApiOperation in swaggerDocPath.Value.Operations ?? [])
             {
-                var operation = openApiOperation.Value.Parameters.FirstOrDefault(x => string.Equals(x.Name, parameterName, StringComparison.Ordinal));
+                var operation = openApiOperation.Value.Parameters?.FirstOrDefault(x => string.Equals(x.Name, parameterName, StringComparison.Ordinal));
                 if (operation is not null)
                 {
-                    openApiOperation.Value.Parameters.Remove(operation);
+                    openApiOperation.Value.Parameters!.Remove(operation);
                 }
             }
         }
