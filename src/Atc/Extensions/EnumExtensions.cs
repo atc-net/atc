@@ -6,6 +6,8 @@ namespace System;
 /// </summary>
 public static class EnumExtensions
 {
+    private static readonly ConcurrentDictionary<(Type EnumType, string MemberName, Type AttributeType), object?> AttributeCache = new();
+
     /// <summary>
     /// Determines whether all specified flags of another enumeration are set in the current enumeration.
     /// </summary>
@@ -47,6 +49,19 @@ public static class EnumExtensions
 
         return (Convert.ToUInt32(enumeration, GlobalizationConstants.EnglishCultureInfo) & Convert.ToUInt32(matchTo, GlobalizationConstants.EnglishCultureInfo)) != 0;
     }
+
+    /// <summary>
+    /// Determines whether the specified flags are set in the current enumeration value, without boxing.
+    /// </summary>
+    /// <typeparam name="T">The enum type.</typeparam>
+    /// <param name="enumeration">The enumeration value to check.</param>
+    /// <param name="flags">The flags to verify.</param>
+    /// <returns><see langword="true"/> if the flags are set; otherwise, <see langword="false"/>.</returns>
+    public static bool IsSet<T>(
+        this T enumeration,
+        T flags)
+        where T : struct, Enum
+        => enumeration.HasFlag(flags);
 
     /// <summary>Gets the name from the enumeration.</summary>
     /// <param name="enumeration">The enumeration.</param>
@@ -201,12 +216,17 @@ public static class EnumExtensions
             throw new ArgumentNullException(nameof(expression));
         }
 
-        var attribute = enumeration
-            .GetType()
-            .GetMember(enumeration.ToString())[0]
-            .GetCustomAttributes(typeof(T), true)
-            .Cast<T>()
-            .SingleOrDefault();
+        var cacheKey = (enumeration.GetType(), enumeration.ToString(), typeof(T));
+        var attribute = (T?)AttributeCache.GetOrAdd(cacheKey, _ =>
+        {
+            var members = enumeration.GetType().GetMember(enumeration.ToString());
+            return members.Length == 0
+                ? null
+                : members[0]
+                    .GetCustomAttributes(typeof(T), true)
+                    .Cast<T>()
+                    .SingleOrDefault();
+        });
 
         return (attribute is null
             ? default

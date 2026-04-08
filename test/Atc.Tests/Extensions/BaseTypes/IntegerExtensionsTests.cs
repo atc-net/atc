@@ -69,6 +69,10 @@ public class IntegerExtensionsTests
     [InlineData(false, 9)]
     [InlineData(false, 10)]
     [InlineData(true, 11)]
+    [InlineData(true, 97)]
+    [InlineData(false, 100)]
+    [InlineData(true, 7919)]
+    [InlineData(false, 7920)]
     public void IsPrime(
         bool expected,
         int input)
@@ -92,6 +96,10 @@ public class IntegerExtensionsTests
     [InlineData(false, 7)]
     [InlineData(true, 8)]
     [InlineData(false, 9)]
+    [InlineData(true, 16)]
+    [InlineData(true, 1024)]
+    [InlineData(true, 1073741824)]
+    [InlineData(false, int.MaxValue)]
     public void IsBinarySequence(
         bool expected,
         int input)

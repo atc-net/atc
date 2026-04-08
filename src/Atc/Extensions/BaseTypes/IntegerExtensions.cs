@@ -54,8 +54,18 @@ public static class IntegerExtensions
             return false;
         }
 
+        if (number == 2)
+        {
+            return true;
+        }
+
+        if ((number & 1) == 0)
+        {
+            return false;
+        }
+
         var bound = (int)Math.Sqrt(number);
-        for (var i = 2; i <= bound; i++)
+        for (var i = 3; i <= bound; i += 2)
         {
             if (number % i == 0)
             {
@@ -79,22 +89,7 @@ public static class IntegerExtensions
     /// bool value = number.IsBinarySequence();
     /// ]]></example>
     public static bool IsBinarySequence(this int number)
-    {
-        const int numberLimit = int.MaxValue / 2;
-        var numberToCheck = 1;
-        do
-        {
-            if (number == numberToCheck)
-            {
-                return true;
-            }
-
-            numberToCheck *= 2;
-        }
-        while (numberToCheck <= number && numberToCheck < numberLimit);
-
-        return false;
-    }
+        => number > 0 && (number & (number - 1)) == 0;
 
     /// <summary>
     /// Gets the month name by month number.
