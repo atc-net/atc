@@ -5152,6 +5152,7 @@
      - GetDescription(this Enum enumeration, bool useLocalizedIfPossible = True)
      - GetName(this Enum enumeration)
      - IsSet(this Enum enumeration, Enum matchTo)
+     - MapTo(this Enum source, TTarget? defaultValue = null)
      - ToStringLowerCase(this Enum enumeration)
      - ToStringUpperCase(this Enum enumeration)
 - [ExceptionExtensions](System.md#exceptionextensions)

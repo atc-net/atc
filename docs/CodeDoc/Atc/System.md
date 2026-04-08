@@ -1705,6 +1705,17 @@ Extension methods for enumerations.
 >```csharp
 >Assert.True(DayOfWeek.Monday.IsSet(DayOfWeek.Monday));
 >```
+#### MapTo
+>```csharp
+>TTarget MapTo(this Enum source, TTarget? defaultValue = null)
+>```
+><b>Summary:</b> Maps the current enum value to a target enum type by matching the name (case-insensitive). Returns `defaultValue` if no matching name is found, or throws an `System.InvalidOperationException` when `defaultValue` is <see langword="null" />.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source enum value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`defaultValue`&nbsp;&nbsp;-&nbsp;&nbsp;The default value if no match is found, or  to throw on mismatch.<br />
+>
+><b>Returns:</b> The matched target enum value, or `defaultValue`.
 #### ToStringLowerCase
 >```csharp
 >string ToStringLowerCase(this Enum enumeration)
