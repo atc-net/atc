@@ -280,6 +280,79 @@ public static class ProcessHelper
     }
 
     /// <summary>
+    /// Executes a process with cooperative cancellation and returns a detailed result.
+    /// </summary>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation cooperatively.</param>
+    /// <returns>A <see cref="ProcessExecutionResult"/> with detailed execution information.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Task<ProcessExecutionResult> ExecuteAsync(
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator = false,
+        ushort timeoutInSec = DefaultTimeoutInSec,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(fileInfo);
+        ArgumentNullException.ThrowIfNull(arguments);
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeExecuteAsync(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            runAsAdministrator,
+            timeoutInSec,
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Executes a process with a working directory, cooperative cancellation, and a detailed result.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation cooperatively.</param>
+    /// <returns>A <see cref="ProcessExecutionResult"/> with detailed execution information.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if any required parameter is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Task<ProcessExecutionResult> ExecuteAsync(
+        DirectoryInfo workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator = false,
+        ushort timeoutInSec = DefaultTimeoutInSec,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(workingDirectory);
+        ArgumentNullException.ThrowIfNull(fileInfo);
+        ArgumentNullException.ThrowIfNull(arguments);
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeExecuteAsync(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator,
+            timeoutInSec,
+            cancellationToken);
+    }
+
+    /// <summary>
     /// Terminates the entry assembly's process (the current application).
     /// </summary>
     /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.</param>
@@ -768,5 +841,105 @@ public static class ProcessHelper
             : fileInfo.Directory!.FullName;
 
         return process;
+    }
+
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    private static async Task<ProcessExecutionResult> InvokeExecuteAsync(
+        DirectoryInfo? workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator,
+        ushort timeoutInSec,
+        CancellationToken cancellationToken)
+    {
+        using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSec));
+        using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+            cancellationToken, timeoutCts.Token);
+
+        using var process = CreateProcess(
+            redirectStandard: true,
+            useRedirectStandardInput: false,
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
+
+        try
+        {
+            process.Start();
+
+#if NET9_0_OR_GREATER
+            var standardOutput = await process.StandardOutput
+                .ReadToEndAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+            var standardError = await process.StandardError
+                .ReadToEndAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+#else
+            var standardOutput = await process.StandardOutput
+                .ReadToEndAsync()
+                .ConfigureAwait(false);
+            var standardError = await process.StandardError
+                .ReadToEndAsync()
+                .ConfigureAwait(false);
+#endif
+
+            await process
+                .WaitForExitAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+
+            var message = string.IsNullOrEmpty(standardError)
+                ? standardOutput
+                : string.IsNullOrEmpty(standardOutput)
+                    ? standardError
+                    : $"{standardOutput}{Environment.NewLine}{standardError}";
+
+            return new ProcessExecutionResult(
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                Output: message,
+                ExitCode: process.ExitCode);
+        }
+        catch (OperationCanceledException) when (timeoutCts.IsCancellationRequested)
+        {
+            TryKillProcess(process);
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: $"Process timed out after {timeoutInSec} seconds and was terminated.",
+                IsTimedOut: true);
+        }
+        catch (OperationCanceledException)
+        {
+            TryKillProcess(process);
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: "Process was cancelled.",
+                IsCancelled: true);
+        }
+        catch (Exception ex)
+        {
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: ex.GetMessage(
+                    includeInnerMessage: true,
+                    includeExceptionName: true));
+        }
+    }
+
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    private static void TryKillProcess(Process process)
+    {
+        try
+        {
+            if (!process.HasExited)
+            {
+                process.KillTree();
+            }
+        }
+        catch
+        {
+            // Process may have already exited between the check and the kill
+        }
     }
 }

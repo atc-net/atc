@@ -323,4 +323,84 @@ public class ProcessHelperTests
             Assert.True(output.Contains(inputLine, StringComparison.Ordinal));
         }
     }
+
+    [Theory]
+    [InlineData("Commands in this context:", @"C:\Windows\System32\netsh.exe", "help")]
+    public async Task ExecuteAsync_With_FileInfo_Arguments(
+        string expectedLineInOutput,
+        string filePath,
+        string arguments)
+    {
+        // Arrange
+        var fileInfo = new FileInfo(filePath);
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(fileInfo, arguments);
+
+        // Assert
+        Assert.True(result.IsSuccessful);
+        Assert.False(result.IsTimedOut);
+        Assert.False(result.IsCancelled);
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains(expectedLineInOutput, result.Output, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("Commands in this context:", @"C:\", @"C:\Windows\System32\netsh.exe", "help")]
+    public async Task ExecuteAsync_With_WorkingDirectory_FileInfo_Arguments(
+        string expectedLineInOutput,
+        string workingDirectoryPath,
+        string filePath,
+        string arguments)
+    {
+        // Arrange
+        var directoryInfo = new DirectoryInfo(workingDirectoryPath);
+        var fileInfo = new FileInfo(filePath);
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(directoryInfo, fileInfo, arguments);
+
+        // Assert
+        Assert.True(result.IsSuccessful);
+        Assert.False(result.IsTimedOut);
+        Assert.False(result.IsCancelled);
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains(expectedLineInOutput, result.Output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_With_Timeout()
+    {
+        // Arrange
+        var fileInfo = new FileInfo(@"C:\Windows\System32\ping.exe");
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(
+            fileInfo,
+            "-n 100 127.0.0.1",
+            timeoutInSec: 1);
+
+        // Assert
+        Assert.False(result.IsSuccessful);
+        Assert.True(result.IsTimedOut);
+        Assert.False(result.IsCancelled);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_With_Cancellation()
+    {
+        // Arrange
+        var fileInfo = new FileInfo(@"C:\Windows\System32\ping.exe");
+        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(500));
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(
+            fileInfo,
+            "-n 100 127.0.0.1",
+            cancellationToken: cts.Token);
+
+        // Assert
+        Assert.False(result.IsSuccessful);
+        Assert.True(result.IsCancelled || result.IsTimedOut);
+    }
 }
