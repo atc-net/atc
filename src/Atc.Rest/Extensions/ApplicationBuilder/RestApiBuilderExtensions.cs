@@ -75,12 +75,25 @@ public static class RestApiBuilderExtensions
 
         setupAction(app);
 
-        app.UseCors(options =>
+        if (restApiOptions.AllowedCorsOrigins is { Count: > 0 })
         {
-            options.AllowAnyHeader();
-            options.AllowAnyMethod();
-            options.AllowAnyOrigin();
-        });
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+                options.WithOrigins(restApiOptions.AllowedCorsOrigins.ToArray());
+                options.AllowCredentials();
+            });
+        }
+        else
+        {
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+                options.AllowAnyOrigin();
+            });
+        }
 
         app.UseMiddleware<KeepAliveMiddleware>();
         app.UseMiddleware<RequestCorrelationMiddleware>();

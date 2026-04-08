@@ -53,6 +53,16 @@ public sealed class RequestResponseLoggerOptions
     /// </remarks>
     public bool IncludeResponseBody { get; set; } = true;
 
+    /// <summary>
+    /// Gets or sets the maximum request body size in bytes that will be buffered for logging.
+    /// </summary>
+    /// <value>The maximum body size in bytes. Default is 1 MB (1,048,576 bytes). Set to 0 for unlimited.</value>
+    /// <remarks>
+    /// When the request body exceeds this limit, buffering is still enabled but the body content
+    /// is not captured in logs. This prevents memory exhaustion from excessively large request bodies.
+    /// </remarks>
+    public long MaxRequestBodyBufferSize { get; set; } = 1_048_576;
+
     /// <inheritdoc />
     public override string ToString()
         => $"{nameof(DefaultLogLevel)}: {DefaultLogLevel}, {nameof(SkipSwaggerRequests)}: {SkipSwaggerRequests}, {nameof(SkipSignalrRequests)}: {SkipSignalrRequests}, {nameof(IncludeRequestQueryParameters)}: {IncludeRequestQueryParameters}, {nameof(IncludeRequestHeaderParameters)}: {IncludeRequestHeaderParameters}, {nameof(IncludeResponseHeaderParameters)}: {IncludeResponseHeaderParameters}, {nameof(IncludeResponseBody)}: {IncludeResponseBody}";

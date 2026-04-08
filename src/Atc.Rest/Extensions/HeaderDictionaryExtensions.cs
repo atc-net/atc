@@ -15,13 +15,20 @@ public static class HeaderDictionaryExtensions
     {
         ArgumentNullException.ThrowIfNull(headers);
 
-        return headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header)
-            ? header.FirstOrDefault()!
-            : headers.AddCorrelationId(
-                Guid
-                    .NewGuid()
-                    .ToString()
-                    .ToUpperInvariant());
+        if (headers.TryGetValue(WellKnownHttpHeaders.CorrelationId, out var header))
+        {
+            var value = header.FirstOrDefault();
+            if (!string.IsNullOrEmpty(value) && IsValidCorrelationId(value))
+            {
+                return value;
+            }
+        }
+
+        return headers.AddCorrelationId(
+            Guid
+                .NewGuid()
+                .ToString()
+                .ToUpperInvariant());
     }
 
     /// <summary>
@@ -78,4 +85,12 @@ public static class HeaderDictionaryExtensions
             ? header.FirstOrDefault()
             : null;
     }
+
+    /// <summary>
+    /// Validates that a correlation ID value is safe to use (GUID format, no control characters).
+    /// </summary>
+    private static bool IsValidCorrelationId(string value)
+        => value.Length <= 68 &&
+           !value.AsSpan().ContainsAny('\r', '\n') &&
+           Guid.TryParse(value, out _);
 }

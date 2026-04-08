@@ -25,8 +25,9 @@ public class RestApiOptionsErrorHandlingExceptionFilter
     /// Gets or sets a value indicating whether to include exception details in error responses.
     /// </summary>
     /// <remarks>
-    /// When true, includes exception messages in the response. Set to false in production environments
-    /// to avoid exposing internal implementation details.
+    /// When true, includes exception messages in the response. Defaults to false to avoid
+    /// exposing internal implementation details in production. Set to true in development
+    /// environments for easier debugging.
     /// </remarks>
-    public bool IncludeExceptionDetails { get; set; } = true;
+    public bool IncludeExceptionDetails { get; set; }
 }
