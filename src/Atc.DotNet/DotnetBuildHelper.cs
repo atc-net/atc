@@ -7,6 +7,7 @@ namespace Atc.DotNet;
 public static class DotnetBuildHelper
 {
     private const int DefaultTimeoutInSec = 1200;
+    private static readonly ConcurrentDictionary<string, Regex> RegexCache = new(StringComparer.Ordinal);
 
     /// <summary>
     /// Builds a .NET project or solution and collects compilation errors grouped by error code.
@@ -235,10 +236,10 @@ public static class DotnetBuildHelper
     {
         var errors = new Dictionary<string, int>(StringComparer.Ordinal);
 
-        var regex = new Regex(
-            regexPattern,
+        var regex = RegexCache.GetOrAdd(regexPattern, pattern => new Regex(
+            pattern,
             RegexOptions.Multiline | RegexOptions.Compiled,
-            TimeSpan.FromMinutes(2));
+            TimeSpan.FromMinutes(2)));
 
         var matchCollection = regex.Matches(buildResult);
         foreach (var matchGroups in matchCollection.Select(x => x.Groups))
