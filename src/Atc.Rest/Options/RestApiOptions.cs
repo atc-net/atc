@@ -73,6 +73,16 @@ public class RestApiOptions
     public bool UseValidateServiceRegistrations { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets the allowed CORS origins for the API.
+    /// </summary>
+    /// <remarks>
+    /// When null or empty, a permissive policy (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is used.
+    /// When specified, only the listed origins are allowed. Set this in production to prevent CSRF attacks.
+    /// </remarks>
+    [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
+    public List<string>? AllowedCorsOrigins { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to enable request/response logging middleware.
     /// </summary>
     public bool EnableRequestResponseLogger { get; set; }

@@ -145,14 +145,24 @@ public class RequestResponseLoggerMiddleware
         {
             Request =
             {
-                Body = await ReadBodyFromRequest(httpContext.Request),
+                Body = await ReadBodyFromRequest(httpContext.Request, apiOptions.RequestResponseLoggerOptions.MaxRequestBodyBufferSize),
             },
         };
 
-    private static async Task<string> ReadBodyFromRequest(HttpRequest request)
+    private static async Task<string> ReadBodyFromRequest(
+        HttpRequest request,
+        long maxBufferSize = 0)
     {
         // Ensure the request's body can be read multiple times for the next middleware in the pipeline
-        request.EnableBuffering();
+        if (maxBufferSize > 0)
+        {
+            request.EnableBuffering(bufferThreshold: (int)System.Math.Min(maxBufferSize, int.MaxValue));
+        }
+        else
+        {
+            request.EnableBuffering();
+        }
+
         using var streamReader = new StreamReader(request.Body, leaveOpen: true);
         var requestBody = await streamReader.ReadToEndAsync();
 
