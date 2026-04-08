@@ -10,7 +10,7 @@ internal sealed class LogCommand : Command<LogCommandSettings>
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public override int Execute(
+    protected override int Execute(
         CommandContext context,
         LogCommandSettings settings,
         CancellationToken cancellationToken)
