@@ -25,7 +25,7 @@ jobs:
       - name: ⚛️ Sets environment variables - Nerdbank.GitVersioning
         uses: dotnet/nbgv@master
         with:
-          setAllVars: true
+          setAllVars: false
 
       - name: ⚙️ Setup dotnet 10.0.x
         uses: actions/setup-dotnet@v5
@@ -60,14 +60,6 @@ jobs:
 
       - name: 📦 Push packages to NuGet
         run: |
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeAnalysis.CSharp.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.CodeDocumentation.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Console.Spectre.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.DotNet.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.OpenApi.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.Extended.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.FluentAssertions.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.Rest.HealthChecks.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
-          dotnet nuget push ${GITHUB_WORKSPACE}/packages/'Atc.XUnit.'${NBGV_NuGetPackageVersion}'.nupkg' -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
+          for pkg in ${GITHUB_WORKSPACE}/packages/*.nupkg; do
+            dotnet nuget push "$pkg" -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --skip-duplicate --no-symbols
+          done
