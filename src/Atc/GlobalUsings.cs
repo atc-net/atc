@@ -1,5 +1,8 @@
 global using System.Collections;
 global using System.Collections.Concurrent;
+#if NET9_0_OR_GREATER
+global using System.Collections.Frozen;
+#endif
 global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;
 global using System.Data;

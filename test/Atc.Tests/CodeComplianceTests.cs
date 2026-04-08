@@ -92,6 +92,7 @@ public class CodeComplianceTests
         {
             typeof(EnumAtcExtensions),
             typeof(EnumExtensions), // Generic IsSet<T> uses T : struct, Enum constraint for boxing-free overload
+            typeof(System.StringExtensions), // Span overloads use ReadOnlySpan<char> instead of string
             typeof(CharExtensions),
             typeof(ByteExtensions),
             typeof(ByteSizeExtensions), // Extension parameter type should "normal" match the class name-prefix, but because of the code-grouping, it is ok.

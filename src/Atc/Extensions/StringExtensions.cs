@@ -85,6 +85,39 @@ public static class StringExtensions
         return indexes.ToArray();
     }
 
+#if NET9_0_OR_GREATER
+    /// <summary>
+    /// Finds all indexes of a pattern within the span without allocating a new string.
+    /// </summary>
+    /// <param name="value">The span to search within.</param>
+    /// <param name="pattern">The pattern to search for.</param>
+    /// <param name="comparison">The string comparison type to use.</param>
+    /// <returns>An array of integers representing all start indexes where the pattern was found.</returns>
+    public static int[] IndexersOf(
+        this ReadOnlySpan<char> value,
+        ReadOnlySpan<char> pattern,
+        StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+    {
+        if (value.IsEmpty || pattern.IsEmpty)
+        {
+            return [];
+        }
+
+        var indexes = new List<int>();
+        var remaining = value;
+        var offset = 0;
+        int index;
+        while ((index = remaining.IndexOf(pattern, comparison)) != -1)
+        {
+            indexes.Add(offset + index);
+            offset += index + 1;
+            remaining = value[offset..];
+        }
+
+        return indexes.ToArray();
+    }
+#endif
+
     /// <summary>
     /// Counts the number of words in the string, excluding special characters.
     /// </summary>
@@ -128,6 +161,34 @@ public static class StringExtensions
             ? value.Substring(indexStart, indexEnd - indexStart)
             : value;
     }
+
+#if NET9_0_OR_GREATER
+    /// <summary>
+    /// Gets the content between the first less-than and greater-than characters in a span.
+    /// </summary>
+    /// <param name="value">The span to extract from.</param>
+    /// <returns>The content between &lt; and &gt; characters, or the original span.</returns>
+    public static ReadOnlySpan<char> GetValueBetweenLessAndGreaterThanCharsIfExist(
+        this ReadOnlySpan<char> value)
+    {
+        if (value.IsEmpty)
+        {
+            return value;
+        }
+
+        var indexStart = value.IndexOf('<');
+        if (indexStart == -1)
+        {
+            return value;
+        }
+
+        indexStart++;
+        var indexEnd = value.IndexOf('>');
+        return indexEnd > indexStart
+            ? value.Slice(indexStart, indexEnd - indexStart)
+            : value;
+    }
+#endif
 
     /// <summary>
     /// Counts the unique numeric placeholders in a string format pattern (e.g., {0}, {1}, {2}).
@@ -1894,6 +1955,21 @@ public static class StringExtensions
 
         return value;
     }
+
+#if NET9_0_OR_GREATER
+    /// <summary>
+    /// Truncates the span to the specified maximum length.
+    /// </summary>
+    /// <param name="value">The span to truncate.</param>
+    /// <param name="maxLength">The maximum length.</param>
+    /// <returns>The truncated span, or the original if shorter than <paramref name="maxLength"/>.</returns>
+    public static ReadOnlySpan<char> Truncate(
+        this ReadOnlySpan<char> value,
+        int maxLength)
+        => value.Length > maxLength
+            ? value[..maxLength]
+            : value;
+#endif
 
     /// <summary>
     /// TrimSpecial removes some doubles chars and none readable chars.
