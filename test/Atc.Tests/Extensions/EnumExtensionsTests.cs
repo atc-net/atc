@@ -86,4 +86,24 @@ public class EnumExtensionsTests
     [Fact]
     public void MapTo_WithoutDefault_Throws()
         => Assert.Throws<InvalidOperationException>(() => TestPetTypeB.Unknown.MapTo<TestPetTypeA>());
+
+    [Theory]
+    [InlineData("Display Red", TestColorType.Red)]
+    [InlineData("Display Green", TestColorType.Green)]
+    [InlineData("None", TestColorType.None)]
+    public void GetName_WithAttributes(
+        string expected,
+        TestColorType value)
+        => Assert.Equal(expected, value.GetName());
+
+    [Theory]
+    [InlineData("The color red", TestColorType.Red)]
+    [InlineData("The color blue", TestColorType.Blue)]
+    [InlineData("The color red", TestColorType.Red, false)]
+    [InlineData("None", TestColorType.None)]
+    public void GetDescription_WithAttributes(
+        string expected,
+        TestColorType value,
+        bool useLocalizedIfPossible = true)
+        => Assert.Equal(expected, value.GetDescription(useLocalizedIfPossible));
 }
