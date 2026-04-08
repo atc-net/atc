@@ -1,8 +1,10 @@
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Net.Http;
 global using System.Net.Mime;
 global using System.Reflection;
 global using System.Text;
+global using System.Text.Json.Nodes;
 
 global using Asp.Versioning;
 global using Asp.Versioning.ApiExplorer;
@@ -33,8 +35,7 @@ global using Microsoft.IdentityModel.Logging;
 global using Microsoft.IdentityModel.Protocols;
 global using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 global using Microsoft.IdentityModel.Tokens;
-global using Microsoft.OpenApi.Any;
-global using Microsoft.OpenApi.Models;
+global using Microsoft.OpenApi;
 
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using Swashbuckle.AspNetCore.SwaggerUI;

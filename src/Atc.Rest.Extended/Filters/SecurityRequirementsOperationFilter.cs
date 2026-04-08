@@ -40,23 +40,17 @@ public class SecurityRequirementsOperationFilter : IOperationFilter
             return;
         }
 
+        operation.Responses ??= new OpenApiResponses();
         operation.Responses["401"] = new OpenApiResponse { Description = "Unauthorized - Request was valid but the calling user does not have the required role" };
         operation.Responses["403"] = new OpenApiResponse { Description = "Forbidden - The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource" };
 
-        var oAuthScheme = new OpenApiSecurityScheme
-        {
-            Reference = new OpenApiReference
-            {
-                Type = ReferenceType.SecurityScheme,
-                Id = nameof(SecuritySchemeType.OAuth2),
-            },
-        };
+        var oAuthScheme = new OpenApiSecuritySchemeReference(nameof(SecuritySchemeType.OAuth2));
 
         operation.Security = new List<OpenApiSecurityRequirement>
         {
             new()
             {
-                [oAuthScheme] = requiredScopes,
+                [oAuthScheme] = requiredScopes!,
             },
         };
     }
