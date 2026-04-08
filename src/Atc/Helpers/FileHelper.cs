@@ -270,7 +270,9 @@ public static class FileHelper
 
 #if NETSTANDARD2_0
         cancellationToken.ThrowIfCancellationRequested();
+#pragma warning disable CA1849 // ReadAllTextAsync not available in netstandard2.0
         var content = File.ReadAllText(fileInfo.FullName, Encoding.UTF8);
+#pragma warning restore CA1849
 #else
         var content = await File
             .ReadAllTextAsync(fileInfo.FullName, Encoding.UTF8, cancellationToken)

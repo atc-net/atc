@@ -53,7 +53,9 @@ public static class FileInfoExtensions
 
 #if NETSTANDARD2_0
         cancellationToken.ThrowIfCancellationRequested();
+#pragma warning disable CA1849 // ReadAllBytesAsync not available in netstandard2.0
         return Task.FromResult(File.ReadAllBytes(fileInfo.FullName));
+#pragma warning restore CA1849
 #else
         return File.ReadAllBytesAsync(fileInfo.FullName, cancellationToken);
 #endif
