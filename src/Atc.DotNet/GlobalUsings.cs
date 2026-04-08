@@ -1,3 +1,4 @@
+global using System.Collections.Concurrent;
 global using System.Collections.ObjectModel;
 global using System.Data;
 global using System.Diagnostics;

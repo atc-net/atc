@@ -164,7 +164,7 @@ public abstract class IntegrationTestCliBase
 
         if (string.IsNullOrEmpty(searchFromSubFolderName))
         {
-            throw new ArgumentException($"{nameof(programTypeForCliExe)} is null og empty.", nameof(programTypeForCliExe));
+            throw new ArgumentException($"{nameof(programTypeForCliExe)} is null or empty.", nameof(programTypeForCliExe));
         }
 
         if (searchFromSubFolderName.IndexOfAny(new[] { '/', '\\' }) != -1)

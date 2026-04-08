@@ -21,7 +21,7 @@ public static class DotnetHelper
         if (pathEnvironmentVariable is not null &&
             pathEnvironmentVariable.Contains("dotnet", StringComparison.Ordinal))
         {
-            var sa = pathEnvironmentVariable.Split(';');
+            var sa = pathEnvironmentVariable.Split(Path.PathSeparator);
             foreach (var s in sa)
             {
                 if (s.Contains("dotnet", StringComparison.Ordinal))
