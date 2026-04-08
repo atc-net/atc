@@ -6,6 +6,6 @@
       "enabled": true
     },
     "setVersionVariables": true,
-    "setAllVariables": true
+    "setAllVariables": false
   }
 }
