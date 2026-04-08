@@ -54,4 +54,27 @@ public class EnumExtensionsTests
         string expected,
         DayOfWeek value)
         => Assert.Equal(expected, value.ToStringLowerCase());
+
+    [Theory]
+    [InlineData(TestPetTypeA.Dog, TestPetTypeB.Dog, TestPetTypeA.None)]
+    [InlineData(TestPetTypeA.Cat, TestPetTypeB.Cat, TestPetTypeA.None)]
+    [InlineData(TestPetTypeA.None, TestPetTypeB.Unknown, TestPetTypeA.None)]
+    [InlineData(TestPetTypeA.None, (TestPetTypeB)24, TestPetTypeA.None)]
+    public void MapTo_WithDefault(
+        TestPetTypeA expected,
+        TestPetTypeB source,
+        TestPetTypeA defaultValue)
+        => Assert.Equal(expected, source.MapTo<TestPetTypeA>(defaultValue));
+
+    [Theory]
+    [InlineData(TestPetTypeA.Dog, TestPetTypeB.Dog)]
+    [InlineData(TestPetTypeA.Cat, TestPetTypeB.Cat)]
+    public void MapTo_WithoutDefault(
+        TestPetTypeA expected,
+        TestPetTypeB source)
+        => Assert.Equal(expected, source.MapTo<TestPetTypeA>());
+
+    [Fact]
+    public void MapTo_WithoutDefault_Throws()
+        => Assert.Throws<InvalidOperationException>(() => TestPetTypeB.Unknown.MapTo<TestPetTypeA>());
 }
