@@ -4684,12 +4684,28 @@
      - TryParseToFloat(string value, bool useUiCulture, out float result)
      - TryParseToFloat(string value, out float result)
      - TryParseToInt(string value, out int result)
+- [ProcessExecutionResult](Atc.Helpers.md#processexecutionresult)
+  -  Properties
+     - ExitCode
+     - IsCancelled
+     - IsSuccessful
+     - IsTimedOut
+     - Output
+  -  Methods
+     - <Clone>$()
+     - Deconstruct(out bool IsSuccessful, out string Output, out int ExitCode, out bool IsTimedOut, out bool IsCancelled)
+     - Equals(ProcessExecutionResult other)
+     - Equals(object obj)
+     - GetHashCode()
+     - ToString()
 - [ProcessHelper](Atc.Helpers.md#processhelper)
   -  Static Methods
      - Execute(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - Execute(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAndIgnoreOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - ExecuteAsync(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - ExecuteAsync(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
@@ -5221,8 +5237,10 @@
      - GetStringFormatParameterTemplatePlaceholders(this string value, bool useDoubleBracket = True)
      - GetTemplateKeys(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
      - GetUniqueTemplateKeysWithOccurrence(this string value, TemplatePatternType templatePatternType = HardBrackets, bool includeTemplatePattern = False)
+     - GetValueBetweenLessAndGreaterThanCharsIfExist(this ReadOnlySpan&lt;char&gt; value)
      - GetValueBetweenLessAndGreaterThanCharsIfExist(this string value)
      - Humanize(this string value)
+     - IndexersOf(this ReadOnlySpan&lt;char&gt; value, ReadOnlySpan&lt;char&gt; pattern, StringComparison comparison = OrdinalIgnoreCase)
      - IndexersOf(this string value, string pattern, bool ignoreCaseSensitive = True, bool useEndOfPatternToMatch = False)
      - JavaScriptDecode(this string javaScript, bool htmlDecode)
      - JavaScriptEncode(this string javaScript, bool htmlEncode)
@@ -5251,6 +5269,7 @@
      - ToStreamFromBase64(this string base64Data)
      - TrimExtended(this string value)
      - TrimSpecial(this string value)
+     - Truncate(this ReadOnlySpan&lt;char&gt; value, int maxLength)
      - Truncate(this string value, int maxLength, string appendValue = ...)
      - TryParseDate(this string value, out DateTime dateTime)
      - TryParseDate(this string value, out DateTime dateTime, CultureInfo cultureInfo, DateTimeStyles dateTimeStyles = None)

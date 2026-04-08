@@ -2525,6 +2525,69 @@ Provides utility methods for parsing and validating numeric string values across
 
 <br />
 
+## ProcessExecutionResult
+Represents the result of a process execution, including success status, output, and timeout information.
+
+>```csharp
+>public class ProcessExecutionResult : IEquatable<ProcessExecutionResult>
+>```
+
+### Properties
+
+#### ExitCode
+>```csharp
+>ExitCode
+>```
+><b>Summary:</b> The process exit code, or -1 if the process was killed or did not start.
+#### IsCancelled
+>```csharp
+>IsCancelled
+>```
+><b>Summary:</b> Whether the process was terminated due to cancellation.
+#### IsSuccessful
+>```csharp
+>IsSuccessful
+>```
+><b>Summary:</b> Whether the process completed with exit code 0 and no stderr output.
+#### IsTimedOut
+>```csharp
+>IsTimedOut
+>```
+><b>Summary:</b> Whether the process was terminated due to a timeout.
+#### Output
+>```csharp
+>Output
+>```
+><b>Summary:</b> The combined stdout/stderr output, or a timeout/cancellation message.
+### Methods
+
+#### <Clone>$
+>```csharp
+>ProcessExecutionResult <Clone>$()
+>```
+#### Deconstruct
+>```csharp
+>void Deconstruct(out bool IsSuccessful, out string Output, out int ExitCode, out bool IsTimedOut, out bool IsCancelled)
+>```
+#### Equals
+>```csharp
+>bool Equals(object obj)
+>```
+#### Equals
+>```csharp
+>bool Equals(ProcessExecutionResult other)
+>```
+#### GetHashCode
+>```csharp
+>int GetHashCode()
+>```
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## ProcessHelper
 Provides utility methods for executing external processes, managing process lifecycles, and handling process termination.
 ><b>Remarks:</b> Supports executing processes with timeouts, capturing output, running as administrator, and killing processes by ID or name.
@@ -2591,6 +2654,34 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that returns <see langword="true" /> if the process executed successfully; otherwise, <see langword="false" />.
+#### ExecuteAsync
+>```csharp
+>Task<ProcessExecutionResult> ExecuteAsync(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Executes a process with cooperative cancellation and returns a detailed result.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation cooperatively.<br />
+>
+><b>Returns:</b> A `Atc.Helpers.ProcessExecutionResult` with detailed execution information.
+#### ExecuteAsync
+>```csharp
+>Task<ProcessExecutionResult> ExecuteAsync(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Executes a process with cooperative cancellation and returns a detailed result.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation cooperatively.<br />
+>
+><b>Returns:</b> A `Atc.Helpers.ProcessExecutionResult` with detailed execution information.
 #### ExecutePrompt
 >```csharp
 >Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)

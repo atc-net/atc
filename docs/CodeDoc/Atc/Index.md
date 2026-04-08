@@ -104,6 +104,7 @@
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
 - [NumberHelper](Atc.Helpers.md#numberhelper)
+- [ProcessExecutionResult](Atc.Helpers.md#processexecutionresult)
 - [ProcessHelper](Atc.Helpers.md#processhelper)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
 - [RegionInfoHelper](Atc.Helpers.md#regioninfohelper)
