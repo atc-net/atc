@@ -353,6 +353,87 @@ public static class ProcessHelper
     }
 
     /// <summary>
+    /// Starts a process without waiting for it to complete.
+    /// Supports UAC elevation via the "runas" verb when <paramref name="runAsAdministrator"/> is <see langword="true"/>.
+    /// </summary>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, launches the process with elevated privileges (triggers a UAC prompt on Windows).</param>
+    /// <returns>The started <see cref="Process"/>, or <see langword="null"/> if the process could not be started.</returns>
+    /// <remarks>
+    /// Unlike <see cref="Execute(FileInfo, string, bool, ushort, CancellationToken)"/> and <see cref="ExecuteAsync(FileInfo, string, bool, ushort, CancellationToken)"/>,
+    /// this method uses <c>UseShellExecute = true</c> and does not capture standard output or error.
+    /// This is suitable for launching GUI applications or detached processes.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Process? StartProcess(
+        FileInfo fileInfo,
+        string arguments = "",
+        bool runAsAdministrator = false)
+    {
+        if (fileInfo is null)
+        {
+            throw new ArgumentNullException(nameof(fileInfo));
+        }
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeStartProcess(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
+    }
+
+    /// <summary>
+    /// Starts a process with the specified working directory without waiting for it to complete.
+    /// Supports UAC elevation via the "runas" verb when <paramref name="runAsAdministrator"/> is <see langword="true"/>.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, launches the process with elevated privileges (triggers a UAC prompt on Windows).</param>
+    /// <returns>The started <see cref="Process"/>, or <see langword="null"/> if the process could not be started.</returns>
+    /// <remarks>
+    /// Unlike <see cref="Execute(DirectoryInfo, FileInfo, string, bool, ushort, CancellationToken)"/> and <see cref="ExecuteAsync(DirectoryInfo, FileInfo, string, bool, ushort, CancellationToken)"/>,
+    /// this method uses <c>UseShellExecute = true</c> and does not capture standard output or error.
+    /// This is suitable for launching GUI applications or detached processes.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Process? StartProcess(
+        DirectoryInfo workingDirectory,
+        FileInfo fileInfo,
+        string arguments = "",
+        bool runAsAdministrator = false)
+    {
+        if (workingDirectory is null)
+        {
+            throw new ArgumentNullException(nameof(workingDirectory));
+        }
+
+        if (fileInfo is null)
+        {
+            throw new ArgumentNullException(nameof(fileInfo));
+        }
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeStartProcess(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator);
+    }
+
+    /// <summary>
     /// Terminates the entry assembly's process (the current application).
     /// </summary>
     /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.</param>
@@ -800,6 +881,32 @@ public static class ProcessHelper
                     includeExceptionName: true),
                 ProcessId: processId);
         }
+    }
+
+    private static Process? InvokeStartProcess(
+        DirectoryInfo? workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator)
+    {
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = fileInfo.FullName,
+            Arguments = arguments,
+            UseShellExecute = true,
+        };
+
+        if (runAsAdministrator)
+        {
+            startInfo.Verb = "runas";
+        }
+
+        if (workingDirectory is not null && workingDirectory.Exists)
+        {
+            startInfo.WorkingDirectory = workingDirectory.FullName;
+        }
+
+        return Process.Start(startInfo);
     }
 
     private static Process CreateProcess(
