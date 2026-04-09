@@ -4710,6 +4710,8 @@
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
      - KillEntryCaller(int timeoutInSec = 30)
+     - StartProcess(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments = , bool runAsAdministrator = False)
+     - StartProcess(FileInfo fileInfo, string arguments = , bool runAsAdministrator = False)
 - [ReflectionHelper](Atc.Helpers.md#reflectionhelper)
   -  Static Methods
      - GetPrivateField(object target, string fieldName)

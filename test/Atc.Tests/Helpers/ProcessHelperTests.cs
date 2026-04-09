@@ -403,4 +403,63 @@ public class ProcessHelperTests
         Assert.False(result.IsSuccessful);
         Assert.True(result.IsCancelled || result.IsTimedOut);
     }
+
+    [Fact]
+    public void StartProcess_With_FileInfo_Arguments()
+    {
+        // Arrange
+        var fileInfo = new FileInfo(@"C:\Windows\System32\cmd.exe");
+
+        // Act
+        using var process = ProcessHelper.StartProcess(fileInfo, "/c echo hello");
+
+        // Assert
+        Assert.NotNull(process);
+        process.WaitForExit(5000);
+    }
+
+    [Fact]
+    public void StartProcess_With_WorkingDirectory_FileInfo_Arguments()
+    {
+        // Arrange
+        var directoryInfo = new DirectoryInfo(@"C:\");
+        var fileInfo = new FileInfo(@"C:\Windows\System32\cmd.exe");
+
+        // Act
+        using var process = ProcessHelper.StartProcess(directoryInfo, fileInfo, "/c echo hello");
+
+        // Assert
+        Assert.NotNull(process);
+        process.WaitForExit(5000);
+    }
+
+    [Fact]
+    public void StartProcess_Should_Throw_On_Null_FileInfo()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() =>
+            ProcessHelper.StartProcess(null!));
+    }
+
+    [Fact]
+    public void StartProcess_Should_Throw_On_Missing_File()
+    {
+        // Arrange
+        var fileInfo = new FileInfo(@"C:\nonexistent_file_that_does_not_exist.exe");
+
+        // Act & Assert
+        Assert.Throws<FileNotFoundException>(() =>
+            ProcessHelper.StartProcess(fileInfo));
+    }
+
+    [Fact]
+    public void StartProcess_With_WorkingDirectory_Should_Throw_On_Null_WorkingDirectory()
+    {
+        // Arrange
+        var fileInfo = new FileInfo(@"C:\Windows\System32\cmd.exe");
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() =>
+            ProcessHelper.StartProcess(null!, fileInfo));
+    }
 }

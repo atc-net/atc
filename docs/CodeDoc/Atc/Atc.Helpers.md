@@ -2731,6 +2731,34 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to terminate. Default is 30 seconds.<br />
 >
 ><b>Returns:</b> A tuple containing success status and a descriptive message.
+#### StartProcess
+>```csharp
+>Process StartProcess(FileInfo fileInfo, string arguments = , bool runAsAdministrator = False)
+>```
+><b>Summary:</b> Starts a process without waiting for it to complete. Supports UAC elevation via the "runas" verb when `runAsAdministrator` is <see langword="true" />.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , launches the process with elevated privileges (triggers a UAC prompt on Windows).<br />
+>
+><b>Returns:</b> The started `System.Diagnostics.Process`, or <see langword="null" /> if the process could not be started.
+>
+><b>Remarks:</b> Unlike `Atc.Helpers.ProcessHelper.Execute(System.IO.FileInfo,System.String,System.Boolean,System.UInt16,System.Threading.CancellationToken)` and `Atc.Helpers.ProcessHelper.ExecuteAsync(System.IO.FileInfo,System.String,System.Boolean,System.UInt16,System.Threading.CancellationToken)`, this method uses `UseShellExecute = true` and does not capture standard output or error. This is suitable for launching GUI applications or detached processes.
+#### StartProcess
+>```csharp
+>Process StartProcess(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments = , bool runAsAdministrator = False)
+>```
+><b>Summary:</b> Starts a process without waiting for it to complete. Supports UAC elevation via the "runas" verb when `runAsAdministrator` is <see langword="true" />.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , launches the process with elevated privileges (triggers a UAC prompt on Windows).<br />
+>
+><b>Returns:</b> The started `System.Diagnostics.Process`, or <see langword="null" /> if the process could not be started.
+>
+><b>Remarks:</b> Unlike `Atc.Helpers.ProcessHelper.Execute(System.IO.FileInfo,System.String,System.Boolean,System.UInt16,System.Threading.CancellationToken)` and `Atc.Helpers.ProcessHelper.ExecuteAsync(System.IO.FileInfo,System.String,System.Boolean,System.UInt16,System.Threading.CancellationToken)`, this method uses `UseShellExecute = true` and does not capture standard output or error. This is suitable for launching GUI applications or detached processes.
 
 <br />
 
