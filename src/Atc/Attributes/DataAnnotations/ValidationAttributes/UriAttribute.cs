@@ -12,6 +12,39 @@ namespace System.ComponentModel.DataAnnotations;
 public sealed class UriAttribute : ValidationAttribute
 {
     /// <summary>
+    /// A default configuration that allows all URI schemes and does not require a value.
+    /// </summary>
+    public static readonly UriAttribute Default = new();
+
+    /// <summary>
+    /// A preset configuration that only allows HTTP and HTTPS schemes and requires a value.
+    /// </summary>
+    public static readonly UriAttribute HttpOrHttps = new()
+    {
+        Required = true,
+        AllowHttp = true,
+        AllowHttps = true,
+        AllowFtp = false,
+        AllowFtps = false,
+        AllowFile = false,
+        AllowOpcTcp = false,
+    };
+
+    /// <summary>
+    /// A preset configuration that only allows OPC TCP scheme (opc.tcp://) URIs and requires a value.
+    /// </summary>
+    public static readonly UriAttribute OpcTcp = new()
+    {
+        Required = true,
+        AllowHttp = false,
+        AllowHttps = false,
+        AllowFtp = false,
+        AllowFtps = false,
+        AllowFile = false,
+        AllowOpcTcp = true,
+    };
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="UriAttribute"/> class with all URI schemes allowed.
     /// </summary>
     public UriAttribute()
@@ -122,6 +155,22 @@ public sealed class UriAttribute : ValidationAttribute
     }
 
     /// <summary>
+    /// Validates whether the specified value is a valid HTTP or HTTPS URI.
+    /// </summary>
+    /// <param name="value">The value to validate.</param>
+    /// <returns><c>true</c> if the value is a valid http:// or https:// URI; otherwise, <c>false</c>.</returns>
+    public static bool IsValidHttpOrHttps(object? value)
+        => HttpOrHttps.IsValid(value);
+
+    /// <summary>
+    /// Validates whether the specified value is a valid OPC TCP URI.
+    /// </summary>
+    /// <param name="value">The value to validate.</param>
+    /// <returns><c>true</c> if the value is a valid opc.tcp:// URI; otherwise, <c>false</c>.</returns>
+    public static bool IsValidOpcTcp(object? value)
+        => OpcTcp.IsValid(value);
+
+    /// <summary>
     /// Attempts to validate the specified string as a URI using default validation settings (all schemes allowed).
     /// </summary>
     /// <param name="value">The string value to validate.</param>
@@ -172,4 +221,26 @@ public sealed class UriAttribute : ValidationAttribute
 
         return false;
     }
+
+    /// <summary>
+    /// Attempts to validate the specified string as an HTTP or HTTPS URI.
+    /// </summary>
+    /// <param name="value">The string value to validate.</param>
+    /// <param name="errorMessage">When validation fails, contains a message describing the validation error.</param>
+    /// <returns><c>true</c> if the value is a valid http:// or https:// URI; otherwise, <c>false</c>.</returns>
+    public static bool TryIsValidHttpOrHttps(
+        string value,
+        out string errorMessage)
+        => TryIsValid(value, HttpOrHttps, out errorMessage);
+
+    /// <summary>
+    /// Attempts to validate the specified string as an OPC TCP URI.
+    /// </summary>
+    /// <param name="value">The string value to validate.</param>
+    /// <param name="errorMessage">When validation fails, contains a message describing the validation error.</param>
+    /// <returns><c>true</c> if the value is a valid opc.tcp:// URI; otherwise, <c>false</c>.</returns>
+    public static bool TryIsValidOpcTcp(
+        string value,
+        out string errorMessage)
+        => TryIsValid(value, OpcTcp, out errorMessage);
 }

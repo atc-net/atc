@@ -322,4 +322,38 @@ public class StringHasIsExtensionsTests
         bool expected,
         string input)
         => Assert.Equal(expected, input.IsEmailAddress());
+
+    [Theory]
+    [InlineData(true, "http://dr.dk")]
+    [InlineData(true, "https://dr.dk")]
+    [InlineData(true, "ftp://dr.dk")]
+    [InlineData(true, "file://c:/temp/file.txt")]
+    [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, "httpx://dr.dk")]
+    [InlineData(false, "not-a-uri")]
+    public void IsUri(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsUri());
+
+    [Theory]
+    [InlineData(true, "http://dr.dk")]
+    [InlineData(true, "https://dr.dk")]
+    [InlineData(false, "ftp://dr.dk")]
+    [InlineData(false, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, "not-a-uri")]
+    public void IsUriHttpOrHttps(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsUriHttpOrHttps());
+
+    [Theory]
+    [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, "http://dr.dk")]
+    [InlineData(false, "https://dr.dk")]
+    [InlineData(false, "not-a-uri")]
+    public void IsUriOpcTcp(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsUriOpcTcp());
 }

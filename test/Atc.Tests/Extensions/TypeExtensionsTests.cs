@@ -221,7 +221,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData(17, typeof(UriAttribute))]
+    [InlineData(21, typeof(UriAttribute))]
     [InlineData(6, typeof(LogKeyValueItem))]
     public void GetPublicDeclaredOnlyMethods(
         int expected,
