@@ -218,8 +218,45 @@ Validates that a property, field, or parameter contains a valid URI with an allo
 >public class UriAttribute : ValidationAttribute
 >```
 
+### Static Fields
+
+#### Default
+>```csharp
+>UriAttribute Default
+>```
+><b>Summary:</b> A default configuration that allows all URI schemes and does not require a value.
+#### HttpOrHttps
+>```csharp
+>UriAttribute HttpOrHttps
+>```
+><b>Summary:</b> A preset configuration that only allows HTTP and HTTPS schemes and requires a value.
+#### OpcTcp
+>```csharp
+>UriAttribute OpcTcp
+>```
+><b>Summary:</b> A preset configuration that only allows OPC TCP scheme (opc.tcp://) URIs and requires a value.
 ### Static Methods
 
+#### IsValidHttpOrHttps
+>```csharp
+>bool IsValidHttpOrHttps(object value)
+>```
+><b>Summary:</b> Validates whether the specified value is a valid HTTP or HTTPS URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to validate.<br />
+>
+><b>Returns:</b> `true` if the value is a valid http:// or https:// URI; otherwise, `false`.
+#### IsValidOpcTcp
+>```csharp
+>bool IsValidOpcTcp(object value)
+>```
+><b>Summary:</b> Validates whether the specified value is a valid OPC TCP URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to validate.<br />
+>
+><b>Returns:</b> `true` if the value is a valid opc.tcp:// URI; otherwise, `false`.
 #### TryIsValid
 >```csharp
 >bool TryIsValid(string value, out string errorMessage)
@@ -242,6 +279,28 @@ Validates that a property, field, or parameter contains a valid URI with an allo
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`errorMessage`&nbsp;&nbsp;-&nbsp;&nbsp;When validation fails, contains a message describing the validation error.<br />
 >
 ><b>Returns:</b> `true` if the value is a valid URI; otherwise, `false`.
+#### TryIsValidHttpOrHttps
+>```csharp
+>bool TryIsValidHttpOrHttps(string value, out string errorMessage)
+>```
+><b>Summary:</b> Attempts to validate the specified string as an HTTP or HTTPS URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string value to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`errorMessage`&nbsp;&nbsp;-&nbsp;&nbsp;When validation fails, contains a message describing the validation error.<br />
+>
+><b>Returns:</b> `true` if the value is a valid http:// or https:// URI; otherwise, `false`.
+#### TryIsValidOpcTcp
+>```csharp
+>bool TryIsValidOpcTcp(string value, out string errorMessage)
+>```
+><b>Summary:</b> Attempts to validate the specified string as an OPC TCP URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string value to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`errorMessage`&nbsp;&nbsp;-&nbsp;&nbsp;When validation fails, contains a message describing the validation error.<br />
+>
+><b>Returns:</b> `true` if the value is a valid opc.tcp:// URI; otherwise, `false`.
 ### Properties
 
 #### AllowFile

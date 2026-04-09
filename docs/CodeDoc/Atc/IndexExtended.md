@@ -5308,6 +5308,9 @@
      - IsSentence(this string value)
      - IsStringFormatParametersBalanced(this string value, bool isNumeric = True)
      - IsTrue(this string value)
+     - IsUri(this string value)
+     - IsUriHttpOrHttps(this string value)
+     - IsUriOpcTcp(this string value)
      - IsWord(this string value)
 - [StringNullOrEmptyException](System.md#stringnulloremptyexception)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
@@ -5421,9 +5424,17 @@
   -  Methods
      - IsValid(object value)
 - [UriAttribute](System.ComponentModel.DataAnnotations.md#uriattribute)
+  -  Static Fields
+     - UriAttribute Default
+     - UriAttribute HttpOrHttps
+     - UriAttribute OpcTcp
   -  Static Methods
+     - IsValidHttpOrHttps(object value)
+     - IsValidOpcTcp(object value)
      - TryIsValid(string value, UriAttribute attribute, out string errorMessage)
      - TryIsValid(string value, out string errorMessage)
+     - TryIsValidHttpOrHttps(string value, out string errorMessage)
+     - TryIsValidOpcTcp(string value, out string errorMessage)
   -  Properties
      - AllowFile
      - AllowFtp

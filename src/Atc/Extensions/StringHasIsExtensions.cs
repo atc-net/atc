@@ -8,9 +8,9 @@ namespace System;
 public static class StringHasIsExtensions
 {
 #if NET9_0_OR_GREATER
-    private static readonly System.Buffers.SearchValues<char> AlphaChars = System.Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    private static readonly System.Buffers.SearchValues<char> AlphaNumericChars = System.Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-    private static readonly System.Buffers.SearchValues<char> NumericChars = System.Buffers.SearchValues.Create("0123456789");
+    private static readonly Buffers.SearchValues<char> AlphaChars = Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    private static readonly Buffers.SearchValues<char> AlphaNumericChars = Buffers.SearchValues.Create("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    private static readonly Buffers.SearchValues<char> NumericChars = Buffers.SearchValues.Create("0123456789");
 #else
     private static readonly Lazy<Regex> RxAlpha = new(() => new Regex("[^a-zA-Z]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxAlphaNumeric = new(() => new Regex("[^a-zA-Z0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
@@ -562,4 +562,28 @@ public static class StringHasIsExtensions
     public static bool IsEmailAddress(this string value)
         => !string.IsNullOrEmpty(value) &&
            RxEmailAddress.Value.IsMatch(value);
+
+    /// <summary>
+    /// Determines whether the specified value is a valid URI with any supported scheme.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid URI; otherwise, <see langword="false" />.</returns>
+    public static bool IsUri(this string value)
+        => UriAttribute.Default.IsValid(value);
+
+    /// <summary>
+    /// Determines whether the specified value is a valid HTTP or HTTPS URI.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid http:// or https:// URI; otherwise, <see langword="false" />.</returns>
+    public static bool IsUriHttpOrHttps(this string value)
+        => UriAttribute.IsValidHttpOrHttps(value);
+
+    /// <summary>
+    /// Determines whether the specified value is a valid OPC TCP URI.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid opc.tcp:// URI; otherwise, <see langword="false" />.</returns>
+    public static bool IsUriOpcTcp(this string value)
+        => UriAttribute.IsValidOpcTcp(value);
 }

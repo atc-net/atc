@@ -3095,6 +3095,36 @@ StringHasIsExtensions.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value.<br />
+#### IsUri
+>```csharp
+>bool IsUri(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid URI with any supported scheme.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid URI; otherwise, <see langword="false" />.
+#### IsUriHttpOrHttps
+>```csharp
+>bool IsUriHttpOrHttps(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid HTTP or HTTPS URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid http:// or https:// URI; otherwise, <see langword="false" />.
+#### IsUriOpcTcp
+>```csharp
+>bool IsUriOpcTcp(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid OPC TCP URI.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid opc.tcp:// URI; otherwise, <see langword="false" />.
 #### IsWord
 >```csharp
 >bool IsWord(this string value)

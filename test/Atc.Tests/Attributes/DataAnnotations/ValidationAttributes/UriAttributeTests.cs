@@ -93,4 +93,82 @@ public class UriAttributeTests
         Assert.Equal(expected, actual);
         Assert.Equal(expectedMessage, errorMessage);
     }
+
+    [Theory]
+    [InlineData(true, "http://dr.dk")]
+    [InlineData(true, "https://dr.dk")]
+    [InlineData(true, "http://www.dr.dk")]
+    [InlineData(true, "https://www.dr.dk")]
+    [InlineData(false, null)]
+    [InlineData(false, "")]
+    [InlineData(false, "ftp://dr.dk")]
+    [InlineData(false, "ftps://dr.dk")]
+    [InlineData(false, "file://c:/temp/file.txt")]
+    [InlineData(false, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    public void IsValidHttpOrHttps(
+        bool expected,
+        string? input)
+    {
+        // Act
+        var actual = UriAttribute.IsValidHttpOrHttps(input);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(true, "", "http://dr.dk")]
+    [InlineData(true, "", "https://dr.dk")]
+    [InlineData(false, "The value is not a valid Uri.", "ftp://dr.dk")]
+    [InlineData(false, "The value is not a valid Uri.", "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, "The value is not a valid Uri.", "")]
+    public void TryIsValidHttpOrHttps(
+        bool expected,
+        string expectedMessage,
+        string input)
+    {
+        // Act
+        var actual = UriAttribute.TryIsValidHttpOrHttps(input, out var errorMessage);
+
+        // Assert
+        Assert.Equal(expected, actual);
+        Assert.Equal(expectedMessage, errorMessage);
+    }
+
+    [Theory]
+    [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, null)]
+    [InlineData(false, "")]
+    [InlineData(false, "https://dr.dk")]
+    [InlineData(false, "http://dr.dk")]
+    [InlineData(false, "ftp://dr.dk")]
+    [InlineData(false, "file://c:/temp/file.txt")]
+    public void IsValidOpcTcp(
+        bool expected,
+        string? input)
+    {
+        // Act
+        var actual = UriAttribute.IsValidOpcTcp(input);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(true, "", "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(false, "The value is not a valid Uri.", "https://dr.dk")]
+    [InlineData(false, "The value is not a valid Uri.", "http://dr.dk")]
+    [InlineData(false, "The value is not a valid Uri.", "")]
+    public void TryIsValidOpcTcp(
+        bool expected,
+        string expectedMessage,
+        string input)
+    {
+        // Act
+        var actual = UriAttribute.TryIsValidOpcTcp(input, out var errorMessage);
+
+        // Assert
+        Assert.Equal(expected, actual);
+        Assert.Equal(expectedMessage, errorMessage);
+    }
 }
