@@ -47,10 +47,10 @@
 - [ResultBase](Atc.Rest.Results.md#resultbase)
 - [ResultFactory](Atc.Rest.Results.md#resultfactory)
 
-## [Atc.Rest.TelemetryInitializers](Atc.Rest.TelemetryInitializers.md)
+## [Microsoft.ApplicationInsights.Extensibility](Microsoft.ApplicationInsights.Extensibility.md)
 
-- [Accept4xxResponseAsSuccessProcessor](Atc.Rest.TelemetryInitializers.md#accept4xxresponseassuccessprocessor)
-- [CallingIdentityTelemetryProcessor](Atc.Rest.TelemetryInitializers.md#callingidentitytelemetryprocessor)
+- [Accept4xxResponseAsSuccessInitializer](Microsoft.ApplicationInsights.Extensibility.md#accept4xxresponseassuccessinitializer)
+- [CallingIdentityTelemetryInitializer](Microsoft.ApplicationInsights.Extensibility.md#callingidentitytelemetryinitializer)
 
 ## [Microsoft.AspNetCore.Builder](Microsoft.AspNetCore.Builder.md)
 

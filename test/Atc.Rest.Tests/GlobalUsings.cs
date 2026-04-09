@@ -12,7 +12,6 @@ global using Atc.Rest.Middleware;
 global using Atc.Rest.Models;
 global using Atc.Rest.Options;
 global using Atc.Rest.Results;
-global using Atc.Rest.TelemetryInitializers;
 global using Atc.XUnit;
 
 global using Microsoft.ApplicationInsights;

@@ -7,26 +7,22 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class ApplicationInsightsExtensions
 {
     /// <summary>
-    /// Registers OpenTelemetry activity processors for enriching Application Insights telemetry with request context information.
+    /// Registers telemetry initializers for enriching Application Insights telemetry with request context information.
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <returns>The service collection for method chaining.</returns>
     /// <remarks>
-    /// This method registers the following activity processors:
+    /// This method registers the following telemetry initializers:
     /// <list type="bullet">
-    /// <item><see cref="CallingIdentityTelemetryProcessor"/> - Adds calling identity and request correlation IDs to telemetry.</item>
-    /// <item><see cref="Accept4xxResponseAsSuccessProcessor"/> - Treats certain 4xx responses (BadRequest, NotFound) as successful requests.</item>
+    /// <item><see cref="CallingIdentityTelemetryInitializer"/> - Adds calling identity and request correlation IDs to telemetry.</item>
+    /// <item><see cref="Accept4xxResponseAsSuccessInitializer"/> - Treats certain 4xx responses (BadRequest, NotFound) as successful requests.</item>
     /// </list>
     /// </remarks>
     public static IServiceCollection AddCallingIdentityTelemetryInitializer(
         this IServiceCollection services)
     {
-        services.AddOpenTelemetry().WithTracing(builder =>
-        {
-            builder.AddProcessor<Accept4xxResponseAsSuccessProcessor>();
-            builder.AddProcessor(sp => new CallingIdentityTelemetryProcessor(sp));
-        });
-
+        services.AddSingleton<ITelemetryInitializer, CallingIdentityTelemetryInitializer>();
+        services.AddSingleton<ITelemetryInitializer, Accept4xxResponseAsSuccessInitializer>();
         return services;
     }
 }
