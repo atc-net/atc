@@ -416,6 +416,7 @@ public class ProcessHelperTests
         // Assert
         Assert.NotNull(process);
         process.WaitForExit(5000);
+        Assert.Equal(0, process.ExitCode);
     }
 
     [Fact]
@@ -431,6 +432,7 @@ public class ProcessHelperTests
         // Assert
         Assert.NotNull(process);
         process.WaitForExit(5000);
+        Assert.Equal(0, process.ExitCode);
     }
 
     [Fact]
@@ -445,7 +447,7 @@ public class ProcessHelperTests
     public void StartProcess_Should_Throw_On_Missing_File()
     {
         // Arrange
-        var fileInfo = new FileInfo(@"C:\nonexistent_file_that_does_not_exist.exe");
+        var fileInfo = new FileInfo(Path.Combine(Path.GetTempPath(), "nonexistent_file.exe"));
 
         // Act & Assert
         Assert.Throws<FileNotFoundException>(() =>
@@ -461,5 +463,28 @@ public class ProcessHelperTests
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
             ProcessHelper.StartProcess(null!, fileInfo));
+    }
+
+    [Fact]
+    public void StartProcess_With_WorkingDirectory_Should_Throw_On_Null_FileInfo()
+    {
+        // Arrange
+        var directoryInfo = new DirectoryInfo(@"C:\");
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() =>
+            ProcessHelper.StartProcess(directoryInfo, null!));
+    }
+
+    [Fact]
+    public void StartProcess_With_WorkingDirectory_Should_Throw_On_Missing_File()
+    {
+        // Arrange
+        var directoryInfo = new DirectoryInfo(Path.GetTempPath());
+        var fileInfo = new FileInfo(Path.Combine(Path.GetTempPath(), "nonexistent_file.exe"));
+
+        // Act & Assert
+        Assert.Throws<FileNotFoundException>(() =>
+            ProcessHelper.StartProcess(directoryInfo, fileInfo));
     }
 }

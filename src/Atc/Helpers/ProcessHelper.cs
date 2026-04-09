@@ -365,8 +365,9 @@ public static class ProcessHelper
     /// this method uses <c>UseShellExecute = true</c> and does not capture standard output or error.
     /// This is suitable for launching GUI applications or detached processes.
     /// </remarks>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    [SupportedOSPlatform("windows")]
     public static Process? StartProcess(
         FileInfo fileInfo,
         string arguments = "",
@@ -377,9 +378,14 @@ public static class ProcessHelper
             throw new ArgumentNullException(nameof(fileInfo));
         }
 
+        if (arguments is null)
+        {
+            throw new ArgumentNullException(nameof(arguments));
+        }
+
         if (!File.Exists(fileInfo.FullName))
         {
-            throw new FileNotFoundException(nameof(fileInfo));
+            throw new FileNotFoundException($"File not found: {fileInfo.FullName}", fileInfo.FullName);
         }
 
         return InvokeStartProcess(
@@ -403,8 +409,10 @@ public static class ProcessHelper
     /// this method uses <c>UseShellExecute = true</c> and does not capture standard output or error.
     /// This is suitable for launching GUI applications or detached processes.
     /// </remarks>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/>, or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="DirectoryNotFoundException">Thrown if the specified working directory does not exist.</exception>
     /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    [SupportedOSPlatform("windows")]
     public static Process? StartProcess(
         DirectoryInfo workingDirectory,
         FileInfo fileInfo,
@@ -416,14 +424,24 @@ public static class ProcessHelper
             throw new ArgumentNullException(nameof(workingDirectory));
         }
 
+        if (!workingDirectory.Exists)
+        {
+            throw new DirectoryNotFoundException($"Directory not found: {workingDirectory.FullName}");
+        }
+
         if (fileInfo is null)
         {
             throw new ArgumentNullException(nameof(fileInfo));
         }
 
+        if (arguments is null)
+        {
+            throw new ArgumentNullException(nameof(arguments));
+        }
+
         if (!File.Exists(fileInfo.FullName))
         {
-            throw new FileNotFoundException(nameof(fileInfo));
+            throw new FileNotFoundException($"File not found: {fileInfo.FullName}", fileInfo.FullName);
         }
 
         return InvokeStartProcess(
@@ -901,7 +919,7 @@ public static class ProcessHelper
             startInfo.Verb = "runas";
         }
 
-        if (workingDirectory is not null && workingDirectory.Exists)
+        if (workingDirectory is not null)
         {
             startInfo.WorkingDirectory = workingDirectory.FullName;
         }
