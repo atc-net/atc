@@ -20,14 +20,14 @@ Extension methods for configuring Application Insights telemetry.
 >```csharp
 >IServiceCollection AddCallingIdentityTelemetryInitializer(this IServiceCollection services)
 >```
-><b>Summary:</b> Registers OpenTelemetry activity processors for enriching Application Insights telemetry with request context information.
+><b>Summary:</b> Registers telemetry initializers for enriching Application Insights telemetry with request context information.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`services`&nbsp;&nbsp;-&nbsp;&nbsp;The service collection.<br />
 >
 ><b>Returns:</b> The service collection for method chaining.
 >
-><b>Remarks:</b> This method registers the following activity processors: <list type="bullet"><item>`Atc.Rest.TelemetryInitializers.CallingIdentityTelemetryProcessor` - Adds calling identity and request correlation IDs to telemetry.</item><item>`Atc.Rest.TelemetryInitializers.Accept4xxResponseAsSuccessProcessor` - Treats certain 4xx responses (BadRequest, NotFound) as successful requests.</item></list>
+><b>Remarks:</b> This method registers the following telemetry initializers: <list type="bullet"><item>`Microsoft.ApplicationInsights.Extensibility.CallingIdentityTelemetryInitializer` - Adds calling identity and request correlation IDs to telemetry.</item><item>`Microsoft.ApplicationInsights.Extensibility.Accept4xxResponseAsSuccessInitializer` - Treats certain 4xx responses (BadRequest, NotFound) as successful requests.</item></list>
 
 <br />
 

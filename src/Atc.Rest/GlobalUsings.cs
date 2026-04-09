@@ -1,5 +1,4 @@
 global using System.ComponentModel.DataAnnotations;
-global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Net;
@@ -19,10 +18,12 @@ global using Atc.Rest.Extensions;
 global using Atc.Rest.Middleware;
 global using Atc.Rest.Models;
 global using Atc.Rest.Options;
-global using Atc.Rest.TelemetryInitializers;
 global using Atc.Serialization;
 
 global using Microsoft.ApplicationInsights;
+global using Microsoft.ApplicationInsights.Channel;
+global using Microsoft.ApplicationInsights.DataContracts;
+global using Microsoft.ApplicationInsights.Extensibility;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Diagnostics;
@@ -36,6 +37,3 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
-
-global using OpenTelemetry;
-global using OpenTelemetry.Trace;
