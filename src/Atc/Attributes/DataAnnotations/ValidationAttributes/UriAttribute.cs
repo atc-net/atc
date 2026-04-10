@@ -145,7 +145,8 @@ public sealed class UriAttribute : ValidationAttribute
                          (AllowFtps && string.Equals(uriResult.Scheme, "ftps", StringComparison.OrdinalIgnoreCase)) ||
                          (AllowFile && string.Equals(uriResult.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase)) ||
                          (AllowOpcTcp && string.Equals(uriResult.Scheme, "opc.tcp", StringComparison.OrdinalIgnoreCase)));
-        if (result)
+
+        if (result && IsHostValid(uriResult!))
         {
             return true;
         }
@@ -243,4 +244,18 @@ public sealed class UriAttribute : ValidationAttribute
         string value,
         out string errorMessage)
         => TryIsValid(value, OpcTcp, out errorMessage);
+
+    /// <summary>
+    /// Validates that the host portion of a URI is not a malformed IP address.
+    /// </summary>
+    /// <remarks>
+    /// <see cref="Uri.TryCreate(string?, UriKind, out Uri?)"/> accepts hosts like <c>1231.0.0.1</c>
+    /// by classifying them as DNS names. This method detects hosts that consist solely of digits
+    /// and dots (i.e., look like IPv4 addresses) but were not recognized as valid IPv4 by the parser,
+    /// and rejects them. Genuine hostnames always contain at least one letter.
+    /// </remarks>
+    private static bool IsHostValid(Uri uri)
+        => uri.HostNameType is UriHostNameType.IPv4 or UriHostNameType.IPv6 ||
+           uri.Host.Length == 0 ||
+           uri.Host.Any(c => c is not ('.' or >= '0' and <= '9'));
 }

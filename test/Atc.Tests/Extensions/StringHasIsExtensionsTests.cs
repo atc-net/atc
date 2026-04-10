@@ -329,8 +329,14 @@ public class StringHasIsExtensionsTests
     [InlineData(true, "ftp://dr.dk")]
     [InlineData(true, "file://c:/temp/file.txt")]
     [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(true, "http://192.168.1.1:8080")]
+    [InlineData(true, "https://[::1]")]
     [InlineData(false, "httpx://dr.dk")]
     [InlineData(false, "not-a-uri")]
+    [InlineData(false, "http://1231.0.0.1:8080")]
+    [InlineData(false, "opc.tcp://999.999.999.999:4840")]
+    [InlineData(true, "http://dr.dk:65535")]
+    [InlineData(false, "http://dr.dk:65536")]
     public void IsUri(
         bool expected,
         string input)
@@ -339,9 +345,14 @@ public class StringHasIsExtensionsTests
     [Theory]
     [InlineData(true, "http://dr.dk")]
     [InlineData(true, "https://dr.dk")]
+    [InlineData(true, "http://192.168.1.1:8080")]
+    [InlineData(true, "https://[::1]")]
     [InlineData(false, "ftp://dr.dk")]
     [InlineData(false, "opc.tcp://milo.digitalpetri.com:62541/milo")]
     [InlineData(false, "not-a-uri")]
+    [InlineData(false, "http://999.999.999.999:8080")]
+    [InlineData(false, "https://1231.0.0.1")]
+    [InlineData(false, "https://dr.dk:65536")]
     public void IsUriHttpOrHttps(
         bool expected,
         string input)
@@ -349,9 +360,14 @@ public class StringHasIsExtensionsTests
 
     [Theory]
     [InlineData(true, "opc.tcp://milo.digitalpetri.com:62541/milo")]
+    [InlineData(true, "opc.tcp://192.168.1.1:4840")]
+    [InlineData(true, "opc.tcp://[::1]:4840")]
     [InlineData(false, "http://dr.dk")]
     [InlineData(false, "https://dr.dk")]
     [InlineData(false, "not-a-uri")]
+    [InlineData(false, "opc.tcp://1231.0.0.1:4840")]
+    [InlineData(false, "opc.tcp://999.999.999.999:4840")]
+    [InlineData(false, "opc.tcp://192.168.1.1:65536")]
     public void IsUriOpcTcp(
         bool expected,
         string input)
