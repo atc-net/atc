@@ -16,7 +16,7 @@ public static class HealthReportEntryExtensions
         var entry = kvp.Value;
 
         var data = entry.Data.Count > 0
-            ? entry.Data
+            ? SanitizeData(entry.Data)
             : null;
 
         return new HealthCheck(
@@ -24,6 +24,7 @@ public static class HealthReportEntryExtensions
             Status: entry.Status,
             Duration: entry.Duration,
             Description: entry.Description,
+            ExceptionMessage: entry.Exception?.Message,
             Data: data);
     }
 
@@ -37,4 +38,13 @@ public static class HealthReportEntryExtensions
         => entries
             .Select(ToHealthCheck)
             .ToList();
+
+    private static IReadOnlyDictionary<string, object> SanitizeData(
+        IReadOnlyDictionary<string, object> data)
+        => data.ToDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value is Exception ex
+                ? ex.Message
+                : kvp.Value,
+            StringComparer.Ordinal);
 }

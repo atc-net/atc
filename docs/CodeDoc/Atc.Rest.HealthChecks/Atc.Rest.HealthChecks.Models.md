@@ -31,6 +31,11 @@ Represents the result of a single health check execution.
 >Duration
 >```
 ><b>Summary:</b> The time taken to execute the health check.
+#### ExceptionMessage
+>```csharp
+>ExceptionMessage
+>```
+><b>Summary:</b> The exception message if the health check failed with an exception; otherwise null.
 #### Name
 >```csharp
 >Name
@@ -49,7 +54,7 @@ Represents the result of a single health check execution.
 >```
 #### Deconstruct
 >```csharp
->void Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out IReadOnlyDictionary`2 Data)
+>void Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out string ExceptionMessage, out IReadOnlyDictionary`2 Data)
 >```
 #### Equals
 >```csharp

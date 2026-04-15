@@ -31,11 +31,12 @@
      - Data
      - Description
      - Duration
+     - ExceptionMessage
      - Name
      - Status
   -  Methods
      - <Clone>$()
-     - Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out IReadOnlyDictionary`2 Data)
+     - Deconstruct(out string Name, out HealthStatus Status, out TimeSpan Duration, out string Description, out string ExceptionMessage, out IReadOnlyDictionary`2 Data)
      - Equals(HealthCheck other)
      - Equals(object obj)
      - GetHashCode()
