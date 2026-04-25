@@ -50,17 +50,28 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
     }
 
     /// <summary>
-    /// Called when an exception occurs during action execution.
+    /// Called when an exception occurs during action execution. If the client has already
+    /// disconnected (<see cref="HttpContext.RequestAborted"/> is signalled) the filter still
+    /// records telemetry but skips composing the response body, since writing to a closed
+    /// connection wastes work and may surface noisy I/O errors in logs.
     /// </summary>
     /// <param name="context">The exception context.</param>
     public override void OnException(ExceptionContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
 
+        // Always record telemetry, even on aborted requests, so we still see the failure.
+        telemetryClient.TrackException(context.Exception);
+
+        if (context.HttpContext.RequestAborted.IsCancellationRequested)
+        {
+            // Client is gone; skip building the response body. The framework will short-circuit.
+            context.ExceptionHandled = true;
+            return;
+        }
+
         HandleException(context);
         context.ExceptionHandled = true;
-
-        telemetryClient.TrackException(context.Exception);
     }
 
     private static HttpStatusCode GetHttpStatusCodeByExceptionType(
