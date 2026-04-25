@@ -42,6 +42,8 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
+>
+><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
 #### BuildAndCollectErrors
 >```csharp
 >Task<Dictionary<string, int>> BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
@@ -59,6 +61,8 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
+>
+><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
 
 <br />
 

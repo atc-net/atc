@@ -21,7 +21,7 @@ Exception filter attribute that handles unhandled exceptions and converts them t
 >```csharp
 >void OnException(ExceptionContext context)
 >```
-><b>Summary:</b> Called when an exception occurs during action execution.
+><b>Summary:</b> Called when an exception occurs during action execution. If the client has already disconnected (`Microsoft.AspNetCore.Http.HttpContext.RequestAborted` is signalled) the filter still records telemetry but skips composing the response body, since writing to a closed connection wastes work and may surface noisy I/O errors in logs.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`context`&nbsp;&nbsp;-&nbsp;&nbsp;The exception context.<br />

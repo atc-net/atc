@@ -20,10 +20,40 @@ Extension methods for `System.Diagnostics.Process` that add async-friendly waiti
 >```csharp
 >void KillTree(this Process process)
 >```
+><b>Summary:</b> Synchronously terminates the process and any child processes it started, using a default 30-second timeout per spawned helper command. On Windows uses `taskkill /T /F`; on other platforms uses `pgrep` + `kill -TERM`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`process`&nbsp;&nbsp;-&nbsp;&nbsp;The root process whose tree should be terminated.<br />
 #### KillTree
 >```csharp
 >void KillTree(this Process process, TimeSpan timeout)
 >```
+><b>Summary:</b> Synchronously terminates the process and any child processes it started, using a default 30-second timeout per spawned helper command. On Windows uses `taskkill /T /F`; on other platforms uses `pgrep` + `kill -TERM`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`process`&nbsp;&nbsp;-&nbsp;&nbsp;The root process whose tree should be terminated.<br />
+#### KillTreeAsync
+>```csharp
+>Task KillTreeAsync(this Process process, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously terminates the process and any child processes it started, using the default 30-second timeout per helper command.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`process`&nbsp;&nbsp;-&nbsp;&nbsp;The root process whose tree should be terminated.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token used to abort the kill operation early.<br />
+>
+><b>Returns:</b> A task that completes when the kill commands have finished.
+#### KillTreeAsync
+>```csharp
+>Task KillTreeAsync(this Process process, TimeSpan timeout, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously terminates the process and any child processes it started, using the default 30-second timeout per helper command.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`process`&nbsp;&nbsp;-&nbsp;&nbsp;The root process whose tree should be terminated.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token used to abort the kill operation early.<br />
+>
+><b>Returns:</b> A task that completes when the kill commands have finished.
 #### WaitForExitAsync
 >```csharp
 >Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
