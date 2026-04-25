@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-11-2025
+# Version: 1.0.1
+# Updated: 20-04-2026
 # Location: src
 # Distribution: DotNet10
 # Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
@@ -14,10 +14,6 @@
 # http://www.asyncfixer.com
 
 
-# Asyncify
-# https://github.com/hvanbakel/Asyncify-CSharp
-
-
 # Meziantou
 # https://www.meziantou.net/enforcing-asynchronous-code-good-practices-using-a-roslyn-analyzer.htm
 
@@ -28,10 +24,6 @@
 
 # Microsoft - Compiler Errors
 # https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
-
-
-# SecurityCodeScan
-# https://security-code-scan.github.io/
 
 
 # StyleCop

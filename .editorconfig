@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-11-2025
+# Version: 1.0.1
+# Updated: 20-04-2026
 # Location: Root
 # Distribution: DotNet10
 # Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
@@ -441,28 +441,24 @@ dotnet_naming_rule.parameters_rule.severity             = warning
 # http://www.asyncfixer.com
 
 
-# Asyncify
-# https://github.com/hvanbakel/Asyncify-CSharp
-
-
 # Meziantou
 # https://www.meziantou.net/enforcing-asynchronous-code-good-practices-using-a-roslyn-analyzer.htm
-dotnet_diagnostic.MA0003.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0003.md
-dotnet_diagnostic.MA0004.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0004.md
-dotnet_diagnostic.MA0006.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0006.md
+dotnet_diagnostic.MA0003.severity = suggestion      # Add argument name to improve readability
+dotnet_diagnostic.MA0004.severity = suggestion      # Use Task.ConfigureAwait(false)
+dotnet_diagnostic.MA0006.severity = none            # Use String.Equals instead of equality operator
 dotnet_diagnostic.MA0011.severity = none            # Duplicate of CA1305
-dotnet_diagnostic.MA0016.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0016.md
-dotnet_diagnostic.MA0025.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0025.md
-dotnet_diagnostic.MA0026.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0026.md
-dotnet_diagnostic.MA0028.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0028.md
+dotnet_diagnostic.MA0016.severity = error           # Prefer return collection abstraction over implementation
+dotnet_diagnostic.MA0025.severity = suggestion      # Implement functionality instead of throwing NotImplementedException
+dotnet_diagnostic.MA0026.severity = suggestion      # Fix TODO comment
+dotnet_diagnostic.MA0028.severity = none            # Optimize StringBuilder usage
 dotnet_diagnostic.MA0038.severity = none            # Duplicate of CA1822
-dotnet_diagnostic.MA0048.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0048.md
+dotnet_diagnostic.MA0048.severity = error           # File name must match type name
 
 
 # Microsoft - Code Analysis
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
-dotnet_diagnostic.CA1014.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1014.md
-dotnet_diagnostic.CA1068.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1068.md
+dotnet_diagnostic.CA1014.severity = none            # Mark assemblies with CLSCompliantAttribute
+dotnet_diagnostic.CA1068.severity = error           # CancellationToken parameters must come last
 dotnet_diagnostic.CA1305.severity = error
 dotnet_diagnostic.CA1308.severity = suggestion      # Normalize strings to uppercase
 dotnet_diagnostic.CA1510.severity = suggestion      # Use ArgumentNullException throw helper
@@ -471,7 +467,7 @@ dotnet_diagnostic.CA1512.severity = suggestion      # Use ArgumentOutOfRangeExce
 dotnet_diagnostic.CA1513.severity = suggestion      # Use ObjectDisposedException throw helper
 dotnet_diagnostic.CA1514.severity = error           # Avoid redundant length argument
 dotnet_diagnostic.CA1515.severity = suggestion      # Because an application's API isn't typically referenced from outside the assembly, types can be made internal (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1515)
-dotnet_diagnostic.CA1707.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1707.md
+dotnet_diagnostic.CA1707.severity = error           # Identifiers should not contain underscores
 dotnet_diagnostic.CA1812.severity = none
 dotnet_diagnostic.CA1822.severity = suggestion
 dotnet_diagnostic.CA1849.severity = error           # Call async methods when in an async method
@@ -498,7 +494,7 @@ dotnet_diagnostic.CA1873.severity = suggestion      # Avoid potentially expensiv
 dotnet_diagnostic.CA1874.severity = suggestion      # Use 'Regex.IsMatch' instead of 'Regex.Match(...).Success' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1874)
 dotnet_diagnostic.CA1875.severity = suggestion      # Use 'Regex.Count' instead of 'Regex.Matches(...).Count' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1875)
 dotnet_diagnostic.CA1877.severity = suggestion      # Use 'Path.Combine' or 'Path.Join' overloads (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1877)
-dotnet_diagnostic.CA2007.severity = suggestion      # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA2007.md
+dotnet_diagnostic.CA2007.severity = suggestion      # Do not directly await a Task
 dotnet_diagnostic.CA2017.severity = error           # Parameter count mismatch
 dotnet_diagnostic.CA2018.severity = error           # The count argument to Buffer.BlockCopy should specify the number of bytes to copy
 dotnet_diagnostic.CA2019.severity = error           # ThreadStatic fields should not use inline initialization
@@ -515,12 +511,12 @@ dotnet_diagnostic.CA2262.severity = suggestion      # Set 'MaxResponseHeadersLen
 dotnet_diagnostic.CA2263.severity = suggestion      # Prefer generic overload when type is known
 dotnet_diagnostic.CA2264.severity = error           # Do not pass a non-nullable value to 'ArgumentNullException.ThrowIfNull'
 dotnet_diagnostic.CA2265.severity = error           # Do not compare Sp an<T> to 'null' or 'default' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2265)
-dotnet_diagnostic.IDE0005.severity = warning        # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/IDE0005.md
+dotnet_diagnostic.IDE0005.severity = warning        # Remove unnecessary using directives
 dotnet_diagnostic.IDE0010.severity = suggestion     # Populate switch
 dotnet_diagnostic.IDE0028.severity = suggestion     # Collection initialization can be simplified
 dotnet_diagnostic.IDE0021.severity = suggestion     # Use expression body for constructor
 dotnet_diagnostic.IDE0055.severity = none           # Fix formatting
-dotnet_diagnostic.IDE0058.severity = none           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/IDE0058.md
+dotnet_diagnostic.IDE0058.severity = none           # Remove unnecessary expression value
 dotnet_diagnostic.IDE0061.severity = suggestion     # Use expression body for local function
 dotnet_diagnostic.IDE0130.severity = suggestion     # Namespace does not match folder structure
 dotnet_diagnostic.IDE0290.severity = none			# Use primary constructor
@@ -530,38 +526,34 @@ dotnet_diagnostic.IDE0305.severity = suggestion     # Collection initialization 
 
 # Microsoft - Compiler Errors
 # https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
-dotnet_diagnostic.CS4014.severity = error          # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCompilerErrors/CS4014.md
-
-
-# SecurityCodeScan
-# https://security-code-scan.github.io/
+dotnet_diagnostic.CS4014.severity = error           # Call is not awaited
 
 
 # StyleCop
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers
-dotnet_diagnostic.SA1009.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1009.md
+dotnet_diagnostic.SA1009.severity = none            # Closing parenthesis should be spaced correctly
 dotnet_diagnostic.SA1010.severity = none            # False positive when using collection initializers
-dotnet_diagnostic.SA1101.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1101.md
-dotnet_diagnostic.SA1122.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1122.md
-dotnet_diagnostic.SA1133.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1133.md
-dotnet_diagnostic.SA1200.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1200.md
-dotnet_diagnostic.SA1201.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1201.md
-dotnet_diagnostic.SA1202.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1202.md
-dotnet_diagnostic.SA1204.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1204.md
-dotnet_diagnostic.SA1413.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1413.md
-dotnet_diagnostic.SA1600.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1600.md
+dotnet_diagnostic.SA1101.severity = none            # Prefix local calls with this
+dotnet_diagnostic.SA1122.severity = error           # Use string.Empty for empty strings
+dotnet_diagnostic.SA1133.severity = error           # Do not combine attributes
+dotnet_diagnostic.SA1200.severity = none            # Using directives should be placed correctly
+dotnet_diagnostic.SA1201.severity = none            # Elements should appear in the correct order
+dotnet_diagnostic.SA1202.severity = none            # Elements should be ordered by access
+dotnet_diagnostic.SA1204.severity = none            # Static elements should appear before instance elements
+dotnet_diagnostic.SA1413.severity = error           # Use trailing commas in multi-line initializers
+dotnet_diagnostic.SA1600.severity = none            # Elements should be documented
 dotnet_diagnostic.SA1601.severity = none
-dotnet_diagnostic.SA1602.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1602.md
-dotnet_diagnostic.SA1604.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1604.md
-dotnet_diagnostic.SA1623.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1623.md
-dotnet_diagnostic.SA1629.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1629.md
-dotnet_diagnostic.SA1633.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1633.md
-dotnet_diagnostic.SA1649.severity = error           # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1649.md
+dotnet_diagnostic.SA1602.severity = none            # Enumeration items should be documented
+dotnet_diagnostic.SA1604.severity = none            # Element documentation should have summary
+dotnet_diagnostic.SA1623.severity = none            # Property summary documentation should match accessors
+dotnet_diagnostic.SA1629.severity = none            # Documentation text should end with a period
+dotnet_diagnostic.SA1633.severity = none            # File should have header
+dotnet_diagnostic.SA1649.severity = error           # File name should match first type name
 
 
 # SonarAnalyzer.CSharp
 # https://rules.sonarsource.com/csharp
-dotnet_diagnostic.S1135.severity = suggestion       # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/SonarAnalyzerCSharp/S1135.md
+dotnet_diagnostic.S1135.severity = suggestion       # Track uses of TODO tags
 dotnet_diagnostic.S2629.severity = none            	# Don't use string interpolation in logging message templates.
 dotnet_diagnostic.S3358.severity = none           	# Extract this nested ternary operation into an independent statement.
 dotnet_diagnostic.S6602.severity = none           	# "Find" method should be used instead of the "FirstOrDefault"

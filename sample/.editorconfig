@@ -14,10 +14,6 @@
 # http://www.asyncfixer.com
 
 
-# Asyncify
-# https://github.com/hvanbakel/Asyncify-CSharp
-
-
 # Meziantou
 # https://www.meziantou.net/enforcing-asynchronous-code-good-practices-using-a-roslyn-analyzer.htm
 
@@ -30,16 +26,9 @@
 # https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
 
 
-# Microsoft - FxCop
-# https://github.com/dotnet/roslyn-analyzers
-
-
-# SecurityCodeScan
-# https://security-code-scan.github.io/
-
-
 # StyleCop
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers
+
 
 # SonarAnalyzer.CSharp
 # https://rules.sonarsource.com/csharp
