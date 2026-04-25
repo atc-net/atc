@@ -353,6 +353,45 @@ public static class ProcessHelper
     }
 
     /// <summary>
+    /// Executes a process described by a caller-supplied <see cref="ProcessStartInfo"/> with
+    /// cooperative cancellation and a detailed result. Use this overload when you need full
+    /// control over the start configuration (for example custom environment variables, encoding,
+    /// or stdin/stdout/stderr redirection beyond the defaults of the other overloads).
+    /// </summary>
+    /// <param name="startInfo">
+    /// The fully configured start information. Must have <see cref="ProcessStartInfo.FileName"/>
+    /// set. The method will force <see cref="ProcessStartInfo.UseShellExecute"/> to
+    /// <see langword="false"/>, <see cref="ProcessStartInfo.RedirectStandardOutput"/> and
+    /// <see cref="ProcessStartInfo.RedirectStandardError"/> to <see langword="true"/>, because
+    /// it captures output into the returned <see cref="ProcessExecutionResult"/>.
+    /// </param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation cooperatively.</param>
+    /// <returns>A <see cref="ProcessExecutionResult"/> with detailed execution information.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="startInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if <see cref="ProcessStartInfo.FileName"/> is empty.</exception>
+    public static Task<ProcessExecutionResult> ExecuteAsync(
+        ProcessStartInfo startInfo,
+        ushort timeoutInSec = DefaultTimeoutInSec,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(startInfo);
+
+        if (string.IsNullOrEmpty(startInfo.FileName))
+        {
+            throw new ArgumentException(
+                $"{nameof(startInfo)}.{nameof(startInfo.FileName)} must be set.",
+                nameof(startInfo));
+        }
+
+        startInfo.UseShellExecute = false;
+        startInfo.RedirectStandardOutput = true;
+        startInfo.RedirectStandardError = true;
+
+        return InvokeExecuteAsyncFromStartInfo(startInfo, timeoutInSec, cancellationToken);
+    }
+
+    /// <summary>
     /// Starts a process without waiting for it to complete.
     /// Supports UAC elevation via the "runas" verb when <paramref name="runAsAdministrator"/> is <see langword="true"/>.
     /// </summary>
@@ -990,6 +1029,81 @@ public static class ProcessHelper
             fileInfo,
             arguments,
             runAsAdministrator);
+
+        try
+        {
+            process.Start();
+
+#if NET9_0_OR_GREATER
+            var standardOutput = await process.StandardOutput
+                .ReadToEndAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+            var standardError = await process.StandardError
+                .ReadToEndAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+#else
+            var standardOutput = await process.StandardOutput
+                .ReadToEndAsync()
+                .ConfigureAwait(false);
+            var standardError = await process.StandardError
+                .ReadToEndAsync()
+                .ConfigureAwait(false);
+#endif
+
+            await process
+                .WaitForExitAsync(linkedCts.Token)
+                .ConfigureAwait(false);
+
+            var message = string.IsNullOrEmpty(standardError)
+                ? standardOutput
+                : string.IsNullOrEmpty(standardOutput)
+                    ? standardError
+                    : $"{standardOutput}{Environment.NewLine}{standardError}";
+
+            return new ProcessExecutionResult(
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                Output: message,
+                ExitCode: process.ExitCode);
+        }
+        catch (OperationCanceledException) when (timeoutCts.IsCancellationRequested)
+        {
+            TryKillProcess(process);
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: $"Process timed out after {timeoutInSec} seconds and was terminated.",
+                IsTimedOut: true);
+        }
+        catch (OperationCanceledException)
+        {
+            TryKillProcess(process);
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: "Process was cancelled.",
+                IsCancelled: true);
+        }
+        catch (Exception ex)
+        {
+            return new ProcessExecutionResult(
+                IsSuccessful: false,
+                Output: ex.GetMessage(
+                    includeInnerMessage: true,
+                    includeExceptionName: true));
+        }
+    }
+
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
+    [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    private static async Task<ProcessExecutionResult> InvokeExecuteAsyncFromStartInfo(
+        ProcessStartInfo startInfo,
+        ushort timeoutInSec,
+        CancellationToken cancellationToken)
+    {
+        using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSec));
+        using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+            cancellationToken, timeoutCts.Token);
+
+        using var process = new Process { StartInfo = startInfo };
 
         try
         {

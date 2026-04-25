@@ -487,4 +487,22 @@ public class ProcessHelperTests
         Assert.Throws<FileNotFoundException>(() =>
             ProcessHelper.StartProcess(directoryInfo, fileInfo));
     }
+
+    [Fact]
+    public async Task ExecuteAsync_StartInfoOverload_RunsAndCapturesOutput()
+    {
+        // Arrange — write a unique token via the platform shell.
+        const string token = "atc-net-process-helper-startinfo-test";
+        var startInfo = OperatingSystem.IsWindows()
+            ? new ProcessStartInfo("cmd.exe", $"/c echo {token}")
+            : new ProcessStartInfo("/bin/sh", $"-c \"echo {token}\"");
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(startInfo, timeoutInSec: 10);
+
+        // Assert
+        result.IsSuccessful.Should().BeTrue();
+        result.Output.Should().Contain(token);
+        result.ExitCode.Should().Be(0);
+    }
 }
