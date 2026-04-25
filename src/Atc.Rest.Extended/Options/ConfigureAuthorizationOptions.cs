@@ -12,19 +12,24 @@ public class ConfigureAuthorizationOptions :
     IPostConfigureOptions<AuthenticationOptions>
 {
     private const string WellKnownOpenidConfiguration = ".well-known/openid-configuration";
+    private static readonly TimeSpan SigningKeyFetchTimeout = TimeSpan.FromSeconds(30);
     private readonly IWebHostEnvironment? environment;
     private readonly RestApiExtendedOptions apiOptions;
+    private readonly ILogger<ConfigureAuthorizationOptions>? logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigureAuthorizationOptions"/> class.
     /// </summary>
     /// <param name="options">The REST API extended options containing authorization configuration.</param>
     /// <param name="environment">The web host environment for checking development mode.</param>
+    /// <param name="logger">Optional logger for diagnostics during signing-key resolution.</param>
     public ConfigureAuthorizationOptions(
         RestApiExtendedOptions options,
-        IWebHostEnvironment? environment)
+        IWebHostEnvironment? environment,
+        ILogger<ConfigureAuthorizationOptions>? logger = null)
     {
         this.environment = environment;
+        this.logger = logger;
         apiOptions = options ?? throw new ArgumentNullException(nameof(options));
     }
 
@@ -104,7 +109,21 @@ public class ConfigureAuthorizationOptions :
         options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
         options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
 
-        options.TokenValidationParameters.IssuerSigningKeys = GetIssuerSigningKeysAsync(options).GetAwaiter().GetResult();
+        // Run the async fetch on a thread-pool thread with a hard timeout so we cannot deadlock
+        // on a captured sync-context and cannot hang application startup indefinitely if an
+        // identity provider is unreachable.
+        var fetchTask = Task.Run(() => GetIssuerSigningKeysAsync(options));
+        if (!fetchTask.Wait(SigningKeyFetchTimeout))
+        {
+            logger?.LogWarning(
+                "Timed out fetching issuer signing keys after {TimeoutSeconds}s. Token validation will fall back to empty key set; signing-key validation disabled.",
+                SigningKeyFetchTimeout.TotalSeconds);
+            options.TokenValidationParameters.IssuerSigningKeys = Array.Empty<SecurityKey>();
+            options.TokenValidationParameters.ValidateIssuerSigningKey = false;
+            return;
+        }
+
+        options.TokenValidationParameters.IssuerSigningKeys = fetchTask.Result;
         options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
     }
 
@@ -126,9 +145,13 @@ public class ConfigureAuthorizationOptions :
     /// Retrieves issuer signing keys from the OpenID Connect configuration endpoint.
     /// </summary>
     /// <param name="issuer">The issuer URL.</param>
-    /// <returns>A collection of security keys for token validation.</returns>
-    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
-    private static async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
+    /// <returns>
+    /// A collection of security keys for token validation, or an empty array if retrieval failed
+    /// (the failure is logged via the configured <see cref="ILogger"/>; callers should treat an
+    /// empty result as "signing keys unavailable").
+    /// </returns>
+    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "Failure to fetch keys must not abort startup; we log and return empty so the caller decides.")]
+    private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
         string issuer)
     {
         try
@@ -142,7 +165,10 @@ public class ConfigureAuthorizationOptions :
         }
         catch (Exception e)
         {
-            Debug.WriteLine(e);
+            logger?.LogWarning(
+                e,
+                "Failed to retrieve OpenID Connect signing keys from {Issuer}. Token validation will fall back to an empty key set for this issuer.",
+                issuer);
             return Array.Empty<SecurityKey>();
         }
     }
