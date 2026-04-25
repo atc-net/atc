@@ -57,15 +57,48 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
             sb.Append(GenerateRemarks(indentSpaces, codeDocumentationTags.Remark));
         }
 
-        //// TODO: Append 'Code' if needed.
+        if (!string.IsNullOrEmpty(codeDocumentationTags.Code))
+        {
+            sb.Append(GenerateCode(indentSpaces, codeDocumentationTags.Code));
+        }
 
-        //// TODO: Append 'Example' if needed.
+        if (!string.IsNullOrEmpty(codeDocumentationTags.Example))
+        {
+            sb.Append(GenerateExample(indentSpaces, codeDocumentationTags.Example));
+        }
 
-        //// TODO: Append 'Exception' if needed.
+        if (codeDocumentationTags.Exceptions is not null &&
+            codeDocumentationTags.Exceptions.Any())
+        {
+            sb.Append(GenerateExceptions(indentSpaces, codeDocumentationTags.Exceptions));
+        }
 
         if (!string.IsNullOrEmpty(codeDocumentationTags.Return))
         {
             sb.Append(GenerateReturns(indentSpaces, codeDocumentationTags.Return));
+        }
+
+        return sb.ToString();
+    }
+
+    private static string GenerateCode(
+        ushort indentSpaces,
+        string value)
+        => GenerateTag(indentSpaces, "code", value);
+
+    private static string GenerateExample(
+        ushort indentSpaces,
+        string value)
+        => GenerateTag(indentSpaces, "example", value);
+
+    private static string GenerateExceptions(
+        ushort indentSpaces,
+        IReadOnlyDictionary<string, string> exceptions)
+    {
+        var sb = new StringBuilder();
+        foreach (var (typeRef, description) in exceptions)
+        {
+            sb.AppendLine(indentSpaces, $"/// <exception cref=\"{typeRef}\">{description.EnsureEndsWithDot()}</exception>");
         }
 
         return sb.ToString();
