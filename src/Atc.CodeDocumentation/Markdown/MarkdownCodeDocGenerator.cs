@@ -15,15 +15,22 @@ public static class MarkdownCodeDocGenerator
     /// </summary>
     /// <param name="assemblyToCodeDoc">The assembly to document.</param>
     /// <param name="outputPath">The output directory for generated markdown files. If not specified, defaults to a CodeDoc folder relative to the assembly location.</param>
+    /// <param name="runOnNonWindows">
+    /// When <see langword="false"/> (default), the generator silently no-ops on non-Windows
+    /// platforms. This preserves the historical behavior because some CI environments place the
+    /// generated <c>.xml</c> doc files in a different location on Linux/macOS. Set to
+    /// <see langword="true"/> to force the generator to run cross-platform — useful in test
+    /// environments where the caller has confirmed the XML file is reachable.
+    /// </param>
     /// <exception cref="IOException">Thrown when the output path cannot be determined or created.</exception>
     /// <code><![CDATA[MarkdownCodeDocGenerator.Run(Assembly.GetAssembly(typeof(OneTypeFromTheAssemblyToDocument)));]]></code>
     /// <example><![CDATA[MarkdownCodeDocGenerator.Run(Assembly.GetAssembly(typeof(LocalizedDescriptionAttribute)));]]></example>
     public static void Run(
         Assembly assemblyToCodeDoc,
-        DirectoryInfo? outputPath = null)
+        DirectoryInfo? outputPath = null,
+        bool runOnNonWindows = false)
     {
-        // Due to some build issue with GenerateDocumentationFile=true and xml-file location, this hack is made for now.
-        if (!OperatingSystem.IsWindows())
+        if (!OperatingSystem.IsWindows() && !runOnNonWindows)
         {
             return;
         }

@@ -241,25 +241,26 @@ internal static class MarkdownHelper
         mb.AppendLine();
         mb.Header(2, typeComments.Type.BeautifyName(useFullName: false, useHtmlFormat: true));
 
-        var summary = typeComments.CommentLookup[typeComments.Type.FullName!].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Summary ?? string.Empty;
+        var typeComment = GetTypeXmlDocumentComment(typeComments);
+        var summary = typeComment?.Summary ?? string.Empty;
         if (summary.Length > 0)
         {
             mb.AppendLine(summary.Replace("  ", "<br>", StringComparison.Ordinal));
 
-            var remarks = typeComments.CommentLookup[typeComments.Type.FullName!].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Remarks ?? string.Empty;
+            var remarks = typeComment?.Remarks ?? string.Empty;
             if (!string.IsNullOrEmpty(remarks))
             {
                 mb.AppendLine($"><b>Remarks:</b> {remarks.Replace("  ", "<br>", StringComparison.Ordinal)}");
             }
 
-            var code = typeComments.CommentLookup[typeComments.Type.FullName!].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Code ?? string.Empty;
+            var code = typeComment?.Code ?? string.Empty;
             if (!string.IsNullOrEmpty(code))
             {
                 mb.AppendLine("><b>Code usage:</b>");
                 mb.Code("csharp", code);
             }
 
-            var example = typeComments.CommentLookup[typeComments.Type.FullName!].FirstOrDefault(x => x.MemberType == MemberType.Type)?.Example ?? string.Empty;
+            var example = typeComment?.Example ?? string.Empty;
             if (!string.IsNullOrEmpty(example))
             {
                 mb.AppendLine("<b>Code example:</b>");
@@ -268,6 +269,30 @@ internal static class MarkdownHelper
         }
 
         mb.AppendLine();
+    }
+
+    private static XmlDocumentComment? GetTypeXmlDocumentComment(
+        TypeComments typeComments)
+    {
+        var fullName = typeComments.Type.FullName;
+        if (fullName is null || !typeComments.CommentLookup.Contains(fullName))
+        {
+            return null;
+        }
+
+        return typeComments.CommentLookup[fullName].FirstOrDefault(x => x.MemberType == MemberType.Type);
+    }
+
+    private static IEnumerable<XmlDocumentComment> GetCommentsForType(
+        TypeComments typeComments)
+    {
+        var fullName = typeComments.Type.FullName;
+        if (fullName is null || !typeComments.CommentLookup.Contains(fullName))
+        {
+            return Array.Empty<XmlDocumentComment>();
+        }
+
+        return typeComments.CommentLookup[fullName];
     }
 
     [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
@@ -332,23 +357,29 @@ internal static class MarkdownHelper
             .OrderBy(x => x.Value)
             .ToArray();
 
-        BuildTable(mb, typeComments, label: null, enums, typeComments.CommentLookup[typeComments.Type.FullName!], x => x.Value.ToString(GlobalizationConstants.EnglishCultureInfo), x => x.Name, x => x.Description);
+        var typeDocs = GetCommentsForType(typeComments);
+        BuildTable(mb, typeComments, label: null, enums, typeDocs, x => x.Value.ToString(GlobalizationConstants.EnglishCultureInfo), x => x.Name, x => x.Description);
     }
 
     private static void AppendBodyForClass(
         MarkdownBuilder mb,
         TypeComments typeComments)
     {
-        Build(mb, typeComments, "Static Fields", GetStaticFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.FieldType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
-        Build(mb, typeComments, "Static Properties", GetStaticProperties(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
-        Build(mb, typeComments, "Static Events", GetStaticEvents(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.EventHandlerType!.BeautifyName(), x => x.Name, x => x.Name);
-        Build(mb, typeComments, "Static Methods", GetStaticMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
+        var typeDocs = GetCommentsForType(typeComments);
 
-        Build(mb, typeComments, "Fields", GetFields(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.FieldType.BeautifyName(), x => x.Name, x => x.Name);
-        Build(mb, typeComments, "Properties", GetProperties(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
-        Build(mb, typeComments, "Events", GetEvents(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.EventHandlerType!.BeautifyName(), x => x.Name, x => x.Name);
-        Build(mb, typeComments, "Methods", GetMethods(typeComments.Type), typeComments.CommentLookup[typeComments.Type.FullName!], x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
+        Build(mb, typeComments, "Static Fields", GetStaticFields(typeComments.Type), typeDocs, x => x.FieldType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
+        Build(mb, typeComments, "Static Properties", GetStaticProperties(typeComments.Type), typeDocs, x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
+        Build(mb, typeComments, "Static Events", GetStaticEvents(typeComments.Type), typeDocs, x => SafeBeautifyEventHandlerName(x), x => x.Name, x => x.Name);
+        Build(mb, typeComments, "Static Methods", GetStaticMethods(typeComments.Type), typeDocs, x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
+
+        Build(mb, typeComments, "Fields", GetFields(typeComments.Type), typeDocs, x => x.FieldType.BeautifyName(), x => x.Name, x => x.Name);
+        Build(mb, typeComments, "Properties", GetProperties(typeComments.Type), typeDocs, x => x.PropertyType.BeautifyName(), x => x.Name, x => x.Name);
+        Build(mb, typeComments, "Events", GetEvents(typeComments.Type), typeDocs, x => SafeBeautifyEventHandlerName(x), x => x.Name, x => x.Name);
+        Build(mb, typeComments, "Methods", GetMethods(typeComments.Type), typeDocs, x => x.ReturnType.BeautifyName(), x => x.Name, x => x.BeautifyName(useFullName: false, useHtmlFormat: false, includeReturnType: true));
     }
+
+    private static string SafeBeautifyEventHandlerName(EventInfo eventInfo)
+        => eventInfo.EventHandlerType?.BeautifyName() ?? string.Empty;
 
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     private static void BuildTable<T>(
