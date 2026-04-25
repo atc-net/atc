@@ -4710,6 +4710,7 @@
      - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAsync(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAsync(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - ExecuteAsync(ProcessStartInfo startInfo, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
@@ -5466,6 +5467,8 @@
   -  Static Methods
      - KillTree(this Process process)
      - KillTree(this Process process, TimeSpan timeout)
+     - KillTreeAsync(this Process process, CancellationToken cancellationToken = null)
+     - KillTreeAsync(this Process process, TimeSpan timeout, CancellationToken cancellationToken = null)
      - WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
 
 ## [System.IO](System.IO.md)
