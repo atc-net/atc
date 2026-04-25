@@ -25,12 +25,12 @@ namespace Microsoft.AspNetCore.Mvc.Filters;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttribute
 {
+    private static readonly Regex EnsurePascalCaseAndSpacesBetweenWordsRegex =
+        new("(?<=[a-z])([A-Z])", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
+
     private readonly TelemetryClient telemetryClient;
     private readonly bool includeException;
     private readonly bool useProblemDetailsAsResponseBody;
-
-    private readonly Regex ensurePascalCaseAndSpacesBetweenWordsRegex =
-        new("(?<=[a-z])([A-Z])", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ErrorHandlingExceptionFilterAttribute"/> class.
@@ -129,7 +129,7 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
     private ProblemDetails CreateProblemDetails(ExceptionContext context)
     {
         var statusCode = GetHttpStatusCodeByExceptionType(context);
-        var title = ensurePascalCaseAndSpacesBetweenWordsRegex.Replace(statusCode.ToString(), " $1");
+        var title = EnsurePascalCaseAndSpacesBetweenWordsRegex.Replace(statusCode.ToString(), " $1");
 
         return new ProblemDetails { Status = (int)statusCode, Title = title, Detail = CreateMessage(context) };
     }

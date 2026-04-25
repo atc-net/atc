@@ -110,13 +110,13 @@ public static class RestApiBuilderExtensions
         }
 
         app.UseHttpsRedirection();
-        app.UseStaticFiles(new StaticFileOptions
-        {
-            OnPrepareResponse = ctx =>
-            {
-                ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", "*");
-            },
-        });
+
+        // Static files inherit the CORS policy applied above by app.UseCors(...).
+        // We deliberately do NOT inject an unconditional "Access-Control-Allow-Origin: *"
+        // header here, because doing so would bypass an explicit allowlist when
+        // RestApiOptions.AllowedCorsOrigins is configured, and would conflict with any
+        // future use of credentials.
+        app.UseStaticFiles();
 
         app.UseRouting();
         app.UseAuthentication();

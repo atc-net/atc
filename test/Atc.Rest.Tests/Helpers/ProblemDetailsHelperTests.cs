@@ -58,4 +58,45 @@ public class ProblemDetailsHelperTests
         Assert.False(result);
         Assert.Null(problemDetails);
     }
+
+    [Fact]
+    public void IsFormatJsonAndProblemDetailsModel_RejectsStringContent_ThatLooksLikeProblemDetails()
+    {
+        // Arrange — plain object whose VALUE contains the substrings "Status"/"Title"/"Detail",
+        // but the property names are completely different. The old substring check would
+        // false-positive on this; the JsonDocument-based check should correctly reject it.
+        var json = """{"description":"Status of the operation. Title and Detail are not available."}""";
+
+        // Act
+        var result = ProblemDetailsHelper.IsFormatJsonAndProblemDetailsModel(json);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void IsFormatJsonAndProblemDetailsModel_AcceptsCamelCaseProblemDetails()
+    {
+        // Arrange — RFC 7807 in camelCase (the System.Text.Json default) should be accepted.
+        var json = """{"status":404,"title":"Not Found","detail":"Resource was not found"}""";
+
+        // Act
+        var result = ProblemDetailsHelper.IsFormatJsonAndProblemDetailsModel(json);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void IsFormatJsonAndProblemDetailsModel_RejectsJsonArray()
+    {
+        // Arrange — the root must be an object, not an array.
+        var json = """[{"Status":400,"Title":"x","Detail":"y"}]""";
+
+        // Act
+        var result = ProblemDetailsHelper.IsFormatJsonAndProblemDetailsModel(json);
+
+        // Assert
+        Assert.False(result);
+    }
 }

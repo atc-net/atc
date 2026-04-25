@@ -109,7 +109,11 @@ public class RequestResponseLoggerMiddleware
                 else
                 {
                     swapStream.Seek(0, SeekOrigin.Begin);
-                    var responseBodyText = await new StreamReader(swapStream).ReadToEndAsync();
+                    string responseBodyText;
+                    using (var reader = new StreamReader(swapStream, leaveOpen: true))
+                    {
+                        responseBodyText = await reader.ReadToEndAsync();
+                    }
 
                     swapStream.Seek(0, SeekOrigin.Begin);
                     await swapStream.CopyToAsync(originalResponseBody);
