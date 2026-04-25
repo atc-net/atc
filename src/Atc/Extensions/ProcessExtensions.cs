@@ -55,9 +55,23 @@ public static class ProcessExtensions
         }
     }
 
+    /// <summary>
+    /// Synchronously terminates the process and any child processes it started, using a default
+    /// 30-second timeout per spawned helper command. On Windows uses <c>taskkill /T /F</c>; on
+    /// other platforms uses <c>pgrep</c> + <c>kill -TERM</c>.
+    /// </summary>
+    /// <param name="process">The root process whose tree should be terminated.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="process"/> is null.</exception>
     public static void KillTree(this Process process)
         => process.KillTree(DefaultKillTimeout);
 
+    /// <summary>
+    /// Synchronously terminates the process and any child processes it started, capping each
+    /// spawned helper command at <paramref name="timeout"/>.
+    /// </summary>
+    /// <param name="process">The root process whose tree should be terminated.</param>
+    /// <param name="timeout">Maximum time to wait for each helper command (taskkill / pgrep / kill).</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="process"/> is null.</exception>
     public static void KillTree(
         this Process process,
         TimeSpan timeout)
@@ -89,6 +103,47 @@ public static class ProcessExtensions
 
             UnixKillProcess(process.Id, timeout);
         }
+    }
+
+    /// <summary>
+    /// Asynchronously terminates the process and any child processes it started, using the
+    /// default 30-second timeout per helper command.
+    /// </summary>
+    /// <param name="process">The root process whose tree should be terminated.</param>
+    /// <param name="cancellationToken">Token used to abort the kill operation early.</param>
+    /// <returns>A task that completes when the kill commands have finished.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="process"/> is null.</exception>
+    public static Task KillTreeAsync(
+        this Process process,
+        CancellationToken cancellationToken = default)
+        => process.KillTreeAsync(DefaultKillTimeout, cancellationToken);
+
+    /// <summary>
+    /// Asynchronously terminates the process and any child processes it started, capping each
+    /// spawned helper command at <paramref name="timeout"/>.
+    /// </summary>
+    /// <param name="process">The root process whose tree should be terminated.</param>
+    /// <param name="timeout">Maximum time to wait for each helper command.</param>
+    /// <param name="cancellationToken">Token used to abort the kill operation early.</param>
+    /// <returns>A task that completes when the kill commands have finished.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="process"/> is null.</exception>
+    public static Task KillTreeAsync(
+        this Process process,
+        TimeSpan timeout,
+        CancellationToken cancellationToken = default)
+    {
+        if (process is null)
+        {
+            throw new ArgumentNullException(nameof(process));
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        // The underlying taskkill/pgrep/kill helpers are blocking system calls; we offload to
+        // the thread pool so callers do not block their own context, and observe the token on
+        // entry. The token is also forwarded to RunProcessAndIgnoreOutput / RunProcessAndReadOutput
+        // so an ongoing helper can be killed if cancellation fires.
+        return Task.Run(() => process.KillTree(timeout), cancellationToken);
     }
 
     private static void UnixKillProcess(
