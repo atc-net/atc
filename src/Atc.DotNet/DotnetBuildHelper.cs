@@ -22,6 +22,10 @@ public static class DotnetBuildHelper
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
+    /// <remarks>
+    /// This is a convenience overload that uses <see cref="NullLogger.Instance"/>; for build
+    /// progress visibility prefer the overload accepting an <see cref="ILogger"/>.
+    /// </remarks>
     public static Task<Dictionary<string, int>> BuildAndCollectErrors(
         DirectoryInfo rootPath,
         int? runNumber = null,
@@ -31,13 +35,7 @@ public static class DotnetBuildHelper
         int timeoutInSec = DefaultTimeoutInSec,
         string logPrefix = "",
         CancellationToken cancellationToken = default)
-    {
-        if (rootPath is null)
-        {
-            throw new ArgumentNullException(nameof(rootPath));
-        }
-
-        return InvokeBuildAndCollectErrors(
+        => BuildAndCollectErrors(
             NullLogger.Instance,
             rootPath,
             runNumber,
@@ -47,7 +45,6 @@ public static class DotnetBuildHelper
             timeoutInSec,
             logPrefix,
             cancellationToken);
-    }
 
     /// <summary>
     /// Builds a .NET project or solution with logging support and collects compilation errors grouped by error code.
