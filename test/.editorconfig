@@ -1,6 +1,6 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-11-2025
+# Version: 1.0.1
+# Updated: 20-04-2026
 # Location: test
 # Distribution: DotNet10
 # Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
@@ -14,37 +14,30 @@
 # http://www.asyncfixer.com
 
 
-# Asyncify
-# https://github.com/hvanbakel/Asyncify-CSharp
-
-
 # Meziantou
 # https://www.meziantou.net/enforcing-asynchronous-code-good-practices-using-a-roslyn-analyzer.htm
-dotnet_diagnostic.MA0004.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0004.md
-dotnet_diagnostic.MA0016.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/Meziantou/MA0016.md
+dotnet_diagnostic.MA0004.severity = none            # Use Task.ConfigureAwait(false)
+dotnet_diagnostic.MA0016.severity = none            # Prefer return collection abstraction over implementation
 dotnet_diagnostic.MA0051.severity = none            # Method Length
 
 
 # Microsoft - Code Analysis
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
-dotnet_diagnostic.CA1068.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1068.md
-dotnet_diagnostic.CA1602.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1602.md
-dotnet_diagnostic.CA1707.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA1707.md
-dotnet_diagnostic.CA2007.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/MicrosoftCodeAnalysis/CA2007.md
+dotnet_diagnostic.CA1068.severity = none            # CancellationToken parameters must come last
+dotnet_diagnostic.CA1602.severity = none
+dotnet_diagnostic.CA1707.severity = none            # Identifiers should not contain underscores
+dotnet_diagnostic.CA2007.severity = none            # Do not directly await a Task
+dotnet_diagnostic.CA2025.severity = none            # Ensure tasks using 'IDisposable' instances complete before the instances are disposed
 
 
 # Microsoft - Compiler Errors
 # https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
 
 
-# SecurityCodeScan
-# https://security-code-scan.github.io/
-
-
 # StyleCop
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers
-dotnet_diagnostic.SA1122.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1122.md
-dotnet_diagnostic.SA1133.severity = none            # https://github.com/atc-net/atc-coding-rules/blob/main/documentation/CodeAnalyzersRules/StyleCop/SA1133.md
+dotnet_diagnostic.SA1122.severity = none            # Use string.Empty for empty strings
+dotnet_diagnostic.SA1133.severity = none            # Do not combine attributes
 
 
 # SonarAnalyzer.CSharp
