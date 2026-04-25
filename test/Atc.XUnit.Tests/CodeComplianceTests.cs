@@ -64,4 +64,24 @@ public class CodeComplianceTests
         CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
             sourceAssembly);
     }
+
+    [Fact]
+    public void AssertExportedTypesWithWrongDefinitions_TypeOverload_DoesNotThrow_ForCompliantType()
+    {
+        // Act & Assert - this type is compliant, so the method should not throw
+        CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
+            typeof(CodeComplianceHelper));
+    }
+
+    [Fact]
+    public void AssertExportedTypesWithWrongDefinitions_TypeOverload_Throws_OnNullType()
+    {
+        // Act
+        var act = () => CodeComplianceHelper.AssertExportedTypesWithWrongDefinitions(
+            type: null!);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>()
+            .WithParameterName("type");
+    }
 }

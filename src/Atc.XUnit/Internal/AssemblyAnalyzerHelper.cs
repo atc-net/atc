@@ -45,41 +45,62 @@ internal static class AssemblyAnalyzerHelper
         var list = new Dictionary<MethodInfo, string>();
         foreach (var type in types)
         {
-            var methods = type.GetPublicDeclaredOnlyMethods();
-            foreach (var method in methods)
-            {
-                if (method.DeclaringType is not null &&
-                    listModuleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName, StringComparer.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                if (method.Name.StartsWith("get_", StringComparison.Ordinal) ||
-                    method.Name.StartsWith("set_", StringComparison.Ordinal) ||
-                    method.Name.StartsWith("op_", StringComparison.Ordinal) ||
-                    method.Name.StartsWith("add_", StringComparison.Ordinal) ||
-                    method.Name.StartsWith("remove_", StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                if ("Equals".Equals(method.Name, StringComparison.Ordinal) ||
-                    "GetHashCode".Equals(method.Name, StringComparison.Ordinal) ||
-                    "GetType".Equals(method.Name, StringComparison.Ordinal) ||
-                    "ToString".Equals(method.Name, StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                var error = ValidateMethod(method);
-                if (!string.IsNullOrEmpty(error))
-                {
-                    list.Add(method, error);
-                }
-            }
+            CollectMethodsWithWrongNamingForType(type, listModuleScopeNamesToExclude, list);
         }
 
         return list;
+    }
+
+    internal static Dictionary<MethodInfo, string> CollectExportedMethodsWithWrongNaming(
+        Type type)
+    {
+        var listModuleScopeNamesToExclude = new List<string>
+        {
+            typeof(Exception).Module.ScopeName,
+        };
+
+        var list = new Dictionary<MethodInfo, string>();
+        CollectMethodsWithWrongNamingForType(type, listModuleScopeNamesToExclude, list);
+        return list;
+    }
+
+    private static void CollectMethodsWithWrongNamingForType(
+        Type type,
+        List<string> moduleScopeNamesToExclude,
+        Dictionary<MethodInfo, string> list)
+    {
+        var methods = type.GetPublicDeclaredOnlyMethods();
+        foreach (var method in methods)
+        {
+            if (method.DeclaringType is not null &&
+                moduleScopeNamesToExclude.Contains(method.DeclaringType.Module.ScopeName, StringComparer.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            if (method.Name.StartsWith("get_", StringComparison.Ordinal) ||
+                method.Name.StartsWith("set_", StringComparison.Ordinal) ||
+                method.Name.StartsWith("op_", StringComparison.Ordinal) ||
+                method.Name.StartsWith("add_", StringComparison.Ordinal) ||
+                method.Name.StartsWith("remove_", StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            if ("Equals".Equals(method.Name, StringComparison.Ordinal) ||
+                "GetHashCode".Equals(method.Name, StringComparison.Ordinal) ||
+                "GetType".Equals(method.Name, StringComparison.Ordinal) ||
+                "ToString".Equals(method.Name, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            var error = ValidateMethod(method);
+            if (!string.IsNullOrEmpty(error))
+            {
+                list.Add(method, error);
+            }
+        }
     }
 
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
