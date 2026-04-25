@@ -105,20 +105,20 @@ Provides helper methods for asserting code compliance related to naming conventi
 >```csharp
 >void AssertExportedTypesWithWrongDefinitions(Type type, bool useFullName = False)
 >```
-><b>Summary:</b> Asserts that exported types have correct naming definitions. Currently not implemented.
+><b>Summary:</b> Asserts that the given type's exported methods follow the project's naming conventions (e.g. extension method classes ending in `Extensions` have a matching first-parameter type).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to validate.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , use full type names in output.<br />
 #### AssertExportedTypesWithWrongDefinitions
 >```csharp
 >void AssertExportedTypesWithWrongDefinitions(Assembly assembly, List<Type> excludeTypes = null, bool useFullName = False)
 >```
-><b>Summary:</b> Asserts that exported types have correct naming definitions. Currently not implemented.
+><b>Summary:</b> Asserts that the given type's exported methods follow the project's naming conventions (e.g. extension method classes ending in `Extensions` have a matching first-parameter type).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to validate.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to , use full type names in output.<br />
 #### AssertLocalizationResources
 >```csharp
 >void AssertLocalizationResources(Assembly assembly, IList<string> cultureNames, IList<string> allowSuffixTermsForKeySuffixWithPlaceholders = null)

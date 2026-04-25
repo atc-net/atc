@@ -12,8 +12,8 @@
 
 - [HealthReportEntryExtensions](Atc.Rest.HealthChecks.Extensions.md#healthreportentryextensions)
   -  Static Methods
-     - ToHealthCheck(this KeyValuePair&lt;string, HealthReportEntry&gt; kvp)
-     - ToHealthChecks(this IReadOnlyDictionary&lt;string, HealthReportEntry&gt; entries)
+     - ToHealthCheck(this KeyValuePair&lt;string, HealthReportEntry&gt; kvp, bool includeExceptionDetails = False)
+     - ToHealthChecks(this IReadOnlyDictionary&lt;string, HealthReportEntry&gt; entries, bool includeExceptionDetails = False)
 - [ResourceHealthCheckExtensions](Atc.Rest.HealthChecks.Extensions.md#resourcehealthcheckextensions)
   -  Static Methods
      - ToIReadOnlyDictionary(this IEnumerable&lt;ResourceHealthCheck&gt; resourceHealthCheck)
@@ -22,7 +22,7 @@
 
 - [HealthCheckOptionsFactory](Atc.Rest.HealthChecks.Factories.md#healthcheckoptionsfactory)
   -  Static Methods
-     - CreateJson(string applicationName, JsonSerializerOptions jsonSerializerOptions)
+     - CreateJson(string applicationName, JsonSerializerOptions jsonSerializerOptions, bool includeExceptionDetails = False)
 
 ## [Atc.Rest.HealthChecks.Models](Atc.Rest.HealthChecks.Models.md)
 

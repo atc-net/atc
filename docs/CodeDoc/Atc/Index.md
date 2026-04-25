@@ -36,6 +36,7 @@
 - [LetterAccentType](Atc.md#letteraccenttype)
 - [LocalizedDescriptionAttribute](Atc.md#localizeddescriptionattribute)
 - [LogCategoryType](Atc.md#logcategorytype)
+- [LogCategoryTypeExtensions](Atc.md#logcategorytypeextensions)
 - [LoggerExtensions](Atc.md#loggerextensions)
 - [NumericAlphaComparer](Atc.md#numericalphacomparer)
 - [OnOffType](Atc.md#onofftype)

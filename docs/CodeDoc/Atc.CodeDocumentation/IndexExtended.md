@@ -56,7 +56,7 @@
 
 - [MarkdownCodeDocGenerator](Atc.CodeDocumentation.Markdown.md#markdowncodedocgenerator)
   -  Static Methods
-     - Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null)
+     - Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null, bool runOnNonWindows = False)
 
 ## [Atc.CodeDocumentation.XmlDocument](Atc.CodeDocumentation.XmlDocument.md)
 

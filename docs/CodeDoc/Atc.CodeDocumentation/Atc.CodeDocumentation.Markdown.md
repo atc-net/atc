@@ -18,13 +18,20 @@ Generates markdown documentation files from assembly XML documentation comments.
 
 #### Run
 >```csharp
->void Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null)
+>void Run(Assembly assemblyToCodeDoc, DirectoryInfo outputPath = null, bool runOnNonWindows = False)
 >```
 ><b>Summary:</b> Generates markdown documentation files for all public types in the specified assembly.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assemblyToCodeDoc`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to document.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`outputPath`&nbsp;&nbsp;-&nbsp;&nbsp;The output directory for generated markdown files. If not specified, defaults to a CodeDoc folder relative to the assembly location.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runOnNonWindows`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When  (default), the generator silently no-ops on non-Windows
+            platforms. This preserves the historical behavior because some CI environments place the
+            generated .xml doc files in a different location on Linux/macOS. Set to
+             to force the generator to run cross-platform — useful in test
+            environments where the caller has confirmed the XML file is reachable.
+            <br />
 >
 ><b>Code usage:</b>
 >```csharp

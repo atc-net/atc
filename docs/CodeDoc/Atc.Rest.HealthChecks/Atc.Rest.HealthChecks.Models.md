@@ -9,6 +9,7 @@
 
 ## HealthCheck
 Represents the result of a single health check execution.
+><b>Remarks:</b> <b>Security warning:</b> `Atc.Rest.HealthChecks.Models.HealthCheck.ExceptionMessage` may contain sensitive information such as connection strings, file paths, internal hostnames, or other internal details. Only populate this field when the response is consumed by trusted callers (e.g. behind authentication or in non-production environments). Use the `includeExceptionDetails` flag on the `ToHealthCheck` / `ToHealthChecks` extension methods or `HealthCheckOptionsFactory.CreateJson` to opt in.
 
 >```csharp
 >public class HealthCheck : IEquatable<HealthCheck>

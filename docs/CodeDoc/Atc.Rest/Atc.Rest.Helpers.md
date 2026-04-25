@@ -21,12 +21,12 @@ Helper methods for working with `Microsoft.AspNetCore.Mvc.ProblemDetails` respon
 >```csharp
 >bool IsFormatJsonAndProblemDetailsModel(string value)
 >```
-><b>Summary:</b> Determines whether the specified string is a JSON-formatted ProblemDetails model.
+><b>Summary:</b> Determines whether the specified string is a JSON-formatted ProblemDetails model containing at least one of the expected top-level properties (`status`, `title`, `detail`) — the comparison is case-insensitive on property names so it tolerates both PascalCase and camelCase serialization styles.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to check.<br />
 >
-><b>Returns:</b> True if the value is valid JSON containing Status, Title, and Detail properties; otherwise, false.
+><b>Returns:</b> <see langword="true" /> if the value is valid JSON whose root object exposes any of the ProblemDetails properties; otherwise, <see langword="false" />.
 #### TrySerializeToProblemDetails
 >```csharp
 >bool TrySerializeToProblemDetails(string value, out ProblemDetails problemDetails)
