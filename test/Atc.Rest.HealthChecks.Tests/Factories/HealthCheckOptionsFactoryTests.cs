@@ -49,7 +49,7 @@ public class HealthCheckOptionsFactoryTests
 
         var response = new HealthCheckResponse(
             applicationName,
-            report.Entries.ToHealthChecks(),
+            report.Entries.ToHealthChecks(includeExceptionDetails: true),
             report.Status,
             report.TotalDuration);
 

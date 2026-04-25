@@ -76,7 +76,7 @@ public class HealthReportEntryExtensionsTests
     }
 
     [Fact]
-    public void ToHealthCheck_With_Exception()
+    public void ToHealthCheck_With_Exception_Excludes_Message_By_Default()
     {
         // Arrange
         const string name = "MyHealthCheck";
@@ -103,8 +103,60 @@ public class HealthReportEntryExtensionsTests
         actual.Status.Should().Be(status);
         actual.Duration.Should().Be(duration);
         actual.Description.Should().Be(description);
-        actual.ExceptionMessage.Should().Be("Something went wrong");
+        actual.ExceptionMessage.Should().BeNull();
         actual.Data.Should().BeNull();
+    }
+
+    [Fact]
+    public void ToHealthCheck_With_Exception_Includes_Message_When_Opted_In()
+    {
+        // Arrange
+        const string name = "MyHealthCheck";
+        const string description = "Failed";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Unhealthy;
+        var exception = new InvalidOperationException("Something went wrong");
+
+        var entry = new KeyValuePair<string, HealthReportEntry>(
+            name,
+            new HealthReportEntry(
+                status,
+                description,
+                duration,
+                exception,
+                data: null));
+
+        // Act
+        var actual = entry.ToHealthCheck(includeExceptionDetails: true);
+
+        // Assert
+        actual.ExceptionMessage.Should().Be("Something went wrong");
+    }
+
+    [Fact]
+    public void ToHealthCheck_DoesNotLeak_Sensitive_ConnectionString_By_Default()
+    {
+        // Arrange
+        const string name = "Db";
+        var duration = TimeSpan.FromSeconds(1);
+        const HealthStatus status = HealthStatus.Unhealthy;
+        const string sensitive = "Server=db.internal;Database=secret;User=admin;Password=p@ssw0rd";
+        var exception = new InvalidOperationException($"Cannot connect: {sensitive}");
+
+        var entry = new KeyValuePair<string, HealthReportEntry>(
+            name,
+            new HealthReportEntry(
+                status,
+                description: null,
+                duration,
+                exception,
+                data: null));
+
+        // Act
+        var actual = entry.ToHealthCheck();
+
+        // Assert - default behavior must not leak the message anywhere on the result
+        actual.ExceptionMessage.Should().BeNull();
     }
 
     [Fact]
