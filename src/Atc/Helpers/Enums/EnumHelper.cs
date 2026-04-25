@@ -283,6 +283,47 @@ public static class EnumHelper
     }
 
     /// <summary>
+    /// Builds a read-only map from each defined enum member to its underlying <see cref="int"/> value.
+    /// </summary>
+    /// <typeparam name="T">The enum type.</typeparam>
+    /// <param name="includeDefault">If set to <see langword="true"/> the <c>0</c>-valued member is included.</param>
+    /// <param name="byFlagIncludeBase">For <see cref="FlagsAttribute"/> enums, include the single-bit base values.</param>
+    /// <param name="byFlagIncludeCombined">For <see cref="FlagsAttribute"/> enums, include the multi-bit combined values.</param>
+    /// <returns>
+    /// An <see cref="IReadOnlyDictionary{TKey, TValue}"/> keyed by the typed enum value with its
+    /// underlying <see cref="int"/> as the value. Suitable for severity-rank or threshold lookup
+    /// tables that previously required a hand-rolled <c>Dictionary&lt;TEnum, int&gt;</c> literal.
+    /// </returns>
+    public static IReadOnlyDictionary<T, int> ConvertEnumToReadOnlyDictionary<T>(
+        bool includeDefault = true,
+        bool byFlagIncludeBase = true,
+        bool byFlagIncludeCombined = true)
+        where T : Enum
+    {
+        var enumType = typeof(T);
+        var hasFlagAttribute = enumType.IsDefined(typeof(FlagsAttribute), inherit: false);
+
+        var map = new Dictionary<T, int>();
+        foreach (var raw in Enum.GetValues(enumType))
+        {
+            if (ShouldEnumValueBeSkipped(
+                    raw,
+                    includeDefault,
+                    hasFlagAttribute,
+                    byFlagIncludeBase,
+                    byFlagIncludeCombined))
+            {
+                continue;
+            }
+
+            var typed = (T)raw!;
+            map[typed] = Convert.ToInt32(typed, GlobalizationConstants.EnglishCultureInfo);
+        }
+
+        return map;
+    }
+
+    /// <summary>
     /// Converts the enum to dictionary with string key.
     /// </summary>
     /// <param name="enumType">Type of the enum.</param>

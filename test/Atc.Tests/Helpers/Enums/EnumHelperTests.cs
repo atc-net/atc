@@ -242,4 +242,73 @@ public class EnumHelperTests
         // Assert
         Assert.Equal(expected, actual.Count);
     }
+
+    [Fact]
+    public void ConvertEnumToReadOnlyDictionary_ContainsAllDefinedMembers_WithUnderlyingIntValues()
+    {
+        // Act
+        var actual = EnumHelper.ConvertEnumToReadOnlyDictionary<DayOfWeek>();
+
+        // Assert
+        actual.Should().HaveCount(7);
+        actual[DayOfWeek.Sunday].Should().Be(0);
+        actual[DayOfWeek.Monday].Should().Be(1);
+        actual[DayOfWeek.Tuesday].Should().Be(2);
+        actual[DayOfWeek.Wednesday].Should().Be(3);
+        actual[DayOfWeek.Thursday].Should().Be(4);
+        actual[DayOfWeek.Friday].Should().Be(5);
+        actual[DayOfWeek.Saturday].Should().Be(6);
+    }
+
+    [Fact]
+    public void ConvertEnumToReadOnlyDictionary_ExcludesZeroValue_WhenIncludeDefaultFalse()
+    {
+        // Act
+        var actual = EnumHelper.ConvertEnumToReadOnlyDictionary<DayOfWeek>(includeDefault: false);
+
+        // Assert
+        actual.Should().HaveCount(6);
+        actual.ContainsKey(DayOfWeek.Sunday).Should().BeFalse();
+        actual[DayOfWeek.Monday].Should().Be(1);
+    }
+
+    [Theory]
+    [InlineData(true, true, 20)] // 1 default + 16 single-bit + 3 combined
+    [InlineData(true, false, 17)] // 1 default + 16 single-bit
+    [InlineData(false, true, 4)] // 1 default + 3 combined
+    public void ConvertEnumToReadOnlyDictionary_FlagsEnum_RespectsByFlagIncludeBaseAndCombined(
+        bool byFlagIncludeBase,
+        bool byFlagIncludeCombined,
+        int expectedCount)
+    {
+        // Act
+        var actual = EnumHelper.ConvertEnumToReadOnlyDictionary<CardinalDirectionType>(
+            includeDefault: true,
+            byFlagIncludeBase,
+            byFlagIncludeCombined);
+
+        // Assert
+        actual.Should().HaveCount(expectedCount);
+    }
+
+    [Fact]
+    public void ConvertEnumToReadOnlyDictionary_NonIntUnderlyingType_StillReturnsCorrectIntValues()
+    {
+        // Act
+        var actual = EnumHelper.ConvertEnumToReadOnlyDictionary<ByteBackedTest>();
+
+        // Assert
+        actual.Should().HaveCount(3);
+        actual[ByteBackedTest.Zero].Should().Be(0);
+        actual[ByteBackedTest.One].Should().Be(1);
+        actual[ByteBackedTest.TwoHundred].Should().Be(200);
+    }
+
+    [SuppressMessage("Minor Code Smell", "S4022:Enumerations should have \"Int32\" storage", Justification = "Test fixture verifying non-int underlying-type support.")]
+    private enum ByteBackedTest : byte
+    {
+        Zero = 0,
+        One = 1,
+        TwoHundred = 200,
+    }
 }
