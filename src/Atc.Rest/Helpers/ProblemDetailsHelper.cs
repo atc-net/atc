@@ -10,14 +10,48 @@ namespace Atc.Rest.Helpers;
 public static class ProblemDetailsHelper
 {
     /// <summary>
-    /// Determines whether the specified string is a JSON-formatted ProblemDetails model.
+    /// Determines whether the specified string is a JSON-formatted ProblemDetails model
+    /// containing at least one of the expected top-level properties (<c>status</c>, <c>title</c>,
+    /// <c>detail</c>) — the comparison is case-insensitive on property names so it tolerates both
+    /// PascalCase and camelCase serialization styles.
     /// </summary>
     /// <param name="value">The string to check.</param>
-    /// <returns>True if the value is valid JSON containing Status, Title, and Detail properties; otherwise, false.</returns>
+    /// <returns>
+    /// <see langword="true"/> if the value is valid JSON whose root object exposes any of the
+    /// ProblemDetails properties; otherwise, <see langword="false"/>.
+    /// </returns>
     public static bool IsFormatJsonAndProblemDetailsModel(string value)
-        => !string.IsNullOrEmpty(value) &&
-           value.IsFormatJson() &&
-           value.Contains(new[] { "Status", "Title", "Detail" });
+    {
+        if (string.IsNullOrEmpty(value) || !value.IsFormatJson())
+        {
+            return false;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(value);
+            if (document.RootElement.ValueKind != JsonValueKind.Object)
+            {
+                return false;
+            }
+
+            foreach (var property in document.RootElement.EnumerateObject())
+            {
+                if (string.Equals(property.Name, "Status", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(property.Name, "Title", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(property.Name, "Detail", StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        catch (JsonException)
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Attempts to deserialize a JSON string to a <see cref="ProblemDetails"/> object.
