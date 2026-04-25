@@ -36,10 +36,18 @@ public static class RestApiBuilderExtensions
     /// <param name="app">The application builder.</param>
     /// <param name="env">The web host environment.</param>
     /// <param name="restApiOptions">The REST API configuration options.</param>
-    /// <param name="setupAction">Custom setup action to configure additional middleware.</param>
+    /// <param name="setupAction">
+    /// Custom setup action invoked after the built-in middleware (CORS, correlation, telemetry,
+    /// optional request/response logger) and <b>before</b> HSTS, HTTPS redirection, static files,
+    /// routing, authentication and authorization. This is the recommended hook point for adding
+    /// <c>app.UseRateLimiter()</c> (.NET 7+), <c>app.UseRequestTimeouts()</c> (.NET 8+), output
+    /// caching, response compression, header policies or any other application-level middleware.
+    /// </param>
     /// <returns>The application builder for method chaining.</returns>
     /// <remarks>
+    /// <para>
     /// This method configures the following middleware in order:
+    /// </para>
     /// <list type="number">
     /// <item>Developer exception page (Development only)</item>
     /// <item>CORS with permissive policy</item>
@@ -47,12 +55,31 @@ public static class RestApiBuilderExtensions
     /// <item>Request correlation middleware</item>
     /// <item>Exception telemetry middleware</item>
     /// <item>Request/response logger middleware (if enabled)</item>
+    /// <item><c>setupAction</c> — recommended position for rate-limiting, request timeouts and other custom middleware</item>
     /// <item>HSTS (non-Development only)</item>
     /// <item>HTTPS redirection</item>
     /// <item>Static files</item>
     /// <item>Routing, authentication, and authorization</item>
     /// <item>Endpoints (controllers and API specification)</item>
     /// </list>
+    /// <para>
+    /// Example — enabling rate-limiting and a 30-second per-request timeout:
+    /// </para>
+    /// <code>
+    /// services.AddRateLimiter(options =&gt; options.AddFixedWindowLimiter("api", o =&gt;
+    /// {
+    ///     o.PermitLimit = 100;
+    ///     o.Window = TimeSpan.FromMinutes(1);
+    /// }));
+    /// services.AddRequestTimeouts(options =&gt;
+    ///     options.DefaultPolicy = new RequestTimeoutPolicy { Timeout = TimeSpan.FromSeconds(30) });
+    ///
+    /// app.ConfigureRestApi(env, restApiOptions, builder =&gt;
+    /// {
+    ///     builder.UseRateLimiter();
+    ///     builder.UseRequestTimeouts();
+    /// });
+    /// </code>
     /// </remarks>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Minor Code Smell", "S4507:Delivering code in production with debug features activated is security-sensitive", Justification = "OK.")]
