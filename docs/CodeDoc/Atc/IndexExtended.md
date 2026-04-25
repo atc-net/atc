@@ -84,6 +84,10 @@
   -  Properties
      - Description
 - [LogCategoryType](Atc.md#logcategorytype)
+- [LogCategoryTypeExtensions](Atc.md#logcategorytypeextensions)
+  -  Static Methods
+     - ToShortName(this LogCategoryType logCategoryType)
+     - ToShortNameBracketed(this LogCategoryType logCategoryType)
 - [LoggerExtensions](Atc.md#loggerextensions)
   -  Static Methods
      - LogKeyValueItem(this ILogger logger, LogKeyValueItem logKeyValueItem, bool includeKey = True, bool includeDescription = True)

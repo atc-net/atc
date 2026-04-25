@@ -8,6 +8,7 @@
 <br />
 
 ## ProcessExtensions
+Extension methods for `System.Diagnostics.Process` that add async-friendly waiting and cross-platform process-tree termination.
 
 >```csharp
 >public static class ProcessExtensions

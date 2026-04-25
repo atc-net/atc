@@ -964,6 +964,25 @@ Defines different categories of log messages for classification and filtering pu
 
 <br />
 
+## LogCategoryTypeExtensions
+
+>```csharp
+>public static class LogCategoryTypeExtensions
+>```
+
+### Static Methods
+
+#### ToShortName
+>```csharp
+>string ToShortName(this LogCategoryType logCategoryType)
+>```
+#### ToShortNameBracketed
+>```csharp
+>string ToShortNameBracketed(this LogCategoryType logCategoryType)
+>```
+
+<br />
+
 ## LoggerExtensions
 
 >```csharp

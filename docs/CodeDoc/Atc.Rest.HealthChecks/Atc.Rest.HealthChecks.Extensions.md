@@ -18,22 +18,33 @@ Extension methods for `Microsoft.Extensions.Diagnostics.HealthChecks.HealthRepor
 
 #### ToHealthCheck
 >```csharp
->HealthCheck ToHealthCheck(this KeyValuePair<string, HealthReportEntry> kvp)
+>HealthCheck ToHealthCheck(this KeyValuePair<string, HealthReportEntry> kvp, bool includeExceptionDetails = False)
 >```
 ><b>Summary:</b> Converts a key-value pair of health report entry to a `Atc.Rest.HealthChecks.Models.HealthCheck` instance.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`kvp`&nbsp;&nbsp;-&nbsp;&nbsp;The key-value pair containing the health check name and entry details.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionDetails`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When , copies entry.Exception?.Message into
+            . Defaults to  because
+            raw exception messages can leak sensitive information (connection strings, file paths,
+            internal hostnames) to untrusted callers.
+            <br />
 >
 ><b>Returns:</b> A `Atc.Rest.HealthChecks.Models.HealthCheck` instance representing the health report entry.
 #### ToHealthChecks
 >```csharp
->IList<HealthCheck> ToHealthChecks(this IReadOnlyDictionary<string, HealthReportEntry> entries)
+>IList<HealthCheck> ToHealthChecks(this IReadOnlyDictionary<string, HealthReportEntry> entries, bool includeExceptionDetails = False)
 >```
 ><b>Summary:</b> Converts a collection of health report entries to a list of `Atc.Rest.HealthChecks.Models.HealthCheck` instances.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`entries`&nbsp;&nbsp;-&nbsp;&nbsp;The dictionary of health report entries to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeExceptionDetails`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When , copies entry.Exception?.Message into
+             for each entry. Defaults to
+             for security; see  for details.
+            <br />
 >
 ><b>Returns:</b> A list of `Atc.Rest.HealthChecks.Models.HealthCheck` instances.
 
