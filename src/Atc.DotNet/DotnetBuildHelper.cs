@@ -179,9 +179,10 @@ public static class DotnetBuildHelper
             var slnFiles = Directory.GetFiles(rootPath.FullName, "*.sln");
             if (slnFiles.Length > 1)
             {
-                var files = slnFiles
+                var files = await slnFiles
                     .Select(x => new FileInfo(x).Name)
-                    .ToListAsync(cancellationToken);
+                    .ToListAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
                 return (
                     IsSuccessful: false,
@@ -191,9 +192,10 @@ public static class DotnetBuildHelper
             var csprojFiles = Directory.GetFiles(rootPath.FullName, "*.csproj");
             if (csprojFiles.Length > 1)
             {
-                var files = csprojFiles
+                var files = await csprojFiles
                     .Select(x => new FileInfo(x).Name)
-                    .ToListAsync(cancellationToken);
+                    .ToListAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
                 return (
                     IsSuccessful: false,
@@ -239,7 +241,7 @@ public static class DotnetBuildHelper
         var regex = RegexCache.GetOrAdd(regexPattern, pattern => new Regex(
             pattern,
             RegexOptions.Multiline | RegexOptions.Compiled,
-            TimeSpan.FromMinutes(2)));
+            TimeSpan.FromSeconds(10)));
 
         var matchCollection = regex.Matches(buildResult);
         foreach (var matchGroups in matchCollection.Select(x => x.Groups))
