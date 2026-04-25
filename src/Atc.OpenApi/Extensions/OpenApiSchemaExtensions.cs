@@ -1430,7 +1430,10 @@ public static class OpenApiSchemaExtensions
     /// <param name="schema">The <see cref="OpenApiSchema"/> to extract the enum from.</param>
     /// <returns>A tuple containing the enum name and the enum schema.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="schema"/> is null.</exception>
-    /// <exception cref="ItemNotFoundException">Thrown when the schema does not contain an enum.</exception>
+    /// <exception cref="ItemNotFoundException">
+    /// Thrown when the schema does not contain an enum or when an enum schema is missing
+    /// a <see cref="OpenApiSchema.Reference"/> from which a name can be derived.
+    /// </exception>
     public static Tuple<string, OpenApiSchema> GetEnumSchema(
         this OpenApiSchema schema)
     {
@@ -1441,6 +1444,11 @@ public static class OpenApiSchemaExtensions
 
         if (schema.Enum is not null && schema.Enum.Any())
         {
+            if (schema.Reference?.Id is null)
+            {
+                throw new ItemNotFoundException("Enum schema is missing a Reference.Id.");
+            }
+
             return Tuple.Create(schema.Reference.Id, schema);
         }
 
