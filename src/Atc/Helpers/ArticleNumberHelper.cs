@@ -8,6 +8,14 @@ namespace Atc.Helpers;
 /// </remarks>
 public static class ArticleNumberHelper
 {
+    private static readonly Lazy<Regex> AsinRegex = new(
+        () => new Regex(@"^B\d{2}\w{7}|\d{9}(X|\d)$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250)),
+        LazyThreadSafetyMode.ExecutionAndPublication);
+
+    private static readonly Lazy<Regex> IssnRegex = new(
+        () => new Regex(@"^\d{4}-\d{3}[\dxX]{1}$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250)),
+        LazyThreadSafetyMode.ExecutionAndPublication);
+
     /// <summary>
     /// Get ArticleNumberType.
     /// </summary>
@@ -62,8 +70,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        var regex = new Regex("^B\\d{2}\\w{7}|\\d{9}(X|\\d)$", RegexOptions.None, TimeSpan.FromSeconds(1));
-        return regex.IsMatch(asin);
+        return AsinRegex.Value.IsMatch(asin);
     }
 
     /// <summary>
@@ -144,7 +151,6 @@ public static class ArticleNumberHelper
     /// <returns>
     ///   <see langword="true" /> if [is valid issn] [the specified code]; otherwise, <see langword="false" />.
     /// </returns>
-    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     public static bool IsValidIssn(string code)
     {
         if (string.IsNullOrEmpty(code))
@@ -159,21 +165,24 @@ public static class ArticleNumberHelper
 
         var checksum = 0;
         var multi = 8;
-        try
+        foreach (var c in code.Replace("-", string.Empty, StringComparison.Ordinal))
         {
-            // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
-            foreach (var c in code.Replace("-", string.Empty, StringComparison.Ordinal))
+            int number;
+            if (c == 'X')
             {
-                var number = c == 'X'
-                    ? 10
-                    : int.Parse(c.ToString(), GlobalizationConstants.EnglishCultureInfo);
-                checksum += number * multi;
-                multi--;
+                number = 10;
             }
-        }
-        catch
-        {
-            return false;
+            else if (c >= '0' && c <= '9')
+            {
+                number = c - '0';
+            }
+            else
+            {
+                return false;
+            }
+
+            checksum += number * multi;
+            multi--;
         }
 
         if (checksum % 11 != 0)
@@ -181,8 +190,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        var regex = new Regex(@"^\d{4}-\d{3}[\dxX]{1}$", RegexOptions.None, TimeSpan.FromSeconds(1));
-        return regex.IsMatch(code);
+        return IssnRegex.Value.IsMatch(code);
     }
 
     /// <summary>

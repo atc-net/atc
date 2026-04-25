@@ -7,6 +7,10 @@ namespace Atc;
 /// </summary>
 public class NumericAlphaComparer : IComparer<string>
 {
+    private static readonly Lazy<Regex> DigitsRegex = new(
+        () => new Regex(@"\d+", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250)),
+        LazyThreadSafetyMode.ExecutionAndPublication);
+
     /// <inheritdoc />
     [SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
@@ -61,10 +65,10 @@ public class NumericAlphaComparer : IComparer<string>
         }
 
         var tupleA = a.HasValue
-            ? new Tuple<int, string>(a.Value, null!)
+            ? new Tuple<int, string>(a.Value, string.Empty)
             : new Tuple<int, string>(ExtractNumber(x!), ExtractLetters(x!));
         var tupleB = b.HasValue
-            ? new Tuple<int, string>(b.Value, null!)
+            ? new Tuple<int, string>(b.Value, string.Empty)
             : new Tuple<int, string>(ExtractNumber(y!), ExtractLetters(y!));
 
         if (tupleA.Item1 > tupleB.Item1)
@@ -90,7 +94,7 @@ public class NumericAlphaComparer : IComparer<string>
         // ReSharper disable once InvertIf
         if (!string.IsNullOrEmpty(value))
         {
-            var s = Regex.Match(value, @"\d+", RegexOptions.None, TimeSpan.FromSeconds(1)).Value;
+            var s = DigitsRegex.Value.Match(value).Value;
             if (int.TryParse(s, NumberStyles.Any, GlobalizationConstants.EnglishCultureInfo, out var x))
             {
                 return x;
