@@ -3,6 +3,10 @@
 // ReSharper disable once CheckNamespace
 namespace System.Diagnostics;
 
+/// <summary>
+/// Extension methods for <see cref="Process"/> that add async-friendly waiting and
+/// cross-platform process-tree termination.
+/// </summary>
 public static class ProcessExtensions
 {
     private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
@@ -140,7 +144,12 @@ public static class ProcessExtensions
         };
 
         using var process = Process.Start(startInfo);
-        if (process!.WaitForExit((int)timeout.TotalMilliseconds))
+        if (process is null)
+        {
+            return (-1, string.Empty);
+        }
+
+        if (process.WaitForExit((int)timeout.TotalMilliseconds))
         {
             return (
                 process.ExitCode,
@@ -150,7 +159,7 @@ public static class ProcessExtensions
         process.Kill();
 
         return (
-            process!.ExitCode,
+            process.ExitCode,
             string.Empty);
     }
 
@@ -170,7 +179,12 @@ public static class ProcessExtensions
         };
 
         using var process = Process.Start(startInfo);
-        if (!process!.WaitForExit((int)timeout.TotalMilliseconds))
+        if (process is null)
+        {
+            return;
+        }
+
+        if (!process.WaitForExit((int)timeout.TotalMilliseconds))
         {
             process.Kill();
         }

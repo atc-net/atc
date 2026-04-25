@@ -151,8 +151,8 @@ public static class SimpleTypeHelper
             throw new ArgumentNullException(nameof(type));
         }
 
-        return BeautifySimpleTypeLookup.ContainsKey(type)
-            ? BeautifySimpleTypeLookup[type]
+        return BeautifySimpleTypeLookup.TryGetValue(type, out var name)
+            ? name
             : null;
     }
 
