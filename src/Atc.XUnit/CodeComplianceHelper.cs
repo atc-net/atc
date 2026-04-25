@@ -6,16 +6,24 @@ namespace Atc.XUnit;
 public static class CodeComplianceHelper
 {
     /// <summary>
-    /// Asserts that exported types have correct naming definitions.
-    /// Currently not implemented.
+    /// Asserts that the given type's exported methods follow the project's naming conventions
+    /// (e.g. extension method classes ending in <c>Extensions</c> have a matching first-parameter type).
     /// </summary>
     /// <param name="type">The type to validate.</param>
-    /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="useFullName">If set to <see langword="true"/>, use full type names in output.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="type"/> is <see langword="null"/>.</exception>
     public static void AssertExportedTypesWithWrongDefinitions(
         Type type,
         bool useFullName = false)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(type);
+
+        var methodsWithWrongNaming = AssemblyAnalyzerHelper.CollectExportedMethodsWithWrongNaming(type);
+
+        TestResultHelper.AssertOnTestResultsFromMethodsWithWrongDefinitions(
+            type.Assembly.GetName().Name!,
+            methodsWithWrongNaming,
+            useFullName);
     }
 
     /// <summary>

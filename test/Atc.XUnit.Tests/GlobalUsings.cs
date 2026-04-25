@@ -3,3 +3,4 @@ global using System.Reflection;
 global using Atc.CodeDocumentation;
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.XUnit.Logging;
+global using FluentAssertions;
