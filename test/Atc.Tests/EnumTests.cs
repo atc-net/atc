@@ -242,4 +242,21 @@ public class EnumTests
             .Should().NotBeNull()
             .And.HaveCount(expectedCount);
     }
+
+    [Theory]
+    [InlineData(true, 7)]
+    [InlineData(false, 6)]
+    public void ToReadOnlyDictionary(
+        bool includeDefault,
+        int expectedCount)
+    {
+        // Act
+        var actual = Enum<DayOfWeek>.ToReadOnlyDictionary(includeDefault);
+
+        // Assert
+        actual
+            .Should().NotBeNull()
+            .And.HaveCount(expectedCount);
+        actual[DayOfWeek.Monday].Should().Be(1);
+    }
 }

@@ -220,6 +220,29 @@ public static class Enum<T>
             byFlagIncludeBase,
             byFlagIncludeCombined);
 
+    /// <summary>
+    /// Builds a read-only map from each defined enum member to its underlying <see cref="int"/>
+    /// value. Useful for severity-rank or threshold lookup tables that previously required a
+    /// hand-rolled <c>Dictionary&lt;TEnum, int&gt;</c> literal.
+    /// </summary>
+    /// <param name="includeDefault">If set to <see langword="true"/> the <c>0</c>-valued member is included.</param>
+    /// <param name="byFlagIncludeBase">For <see cref="FlagsAttribute"/> enums, include the single-bit base values.</param>
+    /// <param name="byFlagIncludeCombined">For <see cref="FlagsAttribute"/> enums, include the multi-bit combined values.</param>
+    /// <returns>An <see cref="IReadOnlyDictionary{TKey, TValue}"/> keyed by the typed enum value with its underlying <see cref="int"/> as the value.</returns>
+    /// <code><![CDATA[IReadOnlyDictionary<DayOfWeek, int> map = Enum<DayOfWeek>.ToReadOnlyDictionary();]]></code>
+    /// <example><![CDATA[
+    /// IReadOnlyDictionary<DayOfWeek, int> map = Enum<DayOfWeek>.ToReadOnlyDictionary();
+    /// Assert.Equal(0, map[DayOfWeek.Sunday]);
+    /// ]]></example>
+    public static IReadOnlyDictionary<T, int> ToReadOnlyDictionary(
+        bool includeDefault = true,
+        bool byFlagIncludeBase = true,
+        bool byFlagIncludeCombined = true)
+        => EnumHelper.ConvertEnumToReadOnlyDictionary<T>(
+            includeDefault,
+            byFlagIncludeBase,
+            byFlagIncludeCombined);
+
     /// <summary>Converts the enum to dictionary with key as string.</summary>
     /// <param name="dropDownFirstItemType">Type of the dropdown first item.</param>
     /// <param name="useDescriptionAttribute">true to use the display/description/localizeddescription attribute value if exist, default value is name; false to just use the name value.</param>
