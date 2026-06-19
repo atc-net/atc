@@ -86,16 +86,12 @@ public static class ExceptionExtensions
         while (currentException is not null)
         {
             sb.AppendLine(currentException.Message);
-            if (includeStackTrace && exception.StackTrace is not null)
+            if (includeStackTrace && currentException.StackTrace is not null)
             {
-                sb.Append(exception.StackTrace);
+                sb.AppendLine(currentException.StackTrace);
             }
 
             currentException = currentException.InnerException;
-            if (includeStackTrace && exception.StackTrace is not null)
-            {
-                sb.AppendLine();
-            }
         }
 
         return sb.ToString();
@@ -128,7 +124,11 @@ public static class ExceptionExtensions
         {
             var xElements = from frame
                     in exception.StackTrace.Split('\n')
-                let prettierFrame = frame[6..].Trim()
+                let trimmedFrame = frame.Trim()
+                where trimmedFrame.Length > 0
+                let prettierFrame = trimmedFrame.StartsWith("at ", StringComparison.Ordinal)
+                    ? trimmedFrame[3..].Trim()
+                    : trimmedFrame
                 select new XElement("Frame", prettierFrame);
             root.Add(new XElement("StackTrace", xElements));
         }

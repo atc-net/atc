@@ -573,6 +573,7 @@ public class StringExtensionsTests
 
     [Theory]
     [InlineData("&lt;root&gt;&lt;node name=&#39;TheName&#39;&gt;Hallo&lt;/node&gt;&lt;/root&gt;", "<root><node name='TheName'>Hallo</node></root>")]
+    [InlineData("&lt;a x=&quot;b &amp; c&quot;&gt;", "<a x=\"b & c\">")]
     public void XmlEncode(
         string expected,
         string input)
@@ -580,10 +581,17 @@ public class StringExtensionsTests
 
     [Theory]
     [InlineData("<root><node name='TheName'>Hallo</node></root>", "&lt;root&gt;&lt;node name=&#39;TheName&#39;&gt;Hallo&lt;/node&gt;&lt;/root&gt;")]
+    [InlineData("<a x=\"b & c\">", "&lt;a x=&quot;b &amp; c&quot;&gt;")]
     public void XmlDecode(
         string expected,
         string input)
         => Assert.Equal(expected, input.XmlDecode());
+
+    [Theory]
+    [InlineData("<a x=\"b & c\">")]
+    [InlineData("plain & simple \"quoted\" <tag> 'apos'")]
+    public void XmlEncode_Then_XmlDecode_RoundTrips(string input)
+        => Assert.Equal(input, input.XmlEncode().XmlDecode());
 
     [Theory]
     [InlineData("abc", "abc")]
@@ -601,6 +609,11 @@ public class StringExtensionsTests
     [InlineData("abc", "&acirc;bc")]
     [InlineData("abc", "&atilde;bc")]
     [InlineData("abc", "&auml;bc")]
+    [InlineData("ebc", "&egrave;bc")]
+    [InlineData("ibc", "&igrave;bc")]
+    [InlineData("ebc", "&#232;bc")]
+    [InlineData("ibc", "&#236;bc")]
+    [InlineData("Obc", "&#214;bc")]
     public void NormalizeAccents(
         string expected,
         string input)

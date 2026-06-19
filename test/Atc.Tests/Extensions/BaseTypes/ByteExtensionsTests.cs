@@ -24,6 +24,8 @@ public class ByteExtensionsTests
     [Theory]
     [InlineData(new byte[] { 1, 0, 0, 0 }, 0, 4, 1)]
     [InlineData(new byte[] { 255, 0, 0, 0 }, 0, 4, 255)]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5 }, 0, 1, 1)]
+    [InlineData(new byte[] { 255, 1, 0, 0 }, 0, 2, 511)]
     public void TakeBytesAndConvertToInt(
         byte[] value,
         int startPosition,
@@ -40,6 +42,8 @@ public class ByteExtensionsTests
     [Theory]
     [InlineData(new byte[] { 1, 0, 0, 0, 0, 0, 0, 0 }, 0, 8, 1L)]
     [InlineData(new byte[] { 255, 0, 0, 0, 0, 0, 0, 0 }, 0, 8, 255L)]
+    [InlineData(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 0, 1, 1L)]
+    [InlineData(new byte[] { 255, 1, 0, 0, 0, 0, 0, 0 }, 0, 2, 511L)]
     public void TakeBytesAndConvertToLong(
         byte[] value,
         int startPosition,

@@ -26,7 +26,5 @@ public static class LongExtensions
     /// DateTimeOffset dateTimeOffset = unixTime.FromUnixTimeMs();
     /// ]]></example>
     public static DateTimeOffset FromUnixTimeMs(this long valueInMs)
-        => valueInMs >= 1000
-            ? DateTimeOffset.FromUnixTimeSeconds(valueInMs / 1000)
-            : DateTimeOffset.FromUnixTimeSeconds(valueInMs);
+        => DateTimeOffset.FromUnixTimeMilliseconds(valueInMs);
 }

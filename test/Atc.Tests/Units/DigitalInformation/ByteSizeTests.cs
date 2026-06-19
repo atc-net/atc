@@ -50,4 +50,31 @@ public class ByteSizeTests
         Assert.Equal(expected, actual);
         Assert.Equal(expected, byteSize.ToString(formatter));
     }
+
+    [Fact]
+    public void GetHashCode_ShouldBeConsistentWithEquality()
+    {
+        // Arrange
+        var a = new ByteSize(2048);
+        var b = new ByteSize(2048);
+
+        // Assert
+        Assert.Equal(a, b);
+        Assert.Equal(a.GetHashCode(), b.GetHashCode());
+        Assert.Equal(a.Value.GetHashCode(), a.GetHashCode());
+    }
+
+    [Fact]
+    public void GetHashCode_AllowsReliableUseAsHashSetKey()
+    {
+        // Arrange
+        var set = new HashSet<ByteSize>
+        {
+            new(2048),
+        };
+
+        // Act & Assert - a value-equal instance must be found (broken when GetHashCode used base.GetHashCode()).
+        Assert.Contains(new ByteSize(2048), set);
+        Assert.DoesNotContain(new ByteSize(4096), set);
+    }
 }

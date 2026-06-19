@@ -164,7 +164,7 @@ public struct ByteSize : IEquatable<ByteSize>
         => obj is ByteSize x && Equals(x);
 
     /// <inheritdoc />
-    public override readonly int GetHashCode() => base.GetHashCode();
+    public override readonly int GetHashCode() => Value.GetHashCode();
 
     /// <summary>
     /// Returns a <see cref="string" /> that represents this instance.

@@ -938,27 +938,31 @@ public static class StringExtensions
         }
 
         return xml
-            .Replace("&", "&amp", StringComparison.Ordinal)
+            .Replace("&", "&amp;", StringComparison.Ordinal)
             .Replace("'", "&#39;", StringComparison.Ordinal)
             .Replace("<", "&lt;", StringComparison.Ordinal)
             .Replace(">", "&gt;", StringComparison.Ordinal)
-            .Replace("\"", "&quot", StringComparison.Ordinal);
+            .Replace("\"", "&quot;", StringComparison.Ordinal);
     }
 
     /// <summary>
-    /// Decodes an XML string by unescaping special character entities (&amp;amp, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot).
+    /// Decodes an XML string by unescaping special character entities (&amp;amp;, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot;).
     /// </summary>
     /// <param name="xml">The XML string to decode.</param>
     /// <returns>The decoded XML string with special character entities replaced.</returns>
+    /// <remarks>
+    /// The ampersand entity (<c>&amp;amp;</c>) is decoded last so that already-decoded content
+    /// is not re-interpreted, keeping <see cref="XmlEncode"/>/<see cref="XmlDecode"/> a faithful round-trip.
+    /// </remarks>
     public static string XmlDecode(this string xml)
         => string.IsNullOrEmpty(xml)
             ? xml
             : xml
-                .Replace("&amp", "&", StringComparison.Ordinal)
                 .Replace("&#39;", "'", StringComparison.Ordinal)
                 .Replace("&lt;", "<", StringComparison.Ordinal)
                 .Replace("&gt;", ">", StringComparison.Ordinal)
-                .Replace("&quot", "\"", StringComparison.Ordinal);
+                .Replace("&quot;", "\"", StringComparison.Ordinal)
+                .Replace("&amp;", "&", StringComparison.Ordinal);
 
     /// <summary>
     /// Sorts letters in the string alphabetically.
@@ -2276,13 +2280,13 @@ public static class StringExtensions
                     case LetterAccentType.Grave:
                         value = value
                             .Replace("&agrave;", "a", StringComparison.Ordinal)
-                            .Replace("&egrave; ", "e", StringComparison.Ordinal)
-                            .Replace("&igrave; ", "i", StringComparison.Ordinal)
+                            .Replace("&egrave;", "e", StringComparison.Ordinal)
+                            .Replace("&igrave;", "i", StringComparison.Ordinal)
                             .Replace("&ograve;", "o", StringComparison.Ordinal)
                             .Replace("&ugrave;", "u", StringComparison.Ordinal)
                             .Replace("&#224;", "a", StringComparison.Ordinal)
-                            .Replace("&#232; ", "e", StringComparison.Ordinal)
-                            .Replace("&#236; ", "i", StringComparison.Ordinal)
+                            .Replace("&#232;", "e", StringComparison.Ordinal)
+                            .Replace("&#236;", "i", StringComparison.Ordinal)
                             .Replace("&#242;", "o", StringComparison.Ordinal)
                             .Replace("&#249;", "u", StringComparison.Ordinal);
                         break;
@@ -2402,7 +2406,7 @@ public static class StringExtensions
                             .Replace("&#196;", "A", StringComparison.Ordinal)
                             .Replace("&#203;", "E", StringComparison.Ordinal)
                             .Replace("&#207;", "I", StringComparison.Ordinal)
-                            .Replace("&#214,", "O", StringComparison.Ordinal)
+                            .Replace("&#214;", "O", StringComparison.Ordinal)
                             .Replace("&#220;", "U", StringComparison.Ordinal)
                             .Replace("&#159;", "Y", StringComparison.Ordinal);
                         break;
