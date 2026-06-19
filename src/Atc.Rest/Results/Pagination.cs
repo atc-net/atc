@@ -102,7 +102,7 @@ public class Pagination<T>
     /// <summary>
     /// Gets the total number of pages based on TotalCount and PageSize.
     /// </summary>
-    public int? TotalPages => TotalCount is null
+    public int? TotalPages => TotalCount is null || PageSize <= 0
         ? default(int?)
         : (int)System.Math.Ceiling((double)TotalCount / PageSize);
 

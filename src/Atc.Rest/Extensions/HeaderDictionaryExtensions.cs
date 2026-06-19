@@ -58,7 +58,11 @@ public static class HeaderDictionaryExtensions
 
         if (headers.TryGetValue(WellKnownHttpHeaders.RequestId, out var header))
         {
-            return header.FirstOrDefault();
+            var value = header.FirstOrDefault();
+            if (!string.IsNullOrEmpty(value) && IsSafeRequestId(value!))
+            {
+                return value;
+            }
         }
 
         var requestId = Guid
@@ -93,4 +97,13 @@ public static class HeaderDictionaryExtensions
         => value.Length <= 68 &&
            !value.AsSpan().ContainsAny('\r', '\n') &&
            Guid.TryParse(value, out _);
+
+    /// <summary>
+    /// Validates that a request ID value is safe to echo and log: bounded length and free of
+    /// CR/LF control characters, guarding against header-injection and log-forging. Unlike the
+    /// correlation ID, a non-GUID format is permitted so legitimate upstream request IDs pass through.
+    /// </summary>
+    private static bool IsSafeRequestId(string value)
+        => value.Length <= 128 &&
+           !value.AsSpan().ContainsAny('\r', '\n');
 }

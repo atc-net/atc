@@ -107,6 +107,25 @@ public class HeaderDictionaryExtensionsTests
     }
 
     [Fact]
+    public void GetOrAddRequestId_Replaces_Unsafe_Value_With_New_Guid()
+    {
+        // Arrange - a CR/LF-bearing value (header-injection / log-forging attempt)
+        var data = new HeaderDictionary
+        {
+            new(
+                "x-request-id",
+                new StringValues("abc\r\nInjected-Header: evil")),
+        };
+
+        // Act
+        var actual = data.GetOrAddRequestId();
+
+        // Assert - the unsafe value must be discarded and replaced with a fresh GUID
+        Assert.NotNull(actual);
+        Assert.True(Guid.TryParse(actual, out _));
+    }
+
+    [Fact]
     public void GetCallingOnBehalfOfIdentity()
     {
         // Arrange
