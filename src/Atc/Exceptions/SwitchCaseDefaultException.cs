@@ -91,7 +91,11 @@ public class SwitchCaseDefaultException : Exception
     protected SwitchCaseDefaultException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 }

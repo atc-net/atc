@@ -51,7 +51,11 @@ public class DesignTimeUseOnlyException : Exception
     protected DesignTimeUseOnlyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 }
