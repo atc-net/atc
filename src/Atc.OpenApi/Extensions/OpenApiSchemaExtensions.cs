@@ -1459,7 +1459,12 @@ public static class OpenApiSchemaExtensions
                 continue;
             }
 
-            var enumName = schemaProperty.Value.Reference?.Id ?? schema.Reference.Id;
+            var enumName = schemaProperty.Value.Reference?.Id ?? schema.Reference?.Id;
+            if (enumName is null)
+            {
+                throw new ItemNotFoundException("Enum schema is missing a Reference.Id.");
+            }
+
             return Tuple.Create(enumName, schemaProperty.Value);
         }
 
