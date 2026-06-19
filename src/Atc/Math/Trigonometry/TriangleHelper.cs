@@ -74,6 +74,13 @@ public static class TriangleHelper
         return result;
     }
 
+    /// <summary>
+    /// The maximum number of refinement passes performed by <see cref="CalculateAnglesAndSides(TriangleData, int)"/>.
+    /// A solvable triangle converges within one or two passes; this cap guards against
+    /// under-determined or degenerate inputs that would otherwise recurse indefinitely.
+    /// </summary>
+    private const int MaxCalculationPasses = 8;
+
     private static bool IsAngleAndSidesCalculated(TriangleData result)
         => !MathHelper.IsEqualToZero(result.A)
            && !MathHelper.IsEqualToZero(result.B)
@@ -91,7 +98,9 @@ public static class TriangleHelper
     /// </remarks>
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     [SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "OK.")]
-    private static TriangleData CalculateAnglesAndSides(TriangleData data)
+    private static TriangleData CalculateAnglesAndSides(
+        TriangleData data,
+        int remainingPasses = MaxCalculationPasses)
     {
         // A
         if (MathHelper.IsEqualToZero(data.A))
@@ -255,8 +264,16 @@ public static class TriangleHelper
             }
         }
 
-        return IsAngleAndSidesCalculated(data)
-            ? data
-            : CalculateAnglesAndSides(data);
+        if (IsAngleAndSidesCalculated(data))
+        {
+            return data;
+        }
+
+        if (remainingPasses <= 0)
+        {
+            throw new ArithmeticException("Unable to calculate the triangle from the supplied values; the input may be under-determined or degenerate.");
+        }
+
+        return CalculateAnglesAndSides(data, remainingPasses - 1);
     }
 }

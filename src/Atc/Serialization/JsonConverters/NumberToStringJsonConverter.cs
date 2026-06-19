@@ -7,7 +7,8 @@ namespace Atc.Serialization.JsonConverters;
 /// <remarks>
 /// This converter handles conversion between JSON numbers and strings, allowing numeric values in JSON
 /// to be read as strings. During deserialization, JSON numbers are converted to their string representation
-/// using the current thread's culture. During serialization, any object is converted to its string representation.
+/// using the invariant culture so the result is stable across machines and locales. During serialization,
+/// any object is converted to its string representation.
 /// </remarks>
 public sealed class NumberToStringJsonConverter : JsonConverter<object>
 {
@@ -25,10 +26,10 @@ public sealed class NumberToStringJsonConverter : JsonConverter<object>
         {
             case JsonTokenType.Number:
                 return reader.TryGetInt64(out var l)
-                    ? l.ToString(Thread.CurrentThread.CurrentCulture)
+                    ? l.ToString(CultureInfo.InvariantCulture)
                     : reader
                         .GetDouble()
-                        .ToString(Thread.CurrentThread.CurrentCulture);
+                        .ToString(CultureInfo.InvariantCulture);
             case JsonTokenType.String:
                 return reader.GetString() ?? string.Empty;
             default:

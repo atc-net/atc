@@ -35,19 +35,23 @@ public class ConcurrentHashSet<T> : IEnumerable<T>, IDisposable
     }
 
     /// <inheritdoc />
+    /// <remarks>
+    /// Returns an enumerator over a point-in-time snapshot taken under a read lock,
+    /// so iteration is safe even if the set is mutated concurrently afterwards.
+    /// </remarks>
     public IEnumerator<T> GetEnumerator()
     {
-        readerWriterLock.EnterWriteLock();
+        readerWriterLock.EnterReadLock();
 
         try
         {
-            return hashSet.GetEnumerator();
+            return hashSet.ToList().GetEnumerator();
         }
         finally
         {
-            if (readerWriterLock.IsWriteLockHeld)
+            if (readerWriterLock.IsReadLockHeld)
             {
-                readerWriterLock.ExitWriteLock();
+                readerWriterLock.ExitReadLock();
             }
         }
     }

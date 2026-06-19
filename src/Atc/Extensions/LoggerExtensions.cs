@@ -29,26 +29,26 @@ public static class LoggerExtensions
         switch (logKeyValueItem.LogCategory)
         {
             case LogCategoryType.Critical:
-                logger.LogCritical(message);
+                logger.LogCritical("{Message}", message);
                 break;
             case LogCategoryType.Error:
-                logger.LogError(message);
+                logger.LogError("{Message}", message);
                 break;
             case LogCategoryType.Warning:
-                logger.LogWarning(message);
+                logger.LogWarning("{Message}", message);
                 break;
             case LogCategoryType.Security:
             case LogCategoryType.Audit:
             case LogCategoryType.Service:
             case LogCategoryType.UI:
             case LogCategoryType.Information:
-                logger.LogInformation(message);
+                logger.LogInformation("{Message}", message);
                 break;
             case LogCategoryType.Debug:
-                logger.LogDebug(message);
+                logger.LogDebug("{Message}", message);
                 break;
             case LogCategoryType.Trace:
-                logger.LogTrace(message);
+                logger.LogTrace("{Message}", message);
                 break;
             default:
                 throw new SwitchCaseDefaultException(logKeyValueItem.LogCategory);

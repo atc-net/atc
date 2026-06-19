@@ -212,14 +212,14 @@ public static class EnumHelper
 
             if (dropDownFirstItemType == DropDownFirstItemType.None)
             {
-                if (!list.ContainsKey((int)objEnumValue))
+                if (!list.ContainsKey(Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture)))
                 {
-                    list.Add((int)objEnumValue, value);
+                    list.Add(Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture), value);
                 }
             }
-            else if (!list.ContainsKey((int)objEnumValue))
+            else if (!list.ContainsKey(Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture)))
             {
-                list.Add((int)objEnumValue, value);
+                list.Add(Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture), value);
             }
         }
 
@@ -636,7 +636,7 @@ public static class EnumHelper
         bool byFlagIncludeBase,
         bool byFlagIncludeCombined)
     {
-        if (!includeDefault && (int)objEnumValue == 0)
+        if (!includeDefault && Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture) == 0)
         {
             return true;
         }
@@ -646,7 +646,7 @@ public static class EnumHelper
             return false;
         }
 
-        var n = (int)objEnumValue;
+        var n = Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture);
         if (!byFlagIncludeBase && n.IsBinarySequence())
         {
             return true;
@@ -662,6 +662,6 @@ public static class EnumHelper
             return false;
         }
 
-        return !includeDefault || (int)objEnumValue != 0;
+        return !includeDefault || Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture) != 0;
     }
 }

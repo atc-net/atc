@@ -43,4 +43,28 @@ public class LongExtensionsTests
         // Assert
         Assert.Equal(expectedDateTimeOffset, actual);
     }
+
+    [Theory]
+    [InlineData(500, 1970, 1, 1, 0, 0, 0, 500)]
+    [InlineData(1500, 1970, 1, 1, 0, 0, 1, 500)]
+    [InlineData(999, 1970, 1, 1, 0, 0, 0, 999)]
+    public void FromUnixTimeMs_ShouldPreserveSubSecondMilliseconds(
+        long input,
+        int expectedYear,
+        int expectedMonth,
+        int expectedDay,
+        int expectedHour,
+        int expectedMinute,
+        int expectedSecond,
+        int expectedMillisecond)
+    {
+        // Arrange
+        var expectedDateTimeOffset = new DateTimeOffset(expectedYear, expectedMonth, expectedDay, expectedHour, expectedMinute, expectedSecond, expectedMillisecond, TimeSpan.Zero);
+
+        // Act
+        var actual = input.FromUnixTimeMs();
+
+        // Assert
+        Assert.Equal(expectedDateTimeOffset, actual);
+    }
 }

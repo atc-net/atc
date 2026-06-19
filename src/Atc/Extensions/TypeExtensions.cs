@@ -572,7 +572,7 @@ public static class TypeExtensions
                 .ToArray();
             for (var i = 0; i < sa.Length; i++)
             {
-                sa[0] = "T";
+                sa[i] = "T";
             }
 
             genericArguments = string.Join(", ", sa);

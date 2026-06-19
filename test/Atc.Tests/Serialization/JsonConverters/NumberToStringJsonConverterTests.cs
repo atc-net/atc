@@ -27,6 +27,33 @@ public sealed class NumberToStringJsonConverterTests
         Assert.Equal(expected, NumberHelper.ParseToDouble(result.ToString()!, GlobalizationConstants.EnglishCultureInfo));
     }
 
+    [Fact]
+    public void Read_ShouldUseInvariantCulture_RegardlessOfCurrentCulture()
+    {
+        // Arrange
+        var originalCulture = Thread.CurrentThread.CurrentCulture;
+        Thread.CurrentThread.CurrentCulture = GlobalizationConstants.DanishCultureInfo;
+
+        try
+        {
+            var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
+            var jsonConverter = new NumberToStringJsonConverter();
+            var utf8JsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes("123.45"));
+
+            utf8JsonReader.Read();
+
+            // Act
+            var result = jsonConverter.Read(ref utf8JsonReader, typeof(string), jsonSerializerOptions);
+
+            // Assert - invariant culture uses '.' as the decimal separator even under da-DK
+            Assert.Equal("123.45", result);
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = originalCulture;
+        }
+    }
+
     [Theory]
     [InlineData(123)]
     [InlineData(123.45)]

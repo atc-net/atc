@@ -498,7 +498,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData("Dictionary<T, LocalizedDescriptionAttribute>", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true)]
+    [InlineData("Dictionary<T, T>", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true)]
     public void BeautifyName_UseFullName_UseHtmlFormat_UseGenericParameterNamesAsT(
         string expected,
         Type type,
@@ -510,7 +510,7 @@ public class TypeExtensionsTests
     }
 
     [Theory]
-    [InlineData("T, LocalizedDescriptionAttribute?", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true, true)]
+    [InlineData("T, T?", typeof(Dictionary<LocalizedDescriptionAttribute, LocalizedDescriptionAttribute>), false, false, true, true)]
     public void BeautifyName_UseFullName_UseGenericParameterNamesAsT_UseSuffixQuestionMarkForGeneric(
         string expected,
         Type type,

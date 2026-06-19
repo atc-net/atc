@@ -58,10 +58,10 @@ public static class ByteExtensions
             return -1;
         }
 
-        if (length < sizeof(int))
+        if (bytes.Length < sizeof(int))
         {
             bytes = bytes
-                .Concat(ByteHelper.CreateZeroArray(length))
+                .Concat(ByteHelper.CreateZeroArray(sizeof(int) - bytes.Length))
                 .ToArray();
         }
 
@@ -95,10 +95,10 @@ public static class ByteExtensions
             return -1;
         }
 
-        if (length < sizeof(long))
+        if (bytes.Length < sizeof(long))
         {
             bytes = bytes
-                .Concat(ByteHelper.CreateZeroArray(length))
+                .Concat(ByteHelper.CreateZeroArray(sizeof(long) - bytes.Length))
                 .ToArray();
         }
 

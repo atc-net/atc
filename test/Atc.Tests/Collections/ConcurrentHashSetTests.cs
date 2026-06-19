@@ -16,6 +16,31 @@ public class ConcurrentHashSetTests
         list.Dispose();
     }
 
+    [Fact]
+    public void GetEnumerator_DoesNotThrow_WhenSetIsMutatedDuringEnumeration()
+    {
+        // Arrange
+        using var set = new ConcurrentHashSet<int>();
+        for (var i = 0; i < 1000; i++)
+        {
+            set.TryAdd(i);
+        }
+
+        // Act - enumeration iterates a snapshot, so concurrent mutation must not throw.
+        var exception = Record.Exception(() =>
+        {
+            var seed = 1_000;
+            foreach (var unused in set)
+            {
+                set.TryAdd(seed++);
+                set.TryRemove(0);
+            }
+        });
+
+        // Assert
+        Assert.Null(exception);
+    }
+
     [Theory]
     [InlineData(true, 27)]
     public void TryAdd(
