@@ -39,7 +39,7 @@ public class ConsoleLogger : ILogger
     }
 
     /// <inheritdoc />
-    public IDisposable BeginScope<TState>(TState state) => default!;
+    public IDisposable BeginScope<TState>(TState state) => NullScope.Instance;
 
     /// <inheritdoc />
     public bool IsEnabled(LogLevel logLevel)
@@ -297,7 +297,7 @@ public class ConsoleLogger : ILogger
         => $"[white]{GetTimeStamp()}[/]";
 
     private string GetCategoryNameWithMarkup()
-        => $"[grey]{categoryName}[/]";
+        => $"[grey]{Markup.Escape(categoryName)}[/]";
 
     private string GetTimeStampAndCategoryNameWithMarkup()
         => $"{GetTimeStampWithMarkup()} {GetCategoryNameWithMarkup()}";
@@ -306,4 +306,22 @@ public class ConsoleLogger : ILogger
         LogLevel logLevel,
         string message)
         => $"{GetLogLevelMarkupStartTag(logLevel)}{message}[/]";
+
+    /// <summary>
+    /// A no-op <see cref="IDisposable"/> returned by <see cref="BeginScope{TState}"/> so that
+    /// callers using <c>using (logger.BeginScope(...))</c> do not dereference a null instance.
+    /// </summary>
+    private sealed class NullScope : IDisposable
+    {
+        public static NullScope Instance { get; } = new();
+
+        private NullScope()
+        {
+        }
+
+        public void Dispose()
+        {
+            // No-op: this logger does not track scopes.
+        }
+    }
 }
