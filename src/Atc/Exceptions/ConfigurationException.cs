@@ -61,7 +61,11 @@ public class ConfigurationException : Exception
     protected ConfigurationException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 

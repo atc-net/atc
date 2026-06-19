@@ -64,7 +64,11 @@ public sealed class ArgumentPropertyException : ArgumentException
     private ArgumentPropertyException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 }

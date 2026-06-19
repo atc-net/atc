@@ -64,7 +64,11 @@ public sealed class ArgumentNullOrDefaultException : ArgumentException
     private ArgumentNullOrDefaultException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 }

@@ -47,7 +47,11 @@ public class ViewModelException : Exception
     protected ViewModelException(
         SerializationInfo serializationInfo,
         StreamingContext streamingContext)
+#if NETSTANDARD2_0
+        : base(serializationInfo, streamingContext)
+#else
         : base(ExceptionMessage)
+#endif
     {
     }
 }
