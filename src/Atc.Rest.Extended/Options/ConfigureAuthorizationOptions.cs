@@ -99,6 +99,10 @@ public class ConfigureAuthorizationOptions :
             ValidAudiences = apiOptions.Authorization.ValidAudiences,
             ValidateIssuer = !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer) ||
                              apiOptions.Authorization.ValidIssuers?.Any() == true,
+
+            // Always validate the token signature (fail-closed). This is never relaxed below,
+            // so a transient key-fetch failure can never cause unverified tokens to be accepted.
+            ValidateIssuerSigningKey = true,
         };
 
         if (!options.TokenValidationParameters.ValidateIssuer)
@@ -116,15 +120,12 @@ public class ConfigureAuthorizationOptions :
         if (!fetchTask.Wait(SigningKeyFetchTimeout))
         {
             logger?.LogWarning(
-                "Timed out fetching issuer signing keys after {TimeoutSeconds}s. Token validation will fall back to empty key set; signing-key validation disabled.",
+                "Timed out fetching issuer signing keys after {TimeoutSeconds}s. Signature validation stays enabled and relies on the JwtBearer Authority metadata; tokens that cannot be signature-verified are rejected.",
                 SigningKeyFetchTimeout.TotalSeconds);
-            options.TokenValidationParameters.IssuerSigningKeys = Array.Empty<SecurityKey>();
-            options.TokenValidationParameters.ValidateIssuerSigningKey = false;
             return;
         }
 
         options.TokenValidationParameters.IssuerSigningKeys = fetchTask.Result;
-        options.TokenValidationParameters.ValidateIssuerSigningKey = options.TokenValidationParameters.IssuerSigningKeys.Any();
     }
 
     /// <summary>
