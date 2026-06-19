@@ -47,4 +47,17 @@ public class PaginationTests
         // Assert
         Assert.Equal(expectedTotalPages, actual.TotalPages);
     }
+
+    [Fact]
+    public void TotalPages_IsNull_When_PageSize_Is_Zero()
+    {
+        // Arrange
+        var sut = new Pagination<int>(items: Array.Empty<int>(), pageSize: 0, queryString: null, continuationToken: null)
+        {
+            TotalCount = 10,
+        };
+
+        // Act & Assert - guards against the divide-by-zero that produced a garbage page count.
+        sut.TotalPages.Should().BeNull();
+    }
 }
