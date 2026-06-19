@@ -80,7 +80,7 @@ public static class CSharpTypeHelper
     /// <returns>True if the type is nullable.</returns>
     public static bool IsNullable(string typeName)
         => !string.IsNullOrEmpty(typeName) &&
-           typeName.EndsWith('?');
+           typeName.EndsWith("?", StringComparison.Ordinal);
 
     /// <summary>
     /// Gets the base type by removing the nullable marker (?).
