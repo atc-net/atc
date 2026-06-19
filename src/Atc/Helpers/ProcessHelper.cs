@@ -645,25 +645,25 @@ public static class ProcessHelper
         ushort timeoutInSec,
         CancellationToken cancellationToken)
     {
-        var processId = -1;
+        var processIdHolder = new[] { -1 };
         var resultOutput = string.Empty;
 
         try
         {
-            var (isSuccessful, output, assignedProcessId) = await TaskHelper
+            var (isSuccessful, output, _) = await TaskHelper
                 .Execute(
-                    _ => InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments, runAsAdministrator),
+                    _ => InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments, runAsAdministrator, id => Volatile.Write(ref processIdHolder[0], id)),
                     TimeSpan.FromSeconds(timeoutInSec),
                     cancellationToken)
                 .ConfigureAwait(false);
 
-            processId = assignedProcessId;
             resultOutput = output;
 
             return (IsSuccessful: isSuccessful, Output: output);
         }
         catch (TimeoutException)
         {
+            var processId = Volatile.Read(ref processIdHolder[0]);
             if (processId > 0)
             {
                 var (killIsSuccessful, _) = KillById(processId);
@@ -763,25 +763,25 @@ public static class ProcessHelper
         int timeoutInSec,
         CancellationToken cancellationToken)
     {
-        var processId = -1;
+        var processIdHolder = new[] { -1 };
         var resultOutput = string.Empty;
 
         try
         {
-            var (isSuccessful, output, assignedProcessId) = await TaskHelper
+            var (isSuccessful, output, _) = await TaskHelper
                 .Execute(
-                    _ => InvokeExecutePromptWithProcessId(workingDirectory, fileInfo, arguments, inputLines, runAsAdministrator),
+                    _ => InvokeExecutePromptWithProcessId(workingDirectory, fileInfo, arguments, inputLines, runAsAdministrator, id => Volatile.Write(ref processIdHolder[0], id)),
                     TimeSpan.FromSeconds(timeoutInSec),
                     cancellationToken)
                 .ConfigureAwait(false);
 
-            processId = assignedProcessId;
             resultOutput = output;
 
             return (IsSuccessful: isSuccessful, Output: output);
         }
         catch (TimeoutException)
         {
+            var processId = Volatile.Read(ref processIdHolder[0]);
             if (processId > 0)
             {
                 var (killIsSuccessful, _) = KillById(processId);
@@ -818,7 +818,8 @@ public static class ProcessHelper
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
         string arguments,
-        bool runAsAdministrator)
+        bool runAsAdministrator,
+        Action<int>? onProcessStarted = null)
     {
         using var process = CreateProcess(
             redirectStandard: true,
@@ -833,20 +834,19 @@ public static class ProcessHelper
         {
             process.Start();
             processId = process.Id;
+            onProcessStarted?.Invoke(processId);
 
-            var standardOutput = await process
-                .StandardOutput
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
-
-            var standardError = await process
-                .StandardError
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
+            // Drain stdout and stderr concurrently to avoid a pipe-buffer deadlock
+            // when the child process fills one buffer while we wait on the other.
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync();
+            var standardErrorTask = process.StandardError.ReadToEndAsync();
 
             await process
                 .WaitForExitAsync()
                 .ConfigureAwait(false);
+
+            var standardOutput = await standardOutputTask.ConfigureAwait(false);
+            var standardError = await standardErrorTask.ConfigureAwait(false);
 
             var message = string.IsNullOrEmpty(standardError)
                 ? standardOutput
@@ -855,7 +855,7 @@ public static class ProcessHelper
                     : $"{standardOutput}{Environment.NewLine}{standardError}";
 
             return (
-                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
                 Output: message,
                 ProcessId: processId);
         }
@@ -880,7 +880,8 @@ public static class ProcessHelper
         FileInfo fileInfo,
         string arguments,
         IEnumerable<string> inputLines,
-        bool runAsAdministrator)
+        bool runAsAdministrator,
+        Action<int>? onProcessStarted = null)
     {
         using var process = CreateProcess(
             redirectStandard: true,
@@ -895,6 +896,12 @@ public static class ProcessHelper
         {
             process.Start();
             processId = process.Id;
+            onProcessStarted?.Invoke(processId);
+
+            // Start draining stdout and stderr concurrently before blocking on input/exit
+            // to avoid a pipe-buffer deadlock when the child writes a lot to either stream.
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync();
+            var standardErrorTask = process.StandardError.ReadToEndAsync();
 
             foreach (var line in inputLines)
             {
@@ -904,19 +911,12 @@ public static class ProcessHelper
                     .ConfigureAwait(false);
             }
 
-            var standardOutput = await process
-                .StandardOutput
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
-
-            var standardError = await process
-                .StandardError
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
-
             await process
                 .WaitForExitAsync()
                 .ConfigureAwait(false);
+
+            var standardOutput = await standardOutputTask.ConfigureAwait(false);
+            var standardError = await standardErrorTask.ConfigureAwait(false);
 
             var message = string.IsNullOrEmpty(standardError)
                 ? standardOutput
@@ -925,7 +925,7 @@ public static class ProcessHelper
                     : $"{standardOutput}{Environment.NewLine}{standardError}";
 
             return (
-                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
                 Output: message,
                 ProcessId: processId);
         }
@@ -1034,25 +1034,22 @@ public static class ProcessHelper
         {
             process.Start();
 
+            // Drain stdout and stderr concurrently to avoid a pipe-buffer deadlock
+            // when the child process fills one buffer while we wait on the other.
 #if NET9_0_OR_GREATER
-            var standardOutput = await process.StandardOutput
-                .ReadToEndAsync(linkedCts.Token)
-                .ConfigureAwait(false);
-            var standardError = await process.StandardError
-                .ReadToEndAsync(linkedCts.Token)
-                .ConfigureAwait(false);
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync(linkedCts.Token);
+            var standardErrorTask = process.StandardError.ReadToEndAsync(linkedCts.Token);
 #else
-            var standardOutput = await process.StandardOutput
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
-            var standardError = await process.StandardError
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync();
+            var standardErrorTask = process.StandardError.ReadToEndAsync();
 #endif
 
             await process
                 .WaitForExitAsync(linkedCts.Token)
                 .ConfigureAwait(false);
+
+            var standardOutput = await standardOutputTask.ConfigureAwait(false);
+            var standardError = await standardErrorTask.ConfigureAwait(false);
 
             var message = string.IsNullOrEmpty(standardError)
                 ? standardOutput
@@ -1061,7 +1058,7 @@ public static class ProcessHelper
                     : $"{standardOutput}{Environment.NewLine}{standardError}";
 
             return new ProcessExecutionResult(
-                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
                 Output: message,
                 ExitCode: process.ExitCode);
         }
@@ -1109,25 +1106,22 @@ public static class ProcessHelper
         {
             process.Start();
 
+            // Drain stdout and stderr concurrently to avoid a pipe-buffer deadlock
+            // when the child process fills one buffer while we wait on the other.
 #if NET9_0_OR_GREATER
-            var standardOutput = await process.StandardOutput
-                .ReadToEndAsync(linkedCts.Token)
-                .ConfigureAwait(false);
-            var standardError = await process.StandardError
-                .ReadToEndAsync(linkedCts.Token)
-                .ConfigureAwait(false);
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync(linkedCts.Token);
+            var standardErrorTask = process.StandardError.ReadToEndAsync(linkedCts.Token);
 #else
-            var standardOutput = await process.StandardOutput
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
-            var standardError = await process.StandardError
-                .ReadToEndAsync()
-                .ConfigureAwait(false);
+            var standardOutputTask = process.StandardOutput.ReadToEndAsync();
+            var standardErrorTask = process.StandardError.ReadToEndAsync();
 #endif
 
             await process
                 .WaitForExitAsync(linkedCts.Token)
                 .ConfigureAwait(false);
+
+            var standardOutput = await standardOutputTask.ConfigureAwait(false);
+            var standardError = await standardErrorTask.ConfigureAwait(false);
 
             var message = string.IsNullOrEmpty(standardError)
                 ? standardOutput
@@ -1136,7 +1130,7 @@ public static class ProcessHelper
                     : $"{standardOutput}{Environment.NewLine}{standardError}";
 
             return new ProcessExecutionResult(
-                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success && string.IsNullOrEmpty(standardError),
+                IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
                 Output: message,
                 ExitCode: process.ExitCode);
         }
