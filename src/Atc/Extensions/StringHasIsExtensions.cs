@@ -22,6 +22,7 @@ public static class StringHasIsExtensions
     private static readonly Lazy<Regex> RxKey = new(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxHtmlTags = new(() => new Regex(@"<[^>]+>", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(5)));
     private static readonly Lazy<Regex> RxSingleWord = new(() => new Regex(@"^((?!-)+)([a-zA-Z_-]+$).*((?<!-)+)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxHostName = new(() => new Regex(@"^(?=.{1,253}\.?$)(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.(?!-)[A-Za-z0-9-]{1,63}(?<!-))*\.?$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
 
     /// <summary>
     /// Determines whether [has HTML tags] [the specified value].
@@ -586,4 +587,49 @@ public static class StringHasIsExtensions
     /// <returns><see langword="true" /> if the value is a valid opc.tcp:// URI; otherwise, <see langword="false" />.</returns>
     public static bool IsUriOpcTcp(this string value)
         => UriAttribute.IsValidOpcTcp(value);
+
+    /// <summary>
+    /// Determines whether the specified value is a syntactically valid DNS host name (RFC 1123).
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid host name; otherwise, <see langword="false" />.</returns>
+    /// <remarks>
+    /// Accepts single-label names (e.g. <c>localhost</c>) and an optional trailing dot (e.g. <c>example.com.</c>).
+    /// Each label is 1-63 ASCII alphanumeric/hyphen characters and may not start or end with a hyphen;
+    /// the total length is limited to 253 characters. Underscores and raw Unicode (non-punycode IDN) are not allowed.
+    /// This is a purely syntactic check and does not perform any DNS resolution.
+    /// </remarks>
+    public static bool IsHostName(this string value)
+        => !string.IsNullOrEmpty(value) &&
+           RxHostName.Value.IsMatch(value);
+
+    /// <summary>
+    /// Determines whether the specified value is a valid IPv4 address.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid IPv4 address; otherwise, <see langword="false" />.</returns>
+    public static bool IsIPv4Address(this string value)
+        => !string.IsNullOrEmpty(value) &&
+           IPAddress.TryParse(value, out var address) &&
+           address.AddressFamily == AddressFamily.InterNetwork &&
+           value.Split('.').Length == 4;
+
+    /// <summary>
+    /// Determines whether the specified value is a valid IPv6 address.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid IPv6 address; otherwise, <see langword="false" />.</returns>
+    public static bool IsIPv6Address(this string value)
+        => !string.IsNullOrEmpty(value) &&
+           IPAddress.TryParse(value, out var address) &&
+           address.AddressFamily == AddressFamily.InterNetworkV6;
+
+    /// <summary>
+    /// Determines whether the specified value is a valid IPv4 or IPv6 address.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns><see langword="true" /> if the value is a valid IP address; otherwise, <see langword="false" />.</returns>
+    public static bool IsIPAddress(this string value)
+        => value.IsIPv4Address() ||
+           value.IsIPv6Address();
 }

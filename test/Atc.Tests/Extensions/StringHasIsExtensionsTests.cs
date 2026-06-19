@@ -372,4 +372,63 @@ public class StringHasIsExtensionsTests
         bool expected,
         string input)
         => Assert.Equal(expected, input.IsUriOpcTcp());
+
+    [Theory]
+    [InlineData(true, "localhost")]
+    [InlineData(true, "server01")]
+    [InlineData(true, "dr.dk")]
+    [InlineData(true, "opcua.demo-this.com")]
+    [InlineData(true, "example.com.")]
+    [InlineData(true, "a.b.c.d.e.f")]
+    [InlineData(true, "xn--mnchen-3ya.de")]
+    [InlineData(false, "")]
+    [InlineData(false, " ")]
+    [InlineData(false, "-leadinghyphen.com")]
+    [InlineData(false, "trailinghyphen-.com")]
+    [InlineData(false, "under_score.com")]
+    [InlineData(false, "double..dot.com")]
+    [InlineData(false, "space in.host")]
+    [InlineData(false, "münchen.de")]
+    public void IsHostName(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsHostName());
+
+    [Theory]
+    [InlineData(true, "192.168.0.27")]
+    [InlineData(true, "0.0.0.0")]
+    [InlineData(true, "255.255.255.255")]
+    [InlineData(false, "1")]
+    [InlineData(false, "256.0.0.1")]
+    [InlineData(false, "::1")]
+    [InlineData(false, "opcua.demo-this.com")]
+    [InlineData(false, "")]
+    public void IsIPv4Address(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsIPv4Address());
+
+    [Theory]
+    [InlineData(true, "::1")]
+    [InlineData(true, "2001:db8::ff00:42:8329")]
+    [InlineData(true, "fe80::1")]
+    [InlineData(false, "192.168.0.27")]
+    [InlineData(false, "opcua.demo-this.com")]
+    [InlineData(false, "")]
+    public void IsIPv6Address(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsIPv6Address());
+
+    [Theory]
+    [InlineData(true, "192.168.0.27")]
+    [InlineData(true, "::1")]
+    [InlineData(true, "2001:db8::ff00:42:8329")]
+    [InlineData(false, "opcua.demo-this.com")]
+    [InlineData(false, "256.0.0.1")]
+    [InlineData(false, "")]
+    public void IsIPAddress(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsIPAddress());
 }
