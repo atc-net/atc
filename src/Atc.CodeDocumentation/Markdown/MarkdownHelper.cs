@@ -350,7 +350,7 @@ internal static class MarkdownHelper
             .GetNames(typeComments.Type)
             .Select(x => new
             {
-                Value = (int)Enum.Parse(typeComments.Type, x),
+                Value = Convert.ToInt64(Enum.Parse(typeComments.Type, x), GlobalizationConstants.EnglishCultureInfo),
                 Name = x,
                 Description = (Enum.Parse(typeComments.Type, x) as Enum)!.GetDescription(),
             })
@@ -410,7 +410,7 @@ internal static class MarkdownHelper
             var data = seq
                 .Select(item =>
                 {
-                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName?.StartsWith(name(item) + "`", StringComparison.Ordinal) == true)?.Summary ?? string.Empty;
                     return new[]
                     {
                         xType(item),
@@ -432,7 +432,7 @@ internal static class MarkdownHelper
             var data = seq
                 .Select(item =>
                 {
-                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal))?.Summary ?? string.Empty;
+                    var summary = docs.FirstOrDefault(x => string.Equals(x.MemberName, name(item), StringComparison.Ordinal) || x.MemberName?.StartsWith(name(item) + "`", StringComparison.Ordinal) == true)?.Summary ?? string.Empty;
                     return new[]
                     {
                         xType(item),
@@ -485,7 +485,7 @@ internal static class MarkdownHelper
                 // ReSharper disable once PossibleMultipleEnumeration
                 var commentForMember = docs.FirstOrDefault(x =>
                     string.Equals(x.MemberName, name(item), StringComparison.Ordinal) ||
-                    x.MemberName!.StartsWith(name(item) + "`", StringComparison.Ordinal));
+                    x.MemberName?.StartsWith(name(item) + "`", StringComparison.Ordinal) == true);
 
                 if (commentForMember is null || string.IsNullOrEmpty(commentForMember.Summary))
                 {

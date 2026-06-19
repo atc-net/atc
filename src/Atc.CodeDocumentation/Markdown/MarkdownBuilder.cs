@@ -192,7 +192,7 @@ internal sealed class MarkdownBuilder
         sb.Append("| ");
         foreach (var item in headers)
         {
-            sb.Append(item);
+            sb.Append(EscapeTableCell(item));
             sb.Append(" | ");
         }
 
@@ -212,7 +212,7 @@ internal sealed class MarkdownBuilder
             sb.Append("| ");
             foreach (var item2 in item)
             {
-                sb.Append(item2);
+                sb.Append(EscapeTableCell(item2));
                 sb.Append(" | ");
             }
 
@@ -220,6 +220,26 @@ internal sealed class MarkdownBuilder
         }
 
         sb.AppendLine();
+    }
+
+    /// <summary>
+    /// Escapes a value for safe use inside a markdown table cell by neutralizing the
+    /// column delimiter and collapsing line breaks, which would otherwise break the table layout.
+    /// </summary>
+    /// <param name="value">The raw cell value.</param>
+    /// <returns>The escaped cell value.</returns>
+    private static string EscapeTableCell(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return value;
+        }
+
+        return value
+            .Replace("\r\n", "<br>", StringComparison.Ordinal)
+            .Replace("\r", "<br>", StringComparison.Ordinal)
+            .Replace("\n", "<br>", StringComparison.Ordinal)
+            .Replace("|", "\\|", StringComparison.Ordinal);
     }
 
     /// <summary>
