@@ -87,6 +87,29 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
             .NotThrow();
     }
 
+    [Theory]
+    [InlineData("application/json; charset=utf-8")]
+    [InlineData("application/json;charset=utf-8")]
+    [InlineData("APPLICATION/JSON")]
+    public void WithContent_Does_Not_Throw_When_ContentType_Has_Charset_Or_Differs_In_Case(
+        string contentType)
+    {
+        // Arrange
+        var target = new ContentResult
+        {
+            Content = TestJsonSerializer.Serialize("FOO"),
+            ContentType = contentType,
+        };
+
+        var sut = new ContentResultAssertions(target);
+
+        // Act & Assert
+        sut
+            .Invoking(x => x.WithContent("FOO"))
+            .Should()
+            .NotThrow();
+    }
+
     [Fact]
     public void WithStatusCode_Throws_When_StatusCode_Is_Not_As_Expected()
     {

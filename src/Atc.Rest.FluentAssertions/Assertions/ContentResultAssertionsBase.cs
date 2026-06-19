@@ -78,7 +78,7 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
             .BecauseOf(because, becauseArgs)
             .WithDefaultIdentifier($"content type of {Identifier}")
             .Given(() => Subject.ContentType)
-            .ForCondition(contentType => contentType is not null && contentType.Equals(MediaTypeNames.Application.Json, StringComparison.Ordinal))
+            .ForCondition(IsJsonContentType)
             .FailWith("Expected {context} to be {0}{reason}, but found {1}.", _ => MediaTypeNames.Application.Json, x => x);
 
         var parseSuccess = TryContentValueAs<T>(out var result);
@@ -117,6 +117,29 @@ public abstract class ContentResultAssertionsBase<TAssertions> : ReferenceTypeAs
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Determines whether the supplied content type denotes JSON, ignoring any
+    /// parameters such as <c>; charset=utf-8</c> and comparing case-insensitively.
+    /// </summary>
+    /// <param name="contentType">The raw <see cref="ContentResult.ContentType"/> value.</param>
+    /// <returns><see langword="true"/> if the media type is <c>application/json</c>; otherwise, <see langword="false"/>.</returns>
+    private static bool IsJsonContentType(string? contentType)
+    {
+        if (string.IsNullOrEmpty(contentType))
+        {
+            return false;
+        }
+
+        var separatorIndex = contentType.IndexOf(';', StringComparison.Ordinal);
+        var mediaType = separatorIndex >= 0
+            ? contentType[..separatorIndex]
+            : contentType;
+
+        return mediaType
+            .Trim()
+            .Equals(MediaTypeNames.Application.Json, StringComparison.OrdinalIgnoreCase);
     }
 
     private bool TryContentValueAs(
