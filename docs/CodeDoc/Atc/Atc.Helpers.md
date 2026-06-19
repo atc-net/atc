@@ -1145,6 +1145,18 @@ Enumeration Helper: EnumHelper.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sortDirectionType`&nbsp;&nbsp;-&nbsp;&nbsp;Type of the sort direction.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include base].<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;if set to  [by flag include combined].<br />
+#### ConvertEnumToReadOnlyDictionary
+>```csharp
+>IReadOnlyDictionary<T, int> ConvertEnumToReadOnlyDictionary(bool includeDefault = True, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Builds a read-only map from each defined enum member to its underlying `System.Int32` value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;If set to  the 0-valued member is included.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;For  enums, include the single-bit base values.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;For  enums, include the multi-bit combined values.<br />
+>
+><b>Returns:</b> An `System.Collections.Generic.IReadOnlyDictionary`2` keyed by the typed enum value with its underlying `System.Int32` as the value. Suitable for severity-rank or threshold lookup tables that previously required a hand-rolled `Dictionary&lt;TEnum, int&gt;` literal.
 #### GetDescription
 >```csharp
 >string GetDescription(Enum enumeration)
