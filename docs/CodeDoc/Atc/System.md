@@ -2813,12 +2813,14 @@ Extensions for the string class.
 >```csharp
 >string XmlDecode(this string xml)
 >```
-><b>Summary:</b> Decodes an XML string by unescaping special character entities (&amp;amp, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot).
+><b>Summary:</b> Decodes an XML string by unescaping special character entities (&amp;amp;, &amp;#39;, &amp;lt;, &amp;gt;, &amp;quot;).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xml`&nbsp;&nbsp;-&nbsp;&nbsp;The XML string to decode.<br />
 >
 ><b>Returns:</b> The decoded XML string with special character entities replaced.
+>
+><b>Remarks:</b> The ampersand entity (`&amp;amp;`) is decoded last so that already-decoded content is not re-interpreted, keeping `System.StringExtensions.XmlEncode(System.String)`/`System.StringExtensions.XmlDecode(System.String)` a faithful round-trip.
 #### XmlEncode
 >```csharp
 >string XmlEncode(this string xml)
@@ -3026,6 +3028,48 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the specified string is a System.Guid; otherwise, <see langword="false" />.
+#### IsHostName
+>```csharp
+>bool IsHostName(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a syntactically valid DNS host name (RFC 1123).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid host name; otherwise, <see langword="false" />.
+>
+><b>Remarks:</b> Accepts single-label names (e.g. `localhost`) and an optional trailing dot (e.g. `example.com.`). Each label is 1-63 ASCII alphanumeric/hyphen characters and may not start or end with a hyphen; the total length is limited to 253 characters. Underscores and raw Unicode (non-punycode IDN) are not allowed. This is a purely syntactic check and does not perform any DNS resolution.
+#### IsIPAddress
+>```csharp
+>bool IsIPAddress(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid IPv4 or IPv6 address.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid IP address; otherwise, <see langword="false" />.
+#### IsIPv4Address
+>```csharp
+>bool IsIPv4Address(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid IPv4 address.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid IPv4 address; otherwise, <see langword="false" />.
+#### IsIPv6Address
+>```csharp
+>bool IsIPv6Address(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid IPv6 address.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid IPv6 address; otherwise, <see langword="false" />.
 #### IsKey
 >```csharp
 >bool IsKey(this string value)

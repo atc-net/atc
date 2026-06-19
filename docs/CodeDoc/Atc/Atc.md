@@ -165,12 +165,12 @@ Represents compass directions including the four cardinal points and intermediat
 | 1024 | SouthWest | South West | SouthWest. | 
 | 2048 | WestSouthWest | West South West | WestSouthWest. | 
 | 4096 | West | West | West. | 
-| 4625 | Simple | Simple | Simple = North | East | South | West. | 
+| 4625 | Simple | Simple | Simple = North \| East \| South \| West. | 
 | 8192 | WestNorthWest | West North West | WestNorthWest. | 
 | 16384 | NorthWest | North West | NorthWest. | 
-| 22101 | Medium | Medium | Medium = North | NorthEast | East | SouthEast | South | SouthWest | West | NorthWest. | 
+| 22101 | Medium | Medium | Medium = North \| NorthEast \| East \| SouthEast \| South \| SouthWest \| West \| NorthWest. | 
 | 32768 | NorthNorthWest | North North West | NorthNorthWest. | 
-| 65535 | Advanced | Advanced | Advanced = North | NorthNorthEast | NorthEast | EastNorthEast | East | EastSouthEast | SouthEast | SouthSouthEast | South | SouthSouthWest | SouthWest | WestSouthWest | West | WestNorthWest | NorthWest | NorthNorthWest. | 
+| 65535 | Advanced | Advanced | Advanced = North \| NorthNorthEast \| NorthEast \| EastNorthEast \| East \| EastSouthEast \| SouthEast \| SouthSouthEast \| South \| SouthSouthWest \| SouthWest \| WestSouthWest \| West \| WestNorthWest \| NorthWest \| NorthNorthWest. | 
 
 
 
@@ -535,6 +535,29 @@ Extension methods for enums.
 >```csharp
 >List<KeyValuePair<int, string>> list = Enum<DayOfWeek>.ToKeyValuePairsWithStringKey();
 >Assert.Equal(7, list.Count);
+>```
+#### ToReadOnlyDictionary
+>```csharp
+>IReadOnlyDictionary<T, int> ToReadOnlyDictionary(bool includeDefault = True, bool byFlagIncludeBase = True, bool byFlagIncludeCombined = True)
+>```
+><b>Summary:</b> Builds a read-only map from each defined enum member to its underlying `System.Int32` value. Useful for severity-rank or threshold lookup tables that previously required a hand-rolled `Dictionary&lt;TEnum, int&gt;` literal.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeDefault`&nbsp;&nbsp;-&nbsp;&nbsp;If set to  the 0-valued member is included.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeBase`&nbsp;&nbsp;-&nbsp;&nbsp;For  enums, include the single-bit base values.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`byFlagIncludeCombined`&nbsp;&nbsp;-&nbsp;&nbsp;For  enums, include the multi-bit combined values.<br />
+>
+><b>Returns:</b> An `System.Collections.Generic.IReadOnlyDictionary`2` keyed by the typed enum value with its underlying `System.Int32` as the value.
+>
+><b>Code usage:</b>
+>```csharp
+>IReadOnlyDictionary<DayOfWeek, int> map = Enum<DayOfWeek>.ToReadOnlyDictionary();
+>```
+>
+><b>Code example:</b>
+>```csharp
+>IReadOnlyDictionary<DayOfWeek, int> map = Enum<DayOfWeek>.ToReadOnlyDictionary();
+>Assert.Equal(0, map[DayOfWeek.Sunday]);
 >```
 #### TryGetEnumValue
 >```csharp

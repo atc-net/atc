@@ -174,7 +174,7 @@ JSON converter that enables deserialization of interface types by using the runt
 
 ## NumberToStringJsonConverter
 JSON converter that converts numeric values to string representation and vice versa.
-><b>Remarks:</b> This converter handles conversion between JSON numbers and strings, allowing numeric values in JSON to be read as strings. During deserialization, JSON numbers are converted to their string representation using the current thread's culture. During serialization, any object is converted to its string representation.
+><b>Remarks:</b> This converter handles conversion between JSON numbers and strings, allowing numeric values in JSON to be read as strings. During deserialization, JSON numbers are converted to their string representation using the invariant culture so the result is stable across machines and locales. During serialization, any object is converted to its string representation.
 
 >```csharp
 >public class NumberToStringJsonConverter : JsonConverter<object>
