@@ -107,7 +107,7 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
         if (looseMode &&
             !string.IsNullOrEmpty(PreRelease) &&
             string.IsNullOrEmpty(Build) &&
-            PreRelease.StartsWith('.') &&
+            PreRelease.StartsWith(".", StringComparison.Ordinal) &&
             int.TryParse(
                 PreRelease.Replace(".", string.Empty, StringComparison.Ordinal),
                 NumberStyles.Any,
