@@ -1,231 +1,79 @@
-// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 namespace Atc.Units.InternationalSystemOfUnits;
 
 /// <summary>
 /// Provides utility methods for converting between International System of Units (SI) prefixes.
 /// </summary>
 /// <remarks>
-/// This helper class supports conversions between various SI unit prefixes such as kilo, mega, giga, milli, centi, etc.
-/// Note that not all prefix combinations are currently supported.
+/// This helper class supports conversions between all standard SI unit prefixes
+/// (Yotta through Yocto) using a table-driven exponent approach.
 /// </remarks>
 public static class InternationalSystemOfUnitsHelper
 {
+    private static readonly IReadOnlyDictionary<PrefixType, int> PrefixExponents =
+        new Dictionary<PrefixType, int>
+        {
+            { PrefixType.Yotta, 24 },
+            { PrefixType.Zetta, 21 },
+            { PrefixType.Exa, 18 },
+            { PrefixType.Peta, 15 },
+            { PrefixType.Tera, 12 },
+            { PrefixType.Giga, 9 },
+            { PrefixType.Mega, 6 },
+            { PrefixType.Kilo, 3 },
+            { PrefixType.Hecto, 2 },
+            { PrefixType.Deca, 1 },
+            { PrefixType.None, 0 },
+            { PrefixType.Deci, -1 },
+            { PrefixType.Centi, -2 },
+            { PrefixType.Milli, -3 },
+            { PrefixType.Micro, -6 },
+            { PrefixType.Nano, -9 },
+            { PrefixType.Pico, -12 },
+            { PrefixType.Femto, -15 },
+            { PrefixType.Atto, -18 },
+            { PrefixType.Zepto, -21 },
+            { PrefixType.Yocto, -24 },
+        };
+
     /// <summary>
     /// Converts a value from one SI prefix type to another with optional decimal precision.
     /// </summary>
     /// <param name="prefixTypeFrom">The source SI prefix type.</param>
     /// <param name="prefixTypeTo">The target SI prefix type.</param>
-    /// <param name="numberOfDecimals">The number of decimal places to round to (0 for no rounding).</param>
+    /// <param name="numberOfDecimals">The number of decimal places to round to. Pass 0 for no rounding.</param>
     /// <param name="value">The value to convert.</param>
-    /// <returns>The converted value in the target prefix type.</returns>
-    /// <exception cref="NotSupportedException">Thrown when the specified conversion is not supported.</exception>
+    /// <returns>The converted value in the target prefix type, optionally rounded.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="prefixTypeFrom"/> or <paramref name="prefixTypeTo"/> is not a recognised <see cref="PrefixType"/> value.
+    /// </exception>
     /// <exception cref="ArithmeticException">Thrown when the conversion results in NaN.</exception>
-    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
-    [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "OK. For now.")]
     public static double Convert(
         PrefixType prefixTypeFrom,
         PrefixType prefixTypeTo,
         int numberOfDecimals,
         double value)
     {
-        var d = double.NaN;
-
-        switch (prefixTypeFrom)
+        if (!PrefixExponents.TryGetValue(prefixTypeFrom, out var fromExp))
         {
-            case PrefixType.Yotta:
-                break;
-            case PrefixType.Zetta:
-                break;
-            case PrefixType.Exa:
-                break;
-            case PrefixType.Peta:
-                break;
-            case PrefixType.Tera:
-                break;
-            case PrefixType.Giga:
-                break;
-            case PrefixType.Mega:
-                break;
-            case PrefixType.Kilo:
-                break;
-            case PrefixType.Hecto:
-                break;
-            case PrefixType.Deca:
-                break;
-            case PrefixType.None:
-                #region - None -
-                switch (prefixTypeTo)
-                {
-                    case PrefixType.Yotta:
-                    case PrefixType.Zetta:
-                    case PrefixType.Exa:
-                    case PrefixType.Peta:
-                    case PrefixType.Tera:
-                    case PrefixType.Giga:
-                    case PrefixType.Mega:
-                    case PrefixType.Kilo:
-                    case PrefixType.Hecto:
-                    case PrefixType.Deca:
-                        throw new NotSupportedException();
-                    case PrefixType.None:
-                        d = value;
-                        break;
-                    case PrefixType.Deci:
-                        d = value * 10;
-                        break;
-                    case PrefixType.Centi:
-                        d = value * 100;
-                        break;
-                    case PrefixType.Milli:
-                        d = value * 1000;
-                        break;
-                    case PrefixType.Micro:
-                    case PrefixType.Nano:
-                    case PrefixType.Pico:
-                    case PrefixType.Femto:
-                    case PrefixType.Atto:
-                    case PrefixType.Zepto:
-                    case PrefixType.Yocto:
-                        throw new NotSupportedException();
-                }
-                #endregion
-                break;
-            case PrefixType.Deci:
-                break;
-            case PrefixType.Centi:
-                #region - Centi -
-                switch (prefixTypeTo)
-                {
-                    case PrefixType.Yotta:
-                    case PrefixType.Zetta:
-                    case PrefixType.Exa:
-                    case PrefixType.Peta:
-                    case PrefixType.Tera:
-                        throw new NotSupportedException();
-                    case PrefixType.Giga:
-                        d = value / 100000000000;
-                        break;
-                    case PrefixType.Mega:
-                        d = value / 100000000;
-                        break;
-                    case PrefixType.Kilo:
-                        d = value / 100000;
-                        break;
-                    case PrefixType.Hecto:
-                        d = value / 10000;
-                        break;
-                    case PrefixType.Deca:
-                        d = value / 1000;
-                        break;
-                    case PrefixType.None:
-                        d = value / 100;
-                        break;
-                    case PrefixType.Deci:
-                        d = value / 10;
-                        break;
-                    case PrefixType.Centi:
-                        d = value;
-                        break;
-                    case PrefixType.Milli:
-                        d = value * 10;
-                        break;
-                    case PrefixType.Micro:
-                        d = value * 1000;
-                        break;
-                    case PrefixType.Nano:
-                        d = value * 1000000;
-                        break;
-                    case PrefixType.Pico:
-                        d = value * 1000000000;
-                        break;
-                    case PrefixType.Femto:
-                    case PrefixType.Atto:
-                    case PrefixType.Zepto:
-                    case PrefixType.Yocto:
-                        throw new NotSupportedException();
-                }
-                #endregion
-                break;
-            case PrefixType.Milli:
-                #region - Milli -
-                switch (prefixTypeTo)
-                {
-                    case PrefixType.Yotta:
-                    case PrefixType.Zetta:
-                    case PrefixType.Exa:
-                    case PrefixType.Peta:
-                    case PrefixType.Tera:
-                        throw new NotSupportedException();
-                    case PrefixType.Giga:
-                        d = value / 1000000000000;
-                        break;
-                    case PrefixType.Mega:
-                        d = value / 1000000000;
-                        break;
-                    case PrefixType.Kilo:
-                        d = value / 1000000;
-                        break;
-                    case PrefixType.Hecto:
-                        d = value / 100000;
-                        break;
-                    case PrefixType.Deca:
-                        d = value / 10000;
-                        break;
-                    case PrefixType.None:
-                        d = value / 1000;
-                        break;
-                    case PrefixType.Deci:
-                        d = value / 100;
-                        break;
-                    case PrefixType.Centi:
-                        d = value / 10;
-                        break;
-                    case PrefixType.Milli:
-                        d = value;
-                        break;
-                    case PrefixType.Micro:
-                        d = value * 1000;
-                        break;
-                    case PrefixType.Nano:
-                        d = value * 1000000;
-                        break;
-                    case PrefixType.Pico:
-                        d = value * 1000000000;
-                        break;
-                    case PrefixType.Femto:
-                    case PrefixType.Atto:
-                    case PrefixType.Zepto:
-                    case PrefixType.Yocto:
-                        throw new NotSupportedException();
-                }
-                #endregion
-                break;
-            case PrefixType.Micro:
-                break;
-            case PrefixType.Nano:
-                break;
-            case PrefixType.Pico:
-                break;
-            case PrefixType.Femto:
-                break;
-            case PrefixType.Atto:
-                break;
-            case PrefixType.Zepto:
-                break;
-            case PrefixType.Yocto:
-                break;
+            throw new ArgumentOutOfRangeException(nameof(prefixTypeFrom), prefixTypeFrom, "Unsupported SI prefix type.");
         }
 
-        if (double.IsNaN(d))
+        if (!PrefixExponents.TryGetValue(prefixTypeTo, out var toExp))
         {
-            throw new ArithmeticException("d IsNaN");
+            throw new ArgumentOutOfRangeException(nameof(prefixTypeTo), prefixTypeTo, "Unsupported SI prefix type.");
         }
 
-        if (numberOfDecimals != decimal.Zero)
+        var result = value * System.Math.Pow(10, fromExp - toExp);
+
+        if (double.IsNaN(result))
         {
-            d = System.Math.Round(d, numberOfDecimals);
+            throw new ArithmeticException("Conversion resulted in NaN.");
         }
 
-        return d;
+        return numberOfDecimals != 0
+            ? System.Math.Round(result, numberOfDecimals)
+            : result;
     }
 }
