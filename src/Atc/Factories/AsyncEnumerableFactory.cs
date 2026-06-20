@@ -10,10 +10,18 @@ public static class AsyncEnumerableFactory
     /// </summary>
     /// <typeparam name="T">The type of the elements in the sequence.</typeparam>
     /// <returns>An empty <see cref="IAsyncEnumerable{T}"/>.</returns>
-    public static async IAsyncEnumerable<T> Empty<T>()
+    public static IAsyncEnumerable<T> Empty<T>()
+        => EmptyAsyncEnumerable<T>.Instance;
+
+    private static class EmptyAsyncEnumerable<T>
     {
-        await Task.CompletedTask;
-        yield break;
+        internal static readonly IAsyncEnumerable<T> Instance = CreateEmpty();
+
+        private static async IAsyncEnumerable<T> CreateEmpty()
+        {
+            await Task.CompletedTask.ConfigureAwait(false);
+            yield break;
+        }
     }
 
     /// <summary>
