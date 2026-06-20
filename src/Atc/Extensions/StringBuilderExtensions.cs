@@ -53,7 +53,7 @@ public static class StringBuilderExtensions
 
         if (indentSpaces < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(value));
+            throw new ArgumentOutOfRangeException(nameof(indentSpaces));
         }
 
         if (value is null)
@@ -61,7 +61,8 @@ public static class StringBuilderExtensions
             throw new ArgumentNullException(nameof(value));
         }
 
-        sb.Append(value.PadLeft(value.Length + indentSpaces));
+        sb.Append(' ', indentSpaces);
+        sb.Append(value);
     }
 
     /// <summary>
@@ -111,7 +112,7 @@ public static class StringBuilderExtensions
 
         if (indentSpaces < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(value));
+            throw new ArgumentOutOfRangeException(nameof(indentSpaces));
         }
 
         if (value is null)
@@ -119,7 +120,8 @@ public static class StringBuilderExtensions
             throw new ArgumentNullException(nameof(value));
         }
 
-        sb.AppendLine(value.PadLeft(value.Length + indentSpaces));
+        sb.Append(' ', indentSpaces);
+        sb.AppendLine(value);
     }
 
     /// <summary>
