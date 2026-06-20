@@ -12,13 +12,19 @@ public static class ResourceHealthCheckExtensions
     /// <returns>A read-only dictionary where keys are resource names and values are anonymous objects containing status, duration, and description.</returns>
     public static IReadOnlyDictionary<string, object> ToIReadOnlyDictionary(
         this IEnumerable<ResourceHealthCheck> resourceHealthCheck)
-        => resourceHealthCheck.ToDictionary(
-            keySelector: key => key.Name,
-            elementSelector: e => (object)new
-            {
-                e.Status,
-                e.Duration,
-                e.Description,
-            },
-            StringComparer.Ordinal);
+        => resourceHealthCheck
+            .GroupBy(e => e.Name, StringComparer.Ordinal)
+            .ToDictionary(
+                g => g.Key,
+                g =>
+                {
+                    var e = g.First();
+                    return (object)new
+                    {
+                        e.Status,
+                        e.Duration,
+                        e.Description,
+                    };
+                },
+                StringComparer.Ordinal);
 }
