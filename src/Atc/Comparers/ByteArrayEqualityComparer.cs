@@ -35,6 +35,7 @@ public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
             return false;
         }
 
+#if NETSTANDARD2_0
         for (var i = 0; i < x.Length; i++)
         {
             if (x[i] != y[i])
@@ -44,6 +45,9 @@ public class ByteArrayEqualityComparer : IEqualityComparer<byte[]>
         }
 
         return true;
+#else
+        return x.AsSpan().SequenceEqual(y);
+#endif
     }
 
     /// <summary>

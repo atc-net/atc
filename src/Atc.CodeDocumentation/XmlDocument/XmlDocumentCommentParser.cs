@@ -148,7 +148,9 @@ internal static class XmlDocumentCommentParser
         }
 
         innerXml = innerXml.Replace("<para>", string.Empty, StringComparison.Ordinal);
-        innerXml = innerXml.Replace(Environment.NewLine, " ", StringComparison.Ordinal);
+        innerXml = innerXml.Replace("\r\n", " ", StringComparison.Ordinal);
+        innerXml = innerXml.Replace("\n", " ", StringComparison.Ordinal);
+        innerXml = innerXml.Replace("\r", " ", StringComparison.Ordinal);
         innerXml = Regex.Replace(innerXml, @$"<\/?{name}>", string.Empty, RegexOptions.None, TimeSpan.FromSeconds(1)).Trim();
         innerXml = Regex.Replace(innerXml, @"<para\s*\/>|<\/para>", Environment.NewLine, RegexOptions.None, TimeSpan.FromSeconds(1));
         innerXml = Regex.Replace(innerXml, @"<see cref=""\w:([^\""]*)""\s*\/>", m => ResolveSeeElement(m, @namespace), RegexOptions.None, TimeSpan.FromSeconds(1));

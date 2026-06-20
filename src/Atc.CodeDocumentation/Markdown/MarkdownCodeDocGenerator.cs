@@ -73,7 +73,7 @@ public static class MarkdownCodeDocGenerator
         }
         else
         {
-            foreach (var file in Directory.GetFiles(outputPath.FullName, "*.md", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(outputPath.FullName, "*.md", SearchOption.TopDirectoryOnly))
             {
                 File.Delete(file);
             }

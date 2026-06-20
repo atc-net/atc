@@ -47,6 +47,7 @@ internal sealed class ConfigureSwaggerOptions :
     /// Configures Swagger generation options including API versioning, XML documentation, and security filters.
     /// </summary>
     /// <param name="options">The <see cref="SwaggerGenOptions"/> to configure.</param>
+    [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     public void Configure(SwaggerGenOptions options)
     {
         options.TagActionsBy(api =>
@@ -84,7 +85,7 @@ internal sealed class ConfigureSwaggerOptions :
                         description.GroupName,
                         new OpenApiInfo
                         {
-                            Title = Assembly.GetEntryAssembly()!.GetApiName(),
+                            Title = (Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly()).GetApiName(),
                             Version = description.ApiVersion.ToString(),
                         });
                 }
@@ -106,6 +107,33 @@ internal sealed class ConfigureSwaggerOptions :
         {
             options.OperationFilter<SecurityRequirementsOperationFilter>();
             options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+
+            var authOptions = restApiOptions.Authorization;
+            if (authOptions?.IsSecurityEnabled() == true &&
+                !string.IsNullOrEmpty(authOptions.Instance) &&
+                !string.IsNullOrEmpty(authOptions.TenantId))
+            {
+                var baseUrl = authOptions.Instance.TrimEnd('/');
+                var tenant = authOptions.TenantId;
+                options.AddSecurityDefinition(
+                    "OAuth2",
+                    new OpenApiSecurityScheme
+                    {
+                        Type = SecuritySchemeType.OAuth2,
+                        Flows = new OpenApiOAuthFlows
+                        {
+                            AuthorizationCode = new OpenApiOAuthFlow
+                            {
+                                AuthorizationUrl = new Uri($"{baseUrl}/{tenant}/oauth2/v2.0/authorize"),
+                                TokenUrl = new Uri($"{baseUrl}/{tenant}/oauth2/v2.0/token"),
+                                Scopes = new Dictionary<string, string>(StringComparer.Ordinal)
+                                {
+                                    [$"api://{authOptions.ClientId}/.default"] = "Default scope",
+                                },
+                            },
+                        },
+                    });
+            }
         }
     }
 

@@ -164,7 +164,13 @@ internal static class AssemblyAnalyzerHelper
 
             var className = classType.Name.Replace("Extensions", string.Empty, StringComparison.Ordinal);
             var classNamePrefixSimplified = GetSimpleTypeName(className);
-            var firstParameterType = method.GetParameters()[0].ParameterType;
+            var parameters = method.GetParameters();
+            if (parameters.Length == 0)
+            {
+                return "Extension method has no parameters.";
+            }
+
+            var firstParameterType = parameters[0].ParameterType;
             var firstParameterNameSimplified = GetSimpleTypeName(firstParameterType);
             if (classNamePrefixSimplified.Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||
                 ("I" + classNamePrefixSimplified).Equals(firstParameterNameSimplified, StringComparison.Ordinal) ||

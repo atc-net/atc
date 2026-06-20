@@ -46,7 +46,7 @@ public static class AssemblyExtensions
         return assembly
             .GetCustomAttributes(false)
             .OfType<DebuggableAttribute>()
-            .Select(att => att.IsJITTrackingEnabled)
+            .Select(att => att.IsJITOptimizerDisabled)
             .FirstOrDefault();
     }
 

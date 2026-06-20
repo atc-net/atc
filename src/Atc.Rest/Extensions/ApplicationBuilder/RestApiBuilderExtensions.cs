@@ -110,8 +110,11 @@ public static class RestApiBuilderExtensions
                 options.AllowCredentials();
             });
         }
-        else
+        else if (env.IsDevelopment())
         {
+            // Only allow all origins in Development; in other environments with no configured
+            // origins the CORS middleware is simply not added, which means the browser's
+            // same-origin policy applies and no CORS headers are emitted.
             app.UseCors(options =>
             {
                 options.AllowAnyHeader();
