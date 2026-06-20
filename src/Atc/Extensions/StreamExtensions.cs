@@ -22,15 +22,13 @@ public static class StreamExtensions
             throw new ArgumentNullException(nameof(stream));
         }
 
-        stream.Position = 0;
-        var buffer = new byte[bufferSize];
-        int nRead;
-        var destination = new MemoryStream();
-        while ((nRead = stream.Read(buffer, 0, bufferSize)) > 0)
+        if (stream.CanSeek)
         {
-            destination.Write(buffer, 0, nRead);
+            stream.Position = 0;
         }
 
+        var destination = new MemoryStream();
+        stream.CopyTo(destination, bufferSize);
         destination.Position = 0;
         return destination;
     }
@@ -48,19 +46,14 @@ public static class StreamExtensions
             throw new ArgumentNullException(nameof(stream));
         }
 
-        stream.Position = 0;
-        var buffer = new byte[32768];
-        using var ms = new MemoryStream();
-        while (true)
+        if (stream.CanSeek)
         {
-            var read = stream.Read(buffer, 0, buffer.Length);
-            if (read <= 0)
-            {
-                return ms.ToArray();
-            }
-
-            ms.Write(buffer, 0, read);
+            stream.Position = 0;
         }
+
+        using var ms = new MemoryStream();
+        stream.CopyTo(ms);
+        return ms.ToArray();
     }
 
     /// <summary>
@@ -76,9 +69,12 @@ public static class StreamExtensions
             throw new ArgumentNullException(nameof(stream));
         }
 
-        stream.Position = 0;
-        using var reader = new StreamReader(stream);
-        var val = reader.ReadToEnd();
-        return val;
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        using var reader = new StreamReader(stream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: -1, leaveOpen: true);
+        return reader.ReadToEnd();
     }
 }

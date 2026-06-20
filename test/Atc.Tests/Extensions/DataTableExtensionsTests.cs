@@ -121,6 +121,21 @@ public class DataTableExtensionsTests
         actual.Should().NotBeNull();
     }
 
+    [Fact]
+    public void ToXPathNodeIterator_DoesNotStealTableFromItsDataSet()
+    {
+        // Arrange
+        using var owningDataSet = new DataSet("Owner");
+        var dt = GenerateTestTable();
+        owningDataSet.Tables.Add(dt);
+
+        // Act
+        _ = dt.ToXPathNodeIterator();
+
+        // Assert — the table must still belong to the original DataSet after the call
+        dt.DataSet.Should().BeSameAs(owningDataSet);
+    }
+
     private static DataTable GenerateTestTable()
     {
         var table = new DataTable();
