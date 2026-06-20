@@ -156,7 +156,7 @@ public static class TypeExtensions
             inheritTypeFullName = inheritTypeFullName.Substring(0, inheritTypeFullName.IndexOf(GenericSign, StringComparison.Ordinal));
         }
 
-        return string.Equals(baseTypeFullName, inheritTypeFullName, StringComparison.OrdinalIgnoreCase) || type.BaseType.IsInheritedFrom(inheritType);
+        return string.Equals(baseTypeFullName, inheritTypeFullName, StringComparison.Ordinal) || type.BaseType.IsInheritedFrom(inheritType);
     }
 
     /// <summary>
