@@ -212,7 +212,8 @@ public class DynamicJson
                 : null;
         }
 
-        if (currentDict[key] is Dictionary<string, object?> nestedDict)
+        if (currentDict.TryGetValue(key, out var nestedValue) &&
+            nestedValue is Dictionary<string, object?> nestedDict)
         {
             return GetValueRecursive(
                 nestedDict,
@@ -258,7 +259,8 @@ public class DynamicJson
             currentDict.Add(key, new Dictionary<string, object?>(StringComparer.Ordinal));
         }
 
-        if (currentDict[key] is Dictionary<string, object?> nestedDict)
+        if (currentDict.TryGetValue(key, out var nestedValue) &&
+            nestedValue is Dictionary<string, object?> nestedDict)
         {
             return SetValueRecursive(
                 nestedDict,
@@ -417,7 +419,8 @@ public class DynamicJson
                 ErrorMessage: null);
         }
 
-        if (currentDict[key] is Dictionary<string, object?> nestedDict)
+        if (currentDict.TryGetValue(key, out var nestedValue) &&
+            nestedValue is Dictionary<string, object?> nestedDict)
         {
             return RemovePathRecursive(
                 nestedDict,

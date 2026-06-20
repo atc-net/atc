@@ -67,6 +67,16 @@ public class DynamicJsonTests
     }
 
     [Fact]
+    public void GetValue_MissingIntermediateSegment_ReturnsNull()
+    {
+        // Accessing a path whose intermediate key does not exist should return null,
+        // not throw KeyNotFoundException from the dictionary indexer.
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
+        var actual = dynamicJson.GetValue("missing.nested");
+        Assert.Null(actual);
+    }
+
+    [Fact]
     public void CanSetValueAtPath()
     {
         // Arrange
@@ -149,6 +159,26 @@ public class DynamicJsonTests
         // Assert
         Assert.False(result.IsSucceeded);
         Assert.Equal("The path does not exist: nonexistentProperty", result.ErrorMessage);
+    }
+
+    [Fact]
+    public void SetValue_MissingIntermediateSegment_ReturnsFailure()
+    {
+        // When createKeyIfNotExist is false and an intermediate key is absent,
+        // SetValue should return failure rather than throwing KeyNotFoundException.
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
+        var result = dynamicJson.SetValue("missing.nested", "value", createKeyIfNotExist: false);
+        Assert.False(result.IsSucceeded);
+    }
+
+    [Fact]
+    public void RemovePath_MissingIntermediateSegment_ReturnsFailure()
+    {
+        // Removing a path whose intermediate key does not exist should return
+        // failure rather than throwing KeyNotFoundException.
+        var dynamicJson = new DynamicJson(JsonPropertyValue);
+        var result = dynamicJson.RemovePath("missing.nested");
+        Assert.False(result.IsSucceeded);
     }
 
     [Fact]
