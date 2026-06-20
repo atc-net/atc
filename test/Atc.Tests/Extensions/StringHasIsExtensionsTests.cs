@@ -318,6 +318,9 @@ public class StringHasIsExtensionsTests
     [InlineData(false, "Hest")]
     [InlineData(false, "Hest@gris")]
     [InlineData(true, "Hest@gris.dk")]
+    [InlineData(true, "user@example.photography")]
+    [InlineData(true, "user@example.international")]
+    [InlineData(false, "user@example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")]
     public void IsEmailAddress(
         bool expected,
         string input)
@@ -431,4 +434,40 @@ public class StringHasIsExtensionsTests
         bool expected,
         string input)
         => Assert.Equal(expected, input.IsIPAddress());
+
+    [Theory]
+    [InlineData(true, "1")]
+    [InlineData(true, "80")]
+    [InlineData(true, "443")]
+    [InlineData(true, "8080")]
+    [InlineData(true, "65535")]
+    [InlineData(false, "0")]
+    [InlineData(false, "65536")]
+    [InlineData(false, "")]
+    [InlineData(false, "abc")]
+    [InlineData(false, "-1")]
+    [InlineData(false, "8080.5")]
+    public void IsPort(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsPort());
+
+    [Theory]
+    [InlineData(true, "AA:BB:CC:DD:EE:FF")]
+    [InlineData(true, "aa:bb:cc:dd:ee:ff")]
+    [InlineData(true, "AA-BB-CC-DD-EE-FF")]
+    [InlineData(true, "aa-bb-cc-dd-ee-ff")]
+    [InlineData(true, "AABB.CCDD.EEFF")]
+    [InlineData(true, "aabb.ccdd.eeff")]
+    [InlineData(true, "AABBCCDDEEFF")]
+    [InlineData(true, "aabbccddeeff")]
+    [InlineData(false, "AA:BB:CC:DD:EE")]
+    [InlineData(false, "AA:BB:CC:DD:EE:FF:00")]
+    [InlineData(false, "GG:BB:CC:DD:EE:FF")]
+    [InlineData(false, "AA BB CC DD EE FF")]
+    [InlineData(false, "")]
+    public void IsMacAddress(
+        bool expected,
+        string input)
+        => Assert.Equal(expected, input.IsMacAddress());
 }

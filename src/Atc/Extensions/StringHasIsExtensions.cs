@@ -17,7 +17,8 @@ public static class StringHasIsExtensions
     private static readonly Lazy<Regex> RxNumeric = new(() => new Regex("[^0-9]", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
 #endif
 
-    private static readonly Lazy<Regex> RxEmailAddress = new(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxEmailAddress = new(() => new Regex(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,63}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
+    private static readonly Lazy<Regex> RxMacAddress = new(() => new Regex(@"^(?:(?:[0-9A-Fa-f]{2}[:\-]){5}[0-9A-Fa-f]{2}|[0-9A-Fa-f]{12}|[0-9A-Fa-f]{4}\.[0-9A-Fa-f]{4}\.[0-9A-Fa-f]{4})$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxGuid = new(() => new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxKey = new(() => new Regex(@"^([a-zA-Z]+[a-zA-Z0-9_]+$)", RegexOptions.Singleline | RegexOptions.Compiled, TimeSpan.FromSeconds(1)));
     private static readonly Lazy<Regex> RxHtmlTags = new(() => new Regex(@"<[^>]+>", RegexOptions.Multiline | RegexOptions.Compiled, TimeSpan.FromSeconds(5)));
@@ -632,4 +633,33 @@ public static class StringHasIsExtensions
     public static bool IsIPAddress(this string value)
         => value.IsIPv4Address() ||
            value.IsIPv6Address();
+
+    /// <summary>
+    /// Determines whether the specified value is a valid TCP/UDP port number.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns>
+    /// <see langword="true" /> if the value parses to an integer in the range 1–65535; otherwise, <see langword="false" />.
+    /// </returns>
+    public static bool IsPort(this string value)
+        => !string.IsNullOrEmpty(value) &&
+           int.TryParse(value, NumberStyles.None, GlobalizationConstants.EnglishCultureInfo, out var port) &&
+           port is >= 1 and <= 65535;
+
+    /// <summary>
+    /// Determines whether the specified value is a valid MAC address.
+    /// </summary>
+    /// <param name="value">The string to validate.</param>
+    /// <returns>
+    /// <see langword="true" /> if the value is a valid 48-bit MAC address; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <remarks>
+    /// Accepts the three most common notations: colon-separated (<c>AA:BB:CC:DD:EE:FF</c>),
+    /// hyphen-separated (<c>AA-BB-CC-DD-EE-FF</c>), and dot-separated Cisco style (<c>AABB.CCDD.EEFF</c>),
+    /// as well as the compact twelve-hex-digit form (<c>AABBCCDDEEFF</c>).
+    /// The check is case-insensitive.
+    /// </remarks>
+    public static bool IsMacAddress(this string value)
+        => !string.IsNullOrEmpty(value) &&
+           RxMacAddress.Value.IsMatch(value);
 }
