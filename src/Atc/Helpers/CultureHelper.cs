@@ -131,10 +131,17 @@ public static class CultureHelper
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(displayLanguageLcid);
         }
 
-        var cultures = GetCultures();
-        if (backupCultureInfo is not null)
+        List<Culture> cultures;
+        try
         {
-            Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            cultures = GetCultures();
+        }
+        finally
+        {
+            if (backupCultureInfo is not null)
+            {
+                Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            }
         }
 
         var data = new List<Culture>();
@@ -615,11 +622,19 @@ public static class CultureHelper
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(displayLanguageLcid);
         }
 
-        var cultures = GetCultures();
-        var data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
-        if (backupCultureInfo is not null)
+        List<Culture> cultures;
+        Dictionary<int, string> data;
+        try
         {
-            Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            cultures = GetCultures();
+            data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
+        }
+        finally
+        {
+            if (backupCultureInfo is not null)
+            {
+                Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            }
         }
 
         var countryDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
@@ -750,11 +765,19 @@ public static class CultureHelper
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(displayLanguageLcid);
         }
 
-        var cultures = GetCultures();
-        var data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
-        if (backupCultureInfo is not null)
+        List<Culture> cultures;
+        Dictionary<int, string> data;
+        try
         {
-            Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            cultures = GetCultures();
+            data = DataFactory.CreateKeyValueDictionaryOfIntString(dropDownFirstItemType);
+        }
+        finally
+        {
+            if (backupCultureInfo is not null)
+            {
+                Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            }
         }
 
         var languageDisplayNameCount = new Dictionary<string, int>(StringComparer.Ordinal);
@@ -810,19 +833,25 @@ public static class CultureHelper
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(displayLanguageLcid);
         }
 
-        var culturesFromPlatform = GetCultureInfoFromPlatform();
-        var data = (
-                from cultureInfo
-                    in culturesFromPlatform
-                let countryEnglishName = ExtractCountryEnglishName(cultureInfo)
-                let countryDisplayName = TryTranslateCountryEnglishName(countryEnglishName, useValueAsDefault: false)
-                where countryDisplayName is null
-                select cultureInfo.LCID)
-            .ToList();
-
-        if (backupCultureInfo is not null)
+        List<int> data;
+        try
         {
-            Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            var culturesFromPlatform = GetCultureInfoFromPlatform();
+            data = (
+                    from cultureInfo
+                        in culturesFromPlatform
+                    let countryEnglishName = ExtractCountryEnglishName(cultureInfo)
+                    let countryDisplayName = TryTranslateCountryEnglishName(countryEnglishName, useValueAsDefault: false)
+                    where countryDisplayName is null
+                    select cultureInfo.LCID)
+                .ToList();
+        }
+        finally
+        {
+            if (backupCultureInfo is not null)
+            {
+                Thread.CurrentThread.CurrentUICulture = backupCultureInfo;
+            }
         }
 
         if (includeOnlyLcids is null || includeOnlyLcids.Count <= 0)
