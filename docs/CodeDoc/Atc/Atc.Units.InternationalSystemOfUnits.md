@@ -33,7 +33,7 @@ Enumeration: BaseUnitType
 
 ## InternationalSystemOfUnitsHelper
 Provides utility methods for converting between International System of Units (SI) prefixes.
-><b>Remarks:</b> This helper class supports conversions between various SI unit prefixes such as kilo, mega, giga, milli, centi, etc. Note that not all prefix combinations are currently supported.
+><b>Remarks:</b> This helper class supports conversions between all standard SI unit prefixes (Yotta through Yocto) using a table-driven exponent approach.
 
 >```csharp
 >public static class InternationalSystemOfUnitsHelper
@@ -50,10 +50,10 @@ Provides utility methods for converting between International System of Units (S
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeFrom`&nbsp;&nbsp;-&nbsp;&nbsp;The source SI prefix type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefixTypeTo`&nbsp;&nbsp;-&nbsp;&nbsp;The target SI prefix type.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to round to (0 for no rounding).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`numberOfDecimals`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to round to. Pass 0 for no rounding.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to convert.<br />
 >
-><b>Returns:</b> The converted value in the target prefix type.
+><b>Returns:</b> The converted value in the target prefix type, optionally rounded.
 
 <br />
 
