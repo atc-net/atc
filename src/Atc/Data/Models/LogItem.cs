@@ -11,7 +11,7 @@ public class LogItem
     /// </summary>
     public LogItem()
     {
-        TimeStamp = DateTime.Now;
+        TimeStamp = DateTime.UtcNow;
         Severity = LogCategoryType.Information;
         Message = string.Empty;
     }
