@@ -33,34 +33,11 @@ public class UnexpectedTypeException : Exception
     /// <param name="actualType">The actual type that was encountered.</param>
     /// <param name="expectedType">The type that was expected.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="actualType"/> or <paramref name="expectedType"/> is null.</exception>
-    [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public UnexpectedTypeException(
         Type actualType,
         Type expectedType)
+        : base(BuildMessage(actualType, expectedType))
     {
-        if (actualType is null)
-        {
-            throw new ArgumentNullException(nameof(actualType));
-        }
-
-        if (expectedType is null)
-        {
-            throw new ArgumentNullException(nameof(expectedType));
-        }
-
-        var actualTypeName = actualType.FullName!;
-        if (actualType.IsSimple())
-        {
-            actualTypeName = actualType.BeautifyTypeName();
-        }
-
-        var expectedTypeName = expectedType.FullName!;
-        if (expectedType.IsSimple())
-        {
-            expectedTypeName = expectedType.BeautifyTypeName();
-        }
-
-        ReflectionHelper.SetPrivateField(this, "_message", $"Unexpected type.{Environment.NewLine}ActualType name: {actualTypeName}{Environment.NewLine}ExpectedType name: {expectedTypeName}");
     }
 
     /// <summary>
@@ -70,40 +47,12 @@ public class UnexpectedTypeException : Exception
     /// <param name="expectedType">The type that was expected.</param>
     /// <param name="message">The custom error message that describes the error.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="actualType"/>, <paramref name="expectedType"/>, or <paramref name="message"/> is null.</exception>
-    [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public UnexpectedTypeException(
         Type actualType,
         Type expectedType,
         string message)
+        : base(BuildMessage(actualType, expectedType, message))
     {
-        if (actualType is null)
-        {
-            throw new ArgumentNullException(nameof(actualType));
-        }
-
-        if (expectedType is null)
-        {
-            throw new ArgumentNullException(nameof(expectedType));
-        }
-
-        if (message is null)
-        {
-            throw new ArgumentNullException(nameof(message));
-        }
-
-        var actualTypeName = actualType.FullName!;
-        if (actualType.IsSimple())
-        {
-            actualTypeName = actualType.BeautifyTypeName();
-        }
-
-        var expectedTypeName = expectedType.FullName!;
-        if (expectedType.IsSimple())
-        {
-            expectedTypeName = expectedType.BeautifyTypeName();
-        }
-
-        ReflectionHelper.SetPrivateField(this, "_message", $"{message}{Environment.NewLine}ActualType name: {actualTypeName}{Environment.NewLine}ExpectedType name: {expectedTypeName}");
     }
 
     /// <summary>
@@ -132,5 +81,48 @@ public class UnexpectedTypeException : Exception
         : base(ExceptionMessage)
 #endif
     {
+    }
+
+    private static string GetTypeName(Type type)
+        => type.IsSimple() ? type.BeautifyTypeName() : type.FullName!;
+
+    private static string BuildMessage(
+        Type actualType,
+        Type expectedType)
+    {
+        if (actualType is null)
+        {
+            throw new ArgumentNullException(nameof(actualType));
+        }
+
+        if (expectedType is null)
+        {
+            throw new ArgumentNullException(nameof(expectedType));
+        }
+
+        return $"Unexpected type.{Environment.NewLine}ActualType name: {GetTypeName(actualType)}{Environment.NewLine}ExpectedType name: {GetTypeName(expectedType)}";
+    }
+
+    private static string BuildMessage(
+        Type actualType,
+        Type expectedType,
+        string message)
+    {
+        if (actualType is null)
+        {
+            throw new ArgumentNullException(nameof(actualType));
+        }
+
+        if (expectedType is null)
+        {
+            throw new ArgumentNullException(nameof(expectedType));
+        }
+
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return $"{message}{Environment.NewLine}ActualType name: {GetTypeName(actualType)}{Environment.NewLine}ExpectedType name: {GetTypeName(expectedType)}";
     }
 }

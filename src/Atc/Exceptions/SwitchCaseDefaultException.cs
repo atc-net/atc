@@ -36,15 +36,9 @@ public class SwitchCaseDefaultException : Exception
     /// </summary>
     /// <param name="value">The unexpected enum value that was encountered.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
-    [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public SwitchCaseDefaultException(Enum value)
+        : base(BuildMessage(value))
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
-
-        ReflectionHelper.SetPrivateField(this, "_message", $"Unexpected value.{Environment.NewLine}Enum name: {value.GetType().FullName}{Environment.NewLine}Enum value: {value}");
     }
 
     /// <summary>
@@ -53,22 +47,11 @@ public class SwitchCaseDefaultException : Exception
     /// <param name="value">The unexpected enum value that was encountered.</param>
     /// <param name="message">The custom error message that describes the error.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> or <paramref name="message"/> is null.</exception>
-    [SuppressMessage("Major Code Smell", "S5766:Deserializing objects without performing data validation is security-sensitive", Justification = "OK.")]
     public SwitchCaseDefaultException(
         Enum value,
         string message)
+        : base(BuildMessage(value, message))
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
-
-        if (message is null)
-        {
-            throw new ArgumentNullException(nameof(message));
-        }
-
-        ReflectionHelper.SetPrivateField(this, "_message", $"{message}{Environment.NewLine}Enum name: {value.GetType().FullName}{Environment.NewLine}Enum value: {value}");
     }
 
     /// <summary>
@@ -97,5 +80,32 @@ public class SwitchCaseDefaultException : Exception
         : base(ExceptionMessage)
 #endif
     {
+    }
+
+    private static string BuildMessage(Enum value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        return $"Unexpected value.{Environment.NewLine}Enum name: {value.GetType().FullName}{Environment.NewLine}Enum value: {value}";
+    }
+
+    private static string BuildMessage(
+        Enum value,
+        string message)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        if (message is null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
+
+        return $"{message}{Environment.NewLine}Enum name: {value.GetType().FullName}{Environment.NewLine}Enum value: {value}";
     }
 }
