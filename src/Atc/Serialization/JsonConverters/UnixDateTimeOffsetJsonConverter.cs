@@ -14,9 +14,16 @@ public sealed class UnixDateTimeOffsetJsonConverter : JsonConverter<DateTimeOffs
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
-        => reader.TryGetInt64(out var value)
+    {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return default;
+        }
+
+        return reader.TryGetInt64(out var value)
             ? DateTimeOffset.FromUnixTimeSeconds(value)
             : default;
+    }
 
     /// <inheritdoc />
     public override void Write(

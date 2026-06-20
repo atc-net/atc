@@ -15,6 +15,11 @@ public sealed class DirectoryInfoToFullNameJsonConverter : JsonConverter<Directo
         Type typeToConvert,
         JsonSerializerOptions options)
     {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
         var fillName = reader.GetString();
         return string.IsNullOrEmpty(fillName)
             ? null

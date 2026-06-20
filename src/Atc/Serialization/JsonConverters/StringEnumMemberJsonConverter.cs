@@ -12,38 +12,53 @@ namespace Atc.Serialization.JsonConverters;
 public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
     where TEnum : Enum
 {
+    private static readonly Dictionary<string, TEnum> NameToValue = BuildNameToValue();
+    private static readonly Dictionary<TEnum, string> ValueToName = BuildValueToName();
+
+    private static Dictionary<string, TEnum> BuildNameToValue()
+    {
+        var map = new Dictionary<string, TEnum>(StringComparer.OrdinalIgnoreCase);
+        foreach (var field in typeof(TEnum).GetFields(BindingFlags.Public | BindingFlags.Static))
+        {
+            var member = field.GetCustomAttribute<EnumMemberAttribute>()?.Value ?? field.Name;
+            map[member] = (TEnum)field.GetValue(null)!;
+            if (!map.ContainsKey(field.Name))
+            {
+                map[field.Name] = (TEnum)field.GetValue(null)!;
+            }
+        }
+
+        return map;
+    }
+
+    private static Dictionary<TEnum, string> BuildValueToName()
+    {
+        var map = new Dictionary<TEnum, string>();
+        foreach (var field in typeof(TEnum).GetFields(BindingFlags.Public | BindingFlags.Static))
+        {
+            var key = (TEnum)field.GetValue(null)!;
+            if (!map.ContainsKey(key))
+            {
+                map[key] = field.GetCustomAttribute<EnumMemberAttribute>()?.Value ?? field.Name;
+            }
+        }
+
+        return map;
+    }
+
     /// <inheritdoc />
     public override TEnum Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        if (typeToConvert is null)
-        {
-            throw new ArgumentNullException(nameof(typeToConvert));
-        }
-
         var enumValue = reader.GetString();
-        foreach (var field in typeToConvert.GetFields())
+        if (enumValue is not null && NameToValue.TryGetValue(enumValue, out var result))
         {
-            var enumMemberAttribute = field.GetCustomAttribute<EnumMemberAttribute>();
-
-            switch (enumMemberAttribute)
-            {
-                case null when
-                    field.Name.Equals(enumValue, StringComparison.OrdinalIgnoreCase):
-                    return (TEnum)field.GetValue(null)!;
-                case null:
-                    continue;
-            }
-
-            if (enumMemberAttribute.Value!.Equals(enumValue, StringComparison.OrdinalIgnoreCase))
-            {
-                return (TEnum)field.GetValue(null)!;
-            }
+            return result;
         }
 
-        throw new JsonException($"Unable to convert \"{enumValue}\" to Enum \"{typeToConvert}\".");
+        throw new JsonException($"Unable to convert \"{enumValue}\" to Enum \"{typeof(TEnum)}\".");
     }
 
     /// <inheritdoc />
@@ -57,22 +72,12 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
             throw new ArgumentNullException(nameof(writer));
         }
 
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
-
         if (options is null)
         {
             throw new ArgumentNullException(nameof(options));
         }
 
-        var enumMemberAttribute = value
-            .GetType()
-            .GetField(value.ToString())!
-            .GetCustomAttribute<EnumMemberAttribute>();
-
-        var enumValue = enumMemberAttribute?.Value ?? value.ToString();
+        var enumValue = ValueToName.TryGetValue(value, out var name) ? name : value.ToString();
 
         writer.WriteStringValue(options.PropertyNamingPolicy == JsonNamingPolicy.CamelCase
             ? enumValue.EnsureFirstCharacterToLower()
