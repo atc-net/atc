@@ -1160,12 +1160,12 @@ Extensions for the `System.Double` class.
 >```csharp
 >int CountDecimalPoints(this double value)
 >```
-><b>Summary:</b> Counts the number of decimal places in the double value.
+><b>Summary:</b> Counts the number of decimal places in the double value, up to a maximum of 15 (the limit of meaningful precision for a 64-bit floating-point number).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to analyze.<br />
 >
-><b>Returns:</b> The number of decimal places in the value.
+><b>Returns:</b> The number of decimal places, capped at 15.
 #### CurrencyRounding
 >```csharp
 >double CurrencyRounding(this double value)
@@ -3090,6 +3090,18 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the specified string length is even; otherwise, <see langword="false" />.
+#### IsMacAddress
+>```csharp
+>bool IsMacAddress(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid MAC address.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value is a valid 48-bit MAC address; otherwise, <see langword="false" />.
+>
+><b>Remarks:</b> Accepts the three most common notations: colon-separated (`AA:BB:CC:DD:EE:FF`), hyphen-separated (`AA-BB-CC-DD-EE-FF`), and dot-separated Cisco style (`AABB.CCDD.EEFF`), as well as the compact twelve-hex-digit form (`AABBCCDDEEFF`). The check is case-insensitive.
 #### IsNumericOnly
 >```csharp
 >bool IsNumericOnly(this string value)
@@ -3110,6 +3122,16 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cprNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The CPR number.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the specified person CPR number is a valid number; otherwise, <see langword="false" />.
+#### IsPort
+>```csharp
+>bool IsPort(this string value)
+>```
+><b>Summary:</b> Determines whether the specified value is a valid TCP/UDP port number.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the value parses to an integer in the range 1–65535; otherwise, <see langword="false" />.
 #### IsSentence
 >```csharp
 >bool IsSentence(this string value)

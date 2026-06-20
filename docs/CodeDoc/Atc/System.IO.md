@@ -180,7 +180,7 @@ Extensions for the `System.IO.MemoryStream` class.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stream`&nbsp;&nbsp;-&nbsp;&nbsp;The memory stream to convert.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`encoding`&nbsp;&nbsp;-&nbsp;&nbsp;The encoding to use for the conversion. If , Unicode encoding is used.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`encoding`&nbsp;&nbsp;-&nbsp;&nbsp;The encoding to use for the conversion. Defaults to  when .<br />
 >
 ><b>Returns:</b> A string representation of the memory stream content.
 
