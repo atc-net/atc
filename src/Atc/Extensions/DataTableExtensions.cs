@@ -166,7 +166,7 @@ public static class DataTableExtensions
         using (var ds = new DataSet("DataSet"))
         {
             ds.Locale = GlobalizationConstants.EnglishCultureInfo;
-            ds.Tables.Add(dataTable);
+            ds.Tables.Add(dataTable.Copy());
             xmlDocument.LoadXml(ds.GetXml());
         }
 
