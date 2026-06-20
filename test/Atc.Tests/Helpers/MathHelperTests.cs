@@ -287,6 +287,7 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4.4, new[] { 8.5, 4.4, 6 })]
+    [InlineData(3000000000.0, new[] { 3000000000.0, 5000000000.0 })]
     public void Min_Array_Double(
         double expected,
         double[] input)
@@ -300,6 +301,7 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(4.4, new[] { 8.5, 4.4, 6 })]
+    [InlineData(3000000000.0, new[] { 3000000000.0, 5000000000.0 })]
     public void Min_List_Double(
         double expected,
         double[] data)
@@ -347,6 +349,7 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8.5, new[] { 8.5, 4.4, 6 })]
+    [InlineData(-3000000000.0, new[] { -3000000000.0, -5000000000.0 })]
     public void Max_Array_Double(
         double expected,
         double[] input)
@@ -360,6 +363,7 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(8.5, new[] { 8.5, 4.4, 6 })]
+    [InlineData(-3000000000.0, new[] { -3000000000.0, -5000000000.0 })]
     public void Max_List_Double(
         double expected,
         double[] data)
@@ -410,6 +414,7 @@ public class MathHelperTests
     [InlineData(12.12, 12.12, 1)]
     [InlineData(12.12, 12.12, 2)]
     [InlineData(12.12, 12.12, 3)]
+    [InlineData(3.141592653, 3.141592653, 15)]
     public void TruncateToMaxPrecision(
         double expected,
         double input,
