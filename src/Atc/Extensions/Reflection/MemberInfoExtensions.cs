@@ -15,9 +15,10 @@ public static class MemberInfoExtensions
     [SuppressMessage("", "CA2263:Prefer the generic overload", Justification = "OK")]
     public static bool AnyCustomAttributes<T>(this MemberInfo element)
         where T : Attribute
-        => element
-            .GetCustomAttributes(typeof(T))
-            .Any();
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        return element.IsDefined(typeof(T), inherit: false);
+    }
 
     /// <summary>
     /// Determines whether [has exclude from code coverage attribute].
@@ -35,8 +36,7 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(memberInfo));
         }
 
-        var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(ExcludeFromCodeCoverageAttribute));
-        return attributeData is not null;
+        return memberInfo.IsDefined(typeof(ExcludeFromCodeCoverageAttribute), inherit: false);
     }
 
     /// <summary>
@@ -52,8 +52,7 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(memberInfo));
         }
 
-        var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(CompilerGeneratedAttribute));
-        return attributeData is not null;
+        return memberInfo.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false);
     }
 
     /// <summary>
@@ -71,8 +70,7 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(memberInfo));
         }
 
-        var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(IgnoreDisplayAttribute));
-        return attributeData is not null;
+        return memberInfo.IsDefined(typeof(IgnoreDisplayAttribute), inherit: false);
     }
 
     /// <summary>
@@ -90,8 +88,7 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(memberInfo));
         }
 
-        var attributeData = memberInfo.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(RequiredAttribute));
-        return attributeData is not null;
+        return memberInfo.IsDefined(typeof(RequiredAttribute), inherit: false);
     }
 
     /// <summary>

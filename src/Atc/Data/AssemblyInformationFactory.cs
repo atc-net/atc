@@ -65,7 +65,7 @@ public static class AssemblyInformationFactory
                 return false;
             }
 
-            return attributes[0] is DebuggableAttribute { IsJITTrackingEnabled: true };
+            return attributes[0] is DebuggableAttribute { IsJITOptimizerDisabled: true };
         }
         catch (IOException)
         {
