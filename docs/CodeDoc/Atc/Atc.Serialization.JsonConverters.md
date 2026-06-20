@@ -304,7 +304,7 @@ JSON converter that serializes `System.Uri` objects to and from their absolute U
 
 ## VersionJsonConverter
 JSON converter that serializes `System.Version` objects to and from their string representation.
-><b>Remarks:</b> This converter supports reading `System.Version` from both string format (e.g., "1.2.3.4") and object format with internal fields (_Major, _Minor, _Build, _Revision). During writing, `System.Version` is always serialized as a string. If parsing fails, a default empty `System.Version` is returned.
+><b>Remarks:</b> This converter supports reading `System.Version` from both string format (e.g., "1.2.3.4") and object format with public properties (Major, Minor, Build, Revision) as produced by `System.Text.Json.JsonSerializer`. During writing, `System.Version` is always serialized as a string. If parsing fails, a default empty `System.Version` is returned.
 
 >```csharp
 >public class VersionJsonConverter : JsonConverter<Version>

@@ -50,7 +50,7 @@ public static class TriangleHelper
         double angleA,
         double angleB,
         double angleC)
-        => (angleA + angleB + angleC).IsEqual(180);
+        => System.Math.Abs(angleA + angleB + angleC - 180.0) < 1e-9;
 
     /// <summary>
     /// Calculate the unspecified side (unspecified with NULL).
@@ -73,13 +73,25 @@ public static class TriangleHelper
         if (sideA is null && sideB is not null && sideC is not null)
         {
             // Calc sideA
-            return System.Math.Sqrt(System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideB, 2));
+            var radicand = System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideB, 2);
+            if (radicand < 0)
+            {
+                throw new ArithmeticException("The given side lengths do not form a valid right triangle.");
+            }
+
+            return System.Math.Sqrt(radicand);
         }
 
         if (sideA is not null && sideB is null && sideC is not null)
         {
             // Calc sideB
-            return System.Math.Sqrt(System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideA, 2));
+            var radicand = System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideA, 2);
+            if (radicand < 0)
+            {
+                throw new ArithmeticException("The given side lengths do not form a valid right triangle.");
+            }
+
+            return System.Math.Sqrt(radicand);
         }
 
         if (sideA is not null && sideB is not null && sideC is null)

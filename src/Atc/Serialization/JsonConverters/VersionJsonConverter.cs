@@ -6,8 +6,9 @@ namespace Atc.Serialization.JsonConverters;
 /// </summary>
 /// <remarks>
 /// This converter supports reading <see cref="Version"/> from both string format (e.g., "1.2.3.4") and object format
-/// with internal fields (_Major, _Minor, _Build, _Revision). During writing, <see cref="Version"/> is always serialized
-/// as a string. If parsing fails, a default empty <see cref="Version"/> is returned.
+/// with public properties (Major, Minor, Build, Revision) as produced by <see cref="System.Text.Json.JsonSerializer"/>.
+/// During writing, <see cref="Version"/> is always serialized as a string. If parsing fails, a default empty
+/// <see cref="Version"/> is returned.
 /// </remarks>
 public sealed class VersionJsonConverter : JsonConverter<Version>
 {
@@ -27,19 +28,19 @@ public sealed class VersionJsonConverter : JsonConverter<Version>
                 {
                     var major = jsonDocument
                         .RootElement
-                        .GetProperty("_Major")
+                        .GetProperty("Major")
                         .GetInt32();
                     var minor = jsonDocument
                         .RootElement
-                        .GetProperty("_Minor")
+                        .GetProperty("Minor")
                         .GetInt32();
                     var build = jsonDocument
                         .RootElement
-                        .GetProperty("_Build")
+                        .GetProperty("Build")
                         .GetInt32();
                     var revision = jsonDocument
                         .RootElement
-                        .GetProperty("_Revision")
+                        .GetProperty("Revision")
                         .GetInt32();
                     return new Version(major, minor, build, revision);
                 }

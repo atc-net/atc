@@ -5,16 +5,17 @@ public sealed class VersionJsonConverterTests
     [Fact]
     public void Read_ShouldDeserializeVersionFromObject()
     {
-        // Arrange
+        // STJ serializes Version using its public properties (Major, Minor, Build, Revision),
+        // not the private backing fields (_Major etc.) that the old implementation read.
         var jsonSerializerOptions = JsonSerializerOptionsFactory.Create();
         var jsonConverter = new VersionJsonConverter();
 
         const string json = """
                             {
-                                "_Major": 1,
-                                "_Minor": 2,
-                                "_Build": 3,
-                                "_Revision": 4
+                                "Major": 1,
+                                "Minor": 2,
+                                "Build": 3,
+                                "Revision": 4
                             }
                             """;
 
