@@ -15,6 +15,11 @@ public sealed class UriToAbsoluteUriJsonConverter : JsonConverter<Uri?>
         Type typeToConvert,
         JsonSerializerOptions options)
     {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
         var absoluteUri = reader.GetString();
         return string.IsNullOrEmpty(absoluteUri)
             ? null

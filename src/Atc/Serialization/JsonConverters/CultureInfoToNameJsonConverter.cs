@@ -15,6 +15,11 @@ public sealed class CultureInfoToNameJsonConverter : JsonConverter<CultureInfo?>
         Type typeToConvert,
         JsonSerializerOptions options)
     {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
         var name = reader.GetString();
         return string.IsNullOrEmpty(name)
             ? null
