@@ -1,6 +1,8 @@
 global using System.Diagnostics.CodeAnalysis;
 global using System.Reflection;
 
+global using Asp.Versioning;
+
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.Rest.Extended.Extensions;
 global using Atc.Rest.Extended.Filters;

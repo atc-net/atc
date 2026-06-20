@@ -16,7 +16,6 @@ global using Atc.Rest.Options;
 global using FluentValidation;
 global using FluentValidation.AspNetCore;
 
-global using Microsoft.ApplicationInsights;
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Authorization;

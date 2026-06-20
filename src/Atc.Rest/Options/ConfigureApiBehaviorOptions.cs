@@ -9,17 +9,24 @@ namespace Atc.Rest.Options;
 /// <item>Suppress automatic binding source inference for better control</item>
 /// <item>Return ValidationProblemDetails for invalid model state</item>
 /// <item>Include correlation ID in validation error responses</item>
-/// <item>Track validation errors in Application Insights telemetry</item>
+/// <item>Track validation errors in Application Insights telemetry when a <see cref="TelemetryClient"/> is provided</item>
 /// </list>
 /// </remarks>
 public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
 {
-    private readonly TelemetryClient telemetry;
+    private readonly TelemetryClient? telemetry;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConfigureApiBehaviorOptions"/> class without telemetry.
+    /// </summary>
+    public ConfigureApiBehaviorOptions()
+    {
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigureApiBehaviorOptions"/> class.
     /// </summary>
-    /// <param name="telemetry">The Application Insights telemetry client.</param>
+    /// <param name="telemetry">The Application Insights telemetry client used to track validation errors.</param>
     public ConfigureApiBehaviorOptions(TelemetryClient telemetry)
     {
         this.telemetry = telemetry;
@@ -44,7 +51,7 @@ public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
                 },
             };
 
-            telemetry.TrackTrace(
+            telemetry?.TrackTrace(
                 "BadRequest",
                 new Dictionary<string, string>(StringComparer.Ordinal)
                 {
