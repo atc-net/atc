@@ -148,7 +148,7 @@ internal static class AnalyzerHelper
     {
         if (method.DeclaringType is null)
         {
-            throw new Exception("method.DeclaringType is null...");
+            return false;
         }
 
         var parameters = method.GetParameters();

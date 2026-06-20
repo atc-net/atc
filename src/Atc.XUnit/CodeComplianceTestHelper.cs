@@ -308,7 +308,7 @@ public static class CodeComplianceTestHelper
 
         CollectExportedMethodsWithMissingTestsToExcel(
             decompilerType,
-            new DirectoryInfo(@"C:\Temp"),
+            new DirectoryInfo(Path.GetTempPath()),
             sourceAssembly,
             testAssembly,
             excludeSourceTypes);
