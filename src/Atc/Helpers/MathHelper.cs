@@ -240,7 +240,7 @@ public static class MathHelper
         }
 
         return values
-            .Concat(new double[] { int.MaxValue })
+            .Concat(new[] { double.MaxValue })
             .Min();
     }
 
@@ -256,7 +256,7 @@ public static class MathHelper
         }
 
         return values
-            .Concat(new double[] { int.MaxValue })
+            .Concat(new[] { double.MaxValue })
             .Min();
     }
 
@@ -304,7 +304,7 @@ public static class MathHelper
         }
 
         return values
-            .Concat(new double[] { int.MinValue })
+            .Concat(new[] { double.MinValue })
             .Max();
     }
 
@@ -320,7 +320,7 @@ public static class MathHelper
         }
 
         return values
-            .Concat(new double[] { int.MinValue })
+            .Concat(new[] { double.MinValue })
             .Max();
     }
 
@@ -368,7 +368,7 @@ public static class MathHelper
             return value;
         }
 
-        var decimals = sa[1].Substring(0, decimalPrecision);
+        var decimals = sa[1].Substring(0, System.Math.Min(decimalPrecision, sa[1].Length));
         return double.Parse($"{sa[0]}.{decimals}", GlobalizationConstants.EnglishCultureInfo);
     }
 }
