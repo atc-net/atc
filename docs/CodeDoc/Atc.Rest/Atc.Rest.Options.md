@@ -129,7 +129,7 @@ Copy and fill out the AzureAd section into the project User Secrets.
 
 ## ConfigureApiBehaviorOptions
 Configures ASP.NET Core API behavior options for model validation and error responses.
-><b>Remarks:</b> This class customizes the default API behavior to: <list type="bullet"><item>Suppress automatic binding source inference for better control</item><item>Return ValidationProblemDetails for invalid model state</item><item>Include correlation ID in validation error responses</item><item>Track validation errors in Application Insights telemetry</item></list>
+><b>Remarks:</b> This class customizes the default API behavior to: <list type="bullet"><item>Suppress automatic binding source inference for better control</item><item>Return ValidationProblemDetails for invalid model state</item><item>Include correlation ID in validation error responses</item><item>Track validation errors in Application Insights telemetry when a `Microsoft.ApplicationInsights.TelemetryClient` is provided</item></list>
 
 >```csharp
 >public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>

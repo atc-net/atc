@@ -6,15 +6,11 @@ namespace Atc.Rest.Extended.Options;
 /// </summary>
 public class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOptions>
 {
-    private readonly TelemetryClient telemetry;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigureApiVersioningOptions"/> class.
     /// </summary>
-    /// <param name="telemetry">The Application Insights telemetry client.</param>
-    public ConfigureApiVersioningOptions(TelemetryClient telemetry)
+    public ConfigureApiVersioningOptions()
     {
-        this.telemetry = telemetry;
     }
 
     /// <summary>
