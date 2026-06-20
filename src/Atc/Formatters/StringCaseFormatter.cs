@@ -48,7 +48,7 @@ namespace Atc;
 public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
 {
     /// <summary>
-    /// Static <see cref="StringCaseFormatter"/> using <see cref="CultureInfo.CurrentCulture"/>.
+    /// Static <see cref="StringCaseFormatter"/> using <see cref="CultureInfo.InvariantCulture"/>.
     /// </summary>
     public static readonly StringCaseFormatter Default = new();
 
@@ -87,25 +87,25 @@ public sealed class StringCaseFormatter : IFormatProvider, ICustomFormatter
 
         return format switch
         {
-            "U" => str.ToUpper(CultureInfo.CurrentCulture),
-            "Ul" => str.ToUpper(CultureInfo.CurrentCulture).EnsureFirstCharacterToLower(),
+            "U" => str.ToUpper(CultureInfo.InvariantCulture),
+            "Ul" => str.ToUpper(CultureInfo.InvariantCulture).EnsureFirstCharacterToLower(),
             "u" => str.EnsureFirstCharacterToUpper(),
-            "L" => str.ToLower(CultureInfo.CurrentCulture),
-            "Lu" => str.ToLower(CultureInfo.CurrentCulture).EnsureFirstCharacterToUpper(),
+            "L" => str.ToLower(CultureInfo.InvariantCulture),
+            "Lu" => str.ToLower(CultureInfo.InvariantCulture).EnsureFirstCharacterToUpper(),
             "l" => str.EnsureFirstCharacterToLower(),
 
-            "U." => str.ToUpper(CultureInfo.CurrentCulture).EnsureEndsWithDot(),
-            "Ul." => str.ToUpper(CultureInfo.CurrentCulture).EnsureFirstCharacterToLower().EnsureEndsWithDot(),
+            "U." => str.ToUpper(CultureInfo.InvariantCulture).EnsureEndsWithDot(),
+            "Ul." => str.ToUpper(CultureInfo.InvariantCulture).EnsureFirstCharacterToLower().EnsureEndsWithDot(),
             "u." => str.EnsureFirstCharacterToUpper().EnsureEndsWithDot(),
-            "L." => str.ToLower(CultureInfo.CurrentCulture).EnsureEndsWithDot(),
-            "Lu." => str.ToLower(CultureInfo.CurrentCulture).EnsureFirstCharacterToUpper().EnsureEndsWithDot(),
+            "L." => str.ToLower(CultureInfo.InvariantCulture).EnsureEndsWithDot(),
+            "Lu." => str.ToLower(CultureInfo.InvariantCulture).EnsureFirstCharacterToUpper().EnsureEndsWithDot(),
             "l." => str.EnsureFirstCharacterToLower().EnsureEndsWithDot(),
 
-            "U:" => str.ToUpper(CultureInfo.CurrentCulture).EnsureEndsWithColon(),
-            "Ul:" => str.ToUpper(CultureInfo.CurrentCulture).EnsureFirstCharacterToLower().EnsureEndsWithColon(),
+            "U:" => str.ToUpper(CultureInfo.InvariantCulture).EnsureEndsWithColon(),
+            "Ul:" => str.ToUpper(CultureInfo.InvariantCulture).EnsureFirstCharacterToLower().EnsureEndsWithColon(),
             "u:" => str.EnsureFirstCharacterToUpper().EnsureEndsWithColon(),
-            "L:" => str.ToLower(CultureInfo.CurrentCulture).EnsureEndsWithColon(),
-            "Lu:" => str.ToLower(CultureInfo.CurrentCulture).EnsureFirstCharacterToUpper().EnsureEndsWithColon(),
+            "L:" => str.ToLower(CultureInfo.InvariantCulture).EnsureEndsWithColon(),
+            "Lu:" => str.ToLower(CultureInfo.InvariantCulture).EnsureFirstCharacterToUpper().EnsureEndsWithColon(),
             "l:" => str.EnsureFirstCharacterToLower().EnsureEndsWithColon(),
 
             _ => str,

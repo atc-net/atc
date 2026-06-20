@@ -13,10 +13,10 @@ public static class GlobalizationConstants
     /// <summary>
     /// EnglishCultureInfo.
     /// </summary>
-    public static readonly CultureInfo EnglishCultureInfo = new("en-US");
+    public static readonly CultureInfo EnglishCultureInfo = CultureInfo.ReadOnly(new CultureInfo("en-US"));
 
     /// <summary>
     /// DanishCultureInfo.
     /// </summary>
-    public static readonly CultureInfo DanishCultureInfo = new("da-DK");
+    public static readonly CultureInfo DanishCultureInfo = CultureInfo.ReadOnly(new CultureInfo("da-DK"));
 }
