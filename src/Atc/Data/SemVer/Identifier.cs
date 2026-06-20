@@ -43,7 +43,7 @@ internal sealed class Identifier
     {
         if (!int.TryParse(
                 Value,
-                NumberStyles.Any,
+                NumberStyles.None,
                 GlobalizationConstants.EnglishCultureInfo,
                 out var x))
         {
