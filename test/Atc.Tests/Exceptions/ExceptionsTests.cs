@@ -413,6 +413,40 @@ public class ExceptionsTests
         }
     }
 
+    [Fact]
+    public void SwitchCaseDefaultException_EnumValue_ContainsEnumNameAndValue()
+    {
+        var sut = new SwitchCaseDefaultException(DayOfWeek.Monday);
+        Assert.Contains("DayOfWeek", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("Monday", sut.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void SwitchCaseDefaultException_EnumValueAndMessage_ContainsAllParts()
+    {
+        var sut = new SwitchCaseDefaultException(DayOfWeek.Friday, "Custom message");
+        Assert.Contains("Custom message", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("DayOfWeek", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("Friday", sut.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void UnexpectedTypeException_Types_ContainsTypeNames()
+    {
+        var sut = new UnexpectedTypeException(typeof(string), typeof(int));
+        Assert.Contains("string", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("int", sut.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void UnexpectedTypeException_TypesAndMessage_ContainsAllParts()
+    {
+        var sut = new UnexpectedTypeException(typeof(string), typeof(int), "Custom message");
+        Assert.Contains("Custom message", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("string", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("int", sut.Message, StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData("Unexpected ViewModel.", null)]
     [InlineData("MyMessage", "MyMessage")]
