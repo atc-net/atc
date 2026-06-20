@@ -12,16 +12,7 @@ public static class ReadOnlyListExtensions
             throw new ArgumentNullException(nameof(list));
         }
 
-        var result = new List<List<string>>();
-        var uniqueCombinations = GetUniqueCombinationsAsCommaSeparated(list);
-        foreach (var uniqueCombination in uniqueCombinations)
-        {
-            var combinations = new List<string>();
-            combinations.AddRange(uniqueCombination.Split(','));
-            result.Add(combinations);
-        }
-
-        return result;
+        return GetPowerSet(list).Where(subset => subset.Any());
     }
 
     public static IEnumerable<string> GetUniqueCombinationsAsCommaSeparated(
@@ -44,6 +35,11 @@ public static class ReadOnlyListExtensions
         if (list is null)
         {
             throw new ArgumentNullException(nameof(list));
+        }
+
+        if (list.Count >= 31)
+        {
+            throw new ArgumentOutOfRangeException(nameof(list), $"Cannot compute a power set for a list with {list.Count} elements; the bitmask overflows int at 31.");
         }
 
         return from m in Enumerable.Range(0, 1 << list.Count)
