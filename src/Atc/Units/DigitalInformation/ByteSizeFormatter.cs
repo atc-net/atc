@@ -20,7 +20,7 @@ public class ByteSizeFormatter
         MaxUnit = ByteSizeUnitType.Exabyte;
         RoundingRule = ByteSizeRoundingRuleType.Closest;
         NumberOfDecimals = 0;
-        NumberFormatInfo = Thread.CurrentThread.CurrentUICulture.NumberFormat;
+        NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
     }
 
     /// <summary>

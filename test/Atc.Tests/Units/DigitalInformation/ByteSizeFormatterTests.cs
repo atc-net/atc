@@ -3,6 +3,30 @@ namespace Atc.Tests.Units.DigitalInformation;
 
 public class ByteSizeFormatterTests
 {
+    [Fact]
+    public void Constructor_UsesCurrentCulture_NotUICulture()
+    {
+        // Verify the constructor reads CurrentCulture (number/date formatting) rather
+        // than CurrentUICulture (UI language), which is the wrong culture property for
+        // a byte-size formatter.
+        var prevCulture = Thread.CurrentThread.CurrentCulture;
+        var prevUICulture = Thread.CurrentThread.CurrentUICulture;
+        try
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("da-DK");
+
+            var formatter = new ByteSizeFormatter();
+
+            Assert.Equal(",", formatter.NumberFormatInfo.NumberGroupSeparator);
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = prevCulture;
+            Thread.CurrentThread.CurrentUICulture = prevUICulture;
+        }
+    }
+
     [Theory]
     [InlineData("1", 1)]
     [InlineData("1", 1024L)]
