@@ -242,7 +242,7 @@ public static class OpenApiResponsesExtensions
     {
         foreach (var (key, value) in responses.OrderBy(x => x.Key, StringComparer.Ordinal))
         {
-            if (!key.Equals(((int)HttpStatusCode.OK).ToString(CultureInfo.CurrentCulture), StringComparison.OrdinalIgnoreCase))
+            if (!key.Equals(((int)HttpStatusCode.OK).ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal))
             {
                 continue;
             }
