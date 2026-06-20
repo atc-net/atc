@@ -85,10 +85,20 @@ internal static class AssemblyCommentHelper
 
     private static FileInfo GetXmlFileForAssembly(Assembly assembly)
     {
-        var xmlFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly.GetName().Name + ".xml");
+        var assemblyDir = string.IsNullOrEmpty(assembly.Location)
+            ? AppDomain.CurrentDomain.BaseDirectory
+            : Path.GetDirectoryName(assembly.Location) ?? AppDomain.CurrentDomain.BaseDirectory;
+
+        var xmlFile = Path.Combine(assemblyDir, assembly.GetName().Name + ".xml");
         if (File.Exists(xmlFile))
         {
             return new FileInfo(xmlFile);
+        }
+
+        var fallback = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly.GetName().Name + ".xml");
+        if (File.Exists(fallback))
+        {
+            return new FileInfo(fallback);
         }
 
         throw new IOException($"No xml document found for the assembly: {assembly.FullName}, expected file: {xmlFile}");
