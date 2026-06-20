@@ -64,6 +64,6 @@ public class ErrorHandlingExceptionFilterAttributeTests
         Assert.True(exceptionContext.ExceptionHandled);
         Assert.NotNull(exceptionContext.Result);
         var content = Assert.IsType<ContentResult>(exceptionContext.Result);
-        Assert.Equal((int)HttpStatusCode.Conflict, content.StatusCode);
+        Assert.Equal((int)HttpStatusCode.InternalServerError, content.StatusCode);
     }
 }

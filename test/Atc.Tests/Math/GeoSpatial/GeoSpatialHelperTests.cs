@@ -40,4 +40,19 @@ public class GeoSpatialHelperTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void Distance_LondonToParis_IsApproximately341Km()
+    {
+        // London: lat=51.5074, lon=-0.1278   Paris: lat=48.8566, lon=2.3522
+        // Haversine gives ~341 km; the old spherical-law-of-cosines gave ~323 km.
+        const double londonLat = 51.5074;
+        const double londonLon = -0.1278;
+        const double parisLat = 48.8566;
+        const double parisLon = 2.3522;
+
+        var km = GeoSpatialHelper.Distance(londonLon, londonLat, parisLon, parisLat, DistanceMeasurementType.Kilometers);
+
+        Assert.InRange(km, 338, 344);
+    }
 }

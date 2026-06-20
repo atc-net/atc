@@ -34,7 +34,7 @@ public abstract class ErrorContentResultAssertions<TAssertions> : ContentResultA
 
         if (TryContentValueAs<ProblemDetails>(out var pd))
         {
-            actualErrorMessage = pd.Detail;
+            actualErrorMessage = pd.Detail ?? string.Empty;
         }
         else if (TryContentValueAs<string>(out var details))
         {

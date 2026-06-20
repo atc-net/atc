@@ -111,7 +111,7 @@ public class NumericAlphaComparer : IComparer<string>
             .Replace(".", string.Empty, StringComparison.Ordinal)
             .Replace(",", string.Empty, StringComparison.Ordinal);
         return value
-            .Replace(ExtractNumber(value).ToString(Thread.CurrentThread.CurrentCulture), string.Empty, StringComparison.Ordinal)
+            .Replace(ExtractNumber(value).ToString(GlobalizationConstants.EnglishCultureInfo), string.Empty, StringComparison.Ordinal)
             .Trim();
     }
 }

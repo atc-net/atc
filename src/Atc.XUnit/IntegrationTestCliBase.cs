@@ -261,6 +261,10 @@ public abstract class IntegrationTestCliBase
             .BaseDirectory;
 
         var testAssemblyName = GetTestAssemblyName();
+        if (string.IsNullOrEmpty(testAssemblyName))
+        {
+            return (GetCliFileName(programTypeForCliExe), new DirectoryInfo(currentDomainBaseDirectory));
+        }
 
         var searchFromPath = new DirectoryInfo(currentDomainBaseDirectory.Split(testAssemblyName, StringSplitOptions.RemoveEmptyEntries)[0]);
         if (searchFromPath.Parent is not null)

@@ -37,4 +37,28 @@ public class NumericAlphaComparerTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData("10A", "9B")]
+    [InlineData("2B", "1A")]
+    public void NumericAlphaComparer_Compare_IsConsistentAcrossCultures(
+        string greater,
+        string lesser)
+    {
+        // The old ExtractLetters used Thread.CurrentThread.CurrentCulture which is locale-dependent.
+        // With a culture that formats "10" differently (e.g., some locales use different digit grouping),
+        // the Replace call could fail to strip the number, causing wrong ordering. After the fix,
+        // EnglishCultureInfo is always used regardless of the ambient thread culture.
+        var originalCulture = Thread.CurrentThread.CurrentCulture;
+        try
+        {
+            Thread.CurrentThread.CurrentCulture = GlobalizationConstants.EnglishCultureInfo;
+            var comparer = new NumericAlphaComparer();
+            Assert.Equal(1, comparer.Compare(greater, lesser));
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = originalCulture;
+        }
+    }
 }

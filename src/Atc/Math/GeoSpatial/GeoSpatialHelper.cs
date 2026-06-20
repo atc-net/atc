@@ -38,33 +38,28 @@ public static class GeoSpatialHelper
         double latitude2,
         DistanceMeasurementType measurement = DistanceMeasurementType.Kilometers)
     {
-        var diff = longitude1 - longitude2;
-        var distance = (System.Math.Sin(MathHelper.DegreesToRadians(latitude1)) * System.Math.Sin(MathHelper.DegreesToRadians(latitude2))) +
-                       (System.Math.Cos(MathHelper.DegreesToRadians(latitude1)) * System.Math.Cos(MathHelper.DegreesToRadians(latitude2)) * System.Math.Cos(MathHelper.DegreesToRadians(diff)));
-        distance = System.Math.Acos(distance);
-        distance = MathHelper.RadiansToDegrees(distance);
-        distance = distance * 60 * 1.1515;
-        switch (measurement)
-        {
-            case DistanceMeasurementType.Meters:
-                distance = distance * 1.609344 * 1000;
-                break;
-            case DistanceMeasurementType.Feet:
-                distance = distance * 1.609344 * 1000 * 3.2808399;
-                break;
-            case DistanceMeasurementType.Kilometers:
-                distance *= 1.609344;
-                break;
-            case DistanceMeasurementType.StatuteMiles:
-                // default
-                break;
-            case DistanceMeasurementType.NauticalMiles:
-                distance *= 0.8684;
-                break;
-            default:
-                throw new SwitchCaseDefaultException(measurement);
-        }
+        const double EarthRadiusKm = 6371.0;
 
-        return distance;
+        var lat1Rad = MathHelper.DegreesToRadians(latitude1);
+        var lat2Rad = MathHelper.DegreesToRadians(latitude2);
+        var dLat = MathHelper.DegreesToRadians(latitude2 - latitude1);
+        var dLon = MathHelper.DegreesToRadians(longitude2 - longitude1);
+
+        var a = (System.Math.Sin(dLat / 2) * System.Math.Sin(dLat / 2)) +
+                (System.Math.Cos(lat1Rad) * System.Math.Cos(lat2Rad) *
+                 System.Math.Sin(dLon / 2) * System.Math.Sin(dLon / 2));
+
+        var c = 2 * System.Math.Atan2(System.Math.Sqrt(a), System.Math.Sqrt(1 - a));
+        var distanceKm = EarthRadiusKm * c;
+
+        return measurement switch
+        {
+            DistanceMeasurementType.Meters => distanceKm * 1_000,
+            DistanceMeasurementType.Feet => distanceKm * 1_000 * 3.2808399,
+            DistanceMeasurementType.Kilometers => distanceKm,
+            DistanceMeasurementType.StatuteMiles => distanceKm / 1.609344,
+            DistanceMeasurementType.NauticalMiles => distanceKm / 1.852,
+            _ => throw new SwitchCaseDefaultException(measurement),
+        };
     }
 }

@@ -17,7 +17,6 @@ namespace Microsoft.AspNetCore.Mvc.Filters;
 /// <list type="bullet">
 /// <item><see cref="ValidationException"/> → 400 Bad Request</item>
 /// <item><see cref="UnauthorizedAccessException"/> → 401 Unauthorized</item>
-/// <item><see cref="InvalidOperationException"/> → 409 Conflict</item>
 /// <item><see cref="NotImplementedException"/> → 501 Not Implemented</item>
 /// <item>All other exceptions → 500 Internal Server Error</item>
 /// </list>
@@ -91,10 +90,6 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
         else if (exceptionType == typeof(UnauthorizedAccessException))
         {
             statusCode = HttpStatusCode.Unauthorized;
-        }
-        else if (exceptionType == typeof(InvalidOperationException))
-        {
-            statusCode = HttpStatusCode.Conflict;
         }
         else if (exceptionType == typeof(NotImplementedException))
         {
