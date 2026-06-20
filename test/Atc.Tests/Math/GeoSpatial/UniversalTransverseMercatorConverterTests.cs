@@ -45,6 +45,16 @@ public class UniversalTransverseMercatorConverterTests
         actual.UtmNorthing.Should().Be(expected.UtmNorthing, $"UtmNorthing on ({description})");
     }
 
+    [Fact]
+    public void ToWgs84_EmptyZoneLetter_DoesNotThrow()
+    {
+        // utmZoneLetter[0] was accessed before the IsNullOrEmpty guard, causing
+        // IndexOutOfRangeException when an empty string was passed.
+        var converter = new UniversalTransverseMercatorConverter();
+        var exception = Record.Exception(() => converter.ToWgs84(32, string.Empty, 691875, 6098907));
+        Assert.Null(exception);
+    }
+
     [Theory]
     [ClassData(typeof(TestClassDataForGeoSpatialToWgs84))]
     public void ToWgs84(
