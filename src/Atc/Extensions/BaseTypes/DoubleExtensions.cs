@@ -186,16 +186,25 @@ public static class DoubleExtensions
         => RoundOff(percent, 2);
 
     /// <summary>
-    /// Counts the number of decimal places in the double value.
+    /// Counts the number of decimal places in the double value, up to a maximum of 15
+    /// (the limit of meaningful precision for a 64-bit floating-point number).
     /// </summary>
     /// <param name="value">The double value to analyze.</param>
-    /// <returns>The number of decimal places in the value.</returns>
+    /// <returns>The number of decimal places, capped at 15.</returns>
     public static int CountDecimalPoints(this double value)
     {
+        const int maxPrecision = 15;
+        const double tolerance = 1e-9;
         var precision = 0;
 
-        while (Math.Abs((value * Math.Pow(10, precision)) - Math.Round(value * Math.Pow(10, precision))) > double.Epsilon)
+        while (precision < maxPrecision)
         {
+            var scaled = value * Math.Pow(10, precision);
+            if (Math.Abs(scaled - Math.Round(scaled)) <= tolerance)
+            {
+                break;
+            }
+
             precision++;
         }
 
