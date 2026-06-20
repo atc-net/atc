@@ -83,4 +83,20 @@ public class TaskExtensionsTests
         // Assert
         Assert.True(timer.Elapsed.Seconds.Equals(expectedSeconds));
     }
+
+    [Fact]
+    public void StartAndWaitAllThrottled_WhenSlotTimeoutExpires_ThrowsTimeoutException()
+    {
+        // Arrange: 2 tasks that sleep 300 ms, max 1 parallel, slot timeout of 50 ms.
+        // Task 1 starts and holds the semaphore slot. Task 2 waits only 50 ms for the
+        // slot to become free — well before task 1 finishes — so WaitForExit must throw.
+        var tasks = new List<Task>
+        {
+            new(() => Thread.Sleep(300)),
+            new(() => Thread.Sleep(300)),
+        };
+
+        // Act & Assert
+        Assert.Throws<TimeoutException>(() => tasks.StartAndWaitAllThrottled(1, 50));
+    }
 }

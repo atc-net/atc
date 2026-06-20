@@ -66,6 +66,8 @@ public class TypeExtensionsTests
     [InlineData(false, typeof(DataTypeAttribute), typeof(EmailAddressAttribute))]
     [InlineData(false, typeof(EmailAddressAttribute), typeof(EmailAddressAttribute))]
     [InlineData(true, typeof(EmailAddressAttribute), typeof(DataTypeAttribute))]
+    [InlineData(true, typeof(System.Collections.ObjectModel.ObservableCollection<string>), typeof(System.Collections.ObjectModel.Collection<string>))]
+    [InlineData(false, typeof(System.Collections.ObjectModel.ObservableCollection<string>), typeof(System.Collections.Generic.List<string>))]
     public void IsInheritedFrom(
         bool expected,
         Type type,

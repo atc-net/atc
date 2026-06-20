@@ -204,18 +204,15 @@ public static class ProcessExtensions
             return (-1, string.Empty);
         }
 
+        var outputTask = Task.Run(() => process.StandardOutput.ReadToEnd());
         if (process.WaitForExit((int)timeout.TotalMilliseconds))
         {
-            return (
-                process.ExitCode,
-                process.StandardOutput.ReadToEnd());
+            return (process.ExitCode, outputTask.GetAwaiter().GetResult());
         }
 
         process.Kill();
 
-        return (
-            process.ExitCode,
-            string.Empty);
+        return (process.ExitCode, string.Empty);
     }
 
     private static void RunProcessAndIgnoreOutput(

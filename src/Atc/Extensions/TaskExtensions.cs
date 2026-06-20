@@ -65,7 +65,10 @@ public static class TaskExtensions
         foreach (var task in tasks)
         {
             // Increment the number of tasks currently running and wait if too many are running.
-            throttler.Wait(timeoutInMilliseconds, cancellationToken);
+            if (!throttler.Wait(timeoutInMilliseconds, cancellationToken))
+            {
+                throw new TimeoutException($"Timed out after {timeoutInMilliseconds} ms waiting for a task slot to become available.");
+            }
 
             cancellationToken.ThrowIfCancellationRequested();
             task.Start();
