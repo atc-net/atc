@@ -178,8 +178,7 @@ public class UniversalTransverseMercatorConverter
             MathHelper.RadiansToDegrees(151 * WGS84_EXZENT6 / 6144 - 453 * WGS84_EXZENT8 / 12288);
 
         // Northern / Southern Hemisphere
-        var b = utmZoneLetter[0];
-        if (b < 'N' && !string.IsNullOrEmpty(utmZoneLetter))
+        if (!string.IsNullOrEmpty(utmZoneLetter) && utmZoneLetter[0] < 'N')
         {
             utmNorthing -= 10E+06;
         }
