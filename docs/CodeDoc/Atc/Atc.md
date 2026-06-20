@@ -1216,7 +1216,7 @@ Provides custom string formatting based on specified case formatting options.<br
 >```csharp
 >StringCaseFormatter Default
 >```
-><b>Summary:</b> Static `Atc.StringCaseFormatter` using `System.Globalization.CultureInfo.CurrentCulture`.
+><b>Summary:</b> Static `Atc.StringCaseFormatter` using `System.Globalization.CultureInfo.InvariantCulture`.
 ### Static Methods
 
 #### Format
