@@ -89,6 +89,30 @@ public class SemanticVersionTests
     }
 
     [Theory]
+    [InlineData("1.0.0-1E3")]
+    [InlineData("1.0.0-2e5")]
+    public void Constructor_AlphanumericExponentStyleIdentifier_DoesNotThrow(
+        string version)
+    {
+        // "1E3" and "2e5" contain letters, making them alphanumeric identifiers per SemVer spec.
+        // NumberStyles.Any causes int.TryParse("1E3") to return 1000, so Clean() returns "1000"
+        // which differs from "1E3", and the strict-mode validator incorrectly rejects a valid version.
+        var exception = Record.Exception(() => new SemanticVersion(version));
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void CompareTo_AlphanumericExponentVsNumericPreRelease_AlphanumericSortsLater()
+    {
+        // Per SemVer spec §11.4.1: numeric identifiers always have lower precedence than
+        // alphanumeric identifiers. "1E3" is alphanumeric (contains 'E'), so 1.0.0-1E3 > 1.0.0-1001.
+        // NumberStyles.Any incorrectly classifies "1E3" as numeric (1000), giving the wrong order.
+        var numeric = new SemanticVersion("1.0.0-1001", looseMode: true);
+        var alphanumeric = new SemanticVersion("1.0.0-1E3", looseMode: true);
+        Assert.True(alphanumeric.CompareTo(numeric) > 0);
+    }
+
+    [Theory]
     [InlineData("1.2.3")]
     [InlineData("1.2.3-beta01")]
     [InlineData("[1.2.3]")]
