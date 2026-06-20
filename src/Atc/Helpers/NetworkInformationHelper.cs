@@ -7,6 +7,8 @@ namespace Atc.Helpers;
 [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "OK.")]
 public static class NetworkInformationHelper
 {
+    private static readonly HttpClient SharedHttpClient = new();
+
     /// <summary>
     /// Determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
     /// </summary>
@@ -68,8 +70,7 @@ public static class NetworkInformationHelper
         {
             try
             {
-                using HttpClient client = new HttpClient();
-                await client
+                await SharedHttpClient
                     .GetStringAsync(uri)
                     .ConfigureAwait(false);
 
@@ -100,14 +101,18 @@ public static class NetworkInformationHelper
             throw new ArgumentNullException(nameof(ipAddress));
         }
 
+        var client = new TcpClient();
         try
         {
-            using var client = new TcpClient(ipAddress.ToString(), port);
-            return client.Connected;
+            return client.ConnectAsync(ipAddress, port).Wait(5_000) && client.Connected;
         }
         catch
         {
             return false;
+        }
+        finally
+        {
+            client.Dispose();
         }
     }
 
@@ -123,8 +128,7 @@ public static class NetworkInformationHelper
         {
             try
             {
-                using var client = new HttpClient();
-                response = await client
+                response = await SharedHttpClient
                     .GetStringAsync(new Uri("https://api.ipify.org"))
                     .ConfigureAwait(false);
             }
