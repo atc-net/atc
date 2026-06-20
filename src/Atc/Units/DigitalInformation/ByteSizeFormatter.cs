@@ -100,7 +100,7 @@ public class ByteSizeFormatter
     {
         if (size < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(size));
+            return $"{size} B";
         }
 
         var multiples = ByteSizeCalculationData.BinaryMultiples;
@@ -118,7 +118,7 @@ public class ByteSizeFormatter
             ? ByteSizeCalculationData.PrefixesFull
             : ByteSizeCalculationData.PrefixesShort;
 
-        var suffixLastPart = BuildSuffixLastPart(size, prefixIndex);
+        var suffixLastPart = BuildSuffixLastPart(size, prefixIndex, displaySize);
 
         return $"{displaySizeStr} {prefixes[prefixIndex]}{suffixLastPart}";
     }
@@ -143,7 +143,8 @@ public class ByteSizeFormatter
 
     private string BuildSuffixLastPart(
         long size,
-        int prefixIndex)
+        int prefixIndex,
+        decimal displaySize)
     {
         var text = "B";
         if (SuffixFormat == ByteSizeSuffixType.Full)
@@ -156,7 +157,9 @@ public class ByteSizeFormatter
             }
             else
             {
-                text = "byte";
+                text = displaySize > 1
+                    ? "bytes"
+                    : "byte";
             }
         }
 

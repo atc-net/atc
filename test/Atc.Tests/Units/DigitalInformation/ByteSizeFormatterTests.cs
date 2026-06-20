@@ -27,6 +27,16 @@ public class ByteSizeFormatterTests
         }
     }
 
+    [Fact]
+    public void Format_NegativeSize_DoesNotThrow()
+    {
+        // ByteSize.ToString() delegates to the formatter; a throwing formatter is a
+        // debugging hazard because the debugger shows an exception instead of the value.
+        var formatter = new ByteSizeFormatter();
+        var exception = Record.Exception(() => formatter.Format(-1));
+        Assert.Null(exception);
+    }
+
     [Theory]
     [InlineData("1", 1)]
     [InlineData("1", 1024L)]
@@ -83,7 +93,9 @@ public class ByteSizeFormatterTests
     [InlineData("1 byte", 1)]
     [InlineData("2 bytes", 2)]
     [InlineData("1 Kilobyte", 1024L)]
+    [InlineData("2 Kilobytes", 2 * 1024L)]
     [InlineData("1 Megabyte", 1024L * 1024L)]
+    [InlineData("2 Megabytes", 2 * 1024L * 1024L)]
     [InlineData("1 Gigabyte", 1024L * 1024L * 1024L)]
     [InlineData("1 Terabyte", 1024L * 1024L * 1024L * 1024L)]
     [InlineData("1 Petabyte", 1024L * 1024L * 1024L * 1024L * 1024L)]
