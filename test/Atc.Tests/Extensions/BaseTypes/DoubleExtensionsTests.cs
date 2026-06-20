@@ -318,7 +318,8 @@ public class DoubleExtensionsTests
     [InlineData(3, 9.999)]
     [InlineData(4, 9.9999000000)]
     [InlineData(15, 9.1234567891012345)]
-    [InlineData(30, 5.821e-27)]
+    [InlineData(0, 5.821e-27)] // value < absolute tolerance (1e-9) so it terminates immediately at 0
+    [InlineData(15, 1.0 / 3.0)] // repeating decimal; previously looped forever, now returns cap
     public void CountDecimalPoints(
         int expected,
         double input)

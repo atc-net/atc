@@ -127,7 +127,7 @@ public static class DateTimeOffsetExtensions
             hour,
             minutes,
             0,
-            TimeSpan.Zero);
+            dateTimeOffset.Offset);
 
     /// <summary>Converts the DateTimeOffset to a unix time - seconds starting from 1-1-1970.</summary>
     /// <param name="dateTimeOffset">The date time offset.</param>

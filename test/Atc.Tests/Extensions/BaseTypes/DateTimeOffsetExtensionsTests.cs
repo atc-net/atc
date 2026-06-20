@@ -178,7 +178,7 @@ public class DateTimeOffsetExtensionsTests
 
         Assert.Equal(0, actual.Second);
         Assert.Equal(0, actual.Millisecond);
-        Assert.Equal(TimeSpan.Zero, actual.Offset);
+        Assert.Equal(input.Offset, actual.Offset);
     }
 
     [Theory]
