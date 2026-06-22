@@ -25,10 +25,14 @@ public static class EnumExtensions
         Enum flags)
         => IsSet(enumeration, flags);
 
-    /// <summary>Determines whether the specified enumeration match another enumeration.</summary>
-    /// <param name="enumeration">The enumeration.</param>
-    /// <param name="matchTo">The enumeration to match.</param>
-    /// <returns>true on match; otherwise false.</returns>
+    /// <summary>
+    /// Determines whether all bits of <paramref name="matchTo"/> are set in <paramref name="enumeration"/>,
+    /// equivalent to <c>enumeration.HasFlag(matchTo)</c>. Works for all underlying numeric types including
+    /// <see langword="long"/>-backed enumerations.
+    /// </summary>
+    /// <param name="enumeration">The enumeration to check.</param>
+    /// <param name="matchTo">The flags that must all be present in <paramref name="enumeration"/>.</param>
+    /// <returns><see langword="true"/> if every bit in <paramref name="matchTo"/> is also set in <paramref name="enumeration"/>; otherwise, <see langword="false"/>.</returns>
     /// <code><![CDATA[bool match = DayOfWeek.Monday.IsSet(DayOfWeek.Monday);]]></code>
     /// <example><![CDATA[
     /// Assert.True(DayOfWeek.Monday.IsSet(DayOfWeek.Monday));
@@ -47,7 +51,7 @@ public static class EnumExtensions
             throw new ArgumentNullException(nameof(matchTo));
         }
 
-        return (Convert.ToUInt32(enumeration, GlobalizationConstants.EnglishCultureInfo) & Convert.ToUInt32(matchTo, GlobalizationConstants.EnglishCultureInfo)) != 0;
+        return enumeration.HasFlag(matchTo);
     }
 
     /// <summary>
