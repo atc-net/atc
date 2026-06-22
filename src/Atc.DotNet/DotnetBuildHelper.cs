@@ -7,6 +7,11 @@ namespace Atc.DotNet;
 public static class DotnetBuildHelper
 {
     private const int DefaultTimeoutInSec = 1200;
+
+    // Sentinel prefix used internally when there are multiple candidate build files so the
+    // caller can detect the ambiguity without relying on a localised dotnet CLI message.
+    private const string MultipleFilesOutputPrefix = "Please specify which";
+
     private static readonly ConcurrentDictionary<string, Regex> RegexCache = new(StringComparer.Ordinal);
 
     /// <summary>
@@ -121,7 +126,7 @@ public static class DotnetBuildHelper
                 cancellationToken)
             .ConfigureAwait(false);
 
-        if (output.StartsWith("Please specify which", StringComparison.Ordinal) &&
+        if (output.StartsWith(MultipleFilesOutputPrefix, StringComparison.Ordinal) &&
             output.Contains("option: --buildFile", StringComparison.Ordinal))
         {
             stopwatch.Stop();
@@ -176,27 +181,29 @@ public static class DotnetBuildHelper
             var slnFiles = Directory.GetFiles(rootPath.FullName, "*.sln");
             if (slnFiles.Length > 1)
             {
-                var files = await slnFiles
+#pragma warning disable AsyncFixer02
+                var files = slnFiles
                     .Select(x => new FileInfo(x).Name)
-                    .ToListAsync(cancellationToken)
-                    .ConfigureAwait(false);
+                    .ToList();
+#pragma warning restore AsyncFixer02
 
                 return (
                     IsSuccessful: false,
-                    Output: $"Please specify which solution file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the solution file using this option: --buildFile");
+                    Output: $"{MultipleFilesOutputPrefix} solution file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the solution file using this option: --buildFile");
             }
 
             var csprojFiles = Directory.GetFiles(rootPath.FullName, "*.csproj");
             if (csprojFiles.Length > 1)
             {
-                var files = await csprojFiles
+#pragma warning disable AsyncFixer02
+                var files = csprojFiles
                     .Select(x => new FileInfo(x).Name)
-                    .ToListAsync(cancellationToken)
-                    .ConfigureAwait(false);
+                    .ToList();
+#pragma warning restore AsyncFixer02
 
                 return (
                     IsSuccessful: false,
-                    Output: $"Please specify which C# project file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the C# project file using this option: --buildFile");
+                    Output: $"{MultipleFilesOutputPrefix} C# project file to use:{Environment.NewLine} - {string.Join($"{Environment.NewLine} - ", files)}{Environment.NewLine} Specify the C# project file using this option: --buildFile");
             }
         }
 

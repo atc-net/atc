@@ -17,16 +17,21 @@ public static class DotnetHelper
     /// </remarks>
     public static DirectoryInfo GetDotnetDirectory()
     {
-        var pathEnvironmentVariable = Environment.GetEnvironmentVariable("path");
-        if (pathEnvironmentVariable is not null &&
-            pathEnvironmentVariable.Contains("dotnet", StringComparison.Ordinal))
+        var dotnetFilename = OperatingSystem.IsWindows() ? "dotnet.exe" : "dotnet";
+        var pathEnvironmentVariable = Environment.GetEnvironmentVariable("PATH");
+        if (pathEnvironmentVariable is not null)
         {
-            var sa = pathEnvironmentVariable.Split(Path.PathSeparator);
-            foreach (var s in sa)
+            foreach (var segment in pathEnvironmentVariable.Split(Path.PathSeparator))
             {
-                if (s.Contains("dotnet", StringComparison.Ordinal))
+                if (string.IsNullOrWhiteSpace(segment))
                 {
-                    return new DirectoryInfo(s);
+                    continue;
+                }
+
+                var candidate = Path.Combine(segment, dotnetFilename);
+                if (File.Exists(candidate))
+                {
+                    return new DirectoryInfo(segment);
                 }
             }
         }
