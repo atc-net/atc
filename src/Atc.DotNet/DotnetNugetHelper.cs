@@ -49,51 +49,20 @@ public static class DotnetNugetHelper
             throw new DataException("Expect xml content");
         }
 
-        var data = new List<DotnetNugetPackageMetadataBase>();
-        foreach (var line in fileContent.EnsureEnvironmentNewLinesAndSplit())
-        {
-            if (!line.Contains("<PackageReference ", StringComparison.Ordinal) ||
-                !line.Contains("Include=", StringComparison.Ordinal) ||
-                !line.Contains("Version=", StringComparison.Ordinal))
+        var xDoc = XDocument.Parse(fileContent);
+        var data = xDoc
+            .Descendants("PackageReference")
+            .Select(e => new
             {
-                continue;
-            }
-
-            var attributes = line
-                .Replace("<PackageReference ", string.Empty, StringComparison.Ordinal)
-                .Replace("/>", string.Empty, StringComparison.Ordinal)
-                .Replace(">", string.Empty, StringComparison.Ordinal)
-                .Trim()
-                .Split(' ');
-
-            var packageId = string.Empty;
-            var version = string.Empty;
-
-            foreach (var attribute in attributes)
-            {
-                if (attribute.StartsWith("Include=", StringComparison.Ordinal))
-                {
-                    packageId = attribute
-                        .Replace("Include=", string.Empty, StringComparison.Ordinal)
-                        .Replace("\"", string.Empty, StringComparison.Ordinal);
-                }
-                else if (attribute.StartsWith("Version=", StringComparison.Ordinal))
-                {
-                    version = attribute
-                        .Replace("Version=", string.Empty, StringComparison.Ordinal)
-                        .Replace("\"", string.Empty, StringComparison.Ordinal);
-                }
-            }
-
-            if (!string.IsNullOrEmpty(packageId) &&
-                !string.IsNullOrEmpty(version))
-            {
-                data.Add(new DotnetNugetPackageMetadataBase(packageId, version));
-            }
-        }
-
-        return data
+                PackageId = e.Attribute("Include")?.Value,
+                Version = e.Attribute("Version")?.Value
+                    ?? e.Element("Version")?.Value,
+            })
+            .Where(x => !string.IsNullOrEmpty(x.PackageId) && !string.IsNullOrEmpty(x.Version))
+            .Select(x => new DotnetNugetPackageMetadataBase(x.PackageId!, x.Version!))
             .OrderBy(x => x.PackageId, StringComparer.Ordinal)
             .ToList();
+
+        return data;
     }
 }
