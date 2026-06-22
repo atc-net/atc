@@ -5,14 +5,13 @@ namespace Atc.Rest.Extended.Options;
 
 /// <summary>
 /// Post-configures JWT Bearer authentication and authorization options based on <see cref="RestApiExtendedOptions"/>.
-/// Handles issuer signing key retrieval from OpenID Connect configuration and token validation setup.
+/// Signing-key discovery is delegated to JwtBearer's built-in <see cref="Microsoft.IdentityModel.Protocols.ConfigurationManager{T}"/>,
+/// which fetches and caches the OIDC discovery document on the first authentication request using the <see cref="JwtBearerOptions.Authority"/> set here.
 /// </summary>
 public class ConfigureAuthorizationOptions :
     IPostConfigureOptions<JwtBearerOptions>,
     IPostConfigureOptions<AuthenticationOptions>
 {
-    private const string WellKnownOpenidConfiguration = ".well-known/openid-configuration";
-    private static readonly TimeSpan SigningKeyFetchTimeout = TimeSpan.FromSeconds(30);
     private readonly IWebHostEnvironment? environment;
     private readonly RestApiExtendedOptions apiOptions;
     private readonly ILogger<ConfigureAuthorizationOptions>? logger;
@@ -34,7 +33,9 @@ public class ConfigureAuthorizationOptions :
     }
 
     /// <summary>
-    /// Post-configures JWT Bearer options with token validation parameters and issuer signing keys.
+    /// Post-configures JWT Bearer options with token validation parameters.
+    /// Signing keys are not pre-fetched; JwtBearer's built-in <see cref="Microsoft.IdentityModel.Protocols.ConfigurationManager{T}"/>
+    /// discovers and caches them from the OIDC discovery endpoint on the first authentication request.
     /// </summary>
     /// <param name="name">The name of the options instance being configured.</param>
     /// <param name="options">The <see cref="JwtBearerOptions"/> to configure.</param>
@@ -113,19 +114,11 @@ public class ConfigureAuthorizationOptions :
         options.TokenValidationParameters.ValidIssuer = apiOptions.Authorization.Issuer;
         options.TokenValidationParameters.ValidIssuers = apiOptions.Authorization.ValidIssuers ?? new List<string>();
 
-        // Run the async fetch on a thread-pool thread with a hard timeout so we cannot deadlock
-        // on a captured sync-context and cannot hang application startup indefinitely if an
-        // identity provider is unreachable.
-        var fetchTask = Task.Run(() => GetIssuerSigningKeysAsync(options));
-        if (!fetchTask.Wait(SigningKeyFetchTimeout))
-        {
-            logger?.LogWarning(
-                "Timed out fetching issuer signing keys after {TimeoutSeconds}s. Signature validation stays enabled and relies on the JwtBearer Authority metadata; tokens that cannot be signature-verified are rejected.",
-                SigningKeyFetchTimeout.TotalSeconds);
-            return;
-        }
-
-        options.TokenValidationParameters.IssuerSigningKeys = fetchTask.Result;
+        // Signing keys are discovered lazily by JwtBearer's built-in ConfigurationManager via options.Authority.
+        // Pre-fetching here blocked application startup for up to 30 s and duplicated JwtBearer's own mechanism.
+        logger?.LogInformation(
+            "JWT signing-key discovery deferred: keys will be fetched from {Authority} on the first authentication request.",
+            options.Authority);
     }
 
     /// <summary>
@@ -140,68 +133,6 @@ public class ConfigureAuthorizationOptions :
         ArgumentNullException.ThrowIfNull(options);
 
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    }
-
-    /// <summary>
-    /// Retrieves issuer signing keys from the OpenID Connect configuration endpoint.
-    /// </summary>
-    /// <param name="issuer">The issuer URL.</param>
-    /// <returns>
-    /// A collection of security keys for token validation, or an empty array if retrieval failed
-    /// (the failure is logged via the configured <see cref="ILogger"/>; callers should treat an
-    /// empty result as "signing keys unavailable").
-    /// </returns>
-    [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "Failure to fetch keys must not abort startup; we log and return empty so the caller decides.")]
-    private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
-        string issuer)
-    {
-        try
-        {
-            var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
-                $"{issuer}/{WellKnownOpenidConfiguration}",
-                new OpenIdConnectConfigurationRetriever());
-
-            var configuration = await configurationManager.GetConfigurationAsync();
-            return configuration.SigningKeys;
-        }
-        catch (Exception e)
-        {
-            logger?.LogWarning(
-                e,
-                "Failed to retrieve OpenID Connect signing keys from {Issuer}. Token validation will fall back to an empty key set for this issuer.",
-                issuer);
-            return Array.Empty<SecurityKey>();
-        }
-    }
-
-    private async Task<IEnumerable<SecurityKey>> GetIssuerSigningKeysAsync(
-        JwtBearerOptions options)
-    {
-        var issuerSigningKeys = new List<SecurityKey>();
-
-        if (!string.IsNullOrEmpty(options.Authority))
-        {
-            issuerSigningKeys.AddRange(
-                await GetIssuerSigningKeysAsync(
-                    options.Authority));
-        }
-
-        if (apiOptions.Authorization is not null &&
-            !string.IsNullOrWhiteSpace(apiOptions.Authorization.Issuer))
-        {
-            issuerSigningKeys.AddRange(
-                await GetIssuerSigningKeysAsync(
-                    apiOptions.Authorization.Issuer));
-        }
-
-        foreach (var issuer in options.TokenValidationParameters.ValidIssuers)
-        {
-            issuerSigningKeys.AddRange(
-                await GetIssuerSigningKeysAsync(
-                    issuer));
-        }
-
-        return issuerSigningKeys;
     }
 
     private void SanityCheck(JwtBearerOptions options)
