@@ -53,12 +53,16 @@ public class ExceptionTelemetryMiddleware
             requestFailed = true;
         }
 
-        if (requestFailed)
+        if (requestFailed && !context.RequestAborted.IsCancellationRequested)
         {
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context
-                .Response
-                .WriteAsync($"Something is broken. Please contact the development team with the value of the returned header named '{WellKnownHttpHeaders.CorrelationId}'");
+            var problem = new ProblemDetails
+            {
+                Status = (int)HttpStatusCode.InternalServerError,
+                Title = "An unexpected error occurred.",
+                Detail = $"Contact the development team with the value of the '{WellKnownHttpHeaders.CorrelationId}' response header.",
+            };
+            await context.Response.WriteAsJsonAsync(problem, context.RequestAborted);
         }
     }
 }
