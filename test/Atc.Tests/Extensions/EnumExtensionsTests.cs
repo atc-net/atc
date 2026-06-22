@@ -2,8 +2,19 @@ namespace Atc.Tests.Extensions;
 
 public class EnumExtensionsTests
 {
+    [SuppressMessage("Naming", "S2344:Enumeration type names should not have 'Flags' or 'Enum' suffixes", Justification = "Test fixture name.")]
+    [Flags]
+    private enum LongBackedEnum : long
+    {
+        None = 0,
+        A = 1L,
+        B = 2L,
+        HighBit = 1L << 33, // beyond uint range — previously caused OverflowException
+    }
+
     [Theory]
     [InlineData(true, DayOfWeek.Monday, DayOfWeek.Monday)]
+    [InlineData(false, DayOfWeek.Monday, DayOfWeek.Tuesday)]
     public void AreFlagsSet(
         bool expected,
         DayOfWeek value1,
@@ -12,11 +23,26 @@ public class EnumExtensionsTests
 
     [Theory]
     [InlineData(true, DayOfWeek.Monday, DayOfWeek.Monday)]
+    [InlineData(false, DayOfWeek.Monday, DayOfWeek.Tuesday)]
     public void IsSet(
         bool expected,
         DayOfWeek value1,
         DayOfWeek value2)
         => Assert.Equal(expected, ((Enum)value1).IsSet(value2));
+
+    [Fact]
+    public void IsSet_LongBackedEnum_DoesNotOverflow()
+    {
+        Assert.True(((Enum)(LongBackedEnum.A | LongBackedEnum.HighBit)).IsSet(LongBackedEnum.HighBit));
+        Assert.False(((Enum)LongBackedEnum.A).IsSet(LongBackedEnum.HighBit));
+    }
+
+    [Fact]
+    public void IsSet_RequiresAllFlagsSet_ConsistentWithHasFlag()
+    {
+        Assert.False(((Enum)LongBackedEnum.A).IsSet(LongBackedEnum.A | LongBackedEnum.B));
+        Assert.True(((Enum)(LongBackedEnum.A | LongBackedEnum.B)).IsSet(LongBackedEnum.A));
+    }
 
     [Theory]
     [InlineData(true, DayOfWeek.Monday, DayOfWeek.Monday)]
