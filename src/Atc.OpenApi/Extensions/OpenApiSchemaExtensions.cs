@@ -604,6 +604,11 @@ public static class OpenApiSchemaExtensions
         this OpenApiSchema schema,
         IDictionary<string, OpenApiSchema> componentSchemas)
     {
+        if (componentSchemas is null)
+        {
+            throw new ArgumentNullException(nameof(componentSchemas));
+        }
+
         if (!schema.HasAnyProperties())
         {
             return false;
@@ -642,6 +647,11 @@ public static class OpenApiSchemaExtensions
         this OpenApiSchema schema,
         IDictionary<string, OpenApiSchema> componentSchemas)
     {
+        if (componentSchemas is null)
+        {
+            throw new ArgumentNullException(nameof(componentSchemas));
+        }
+
         if (!schema.HasAnyProperties())
         {
             return false;
@@ -1524,9 +1534,8 @@ public static class OpenApiSchemaExtensions
             return false;
         }
 
-        var componentSchema = componentSchemas.FirstOrDefault(x => x.Key == modelName);
-        return !string.IsNullOrEmpty(componentSchema.Key) &&
-               componentSchema.Value.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
+        return componentSchemas.TryGetValue(modelName!, out var componentSchemaValue) &&
+               componentSchemaValue.HasAnyPropertiesFormatTypeFromSystemNamespace(componentSchemas);
     }
 
     private static bool HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespaceHelper(
@@ -1544,8 +1553,7 @@ public static class OpenApiSchemaExtensions
             return false;
         }
 
-        var componentSchema = componentSchemas.FirstOrDefault(x => x.Key == modelName);
-        return !string.IsNullOrEmpty(componentSchema.Key) &&
-               componentSchema.Value.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas);
+        return componentSchemas.TryGetValue(modelName!, out var componentSchemaValue) &&
+               componentSchemaValue.HasAnyPropertiesFormatTypeFromSystemCollectionGenericNamespace(componentSchemas);
     }
 }
