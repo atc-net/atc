@@ -92,6 +92,7 @@
      - ConsoleSettings
      - IncludeExceptionNameForException
      - IncludeInnerMessageForException
+     - IncludeScopes
      - MinimumLogLevel
      - RenderingMode
      - TimestampFormat
