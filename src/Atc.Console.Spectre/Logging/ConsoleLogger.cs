@@ -16,7 +16,29 @@ public class ConsoleLogger : ILogger
     private readonly IAnsiConsole console;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ConsoleLogger"/> class.
+    /// Initializes a new instance of the <see cref="ConsoleLogger"/> class with a shared console.
+    /// Prefer this constructor when the logger is created by a <see cref="ConsoleLoggerProvider"/> so
+    /// that all loggers in the same provider share one <see cref="IAnsiConsole"/> instance.
+    /// </summary>
+    /// <param name="categoryName">The category name for the logger.</param>
+    /// <param name="config">The console logger configuration.</param>
+    /// <param name="console">A shared <see cref="IAnsiConsole"/> instance to write to.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="config"/> or <paramref name="console"/> is null.</exception>
+    public ConsoleLogger(
+        string categoryName,
+        ConsoleLoggerConfiguration config,
+        IAnsiConsole console)
+    {
+        this.categoryName = categoryName;
+        this.config = config ?? throw new ArgumentNullException(nameof(config));
+        this.console = console ?? throw new ArgumentNullException(nameof(console));
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConsoleLogger"/> class, creating its own
+    /// <see cref="IAnsiConsole"/> from the configuration. Use this only when creating a logger
+    /// outside of a <see cref="ConsoleLoggerProvider"/>; for provider-managed loggers prefer the
+    /// overload that accepts a shared <see cref="IAnsiConsole"/>.
     /// </summary>
     /// <param name="categoryName">The category name for the logger.</param>
     /// <param name="config">The console logger configuration.</param>
@@ -24,9 +46,13 @@ public class ConsoleLogger : ILogger
     public ConsoleLogger(
         string categoryName,
         ConsoleLoggerConfiguration config)
+        : this(categoryName, config, CreateConsole(config))
     {
-        this.categoryName = categoryName;
-        this.config = config ?? throw new ArgumentNullException(nameof(config));
+    }
+
+    private static IAnsiConsole CreateConsole(ConsoleLoggerConfiguration config)
+    {
+        ArgumentNullException.ThrowIfNull(config);
 
         var settings = config.ConsoleSettings ?? new AnsiConsoleSettings
         {
@@ -34,8 +60,9 @@ public class ConsoleLogger : ILogger
             ColorSystem = ColorSystemSupport.Detect,
         };
 
-        console = AnsiConsole.Create(settings);
-        config.ConsoleConfiguration?.Invoke(console);
+        var c = AnsiConsole.Create(settings);
+        config.ConsoleConfiguration?.Invoke(c);
+        return c;
     }
 
     /// <inheritdoc />
