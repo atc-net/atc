@@ -26,7 +26,7 @@ public static class DateTimeHelper
         out DateTime result)
     {
         result = default;
-        if (!TryParseUsingSpecificCulture(value, Thread.CurrentThread.CurrentUICulture, out var res))
+        if (!TryParseUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
         {
             return false;
         }
@@ -94,7 +94,7 @@ public static class DateTimeHelper
         out DateTime result)
     {
         result = default;
-        if (!TryParseShortDateUsingSpecificCulture(value, Thread.CurrentThread.CurrentUICulture, out var res))
+        if (!TryParseShortDateUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
         {
             return false;
         }
@@ -162,7 +162,7 @@ public static class DateTimeHelper
         out DateTime result)
     {
         result = default;
-        if (!TryParseShortTimeUsingSpecificCulture(value, Thread.CurrentThread.CurrentUICulture, out var res))
+        if (!TryParseShortTimeUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
         {
             return false;
         }
@@ -237,7 +237,7 @@ public static class DateTimeHelper
         out DateTime result)
     {
         result = default;
-        if (!TryParseShortTimeUsingSpecificCultureUtc(value, Thread.CurrentThread.CurrentUICulture, out var res))
+        if (!TryParseShortTimeUsingSpecificCultureUtc(value, CultureInfo.CurrentUICulture, out var res))
         {
             return false;
         }

@@ -53,7 +53,7 @@ public static class DateTimeExtensions
     /// <param name="date">The date.</param>
     /// <returns>The week number from the given date.</returns>
     public static int GetWeekNumber(this DateTime date)
-        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
     /// Find the diff between to DateTimes.
@@ -121,7 +121,7 @@ public static class DateTimeExtensions
     /// long date pattern of the current UI culture.</returns>
     public static string ToLongDateStringUsingCurrentUiCulture(
         this DateTime dateTime)
-        => dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        => dateTime.ToLongDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
     /// Converts a DateTime to a string using the long date pattern of a specific culture.
@@ -174,7 +174,7 @@ public static class DateTimeExtensions
     /// long time pattern of the current UI culture.</returns>
     public static string ToLongTimeStringUsingCurrentUiCulture(
         this DateTime dateTime)
-        => dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        => dateTime.ToLongTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
     /// Converts a DateTime to a string using the long time pattern of a specific culture.
@@ -226,7 +226,7 @@ public static class DateTimeExtensions
     /// short date pattern of the current UI culture.</returns>
     public static string ToShortDateStringUsingCurrentUiCulture(
         this DateTime dateTime)
-        => dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        => dateTime.ToShortDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
     /// Converts a DateTime to a string using the short date pattern of a specific culture.
@@ -278,7 +278,7 @@ public static class DateTimeExtensions
     /// short time pattern of the current UI culture.</returns>
     public static string ToShortTimeStringUsingCurrentUiCulture(
         this DateTime dateTime)
-        => dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
+        => dateTime.ToShortTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
     /// Converts a DateTime to a string using the short time pattern of a specific culture.
