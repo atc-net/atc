@@ -60,8 +60,12 @@ public static class HealthReportEntryExtensions
         IReadOnlyDictionary<string, object> data)
         => data.ToDictionary(
             kvp => kvp.Key,
-            kvp => kvp.Value is Exception ex
-                ? ex.Message
-                : kvp.Value,
+            kvp => kvp.Value switch
+            {
+                null => (object)string.Empty,
+                Exception ex => ex.Message,
+                string s => s,
+                _ => kvp.Value.ToString() ?? string.Empty,
+            },
             StringComparer.Ordinal);
 }
