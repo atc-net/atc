@@ -48,6 +48,24 @@ public class ResultAssertions : ReferenceTypeAssertions<ActionResult, ResultAsse
     }
 
     /// <summary>
+    /// Asserts that the action result is a 200 OK result whose content is equivalent to <paramref name="expectedContent"/>.
+    /// This is a convenience shorthand for <c>BeOkResult().WithContent(expectedContent)</c>.
+    /// </summary>
+    /// <typeparam name="T">The type of the expected content.</typeparam>
+    /// <param name="expectedContent">The expected content value to compare against.</param>
+    /// <param name="because">Optional explanation of why the assertion is needed.</param>
+    /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
+    /// <returns>An <see cref="AndWhichConstraint{OkResultAssertions, OkObjectResult}"/> for further assertions.</returns>
+    public AndWhichConstraint<OkResultAssertions, OkObjectResult> BeOkResultWithContent<T>(
+        T expectedContent,
+        string because = "",
+        params object[] becauseArgs)
+    {
+        var okAssertions = BeOkResult(because, becauseArgs);
+        return okAssertions.WithContent(expectedContent, because, becauseArgs);
+    }
+
+    /// <summary>
     /// Asserts that the action result is a <see cref="ContentResult"/> with HTTP status code 201 (Created).
     /// </summary>
     /// <param name="because">Optional explanation of why the assertion is needed.</param>

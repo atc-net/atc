@@ -36,6 +36,23 @@ public class OkResultAssertions : ReferenceTypeAssertions<OkObjectResult, OkResu
     }
 
     /// <summary>
+    /// Asserts that the OK result has no body content (the result value is <see langword="null"/>).
+    /// </summary>
+    /// <param name="because">Optional explanation of why the assertion is needed.</param>
+    /// <param name="becauseArgs">Optional formatting arguments for the <paramref name="because"/> parameter.</param>
+    /// <returns>An <see cref="AndConstraint{OkResultAssertions}"/> for chaining further assertions.</returns>
+    public AndConstraint<OkResultAssertions> WithEmptyContent(
+        string because = "",
+        params object[] becauseArgs)
+    {
+        Execute.Assertion
+            .BecauseOf(because, becauseArgs)
+            .ForCondition(Subject.Value is null)
+            .FailWith("Expected content of {0} to be empty{{reason}}, but found {1}.", Identifier, Subject.Value);
+        return new AndConstraint<OkResultAssertions>(this);
+    }
+
+    /// <summary>
     /// Asserts that the OK result contains content equivalent to the specified expected content.
     /// </summary>
     /// <typeparam name="T">The type of the expected content.</typeparam>
