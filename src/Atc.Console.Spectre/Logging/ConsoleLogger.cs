@@ -51,7 +51,7 @@ public class ConsoleLogger : ILogger
         EventId eventId,
         TState state,
         Exception? exception,
-        Func<TState, Exception, string> formatter)
+        Func<TState, Exception?, string> formatter)
     {
         ArgumentNullException.ThrowIfNull(formatter);
 
@@ -60,7 +60,7 @@ public class ConsoleLogger : ILogger
             return;
         }
 
-        var stateStr = formatter(state, exception!);
+        var stateStr = formatter(state, exception);
         var message = config.AllowMarkup
             ? stateStr
             : Markup.Escape(stateStr);
