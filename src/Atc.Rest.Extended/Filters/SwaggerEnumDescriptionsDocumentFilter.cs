@@ -115,9 +115,7 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
     private static Type? GetEnumTypeByName(string enumTypeName)
         => AppDomain.CurrentDomain
                 .GetAssemblies()
-                .SelectMany(x => x
-                    .GetTypes()
-                    .Where(t => t.IsEnum))
+                .SelectMany(GetEnumTypesFromAssembly)
                 .Where(x => string.Equals(x.Name, enumTypeName, StringComparison.Ordinal))
                 .ToArray()
             switch
@@ -125,4 +123,21 @@ public class SwaggerEnumDescriptionsDocumentFilter : IDocumentFilter
                 { Length: 1 } a => a[0],
                 _ => null,
             };
+
+    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Assembly.GetExportedTypes can fail for many reasons; fall back to empty on any error.")]
+    private static IEnumerable<Type> GetEnumTypesFromAssembly(Assembly assembly)
+    {
+        try
+        {
+            return assembly.GetExportedTypes().Where(t => t.IsEnum);
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            return ex.Types.Where(t => t?.IsEnum == true).Select(t => t!);
+        }
+        catch
+        {
+            return [];
+        }
+    }
 }
