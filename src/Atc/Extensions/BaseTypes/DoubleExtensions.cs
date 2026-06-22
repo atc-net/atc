@@ -7,22 +7,26 @@ namespace System;
 public static class DoubleExtensions
 {
     /// <summary>
-    /// The double epsilon.
+    /// The tolerance used by <see cref="IsEqual(double,double)"/> and <see cref="IsZero"/>.
+    /// Values whose absolute difference is at or below this threshold are considered equal.
     /// </summary>
-    public const double DoubleEpsilon = double.Epsilon;
+    public const double DoubleEpsilon = 1e-9;
 
     /// <summary>
-    /// Compare two values. Return <see langword="true" /> if they are equals.
+    /// Determines whether two double values are approximately equal within a tolerance of <see cref="DoubleEpsilon"/> (1e-9).
+    /// This handles common floating-point arithmetic rounding, for example <c>0.1 + 0.2 == 0.3</c>.
+    /// Use <see cref="IsEqual(double,double,int)"/> when an exact decimal-precision comparison is needed.
     /// </summary>
     /// <param name="a">The first value.</param>
     /// <param name="b">The second value.</param>
     /// <returns>
-    /// <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
+    /// <see langword="true"/> if the absolute difference between <paramref name="a"/> and <paramref name="b"/>
+    /// is at most <see cref="DoubleEpsilon"/>; otherwise, <see langword="false"/>.
     /// </returns>
     public static bool IsEqual(
         this double a,
         double b)
-        => Math.Abs(a - b) < double.Epsilon;
+        => Math.Abs(a - b) <= DoubleEpsilon;
 
     /// <summary>
     /// Compare two values. Return <see langword="true" /> if they are equals.
@@ -109,12 +113,12 @@ public static class DoubleExtensions
         => value1 > value2 || AreClose(value1, value2);
 
     /// <summary>
-    /// Determines whether the specified double value is approximately zero.
+    /// Determines whether the specified double value is approximately zero within a tolerance of <see cref="DoubleEpsilon"/> (1e-9).
     /// </summary>
     /// <param name="value">The value to check.</param>
-    /// <returns><see langword="true"/> if the absolute value is less than epsilon; otherwise, <see langword="false"/>.</returns>
+    /// <returns><see langword="true"/> if the absolute value is at most <see cref="DoubleEpsilon"/>; otherwise, <see langword="false"/>.</returns>
     public static bool IsZero(this double value)
-        => Math.Abs(value) < DoubleEpsilon;
+        => Math.Abs(value) <= DoubleEpsilon;
 
     /// <summary>
     /// Rounds a double value using currency rounding rules and returns it as an integer.

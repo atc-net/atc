@@ -4,6 +4,8 @@ public class DoubleExtensionsTests
 {
     [Theory]
     [InlineData(true, 12.3, 12.3)]
+    [InlineData(true, 0.30000000000000004, 0.3)] // 0.1 + 0.2 in IEEE 754
+    [InlineData(false, 12.3, 12.4)]
     public void IsEqual(
         bool expected,
         double a,
