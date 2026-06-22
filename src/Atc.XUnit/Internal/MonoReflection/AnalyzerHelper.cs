@@ -40,11 +40,6 @@ internal static class AnalyzerHelper
                         {
                             methodsWithTest.Add(method);
                         }
-                        else if (debugLimitData is not null)
-                        {
-                            // Dummy for breakpoint
-                            throw new Exception("Ups..");
-                        }
                     }
                 }
             }
