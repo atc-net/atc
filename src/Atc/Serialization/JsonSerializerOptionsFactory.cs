@@ -10,6 +10,17 @@ namespace Atc.Serialization;
 /// </remarks>
 public static class JsonSerializerOptionsFactory
 {
+    private static readonly Lazy<JsonSerializerOptions> LazyDefault =
+        new(() => Create(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+    /// <summary>
+    /// Gets a cached, shared <see cref="JsonSerializerOptions"/> instance using the default settings
+    /// (camelCase, null-values ignored, case-insensitive names, indented output).
+    /// The instance is created once and reused; after the first serialization call it becomes read-only.
+    /// Use <see cref="Create(bool,bool,bool,bool)"/> when you need a mutable copy.
+    /// </summary>
+    public static JsonSerializerOptions Default => LazyDefault.Value;
+
     /// <summary>
     /// Creates a new <see cref="JsonSerializerOptions"/> instance with the specified parameters.
     /// </summary>
