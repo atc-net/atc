@@ -636,7 +636,7 @@ public static class EnumHelper
         bool byFlagIncludeBase,
         bool byFlagIncludeCombined)
     {
-        if (!includeDefault && Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture) == 0)
+        if (!includeDefault && Convert.ToInt64(objEnumValue, CultureInfo.InvariantCulture) == 0L)
         {
             return true;
         }
@@ -646,7 +646,7 @@ public static class EnumHelper
             return false;
         }
 
-        var n = Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture);
+        var n = Convert.ToInt64(objEnumValue, CultureInfo.InvariantCulture);
         if (!byFlagIncludeBase && n.IsBinarySequence())
         {
             return true;
@@ -662,6 +662,6 @@ public static class EnumHelper
             return false;
         }
 
-        return !includeDefault || Convert.ToInt32(objEnumValue, CultureInfo.InvariantCulture) != 0;
+        return !includeDefault || Convert.ToInt64(objEnumValue, CultureInfo.InvariantCulture) != 0L;
     }
 }

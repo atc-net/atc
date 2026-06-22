@@ -45,6 +45,23 @@ public class LongExtensionsTests
     }
 
     [Theory]
+    [InlineData(true, 1L)]
+    [InlineData(true, 2L)]
+    [InlineData(true, 4L)]
+    [InlineData(true, 1L << 32)]
+    [InlineData(true, 1L << 62)]
+    [InlineData(false, 0L)]
+    [InlineData(false, 3L)]
+    [InlineData(false, 6L)]
+    [InlineData(false, -1L)]
+    public void IsBinarySequence(
+        bool expected,
+        long input)
+    {
+        Assert.Equal(expected, input.IsBinarySequence());
+    }
+
+    [Theory]
     [InlineData(500, 1970, 1, 1, 0, 0, 0, 500)]
     [InlineData(1500, 1970, 1, 1, 0, 0, 1, 500)]
     [InlineData(999, 1970, 1, 1, 0, 0, 0, 999)]
