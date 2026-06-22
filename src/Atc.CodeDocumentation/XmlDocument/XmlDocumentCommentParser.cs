@@ -2,6 +2,36 @@ namespace Atc.CodeDocumentation.XmlDocument;
 
 internal static class XmlDocumentCommentParser
 {
+    private static readonly Regex MemberAttributeRegex = new(
+        @"(.):(.+)\.([^.()]+)?(\(.+\)|$)",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(5));
+
+    private static readonly Regex ParaTagRegex = new(
+        @"<para\s*\/>|<\/para>",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(1));
+
+    private static readonly Regex SeeCrefRegex = new(
+        @"<see cref=""\w:([^\""]*)""\s*\/>",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(1));
+
+    private static readonly Regex ParamRefRegex = new(
+        @"<(type)*paramref name=""([^\""]*)""\s*\/>",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(1));
+
+    private static readonly Regex CodeTagRegex = new(
+        @"<c\b[^>]*>(.*?)<\/c>",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(1));
+
+    private static readonly Regex TypeNameSuffixRegex = new(
+        @"\.(?:.(?!\.))+$",
+        RegexOptions.Compiled,
+        TimeSpan.FromSeconds(1));
+
     [SuppressMessage("Design", "MA0051:Method is too long", Justification = "OK.")]
     internal static XmlDocumentComment?[] ParseXmlComment(
         XDocument xDocument,
@@ -16,7 +46,7 @@ internal static class XmlDocumentCommentParser
                     return null;
                 }
 
-                var match = Regex.Match(attributeValue, @"(.):(.+)\.([^.()]+)?(\(.+\)|$)", RegexOptions.None, TimeSpan.FromSeconds(5));
+                var match = MemberAttributeRegex.Match(attributeValue);
                 if (!match.Groups[1].Success)
                 {
                     return null;
@@ -132,7 +162,7 @@ internal static class XmlDocumentCommentParser
         }
 
         return typeName.StartsWith(ns, StringComparison.Ordinal)
-            ? $"[{typeName}]({Regex.Replace(typeName, "\\.(?:.(?!\\.))+$", me => me.Groups[0].Value.Replace('.', '#').ToLower(GlobalizationConstants.EnglishCultureInfo), RegexOptions.None, TimeSpan.FromSeconds(1))})"
+            ? $"[{typeName}]({TypeNameSuffixRegex.Replace(typeName, me => me.Groups[0].Value.Replace('.', '#').ToLower(GlobalizationConstants.EnglishCultureInfo))})"
             : $"`{typeName}`";
     }
 
@@ -152,10 +182,10 @@ internal static class XmlDocumentCommentParser
         innerXml = innerXml.Replace("\n", " ", StringComparison.Ordinal);
         innerXml = innerXml.Replace("\r", " ", StringComparison.Ordinal);
         innerXml = Regex.Replace(innerXml, @$"<\/?{name}>", string.Empty, RegexOptions.None, TimeSpan.FromSeconds(1)).Trim();
-        innerXml = Regex.Replace(innerXml, @"<para\s*\/>|<\/para>", Environment.NewLine, RegexOptions.None, TimeSpan.FromSeconds(1));
-        innerXml = Regex.Replace(innerXml, @"<see cref=""\w:([^\""]*)""\s*\/>", m => ResolveSeeElement(m, @namespace), RegexOptions.None, TimeSpan.FromSeconds(1));
-        innerXml = Regex.Replace(innerXml, @"<(type)*paramref name=""([^\""]*)""\s*\/>", e => $"`{e.Groups[2].Value}`", RegexOptions.None, TimeSpan.FromSeconds(1));
-        innerXml = Regex.Replace(innerXml, @"<c\b[^>]*>(.*?)<\/c>", e => $"`{e.Groups[1].Value}`", RegexOptions.None, TimeSpan.FromSeconds(1));
+        innerXml = ParaTagRegex.Replace(innerXml, Environment.NewLine);
+        innerXml = SeeCrefRegex.Replace(innerXml, m => ResolveSeeElement(m, @namespace));
+        innerXml = ParamRefRegex.Replace(innerXml, e => $"`{e.Groups[2].Value}`");
+        innerXml = CodeTagRegex.Replace(innerXml, e => $"`{e.Groups[1].Value}`");
         innerXml = innerXml.TrimExtended();
 
         var lines = innerXml

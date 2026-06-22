@@ -37,13 +37,12 @@ internal sealed class MarkdownBuilder
         int indentSpaces,
         string text)
     {
-        var sbLocal = new StringBuilder();
         for (var i = 0; i < indentSpaces; i++)
         {
-            sbLocal.Append("&nbsp;");
+            sb.Append("&nbsp;");
         }
 
-        sb.AppendLine(sbLocal + text);
+        sb.AppendLine(text);
     }
 
     /// <summary>
