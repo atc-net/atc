@@ -332,7 +332,7 @@ public static class MathHelper
     ///   <see langword="true" /> if [is equal to zero] [the specified value]; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsEqualToZero(double value)
-        => System.Math.Abs(value) <= 0.0000001;
+        => System.Math.Abs(value) <= DoubleExtensions.DoubleEpsilon;
 
     /// <summary>
     /// Determines whether the specified value1 is equals.

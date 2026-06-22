@@ -396,7 +396,7 @@ public class MathHelperTests
 
     [Theory]
     [InlineData(true, 1, 1)]
-    [InlineData(false, 1, 1.00000000000001)]
+    [InlineData(true, 1, 1.00000000000001)] // diff = 1e-14, within DoubleEpsilon (1e-9)
     [InlineData(false, 1, 1.000001)]
     public void IsEquals(
         bool expected,

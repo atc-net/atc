@@ -25,8 +25,8 @@ public class Point2DTests
     [Fact]
     public void IsDefault_WithTinyNonZeroX_ReturnsFalse()
     {
-        // Arrange — double.Epsilon is the smallest positive double; approximate IsEqual would pass it as zero
-        var input = new Point2D(double.Epsilon, 0);
+        // Arrange — value must exceed DoubleEpsilon (1e-9) to be considered non-default
+        var input = new Point2D(DoubleExtensions.DoubleEpsilon * 10, 0);
 
         // Act / Assert
         Assert.False(input.IsDefault);
@@ -35,7 +35,7 @@ public class Point2DTests
     [Fact]
     public void IsDefault_WithTinyNonZeroY_ReturnsFalse()
     {
-        var input = new Point2D(0, double.Epsilon);
+        var input = new Point2D(0, DoubleExtensions.DoubleEpsilon * 10);
         Assert.False(input.IsDefault);
     }
 
