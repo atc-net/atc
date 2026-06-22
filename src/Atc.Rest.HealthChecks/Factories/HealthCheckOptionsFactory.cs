@@ -33,10 +33,10 @@ public static class HealthCheckOptionsFactory
                     r.Status,
                     r.TotalDuration);
 
-                await c.Response.WriteAsync(
-                    JsonSerializer.Serialize(
-                        response,
-                        jsonSerializerOptions ?? JsonSerializerOptionsFactory.Create()),
+                await JsonSerializer.SerializeAsync(
+                    c.Response.Body,
+                    response,
+                    jsonSerializerOptions ?? JsonSerializerOptionsFactory.Default,
                     c.RequestAborted);
             },
         };
