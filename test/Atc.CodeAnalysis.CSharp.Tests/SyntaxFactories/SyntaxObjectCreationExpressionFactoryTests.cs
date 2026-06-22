@@ -37,7 +37,7 @@ public class SyntaxObjectCreationExpressionFactoryTests
     {
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            SyntaxObjectCreationExpressionFactory.Create("System", null!));
+            SyntaxObjectCreationExpressionFactory.Create("System", (string)null!));
     }
 
     [Fact]
