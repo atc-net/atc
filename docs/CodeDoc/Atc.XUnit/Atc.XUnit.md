@@ -162,7 +162,7 @@ Provides helper methods for asserting code compliance related to test coverage.
 
 #### AssertExportedMethodsWithMissingTests
 >```csharp
->void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Type testType, bool useFullName = False)
+>void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Type testType, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Asserts that all public methods in a source type have corresponding unit tests. Fails the test if any methods are missing test coverage.
 >
@@ -171,9 +171,10 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;The source type to validate for test coverage.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;The test type containing unit tests for the source type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 #### AssertExportedMethodsWithMissingTests
 >```csharp
->void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Assembly testAssembly, bool useFullName = False)
+>void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Type sourceType, Assembly testAssembly, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Asserts that all public methods in a source type have corresponding unit tests. Fails the test if any methods are missing test coverage.
 >
@@ -182,9 +183,10 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;The source type to validate for test coverage.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;The test type containing unit tests for the source type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 #### AssertExportedMethodsWithMissingTests
 >```csharp
->void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
+>void AssertExportedMethodsWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Asserts that all public methods in a source type have corresponding unit tests. Fails the test if any methods are missing test coverage.
 >
@@ -193,9 +195,10 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceType`&nbsp;&nbsp;-&nbsp;&nbsp;The source type to validate for test coverage.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testType`&nbsp;&nbsp;-&nbsp;&nbsp;The test type containing unit tests for the source type.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 #### CollectExportedMethodsWithMissingTestsAndGenerateText
 >```csharp
->string CollectExportedMethodsWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
+>string CollectExportedMethodsWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Collects exported methods with missing tests and generates a formatted text report.
 >
@@ -205,11 +208,12 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 >
 ><b>Returns:</b> A multi-line string containing all method signatures missing tests.
 #### CollectExportedMethodsWithMissingTestsAndGenerateTextLines
 >```csharp
->string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
+>string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Collects exported methods with missing tests and generates an array of formatted method signatures.
 >
@@ -219,11 +223,12 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 >
 ><b>Returns:</b> An array of strings containing beautified method signatures.
 #### CollectExportedMethodsWithMissingTestsFromAssembly
 >```csharp
->MethodInfo[] CollectExportedMethodsWithMissingTestsFromAssembly(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null)
+>MethodInfo[] CollectExportedMethodsWithMissingTestsFromAssembly(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Collects all exported methods from an assembly that are missing test coverage.
 >
@@ -232,33 +237,36 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly to analyze.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 >
 ><b>Returns:</b> An array of `System.Reflection.MethodInfo` objects representing methods missing test coverage.
 #### CollectExportedMethodsWithMissingTestsToExcel
 >```csharp
->void CollectExportedMethodsWithMissingTestsToExcel(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null)
+>void CollectExportedMethodsWithMissingTestsToExcel(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Collects exported methods with missing tests and exports them to an Excel file at C:\Temp.
+><b>Summary:</b> Collects exported methods with missing tests and exports them to an Excel file at the system temp directory.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decompilerType`&nbsp;&nbsp;-&nbsp;&nbsp;The  to use for analyzing test method bodies.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly to analyze.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 #### CollectExportedMethodsWithMissingTestsToExcel
 >```csharp
->void CollectExportedMethodsWithMissingTestsToExcel(DecompilerType decompilerType, DirectoryInfo reportDirectory, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null)
+>void CollectExportedMethodsWithMissingTestsToExcel(DecompilerType decompilerType, DirectoryInfo reportDirectory, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, CancellationToken cancellationToken = null)
 >```
-><b>Summary:</b> Collects exported methods with missing tests and exports them to an Excel file at C:\Temp.
+><b>Summary:</b> Collects exported methods with missing tests and exports them to an Excel file at the system temp directory.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decompilerType`&nbsp;&nbsp;-&nbsp;&nbsp;The  to use for analyzing test method bodies.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly to analyze.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 #### CollectExportedTypesWithMissingTests
 >```csharp
->Type[] CollectExportedTypesWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null)
+>Type[] CollectExportedTypesWithMissingTests(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Collects all exported types that have at least one method missing test coverage.
 >
@@ -267,11 +275,12 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The source assembly to analyze.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 >
 ><b>Returns:</b> An array of types that have methods missing test coverage.
 #### CollectExportedTypesWithMissingTestsAndGenerateText
 >```csharp
->string CollectExportedTypesWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False)
+>string CollectExportedTypesWithMissingTestsAndGenerateText(DecompilerType decompilerType, Assembly sourceAssembly, Assembly testAssembly, List<Type> excludeSourceTypes = null, bool useFullName = False, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Collects exported types with missing tests and generates a C# code snippet for an exclude list. Useful for generating initial exclude lists when adding test coverage validation.
 >
@@ -281,6 +290,7 @@ Provides helper methods for asserting code compliance related to test coverage.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`testAssembly`&nbsp;&nbsp;-&nbsp;&nbsp;The test assembly to search for unit tests.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeSourceTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of source types to exclude from analysis.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If set to true, use full type names in output.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the analysis operation.<br />
 >
 ><b>Returns:</b> A formatted C# code snippet containing a list of typeof() expressions for types missing tests.
 
