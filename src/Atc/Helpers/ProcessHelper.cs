@@ -112,6 +112,103 @@ public static class ProcessHelper
     }
 
     /// <summary>
+    /// Executes a process with the specified file and arguments, returning standard output and standard error separately.
+    /// </summary>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns a tuple containing success status, standard output, and standard error streams separately.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Task<(
+        bool IsSuccessful,
+        string StdOut,
+        string StdErr)> ExecuteWithSeparateOutput(
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator = false,
+        ushort timeoutInSec = DefaultTimeoutInSec,
+        CancellationToken cancellationToken = default)
+    {
+        if (fileInfo is null)
+        {
+            throw new ArgumentNullException(nameof(fileInfo));
+        }
+
+        if (arguments is null)
+        {
+            throw new ArgumentNullException(nameof(arguments));
+        }
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeExecuteWithTimeoutSeparate(
+            workingDirectory: null,
+            fileInfo,
+            arguments,
+            runAsAdministrator,
+            timeoutInSec,
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Executes a process with the specified working directory, file, and arguments, returning standard output and standard error separately.
+    /// </summary>
+    /// <param name="workingDirectory">The working directory for the process.</param>
+    /// <param name="fileInfo">The executable file to run.</param>
+    /// <param name="arguments">The command-line arguments to pass to the executable.</param>
+    /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task that returns a tuple containing success status, standard output, and standard error streams separately.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="workingDirectory"/>, <paramref name="fileInfo"/>, or <paramref name="arguments"/> is <see langword="null"/>.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the specified file does not exist.</exception>
+    public static Task<(
+        bool IsSuccessful,
+        string StdOut,
+        string StdErr)> ExecuteWithSeparateOutput(
+        DirectoryInfo workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator = false,
+        ushort timeoutInSec = DefaultTimeoutInSec,
+        CancellationToken cancellationToken = default)
+    {
+        if (workingDirectory is null)
+        {
+            throw new ArgumentNullException(nameof(workingDirectory));
+        }
+
+        if (fileInfo is null)
+        {
+            throw new ArgumentNullException(nameof(fileInfo));
+        }
+
+        if (arguments is null)
+        {
+            throw new ArgumentNullException(nameof(arguments));
+        }
+
+        if (!File.Exists(fileInfo.FullName))
+        {
+            throw new FileNotFoundException(nameof(fileInfo));
+        }
+
+        return InvokeExecuteWithTimeoutSeparate(
+            workingDirectory,
+            fileInfo,
+            arguments,
+            runAsAdministrator,
+            timeoutInSec,
+            cancellationToken);
+    }
+
+    /// <summary>
     /// Executes a process without capturing its output, returning only success status.
     /// </summary>
     /// <param name="fileInfo">The executable file to run.</param>
@@ -650,12 +747,26 @@ public static class ProcessHelper
 
         try
         {
-            var (isSuccessful, output, _) = await TaskHelper
+            var (isSuccessful, stdOut, stdErr, _) = await TaskHelper
                 .Execute(
                     _ => InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments, runAsAdministrator, id => Volatile.Write(ref processIdHolder[0], id)),
                     TimeSpan.FromSeconds(timeoutInSec),
                     cancellationToken)
                 .ConfigureAwait(false);
+
+            string output;
+            if (string.IsNullOrEmpty(stdErr))
+            {
+                output = stdOut;
+            }
+            else if (string.IsNullOrEmpty(stdOut))
+            {
+                output = stdErr;
+            }
+            else
+            {
+                output = $"{stdOut}{Environment.NewLine}{stdErr}";
+            }
 
             resultOutput = output;
 
@@ -688,6 +799,53 @@ public static class ProcessHelper
                     isSuccessful: false,
                     output: resultOutput))
                 .ConfigureAwait(false);
+        }
+    }
+
+    private static async Task<(
+        bool IsSuccessful,
+        string StdOut,
+        string StdErr)> InvokeExecuteWithTimeoutSeparate(
+        DirectoryInfo? workingDirectory,
+        FileInfo fileInfo,
+        string arguments,
+        bool runAsAdministrator,
+        ushort timeoutInSec,
+        CancellationToken cancellationToken)
+    {
+        var processIdHolder = new[] { -1 };
+
+        try
+        {
+            var (isSuccessful, stdOut, stdErr, _) = await TaskHelper
+                .Execute(
+                    _ => InvokeExecuteWithProcessId(workingDirectory, fileInfo, arguments, runAsAdministrator, id => Volatile.Write(ref processIdHolder[0], id)),
+                    TimeSpan.FromSeconds(timeoutInSec),
+                    cancellationToken)
+                .ConfigureAwait(false);
+
+            return (IsSuccessful: isSuccessful, StdOut: stdOut, StdErr: stdErr);
+        }
+        catch (TimeoutException)
+        {
+            var processId = Volatile.Read(ref processIdHolder[0]);
+            string stdErr;
+            if (processId > 0)
+            {
+                var (killIsSuccessful, _) = KillById(processId);
+                stdErr = killIsSuccessful
+                    ? $"Process has been running for {timeoutInSec} seconds. before terminated."
+                    : $"Process has been running for {timeoutInSec} seconds.";
+            }
+            else
+            {
+                stdErr = $"Process has been running for {timeoutInSec} seconds.";
+            }
+
+            return (
+                IsSuccessful: false,
+                StdOut: string.Empty,
+                StdErr: stdErr);
         }
     }
 
@@ -809,11 +967,11 @@ public static class ProcessHelper
         }
     }
 
-    [SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested", Justification = "OK.")]
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<(
         bool IsSuccessful,
-        string Output,
+        string StdOut,
+        string StdErr,
         int ProcessId)> InvokeExecuteWithProcessId(
         DirectoryInfo? workingDirectory,
         FileInfo fileInfo,
@@ -848,24 +1006,20 @@ public static class ProcessHelper
             var standardOutput = await standardOutputTask.ConfigureAwait(false);
             var standardError = await standardErrorTask.ConfigureAwait(false);
 
-            var message = string.IsNullOrEmpty(standardError)
-                ? standardOutput
-                : string.IsNullOrEmpty(standardOutput)
-                    ? standardError
-                    : $"{standardOutput}{Environment.NewLine}{standardError}";
-
             return (
                 IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
-                Output: message,
+                StdOut: standardOutput,
+                StdErr: standardError,
                 ProcessId: processId);
         }
         catch (Exception ex)
         {
             return (
                 IsSuccessful: false,
-                Output: ex.GetMessage(
+                StdOut: ex.GetMessage(
                     includeInnerMessage: true,
                     includeExceptionName: true),
+                StdErr: string.Empty,
                 ProcessId: processId);
         }
     }
