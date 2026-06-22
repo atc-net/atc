@@ -4903,6 +4903,8 @@
      - SerializeToStreamAsync(T value, Stream stream, CancellationToken cancellationToken = null)
      - SerializeToStreamAsync(T value, Stream stream, JsonSerializerOptions options, CancellationToken cancellationToken = null)
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
+  -  Static Properties
+     - Default
   -  Static Methods
      - Create(JsonSerializerFactorySettings settings)
      - Create(bool useCamelCase = True, bool ignoreNullValues = True, bool propertyNameCaseInsensitive = True, bool writeIndented = True)
@@ -5251,6 +5253,7 @@
   -  Static Methods
      - FromUnixTime(this long valueInSeconds)
      - FromUnixTimeMs(this long valueInMs)
+     - IsBinarySequence(this long number)
 - [NullException](System.md#nullexception)
 - [ObjectExtensions](System.md#objectextensions)
   -  Static Methods

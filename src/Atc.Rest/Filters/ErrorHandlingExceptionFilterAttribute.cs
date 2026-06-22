@@ -101,14 +101,24 @@ public sealed class ErrorHandlingExceptionFilterAttribute : ExceptionFilterAttri
 
     private void HandleException(ExceptionContext context)
     {
-        context.Result = new ContentResult
+        var statusCode = (int)GetHttpStatusCodeByExceptionType(context);
+
+        if (useProblemDetailsAsResponseBody)
         {
-            ContentType = MediaTypeNames.Application.Json,
-            StatusCode = (int)GetHttpStatusCodeByExceptionType(context),
-            Content = useProblemDetailsAsResponseBody
-                ? JsonSerializer.Serialize(CreateProblemDetails(context))
-                : CreateMessage(context),
-        };
+            context.Result = new ObjectResult(CreateProblemDetails(context))
+            {
+                StatusCode = statusCode,
+            };
+        }
+        else
+        {
+            context.Result = new ContentResult
+            {
+                ContentType = MediaTypeNames.Application.Json,
+                StatusCode = statusCode,
+                Content = CreateMessage(context),
+            };
+        }
     }
 
     [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
