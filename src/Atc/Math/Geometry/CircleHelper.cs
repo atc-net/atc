@@ -11,7 +11,7 @@ public static class CircleHelper
     /// <param name="radius">The radius of the circle.</param>
     /// <returns>The area of the circle (π * r²).</returns>
     public static double Area(double radius)
-        => System.Math.PI * System.Math.Pow(radius, 2);
+        => System.Math.PI * radius * radius;
 
     /// <summary>
     /// Calculates the circumference of a circle given its radius.

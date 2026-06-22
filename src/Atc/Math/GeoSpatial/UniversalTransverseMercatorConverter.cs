@@ -125,11 +125,11 @@ public class UniversalTransverseMercatorConverter
             + (15 * eccSquared * eccSquared / 256 + 45 * eccSquared * eccSquared * eccSquared / 1024) *
             System.Math.Sin(4 * latitudeRadian) - 35 * eccSquared * eccSquared * eccSquared / 3072 * System.Math.Sin(6 * latitudeRadian));
 
-        var utmEasting = 0.9996 * N * (A + (1 - T + C) * A * A * A / 6
+        var utmEasting = UTM_FAKTOR * N * (A + (1 - T + C) * A * A * A / 6
                                          + (5 - 18 * T + T * T + 72 * C - 58 * eccPrimeSquared) * A * A * A * A * A / 120)
-                         + 500000.0;
+                         + UTM_FALSE_EASTING;
 
-        var utmNorthing = 0.9996 * (M + N * System.Math.Tan(latitudeRadian) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24
+        var utmNorthing = UTM_FAKTOR * (M + N * System.Math.Tan(latitudeRadian) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A * A * A * A / 24
             + (61 - 58 * T + T * T + 600 * C - 330 * eccPrimeSquared) * A * A * A * A * A * A / 720));
 
         if (latitude < 0)
@@ -200,20 +200,20 @@ public class UniversalTransverseMercatorConverter
 
         // Transverse curvature
         var qkhm1 = WGS84_POL / System.Math.Sqrt(1 + eta);
-        var qkhm2 = System.Math.Pow(qkhm1, 2);
-        var qkhm3 = System.Math.Pow(qkhm1, 3);
-        var qkhm4 = System.Math.Pow(qkhm1, 4);
-        var qkhm5 = System.Math.Pow(qkhm1, 5);
-        var qkhm6 = System.Math.Pow(qkhm1, 6);
+        var qkhm2 = qkhm1 * qkhm1;
+        var qkhm3 = qkhm2 * qkhm1;
+        var qkhm4 = qkhm2 * qkhm2;
+        var qkhm5 = qkhm4 * qkhm1;
+        var qkhm6 = qkhm3 * qkhm3;
 
         // Difference to the reference meridian
         var merid = (utmZoneNumber - 30) * 6 - 3;
         var dlongitude1 = (utmEasting - UTM_FALSE_EASTING) / UTM_FAKTOR;
-        var dlongitude2 = System.Math.Pow(dlongitude1, 2);
-        var dlongitude3 = System.Math.Pow(dlongitude1, 3);
-        var dlongitude4 = System.Math.Pow(dlongitude1, 4);
-        var dlongitude5 = System.Math.Pow(dlongitude1, 5);
-        var dlongitude6 = System.Math.Pow(dlongitude1, 6);
+        var dlongitude2 = dlongitude1 * dlongitude1;
+        var dlongitude3 = dlongitude2 * dlongitude1;
+        var dlongitude4 = dlongitude2 * dlongitude2;
+        var dlongitude5 = dlongitude4 * dlongitude1;
+        var dlongitude6 = dlongitude3 * dlongitude3;
 
         // Factors for latitude calculation
         var bfakt2 = -tangens1 * (1 + eta) / (2 * qkhm2);

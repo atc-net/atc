@@ -73,7 +73,9 @@ public static class TriangleHelper
         if (sideA is null && sideB is not null && sideC is not null)
         {
             // Calc sideA
-            var radicand = System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideB, 2);
+            var c = (double)sideC;
+            var b = (double)sideB;
+            var radicand = (c * c) - (b * b);
             if (radicand < 0)
             {
                 throw new ArithmeticException("The given side lengths do not form a valid right triangle.");
@@ -85,7 +87,9 @@ public static class TriangleHelper
         if (sideA is not null && sideB is null && sideC is not null)
         {
             // Calc sideB
-            var radicand = System.Math.Pow((double)sideC, 2) - System.Math.Pow((double)sideA, 2);
+            var c = (double)sideC;
+            var a = (double)sideA;
+            var radicand = (c * c) - (a * a);
             if (radicand < 0)
             {
                 throw new ArithmeticException("The given side lengths do not form a valid right triangle.");
@@ -97,7 +101,9 @@ public static class TriangleHelper
         if (sideA is not null && sideB is not null && sideC is null)
         {
             // Calc sideC
-            return System.Math.Sqrt(System.Math.Pow((double)sideA, 2) + System.Math.Pow((double)sideB, 2));
+            var a = (double)sideA;
+            var b = (double)sideB;
+            return System.Math.Sqrt((a * a) + (b * b));
         }
 
         throw new ArithmeticException("Expected early return - Bad implementation.");
