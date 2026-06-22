@@ -9,7 +9,11 @@ namespace Atc.Data.SemVer;
 /// Represents a version object, compliant with the Semantic Version standard 2.0 (http://semver.org).
 /// </summary>
 [Serializable]
-public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>
+#if NET7_0_OR_GREATER
+public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>, IFormattable, ISpanParsable<SemanticVersion>
+#else
+public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>, IFormattable
+#endif
 {
     private static readonly Regex StrictModeRegex = new(
         @"^
@@ -458,6 +462,18 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
     }
 
     /// <summary>
+    /// Formats the value of the current instance using the specified format.
+    /// Both parameters are ignored; <see cref="SemanticVersion"/> uses a fixed, culture-invariant format.
+    /// </summary>
+    /// <param name="format">Format specifier — not used by this type.</param>
+    /// <param name="formatProvider">Culture provider — not used by this type.</param>
+    /// <returns>The string representation of the current instance.</returns>
+    public string ToString(
+        string? format,
+        IFormatProvider? formatProvider)
+        => ToString();
+
+    /// <summary>
     /// Converts to <see cref="Version"/> based on Major, Minor and Patch.
     /// </summary>
     public Version ToVersion()
@@ -474,6 +490,72 @@ public sealed class SemanticVersion : IComparable, IComparable<SemanticVersion>,
 
         return new(Major, Minor, Patch);
     }
+
+#if NET7_0_OR_GREATER
+    /// <summary>
+    /// Parses a string into a <see cref="SemanticVersion"/>.
+    /// </summary>
+    /// <param name="s">The string to parse.</param>
+    /// <param name="provider">Ignored; parsing is culture-invariant.</param>
+    /// <returns>The parsed <see cref="SemanticVersion"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="s"/> is not a valid semantic version string.</exception>
+    static SemanticVersion IParsable<SemanticVersion>.Parse(
+        string s,
+        IFormatProvider? provider)
+        => Parse(s);
+
+    /// <summary>
+    /// Tries to parse a string into a <see cref="SemanticVersion"/>.
+    /// </summary>
+    /// <param name="s">The string to parse, or <see langword="null"/>.</param>
+    /// <param name="provider">Ignored; parsing is culture-invariant.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <see cref="SemanticVersion"/>,
+    /// or <see langword="null"/> if parsing fails.
+    /// </param>
+    /// <returns><see langword="true"/> if parsing succeeded; otherwise, <see langword="false"/>.</returns>
+    static bool IParsable<SemanticVersion>.TryParse(
+        string? s,
+        IFormatProvider? provider,
+        [NotNullWhen(true)] out SemanticVersion? result)
+    {
+        if (s is null)
+        {
+            result = null;
+            return false;
+        }
+
+        return TryParse(s, out result);
+    }
+
+    /// <summary>
+    /// Parses a character span into a <see cref="SemanticVersion"/>.
+    /// </summary>
+    /// <param name="s">The character span to parse.</param>
+    /// <param name="provider">Ignored; parsing is culture-invariant.</param>
+    /// <returns>The parsed <see cref="SemanticVersion"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="s"/> is not a valid semantic version string.</exception>
+    static SemanticVersion ISpanParsable<SemanticVersion>.Parse(
+        ReadOnlySpan<char> s,
+        IFormatProvider? provider)
+        => Parse(s.ToString());
+
+    /// <summary>
+    /// Tries to parse a character span into a <see cref="SemanticVersion"/>.
+    /// </summary>
+    /// <param name="s">The character span to parse.</param>
+    /// <param name="provider">Ignored; parsing is culture-invariant.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <see cref="SemanticVersion"/>,
+    /// or <see langword="null"/> if parsing fails.
+    /// </param>
+    /// <returns><see langword="true"/> if parsing succeeded; otherwise, <see langword="false"/>.</returns>
+    static bool ISpanParsable<SemanticVersion>.TryParse(
+        ReadOnlySpan<char> s,
+        IFormatProvider? provider,
+        [NotNullWhen(true)] out SemanticVersion? result)
+        => TryParse(s.ToString(), out result);
+#endif
 
     public static bool operator ==(
         SemanticVersion? a,
