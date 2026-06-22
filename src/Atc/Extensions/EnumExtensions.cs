@@ -199,6 +199,33 @@ public static class EnumExtensions
         return defaultValue ?? throw new InvalidOperationException($"Cannot map '{source}' from {source.GetType().Name} to {typeof(TTarget).Name}.");
     }
 
+    /// <summary>
+    /// Tries to map the current enum value to a target enum type by matching the name (case-insensitive).
+    /// Unlike <see cref="MapTo{TTarget}"/>, this method never throws — it returns <see langword="false"/> when no match is found.
+    /// </summary>
+    /// <typeparam name="TTarget">The target enum type.</typeparam>
+    /// <param name="source">The source enum value.</param>
+    /// <param name="result">
+    /// When this method returns <see langword="true"/>, the matched target value; otherwise, the default value of <typeparamref name="TTarget"/>.
+    /// </param>
+    /// <returns><see langword="true"/> if a matching named value was found in <typeparamref name="TTarget"/>; otherwise, <see langword="false"/>.</returns>
+    public static bool TryMapTo<TTarget>(
+        this Enum source,
+        out TTarget result)
+        where TTarget : struct, Enum
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
+        if (Enum.TryParse<TTarget>(source.ToString(), ignoreCase: true, out result) &&
+            Enum.IsDefined(typeof(TTarget), result))
+        {
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
     /// <summary>Gets the attribute value.</summary>
     /// <typeparam name="T">The type.</typeparam>
     /// <typeparam name="TExpected">The type of the expected.</typeparam>
