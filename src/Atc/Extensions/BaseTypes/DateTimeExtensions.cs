@@ -320,4 +320,48 @@ public static class DateTimeExtensions
             dateTimeFormatInfo.ShortTimePattern,
             dateTimeFormatInfo);
     }
+
+    /// <summary>
+    /// Returns a new <see cref="DateTime"/> set to the very start of the same day (00:00:00.000).
+    /// The <see cref="DateTime.Kind"/> of the result matches the input.
+    /// </summary>
+    /// <param name="dateTime">The date value.</param>
+    /// <returns>Midnight at the start of <paramref name="dateTime"/>'s date.</returns>
+    public static DateTime StartOfDay(this DateTime dateTime)
+        => dateTime.Date;
+
+    /// <summary>
+    /// Returns a new <see cref="DateTime"/> set to the very end of the same day (23:59:59.9999999).
+    /// The <see cref="DateTime.Kind"/> of the result matches the input.
+    /// </summary>
+    /// <param name="dateTime">The date value.</param>
+    /// <returns>The last representable tick of <paramref name="dateTime"/>'s date.</returns>
+    public static DateTime EndOfDay(this DateTime dateTime)
+        => dateTime.Date.AddDays(1).AddTicks(-1);
+
+    /// <summary>
+    /// Returns a new <see cref="DateTime"/> set to the first day of the same month at midnight (00:00:00.000).
+    /// </summary>
+    /// <param name="dateTime">The date value.</param>
+    /// <returns>The first day of the month containing <paramref name="dateTime"/>.</returns>
+    public static DateTime StartOfMonth(this DateTime dateTime)
+        => new(dateTime.Year, dateTime.Month, 1, 0, 0, 0, dateTime.Kind);
+
+    /// <summary>
+    /// Returns a new <see cref="DateTime"/> set to the last tick of the last day of the same month.
+    /// </summary>
+    /// <param name="dateTime">The date value.</param>
+    /// <returns>The last representable tick of the last day of the month containing <paramref name="dateTime"/>.</returns>
+    public static DateTime EndOfMonth(this DateTime dateTime)
+        => new DateTime(dateTime.Year, dateTime.Month, DateTime.DaysInMonth(dateTime.Year, dateTime.Month), 0, 0, 0, dateTime.Kind)
+            .AddDays(1)
+            .AddTicks(-1);
+
+    /// <summary>
+    /// Determines whether the specified date falls on a Saturday or Sunday.
+    /// </summary>
+    /// <param name="dateTime">The date to test.</param>
+    /// <returns><see langword="true"/> if the day of the week is <see cref="DayOfWeek.Saturday"/> or <see cref="DayOfWeek.Sunday"/>; otherwise, <see langword="false"/>.</returns>
+    public static bool IsWeekend(this DateTime dateTime)
+        => dateTime.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
 }

@@ -393,4 +393,52 @@ public class DateTimeOffsetExtensionsTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void StartOfDay_ReturnsMidnight_PreservesOffset()
+    {
+        var offset = TimeSpan.FromHours(2);
+        var input = new DateTimeOffset(2024, 3, 15, 10, 30, 45, offset);
+        var result = input.StartOfDay();
+        Assert.Equal(new DateTimeOffset(2024, 3, 15, 0, 0, 0, offset), result);
+    }
+
+    [Fact]
+    public void EndOfDay_ReturnsLastTick_PreservesOffset()
+    {
+        var offset = TimeSpan.FromHours(2);
+        var input = new DateTimeOffset(2024, 3, 15, 10, 30, 45, offset);
+        var result = input.EndOfDay();
+        Assert.Equal(new DateTimeOffset(2024, 3, 15, 0, 0, 0, offset).AddDays(1).AddTicks(-1), result);
+    }
+
+    [Fact]
+    public void StartOfMonth_ReturnsFirstDayMidnight_PreservesOffset()
+    {
+        var offset = TimeSpan.FromHours(-5);
+        var input = new DateTimeOffset(2024, 3, 15, 10, 30, 45, offset);
+        var result = input.StartOfMonth();
+        Assert.Equal(new DateTimeOffset(2024, 3, 1, 0, 0, 0, offset), result);
+    }
+
+    [Fact]
+    public void EndOfMonth_ReturnsLastTickOfLastDay_PreservesOffset()
+    {
+        var offset = TimeSpan.FromHours(-5);
+        var input = new DateTimeOffset(2024, 2, 10, 10, 30, 45, offset);
+        var result = input.EndOfMonth();
+        Assert.Equal(new DateTimeOffset(2024, 2, 29, 0, 0, 0, offset).AddDays(1).AddTicks(-1), result);
+    }
+
+    [Theory]
+    [InlineData(true, 2024, 3, 16)]
+    [InlineData(true, 2024, 3, 17)]
+    [InlineData(false, 2024, 3, 18)]
+    [InlineData(false, 2024, 3, 15)]
+    public void IsWeekend(
+        bool expected,
+        int year,
+        int month,
+        int day)
+        => Assert.Equal(expected, new DateTimeOffset(year, month, day, 0, 0, 0, TimeSpan.Zero).IsWeekend());
 }
