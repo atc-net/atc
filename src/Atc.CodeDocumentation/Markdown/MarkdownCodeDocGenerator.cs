@@ -55,6 +55,23 @@ public static class MarkdownCodeDocGenerator
     {
         var assemblyName = assembly.GetName().Name!;
         var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+        // Walk up the directory tree until we find a segment whose name matches the assembly name.
+        // This avoids a fragile string-index search that breaks when the assembly name appears
+        // multiple times in the path.
+        var dir = new DirectoryInfo(baseDirectory);
+        while (dir is not null)
+        {
+            if (dir.Name.Equals(assemblyName, StringComparison.Ordinal))
+            {
+                return new DirectoryInfo(Path.Combine(dir.FullName, "CodeDoc"));
+            }
+
+            dir = dir.Parent;
+        }
+
+        // Fall back to the original index-based search for cases where the assembly name
+        // does not appear as a standalone directory segment (e.g. single-file publish).
         var index = baseDirectory.IndexOf(assemblyName, StringComparison.Ordinal);
         if (index == -1)
         {
