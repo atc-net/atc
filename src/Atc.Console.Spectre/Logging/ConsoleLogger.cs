@@ -66,7 +66,8 @@ public class ConsoleLogger : ILogger
     }
 
     /// <inheritdoc />
-    public IDisposable BeginScope<TState>(TState state) => NullScope.Instance;
+    public IDisposable BeginScope<TState>(TState state)
+        => new LogScope(state);
 
     /// <inheritdoc />
     public bool IsEnabled(LogLevel logLevel)
@@ -91,6 +92,15 @@ public class ConsoleLogger : ILogger
         var message = config.AllowMarkup
             ? stateStr
             : Markup.Escape(stateStr);
+
+        if (config.IncludeScopes)
+        {
+            var scopeText = LogScope.BuildScopeText();
+            if (scopeText.Length > 0)
+            {
+                message = $"[grey]{Markup.Escape(scopeText)}[/] {message}";
+            }
+        }
 
         var exceptionMessage = exception?.GetMessage(
             includeInnerMessage: config.IncludeInnerMessageForException,
@@ -335,20 +345,61 @@ public class ConsoleLogger : ILogger
         => $"{GetLogLevelMarkupStartTag(logLevel)}{message}[/]";
 
     /// <summary>
-    /// A no-op <see cref="IDisposable"/> returned by <see cref="BeginScope{TState}"/> so that
-    /// callers using <c>using (logger.BeginScope(...))</c> do not dereference a null instance.
+    /// Tracks a single log scope entry in a per-async-context linked list.
+    /// Disposing removes this scope from the ambient context.
     /// </summary>
-    private sealed class NullScope : IDisposable
+    private sealed class LogScope : IDisposable
     {
-        public static NullScope Instance { get; } = new();
+        private static readonly AsyncLocal<LogScope?> Current = new();
 
-        private NullScope()
+        private readonly LogScope? parent;
+        private bool disposed;
+
+        internal LogScope(object? state)
         {
+            State = state;
+            parent = Current.Value;
+            Current.Value = this;
+        }
+
+        internal object? State { get; }
+
+        /// <summary>
+        /// Builds a formatted string from all active scopes in the current async context,
+        /// from outermost to innermost, separated by <c>" =&gt; "</c>.
+        /// Returns <see cref="string.Empty"/> when no scopes are active.
+        /// </summary>
+        internal static string BuildScopeText()
+        {
+            var scope = Current.Value;
+            if (scope is null)
+            {
+                return string.Empty;
+            }
+
+            var parts = new List<string>();
+            while (scope is not null)
+            {
+                var text = scope.State?.ToString();
+                if (!string.IsNullOrEmpty(text))
+                {
+                    parts.Add(text);
+                }
+
+                scope = scope.parent;
+            }
+
+            parts.Reverse();
+            return string.Join(" => ", parts);
         }
 
         public void Dispose()
         {
-            // No-op: this logger does not track scopes.
+            if (!disposed)
+            {
+                Current.Value = parent;
+                disposed = true;
+            }
         }
     }
 }

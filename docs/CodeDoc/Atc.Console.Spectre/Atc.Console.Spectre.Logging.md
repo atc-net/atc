@@ -65,6 +65,11 @@ Configuration options for the console logger used in Spectre.Console CLI applica
 >IncludeInnerMessageForException
 >```
 ><b>Summary:</b> Gets or sets a value indicating whether the inner-exception-message should be rendered.
+#### IncludeScopes
+>```csharp
+>IncludeScopes
+>```
+><b>Summary:</b> Gets or sets a value indicating whether log scope values are included in the output. When enabled, active scopes opened via `Microsoft.Extensions.Logging.ILogger.BeginScope``1(``0)` are rendered as a grey prefix before the log message.
 #### MinimumLogLevel
 >```csharp
 >MinimumLogLevel

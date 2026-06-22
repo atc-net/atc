@@ -81,6 +81,13 @@ public class ConsoleLoggerConfiguration
     public bool AllowMarkup { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether log scope values are included in the output.
+    /// When enabled, active scopes opened via <see cref="Microsoft.Extensions.Logging.ILogger.BeginScope{TState}"/>
+    /// are rendered as a grey prefix before the log message.
+    /// </summary>
+    public bool IncludeScopes { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether the Timestamp should be rendered as UTC.
     /// </summary>
     /// <remarks>
@@ -100,5 +107,5 @@ public class ConsoleLoggerConfiguration
 
     /// <inheritdoc />
     public override string ToString()
-        => $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseTimestamp)}: {UseTimestamp}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}, {nameof(UseTimestampUtc)}: {UseTimestampUtc}, {nameof(TimestampFormat)}: {TimestampFormat}";
+        => $"{nameof(MinimumLogLevel)}: {MinimumLogLevel}, {nameof(RenderingMode)}: {RenderingMode}, {nameof(UseTimestamp)}: {UseTimestamp}, {nameof(UseShortNameForLogLevel)}: {UseShortNameForLogLevel}, {nameof(IncludeInnerMessageForException)}: {IncludeInnerMessageForException}, {nameof(IncludeExceptionNameForException)}: {IncludeExceptionNameForException}, {nameof(AllowMarkup)}: {AllowMarkup}, {nameof(IncludeScopes)}: {IncludeScopes}, {nameof(UseTimestampUtc)}: {UseTimestampUtc}, {nameof(TimestampFormat)}: {TimestampFormat}";
 }
