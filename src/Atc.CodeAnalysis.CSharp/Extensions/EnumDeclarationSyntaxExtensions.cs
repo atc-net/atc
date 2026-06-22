@@ -85,9 +85,16 @@ public static class EnumDeclarationSyntaxExtensions
             throw new ArgumentNullException(nameof(attributeType));
         }
 
-        var attributeName = attributeType.Name.Replace("Attribute", string.Empty, StringComparison.Ordinal);
+        // Strip the conventional "Attribute" suffix so both [Flags] and [FlagsAttribute] match FlagsAttribute.
+        var shortName = attributeType.Name.Replace("Attribute", string.Empty, StringComparison.Ordinal);
+        var fullName = attributeType.Name; // "FlagsAttribute"
         return enumDeclaration
             .Select<AttributeSyntax>()
-            .Any(x => attributeName.Equals(x.Name.ToString(), StringComparison.Ordinal));
+            .Any(x =>
+            {
+                var attrName = x.Name.ToString();
+                return attrName.Equals(shortName, StringComparison.Ordinal) ||
+                       attrName.Equals(fullName, StringComparison.Ordinal);
+            });
     }
 }

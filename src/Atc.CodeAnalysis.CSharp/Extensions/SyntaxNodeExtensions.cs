@@ -60,7 +60,8 @@ public static class SyntaxNodeExtensions
 
         return syntaxNode
             .Select<UsingDirectiveSyntax>()
-            .Select(x => x.Name!.ToFullString())
+            .Where(x => x.Name is not null)
+            .Select(x => x.Name!.ToString())
             .ToArray();
     }
 
@@ -80,8 +81,8 @@ public static class SyntaxNodeExtensions
 
         return syntaxNode
             .Select<UsingDirectiveSyntax>()
-            .Where(x => x.Alias is null)
-            .Select(x => x.Name!.ToFullString())
+            .Where(x => x.Alias is null && x.Name is not null)
+            .Select(x => x.Name!.ToString())
             .ToArray();
     }
 }

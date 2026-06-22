@@ -30,8 +30,11 @@ public static class SyntaxLiteralExpressionFactory
                 return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedInt));
             }
 
-            value = value.Replace(',', '.');
-            if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedDouble))
+            // Support European decimal notation (comma as decimal separator): "12,345" → 12.345.
+            // Thousands-separator values (e.g. "1,000") are not supported — they would silently
+            // become 1.0, so callers must normalise such values before passing them in.
+            var normalised = value.Replace(',', '.');
+            if (double.TryParse(normalised, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedDouble))
             {
                 return SyntaxFactory.LiteralExpression(syntaxKind, SyntaxFactory.Literal(parsedDouble));
             }
