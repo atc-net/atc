@@ -13,11 +13,13 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceType">The source type to validate for test coverage.</param>
     /// <param name="testType">The test type containing unit tests for the source type.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
         Type testType,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceType is null)
         {
@@ -32,7 +34,8 @@ public static class CodeComplianceTestHelper
         var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(
             decompilerType,
             sourceType,
-            testType);
+            testType,
+            cancellationToken);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
             sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
@@ -47,11 +50,13 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceType">The source type to validate for test coverage.</param>
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
         Assembly testAssembly,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceType is null)
         {
@@ -61,7 +66,8 @@ public static class CodeComplianceTestHelper
         var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(
             decompilerType,
             sourceType,
-            testAssembly);
+            testAssembly,
+            cancellationToken);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
             sourceType.Assembly.GetName().Name!,
             methodsWithMissingTests,
@@ -77,12 +83,14 @@ public static class CodeComplianceTestHelper
     /// <param name="testAssembly">The test assembly containing unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from validation.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     public static void AssertExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
         List<Type>? excludeSourceTypes = null,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -98,7 +106,8 @@ public static class CodeComplianceTestHelper
             decompilerType,
             sourceAssembly,
             testAssembly,
-            excludeSourceTypes);
+            excludeSourceTypes,
+            cancellationToken);
         TestResultHelper.AssertOnTestResultsFromMethodsWithMissingTests(
             sourceAssembly.GetName().Name!,
             methodsWithMissingTests,
@@ -112,12 +121,14 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly to analyze.</param>
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     /// <returns>An array of types that have methods missing test coverage.</returns>
     public static Type[] CollectExportedTypesWithMissingTests(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes = null)
+        List<Type>? excludeSourceTypes = null,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -133,7 +144,8 @@ public static class CodeComplianceTestHelper
             decompilerType,
             sourceAssembly,
             testAssembly,
-            excludeSourceTypes);
+            excludeSourceTypes,
+            cancellationToken);
     }
 
     /// <summary>
@@ -145,13 +157,15 @@ public static class CodeComplianceTestHelper
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     /// <returns>A formatted C# code snippet containing a list of typeof() expressions for types missing tests.</returns>
     public static string CollectExportedTypesWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
         List<Type>? excludeSourceTypes = null,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -167,7 +181,8 @@ public static class CodeComplianceTestHelper
             decompilerType,
             sourceAssembly,
             testAssembly,
-            excludeSourceTypes);
+            excludeSourceTypes,
+            cancellationToken);
 
         var sb = new StringBuilder();
         sb.AppendLine(12, "var excludeTypes = new List<Type>");
@@ -203,12 +218,14 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly to analyze.</param>
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     /// <returns>An array of <see cref="MethodInfo"/> objects representing methods missing test coverage.</returns>
     public static MethodInfo[] CollectExportedMethodsWithMissingTestsFromAssembly(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes = null)
+        List<Type>? excludeSourceTypes = null,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -220,7 +237,7 @@ public static class CodeComplianceTestHelper
             throw new ArgumentNullException(nameof(testAssembly));
         }
 
-        return AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
+        return AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes, cancellationToken);
     }
 
     /// <summary>
@@ -231,13 +248,15 @@ public static class CodeComplianceTestHelper
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     /// <returns>An array of strings containing beautified method signatures.</returns>
     public static string[] CollectExportedMethodsWithMissingTestsAndGenerateTextLines(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
         List<Type>? excludeSourceTypes = null,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -249,7 +268,7 @@ public static class CodeComplianceTestHelper
             throw new ArgumentNullException(nameof(testAssembly));
         }
 
-        var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
+        var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes, cancellationToken);
         return AssemblyTestHelper.GetMethodsAsRenderTextLines(methodsWithMissingTests, useFullName);
     }
 
@@ -261,13 +280,15 @@ public static class CodeComplianceTestHelper
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
     /// <param name="useFullName">If set to <c>true</c>, use full type names in output.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     /// <returns>A multi-line string containing all method signatures missing tests.</returns>
     public static string CollectExportedMethodsWithMissingTestsAndGenerateText(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
         List<Type>? excludeSourceTypes = null,
-        bool useFullName = false)
+        bool useFullName = false,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -279,22 +300,24 @@ public static class CodeComplianceTestHelper
             throw new ArgumentNullException(nameof(testAssembly));
         }
 
-        var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
+        var methodsWithMissingTests = AssemblyTestHelper.CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes, cancellationToken);
         return AssemblyTestHelper.GetMethodsAsRenderText(methodsWithMissingTests, useFullName);
     }
 
     /// <summary>
-    /// Collects exported methods with missing tests and exports them to an Excel file at C:\Temp.
+    /// Collects exported methods with missing tests and exports them to an Excel file at the system temp directory.
     /// </summary>
     /// <param name="decompilerType">The <see cref="DecompilerType"/> to use for analyzing test method bodies.</param>
     /// <param name="sourceAssembly">The source assembly to analyze.</param>
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     public static void CollectExportedMethodsWithMissingTestsToExcel(
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes = null)
+        List<Type>? excludeSourceTypes = null,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -311,7 +334,8 @@ public static class CodeComplianceTestHelper
             new DirectoryInfo(Path.GetTempPath()),
             sourceAssembly,
             testAssembly,
-            excludeSourceTypes);
+            excludeSourceTypes,
+            cancellationToken);
     }
 
     /// <summary>
@@ -322,12 +346,14 @@ public static class CodeComplianceTestHelper
     /// <param name="sourceAssembly">The source assembly to analyze.</param>
     /// <param name="testAssembly">The test assembly to search for unit tests.</param>
     /// <param name="excludeSourceTypes">Optional list of source types to exclude from analysis.</param>
+    /// <param name="cancellationToken">A token to cancel the analysis operation.</param>
     public static void CollectExportedMethodsWithMissingTestsToExcel(
         DecompilerType decompilerType,
         DirectoryInfo reportDirectory,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes = null)
+        List<Type>? excludeSourceTypes = null,
+        CancellationToken cancellationToken = default)
     {
         if (reportDirectory is null)
         {
@@ -348,7 +374,8 @@ public static class CodeComplianceTestHelper
             decompilerType,
             sourceAssembly,
             testAssembly,
-            excludeSourceTypes);
+            excludeSourceTypes,
+            cancellationToken);
         TestResultHelper.ToExcelTestResultsFromMethodsWithMissingTests(
             reportDirectory,
             sourceAssembly.GetName().Name!,
