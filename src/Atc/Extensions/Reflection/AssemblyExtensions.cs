@@ -9,6 +9,8 @@ public static class AssemblyExtensions
 {
     /// <summary>
     /// Gets the file version of the assembly.
+    /// Falls back to <see cref="AssemblyFileVersionAttribute"/> when the assembly location is
+    /// unavailable (e.g., single-file published apps where <see cref="Assembly.Location"/> is empty).
     /// </summary>
     /// <param name="assembly">The assembly to query.</param>
     /// <returns>The file version, or 1.0.0.0 if the version cannot be determined.</returns>
@@ -20,15 +22,23 @@ public static class AssemblyExtensions
             throw new ArgumentNullException(nameof(assembly));
         }
 
-        var fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
-        if (fileVersion is null)
+        var location = assembly.Location;
+        if (!string.IsNullOrEmpty(location))
         {
-            return new Version(1, 0, 0, 0);
+            var fileVersion = FileVersionInfo.GetVersionInfo(location).FileVersion;
+            if (fileVersion is not null && Version.TryParse(fileVersion, out var fvVersion))
+            {
+                return fvVersion;
+            }
         }
 
-        return Version.TryParse(fileVersion, out var version)
-            ? version
-            : new Version(1, 0, 0, 0);
+        var attr = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>();
+        if (attr is not null && Version.TryParse(attr.Version, out var attrVersion))
+        {
+            return attrVersion;
+        }
+
+        return new Version(1, 0, 0, 0);
     }
 
     /// <summary>
