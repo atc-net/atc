@@ -9,8 +9,12 @@
 - [AtcDotnetAssemblyTypeInitializer](Atc.DotNet.md#atcdotnetassemblytypeinitializer)
 - [DotnetBuildHelper](Atc.DotNet.md#dotnetbuildhelper)
   -  Static Methods
-     - BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
-     - BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
+     - BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+     - BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+     - BuildAndCollectWarnings(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+     - BuildAndCollectWarnings(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+     - ParseErrors(string buildOutput)
+     - ParseWarnings(string buildOutput)
 - [DotnetCsProjFileHelper](Atc.DotNet.md#dotnetcsprojfilehelper)
   -  Static Methods
      - FindAllInPath(DirectoryInfo directoryInfo, SearchOption searchOption = AllDirectories)

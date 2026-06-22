@@ -24,6 +24,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net9.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
@@ -31,6 +32,7 @@ public static class DotnetBuildHelper
     /// This is a convenience overload that uses <see cref="NullLogger.Instance"/>; for build
     /// progress visibility prefer the overload accepting an <see cref="ILogger"/>.
     /// </remarks>
+    [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
     public static Task<Dictionary<string, int>> BuildAndCollectErrors(
         DirectoryInfo rootPath,
         int? runNumber = null,
@@ -39,6 +41,7 @@ public static class DotnetBuildHelper
         bool useConfigurationReleaseMode = true,
         int timeoutInSec = DefaultTimeoutInSec,
         string logPrefix = "",
+        string additionalBuildArguments = "",
         CancellationToken cancellationToken = default)
         => BuildAndCollectErrors(
             NullLogger.Instance,
@@ -49,6 +52,7 @@ public static class DotnetBuildHelper
             useConfigurationReleaseMode,
             timeoutInSec,
             logPrefix,
+            additionalBuildArguments,
             cancellationToken);
 
     /// <summary>
@@ -62,6 +66,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net9.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="logger"/> or <paramref name="rootPath"/> is null.</exception>
@@ -75,19 +80,13 @@ public static class DotnetBuildHelper
         bool useConfigurationReleaseMode = true,
         int timeoutInSec = DefaultTimeoutInSec,
         string logPrefix = "",
+        string additionalBuildArguments = "",
         CancellationToken cancellationToken = default)
     {
-        if (logger is null)
-        {
-            throw new ArgumentNullException(nameof(logger));
-        }
+        ArgumentNullException.ThrowIfNull(logger);
+        ArgumentNullException.ThrowIfNull(rootPath);
 
-        if (rootPath is null)
-        {
-            throw new ArgumentNullException(nameof(rootPath));
-        }
-
-        return InvokeBuildAndCollectErrors(
+        return InvokeBuildAndCollect(
             logger,
             rootPath,
             runNumber,
@@ -96,11 +95,99 @@ public static class DotnetBuildHelper
             useConfigurationReleaseMode,
             timeoutInSec,
             logPrefix,
+            additionalBuildArguments,
+            collectWarnings: false,
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Builds a .NET project or solution and collects compilation warnings grouped by warning code.
+    /// </summary>
+    /// <param name="rootPath">The root directory containing the project or solution to build.</param>
+    /// <param name="runNumber">Optional run number for logging purposes.</param>
+    /// <param name="buildFile">Optional specific solution or project file to build. If not specified, discovers the build file automatically.</param>
+    /// <param name="useNugetRestore">Whether to perform NuGet restore before building. Default is true.</param>
+    /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
+    /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
+    /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net9.0</c>.</param>
+    /// <param name="cancellationToken">Token to cancel the build operation.</param>
+    /// <returns>A dictionary mapping warning codes to their occurrence counts.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
+    /// <remarks>
+    /// This is a convenience overload that uses <see cref="NullLogger.Instance"/>; for build
+    /// progress visibility prefer the overload accepting an <see cref="ILogger"/>.
+    /// </remarks>
+    [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
+    public static Task<Dictionary<string, int>> BuildAndCollectWarnings(
+        DirectoryInfo rootPath,
+        int? runNumber = null,
+        FileInfo? buildFile = null,
+        bool useNugetRestore = true,
+        bool useConfigurationReleaseMode = true,
+        int timeoutInSec = DefaultTimeoutInSec,
+        string logPrefix = "",
+        string additionalBuildArguments = "",
+        CancellationToken cancellationToken = default)
+        => BuildAndCollectWarnings(
+            NullLogger.Instance,
+            rootPath,
+            runNumber,
+            buildFile,
+            useNugetRestore,
+            useConfigurationReleaseMode,
+            timeoutInSec,
+            logPrefix,
+            additionalBuildArguments,
+            cancellationToken);
+
+    /// <summary>
+    /// Builds a .NET project or solution with logging support and collects compilation warnings grouped by warning code.
+    /// </summary>
+    /// <param name="logger">The logger to use for build progress and results.</param>
+    /// <param name="rootPath">The root directory containing the project or solution to build.</param>
+    /// <param name="runNumber">Optional run number for logging purposes.</param>
+    /// <param name="buildFile">Optional specific solution or project file to build. If not specified, discovers the build file automatically.</param>
+    /// <param name="useNugetRestore">Whether to perform NuGet restore before building. Default is true.</param>
+    /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
+    /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
+    /// <param name="logPrefix">Optional prefix for log messages.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net9.0</c>.</param>
+    /// <param name="cancellationToken">Token to cancel the build operation.</param>
+    /// <returns>A dictionary mapping warning codes to their occurrence counts.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="logger"/> or <paramref name="rootPath"/> is null.</exception>
+    [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
+    public static Task<Dictionary<string, int>> BuildAndCollectWarnings(
+        ILogger logger,
+        DirectoryInfo rootPath,
+        int? runNumber = null,
+        FileInfo? buildFile = null,
+        bool useNugetRestore = true,
+        bool useConfigurationReleaseMode = true,
+        int timeoutInSec = DefaultTimeoutInSec,
+        string logPrefix = "",
+        string additionalBuildArguments = "",
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(logger);
+        ArgumentNullException.ThrowIfNull(rootPath);
+
+        return InvokeBuildAndCollect(
+            logger,
+            rootPath,
+            runNumber,
+            buildFile,
+            useNugetRestore,
+            useConfigurationReleaseMode,
+            timeoutInSec,
+            logPrefix,
+            additionalBuildArguments,
+            collectWarnings: true,
             cancellationToken);
     }
 
     [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "OK.")]
-    private static async Task<Dictionary<string, int>> InvokeBuildAndCollectErrors(
+    private static async Task<Dictionary<string, int>> InvokeBuildAndCollect(
         ILogger logger,
         DirectoryInfo rootPath,
         int? runNumber,
@@ -109,6 +196,8 @@ public static class DotnetBuildHelper
         bool useConfigurationReleaseMode,
         int timeoutInSec,
         string logPrefix,
+        string additionalBuildArguments,
+        bool collectWarnings,
         CancellationToken cancellationToken)
     {
         logger.LogInformation(runNumber is > 0
@@ -123,6 +212,7 @@ public static class DotnetBuildHelper
                 useNugetRestore,
                 useConfigurationReleaseMode,
                 timeoutInSec,
+                additionalBuildArguments,
                 cancellationToken)
             .ConfigureAwait(false);
 
@@ -133,23 +223,27 @@ public static class DotnetBuildHelper
             throw new IOException(output);
         }
 
-        var parsedErrors = ParseBuildOutput(output);
-        int totalErrors = parsedErrors.Sum(parsedError => parsedError.Value);
+        var parsed = collectWarnings
+            ? ParseBuildOutput(output, diagnostic: "warning")
+            : ParseBuildOutput(output, diagnostic: "error");
+
+        int total = parsed.Sum(x => x.Value);
 
         stopwatch.Stop();
 
-        if (totalErrors > 0)
+        if (total > 0)
         {
+            var kind = collectWarnings ? "warnings" : "errors";
             logger.LogError(runNumber is > 0
-                ? $"{logPrefix}Found {totalErrors} errors divided into {parsedErrors.Count} rules in Build ({runNumber})"
-                : $"{logPrefix}Found {totalErrors} errors divided into {parsedErrors.Count} rules");
+                ? $"{logPrefix}Found {total} {kind} divided into {parsed.Count} rules in Build ({runNumber})"
+                : $"{logPrefix}Found {total} {kind} divided into {parsed.Count} rules");
         }
 
         logger.LogInformation(runNumber is > 0
             ? $"{logPrefix}Build ({runNumber}) time: {stopwatch.Elapsed.GetPrettyTime()}"
             : $"{logPrefix}Build time: {stopwatch.Elapsed.GetPrettyTime()}");
 
-        return parsedErrors;
+        return parsed;
     }
 
     private static async Task<(
@@ -160,6 +254,7 @@ public static class DotnetBuildHelper
         bool useNugetRestore,
         bool useConfigurationReleaseMode,
         int timeoutInSec,
+        string additionalBuildArguments,
         CancellationToken cancellationToken)
     {
         var argumentNugetRestore = useNugetRestore
@@ -170,14 +265,18 @@ public static class DotnetBuildHelper
             ? " -c Release"
             : " -c Debug";
 
+        var argumentAdditional = string.IsNullOrWhiteSpace(additionalBuildArguments)
+            ? string.Empty
+            : $" {additionalBuildArguments.Trim()}";
+
         string arguments;
         if (buildFile is not null && buildFile.Exists)
         {
-            arguments = $"build {buildFile.FullName}{argumentNugetRestore}{argumentConfigurationReleaseMode} -v q -clp:NoSummary";
+            arguments = $"build {buildFile.FullName}{argumentNugetRestore}{argumentConfigurationReleaseMode}{argumentAdditional} -v q -clp:NoSummary";
         }
         else
         {
-            arguments = $"build{argumentNugetRestore}{argumentConfigurationReleaseMode} -v q -clp:NoSummary";
+            arguments = $"build{argumentNugetRestore}{argumentConfigurationReleaseMode}{argumentAdditional} -v q -clp:NoSummary";
             var slnFiles = Directory.GetFiles(rootPath.FullName, "*.sln");
             if (slnFiles.Length > 1)
             {
@@ -223,27 +322,40 @@ public static class DotnetBuildHelper
     /// <param name="buildOutput">The raw text output from a dotnet build invocation.</param>
     /// <returns>A dictionary mapping each error code to the number of times it appeared.</returns>
     public static Dictionary<string, int> ParseErrors(string buildOutput)
-        => ParseBuildOutput(buildOutput);
+        => ParseBuildOutput(buildOutput, diagnostic: "error");
 
-    private static Dictionary<string, int> ParseBuildOutput(string buildResult)
+    /// <summary>
+    /// Parses raw dotnet build output and returns warning codes grouped by their occurrence count.
+    /// Recognises MSBuild warnings (MSB prefix), NuGet warnings (NU prefix), and general compiler warnings
+    /// (e.g. CS, CA). The project-file suffix that MSBuild appends — <c> [project.csproj]</c> — is
+    /// optional; warnings emitted without it are still counted.
+    /// </summary>
+    /// <param name="buildOutput">The raw text output from a dotnet build invocation.</param>
+    /// <returns>A dictionary mapping each warning code to the number of times it appeared.</returns>
+    public static Dictionary<string, int> ParseWarnings(string buildOutput)
+        => ParseBuildOutput(buildOutput, diagnostic: "warning");
+
+    private static Dictionary<string, int> ParseBuildOutput(
+        string buildResult,
+        string diagnostic)
     {
-        const string? regexPatternMsBuild = @": error MSB(\S+?): (.*)";
-        const string? regexPatternNuget = @": error NU(\S+?): (.*)";
-        const string? regexPatternGeneral = @": error ([A-Z]\S+?): (.+)";
+        var patternMsBuild = $@": {diagnostic} MSB(\S+?): (.*)";
+        var patternNuget = $@": {diagnostic} NU(\S+?): (.*)";
+        var patternGeneral = $@": {diagnostic} ([A-Z]\S+?): (.+)";
 
-        var errors = ParseBuildOutputHelper(buildResult, regexPatternMsBuild, "MSB");
-        if (errors.Any())
+        var results = ParseBuildOutputHelper(buildResult, patternMsBuild, "MSB");
+        if (results.Any())
         {
-            return errors;
+            return results;
         }
 
-        errors = ParseBuildOutputHelper(buildResult, regexPatternNuget, "NU");
-        if (errors.Any())
+        results = ParseBuildOutputHelper(buildResult, patternNuget, "NU");
+        if (results.Any())
         {
-            return errors;
+            return results;
         }
 
-        return ParseBuildOutputHelper(buildResult, regexPatternGeneral);
+        return ParseBuildOutputHelper(buildResult, patternGeneral);
     }
 
     private static Dictionary<string, int> ParseBuildOutputHelper(

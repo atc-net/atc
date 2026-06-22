@@ -118,6 +118,84 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         Assert.Empty(errors);
     }
 
+    [Fact]
+    public void ParseWarnings_CompilerWarning_WithProjectSuffix_Counted()
+    {
+        const string output = "Program.cs(5,13): warning CS0168: The variable 'x' is declared but never used [Test.csproj]";
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["CS0168"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_CompilerWarning_WithoutProjectSuffix_Counted()
+    {
+        const string output = "Program.cs(5,13): warning CS0168: The variable 'x' is declared but never used";
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["CS0168"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_MSBuildWarning_Counted()
+    {
+        const string output = "MSBUILD : warning MSB3277: Found conflicts between different versions of assembly.";
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["MSB3277"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_NuGetWarning_Counted()
+    {
+        const string output = "Test.csproj : warning NU1701: Package 'OldPkg 1.0.0' was restored using net472.";
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["NU1701"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_MultipleWarnings_AggregatedByCode()
+    {
+        const string output = """
+            Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+            Program.cs(6,5): warning CS0168: Unused var [Test.csproj]
+            Program.cs(7,5): warning CS0219: Value assigned but never used [Test.csproj]
+            """;
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Equal(2, warnings.Count);
+        Assert.Equal(2, warnings["CS0168"]);
+        Assert.Equal(1, warnings["CS0219"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_EmptyOutput_ReturnsEmpty()
+    {
+        var warnings = DotnetBuildHelper.ParseWarnings(string.Empty);
+
+        Assert.Empty(warnings);
+    }
+
+    [Fact]
+    public void ParseWarnings_DoesNotMatchErrors()
+    {
+        const string output = "Program.cs(13,13): error CS0246: The type 'Foo' could not be found";
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Empty(warnings);
+    }
+
     private static Task CreateCsprojFile(DirectoryInfo workingDirectory)
     {
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Test.csproj"));
