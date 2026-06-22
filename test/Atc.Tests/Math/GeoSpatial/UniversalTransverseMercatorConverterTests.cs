@@ -74,4 +74,24 @@ public class UniversalTransverseMercatorConverterTests
         actual.Latitude.Should().Be(expected.Latitude, $"Latitude on ({description})");
         actual.Longitude.Should().Be(expected.Longitude, $"Longitude on ({description})");
     }
+
+    [Theory]
+    [ClassData(typeof(TestClassDataForGeoSpatialToWgs84))]
+    public void ToWgs84_UtmResult(
+        string description,
+        UniversalTransverseMercatorResult input,
+        int maxDecimalPrecision,
+        CartesianCoordinate expected)
+    {
+        // Arrange
+        var converter = new UniversalTransverseMercatorConverter();
+
+        // Act
+        var actual = converter.ToWgs84(input, maxDecimalPrecision);
+
+        // Assert
+        actual.Should().NotBeNull(description);
+        actual.Latitude.Should().Be(expected.Latitude, $"Latitude on ({description})");
+        actual.Longitude.Should().Be(expected.Longitude, $"Longitude on ({description})");
+    }
 }

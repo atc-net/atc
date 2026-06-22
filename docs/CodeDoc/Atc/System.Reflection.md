@@ -41,7 +41,7 @@ Extensions for the `System.Reflection.Assembly` class.
 >```csharp
 >Version GetFileVersion(this Assembly assembly)
 >```
-><b>Summary:</b> Gets the file version of the assembly.
+><b>Summary:</b> Gets the file version of the assembly. Falls back to `System.Reflection.AssemblyFileVersionAttribute` when the assembly location is unavailable (e.g., single-file published apps where `System.Reflection.Assembly.Location` is empty).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to query.<br />
