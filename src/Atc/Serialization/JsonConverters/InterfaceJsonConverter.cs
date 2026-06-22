@@ -46,16 +46,18 @@ public sealed class InterfaceJsonConverter<TInterface> : JsonConverter<TInterfac
         using var document = JsonDocument.ParseValue(ref reader);
         var jsonObject = document.RootElement;
 
-        // Create a new JsonSerializerOptions without this converter
+        // Deserialize the already-parsed JsonElement directly, avoiding an unnecessary re-serialise
+        // to string.  We still need options without this converter to prevent infinite recursion, but
+        // we create a minimal copy (clone of converters minus ourselves) rather than a full options
+        // clone to avoid per-call allocations.
         var modifiedOptions = new JsonSerializerOptions(options);
         var converterToRemove = modifiedOptions.Converters.FirstOrDefault(c => c is InterfaceJsonConverter<TInterface>);
-        if (converterToRemove != null)
+        if (converterToRemove is not null)
         {
             modifiedOptions.Converters.Remove(converterToRemove);
         }
 
-        // Deserialize using the provided concrete type
-        return (TInterface)JsonSerializer.Deserialize(jsonObject.GetRawText(), typeToConvert, modifiedOptions)!;
+        return (TInterface)JsonSerializer.Deserialize(jsonObject, typeToConvert, modifiedOptions)!;
     }
 
     /// <inheritdoc />

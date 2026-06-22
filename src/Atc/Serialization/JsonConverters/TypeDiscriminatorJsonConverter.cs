@@ -13,24 +13,47 @@ namespace Atc.Serialization.JsonConverters;
 public sealed class TypeDiscriminatorJsonConverter<T> : JsonConverter<T>
     where T : ITypeDiscriminator
 {
-    private readonly IEnumerable<Type> types;
+    // Cached per base-type so that multiple converter instances share the same scan result.
+    private static readonly ConcurrentDictionary<Type, IReadOnlyList<Type>> TypeCache = new();
+
+    private readonly IReadOnlyList<Type> types;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TypeDiscriminatorJsonConverter{T}"/> class.
     /// </summary>
     /// <remarks>
     /// This constructor scans all loaded assemblies in the current <see cref="AppDomain"/> to find all
-    /// concrete (non-abstract) class types that implement <typeparamref name="T"/>.
+    /// concrete (non-abstract) class types that implement <typeparamref name="T"/>. The result is cached
+    /// per base type so subsequent instances do not re-scan.
     /// </remarks>
     public TypeDiscriminatorJsonConverter()
     {
-        var type = typeof(T);
-        types = AppDomain
-            .CurrentDomain
-            .GetAssemblies()
-            .SelectMany(s => s.GetTypes())
-            .Where(p => type.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
-            .ToList();
+        types = TypeCache.GetOrAdd(typeof(T), static baseType =>
+        {
+            var found = new List<Type>();
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                IEnumerable<Type> assemblyTypes;
+                try
+                {
+                    assemblyTypes = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    assemblyTypes = ex.Types.Where(t => t is not null)!;
+                }
+
+                foreach (var t in assemblyTypes)
+                {
+                    if (baseType.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract)
+                    {
+                        found.Add(t);
+                    }
+                }
+            }
+
+            return found.AsReadOnly();
+        });
     }
 
     /// <inheritdoc />

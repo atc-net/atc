@@ -23,6 +23,13 @@ public class Point3DTests
         Assert.Equal(expected, actual);
     }
 
+    [Fact]
+    public void IsDefault_WithTinyNonZeroZ_ReturnsFalse()
+    {
+        var input = new Point3D(0, 0, double.Epsilon);
+        Assert.False(input.IsDefault);
+    }
+
     [Theory]
     [InlineData("0, 0, 0", 0, 0, 0)]
     [InlineData("1, 0, 0", 1, 0, 0)]

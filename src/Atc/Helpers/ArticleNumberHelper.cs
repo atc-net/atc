@@ -6,15 +6,27 @@ namespace Atc.Helpers;
 /// <remarks>
 /// https://en.wikipedia.org/wiki/International_Article_Number.
 /// </remarks>
-public static class ArticleNumberHelper
+public static partial class ArticleNumberHelper
 {
-    private static readonly Lazy<Regex> AsinRegex = new(
+#if NET7_0_OR_GREATER
+    [GeneratedRegex(@"^B\d{2}\w{7}|\d{9}(X|\d)$", RegexOptions.None, matchTimeoutMilliseconds: 250)]
+    private static partial Regex GetAsinRegex();
+
+    [GeneratedRegex(@"^\d{4}-\d{3}[\dxX]{1}$", RegexOptions.None, matchTimeoutMilliseconds: 250)]
+    private static partial Regex GetIssnRegex();
+#else
+    private static readonly Lazy<Regex> AsinRegexLazy = new(
         () => new Regex(@"^B\d{2}\w{7}|\d{9}(X|\d)$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250)),
         LazyThreadSafetyMode.ExecutionAndPublication);
 
-    private static readonly Lazy<Regex> IssnRegex = new(
+    private static readonly Lazy<Regex> IssnRegexLazy = new(
         () => new Regex(@"^\d{4}-\d{3}[\dxX]{1}$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250)),
         LazyThreadSafetyMode.ExecutionAndPublication);
+
+    private static Regex GetAsinRegex() => AsinRegexLazy.Value;
+
+    private static Regex GetIssnRegex() => IssnRegexLazy.Value;
+#endif
 
     /// <summary>
     /// Get ArticleNumberType.
@@ -70,7 +82,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        return AsinRegex.Value.IsMatch(asin);
+        return GetAsinRegex().IsMatch(asin);
     }
 
     /// <summary>
@@ -190,7 +202,7 @@ public static class ArticleNumberHelper
             return false;
         }
 
-        return IssnRegex.Value.IsMatch(code);
+        return GetIssnRegex().IsMatch(code);
     }
 
     /// <summary>

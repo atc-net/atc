@@ -11,8 +11,7 @@ public static class ProcessExtensions
 {
     private static readonly TimeSpan DefaultKillTimeout = TimeSpan.FromSeconds(30);
 
-    [SuppressMessage("Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped", Justification = "OK.")]
-    public static async Task WaitForExitAsync(
+    public static Task WaitForExitAsync(
         this Process process,
         CancellationToken cancellationToken = default)
     {
@@ -21,6 +20,18 @@ public static class ProcessExtensions
             throw new ArgumentNullException(nameof(process));
         }
 
+#if NET5_0_OR_GREATER
+        return process.WaitForExitAsync(cancellationToken);
+#else
+        return WaitForExitAsyncCore(process, cancellationToken);
+#endif
+    }
+
+#if !NET5_0_OR_GREATER
+    private static async Task WaitForExitAsyncCore(
+        Process process,
+        CancellationToken cancellationToken)
+    {
         var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
         void ProcessExited(
@@ -54,6 +65,7 @@ public static class ProcessExtensions
             process.Exited -= ProcessExited;
         }
     }
+#endif
 
     /// <summary>
     /// Synchronously terminates the process and any child processes it started, using a default
