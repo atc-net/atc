@@ -70,7 +70,7 @@ internal static class AnalyzerHelper
         Type[] sourceTypes,
         Tuple<Type, MethodInfo[]>[] testTypeMethods)
     {
-        var list = new List<MethodInfo>();
+        var set = new HashSet<MethodInfo>();
         foreach (var tuple in testTypeMethods)
         {
             foreach (var method in tuple.Item2)
@@ -78,12 +78,12 @@ internal static class AnalyzerHelper
                 var instructions = method.GetInstructions();
                 foreach (var instruction in instructions)
                 {
-                    ProcessInstruction(instruction, sourceTypes, list);
+                    ProcessInstruction(instruction, sourceTypes, set);
                 }
             }
         }
 
-        return list
+        return set
             .OrderBy(x => x.DeclaringType?.Name, StringComparer.Ordinal)
             .ThenBy(x => x.Name, StringComparer.Ordinal)
             .ToArray();
@@ -92,7 +92,7 @@ internal static class AnalyzerHelper
     private static void ProcessInstruction(
         Instruction instruction,
         Type[] sourceTypes,
-        List<MethodInfo> list)
+        HashSet<MethodInfo> set)
     {
         if (instruction.Operand is not MethodInfo usedMethodInTest)
         {
@@ -111,9 +111,9 @@ internal static class AnalyzerHelper
         {
             // Try to find the original method from the state machine
             var originalMethod = TryGetOriginalMethodFromStateMachine(type, sourceTypes);
-            if (originalMethod is not null && !list.Contains(originalMethod))
+            if (originalMethod is not null)
             {
-                list.Add(originalMethod);
+                set.Add(originalMethod);
                 return;
             }
         }
@@ -135,10 +135,7 @@ internal static class AnalyzerHelper
             ? usedMethodInTest.GetGenericMethodDefinition()
             : usedMethodInTest;
 
-        if (!list.Contains(methodToAdd))
-        {
-            list.Add(methodToAdd);
-        }
+        set.Add(methodToAdd);
     }
 
     [SuppressMessage("Performance", "MA0009:Regular expressions should not be vulnerable to Denial of Service attacks", Justification = "OK - Simple pattern for compiler-generated names")]

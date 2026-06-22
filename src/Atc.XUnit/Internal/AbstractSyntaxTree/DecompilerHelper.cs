@@ -6,6 +6,10 @@ internal static class DecompilerHelper
     internal static CSharpDecompiler GetDecompiler(Assembly assembly)
     {
         var assemblyFileName = assembly.Location;
+
+        // PEFile is used here only to validate the assembly; the resolver is the long-lived handle.
+        // The resolver itself is not IDisposable so it cannot be wrapped in using, but we close the
+        // validation PEFile immediately to avoid keeping the native handle open.
         using var module = new PEFile(assemblyFileName);
         var resolver = new UniversalAssemblyResolver(assemblyFileName, false, targetFramework: null);
         return new CSharpDecompiler(assemblyFileName, resolver, GetSettings());
@@ -24,6 +28,11 @@ internal static class DecompilerHelper
         var testMethods = new List<Tuple<MethodInfo, MethodDeclaration>>();
         foreach ((Type testType, MethodInfo[] testMethodInfos) in testTypeMethods)
         {
+            if (testType.FullName is null)
+            {
+                continue;
+            }
+
             var fullTypeName = new FullTypeName(testType.FullName);
             var syntaxTree = decompiler.DecompileType(fullTypeName);
             var astNodes = syntaxTree
