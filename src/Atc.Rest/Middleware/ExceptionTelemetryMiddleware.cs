@@ -10,19 +10,14 @@ namespace Atc.Rest.Middleware;
 public class ExceptionTelemetryMiddleware
 {
     private readonly RequestDelegate next;
-    private readonly TelemetryClient client;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionTelemetryMiddleware"/> class.
     /// </summary>
     /// <param name="next">The next middleware delegate in the pipeline.</param>
-    /// <param name="client">The Application Insights telemetry client.</param>
-    public ExceptionTelemetryMiddleware(
-        RequestDelegate next,
-        TelemetryClient client)
+    public ExceptionTelemetryMiddleware(RequestDelegate next)
     {
         this.next = next;
-        this.client = client;
     }
 
     /// <summary>
@@ -47,7 +42,8 @@ public class ExceptionTelemetryMiddleware
         }
         catch (Exception ex)
         {
-            client.TrackException(ex);
+            var telemetryClient = context.RequestServices.GetService<TelemetryClient>();
+            telemetryClient?.TrackException(ex);
 
             if (context.Response.HasStarted)
             {

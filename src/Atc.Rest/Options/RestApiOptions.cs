@@ -76,8 +76,11 @@ public class RestApiOptions
     /// Gets or sets the allowed CORS origins for the API.
     /// </summary>
     /// <remarks>
-    /// When null or empty, a permissive policy (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is used.
-    /// When specified, only the listed origins are allowed. Set this in production to prevent CSRF attacks.
+    /// When null or empty and the environment is Development, a permissive policy
+    /// (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is applied.
+    /// When null or empty in non-Development environments, no CORS middleware is added and the
+    /// browser's same-origin policy applies — no CORS headers are emitted.
+    /// When specified, only the listed origins are allowed in all environments.
     /// </remarks>
     [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "OK.")]
     public List<string>? AllowedCorsOrigins { get; set; }

@@ -20,8 +20,19 @@ public static class HttpRequestExExtensions
 
         encoding ??= Encoding.UTF8;
 
-        using var reader = new StreamReader(request.Body, encoding);
-        return await reader.ReadToEndAsync();
+        // Allow the body to be read more than once so downstream model binding still works.
+        request.EnableBuffering();
+
+        string body;
+        using (var reader = new StreamReader(request.Body, encoding, leaveOpen: true))
+        {
+            body = await reader.ReadToEndAsync();
+        }
+
+        // Rewind so subsequent reads (e.g. model binding) start from the beginning.
+        request.Body.Position = 0;
+
+        return body;
     }
 
     /// <summary>

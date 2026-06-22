@@ -167,8 +167,19 @@ public class RequestResponseLoggerMiddleware
             request.EnableBuffering();
         }
 
-        using var streamReader = new StreamReader(request.Body, leaveOpen: true);
-        var requestBody = await streamReader.ReadToEndAsync();
+        string requestBody;
+        if (maxBufferSize > 0)
+        {
+            // Read at most maxBufferSize bytes so the documented cap is enforced.
+            var buffer = new byte[maxBufferSize];
+            var bytesRead = await request.Body.ReadAsync(buffer.AsMemory(0, buffer.Length));
+            requestBody = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        }
+        else
+        {
+            using var streamReader = new StreamReader(request.Body, leaveOpen: true);
+            requestBody = await streamReader.ReadToEndAsync();
+        }
 
         // Reset the request's body stream position for next middleware in the pipeline.
         request.Body.Position = 0;
