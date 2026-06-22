@@ -34,23 +34,23 @@ public static class ServiceCollectionExtensions
             .DefinedTypes
             .ToArray();
 
+        // Build a lookup keyed by interface FullName to avoid an O(interfaces × types) double loop.
+        var implementationLookup = implementationTypes
+            .SelectMany(t => t.GetInterfaces(), (t, i) => (InterfaceName: i.FullName, Type: t))
+            .Where(x => x.InterfaceName is not null)
+            .ToLookup(x => x.InterfaceName!, x => x.Type, StringComparer.Ordinal);
+
         foreach (var implementationInterface in implementationInterfaces)
         {
-            foreach (var implementationType in implementationTypes)
+            var matchingType = implementationLookup[implementationInterface.FullName ?? string.Empty].FirstOrDefault();
+            if (matchingType is null)
             {
-                if (implementationType
-                        .GetInterfaces()
-                        .FirstOrDefault(x => string.Equals(x.FullName, implementationInterface.FullName, StringComparison.Ordinal)) is null)
-                {
-                    continue;
-                }
+                continue;
+            }
 
-                if (!IsImplementationTypeRegistered(services, implementationType))
-                {
-                    services.AddTransient(implementationInterface, implementationType);
-                }
-
-                break;
+            if (!IsImplementationTypeRegistered(services, matchingType))
+            {
+                services.AddTransient(implementationInterface, matchingType);
             }
         }
     }
@@ -68,11 +68,12 @@ public static class ServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(apiAssembly);
 
+        var registeredServiceTypes = new HashSet<Type>(services.Select(x => x.ServiceType));
+
         var notRegistered = apiAssembly
             .DefinedTypes
             .Where(x => x.IsInterface)
-            .Where(typeInfo => services
-                .All(x => x.ServiceType != typeInfo))
+            .Where(typeInfo => !registeredServiceTypes.Contains(typeInfo))
             .ToList();
 
         if (notRegistered.Count <= 0)
