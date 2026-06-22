@@ -50,6 +50,74 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         Assert.Single(buildErrors);
     }
 
+    [Fact]
+    public void ParseErrors_CompilerError_WithProjectSuffix_Counted()
+    {
+        const string output = "Program.cs(13,13): error CS0246: The type 'Foo' could not be found [Test.csproj]";
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Single(errors);
+        Assert.Equal(1, errors["CS0246"]);
+    }
+
+    [Fact]
+    public void ParseErrors_CompilerError_WithoutProjectSuffix_Counted()
+    {
+        const string output = "Program.cs(13,13): error CS0246: The type 'Foo' could not be found";
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Single(errors);
+        Assert.Equal(1, errors["CS0246"]);
+    }
+
+    [Fact]
+    public void ParseErrors_MSBuildError_Counted()
+    {
+        const string output = "MSBUILD : error MSB1003: Specify a project or solution file.";
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Single(errors);
+        Assert.Equal(1, errors["MSB1003"]);
+    }
+
+    [Fact]
+    public void ParseErrors_NuGetError_Counted()
+    {
+        const string output = "Test.csproj : error NU1101: Unable to find package SomePackage.";
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Single(errors);
+        Assert.Equal(1, errors["NU1101"]);
+    }
+
+    [Fact]
+    public void ParseErrors_MultipleErrors_AggregatedByCode()
+    {
+        const string output = """
+            Program.cs(5,5): error CS0246: Missing type [Test.csproj]
+            Program.cs(6,5): error CS0246: Missing type [Test.csproj]
+            Program.cs(7,5): error CS0103: Name not found [Test.csproj]
+            """;
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Equal(2, errors.Count);
+        Assert.Equal(2, errors["CS0246"]);
+        Assert.Equal(1, errors["CS0103"]);
+    }
+
+    [Fact]
+    public void ParseErrors_EmptyOutput_ReturnsEmpty()
+    {
+        var errors = DotnetBuildHelper.ParseErrors(string.Empty);
+
+        Assert.Empty(errors);
+    }
+
     private static Task CreateCsprojFile(DirectoryInfo workingDirectory)
     {
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Test.csproj"));
