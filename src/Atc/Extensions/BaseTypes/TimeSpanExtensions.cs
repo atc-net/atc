@@ -61,30 +61,30 @@ public static class TimeSpanExtensions
     {
         if ((int)timeSpan.TotalDays > 0)
         {
-            return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
-                   $"{DateAndTime.Days.ToLower(Thread.CurrentThread.CurrentUICulture)}";
+            return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
+                   $"{DateAndTime.Days.ToLower(CultureInfo.CurrentCulture)}";
         }
 
         if ((int)timeSpan.TotalHours > 0)
         {
-            return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
-                   $"{DateAndTime.Hours.ToLower(Thread.CurrentThread.CurrentUICulture)}";
+            return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
+                   $"{DateAndTime.Hours.ToLower(CultureInfo.CurrentCulture)}";
         }
 
         if ((int)timeSpan.TotalMinutes > 0)
         {
-            return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
-                   $"{DateAndTime.MinuteAsAbbreviation.ToLower(Thread.CurrentThread.CurrentUICulture)}";
+            return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
+                   $"{DateAndTime.MinuteAsAbbreviation.ToLower(CultureInfo.CurrentCulture)}";
         }
 
         // ReSharper disable once ConvertIfStatementToReturnStatement
         if ((int)timeSpan.TotalSeconds > 0)
         {
-            return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
-                   $"{DateAndTime.SecondAsAbbreviation.ToLower(Thread.CurrentThread.CurrentUICulture)}";
+            return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
+                   $"{DateAndTime.SecondAsAbbreviation.ToLower(CultureInfo.CurrentCulture)}";
         }
 
-        return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, Thread.CurrentThread.CurrentUICulture)} " +
-               $"{DateAndTime.MillisecondAsAbbreviation1.ToLower(Thread.CurrentThread.CurrentUICulture)}";
+        return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
+               $"{DateAndTime.MillisecondAsAbbreviation1.ToLower(CultureInfo.CurrentCulture)}";
     }
 }
