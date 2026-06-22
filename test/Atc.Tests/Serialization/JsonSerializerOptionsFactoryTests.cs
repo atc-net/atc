@@ -67,4 +67,14 @@ public class JsonSerializerOptionsFactoryTests
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => JsonSerializerOptionsFactory.Create(null!));
     }
+
+    [Fact]
+    public void Default_ReturnsSameInstance()
+    {
+        var first = JsonSerializerOptionsFactory.Default;
+        var second = JsonSerializerOptionsFactory.Default;
+        Assert.Same(first, second);
+        Assert.Equal(JsonNamingPolicy.CamelCase, first.PropertyNamingPolicy);
+        Assert.True(first.WriteIndented);
+    }
 }
