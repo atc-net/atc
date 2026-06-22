@@ -235,6 +235,21 @@ public static class DateTimeOffsetExtensions
         => dateTimeOffset.ToShortDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
+    /// Converts a <see cref="DateTimeOffset"/> to a string using the short date pattern of the specified culture.
+    /// </summary>
+    /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>
+    /// <param name="cultureInfo">The culture whose short date pattern is used.</param>
+    /// <returns>A string representation of the date using the short date pattern of <paramref name="cultureInfo"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
+    public static string ToShortDateStringUsingSpecificCulture(
+        this DateTimeOffset dateTimeOffset,
+        CultureInfo cultureInfo)
+    {
+        ArgumentNullException.ThrowIfNull(cultureInfo);
+        return dateTimeOffset.ToShortDateString(cultureInfo.DateTimeFormat);
+    }
+
+    /// <summary>
     /// Converts a DateTime to a string using the short date pattern of the provided DateTimeFormatInfo.
     /// </summary>
     /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>

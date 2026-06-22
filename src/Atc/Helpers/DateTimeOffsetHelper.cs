@@ -26,6 +26,36 @@ public static class DateTimeOffsetHelper
         out DateTimeOffset result)
     {
         result = default;
+        if (!TryParseUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
+        {
+            return false;
+        }
+
+        result = res;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to parse a string representation of a <c>DateTimeOffset</c> using a specific culture's date and time format.
+    /// </summary>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="cultureInfo">The culture info to use for parsing.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <c>DateTimeOffset</c>,
+    /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
+    /// </param>
+    /// <returns>
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
+    public static bool TryParseUsingSpecificCulture(
+        string value,
+        CultureInfo cultureInfo,
+        out DateTimeOffset result)
+    {
+        ArgumentNullException.ThrowIfNull(cultureInfo);
+
+        result = default;
         if (string.IsNullOrWhiteSpace(value) ||
             value.Length < DateLength)
         {
@@ -34,7 +64,7 @@ public static class DateTimeOffsetHelper
 
         if (!DateTimeOffset.TryParse(
                 value,
-                CultureInfo.CurrentUICulture.DateTimeFormat,
+                cultureInfo.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -62,6 +92,36 @@ public static class DateTimeOffsetHelper
         out DateTimeOffset result)
     {
         result = default;
+        if (!TryParseShortDateUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
+        {
+            return false;
+        }
+
+        result = res;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to parse a string representation of a short date using a specific culture's date format.
+    /// </summary>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="cultureInfo">The culture info to use for parsing.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <c>DateTimeOffset</c>,
+    /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
+    /// </param>
+    /// <returns>
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
+    public static bool TryParseShortDateUsingSpecificCulture(
+        string value,
+        CultureInfo cultureInfo,
+        out DateTimeOffset result)
+    {
+        ArgumentNullException.ThrowIfNull(cultureInfo);
+
+        result = default;
         if (string.IsNullOrWhiteSpace(value) ||
             value.Length > DateLength)
         {
@@ -70,7 +130,7 @@ public static class DateTimeOffsetHelper
 
         if (!DateTimeOffset.TryParse(
                 value,
-                CultureInfo.CurrentUICulture.DateTimeFormat,
+                cultureInfo.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -98,9 +158,39 @@ public static class DateTimeOffsetHelper
         out DateTimeOffset result)
     {
         result = default;
+        if (!TryParseShortTimeUsingSpecificCulture(value, CultureInfo.CurrentUICulture, out var res))
+        {
+            return false;
+        }
 
-        var use24Hours = !(CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
-                           CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
+        result = res;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to parse a string representation of a short time using a specific culture's time format (12-hour or 24-hour).
+    /// </summary>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="cultureInfo">The culture info to use for parsing.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <c>DateTimeOffset</c>,
+    /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
+    /// </param>
+    /// <returns>
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
+    public static bool TryParseShortTimeUsingSpecificCulture(
+        string value,
+        CultureInfo cultureInfo,
+        out DateTimeOffset result)
+    {
+        ArgumentNullException.ThrowIfNull(cultureInfo);
+
+        result = default;
+
+        var use24Hours = !(cultureInfo.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
+                           cultureInfo.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
 
         var maxLength = use24Hours ? MaxTimeLengthFor24Hours : MaxTimeLengthFor12Hours;
 
@@ -110,10 +200,10 @@ public static class DateTimeOffsetHelper
             return false;
         }
 
-        var dateTimeOffsetValue = $"{DateTimeOffset.Now.ToShortDateStringUsingCurrentUiCulture()} {value}";
+        var dateTimeOffsetValue = $"{DateTimeOffset.Now.ToShortDateStringUsingSpecificCulture(cultureInfo)} {value}";
         if (!DateTimeOffset.TryParse(
                 dateTimeOffsetValue,
-                CultureInfo.CurrentUICulture.DateTimeFormat,
+                cultureInfo.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -141,9 +231,39 @@ public static class DateTimeOffsetHelper
         out DateTimeOffset result)
     {
         result = default;
+        if (!TryParseShortTimeUsingSpecificCultureUtc(value, CultureInfo.CurrentUICulture, out var res))
+        {
+            return false;
+        }
 
-        var use24Hours = !(CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
-                           CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
+        result = res;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to parse a string representation of a short UTC time using a specific culture's time format (12-hour or 24-hour).
+    /// </summary>
+    /// <param name="value">The string to parse.</param>
+    /// <param name="cultureInfo">The culture info to use for parsing.</param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed <c>DateTimeOffset</c> in UTC,
+    /// if the parse operation was successful; otherwise, contains the default <c>DateTimeOffset</c>.
+    /// </param>
+    /// <returns>
+    ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="cultureInfo"/> is null.</exception>
+    public static bool TryParseShortTimeUsingSpecificCultureUtc(
+        string value,
+        CultureInfo cultureInfo,
+        out DateTimeOffset result)
+    {
+        ArgumentNullException.ThrowIfNull(cultureInfo);
+
+        result = default;
+
+        var use24Hours = !(cultureInfo.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
+                           cultureInfo.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
 
         var maxLength = use24Hours ? MaxTimeLengthFor24Hours : MaxTimeLengthFor12Hours;
 
@@ -153,10 +273,10 @@ public static class DateTimeOffsetHelper
             return false;
         }
 
-        var dateTimeOffsetValue = $"{DateTimeOffset.UtcNow.ToShortDateStringUsingCurrentUiCulture()} {value}";
+        var dateTimeOffsetValue = $"{DateTimeOffset.UtcNow.ToShortDateStringUsingSpecificCulture(cultureInfo)} {value}";
         if (!DateTimeOffset.TryParse(
                 dateTimeOffsetValue,
-                CultureInfo.CurrentUICulture.DateTimeFormat,
+                cultureInfo.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
