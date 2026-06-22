@@ -27,7 +27,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 
 #### BuildAndCollectErrors
 >```csharp
->Task<Dictionary<string, int>> BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
+>Task<Dictionary<string, int>> BuildAndCollectErrors(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Builds a .NET project or solution and collects compilation errors grouped by error code.
 >
@@ -39,6 +39,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net9.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
@@ -46,7 +47,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 ><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
 #### BuildAndCollectErrors
 >```csharp
->Task<Dictionary<string, int>> BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , CancellationToken cancellationToken = null)
+>Task<Dictionary<string, int>> BuildAndCollectErrors(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Builds a .NET project or solution and collects compilation errors grouped by error code.
 >
@@ -58,11 +59,72 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net9.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
 >
 ><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
+#### BuildAndCollectWarnings
+>```csharp
+>Task<Dictionary<string, int>> BuildAndCollectWarnings(DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Builds a .NET project or solution and collects compilation warnings grouped by warning code.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`rootPath`&nbsp;&nbsp;-&nbsp;&nbsp;The root directory containing the project or solution to build.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runNumber`&nbsp;&nbsp;-&nbsp;&nbsp;Optional run number for logging purposes.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`buildFile`&nbsp;&nbsp;-&nbsp;&nbsp;Optional specific solution or project file to build. If not specified, discovers the build file automatically.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNugetRestore`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to perform NuGet restore before building. Default is true.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
+>
+><b>Returns:</b> A dictionary mapping warning codes to their occurrence counts.
+>
+><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
+#### BuildAndCollectWarnings
+>```csharp
+>Task<Dictionary<string, int>> BuildAndCollectWarnings(ILogger logger, DirectoryInfo rootPath, int? runNumber = null, FileInfo buildFile = null, bool useNugetRestore = True, bool useConfigurationReleaseMode = True, int timeoutInSec = 1200, string logPrefix = , string additionalBuildArguments = , CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Builds a .NET project or solution and collects compilation warnings grouped by warning code.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`rootPath`&nbsp;&nbsp;-&nbsp;&nbsp;The root directory containing the project or solution to build.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runNumber`&nbsp;&nbsp;-&nbsp;&nbsp;Optional run number for logging purposes.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`buildFile`&nbsp;&nbsp;-&nbsp;&nbsp;Optional specific solution or project file to build. If not specified, discovers the build file automatically.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useNugetRestore`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to perform NuGet restore before building. Default is true.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
+>
+><b>Returns:</b> A dictionary mapping warning codes to their occurrence counts.
+>
+><b>Remarks:</b> This is a convenience overload that uses `Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance`; for build progress visibility prefer the overload accepting an `Microsoft.Extensions.Logging.ILogger`.
+#### ParseErrors
+>```csharp
+>Dictionary<string, int> ParseErrors(string buildOutput)
+>```
+><b>Summary:</b> Parses raw dotnet build output and returns error codes grouped by their occurrence count. Recognises MSBuild errors (MSB prefix), NuGet errors (NU prefix), and general compiler errors (e.g. CS, CA). The project-file suffix that MSBuild appends — ` [project.csproj]` — is optional; errors emitted without it are still counted.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`buildOutput`&nbsp;&nbsp;-&nbsp;&nbsp;The raw text output from a dotnet build invocation.<br />
+>
+><b>Returns:</b> A dictionary mapping each error code to the number of times it appeared.
+#### ParseWarnings
+>```csharp
+>Dictionary<string, int> ParseWarnings(string buildOutput)
+>```
+><b>Summary:</b> Parses raw dotnet build output and returns warning codes grouped by their occurrence count. Recognises MSBuild warnings (MSB prefix), NuGet warnings (NU prefix), and general compiler warnings (e.g. CS, CA). The project-file suffix that MSBuild appends — ` [project.csproj]` — is optional; warnings emitted without it are still counted.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`buildOutput`&nbsp;&nbsp;-&nbsp;&nbsp;The raw text output from a dotnet build invocation.<br />
+>
+><b>Returns:</b> A dictionary mapping each warning code to the number of times it appeared.
 
 <br />
 
