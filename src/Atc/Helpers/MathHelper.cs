@@ -207,9 +207,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { int.MaxValue })
-            .Min();
+        return values.DefaultIfEmpty(int.MaxValue).Min();
     }
 
     /// <summary>
@@ -223,9 +221,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { int.MaxValue })
-            .Min();
+        return values.DefaultIfEmpty(int.MaxValue).Min();
     }
 
     /// <summary>
@@ -239,9 +235,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { double.MaxValue })
-            .Min();
+        return values.DefaultIfEmpty(double.MaxValue).Min();
     }
 
     /// <summary>
@@ -255,9 +249,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { double.MaxValue })
-            .Min();
+        return values.DefaultIfEmpty(double.MaxValue).Min();
     }
 
     /// <summary>
@@ -271,9 +263,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { int.MinValue })
-            .Max();
+        return values.DefaultIfEmpty(int.MinValue).Max();
     }
 
     /// <summary>
@@ -287,9 +277,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { int.MinValue })
-            .Max();
+        return values.DefaultIfEmpty(int.MinValue).Max();
     }
 
     /// <summary>
@@ -303,9 +291,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { double.MinValue })
-            .Max();
+        return values.DefaultIfEmpty(double.MinValue).Max();
     }
 
     /// <summary>
@@ -319,9 +305,7 @@ public static class MathHelper
             throw new ArgumentNullException(nameof(values));
         }
 
-        return values
-            .Concat(new[] { double.MinValue })
-            .Max();
+        return values.DefaultIfEmpty(double.MinValue).Max();
     }
 
     /// <summary>
