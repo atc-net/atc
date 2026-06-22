@@ -77,4 +77,89 @@ public static class StreamExtensions
         using var reader = new StreamReader(stream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: -1, leaveOpen: true);
         return reader.ReadToEnd();
     }
+
+    /// <summary>
+    /// Asynchronously copies the contents of the stream to a new <see cref="MemoryStream"/>.
+    /// </summary>
+    /// <param name="stream">The source stream to copy from. The stream position will be reset to 0 before copying if the stream supports seeking.</param>
+    /// <param name="bufferSize">The size of the buffer used for copying. Defaults to 4096 bytes.</param>
+    /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="Task{TResult}"/> that represents the asynchronous operation, containing a new <see cref="MemoryStream"/> with position set to 0.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="stream"/> is <see langword="null"/>.</exception>
+    public static async Task<Stream> CopyToStreamAsync(
+        this Stream stream,
+        int bufferSize = 4096,
+        CancellationToken cancellationToken = default)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        var destination = new MemoryStream();
+        await stream.CopyToAsync(destination, bufferSize, cancellationToken).ConfigureAwait(false);
+        destination.Position = 0;
+        return destination;
+    }
+
+    /// <summary>
+    /// Asynchronously reads all bytes from the stream and returns them as a byte array.
+    /// </summary>
+    /// <param name="stream">The stream to read from. The stream position will be reset to 0 before reading if the stream supports seeking.</param>
+    /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="Task{TResult}"/> that represents the asynchronous operation, containing a byte array with all data from the stream.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="stream"/> is <see langword="null"/>.</exception>
+    public static async Task<byte[]> ToBytesAsync(
+        this Stream stream,
+        CancellationToken cancellationToken = default)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms, 81920, cancellationToken).ConfigureAwait(false);
+        return ms.ToArray();
+    }
+
+    /// <summary>
+    /// Asynchronously reads all content from the stream and converts it to a string using UTF-8 encoding.
+    /// </summary>
+    /// <param name="stream">The stream to read from. The stream position will be reset to 0 before reading if the stream supports seeking.</param>
+    /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="Task{TResult}"/> that represents the asynchronous operation, containing a string with all text content from the stream.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="stream"/> is <see langword="null"/>.</exception>
+    public static async Task<string> ToStringDataAsync(
+        this Stream stream,
+        CancellationToken cancellationToken = default)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        using var reader = new StreamReader(stream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: -1, leaveOpen: true);
+#if NET7_0_OR_GREATER
+        return await reader.ReadToEndAsync(cancellationToken).ConfigureAwait(false);
+#else
+        cancellationToken.ThrowIfCancellationRequested();
+        return await reader.ReadToEndAsync().ConfigureAwait(false);
+#endif
+    }
 }

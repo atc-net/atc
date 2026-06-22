@@ -53,4 +53,53 @@ public class NetworkInformationHelperTests
         // Assert - DNS servers typically accept TCP connections on port 53
         Assert.True(result);
     }
+
+    [Fact]
+    public async Task HasConnectionAsync()
+        => Assert.True(await NetworkInformationHelper.HasConnectionAsync());
+
+    [Theory]
+    [InlineData("8.8.8.8")]
+    [InlineData("1.1.1.1")]
+    public async Task HasConnectionAsync_WithIpAddress(string ipAddressString)
+    {
+        // Arrange
+        var ipAddress = IPAddress.Parse(ipAddressString);
+
+        // Act
+        var result = await NetworkInformationHelper.HasConnectionAsync(ipAddress);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task HasHttpConnectionAsync()
+        => Assert.True(await NetworkInformationHelper.HasHttpConnectionAsync());
+
+    [Theory]
+    [InlineData("https://www.google.com/")]
+    public async Task HasHttpConnectionAsync_Uri(string url)
+        => Assert.True(await NetworkInformationHelper.HasHttpConnectionAsync(new Uri(url)));
+
+    [Fact]
+    public async Task GetPublicIpAddressAsync()
+        => Assert.NotNull(await NetworkInformationHelper.GetPublicIpAddressAsync());
+
+    [Theory]
+    [InlineData("8.8.8.8", 53)]
+    [InlineData("1.1.1.1", 53)]
+    public async Task HasTcpConnectionAsync_WithIpAddressAndPort(
+        string ipAddressString,
+        int port)
+    {
+        // Arrange
+        var ipAddress = IPAddress.Parse(ipAddressString);
+
+        // Act
+        var result = await NetworkInformationHelper.HasTcpConnectionAsync(ipAddress, port);
+
+        // Assert
+        Assert.True(result);
+    }
 }

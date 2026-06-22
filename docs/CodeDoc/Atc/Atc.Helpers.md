@@ -2142,6 +2142,16 @@ Provides utility methods for checking network connectivity and retrieving networ
 ><b>Summary:</b> Retrieves the public IP address of the current machine by querying an external service (api.ipify.org).
 >
 ><b>Returns:</b> The public `System.Net.IPAddress` if retrieval succeeds; otherwise, <see langword="null" />.
+#### GetPublicIpAddressAsync
+>```csharp
+>Task<IPAddress> GetPublicIpAddressAsync(CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously retrieves the public IP address of the current machine by querying an external service (api.ipify.org).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> The public `System.Net.IPAddress` if retrieval succeeds; otherwise, <see langword="null" />.
 #### HasConnection
 >```csharp
 >bool HasConnection()
@@ -2154,6 +2164,26 @@ Provides utility methods for checking network connectivity and retrieving networ
 >bool HasConnection(IPAddress ipAddress)
 >```
 ><b>Summary:</b> Determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
+>
+><b>Returns:</b> <see langword="true" /> if a ping response is received; otherwise, <see langword="false" />.
+#### HasConnectionAsync
+>```csharp
+>Task<bool> HasConnectionAsync(CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> <see langword="true" /> if a ping response is received; otherwise, <see langword="false" />.
+#### HasConnectionAsync
+>```csharp
+>Task<bool> HasConnectionAsync(IPAddress ipAddress, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if a ping response is received; otherwise, <see langword="false" />.
 #### HasHttpConnection
@@ -2170,6 +2200,26 @@ Provides utility methods for checking network connectivity and retrieving networ
 ><b>Summary:</b> Determines whether there is HTTP connectivity by making a request to Google's website.
 >
 ><b>Returns:</b> <see langword="true" /> if the HTTP request succeeds; otherwise, <see langword="false" />.
+#### HasHttpConnectionAsync
+>```csharp
+>Task<bool> HasHttpConnectionAsync(CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously determines whether there is HTTP connectivity by making a request to Google's website.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the HTTP request succeeds; otherwise, <see langword="false" />.
+#### HasHttpConnectionAsync
+>```csharp
+>Task<bool> HasHttpConnectionAsync(Uri uri, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously determines whether there is HTTP connectivity by making a request to Google's website.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the HTTP request succeeds; otherwise, <see langword="false" />.
 #### HasTcpConnection
 >```csharp
 >bool HasTcpConnection(IPAddress ipAddress, int port)
@@ -2181,6 +2231,18 @@ Provides utility methods for checking network connectivity and retrieving networ
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`port`&nbsp;&nbsp;-&nbsp;&nbsp;The port number to connect to.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the TCP connection succeeds; otherwise, <see langword="false" />.
+#### HasTcpConnectionAsync
+>```csharp
+>Task<bool> HasTcpConnectionAsync(IPAddress ipAddress, int port, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously determines whether a TCP connection can be established to the specified IP address and port. A connection timeout of 5 seconds is applied; pass a pre-cancelled token to impose a shorter deadline.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ipAddress`&nbsp;&nbsp;-&nbsp;&nbsp;The IP address to connect to.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`port`&nbsp;&nbsp;-&nbsp;&nbsp;The port number to connect to.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the TCP connection succeeds within the timeout; otherwise, <see langword="false" />.
 
 <br />
 

@@ -152,6 +152,65 @@ Configuration settings for creating `System.Text.Json.JsonSerializerOptions` ins
 
 <br />
 
+## JsonSerializerHelper
+Provides async stream-based serialization and deserialization helpers using `System.Text.Json.JsonSerializer`.
+><b>Remarks:</b> All overloads that omit `System.Text.Json.JsonSerializerOptions` use `Atc.Serialization.JsonSerializerOptionsFactory` default options.
+
+>```csharp
+>public static class JsonSerializerHelper
+>```
+
+### Static Methods
+
+#### DeserializeFromStreamAsync
+>```csharp
+>Task<T> DeserializeFromStreamAsync(Stream stream, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously deserializes a value of type `T` from the specified UTF-8 JSON stream using the default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stream`&nbsp;&nbsp;-&nbsp;&nbsp;The UTF-8 encoded JSON stream to read from.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> A `System.Threading.Tasks.Task`1` that represents the asynchronous operation, containing the deserialized value, or <see langword="null" /> if the stream contains a JSON null literal.
+#### DeserializeFromStreamAsync
+>```csharp
+>Task<T> DeserializeFromStreamAsync(Stream stream, JsonSerializerOptions options, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously deserializes a value of type `T` from the specified UTF-8 JSON stream using the default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stream`&nbsp;&nbsp;-&nbsp;&nbsp;The UTF-8 encoded JSON stream to read from.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> A `System.Threading.Tasks.Task`1` that represents the asynchronous operation, containing the deserialized value, or <see langword="null" /> if the stream contains a JSON null literal.
+#### SerializeToStreamAsync
+>```csharp
+>Task SerializeToStreamAsync(T value, Stream stream, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously serializes `value` as UTF-8 JSON into the specified stream using the default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stream`&nbsp;&nbsp;-&nbsp;&nbsp;The stream to write JSON into.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> A `System.Threading.Tasks.Task` that represents the asynchronous write operation.
+#### SerializeToStreamAsync
+>```csharp
+>Task SerializeToStreamAsync(T value, Stream stream, JsonSerializerOptions options, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Asynchronously serializes `value` as UTF-8 JSON into the specified stream using the default serializer options.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to serialize.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stream`&nbsp;&nbsp;-&nbsp;&nbsp;The stream to write JSON into.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous operation.<br />
+>
+><b>Returns:</b> A `System.Threading.Tasks.Task` that represents the asynchronous write operation.
+
+<br />
+
 ## JsonSerializerOptionsFactory
 Factory class for creating preconfigured `System.Text.Json.JsonSerializerOptions` instances.
 ><b>Remarks:</b> This factory provides convenient methods to create `System.Text.Json.JsonSerializerOptions` with common settings and custom converters. It supports both parameter-based and settings-based configuration.

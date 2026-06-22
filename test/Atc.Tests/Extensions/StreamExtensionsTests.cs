@@ -111,6 +111,160 @@ public class StreamExtensionsTests
         Assert.Equal("Hallo world", actual);
     }
 
+    [Fact]
+    public async Task CopyToStreamAsync()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+
+        // Act
+        var actual = await input.CopyToStreamAsync();
+
+        // Assert
+        Assert.Equal("Hallo world", await actual.ToStringDataAsync());
+    }
+
+    [Fact]
+    public async Task CopyToStreamAsync_BufferSize()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+
+        // Act
+        var actual = await input.CopyToStreamAsync(bufferSize: 1024);
+
+        // Assert
+        Assert.Equal("Hallo world", await actual.ToStringDataAsync());
+    }
+
+    [Fact]
+    public async Task CopyToStreamAsync_NonSeekable_DoesNotThrow()
+    {
+        // Arrange
+        var inner = "Hallo world".ToStream();
+        using var input = new NonSeekableStream(inner);
+
+        // Act
+        var actual = await input.CopyToStreamAsync();
+
+        // Assert
+        Assert.Equal("Hallo world", await actual.ToStringDataAsync());
+    }
+
+    [Fact]
+    public async Task CopyToStreamAsync_Cancelled_ThrowsOperationCanceledException()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+
+        // Act
+        var ex = await Record.ExceptionAsync(() => (Task)input.CopyToStreamAsync(cancellationToken: cts.Token));
+
+        // Assert
+        Assert.IsAssignableFrom<OperationCanceledException>(ex);
+    }
+
+    [Fact]
+    public async Task ToBytesAsync()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+
+        // Act
+        var buffer = await input.ToBytesAsync();
+        var actual = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+
+        // Assert
+        Assert.Equal("Hallo world", actual);
+    }
+
+    [Fact]
+    public async Task ToBytesAsync_NonSeekable_DoesNotThrow()
+    {
+        // Arrange
+        var inner = "Hallo world".ToStream();
+        using var input = new NonSeekableStream(inner);
+
+        // Act
+        var buffer = await input.ToBytesAsync();
+        var actual = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+
+        // Assert
+        Assert.Equal("Hallo world", actual);
+    }
+
+    [Fact]
+    public async Task ToBytesAsync_Cancelled_ThrowsOperationCanceledException()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+
+        // Act
+        var ex = await Record.ExceptionAsync(() => (Task)input.ToBytesAsync(cts.Token));
+
+        // Assert
+        Assert.IsAssignableFrom<OperationCanceledException>(ex);
+    }
+
+    [Fact]
+    public async Task ToStringDataAsync()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+
+        // Act
+        var actual = await input.ToStringDataAsync();
+
+        // Assert
+        Assert.Equal("Hallo world", actual);
+    }
+
+    [Fact]
+    public async Task ToStringDataAsync_DoesNotDisposeCallerStream()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+
+        // Act
+        _ = await input.ToStringDataAsync();
+
+        // Assert
+        Assert.True(input.CanRead);
+    }
+
+    [Fact]
+    public async Task ToStringDataAsync_NonSeekable_DoesNotThrow()
+    {
+        // Arrange
+        var inner = "Hallo world".ToStream();
+        using var input = new NonSeekableStream(inner);
+
+        // Act
+        var actual = await input.ToStringDataAsync();
+
+        // Assert
+        Assert.Equal("Hallo world", actual);
+    }
+
+    [Fact]
+    public async Task ToStringDataAsync_Cancelled_ThrowsOperationCanceledException()
+    {
+        // Arrange
+        var input = "Hallo world".ToStream();
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+
+        // Act
+        var ex = await Record.ExceptionAsync(() => (Task)input.ToStringDataAsync(cts.Token));
+
+        // Assert
+        Assert.IsAssignableFrom<OperationCanceledException>(ex);
+    }
+
     /// <summary>
     /// Wraps a stream and hides seek capability to simulate non-seekable sources
     /// (e.g. network or compressed streams).

@@ -25,9 +25,10 @@ internal static class AssemblyTestHelper
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes)
+        List<Type>? excludeSourceTypes,
+        CancellationToken cancellationToken = default)
     {
-        var methodsWithMissingTests = CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes);
+        var methodsWithMissingTests = CollectExportedMethodsWithMissingTests(decompilerType, sourceAssembly, testAssembly, excludeSourceTypes, cancellationToken);
 
         var methodsWithMissingTestsGroups = methodsWithMissingTests
             .OrderBy(x => x.DeclaringType?.FullName, StringComparer.Ordinal)
@@ -43,7 +44,8 @@ internal static class AssemblyTestHelper
     internal static MethodInfo[] CollectExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
-        Type testType)
+        Type testType,
+        CancellationToken cancellationToken = default)
     {
         if (sourceType is null)
         {
@@ -54,6 +56,8 @@ internal static class AssemblyTestHelper
         {
             throw new ArgumentNullException(nameof(testType));
         }
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         var sourceTypes = new[] { sourceType };
         var testTypes = new[] { testType };
@@ -76,7 +80,8 @@ internal static class AssemblyTestHelper
     internal static MethodInfo[] CollectExportedMethodsWithMissingTests(
         DecompilerType decompilerType,
         Type sourceType,
-        Assembly testAssembly)
+        Assembly testAssembly,
+        CancellationToken cancellationToken = default)
     {
         if (sourceType is null)
         {
@@ -87,6 +92,8 @@ internal static class AssemblyTestHelper
         {
             throw new ArgumentNullException(nameof(testAssembly));
         }
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         var sourceTypes = new[] { sourceType };
         var testTypes = testAssembly.ExportedTypes.ToArray();
@@ -111,7 +118,8 @@ internal static class AssemblyTestHelper
         DecompilerType decompilerType,
         Assembly sourceAssembly,
         Assembly testAssembly,
-        List<Type>? excludeSourceTypes)
+        List<Type>? excludeSourceTypes,
+        CancellationToken cancellationToken = default)
     {
         if (sourceAssembly is null)
         {
@@ -122,6 +130,8 @@ internal static class AssemblyTestHelper
         {
             throw new ArgumentNullException(nameof(testAssembly));
         }
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         var sourceTypes = sourceAssembly.ExportedTypes
             .Where(x => !x.IsInterface &&
@@ -141,6 +151,8 @@ internal static class AssemblyTestHelper
                 .OrderBy(x => x.Name, StringComparer.Ordinal)
                 .ToArray();
         }
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         var testTypes = testAssembly.ExportedTypes.ToArray();
         var testTypeMethods = TypeAndMethodAndParameterHelper.GetTypeMethodsWithTestAttributes(testTypes);

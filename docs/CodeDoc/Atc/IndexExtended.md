@@ -4401,7 +4401,10 @@
 - [AsyncEnumerableFactory](Atc.Factories.md#asyncenumerablefactory)
   -  Static Methods
      - Empty()
-     - FromSingleItem(T item)
+     - FromEnumerable(IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
+     - FromItems(T[] items, CancellationToken cancellationToken = null)
+     - FromSingleItem(T item, CancellationToken cancellationToken = null)
+     - FromTask(Task&lt;T&gt; task, CancellationToken cancellationToken = null)
 
 ## [Atc.Helpers](Atc.Helpers.md)
 
@@ -4650,11 +4653,17 @@
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
   -  Static Methods
      - GetPublicIpAddress()
+     - GetPublicIpAddressAsync(CancellationToken cancellationToken = null)
      - HasConnection()
      - HasConnection(IPAddress ipAddress)
+     - HasConnectionAsync(CancellationToken cancellationToken = null)
+     - HasConnectionAsync(IPAddress ipAddress, CancellationToken cancellationToken = null)
      - HasHttpConnection()
      - HasHttpConnection(Uri uri)
+     - HasHttpConnectionAsync(CancellationToken cancellationToken = null)
+     - HasHttpConnectionAsync(Uri uri, CancellationToken cancellationToken = null)
      - HasTcpConnection(IPAddress ipAddress, int port)
+     - HasTcpConnectionAsync(IPAddress ipAddress, int port, CancellationToken cancellationToken = null)
 - [NumberHelper](Atc.Helpers.md#numberhelper)
   -  Static Methods
      - IsDecimal(string value)
@@ -4882,6 +4891,12 @@
      - UseConverterUnixDatetimeOffset
      - UseConverterVersion
      - WriteIndented
+- [JsonSerializerHelper](Atc.Serialization.md#jsonserializerhelper)
+  -  Static Methods
+     - DeserializeFromStreamAsync(Stream stream, CancellationToken cancellationToken = null)
+     - DeserializeFromStreamAsync(Stream stream, JsonSerializerOptions options, CancellationToken cancellationToken = null)
+     - SerializeToStreamAsync(T value, Stream stream, CancellationToken cancellationToken = null)
+     - SerializeToStreamAsync(T value, Stream stream, JsonSerializerOptions options, CancellationToken cancellationToken = null)
 - [JsonSerializerOptionsFactory](Atc.Serialization.md#jsonserializeroptionsfactory)
   -  Static Methods
      - Create(JsonSerializerFactorySettings settings)
@@ -5503,8 +5518,11 @@
 - [StreamExtensions](System.IO.md#streamextensions)
   -  Static Methods
      - CopyToStream(this Stream stream, int bufferSize = 4096)
+     - CopyToStreamAsync(this Stream stream, int bufferSize = 4096, CancellationToken cancellationToken = null)
      - ToBytes(this Stream stream)
+     - ToBytesAsync(this Stream stream, CancellationToken cancellationToken = null)
      - ToStringData(this Stream stream)
+     - ToStringDataAsync(this Stream stream, CancellationToken cancellationToken = null)
 
 ## [System.Net](System.Net.md)
 

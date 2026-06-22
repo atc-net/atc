@@ -33,7 +33,11 @@ public class CodeComplianceTests
         typeof(UriToAbsoluteUriJsonConverter), // JsonConverter override methods with ref parameters
         typeof(VersionJsonConverter), // JsonConverter override methods with ref parameters
         typeof(System.TypeExtensions),
+        typeof(System.StringExtensions), // AST has limitations with CultureInfo/DateTimeStyles parameter detection
         typeof(AsyncEnumerableFactory),
+        typeof(NetworkInformationHelper), // AST/MonoReflection limitations with async methods and default CancellationToken parameters
+        typeof(JsonSerializerHelper), // AST/MonoReflection limitations with generic async methods and default CancellationToken parameters
+        typeof(System.IO.StreamExtensions), // AST/MonoReflection limitations with async extension methods and default CancellationToken parameters
         typeof(ByteExtensions),
         typeof(EnumerableExtensions),
         typeof(StringCaseFormatter), // AST has limitations with IFormatProvider/ICustomFormatter interface method detection
