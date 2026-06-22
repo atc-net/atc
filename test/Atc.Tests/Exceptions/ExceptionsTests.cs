@@ -431,6 +431,79 @@ public class ExceptionsTests
     }
 
     [Fact]
+    public void SwitchCaseDefaultException_ObjectValue_ContainsTypeAndValue()
+    {
+        var sut = new SwitchCaseDefaultException("unexpected");
+        Assert.Contains("String", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("unexpected", sut.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void SwitchCaseDefaultException_NullObjectValue_ContainsNullIndicator()
+    {
+        var sut = new SwitchCaseDefaultException((object?)null);
+        Assert.Contains("<null>", sut.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void SwitchCaseDefaultException_ThrowEnum_ThrowsWithEnumDetails()
+    {
+        var ex = Assert.Throws<SwitchCaseDefaultException>(
+            () => SwitchCaseDefaultException.Throw(DayOfWeek.Wednesday));
+        Assert.Contains("Wednesday", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void SwitchCaseDefaultException_ThrowObject_ThrowsWithDetails()
+    {
+        var ex = Assert.Throws<SwitchCaseDefaultException>(
+            () => SwitchCaseDefaultException.Throw((object)"bad"));
+        Assert.Contains("bad", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void ConfigurationException_StructuredCtorWithInner_CarriesInnerException()
+    {
+        var inner = new InvalidOperationException("root cause");
+        var sut = new ConfigurationException("MySection", "MyKey", isMissing: true, inner);
+        Assert.Contains("MySection", sut.Message, StringComparison.Ordinal);
+        Assert.Contains("MyKey", sut.Message, StringComparison.Ordinal);
+        Assert.Same(inner, sut.InnerException);
+    }
+
+    [Fact]
+    public void ConfigurationException_ThrowIfMissing_ThrowsWhenNullOrEmpty()
+    {
+        Assert.Throws<ConfigurationException>(
+            () => ConfigurationException.ThrowIfMissing(null, "Sec", "Key"));
+        Assert.Throws<ConfigurationException>(
+            () => ConfigurationException.ThrowIfMissing(string.Empty, "Sec", "Key"));
+    }
+
+    [Fact]
+    public void ConfigurationException_ThrowIfMissing_DoesNotThrowWhenValuePresent()
+    {
+        var exception = Record.Exception(
+            () => ConfigurationException.ThrowIfMissing("value", "Sec", "Key"));
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void ConfigurationException_ThrowIfInvalid_ThrowsWhenConditionTrue()
+    {
+        Assert.Throws<ConfigurationException>(
+            () => ConfigurationException.ThrowIfInvalid(condition: true, "Sec", "Key"));
+    }
+
+    [Fact]
+    public void ConfigurationException_ThrowIfInvalid_DoesNotThrowWhenConditionFalse()
+    {
+        var exception = Record.Exception(
+            () => ConfigurationException.ThrowIfInvalid(condition: false, "Sec", "Key"));
+        Assert.Null(exception);
+    }
+
+    [Fact]
     public void UnexpectedTypeException_Types_ContainsTypeNames()
     {
         var sut = new UnexpectedTypeException(typeof(string), typeof(int));
