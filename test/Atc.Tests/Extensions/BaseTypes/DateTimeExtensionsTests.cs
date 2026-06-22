@@ -417,4 +417,48 @@ public class DateTimeExtensionsTests
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void StartOfDay_ReturnsMidnight()
+    {
+        var input = new DateTime(2024, 3, 15, 10, 30, 45, DateTimeKind.Utc);
+        var result = input.StartOfDay();
+        Assert.Equal(new DateTime(2024, 3, 15, 0, 0, 0, DateTimeKind.Utc), result);
+    }
+
+    [Fact]
+    public void EndOfDay_ReturnsLastTick()
+    {
+        var input = new DateTime(2024, 3, 15, 10, 30, 45, DateTimeKind.Utc);
+        var result = input.EndOfDay();
+        Assert.Equal(new DateTime(2024, 3, 15, 0, 0, 0, DateTimeKind.Utc).AddDays(1).AddTicks(-1), result);
+    }
+
+    [Fact]
+    public void StartOfMonth_ReturnsFirstDayMidnight()
+    {
+        var input = new DateTime(2024, 3, 15, 10, 30, 45, DateTimeKind.Utc);
+        var result = input.StartOfMonth();
+        Assert.Equal(new DateTime(2024, 3, 1, 0, 0, 0, DateTimeKind.Utc), result);
+    }
+
+    [Fact]
+    public void EndOfMonth_ReturnsLastTickOfLastDay()
+    {
+        var input = new DateTime(2024, 2, 10, 10, 30, 45, DateTimeKind.Utc);
+        var result = input.EndOfMonth();
+        Assert.Equal(new DateTime(2024, 2, 29, 0, 0, 0, DateTimeKind.Utc).AddDays(1).AddTicks(-1), result);
+    }
+
+    [Theory]
+    [InlineData(true, 2024, 3, 16)]
+    [InlineData(true, 2024, 3, 17)]
+    [InlineData(false, 2024, 3, 18)]
+    [InlineData(false, 2024, 3, 15)]
+    public void IsWeekend(
+        bool expected,
+        int year,
+        int month,
+        int day)
+        => Assert.Equal(expected, new DateTime(year, month, day).IsWeekend());
 }

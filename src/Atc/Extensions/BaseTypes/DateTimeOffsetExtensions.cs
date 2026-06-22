@@ -288,4 +288,53 @@ public static class DateTimeOffsetExtensions
             dateTimeFormatInfo.ShortTimePattern,
             dateTimeFormatInfo);
     }
+
+    /// <summary>
+    /// Returns a new <see cref="DateTimeOffset"/> set to the very start of the same day (00:00:00.000),
+    /// preserving the original <see cref="DateTimeOffset.Offset"/>.
+    /// </summary>
+    /// <param name="dateTimeOffset">The date-time value.</param>
+    /// <returns>Midnight at the start of the date, with the same UTC offset.</returns>
+    public static DateTimeOffset StartOfDay(this DateTimeOffset dateTimeOffset)
+        => new(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0, dateTimeOffset.Offset);
+
+    /// <summary>
+    /// Returns a new <see cref="DateTimeOffset"/> set to the very end of the same day (23:59:59.9999999),
+    /// preserving the original <see cref="DateTimeOffset.Offset"/>.
+    /// </summary>
+    /// <param name="dateTimeOffset">The date-time value.</param>
+    /// <returns>The last representable tick of the date, with the same UTC offset.</returns>
+    public static DateTimeOffset EndOfDay(this DateTimeOffset dateTimeOffset)
+        => new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0, dateTimeOffset.Offset)
+            .AddDays(1)
+            .AddTicks(-1);
+
+    /// <summary>
+    /// Returns a new <see cref="DateTimeOffset"/> set to the first day of the same month at midnight,
+    /// preserving the original <see cref="DateTimeOffset.Offset"/>.
+    /// </summary>
+    /// <param name="dateTimeOffset">The date-time value.</param>
+    /// <returns>The first day of the month, with the same UTC offset.</returns>
+    public static DateTimeOffset StartOfMonth(
+        this DateTimeOffset dateTimeOffset)
+        => new(dateTimeOffset.Year, dateTimeOffset.Month, 1, 0, 0, 0, dateTimeOffset.Offset);
+
+    /// <summary>
+    /// Returns a new <see cref="DateTimeOffset"/> set to the last tick of the last day of the same month,
+    /// preserving the original <see cref="DateTimeOffset.Offset"/>.
+    /// </summary>
+    /// <param name="dateTimeOffset">The date-time value.</param>
+    /// <returns>The last representable tick of the month, with the same UTC offset.</returns>
+    public static DateTimeOffset EndOfMonth(this DateTimeOffset dateTimeOffset)
+        => new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, DateTime.DaysInMonth(dateTimeOffset.Year, dateTimeOffset.Month), 0, 0, 0, dateTimeOffset.Offset)
+            .AddDays(1)
+            .AddTicks(-1);
+
+    /// <summary>
+    /// Determines whether the date falls on a Saturday or Sunday.
+    /// </summary>
+    /// <param name="dateTimeOffset">The date to test.</param>
+    /// <returns><see langword="true"/> if the day of week is <see cref="DayOfWeek.Saturday"/> or <see cref="DayOfWeek.Sunday"/>; otherwise, <see langword="false"/>.</returns>
+    public static bool IsWeekend(this DateTimeOffset dateTimeOffset)
+        => dateTimeOffset.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
 }
