@@ -111,7 +111,7 @@ public static class IntegerExtensions
         var time = timeBegin.AddMonths(month - 1);
 
         // ReSharper disable once StringLiteralTypo
-        var str = time.ToString("MMMM", Thread.CurrentThread.CurrentUICulture);
+        var str = time.ToString("MMMM", CultureInfo.CurrentUICulture);
         if (str.Length <= 0)
         {
             return string.Empty;
@@ -128,7 +128,7 @@ public static class IntegerExtensions
     /// <param name="year">The year.</param>
     /// <returns>The get number of weeks.</returns>
     public static int GetNumberOfWeeksByYear(this int year)
-        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
     /// Get the date of the first day in the given year and week number.
@@ -140,12 +140,12 @@ public static class IntegerExtensions
         this int year,
         int weekNumber)
     {
-        var calendar = CultureInfo.CurrentUICulture.Calendar;
+        var calendar = CultureInfo.CurrentCulture.Calendar;
         var firstOfYear = new DateTime(year, 1, 1, calendar);
         var daysOffset = DayOfWeek.Thursday - firstOfYear.DayOfWeek;
 
         var firstThursday = firstOfYear.AddDays(daysOffset);
-        var firstWeek = CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        var firstWeek = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
         var weekNum = weekNumber;
         if (firstWeek <= 1)

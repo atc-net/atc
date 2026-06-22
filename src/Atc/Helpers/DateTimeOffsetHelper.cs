@@ -34,7 +34,7 @@ public static class DateTimeOffsetHelper
 
         if (!DateTimeOffset.TryParse(
                 value,
-                Thread.CurrentThread.CurrentUICulture.DateTimeFormat,
+                CultureInfo.CurrentUICulture.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -70,7 +70,7 @@ public static class DateTimeOffsetHelper
 
         if (!DateTimeOffset.TryParse(
                 value,
-                Thread.CurrentThread.CurrentUICulture.DateTimeFormat,
+                CultureInfo.CurrentUICulture.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -99,8 +99,8 @@ public static class DateTimeOffsetHelper
     {
         result = default;
 
-        var use24Hours = !(Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
-                           Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
+        var use24Hours = !(CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
+                           CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
 
         var maxLength = use24Hours ? MaxTimeLengthFor24Hours : MaxTimeLengthFor12Hours;
 
@@ -113,7 +113,7 @@ public static class DateTimeOffsetHelper
         var dateTimeOffsetValue = $"{DateTimeOffset.Now.ToShortDateStringUsingCurrentUiCulture()} {value}";
         if (!DateTimeOffset.TryParse(
                 dateTimeOffsetValue,
-                Thread.CurrentThread.CurrentUICulture.DateTimeFormat,
+                CultureInfo.CurrentUICulture.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
@@ -142,8 +142,8 @@ public static class DateTimeOffsetHelper
     {
         result = default;
 
-        var use24Hours = !(Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
-                           Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
+        var use24Hours = !(CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h:", StringComparison.Ordinal) ||
+                           CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.StartsWith("h.", StringComparison.Ordinal));
 
         var maxLength = use24Hours ? MaxTimeLengthFor24Hours : MaxTimeLengthFor12Hours;
 
@@ -156,7 +156,7 @@ public static class DateTimeOffsetHelper
         var dateTimeOffsetValue = $"{DateTimeOffset.UtcNow.ToShortDateStringUsingCurrentUiCulture()} {value}";
         if (!DateTimeOffset.TryParse(
                 dateTimeOffsetValue,
-                Thread.CurrentThread.CurrentUICulture.DateTimeFormat,
+                CultureInfo.CurrentUICulture.DateTimeFormat,
                 DateTimeStyles.None,
                 out var res))
         {
