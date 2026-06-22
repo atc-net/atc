@@ -51,11 +51,14 @@ public class ConfigureApiBehaviorOptions : IConfigureOptions<ApiBehaviorOptions>
                 },
             };
 
+            // Log only the field names (not values) to avoid capturing PII or user-submitted data in telemetry.
+            var invalidFields = string.Join(", ", error.Errors.Keys);
             telemetry?.TrackTrace(
                 "BadRequest",
                 new Dictionary<string, string>(StringComparer.Ordinal)
                 {
-                    { "Response.Body", JsonSerializer.Serialize(error) },
+                    { "InvalidFields", invalidFields },
+                    { "TraceId", error.Extensions.TryGetValue("traceId", out var traceId) ? traceId?.ToString() ?? string.Empty : string.Empty },
                 });
 
             return new BadRequestObjectResult(error);
