@@ -122,12 +122,12 @@ public static class DecimalExtensions
         => (int)CurrencyRounding(value, 0);
 
     /// <summary>
-    /// Rounds a decimal value using the currency decimal digits of the current UI culture.
+    /// Rounds a decimal value using the currency decimal digits of the current culture.
     /// </summary>
     /// <param name="value">The decimal value to round.</param>
     /// <returns>The rounded decimal value.</returns>
     public static decimal CurrencyRounding(this decimal value)
-        => CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
+        => CurrencyRounding(value, CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalDigits);
 
     /// <summary>
     /// Rounds a decimal value to a specified number of decimal digits using midpoint rounding away from zero.

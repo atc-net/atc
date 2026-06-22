@@ -129,12 +129,12 @@ public static class DoubleExtensions
         => (int)CurrencyRounding(value, 0);
 
     /// <summary>
-    /// Rounds a double value using the currency decimal digits of the current UI culture.
+    /// Rounds a double value using the currency decimal digits of the current culture.
     /// </summary>
     /// <param name="value">The double value to round.</param>
     /// <returns>The rounded double value.</returns>
     public static double CurrencyRounding(this double value)
-        => CurrencyRounding(value, Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
+        => CurrencyRounding(value, CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalDigits);
 
     /// <summary>
     /// Rounds a double value to a specified number of decimal digits using midpoint rounding away from zero.
