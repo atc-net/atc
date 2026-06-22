@@ -125,7 +125,7 @@ Provides logger instances configured for Spectre.Console rendering.
 >```csharp
 >ILogger CreateLogger(string categoryName)
 >```
-><b>Summary:</b> Creates a new `Atc.Console.Spectre.Logging.ConsoleLogger` instance for the specified category.
+><b>Summary:</b> Creates a new `Atc.Console.Spectre.Logging.ConsoleLogger` instance for the specified category. All loggers share the provider's `Spectre.Console.IAnsiConsole` instance.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`categoryName`&nbsp;&nbsp;-&nbsp;&nbsp;The category name for the logger.<br />

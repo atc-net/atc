@@ -3,13 +3,19 @@ namespace Atc.XUnit.Internal.AbstractSyntaxTree;
 
 internal static class DecompilerHelper
 {
+    private static readonly ConcurrentDictionary<string, Lazy<CSharpDecompiler>> Cache = new(StringComparer.OrdinalIgnoreCase);
+
     internal static CSharpDecompiler GetDecompiler(Assembly assembly)
     {
         var assemblyFileName = assembly.Location;
+        return Cache.GetOrAdd(assemblyFileName, static path =>
+            new Lazy<CSharpDecompiler>(() => CreateDecompiler(path), LazyThreadSafetyMode.ExecutionAndPublication)).Value;
+    }
 
-        // PEFile is used here only to validate the assembly; the resolver is the long-lived handle.
-        // The resolver itself is not IDisposable so it cannot be wrapped in using, but we close the
-        // validation PEFile immediately to avoid keeping the native handle open.
+    private static CSharpDecompiler CreateDecompiler(string assemblyFileName)
+    {
+        // PEFile is used only to validate the assembly path; the resolver is the long-lived handle.
+        // Close the validation PEFile immediately to avoid keeping the native handle open.
         using var module = new PEFile(assemblyFileName);
         var resolver = new UniversalAssemblyResolver(assemblyFileName, false, targetFramework: null);
         return new CSharpDecompiler(assemblyFileName, resolver, GetSettings());
