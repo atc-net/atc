@@ -560,4 +560,25 @@ public class SemanticVersionTests
         // Assert
         Assert.Equal(expected, System.Math.Sign(actual));
     }
+
+    [Theory]
+    [InlineData("1.2.3", "1.2.3")]
+    [InlineData("1.2.3-beta.1", "1.2.3-beta.1")]
+    public void IFormattable_ToString_ReturnsStandardFormat(
+        string input,
+        string expected)
+    {
+        IFormattable sut = new SemanticVersion(input);
+        Assert.Equal(expected, sut.ToString(format: null, formatProvider: null));
+    }
+
+    [Fact]
+    public void IFormattable_ToString_IgnoresFormatAndProvider()
+    {
+        IFormattable sut = new SemanticVersion("2.0.0");
+        var result1 = sut.ToString("N", null);
+        var result2 = sut.ToString(null, CultureInfo.InvariantCulture);
+        Assert.Equal("2.0.0", result1);
+        Assert.Equal("2.0.0", result2);
+    }
 }
