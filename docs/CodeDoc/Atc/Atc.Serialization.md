@@ -219,6 +219,13 @@ Factory class for creating preconfigured `System.Text.Json.JsonSerializerOptions
 >public static class JsonSerializerOptionsFactory
 >```
 
+### Static Properties
+
+#### Default
+>```csharp
+>Default
+>```
+><b>Summary:</b> Gets a cached, shared `System.Text.Json.JsonSerializerOptions` instance using the default settings (camelCase, null-values ignored, case-insensitive names, indented output). The instance is created once and reused; after the first serialization call it becomes read-only. Use `Atc.Serialization.JsonSerializerOptionsFactory.Create(System.Boolean,System.Boolean,System.Boolean,System.Boolean)` when you need a mutable copy.
 ### Static Methods
 
 #### Create

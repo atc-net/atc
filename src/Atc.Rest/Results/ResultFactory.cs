@@ -61,7 +61,7 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message)),
+            Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message), JsonSerializerOptionsFactory.Default),
         };
 
     /// <summary>
@@ -93,11 +93,11 @@ public static class ResultFactory
 
         var message = SimpleTypeHelper.IsSimpleType(beautifyTypeName)
             ? value.ToString()
-            : JsonSerializer.Serialize(value);
+            : JsonSerializer.Serialize(value, JsonSerializerOptionsFactory.Default);
 
         var problemDetails = CreateProblemDetails(statusCode, message);
 
-        result.Content = JsonSerializer.Serialize(problemDetails);
+        result.Content = JsonSerializer.Serialize(problemDetails, JsonSerializerOptionsFactory.Default);
 
         return result;
     }
@@ -117,7 +117,7 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message)),
+            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message), JsonSerializerOptionsFactory.Default),
         };
 
     /// <summary>
@@ -137,7 +137,60 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, errors, message)),
+            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, errors, message), JsonSerializerOptionsFactory.Default),
+        };
+
+    /// <summary>
+    /// Creates an <see cref="ObjectResult"/> containing ProblemDetails, allowing ASP.NET Core's
+    /// output formatters to serialize it using the app-configured <see cref="JsonSerializerOptions"/>.
+    /// Prefer this over <see cref="CreateContentResultWithProblemDetails(HttpStatusCode, string?, string)"/>
+    /// when consistent casing with the rest of the API is required.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code.</param>
+    /// <param name="message">The detail message describing the problem.</param>
+    /// <returns>An <see cref="ObjectResult"/> wrapping a <see cref="ProblemDetails"/> instance.</returns>
+    public static ObjectResult CreateObjectResultWithProblemDetails(
+        HttpStatusCode statusCode,
+        string? message)
+        => new(CreateProblemDetails(statusCode, message))
+        {
+            StatusCode = (int)statusCode,
+        };
+
+    /// <summary>
+    /// Creates an <see cref="ObjectResult"/> containing ValidationProblemDetails without field-specific errors,
+    /// allowing ASP.NET Core's output formatters to serialize it using the app-configured <see cref="JsonSerializerOptions"/>.
+    /// Prefer this over <see cref="CreateContentResultWithValidationProblemDetails(HttpStatusCode, string?, string)"/>
+    /// when consistent casing with the rest of the API is required.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code.</param>
+    /// <param name="message">The detail message describing the validation failure.</param>
+    /// <returns>An <see cref="ObjectResult"/> wrapping a <see cref="ValidationProblemDetails"/> instance.</returns>
+    public static ObjectResult CreateObjectResultWithValidationProblemDetails(
+        HttpStatusCode statusCode,
+        string? message)
+        => new(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message))
+        {
+            StatusCode = (int)statusCode,
+        };
+
+    /// <summary>
+    /// Creates an <see cref="ObjectResult"/> containing ValidationProblemDetails with field-specific errors,
+    /// allowing ASP.NET Core's output formatters to serialize it using the app-configured <see cref="JsonSerializerOptions"/>.
+    /// Prefer this over <see cref="CreateContentResultWithValidationProblemDetails(HttpStatusCode, Dictionary{string, string[]}, string?, string)"/>
+    /// when consistent casing with the rest of the API is required.
+    /// </summary>
+    /// <param name="statusCode">The HTTP status code.</param>
+    /// <param name="errors">A dictionary of field names and their associated validation errors.</param>
+    /// <param name="message">The detail message describing the validation failure.</param>
+    /// <returns>An <see cref="ObjectResult"/> wrapping a <see cref="ValidationProblemDetails"/> instance.</returns>
+    public static ObjectResult CreateObjectResultWithValidationProblemDetails(
+        HttpStatusCode statusCode,
+        Dictionary<string, string[]> errors,
+        string? message)
+        => new(CreateValidationProblemDetails(statusCode, errors, message))
+        {
+            StatusCode = (int)statusCode,
         };
 
     /// <summary>

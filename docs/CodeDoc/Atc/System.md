@@ -2209,6 +2209,16 @@ Extensions for the `System.Int64` class.
 >long unixTime = 0; // Equivalent to 1-1-1970
 >DateTimeOffset dateTimeOffset = unixTime.FromUnixTimeMs();
 >```
+#### IsBinarySequence
+>```csharp
+>bool IsBinarySequence(this long number)
+>```
+><b>Summary:</b> Determines whether the value is a binary sequence (a power of two), meaning exactly one bit is set.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`number`&nbsp;&nbsp;-&nbsp;&nbsp;The number to evaluate.<br />
+>
+><b>Returns:</b> <see langword="true" /> if `number` is a positive power of two; otherwise, <see langword="false" />.
 
 <br />
 
