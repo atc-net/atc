@@ -12,6 +12,7 @@ namespace Atc.Console.Spectre.Logging;
 public class ConsoleLogger : ILogger
 {
     private readonly string categoryName;
+    private readonly string escapedCategoryName;
     private readonly ConsoleLoggerConfiguration config;
     private readonly IAnsiConsole console;
 
@@ -30,6 +31,7 @@ public class ConsoleLogger : ILogger
         IAnsiConsole console)
     {
         this.categoryName = categoryName;
+        this.escapedCategoryName = Markup.Escape(categoryName ?? string.Empty);
         this.config = config ?? throw new ArgumentNullException(nameof(config));
         this.console = console ?? throw new ArgumentNullException(nameof(console));
     }
@@ -334,7 +336,7 @@ public class ConsoleLogger : ILogger
         => $"[white]{GetTimeStamp()}[/]";
 
     private string GetCategoryNameWithMarkup()
-        => $"[grey]{Markup.Escape(categoryName)}[/]";
+        => $"[grey]{escapedCategoryName}[/]";
 
     private string GetTimeStampAndCategoryNameWithMarkup()
         => $"{GetTimeStampWithMarkup()} {GetCategoryNameWithMarkup()}";
