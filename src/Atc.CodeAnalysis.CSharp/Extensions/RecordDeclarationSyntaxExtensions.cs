@@ -2,25 +2,25 @@
 namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 /// <summary>
-/// Extension methods for <see cref="InterfaceDeclarationSyntax"/>.
+/// Extension methods for <see cref="RecordDeclarationSyntax"/>.
 /// </summary>
-public static class InterfaceDeclarationSyntaxExtensions
+public static class RecordDeclarationSyntaxExtensions
 {
     /// <summary>
-    /// Adds a <see cref="SuppressMessageAttribute"/> to the interface declaration.
+    /// Adds a <see cref="SuppressMessageAttribute"/> to the record declaration.
     /// </summary>
-    /// <param name="interfaceDeclaration">The interface declaration to modify.</param>
+    /// <param name="recordDeclaration">The record declaration to modify.</param>
     /// <param name="suppressMessage">The suppress message attribute to add.</param>
-    /// <returns>A new <see cref="InterfaceDeclarationSyntax"/> with the attribute added.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="interfaceDeclaration"/> or <paramref name="suppressMessage"/> is null.</exception>
+    /// <returns>A new <see cref="RecordDeclarationSyntax"/> with the attribute added.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="recordDeclaration"/> or <paramref name="suppressMessage"/> is null.</exception>
     /// <exception cref="ArgumentException">Thrown when the justification in <paramref name="suppressMessage"/> is invalid.</exception>
-    public static InterfaceDeclarationSyntax AddSuppressMessageAttribute(
-        this InterfaceDeclarationSyntax interfaceDeclaration,
+    public static RecordDeclarationSyntax AddSuppressMessageAttribute(
+        this RecordDeclarationSyntax recordDeclaration,
         SuppressMessageAttribute suppressMessage)
     {
-        if (interfaceDeclaration is null)
+        if (recordDeclaration is null)
         {
-            throw new ArgumentNullException(nameof(interfaceDeclaration));
+            throw new ArgumentNullException(nameof(recordDeclaration));
         }
 
         if (suppressMessage is null)
@@ -47,26 +47,26 @@ public static class InterfaceDeclarationSyntaxExtensions
                             .Create(nameof(SuppressMessageAttribute.Justification))
                             .WithEqualsToken(SyntaxTokenFactory.Equals())))));
 
-        return interfaceDeclaration
+        return recordDeclaration
             .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(SuppressMessageAttribute), attributeArgumentList));
     }
 
     /// <summary>
-    /// Adds a <see cref="GeneratedCodeAttribute"/> to the interface declaration.
+    /// Adds a <see cref="GeneratedCodeAttribute"/> to the record declaration.
     /// </summary>
-    /// <param name="interfaceDeclaration">The interface declaration to modify.</param>
+    /// <param name="recordDeclaration">The record declaration to modify.</param>
     /// <param name="toolName">The name of the code generation tool.</param>
     /// <param name="version">The version of the code generation tool.</param>
-    /// <returns>A new <see cref="InterfaceDeclarationSyntax"/> with the attribute added.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="interfaceDeclaration"/>, <paramref name="toolName"/>, or <paramref name="version"/> is null.</exception>
-    public static InterfaceDeclarationSyntax AddGeneratedCodeAttribute(
-        this InterfaceDeclarationSyntax interfaceDeclaration,
+    /// <returns>A new <see cref="RecordDeclarationSyntax"/> with the attribute added.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="recordDeclaration"/>, <paramref name="toolName"/>, or <paramref name="version"/> is null.</exception>
+    public static RecordDeclarationSyntax AddGeneratedCodeAttribute(
+        this RecordDeclarationSyntax recordDeclaration,
         string toolName,
         string version)
     {
-        if (interfaceDeclaration is null)
+        if (recordDeclaration is null)
         {
-            throw new ArgumentNullException(nameof(interfaceDeclaration));
+            throw new ArgumentNullException(nameof(recordDeclaration));
         }
 
         if (toolName is null)
@@ -85,7 +85,7 @@ public static class InterfaceDeclarationSyntaxExtensions
                 SyntaxTokenFactory.Comma(),
                 SyntaxFactory.AttributeArgument(SyntaxLiteralExpressionFactory.Create(version)))));
 
-        return interfaceDeclaration
+        return recordDeclaration
             .AddAttributeLists(SyntaxAttributeListFactory.Create(nameof(GeneratedCodeAttribute), attributeArgumentList));
     }
 }

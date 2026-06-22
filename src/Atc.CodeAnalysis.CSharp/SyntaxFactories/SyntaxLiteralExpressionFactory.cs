@@ -53,4 +53,44 @@ public static class SyntaxLiteralExpressionFactory
     /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing the integer.</returns>
     public static LiteralExpressionSyntax Create(int value)
         => SyntaxFactory.LiteralExpression(SyntaxKind.NumericLiteralExpression, SyntaxFactory.Literal(value));
+
+    /// <summary>
+    /// Creates a numeric literal expression from a long value.
+    /// </summary>
+    /// <param name="value">The long value for the literal expression.</param>
+    /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing the long.</returns>
+    public static LiteralExpressionSyntax Create(long value)
+        => SyntaxFactory.LiteralExpression(SyntaxKind.NumericLiteralExpression, SyntaxFactory.Literal(value));
+
+    /// <summary>
+    /// Creates a numeric literal expression from a double value.
+    /// </summary>
+    /// <param name="value">The double value for the literal expression.</param>
+    /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing the double.</returns>
+    public static LiteralExpressionSyntax Create(double value)
+        => SyntaxFactory.LiteralExpression(SyntaxKind.NumericLiteralExpression, SyntaxFactory.Literal(value));
+
+    /// <summary>
+    /// Creates a boolean literal expression.
+    /// </summary>
+    /// <param name="value">The boolean value.</param>
+    /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing <see langword="true"/> or <see langword="false"/>.</returns>
+    public static LiteralExpressionSyntax Create(bool value)
+        => SyntaxFactory.LiteralExpression(
+            value ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression);
+
+    /// <summary>
+    /// Creates a character literal expression.
+    /// </summary>
+    /// <param name="value">The character value.</param>
+    /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing the character literal.</returns>
+    public static LiteralExpressionSyntax Create(char value)
+        => SyntaxFactory.LiteralExpression(SyntaxKind.CharacterLiteralExpression, SyntaxFactory.Literal(value));
+
+    /// <summary>
+    /// Creates a <see langword="null"/> literal expression.
+    /// </summary>
+    /// <returns>A <see cref="LiteralExpressionSyntax"/> node representing <see langword="null"/>.</returns>
+    public static LiteralExpressionSyntax CreateNull()
+        => SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression);
 }
