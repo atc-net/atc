@@ -11,14 +11,28 @@ public static class SyntaxInterpolatedFactory
     /// <param name="value">The text value to include in the interpolated string.</param>
     /// <returns>An <see cref="InterpolatedStringContentSyntax"/> representing the text.</returns>
     public static InterpolatedStringContentSyntax StringText(string value)
-        => SyntaxFactory.InterpolatedStringText()
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        // In the raw source text of an interpolated string, '{' and '}' must be doubled to
+        // avoid being interpreted as interpolation holes.  The valueText (semantic value) keeps
+        // the original characters because that is what the runtime sees at execution time.
+        var rawText = value
+            .Replace("{", "{{", StringComparison.Ordinal)
+            .Replace("}", "}}", StringComparison.Ordinal);
+
+        return SyntaxFactory.InterpolatedStringText()
             .WithTextToken(
                 SyntaxFactory.Token(
                     SyntaxFactory.TriviaList(),
                     SyntaxKind.InterpolatedStringTextToken,
-                    value,
+                    rawText,
                     value,
                     SyntaxFactory.TriviaList()));
+    }
 
     /// <summary>
     /// Creates interpolated string text for a colon and space (": ").
