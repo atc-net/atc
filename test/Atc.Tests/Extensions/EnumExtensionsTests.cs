@@ -114,6 +114,27 @@ public class EnumExtensionsTests
         => Assert.Throws<InvalidOperationException>(() => TestPetTypeB.Unknown.MapTo<TestPetTypeA>());
 
     [Theory]
+    [InlineData(true, TestPetTypeA.Dog, TestPetTypeB.Dog)]
+    [InlineData(true, TestPetTypeA.Cat, TestPetTypeB.Cat)]
+    public void TryMapTo_MatchingName_ReturnsTrue(
+        bool expectedSuccess,
+        TestPetTypeA expectedResult,
+        TestPetTypeB source)
+    {
+        var success = source.TryMapTo<TestPetTypeA>(out var result);
+        Assert.Equal(expectedSuccess, success);
+        Assert.Equal(expectedResult, result);
+    }
+
+    [Fact]
+    public void TryMapTo_NoMatch_ReturnsFalse()
+    {
+        var success = TestPetTypeB.Unknown.TryMapTo<TestPetTypeA>(out var result);
+        Assert.False(success);
+        Assert.Equal(default(TestPetTypeA), result);
+    }
+
+    [Theory]
     [InlineData("Display Red", TestColorType.Red)]
     [InlineData("Display Green", TestColorType.Green)]
     [InlineData("None", TestColorType.None)]

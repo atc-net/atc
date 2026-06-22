@@ -558,6 +558,46 @@ Extensions for the `System.Char` type.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the character value is less than or equal to 127 (ASCII range); otherwise, <see langword="false" />.
+#### IsAsciiDigit
+>```csharp
+>bool IsAsciiDigit(this char value)
+>```
+><b>Summary:</b> Determines whether the specified character is an ASCII decimal digit (0–9).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the character is a digit 0 through 9; otherwise, <see langword="false" />.
+#### IsAsciiLetter
+>```csharp
+>bool IsAsciiLetter(this char value)
+>```
+><b>Summary:</b> Determines whether the specified character is an ASCII letter (A–Z or a–z).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the character is an ASCII letter; otherwise, <see langword="false" />.
+#### IsHexDigit
+>```csharp
+>bool IsHexDigit(this char value)
+>```
+><b>Summary:</b> Determines whether the specified character is a hexadecimal digit (0–9, A–F, a–f).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the character is a valid hexadecimal digit; otherwise, <see langword="false" />.
+#### IsVowel
+>```csharp
+>bool IsVowel(this char value)
+>```
+><b>Summary:</b> Determines whether the specified character is an ASCII vowel (A, E, I, O, U — case-insensitive).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the character is one of A, E, I, O, U (upper or lower case); otherwise, <see langword="false" />.
 
 <br />
 
@@ -1142,7 +1182,7 @@ Extensions for the `System.Double` class.
 >```csharp
 >double DoubleEpsilon
 >```
-><b>Summary:</b> The double epsilon.
+><b>Summary:</b> The tolerance used by `System.DoubleExtensions.IsEqual(System.Double,System.Double)` and `System.DoubleExtensions.IsZero(System.Double)`. Values whose absolute difference is at or below this threshold are considered equal.
 ### Static Methods
 
 #### AreClose
@@ -1211,56 +1251,56 @@ Extensions for the `System.Double` class.
 >```csharp
 >bool IsEqual(this double a, double b)
 >```
-><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
+><b>Summary:</b> Determines whether two double values are approximately equal within a tolerance of `System.DoubleExtensions.DoubleEpsilon` (1e-9). This handles common floating-point arithmetic rounding, for example `0.1 + 0.2 == 0.3`. Use `System.DoubleExtensions.IsEqual(System.Double,System.Double,System.Int32)` when an exact decimal-precision comparison is needed.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
+><b>Returns:</b> <see langword="true" /> if the absolute difference between `a` and `b` is at most `System.DoubleExtensions.DoubleEpsilon`; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double? a, double? b)
 >```
-><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
+><b>Summary:</b> Determines whether two double values are approximately equal within a tolerance of `System.DoubleExtensions.DoubleEpsilon` (1e-9). This handles common floating-point arithmetic rounding, for example `0.1 + 0.2 == 0.3`. Use `System.DoubleExtensions.IsEqual(System.Double,System.Double,System.Int32)` when an exact decimal-precision comparison is needed.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
+><b>Returns:</b> <see langword="true" /> if the absolute difference between `a` and `b` is at most `System.DoubleExtensions.DoubleEpsilon`; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double a, double b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
+><b>Summary:</b> Determines whether two double values are approximately equal within a tolerance of `System.DoubleExtensions.DoubleEpsilon` (1e-9). This handles common floating-point arithmetic rounding, for example `0.1 + 0.2 == 0.3`. Use `System.DoubleExtensions.IsEqual(System.Double,System.Double,System.Int32)` when an exact decimal-precision comparison is needed.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
+><b>Returns:</b> <see langword="true" /> if the absolute difference between `a` and `b` is at most `System.DoubleExtensions.DoubleEpsilon`; otherwise, <see langword="false" />.
 #### IsEqual
 >```csharp
 >bool IsEqual(this double? a, double? b, int decimalPrecision)
 >```
-><b>Summary:</b> Compare two values. Return <see langword="true" /> if they are equals.
+><b>Summary:</b> Determines whether two double values are approximately equal within a tolerance of `System.DoubleExtensions.DoubleEpsilon` (1e-9). This handles common floating-point arithmetic rounding, for example `0.1 + 0.2 == 0.3`. Use `System.DoubleExtensions.IsEqual(System.Double,System.Double,System.Int32)` when an exact decimal-precision comparison is needed.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`a`&nbsp;&nbsp;-&nbsp;&nbsp;The first value.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`b`&nbsp;&nbsp;-&nbsp;&nbsp;The second value.<br />
 >
-><b>Returns:</b> <see langword="true" /> if the two values are equals, <see langword="false" /> otherwise.
+><b>Returns:</b> <see langword="true" /> if the absolute difference between `a` and `b` is at most `System.DoubleExtensions.DoubleEpsilon`; otherwise, <see langword="false" />.
 #### IsZero
 >```csharp
 >bool IsZero(this double value)
 >```
-><b>Summary:</b> Determines whether the specified double value is approximately zero.
+><b>Summary:</b> Determines whether the specified double value is approximately zero within a tolerance of `System.DoubleExtensions.DoubleEpsilon` (1e-9).
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value to check.<br />
 >
-><b>Returns:</b> <see langword="true" /> if the absolute value is less than epsilon; otherwise, <see langword="false" />.
+><b>Returns:</b> <see langword="true" /> if the absolute value is at most `System.DoubleExtensions.DoubleEpsilon`; otherwise, <see langword="false" />.
 #### RoundOff
 >```csharp
 >double RoundOff(this double value, int numberOfDecimals)
@@ -1688,13 +1728,13 @@ Extension methods for enumerations.
 >```csharp
 >bool IsSet(this Enum enumeration, Enum matchTo)
 >```
-><b>Summary:</b> Determines whether the specified enumeration match another enumeration.
+><b>Summary:</b> Determines whether all bits of `matchTo` are set in `enumeration`, equivalent to `enumeration.HasFlag(matchTo)`. Works for all underlying numeric types including <see langword="long" />-backed enumerations.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchTo`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to match.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to check.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchTo`&nbsp;&nbsp;-&nbsp;&nbsp;The flags that must all be present in .<br />
 >
-><b>Returns:</b> true on match; otherwise false.
+><b>Returns:</b> <see langword="true" /> if every bit in `matchTo` is also set in `enumeration`; otherwise, <see langword="false" />.
 >
 ><b>Code usage:</b>
 >```csharp
@@ -1709,13 +1749,13 @@ Extension methods for enumerations.
 >```csharp
 >bool IsSet(this T enumeration, T flags)
 >```
-><b>Summary:</b> Determines whether the specified enumeration match another enumeration.
+><b>Summary:</b> Determines whether all bits of `matchTo` are set in `enumeration`, equivalent to `enumeration.HasFlag(matchTo)`. Works for all underlying numeric types including <see langword="long" />-backed enumerations.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchTo`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to match.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enumeration to check.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`matchTo`&nbsp;&nbsp;-&nbsp;&nbsp;The flags that must all be present in .<br />
 >
-><b>Returns:</b> true on match; otherwise false.
+><b>Returns:</b> <see langword="true" /> if every bit in `matchTo` is also set in `enumeration`; otherwise, <see langword="false" />.
 >
 ><b>Code usage:</b>
 >```csharp
@@ -1753,6 +1793,19 @@ Extension methods for enumerations.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`enumeration`&nbsp;&nbsp;-&nbsp;&nbsp;The enum.<br />
+#### TryMapTo
+>```csharp
+>bool TryMapTo(this Enum source, out TTarget result)
+>```
+><b>Summary:</b> Tries to map the current enum value to a target enum type by matching the name (case-insensitive). Unlike `System.EnumExtensions.MapTo``1(System.Enum,System.Nullable{``0})`, this method never throws — it returns <see langword="false" /> when no match is found.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`source`&nbsp;&nbsp;-&nbsp;&nbsp;The source enum value.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns , the matched target value; otherwise, the default value of .
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if a matching named value was found in `TTarget`; otherwise, <see langword="false" />.
 
 <br />
 

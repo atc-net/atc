@@ -5079,6 +5079,10 @@
 - [CharExtensions](System.md#charextensions)
   -  Static Methods
      - IsAscii(this char value)
+     - IsAsciiDigit(this char value)
+     - IsAsciiLetter(this char value)
+     - IsHexDigit(this char value)
+     - IsVowel(this char value)
 - [ConfigurationException](System.md#configurationexception)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
@@ -5196,6 +5200,7 @@
      - MapTo(this Enum source, TTarget? defaultValue = null)
      - ToStringLowerCase(this Enum enumeration)
      - ToStringUpperCase(this Enum enumeration)
+     - TryMapTo(this Enum source, out TTarget result)
 - [ExceptionExtensions](System.md#exceptionextensions)
   -  Static Methods
      - Flatten(this Exception exception, string message = , bool includeStackTrace = False)
