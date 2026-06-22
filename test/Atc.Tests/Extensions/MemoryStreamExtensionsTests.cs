@@ -22,8 +22,8 @@ public class MemoryStreamExtensionsTests
         var bytes = Encoding.UTF8.GetBytes("Héllo");
         using var input = new MemoryStream(bytes);
 
-        // Act — no encoding argument; must default to UTF-8, not UTF-16
-        var actual = input.ToString();
+        // Act — call the extension explicitly; object.ToString() shadows a no-arg extension call.
+        var actual = MemoryStreamExtensions.ToString(input);
 
         // Assert
         Assert.Equal("Héllo", actual);

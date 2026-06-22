@@ -51,13 +51,9 @@ public static class DecimalExtensions
         decimal b,
         int decimalPrecision)
     {
-        var sa = a
-            .ToString(CultureInfo.InvariantCulture)
-            .Replace(',', '.');
-
-        var sb = b
-            .ToString(CultureInfo.InvariantCulture)
-            .Replace(',', '.');
+        // InvariantCulture always uses '.' as decimal separator — no Replace needed.
+        var sa = a.ToString(CultureInfo.InvariantCulture);
+        var sb = b.ToString(CultureInfo.InvariantCulture);
 
         var saa = sa.Split('.');
         var sab = sb.Split('.');

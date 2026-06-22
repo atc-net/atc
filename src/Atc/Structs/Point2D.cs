@@ -14,9 +14,10 @@ public record struct Point2D(
     /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0).
     /// </summary>
     /// <value>
-    ///   <see langword="true" /> if both X and Y are approximately zero; otherwise, <see langword="false" />.
+    ///   <see langword="true" /> if both X and Y are exactly zero; otherwise, <see langword="false" />.
     /// </value>
-    public readonly bool IsDefault => X.IsEqual(0) && Y.IsEqual(0);
+    [SuppressMessage("SonarAnalyzer.CSharp", "S1244:Do not check floating point equality with exact values, use a range instead", Justification = "Intentional: IsDefault checks for exact binary zero, not approximate equality.")]
+    public readonly bool IsDefault => X == 0.0 && Y == 0.0;
 
     /// <inheritdoc />
     public override readonly string ToString()

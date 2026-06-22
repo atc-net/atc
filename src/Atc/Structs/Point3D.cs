@@ -15,10 +15,11 @@ public record struct Point3D(
     /// Gets a value indicating whether this instance represents the default (origin) position at coordinates (0, 0, 0).
     /// </summary>
     /// <value>
-    ///   <see langword="true" /> if X, Y, and Z are all approximately zero; otherwise, <see langword="false" />.
+    ///   <see langword="true" /> if X, Y, and Z are all exactly zero; otherwise, <see langword="false" />.
     /// </value>
+    [SuppressMessage("SonarAnalyzer.CSharp", "S1244:Do not check floating point equality with exact values, use a range instead", Justification = "Intentional: IsDefault checks for exact binary zero, not approximate equality.")]
     public readonly bool IsDefault
-        => X.IsEqual(0) && Y.IsEqual(0) && Z.IsEqual(0);
+        => X == 0.0 && Y == 0.0 && Z == 0.0;
 
     /// <inheritdoc />
     public override readonly string ToString()
