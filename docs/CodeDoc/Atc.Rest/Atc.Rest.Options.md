@@ -234,7 +234,7 @@ Configuration options for the REST API framework.
 >```
 ><b>Summary:</b> Gets or sets the allowed CORS origins for the API.
 >
-><b>Remarks:</b> When null or empty, a permissive policy (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is used. When specified, only the listed origins are allowed. Set this in production to prevent CSRF attacks.
+><b>Remarks:</b> When null or empty and the environment is Development, a permissive policy (AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader) is applied. When null or empty in non-Development environments, no CORS middleware is added and the browser's same-origin policy applies — no CORS headers are emitted. When specified, only the listed origins are allowed in all environments.
 #### AssemblyPairs
 >```csharp
 >AssemblyPairs
