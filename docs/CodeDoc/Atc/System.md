@@ -1177,7 +1177,7 @@ Extensions for the `System.Decimal` class.
 >```csharp
 >decimal CurrencyRounding(this decimal value)
 >```
-><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current UI culture.
+><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current culture.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
@@ -1187,7 +1187,7 @@ Extensions for the `System.Decimal` class.
 >```csharp
 >decimal CurrencyRounding(this decimal value, int digits)
 >```
-><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current UI culture.
+><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current culture.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
@@ -1343,7 +1343,7 @@ Extensions for the `System.Double` class.
 >```csharp
 >double CurrencyRounding(this double value)
 >```
-><b>Summary:</b> Rounds a double value using the currency decimal digits of the current UI culture.
+><b>Summary:</b> Rounds a double value using the currency decimal digits of the current culture.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
@@ -1353,7 +1353,7 @@ Extensions for the `System.Double` class.
 >```csharp
 >double CurrencyRounding(this double value, int digits)
 >```
-><b>Summary:</b> Rounds a double value using the currency decimal digits of the current UI culture.
+><b>Summary:</b> Rounds a double value using the currency decimal digits of the current culture.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />

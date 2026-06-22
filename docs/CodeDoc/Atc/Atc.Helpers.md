@@ -2846,6 +2846,34 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that returns a tuple containing success status and output/error messages.
+#### ExecuteWithSeparateOutput
+>```csharp
+>Task<ValueTuple<bool, string, string>> ExecuteWithSeparateOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Executes a process with the specified file and arguments, returning standard output and standard error separately.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns a tuple containing success status, standard output, and standard error streams separately.
+#### ExecuteWithSeparateOutput
+>```csharp
+>Task<ValueTuple<bool, string, string>> ExecuteWithSeparateOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Executes a process with the specified file and arguments, returning standard output and standard error separately.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
+>
+><b>Returns:</b> A task that returns a tuple containing success status, standard output, and standard error streams separately.
 #### KillById
 >```csharp
 >ValueTuple<bool, string> KillById(int processId, int timeoutInSec = 30)

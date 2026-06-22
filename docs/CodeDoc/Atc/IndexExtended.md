@@ -4728,6 +4728,8 @@
      - ExecuteAsync(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAsync(ProcessStartInfo startInfo, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
+     - ExecuteWithSeparateOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - ExecuteWithSeparateOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
      - KillEntryCaller(int timeoutInSec = 30)
@@ -4812,13 +4814,16 @@
 - [DistanceMeasurementType](Atc.Math.GeoSpatial.md#distancemeasurementtype)
 - [GeoSpatialHelper](Atc.Math.GeoSpatial.md#geospatialhelper)
   -  Static Methods
+     - Bearing(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2)
+     - Bearing(double longitude1, double latitude1, double longitude2, double latitude2)
      - Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
-     - Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
+     - Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers, double earthRadiusKm = 6371)
 - [ReferenceEllipsoidType](Atc.Math.GeoSpatial.md#referenceellipsoidtype)
 - [UniversalTransverseMercatorConverter](Atc.Math.GeoSpatial.md#universaltransversemercatorconverter)
   -  Methods
      - ToUtm(CartesianCoordinate coordinate)
      - ToUtm(double latitude, double longitude)
+     - ToWgs84(UniversalTransverseMercatorResult utmResult, int maxDecimalPrecision = 8)
      - ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
 - [UniversalTransverseMercatorResult](Atc.Math.GeoSpatial.md#universaltransversemercatorresult)
   -  Properties

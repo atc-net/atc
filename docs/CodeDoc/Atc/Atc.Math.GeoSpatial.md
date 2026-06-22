@@ -36,6 +36,28 @@ Provides utility methods for geospatial calculations including distance measurem
 
 ### Static Methods
 
+#### Bearing
+>```csharp
+>double Bearing(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2)
+>```
+><b>Summary:</b> Calculates the initial bearing (forward azimuth) from one geographic coordinate to another. The bearing is the angle measured clockwise from true north (0°) to the direction of travel.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The starting coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The destination coordinate.<br />
+>
+><b>Returns:</b> The initial bearing in degrees (0–360), where 0° is north, 90° east, 180° south, 270° west.
+#### Bearing
+>```csharp
+>double Bearing(double longitude1, double latitude1, double longitude2, double latitude2)
+>```
+><b>Summary:</b> Calculates the initial bearing (forward azimuth) from one geographic coordinate to another. The bearing is the angle measured clockwise from true north (0°) to the direction of travel.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate1`&nbsp;&nbsp;-&nbsp;&nbsp;The starting coordinate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate2`&nbsp;&nbsp;-&nbsp;&nbsp;The destination coordinate.<br />
+>
+><b>Returns:</b> The initial bearing in degrees (0–360), where 0° is north, 90° east, 180° south, 270° west.
 #### Distance
 >```csharp
 >double Distance(CartesianCoordinate coordinate1, CartesianCoordinate coordinate2, DistanceMeasurementType measurement)
@@ -50,7 +72,7 @@ Provides utility methods for geospatial calculations including distance measurem
 ><b>Returns:</b> The distance between the two coordinates in the specified measurement unit.
 #### Distance
 >```csharp
->double Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers)
+>double Distance(double longitude1, double latitude1, double longitude2, double latitude2, DistanceMeasurementType measurement = Kilometers, double earthRadiusKm = 6371)
 >```
 ><b>Summary:</b> Calculates the great-circle distance between two geographic coordinates.
 >
@@ -131,16 +153,26 @@ UniversalTransverseMercatorConverter
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`coordinate`&nbsp;&nbsp;-&nbsp;&nbsp;The coordinate.<br />
 #### ToWgs84
 >```csharp
->CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
+>CartesianCoordinate ToWgs84(UniversalTransverseMercatorResult utmResult, int maxDecimalPrecision = 8)
 >```
-><b>Summary:</b> To WGS84.
+><b>Summary:</b> Converts a `Atc.Math.GeoSpatial.UniversalTransverseMercatorResult` back to a WGS84 geographic coordinate. This is a convenience overload that unpacks the fields from the result returned by `Atc.Math.GeoSpatial.UniversalTransverseMercatorConverter.ToUtm(Atc.Structs.CartesianCoordinate)` or `Atc.Math.GeoSpatial.UniversalTransverseMercatorConverter.ToUtm(System.Double,System.Double)`.
 >
 ><b>Parameters:</b><br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone number.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmZoneLetter`&nbsp;&nbsp;-&nbsp;&nbsp;The utm zone letter.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmEasting`&nbsp;&nbsp;-&nbsp;&nbsp;The utm easting.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmNorthing`&nbsp;&nbsp;-&nbsp;&nbsp;The utm northing.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxDecimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum decimal precision.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmResult`&nbsp;&nbsp;-&nbsp;&nbsp;The UTM result to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxDecimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum number of decimal places in the returned latitude/longitude values.<br />
+>
+><b>Returns:</b> A `Atc.Structs.CartesianCoordinate` containing the WGS84 latitude and longitude.
+#### ToWgs84
+>```csharp
+>CartesianCoordinate ToWgs84(int utmZoneNumber, string utmZoneLetter, double utmEasting, double utmNorthing, int maxDecimalPrecision = 8)
+>```
+><b>Summary:</b> Converts a `Atc.Math.GeoSpatial.UniversalTransverseMercatorResult` back to a WGS84 geographic coordinate. This is a convenience overload that unpacks the fields from the result returned by `Atc.Math.GeoSpatial.UniversalTransverseMercatorConverter.ToUtm(Atc.Structs.CartesianCoordinate)` or `Atc.Math.GeoSpatial.UniversalTransverseMercatorConverter.ToUtm(System.Double,System.Double)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`utmResult`&nbsp;&nbsp;-&nbsp;&nbsp;The UTM result to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`maxDecimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum number of decimal places in the returned latitude/longitude values.<br />
+>
+><b>Returns:</b> A `Atc.Structs.CartesianCoordinate` containing the WGS84 latitude and longitude.
 
 <br />
 
