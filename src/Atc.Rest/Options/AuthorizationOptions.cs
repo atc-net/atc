@@ -73,6 +73,24 @@ public class AuthorizationOptions
     public List<string> ValidIssuers { get; set; } = new();
 
     /// <summary>
+    /// Gets or sets the JWT claim type used to populate ASP.NET Core roles for
+    /// <c>[Authorize(Roles=…)]</c>. For Azure AD access tokens the claim is <c>"roles"</c>;
+    /// for client-credentials tokens the scope claim is <c>"scp"</c>.
+    /// When <see langword="null"/> or empty, the framework default
+    /// (<c>ClaimTypes.Role</c> = the long URI form) is used, which does not match
+    /// the short-form claims issued by Azure AD.
+    /// </summary>
+    public string? RoleClaimType { get; set; }
+
+    /// <summary>
+    /// Gets or sets the JWT claim type used to populate the user's identity name (<see cref="System.Security.Claims.ClaimsIdentity.Name"/>).
+    /// For Azure AD access tokens the claim is typically <c>"name"</c> or <c>"preferred_username"</c>.
+    /// When <see langword="null"/> or empty, the framework default
+    /// (<c>ClaimTypes.Name</c> = the long URI form) is used.
+    /// </summary>
+    public string? NameClaimType { get; set; }
+
+    /// <summary>
     /// Determines whether any security settings are configured.
     /// </summary>
     /// <returns>True if at least one security setting is configured; otherwise, false.</returns>

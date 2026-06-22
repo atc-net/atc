@@ -93,7 +93,7 @@ public class ConfigureAuthorizationOptions :
             options.Authority = $"{apiOptions.Authorization.Instance}/{apiOptions.Authorization.TenantId}/";
         }
 
-        options.TokenValidationParameters = new TokenValidationParameters
+        var tvp = new TokenValidationParameters
         {
             ValidateAudience = true,
             ValidAudience = apiOptions.Authorization.Audience,
@@ -105,6 +105,18 @@ public class ConfigureAuthorizationOptions :
             // so a transient key-fetch failure can never cause unverified tokens to be accepted.
             ValidateIssuerSigningKey = true,
         };
+
+        if (!string.IsNullOrEmpty(apiOptions.Authorization.RoleClaimType))
+        {
+            tvp.RoleClaimType = apiOptions.Authorization.RoleClaimType;
+        }
+
+        if (!string.IsNullOrEmpty(apiOptions.Authorization.NameClaimType))
+        {
+            tvp.NameClaimType = apiOptions.Authorization.NameClaimType;
+        }
+
+        options.TokenValidationParameters = tvp;
 
         if (!options.TokenValidationParameters.ValidateIssuer)
         {
