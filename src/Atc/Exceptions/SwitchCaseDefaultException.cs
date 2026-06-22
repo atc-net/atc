@@ -55,6 +55,17 @@ public class SwitchCaseDefaultException : Exception
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with any non-enum value.
+    /// </summary>
+    /// <param name="value">
+    /// The unexpected value that was encountered. Accepts any type, including <see langword="null"/>.
+    /// </param>
+    public SwitchCaseDefaultException(object? value)
+        : base(BuildMessageForObject(value))
+    {
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class.
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
@@ -65,6 +76,22 @@ public class SwitchCaseDefaultException : Exception
         : base(message, innerException)
     {
     }
+
+    /// <summary>
+    /// Throws a <see cref="SwitchCaseDefaultException"/> for the given enum value.
+    /// </summary>
+    /// <param name="value">The unexpected enum value encountered in the switch default case.</param>
+    [DoesNotReturn]
+    public static void Throw(Enum value)
+        => throw new SwitchCaseDefaultException(value);
+
+    /// <summary>
+    /// Throws a <see cref="SwitchCaseDefaultException"/> for the given value.
+    /// </summary>
+    /// <param name="value">The unexpected value encountered in the switch default case.</param>
+    [DoesNotReturn]
+    public static void Throw(object? value)
+        => throw new SwitchCaseDefaultException(value);
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SwitchCaseDefaultException"/> class with serialized data.
@@ -108,4 +135,9 @@ public class SwitchCaseDefaultException : Exception
 
         return $"{message}{Environment.NewLine}Enum name: {value.GetType().FullName}{Environment.NewLine}Enum value: {value}";
     }
+
+    private static string BuildMessageForObject(object? value)
+        => value is null
+            ? $"Unexpected value.{Environment.NewLine}Value: <null>"
+            : $"Unexpected value.{Environment.NewLine}Type: {value.GetType().FullName}{Environment.NewLine}Value: {value}";
 }
