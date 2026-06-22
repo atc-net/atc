@@ -141,6 +141,27 @@ public class UniversalTransverseMercatorConverter
     }
 
     /// <summary>
+    /// Converts a <see cref="UniversalTransverseMercatorResult"/> back to a WGS84 geographic coordinate.
+    /// This is a convenience overload that unpacks the fields from the result returned by <see cref="ToUtm(CartesianCoordinate)"/> or <see cref="ToUtm(double,double)"/>.
+    /// </summary>
+    /// <param name="utmResult">The UTM result to convert.</param>
+    /// <param name="maxDecimalPrecision">The maximum number of decimal places in the returned latitude/longitude values.</param>
+    /// <returns>A <see cref="CartesianCoordinate"/> containing the WGS84 latitude and longitude.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="utmResult"/> is null.</exception>
+    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "OK.")]
+    public CartesianCoordinate ToWgs84(
+        UniversalTransverseMercatorResult utmResult,
+        int maxDecimalPrecision = 8)
+    {
+        if (utmResult is null)
+        {
+            throw new ArgumentNullException(nameof(utmResult));
+        }
+
+        return ToWgs84(utmResult.ZoneNumber, utmResult.ZoneLetter, utmResult.UtmEasting, utmResult.UtmNorthing, maxDecimalPrecision);
+    }
+
+    /// <summary>
     /// To WGS84.
     /// </summary>
     /// <param name="utmZoneNumber">The utm zone number.</param>
