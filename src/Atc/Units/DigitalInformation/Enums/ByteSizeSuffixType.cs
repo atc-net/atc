@@ -21,4 +21,10 @@ public enum ByteSizeSuffixType
     /// Full suffix format (e.g., "byte", "Kilobyte", "Megabyte", "Gigabyte").
     /// </summary>
     Full,
+
+    /// <summary>
+    /// Short IEC binary suffix format (e.g., "B", "KiB", "MiB", "GiB").
+    /// Uses IEC 80000-13 notation to distinguish 1024-based units from SI decimal units.
+    /// </summary>
+    ShortBinary,
 }

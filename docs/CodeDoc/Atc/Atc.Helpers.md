@@ -938,6 +938,21 @@ DateTimeOffsetHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+#### TryParseShortDateUsingSpecificCulture
+>```csharp
+>bool TryParseShortDateUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short date using a specific culture's date format.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTimeOffset,
+            if the parse operation was successful; otherwise, contains the default DateTimeOffset.
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseShortTimeUsingCurrentUiCulture
 >```csharp
 >bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
@@ -966,6 +981,36 @@ DateTimeOffsetHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+#### TryParseShortTimeUsingSpecificCulture
+>```csharp
+>bool TryParseShortTimeUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short time using a specific culture's time format (12-hour or 24-hour).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTimeOffset,
+            if the parse operation was successful; otherwise, contains the default DateTimeOffset.
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+#### TryParseShortTimeUsingSpecificCultureUtc
+>```csharp
+>bool TryParseShortTimeUsingSpecificCultureUtc(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a short UTC time using a specific culture's time format (12-hour or 24-hour).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTimeOffset in UTC,
+            if the parse operation was successful; otherwise, contains the default DateTimeOffset.
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
 #### TryParseUsingCurrentUiCulture
 >```csharp
 >bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
@@ -974,6 +1019,21 @@ DateTimeOffsetHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed DateTimeOffset,
+            if the parse operation was successful; otherwise, contains the default DateTimeOffset.
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
+#### TryParseUsingSpecificCulture
+>```csharp
+>bool TryParseUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+>```
+><b>Summary:</b> Tries to parse a string representation of a `DateTimeOffset` using a specific culture's date and time format.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture info to use for parsing.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
             When this method returns, contains the parsed DateTimeOffset,
             if the parse operation was successful; otherwise, contains the default DateTimeOffset.

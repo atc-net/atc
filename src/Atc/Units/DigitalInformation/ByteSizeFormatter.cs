@@ -114,9 +114,12 @@ public class ByteSizeFormatter
             return displaySizeStr;
         }
 
-        var prefixes = SuffixFormat == ByteSizeSuffixType.Full
-            ? ByteSizeCalculationData.PrefixesFull
-            : ByteSizeCalculationData.PrefixesShort;
+        var prefixes = SuffixFormat switch
+        {
+            ByteSizeSuffixType.Full => ByteSizeCalculationData.PrefixesFull,
+            ByteSizeSuffixType.ShortBinary => ByteSizeCalculationData.PrefixesShortBinary,
+            _ => ByteSizeCalculationData.PrefixesShort,
+        };
 
         var suffixLastPart = BuildSuffixLastPart(size, prefixIndex, displaySize);
 

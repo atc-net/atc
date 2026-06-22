@@ -11,7 +11,7 @@
 Represents a version object, compliant with the Semantic Version standard 2.0 (http://semver.org).
 
 >```csharp
->public class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>
+>public class SemanticVersion : IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>, IFormattable, ISpanParsable<SemanticVersion>, IParsable<SemanticVersion>
 >```
 
 ### Static Methods
@@ -180,6 +180,10 @@ Represents a version object, compliant with the Semantic Version standard 2.0 (h
 #### ToString
 >```csharp
 >string ToString()
+>```
+#### ToString
+>```csharp
+>string ToString(string format, IFormatProvider formatProvider)
 >```
 #### ToVersion
 >```csharp

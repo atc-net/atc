@@ -11,9 +11,35 @@
 Represents a size in bytes.
 
 >```csharp
->public struct ByteSize : IEquatable<ByteSize>
+>public struct ByteSize : IEquatable<ByteSize>, IComparable<ByteSize>, IComparable
 >```
 
+### Static Methods
+
+#### Parse
+>```csharp
+>ByteSize Parse(string value)
+>```
+><b>Summary:</b> Parses a string of digits into a `Atc.Units.DigitalInformation.ByteSize`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse. Must represent a valid  value.<br />
+>
+><b>Returns:</b> A `Atc.Units.DigitalInformation.ByteSize` with the parsed byte count.
+#### TryParse
+>```csharp
+>bool TryParse(string value, out byte result)
+>```
+><b>Summary:</b> Tries to parse a string into a `Atc.Units.DigitalInformation.ByteSize`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse, or .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`result`&nbsp;&nbsp;-&nbsp;&nbsp;
+            When this method returns, contains the parsed 
+            if parsing succeeded; otherwise, .
+            <br />
+>
+><b>Returns:</b> <see langword="true" /> if parsing succeeded; otherwise, <see langword="false" />.
 ### Properties
 
 #### Value
@@ -23,6 +49,26 @@ Represents a size in bytes.
 ><b>Summary:</b> Gets the size in bytes.
 ### Methods
 
+#### CompareTo
+>```csharp
+>int CompareTo(ByteSize other)
+>```
+><b>Summary:</b> Compares this instance to another `Atc.Units.DigitalInformation.ByteSize` value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other value to compare to.<br />
+>
+><b>Returns:</b> A negative number if this instance is less than `other`; zero if they are equal; a positive number if this instance is greater.
+#### CompareTo
+>```csharp
+>int CompareTo(object obj)
+>```
+><b>Summary:</b> Compares this instance to another `Atc.Units.DigitalInformation.ByteSize` value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`other`&nbsp;&nbsp;-&nbsp;&nbsp;The other value to compare to.<br />
+>
+><b>Returns:</b> A negative number if this instance is less than `other`; zero if they are equal; a positive number if this instance is greater.
 #### Equals
 >```csharp
 >bool Equals(ByteSize other)
@@ -174,6 +220,7 @@ Defines the suffix format for displaying byte sizes.
 | 0 | None | None | No suffix is appended to the numeric value. | 
 | 1 | Short | Short | Short suffix format (e.g., "B", "KB", "MB", "GB"). | 
 | 2 | Full | Full | Full suffix format (e.g., "byte", "Kilobyte", "Megabyte", "Gigabyte"). | 
+| 3 | ShortBinary | Short Binary | Short IEC binary suffix format (e.g., "B", "KiB", "MiB", "GiB"). Uses IEC 80000-13 notation to distinguish 1024-based units from SI decimal units. | 
 
 
 
