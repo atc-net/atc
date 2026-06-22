@@ -27,4 +27,12 @@ public static class LongExtensions
     /// ]]></example>
     public static DateTimeOffset FromUnixTimeMs(this long valueInMs)
         => DateTimeOffset.FromUnixTimeMilliseconds(valueInMs);
+
+    /// <summary>
+    /// Determines whether the value is a binary sequence (a power of two), meaning exactly one bit is set.
+    /// </summary>
+    /// <param name="number">The number to evaluate.</param>
+    /// <returns><see langword="true" /> if <paramref name="number"/> is a positive power of two; otherwise, <see langword="false" />.</returns>
+    public static bool IsBinarySequence(this long number)
+        => number > 0 && (number & (number - 1)) == 0;
 }
