@@ -15,6 +15,17 @@ public static class DocumentationHelper
         => AssemblyCommentHelper.CollectExportedTypeWithComments(type);
 
     /// <summary>
+    /// Collects XML documentation comments for a specific type using an explicit XML documentation file.
+    /// </summary>
+    /// <param name="type">The type to collect documentation for.</param>
+    /// <param name="xmlDocPath">The explicit path to the XML documentation file.</param>
+    /// <returns>The type comments, or <see langword="null"/> if the type was not found.</returns>
+    public static TypeComments? CollectExportedTypeWithCommentsFromType(
+        Type type,
+        FileInfo xmlDocPath)
+        => AssemblyCommentHelper.CollectExportedTypeWithComments(type, xmlDocPath);
+
+    /// <summary>
     /// Collects all public types from an assembly that are missing XML documentation comments.
     /// </summary>
     /// <param name="assembly">The assembly to scan for types.</param>
@@ -25,6 +36,24 @@ public static class DocumentationHelper
         List<Type>? excludeTypes = null)
         => AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
             assembly,
+            namespaceMatch: null,
+            excludeTypes);
+
+    /// <summary>
+    /// Collects all public types from an assembly that are missing XML documentation comments,
+    /// using an explicit XML documentation file path.
+    /// </summary>
+    /// <param name="assembly">The assembly to scan for types.</param>
+    /// <param name="xmlDocPath">The explicit path to the XML documentation file.</param>
+    /// <param name="excludeTypes">Optional list of types to exclude from the results.</param>
+    /// <returns>An array of type comments for types missing documentation.</returns>
+    public static TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(
+        Assembly assembly,
+        FileInfo xmlDocPath,
+        List<Type>? excludeTypes = null)
+        => AssemblyCommentHelper.CollectExportedTypesWithMissingComments(
+            assembly,
+            xmlDocPath,
             namespaceMatch: null,
             excludeTypes);
 

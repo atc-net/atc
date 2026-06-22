@@ -18,7 +18,32 @@ internal static class AssemblyCommentHelper
         }
 
         var xmlFile = GetXmlFileForAssembly(type.Assembly);
-        return CollectExportedTypesWithComments(type.Assembly, xmlFile, namespaceMatch: null, excludeSourceTypes: null)
+        return CollectExportedTypesWithCommentsCore(type.Assembly, xmlFile, namespaceMatch: null, excludeSourceTypes: null)
+            .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
+    }
+
+    /// <summary>
+    /// Collects XML documentation comments for a specific type using an explicit XML documentation file.
+    /// </summary>
+    /// <param name="type">The type to collect documentation for.</param>
+    /// <param name="xmlDocPath">The explicit path to the XML documentation file.</param>
+    /// <returns>The type comments, or <see langword="null"/> if the type was not found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="type"/> or <paramref name="xmlDocPath"/> is null.</exception>
+    public static TypeComments? CollectExportedTypeWithComments(
+        Type type,
+        FileInfo xmlDocPath)
+    {
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        if (xmlDocPath is null)
+        {
+            throw new ArgumentNullException(nameof(xmlDocPath));
+        }
+
+        return CollectExportedTypesWithCommentsCore(type.Assembly, xmlDocPath, namespaceMatch: null, excludeSourceTypes: null)
             .FirstOrDefault(x => string.Equals(x.FullName, type.FullName, StringComparison.Ordinal));
     }
 
@@ -40,7 +65,36 @@ internal static class AssemblyCommentHelper
         }
 
         var xmlFile = GetXmlFileForAssembly(assembly);
-        return CollectExportedTypesWithMissingComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
+        return CollectExportedTypesWithMissingCommentsCore(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
+    }
+
+    /// <summary>
+    /// Collects all public types from an assembly that are missing XML documentation comments,
+    /// using an explicit XML documentation file path.
+    /// </summary>
+    /// <param name="assembly">The assembly to scan for types.</param>
+    /// <param name="xmlDocPath">The explicit path to the XML documentation file.</param>
+    /// <param name="namespaceMatch">Optional regex pattern to filter types by namespace.</param>
+    /// <param name="excludeSourceTypes">Optional list of types to exclude from the results.</param>
+    /// <returns>An array of type comments for types missing documentation.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="xmlDocPath"/> is null.</exception>
+    public static TypeComments[] CollectExportedTypesWithMissingComments(
+        Assembly assembly,
+        FileInfo xmlDocPath,
+        string? namespaceMatch = null,
+        List<Type>? excludeSourceTypes = null)
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        if (xmlDocPath is null)
+        {
+            throw new ArgumentNullException(nameof(xmlDocPath));
+        }
+
+        return CollectExportedTypesWithMissingCommentsCore(assembly, xmlDocPath, namespaceMatch, excludeSourceTypes);
     }
 
     /// <summary>
@@ -61,7 +115,36 @@ internal static class AssemblyCommentHelper
         }
 
         var xmlFile = GetXmlFileForAssembly(assembly);
-        return CollectExportedTypesWithComments(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
+        return CollectExportedTypesWithCommentsCore(assembly, xmlFile, namespaceMatch, excludeSourceTypes);
+    }
+
+    /// <summary>
+    /// Collects all public types from an assembly along with their XML documentation comments,
+    /// using an explicit XML documentation file path.
+    /// </summary>
+    /// <param name="assembly">The assembly to scan for types.</param>
+    /// <param name="xmlDocPath">The explicit path to the XML documentation file.</param>
+    /// <param name="namespaceMatch">Optional regex pattern to filter types by namespace.</param>
+    /// <param name="excludeSourceTypes">Optional list of types to exclude from the results.</param>
+    /// <returns>An array of type comments for all matching types.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="assembly"/> or <paramref name="xmlDocPath"/> is null.</exception>
+    public static TypeComments[] CollectExportedTypesWithComments(
+        Assembly assembly,
+        FileInfo xmlDocPath,
+        string? namespaceMatch = null,
+        List<Type>? excludeSourceTypes = null)
+    {
+        if (assembly is null)
+        {
+            throw new ArgumentNullException(nameof(assembly));
+        }
+
+        if (xmlDocPath is null)
+        {
+            throw new ArgumentNullException(nameof(xmlDocPath));
+        }
+
+        return CollectExportedTypesWithCommentsCore(assembly, xmlDocPath, namespaceMatch, excludeSourceTypes);
     }
 
     /// <summary>
@@ -110,7 +193,7 @@ internal static class AssemblyCommentHelper
         => regex is null ||
            regex.IsMatch(type.Namespace ?? string.Empty);
 
-    private static TypeComments[] CollectExportedTypesWithMissingComments(
+    private static TypeComments[] CollectExportedTypesWithMissingCommentsCore(
         Assembly assembly,
         FileSystemInfo xmlPath,
         string? namespaceMatch,
@@ -131,7 +214,7 @@ internal static class AssemblyCommentHelper
             throw new IOException($"File don't exist: {xmlPath.FullName}");
         }
 
-        var collectExportedTypesWithComments = CollectExportedTypesWithComments(assembly, xmlPath, namespaceMatch, excludeSourceTypes);
+        var collectExportedTypesWithComments = CollectExportedTypesWithCommentsCore(assembly, xmlPath, namespaceMatch, excludeSourceTypes);
 
         var collectExportedTypesWithMissingComments = collectExportedTypesWithComments
             .Where(x => !x.HasComments)
@@ -141,7 +224,7 @@ internal static class AssemblyCommentHelper
         return collectExportedTypesWithMissingComments;
     }
 
-    private static TypeComments[] CollectExportedTypesWithComments(
+    private static TypeComments[] CollectExportedTypesWithCommentsCore(
         Assembly assembly,
         FileSystemInfo xmlPath,
         string? namespaceMatch,
