@@ -218,7 +218,7 @@ public class ByteSizeFormatterTests
     [InlineData("1,536 B", 1024L + 512, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
     [InlineData("2,048 B", 2 * 1024L, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
     [InlineData("378,630,729,272 B", 378630729272, 0, ByteSizeUnitType.Byte, ByteSizeUnitType.Byte, GlobalizationLcidConstants.UnitedStates)]
-    public void Format_MinMax(
+    public void Format_MinMax_Units(
         string expected,
         long size,
         int numberOfDecimals,
@@ -233,6 +233,32 @@ public class ByteSizeFormatterTests
             MinUnit = minUnit,
             MaxUnit = maxUnit,
             NumberFormatInfo = new CultureInfo(lcid).NumberFormat,
+        };
+
+        // Atc
+        var actual = formatter.Format(size);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("1 B", 1)]
+    [InlineData("1 KiB", 1024L)]
+    [InlineData("2 KiB", 2 * 1024L)]
+    [InlineData("1 MiB", 1024L * 1024L)]
+    [InlineData("1 GiB", 1024L * 1024L * 1024L)]
+    [InlineData("1 TiB", 1024L * 1024L * 1024L * 1024L)]
+    [InlineData("1 PiB", 1024L * 1024L * 1024L * 1024L * 1024L)]
+    [InlineData("1 EiB", 1024L * 1024L * 1024L * 1024L * 1024L * 1024L)]
+    public void Format_Suffix_ShortBinary(
+        string expected,
+        long size)
+    {
+        // Arrange
+        var formatter = new ByteSizeFormatter
+        {
+            SuffixFormat = ByteSizeSuffixType.ShortBinary,
         };
 
         // Atc

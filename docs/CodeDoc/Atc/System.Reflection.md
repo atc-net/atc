@@ -81,6 +81,55 @@ Extensions for the `System.Reflection.Assembly` class.
 
 <br />
 
+## ConstructorInfoExtensions
+Extensions for the `System.Reflection.ConstructorInfo` class.
+
+>```csharp
+>public static class ConstructorInfoExtensions
+>```
+
+### Static Methods
+
+#### BeautifyName
+>```csharp
+>string BeautifyName(this ConstructorInfo constructorInfo, bool useFullName = False, bool useHtmlFormat = False)
+>```
+><b>Summary:</b> Returns a human-readable representation of the constructor signature, optionally using full type names and HTML formatting for the parameter types.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`constructorInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The constructor information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If , parameter types are rendered with their fully-qualified names.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;If , parameter type names are wrapped in HTML tags.<br />
+>
+><b>Returns:</b> A string of the form `.ctor(TypeA paramA, TypeB paramB)`.
+
+<br />
+
+## EventInfoExtensions
+Extensions for the `System.Reflection.EventInfo` class.
+
+>```csharp
+>public static class EventInfoExtensions
+>```
+
+### Static Methods
+
+#### BeautifyName
+>```csharp
+>string BeautifyName(this EventInfo eventInfo, bool useFullName = False, bool useHtmlFormat = False, bool includeEventHandlerType = False)
+>```
+><b>Summary:</b> Returns a human-readable representation of the event, optionally including the event handler type and using full type names or HTML formatting.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`eventInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The event information.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useFullName`&nbsp;&nbsp;-&nbsp;&nbsp;If , the event-handler type is rendered with its fully-qualified name.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useHtmlFormat`&nbsp;&nbsp;-&nbsp;&nbsp;If , the event-handler type name is wrapped in HTML tags.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`includeEventHandlerType`&nbsp;&nbsp;-&nbsp;&nbsp;If , the event-handler type is prepended to the name.<br />
+>
+><b>Returns:</b> A string such as `MyEvent` or `EventHandler MyEvent` when `includeEventHandlerType` is <see langword="true" />.
+
+<br />
+
 ## FieldInfoExtensions
 Extensions for the `System.Reflection.FieldInfo` class.
 

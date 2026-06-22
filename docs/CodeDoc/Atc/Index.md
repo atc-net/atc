@@ -267,6 +267,8 @@
 ## [System.Reflection](System.Reflection.md)
 
 - [AssemblyExtensions](System.Reflection.md#assemblyextensions)
+- [ConstructorInfoExtensions](System.Reflection.md#constructorinfoextensions)
+- [EventInfoExtensions](System.Reflection.md#eventinfoextensions)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)
 - [MemberInfoExtensions](System.Reflection.md#memberinfoextensions)
 - [MethodInfoExtensions](System.Reflection.md#methodinfoextensions)

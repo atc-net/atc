@@ -77,4 +77,110 @@ public class ByteSizeTests
         Assert.Contains(new ByteSize(2048), set);
         Assert.DoesNotContain(new ByteSize(4096), set);
     }
+
+    [Theory]
+    [InlineData(-1, 1024, 2048)]
+    [InlineData(1, 2048, 1024)]
+    [InlineData(0, 512, 512)]
+    public void CompareTo_OrdersCorrectly(
+        int expectedSign,
+        long a,
+        long b)
+    {
+        // Arrange
+        var left = new ByteSize(a);
+        var right = new ByteSize(b);
+
+        // Atc
+        var actual = System.Math.Sign(left.CompareTo(right));
+
+        // Assert
+        Assert.Equal(expectedSign, actual);
+    }
+
+    [Fact]
+    public void CompareTo_WithObject_OrdersCorrectly()
+    {
+        // Arrange
+        var small = new ByteSize(512);
+        var large = new ByteSize(2048);
+        object boxedSmall = small;
+        object boxedLarge = large;
+
+        // Atc & Assert
+        Assert.True(small.CompareTo(boxedSmall) == 0);
+        Assert.True(small.CompareTo(boxedLarge) < 0);
+        Assert.True(large.CompareTo(boxedSmall) > 0);
+        Assert.Throws<ArgumentException>(() => small.CompareTo("not a ByteSize"));
+    }
+
+    [Fact]
+    public void ComparisonOperators_WorkCorrectly()
+    {
+        var small = new ByteSize(100);
+        var large = new ByteSize(200);
+        Assert.True(small < large);
+        Assert.True(small <= large);
+        Assert.True(large > small);
+        Assert.True(large >= small);
+        Assert.False(small > large);
+    }
+
+    [Fact]
+    public void ArithmeticOperators_AddAndSubtract()
+    {
+        var a = new ByteSize(1024);
+        var b = new ByteSize(512);
+        Assert.Equal(1536L, (a + b).Value);
+        Assert.Equal(512L, (a - b).Value);
+    }
+
+    [Fact]
+    public void TryParse_WithValidInput_ReturnsTrueAndValue()
+    {
+        // Arrange
+        string value = "4096";
+
+        // Atc
+        var ok = ByteSize.TryParse(value, out var result);
+
+        // Assert
+        Assert.True(ok);
+        Assert.Equal(4096L, result.Value);
+    }
+
+    [Theory]
+    [InlineData(true, "1024", 1024)]
+    [InlineData(true, "-512", -512)]
+    [InlineData(true, "  0  ", 0)]
+    [InlineData(false, "1.5", 0)]
+    [InlineData(false, "abc", 0)]
+    [InlineData(false, null, 0)]
+    public void TryParse(
+        bool expectedResult,
+        string? input,
+        long expectedValue)
+    {
+        var ok = ByteSize.TryParse(input, out var result);
+        Assert.Equal(expectedResult, ok);
+        if (ok)
+        {
+            Assert.Equal(expectedValue, result.Value);
+        }
+    }
+
+    [Fact]
+    public void Parse_ValidString_ReturnsByteSize()
+    {
+        var result = ByteSize.Parse("4096");
+        Assert.Equal(4096L, result.Value);
+    }
+
+    [Fact]
+    public void Parse_InvalidString_ThrowsFormatException()
+        => Assert.Throws<FormatException>(() => ByteSize.Parse("not-a-number"));
+
+    [Fact]
+    public void Parse_NullString_ThrowsArgumentNullException()
+        => Assert.Throws<ArgumentNullException>(() => ByteSize.Parse(null!));
 }

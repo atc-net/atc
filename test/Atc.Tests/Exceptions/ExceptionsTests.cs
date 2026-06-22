@@ -433,7 +433,7 @@ public class ExceptionsTests
     [Fact]
     public void SwitchCaseDefaultException_ObjectValue_ContainsTypeAndValue()
     {
-        var sut = new SwitchCaseDefaultException("unexpected");
+        var sut = new SwitchCaseDefaultException((object?)"unexpected");
         Assert.Contains("String", sut.Message, StringComparison.Ordinal);
         Assert.Contains("unexpected", sut.Message, StringComparison.Ordinal);
     }

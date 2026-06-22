@@ -4394,6 +4394,7 @@
      - GreaterThanOrEqualTo(SemanticVersion otherVersion, int significantParts = 4, int startingPart = 1)
      - IsNewerThan(SemanticVersion otherVersion, bool withinMinorReleaseOnly = False, bool looseMode = False)
      - ToString()
+     - ToString(string format, IFormatProvider formatProvider)
      - ToVersion()
 
 ## [Atc.Factories](Atc.Factories.md)
@@ -4518,9 +4519,13 @@
 - [DateTimeOffsetHelper](Atc.Helpers.md#datetimeoffsethelper)
   -  Static Methods
      - TryParseShortDateUsingCurrentUiCulture(string value, out DateTime result)
+     - TryParseShortDateUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
      - TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
      - TryParseShortTimeUsingCurrentUiCultureUtc(string value, out DateTime result)
+     - TryParseShortTimeUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
+     - TryParseShortTimeUsingSpecificCultureUtc(string value, CultureInfo cultureInfo, out DateTime result)
      - TryParseUsingCurrentUiCulture(string value, out DateTime result)
+     - TryParseUsingSpecificCulture(string value, CultureInfo cultureInfo, out DateTime result)
 - [DayOfWeekHelper](Atc.Helpers.md#dayofweekhelper)
   -  Static Methods
      - GetDescription(DayOfWeek dayOfWeek, CultureInfo culture = null)
@@ -4983,9 +4988,14 @@
 ## [Atc.Units.DigitalInformation](Atc.Units.DigitalInformation.md)
 
 - [ByteSize](Atc.Units.DigitalInformation.md#bytesize)
+  -  Static Methods
+     - Parse(string value)
+     - TryParse(string value, out byte result)
   -  Properties
      - Value
   -  Methods
+     - CompareTo(ByteSize other)
+     - CompareTo(object obj)
      - Equals(ByteSize other)
      - Equals(object obj)
      - Format()
@@ -5084,13 +5094,21 @@
      - IsHexDigit(this char value)
      - IsVowel(this char value)
 - [ConfigurationException](System.md#configurationexception)
+  -  Static Methods
+     - ThrowIfInvalid(bool condition, string section, string key)
+     - ThrowIfMissing(string value, string section, string key)
 - [DateTimeExtensions](System.md#datetimeextensions)
   -  Static Methods
      - DateTimeDiff(this DateTime startDate, DateTime endDate, DateTimeDiffCompareType howToCompare)
+     - EndOfDay(this DateTime dateTime)
+     - EndOfMonth(this DateTime dateTime)
      - GetPrettyTimeDiff(this DateTime startDate, DateTime endDate, int decimalPrecision = 3)
      - GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
      - GetWeekNumber(this DateTime date)
      - IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
+     - IsWeekend(this DateTime dateTime)
+     - StartOfDay(this DateTime dateTime)
+     - StartOfMonth(this DateTime dateTime)
      - ToIso8601Date(this DateTime dateTime)
      - ToIso8601UtcDate(this DateTime dateTime)
      - ToLongDateString(this DateTime dateTime, DateTimeFormatInfo dateTimeFormatInfo)
@@ -5108,12 +5126,17 @@
 - [DateTimeOffsetExtensions](System.md#datetimeoffsetextensions)
   -  Static Methods
      - DateTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, DateTimeDiffCompareType howToCompare)
+     - EndOfDay(this DateTimeOffset dateTimeOffset)
+     - EndOfMonth(this DateTimeOffset dateTimeOffset)
      - GetPrettyTimeDiff(this DateTimeOffset startDate, DateTimeOffset endDate, int decimalPrecision = 3)
      - GetPrettyTimeDiff(this DateTimeOffset startDate, int decimalPrecision = 3)
      - GetWeekNumber(this DateTimeOffset date)
      - IsBetween(this DateTimeOffset dateTimeOffset, DateTimeOffset startDate, DateTimeOffset endDate)
+     - IsWeekend(this DateTimeOffset dateTimeOffset)
      - ResetToStartOfCurrentHour(this DateTimeOffset dateTimeOffset)
      - SetHourAndMinutes(this DateTimeOffset dateTimeOffset, int hour, int minutes)
+     - StartOfDay(this DateTimeOffset dateTimeOffset)
+     - StartOfMonth(this DateTimeOffset dateTimeOffset)
      - ToIso8601Date(this DateTimeOffset dateTimeOffset)
      - ToIso8601UtcDate(this DateTimeOffset dateTimeOffset)
      - ToLongDateString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
@@ -5122,6 +5145,7 @@
      - ToLongTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
      - ToShortDateString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
      - ToShortDateStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+     - ToShortDateStringUsingSpecificCulture(this DateTimeOffset dateTimeOffset, CultureInfo cultureInfo)
      - ToShortTimeString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
      - ToShortTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
      - ToUnixTime(this DateTimeOffset dateTimeOffset)
@@ -5347,6 +5371,9 @@
      - IsWord(this string value)
 - [StringNullOrEmptyException](System.md#stringnulloremptyexception)
 - [SwitchCaseDefaultException](System.md#switchcasedefaultexception)
+  -  Static Methods
+     - Throw(Enum value)
+     - Throw(object value)
 - [TaskExtensions](System.md#taskextensions)
   -  Static Methods
      - Forget(this Task task)
@@ -5552,6 +5579,12 @@
      - GetResourceManagers(this Assembly assembly)
      - GetTypesInheritingFromType(this Assembly assembly, Type type)
      - IsDebugBuild(this Assembly assembly)
+- [ConstructorInfoExtensions](System.Reflection.md#constructorinfoextensions)
+  -  Static Methods
+     - BeautifyName(this ConstructorInfo constructorInfo, bool useFullName = False, bool useHtmlFormat = False)
+- [EventInfoExtensions](System.Reflection.md#eventinfoextensions)
+  -  Static Methods
+     - BeautifyName(this EventInfo eventInfo, bool useFullName = False, bool useHtmlFormat = False, bool includeEventHandlerType = False)
 - [FieldInfoExtensions](System.Reflection.md#fieldinfoextensions)
   -  Static Methods
      - BeautifyName(this FieldInfo fieldInfo, bool useFullName = False, bool useHtmlFormat = False, bool includeReturnType = False)

@@ -608,6 +608,28 @@ The exception that is thrown when a configuration error occurs, such as missing 
 >public class ConfigurationException : Exception, ISerializable
 >```
 
+### Static Methods
+
+#### ThrowIfInvalid
+>```csharp
+>void ThrowIfInvalid(bool condition, string section, string key)
+>```
+><b>Summary:</b> Throws a `System.ConfigurationException` if `condition` is <see langword="true" />.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`condition`&nbsp;&nbsp;-&nbsp;&nbsp;The condition that indicates the configuration value is invalid.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`section`&nbsp;&nbsp;-&nbsp;&nbsp;The configuration section name.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The configuration key name.<br />
+#### ThrowIfMissing
+>```csharp
+>void ThrowIfMissing(string value, string section, string key)
+>```
+><b>Summary:</b> Throws a `System.ConfigurationException` if `value` is <see langword="null" /> or empty.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The configuration value to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`section`&nbsp;&nbsp;-&nbsp;&nbsp;The configuration section name.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`key`&nbsp;&nbsp;-&nbsp;&nbsp;The configuration key name.<br />
 
 <br />
 
@@ -632,6 +654,26 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`howToCompare`&nbsp;&nbsp;-&nbsp;&nbsp;The how to compare.<br />
 >
 ><b>Returns:</b> The number between start date and end date, depend on the DiffCompareType.
+#### EndOfDay
+>```csharp
+>DateTime EndOfDay(this DateTime dateTime)
+>```
+><b>Summary:</b> Returns a new `System.DateTime` set to the very end of the same day (23:59:59.9999999). The `System.DateTime.Kind` of the result matches the input.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date value.<br />
+>
+><b>Returns:</b> The last representable tick of `dateTime`'s date.
+#### EndOfMonth
+>```csharp
+>DateTime EndOfMonth(this DateTime dateTime)
+>```
+><b>Summary:</b> Returns a new `System.DateTime` set to the last tick of the last day of the same month.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date value.<br />
+>
+><b>Returns:</b> The last representable tick of the last day of the month containing `dateTime`.
 #### GetPrettyTimeDiff
 >```csharp
 >string GetPrettyTimeDiff(this DateTime startDate, int decimalPrecision = 3)
@@ -672,6 +714,36 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;End date to check for.<br />
 >
 ><b>Returns:</b> boolean value indicating if the date is between or equal to one of the two values.
+#### IsWeekend
+>```csharp
+>bool IsWeekend(this DateTime dateTime)
+>```
+><b>Summary:</b> Determines whether the specified date falls on a Saturday or Sunday.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date to test.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the day of the week is `System.DayOfWeek.Saturday` or `System.DayOfWeek.Sunday`; otherwise, <see langword="false" />.
+#### StartOfDay
+>```csharp
+>DateTime StartOfDay(this DateTime dateTime)
+>```
+><b>Summary:</b> Returns a new `System.DateTime` set to the very start of the same day (00:00:00.000). The `System.DateTime.Kind` of the result matches the input.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date value.<br />
+>
+><b>Returns:</b> Midnight at the start of `dateTime`'s date.
+#### StartOfMonth
+>```csharp
+>DateTime StartOfMonth(this DateTime dateTime)
+>```
+><b>Summary:</b> Returns a new `System.DateTime` set to the first day of the same month at midnight (00:00:00.000).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The date value.<br />
+>
+><b>Returns:</b> The first day of the month containing `dateTime`.
 #### ToIso8601Date
 >```csharp
 >string ToIso8601Date(this DateTime dateTime)
@@ -845,6 +917,26 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`howToCompare`&nbsp;&nbsp;-&nbsp;&nbsp;The how to compare.<br />
 >
 ><b>Returns:</b> The number between start date and end date, depend on the DiffCompareType.
+#### EndOfDay
+>```csharp
+>DateTimeOffset EndOfDay(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Returns a new `System.DateTimeOffset` set to the very end of the same day (23:59:59.9999999), preserving the original `System.DateTimeOffset.Offset`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date-time value.<br />
+>
+><b>Returns:</b> The last representable tick of the date, with the same UTC offset.
+#### EndOfMonth
+>```csharp
+>DateTimeOffset EndOfMonth(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Returns a new `System.DateTimeOffset` set to the last tick of the last day of the same month, preserving the original `System.DateTimeOffset.Offset`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date-time value.<br />
+>
+><b>Returns:</b> The last representable tick of the month, with the same UTC offset.
 #### GetPrettyTimeDiff
 >```csharp
 >string GetPrettyTimeDiff(this DateTimeOffset startDate, int decimalPrecision = 3)
@@ -885,6 +977,16 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`endDate`&nbsp;&nbsp;-&nbsp;&nbsp;End date to check for.<br />
 >
 ><b>Returns:</b> boolean value indicating if the date is between or equal to one of the two values.
+#### IsWeekend
+>```csharp
+>bool IsWeekend(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Determines whether the date falls on a Saturday or Sunday.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date to test.<br />
+>
+><b>Returns:</b> <see langword="true" /> if the day of week is `System.DayOfWeek.Saturday` or `System.DayOfWeek.Sunday`; otherwise, <see langword="false" />.
 #### ResetToStartOfCurrentHour
 >```csharp
 >DateTimeOffset ResetToStartOfCurrentHour(this DateTimeOffset dateTimeOffset)
@@ -907,6 +1009,26 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`minutes`&nbsp;&nbsp;-&nbsp;&nbsp;The minutes.<br />
 >
 ><b>Returns:</b> The dateTimeOffset with the specified hour and minutes.
+#### StartOfDay
+>```csharp
+>DateTimeOffset StartOfDay(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Returns a new `System.DateTimeOffset` set to the very start of the same day (00:00:00.000), preserving the original `System.DateTimeOffset.Offset`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date-time value.<br />
+>
+><b>Returns:</b> Midnight at the start of the date, with the same UTC offset.
+#### StartOfMonth
+>```csharp
+>DateTimeOffset StartOfMonth(this DateTimeOffset dateTimeOffset)
+>```
+><b>Summary:</b> Returns a new `System.DateTimeOffset` set to the first day of the same month at midnight, preserving the original `System.DateTimeOffset.Offset`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The date-time value.<br />
+>
+><b>Returns:</b> The first day of the month, with the same UTC offset.
 #### ToIso8601Date
 >```csharp
 >string ToIso8601Date(this DateTimeOffset dateTimeOffset)
@@ -986,6 +1108,17 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short date pattern of the current UI culture.
+#### ToShortDateStringUsingSpecificCulture
+>```csharp
+>string ToShortDateStringUsingSpecificCulture(this DateTimeOffset dateTimeOffset, CultureInfo cultureInfo)
+>```
+><b>Summary:</b> Converts a `System.DateTimeOffset` to a string using the short date pattern of the specified culture.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cultureInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The culture whose short date pattern is used.<br />
+>
+><b>Returns:</b> A string representation of the date using the short date pattern of `cultureInfo`.
 #### ToShortTimeString
 >```csharp
 >string ToShortTimeString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
@@ -3275,6 +3408,24 @@ The exception that is thrown when an unexpected value is encountered in a switch
 >public class SwitchCaseDefaultException : Exception, ISerializable
 >```
 
+### Static Methods
+
+#### Throw
+>```csharp
+>void Throw(Enum value)
+>```
+><b>Summary:</b> Throws a `System.SwitchCaseDefaultException` for the given enum value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The unexpected enum value encountered in the switch default case.<br />
+#### Throw
+>```csharp
+>void Throw(object value)
+>```
+><b>Summary:</b> Throws a `System.SwitchCaseDefaultException` for the given enum value.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The unexpected enum value encountered in the switch default case.<br />
 
 <br />
 

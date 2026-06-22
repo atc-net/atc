@@ -49,4 +49,19 @@ internal static class ByteSizeCalculationData
         "Peta",
         "Exa",
     };
+
+    /// <summary>
+    /// IEC binary prefix strings (empty, "Ki", "Mi", "Gi", "Ti", "Pi", "Ei").
+    /// Used with the "B" suffix to produce "KiB", "MiB", etc.
+    /// </summary>
+    internal static readonly string[] PrefixesShortBinary =
+    {
+        string.Empty,
+        "Ki",
+        "Mi",
+        "Gi",
+        "Ti",
+        "Pi",
+        "Ei",
+    };
 }
