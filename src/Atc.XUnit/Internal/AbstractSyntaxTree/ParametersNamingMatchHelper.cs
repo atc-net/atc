@@ -252,7 +252,12 @@ internal static class ParametersNamingMatchHelper
                 return true;
             }
 
-            if (astNodeTypeName.Contains("Constants", StringComparison.Ordinal))
+            // Only auto-pass a TypeReferenceExpression for a constants type when the parameter
+            // itself is of type System.Type (i.e., the test passes typeof(SomeConstants)).
+            // The previous broad Contains("Constants") check caused any test referencing a
+            // *Constants* type to be silently marked as covered, causing false negatives.
+            if (astNodeTypeName.EndsWith("Constants", StringComparison.Ordinal) &&
+                parameter.ParameterType == typeof(Type))
             {
                 return true;
             }
