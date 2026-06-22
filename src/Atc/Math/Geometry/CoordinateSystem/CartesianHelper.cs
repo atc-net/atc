@@ -74,17 +74,9 @@ public static class CartesianHelper
         double x2,
         double y2)
     {
-        // Take x2-x1, then square it
-        var part1 = System.Math.Pow(x2 - x1, 2);
-
-        // Take y2-y1, then square it
-        var part2 = System.Math.Pow(y2 - y1, 2);
-
-        // Add both of the parts together
-        var underRadical = part1 + part2;
-
-        // Get the square root of the parts
-        return System.Math.Sqrt(underRadical);
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+        return System.Math.Sqrt((dx * dx) + (dy * dy));
     }
 
     /// <summary>
@@ -106,14 +98,12 @@ public static class CartesianHelper
         double y2,
         double z2)
     {
-        // Take x2-x1, then square it
-        var part1 = System.Math.Pow(x2 - x1, 2);
-
-        // Take y2-y1, then square it
-        var part2 = System.Math.Pow(y2 - y1, 2);
-
-        // Take z2-z1, then square it
-        var part3 = System.Math.Pow(z2 - z1, 2);
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+        var dz = z2 - z1;
+        var part1 = dx * dx;
+        var part2 = dy * dy;
+        var part3 = dz * dz;
 
         // Add both of the parts together
         var underRadical = part1 + part2 + part3;
