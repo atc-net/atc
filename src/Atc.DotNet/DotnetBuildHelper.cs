@@ -214,11 +214,22 @@ public static class DotnetBuildHelper
             .ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// Parses raw dotnet build output and returns error codes grouped by their occurrence count.
+    /// Recognises MSBuild errors (MSB prefix), NuGet errors (NU prefix), and general compiler errors
+    /// (e.g. CS, CA). The project-file suffix that MSBuild appends — <c> [project.csproj]</c> — is
+    /// optional; errors emitted without it are still counted.
+    /// </summary>
+    /// <param name="buildOutput">The raw text output from a dotnet build invocation.</param>
+    /// <returns>A dictionary mapping each error code to the number of times it appeared.</returns>
+    public static Dictionary<string, int> ParseErrors(string buildOutput)
+        => ParseBuildOutput(buildOutput);
+
     private static Dictionary<string, int> ParseBuildOutput(string buildResult)
     {
         const string? regexPatternMsBuild = @": error MSB(\S+?): (.*)";
         const string? regexPatternNuget = @": error NU(\S+?): (.*)";
-        const string? regexPatternGeneral = @": error ([A-Z]\S+?): (.*) \[";
+        const string? regexPatternGeneral = @": error ([A-Z]\S+?): (.+)";
 
         var errors = ParseBuildOutputHelper(buildResult, regexPatternMsBuild, "MSB");
         if (errors.Any())
