@@ -29,10 +29,7 @@ public static class ByteExtensions
             return Array.Empty<byte>();
         }
 
-        return value
-            .Skip(startPosition)
-            .Take(length)
-            .ToArray();
+        return new ReadOnlySpan<byte>(value, startPosition, length).ToArray();
     }
 
     /// <summary>
