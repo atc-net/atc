@@ -42,7 +42,7 @@
   <ItemGroup Label="Code Analyzers">
     <PackageReference Include="Atc.Analyzer" Version="0.1.23" PrivateAssets="All" />
     <PackageReference Include="AsyncFixer" Version="2.1.0" PrivateAssets="All" />
-    <PackageReference Include="Meziantou.Analyzer" Version="3.0.104" PrivateAssets="All" />
+    <PackageReference Include="Meziantou.Analyzer" Version="3.0.109" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435" PrivateAssets="All" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="10.27.0.140913" PrivateAssets="All" />
   </ItemGroup>
