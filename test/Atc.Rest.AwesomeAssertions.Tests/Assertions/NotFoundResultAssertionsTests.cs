@@ -88,7 +88,7 @@ public class NotFoundResultAssertionsTests : ContentResultAssertionsBaseFixture
 
     [Theory]
     [MemberData(nameof(TestDataAssertions.ErrorMessageContent), MemberType = typeof(TestDataAssertions))]
-    public void WithErrorMessage_Throws_When_Content_Doenst_Match_Expected(
+    public void WithErrorMessage_Throws_When_Content_Doesnt_Match_Expected(
         object content)
     {
         // Arrange
