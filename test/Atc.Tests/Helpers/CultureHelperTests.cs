@@ -22,7 +22,7 @@ public class CultureHelperTests
         actual
             .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
-            .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
+            .And.HaveCountGreaterThanOrEqualTo(expectedAtLeast - 1);
     }
 
     [Theory]
@@ -144,7 +144,7 @@ public class CultureHelperTests
         actual
             .Should().NotBeNull()
             .And.BeOfType<List<Culture>>()
-            .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
+            .And.HaveCountGreaterThanOrEqualTo(expectedAtLeast - 1);
     }
 
     [Theory]
@@ -291,7 +291,7 @@ public class CultureHelperTests
             actual
                 .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterOrEqualTo(expected - 1);
+                .And.HaveCountGreaterThanOrEqualTo(expected - 1);
         }
         else
         {
@@ -321,7 +321,7 @@ public class CultureHelperTests
             actual
                 .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterOrEqualTo(expected - 1);
+                .And.HaveCountGreaterThanOrEqualTo(expected - 1);
         }
         else
         {
@@ -350,7 +350,7 @@ public class CultureHelperTests
             actual
                 .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterOrEqualTo(expected - 1);
+                .And.HaveCountGreaterThanOrEqualTo(expected - 1);
         }
         else
         {
@@ -380,7 +380,7 @@ public class CultureHelperTests
             actual
                 .Should().NotBeNull()
                 .And.BeOfType<List<Culture>>()
-                .And.HaveCountGreaterOrEqualTo(expected - 1);
+                .And.HaveCountGreaterThanOrEqualTo(expected - 1);
         }
         else
         {
@@ -463,7 +463,7 @@ public class CultureHelperTests
         actual
             .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
-            .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
+            .And.HaveCountGreaterThanOrEqualTo(expectedAtLeast - 1);
     }
 
     [Theory]
@@ -616,7 +616,7 @@ public class CultureHelperTests
         actual
             .Should().NotBeNull()
             .And.BeOfType<Dictionary<int, string>>()
-            .And.HaveCountGreaterOrEqualTo(expectedAtLeast - 1);
+            .And.HaveCountGreaterThanOrEqualTo(expectedAtLeast - 1);
     }
 
     [Theory]

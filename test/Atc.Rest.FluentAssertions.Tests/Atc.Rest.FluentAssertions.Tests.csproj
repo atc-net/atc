@@ -6,8 +6,11 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+  <!-- This project specifically targets FluentAssertions (the library under test), so opt out of the
+       solution-wide AwesomeAssertions global using and use FluentAssertions instead. -->
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.Decompiler" Version="10.1.0.8386" />
+    <Using Remove="AwesomeAssertions" />
+    <Using Include="FluentAssertions" />
   </ItemGroup>
 
   <ItemGroup>
