@@ -2,6 +2,12 @@
 
 **Target Framework:** `net9.0`
 
+> [!IMPORTANT]
+> We recommend using [Atc.Rest.AwesomeAssertions](../Atc.Rest.AwesomeAssertions/README.md) instead.
+> It offers the same assertion helpers built on [AwesomeAssertions](https://github.com/AwesomeAssertions/AwesomeAssertions) —
+> the actively maintained, Apache-2.0 community fork of FluentAssertions 7.x. This package remains pinned to
+> FluentAssertions 7.2.1 because FluentAssertions 8 and newer require a paid commercial license.
+
 FluentAssertions extensions for testing REST API domain handlers. Provides expressive assertion methods for verifying result types, status codes, and response content returned from domain handlers.
 
 ## Why Use This Library?
