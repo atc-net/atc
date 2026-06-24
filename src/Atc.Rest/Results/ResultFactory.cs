@@ -61,7 +61,7 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message), JsonSerializerOptionsFactory.Default),
+            Content = JsonSerializer.Serialize(CreateProblemDetails(statusCode, message), JsonSerializerOptionsFactory.Create(writeIndented: false)),
         };
 
     /// <summary>
@@ -93,11 +93,11 @@ public static class ResultFactory
 
         var message = SimpleTypeHelper.IsSimpleType(beautifyTypeName)
             ? value.ToString()
-            : JsonSerializer.Serialize(value, JsonSerializerOptionsFactory.Default);
+            : JsonSerializer.Serialize(value, JsonSerializerOptionsFactory.Create(writeIndented: false));
 
         var problemDetails = CreateProblemDetails(statusCode, message);
 
-        result.Content = JsonSerializer.Serialize(problemDetails, JsonSerializerOptionsFactory.Default);
+        result.Content = JsonSerializer.Serialize(problemDetails, JsonSerializerOptionsFactory.Create(writeIndented: false));
 
         return result;
     }
@@ -117,7 +117,7 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message), JsonSerializerOptionsFactory.Default),
+            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, new Dictionary<string, string[]>(StringComparer.Ordinal), message), JsonSerializerOptionsFactory.Create(writeIndented: false)),
         };
 
     /// <summary>
@@ -137,7 +137,7 @@ public static class ResultFactory
         {
             ContentType = contentType,
             StatusCode = (int)statusCode,
-            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, errors, message), JsonSerializerOptionsFactory.Default),
+            Content = JsonSerializer.Serialize(CreateValidationProblemDetails(statusCode, errors, message), JsonSerializerOptionsFactory.Create(writeIndented: false)),
         };
 
     /// <summary>
