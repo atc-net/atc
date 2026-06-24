@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.Decompiler" Version="10.1.0.8386" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Atc.CodeDocumentation\Atc.CodeDocumentation.csproj" />
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
     <ProjectReference Include="..\..\src\Atc\Atc.csproj" />
