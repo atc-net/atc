@@ -130,6 +130,17 @@ Extension methods for `Microsoft.CodeAnalysis.CSharp.Syntax.InterfaceDeclaration
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version of the code generation tool.<br />
 >
 ><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.InterfaceDeclarationSyntax` with the attribute added.
+#### AddSuppressMessageAttribute
+>```csharp
+>InterfaceDeclarationSyntax AddSuppressMessageAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, SuppressMessageAttribute suppressMessage)
+>```
+><b>Summary:</b> Adds a `System.Diagnostics.CodeAnalysis.SuppressMessageAttribute` to the interface declaration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`interfaceDeclaration`&nbsp;&nbsp;-&nbsp;&nbsp;The interface declaration to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`suppressMessage`&nbsp;&nbsp;-&nbsp;&nbsp;The suppress message attribute to add.<br />
+>
+><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.InterfaceDeclarationSyntax` with the attribute added.
 
 <br />
 
@@ -153,6 +164,76 @@ Extension methods for `Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyn
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`suppressMessage`&nbsp;&nbsp;-&nbsp;&nbsp;The suppress message attribute to add.<br />
 >
 ><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax` with the attribute added.
+
+<br />
+
+## RecordDeclarationSyntaxExtensions
+Extension methods for `Microsoft.CodeAnalysis.CSharp.Syntax.RecordDeclarationSyntax`.
+
+>```csharp
+>public static class RecordDeclarationSyntaxExtensions
+>```
+
+### Static Methods
+
+#### AddGeneratedCodeAttribute
+>```csharp
+>RecordDeclarationSyntax AddGeneratedCodeAttribute(this RecordDeclarationSyntax recordDeclaration, string toolName, string version)
+>```
+><b>Summary:</b> Adds a `System.CodeDom.Compiler.GeneratedCodeAttribute` to the record declaration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`recordDeclaration`&nbsp;&nbsp;-&nbsp;&nbsp;The record declaration to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`toolName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the code generation tool.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version of the code generation tool.<br />
+>
+><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.RecordDeclarationSyntax` with the attribute added.
+#### AddSuppressMessageAttribute
+>```csharp
+>RecordDeclarationSyntax AddSuppressMessageAttribute(this RecordDeclarationSyntax recordDeclaration, SuppressMessageAttribute suppressMessage)
+>```
+><b>Summary:</b> Adds a `System.Diagnostics.CodeAnalysis.SuppressMessageAttribute` to the record declaration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`recordDeclaration`&nbsp;&nbsp;-&nbsp;&nbsp;The record declaration to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`suppressMessage`&nbsp;&nbsp;-&nbsp;&nbsp;The suppress message attribute to add.<br />
+>
+><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.RecordDeclarationSyntax` with the attribute added.
+
+<br />
+
+## StructDeclarationSyntaxExtensions
+Extension methods for `Microsoft.CodeAnalysis.CSharp.Syntax.StructDeclarationSyntax`.
+
+>```csharp
+>public static class StructDeclarationSyntaxExtensions
+>```
+
+### Static Methods
+
+#### AddGeneratedCodeAttribute
+>```csharp
+>StructDeclarationSyntax AddGeneratedCodeAttribute(this StructDeclarationSyntax structDeclaration, string toolName, string version)
+>```
+><b>Summary:</b> Adds a `System.CodeDom.Compiler.GeneratedCodeAttribute` to the struct declaration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`structDeclaration`&nbsp;&nbsp;-&nbsp;&nbsp;The struct declaration to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`toolName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the code generation tool.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`version`&nbsp;&nbsp;-&nbsp;&nbsp;The version of the code generation tool.<br />
+>
+><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.StructDeclarationSyntax` with the attribute added.
+#### AddSuppressMessageAttribute
+>```csharp
+>StructDeclarationSyntax AddSuppressMessageAttribute(this StructDeclarationSyntax structDeclaration, SuppressMessageAttribute suppressMessage)
+>```
+><b>Summary:</b> Adds a `System.Diagnostics.CodeAnalysis.SuppressMessageAttribute` to the struct declaration.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`structDeclaration`&nbsp;&nbsp;-&nbsp;&nbsp;The struct declaration to modify.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`suppressMessage`&nbsp;&nbsp;-&nbsp;&nbsp;The suppress message attribute to add.<br />
+>
+><b>Returns:</b> A new `Microsoft.CodeAnalysis.CSharp.Syntax.StructDeclarationSyntax` with the attribute added.
 
 <br />
 

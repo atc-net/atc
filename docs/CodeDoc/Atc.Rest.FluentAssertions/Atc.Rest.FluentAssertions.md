@@ -213,6 +213,17 @@ Provides FluentAssertions-style assertions for `Microsoft.AspNetCore.Mvc.OkObjec
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`becauseArgs`&nbsp;&nbsp;-&nbsp;&nbsp;Optional formatting arguments for the  parameter.<br />
 >
 ><b>Returns:</b> An `FluentAssertions.AndWhichConstraint`2` for further assertions on the typed content.
+#### WithEmptyContent
+>```csharp
+>AndConstraint<OkResultAssertions> WithEmptyContent(string because = , object[] becauseArgs)
+>```
+><b>Summary:</b> Asserts that the OK result has no body content (the result value is <see langword="null" />).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`because`&nbsp;&nbsp;-&nbsp;&nbsp;Optional explanation of why the assertion is needed.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`becauseArgs`&nbsp;&nbsp;-&nbsp;&nbsp;Optional formatting arguments for the  parameter.<br />
+>
+><b>Returns:</b> An `FluentAssertions.AndConstraint`1` for chaining further assertions.
 
 <br />
 
@@ -324,6 +335,18 @@ Provides FluentAssertions-style assertions for `Microsoft.AspNetCore.Mvc.ActionR
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`becauseArgs`&nbsp;&nbsp;-&nbsp;&nbsp;Optional formatting arguments for the  parameter.<br />
 >
 ><b>Returns:</b> An `Atc.Rest.FluentAssertions.OkResultAssertions` instance for further assertions.
+#### BeOkResultWithContent
+>```csharp
+>AndWhichConstraint<OkResultAssertions, OkObjectResult> BeOkResultWithContent(T expectedContent, string because = , object[] becauseArgs)
+>```
+><b>Summary:</b> Asserts that the action result is a 200 OK result whose content is equivalent to `expectedContent`. This is a convenience shorthand for `BeOkResult().WithContent(expectedContent)`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`expectedContent`&nbsp;&nbsp;-&nbsp;&nbsp;The expected content value to compare against.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`because`&nbsp;&nbsp;-&nbsp;&nbsp;Optional explanation of why the assertion is needed.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`becauseArgs`&nbsp;&nbsp;-&nbsp;&nbsp;Optional formatting arguments for the  parameter.<br />
+>
+><b>Returns:</b> An `FluentAssertions.AndWhichConstraint`2` for further assertions.
 
 <br />
 

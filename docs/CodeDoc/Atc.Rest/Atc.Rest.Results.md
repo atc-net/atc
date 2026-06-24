@@ -159,6 +159,39 @@ Factory methods for creating standardized HTTP response results.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`contentType`&nbsp;&nbsp;-&nbsp;&nbsp;The content type. Defaults to application/octet-stream.<br />
 >
 ><b>Returns:</b> A `Microsoft.AspNetCore.Mvc.FileResult` configured for file download.
+#### CreateObjectResultWithProblemDetails
+>```csharp
+>ObjectResult CreateObjectResultWithProblemDetails(HttpStatusCode statusCode, string message)
+>```
+><b>Summary:</b> Creates an `Microsoft.AspNetCore.Mvc.ObjectResult` containing ProblemDetails, allowing ASP.NET Core's output formatters to serialize it using the app-configured `System.Text.Json.JsonSerializerOptions`. Prefer this over `Atc.Rest.Results.ResultFactory.CreateContentResultWithProblemDetails(System.Net.HttpStatusCode,System.String,System.String)` when consistent casing with the rest of the API is required.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`statusCode`&nbsp;&nbsp;-&nbsp;&nbsp;The HTTP status code.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`&nbsp;&nbsp;-&nbsp;&nbsp;The detail message describing the problem.<br />
+>
+><b>Returns:</b> An `Microsoft.AspNetCore.Mvc.ObjectResult` wrapping a `Microsoft.AspNetCore.Mvc.ProblemDetails` instance.
+#### CreateObjectResultWithValidationProblemDetails
+>```csharp
+>ObjectResult CreateObjectResultWithValidationProblemDetails(HttpStatusCode statusCode, string message)
+>```
+><b>Summary:</b> Creates an `Microsoft.AspNetCore.Mvc.ObjectResult` containing ValidationProblemDetails without field-specific errors, allowing ASP.NET Core's output formatters to serialize it using the app-configured `System.Text.Json.JsonSerializerOptions`. Prefer this over `Atc.Rest.Results.ResultFactory.CreateContentResultWithValidationProblemDetails(System.Net.HttpStatusCode,System.String,System.String)` when consistent casing with the rest of the API is required.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`statusCode`&nbsp;&nbsp;-&nbsp;&nbsp;The HTTP status code.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`&nbsp;&nbsp;-&nbsp;&nbsp;The detail message describing the validation failure.<br />
+>
+><b>Returns:</b> An `Microsoft.AspNetCore.Mvc.ObjectResult` wrapping a `Microsoft.AspNetCore.Mvc.ValidationProblemDetails` instance.
+#### CreateObjectResultWithValidationProblemDetails
+>```csharp
+>ObjectResult CreateObjectResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary<string, string[]> errors, string message)
+>```
+><b>Summary:</b> Creates an `Microsoft.AspNetCore.Mvc.ObjectResult` containing ValidationProblemDetails without field-specific errors, allowing ASP.NET Core's output formatters to serialize it using the app-configured `System.Text.Json.JsonSerializerOptions`. Prefer this over `Atc.Rest.Results.ResultFactory.CreateContentResultWithValidationProblemDetails(System.Net.HttpStatusCode,System.String,System.String)` when consistent casing with the rest of the API is required.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`statusCode`&nbsp;&nbsp;-&nbsp;&nbsp;The HTTP status code.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`&nbsp;&nbsp;-&nbsp;&nbsp;The detail message describing the validation failure.<br />
+>
+><b>Returns:</b> An `Microsoft.AspNetCore.Mvc.ObjectResult` wrapping a `Microsoft.AspNetCore.Mvc.ValidationProblemDetails` instance.
 #### CreateProblemDetails
 >```csharp
 >ProblemDetails CreateProblemDetails(HttpStatusCode statusCode, string message)

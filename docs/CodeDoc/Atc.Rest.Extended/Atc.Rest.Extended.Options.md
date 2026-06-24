@@ -28,7 +28,7 @@ Configures API versioning options for ASP.NET Core API versioning. Sets up versi
 <br />
 
 ## ConfigureAuthorizationOptions
-Post-configures JWT Bearer authentication and authorization options based on `Atc.Rest.Extended.Options.RestApiExtendedOptions`. Handles issuer signing key retrieval from OpenID Connect configuration and token validation setup.
+Post-configures JWT Bearer authentication and authorization options based on `Atc.Rest.Extended.Options.RestApiExtendedOptions`. Signing-key discovery is delegated to JwtBearer's built-in `Microsoft.IdentityModel.Protocols.ConfigurationManager`1`, which fetches and caches the OIDC discovery document on the first authentication request using the `Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority` set here.
 
 >```csharp
 >public class ConfigureAuthorizationOptions : IPostConfigureOptions<JwtBearerOptions>, IPostConfigureOptions<AuthenticationOptions>
@@ -40,7 +40,7 @@ Post-configures JWT Bearer authentication and authorization options based on `At
 >```csharp
 >void PostConfigure(string name, JwtBearerOptions options)
 >```
-><b>Summary:</b> Post-configures JWT Bearer options with token validation parameters and issuer signing keys.
+><b>Summary:</b> Post-configures JWT Bearer options with token validation parameters. Signing keys are not pre-fetched; JwtBearer's built-in `Microsoft.IdentityModel.Protocols.ConfigurationManager`1` discovers and caches them from the OIDC discovery endpoint on the first authentication request.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the options instance being configured.<br />
@@ -49,7 +49,7 @@ Post-configures JWT Bearer authentication and authorization options based on `At
 >```csharp
 >void PostConfigure(string name, AuthenticationOptions options)
 >```
-><b>Summary:</b> Post-configures JWT Bearer options with token validation parameters and issuer signing keys.
+><b>Summary:</b> Post-configures JWT Bearer options with token validation parameters. Signing keys are not pre-fetched; JwtBearer's built-in `Microsoft.IdentityModel.Protocols.ConfigurationManager`1` discovers and caches them from the OIDC discovery endpoint on the first authentication request.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the options instance being configured.<br />

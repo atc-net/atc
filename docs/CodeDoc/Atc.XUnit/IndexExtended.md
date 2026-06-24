@@ -15,6 +15,7 @@
 - [CodeComplianceDocumentationHelper](Atc.XUnit.md#codecompliancedocumentationhelper)
   -  Static Methods
      - AssertExportedTypeWithMissingComments(Type type)
+     - AssertExportedTypesWithMissingComments(Assembly assembly, FileInfo xmlDocPath, List&lt;Type&gt; excludeTypes = null)
      - AssertExportedTypesWithMissingComments(Assembly assembly, List&lt;Type&gt; excludeTypes = null)
 - [CodeComplianceHelper](Atc.XUnit.md#codecompliancehelper)
   -  Static Methods

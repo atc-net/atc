@@ -796,11 +796,11 @@ DateTimeHelper.
 
 ### Static Methods
 
-#### TryParseShortDateUsingCurrentUiCulture
+#### TryParseShortDateUi
 >```csharp
->bool TryParseShortDateUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseShortDateUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short date using the current UI culture's date format.
+><b>Summary:</b> Tries to parse a string representation of a short date using the current UI culture's date format. Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -825,11 +825,11 @@ DateTimeHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseShortTimeUsingCurrentUiCulture
+#### TryParseShortTimeUi
 >```csharp
->bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseShortTimeUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short time using the current UI culture's time format (12-hour or 24-hour).
+><b>Summary:</b> Tries to parse a string representation of a short time using the current UI culture's time format (12-hour or 24-hour). Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -839,11 +839,11 @@ DateTimeHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseShortTimeUsingCurrentUiCultureUtc
+#### TryParseShortTimeUiUtc
 >```csharp
->bool TryParseShortTimeUsingCurrentUiCultureUtc(string value, out DateTime result)
+>bool TryParseShortTimeUiUtc(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short UTC time using the current UI culture's time format (12-hour or 24-hour).
+><b>Summary:</b> Tries to parse a string representation of a short UTC time using the current UI culture's time format (12-hour or 24-hour). Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -883,11 +883,11 @@ DateTimeHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseUsingCurrentUiCulture
+#### TryParseUi
 >```csharp
->bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a `DateTime` using the current UI culture's date and time format.
+><b>Summary:</b> Tries to parse a string representation of a `DateTime` using the current UI culture's date and time format. Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -924,11 +924,11 @@ DateTimeOffsetHelper.
 
 ### Static Methods
 
-#### TryParseShortDateUsingCurrentUiCulture
+#### TryParseShortDateUi
 >```csharp
->bool TryParseShortDateUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseShortDateUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short date using the current UI culture's date format.
+><b>Summary:</b> Tries to parse a string representation of a short date using the current UI culture's date format. Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -953,11 +953,11 @@ DateTimeOffsetHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseShortTimeUsingCurrentUiCulture
+#### TryParseShortTimeUi
 >```csharp
->bool TryParseShortTimeUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseShortTimeUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short time using the current UI culture's time format (12-hour or 24-hour).
+><b>Summary:</b> Tries to parse a string representation of a short time using the current UI culture's time format (12-hour or 24-hour). Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -967,11 +967,11 @@ DateTimeOffsetHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseShortTimeUsingCurrentUiCultureUtc
+#### TryParseShortTimeUiUtc
 >```csharp
->bool TryParseShortTimeUsingCurrentUiCultureUtc(string value, out DateTime result)
+>bool TryParseShortTimeUiUtc(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a short UTC time using the current UI culture's time format (12-hour or 24-hour).
+><b>Summary:</b> Tries to parse a string representation of a short UTC time using the current UI culture's time format (12-hour or 24-hour). Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />
@@ -1011,11 +1011,11 @@ DateTimeOffsetHelper.
             <br />
 >
 ><b>Returns:</b> <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
-#### TryParseUsingCurrentUiCulture
+#### TryParseUi
 >```csharp
->bool TryParseUsingCurrentUiCulture(string value, out DateTime result)
+>bool TryParseUi(string value, out DateTime result)
 >```
-><b>Summary:</b> Tries to parse a string representation of a `DateTimeOffset` using the current UI culture's date and time format.
+><b>Summary:</b> Tries to parse a string representation of a `DateTimeOffset` using the current UI culture's date and time format. Use this variant when parsing input from a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to parse.<br />

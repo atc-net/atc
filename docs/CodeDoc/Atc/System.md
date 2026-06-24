@@ -702,6 +702,16 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
 >
 ><b>Returns:</b> The week number from the given date.
+#### GetWeekNumberUi
+>```csharp
+>int GetWeekNumberUi(this DateTime date)
+>```
+><b>Summary:</b> Gets the week number from a given date using the current UI culture's calendar. Use this variant when rendering the week number for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
+>
+><b>Returns:</b> The week number from the given date.
 #### IsBetween
 >```csharp
 >bool IsBetween(this DateTime date, DateTime startDate, DateTime endDate)
@@ -776,11 +786,11 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long date pattern of the provided DateTimeFormatInfo.
-#### ToLongDateStringUsingCurrentUiCulture
+#### ToLongDateStringUi
 >```csharp
->string ToLongDateStringUsingCurrentUiCulture(this DateTime dateTime)
+>string ToLongDateStringUi(this DateTime dateTime)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
@@ -808,11 +818,11 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long time pattern of the provided DateTimeFormatInfo.
-#### ToLongTimeStringUsingCurrentUiCulture
+#### ToLongTimeStringUi
 >```csharp
->string ToLongTimeStringUsingCurrentUiCulture(this DateTime dateTime)
+>string ToLongTimeStringUi(this DateTime dateTime)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
@@ -840,11 +850,11 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short date pattern of the provided DateTimeFormatInfo.
-#### ToShortDateStringUsingCurrentUiCulture
+#### ToShortDateStringUi
 >```csharp
->string ToShortDateStringUsingCurrentUiCulture(this DateTime dateTime)
+>string ToShortDateStringUi(this DateTime dateTime)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
@@ -872,11 +882,11 @@ Extensions for the `System.DateTime` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short time pattern of the provided DateTimeFormatInfo.
-#### ToShortTimeStringUsingCurrentUiCulture
+#### ToShortTimeStringUi
 >```csharp
->string ToShortTimeStringUsingCurrentUiCulture(this DateTime dateTime)
+>string ToShortTimeStringUi(this DateTime dateTime)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTime`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTime to format.<br />
@@ -960,6 +970,16 @@ Extensions for the `System.DateTimeOffset` class.
 >int GetWeekNumber(this DateTimeOffset date)
 >```
 ><b>Summary:</b> Gets the week number from a given date.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
+>
+><b>Returns:</b> The week number from the given date.
+#### GetWeekNumberUi
+>```csharp
+>int GetWeekNumberUi(this DateTimeOffset date)
+>```
+><b>Summary:</b> Gets the week number from a given date using the current UI culture's calendar. Use this variant when rendering the week number for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`date`&nbsp;&nbsp;-&nbsp;&nbsp;The date.<br />
@@ -1056,16 +1076,16 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long date pattern of the provided DateTimeFormatInfo.
-#### ToLongDateStringUsingCurrentUiCulture
+#### ToLongDateStringUi
 >```csharp
->string ToLongDateStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>string ToLongDateStringUi(this DateTimeOffset dateTimeOffset)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the long date pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTimeOffset to a string using the long date pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
 >
-><b>Returns:</b> A string representation of the DateTime using the long date pattern of the current UI culture.
+><b>Returns:</b> A string representation of the DateTimeOffset using the long date pattern of the current UI culture.
 #### ToLongTimeString
 >```csharp
 >string ToLongTimeString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
@@ -1077,16 +1097,16 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the long time pattern of the provided DateTimeFormatInfo.
-#### ToLongTimeStringUsingCurrentUiCulture
+#### ToLongTimeStringUi
 >```csharp
->string ToLongTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>string ToLongTimeStringUi(this DateTimeOffset dateTimeOffset)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the long time pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTimeOffset to a string using the long time pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
 >
-><b>Returns:</b> A string representation of the DateTime using the long time pattern of the current UI culture.
+><b>Returns:</b> A string representation of the DateTimeOffset using the long time pattern of the current UI culture.
 #### ToShortDateString
 >```csharp
 >string ToShortDateString(this DateTimeOffset dateTimeOffset, DateTimeFormatInfo dateTimeFormatInfo)
@@ -1098,16 +1118,16 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short date pattern of the provided DateTimeFormatInfo.
-#### ToShortDateStringUsingCurrentUiCulture
+#### ToShortDateStringUi
 >```csharp
->string ToShortDateStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>string ToShortDateStringUi(this DateTimeOffset dateTimeOffset)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the short date pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTimeOffset to a string using the short date pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
 >
-><b>Returns:</b> A string representation of the DateTime using the short date pattern of the current UI culture.
+><b>Returns:</b> A string representation of the DateTimeOffset using the short date pattern of the current UI culture.
 #### ToShortDateStringUsingSpecificCulture
 >```csharp
 >string ToShortDateStringUsingSpecificCulture(this DateTimeOffset dateTimeOffset, CultureInfo cultureInfo)
@@ -1130,16 +1150,16 @@ Extensions for the `System.DateTimeOffset` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeFormatInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeFormatInfo specifying the format to use.<br />
 >
 ><b>Returns:</b> A string representation of the DateTime using the short time pattern of the provided DateTimeFormatInfo.
-#### ToShortTimeStringUsingCurrentUiCulture
+#### ToShortTimeStringUi
 >```csharp
->string ToShortTimeStringUsingCurrentUiCulture(this DateTimeOffset dateTimeOffset)
+>string ToShortTimeStringUi(this DateTimeOffset dateTimeOffset)
 >```
-><b>Summary:</b> Converts a DateTime to a string using the short time pattern of the current UI culture.
+><b>Summary:</b> Converts a DateTimeOffset to a string using the short time pattern of the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dateTimeOffset`&nbsp;&nbsp;-&nbsp;&nbsp;The DateTimeOffset to format.<br />
 >
-><b>Returns:</b> A string representation of the DateTime using the short time pattern of the current UI culture.
+><b>Returns:</b> A string representation of the DateTimeOffset using the short time pattern of the current UI culture.
 #### ToUnixTime
 >```csharp
 >long ToUnixTime(this DateTimeOffset dateTimeOffset)
@@ -1203,6 +1223,16 @@ Extensions for the `System.Decimal` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
 >
 ><b>Returns:</b> The rounded value as an integer.
+#### CurrencyRoundingUi
+>```csharp
+>decimal CurrencyRoundingUi(this decimal value)
+>```
+><b>Summary:</b> Rounds a decimal value using the currency decimal digits of the current UI culture. Use this variant when rounding for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The decimal value to round.<br />
+>
+><b>Returns:</b> The rounded decimal value.
 #### IsEqual
 >```csharp
 >bool IsEqual(this decimal a, decimal b)
@@ -1369,6 +1399,16 @@ Extensions for the `System.Double` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
 >
 ><b>Returns:</b> The rounded value as an integer.
+#### CurrencyRoundingUi
+>```csharp
+>double CurrencyRoundingUi(this double value)
+>```
+><b>Summary:</b> Rounds a double value using the currency decimal digits of the current UI culture. Use this variant when rounding for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The double value to round.<br />
+>
+><b>Returns:</b> The rounded double value.
 #### GreaterThanOrClose
 >```csharp
 >bool GreaterThanOrClose(this double value1, double value2)
@@ -2051,6 +2091,17 @@ Extensions for the `System.Int32` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`weekNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The week number.<br />
 >
 ><b>Returns:</b> The date of the first day in the given year and week number.
+#### GetFirstDayOfWeekNumberByYearUi
+>```csharp
+>DateTime GetFirstDayOfWeekNumberByYearUi(this int year, int weekNumber)
+>```
+><b>Summary:</b> Gets the date of the first day of a given week in a given year using the current UI culture's calendar. Use this variant when rendering dates for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`year`&nbsp;&nbsp;-&nbsp;&nbsp;The four-digit year.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`weekNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The ISO week number (1–53).<br />
+>
+><b>Returns:</b> The `System.DateTime` of the Monday that starts the requested week.
 #### GetLastDayOfWeekNumberByYear
 >```csharp
 >DateTime GetLastDayOfWeekNumberByYear(this int year, int weekNumber)
@@ -2062,11 +2113,22 @@ Extensions for the `System.Int32` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`weekNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The week number.<br />
 >
 ><b>Returns:</b> The date of the last day in the given year and week number.
-#### GetMonthNameByMonthNumber
+#### GetLastDayOfWeekNumberByYearUi
 >```csharp
->string GetMonthNameByMonthNumber(this int month, bool pascalCased = False)
+>DateTime GetLastDayOfWeekNumberByYearUi(this int year, int weekNumber)
 >```
-><b>Summary:</b> Gets the month name by month number.
+><b>Summary:</b> Gets the date of the last day of a given week in a given year using the current UI culture's calendar. Use this variant when rendering dates for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`year`&nbsp;&nbsp;-&nbsp;&nbsp;The four-digit year.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`weekNumber`&nbsp;&nbsp;-&nbsp;&nbsp;The ISO week number (1–53).<br />
+>
+><b>Returns:</b> The `System.DateTime` of the Sunday that ends the requested week.
+#### GetMonthNameByMonthNumberUi
+>```csharp
+>string GetMonthNameByMonthNumberUi(this int month, bool pascalCased = False)
+>```
+><b>Summary:</b> Gets the month name by month number using the current UI culture. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`month`&nbsp;&nbsp;-&nbsp;&nbsp;The month.<br />
@@ -2083,6 +2145,16 @@ Extensions for the `System.Int32` class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`year`&nbsp;&nbsp;-&nbsp;&nbsp;The year.<br />
 >
 ><b>Returns:</b> The get number of weeks.
+#### GetNumberOfWeeksByYearUi
+>```csharp
+>int GetNumberOfWeeksByYearUi(this int year)
+>```
+><b>Summary:</b> Returns the number of ISO weeks in the given year using the current UI culture's calendar. Use this variant when rendering the value for display in a user interface.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`year`&nbsp;&nbsp;-&nbsp;&nbsp;The four-digit year.<br />
+>
+><b>Returns:</b> 52 or 53 depending on the year and calendar.
 #### IsBinarySequence
 >```csharp
 >bool IsBinarySequence(this int number)
@@ -3503,6 +3575,17 @@ Extensions for the `System.TimeSpan` class.
 >string GetPrettyTime(this TimeSpan timeSpan, int decimalPrecision = 3)
 >```
 ><b>Summary:</b> Converts a TimeSpan to a human-readable string representation with appropriate time units.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The TimeSpan to format.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`decimalPrecision`&nbsp;&nbsp;-&nbsp;&nbsp;The number of decimal places to display (default is 3).<br />
+>
+><b>Returns:</b> A formatted string representing the time in the most appropriate unit (days, hours, minutes, seconds, or milliseconds).
+#### GetPrettyTimeUi
+>```csharp
+>string GetPrettyTimeUi(this TimeSpan timeSpan, int decimalPrecision = 3)
+>```
+><b>Summary:</b> Converts a TimeSpan to a human-readable string representation with appropriate time units, using the current UI culture for number formatting and unit label casing. Use this variant when rendering output for display in a user interface.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeSpan`&nbsp;&nbsp;-&nbsp;&nbsp;The TimeSpan to format.<br />
