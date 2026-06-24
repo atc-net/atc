@@ -5,6 +5,7 @@
     <PackageId>Atc.Rest.HealthChecks</PackageId>
     <PackageTags>api;rest;healthchecks</PackageTags>
     <Description>Atc.Rest.HealthChecks is a collection of classes, extension methods and factories for working with HealthChecks in an ASP.NET core application.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

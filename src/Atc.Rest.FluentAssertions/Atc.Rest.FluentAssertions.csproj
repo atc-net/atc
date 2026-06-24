@@ -5,6 +5,7 @@
     <PackageId>Atc.Rest.FluentAssertions</PackageId>
     <PackageTags>rest;fluentassertions</PackageTags>
     <Description>Atc.Rest.FluentAssertions is a collection of assertion helpers for writing tests of Atc types.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -17,6 +18,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Atc.Rest\Atc.Rest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

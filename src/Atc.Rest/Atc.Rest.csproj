@@ -5,6 +5,7 @@
     <PackageId>Atc.Rest</PackageId>
     <PackageTags>api;rest</PackageTags>
     <Description>Atc.Rest is a basic collection of classes and extension methods for ASP.NET Core WebApi.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
