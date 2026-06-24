@@ -165,6 +165,24 @@ public class DoubleExtensionsTests
     }
 
     [Theory]
+    [InlineData(12.45, 12.449)]
+    [InlineData(12.45, 12.450)]
+    [InlineData(12.45, 12.451)]
+    public void CurrencyRoundingUi(
+        double expected,
+        double input)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+
+        // Act
+        var actual = input.CurrencyRoundingUi();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [InlineData(0.0, 0, 0)]
     [InlineData(10.0, 10, 0)]
     [InlineData(12.0, 12, 0)]

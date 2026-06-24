@@ -20,7 +20,7 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15-10-2023")]
     [InlineData(true, GlobalizationLcidConstants.Germany, "15/10/2023")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.20.2023")]
-    public void TryParseUsingCurrentUiCulture(
+    public void TryParseUi(
         bool expected,
         int arrangeUiLcid,
         string value)
@@ -29,7 +29,7 @@ public class DateTimeOffsetHelperTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = DateTimeOffsetHelper.TryParseUsingCurrentUiCulture(value, out _);
+        var actual = DateTimeOffsetHelper.TryParseUi(value, out _);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -52,7 +52,7 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15-10-2023")]
     [InlineData(true, GlobalizationLcidConstants.Germany, "15/10/2023")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.20.2023")]
-    public void TryParseShortDateUsingCurrentUiCulture(
+    public void TryParseShortDateUi(
         bool expected,
         int arrangeUiLcid,
         string value)
@@ -61,7 +61,7 @@ public class DateTimeOffsetHelperTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = DateTimeOffsetHelper.TryParseShortDateUsingCurrentUiCulture(value, out _);
+        var actual = DateTimeOffsetHelper.TryParseShortDateUi(value, out _);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -84,7 +84,7 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "24:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.30")]
-    public void TryParseShortTimeUsingCurrentUiCulture(
+    public void TryParseShortTimeUi(
         bool expected,
         int arrangeUiLcid,
         string value)
@@ -93,7 +93,7 @@ public class DateTimeOffsetHelperTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = DateTimeOffsetHelper.TryParseShortTimeUsingCurrentUiCulture(value, out _);
+        var actual = DateTimeOffsetHelper.TryParseShortTimeUi(value, out _);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -116,7 +116,7 @@ public class DateTimeOffsetHelperTests
     [InlineData(true, GlobalizationLcidConstants.Germany, "15:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "24:30")]
     [InlineData(false, GlobalizationLcidConstants.Germany, "15.30")]
-    public void TryParseShortTimeUsingCurrentUiCultureUtc(
+    public void TryParseShortTimeUiUtc(
         bool expected,
         int arrangeUiLcid,
         string value)
@@ -125,7 +125,7 @@ public class DateTimeOffsetHelperTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = DateTimeOffsetHelper.TryParseShortTimeUsingCurrentUiCultureUtc(value, out _);
+        var actual = DateTimeOffsetHelper.TryParseShortTimeUiUtc(value, out _);
 
         // Assert
         Assert.Equal(expected, actual);
