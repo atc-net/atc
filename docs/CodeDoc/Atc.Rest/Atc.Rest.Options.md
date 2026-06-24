@@ -100,6 +100,16 @@ Copy and fill out the AzureAd section into the project User Secrets.
 >Issuer
 >```
 ><b>Summary:</b> Gets or sets the expected token issuer for validation.
+#### NameClaimType
+>```csharp
+>NameClaimType
+>```
+><b>Summary:</b> Gets or sets the JWT claim type used to populate the user's identity name (`System.Security.Claims.ClaimsIdentity.Name`). For Azure AD access tokens the claim is typically `"name"` or `"preferred_username"`. When <see langword="null" /> or empty, the framework default (`ClaimTypes.Name` = the long URI form) is used.
+#### RoleClaimType
+>```csharp
+>RoleClaimType
+>```
+><b>Summary:</b> Gets or sets the JWT claim type used to populate ASP.NET Core roles for `[Authorize(Roles=…)]`. For Azure AD access tokens the claim is `"roles"`; for client-credentials tokens the scope claim is `"scp"`. When <see langword="null" /> or empty, the framework default (`ClaimTypes.Role` = the long URI form) is used, which does not match the short-form claims issued by Azure AD.
 #### TenantId
 >```csharp
 >TenantId

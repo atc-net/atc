@@ -29,6 +29,7 @@
   -  Methods
      - WithContent(T expectedContent, string because = , object[] becauseArgs)
      - WithContentOfType(string because = , object[] becauseArgs)
+     - WithEmptyContent(string because = , object[] becauseArgs)
 - [ResultAssertions](Atc.Rest.FluentAssertions.md#resultassertions)
   -  Methods
      - BeAcceptedResult(string because = , object[] becauseArgs)
@@ -40,6 +41,7 @@
      - BeNoContentResult(string because = , object[] becauseArgs)
      - BeNotFoundResult(string because = , object[] becauseArgs)
      - BeOkResult(string because = , object[] becauseArgs)
+     - BeOkResultWithContent(T expectedContent, string because = , object[] becauseArgs)
 - [ResultBaseExtensions](Atc.Rest.FluentAssertions.md#resultbaseextensions)
   -  Static Methods
      - Should(this ResultBase subject)

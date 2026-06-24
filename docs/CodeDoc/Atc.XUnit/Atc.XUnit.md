@@ -82,12 +82,23 @@ Provides helper methods for asserting code compliance related to XML documentati
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to validate for XML documentation.<br />
 #### AssertExportedTypesWithMissingComments
 >```csharp
->void AssertExportedTypesWithMissingComments(Assembly assembly, List<Type> excludeTypes = null)
+>void AssertExportedTypesWithMissingComments(Assembly assembly, FileInfo xmlDocPath, List<Type> excludeTypes = null)
 >```
-><b>Summary:</b> Asserts that all exported types in an assembly have XML documentation comments. Fails the test if any types are missing documentation.
+><b>Summary:</b> Asserts that all exported types in an assembly have XML documentation comments, using an explicit XML documentation file path instead of relying on automatic path resolution. Use this overload when the XML documentation file is not located next to the assembly or in `System.AppDomain.CurrentDomain` base directory.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xmlDocPath`&nbsp;&nbsp;-&nbsp;&nbsp;The explicit path to the XML documentation file for .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of types to exclude from validation.<br />
+#### AssertExportedTypesWithMissingComments
+>```csharp
+>void AssertExportedTypesWithMissingComments(Assembly assembly, List<Type> excludeTypes = null)
+>```
+><b>Summary:</b> Asserts that all exported types in an assembly have XML documentation comments, using an explicit XML documentation file path instead of relying on automatic path resolution. Use this overload when the XML documentation file is not located next to the assembly or in `System.AppDomain.CurrentDomain` base directory.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to validate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`xmlDocPath`&nbsp;&nbsp;-&nbsp;&nbsp;The explicit path to the XML documentation file for .<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of types to exclude from validation.<br />
 
 <br />

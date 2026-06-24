@@ -52,9 +52,30 @@ Provides public API methods for collecting and analyzing XML documentation comme
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to collect documentation for.<br />
 >
 ><b>Returns:</b> The type comments, or <see langword="null" /> if the type was not found.
+#### CollectExportedTypeWithCommentsFromType
+>```csharp
+>TypeComments CollectExportedTypeWithCommentsFromType(Type type, FileInfo xmlDocPath)
+>```
+><b>Summary:</b> Collects XML documentation comments for a specific type from its assembly.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`type`&nbsp;&nbsp;-&nbsp;&nbsp;The type to collect documentation for.<br />
+>
+><b>Returns:</b> The type comments, or <see langword="null" /> if the type was not found.
 #### CollectExportedTypesWithMissingCommentsFromAssembly
 >```csharp
 >TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List<Type> excludeTypes = null)
+>```
+><b>Summary:</b> Collects all public types from an assembly that are missing XML documentation comments.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`assembly`&nbsp;&nbsp;-&nbsp;&nbsp;The assembly to scan for types.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`excludeTypes`&nbsp;&nbsp;-&nbsp;&nbsp;Optional list of types to exclude from the results.<br />
+>
+><b>Returns:</b> An array of type comments for types missing documentation.
+#### CollectExportedTypesWithMissingCommentsFromAssembly
+>```csharp
+>TypeComments[] CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, FileInfo xmlDocPath, List<Type> excludeTypes = null)
 >```
 ><b>Summary:</b> Collects all public types from an assembly that are missing XML documentation comments.
 >

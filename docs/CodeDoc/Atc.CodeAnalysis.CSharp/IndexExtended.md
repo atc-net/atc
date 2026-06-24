@@ -97,8 +97,13 @@
      - StringTextParenthesesEnd()
 - [SyntaxLiteralExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxliteralexpressionfactory)
   -  Static Methods
+     - Create(bool value)
+     - Create(char value)
+     - Create(double value)
      - Create(int value)
+     - Create(long value)
      - Create(string value, SyntaxKind syntaxKind = StringLiteralExpression)
+     - CreateNull()
 - [SyntaxMemberAccessExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxmemberaccessexpressionfactory)
   -  Static Methods
      - Create(string memberTypeName, string memberName)
@@ -108,7 +113,13 @@
 - [SyntaxObjectCreationExpressionFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxobjectcreationexpressionfactory)
   -  Static Methods
      - Create(string identifierName)
+     - Create(string identifierName, ArgumentListSyntax argumentList)
      - Create(string namespaceName, string identifierName)
+     - Create(string namespaceName, string identifierName, ArgumentListSyntax argumentList)
+     - CreateGeneric(string identifierName, TypeArgumentListSyntax typeArgumentList)
+     - CreateGeneric(string identifierName, TypeArgumentListSyntax typeArgumentList, ArgumentListSyntax argumentList)
+     - CreateGeneric(string identifierName, string typeArgumentName)
+     - CreateGeneric(string identifierName, string typeArgumentName, ArgumentListSyntax argumentList)
 - [SyntaxParameterFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxparameterfactory)
   -  Static Methods
      - Create(string parameterTypeName, string parameterName, string genericListTypeName = null)
@@ -194,9 +205,18 @@
 - [InterfaceDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#interfacedeclarationsyntaxextensions)
   -  Static Methods
      - AddGeneratedCodeAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, string toolName, string version)
+     - AddSuppressMessageAttribute(this InterfaceDeclarationSyntax interfaceDeclaration, SuppressMessageAttribute suppressMessage)
 - [MethodDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#methoddeclarationsyntaxextensions)
   -  Static Methods
      - AddSuppressMessageAttribute(this MethodDeclarationSyntax methodDeclaration, SuppressMessageAttribute suppressMessage)
+- [RecordDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#recorddeclarationsyntaxextensions)
+  -  Static Methods
+     - AddGeneratedCodeAttribute(this RecordDeclarationSyntax recordDeclaration, string toolName, string version)
+     - AddSuppressMessageAttribute(this RecordDeclarationSyntax recordDeclaration, SuppressMessageAttribute suppressMessage)
+- [StructDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#structdeclarationsyntaxextensions)
+  -  Static Methods
+     - AddGeneratedCodeAttribute(this StructDeclarationSyntax structDeclaration, string toolName, string version)
+     - AddSuppressMessageAttribute(this StructDeclarationSyntax structDeclaration, SuppressMessageAttribute suppressMessage)
 - [SyntaxNodeExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#syntaxnodeextensions)
   -  Static Methods
      - GetUsedUsingStatements(this SyntaxNode syntaxNode)

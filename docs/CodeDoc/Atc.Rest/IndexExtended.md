@@ -108,6 +108,8 @@
      - ClientId
      - Instance
      - Issuer
+     - NameClaimType
+     - RoleClaimType
      - TenantId
      - ValidAudiences
      - ValidIssuers
@@ -176,6 +178,9 @@
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message, string contentType = application/json)
      - CreateContentResultWithValidationProblemDetails(HttpStatusCode statusCode, string message, string contentType = application/json)
      - CreateFileContentResult(byte[] bytes, string fileName, string contentType = application/octet-stream)
+     - CreateObjectResultWithProblemDetails(HttpStatusCode statusCode, string message)
+     - CreateObjectResultWithValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message)
+     - CreateObjectResultWithValidationProblemDetails(HttpStatusCode statusCode, string message)
      - CreateProblemDetails(HttpStatusCode statusCode, string message)
      - CreateValidationProblemDetails(HttpStatusCode statusCode, Dictionary&lt;string, string[]&gt; errors, string message)
 

@@ -13,6 +13,8 @@
 - [DocumentationHelper](Atc.CodeDocumentation.md#documentationhelper)
   -  Static Methods
      - CollectExportedTypeWithCommentsFromType(Type type)
+     - CollectExportedTypeWithCommentsFromType(Type type, FileInfo xmlDocPath)
+     - CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, FileInfo xmlDocPath, List&lt;Type&gt; excludeTypes = null)
      - CollectExportedTypesWithMissingCommentsFromAssembly(Assembly assembly, List&lt;Type&gt; excludeTypes = null)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateText(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)
      - CollectExportedTypesWithMissingCommentsFromAssemblyAndGenerateTextLines(Assembly assembly, List&lt;Type&gt; excludeTypes = null, bool useFullName = False)

@@ -736,6 +736,57 @@ Factory for creating `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSynt
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxKind`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax kind for the literal (string or numeric).<br />
 >
 ><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node.
+#### Create
+>```csharp
+>LiteralExpressionSyntax Create(long value)
+>```
+><b>Summary:</b> Creates a literal expression from a string value with the specified syntax kind.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value for the literal expression.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxKind`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax kind for the literal (string or numeric).<br />
+>
+><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node.
+#### Create
+>```csharp
+>LiteralExpressionSyntax Create(double value)
+>```
+><b>Summary:</b> Creates a literal expression from a string value with the specified syntax kind.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value for the literal expression.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxKind`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax kind for the literal (string or numeric).<br />
+>
+><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node.
+#### Create
+>```csharp
+>LiteralExpressionSyntax Create(bool value)
+>```
+><b>Summary:</b> Creates a literal expression from a string value with the specified syntax kind.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value for the literal expression.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxKind`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax kind for the literal (string or numeric).<br />
+>
+><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node.
+#### Create
+>```csharp
+>LiteralExpressionSyntax Create(char value)
+>```
+><b>Summary:</b> Creates a literal expression from a string value with the specified syntax kind.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value for the literal expression.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxKind`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax kind for the literal (string or numeric).<br />
+>
+><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node.
+#### CreateNull
+>```csharp
+>LiteralExpressionSyntax CreateNull()
+>```
+><b>Summary:</b> Creates a <see langword="null" /> literal expression.
+>
+><b>Returns:</b> A `Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax` node representing <see langword="null" />.
 
 <br />
 
@@ -813,6 +864,70 @@ Factory for creating `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpress
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type to instantiate.<br />
 >
 ><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node.
+#### Create
+>```csharp
+>ObjectCreationExpressionSyntax Create(string identifierName, ArgumentListSyntax argumentList)
+>```
+><b>Summary:</b> Creates an object creation expression for a type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type to instantiate.<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node.
+#### Create
+>```csharp
+>ObjectCreationExpressionSyntax Create(string namespaceName, string identifierName, ArgumentListSyntax argumentList)
+>```
+><b>Summary:</b> Creates an object creation expression for a type.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the type to instantiate.<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node.
+#### CreateGeneric
+>```csharp
+>ObjectCreationExpressionSyntax CreateGeneric(string identifierName, TypeArgumentListSyntax typeArgumentList)
+>```
+><b>Summary:</b> Creates a generic object creation expression (e.g. `new List&lt;T&gt;()`).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the generic type to instantiate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeArgumentList`&nbsp;&nbsp;-&nbsp;&nbsp;The type argument list (e.g. <T>).<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node for the generic type.
+#### CreateGeneric
+>```csharp
+>ObjectCreationExpressionSyntax CreateGeneric(string identifierName, string typeArgumentName)
+>```
+><b>Summary:</b> Creates a generic object creation expression (e.g. `new List&lt;T&gt;()`).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the generic type to instantiate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeArgumentList`&nbsp;&nbsp;-&nbsp;&nbsp;The type argument list (e.g. <T>).<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node for the generic type.
+#### CreateGeneric
+>```csharp
+>ObjectCreationExpressionSyntax CreateGeneric(string identifierName, TypeArgumentListSyntax typeArgumentList, ArgumentListSyntax argumentList)
+>```
+><b>Summary:</b> Creates a generic object creation expression (e.g. `new List&lt;T&gt;()`).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the generic type to instantiate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeArgumentList`&nbsp;&nbsp;-&nbsp;&nbsp;The type argument list (e.g. <T>).<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node for the generic type.
+#### CreateGeneric
+>```csharp
+>ObjectCreationExpressionSyntax CreateGeneric(string identifierName, string typeArgumentName, ArgumentListSyntax argumentList)
+>```
+><b>Summary:</b> Creates a generic object creation expression (e.g. `new List&lt;T&gt;()`).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`identifierName`&nbsp;&nbsp;-&nbsp;&nbsp;The name of the generic type to instantiate.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeArgumentList`&nbsp;&nbsp;-&nbsp;&nbsp;The type argument list (e.g. <T>).<br />
+>
+><b>Returns:</b> An `Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax` node for the generic type.
 
 <br />
 
