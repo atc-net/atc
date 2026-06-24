@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Atc.Rest.AwesomeAssertions\Atc.Rest.AwesomeAssertions.csproj" />
+    <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <PackageId>Atc.Rest.AwesomeAssertions</PackageId>
+    <PackageTags>rest;awesomeassertions</PackageTags>
+    <Description>Atc.Rest.AwesomeAssertions is a collection of assertion helpers for writing tests of Atc types.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AwesomeAssertions" Version="9.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atc.Rest\Atc.Rest.csproj" />
+  </ItemGroup>
+
+</Project>
