@@ -56,6 +56,15 @@ public static class DateTimeExtensions
         => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
+    /// Gets the week number from a given date using the current UI culture's calendar.
+    /// Use this variant when rendering the week number for display in a user interface.
+    /// </summary>
+    /// <param name="date">The date.</param>
+    /// <returns>The week number from the given date.</returns>
+    public static int GetWeekNumberUi(this DateTime date)
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+    /// <summary>
     /// Find the diff between to DateTimes.
     /// </summary>
     /// <param name="startDate">The start date.</param>
@@ -113,14 +122,12 @@ public static class DateTimeExtensions
             .ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
-    /// Converts a DateTime to a string using the long date pattern
-    /// of the current UI culture.
+    /// Converts a DateTime to a string using the long date pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTime">The DateTime to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// long date pattern of the current UI culture.</returns>
-    public static string ToLongDateStringUsingCurrentUiCulture(
-        this DateTime dateTime)
+    /// <returns>A string representation of the DateTime using the long date pattern of the current UI culture.</returns>
+    public static string ToLongDateStringUi(this DateTime dateTime)
         => dateTime.ToLongDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -166,14 +173,12 @@ public static class DateTimeExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the long time pattern
-    /// of the current UI culture.
+    /// Converts a DateTime to a string using the long time pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTime">The DateTime to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// long time pattern of the current UI culture.</returns>
-    public static string ToLongTimeStringUsingCurrentUiCulture(
-        this DateTime dateTime)
+    /// <returns>A string representation of the DateTime using the long time pattern of the current UI culture.</returns>
+    public static string ToLongTimeStringUi(this DateTime dateTime)
         => dateTime.ToLongTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -218,14 +223,12 @@ public static class DateTimeExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the short date pattern
-    /// of the current UI culture.
+    /// Converts a DateTime to a string using the short date pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTime">The DateTime to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// short date pattern of the current UI culture.</returns>
-    public static string ToShortDateStringUsingCurrentUiCulture(
-        this DateTime dateTime)
+    /// <returns>A string representation of the DateTime using the short date pattern of the current UI culture.</returns>
+    public static string ToShortDateStringUi(this DateTime dateTime)
         => dateTime.ToShortDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -270,14 +273,12 @@ public static class DateTimeExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the short time pattern
-    /// of the current UI culture.
+    /// Converts a DateTime to a string using the short time pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTime">The DateTime to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// short time pattern of the current UI culture.</returns>
-    public static string ToShortTimeStringUsingCurrentUiCulture(
-        this DateTime dateTime)
+    /// <returns>A string representation of the DateTime using the short time pattern of the current UI culture.</returns>
+    public static string ToShortTimeStringUi(this DateTime dateTime)
         => dateTime.ToShortTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>

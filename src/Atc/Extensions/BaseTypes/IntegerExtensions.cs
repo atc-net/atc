@@ -92,13 +92,14 @@ public static class IntegerExtensions
         => number > 0 && (number & (number - 1)) == 0;
 
     /// <summary>
-    /// Gets the month name by month number.
+    /// Gets the month name by month number using the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="month">The month.</param>
     /// <param name="pascalCased">if set to <see langword="true" /> [pascal cased].</param>
     /// <returns>The name of the month.</returns>
     [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", Justification = "OK.")]
-    public static string GetMonthNameByMonthNumber(
+    public static string GetMonthNameByMonthNumberUi(
         this int month,
         bool pascalCased = false)
     {
@@ -131,6 +132,15 @@ public static class IntegerExtensions
         => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
+    /// Returns the number of ISO weeks in the given year using the current UI culture's calendar.
+    /// Use this variant when rendering the value for display in a user interface.
+    /// </summary>
+    /// <param name="year">The four-digit year.</param>
+    /// <returns>52 or 53 depending on the year and calendar.</returns>
+    public static int GetNumberOfWeeksByYearUi(this int year)
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(new DateTime(year, 12, 28), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+    /// <summary>
     /// Get the date of the first day in the given year and week number.
     /// </summary>
     /// <param name="year">The year.</param>
@@ -158,6 +168,34 @@ public static class IntegerExtensions
     }
 
     /// <summary>
+    /// Gets the date of the first day of a given week in a given year using the current UI culture's calendar.
+    /// Use this variant when rendering dates for display in a user interface.
+    /// </summary>
+    /// <param name="year">The four-digit year.</param>
+    /// <param name="weekNumber">The ISO week number (1–53).</param>
+    /// <returns>The <see cref="DateTime"/> of the Monday that starts the requested week.</returns>
+    public static DateTime GetFirstDayOfWeekNumberByYearUi(
+        this int year,
+        int weekNumber)
+    {
+        var calendar = CultureInfo.CurrentUICulture.Calendar;
+        var firstOfYear = new DateTime(year, 1, 1, calendar);
+        var daysOffset = DayOfWeek.Thursday - firstOfYear.DayOfWeek;
+
+        var firstThursday = firstOfYear.AddDays(daysOffset);
+        var firstWeek = CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+        var weekNum = weekNumber;
+        if (firstWeek <= 1)
+        {
+            weekNum -= 1;
+        }
+
+        var result = firstThursday.AddDays(weekNum * 7);
+        return result.AddDays(-3);
+    }
+
+    /// <summary>
     /// Get the date of the last day in the given year and week number.
     /// </summary>
     /// <param name="year">The year.</param>
@@ -167,4 +205,16 @@ public static class IntegerExtensions
         this int year,
         int weekNumber)
         => GetFirstDayOfWeekNumberByYear(year, weekNumber).AddDays(6);
+
+    /// <summary>
+    /// Gets the date of the last day of a given week in a given year using the current UI culture's calendar.
+    /// Use this variant when rendering dates for display in a user interface.
+    /// </summary>
+    /// <param name="year">The four-digit year.</param>
+    /// <param name="weekNumber">The ISO week number (1–53).</param>
+    /// <returns>The <see cref="DateTime"/> of the Sunday that ends the requested week.</returns>
+    public static DateTime GetLastDayOfWeekNumberByYearUi(
+        this int year,
+        int weekNumber)
+        => GetFirstDayOfWeekNumberByYearUi(year, weekNumber).AddDays(6);
 }

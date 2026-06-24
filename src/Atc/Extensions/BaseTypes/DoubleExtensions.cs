@@ -155,6 +155,15 @@ public static class DoubleExtensions
     }
 
     /// <summary>
+    /// Rounds a double value using the currency decimal digits of the current UI culture.
+    /// Use this variant when rounding for display in a user interface.
+    /// </summary>
+    /// <param name="value">The double value to round.</param>
+    /// <returns>The rounded double value.</returns>
+    public static double CurrencyRoundingUi(this double value)
+        => CurrencyRounding(value, CultureInfo.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
+
+    /// <summary>
     /// Rounds a double value to 2 decimal places.
     /// </summary>
     /// <param name="value">The double value to round.</param>

@@ -87,4 +87,46 @@ public static class TimeSpanExtensions
         return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, CultureInfo.CurrentCulture)} " +
                $"{DateAndTime.MillisecondAsAbbreviation1.ToLower(CultureInfo.CurrentCulture)}";
     }
+
+    /// <summary>
+    /// Converts a TimeSpan to a human-readable string representation with appropriate time units,
+    /// using the current UI culture for number formatting and unit label casing.
+    /// Use this variant when rendering output for display in a user interface.
+    /// </summary>
+    /// <param name="timeSpan">The TimeSpan to format.</param>
+    /// <param name="decimalPrecision">The number of decimal places to display (default is 3).</param>
+    /// <returns>A formatted string representing the time in the most appropriate unit (days, hours, minutes, seconds, or milliseconds).</returns>
+    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "OK.")]
+    public static string GetPrettyTimeUi(
+        this TimeSpan timeSpan,
+        int decimalPrecision = 3)
+    {
+        if ((int)timeSpan.TotalDays > 0)
+        {
+            return $"{timeSpan.TotalDays.ToString("N" + decimalPrecision, CultureInfo.CurrentUICulture)} " +
+                   $"{DateAndTime.Days.ToLower(CultureInfo.CurrentUICulture)}";
+        }
+
+        if ((int)timeSpan.TotalHours > 0)
+        {
+            return $"{timeSpan.TotalHours.ToString("N" + decimalPrecision, CultureInfo.CurrentUICulture)} " +
+                   $"{DateAndTime.Hours.ToLower(CultureInfo.CurrentUICulture)}";
+        }
+
+        if ((int)timeSpan.TotalMinutes > 0)
+        {
+            return $"{timeSpan.TotalMinutes.ToString("N" + decimalPrecision, CultureInfo.CurrentUICulture)} " +
+                   $"{DateAndTime.MinuteAsAbbreviation.ToLower(CultureInfo.CurrentUICulture)}";
+        }
+
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        if ((int)timeSpan.TotalSeconds > 0)
+        {
+            return $"{timeSpan.TotalSeconds.ToString("N" + decimalPrecision, CultureInfo.CurrentUICulture)} " +
+                   $"{DateAndTime.SecondAsAbbreviation.ToLower(CultureInfo.CurrentUICulture)}";
+        }
+
+        return $"{timeSpan.TotalMilliseconds.ToString("N" + decimalPrecision, CultureInfo.CurrentUICulture)} " +
+               $"{DateAndTime.MillisecondAsAbbreviation1.ToLower(CultureInfo.CurrentUICulture)}";
+    }
 }
