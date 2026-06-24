@@ -1,0 +1,12 @@
+global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
+global using System.Net;
+global using System.Net.Mime;
+global using System.Text.Json;
+global using Atc.Rest.Results;
+global using Atc.Serialization;
+global using AwesomeAssertions;
+global using AwesomeAssertions.Execution;
+global using AwesomeAssertions.Primitives;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Infrastructure;

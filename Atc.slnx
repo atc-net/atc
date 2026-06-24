@@ -12,6 +12,7 @@
     <Project Path="src/Atc.Console.Spectre/Atc.Console.Spectre.csproj" />
     <Project Path="src/Atc.DotNet/Atc.DotNet.csproj" />
     <Project Path="src/Atc.OpenApi/Atc.OpenApi.csproj" />
+    <Project Path="src/Atc.Rest.AwesomeAssertions/Atc.Rest.AwesomeAssertions.csproj" />
     <Project Path="src/Atc.Rest.Extended/Atc.Rest.Extended.csproj" />
     <Project Path="src/Atc.Rest.FluentAssertions/Atc.Rest.FluentAssertions.csproj" />
     <Project Path="src/Atc.Rest.HealthChecks/Atc.Rest.HealthChecks.csproj" />
@@ -25,6 +26,7 @@
     <Project Path="test/Atc.Console.Spectre.Tests/Atc.Console.Spectre.Tests.csproj" />
     <Project Path="test/Atc.DotNet.Tests/Atc.DotNet.Tests.csproj" />
     <Project Path="test/Atc.OpenApi.Tests/Atc.OpenApi.Tests.csproj" />
+    <Project Path="test/Atc.Rest.AwesomeAssertions.Tests/Atc.Rest.AwesomeAssertions.Tests.csproj" />
     <Project Path="test/Atc.Rest.Extended.Tests/Atc.Rest.Extended.Tests.csproj" />
     <Project Path="test/Atc.Rest.FluentAssertions.Tests/Atc.Rest.FluentAssertions.Tests.csproj" />
     <Project Path="test/Atc.Rest.HealthChecks.Tests/Atc.Rest.HealthChecks.Tests.csproj" />
