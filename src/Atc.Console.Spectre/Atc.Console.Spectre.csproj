@@ -5,6 +5,7 @@
     <PackageId>Atc.Console.Spectre</PackageId>
     <PackageTags>netstandard;console</PackageTags>
     <Description>Atc.Console.Spectre is a collection of classes and extension methods for Spectre.Console.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

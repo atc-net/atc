@@ -5,6 +5,7 @@
     <PackageId>Atc</PackageId>
     <PackageTags>netstandard;common</PackageTags>
     <Description>Atc is a collection of classes and extension methods for common functionality.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateSatelliteAssemblies>true</GenerateSatelliteAssemblies>
   </PropertyGroup>
 
@@ -77,6 +78,10 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

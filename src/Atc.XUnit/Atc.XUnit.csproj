@@ -5,6 +5,7 @@
     <PackageId>Atc.XUnit</PackageId>
     <PackageTags>xunit;test</PackageTags>
     <Description>Atc.XUnit is a collection of helper method for code compliance of documentation and tests.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,6 +30,10 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="Atc.XUnit.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

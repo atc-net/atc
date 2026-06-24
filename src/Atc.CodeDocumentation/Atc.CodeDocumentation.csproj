@@ -5,10 +5,15 @@
     <PackageId>Atc.CodeDocumentation</PackageId>
     <PackageTags>netstandard;documentation;code</PackageTags>
     <Description>Atc.CodeDocumentation is a markdown generator for source code.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

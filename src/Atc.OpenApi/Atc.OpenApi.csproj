@@ -5,6 +5,7 @@
     <PackageId>Atc.OpenApi</PackageId>
     <PackageTags>openapi;extension</PackageTags>
     <Description>Atc.OpenApi is a collection of classes and extension methods for Microsoft.OpenApi.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Atc\Atc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
