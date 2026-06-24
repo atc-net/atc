@@ -1,51 +1,51 @@
 namespace Atc.CodeAnalysis.CSharp.Tests.Extensions;
 
-public class InterfaceDeclarationSyntaxExtensionsTests
+public class RecordDeclarationSyntaxExtensionsTests
 {
     [Fact]
-    public void AddSuppressMessageAttribute_Should_Throw_When_InterfaceDeclaration_Is_Null()
+    public void AddSuppressMessageAttribute_Should_Throw_When_RecordDeclaration_Is_Null()
     {
         // Arrange
-        InterfaceDeclarationSyntax interfaceDeclaration = null!;
+        RecordDeclarationSyntax recordDeclaration = null!;
         var suppressMessage = new SuppressMessageAttribute("category", "checkId") { Justification = "OK." };
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage));
+            recordDeclaration.AddSuppressMessageAttribute(suppressMessage));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Throw_When_SuppressMessage_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(null!));
+            recordDeclaration.AddSuppressMessageAttribute(null!));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Throw_When_Justification_Is_Empty()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
         var suppressMessage = new SuppressMessageAttribute("category", "checkId");
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage));
+            recordDeclaration.AddSuppressMessageAttribute(suppressMessage));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Add_Attribute()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
         var suppressMessage = new SuppressMessageAttribute("Design", "CA1002") { Justification = "OK." };
 
         // Act
-        var result = interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage);
+        var result = recordDeclaration.AddSuppressMessageAttribute(suppressMessage);
 
         // Assert
         Assert.NotNull(result);
@@ -55,48 +55,48 @@ public class InterfaceDeclarationSyntaxExtensionsTests
     }
 
     [Fact]
-    public void AddGeneratedCodeAttribute_Should_Throw_When_InterfaceDeclaration_Is_Null()
+    public void AddGeneratedCodeAttribute_Should_Throw_When_RecordDeclaration_Is_Null()
     {
         // Arrange
-        InterfaceDeclarationSyntax interfaceDeclaration = null!;
+        RecordDeclarationSyntax recordDeclaration = null!;
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute("Tool", "1.0"));
+            recordDeclaration.AddGeneratedCodeAttribute("Tool", "1.0"));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Throw_When_ToolName_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute(null!, "1.0"));
+            recordDeclaration.AddGeneratedCodeAttribute(null!, "1.0"));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Throw_When_Version_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute("Tool", null!));
+            recordDeclaration.AddGeneratedCodeAttribute("Tool", null!));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Add_Attribute_With_ToolName_And_Version()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var recordDeclaration = SyntaxFactory.RecordDeclaration(SyntaxFactory.Token(SyntaxKind.RecordKeyword), "TestRecord");
         const string toolName = "MyCodeGenerator";
         const string version = "1.2.3";
 
         // Act
-        var result = interfaceDeclaration.AddGeneratedCodeAttribute(toolName, version);
+        var result = recordDeclaration.AddGeneratedCodeAttribute(toolName, version);
 
         // Assert
         Assert.NotNull(result);

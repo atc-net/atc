@@ -1,51 +1,51 @@
 namespace Atc.CodeAnalysis.CSharp.Tests.Extensions;
 
-public class InterfaceDeclarationSyntaxExtensionsTests
+public class StructDeclarationSyntaxExtensionsTests
 {
     [Fact]
-    public void AddSuppressMessageAttribute_Should_Throw_When_InterfaceDeclaration_Is_Null()
+    public void AddSuppressMessageAttribute_Should_Throw_When_StructDeclaration_Is_Null()
     {
         // Arrange
-        InterfaceDeclarationSyntax interfaceDeclaration = null!;
+        StructDeclarationSyntax structDeclaration = null!;
         var suppressMessage = new SuppressMessageAttribute("category", "checkId") { Justification = "OK." };
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage));
+            structDeclaration.AddSuppressMessageAttribute(suppressMessage));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Throw_When_SuppressMessage_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(null!));
+            structDeclaration.AddSuppressMessageAttribute(null!));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Throw_When_Justification_Is_Empty()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
         var suppressMessage = new SuppressMessageAttribute("category", "checkId");
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() =>
-            interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage));
+            structDeclaration.AddSuppressMessageAttribute(suppressMessage));
     }
 
     [Fact]
     public void AddSuppressMessageAttribute_Should_Add_Attribute()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
         var suppressMessage = new SuppressMessageAttribute("Design", "CA1002") { Justification = "OK." };
 
         // Act
-        var result = interfaceDeclaration.AddSuppressMessageAttribute(suppressMessage);
+        var result = structDeclaration.AddSuppressMessageAttribute(suppressMessage);
 
         // Assert
         Assert.NotNull(result);
@@ -55,48 +55,48 @@ public class InterfaceDeclarationSyntaxExtensionsTests
     }
 
     [Fact]
-    public void AddGeneratedCodeAttribute_Should_Throw_When_InterfaceDeclaration_Is_Null()
+    public void AddGeneratedCodeAttribute_Should_Throw_When_StructDeclaration_Is_Null()
     {
         // Arrange
-        InterfaceDeclarationSyntax interfaceDeclaration = null!;
+        StructDeclarationSyntax structDeclaration = null!;
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute("Tool", "1.0"));
+            structDeclaration.AddGeneratedCodeAttribute("Tool", "1.0"));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Throw_When_ToolName_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute(null!, "1.0"));
+            structDeclaration.AddGeneratedCodeAttribute(null!, "1.0"));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Throw_When_Version_Is_Null()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
-            interfaceDeclaration.AddGeneratedCodeAttribute("Tool", null!));
+            structDeclaration.AddGeneratedCodeAttribute("Tool", null!));
     }
 
     [Fact]
     public void AddGeneratedCodeAttribute_Should_Add_Attribute_With_ToolName_And_Version()
     {
         // Arrange
-        var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration("ITestInterface");
+        var structDeclaration = SyntaxFactory.StructDeclaration("TestStruct");
         const string toolName = "MyCodeGenerator";
         const string version = "1.2.3";
 
         // Act
-        var result = interfaceDeclaration.AddGeneratedCodeAttribute(toolName, version);
+        var result = structDeclaration.AddGeneratedCodeAttribute(toolName, version);
 
         // Assert
         Assert.NotNull(result);
