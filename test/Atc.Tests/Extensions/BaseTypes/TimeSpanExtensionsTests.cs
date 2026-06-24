@@ -92,6 +92,25 @@ public class TimeSpanExtensionsTests
     }
 
     [Theory]
+    [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTimeUi), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
+    public void GetPrettyTimeUi(
+        string expected,
+        TimeSpan timeSpan,
+        int arrangeUiLcid,
+        int arrangeLcid)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeLcid);
+
+        // Act
+        var actual = timeSpan.GetPrettyTimeUi();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
     [MemberData(nameof(TestMemberDataForTimeSpanExtensions.GetPrettyTimeWithDecimalPrecision), MemberType = typeof(TestMemberDataForTimeSpanExtensions))]
     public void GetPrettyTimeDiff_DecimalPrecision(
         string expected,

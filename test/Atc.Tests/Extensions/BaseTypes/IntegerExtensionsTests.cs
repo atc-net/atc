@@ -113,7 +113,7 @@ public class IntegerExtensionsTests
 
     [Theory]
     [MemberData(nameof(TestMemberDataForExtensionsInteger.MonthNameData), MemberType = typeof(TestMemberDataForExtensionsInteger))]
-    public void GetMonthNameByMonthNumber(
+    public void GetMonthNameByMonthNumberUi(
         int arrangeUiLcid,
         string expected,
         int input,
@@ -123,7 +123,7 @@ public class IntegerExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = input.GetMonthNameByMonthNumber(pascalCased);
+        var actual = input.GetMonthNameByMonthNumberUi(pascalCased);
 
         // Assert
         Assert.Equal(expected, actual);
@@ -140,6 +140,25 @@ public class IntegerExtensionsTests
     {
         // Act
         var actual = input.GetNumberOfWeeksByYear();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(52, 2019)]
+    [InlineData(53, 2020)]
+    [InlineData(52, 2021)]
+    [InlineData(52, 2022)]
+    public void GetNumberOfWeeksByYearUi(
+        int expected,
+        int input)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+
+        // Act
+        var actual = input.GetNumberOfWeeksByYearUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -168,6 +187,29 @@ public class IntegerExtensionsTests
     }
 
     [Theory]
+    [InlineData(2018, 12, 31, 2019, 1)]
+    [InlineData(2019, 12, 30, 2020, 1)]
+    [InlineData(2021, 1, 4, 2021, 1)]
+    [InlineData(2022, 1, 3, 2022, 1)]
+    public void GetFirstDayOfWeekNumberByYearUi(
+        int expectedYear,
+        int expectedMonth,
+        int expectedDay,
+        int input,
+        int weekNumber)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);
+
+        // Act
+        var actual = input.GetFirstDayOfWeekNumberByYearUi(weekNumber);
+
+        // Assert
+        Assert.Equal(expectedDateTime, actual);
+    }
+
+    [Theory]
     [InlineData(2019, 1, 6, 2019, 1)]
     [InlineData(2020, 1, 5, 2020, 1)]
     [InlineData(2021, 1, 10, 2021, 1)]
@@ -184,6 +226,29 @@ public class IntegerExtensionsTests
 
         // Act
         var actual = input.GetLastDayOfWeekNumberByYear(weekNumber);
+
+        // Assert
+        Assert.Equal(expectedDateTime, actual);
+    }
+
+    [Theory]
+    [InlineData(2019, 1, 6, 2019, 1)]
+    [InlineData(2020, 1, 5, 2020, 1)]
+    [InlineData(2021, 1, 10, 2021, 1)]
+    [InlineData(2022, 1, 9, 2022, 1)]
+    public void GetLastDayOfWeekNumberByYearUi(
+        int expectedYear,
+        int expectedMonth,
+        int expectedDay,
+        int input,
+        int weekNumber)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);
+
+        // Act
+        var actual = input.GetLastDayOfWeekNumberByYearUi(weekNumber);
 
         // Assert
         Assert.Equal(expectedDateTime, actual);

@@ -76,6 +76,7 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
@@ -95,6 +96,7 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
@@ -117,6 +119,25 @@ public class DateTimeExtensionsTests
 
         // Act
         var actual = input.GetWeekNumber();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(1, 1970, 1)]
+    [InlineData(48, 2019, 12)]
+    public void GetWeekNumberUi(
+        int expected,
+        int year,
+        int month)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        var input = new DateTime(year, month, 1, 0, 0, 0);
+
+        // Act
+        var actual = input.GetWeekNumberUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -183,7 +204,7 @@ public class DateTimeExtensionsTests
     [InlineData("Sunday, 15 October 2023", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
-    public void ToLongDateStringUsingCurrentUiCulture(
+    public void ToLongDateStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -192,7 +213,7 @@ public class DateTimeExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongDateStringUsingCurrentUiCulture();
+        var actual = dateTime.ToLongDateStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -223,7 +244,7 @@ public class DateTimeExtensionsTests
     [InlineData("15:30:45", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
-    public void ToLongTimeStringUsingCurrentUiCulture(
+    public void ToLongTimeStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -232,7 +253,7 @@ public class DateTimeExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToLongTimeStringUsingCurrentUiCulture();
+        var actual = dateTime.ToLongTimeStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -263,7 +284,7 @@ public class DateTimeExtensionsTests
     [InlineData("15/10/2023", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
-    public void ToShortDateStringUsingCurrentUiCulture(
+    public void ToShortDateStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -272,7 +293,7 @@ public class DateTimeExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortDateStringUsingCurrentUiCulture();
+        var actual = dateTime.ToShortDateStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -303,7 +324,7 @@ public class DateTimeExtensionsTests
     [InlineData("15:30", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
-    public void ToShortTimeStringUsingCurrentUiCulture(
+    public void ToShortTimeStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -312,7 +333,7 @@ public class DateTimeExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTime.ToShortTimeStringUsingCurrentUiCulture();
+        var actual = dateTime.ToShortTimeStringUi();
 
         // Assert
         Assert.Equal(expected, actual);

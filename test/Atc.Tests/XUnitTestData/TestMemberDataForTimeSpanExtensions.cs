@@ -28,6 +28,21 @@ internal static class TestMemberDataForTimeSpanExtensions
             { "15,000 ms", new TimeSpan(0, 0, 0, 0, 15), GlobalizationLcidConstants.Germany },
         };
 
+    public static TheoryData<string, TimeSpan, int, int> GetPrettyTimeUi()
+        => new()
+        {
+            { "11,509 dage", new TimeSpan(11, 12, 13, 14, 15), GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.UnitedStates },
+            { "12,221 timer", new TimeSpan(0, 12, 13, 14, 15), GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.UnitedStates },
+            { "13,234 min", new TimeSpan(0, 0, 13, 14, 15), GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.UnitedStates },
+            { "14,015 sek", new TimeSpan(0, 0, 0, 14, 15), GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.UnitedStates },
+            { "15,000 ms", new TimeSpan(0, 0, 0, 0, 15), GlobalizationLcidConstants.Denmark, GlobalizationLcidConstants.UnitedStates },
+            { "11.509 days", new TimeSpan(11, 12, 13, 14, 15), GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.Denmark },
+            { "12.221 hours", new TimeSpan(0, 12, 13, 14, 15), GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.Denmark },
+            { "13.234 min", new TimeSpan(0, 0, 13, 14, 15), GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.Denmark },
+            { "14.015 sec", new TimeSpan(0, 0, 0, 14, 15), GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.Denmark },
+            { "15.000 ms", new TimeSpan(0, 0, 0, 0, 15), GlobalizationLcidConstants.UnitedStates, GlobalizationLcidConstants.Denmark },
+        };
+
     public static TheoryData<string, TimeSpan, int, int> GetPrettyTimeWithDecimalPrecision()
         => new()
         {

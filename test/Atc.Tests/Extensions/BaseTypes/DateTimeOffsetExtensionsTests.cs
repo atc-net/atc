@@ -71,6 +71,7 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
@@ -90,6 +91,7 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
@@ -112,6 +114,25 @@ public class DateTimeOffsetExtensionsTests
 
         // Act
         var actual = input.GetWeekNumber();
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(1, 1970, 1)]
+    [InlineData(48, 2019, 12)]
+    public void GetWeekNumberUi(
+        int expected,
+        int year,
+        int month)
+    {
+        // Arrange
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        var input = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
+
+        // Act
+        var actual = input.GetWeekNumberUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -239,7 +260,7 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("Sunday, 15 October 2023", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("søndag den 15. oktober 2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("Sonntag, 15. Oktober 2023", GlobalizationLcidConstants.Germany)]
-    public void ToLongDateStringUsingCurrentUiCulture(
+    public void ToLongDateStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -248,7 +269,7 @@ public class DateTimeOffsetExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTimeOffset.ToLongDateStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToLongDateStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -279,7 +300,7 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15:30:45", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.30.45", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30:45", GlobalizationLcidConstants.Germany)]
-    public void ToLongTimeStringUsingCurrentUiCulture(
+    public void ToLongTimeStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -288,7 +309,7 @@ public class DateTimeOffsetExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTimeOffset.ToLongTimeStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToLongTimeStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -319,7 +340,7 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15/10/2023", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Denmark)]
     [InlineData("15.10.2023", GlobalizationLcidConstants.Germany)]
-    public void ToShortDateStringUsingCurrentUiCulture(
+    public void ToShortDateStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -328,7 +349,7 @@ public class DateTimeOffsetExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTimeOffset.ToShortDateStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToShortDateStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -359,7 +380,7 @@ public class DateTimeOffsetExtensionsTests
     [InlineData("15:30", GlobalizationLcidConstants.GreatBritain)]
     [InlineData("15.30", GlobalizationLcidConstants.Denmark)]
     [InlineData("15:30", GlobalizationLcidConstants.Germany)]
-    public void ToShortTimeStringUsingCurrentUiCulture(
+    public void ToShortTimeStringUi(
         string expected,
         int arrangeUiLcid)
     {
@@ -368,7 +389,7 @@ public class DateTimeOffsetExtensionsTests
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
 
         // Act
-        var actual = dateTimeOffset.ToShortTimeStringUsingCurrentUiCulture();
+        var actual = dateTimeOffset.ToShortTimeStringUi();
 
         // Assert
         Assert.Equal(expected, actual);
