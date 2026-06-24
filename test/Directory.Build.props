@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Atc.Test" Version="2.0.17" />
+    <PackageReference Include="Atc.Test" Version="3.0.0" />
     <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.6.0" />
     <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.8.0" />
@@ -33,7 +33,7 @@
     <Using Include="Atc.Test" />
     <Using Include="AutoFixture" />
     <Using Include="AutoFixture.Xunit3" />
-    <Using Include="FluentAssertions" />
+    <Using Include="AwesomeAssertions" />
     <Using Include="NSubstitute" />
     <Using Include="Xunit" />
   </ItemGroup>
