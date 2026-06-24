@@ -68,7 +68,7 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
             .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>();
-        //// TODO: Waiting for Github issue
+        //// TODO: Waiting for GitHub issue
         ////.WithMessage(@"Expected content type of content result to be ""application/json"", but found ""BAZ"".");
     }
 
@@ -136,7 +136,7 @@ public class ContentResultAssertionsTests : ContentResultAssertionsBaseFixture
     }
 
     [Fact]
-    public void WithStatusCode_Does_Not_Throws_When_StatusCode_Is_As_Expected()
+    public void WithStatusCode_Does_Not_Throw_When_StatusCode_Is_As_Expected()
     {
         // Arrange
         var target = new ContentResult

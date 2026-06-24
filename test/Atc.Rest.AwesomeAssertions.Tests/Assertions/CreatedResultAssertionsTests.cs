@@ -68,7 +68,7 @@ public class CreatedResultAssertionsTests : ContentResultAssertionsBaseFixture
             .Invoking(x => x.WithContent("FOO"))
             .Should()
             .Throw<XunitException>();
-        //// TODO: Waiting for Github issue
+        //// TODO: Waiting for GitHub issue
         ////.WithMessage(@"Expected content type of created result to be ""application/json"", but found ""BAZ"".");
     }
 

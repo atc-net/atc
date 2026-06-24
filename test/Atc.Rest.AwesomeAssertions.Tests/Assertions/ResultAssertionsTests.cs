@@ -91,7 +91,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void BeCreatedResult_Throws_When_ContentResult_StatusCode_Isnt_202()
+    public void BeCreatedResult_Throws_When_ContentResult_StatusCode_Isnt_201()
     {
         // Arrange
         var target = new ContentResult { StatusCode = 1337 };
@@ -106,7 +106,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void BeCreatedResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_202()
+    public void BeCreatedResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_201()
     {
         // Arrange
         var target = new ContentResult { StatusCode = 201 };
@@ -326,7 +326,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void BeConflictResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_404()
+    public void BeConflictResult_Passes_When_Subject_Is_ContentResult_With_StatusCode_409()
     {
         // Arrange
         var target = new ContentResult { StatusCode = 409 };
