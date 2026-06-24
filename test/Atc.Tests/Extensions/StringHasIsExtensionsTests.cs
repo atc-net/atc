@@ -384,6 +384,7 @@ public class StringHasIsExtensionsTests
     [InlineData(true, "example.com.")]
     [InlineData(true, "a.b.c.d.e.f")]
     [InlineData(true, "xn--mnchen-3ya.de")]
+    [InlineData(true, "host123")]
     [InlineData(false, "")]
     [InlineData(false, " ")]
     [InlineData(false, "-leadinghyphen.com")]
@@ -392,6 +393,10 @@ public class StringHasIsExtensionsTests
     [InlineData(false, "double..dot.com")]
     [InlineData(false, "space in.host")]
     [InlineData(false, "münchen.de")]
+    [InlineData(false, "192.168.0.27")]
+    [InlineData(false, "1.2.3.4")]
+    [InlineData(false, "123")]
+    [InlineData(false, "example.123")]
     public void IsHostName(
         bool expected,
         string input)
