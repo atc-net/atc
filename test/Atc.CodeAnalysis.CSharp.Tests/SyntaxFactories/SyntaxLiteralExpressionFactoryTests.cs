@@ -42,6 +42,17 @@ public class SyntaxLiteralExpressionFactoryTests
         Assert.Equal($"\"{value}\"", result.ToString());
     }
 
+    [Fact]
+    public void CreateNull_Returns_NullLiteralExpression()
+    {
+        // Act
+        var result = SyntaxLiteralExpressionFactory.CreateNull();
+
+        // Assert
+        Assert.Equal(SyntaxKind.NullLiteralExpression, result.Kind());
+        Assert.Equal("null", result.ToString());
+    }
+
     [Theory]
     [InlineData(0)]
     [InlineData(42)]
