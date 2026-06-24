@@ -598,11 +598,26 @@ public static class StringHasIsExtensions
     /// Accepts single-label names (e.g. <c>localhost</c>) and an optional trailing dot (e.g. <c>example.com.</c>).
     /// Each label is 1-63 ASCII alphanumeric/hyphen characters and may not start or end with a hyphen;
     /// the total length is limited to 253 characters. Underscores and raw Unicode (non-punycode IDN) are not allowed.
+    /// Per RFC 1123 §2.1 the top-level (right-most) label must not be all-numeric, which also disambiguates
+    /// host names from IPv4 addresses (e.g. <c>192.168.0.27</c> is rejected).
     /// This is a purely syntactic check and does not perform any DNS resolution.
     /// </remarks>
     public static bool IsHostName(this string value)
-        => !string.IsNullOrEmpty(value) &&
-           RxHostName.Value.IsMatch(value);
+    {
+        if (string.IsNullOrEmpty(value) ||
+            !RxHostName.Value.IsMatch(value))
+        {
+            return false;
+        }
+
+        var host = value.EndsWith('.')
+            ? value[..^1]
+            : value;
+
+        var topLevelLabel = host[(host.LastIndexOf('.') + 1)..];
+
+        return !topLevelLabel.All(char.IsDigit);
+    }
 
     /// <summary>
     /// Determines whether the specified value is a valid IPv4 address.
