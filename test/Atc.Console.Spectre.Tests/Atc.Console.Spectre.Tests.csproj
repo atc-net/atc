@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.Decompiler" Version="10.1.0.8386" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\sample\Demo.Atc.Console.Spectre.Cli\Demo.Atc.Console.Spectre.Cli.csproj" />
     <ProjectReference Include="..\..\src\Atc.XUnit\Atc.XUnit.csproj" />
   </ItemGroup>
