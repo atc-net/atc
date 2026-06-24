@@ -10,8 +10,8 @@ public static class DateTimeHelper
     private const int MaxTimeLengthFor12Hours = 8;
 
     /// <summary>
-    /// Tries to parse a string representation of a <c>DateTime</c> using
-    /// the current UI culture's date and time format.
+    /// Tries to parse a string representation of a <c>DateTime</c> using the current UI culture's date and time format.
+    /// Use this variant when parsing input from a user interface.
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <param name="result">
@@ -21,7 +21,7 @@ public static class DateTimeHelper
     /// <returns>
     ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool TryParseUsingCurrentUiCulture(
+    public static bool TryParseUi(
         string value,
         out DateTime result)
     {
@@ -78,8 +78,8 @@ public static class DateTimeHelper
     }
 
     /// <summary>
-    /// Tries to parse a string representation of a short date using
-    /// the current UI culture's date format.
+    /// Tries to parse a string representation of a short date using the current UI culture's date format.
+    /// Use this variant when parsing input from a user interface.
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <param name="result">
@@ -89,7 +89,7 @@ public static class DateTimeHelper
     /// <returns>
     ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool TryParseShortDateUsingCurrentUiCulture(
+    public static bool TryParseShortDateUi(
         string value,
         out DateTime result)
     {
@@ -146,8 +146,8 @@ public static class DateTimeHelper
     }
 
     /// <summary>
-    /// Tries to parse a string representation of a short time using the
-    /// current UI culture's time format (12-hour or 24-hour).
+    /// Tries to parse a string representation of a short time using the current UI culture's time format (12-hour or 24-hour).
+    /// Use this variant when parsing input from a user interface.
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <param name="result">
@@ -157,7 +157,7 @@ public static class DateTimeHelper
     /// <returns>
     ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool TryParseShortTimeUsingCurrentUiCulture(
+    public static bool TryParseShortTimeUi(
         string value,
         out DateTime result)
     {
@@ -221,8 +221,8 @@ public static class DateTimeHelper
     }
 
     /// <summary>
-    /// Tries to parse a string representation of a short UTC time using the
-    /// current UI culture's time format (12-hour or 24-hour).
+    /// Tries to parse a string representation of a short UTC time using the current UI culture's time format (12-hour or 24-hour).
+    /// Use this variant when parsing input from a user interface.
     /// </summary>
     /// <param name="value">The string to parse.</param>
     /// <param name="result">
@@ -232,7 +232,7 @@ public static class DateTimeHelper
     /// <returns>
     ///   <see langword="true" /> if the parsing was successful; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool TryParseShortTimeUsingCurrentUiCultureUtc(
+    public static bool TryParseShortTimeUiUtc(
         string value,
         out DateTime result)
     {

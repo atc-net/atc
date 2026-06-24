@@ -56,6 +56,15 @@ public static class DateTimeOffsetExtensions
         => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
     /// <summary>
+    /// Gets the week number from a given date using the current UI culture's calendar.
+    /// Use this variant when rendering the week number for display in a user interface.
+    /// </summary>
+    /// <param name="date">The date.</param>
+    /// <returns>The week number from the given date.</returns>
+    public static int GetWeekNumberUi(this DateTimeOffset date)
+        => CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(date.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+    /// <summary>
     /// Find the diff between to DateTimes.
     /// </summary>
     /// <param name="startDate">The start date.</param>
@@ -157,14 +166,12 @@ public static class DateTimeOffsetExtensions
             .ToString(GlobalizationConstants.DateTimeIso8601, GlobalizationConstants.EnglishCultureInfo);
 
     /// <summary>
-    /// Converts a DateTime to a string using the long date pattern
-    /// of the current UI culture.
+    /// Converts a DateTimeOffset to a string using the long date pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// long date pattern of the current UI culture.</returns>
-    public static string ToLongDateStringUsingCurrentUiCulture(
-        this DateTimeOffset dateTimeOffset)
+    /// <returns>A string representation of the DateTimeOffset using the long date pattern of the current UI culture.</returns>
+    public static string ToLongDateStringUi(this DateTimeOffset dateTimeOffset)
         => dateTimeOffset.ToLongDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -191,14 +198,12 @@ public static class DateTimeOffsetExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the long time pattern
-    /// of the current UI culture.
+    /// Converts a DateTimeOffset to a string using the long time pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// long time pattern of the current UI culture.</returns>
-    public static string ToLongTimeStringUsingCurrentUiCulture(
-        this DateTimeOffset dateTimeOffset)
+    /// <returns>A string representation of the DateTimeOffset using the long time pattern of the current UI culture.</returns>
+    public static string ToLongTimeStringUi(this DateTimeOffset dateTimeOffset)
         => dateTimeOffset.ToLongTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -224,14 +229,12 @@ public static class DateTimeOffsetExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the short date pattern
-    /// of the current UI culture.
+    /// Converts a DateTimeOffset to a string using the short date pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// short date pattern of the current UI culture.</returns>
-    public static string ToShortDateStringUsingCurrentUiCulture(
-        this DateTimeOffset dateTimeOffset)
+    /// <returns>A string representation of the DateTimeOffset using the short date pattern of the current UI culture.</returns>
+    public static string ToShortDateStringUi(this DateTimeOffset dateTimeOffset)
         => dateTimeOffset.ToShortDateString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>
@@ -272,14 +275,12 @@ public static class DateTimeOffsetExtensions
     }
 
     /// <summary>
-    /// Converts a DateTime to a string using the short time pattern
-    /// of the current UI culture.
+    /// Converts a DateTimeOffset to a string using the short time pattern of the current UI culture.
+    /// Use this variant when rendering output for display in a user interface.
     /// </summary>
     /// <param name="dateTimeOffset">The DateTimeOffset to format.</param>
-    /// <returns>A string representation of the DateTime using the
-    /// short time pattern of the current UI culture.</returns>
-    public static string ToShortTimeStringUsingCurrentUiCulture(
-        this DateTimeOffset dateTimeOffset)
+    /// <returns>A string representation of the DateTimeOffset using the short time pattern of the current UI culture.</returns>
+    public static string ToShortTimeStringUi(this DateTimeOffset dateTimeOffset)
         => dateTimeOffset.ToShortTimeString(CultureInfo.CurrentUICulture.DateTimeFormat);
 
     /// <summary>

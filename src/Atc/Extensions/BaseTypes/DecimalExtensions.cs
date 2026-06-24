@@ -148,6 +148,15 @@ public static class DecimalExtensions
     }
 
     /// <summary>
+    /// Rounds a decimal value using the currency decimal digits of the current UI culture.
+    /// Use this variant when rounding for display in a user interface.
+    /// </summary>
+    /// <param name="value">The decimal value to round.</param>
+    /// <returns>The rounded decimal value.</returns>
+    public static decimal CurrencyRoundingUi(this decimal value)
+        => CurrencyRounding(value, CultureInfo.CurrentUICulture.NumberFormat.CurrencyDecimalDigits);
+
+    /// <summary>
     /// Rounds a decimal value to 2 decimal places.
     /// </summary>
     /// <param name="value">The decimal value to round.</param>
