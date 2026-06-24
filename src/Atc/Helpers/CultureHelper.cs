@@ -32,7 +32,8 @@ public static class CultureHelper
 
             allCultures ??= new Dictionary<int, List<Culture>>();
 
-            allCultures[Thread.CurrentThread.CurrentUICulture.LCID] = new List<Culture>();
+            var lcid = Thread.CurrentThread.CurrentUICulture.LCID;
+            var result = new List<Culture>();
             var culturesFromPlatform = GetCultureInfoFromPlatform();
             foreach (var cultureInfo in culturesFromPlatform)
             {
@@ -57,13 +58,14 @@ public static class CultureHelper
                 culture.CountryDisplayName = TryTranslateCountryEnglishName(culture.CountryEnglishName);
                 culture.LanguageDisplayName = TryTranslateLanguageEnglishName(culture.LanguageEnglishName);
 
-                if (!allCultures[Thread.CurrentThread.CurrentUICulture.LCID].Contains(culture))
+                if (!result.Contains(culture))
                 {
-                    allCultures[Thread.CurrentThread.CurrentUICulture.LCID].Add(culture);
+                    result.Add(culture);
                 }
             }
 
-            return allCultures[Thread.CurrentThread.CurrentUICulture.LCID];
+            allCultures[lcid] = result;
+            return result;
         }
     }
 
@@ -1026,9 +1028,7 @@ public static class CultureHelper
     private static ResourceManager GetResourceManagerForResource(
         string resource)
     {
-        var assembly = AppDomain.CurrentDomain
-            .GetAssemblies()
-            .Single(x => x.FullName!.StartsWith(ResourceBaseName + ", Version", StringComparison.Ordinal));
+        var assembly = typeof(CultureHelper).Assembly;
         return new ResourceManager($"{ResourceBaseName}.Resources.{resource}", assembly);
     }
 }
