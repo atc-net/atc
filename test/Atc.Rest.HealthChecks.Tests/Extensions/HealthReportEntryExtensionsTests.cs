@@ -71,8 +71,8 @@ public class HealthReportEntryExtensionsTests
             .And.ContainKey("isRunning")
             .And.ContainKey("duration");
 
-        actual.Data!["isRunning"].Should().Be(true);
-        actual.Data!["duration"].Should().Be(duration);
+        actual.Data!["isRunning"].Should().Be("True");
+        actual.Data!["duration"].Should().Be(duration.ToString());
     }
 
     [Fact]
@@ -189,7 +189,7 @@ public class HealthReportEntryExtensionsTests
         // Assert
         actual.Data.Should().NotBeNull().And.HaveCount(2);
         actual.Data!["error"].Should().Be("Cache connection failed");
-        actual.Data!["retries"].Should().Be(3);
+        actual.Data!["retries"].Should().Be("3");
     }
 
     [Fact]
@@ -223,9 +223,9 @@ public class HealthReportEntryExtensionsTests
         // Assert
         actual.Data.Should().NotBeNull().And.HaveCount(4);
         actual.Data!["label"].Should().Be("healthy");
-        actual.Data!["flag"].Should().Be(true);
-        actual.Data!["count"].Should().Be(42);
-        actual.Data!["duration"].Should().Be(TimeSpan.FromMilliseconds(500));
+        actual.Data!["flag"].Should().Be("True");
+        actual.Data!["count"].Should().Be("42");
+        actual.Data!["duration"].Should().Be(TimeSpan.FromMilliseconds(500).ToString());
     }
 
     [Fact]
@@ -256,7 +256,7 @@ public class HealthReportEntryExtensionsTests
 
         // Assert
         actual.Data.Should().NotBeNull().And.HaveCount(1);
-        actual.Data!["redis"].Should().Be(resource);
+        actual.Data!["redis"].Should().Be(resource.ToString());
     }
 
     [Fact]
@@ -323,6 +323,6 @@ public class HealthReportEntryExtensionsTests
         dataBag
             .Should().NotBeNull()
             .And.HaveCount(1);
-        dataBag!["failures"].Should().Be(3);
+        dataBag!["failures"].Should().Be("3");
     }
 }
