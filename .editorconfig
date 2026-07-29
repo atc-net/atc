@@ -599,9 +599,12 @@ dotnet_diagnostic.S3267.severity = suggestion		# Simplified with LINQ expression
 dotnet_diagnostic.S4456.severity = none		        # Split method into two - one validating the parameters and one handling the iterator
 dotnet_diagnostic.S4457.severity = none             # Split this method into two, one handling parameters check and the other handling the asynchronous code
 dotnet_diagnostic.S4487.severity = none             # Remove this unread private field 'testOutputHelper' or refactor the code to use its value.
+dotnet_diagnostic.S5766.severity = none             # Validate data in this deserialization constructor. These types are [Serializable] for legacy interop only - none implements ISerializable, and BinaryFormatter is removed in modern .NET.
 dotnet_diagnostic.S6562.severity = suggestion       # Provide the "DateTimeKind" when creating this object
 dotnet_diagnostic.S6588.severity = suggestion       # Use "DateTime.UnixEpoch" instead of creating DateTime instances that point to the unix epoch time
 dotnet_diagnostic.S6608.severity = none             # Indexing at 0 should be used instead of the "Enumerable" extension method "First"
+dotnet_diagnostic.S8969.severity = none             # Remove this null-forgiving operator; the compiler already knows this expression is not null here.
+dotnet_diagnostic.S8970.severity = none             # Remove this null-forgiving operator; nullable warnings are disabled here.
 
 dotnet_diagnostic.IDE0079.severity = suggestion		# Remove unnecessary suppression (not working with all SonarSource) - https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0079
 
