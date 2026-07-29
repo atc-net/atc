@@ -15,7 +15,7 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.Single(result.Modifiers);
-        Assert.Contains("public", result.Modifiers.Select(m => m.ValueText));
+        Assert.Contains("public", result.Modifiers.Select(m => m.ValueText), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.NotNull(result.BaseList);
-        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()));
+        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.NotNull(result.BaseList);
         Assert.Single(result.BaseList.Types);
-        Assert.Contains(interfaceName, result.BaseList.Types.Select(t => t.Type.ToString()));
+        Assert.Contains(interfaceName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -69,8 +69,8 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.NotNull(result.BaseList);
         Assert.Equal(2, result.BaseList.Types.Count);
-        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()));
-        Assert.Contains(interfaceName, result.BaseList.Types.Select(t => t.Type.ToString()));
+        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
+        Assert.Contains(interfaceName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -82,8 +82,8 @@ public class SyntaxClassDeclarationFactoryTests
         // Assert
         Assert.NotNull(result);
         Assert.Equal(2, result.Modifiers.Count);
-        Assert.Contains("partial", result.Modifiers.Select(item => item.ValueText));
-        Assert.Contains("public", result.Modifiers.Select(item => item.ValueText));
+        Assert.Contains("partial", result.Modifiers.Select(item => item.ValueText), StringComparer.Ordinal);
+        Assert.Contains("public", result.Modifiers.Select(item => item.ValueText), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -99,8 +99,8 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.Equal(2, result.Modifiers.Count);
-        Assert.Contains("public", result.Modifiers.Select(m => m.ValueText));
-        Assert.Contains("static", result.Modifiers.Select(m => m.ValueText));
+        Assert.Contains("public", result.Modifiers.Select(m => m.ValueText), StringComparer.Ordinal);
+        Assert.Contains("static", result.Modifiers.Select(m => m.ValueText), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -116,8 +116,8 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.Equal(2, result.Modifiers.Count);
-        Assert.Contains("internal", result.Modifiers.Select(m => m.ValueText));
-        Assert.Contains("static", result.Modifiers.Select(m => m.ValueText));
+        Assert.Contains("internal", result.Modifiers.Select(m => m.ValueText), StringComparer.Ordinal);
+        Assert.Contains("static", result.Modifiers.Select(m => m.ValueText), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -179,7 +179,7 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.NotNull(result.BaseList);
-        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()));
+        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
         Assert.NotEmpty(result.AttributeLists);
     }
 
@@ -218,7 +218,7 @@ public class SyntaxClassDeclarationFactoryTests
         Assert.NotNull(result);
         Assert.Equal(className, result.Identifier.ValueText);
         Assert.NotNull(result.BaseList);
-        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()));
+        Assert.Contains(baseClassName, result.BaseList.Types.Select(t => t.Type.ToString()), StringComparer.Ordinal);
         Assert.NotEmpty(result.AttributeLists);
     }
 
