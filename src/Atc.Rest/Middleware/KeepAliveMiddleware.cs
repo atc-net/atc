@@ -43,7 +43,10 @@ public class KeepAliveMiddleware
         if (IsKeepAlivePing(context.Request))
         {
             context.Response.StatusCode = (int)HttpStatusCode.OK;
-            await context.Response.WriteAsync(nameof(HttpStatusCode.OK));
+
+            // This is the response body itself, so honour the request's cancellation: if the
+            // caller has already hung up there is nothing to be gained by writing it.
+            await context.Response.WriteAsync(nameof(HttpStatusCode.OK), context.RequestAborted);
             return;
         }
 
