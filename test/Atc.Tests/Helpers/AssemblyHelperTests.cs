@@ -75,6 +75,49 @@ public class AssemblyHelperTests
         Assert.NotNull(actual);
     }
 
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    public void GetSystemVersion_String_FieldCount(int fieldCount)
+    {
+        // Arrange
+        var version = AssemblyHelper.GetSystemVersion();
+
+        // Act
+        var actual = AssemblyHelper.GetSystemVersion(fieldCount);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(version.ToString(fieldCount), actual);
+        Assert.Equal(fieldCount - 1, actual.Count(c => c == '.'));
+    }
+
+    [Fact]
+    public void GetSystemVersion_String_SemVer_HasThreeFields()
+    {
+        // Act
+        var actual = AssemblyHelper.GetSystemVersion(fieldCount: 3);
+
+        // Assert
+        Assert.NotNull(actual);
+        Assert.Equal(2, actual.Count(c => c == '.'));
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(5)]
+    [InlineData(int.MaxValue)]
+    public void GetSystemVersion_String_FieldCount_OutOfRange_Throws(
+        int fieldCount)
+    {
+        // Act + Assert
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => AssemblyHelper.GetSystemVersion(fieldCount));
+    }
+
     [Fact]
     public void GetSystemLocation()
     {

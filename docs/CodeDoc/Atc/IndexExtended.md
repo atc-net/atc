@@ -4431,6 +4431,7 @@
      - GetSystemName()
      - GetSystemNameAsKebabCasing()
      - GetSystemVersion()
+     - GetSystemVersion(int fieldCount)
      - Load(FileInfo assemblyFile)
      - ReadAsBytes(FileInfo assemblyFile)
 - [ByteHelper](Atc.Helpers.md#bytehelper)

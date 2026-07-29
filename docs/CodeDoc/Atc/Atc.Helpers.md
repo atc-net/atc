@@ -184,6 +184,13 @@ The AssemblyHelper module contains procedures used to preform assembly operation
 ><b>Summary:</b> Gets the system version.
 >
 ><b>Returns:</b> System version.
+#### GetSystemVersion
+>```csharp
+>string GetSystemVersion(int fieldCount)
+>```
+><b>Summary:</b> Gets the system version.
+>
+><b>Returns:</b> System version.
 #### Load
 >```csharp
 >Assembly Load(FileInfo assemblyFile)
