@@ -1,3 +1,4 @@
+// ReSharper disable CommentTypo
 namespace Atc.Helpers;
 
 /// <summary>
@@ -166,6 +167,29 @@ public static class AssemblyHelper
     {
         var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
         return assembly.GetFileVersion();
+    }
+
+    /// <summary>
+    /// Gets the system version formatted as a string with the specified number of components.
+    /// </summary>
+    /// <param name="fieldCount">
+    /// The number of version components to include (1-4). Pass 3 for SemVer-style
+    /// "Major.Minor.Patch" formatting, which discards build-height/revision components added
+    /// by tools like Nerdbank.GitVersioning.
+    /// </param>
+    /// <returns>The system version as a string (e.g., "1.0.6").</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="fieldCount"/> is not between 1 and 4.</exception>
+    public static string GetSystemVersion(int fieldCount)
+    {
+        if (fieldCount is < 1 or > 4)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(fieldCount),
+                fieldCount,
+                "Field count must be between 1 and 4.");
+        }
+
+        return GetSystemVersion().ToString(fieldCount);
     }
 
     /// <summary>
