@@ -292,6 +292,7 @@ public static class InternetBrowserHelper
     }
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
+    [SuppressMessage("Design", "S4036:Use an absolute path", Justification = "OK.")]
     private static bool ProcessStartOpenUrl(Uri uri)
     {
         if (uri is null)

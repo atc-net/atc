@@ -13,6 +13,7 @@ public static class NetworkInformationHelper
     /// Determines whether there is network connectivity by pinging Google's DNS server (8.8.8.8).
     /// </summary>
     /// <returns><see langword="true"/> if a ping response is received; otherwise, <see langword="false"/>.</returns>
+    [SuppressMessage("Design", "S1313:Magic numbers should not be used", Justification = "OK - By design.")]
     public static bool HasConnection()
     {
         const string googleDns = "8.8.8.8";
@@ -153,6 +154,7 @@ public static class NetworkInformationHelper
     /// </summary>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns><see langword="true"/> if a ping response is received; otherwise, <see langword="false"/>.</returns>
+    [SuppressMessage("Design", "S1313:Magic numbers should not be used", Justification = "OK - By design.")]
     public static Task<bool> HasConnectionAsync(
         CancellationToken cancellationToken = default)
     {
