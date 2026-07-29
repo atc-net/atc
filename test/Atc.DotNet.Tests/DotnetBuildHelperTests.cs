@@ -196,6 +196,107 @@ public class DotnetBuildHelperTests : IAsyncLifetime
         Assert.Empty(warnings);
     }
 
+    [Fact]
+    public void ParseWarnings_DuplicateIdenticalLines_CountedOnce()
+    {
+        // MSBuild prints each diagnostic twice: inline during CoreCompile and again in the
+        // end-of-build recap. -clp:NoSummary does not remove the recap, so the parser has to
+        // recognise the repeat itself.
+        const string output = """
+            Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+            Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+            """;
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["CS0168"]);
+    }
+
+    [Fact]
+    public void ParseErrors_DuplicateIdenticalLines_CountedOnce()
+    {
+        const string output = """
+            Program.cs(13,13): error CS0246: The type 'Foo' could not be found [Test.csproj]
+            Program.cs(13,13): error CS0246: The type 'Foo' could not be found [Test.csproj]
+            """;
+
+        var errors = DotnetBuildHelper.ParseErrors(output);
+
+        Assert.Single(errors);
+        Assert.Equal(1, errors["CS0246"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_DuplicateWithDifferentMsBuildNodePrefix_CountedOnce()
+    {
+        // At higher verbosity the inline copy carries a node prefix ("1>") and the recap copy is
+        // indented, so the two are not byte-identical.
+        const string output = """
+                 1>Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+                   Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+            """;
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(1, warnings["CS0168"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_SameCodeAtDifferentPositions_CountedSeparately()
+    {
+        // Deduplication must key on the whole line, not the matched fragment: these differ only
+        // in position, and both are real occurrences.
+        const string output = """
+            Program.cs(5,5): warning CS0168: Unused var [Test.csproj]
+            Program.cs(6,5): warning CS0168: Unused var [Test.csproj]
+            """;
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Equal(2, warnings["CS0168"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_SameMessageFromDifferentProjects_CountedSeparately()
+    {
+        const string output = """
+            ProjA.csproj : warning NU1701: Package 'OldPkg 1.0.0' was restored using net472.
+            ProjB.csproj : warning NU1701: Package 'OldPkg 1.0.0' was restored using net472.
+            """;
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Equal(2, warnings["NU1701"]);
+    }
+
+    [Fact]
+    public void ParseWarnings_RealSolutionOutput_CountsEachSiteOnce()
+    {
+        // Shape captured from 'dotnet build <solution> -c Release -p:TreatWarningsAsErrors=false
+        // -v q -clp:NoSummary' on a two-project solution holding 7 CS0219 sites, 2 in ProjA and 5
+        // in ProjB. MSBuild emits 14 lines for those 7 sites.
+        var lines = new[]
+        {
+            "/repro/src/ProjA/ClassA.cs(1,45): warning CS0219: The variable 'a' is assigned but its value is never used [/repro/src/ProjA/ProjA.csproj]",
+            "/repro/src/ProjA/ClassA.cs(1,56): warning CS0219: The variable 'b' is assigned but its value is never used [/repro/src/ProjA/ProjA.csproj]",
+            "/repro/src/ProjB/ClassB.cs(1,45): warning CS0219: The variable 'a' is assigned but its value is never used [/repro/src/ProjB/ProjB.csproj]",
+            "/repro/src/ProjB/ClassB.cs(1,54): warning CS0219: The variable 'b' is assigned but its value is never used [/repro/src/ProjB/ProjB.csproj]",
+            "/repro/src/ProjB/ClassB.cs(1,63): warning CS0219: The variable 'c' is assigned but its value is never used [/repro/src/ProjB/ProjB.csproj]",
+            "/repro/src/ProjB/ClassB.cs(1,72): warning CS0219: The variable 'd' is assigned but its value is never used [/repro/src/ProjB/ProjB.csproj]",
+            "/repro/src/ProjB/ClassB.cs(1,81): warning CS0219: The variable 'e' is assigned but its value is never used [/repro/src/ProjB/ProjB.csproj]",
+        };
+
+        // Every diagnostic appears twice: once inline, once in the end-of-build recap.
+        var output = string.Join(Environment.NewLine, lines.Concat(lines));
+
+        var warnings = DotnetBuildHelper.ParseWarnings(output);
+
+        Assert.Single(warnings);
+        Assert.Equal(7, warnings["CS0219"]);
+    }
+
     private static Task CreateCsprojFile(DirectoryInfo workingDirectory)
     {
         var file = new FileInfo(Path.Combine(workingDirectory.FullName, "Test.csproj"));

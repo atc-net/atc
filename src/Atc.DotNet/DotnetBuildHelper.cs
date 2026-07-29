@@ -14,6 +14,8 @@ public static class DotnetBuildHelper
 
     private static readonly ConcurrentDictionary<string, Regex> RegexCache = new(StringComparer.Ordinal);
 
+    private static readonly string[] LineSeparators = ["\r\n", "\n", "\r"];
+
     /// <summary>
     /// Builds a .NET project or solution and collects compilation errors grouped by error code.
     /// </summary>
@@ -358,6 +360,21 @@ public static class DotnetBuildHelper
         return ParseBuildOutputHelper(buildResult, patternGeneral);
     }
 
+    /// <summary>
+    /// Counts diagnostics by code, ignoring repeats of the same diagnostic.
+    /// </summary>
+    /// <remarks>
+    /// MSBuild reports every diagnostic twice — inline while the target runs, and again in the
+    /// end-of-build recap under <c>(CoreCompile target) -&gt;</c>. Neither <c>-clp:NoSummary</c>
+    /// nor <c>-tl:off</c> removes the recap, so counting every regex match doubled every
+    /// occurrence.
+    /// <para>
+    /// The de-duplication key is the whole normalised line rather than the matched fragment. The
+    /// patterns start at <c>": error "</c> / <c>": warning "</c> and therefore exclude the file and
+    /// position, so keying on the fragment would collapse two genuine occurrences of the same rule
+    /// at different positions into one.
+    /// </para>
+    /// </remarks>
     private static Dictionary<string, int> ParseBuildOutputHelper(
         string buildResult,
         string regexPattern,
@@ -370,17 +387,25 @@ public static class DotnetBuildHelper
             RegexOptions.Multiline | RegexOptions.Compiled,
             TimeSpan.FromSeconds(10)));
 
-        var matchCollection = regex.Matches(buildResult);
-        foreach (var matchGroups in matchCollection.Select(x => x.Groups))
+        var seenDiagnostics = new HashSet<string>(StringComparer.Ordinal);
+
+        foreach (var line in buildResult.Split(LineSeparators, StringSplitOptions.RemoveEmptyEntries))
         {
-            if (matchGroups.Count != 3)
+            var match = regex.Match(line);
+            if (!match.Success ||
+                match.Groups.Count != 3)
+            {
+                continue;
+            }
+
+            if (!seenDiagnostics.Add(NormalizeDiagnosticLine(line)))
             {
                 continue;
             }
 
             var key = keyPrefix is null
-                ? matchGroups[1].Value
-                : keyPrefix + matchGroups[1].Value;
+                ? match.Groups[1].Value
+                : keyPrefix + match.Groups[1].Value;
 
             if (!errors.TryAdd(key, 1))
             {
@@ -389,5 +414,23 @@ public static class DotnetBuildHelper
         }
 
         return errors;
+    }
+
+    /// <summary>
+    /// Strips surrounding whitespace and any leading MSBuild node id (<c>"1&gt;"</c>), so the inline
+    /// copy of a diagnostic and its recap copy normalise to the same text.
+    /// </summary>
+    private static string NormalizeDiagnosticLine(string line)
+    {
+        var trimmed = line.Trim();
+
+        var nodeSeparatorIndex = trimmed.IndexOf('>', StringComparison.Ordinal);
+        if (nodeSeparatorIndex > 0 &&
+            trimmed[..nodeSeparatorIndex].All(char.IsDigit))
+        {
+            trimmed = trimmed[(nodeSeparatorIndex + 1)..].TrimStart();
+        }
+
+        return trimmed;
     }
 }
