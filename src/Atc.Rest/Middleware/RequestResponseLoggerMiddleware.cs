@@ -97,11 +97,17 @@ public class RequestResponseLoggerMiddleware
         {
             try
             {
+                // CancellationToken.None is deliberate for the whole block below, and must not be
+                // "corrected" to httpContext.RequestAborted. This runs after the response has been
+                // produced: it copies the buffered body back into the real response stream and
+                // restores httpContext.Response.Body. Honouring the request's cancellation would
+                // abort that copy part-way when a client disconnects, leaving a truncated response,
+                // an unrestored Body and an incomplete log entry.
                 if (logModel.Response.ContentType is not null &&
                     IsBinaryContent(logModel.Response.ContentType))
                 {
                     swapStream.Seek(0, SeekOrigin.Begin);
-                    await swapStream.CopyToAsync(originalResponseBody);
+                    await swapStream.CopyToAsync(originalResponseBody, CancellationToken.None);
                     httpContext.Response.Body = originalResponseBody;
 
                     logModel.Response.Body = BinaryDataRedactedString;
@@ -112,11 +118,11 @@ public class RequestResponseLoggerMiddleware
                     string responseBodyText;
                     using (var reader = new StreamReader(swapStream, leaveOpen: true))
                     {
-                        responseBodyText = await reader.ReadToEndAsync();
+                        responseBodyText = await reader.ReadToEndAsync(CancellationToken.None);
                     }
 
                     swapStream.Seek(0, SeekOrigin.Begin);
-                    await swapStream.CopyToAsync(originalResponseBody);
+                    await swapStream.CopyToAsync(originalResponseBody, CancellationToken.None);
                     httpContext.Response.Body = originalResponseBody;
 
                     StripBinaryContentPartFromRequestResponseBody(ref responseBodyText);
