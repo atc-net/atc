@@ -50,7 +50,7 @@ public class HeaderDictionaryExtensionsTests
         // Assert
         Assert.NotNull(actual);
         Assert.True(Guid.TryParse(actual, out _));
-        Assert.NotEqual("not-a-guid", actual);
+        Assert.NotEqual("not-a-guid", actual, StringComparer.Ordinal);
     }
 
     [Fact]

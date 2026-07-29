@@ -110,7 +110,7 @@ public class StringExtensionsTests
     public void GetStringFormatParameterTemplatePlaceholders(
         string[] expected,
         string input)
-        => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders());
+        => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders(), StringComparer.Ordinal);
 
     [Theory]
     [InlineData(new string[] { }, "Hallo World", true)]
@@ -123,7 +123,7 @@ public class StringExtensionsTests
         string[] expected,
         string input,
         bool useDoubleBracket)
-        => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders(useDoubleBracket));
+        => Assert.Equal(expected, input.GetStringFormatParameterTemplatePlaceholders(useDoubleBracket), StringComparer.Ordinal);
 
     [Theory]
     [InlineData("Hallo World John-Doe-42", "Hallo World {{0}}-{{1}}-{{A1}}", new[] { "0", "John", "1", "Doe", "A1", "42" })]
