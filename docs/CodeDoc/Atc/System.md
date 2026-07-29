@@ -3307,7 +3307,7 @@ StringHasIsExtensions.
 >
 ><b>Returns:</b> <see langword="true" /> if the value is a valid host name; otherwise, <see langword="false" />.
 >
-><b>Remarks:</b> Accepts single-label names (e.g. `localhost`) and an optional trailing dot (e.g. `example.com.`). Each label is 1-63 ASCII alphanumeric/hyphen characters and may not start or end with a hyphen; the total length is limited to 253 characters. Underscores and raw Unicode (non-punycode IDN) are not allowed. This is a purely syntactic check and does not perform any DNS resolution.
+><b>Remarks:</b> Accepts single-label names (e.g. `localhost`) and an optional trailing dot (e.g. `example.com.`). Each label is 1-63 ASCII alphanumeric/hyphen characters and may not start or end with a hyphen; the total length is limited to 253 characters. Underscores and raw Unicode (non-punycode IDN) are not allowed. Per RFC 1123 §2.1 the top-level (right-most) label must not be all-numeric, which also disambiguates host names from IPv4 addresses (e.g. `192.168.0.27` is rejected). This is a purely syntactic check and does not perform any DNS resolution.
 #### IsIPAddress
 >```csharp
 >bool IsIPAddress(this string value)
