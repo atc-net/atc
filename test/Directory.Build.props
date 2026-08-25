@@ -17,13 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Atc.Test" Version="3.0.0" />
+    <PackageReference Include="Atc.Test" Version="3.1.1" />
     <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
-    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.10.0" />
     <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.3.3" />
-    <PackageReference Include="xunit.v3.mtp-v2" Version="3.2.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+    <PackageReference Include="xunit.v3" Version="4.0.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

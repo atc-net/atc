@@ -18,9 +18,9 @@
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="xunit.v3.assert" Version="3.2.2" />
-    <PackageReference Include="xunit.v3.common" Version="3.2.2" />
-    <PackageReference Include="xunit.v3.extensibility.core" Version="3.2.2" />
+    <PackageReference Include="xunit.v3.assert" Version="4.0.0" />
+    <PackageReference Include="xunit.v3.common" Version="4.0.0" />
+    <PackageReference Include="xunit.v3.extensibility.core" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
