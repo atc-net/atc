@@ -115,7 +115,7 @@ public class DecimalExtensionsTests
         decimal input)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
 
         // Act
         var actual = input.CurrencyRoundingUi();

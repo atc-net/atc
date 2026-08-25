@@ -366,7 +366,8 @@ internal static class ParametersNamingMatchHelper
         ParameterInfo parameter,
         AstNode astNode)
     {
-        if (!astNode.IsType(typeof(DirectionExpression)))
+        if (!astNode.IsType(typeof(DirectionExpression)) &&
+            !astNode.IsType(typeof(OutVarDeclarationExpression)))
         {
             return false;
         }
