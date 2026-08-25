@@ -32,7 +32,7 @@ internal static class DecompilerHelper
         Tuple<Type, MethodInfo[]>[] testTypeMethods)
     {
         var testMethods = new List<Tuple<MethodInfo, MethodDeclaration>>();
-        foreach ((Type testType, MethodInfo[] testMethodInfos) in testTypeMethods)
+        foreach (var (testType, testMethodInfos) in testTypeMethods)
         {
             if (testType.FullName is null)
             {
@@ -43,28 +43,18 @@ internal static class DecompilerHelper
             var syntaxTree = decompiler.DecompileType(fullTypeName);
             var astNodes = syntaxTree
                 .Descendants
-                .Where(x => x.NodeType == NodeType.Member)
+                .OfType<MethodDeclaration>()
                 .ToArray();
 
             foreach (var testMethodInfo in testMethodInfos)
             {
-                foreach (var astNode in astNodes)
-                {
-                    if (astNode is not MethodDeclaration methodDeclaration)
-                    {
-                        continue;
-                    }
-
-                    if (!methodDeclaration.Name.Equals(testMethodInfo.Name, StringComparison.Ordinal))
-                    {
-                        continue;
-                    }
-
-                    testMethods.Add(new Tuple<MethodInfo, MethodDeclaration>(testMethodInfo, methodDeclaration));
-                }
+                testMethods.AddRange(
+                    astNodes
+                        .Where(methodDeclaration => methodDeclaration.Name.Equals(testMethodInfo.Name, StringComparison.Ordinal))
+                        .Select(methodDeclaration => new Tuple<MethodInfo, MethodDeclaration>(testMethodInfo, methodDeclaration)));
             }
         }
 
-        return testMethods.ToArray();
+        return [.. testMethods];
     }
 }
