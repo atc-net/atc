@@ -38,7 +38,7 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff();
@@ -57,7 +57,7 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(decimalPrecision);
@@ -76,8 +76,8 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end);
@@ -96,8 +96,8 @@ public class DateTimeExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end, decimalPrecision);
@@ -133,7 +133,7 @@ public class DateTimeExtensionsTests
         int month)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
         var input = new DateTime(year, month, 1, 0, 0, 0);
 
         // Act
@@ -210,7 +210,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongDateStringUi();
@@ -230,7 +230,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -250,7 +250,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongTimeStringUi();
@@ -270,7 +270,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -290,7 +290,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortDateStringUi();
@@ -310,7 +310,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -330,7 +330,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortTimeStringUi();
@@ -350,7 +350,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -370,7 +370,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        var cultureInfo = new CultureInfo(cultureInfoLcid);
+        var cultureInfo = new CultureInfo(cultureInfoLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongDateStringUsingSpecificCulture(cultureInfo);
@@ -390,7 +390,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        var cultureInfo = new CultureInfo(cultureInfoLcid);
+        var cultureInfo = new CultureInfo(cultureInfoLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToLongTimeStringUsingSpecificCulture(cultureInfo);
@@ -410,7 +410,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        var cultureInfo = new CultureInfo(cultureInfoLcid);
+        var cultureInfo = new CultureInfo(cultureInfoLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortDateStringUsingSpecificCulture(cultureInfo);
@@ -430,7 +430,7 @@ public class DateTimeExtensionsTests
     {
         // Arrange
         var dateTime = new DateTime(2023, 10, 15, 15, 30, 45, DateTimeKind.Local);
-        var cultureInfo = new CultureInfo(cultureInfoLcid);
+        var cultureInfo = new CultureInfo(cultureInfoLcid, useUserOverride: false);
 
         // Act
         var actual = dateTime.ToShortTimeStringUsingSpecificCulture(cultureInfo);

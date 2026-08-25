@@ -120,7 +120,7 @@ public class IntegerExtensionsTests
         bool pascalCased)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = input.GetMonthNameByMonthNumberUi(pascalCased);
@@ -155,7 +155,7 @@ public class IntegerExtensionsTests
         int input)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
 
         // Act
         var actual = input.GetNumberOfWeeksByYearUi();
@@ -199,7 +199,7 @@ public class IntegerExtensionsTests
         int weekNumber)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
         var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);
 
         // Act
@@ -244,7 +244,7 @@ public class IntegerExtensionsTests
         int weekNumber)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
         var expectedDateTime = new DateTime(expectedYear, expectedMonth, expectedDay);
 
         // Act

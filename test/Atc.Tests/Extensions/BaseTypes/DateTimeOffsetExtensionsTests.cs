@@ -33,7 +33,7 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff();
@@ -52,7 +52,7 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(decimalPrecision);
@@ -71,8 +71,8 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end);
@@ -91,8 +91,8 @@ public class DateTimeOffsetExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = start.GetPrettyTimeDiff(end, decimalPrecision);
@@ -128,7 +128,7 @@ public class DateTimeOffsetExtensionsTests
         int month)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(GlobalizationLcidConstants.UnitedStates, useUserOverride: false);
         var input = new DateTimeOffset(year, month, 1, 0, 0, 0, TimeSpan.Zero);
 
         // Act
@@ -266,7 +266,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToLongDateStringUi();
@@ -286,7 +286,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToLongDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -306,7 +306,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToLongTimeStringUi();
@@ -326,7 +326,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToLongTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -346,7 +346,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToShortDateStringUi();
@@ -366,7 +366,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToShortDateString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);
@@ -386,7 +386,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToShortTimeStringUi();
@@ -406,7 +406,7 @@ public class DateTimeOffsetExtensionsTests
     {
         // Arrange
         var dateTimeOffset = new DateTimeOffset(2023, 10, 15, 15, 30, 45, TimeSpan.Zero);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = dateTimeOffset.ToShortTimeString(Thread.CurrentThread.CurrentUICulture.DateTimeFormat);

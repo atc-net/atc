@@ -52,7 +52,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.IsNumber(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.IsNumber(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(true, "123")]
@@ -120,7 +120,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.IsDecimal(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.IsDecimal(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(123.45, "123.45")]
@@ -161,7 +161,7 @@ public class NumberHelperTests
         decimal expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.ParseToDecimal(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.ParseToDecimal(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(true, "123.45")]
@@ -202,7 +202,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.TryParseToDecimal(value, new CultureInfo(cultureInfoLcid), out _));
+        => Assert.Equal(expected, NumberHelper.TryParseToDecimal(value, new CultureInfo(cultureInfoLcid, useUserOverride: false), out _));
 
     [Theory]
     [InlineData(true, "123.45")]
@@ -243,7 +243,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.IsDouble(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.IsDouble(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(123.45, "123.45")]
@@ -284,7 +284,7 @@ public class NumberHelperTests
         double expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.ParseToDouble(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.ParseToDouble(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(true, "123.45")]
@@ -325,7 +325,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.TryParseToDouble(value, new CultureInfo(cultureInfoLcid), out _));
+        => Assert.Equal(expected, NumberHelper.TryParseToDouble(value, new CultureInfo(cultureInfoLcid, useUserOverride: false), out _));
 
     [Theory]
     [InlineData(true, "123.45")]
@@ -366,7 +366,7 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.IsFloat(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.IsFloat(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(123.45f, "123.45")]
@@ -407,7 +407,7 @@ public class NumberHelperTests
         float expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.ParseToFloat(value, new CultureInfo(cultureInfoLcid)));
+        => Assert.Equal(expected, NumberHelper.ParseToFloat(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
     [InlineData(true, "123.45")]
@@ -448,5 +448,5 @@ public class NumberHelperTests
         bool expected,
         string value,
         int cultureInfoLcid)
-        => Assert.Equal(expected, NumberHelper.TryParseToFloat(value, new CultureInfo(cultureInfoLcid), out _));
+        => Assert.Equal(expected, NumberHelper.TryParseToFloat(value, new CultureInfo(cultureInfoLcid, useUserOverride: false), out _));
 }

@@ -26,7 +26,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseUi(value, out _);
@@ -46,7 +46,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        var cultureInfo = new CultureInfo(cultureLcid);
+        var cultureInfo = new CultureInfo(cultureLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseUsingSpecificCulture(value, cultureInfo, out _);
@@ -78,7 +78,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortDateUi(value, out _);
@@ -98,7 +98,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        var cultureInfo = new CultureInfo(cultureLcid);
+        var cultureInfo = new CultureInfo(cultureLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortDateUsingSpecificCulture(value, cultureInfo, out _);
@@ -130,7 +130,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortTimeUi(value, out _);
@@ -150,7 +150,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        var cultureInfo = new CultureInfo(cultureLcid);
+        var cultureInfo = new CultureInfo(cultureLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortTimeUsingSpecificCulture(value, cultureInfo, out _);
@@ -182,7 +182,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortTimeUiUtc(value, out _);
@@ -202,7 +202,7 @@ public class DateTimeHelperTests
         string value)
     {
         // Arrange
-        var cultureInfo = new CultureInfo(cultureLcid);
+        var cultureInfo = new CultureInfo(cultureLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeHelper.TryParseShortTimeUsingSpecificCultureUtc(value, cultureInfo, out _);

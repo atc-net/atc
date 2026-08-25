@@ -45,7 +45,7 @@ public class DayOfWeekHelperTests
         // Arrange
         var culture = arrangeUiLcid == 0
             ? GlobalizationConstants.EnglishCultureInfo
-            : new CultureInfo(arrangeUiLcid);
+            : new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DayOfWeekHelper.GetDescription(input, culture);
@@ -64,7 +64,7 @@ public class DayOfWeekHelperTests
         CultureInfo? culture = null;
         if (arrangeUiLcid > 0)
         {
-            culture = new CultureInfo(arrangeUiLcid);
+            culture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
         }
 
         // Act
@@ -91,7 +91,7 @@ public class DayOfWeekHelperTests
         // Arrange
         var culture = arrangeUiLcid == 0
             ? GlobalizationConstants.EnglishCultureInfo
-            : new CultureInfo(arrangeUiLcid);
+            : new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DayOfWeekHelper.TryParseDescription(input, out var dayOfWeek, culture);

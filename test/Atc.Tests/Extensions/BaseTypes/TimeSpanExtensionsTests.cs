@@ -81,7 +81,7 @@ public class TimeSpanExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = timeSpan.GetPrettyTime();
@@ -100,8 +100,8 @@ public class TimeSpanExtensionsTests
         int arrangeLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(arrangeLcid, useUserOverride: false);
 
         // Act
         var actual = timeSpan.GetPrettyTimeUi();
@@ -119,7 +119,7 @@ public class TimeSpanExtensionsTests
         int arrangeUiLcid)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = timeSpan.GetPrettyTime(decimalPrecision);

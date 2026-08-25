@@ -26,7 +26,7 @@ public class DateTimeOffsetHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeOffsetHelper.TryParseUi(value, out _);
@@ -58,7 +58,7 @@ public class DateTimeOffsetHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeOffsetHelper.TryParseShortDateUi(value, out _);
@@ -90,7 +90,7 @@ public class DateTimeOffsetHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeOffsetHelper.TryParseShortTimeUi(value, out _);
@@ -122,7 +122,7 @@ public class DateTimeOffsetHelperTests
         string value)
     {
         // Arrange
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(arrangeUiLcid, useUserOverride: false);
 
         // Act
         var actual = DateTimeOffsetHelper.TryParseShortTimeUiUtc(value, out _);
@@ -148,7 +148,7 @@ public class DateTimeOffsetHelperTests
     {
         var actual = DateTimeOffsetHelper.TryParseUsingSpecificCulture(
             value,
-            new CultureInfo(lcid),
+            new CultureInfo(lcid, useUserOverride: false),
             out _);
         Assert.Equal(expected, actual);
     }
@@ -170,7 +170,7 @@ public class DateTimeOffsetHelperTests
     {
         var actual = DateTimeOffsetHelper.TryParseShortDateUsingSpecificCulture(
             value,
-            new CultureInfo(lcid),
+            new CultureInfo(lcid, useUserOverride: false),
             out _);
         Assert.Equal(expected, actual);
     }
@@ -195,7 +195,7 @@ public class DateTimeOffsetHelperTests
     {
         var actual = DateTimeOffsetHelper.TryParseShortTimeUsingSpecificCulture(
             value,
-            new CultureInfo(lcid),
+            new CultureInfo(lcid, useUserOverride: false),
             out _);
         Assert.Equal(expected, actual);
     }
@@ -220,7 +220,7 @@ public class DateTimeOffsetHelperTests
     {
         var actual = DateTimeOffsetHelper.TryParseShortTimeUsingSpecificCultureUtc(
             value,
-            new CultureInfo(lcid),
+            new CultureInfo(lcid, useUserOverride: false),
             out _);
         Assert.Equal(expected, actual);
     }

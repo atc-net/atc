@@ -220,10 +220,12 @@ internal static class DecompilerMethodHelper
             return new List<AstNode>();
         }
 
-        // Check if there are complex expressions (DirectionExpression or ObjectCreateExpression) as direct children
+        // Check if there are complex expressions (DirectionExpression, OutVarDeclarationExpression or ObjectCreateExpression) as direct children
         // If so, we need to extract from direct children to get these nodes properly
         var hasComplexExpressions = astNode.Children
-            .Any(x => x.IsType(typeof(DirectionExpression)) || x.IsType(typeof(ObjectCreateExpression)));
+            .Any(x => x.IsType(typeof(DirectionExpression)) ||
+                      x.IsType(typeof(OutVarDeclarationExpression)) ||
+                      x.IsType(typeof(ObjectCreateExpression)));
 
         if (hasComplexExpressions)
         {
@@ -251,6 +253,7 @@ internal static class DecompilerMethodHelper
                 .Where(x => x.IsType(typeof(InvocationExpression)) ||
                             x.IsType(typeof(ObjectCreateExpression)) ||
                             x.IsType(typeof(DirectionExpression)) ||
+                            x.IsType(typeof(OutVarDeclarationExpression)) ||
                             x.IsType(typeof(LambdaExpression)) ||
                             x.IsType(typeof(AnonymousMethodExpression)) ||
                             x.ToString().Contains("=>", StringComparison.Ordinal))
@@ -291,6 +294,7 @@ internal static class DecompilerMethodHelper
                 return child.IsType(typeof(InvocationExpression)) ||
                        child.IsType(typeof(ObjectCreateExpression)) ||
                        child.IsType(typeof(DirectionExpression)) ||
+                       child.IsType(typeof(OutVarDeclarationExpression)) ||
                        child.IsType(typeof(IdentifierExpression)) ||
                        child.IsType(typeof(PrimitiveExpression)) ||
                        child.IsType(typeof(NullReferenceExpression)) ||
