@@ -126,7 +126,7 @@ public static class TestResultHelper
 
         var file = new FileInfo(Path.Combine(reportDirectory.FullName, $"TestResultsFromMethodsWithMissingTestsFor_{assemblyName}.xlsx"));
 
-        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        ExcelPackage.License.SetNonCommercialOrganization("ATC-Net");
 
         using var p = new ExcelPackage();
         var ws = p.Workbook.Worksheets.Add("Methods with missing tests");
