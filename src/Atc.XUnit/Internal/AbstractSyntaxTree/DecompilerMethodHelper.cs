@@ -170,9 +170,9 @@ internal static class DecompilerMethodHelper
     }
 
     internal static AstNode? GetAstNodeForMethod(
-        AstNode astNode,
+        AstNode? astNode,
         string methodName)
-        => astNode.Descendants
+        => astNode?.Descendants
             .Where(x => x.IsType(typeof(InvocationExpression)))
             .Select(node => node.Descendants.FirstOrDefault(x => x.IsType(typeof(Identifier)) && string.Equals(x.ToString(), methodName, StringComparison.Ordinal)))
             .FirstOrDefault(x => x is not null);
@@ -207,7 +207,7 @@ internal static class DecompilerMethodHelper
     }
 
     internal static AstNode? GetAstNodeForMethodWithParameters(
-        AstNode astNode,
+        AstNode? astNode,
         string methodName)
         => GetAstNodeForMethod(astNode, methodName)?.Parent?.Parent;
 
