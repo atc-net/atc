@@ -178,24 +178,25 @@ public static class DotnetCsProjFileHelper
 
     private static DotnetProjectType ProjectSdkElement(XElement rootElement)
     {
-        if (rootElement.FirstAttribute is not null)
+        var sdk = GetSdk(rootElement);
+        if (sdk is not null)
         {
-            if (rootElement.FirstAttribute.Value.StartsWith("Aspire.AppHost.Sdk", StringComparison.OrdinalIgnoreCase))
+            if (sdk.StartsWith("Aspire.AppHost.Sdk", StringComparison.OrdinalIgnoreCase))
             {
                 return DotnetProjectType.AspireAppHost;
             }
 
-            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.BlazorWebAssembly", StringComparison.Ordinal))
+            if (sdk.Equals("Microsoft.NET.Sdk.BlazorWebAssembly", StringComparison.Ordinal))
             {
                 return DotnetProjectType.BlazorWAsmApp;
             }
 
-            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Razor", StringComparison.Ordinal))
+            if (sdk.Equals("Microsoft.NET.Sdk.Razor", StringComparison.Ordinal))
             {
                 return DotnetProjectType.RazorLibrary;
             }
 
-            if (rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Worker", StringComparison.Ordinal))
+            if (sdk.Equals("Microsoft.NET.Sdk.Worker", StringComparison.Ordinal))
             {
                 return DotnetProjectType.WorkerService;
             }
@@ -224,8 +225,7 @@ public static class DotnetCsProjFileHelper
 
     private static DotnetProjectType ProjectElementForSdk(XElement rootElement)
     {
-        if (rootElement.FirstAttribute is not null &&
-            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
+        if (!IsSdk(rootElement, "Microsoft.NET.Sdk"))
         {
             return DotnetProjectType.None;
         }
@@ -285,8 +285,7 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectElementForSdkTest(
         XElement rootElement)
     {
-        if (rootElement.FirstAttribute is not null &&
-            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk", StringComparison.Ordinal))
+        if (!IsSdk(rootElement, "Microsoft.NET.Sdk"))
         {
             return DotnetProjectType.None;
         }
@@ -317,8 +316,7 @@ public static class DotnetCsProjFileHelper
     private static DotnetProjectType ProjectElementForSdkWeb(
         XElement rootElement)
     {
-        if (rootElement.FirstAttribute is not null &&
-            !rootElement.FirstAttribute.Value.Equals("Microsoft.NET.Sdk.Web", StringComparison.Ordinal))
+        if (!IsSdk(rootElement, "Microsoft.NET.Sdk.Web"))
         {
             return DotnetProjectType.None;
         }
@@ -365,6 +363,24 @@ public static class DotnetCsProjFileHelper
         }
 
         return DotnetProjectType.None;
+    }
+
+    /// <summary>
+    /// Reads the <c>Sdk</c> attribute of the project element. The attribute is looked up by name
+    /// instead of using <see cref="XElement.FirstAttribute"/>, since any other attribute - an
+    /// <c>xmlns</c> declaration included - can be written ahead of it.
+    /// </summary>
+    private static string? GetSdk(XElement rootElement)
+        => rootElement.Attribute("Sdk")?.Value;
+
+    private static bool IsSdk(
+        XElement rootElement,
+        string sdk)
+    {
+        var value = GetSdk(rootElement);
+
+        return value is null ||
+               value.Equals(sdk, StringComparison.Ordinal);
     }
 
     private static bool HasPackageReference(

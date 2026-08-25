@@ -44,19 +44,24 @@ public static class DotnetNugetHelper
             throw new ArgumentNullException(nameof(fileContent));
         }
 
-        if (!fileContent.StartsWith('<'))
+        // A project file can start with a byte-order-mark remnant, a blank line or indentation
+        // before the XML declaration, none of which stops it from being valid XML.
+        var trimmedFileContent = fileContent.TrimStart();
+
+        if (!trimmedFileContent.StartsWith('<'))
         {
             throw new DataException("Expect xml content");
         }
 
-        var xDoc = XDocument.Parse(fileContent);
+        var xDoc = XDocument.Parse(trimmedFileContent);
         var data = xDoc
-            .Descendants("PackageReference")
+            .Descendants()
+            .Where(e => e.Name.LocalName.Equals("PackageReference", StringComparison.Ordinal))
             .Select(e => new
             {
-                PackageId = e.Attribute("Include")?.Value,
-                Version = e.Attribute("Version")?.Value
-                    ?? e.Element("Version")?.Value,
+                PackageId = GetAttributeValue(e, "Include"),
+                Version = GetAttributeValue(e, "Version")
+                    ?? GetElementValue(e, "Version"),
             })
             .Where(x => !string.IsNullOrEmpty(x.PackageId) && !string.IsNullOrEmpty(x.Version))
             .Select(x => new DotnetNugetPackageMetadataBase(x.PackageId!, x.Version!))
@@ -65,4 +70,28 @@ public static class DotnetNugetHelper
 
         return data;
     }
+
+    /// <summary>
+    /// Reads an attribute by its local name, so project files declaring the legacy MSBuild
+    /// namespace are handled the same way as SDK-style ones.
+    /// </summary>
+    private static string? GetAttributeValue(
+        XElement element,
+        string attributeName)
+        => element
+            .Attributes()
+            .FirstOrDefault(x => x.Name.LocalName.Equals(attributeName, StringComparison.Ordinal))
+            ?.Value;
+
+    /// <summary>
+    /// Reads a child element by its local name, so project files declaring the legacy MSBuild
+    /// namespace are handled the same way as SDK-style ones.
+    /// </summary>
+    private static string? GetElementValue(
+        XElement element,
+        string elementName)
+        => element
+            .Elements()
+            .FirstOrDefault(x => x.Name.LocalName.Equals(elementName, StringComparison.Ordinal))
+            ?.Value;
 }
