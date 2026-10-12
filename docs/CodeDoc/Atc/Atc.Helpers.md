@@ -320,7 +320,7 @@ Helper methods for C# type classification and checking.
 >```csharp
 >bool IsExtendedValueType(string typeName)
 >```
-><b>Summary:</b> Determines if a type is an extended value type (includes Guid, DateTimeOffset). Handles nullable types by checking the base type.
+><b>Summary:</b> Determines if a type is an extended value type (includes Guid, DateTime, DateTimeOffset, DateOnly, TimeOnly, TimeSpan). Handles nullable types by checking the base type.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "Guid", "DateTimeOffset?").<br />
@@ -340,7 +340,7 @@ Helper methods for C# type classification and checking.
 >```csharp
 >bool IsNumericType(string typeName)
 >```
-><b>Summary:</b> Determines if a type is a numeric type (int, long, float, double, decimal). Handles nullable types by checking the base type.
+><b>Summary:</b> Determines if a type is a numeric type (int, long, short, byte, float, double, decimal, Half). Handles nullable types by checking the base type.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`typeName`&nbsp;&nbsp;-&nbsp;&nbsp;The C# type name (e.g., "int", "long?").<br />
