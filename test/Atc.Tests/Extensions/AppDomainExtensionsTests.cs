@@ -52,17 +52,17 @@ public class AppDomainExtensionsTests
     [Fact]
     public void GetAssemblyInformations()
     {
-        // Act
-        var actual = AppDomain.CurrentDomain.GetAssemblyInformations();
-
-        // Assert
-        Assert.NotNull(actual);
-
+        // Arrange - count before act, since creating the assembly informations can load additional assemblies
         var expectedCount = AppDomain
             .CurrentDomain
             .GetAssemblies()
             .Count(x => !x.IsDynamic);
 
+        // Act
+        var actual = AppDomain.CurrentDomain.GetAssemblyInformations();
+
+        // Assert
+        Assert.NotNull(actual);
         Assert.Equal(expectedCount, actual.Length);
     }
 
