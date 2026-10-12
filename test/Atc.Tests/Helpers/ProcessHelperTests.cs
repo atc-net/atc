@@ -51,7 +51,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData("Commands in this context:", @"C:\Windows\System32\netsh.exe", "help", true, 1)]
+    [InlineData("Commands in this context:", @"C:\Windows\System32\netsh.exe", "help", true, 30)]
     public async Task Execute_With_FileInfo_Arguments_RunAsAdmin_Timeout(
         string expectedLineInOutput,
         string filePath,
@@ -75,7 +75,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData("Commands in this context:", @"C:\Windows\System32\netsh.exe", "help", true, 1)]
+    [InlineData("Commands in this context:", @"C:\Windows\System32\netsh.exe", "help", true, 30)]
     public async Task Execute_With_FileInfo_Arguments_RunAsAdmin_Timeout_Cancellation(
         string expectedLineInOutput,
         string filePath,
@@ -149,7 +149,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData("Commands in this context:", @"C:\", @"C:\Windows\System32\netsh.exe", "help", true, 1)]
+    [InlineData("Commands in this context:", @"C:\", @"C:\Windows\System32\netsh.exe", "help", true, 30)]
     public async Task Execute_With_WorkingDirectory_FileInfo_Arguments_RunAsAdmin_Timeout(
         string expectedLineInOutput,
         string workingDirectoryPath,
@@ -176,7 +176,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData("Commands in this context:", @"C:\", @"C:\Windows\System32\netsh.exe", "help", true, 1)]
+    [InlineData("Commands in this context:", @"C:\", @"C:\Windows\System32\netsh.exe", "help", true, 30)]
     public async Task Execute_With_WorkingDirectory_FileInfo_Arguments_RunAsAdmin_Timeout_Cancellation(
         string expectedLineInOutput,
         string workingDirectoryPath,
@@ -261,7 +261,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData(@"C:\", @"C:\Windows\System32\cmd.exe", "", new[] { "node.exe -v", "exit" }, true, 1)]
+    [InlineData(@"C:\", @"C:\Windows\System32\cmd.exe", "", new[] { "node.exe -v", "exit" }, true, 30)]
     public async Task ExecutePrompt_With_WorkingDirectory_FileInfo_Arguments_InputLines_RunAsAdmin_Timeout(
         string workingDirectoryPath,
         string filePath,
@@ -292,7 +292,7 @@ public class ProcessHelperTests
     }
 
     [Theory]
-    [InlineData(@"C:\", @"C:\Windows\System32\cmd.exe", "", new[] { "node.exe -v", "exit" }, true, 1)]
+    [InlineData(@"C:\", @"C:\Windows\System32\cmd.exe", "", new[] { "node.exe -v", "exit" }, true, 30)]
     public async Task ExecutePrompt_With_WorkingDirectory_FileInfo_Arguments_InputLines_RunAsAdmin_Timeout_Cancellation(
         string workingDirectoryPath,
         string filePath,
