@@ -3328,6 +3328,8 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the value is a valid IPv4 address; otherwise, <see langword="false" />.
+>
+><b>Remarks:</b> Only the strict dotted-decimal notation with four octets in the range 0-255 is accepted (e.g. `192.168.0.27`). Octets with leading zeros or a hexadecimal prefix (e.g. `192.168.0.027`, `0xC0.168.0.27`) are rejected, since they are interpreted as octal/hexadecimal by `System.Net.IPAddress.TryParse(System.String,System.Net.IPAddress@)` and thereby silently resolve to a different address than the one written.
 #### IsIPv6Address
 >```csharp
 >bool IsIPv6Address(this string value)
@@ -3338,6 +3340,8 @@ StringHasIsExtensions.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to validate.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the value is a valid IPv6 address; otherwise, <see langword="false" />.
+>
+><b>Remarks:</b> Accepts an optional zone identifier (e.g. `fe80::1%eth0`) and an embedded IPv4 address (e.g. `::ffff:192.168.0.27`). The URI notations with brackets and port (e.g. `[::1]`, `[::1]:80`), an empty zone identifier (e.g. `fe80::1%`) and an embedded IPv4 address that is not valid according to `System.StringHasIsExtensions.IsIPv4Address(System.String)` are rejected, although they are accepted by `System.Net.IPAddress.TryParse(System.String,System.Net.IPAddress@)`.
 #### IsKey
 >```csharp
 >bool IsKey(this string value)

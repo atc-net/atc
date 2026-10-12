@@ -23,7 +23,9 @@ public class IPAddressAttributeTests
     [InlineData(false, "999.999.999.999")]
     [InlineData(false, "1231.0.0.1")]
     [InlineData(false, "192.168.1.1:8080")]
-    [InlineData(true, "192.168.1")]
+    [InlineData(false, "192.168.1")]
+    [InlineData(false, "192.168.0.027")]
+    [InlineData(false, "0xC0.168.0.27")]
     [InlineData(false, "192.168.1.1.1")]
 
     [InlineData(true, "::1")]
@@ -33,7 +35,11 @@ public class IPAddressAttributeTests
     [InlineData(true, "::ffff:192.168.1.1")]
     [InlineData(true, "2001:0db8:85a3:0000:0000:8a2e:0370:7334")]
 
-    [InlineData(true, "[::1]")]
+    [InlineData(false, "[::1]")]
+    [InlineData(false, "[::1]:80")]
+    [InlineData(false, "fe80::1%")]
+    [InlineData(false, "::ffff:192.168.0.027")]
+    [InlineData(true, "fe80::1%eth0")]
     [InlineData(false, "2001:db8::g")]
     [InlineData(true, "2001:db8::1:8080")]
     public void IsValid(
@@ -91,6 +97,8 @@ public class IPAddressAttributeTests
     [InlineData(false, "The value is not a valid IPAddress.", "127.0.0.256")]
     [InlineData(false, "The value is not a valid IPAddress.", "999.999.999.999")]
     [InlineData(false, "The value is not a valid IPAddress.", "1231.0.0.1")]
+    [InlineData(false, "The value is not a valid IPAddress.", "192.168.0.027")]
+    [InlineData(false, "The value is not a valid IPAddress.", "[::1]:80")]
     [InlineData(true, "", "0.0.0.0")]
     [InlineData(true, "", "127.0.0.0")]
     [InlineData(true, "", "127.0.0.1")]

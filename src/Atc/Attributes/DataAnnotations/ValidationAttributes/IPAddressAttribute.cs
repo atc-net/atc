@@ -6,6 +6,8 @@ namespace System.ComponentModel.DataAnnotations;
 /// <summary>
 /// Validates that a property, field, or parameter contains a valid IP address.
 /// Supports both IPv4 and IPv6 address formats.
+/// Only the strict notations are accepted - e.g. IPv4 octets with leading zeros (<c>192.168.0.027</c>)
+/// and the URI notation of IPv6 (<c>[::1]:80</c>) are rejected.
 /// </summary>
 [ExcludeFromCodeCoverage]
 [SuppressMessage("Design", "CA1019:Define accessors for attribute arguments", Justification = "OK.")]
@@ -51,8 +53,8 @@ public sealed class IPAddressAttribute : ValidationAttribute
             return true;
         }
 
-        var result = IPAddress.TryParse(value.ToString(), out _);
-        if (result)
+        if (value.ToString() is { } text &&
+            text.IsIPAddress())
         {
             return true;
         }

@@ -624,21 +624,60 @@ public static class StringHasIsExtensions
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true" /> if the value is a valid IPv4 address; otherwise, <see langword="false" />.</returns>
+    /// <remarks>
+    /// Only the strict dotted-decimal notation with four octets in the range 0-255 is accepted (e.g. <c>192.168.0.27</c>).
+    /// Octets with leading zeros or a hexadecimal prefix (e.g. <c>192.168.0.027</c>, <c>0xC0.168.0.27</c>) are rejected,
+    /// since they are interpreted as octal/hexadecimal by <see cref="IPAddress.TryParse(string, out IPAddress)" />
+    /// and thereby silently resolve to a different address than the one written.
+    /// </remarks>
     public static bool IsIPv4Address(this string value)
-        => !string.IsNullOrEmpty(value) &&
-           IPAddress.TryParse(value, out var address) &&
-           address.AddressFamily == AddressFamily.InterNetwork &&
-           value.Split('.').Length == 4;
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return false;
+        }
+
+        var octets = value.Split('.');
+
+        return octets.Length == 4 &&
+               Array.TrueForAll(octets, IsIPv4Octet);
+    }
 
     /// <summary>
     /// Determines whether the specified value is a valid IPv6 address.
     /// </summary>
     /// <param name="value">The string to validate.</param>
     /// <returns><see langword="true" /> if the value is a valid IPv6 address; otherwise, <see langword="false" />.</returns>
+    /// <remarks>
+    /// Accepts an optional zone identifier (e.g. <c>fe80::1%eth0</c>) and an embedded IPv4 address (e.g. <c>::ffff:192.168.0.27</c>).
+    /// The URI notations with brackets and port (e.g. <c>[::1]</c>, <c>[::1]:80</c>), an empty zone identifier (e.g. <c>fe80::1%</c>)
+    /// and an embedded IPv4 address that is not valid according to <see cref="IsIPv4Address" /> are rejected,
+    /// although they are accepted by <see cref="IPAddress.TryParse(string, out IPAddress)" />.
+    /// </remarks>
     public static bool IsIPv6Address(this string value)
-        => !string.IsNullOrEmpty(value) &&
-           IPAddress.TryParse(value, out var address) &&
-           address.AddressFamily == AddressFamily.InterNetworkV6;
+    {
+        if (string.IsNullOrEmpty(value) ||
+            value[0] == '[' ||
+            value[value.Length - 1] == '%')
+        {
+            return false;
+        }
+
+        var zoneIndex = value.IndexOf("%", StringComparison.Ordinal);
+        var addressPart = zoneIndex < 0
+            ? value
+            : value.Substring(0, zoneIndex);
+
+        var lastGroup = addressPart.Substring(addressPart.LastIndexOf(':') + 1);
+        if (lastGroup.IndexOf(".", StringComparison.Ordinal) >= 0 &&
+            !lastGroup.IsIPv4Address())
+        {
+            return false;
+        }
+
+        return IPAddress.TryParse(value, out var address) &&
+               address.AddressFamily == AddressFamily.InterNetworkV6;
+    }
 
     /// <summary>
     /// Determines whether the specified value is a valid IPv4 or IPv6 address.
@@ -677,4 +716,10 @@ public static class StringHasIsExtensions
     public static bool IsMacAddress(this string value)
         => !string.IsNullOrEmpty(value) &&
            RxMacAddress.Value.IsMatch(value);
+
+    private static bool IsIPv4Octet(string octet)
+        => octet.Length is >= 1 and <= 3 &&
+           (octet.Length == 1 || octet[0] != '0') &&
+           int.TryParse(octet, NumberStyles.None, GlobalizationConstants.EnglishCultureInfo, out var number) &&
+           number <= 255;
 }

@@ -8,7 +8,7 @@
 <br />
 
 ## IPAddressAttribute
-Validates that a property, field, or parameter contains a valid IP address. Supports both IPv4 and IPv6 address formats.
+Validates that a property, field, or parameter contains a valid IP address. Supports both IPv4 and IPv6 address formats. Only the strict notations are accepted - e.g. IPv4 octets with leading zeros (`192.168.0.027`) and the URI notation of IPv6 (`[::1]:80`) are rejected.
 
 >```csharp
 >public class IPAddressAttribute : ValidationAttribute
