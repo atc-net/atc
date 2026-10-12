@@ -319,7 +319,7 @@ public static class ProcessHelper
     /// <param name="arguments">The command-line arguments to pass to the executable.</param>
     /// <param name="inputLines">The lines of input to send to the process's standard input stream.</param>
     /// <param name="runAsAdministrator">If <see langword="true"/>, attempts to run the process with elevated privileges.</param>
-    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 1 second.</param>
+    /// <param name="timeoutInSec">The maximum time in seconds to wait for the process to complete. Default is 30 seconds.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     /// <returns>A task that returns a tuple containing success status and output/error messages.</returns>
     /// <exception cref="ArgumentNullException">Thrown if any required parameter is <see langword="null"/>.</exception>
@@ -333,7 +333,7 @@ public static class ProcessHelper
         string arguments,
         string[] inputLines,
         bool runAsAdministrator = false,
-        ushort timeoutInSec = 1,
+        ushort timeoutInSec = DefaultTimeoutInSec,
         CancellationToken cancellationToken = default)
     {
         if (workingDirectory is null)

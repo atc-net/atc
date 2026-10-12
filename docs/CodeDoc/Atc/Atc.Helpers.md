@@ -2839,7 +2839,7 @@ Provides utility methods for executing external processes, managing process life
 ><b>Returns:</b> A `Atc.Helpers.ProcessExecutionResult` with detailed execution information.
 #### ExecutePrompt
 >```csharp
->Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 1, CancellationToken cancellationToken = null)
+>Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
 >```
 ><b>Summary:</b> Executes a process that requires interactive input, sending the specified input lines to standard input.
 >
@@ -2849,7 +2849,7 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`inputLines`&nbsp;&nbsp;-&nbsp;&nbsp;The lines of input to send to the process's standard input stream.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 1 second.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that returns a tuple containing success status and output/error messages.
