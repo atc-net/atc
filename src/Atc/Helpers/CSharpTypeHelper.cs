@@ -6,15 +6,18 @@ namespace Atc.Helpers;
 public static class CSharpTypeHelper
 {
     /// <summary>
-    /// Core numeric types: int, long, float, double, decimal.
+    /// Core numeric types: int, long, short, byte, float, double, decimal, Half.
     /// </summary>
     private static readonly HashSet<string> NumericTypes = new(StringComparer.Ordinal)
     {
         "int",
         "long",
+        "short",
+        "byte",
         "float",
         "double",
         "decimal",
+        "Half",
     };
 
     /// <summary>
@@ -24,30 +27,39 @@ public static class CSharpTypeHelper
     {
         "int",
         "long",
+        "short",
+        "byte",
         "bool",
         "float",
         "double",
         "decimal",
+        "Half",
     };
 
     /// <summary>
-    /// Extended value types: basic value types + Guid, DateTimeOffset.
+    /// Extended value types: basic value types + Guid, DateTime, DateTimeOffset, DateOnly, TimeOnly, TimeSpan.
     /// </summary>
     private static readonly HashSet<string> ExtendedValueTypes = new(StringComparer.Ordinal)
     {
         "int",
         "long",
+        "short",
+        "byte",
         "bool",
         "float",
         "double",
         "decimal",
+        "Half",
         "Guid",
         "DateTime",
         "DateTimeOffset",
+        "DateOnly",
+        "TimeOnly",
+        "TimeSpan",
     };
 
     /// <summary>
-    /// Determines if a type is a numeric type (int, long, float, double, decimal).
+    /// Determines if a type is a numeric type (int, long, short, byte, float, double, decimal, Half).
     /// Handles nullable types by checking the base type.
     /// </summary>
     /// <param name="typeName">The C# type name (e.g., "int", "long?").</param>
@@ -65,7 +77,7 @@ public static class CSharpTypeHelper
         => BasicValueTypes.Contains(GetBaseType(typeName));
 
     /// <summary>
-    /// Determines if a type is an extended value type (includes Guid, DateTimeOffset).
+    /// Determines if a type is an extended value type (includes Guid, DateTime, DateTimeOffset, DateOnly, TimeOnly, TimeSpan).
     /// Handles nullable types by checking the base type.
     /// </summary>
     /// <param name="typeName">The C# type name (e.g., "Guid", "DateTimeOffset?").</param>
