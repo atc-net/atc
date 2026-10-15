@@ -297,7 +297,7 @@ internal static class ParametersNamingMatchHelper
             return true;
         }
 
-        // Handle numeric types (int, long, short, byte, uint, ulong, ushort, sbyte, decimal, float, double)
+        // Handle numeric types - all primitive numeric types and decimal
         if (parameter.ParameterType.IsPrimitive || parameter.ParameterType == typeof(decimal))
         {
             // For primitive numeric types, any numeric literal in the AST can match

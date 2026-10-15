@@ -669,7 +669,7 @@ public static class StringHasIsExtensions
             : value.Substring(0, zoneIndex);
 
         var lastGroup = addressPart.Substring(addressPart.LastIndexOf(':') + 1);
-        if (lastGroup.IndexOf(".", StringComparison.Ordinal) >= 0 &&
+        if (lastGroup.Contains('.', StringComparison.Ordinal) &&
             !lastGroup.IsIPv4Address())
         {
             return false;
