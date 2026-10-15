@@ -815,7 +815,7 @@ public class DotnetCsProjFileHelperTests : IAsyncLifetime
             sb.AppendLine("<IsAspireSharedProject>true</IsAspireSharedProject>");
         }
 
-        sb.AppendLine(4, "<TargetFramework>net9.0</TargetFramework>");
+        sb.AppendLine(4, "<TargetFramework>net10.0</TargetFramework>");
         sb.AppendLine(2, "</PropertyGroup>");
     }
 

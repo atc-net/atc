@@ -21,7 +21,7 @@ public class DotnetCsProjFileHelperSdkAttributeTests
             {projectStartElement}
               <PropertyGroup>
                 <OutputType>Exe</OutputType>
-                <TargetFramework>net9.0</TargetFramework>
+                <TargetFramework>net10.0</TargetFramework>
               </PropertyGroup>
             </Project>
             """;
@@ -45,7 +45,7 @@ public class DotnetCsProjFileHelperSdkAttributeTests
         var fileContent = $"""
             <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Sdk="{sdk}">
               <PropertyGroup>
-                <TargetFramework>net9.0</TargetFramework>
+                <TargetFramework>net10.0</TargetFramework>
               </PropertyGroup>
               <ItemGroup>
                 <PackageReference Include="{packageReference}" Version="1.2.3" />
@@ -72,7 +72,7 @@ public class DotnetCsProjFileHelperSdkAttributeTests
         var fileContent = $"""
             <Project ToolsVersion="15.0" Sdk="{sdk}">
               <PropertyGroup>
-                <TargetFramework>net9.0</TargetFramework>
+                <TargetFramework>net10.0</TargetFramework>
               </PropertyGroup>
             </Project>
             """;
