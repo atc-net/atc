@@ -77,13 +77,13 @@ public static class AssemblyHelper
         {
             return Assembly.Load(bytes);
         }
-        catch (BadImageFormatException)
+        catch (BadImageFormatException ex)
         {
-            throw new IOException("File is not a valid Assembly");
+            throw new IOException("File is not a valid Assembly", ex);
         }
-        catch (TypeLoadException)
+        catch (TypeLoadException ex)
         {
-            throw new IOException("File is a unknown Assembly");
+            throw new IOException("File is a unknown Assembly", ex);
         }
     }
 
