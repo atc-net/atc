@@ -560,6 +560,8 @@ dotnet_diagnostic.S6602.severity = none           	# "Find" method should be use
 dotnet_diagnostic.S6603.severity = none            	# The collection-specific "TrueForAll" method should be used instead of the "All"
 dotnet_diagnostic.S6605.severity = none             # Collection-specific "Exists" method should be used instead of the "Any"
 dotnet_diagnostic.S6964.severity = none             # Value type property used as input in a controller action should be nullable, required or annotated with the JsonRequiredAttribute to avoid under-posting.
+dotnet_diagnostic.S8969.severity = none             # Remove this null-forgiving operator; the compiler already knows this expression is not null here
+dotnet_diagnostic.S8970.severity = none             # Remove this null-forgiving operator; nullable warnings are disabled here
 
 
 ##########################################
