@@ -11,7 +11,7 @@ internal sealed class BuildDemoConsoleSpectreCliCommand : Command<BuildDemoConso
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    protected override int Execute(
+    public override int Execute(
         CommandContext context,
         BuildDemoConsoleSpectreCliCommandSettings settings,
         CancellationToken cancellationToken)
