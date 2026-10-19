@@ -1,6 +1,6 @@
 # Atc.Rest.HealthChecks
 
-**Target Framework:** `net9.0`, `net10.0`
+**Target Framework:** `net10.0`
 
 Health check implementations and utilities for ASP.NET Core applications. Provides factories and helpers for creating JSON-formatted health check endpoints with detailed resource status information.
 
@@ -29,7 +29,7 @@ dotnet add package Atc.Rest.HealthChecks
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -41,12 +41,12 @@ dotnet add package Atc.Rest.HealthChecks
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 
 - Microsoft.AspNetCore.App (framework reference)
-- Microsoft.Extensions.Diagnostics.HealthChecks
+- Microsoft.Extensions.Diagnostics.HealthChecks (provided by Microsoft.AspNetCore.App)
 - Atc (foundation library)
 
 ## Code documentation

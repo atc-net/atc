@@ -1,6 +1,6 @@
 # Atc.OpenApi
 
-**Target Framework:** `net9.0`, `net10.0`
+**Target Framework:** `net10.0`
 
 Extensions and utilities for working with OpenAPI specifications using Microsoft.OpenApi. Provides helper methods for parsing, analyzing, and extracting information from OpenAPI documents and schemas.
 
@@ -31,7 +31,7 @@ dotnet add package Atc.OpenApi
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -45,7 +45,7 @@ dotnet add package Atc.OpenApi
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 

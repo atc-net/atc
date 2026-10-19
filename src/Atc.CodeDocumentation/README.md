@@ -1,6 +1,6 @@
 # Atc.CodeDocumentation
 
-**Target Framework:** `net9.0`, `net10.0`
+**Target Framework:** `net10.0`
 
 Markdown documentation generator for .NET assemblies. Automatically generates comprehensive API documentation in Markdown format from assembly reflection and XML documentation comments.
 
@@ -30,7 +30,7 @@ dotnet add package Atc.CodeDocumentation
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -44,7 +44,7 @@ dotnet add package Atc.CodeDocumentation
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 - XML documentation file generated during build
 
 ## Key Dependencies

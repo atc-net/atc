@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-ATC.Net is a monorepo containing common libraries for .NET development. It consists of 11 NuGet packages primarily targeting .NET 9.0. The repository uses the new Visual Studio .slnx solution format and follows strict code quality standards.
+ATC.Net is a monorepo containing common libraries for .NET development. It consists of 11 NuGet packages primarily targeting .NET 10.0. The repository uses the new Visual Studio .slnx solution format and follows strict code quality standards.
 
 ### Target Framework Summary
-- **Atc**: `netstandard2.0`, `net9.0`, `net10.0` (multi-targets for broad compatibility)
-- **Atc.CodeAnalysis.CSharp**: `netstandard2.0`, `net9.0` (multi-targets for Roslyn compatibility)
-- **All other packages**: `net9.0` (single target)
+- **Atc**: `netstandard2.0`, `net10.0` (multi-targets for broad compatibility)
+- **Atc.CodeAnalysis.CSharp**: `netstandard2.0`, `net10.0` (multi-targets for Roslyn compatibility)
+- **All other packages**: `net10.0` (single target)
 
 ## Build and Test Commands
 
@@ -47,15 +47,15 @@ dotnet pack -c Release --no-restore -o ./packages
 ## Project Structure
 
 ### Core Libraries (src/)
-- **Atc** (`netstandard2.0`, `net9.0`, `net10.0`): Foundation library with common extensions, helpers, and utilities. Multi-targets for broad compatibility. Contains extensive extension methods for base types (String, Enum, DateTime, etc.), serialization helpers, and data structures.
+- **Atc** (`netstandard2.0`, `net10.0`): Foundation library with common extensions, helpers, and utilities. Multi-targets for broad compatibility. Contains extensive extension methods for base types (String, Enum, DateTime, etc.), serialization helpers, and data structures.
 - **Atc.Rest**: Basic ASP.NET Core WebApi functionality with middleware, filters, and result types. Foundation for REST API development.
 - **Atc.Rest.Extended**: Advanced REST features including Swagger/OpenAPI, FluentValidation, API versioning, and JWT authentication. Builds on Atc.Rest.
 - **Atc.Rest.FluentAssertions**: Testing helpers and custom assertions for REST APIs using FluentAssertions.
 - **Atc.Rest.HealthChecks**: Health check implementations for ASP.NET Core applications.
 
 ### Code Analysis and Documentation (src/)
-- **Atc.CodeAnalysis.CSharp** (`netstandard2.0`, `net9.0`, `net10.0`): Roslyn-based code analysis utilities for working with C# syntax trees and semantic models. Multi-targets to support both .NET Framework 4.6.1+ and modern .NET.
-- **Atc.CodeDocumentation** (`net9.0`, `net10.0`): Markdown documentation generator from XML documentation comments and source code.
+- **Atc.CodeAnalysis.CSharp** (`netstandard2.0`, `net10.0`): Roslyn-based code analysis utilities for working with C# syntax trees and semantic models. Multi-targets to support both .NET Framework 4.6.1+ and modern .NET.
+- **Atc.CodeDocumentation** (`net10.0`): Markdown documentation generator from XML documentation comments and source code.
 
 ### Tooling Libraries (src/)
 - **Atc.OpenApi**: Extensions and utilities for Microsoft.OpenApi, including schema extensions and data type handling.
@@ -180,9 +180,9 @@ public sealed record HealthCheck(
 ## Important Conventions
 
 ### Multi-Targeting Strategy
-- **Atc** library multi-targets `netstandard2.0`, `net9.0`, `net10.0` for broad compatibility
-- **Atc.CodeAnalysis.CSharp** multi-targets `netstandard2.0`, `net9.0`, `net10.0` for Roslyn/source generator compatibility
-- All other libraries target `net9.0` only
+- **Atc** library multi-targets `netstandard2.0`, `net10.0` for broad compatibility
+- **Atc.CodeAnalysis.CSharp** multi-targets `netstandard2.0`, `net10.0` for Roslyn/source generator compatibility
+- All other libraries target `net10.0` only
 - When building multi-targeted projects for a specific framework, use the explicit `-f` flag:
   ```bash
   dotnet build -f netstandard2.0 src/Atc/Atc.csproj
@@ -281,7 +281,7 @@ dotnet run --project src/Atc.CodeDocumentation -- generate
 
 ## Additional Notes
 
-- The repository recently upgraded from .NET 8 to .NET 9
+- The repository targets .NET 10 (support for .NET 9 has been removed)
 - Tests use xUnit v3 with Microsoft Testing Platform runner
 - The main branch is the primary development branch; stable branch is for verified releases
 - Analyzer warnings are strictly enforced in Release builds

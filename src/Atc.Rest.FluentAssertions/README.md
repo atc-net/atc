@@ -1,6 +1,6 @@
 # Atc.Rest.FluentAssertions
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net10.0`
 
 > [!IMPORTANT]
 > We recommend using [Atc.Rest.AwesomeAssertions](../Atc.Rest.AwesomeAssertions/README.md) instead.
@@ -35,7 +35,7 @@ dotnet add package Atc.Rest.FluentAssertions
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -48,11 +48,11 @@ dotnet add package Atc.Rest.FluentAssertions
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 
-- FluentAssertions 7.2.0 (version-pinned for licensing)
+- FluentAssertions 7.2.1 (version-pinned for licensing)
 - Atc.Rest (base library)
 
 ## Code documentation

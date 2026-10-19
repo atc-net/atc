@@ -39,7 +39,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net10.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
@@ -59,7 +59,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:TreatWarningsAsErrors=false or -f net10.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping error codes to their occurrence counts.
@@ -79,7 +79,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net10.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping warning codes to their occurrence counts.
@@ -99,7 +99,7 @@ Provides helper methods for building .NET projects and solutions using the dotne
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useConfigurationReleaseMode`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to build in Release mode. If false, builds in Debug mode. Default is true.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;Build timeout in seconds. Default is 1200 seconds (20 minutes).<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`logPrefix`&nbsp;&nbsp;-&nbsp;&nbsp;Optional prefix for log messages.<br />
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net9.0.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`additionalBuildArguments`&nbsp;&nbsp;-&nbsp;&nbsp;Additional arguments appended to the dotnet build command, such as -p:NoWarn=CS0168 or -f net10.0.<br />
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;Token to cancel the build operation.<br />
 >
 ><b>Returns:</b> A dictionary mapping warning codes to their occurrence counts.

@@ -1,6 +1,6 @@
 # Atc.Console.Spectre
 
-**Target Framework:** `net9.0`, `net10.0`
+**Target Framework:** `net10.0`
 
 Extensions and utilities for building beautiful command-line applications using Spectre.Console. Provides factories and helpers that simplify creating CLI apps with logging, dependency injection, and rich terminal output.
 
@@ -29,7 +29,7 @@ dotnet add package Atc.Console.Spectre
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -42,7 +42,7 @@ dotnet add package Atc.Console.Spectre
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 

@@ -1,6 +1,6 @@
 # Atc.Rest.Extended
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net10.0`
 
 Advanced REST API features extending Atc.Rest with API versioning, FluentValidation, Swagger/OpenAPI documentation, and JWT authentication. This library builds on the foundation of Atc.Rest to provide enterprise-ready API capabilities.
 
@@ -29,7 +29,7 @@ dotnet add package Atc.Rest.Extended
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -42,7 +42,7 @@ dotnet add package Atc.Rest.Extended
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 

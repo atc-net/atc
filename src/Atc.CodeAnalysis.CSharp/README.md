@@ -1,6 +1,6 @@
 # Atc.CodeAnalysis.CSharp
 
-**Target Frameworks:** `netstandard2.0`, `net9.0`, `net10.0`
+**Target Frameworks:** `netstandard2.0`, `net10.0`
 
 Roslyn-based utilities for programmatically working with C# code. This library provides factories and extensions for generating C# syntax trees, making it easier to create code generators, analyzers, and source generators. Multi-targeting enables use in .NET Framework 4.6.1+ projects and modern .NET applications.
 
@@ -30,14 +30,14 @@ dotnet add package Atc.CodeAnalysis.CSharp
 ## Target Frameworks
 
 - .NET Standard 2.0
-- .NET 9.0
+- .NET 10.0
 
 The library multi-targets to support:
 
 - .NET Framework 4.6.1+ (for Roslyn analyzers and source generators)
 - .NET Core 2.0+
 - .NET 5+
-- .NET 9.0
+- .NET 10.0
 
 ## Key Dependencies
 
