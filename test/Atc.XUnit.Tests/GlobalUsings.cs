@@ -4,3 +4,4 @@ global using Atc.CodeDocumentation;
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.XUnit.Logging;
 global using AwesomeAssertions;
+global using ClosedXML.Excel;

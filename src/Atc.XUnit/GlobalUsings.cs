@@ -15,6 +15,9 @@ global using Atc.Helpers;
 global using Atc.Serialization;
 global using Atc.XUnit.Internal;
 global using Atc.XUnit.Internal.AbstractSyntaxTree;
+
+global using ClosedXML.Excel;
+
 global using ICSharpCode.Decompiler;
 global using ICSharpCode.Decompiler.CSharp;
 global using ICSharpCode.Decompiler.CSharp.Syntax;
@@ -24,7 +27,5 @@ global using ICSharpCode.Decompiler.TypeSystem;
 global using Microsoft.Extensions.Logging;
 
 global using Mono.Reflection;
-
-global using OfficeOpenXml;
 
 global using Xunit;

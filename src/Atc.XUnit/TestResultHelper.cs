@@ -126,32 +126,30 @@ public static class TestResultHelper
 
         var file = new FileInfo(Path.Combine(reportDirectory.FullName, $"TestResultsFromMethodsWithMissingTestsFor_{assemblyName}.xlsx"));
 
-        ExcelPackage.License.SetNonCommercialOrganization("ATC-Net");
+        using var workbook = new XLWorkbook();
+        var ws = workbook.Worksheets.Add("Methods with missing tests");
 
-        using var p = new ExcelPackage();
-        var ws = p.Workbook.Worksheets.Add("Methods with missing tests");
-
-        ws.Cells["A1"].Value = "Class";
-        ws.Cells["B1"].Value = "Method";
+        ws.Cell("A1").Value = "Class";
+        ws.Cell("B1").Value = "Method";
         var row = 2;
         foreach (var item in methodsWithMissingTestsGroups)
         {
-            ws.Cells["A" + row].Value = item.Key;
+            ws.Cell("A" + row).Value = item.Key;
             foreach (var methodInfo in item)
             {
-                ws.Cells["B" + row].Value = methodInfo.BeautifyName(useFullName: true);
+                ws.Cell("B" + row).Value = methodInfo.BeautifyName(useFullName: true);
                 row++;
             }
         }
 
         ws
             .Column(1)
-            .AutoFit();
+            .AdjustToContents();
         ws
             .Column(2)
-            .AutoFit();
+            .AdjustToContents();
 
-        p.SaveAs(file);
+        workbook.SaveAs(file.FullName);
     }
 
     /// <summary>
