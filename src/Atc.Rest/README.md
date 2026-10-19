@@ -1,6 +1,6 @@
 # Atc.Rest
 
-**Target Framework:** `net9.0`
+**Target Framework:** `net10.0`
 
 Foundation library for building ASP.NET Core Web APIs with standardized configuration, middleware, and error handling. Provides a streamlined setup for REST APIs with built-in support for common scenarios like JSON serialization, exception handling, and service registration.
 
@@ -29,7 +29,7 @@ dotnet add package Atc.Rest
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Features
 
@@ -48,7 +48,7 @@ dotnet add package Atc.Rest
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 

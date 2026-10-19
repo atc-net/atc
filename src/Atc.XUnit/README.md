@@ -1,6 +1,6 @@
 # Atc.XUnit
 
-**Target Framework:** `net9.0`, `net10.0`
+**Target Framework:** `net10.0`
 
 Testing utilities and code compliance helpers for xUnit v3 tests. This library helps ensure code quality by detecting missing tests, verifying documentation coverage, and providing custom test output helpers.
 
@@ -27,13 +27,13 @@ dotnet add package Atc.XUnit
 
 ## Target Framework
 
-- .NET 9.0
+- .NET 10.0
 
 ## Key Dependencies
 
 - xUnit.v3 (assert, common, extensibility.core)
 - ICSharpCode.Decompiler (for code analysis)
-- EPPlus 7.5.3 (version-pinned for licensing)
+- EPPlus
 - Mono.Reflection
 - Atc.CodeDocumentation
 - Atc (foundation library)

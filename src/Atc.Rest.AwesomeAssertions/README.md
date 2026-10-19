@@ -1,6 +1,6 @@
 # Atc.Rest.AwesomeAssertions
 
-**Target Frameworks:** `net9.0`, `net10.0`
+**Target Frameworks:** `net10.0`
 
 AwesomeAssertions extensions for testing REST API domain handlers. Provides expressive assertion methods for verifying result types, status codes, and response content returned from domain handlers.
 
@@ -29,7 +29,6 @@ dotnet add package Atc.Rest.AwesomeAssertions
 
 ## Target Frameworks
 
-- .NET 9.0
 - .NET 10.0
 
 ## Key Features
@@ -43,12 +42,11 @@ dotnet add package Atc.Rest.AwesomeAssertions
 
 ## Requirements
 
-- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 - [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Key Dependencies
 
-- AwesomeAssertions 9.4.0 (Apache-2.0 fork of FluentAssertions)
+- AwesomeAssertions (Apache-2.0 fork of FluentAssertions)
 - Atc.Rest (base library)
 
 ## Code documentation

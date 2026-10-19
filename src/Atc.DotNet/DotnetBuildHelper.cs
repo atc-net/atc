@@ -26,7 +26,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
-    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net9.0</c>.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net10.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
@@ -68,7 +68,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
-    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net9.0</c>.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:TreatWarningsAsErrors=false</c> or <c>-f net10.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping error codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="logger"/> or <paramref name="rootPath"/> is null.</exception>
@@ -112,7 +112,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
-    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net9.0</c>.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net10.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping warning codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="rootPath"/> is null.</exception>
@@ -154,7 +154,7 @@ public static class DotnetBuildHelper
     /// <param name="useConfigurationReleaseMode">Whether to build in Release mode. If false, builds in Debug mode. Default is true.</param>
     /// <param name="timeoutInSec">Build timeout in seconds. Default is 1200 seconds (20 minutes).</param>
     /// <param name="logPrefix">Optional prefix for log messages.</param>
-    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net9.0</c>.</param>
+    /// <param name="additionalBuildArguments">Additional arguments appended to the dotnet build command, such as <c>-p:NoWarn=CS0168</c> or <c>-f net10.0</c>.</param>
     /// <param name="cancellationToken">Token to cancel the build operation.</param>
     /// <returns>A dictionary mapping warning codes to their occurrence counts.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="logger"/> or <paramref name="rootPath"/> is null.</exception>
