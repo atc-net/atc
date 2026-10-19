@@ -1,0 +1,70 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # required for NuGet Trusted Publishing (OIDC)
+
+    steps:
+      - name: release-please
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
+
+      # The release commit is the commit that triggered this run, so the default checkout ref is used.
+      - name: 🛒 Checkout repository
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Setup dotnet 10.0.x
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: 🧹 Clean
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        run: dotnet clean -c Release && dotnet nuget locals all --clear
+
+      - name: 🔁 Restore packages
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        run: dotnet restore
+
+      - name: 🛠️ Building library in release mode
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        run: dotnet build -c Release --no-restore /p:UseSourceLink=true
+
+      # Each package is released independently, so only the packages in paths_released
+      # (e.g. ["src/Atc","src/Atc.Rest"]) are packed. Each path holds <folder-name>.csproj.
+      - name: 🗳️ Creating library packages for release
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        env:
+          PATHS_RELEASED: ${{ steps.release.outputs.paths_released }}
+        run: |
+          for path in $(echo "$PATHS_RELEASED" | jq -r '.[]'); do
+            project="$path/$(basename "$path").csproj"
+            echo "Packing $project"
+            dotnet pack "$project" -c Release --no-build -o ${GITHUB_WORKSPACE}/packages
+          done
+
+      - name: 🔑 NuGet login (OIDC → short-lived API key)
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        id: nuget-login
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: 📦 Push packages to NuGet
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        run: |
+          dotnet nuget push ${GITHUB_WORKSPACE}/packages/*.nupkg -k "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
