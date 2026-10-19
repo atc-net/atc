@@ -224,22 +224,17 @@ Resource files use PublicResXFileCodeGenerator for code generation.
 
 ## CI/CD Workflows
 
-### Pre-Integration (Pull Requests)
+### Build and test (`build.yml`: pull requests and pushes to main)
 - Runs on ubuntu-latest, macos-latest, windows-latest
-- Clean, restore, build (Release + )netstandard2.0
+- Clean, restore, build (Release + netstandard2.0)
 - Run unit tests (excluding integration tests)
 
-### Post-Integration (main branch)
-- Build and test on ubuntu-latest
-- Merge to stable branch with fast-forward only
-- Generate pre-release NuGet packages
-- Push to GitHub Package Registry
-- Uses Nerdbank.GitVersioning (version.json) for semantic versioning
-
-### Release Workflow
-- Triggered on release branch
-- Creates official NuGet packages
-- Publishes to nuget.org
+### Releases (`release-please.yml`: pushes to main)
+- Each package in `src/` is versioned and released independently by [release-please](https://github.com/googleapis/release-please), driven by [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `feat!:` for breaking changes)
+- A commit is attributed to a package when it changes files under that package's folder (`src/<Package>/`); changes elsewhere (root props, tests, docs, workflows) do not release anything
+- Pending releases for all packages are collected in one release PR; merging it updates each released package's `CHANGELOG.md`, `Directory.Build.props` version and `.release-please-manifest.json`, and creates `<Package>@vX.Y.Z` tags
+- The same workflow then packs only the released packages (`paths_released`) and pushes them to nuget.org using NuGet Trusted Publishing (OIDC)
+- Configuration: `release-please-config.json` and `.release-please-manifest.json`
 
 ## Common Development Tasks
 
@@ -251,7 +246,7 @@ Resource files use PublicResXFileCodeGenerator for code generation.
 5. Include package metadata (PackageId, PackageTags, Description) in .csproj
 6. Create comprehensive README.md with installation, usage examples, and key features
 7. Ensure all public members have XML documentation comments following the documentation standards
-8. Update post-integration.yml and release.yml to include in NuGet push steps
+8. Add a `src/Atc.{Domain}/Directory.Build.props` with the release-please-annotated `<Version>` (copy one from another package), and add the package to `release-please-config.json` and `.release-please-manifest.json`
 
 ### Running Single Test
 ```bash
@@ -275,7 +270,8 @@ dotnet run --project src/Atc.CodeDocumentation -- generate
 - **Directory.Build.props** (root): Shared MSBuild properties for all source projects
 - **test/Directory.Build.props**: Test-specific properties (imports root props)
 - **Atc.slnx**: Solution file in XML format (Visual Studio 2022+)
-- **version.json**: Nerdbank.GitVersioning configuration for semantic versioning
+- **src/{Package}/Directory.Build.props**: Per-package `<Version>`, updated by release-please
+- **release-please-config.json** / **.release-please-manifest.json**: release-please configuration and current package versions
 - **.editorconfig**: ATC Coding Rules style enforcement
 - **global.json**: SDK version constraints (rollForward: latestMajor)
 
@@ -283,6 +279,6 @@ dotnet run --project src/Atc.CodeDocumentation -- generate
 
 - The repository targets .NET 10 (support for .NET 9 has been removed)
 - Tests use xUnit v3 with Microsoft Testing Platform runner
-- The main branch is the primary development branch; stable branch is for verified releases
+- The main branch is the primary development branch; releases are made from main by release-please
 - Analyzer warnings are strictly enforced in Release builds
 - All 399 source files have been comprehensively documented with XML documentation comments, replacing legacy GhostDoc-generated documentation with high-quality, meaningful descriptions
