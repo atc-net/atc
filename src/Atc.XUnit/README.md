@@ -33,7 +33,8 @@ dotnet add package Atc.XUnit
 
 - xUnit.v3 (assert, common, extensibility.core)
 - ICSharpCode.Decompiler (for code analysis)
-- EPPlus
+- ClosedXML (for Excel reports)
+- SixLabors.Fonts 1.0.1 (version-pinned for licensing)
 - Mono.Reflection
 - Atc.CodeDocumentation
 - Atc (foundation library)

@@ -13,11 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="8.7.2" />
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="11.1.0.9782" />
     <PackageReference Include="Mono.Reflection" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
+    <PackageReference Include="SixLabors.Fonts" Version="[1.0.1]" /> <!-- SixLabors.Fonts (used by ClosedXML) is version-pinned because versions 2.0.0 and newer use the Six Labors Split License, which may require a paid license -->
     <PackageReference Include="xunit.v3.assert" Version="4.0.2" />
     <PackageReference Include="xunit.v3.common" Version="4.0.2" />
     <PackageReference Include="xunit.v3.extensibility.core" Version="4.0.2" />
