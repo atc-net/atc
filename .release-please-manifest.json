@@ -1,14 +1,14 @@
 {
-  "src/Atc": "3.0.186",
-  "src/Atc.CodeAnalysis.CSharp": "3.0.186",
-  "src/Atc.CodeDocumentation": "3.0.186",
-  "src/Atc.Console.Spectre": "3.0.186",
-  "src/Atc.DotNet": "3.0.186",
-  "src/Atc.OpenApi": "3.0.186",
-  "src/Atc.Rest": "3.0.186",
-  "src/Atc.Rest.AwesomeAssertions": "3.0.186",
-  "src/Atc.Rest.Extended": "3.0.186",
-  "src/Atc.Rest.FluentAssertions": "3.0.186",
-  "src/Atc.Rest.HealthChecks": "3.0.186",
-  "src/Atc.XUnit": "3.0.186"
+  "src/Atc": "4.0.0",
+  "src/Atc.CodeAnalysis.CSharp": "4.0.0",
+  "src/Atc.CodeDocumentation": "4.0.0",
+  "src/Atc.Console.Spectre": "4.0.0",
+  "src/Atc.DotNet": "4.0.0",
+  "src/Atc.OpenApi": "4.0.0",
+  "src/Atc.Rest": "4.0.0",
+  "src/Atc.Rest.AwesomeAssertions": "4.0.0",
+  "src/Atc.Rest.Extended": "4.0.0",
+  "src/Atc.Rest.FluentAssertions": "4.0.0",
+  "src/Atc.Rest.HealthChecks": "4.0.0",
+  "src/Atc.XUnit": "4.0.0"
 }
