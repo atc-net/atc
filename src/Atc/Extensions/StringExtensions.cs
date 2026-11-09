@@ -2048,6 +2048,21 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Removes all leading and trailing white-space characters, and returns <see langword="null"/>
+    /// when nothing is left. Use it for user input such as a search or a filter, so a value of only
+    /// spaces is treated as not set rather than sent on.
+    /// </summary>
+    /// <param name="value">The value as received; may be <see langword="null"/>.</param>
+    /// <returns>
+    /// The trimmed value, or <see langword="null"/> when <paramref name="value"/> is
+    /// <see langword="null"/>, empty or consists only of white-space characters.
+    /// </returns>
+    public static string? TrimToNull(this string? value)
+        => string.IsNullOrWhiteSpace(value)
+            ? null
+            : value!.Trim();
+
+    /// <summary>
     /// TrimExtended removes all leading and trailing white-space.
     /// and multi-space characters from the current System.String object.
     /// </summary>
