@@ -100,6 +100,35 @@ public static class AsyncEnumerableFactory
         return FromTaskCore(task, cancellationToken);
     }
 
+    /// <summary>
+    /// Creates an <see cref="IAsyncEnumerable{T}"/> that throws the specified exception when it is enumerated,
+    /// e.g. to test how a consumer handles a stream that fails.
+    /// </summary>
+    /// <typeparam name="T">The element type.</typeparam>
+    /// <param name="exception">The exception to throw on the first <c>MoveNextAsync</c>.</param>
+    /// <returns>An <see cref="IAsyncEnumerable{T}"/> that yields nothing and throws <paramref name="exception"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="exception"/> is <see langword="null"/>.</exception>
+    public static IAsyncEnumerable<T> FromException<T>(Exception exception)
+    {
+        if (exception is null)
+        {
+            throw new ArgumentNullException(nameof(exception));
+        }
+
+        return FromExceptionCore<T>(exception);
+    }
+
+    [SuppressMessage("Major Code Smell", "S1172:Unused method parameters should be removed", Justification = "Generic element type only.")]
+    private static async IAsyncEnumerable<T> FromExceptionCore<T>(
+        Exception exception)
+    {
+        await Task.CompletedTask;
+        throw exception;
+#pragma warning disable CS0162 // Unreachable code: needed to make this an async iterator.
+        yield break;
+#pragma warning restore CS0162
+    }
+
     private static async IAsyncEnumerable<T> FromItemsCore<T>(
         T[] items,
         [EnumeratorCancellation] CancellationToken cancellationToken)
