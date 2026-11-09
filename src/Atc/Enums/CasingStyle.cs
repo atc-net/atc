@@ -30,4 +30,9 @@ public enum CasingStyle
     /// The snake case is formatted like this: "snake_case".
     /// </summary>
     SnakeCase,
+
+    /// <summary>
+    /// The upper snake case (also called screaming snake case) is formatted like this: "UPPER_SNAKE_CASE".
+    /// </summary>
+    UpperSnakeCase,
 }

@@ -454,6 +454,14 @@ public static class StringHasIsExtensions
                 }
 
                 break;
+            case CasingStyle.UpperSnakeCase:
+                if (value.Any(char.IsLower) ||
+                    value.IndexOfAny(new[] { ' ', '-' }) != -1)
+                {
+                    return false;
+                }
+
+                break;
             default:
                 throw new SwitchCaseDefaultException(casingStyle);
         }

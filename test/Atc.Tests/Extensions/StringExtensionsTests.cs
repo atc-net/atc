@@ -685,6 +685,70 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.PascalCase(removeSeparators));
 
     [Theory]
+    [InlineData(new string[0], "")]
+    [InlineData(new[] { "my", "Pet", "Store" }, "myPetStore")]
+    [InlineData(new[] { "My", "Pet", "Store" }, "MyPetStore")]
+    [InlineData(new[] { "my", "pet", "store" }, "my-pet_store")]
+    [InlineData(new[] { "my", "pet", "store" }, "my.pet store")]
+    [InlineData(new[] { "MY", "PET", "STORE" }, "MY_PET_STORE")]
+    [InlineData(new[] { "XML", "Parser" }, "XMLParser")]
+    [InlineData(new[] { "get", "Pet", "By", "Id" }, "getPetById")]
+    [InlineData(new[] { "Api31", "Features" }, "Api31Features")]
+    [InlineData(new[] { "a", "b" }, "a/b")]
+    [InlineData(new[] { "a", "b" }, "--a--b--")]
+    public void SplitIntoWords(
+        string[] expected,
+        string input)
+        => Assert.Equal(expected, input.SplitIntoWords());
+
+    [Fact]
+    public void SplitIntoWords_Null_ReturnsEmpty()
+        => Assert.Empty(((string)null!).SplitIntoWords());
+
+    [Theory]
+    [InlineData("MyPetStore", "myPetStore", CasingStyle.PascalCase)]
+    [InlineData("MyPetStore", "my-pet-store", CasingStyle.PascalCase)]
+    [InlineData("MyPetStore", "my.pet.store", CasingStyle.PascalCase)]
+    [InlineData("MyPetStore", "my_pet_store", CasingStyle.PascalCase)]
+    [InlineData("MyPetStore", "my-PET.store", CasingStyle.PascalCase)]
+    [InlineData("XmlParser", "XMLParser", CasingStyle.PascalCase)]
+    [InlineData("XContinuation", "x-continuation", CasingStyle.PascalCase)]
+    [InlineData("XCorrelationId", "x-correlation-id", CasingStyle.PascalCase)]
+    [InlineData("PageSize", "pageSize", CasingStyle.PascalCase)]
+    [InlineData("AB", "a/b", CasingStyle.PascalCase)]
+    [InlineData("myPetStore", "MyPetStore", CasingStyle.CamelCase)]
+    [InlineData("myPetStore", "MY_PET_STORE", CasingStyle.CamelCase)]
+    [InlineData("xmlParser", "XMLParser", CasingStyle.CamelCase)]
+    [InlineData("getPetById", "get-pet-by-id", CasingStyle.CamelCase)]
+    [InlineData("my-pet-store", "MyPetStore", CasingStyle.KebabCase)]
+    [InlineData("xml-parser", "XMLParser", CasingStyle.KebabCase)]
+    [InlineData("api31-features", "Api31Features", CasingStyle.KebabCase)]
+    [InlineData("my_pet_store", "my-pet-store", CasingStyle.SnakeCase)]
+    [InlineData("my_pet_store", "MyPetStore", CasingStyle.SnakeCase)]
+    [InlineData("MY_PET_STORE", "myPetStore", CasingStyle.UpperSnakeCase)]
+    [InlineData("MY_PET_STORE", "my pet store", CasingStyle.UpperSnakeCase)]
+    [InlineData("my-PET.store", "my-PET.store", CasingStyle.None)]
+    [InlineData("", "", CasingStyle.PascalCase)]
+    public void ToCasingStyle(
+        string expected,
+        string input,
+        CasingStyle casingStyle)
+        => Assert.Equal(expected, input.ToCasingStyle(casingStyle));
+
+    [Theory]
+    [InlineData(CasingStyle.CamelCase)]
+    [InlineData(CasingStyle.KebabCase)]
+    [InlineData(CasingStyle.PascalCase)]
+    [InlineData(CasingStyle.SnakeCase)]
+    [InlineData(CasingStyle.UpperSnakeCase)]
+    public void ToCasingStyle_ResultIsValidForThatStyle(CasingStyle casingStyle)
+        => Assert.True("my-PET.store_v2".ToCasingStyle(casingStyle).IsCasingStyleValid(casingStyle));
+
+    [Fact]
+    public void ToCasingStyle_UndefinedStyle_Throws()
+        => Assert.Throws<SwitchCaseDefaultException>(() => "abc".ToCasingStyle((CasingStyle)99));
+
+    [Theory]
     [InlineData("HalloWorld", "halloWorld", new[] { ' ', '-' })]
     [InlineData("Hallo World", "hallo World", new[] { ' ', '-' })]
     [InlineData("Hallo World", "hallo world", new[] { ' ', '-' })]
