@@ -136,6 +136,7 @@
      - AllowedCorsOrigins
      - AssemblyPairs
      - Authorization
+     - ConfigureJsonSerializerOptions
      - EnableRequestResponseLogger
      - ErrorHandlingExceptionFilter
      - JsonSerializerCasingStyle

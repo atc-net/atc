@@ -2953,6 +2953,20 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison method used for key matching. Defaults to .<br />
 >
 ><b>Returns:</b> The string with all matched placeholders replaced by their corresponding values.
+#### ToEnumOrDefault
+>```csharp
+>TEnum ToEnumOrDefault(this string value, TEnum defaultValue = null, bool ignoreCase = True)
+>```
+><b>Summary:</b> Converts the string to the enum value with that name, or returns `defaultValue` when the string is <see langword="null" />, blank, or not a defined value of `TEnum`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to convert, e.g. a value from configuration or an external API.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`defaultValue`&nbsp;&nbsp;-&nbsp;&nbsp;The value to return when  cannot be converted.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;if set to , the name is matched case-insensitively.<br />
+>
+><b>Returns:</b> The matching enum value, or `defaultValue`.
+>
+><b>Remarks:</b> Unlike `System.Enum.TryParse``1(System.String,System.Boolean,``0@)`, a number that is not a defined value (e.g. "42") gives `defaultValue` rather than an undefined enum value. Named combinations of a `System.FlagsAttribute` enum, such as "Read, Write", are accepted. Leading and trailing white space is ignored.
 #### ToLines
 >```csharp
 >string[] ToLines(this string value)

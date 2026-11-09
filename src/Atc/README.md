@@ -255,6 +255,36 @@ Status statusFromDescription = EnumExtensions.GetEnumValueFromDescription<Status
 // Result: Status.Active
 ```
 
+### Using `ToEnumOrDefault<T>()`
+
+```csharp
+DayOfWeek a = "monday".ToEnumOrDefault(DayOfWeek.Sunday);  // DayOfWeek.Monday
+DayOfWeek b = "Funday".ToEnumOrDefault(DayOfWeek.Sunday);  // DayOfWeek.Sunday (unknown name)
+DayOfWeek c = "42".ToEnumOrDefault(DayOfWeek.Sunday);      // DayOfWeek.Sunday (undefined number)
+```
+
+## Claims Extension Examples
+
+### Using `GetDisplayName()`, `GetUsername()`, `GetEmail()` and `GetAppId()`
+
+```csharp
+string? objectId = User.GetIdentity();     // Microsoft Entra ID object id (oid)
+string? name = User.GetDisplayName();      // "name" claim, e.g. "Jane Doe"
+string? username = User.GetUsername();     // ClaimTypes.Name, else "preferred_username"
+string? email = User.GetEmail();           // ClaimTypes.Email, else "email", else an email-shaped username
+string? appId = User.GetAppId();           // "azp" (v2 tokens), else "appid" (v1 tokens)
+```
+
+## `GuidHelper` examples
+
+### Using `CreateDeterministic()`
+
+```csharp
+// The same components always give the same Guid - a stable id derived from natural keys.
+Guid id = GuidHelper.CreateDeterministic("device", "123");
+// Always 9174bb27-8d27-375a-3046-9518b6264ddc
+```
+
 ## Collection Extension Examples
 
 ### Using `AddIfNotContains()`
@@ -327,6 +357,32 @@ var json = JsonSerializer.Serialize(myObject, options);
 
 // Deserialize
 var obj = JsonSerializer.Deserialize<MyType>(json, options);
+```
+
+### Using `CopyTo()` to apply options you cannot replace
+
+```csharp
+// ASP.NET Core minimal APIs: copy every setting and converter, not just a few.
+services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(
+    o => JsonSerializerOptionsFactory.Create().CopyTo(o.SerializerOptions));
+```
+
+### Using `StringEnumMemberJsonConverterFactory` for strict and lenient enums
+
+```csharp
+// Names come from [JsonStringEnumMemberName], else [EnumMember], else the member name.
+// Non-nullable enums are strict; a nullable enum reads an unknown value (e.g. one a
+// third-party API added later) as null instead of failing the whole response.
+var options = new JsonSerializerOptions();
+options.Converters.Add(new StringEnumMemberJsonConverterFactory(
+    onUnknownValue: (type, value) => logger.LogWarning("Unknown {Type} value {Value}", type.Name, value)));
+```
+
+### Using `AsyncEnumerableFactory.FromException<T>()`
+
+```csharp
+// A stream that fails when enumerated, e.g. to test error handling.
+IAsyncEnumerable<Item> failing = AsyncEnumerableFactory.FromException<Item>(new HttpRequestException("Gone"));
 ```
 
 ## Math and Geometry Examples

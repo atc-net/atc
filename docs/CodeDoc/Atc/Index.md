@@ -102,6 +102,7 @@
 - [EnumHelper](Atc.Helpers.md#enumhelper)
 - [FileHelper](Atc.Helpers.md#filehelper)
 - [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
+- [GuidHelper](Atc.Helpers.md#guidhelper)
 - [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
@@ -162,7 +163,9 @@
 - [FileInfoToFullNameJsonConverter](Atc.Serialization.JsonConverters.md#fileinfotofullnamejsonconverter)
 - [ITypeDiscriminator](Atc.Serialization.JsonConverters.md#itypediscriminator)
 - [InterfaceJsonConverter&lt;TInterface&gt;](Atc.Serialization.JsonConverters.md#interfacejsonconverter&lt;tinterface&gt;)
+- [LenientStringEnumMemberJsonConverter&lt;TEnum&gt;](Atc.Serialization.JsonConverters.md#lenientstringenummemberjsonconverter&lt;tenum&gt;)
 - [NumberToStringJsonConverter](Atc.Serialization.JsonConverters.md#numbertostringjsonconverter)
+- [StringEnumMemberJsonConverterFactory](Atc.Serialization.JsonConverters.md#stringenummemberjsonconverterfactory)
 - [StringEnumMemberJsonConverter&lt;TEnum&gt;](Atc.Serialization.JsonConverters.md#stringenummemberjsonconverter&lt;tenum&gt;)
 - [TimeSpanJsonConverter](Atc.Serialization.JsonConverters.md#timespanjsonconverter)
 - [TypeDiscriminatorJsonConverter&lt;T&gt;](Atc.Serialization.JsonConverters.md#typediscriminatorjsonconverter&lt;t&gt;)
@@ -289,6 +292,10 @@
 ## [System.Text](System.Text.md)
 
 - [StringBuilderExtensions](System.Text.md#stringbuilderextensions)
+
+## [System.Text.Json](System.Text.Json.md)
+
+- [JsonSerializerOptionsExtensions](System.Text.Json.md#jsonserializeroptionsextensions)
 
 ## [System.Threading](System.Threading.md)
 
