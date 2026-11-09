@@ -38,6 +38,31 @@ dotnet add package Atc.Rest.HealthChecks
 - Extension methods for converting health data to IReadOnlyDictionary
 - Integration with Microsoft.Extensions.Diagnostics.HealthChecks
 - Support for custom health check implementations
+- `MetricsHealthCheckPublisher` to publish health check status and duration as metrics
+
+## Publishing health checks as metrics
+
+`AddMetricsPublisher()` publishes the latest result of every health check on the meter
+`MetricsHealthCheckPublisher.MeterName` ("Atc.Rest.HealthChecks"), tagged `health_check.name`:
+
+- `health_check.status`: 0 = Unhealthy, 0.5 = Degraded, 1 = Healthy
+- `health_check.duration`: seconds
+
+```csharp
+services.Configure<HealthCheckPublisherOptions>(o =>
+{
+    o.Delay = TimeSpan.FromSeconds(5);
+    o.Period = TimeSpan.FromSeconds(30);
+});
+
+services
+    .AddHealthChecks()
+    .AddCheck<MyHealthCheck>("my-check")
+    .AddMetricsPublisher();
+
+// e.g. with OpenTelemetry
+services.AddOpenTelemetry().WithMetrics(m => m.AddMeter(MetricsHealthCheckPublisher.MeterName));
+```
 
 ## Requirements
 
