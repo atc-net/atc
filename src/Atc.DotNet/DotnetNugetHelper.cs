@@ -48,7 +48,7 @@ public static class DotnetNugetHelper
         // before the XML declaration, none of which stops it from being valid XML.
         var trimmedFileContent = fileContent.TrimStart();
 
-        if (!trimmedFileContent.StartsWith('<'))
+        if (!trimmedFileContent.StartsWith("<", StringComparison.Ordinal))
         {
             throw new DataException("Expect xml content");
         }

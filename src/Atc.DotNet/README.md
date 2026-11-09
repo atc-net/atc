@@ -31,6 +31,7 @@ dotnet add package Atc.DotNet
 
 ## Target Framework
 
+- .NET Standard 2.0
 - .NET 10.0
 
 ## Key Features
@@ -43,6 +44,7 @@ dotnet add package Atc.DotNet
 - Detect project types (Console, Library, Web, Test, etc.)
 - Analyze project dependencies
 - Support for both file-based and content-based parsing
+- Look up the latest stable version of a NuGet package
 
 ## Requirements
 
