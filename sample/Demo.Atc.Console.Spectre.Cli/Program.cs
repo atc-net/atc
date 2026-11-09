@@ -7,7 +7,7 @@ public static class Program
     {
         ArgumentNullException.ThrowIfNull(args);
 
-        args = SetHelpArgumentIfNeeded(args);
+        args = ProgramCsHelper.SetHelpArgumentIfNeeded(args);
 
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -44,9 +44,4 @@ public static class Program
 
         return app.RunAsync(args);
     }
-
-    private static string[] SetHelpArgumentIfNeeded(string[] args)
-        => args.Length == 0
-            ? new[] { CommandConstants.ArgumentShortHelp }
-            : args;
 }

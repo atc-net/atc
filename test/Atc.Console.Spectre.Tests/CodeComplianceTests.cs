@@ -17,7 +17,6 @@ public class CodeComplianceTests
         typeof(TypeResolver),
         typeof(ServiceCollectionFactory),
         typeof(ConsoleHelper),
-        typeof(ProgramCsHelper),
         typeof(ConsoleLogger),
         typeof(ConsoleLoggerProvider),
     };
