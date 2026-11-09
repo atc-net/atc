@@ -257,6 +257,30 @@ public class AsyncEnumerableFactoryTests
     }
 
     [Fact]
+    public async Task FromException_ThrowsWhenEnumerated()
+    {
+        // Arrange
+        var exception = new InvalidOperationException("Stream failed");
+        var stream = AsyncEnumerableFactory.FromException<int>(exception);
+
+        // Act
+        var actual = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+        {
+            await foreach (var unused in stream)
+            {
+                Assert.Fail("No items expected.");
+            }
+        });
+
+        // Assert
+        Assert.Same(exception, actual);
+    }
+
+    [Fact]
+    public void FromException_ThrowsWhenTheExceptionIsNull()
+        => Assert.Throws<ArgumentNullException>(() => AsyncEnumerableFactory.FromException<int>(null!));
+
+    [Fact]
     public async Task FromTask_YieldsSingleResult()
     {
         // Arrange
