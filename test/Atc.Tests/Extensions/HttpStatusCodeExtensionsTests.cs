@@ -12,6 +12,23 @@ public class HttpStatusCodeExtensionsTests
         => Assert.Equal(expected, httpStatusCode.ToNormalizedString());
 
     [Theory]
+    [InlineData("OK", 200)]
+    [InlineData("NotFound", 404)]
+    [InlineData("MultipleChoices", 300)]
+    [InlineData("MovedPermanently", 301)]
+    [InlineData("Found", 302)]
+    [InlineData("SeeOther", 303)]
+    [InlineData("TemporaryRedirect", 307)]
+    [InlineData("UnprocessableEntity", 422)]
+    [InlineData("TooManyRequests", 429)]
+    [InlineData("Status499", 499)]
+    [InlineData("Status529", 529)]
+    public void ToEnumName(
+        string expected,
+        int statusCode)
+        => Assert.Equal(expected, ((HttpStatusCode)statusCode).ToEnumName());
+
+    [Theory]
     [InlineData(HttpStatusCode.Continue, "Status100Continue")]
     [InlineData(HttpStatusCode.SwitchingProtocols, "Status101SwitchingProtocols")]
     [InlineData(HttpStatusCode.Processing, "Status102Processing")]

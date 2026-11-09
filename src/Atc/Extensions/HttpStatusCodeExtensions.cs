@@ -38,6 +38,42 @@ public static class HttpStatusCodeExtensions
         };
 
     /// <summary>
+    /// Gets a stable C# identifier for the HTTP status code: the <see cref="HttpStatusCode"/> member name, with one fixed
+    /// name for the codes that have aliases, and <c>Status{code}</c> for a code that is not a member.
+    /// </summary>
+    /// <remarks>
+    /// <see cref="Enum.ToString()"/> picks any one of the aliases for 300, 301, 302, 303, 307 and 422; this method always
+    /// gives <c>MultipleChoices</c>, <c>MovedPermanently</c>, <c>Found</c>, <c>SeeOther</c>, <c>TemporaryRedirect</c> and
+    /// <c>UnprocessableEntity</c>. A code the running framework does not define (e.g. 499, or 429 on .NET Standard 2.0)
+    /// becomes <c>Status499</c>.
+    /// </remarks>
+    /// <param name="httpStatusCode">The HTTP status code.</param>
+    /// <returns>An identifier such as <c>OK</c>, <c>NotFound</c>, <c>Found</c> or <c>Status499</c>.</returns>
+    public static string ToEnumName(this HttpStatusCode httpStatusCode)
+    {
+        var statusCode = (int)httpStatusCode;
+        switch (statusCode)
+        {
+            case 300:
+                return "MultipleChoices";
+            case 301:
+                return "MovedPermanently";
+            case 302:
+                return "Found";
+            case 303:
+                return "SeeOther";
+            case 307:
+                return "TemporaryRedirect";
+            case 422:
+                return "UnprocessableEntity";
+        }
+
+        return Enum.IsDefined(typeof(HttpStatusCode), httpStatusCode)
+            ? httpStatusCode.ToString()
+            : $"Status{statusCode.ToString(CultureInfo.InvariantCulture)}";
+    }
+
+    /// <summary>
     /// Determines whether the HTTP status code is informational (1xx range).
     /// </summary>
     /// <param name="httpStatusCode">The HTTP status code to check.</param>
