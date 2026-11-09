@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/atc-net/atc/compare/Atc.Rest@v4.0.0...Atc.Rest@v4.1.0) (2026-11-09)
+
+
+### New features
+
+* **atc-rest:** add RestApiOptions.ConfigureJsonSerializerOptions ([42d846a](https://github.com/atc-net/atc/commit/42d846a6fa9f2f9619c8aa2497c4c2d47389f7d7))
+
 ## [4.0.0](https://github.com/atc-net/atc/compare/Atc.Rest@v3.0.186...Atc.Rest@v4.0.0) (2026-10-19)
 
 
