@@ -7,6 +7,26 @@
 ## [Atc.CodeAnalysis.CSharp](Atc.CodeAnalysis.CSharp.md)
 
 - [AtcCodeAnalysisCSharpTypeInitializer](Atc.CodeAnalysis.CSharp.md#atccodeanalysiscsharptypeinitializer)
+- [EnumerableExtensions](Atc.CodeAnalysis.CSharp.md#enumerableextensions)
+  -  Static Methods
+     - ToEquatableArray(this IEnumerable&lt;T&gt; source)
+- [EquatableArray&lt;T&gt;](Atc.CodeAnalysis.CSharp.md#equatablearray&lt;t&gt;)
+  -  Static Properties
+     - Empty
+  -  Properties
+     - Count
+     - IsEmpty
+     - Item
+     - Length
+  -  Methods
+     - AsImmutableArray()
+     - Equals(EquatableArray&lt;T&gt; other)
+     - Equals(object obj)
+     - GetEnumerator()
+     - GetHashCode()
+- [ImmutableArrayExtensions](Atc.CodeAnalysis.CSharp.md#immutablearrayextensions)
+  -  Static Methods
+     - ToEquatableArray(this ImmutableArray&lt;T&gt; source)
 
 ## [Atc.CodeAnalysis.CSharp.Factories](Atc.CodeAnalysis.CSharp.Factories.md)
 
@@ -188,6 +208,14 @@
   -  Static Methods
      - Create(string identifierTypeName, string identifierName)
 
+## [Microsoft.CodeAnalysis](Microsoft.CodeAnalysis.md)
+
+- [CompilationExtensions](Microsoft.CodeAnalysis.md#compilationextensions)
+  -  Static Methods
+     - References(this Compilation compilation, string assemblyName)
+     - ReferencesAnyStartingWith(this Compilation compilation, string prefix)
+     - VersionOf(this Compilation compilation, string assemblyName)
+
 ## [Microsoft.CodeAnalysis.CSharp.Syntax](Microsoft.CodeAnalysis.CSharp.Syntax.md)
 
 - [ClassDeclarationSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#classdeclarationsyntaxextensions)
@@ -221,6 +249,8 @@
   -  Static Methods
      - GetUsedUsingStatements(this SyntaxNode syntaxNode)
      - GetUsedUsingStatementsWithoutAlias(this SyntaxNode syntaxNode)
+     - IsPartialClassWithAttribute(this SyntaxNode syntaxNode)
+     - IsPartialClassWithAttribute(this SyntaxNode syntaxNode, string attributeName)
      - Select(this SyntaxNode syntaxNode)
      - SelectToArray(this SyntaxNode syntaxNode)
 - [UsingDirectiveSyntaxExtensions](Microsoft.CodeAnalysis.CSharp.Syntax.md#usingdirectivesyntaxextensions)

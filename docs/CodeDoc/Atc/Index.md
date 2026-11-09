@@ -88,6 +88,7 @@
 - [ArticleNumberHelper](Atc.Helpers.md#articlenumberhelper)
 - [AssemblyHelper](Atc.Helpers.md#assemblyhelper)
 - [ByteHelper](Atc.Helpers.md#bytehelper)
+- [CSharpKeywordHelper](Atc.Helpers.md#csharpkeywordhelper)
 - [CSharpTypeHelper](Atc.Helpers.md#csharptypehelper)
 - [CardinalDirectionTypeHelper](Atc.Helpers.md#cardinaldirectiontypehelper)
 - [CliHelper](Atc.Helpers.md#clihelper)
@@ -102,8 +103,11 @@
 - [EnumHelper](Atc.Helpers.md#enumhelper)
 - [FileHelper](Atc.Helpers.md#filehelper)
 - [FileHelper&lt;T&gt;](Atc.Helpers.md#filehelper&lt;t&gt;)
+- [FileSystemTransaction](Atc.Helpers.md#filesystemtransaction)
+- [GlobHelper](Atc.Helpers.md#globhelper)
 - [GuidHelper](Atc.Helpers.md#guidhelper)
 - [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
+- [InvariantCasingHelper](Atc.Helpers.md#invariantcasinghelper)
 - [MathHelper](Atc.Helpers.md#mathhelper)
 - [NetworkInformationHelper](Atc.Helpers.md#networkinformationhelper)
 - [NumberHelper](Atc.Helpers.md#numberhelper)
@@ -118,6 +122,7 @@
 - [StackTraceHelper](Atc.Helpers.md#stacktracehelper)
 - [TaskHelper](Atc.Helpers.md#taskhelper)
 - [ThreadHelper](Atc.Helpers.md#threadhelper)
+- [UniqueNameHelper](Atc.Helpers.md#uniquenamehelper)
 - [VersionHelper](Atc.Helpers.md#versionhelper)
 
 ## [Atc.Math](Atc.Math.md)
@@ -145,6 +150,11 @@
 
 - [TriangleData](Atc.Math.Trigonometry.md#triangledata)
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
+
+## [Atc.Nuget](Atc.Nuget.md)
+
+- [INugetFeedClient](Atc.Nuget.md#inugetfeedclient)
+- [NugetFeedClient](Atc.Nuget.md#nugetfeedclient)
 
 ## [Atc.Serialization](Atc.Serialization.md)
 

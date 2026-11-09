@@ -30,7 +30,11 @@
 
 ## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
 
+- [CliUpdateCheckHelper](Atc.Console.Spectre.Helpers.md#cliupdatecheckhelper)
+- [CliUpdateCheckOptions](Atc.Console.Spectre.Helpers.md#cliupdatecheckoptions)
+- [CommandAppHelper](Atc.Console.Spectre.Helpers.md#commandapphelper)
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
+- [ConsoleOutputWidthHelper](Atc.Console.Spectre.Helpers.md#consoleoutputwidthhelper)
 - [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)

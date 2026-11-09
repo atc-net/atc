@@ -68,14 +68,50 @@
 
 ## [Atc.Console.Spectre.Helpers](Atc.Console.Spectre.Helpers.md)
 
+- [CliUpdateCheckHelper](Atc.Console.Spectre.Helpers.md#cliupdatecheckhelper)
+  -  Static Fields
+     - TimeSpan DefaultBudget
+     - string ContinuousIntegrationEnvironmentVariable
+  -  Static Methods
+     - CheckForUpdatesAsync(string[] args, CliUpdateCheckOptions options, CancellationToken cancellationToken = null)
+     - CheckForUpdatesAsync(string[] args, string packageId, CancellationToken cancellationToken = null)
+     - IsDevelopmentVersion(Version version)
+     - IsUpdateCheckDisabled(Func&lt;string, string&gt; getEnvironmentVariable, string optOutEnvironmentVariable)
+     - ShouldCheckForUpdates(string[] args)
+     - TryGetNewerVersionAsync(INugetFeedClient nugetFeedClient, string packageId, Version currentVersion, TimeSpan budget, CancellationToken cancellationToken)
+     - WriteUpdateAvailable(IAnsiConsole console, string packageId, Version currentVersion, Version latestVersion)
+- [CliUpdateCheckOptions](Atc.Console.Spectre.Helpers.md#cliupdatecheckoptions)
+  -  Properties
+     - Budget
+     - Console
+     - CurrentVersion
+     - GetEnvironmentVariable
+     - NugetFeedClient
+     - OptOutEnvironmentVariable
+     - PackageId
+- [CommandAppHelper](Atc.Console.Spectre.Helpers.md#commandapphelper)
+  -  Static Methods
+     - UseSingleLineExceptionHandler(ICommandApp app)
+     - UseSingleLineExceptionHandler(ICommandApp app, IAnsiConsole console)
+     - UseStrictParsing(ICommandApp app)
+     - WriteException(IAnsiConsole console, Exception exception)
 - [ConsoleHelper](Atc.Console.Spectre.Helpers.md#consolehelper)
   -  Static Methods
      - WriteHeader(string text)
      - WriteHeader(string text, Color color)
      - WriteLog(ILogger logger, LogKeyValueItem logItem, bool includeKey = True, bool includeDescription = True)
      - WriteLogs(ILogger logger, List&lt;LogKeyValueItem&gt; logItems, bool includeKey = True, bool includeDescription = True)
+- [ConsoleOutputWidthHelper](Atc.Console.Spectre.Helpers.md#consoleoutputwidthhelper)
+  -  Static Fields
+     - int RedirectedOutputWidth
+     - string ColumnsEnvironmentVariable
+  -  Static Methods
+     - ApplyRedirectedOutputWidth()
+     - ApplyRedirectedOutputWidth(IAnsiConsole console, bool isOutputRedirected, string columns)
+     - GetRedirectedOutputWidth(string columns)
 - [ProgramCsHelper](Atc.Console.Spectre.Helpers.md#programcshelper)
   -  Static Methods
+     - SetHelpArgumentIfNeeded(string[] args)
      - SetMinimumLogLevelIfNeeded(string[] args, ConsoleLoggerConfiguration consoleLoggerConfiguration)
 
 ## [Atc.Console.Spectre.Logging](Atc.Console.Spectre.Logging.md)

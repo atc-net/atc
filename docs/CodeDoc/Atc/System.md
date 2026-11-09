@@ -2953,6 +2953,44 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`comparison`&nbsp;&nbsp;-&nbsp;&nbsp;The string comparison method used for key matching. Defaults to .<br />
 >
 ><b>Returns:</b> The string with all matched placeholders replaced by their corresponding values.
+#### SplitIntoWords
+>```csharp
+>IReadOnlyList<string> SplitIntoWords(this string value)
+>```
+><b>Summary:</b> Splits an identifier-like text into its words. A word ends at any character that is not a letter or a digit (which is dropped), where a lower-case letter or a digit is followed by an upper-case letter ("myPet" gives "my", "Pet"), and before the last upper-case letter of an acronym that is followed by a lower-case letter ("XMLParser" gives "XML", "Parser").
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The text to split, e.g. "myPetStore", "my-pet_store", "XMLParser" or "api31Features".<br />
+>
+><b>Returns:</b> The words in order, as written; an empty list for <see langword="null" /> or empty text.
+>
+><b>Code example:</b>
+>```csharp
+>"getPetById".SplitIntoWords();   // ["get", "Pet", "By", "Id"]
+>"XMLParser.v2".SplitIntoWords(); // ["XML", "Parser", "v2"]
+>```
+#### ToCasingStyle
+>```csharp
+>string ToCasingStyle(this string value, CasingStyle casingStyle)
+>```
+><b>Summary:</b> Converts an identifier-like text to the given casing style. The text is split into words with `System.StringExtensions.SplitIntoWords(System.String)`, so any input style works ("myPetStore", "my-pet-store", "MY_PET_STORE", "my.pet store").
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The text to convert.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`casingStyle`&nbsp;&nbsp;-&nbsp;&nbsp;The casing style to produce.  returns the text unchanged.<br />
+>
+><b>Returns:</b> The converted text; <see langword="null" /> or empty text is returned as it is.
+>
+><b>Remarks:</b> Each word is re-cased as a whole, so acronyms lose their capitals: "XMLParser" becomes "XmlParser" in PascalCase. Casing uses `Atc.Helpers.InvariantCasingHelper`, so the result is the same on every platform.<br>Unlike `System.StringExtensions.PascalCase(System.String,System.Boolean)` and `System.StringExtensions.CamelCase(System.String)`, which only split at separators, this method also splits at case changes, digits followed by capitals and any other non-alphanumeric character.
+>
+><b>Code example:</b>
+>```csharp
+>"getPetById".ToCasingStyle(CasingStyle.PascalCase);       // "GetPetById"
+>"XMLParser".ToCasingStyle(CasingStyle.CamelCase);         // "xmlParser"
+>"MyPetStore".ToCasingStyle(CasingStyle.KebabCase);        // "my-pet-store"
+>"my-pet-store".ToCasingStyle(CasingStyle.SnakeCase);      // "my_pet_store"
+>"myPetStore".ToCasingStyle(CasingStyle.UpperSnakeCase);   // "MY_PET_STORE"
+>```
 #### ToEnumOrDefault
 >```csharp
 >TEnum ToEnumOrDefault(this string value, TEnum defaultValue = null, bool ignoreCase = True)

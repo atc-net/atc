@@ -287,6 +287,69 @@ ByteHelper.
 
 <br />
 
+## CSharpKeywordHelper
+Helpers for the reserved C# keywords, for code generators that turn arbitrary names into C# identifiers.
+><b>Remarks:</b> Only the reserved keywords are covered (including the undocumented `__arglist`, `__makeref`, `__reftype` and `__refvalue`). Contextual keywords such as `var`, `async` or `record` are valid identifiers and are not reported.
+
+>```csharp
+>public static class CSharpKeywordHelper
+>```
+
+### Static Properties
+
+#### ReservedKeywords
+>```csharp
+>ReservedKeywords
+>```
+><b>Summary:</b> Gets the reserved C# keywords, in no particular order.
+### Static Methods
+
+#### EnsureIdentifierStart
+>```csharp
+>string EnsureIdentifierStart(string name, string prefix)
+>```
+><b>Summary:</b> Puts `prefix` in front of a name that does not start as an identifier does (with a letter or `_`): `2fa` becomes `Header2fa` with the prefix `Header`. An empty name becomes the prefix.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`prefix`&nbsp;&nbsp;-&nbsp;&nbsp;The prefix to add when needed.<br />
+>
+><b>Returns:</b> The name, starting as an identifier does.
+#### EscapeIfReservedKeyword
+>```csharp
+>string EscapeIfReservedKeyword(string name)
+>```
+><b>Summary:</b> Prefixes a name with `@` when it is a reserved C# keyword, so it can be emitted as an identifier (`event` becomes `@event`); any other name is returned unchanged.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The candidate identifier.<br />
+>
+><b>Returns:</b> An identifier that does not collide with a reserved keyword.
+#### IsReservedKeyword
+>```csharp
+>bool IsReservedKeyword(string name)
+>```
+><b>Summary:</b> Determines whether a name is a reserved C# keyword (case-sensitive: `Class` is not a keyword).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> when `name` is a reserved keyword; otherwise <see langword="false" />.
+#### IsValidIdentifier
+>```csharp
+>bool IsValidIdentifier(string name)
+>```
+><b>Summary:</b> Determines whether a name is a valid C# identifier without an `@` prefix: it starts with a letter or `_`, has only letters, digits and `_` after that, and is not a reserved keyword.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> when `name` can be used as an identifier as it is.
+>
+><b>Remarks:</b> The check is deliberately conservative: C# also allows some Unicode combining and formatting characters, which this method rejects, so a name it accepts is always valid.
+
+<br />
+
 ## CSharpTypeHelper
 Helper methods for C# type classification and checking.
 
@@ -1469,6 +1532,20 @@ File-related helper methods with safe wrappers around common I/O operations.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that completes when the write has finished.
+#### WriteAllTextIfChanged
+>```csharp
+>bool WriteAllTextIfChanged(FileInfo fileInfo, string content, bool useLineFeedLineEndings = False)
+>```
+><b>Summary:</b> Writes `content` to `fileInfo` as UTF-8 without a byte order mark, but only when the file does not already hold that content, so its timestamp - and any build, watcher or bundler that looks at it - is left alone. The directory is created when needed.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The destination file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`content`&nbsp;&nbsp;-&nbsp;&nbsp;The content to write.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`useLineFeedLineEndings`&nbsp;&nbsp;-&nbsp;&nbsp;Whether to write LF line endings only (see remarks).<br />
+>
+><b>Returns:</b> <see langword="true" /> when the file was written; <see langword="false" /> when it already held the content.
+>
+><b>Remarks:</b> With `useLineFeedLineEndings` the content is written with LF line endings only, so the output is the same on every platform (content built from `\n` and from `System.Environment.NewLine` does not reach the file as a mix). An existing file with the same text in CRLF throughout (a git checkout with `core.autocrlf=true`) then counts as unchanged; one with mixed line endings is rewritten.
 #### WriteModelToJsonFile
 >```csharp
 >void WriteModelToJsonFile(FileInfo fileInfo, T model)
@@ -1745,6 +1822,187 @@ JSON file helper for reading/writing a model of type `T`.
 
 <br />
 
+## FileSystemTransaction
+Records file and folder changes so that an operation that fails half-way can leave the file system as it found it - for example a scaffolding or migration command that writes several files into a project.
+><b>Remarks:</b> `Atc.Helpers.FileSystemTransaction.Begin` opens a transaction for the current execution flow (it flows across <see langword="await" />, like `System.Threading.AsyncLocal`1`). Each file is recorded before it is first written - its content, or that it was not there - and so is each folder that gets created. Disposed without `Atc.Helpers.FileSystemTransaction.Commit`, the files are put back, the new files deleted and the new folders removed. Reads see the files as written, so an operation can read back what it wrote.<br>Only writes made through the static members (`Atc.Helpers.FileSystemTransaction.WriteAllText(System.String,System.String)`, `Atc.Helpers.FileSystemTransaction.Copy(System.String,System.String,System.Boolean)`, `Atc.Helpers.FileSystemTransaction.CreateDirectory(System.String)`, ...) or announced with `Atc.Helpers.FileSystemTransaction.TrackFile(System.String)` / `Atc.Helpers.FileSystemTransaction.TrackDirectory(System.String)` are recorded; what an external process writes is not. Without an open transaction, the static members just write.<br>This is a best-effort undo, not an atomic file-system transaction: a file that cannot be restored (locked, access denied) is skipped and the others are still restored.
+<b>Code example:</b>
+>```csharp
+>var exitCode = FileSystemTransaction.Run(() =>
+>{
+>    FileSystemTransaction.CreateDirectory(projectFolder);
+>    FileSystemTransaction.WriteAllText(Path.Combine(projectFolder, "Program.cs"), content);
+>    return RunNextStep(); // non-zero: everything written above is put back
+>});
+>```
+
+>```csharp
+>public class FileSystemTransaction : IDisposable
+>```
+
+### Static Properties
+
+#### Current
+>```csharp
+>Current
+>```
+><b>Summary:</b> Gets the transaction that writes on the current execution flow are recorded in, or <see langword="null" /> when none is open.
+### Static Methods
+
+#### Begin
+>```csharp
+>FileSystemTransaction Begin()
+>```
+><b>Summary:</b> Opens a transaction for the writes on the current execution flow until it is disposed. Transactions nest: the inner one is current until it is disposed, then the outer one is current again.
+>
+><b>Returns:</b> The transaction; dispose it, after `Atc.Helpers.FileSystemTransaction.Commit` to keep the changes.
+#### Copy
+>```csharp
+>void Copy(string sourceFileName, string destFileName, bool overwrite)
+>```
+><b>Summary:</b> Copies a file as `System.IO.File.Copy(System.String,System.String,System.Boolean)` does, recording the destination in the open transaction first.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sourceFileName`&nbsp;&nbsp;-&nbsp;&nbsp;The file to copy.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`destFileName`&nbsp;&nbsp;-&nbsp;&nbsp;The copy.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`overwrite`&nbsp;&nbsp;-&nbsp;&nbsp;Whether an existing destination file is overwritten.<br />
+#### CreateDirectory
+>```csharp
+>DirectoryInfo CreateDirectory(string path)
+>```
+><b>Summary:</b> Creates a folder and the missing folders above it as `System.IO.Directory.CreateDirectory(System.String)` does, recording the outermost new folder in the open transaction first.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The folder to create.<br />
+>
+><b>Returns:</b> The information of the created (or already existing) folder.
+#### Delete
+>```csharp
+>void Delete(string path)
+>```
+><b>Summary:</b> Deletes a file as `System.IO.File.Delete(System.String)` does, recording it in the open transaction first so it can be restored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+#### Run
+>```csharp
+>int Run(Func<int> operation, int successResult = 0)
+>```
+><b>Summary:</b> Runs an operation in a transaction: what it writes is kept when it returns `successResult` (0 by default, as a process exit code), and put back otherwise or when it throws.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`operation`&nbsp;&nbsp;-&nbsp;&nbsp;The operation; returns a result code.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`successResult`&nbsp;&nbsp;-&nbsp;&nbsp;The result code that means success.<br />
+>
+><b>Returns:</b> The operation's result code.
+#### WriteAllBytes
+>```csharp
+>void WriteAllBytes(string path, byte[] bytes)
+>```
+><b>Summary:</b> Writes a binary file as `System.IO.File.WriteAllBytes(System.String,System.Byte[])` does, recording it in the open transaction first.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`bytes`&nbsp;&nbsp;-&nbsp;&nbsp;The bytes to write.<br />
+#### WriteAllText
+>```csharp
+>void WriteAllText(string path, string contents)
+>```
+><b>Summary:</b> Writes a text file as `System.IO.File.WriteAllText(System.String,System.String)` does, recording it in the open transaction first.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`contents`&nbsp;&nbsp;-&nbsp;&nbsp;The text to write.<br />
+#### WriteAllText
+>```csharp
+>void WriteAllText(string path, string contents, Encoding encoding)
+>```
+><b>Summary:</b> Writes a text file as `System.IO.File.WriteAllText(System.String,System.String)` does, recording it in the open transaction first.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The file.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`contents`&nbsp;&nbsp;-&nbsp;&nbsp;The text to write.<br />
+### Properties
+
+#### HasChanges
+>```csharp
+>HasChanges
+>```
+><b>Summary:</b> Gets a value indicating whether the transaction has recorded a change.
+### Methods
+
+#### Commit
+>```csharp
+>void Commit()
+>```
+><b>Summary:</b> Keeps the changes: disposing no longer puts them back.
+#### Dispose
+>```csharp
+>void Dispose()
+>```
+><b>Summary:</b> Puts back the recorded changes, unless committed, and closes the transaction.
+#### TrackDirectory
+>```csharp
+>void TrackDirectory(string path)
+>```
+><b>Summary:</b> Records a folder before it is created: the outermost of it and its parents that does not exist yet is removed (with everything in it) when the transaction is not committed.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The folder about to be created.<br />
+#### TrackFile
+>```csharp
+>void TrackFile(string path)
+>```
+><b>Summary:</b> Records a file before it is first changed (its content, or that it does not exist), so that it is restored when the transaction is not committed. Later calls for the same file are ignored.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The file about to be written or deleted.<br />
+
+<br />
+
+## GlobHelper
+Matches paths against glob patterns, such as `/api/**/users/*` or `src/**/*.cs`.
+><b>Remarks:</b> Paths and patterns are split into segments at `/` and `\`. In a pattern:<br><list type="bullet"> <item> <description>a segment `**` matches zero or more whole segments;</description> </item> <item> <description> `*` inside a segment matches any characters within that segment (a segment of just `*` matches any one segment);</description> </item> <item> <description> `?` matches exactly one character within a segment;</description> </item> <item> <description>anything else matches literally.</description> </item> </list> A leading separator is ignored, so `pets/*` and `/pets/*` are the same pattern. Matching runs in time proportional to the product of the segment counts, so patterns such as `/**/a/**/b/**/c` do not backtrack exponentially.
+
+>```csharp
+>public static class GlobHelper
+>```
+
+### Static Methods
+
+#### IsMatch
+>```csharp
+>bool IsMatch(string path, string pattern, bool ignoreCase = True)
+>```
+><b>Summary:</b> Determines whether a path matches a glob pattern.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The path, e.g. /api/v1/users/42 or src\Atc\Helpers\GlobHelper.cs.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pattern`&nbsp;&nbsp;-&nbsp;&nbsp;The glob pattern, e.g. /api/**/users/*.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;Whether letters match regardless of case.<br />
+>
+><b>Returns:</b> <see langword="true" /> when the whole path matches the pattern; otherwise <see langword="false" />.
+>
+><b>Code example:</b>
+>```csharp
+>GlobHelper.IsMatch("/api/v1/users/42", "/api/**/users/*"); // true
+>GlobHelper.IsMatch("src/a/b/Program.cs", "src/**/*.cs");   // true
+>GlobHelper.IsMatch("/pets", "/pets/*");                    // false
+>```
+#### IsMatchAny
+>```csharp
+>bool IsMatchAny(string path, IEnumerable<string> patterns, bool ignoreCase = True)
+>```
+><b>Summary:</b> Determines whether a path matches any of the glob patterns.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`path`&nbsp;&nbsp;-&nbsp;&nbsp;The path.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`patterns`&nbsp;&nbsp;-&nbsp;&nbsp;The glob patterns (see ).<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ignoreCase`&nbsp;&nbsp;-&nbsp;&nbsp;Whether letters match regardless of case.<br />
+>
+><b>Returns:</b> <see langword="true" /> when the path matches at least one pattern; otherwise <see langword="false" />.
+
+<br />
+
 ## GuidHelper
 Helper methods for creating `System.Guid` values.
 
@@ -1962,6 +2220,101 @@ Provides utility methods for detecting, controlling, and opening URLs in common 
 ><b>Returns:</b> <see langword="true" /> if the url is started in a browser; otherwise, <see langword="false" />.
 >
 ><b>Remarks:</b> Only url with the http or https protocol is supported.
+
+<br />
+
+## InvariantCasingHelper
+Changes the case of text with the invariant culture, but keeps a letter as written when its cased form is not a letter to the running .NET runtime.
+><b>Remarks:</b> Case mapping follows the platform's Unicode data (ICU on Linux), which can be newer than the runtime's own Unicode tables: a letter can then map to a character the runtime (and the C# compiler) does not know as a letter yet - for example U+A7D3 upper-cases to U+A7D2 with Unicode 17. Keeping such a letter as written means the same input gives the same output on every platform, and a valid identifier stays a valid identifier after casing.
+
+>```csharp
+>public static class InvariantCasingHelper
+>```
+
+### Static Methods
+
+#### Keep
+>```csharp
+>char Keep(char original, char cased)
+>```
+><b>Summary:</b> Returns the cased character, unless a letter was cased to a character this runtime does not know as a letter.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`original`&nbsp;&nbsp;-&nbsp;&nbsp;The character before casing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cased`&nbsp;&nbsp;-&nbsp;&nbsp;The character after casing.<br />
+>
+><b>Returns:</b> `cased`, or `original` when only that one is a letter.
+#### Keep
+>```csharp
+>string Keep(string original, string cased)
+>```
+><b>Summary:</b> Returns the cased character, unless a letter was cased to a character this runtime does not know as a letter.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`original`&nbsp;&nbsp;-&nbsp;&nbsp;The character before casing.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cased`&nbsp;&nbsp;-&nbsp;&nbsp;The character after casing.<br />
+>
+><b>Returns:</b> `cased`, or `original` when only that one is a letter.
+#### ToLower
+>```csharp
+>char ToLower(char value)
+>```
+><b>Summary:</b> Lower-cases a character with the invariant culture, keeping a letter whose lower case is no letter to this runtime.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character.<br />
+>
+><b>Returns:</b> The lower-case character, or `value` itself.
+#### ToLower
+>```csharp
+>string ToLower(string value)
+>```
+><b>Summary:</b> Lower-cases a character with the invariant culture, keeping a letter whose lower case is no letter to this runtime.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character.<br />
+>
+><b>Returns:</b> The lower-case character, or `value` itself.
+#### ToLowerFirst
+>```csharp
+>string ToLowerFirst(string value)
+>```
+><b>Summary:</b> Lower-cases the first character of a text and leaves the rest as it is.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The text.<br />
+>
+><b>Returns:</b> The text with its first character lower-cased; <see langword="null" /> or empty text is returned as it is.
+#### ToUpper
+>```csharp
+>char ToUpper(char value)
+>```
+><b>Summary:</b> Upper-cases a character with the invariant culture, keeping a letter whose upper case is no letter to this runtime.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character.<br />
+>
+><b>Returns:</b> The upper-case character, or `value` itself.
+#### ToUpper
+>```csharp
+>string ToUpper(string value)
+>```
+><b>Summary:</b> Upper-cases a character with the invariant culture, keeping a letter whose upper case is no letter to this runtime.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The character.<br />
+>
+><b>Returns:</b> The upper-case character, or `value` itself.
+#### ToUpperFirst
+>```csharp
+>string ToUpperFirst(string value)
+>```
+><b>Summary:</b> Upper-cases the first character of a text and leaves the rest as it is.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The text.<br />
+>
+><b>Returns:</b> The text with its first character upper-cased; <see langword="null" /> or empty text is returned as it is.
 
 <br />
 
@@ -2730,6 +3083,16 @@ Represents the result of a process execution, including success status, output, 
 >Output
 >```
 ><b>Summary:</b> The combined stdout/stderr output, or a timeout/cancellation message.
+#### StandardError
+>```csharp
+>StandardError
+>```
+><b>Summary:</b> Gets what the process wrote to standard error. Empty when the process did not start, timed out or was cancelled.
+#### StandardOutput
+>```csharp
+>StandardOutput
+>```
+><b>Summary:</b> Gets what the process wrote to standard output, kept apart from standard error (for example to parse a tool's output while it writes warnings to standard error). Empty when the process did not start, timed out or was cancelled.
 ### Methods
 
 #### <Clone>$
@@ -2867,6 +3230,20 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation cooperatively.<br />
 >
 ><b>Returns:</b> A `Atc.Helpers.ProcessExecutionResult` with detailed execution information.
+#### ExecuteAsync
+>```csharp
+>Task<ProcessExecutionResult> ExecuteAsync(ProcessStartInfo startInfo, TimeSpan timeout, CancellationToken cancellationToken = null)
+>```
+><b>Summary:</b> Executes a process with cooperative cancellation and returns a detailed result.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`fileInfo`&nbsp;&nbsp;-&nbsp;&nbsp;The executable file to run.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arguments`&nbsp;&nbsp;-&nbsp;&nbsp;The command-line arguments to pass to the executable.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`runAsAdministrator`&nbsp;&nbsp;-&nbsp;&nbsp;If , attempts to run the process with elevated privileges.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`timeoutInSec`&nbsp;&nbsp;-&nbsp;&nbsp;The maximum time in seconds to wait for the process to complete. Default is 30 seconds.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation cooperatively.<br />
+>
+><b>Returns:</b> A `Atc.Helpers.ProcessExecutionResult` with detailed execution information.
 #### ExecutePrompt
 >```csharp
 >Task<ValueTuple<bool, string>> ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
@@ -2911,6 +3288,16 @@ Provides utility methods for executing external processes, managing process life
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the operation.<br />
 >
 ><b>Returns:</b> A task that returns a tuple containing success status, standard output, and standard error streams separately.
+#### FindExecutableInPath
+>```csharp
+>FileInfo FindExecutableInPath(string executableName)
+>```
+><b>Summary:</b> Finds an executable by name in the directories of the `PATH` environment variable, as a shell would (on Windows also trying the extensions in `PATHEXT`, e.g. `git` finds `git.exe`).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`executableName`&nbsp;&nbsp;-&nbsp;&nbsp;The executable's name (e.g. git), or a rooted path.<br />
+>
+><b>Returns:</b> The executable file; for a rooted path the file itself when it exists. <see langword="null" /> when it is not found.
 #### KillById
 >```csharp
 >ValueTuple<bool, string> KillById(int processId, int timeoutInSec = 30)
@@ -3428,6 +3815,38 @@ ThreadHelper.
 >
 ><b>Parameters:</b><br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exemptProcessorCount`&nbsp;&nbsp;-&nbsp;&nbsp;The exempt processor count.<br />
+
+<br />
+
+## UniqueNameHelper
+Hands out unique names within a scope by numbering repeats: `name`, `name2`, `name3`, ...
+><b>Remarks:</b> Useful for code generators where every source item needs its own name and none may be dropped, e.g. two parameters that both become `id` after sanitizing.
+
+>```csharp
+>public static class UniqueNameHelper
+>```
+
+### Static Methods
+
+#### Claim
+>```csharp
+>string Claim(ISet<string> taken, string name)
+>```
+><b>Summary:</b> Takes the first of `name`, `name2`, `name3`, ... that is not in `taken` yet, and adds it to `taken`.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`taken`&nbsp;&nbsp;-&nbsp;&nbsp;The names already used in the scope; the claimed name is added to it. Its comparer decides
+            whether names differing only in case collide.<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;&nbsp;-&nbsp;&nbsp;The name wanted.<br />
+>
+><b>Returns:</b> The name claimed.
+>
+><b>Code example:</b>
+>```csharp
+>var taken = new HashSet<string>(StringComparer.Ordinal);
+>UniqueNameHelper.Claim(taken, "id"); // "id"
+>UniqueNameHelper.Claim(taken, "id"); // "id2"
+>```
 
 <br />
 

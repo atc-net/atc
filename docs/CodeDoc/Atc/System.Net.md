@@ -76,6 +76,18 @@ Provides extension methods for the `System.Net.HttpStatusCode` enumeration.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`httpStatusCode`&nbsp;&nbsp;-&nbsp;&nbsp;The HTTP status code to check.<br />
 >
 ><b>Returns:</b> <see langword="true" /> if the status code is between 200-299; otherwise, <see langword="false" />.
+#### ToEnumName
+>```csharp
+>string ToEnumName(this HttpStatusCode httpStatusCode)
+>```
+><b>Summary:</b> Gets a stable C# identifier for the HTTP status code: the `System.Net.HttpStatusCode` member name, with one fixed name for the codes that have aliases, and `Status{code}` for a code that is not a member.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`httpStatusCode`&nbsp;&nbsp;-&nbsp;&nbsp;The HTTP status code.<br />
+>
+><b>Returns:</b> An identifier such as `OK`, `NotFound`, `Found` or `Status499`.
+>
+><b>Remarks:</b> `System.Enum.ToString` picks any one of the aliases for 300, 301, 302, 303, 307 and 422; this method always gives `MultipleChoices`, `MovedPermanently`, `Found`, `SeeOther`, `TemporaryRedirect` and `UnprocessableEntity`. A code the running framework does not define (e.g. 499, or 429 on .NET Standard 2.0) becomes `Status499`.
 #### ToNormalizedString
 >```csharp
 >string ToNormalizedString(this HttpStatusCode httpStatusCode)
