@@ -3,6 +3,7 @@ global using System.Net;
 global using System.Net.Mime;
 global using System.Reflection;
 global using System.Text;
+global using System.Text.Json;
 
 global using Atc.CodeDocumentation.Markdown;
 global using Atc.Rest.Extended;

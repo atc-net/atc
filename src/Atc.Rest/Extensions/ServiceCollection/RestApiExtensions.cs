@@ -118,6 +118,8 @@ public static class RestApiExtensions
                 {
                     jsonOptions.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 }
+
+                restApiOptions.ConfigureJsonSerializerOptions?.Invoke(jsonOptions.JsonSerializerOptions);
             });
 
         services.AddSingleton(restApiOptions);

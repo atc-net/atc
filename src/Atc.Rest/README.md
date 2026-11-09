@@ -152,6 +152,21 @@ public class Startup
     }
 }
 ```
+
+### Using - your own JSON serializer options
+
+`ConfigureJsonSerializerOptions` runs after the JSON flags (`JsonSerializerCasingStyle`,
+`UseJsonSerializerOptionsIgnoreNullValues`, `UseEnumAsStringInSerialization`), so it can change any setting.
+To make the API serialize exactly like the rest of the application, copy shared options onto it;
+`CopyTo` replaces every setting and converter.
+
+```csharp
+var restApiOptions = new RestApiOptions
+{
+    ConfigureJsonSerializerOptions = o => JsonSerializerOptionsFactory.Create().CopyTo(o),
+};
+```
+
 ## Contributing
 
 Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.

@@ -68,6 +68,18 @@ public class RestApiOptions
     public CasingStyle JsonSerializerCasingStyle { get; set; } = CasingStyle.CamelCase;
 
     /// <summary>
+    /// Gets or sets an action that configures the API's JSON serializer options after <see cref="JsonSerializerCasingStyle"/>,
+    /// <see cref="UseJsonSerializerOptionsIgnoreNullValues"/> and <see cref="UseEnumAsStringInSerialization"/> are applied,
+    /// so it can change any setting.
+    /// </summary>
+    /// <remarks>
+    /// To serialize exactly like the rest of the application, copy shared options onto them:
+    /// <c>ConfigureJsonSerializerOptions = o =&gt; JsonSerializerOptionsFactory.Create().CopyTo(o)</c>,
+    /// which replaces every setting and converter.
+    /// </remarks>
+    public Action<JsonSerializerOptions>? ConfigureJsonSerializerOptions { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to validate that all interfaces in API assemblies are registered.
     /// </summary>
     public bool UseValidateServiceRegistrations { get; set; } = true;
