@@ -123,8 +123,8 @@ public class NumberHelperTests
         => Assert.Equal(expected, NumberHelper.IsDecimal(value, new CultureInfo(cultureInfoLcid, useUserOverride: false)));
 
     [Theory]
-    [InlineData(123.45, "123.45")]
-    [InlineData(-123.45, "-123.45")]
+    [InlineData("123.45", "123.45")]
+    [InlineData("-123.45", "-123.45")]
     [InlineData(-1, "abc")]
     public void ParseToDecimal(
         decimal expected,
@@ -132,14 +132,14 @@ public class NumberHelperTests
         => Assert.Equal(expected, NumberHelper.ParseToDecimal(value));
 
     [Theory]
-    [InlineData(123.45, "123.45", false)]
-    [InlineData(-123.45, "-123.45", false)]
+    [InlineData("123.45", "123.45", false)]
+    [InlineData("-123.45", "-123.45", false)]
     [InlineData(-1, "123.45", true)]
     [InlineData(-1, "-123.45", true)]
     [InlineData(-1, "123,45", false)]
     [InlineData(-1, "-123,45", false)]
-    [InlineData(123.45, "123,45", true)]
-    [InlineData(-123.45, "-123,45", true)]
+    [InlineData("123.45", "123,45", true)]
+    [InlineData("-123.45", "-123,45", true)]
     [InlineData(-1, "abc", false)]
     public void ParseToDecimal_UseUiCulture(
         decimal expected,
@@ -148,14 +148,14 @@ public class NumberHelperTests
         => Assert.Equal(expected, NumberHelper.ParseToDecimal(value, useUiCulture));
 
     [Theory]
-    [InlineData(123.45, "123.45", GlobalizationLcidConstants.UnitedStates)]
-    [InlineData(-123.45, "-123.45", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("123.45", "123.45", GlobalizationLcidConstants.UnitedStates)]
+    [InlineData("-123.45", "-123.45", GlobalizationLcidConstants.UnitedStates)]
     [InlineData(-1, "123.45", GlobalizationLcidConstants.Denmark)]
     [InlineData(-1, "-123.45", GlobalizationLcidConstants.Denmark)]
     [InlineData(-1, "123,45", GlobalizationLcidConstants.UnitedStates)]
     [InlineData(-1, "-123,45", GlobalizationLcidConstants.UnitedStates)]
-    [InlineData(123.45, "123,45", GlobalizationLcidConstants.Denmark)]
-    [InlineData(-123.45, "-123,45", GlobalizationLcidConstants.Denmark)]
+    [InlineData("123.45", "123,45", GlobalizationLcidConstants.Denmark)]
+    [InlineData("-123.45", "-123,45", GlobalizationLcidConstants.Denmark)]
     [InlineData(-1, "abc", GlobalizationLcidConstants.UnitedStates)]
     public void ParseToDecimal_CultureInfo(
         decimal expected,
