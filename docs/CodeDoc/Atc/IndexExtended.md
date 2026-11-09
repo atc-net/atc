@@ -122,6 +122,7 @@
      - GetHashCode()
      - ToString()
      - ToStringShort()
+- [SearchTermType](Atc.md#searchtermtype)
 - [SortDirectionType](Atc.md#sortdirectiontype)
 - [StringCaseFormatter](Atc.md#stringcaseformatter)
   -  Static Fields
@@ -4748,6 +4749,25 @@
      - GetLcidFromRegionInfo(RegionInfo regionInfo)
      - GetRegionInfoByIsoAlpha3(string isoAlpha3Code)
      - GetRegionInfoByLcid(int lcid)
+- [SearchQueryHelper](Atc.Helpers.md#searchqueryhelper)
+  -  Static Methods
+     - Parse(string search, SearchQueryOptions options = null)
+- [SearchQueryOptions](Atc.Helpers.md#searchqueryoptions)
+  -  Properties
+     - DetectGuids
+     - PhraseSeparators
+     - WordSeparators
+- [SearchTerm](Atc.Helpers.md#searchterm)
+  -  Properties
+     - Type
+     - Value
+  -  Methods
+     - <Clone>$()
+     - Deconstruct(out SearchTermType Type, out string Value)
+     - Equals(SearchTerm other)
+     - Equals(object obj)
+     - GetHashCode()
+     - ToString()
 - [SimpleTypeHelper](Atc.Helpers.md#simpletypehelper)
   -  Static Fields
      - Dictionary&lt;Type, string&gt; BeautifySimpleTypeArrayLookup
@@ -5338,6 +5358,7 @@
      - ToStreamFromBase64(this string base64Data)
      - TrimExtended(this string value)
      - TrimSpecial(this string value)
+     - TrimToNull(this string value)
      - Truncate(this ReadOnlySpan&lt;char&gt; value, int maxLength)
      - Truncate(this string value, int maxLength, string appendValue = ...)
      - TryParseDate(this string value, out DateTime dateTime)

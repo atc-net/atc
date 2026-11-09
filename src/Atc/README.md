@@ -198,6 +198,33 @@ string pascal = "hello world".ToPascalCase();  // "HelloWorld"
 string camel = "HelloWorld".ToCamelCase();     // "helloWorld"
 ```
 
+### Using `TrimToNull()`
+
+```csharp
+string? a = "  Main Street  ".TrimToNull();  // "Main Street"
+string? b = "   ".TrimToNull();              // null - nothing left, so treat it as not set
+string? c = ((string?)null).TrimToNull();    // null
+```
+
+## `SearchQueryHelper` examples
+
+### Using `Parse()` to split a free-text search into terms
+
+Words split on white space and commas, text in double quotes is one phrase (an unclosed quote
+runs to the end), and a full GUID becomes an identifier term. The helper only parses; the caller
+decides how each term matches, e.g. a word as a substring, a phrase as whole words and an
+identifier as an exact id.
+
+```csharp
+var terms = SearchQueryHelper.Parse("\"Main Street 8\" Springfield 5b1eba26-8b25-f111-8341-7c1e52fbbe51");
+// [ (Phrase, "Main Street 8"), (Word, "Springfield"), (Identifier, "5b1eba26-8b25-f111-8341-7c1e52fbbe51") ]
+
+// Custom separators, or no GUID detection
+var options = new SearchQueryOptions { WordSeparators = [';'], DetectGuids = false };
+var custom = SearchQueryHelper.Parse("alpha;beta", options);
+// [ (Word, "alpha"), (Word, "beta") ]
+```
+
 ## Enum Extension Examples
 
 ### Using `GetName()` and `GetDescription()`

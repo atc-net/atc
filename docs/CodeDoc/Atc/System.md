@@ -2999,6 +2999,16 @@ Extensions for the string class.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The string to work on.<br />
 >
 ><b>Returns:</b> The string without none readable chars etc.
+#### TrimToNull
+>```csharp
+>string TrimToNull(this string value)
+>```
+><b>Summary:</b> Removes all leading and trailing white-space characters, and returns <see langword="null" /> when nothing is left. Use it for user input such as a search or a filter, so a value of only spaces is treated as not set rather than sent on.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`value`&nbsp;&nbsp;-&nbsp;&nbsp;The value as received; may be .<br />
+>
+><b>Returns:</b> The trimmed value, or <see langword="null" /> when `value` is <see langword="null" />, empty or consists only of white-space characters.
 #### Truncate
 >```csharp
 >string Truncate(this string value, int maxLength, string appendValue = ...)

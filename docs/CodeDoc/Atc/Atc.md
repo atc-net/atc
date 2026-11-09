@@ -1185,6 +1185,24 @@ Represents an x-, y-, and z-coordinate point in 3-D space.
 
 <br />
 
+## SearchTermType
+Defines the kind of a term parsed from a free-text search by `Atc.Helpers.SearchQueryHelper`.
+
+>```csharp
+>public enum SearchTermType
+>```
+
+
+| Value | Name | Description | Summary | 
+| --- | --- | --- | --- | 
+| 0 | Word | Word | A single word, typically matched as a case-insensitive substring of a text. | 
+| 1 | Phrase | Phrase | A phrase written in double quotes, typically matched as whole words of one text, so "Main Street 8" does not match "Main Street 81". | 
+| 2 | Identifier | Identifier | A full GUID, typically matched as an exact identifier rather than searched in the text. | 
+
+
+
+<br />
+
 ## SortDirectionType
 Defines the direction for sorting data (ascending or descending).
 

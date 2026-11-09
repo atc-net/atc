@@ -3032,6 +3032,111 @@ RegionInfoHelper.
 
 <br />
 
+## SearchQueryHelper
+Splits a free-text search, as a user types it into a search box, into terms that a list or a database query can match against.
+><b>Remarks:</b> The rules:<br><list type="bullet"> <item> <description>The search is trimmed; a blank search has no terms.</description> </item> <item> <description>Outside quotes, the text splits into words on white space and `Atc.Helpers.SearchQueryOptions.WordSeparators`.</description> </item> <item> <description>Text in double quotes is one phrase; an unclosed quote runs to the end, so a half-typed phrase still works. Inside a phrase, white space and `Atc.Helpers.SearchQueryOptions.PhraseSeparators` fold into single spaces.</description> </item> <item> <description>A full GUID, quoted or not, is a `Atc.SearchTermType.Identifier` term (unless `Atc.Helpers.SearchQueryOptions.DetectGuids` is off); part of a GUID is an ordinary word.</description> </item> </list> The helper only parses; how terms match is up to the caller. A common choice is that every term must match: a word anywhere in a text, a phrase as whole words of one text, and a GUID as an exact identifier.
+
+>```csharp
+>public static class SearchQueryHelper
+>```
+
+### Static Methods
+
+#### Parse
+>```csharp
+>IReadOnlyList<SearchTerm> Parse(string search, SearchQueryOptions options = null)
+>```
+><b>Summary:</b> Parses a free-text search into its terms, in the order they were typed.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`search`&nbsp;&nbsp;-&nbsp;&nbsp;The search as typed; may be .<br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`options`&nbsp;&nbsp;-&nbsp;&nbsp;How to split the search;  uses the defaults.<br />
+>
+><b>Returns:</b> The terms; an empty list when `search` is <see langword="null" /> or blank.
+>
+><b>Code example:</b>
+>```csharp
+>SearchQueryHelper.Parse("\"Main Street 8\" Springfield");
+>// [ Phrase "Main Street 8", Word "Springfield" ]
+>```
+
+<br />
+
+## SearchQueryOptions
+Options for how `Atc.Helpers.SearchQueryHelper.Parse(System.String,Atc.Helpers.SearchQueryOptions)` splits a free-text search into terms.
+
+>```csharp
+>public class SearchQueryOptions
+>```
+
+### Properties
+
+#### DetectGuids
+>```csharp
+>DetectGuids
+>```
+><b>Summary:</b> Gets or sets a value indicating whether a full GUID (quoted or not) becomes a `Atc.SearchTermType.Identifier` term. Defaults to <see langword="true" />; when <see langword="false" />, a GUID is an ordinary word or phrase.
+#### PhraseSeparators
+>```csharp
+>PhraseSeparators
+>```
+><b>Summary:</b> Gets or sets the characters treated as word breaks inside a quoted phrase, besides white space. They become single spaces, so "Main Street 8, 7900" and "main street 8 7900" are the same phrase. A consumer that matches phrases elsewhere (e.g. in a database query) should normalize the searched text with the same characters.
+#### WordSeparators
+>```csharp
+>WordSeparators
+>```
+><b>Summary:</b> Gets or sets the characters that separate words outside quotes, besides white space. Defaults to a comma, so "Main Street,8" is three words.
+
+<br />
+
+## SearchTerm
+Represents one term of a free-text search, as parsed by `Atc.Helpers.SearchQueryHelper.Parse(System.String,Atc.Helpers.SearchQueryOptions)`.
+
+>```csharp
+>public class SearchTerm : IEquatable<SearchTerm>
+>```
+
+### Properties
+
+#### Type
+>```csharp
+>Type
+>```
+><b>Summary:</b> The kind of term: a word, a quoted phrase or a full GUID.
+#### Value
+>```csharp
+>Value
+>```
+><b>Summary:</b> The word as typed; the phrase with its separators folded into single spaces; or the GUID in lower-case "D" format (e.g. "5b1eba26-8b25-f111-8341-7c1e52fbbe51").
+### Methods
+
+#### <Clone>$
+>```csharp
+>SearchTerm <Clone>$()
+>```
+#### Deconstruct
+>```csharp
+>void Deconstruct(out SearchTermType Type, out string Value)
+>```
+#### Equals
+>```csharp
+>bool Equals(object obj)
+>```
+#### Equals
+>```csharp
+>bool Equals(SearchTerm other)
+>```
+#### GetHashCode
+>```csharp
+>int GetHashCode()
+>```
+#### ToString
+>```csharp
+>string ToString()
+>```
+
+<br />
+
 ## SimpleTypeHelper
 PrimitiveTypeHelper.
 
