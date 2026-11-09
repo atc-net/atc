@@ -1147,6 +1147,19 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.TrimSpecial());
 
     [Theory]
+    [InlineData(null, null)]
+    [InlineData(null, "")]
+    [InlineData(null, "   ")]
+    [InlineData(null, "\t\r\n")]
+    [InlineData("Hallo World", "Hallo World")]
+    [InlineData("Hallo World", "  Hallo World  ")]
+    [InlineData("Hallo  World", "\tHallo  World\r\n")]
+    public void TrimToNull(
+        string? expected,
+        string? input)
+        => Assert.Equal(expected, input.TrimToNull());
+
+    [Theory]
     [InlineData("Hallo World", "Hallo World")]
     [InlineData("Hallo World", "  Hallo      World  ")]
     public void TrimExtended(
