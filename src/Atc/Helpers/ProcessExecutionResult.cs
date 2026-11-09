@@ -13,4 +13,18 @@ public sealed record ProcessExecutionResult(
     string Output,
     int ExitCode = -1,
     bool IsTimedOut = false,
-    bool IsCancelled = false);
+    bool IsCancelled = false)
+{
+    /// <summary>
+    /// Gets what the process wrote to standard output, kept apart from standard error (for example to parse a tool's
+    /// output while it writes warnings to standard error). Empty when the process did not start, timed out or was
+    /// cancelled.
+    /// </summary>
+    public string StandardOutput { get; init; } = string.Empty;
+
+    /// <summary>
+    /// Gets what the process wrote to standard error. Empty when the process did not start, timed out or was
+    /// cancelled.
+    /// </summary>
+    public string StandardError { get; init; } = string.Empty;
+}

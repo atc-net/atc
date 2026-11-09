@@ -505,4 +505,85 @@ public class ProcessHelperTests
         result.Output.Should().Contain(token);
         result.ExitCode.Should().Be(0);
     }
+
+    [Fact]
+    public async Task ExecuteAsync_StartInfoAndTimeSpan_KeepsStandardOutputAndErrorApart()
+    {
+        // Arrange
+        var startInfo = OperatingSystem.IsWindows()
+            ? new ProcessStartInfo("cmd.exe", "/c echo out & echo err 1>&2")
+            : new ProcessStartInfo("/bin/sh", "-c \"echo out; echo err 1>&2\"");
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(startInfo, TimeSpan.FromSeconds(10));
+
+        // Assert
+        result.IsSuccessful.Should().BeTrue();
+        result.StandardOutput.Should().Contain("out").And.NotContain("err");
+        result.StandardError.Should().Contain("err").And.NotContain("out");
+        result.Output.Should().Contain("out").And.Contain("err");
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_StartInfoAndTimeSpan_ClosesStandardInput()
+    {
+        // Arrange - a command that reads a line from standard input ends at once when standard input is closed
+        var startInfo = OperatingSystem.IsWindows()
+            ? new ProcessStartInfo("cmd.exe", "/c set /p answer=Continue? & echo done")
+            : new ProcessStartInfo("/bin/sh", "-c \"read answer; echo done\"");
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(startInfo, TimeSpan.FromSeconds(10));
+
+        // Assert
+        result.IsTimedOut.Should().BeFalse();
+        result.StandardOutput.Should().Contain("done");
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_StartInfoAndTimeSpan_StopsAProcessThatTakesTooLong()
+    {
+        // Arrange
+        var startInfo = OperatingSystem.IsWindows()
+            ? new ProcessStartInfo(@"C:\Windows\System32\ping.exe", "-n 100 127.0.0.1")
+            : new ProcessStartInfo("/bin/sh", "-c \"sleep 100\"");
+
+        // Act
+        var result = await ProcessHelper.ExecuteAsync(startInfo, TimeSpan.FromMilliseconds(500));
+
+        // Assert
+        result.IsSuccessful.Should().BeFalse();
+        result.IsTimedOut.Should().BeTrue();
+    }
+
+    [Fact]
+    public Task ExecuteAsync_StartInfoAndTimeSpan_NonPositiveTimeout_Throws()
+        => Assert.ThrowsAsync<ArgumentOutOfRangeException>(
+            () => ProcessHelper.ExecuteAsync(new ProcessStartInfo("dotnet"), TimeSpan.Zero));
+
+    [Fact]
+    public void FindExecutableInPath_FindsDotnet()
+    {
+        // Act
+        var fileInfo = ProcessHelper.FindExecutableInPath("dotnet");
+
+        // Assert
+        fileInfo.Should().NotBeNull();
+        fileInfo!.Exists.Should().BeTrue();
+    }
+
+    [Fact]
+    public void FindExecutableInPath_UnknownName_ReturnsNull()
+        => ProcessHelper.FindExecutableInPath("atc-no-such-executable-4f1c").Should().BeNull();
+
+    [Fact]
+    public void FindExecutableInPath_RootedPath_ReturnsTheFileWhenItExists()
+    {
+        // Arrange
+        var path = Environment.ProcessPath!;
+
+        // Act & Assert
+        ProcessHelper.FindExecutableInPath(path)!.FullName.Should().Be(path);
+        ProcessHelper.FindExecutableInPath(path + ".missing").Should().BeNull();
+    }
 }

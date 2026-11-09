@@ -485,7 +485,130 @@ public static class ProcessHelper
         startInfo.RedirectStandardOutput = true;
         startInfo.RedirectStandardError = true;
 
-        return InvokeExecuteAsyncFromStartInfo(startInfo, timeoutInSec, cancellationToken);
+        return InvokeExecuteAsyncFromStartInfo(
+            startInfo,
+            TimeSpan.FromSeconds(timeoutInSec),
+            closeStandardInput: false,
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Executes a process described by a caller-supplied <see cref="ProcessStartInfo"/> so that it cannot hold the
+    /// caller up: standard input is closed right after the start (a tool that asks a question reads end-of-input
+    /// instead of waiting for an answer), both output streams are read while it runs, and after
+    /// <paramref name="timeout"/> the process and the processes it started are stopped.
+    /// </summary>
+    /// <remarks>
+    /// The method forces <see cref="ProcessStartInfo.UseShellExecute"/> to <see langword="false"/> and
+    /// <see cref="ProcessStartInfo.RedirectStandardInput"/>, <see cref="ProcessStartInfo.RedirectStandardOutput"/> and
+    /// <see cref="ProcessStartInfo.RedirectStandardError"/> to <see langword="true"/>. Standard output and standard error
+    /// are also returned apart in <see cref="ProcessExecutionResult.StandardOutput"/> and
+    /// <see cref="ProcessExecutionResult.StandardError"/>. Use <see cref="FindExecutableInPath"/> to turn a bare tool
+    /// name such as <c>git</c> into a full path first.
+    /// </remarks>
+    /// <param name="startInfo">The start information. Must have <see cref="ProcessStartInfo.FileName"/> set.</param>
+    /// <param name="timeout">The maximum time to wait for the process to complete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation cooperatively.</param>
+    /// <returns>A <see cref="ProcessExecutionResult"/> with detailed execution information.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="startInfo"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if <see cref="ProcessStartInfo.FileName"/> is empty.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="timeout"/> is not positive.</exception>
+    public static Task<ProcessExecutionResult> ExecuteAsync(
+        ProcessStartInfo startInfo,
+        TimeSpan timeout,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(startInfo);
+
+        if (string.IsNullOrEmpty(startInfo.FileName))
+        {
+            throw new ArgumentException(
+                $"{nameof(startInfo)}.{nameof(startInfo.FileName)} must be set.",
+                nameof(startInfo));
+        }
+
+        if (timeout <= TimeSpan.Zero)
+        {
+            throw new ArgumentOutOfRangeException(nameof(timeout), timeout, "The timeout must be positive.");
+        }
+
+        startInfo.UseShellExecute = false;
+        startInfo.RedirectStandardInput = true;
+        startInfo.RedirectStandardOutput = true;
+        startInfo.RedirectStandardError = true;
+
+        return InvokeExecuteAsyncFromStartInfo(
+            startInfo,
+            timeout,
+            closeStandardInput: true,
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Finds an executable by name in the directories of the <c>PATH</c> environment variable, as a shell would
+    /// (on Windows also trying the extensions in <c>PATHEXT</c>, e.g. <c>git</c> finds <c>git.exe</c>).
+    /// </summary>
+    /// <param name="executableName">The executable's name (e.g. <c>git</c>), or a rooted path.</param>
+    /// <returns>
+    /// The executable file; for a rooted path the file itself when it exists. <see langword="null"/> when it is not
+    /// found.
+    /// </returns>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="executableName"/> is <see langword="null"/> or empty.</exception>
+    public static FileInfo? FindExecutableInPath(string executableName)
+    {
+        if (string.IsNullOrEmpty(executableName))
+        {
+            throw new ArgumentException("The executable name must be set.", nameof(executableName));
+        }
+
+        if (Path.IsPathRooted(executableName))
+        {
+            return File.Exists(executableName)
+                ? new FileInfo(executableName)
+                : null;
+        }
+
+        var pathVariable = Environment.GetEnvironmentVariable("PATH");
+        if (string.IsNullOrEmpty(pathVariable))
+        {
+            return null;
+        }
+
+        var extensions = new List<string> { string.Empty };
+#if NET5_0_OR_GREATER
+        if (OperatingSystem.IsWindows())
+#else
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#endif
+        {
+            extensions.AddRange(
+                (Environment.GetEnvironmentVariable("PATHEXT") ?? ".COM;.EXE;.BAT;.CMD")
+                .Split([';'], StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        foreach (var directory in pathVariable.Split([Path.PathSeparator], StringSplitOptions.RemoveEmptyEntries))
+        {
+            foreach (var extension in extensions)
+            {
+                string candidate;
+                try
+                {
+                    candidate = Path.Combine(directory.Trim('"'), executableName + extension);
+                }
+                catch (ArgumentException)
+                {
+                    // A PATH entry with characters that are invalid in a path is skipped
+                    continue;
+                }
+
+                if (File.Exists(candidate))
+                {
+                    return new FileInfo(candidate);
+                }
+            }
+        }
+
+        return null;
     }
 
     /// <summary>
@@ -1247,10 +1370,11 @@ public static class ProcessHelper
     [SuppressMessage("Microsoft.Design", "CA1031:Do not catch general exception types", Justification = "OK.")]
     private static async Task<ProcessExecutionResult> InvokeExecuteAsyncFromStartInfo(
         ProcessStartInfo startInfo,
-        ushort timeoutInSec,
+        TimeSpan timeout,
+        bool closeStandardInput,
         CancellationToken cancellationToken)
     {
-        using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSec));
+        using var timeoutCts = new CancellationTokenSource(timeout);
         using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
             cancellationToken, timeoutCts.Token);
 
@@ -1259,6 +1383,11 @@ public static class ProcessHelper
         try
         {
             process.Start();
+
+            if (closeStandardInput)
+            {
+                process.StandardInput.Close();
+            }
 
             // Drain stdout and stderr concurrently to avoid a pipe-buffer deadlock
             // when the child process fills one buffer while we wait on the other.
@@ -1286,14 +1415,18 @@ public static class ProcessHelper
             return new ProcessExecutionResult(
                 IsSuccessful: process.ExitCode == ConsoleExitStatusCodes.Success,
                 Output: message,
-                ExitCode: process.ExitCode);
+                ExitCode: process.ExitCode)
+            {
+                StandardOutput = standardOutput,
+                StandardError = standardError,
+            };
         }
         catch (OperationCanceledException) when (timeoutCts.IsCancellationRequested)
         {
             TryKillProcess(process);
             return new ProcessExecutionResult(
                 IsSuccessful: false,
-                Output: $"Process timed out after {timeoutInSec} seconds and was terminated.",
+                Output: $"Process timed out after {timeout.TotalSeconds.ToString(CultureInfo.InvariantCulture)} seconds and was terminated.",
                 IsTimedOut: true);
         }
         catch (OperationCanceledException)
