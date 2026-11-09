@@ -34,6 +34,16 @@ Provides factory methods for creating instances of `System.Collections.Generic.I
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cancellationToken`&nbsp;&nbsp;-&nbsp;&nbsp;A token to cancel the asynchronous iteration; checked before each element is yielded.<br />
 >
 ><b>Returns:</b> An `System.Collections.Generic.IAsyncEnumerable`1` that yields each element of `source`.
+#### FromException
+>```csharp
+>IAsyncEnumerable<T> FromException(Exception exception)
+>```
+><b>Summary:</b> Creates an `System.Collections.Generic.IAsyncEnumerable`1` that throws the specified exception when it is enumerated, e.g. to test how a consumer handles a stream that fails.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`exception`&nbsp;&nbsp;-&nbsp;&nbsp;The exception to throw on the first MoveNextAsync.<br />
+>
+><b>Returns:</b> An `System.Collections.Generic.IAsyncEnumerable`1` that yields nothing and throws `exception`.
 #### FromItems
 >```csharp
 >IAsyncEnumerable<T> FromItems(T[] items, CancellationToken cancellationToken = null)

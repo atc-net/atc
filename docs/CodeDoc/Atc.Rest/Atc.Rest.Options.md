@@ -255,6 +255,13 @@ Configuration options for the REST API framework.
 >Authorization
 >```
 ><b>Summary:</b> Gets or sets the authorization configuration for JWT authentication.
+#### ConfigureJsonSerializerOptions
+>```csharp
+>ConfigureJsonSerializerOptions
+>```
+><b>Summary:</b> Gets or sets an action that configures the API's JSON serializer options after `Atc.Rest.Options.RestApiOptions.JsonSerializerCasingStyle`, `Atc.Rest.Options.RestApiOptions.UseJsonSerializerOptionsIgnoreNullValues` and `Atc.Rest.Options.RestApiOptions.UseEnumAsStringInSerialization` are applied, so it can change any setting.
+>
+><b>Remarks:</b> To serialize exactly like the rest of the application, copy shared options onto them: `ConfigureJsonSerializerOptions = o =&gt; JsonSerializerOptionsFactory.Create().CopyTo(o)`, which replaces every setting and converter.
 #### EnableRequestResponseLogger
 >```csharp
 >EnableRequestResponseLogger

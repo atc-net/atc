@@ -172,6 +172,33 @@ JSON converter that enables deserialization of interface types by using the runt
 
 <br />
 
+## LenientStringEnumMemberJsonConverter&lt;TEnum&gt;
+JSON converter for a nullable enum that reads a value it does not know as <see langword="null" /> instead of failing, e.g. when a third-party API adds enum values. Names follow `Atc.Serialization.JsonConverters.StringEnumMemberJsonConverter`1`.
+><b>Remarks:</b> Reading gives <see langword="null" /> for a JSON `null`, an unknown string or a non-string token, and calls the optional `onUnknownValue` callback for the unknown ones, so they can be logged. Writing writes the JSON name, or `null` for <see langword="null" />.
+
+>```csharp
+>public class LenientStringEnumMemberJsonConverter&lt;TEnum&gt; : JsonConverter<TEnum?>
+>```
+
+### Properties
+
+#### HandleNull
+>```csharp
+>HandleNull
+>```
+### Methods
+
+#### Read
+>```csharp
+>TEnum? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+>```
+#### Write
+>```csharp
+>void Write(Utf8JsonWriter writer, TEnum? value, JsonSerializerOptions options)
+>```
+
+<br />
+
 ## NumberToStringJsonConverter
 JSON converter that converts numeric values to string representation and vice versa.
 ><b>Remarks:</b> This converter handles conversion between JSON numbers and strings, allowing numeric values in JSON to be read as strings. During deserialization, JSON numbers are converted to their string representation using the invariant culture so the result is stable across machines and locales. During serialization, any object is converted to its string representation.
@@ -197,9 +224,36 @@ JSON converter that converts numeric values to string representation and vice ve
 
 <br />
 
+## StringEnumMemberJsonConverterFactory
+Converter factory that handles every enum and nullable enum with the string-enum-member converters: a non-nullable enum is strict (`Atc.Serialization.JsonConverters.StringEnumMemberJsonConverter`1`), and a nullable enum is lenient (`Atc.Serialization.JsonConverters.LenientStringEnumMemberJsonConverter`1`) unless turned off.
+><b>Remarks:</b> Lenient nullable enums suit clients of third-party APIs that may add enum values: declare the properties that can receive new values as nullable, and an unknown value becomes <see langword="null" /> instead of failing the whole response.
+<b>Code example:</b>
+>```csharp
+>var options = new JsonSerializerOptions();
+>options.Converters.Add(new StringEnumMemberJsonConverterFactory(
+>    onUnknownValue: (type, value) => logger.LogWarning("Unknown {Type} value {Value}", type.Name, value)));
+>```
+
+>```csharp
+>public class StringEnumMemberJsonConverterFactory : JsonConverterFactory
+>```
+
+### Methods
+
+#### CanConvert
+>```csharp
+>bool CanConvert(Type typeToConvert)
+>```
+#### CreateConverter
+>```csharp
+>JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+>```
+
+<br />
+
 ## StringEnumMemberJsonConverter&lt;TEnum&gt;
-JSON converter that serializes enum values to and from their string representation, respecting `System.Runtime.Serialization.EnumMemberAttribute` values.
-><b>Remarks:</b> This converter reads enum values from their string representation and respects `System.Runtime.Serialization.EnumMemberAttribute` values if present. During serialization, it writes the `System.Runtime.Serialization.EnumMemberAttribute.Value` if present, otherwise the enum's name. The casing of the output string respects the `System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy`.
+JSON converter that serializes enum values to and from their string representation, respecting `System.Text.Json.Serialization.JsonStringEnumMemberNameAttribute` and `System.Runtime.Serialization.EnumMemberAttribute` values.
+><b>Remarks:</b> A member's JSON name is its `System.Text.Json.Serialization.JsonStringEnumMemberNameAttribute.Name` if present, else its `System.Runtime.Serialization.EnumMemberAttribute.Value` if present, else the enum's name. Reading accepts the JSON name and the member name, case-insensitively, and throws a `System.Text.Json.JsonException` for any other value; use `Atc.Serialization.JsonConverters.LenientStringEnumMemberJsonConverter`1` to read unknown values of a nullable enum as <see langword="null" /> instead.<br>A `System.Text.Json.Serialization.JsonStringEnumMemberNameAttribute` name is written exactly as given; for other names the casing of the first character follows the `System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy` (camelCase or not).
 
 >```csharp
 >public class StringEnumMemberJsonConverter&lt;TEnum&gt; : JsonConverter<TEnum>

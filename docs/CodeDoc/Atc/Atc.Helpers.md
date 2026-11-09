@@ -1745,6 +1745,36 @@ JSON file helper for reading/writing a model of type `T`.
 
 <br />
 
+## GuidHelper
+Helper methods for creating `System.Guid` values.
+
+>```csharp
+>public static class GuidHelper
+>```
+
+### Static Methods
+
+#### CreateDeterministic
+>```csharp
+>Guid CreateDeterministic(string[] components)
+>```
+><b>Summary:</b> Creates a deterministic `System.Guid` from one or more components: the same components always give the same `System.Guid`, so it can serve as a stable id derived from natural keys (e.g. a source system and its id).
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`components`&nbsp;&nbsp;-&nbsp;&nbsp;The ordered components; at least one, none of them .<br />
+>
+><b>Returns:</b> The deterministic `System.Guid`.
+>
+><b>Remarks:</b> The components are joined with '-', encoded as UTF-8 and hashed with SHA-256; the first 16 bytes of the hash become the `System.Guid` (via `System.Guid.#ctor(System.Byte[])`). The result is stable across platforms and versions of this library, so it is safe to store.<br>The `System.Guid` does not carry RFC 4122/9562 version and variant bits, so it is not a standard UUIDv5. Because the components are joined with '-', ("a-b", "c") and ("a", "b-c") give the same `System.Guid`; avoid '-' in components when that matters.
+>
+><b>Code example:</b>
+>```csharp
+>var id = GuidHelper.CreateDeterministic("device", "123");
+>// Always 9174bb27-8d27-375a-3046-9518b6264ddc
+>```
+
+<br />
+
 ## InternetBrowserHelper
 Provides utility methods for detecting, controlling, and opening URLs in common internet browsers.
 ><b>Remarks:</b> Supports Brave, Firefox, Ghost Browser, Chrome, Edge, Internet Explorer, Opera, and Safari.

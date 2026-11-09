@@ -4404,6 +4404,7 @@
   -  Static Methods
      - Empty()
      - FromEnumerable(IEnumerable&lt;T&gt; source, CancellationToken cancellationToken = null)
+     - FromException(Exception exception)
      - FromItems(T[] items, CancellationToken cancellationToken = null)
      - FromSingleItem(T item, CancellationToken cancellationToken = null)
      - FromTask(Task&lt;T&gt; task, CancellationToken cancellationToken = null)
@@ -4598,6 +4599,9 @@
      - WriteModelToJsonFileAsync(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
      - WriteModelToJsonFileAsync(Stream utf8Json, T model, CancellationToken cancellationToken = null)
      - WriteModelToJsonFileAsync(Stream utf8Json, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+- [GuidHelper](Atc.Helpers.md#guidhelper)
+  -  Static Methods
+     - CreateDeterministic(string[] components)
 - [InternetBrowserHelper](Atc.Helpers.md#internetbrowserhelper)
   -  Static Methods
      - CloseMainWindowOnAllRunningInternetBrowsers()
@@ -4968,11 +4972,21 @@
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, TInterface value, JsonSerializerOptions options)
+- [LenientStringEnumMemberJsonConverter&lt;TEnum&gt;](Atc.Serialization.JsonConverters.md#lenientstringenummemberjsonconverter&lt;tenum&gt;)
+  -  Properties
+     - HandleNull
+  -  Methods
+     - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+     - Write(Utf8JsonWriter writer, TEnum? value, JsonSerializerOptions options)
 - [NumberToStringJsonConverter](Atc.Serialization.JsonConverters.md#numbertostringjsonconverter)
   -  Methods
      - CanConvert(Type typeToConvert)
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
      - Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
+- [StringEnumMemberJsonConverterFactory](Atc.Serialization.JsonConverters.md#stringenummemberjsonconverterfactory)
+  -  Methods
+     - CanConvert(Type typeToConvert)
+     - CreateConverter(Type typeToConvert, JsonSerializerOptions options)
 - [StringEnumMemberJsonConverter&lt;TEnum&gt;](Atc.Serialization.JsonConverters.md#stringenummemberjsonconverter&lt;tenum&gt;)
   -  Methods
      - Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -5353,6 +5367,7 @@
      - ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
      - ReplaceTemplateKeysWithValues(this string value, IDictionary&lt;string, string&gt; templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
      - SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary&lt;string, string&gt; replacements, bool useDoubleBracket = True, StringComparison comparison = Ordinal)
+     - ToEnumOrDefault(this string value, TEnum defaultValue = null, bool ignoreCase = True)
      - ToLines(this string value)
      - ToStream(this string value)
      - ToStreamFromBase64(this string base64Data)
@@ -5652,7 +5667,11 @@
 
 - [ClaimsPrincipalExtensions](System.Security.Claims.md#claimsprincipalextensions)
   -  Static Methods
+     - GetAppId(this ClaimsPrincipal principal)
+     - GetDisplayName(this ClaimsPrincipal principal)
+     - GetEmail(this ClaimsPrincipal principal)
      - GetIdentity(this ClaimsPrincipal principal)
+     - GetUsername(this ClaimsPrincipal principal)
 
 ## [System.Security.Cryptography.X509Certificates](System.Security.Cryptography.X509Certificates.md)
 
@@ -5671,6 +5690,12 @@
      - AppendLine(this StringBuilder sb, int indentSpaces, char value)
      - AppendLine(this StringBuilder sb, int indentSpaces, string value)
      - AppendLine(this StringBuilder sb, string format, object[] args)
+
+## [System.Text.Json](System.Text.Json.md)
+
+- [JsonSerializerOptionsExtensions](System.Text.Json.md#jsonserializeroptionsextensions)
+  -  Static Methods
+     - CopyTo(this JsonSerializerOptions source, JsonSerializerOptions target)
 
 ## [System.Threading](System.Threading.md)
 
