@@ -269,6 +269,54 @@ bool hasAttribute = classDecl.HasAttribute("Obsolete");
 var publicMethods = classDecl.GetPublicMethods();
 ```
 
+## Incremental Source Generator Helpers
+
+Helpers for writing `IIncrementalGenerator` pipelines that cache well:
+
+- **`EquatableArray<T>`** (namespace `Atc.CodeAnalysis.CSharp`): an immutable array with value-based equality. Roslyn compares each pipeline step's output with the previous run, and `ImmutableArray<T>` compares by reference, so a model holding one never hits the cache. `EquatableArray<T>` compares element by element, allows `null` elements, treats `default` as empty, supports `==`/`!=`, indexing, `Length`/`Count`, enumeration and `AsImmutableArray()`, and converts implicitly from `ImmutableArray<T>`. Create one with `ToEquatableArray()` on any `IEnumerable<T>` or `ImmutableArray<T>`.
+- **`SyntaxNode.IsPartialClassWithAttribute()`** and **`IsPartialClassWithAttribute(attributeName)`**: fast, syntax-only predicates for `CreateSyntaxProvider`. The attribute name matches with or without the `Attribute` suffix, and qualified names match too.
+- **`Compilation.References(name)`**, **`ReferencesAnyStartingWith(prefix)`** and **`VersionOf(name)`**: case-insensitive checks of the referenced assemblies, for example to emit code only when ASP.NET Core is present.
+
+```csharp
+using Atc.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+public sealed record ClassModel(
+    string Name,
+    EquatableArray<string> PropertyNames);
+
+[Generator]
+public sealed class MyGenerator : IIncrementalGenerator
+{
+    public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        var classes = context.SyntaxProvider.CreateSyntaxProvider(
+            predicate: static (node, _) => node.IsPartialClassWithAttribute("Generate"),
+            transform: static (ctx, _) =>
+            {
+                var declaration = (ClassDeclarationSyntax)ctx.Node;
+                return new ClassModel(
+                    declaration.Identifier.Text,
+                    declaration.Members
+                        .OfType<PropertyDeclarationSyntax>()
+                        .Select(x => x.Identifier.Text)
+                        .ToEquatableArray());
+            });
+
+        var usesAspNetCore = context.CompilationProvider
+            .Select(static (compilation, _) => compilation.ReferencesAnyStartingWith("Microsoft.AspNetCore"));
+
+        context.RegisterSourceOutput(
+            classes.Combine(usesAspNetCore),
+            static (spc, source) =>
+            {
+                // ClassModel compares by value, so this runs only when a class actually changed.
+            });
+    }
+}
+```
+
 ## Contributing
 
 Contributions are welcome! Please see the main [repository README](../../README.md) for contribution guidelines.
