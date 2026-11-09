@@ -229,6 +229,61 @@ public static class FileHelper
     }
 
     /// <summary>
+    /// Writes <paramref name="content"/> to <paramref name="fileInfo"/> as UTF-8 without a byte order mark, but only when
+    /// the file does not already hold that content, so its timestamp - and any build, watcher or bundler that looks at
+    /// it - is left alone. The directory is created when needed.
+    /// </summary>
+    /// <remarks>
+    /// With <paramref name="useLineFeedLineEndings"/> the content is written with LF line endings only, so the output is
+    /// the same on every platform (content built from <c>\n</c> and from <see cref="Environment.NewLine"/> does not
+    /// reach the file as a mix). An existing file with the same text in CRLF throughout (a git checkout with
+    /// <c>core.autocrlf=true</c>) then counts as unchanged; one with mixed line endings is rewritten.
+    /// </remarks>
+    /// <param name="fileInfo">The destination file.</param>
+    /// <param name="content">The content to write.</param>
+    /// <param name="useLineFeedLineEndings">Whether to write LF line endings only (see remarks).</param>
+    /// <returns><see langword="true"/> when the file was written; <see langword="false"/> when it already held the content.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="fileInfo"/> is <see langword="null"/>.</exception>
+    public static bool WriteAllTextIfChanged(
+        FileInfo fileInfo,
+        string content,
+        bool useLineFeedLineEndings = false)
+    {
+        if (fileInfo is null)
+        {
+            throw new ArgumentNullException(nameof(fileInfo));
+        }
+
+        var text = content ?? string.Empty;
+        if (useLineFeedLineEndings)
+        {
+            text = ToLineFeedLineEndings(text);
+        }
+
+        if (fileInfo.Directory is { Exists: false } directory)
+        {
+            directory.Create();
+        }
+
+        fileInfo.Refresh();
+        if (fileInfo.Exists)
+        {
+            var existing = File.ReadAllText(fileInfo.FullName, Encoding.UTF8);
+            var isUnchanged = useLineFeedLineEndings
+                ? HasUniformLineEndings(existing) &&
+                  string.Equals(ToLineFeedLineEndings(existing), text, StringComparison.Ordinal)
+                : string.Equals(existing, text, StringComparison.Ordinal);
+            if (isUnchanged)
+            {
+                return false;
+            }
+        }
+
+        File.WriteAllText(fileInfo.FullName, text, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+        return true;
+    }
+
+    /// <summary>
     /// Asynchronously writes <paramref name="content"/> to <paramref name="fileInfo"/> using UTF-8 encoding.
     /// Creates the file if it does not exist, and overwrites if it does.
     /// </summary>
@@ -428,4 +483,34 @@ public static class FileHelper
         CancellationToken cancellationToken = default)
         where T : class
         => FileHelper<T>.WriteModelToJsonFileAsync(utf8Json, model, serializeOptions, cancellationToken);
+
+    private static string ToLineFeedLineEndings(string text)
+        => text
+            .Replace("\r\n", "\n", StringComparison.Ordinal)
+            .Replace('\r', '\n');
+
+    // All LF or all CRLF (no lone CR)
+    private static bool HasUniformLineEndings(string text)
+    {
+        var cr = 0;
+        var lf = 0;
+        var crlf = 0;
+        for (var i = 0; i < text.Length; i++)
+        {
+            if (text[i] == '\r')
+            {
+                cr++;
+            }
+            else if (text[i] == '\n')
+            {
+                lf++;
+                if (i > 0 && text[i - 1] == '\r')
+                {
+                    crlf++;
+                }
+            }
+        }
+
+        return cr == crlf && (crlf == 0 || crlf == lf);
+    }
 }

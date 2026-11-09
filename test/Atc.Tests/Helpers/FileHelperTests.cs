@@ -291,4 +291,34 @@ public sealed class FileHelperTests : IDisposable
         // Assert
         Assert.True(stream.Length > 0);
     }
+
+    [Fact]
+    public void WriteAllTextIfChanged_WritesOnlyWhenTheContentDiffers()
+    {
+        // Arrange
+        var file = new FileInfo(Path.Combine(testDirectory.FullName, "sub", "generated.txt"));
+
+        // Act & Assert
+        Assert.True(FileHelper.WriteAllTextIfChanged(file, "a\nb"));
+        Assert.False(FileHelper.WriteAllTextIfChanged(file, "a\nb"));
+        Assert.True(FileHelper.WriteAllTextIfChanged(file, "a\r\nb"));
+        Assert.Equal("a\r\nb", File.ReadAllText(file.FullName));
+        Assert.Equal((byte)'a', File.ReadAllBytes(file.FullName)[0]);
+    }
+
+    [Fact]
+    public void WriteAllTextIfChanged_UseLineFeedLineEndings_TreatsUniformCrLfAsUnchanged()
+    {
+        // Arrange
+        var file = new FileInfo(Path.Combine(testDirectory.FullName, "lf.txt"));
+        File.WriteAllText(file.FullName, "a\r\nb\r\n");
+
+        // Act & Assert
+        Assert.False(FileHelper.WriteAllTextIfChanged(file, "a\nb\n", useLineFeedLineEndings: true));
+        Assert.Equal("a\r\nb\r\n", File.ReadAllText(file.FullName));
+
+        File.WriteAllText(file.FullName, "a\r\nb\n");
+        Assert.True(FileHelper.WriteAllTextIfChanged(file, "a\r\nb\n", useLineFeedLineEndings: true));
+        Assert.Equal("a\nb\n", File.ReadAllText(file.FullName));
+    }
 }
