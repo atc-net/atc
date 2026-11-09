@@ -1,9 +1,9 @@
 # ATC coding rules - https://github.com/atc-net/atc-coding-rules
-# Version: 1.0.0
-# Updated: 27-11-2025
+# Version: 1.0.1
+# Updated: 20-10-2026
 # Location: sample
 # Distribution: DotNet10
-# Inspired by: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
+# Inspired by: https://learn.microsoft.com/dotnet/fundamentals/code-analysis/code-style-rule-options
 
 ##########################################
 # Code Analyzers Rules
@@ -19,11 +19,11 @@
 
 
 # Microsoft - Code Analysis
-# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
+# https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/
 
 
 # Microsoft - Compiler Errors
-# https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/
+# https://learn.microsoft.com/dotnet/csharp/language-reference/compiler-messages/
 
 
 # StyleCop
