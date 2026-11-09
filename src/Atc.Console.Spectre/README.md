@@ -39,6 +39,7 @@ dotnet add package Atc.Console.Spectre
 - Support for Spectre.Console.Cli command pattern
 - Built-in logging to console with structured output
 - Configuration binding for console logger settings
+- Opt-in Program.cs helpers: help when no arguments are given, redirected output width, single-line errors, strict parsing and a .NET tool update check
 
 ## Requirements
 
@@ -104,6 +105,59 @@ public static class Program
     }
 }
 ```
+
+## Program.cs helpers
+
+All of these are opt-in: nothing changes until you call them.
+
+### Show the help when no arguments are given
+
+```csharp
+args = ProgramCsHelper.SetHelpArgumentIfNeeded(args);
+```
+
+### Do not wrap redirected output at 80 columns
+
+When the output is redirected (a pipe, a CI log), the console reports 80 columns and long lines are broken.
+`ApplyRedirectedOutputWidth()` sets the width to the `COLUMNS` environment variable, or 240 when it is not set.
+
+```csharp
+ConsoleOutputWidthHelper.ApplyRedirectedOutputWidth();
+```
+
+### Report errors as one red line and reject unknown options
+
+```csharp
+var app = CommandAppFactory.Create(serviceCollection);
+
+// A parse error or an unhandled exception is printed as "Error: <message>" and exits with 1.
+// The message is never parsed as markup, so a path with '[' in it is printed as it is.
+CommandAppHelper.UseSingleLineExceptionHandler(app);
+
+// An option that no command defines is an error instead of being ignored.
+CommandAppHelper.UseStrictParsing(app);
+```
+
+Inside your own `Configure` call, use `config.SetExceptionHandler((ex, _) => CommandAppHelper.WriteException(AnsiConsole.Console, ex))`.
+
+### Tell the user about a newer version of a .NET tool
+
+The check looks up the latest stable version of the tool package on nuget.org and, when it is newer than the running
+version, writes an "Update available" panel with the `dotnet tool update -g <package>` command.
+It is skipped for `-h`, `--help`, `-v`, `--version` and no arguments, when `CI` or the opt-out variable is `1`/`true`,
+for a development build (1.0.0.0), and gives up after a time budget (2 seconds by default). It never throws.
+
+```csharp
+await CliUpdateCheckHelper.CheckForUpdatesAsync(
+    args,
+    new CliUpdateCheckOptions("my-tool")
+    {
+        OptOutEnvironmentVariable = "MY_TOOL_NO_UPDATE_CHECK",
+    });
+```
+
+`CliUpdateCheckOptions` also takes the `INugetFeedClient`, the `IAnsiConsole`, the current version, the budget and the
+environment reader, so the check can be tested without the network.
 
 ## Contributing
 

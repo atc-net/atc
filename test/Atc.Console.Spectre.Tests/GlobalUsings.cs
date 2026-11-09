@@ -1,4 +1,6 @@
+global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
 global using System.Reflection;
 global using System.Text;
 global using System.Text.Json;
@@ -12,7 +14,10 @@ global using Atc.Console.Spectre.Helpers;
 global using Atc.Console.Spectre.Logging;
 global using Atc.Console.Spectre.Tests.SampleIntegrationTests.Demo.Atc.Console.Spectre.Cli.XUnitTestData;
 global using Atc.Helpers;
+global using Atc.Nuget;
 global using Atc.Serialization;
 global using Atc.XUnit;
 global using Demo.Atc.Console.Spectre.Cli;
 global using Microsoft.Extensions.Logging;
+global using Spectre.Console;
+global using Spectre.Console.Cli;
