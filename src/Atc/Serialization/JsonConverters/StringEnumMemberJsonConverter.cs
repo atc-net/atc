@@ -1,59 +1,36 @@
 namespace Atc.Serialization.JsonConverters;
 
 /// <summary>
-/// JSON converter that serializes enum values to and from their string representation, respecting <see cref="EnumMemberAttribute"/> values.
+/// JSON converter that serializes enum values to and from their string representation, respecting
+/// <see cref="JsonStringEnumMemberNameAttribute"/> and <see cref="EnumMemberAttribute"/> values.
 /// </summary>
 /// <typeparam name="TEnum">The enum type to convert.</typeparam>
 /// <remarks>
-/// This converter reads enum values from their string representation and respects <see cref="EnumMemberAttribute"/> values if present.
-/// During serialization, it writes the <see cref="EnumMemberAttribute.Value"/> if present, otherwise the enum's name.
-/// The casing of the output string respects the <see cref="JsonSerializerOptions.PropertyNamingPolicy"/>.
+/// <para>
+/// A member's JSON name is its <see cref="JsonStringEnumMemberNameAttribute.Name"/> if present, else its
+/// <see cref="EnumMemberAttribute.Value"/> if present, else the enum's name. Reading accepts the JSON name and
+/// the member name, case-insensitively, and throws a <see cref="JsonException"/> for any other value; use
+/// <see cref="LenientStringEnumMemberJsonConverter{TEnum}"/> to read unknown values of a nullable enum as
+/// <see langword="null"/> instead.
+/// </para>
+/// <para>
+/// A <see cref="JsonStringEnumMemberNameAttribute"/> name is written exactly as given; for other names the casing
+/// of the first character follows the <see cref="JsonSerializerOptions.PropertyNamingPolicy"/> (camelCase or not).
+/// </para>
 /// </remarks>
 public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
     where TEnum : Enum
 {
-    private static readonly Dictionary<string, TEnum> NameToValue = BuildNameToValue();
-    private static readonly Dictionary<TEnum, string> ValueToName = BuildValueToName();
-
-    private static Dictionary<string, TEnum> BuildNameToValue()
-    {
-        var map = new Dictionary<string, TEnum>(StringComparer.OrdinalIgnoreCase);
-        foreach (var field in typeof(TEnum).GetFields(BindingFlags.Public | BindingFlags.Static))
-        {
-            var member = field.GetCustomAttribute<EnumMemberAttribute>()?.Value ?? field.Name;
-            map[member] = (TEnum)field.GetValue(null)!;
-            if (!map.ContainsKey(field.Name))
-            {
-                map[field.Name] = (TEnum)field.GetValue(null)!;
-            }
-        }
-
-        return map;
-    }
-
-    private static Dictionary<TEnum, string> BuildValueToName()
-    {
-        var map = new Dictionary<TEnum, string>();
-        foreach (var field in typeof(TEnum).GetFields(BindingFlags.Public | BindingFlags.Static))
-        {
-            var key = (TEnum)field.GetValue(null)!;
-            if (!map.ContainsKey(key))
-            {
-                map[key] = field.GetCustomAttribute<EnumMemberAttribute>()?.Value ?? field.Name;
-            }
-        }
-
-        return map;
-    }
-
     /// <inheritdoc />
     public override TEnum Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options)
     {
-        var enumValue = reader.GetString();
-        if (enumValue is not null && NameToValue.TryGetValue(enumValue, out var result))
+        var enumValue = reader.TokenType == JsonTokenType.String
+            ? reader.GetString()
+            : null;
+        if (EnumMemberNames<TEnum>.TryGetValue(enumValue, out var result))
         {
             return result;
         }
@@ -77,10 +54,6 @@ public sealed class StringEnumMemberJsonConverter<TEnum> : JsonConverter<TEnum>
             throw new ArgumentNullException(nameof(options));
         }
 
-        var enumValue = ValueToName.TryGetValue(value, out var name) ? name : value.ToString();
-
-        writer.WriteStringValue(options.PropertyNamingPolicy == JsonNamingPolicy.CamelCase
-            ? enumValue.EnsureFirstCharacterToLower()
-            : enumValue.EnsureFirstCharacterToUpper());
+        EnumMemberNames<TEnum>.Write(writer, value, options);
     }
 }

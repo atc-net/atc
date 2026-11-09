@@ -51,6 +51,8 @@ public class CodeComplianceTests
         typeof(System.TaskExtensions),
         typeof(ThreadExtensions),
         typeof(StringEnumMemberJsonConverter<>),
+        typeof(LenientStringEnumMemberJsonConverter<>), // JsonConverter override methods with ref parameters
+        typeof(StringEnumMemberJsonConverterFactory), // JsonConverterFactory override methods are not detected
         typeof(NumberHelper), // AST has limitations with certain out-parameter patterns; MonoReflection validates 100%
     };
 

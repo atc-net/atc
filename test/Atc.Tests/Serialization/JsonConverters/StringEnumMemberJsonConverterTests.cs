@@ -52,4 +52,59 @@ public sealed class StringEnumMemberJsonConverterTests
             Assert.Equal($"\"{expected}\"", result.Replace("\\\\", "\\", StringComparison.Ordinal));
         }
     }
+
+    [Theory]
+    [InlineData("\"in-progress\"", TestSessionState.InProgress)]
+    [InlineData("\"done\"", TestSessionState.Completed)]
+    [InlineData("\"completed\"", TestSessionState.Completed)]
+    [InlineData("\"Completed\"", TestSessionState.Completed)]
+    [InlineData("\"cancelled-by-user\"", TestSessionState.Cancelled)]
+    public void Read_HonoursJsonStringEnumMemberName(
+        string json,
+        TestSessionState expected)
+        => Assert.Equal(
+            expected,
+            JsonSerializer.Deserialize<TestSessionState>(
+                json,
+                new JsonSerializerOptions { Converters = { new StringEnumMemberJsonConverter<TestSessionState>() } }));
+
+    [Theory]
+    [InlineData(TestSessionState.InProgress, "\"in-progress\"")]
+    [InlineData(TestSessionState.Completed, "\"done\"")]
+    [InlineData(TestSessionState.Cancelled, "\"Cancelled-by-user\"")]
+    [InlineData(TestSessionState.Pending, "\"Pending\"")]
+    public void Write_UsesJsonStringEnumMemberNameExactly(
+        TestSessionState value,
+        string expected)
+        => Assert.Equal(
+            expected,
+            JsonSerializer.Serialize(
+                value,
+                new JsonSerializerOptions { Converters = { new StringEnumMemberJsonConverter<TestSessionState>() } }));
+
+    [Theory]
+    [InlineData(TestSessionState.InProgress, "\"in-progress\"")]
+    [InlineData(TestSessionState.Cancelled, "\"cancelled-by-user\"")]
+    [InlineData(TestSessionState.Pending, "\"pending\"")]
+    public void Write_CamelCasePolicy_AppliesToNamesWithoutJsonStringEnumMemberName(
+        TestSessionState value,
+        string expected)
+        => Assert.Equal(
+            expected,
+            JsonSerializer.Serialize(
+                value,
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    Converters = { new StringEnumMemberJsonConverter<TestSessionState>() },
+                }));
+
+    [Theory]
+    [InlineData("\"something-new\"")]
+    [InlineData("42")]
+    public void Read_ThrowsJsonException_ForUnknownValues(string json)
+        => Assert.Throws<JsonException>(() =>
+            JsonSerializer.Deserialize<TestSessionState>(
+                json,
+                new JsonSerializerOptions { Converters = { new StringEnumMemberJsonConverter<TestSessionState>() } }));
 }
