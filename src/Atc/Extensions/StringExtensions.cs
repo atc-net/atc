@@ -2048,6 +2048,44 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Converts the string to the enum value with that name, or returns <paramref name="defaultValue"/> when the
+    /// string is <see langword="null"/>, blank, or not a defined value of <typeparamref name="TEnum"/>.
+    /// </summary>
+    /// <remarks>
+    /// Unlike <see cref="Enum.TryParse{TEnum}(string, bool, out TEnum)"/>, a number that is not a defined value
+    /// (e.g. "42") gives <paramref name="defaultValue"/> rather than an undefined enum value. Named combinations of a
+    /// <see cref="FlagsAttribute"/> enum, such as "Read, Write", are accepted. Leading and trailing white space is ignored.
+    /// </remarks>
+    /// <typeparam name="TEnum">The enum type.</typeparam>
+    /// <param name="value">The string to convert, e.g. a value from configuration or an external API.</param>
+    /// <param name="defaultValue">The value to return when <paramref name="value"/> cannot be converted.</param>
+    /// <param name="ignoreCase">if set to <see langword="true" />, the name is matched case-insensitively.</param>
+    /// <returns>The matching enum value, or <paramref name="defaultValue"/>.</returns>
+    public static TEnum ToEnumOrDefault<TEnum>(
+        this string? value,
+        TEnum defaultValue = default,
+        bool ignoreCase = true)
+        where TEnum : struct, Enum
+    {
+        var text = value.TrimToNull();
+        if (text is null ||
+            !Enum.TryParse<TEnum>(text, ignoreCase, out var parsed))
+        {
+            return defaultValue;
+        }
+
+        if (Enum.IsDefined(typeof(TEnum), parsed))
+        {
+            return parsed;
+        }
+
+        var isNumeric = char.IsDigit(text[0]) || text[0] == '-' || text[0] == '+';
+        return !isNumeric && typeof(TEnum).IsDefined(typeof(FlagsAttribute), inherit: false)
+            ? parsed
+            : defaultValue;
+    }
+
+    /// <summary>
     /// Removes all leading and trailing white-space characters, and returns <see langword="null"/>
     /// when nothing is left. Use it for user input such as a search or a filter, so a value of only
     /// spaces is treated as not set rather than sent on.
