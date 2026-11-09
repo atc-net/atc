@@ -28,6 +28,7 @@ global using Atc.Math.Geometry;
 global using Atc.Math.Geometry.CoordinateSystem;
 global using Atc.Math.GeoSpatial;
 global using Atc.Math.Trigonometry;
+global using Atc.Nuget;
 global using Atc.Serialization;
 global using Atc.Serialization.JsonConverters;
 global using Atc.Structs;
