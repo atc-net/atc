@@ -1147,6 +1147,34 @@ public class StringExtensionsTests
         => Assert.Equal(expected, input.TrimSpecial());
 
     [Theory]
+    [InlineData(DayOfWeek.Monday, "Monday")]
+    [InlineData(DayOfWeek.Monday, " monday ")]
+    [InlineData(DayOfWeek.Monday, "1")]
+    [InlineData(DayOfWeek.Sunday, null)]
+    [InlineData(DayOfWeek.Sunday, "")]
+    [InlineData(DayOfWeek.Sunday, "Funday")]
+    [InlineData(DayOfWeek.Sunday, "42")]
+    [InlineData(DayOfWeek.Sunday, "-1")]
+    public void ToEnumOrDefault(
+        DayOfWeek expected,
+        string? input)
+        => Assert.Equal(expected, input.ToEnumOrDefault(DayOfWeek.Sunday));
+
+    [Fact]
+    public void ToEnumOrDefault_RespectsCase_WhenAsked()
+        => Assert.Equal(DayOfWeek.Sunday, "monday".ToEnumOrDefault(DayOfWeek.Sunday, ignoreCase: false));
+
+    [Fact]
+    public void ToEnumOrDefault_AcceptsNamedFlagsCombinations()
+        => Assert.Equal(
+            FileAttributes.ReadOnly | FileAttributes.Hidden,
+            "ReadOnly, Hidden".ToEnumOrDefault(FileAttributes.Normal));
+
+    [Fact]
+    public void ToEnumOrDefault_RejectsUndefinedFlagsNumbers()
+        => Assert.Equal(FileAttributes.Normal, "999999999".ToEnumOrDefault(FileAttributes.Normal));
+
+    [Theory]
     [InlineData(null, null)]
     [InlineData(null, "")]
     [InlineData(null, "   ")]
