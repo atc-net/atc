@@ -206,6 +206,120 @@ string? b = "   ".TrimToNull();              // null - nothing left, so treat it
 string? c = ((string?)null).TrimToNull();    // null
 ```
 
+### Using `SplitIntoWords()` and `ToCasingStyle()`
+
+```csharp
+// Splits at separators, case changes and acronym ends - any input style works.
+var words = "XMLParser.v2".SplitIntoWords();               // ["XML", "Parser", "v2"]
+
+"getPetById".ToCasingStyle(CasingStyle.PascalCase);         // "GetPetById"
+"XMLParser".ToCasingStyle(CasingStyle.CamelCase);           // "xmlParser"
+"MyPetStore".ToCasingStyle(CasingStyle.KebabCase);          // "my-pet-store"
+"my-pet-store".ToCasingStyle(CasingStyle.SnakeCase);        // "my_pet_store"
+"myPetStore".ToCasingStyle(CasingStyle.UpperSnakeCase);     // "MY_PET_STORE"
+```
+
+## Code generation helpers
+
+### Using `CSharpKeywordHelper` and `UniqueNameHelper`
+
+```csharp
+CSharpKeywordHelper.IsReservedKeyword("event");           // true
+CSharpKeywordHelper.EscapeIfReservedKeyword("event");     // "@event"
+CSharpKeywordHelper.IsValidIdentifier("2fa");             // false
+CSharpKeywordHelper.EnsureIdentifierStart("2fa", "Header"); // "Header2fa"
+
+var taken = new HashSet<string>(StringComparer.Ordinal);
+UniqueNameHelper.Claim(taken, "id");                      // "id"
+UniqueNameHelper.Claim(taken, "id");                      // "id2"
+```
+
+### Using `InvariantCasingHelper`
+
+```csharp
+// Invariant casing that keeps a letter as written when its cased form is no letter to this
+// runtime (ICU can be newer than .NET's Unicode tables) - the same output on every platform.
+string upper = InvariantCasingHelper.ToUpper("petStore");    // "PETSTORE"
+string pascal = InvariantCasingHelper.ToUpperFirst("pet");   // "Pet"
+```
+
+### Using `HttpStatusCode.ToEnumName()`
+
+```csharp
+HttpStatusCode.NotFound.ToEnumName();    // "NotFound"
+((HttpStatusCode)302).ToEnumName();      // "Found" (never the "Redirect" alias)
+((HttpStatusCode)499).ToEnumName();      // "Status499"
+```
+
+## File and process helpers
+
+### Using `FileSystemTransaction` to undo a half-done operation
+
+```csharp
+// Files written through the transaction are put back (and new files and folders removed)
+// unless the operation returns 0.
+var exitCode = FileSystemTransaction.Run(() =>
+{
+    FileSystemTransaction.CreateDirectory(projectFolder);
+    FileSystemTransaction.WriteAllText(Path.Combine(projectFolder, "Program.cs"), content);
+    return RunNextStep();
+});
+```
+
+### Using `FileHelper.WriteAllTextIfChanged()`
+
+```csharp
+// Leaves the file (and its timestamp) alone when it already holds the content.
+bool written = FileHelper.WriteAllTextIfChanged(new FileInfo("Generated.cs"), content, useLineFeedLineEndings: true);
+```
+
+### Using `GlobHelper`
+
+```csharp
+GlobHelper.IsMatch("/api/v1/users/42", "/api/**/users/*");   // true
+GlobHelper.IsMatch("src/a/b/Program.cs", "src/**/*.cs");     // true
+GlobHelper.IsMatchAny("/pets/1", new[] { "/pets/*", "/users" }); // true
+```
+
+### Running a tool with `ProcessHelper`
+
+```csharp
+// Find "git" on PATH, close its stdin so it cannot wait for input, stop it after 30 seconds,
+// and read stdout and stderr apart.
+var git = ProcessHelper.FindExecutableInPath("git");
+var result = await ProcessHelper.ExecuteAsync(
+    new ProcessStartInfo(git!.FullName, "status --porcelain") { WorkingDirectory = repositoryPath },
+    TimeSpan.FromSeconds(30));
+
+if (result.IsSuccessful)
+{
+    Parse(result.StandardOutput); // warnings are in result.StandardError
+}
+```
+
+## `NugetFeedClient` examples
+
+### Using `GetLatestStableVersionAsync(..)` to find the latest stable version of a package
+
+The client reads the flat container resource of nuget.org (or another NuGet v3 feed) and returns the highest
+version that is not a prerelease. A version found is cached per instance; any failure (no network, an unknown
+package, an unexpected answer, a cancellation) gives `null` instead of an exception.
+
+```csharp
+INugetFeedClient client = new NugetFeedClient();
+
+Version? latest = await client.GetLatestStableVersionAsync("Atc", cancellationToken);
+```
+
+Pass your own `HttpClient` (for example from `IHttpClientFactory`, or one over a fake `HttpMessageHandler` in tests),
+and optionally the flat container address of another feed:
+
+```csharp
+var client = new NugetFeedClient(
+    httpClient,
+    new Uri("https://pkgs.example.com/nuget/v3/flatcontainer/"));
+```
+
 ## `SearchQueryHelper` examples
 
 ### Using `Parse()` to split a free-text search into terms

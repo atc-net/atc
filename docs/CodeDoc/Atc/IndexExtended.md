@@ -4444,6 +4444,14 @@
      - HasBit(byte value, byte checkValue)
      - HasBit(byte value, int checkValue)
      - ToStringWithPrefix(byte[] bytes)
+- [CSharpKeywordHelper](Atc.Helpers.md#csharpkeywordhelper)
+  -  Static Properties
+     - ReservedKeywords
+  -  Static Methods
+     - EnsureIdentifierStart(string name, string prefix)
+     - EscapeIfReservedKeyword(string name)
+     - IsReservedKeyword(string name)
+     - IsValidIdentifier(string name)
 - [CSharpTypeHelper](Atc.Helpers.md#csharptypehelper)
   -  Static Methods
      - GetBaseType(string typeName)
@@ -4573,6 +4581,7 @@
      - ReadToMemoryStreamAsync(FileInfo fileInfo, CancellationToken cancellationToken = null)
      - WriteAllText(FileInfo fileInfo, string content)
      - WriteAllTextAsync(FileInfo fileInfo, string content, CancellationToken cancellationToken = null)
+     - WriteAllTextIfChanged(FileInfo fileInfo, string content, bool useLineFeedLineEndings = False)
      - WriteModelToJsonFile(FileInfo fileInfo, T model)
      - WriteModelToJsonFile(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions)
      - WriteModelToJsonFile(Stream utf8Json, T model)
@@ -4599,6 +4608,29 @@
      - WriteModelToJsonFileAsync(FileInfo fileInfo, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
      - WriteModelToJsonFileAsync(Stream utf8Json, T model, CancellationToken cancellationToken = null)
      - WriteModelToJsonFileAsync(Stream utf8Json, T model, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = null)
+- [FileSystemTransaction](Atc.Helpers.md#filesystemtransaction)
+  -  Static Properties
+     - Current
+  -  Static Methods
+     - Begin()
+     - Copy(string sourceFileName, string destFileName, bool overwrite)
+     - CreateDirectory(string path)
+     - Delete(string path)
+     - Run(Func&lt;int&gt; operation, int successResult = 0)
+     - WriteAllBytes(string path, byte[] bytes)
+     - WriteAllText(string path, string contents)
+     - WriteAllText(string path, string contents, Encoding encoding)
+  -  Properties
+     - HasChanges
+  -  Methods
+     - Commit()
+     - Dispose()
+     - TrackDirectory(string path)
+     - TrackFile(string path)
+- [GlobHelper](Atc.Helpers.md#globhelper)
+  -  Static Methods
+     - IsMatch(string path, string pattern, bool ignoreCase = True)
+     - IsMatchAny(string path, IEnumerable&lt;string&gt; patterns, bool ignoreCase = True)
 - [GuidHelper](Atc.Helpers.md#guidhelper)
   -  Static Methods
      - CreateDeterministic(string[] components)
@@ -4633,6 +4665,16 @@
      - KillRunningSafariInstances()
      - OpenUrl(Uri uri)
      - OpenUrl(string url)
+- [InvariantCasingHelper](Atc.Helpers.md#invariantcasinghelper)
+  -  Static Methods
+     - Keep(char original, char cased)
+     - Keep(string original, string cased)
+     - ToLower(char value)
+     - ToLower(string value)
+     - ToLowerFirst(string value)
+     - ToUpper(char value)
+     - ToUpper(string value)
+     - ToUpperFirst(string value)
 - [MathHelper](Atc.Helpers.md#mathhelper)
   -  Static Methods
      - Acos(double value)
@@ -4717,6 +4759,8 @@
      - IsSuccessful
      - IsTimedOut
      - Output
+     - StandardError
+     - StandardOutput
   -  Methods
      - <Clone>$()
      - Deconstruct(out bool IsSuccessful, out string Output, out int ExitCode, out bool IsTimedOut, out bool IsCancelled)
@@ -4732,10 +4776,12 @@
      - ExecuteAndIgnoreOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAsync(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteAsync(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - ExecuteAsync(ProcessStartInfo startInfo, TimeSpan timeout, CancellationToken cancellationToken = null)
      - ExecuteAsync(ProcessStartInfo startInfo, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecutePrompt(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, string[] inputLines, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteWithSeparateOutput(DirectoryInfo workingDirectory, FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
      - ExecuteWithSeparateOutput(FileInfo fileInfo, string arguments, bool runAsAdministrator = False, ushort timeoutInSec = 30, CancellationToken cancellationToken = null)
+     - FindExecutableInPath(string executableName)
      - KillById(int processId, int timeoutInSec = 30)
      - KillByName(string processName, bool allowMultiKill = True, int timeoutInSec = 30)
      - KillEntryCaller(int timeoutInSec = 30)
@@ -4808,6 +4854,9 @@
      - ProcessorCount
   -  Static Methods
      - GetParallelOptions(int exemptProcessorCount = 2)
+- [UniqueNameHelper](Atc.Helpers.md#uniquenamehelper)
+  -  Static Methods
+     - Claim(ISet&lt;string&gt; taken, string name)
 - [VersionHelper](Atc.Helpers.md#versionhelper)
   -  Static Methods
      - IsDefault(Version sourceVersion, Version destinationVersion)
@@ -4901,6 +4950,17 @@
 - [TriangleHelper](Atc.Math.Trigonometry.md#trianglehelper)
   -  Static Methods
      - SinesAndCosines(double? angleA, double? angleB, double? angleC, double? sideA, double? sideB, double? sideC)
+
+## [Atc.Nuget](Atc.Nuget.md)
+
+- [INugetFeedClient](Atc.Nuget.md#inugetfeedclient)
+  -  Methods
+     - GetLatestStableVersionAsync(string packageId, CancellationToken cancellationToken)
+- [NugetFeedClient](Atc.Nuget.md#nugetfeedclient)
+  -  Static Fields
+     - Uri NugetOrgFlatContainerUri
+  -  Methods
+     - GetLatestStableVersionAsync(string packageId, CancellationToken cancellationToken)
 
 ## [Atc.Serialization](Atc.Serialization.md)
 
@@ -5367,6 +5427,8 @@
      - ReplaceTemplateKeyWithValue(this string value, string templateKey, string templateValue, TemplatePatternType templatePatternType = HardBrackets)
      - ReplaceTemplateKeysWithValues(this string value, IDictionary&lt;string, string&gt; templateKeyValues, TemplatePatternType templatePatternType = HardBrackets)
      - SetStringFormatParameterTemplatePlaceholders(this string value, IDictionary&lt;string, string&gt; replacements, bool useDoubleBracket = True, StringComparison comparison = Ordinal)
+     - SplitIntoWords(this string value)
+     - ToCasingStyle(this string value, CasingStyle casingStyle)
      - ToEnumOrDefault(this string value, TEnum defaultValue = null, bool ignoreCase = True)
      - ToLines(this string value)
      - ToStream(this string value)
@@ -5619,6 +5681,7 @@
      - IsRedirect(this HttpStatusCode httpStatusCode)
      - IsServerError(this HttpStatusCode httpStatusCode)
      - IsSuccessful(this HttpStatusCode httpStatusCode)
+     - ToEnumName(this HttpStatusCode httpStatusCode)
      - ToNormalizedString(this HttpStatusCode httpStatusCode)
      - ToStatusCodesConstant(this HttpStatusCode httpStatusCode)
 

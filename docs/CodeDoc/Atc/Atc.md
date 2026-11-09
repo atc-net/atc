@@ -191,6 +191,7 @@ Defines different text casing styles commonly used in programming and naming con
 | 2 | KebabCase | Kebab Case | The kebab case is formatted like this: "kebab-case". | 
 | 3 | PascalCase | Pascal Case | The pascal case is formatted like this: "PascalCase". | 
 | 4 | SnakeCase | Snake Case | The snake case is formatted like this: "snake_case". | 
+| 5 | UpperSnakeCase | Upper Snake Case | The upper snake case (also called screaming snake case) is formatted like this: "UPPER_SNAKE_CASE". | 
 
 
 

@@ -266,6 +266,26 @@ Extension methods for `Microsoft.CodeAnalysis.SyntaxNode`.
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxNode`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax node to search.<br />
 >
 ><b>Returns:</b> An array of using directive strings without aliases.
+#### IsPartialClassWithAttribute
+>```csharp
+>bool IsPartialClassWithAttribute(this SyntaxNode syntaxNode)
+>```
+><b>Summary:</b> Determines whether the node is a <see langword="partial" /> class declaration with at least one attribute. This is a fast, syntax-only check meant for the `predicate` of `Microsoft.CodeAnalysis.SyntaxValueProvider.CreateSyntaxProvider``1(System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken,``0})` in an incremental source generator.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxNode`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax node to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> when the node is a partial class with attributes; otherwise <see langword="false" />.
+#### IsPartialClassWithAttribute
+>```csharp
+>bool IsPartialClassWithAttribute(this SyntaxNode syntaxNode, string attributeName)
+>```
+><b>Summary:</b> Determines whether the node is a <see langword="partial" /> class declaration with at least one attribute. This is a fast, syntax-only check meant for the `predicate` of `Microsoft.CodeAnalysis.SyntaxValueProvider.CreateSyntaxProvider``1(System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken,``0})` in an incremental source generator.
+>
+><b>Parameters:</b><br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`syntaxNode`&nbsp;&nbsp;-&nbsp;&nbsp;The syntax node to check.<br />
+>
+><b>Returns:</b> <see langword="true" /> when the node is a partial class with attributes; otherwise <see langword="false" />.
 #### Select
 >```csharp
 >IEnumerable<T> Select(this SyntaxNode syntaxNode)

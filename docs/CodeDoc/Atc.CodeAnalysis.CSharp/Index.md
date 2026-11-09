@@ -7,6 +7,9 @@
 ## [Atc.CodeAnalysis.CSharp](Atc.CodeAnalysis.CSharp.md)
 
 - [AtcCodeAnalysisCSharpTypeInitializer](Atc.CodeAnalysis.CSharp.md#atccodeanalysiscsharptypeinitializer)
+- [EnumerableExtensions](Atc.CodeAnalysis.CSharp.md#enumerableextensions)
+- [EquatableArray&lt;T&gt;](Atc.CodeAnalysis.CSharp.md#equatablearray&lt;t&gt;)
+- [ImmutableArrayExtensions](Atc.CodeAnalysis.CSharp.md#immutablearrayextensions)
 
 ## [Atc.CodeAnalysis.CSharp.Factories](Atc.CodeAnalysis.CSharp.Factories.md)
 
@@ -39,6 +42,10 @@
 - [SyntaxTokenListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtokenlistfactory)
 - [SyntaxTypeArgumentListFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxtypeargumentlistfactory)
 - [SyntaxVariableDeclarationFactory](Atc.CodeAnalysis.CSharp.SyntaxFactories.md#syntaxvariabledeclarationfactory)
+
+## [Microsoft.CodeAnalysis](Microsoft.CodeAnalysis.md)
+
+- [CompilationExtensions](Microsoft.CodeAnalysis.md#compilationextensions)
 
 ## [Microsoft.CodeAnalysis.CSharp.Syntax](Microsoft.CodeAnalysis.CSharp.Syntax.md)
 
