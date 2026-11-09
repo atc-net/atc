@@ -140,7 +140,7 @@ internal static class XmlDocumentCommentParser
             charsToRemove += 2;
         }
 
-        if (s.EndsWith('.'))
+        if (s.EndsWith(".", StringComparison.Ordinal))
         {
             charsToRemove++;
         }
@@ -172,7 +172,7 @@ internal static class XmlDocumentCommentParser
         string? @namespace)
     {
         var innerXml = x.Element(name)?.ToString();
-        if (string.IsNullOrEmpty(innerXml))
+        if (innerXml is not { Length: > 0 })
         {
             return string.Empty;
         }

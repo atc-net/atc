@@ -52,17 +52,17 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
             sb.Append(GenerateParameters(indentSpaces, codeDocumentationTags.Parameters));
         }
 
-        if (!string.IsNullOrEmpty(codeDocumentationTags.Remark))
+        if (codeDocumentationTags.Remark is { Length: > 0 })
         {
             sb.Append(GenerateRemarks(indentSpaces, codeDocumentationTags.Remark));
         }
 
-        if (!string.IsNullOrEmpty(codeDocumentationTags.Code))
+        if (codeDocumentationTags.Code is { Length: > 0 })
         {
             sb.Append(GenerateCode(indentSpaces, codeDocumentationTags.Code));
         }
 
-        if (!string.IsNullOrEmpty(codeDocumentationTags.Example))
+        if (codeDocumentationTags.Example is { Length: > 0 })
         {
             sb.Append(GenerateExample(indentSpaces, codeDocumentationTags.Example));
         }
@@ -73,7 +73,7 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
             sb.Append(GenerateExceptions(indentSpaces, codeDocumentationTags.Exceptions));
         }
 
-        if (!string.IsNullOrEmpty(codeDocumentationTags.Return))
+        if (codeDocumentationTags.Return is { Length: > 0 })
         {
             sb.Append(GenerateReturns(indentSpaces, codeDocumentationTags.Return));
         }
@@ -142,7 +142,7 @@ public class CodeDocumentationTagsGenerator : ICodeDocumentationTagsGenerator
 
         var lines = value
             .EnsureEnvironmentNewLines()
-            .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            .Split([Environment.NewLine], StringSplitOptions.RemoveEmptyEntries);
 
         for (var i = 0; i < lines.Length; i++)
         {

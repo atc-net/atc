@@ -149,7 +149,7 @@ internal sealed class MarkdownBuilder
         string language,
         string code)
     {
-        if (code.EndsWith('.'))
+        if (code.EndsWith(".", StringComparison.Ordinal))
         {
             code = code[..^1];
         }

@@ -42,6 +42,12 @@ jobs:
       - name: 🛠️ Building library in release mode for netstandard2.0 - Atc.CodeAnalysis.CSharp
         run: dotnet build -c Release --no-restore -f netstandard2.0 src/Atc.CodeAnalysis.CSharp/Atc.CodeAnalysis.CSharp.csproj
 
+      - name: 🛠️ Building library in release mode for netstandard2.0 - Atc.DotNet
+        run: dotnet build -c Release --no-restore -f netstandard2.0 src/Atc.DotNet/Atc.DotNet.csproj
+
+      - name: 🛠️ Building library in release mode for netstandard2.0 - Atc.CodeDocumentation
+        run: dotnet build -c Release --no-restore -f netstandard2.0 src/Atc.CodeDocumentation/Atc.CodeDocumentation.csproj
+
   dotnet-test:
     runs-on: ubuntu-latest
     needs:

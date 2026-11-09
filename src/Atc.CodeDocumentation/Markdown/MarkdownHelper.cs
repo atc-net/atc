@@ -487,7 +487,7 @@ internal static class MarkdownHelper
                     string.Equals(x.MemberName, name(item), StringComparison.Ordinal) ||
                     x.MemberName?.StartsWith(name(item) + "`", StringComparison.Ordinal) == true);
 
-                if (commentForMember is null || string.IsNullOrEmpty(commentForMember.Summary))
+                if (commentForMember?.Summary is not { Length: > 0 })
                 {
                     continue;
                 }
@@ -508,26 +508,26 @@ internal static class MarkdownHelper
                     }
                 }
 
-                if (!string.IsNullOrEmpty(commentForMember.Returns))
+                if (commentForMember.Returns is { Length: > 0 })
                 {
                     mb.AppendLine(">");
                     mb.AppendLine($"><b>Returns:</b> {commentForMember.Returns.Replace("  ", "<br>", StringComparison.Ordinal)}");
                 }
 
-                if (!string.IsNullOrEmpty(commentForMember.Remarks))
+                if (commentForMember.Remarks is { Length: > 0 })
                 {
                     mb.AppendLine(">");
                     mb.AppendLine($"><b>Remarks:</b> {commentForMember.Remarks.Replace("  ", "<br>", StringComparison.Ordinal)}");
                 }
 
-                if (!string.IsNullOrEmpty(commentForMember.Code))
+                if (commentForMember.Code is { Length: > 0 })
                 {
                     mb.AppendLine(">");
                     mb.AppendLine("><b>Code usage:</b>");
                     mb.Code("csharp", commentForMember.Code);
                 }
 
-                if (!string.IsNullOrEmpty(commentForMember.Example))
+                if (commentForMember.Example is { Length: > 0 })
                 {
                     mb.AppendLine(">");
                     mb.AppendLine("><b>Code example:</b>");

@@ -9,6 +9,7 @@ ATC.Net is a monorepo containing common libraries for .NET development. It consi
 ### Target Framework Summary
 - **Atc**: `netstandard2.0`, `net10.0` (multi-targets for broad compatibility)
 - **Atc.CodeAnalysis.CSharp**: `netstandard2.0`, `net10.0` (multi-targets for Roslyn compatibility)
+- **Atc.DotNet**, **Atc.CodeDocumentation**: `netstandard2.0`, `net10.0` (multi-target so source generators and analyzers can use them)
 - **All other packages**: `net10.0` (single target)
 
 ## Build and Test Commands
@@ -182,6 +183,7 @@ public sealed record HealthCheck(
 ### Multi-Targeting Strategy
 - **Atc** library multi-targets `netstandard2.0`, `net10.0` for broad compatibility
 - **Atc.CodeAnalysis.CSharp** multi-targets `netstandard2.0`, `net10.0` for Roslyn/source generator compatibility
+- **Atc.DotNet** and **Atc.CodeDocumentation** multi-target `netstandard2.0`, `net10.0` so source generators can use them
 - All other libraries target `net10.0` only
 - When building multi-targeted projects for a specific framework, use the explicit `-f` flag:
   ```bash

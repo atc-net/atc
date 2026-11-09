@@ -144,7 +144,7 @@ public static class VisualStudioSolutionFileHelper
 
         foreach (var rawLine in fileContent
                      .EnsureEnvironmentNewLines()
-                     .Split(Environment.NewLine))
+                     .Split(new[] { Environment.NewLine }, StringSplitOptions.None))
         {
             var line = rawLine.Trim();
 
