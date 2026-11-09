@@ -6,6 +6,16 @@ internal static class TestMemberDataForExtensionsString
     public static TheoryData<bool, string, CasingStyle> IsCasingStyleValidData
         => new()
         {
+            // UpperSnakeCase
+            { true, string.Empty, CasingStyle.UpperSnakeCase },
+            { true, "HALLO", CasingStyle.UpperSnakeCase },
+            { true, "HALLO_WORLD", CasingStyle.UpperSnakeCase },
+            { true, "HALLO_WORLD_2", CasingStyle.UpperSnakeCase },
+            { false, "Hallo_World", CasingStyle.UpperSnakeCase },
+            { false, "hallo_world", CasingStyle.UpperSnakeCase },
+            { false, "HALLO-WORLD", CasingStyle.UpperSnakeCase },
+            { false, "HALLO WORLD", CasingStyle.UpperSnakeCase },
+
             // CamelCase
             { true, string.Empty, CasingStyle.CamelCase },
             { true, "1", CasingStyle.CamelCase },

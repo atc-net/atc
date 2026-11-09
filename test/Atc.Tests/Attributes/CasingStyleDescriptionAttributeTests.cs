@@ -10,7 +10,7 @@ public class CasingStyleDescriptionAttributeTests
             Default = CasingStyle.CamelCase,
         };
 
-        const string expected = "Valid values are: CamelCase (default), KebabCase, PascalCase, SnakeCase";
+        const string expected = "Valid values are: CamelCase (default), KebabCase, PascalCase, SnakeCase, UpperSnakeCase";
         Assert.Equal(expected, attribute.Description);
     }
 
@@ -22,7 +22,7 @@ public class CasingStyleDescriptionAttributeTests
             Default = CasingStyle.PascalCase,
         };
 
-        const string expected = "Valid values are: CamelCase, KebabCase, PascalCase (default), SnakeCase";
+        const string expected = "Valid values are: CamelCase, KebabCase, PascalCase (default), SnakeCase, UpperSnakeCase";
         Assert.Equal(expected, attribute.Description);
     }
 
@@ -35,7 +35,7 @@ public class CasingStyleDescriptionAttributeTests
             Prefix = "Allowed",
         };
 
-        const string expected = "Allowed. Valid values are: CamelCase, KebabCase, PascalCase, SnakeCase (default)";
+        const string expected = "Allowed. Valid values are: CamelCase, KebabCase, PascalCase, SnakeCase (default), UpperSnakeCase";
         Assert.Equal(expected, attribute.Description);
     }
 
@@ -48,7 +48,7 @@ public class CasingStyleDescriptionAttributeTests
             Prefix = string.Empty,
         };
 
-        const string expected = "Valid values are: CamelCase, KebabCase (default), PascalCase, SnakeCase";
+        const string expected = "Valid values are: CamelCase, KebabCase (default), PascalCase, SnakeCase, UpperSnakeCase";
         Assert.Equal(expected, attribute.Description);
     }
 }

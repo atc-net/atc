@@ -17,6 +17,22 @@ namespace System;
 [SuppressMessage("Documentation Rules", "SA1625:Element documentation should not be copied and pasted", Justification = "OK - #if")]
 public static class StringExtensions
 {
+    private static string CapitalizeWord(string word)
+        => InvariantCasingHelper.ToUpper(word[0]) + InvariantCasingHelper.ToLower(word.Substring(1));
+
+    private static void AddWordIfNotEmpty(
+        List<string> words,
+        StringBuilder currentWord)
+    {
+        if (currentWord.Length == 0)
+        {
+            return;
+        }
+
+        words.Add(currentWord.ToString());
+        currentWord.Clear();
+    }
+
     /// <summary>
     /// The regex expression for split lines.
     /// </summary>
@@ -1376,6 +1392,116 @@ public static class StringExtensions
         }
 
         return sb.ToString();
+    }
+
+    /// <summary>
+    /// Splits an identifier-like text into its words. A word ends at any character that is not a letter or a digit
+    /// (which is dropped), where a lower-case letter or a digit is followed by an upper-case letter ("myPet" gives
+    /// "my", "Pet"), and before the last upper-case letter of an acronym that is followed by a lower-case letter
+    /// ("XMLParser" gives "XML", "Parser").
+    /// </summary>
+    /// <param name="value">The text to split, e.g. "myPetStore", "my-pet_store", "XMLParser" or "api31Features".</param>
+    /// <returns>The words in order, as written; an empty list for <see langword="null"/> or empty text.</returns>
+    /// <example>
+    /// <code>
+    /// "getPetById".SplitIntoWords();   // ["get", "Pet", "By", "Id"]
+    /// "XMLParser.v2".SplitIntoWords(); // ["XML", "Parser", "v2"]
+    /// </code>
+    /// </example>
+    public static IReadOnlyList<string> SplitIntoWords(this string value)
+    {
+        var words = new List<string>();
+        if (string.IsNullOrEmpty(value))
+        {
+            return words;
+        }
+
+        var currentWord = new StringBuilder();
+        for (var i = 0; i < value.Length; i++)
+        {
+            var c = value[i];
+            if (!char.IsLetterOrDigit(c))
+            {
+                AddWordIfNotEmpty(words, currentWord);
+                continue;
+            }
+
+            if (i > 0 && char.IsUpper(c))
+            {
+                var previous = value[i - 1];
+                var isWordBoundary = char.IsLower(previous) ||
+                                     char.IsDigit(previous) ||
+                                     (char.IsUpper(previous) &&
+                                      i + 1 < value.Length &&
+                                      char.IsLower(value[i + 1]));
+                if (isWordBoundary)
+                {
+                    AddWordIfNotEmpty(words, currentWord);
+                }
+            }
+
+            currentWord.Append(c);
+        }
+
+        AddWordIfNotEmpty(words, currentWord);
+        return words;
+    }
+
+    /// <summary>
+    /// Converts an identifier-like text to the given casing style. The text is split into words with
+    /// <see cref="SplitIntoWords"/>, so any input style works ("myPetStore", "my-pet-store", "MY_PET_STORE", "my.pet store").
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Each word is re-cased as a whole, so acronyms lose their capitals: "XMLParser" becomes "XmlParser" in PascalCase.
+    /// Casing uses <see cref="InvariantCasingHelper"/>, so the result is the same on every platform.
+    /// </para>
+    /// <para>
+    /// Unlike <see cref="PascalCase(string, bool)"/> and <see cref="CamelCase(string)"/>, which only split at
+    /// separators, this method also splits at case changes, digits followed by capitals and any other non-alphanumeric
+    /// character.
+    /// </para>
+    /// </remarks>
+    /// <param name="value">The text to convert.</param>
+    /// <param name="casingStyle">The casing style to produce. <see cref="CasingStyle.None"/> returns the text unchanged.</param>
+    /// <returns>The converted text; <see langword="null"/> or empty text is returned as it is.</returns>
+    /// <exception cref="SwitchCaseDefaultException">Thrown when <paramref name="casingStyle"/> is not a defined value.</exception>
+    /// <example>
+    /// <code>
+    /// "getPetById".ToCasingStyle(CasingStyle.PascalCase);       // "GetPetById"
+    /// "XMLParser".ToCasingStyle(CasingStyle.CamelCase);         // "xmlParser"
+    /// "MyPetStore".ToCasingStyle(CasingStyle.KebabCase);        // "my-pet-store"
+    /// "my-pet-store".ToCasingStyle(CasingStyle.SnakeCase);      // "my_pet_store"
+    /// "myPetStore".ToCasingStyle(CasingStyle.UpperSnakeCase);   // "MY_PET_STORE"
+    /// </code>
+    /// </example>
+    public static string ToCasingStyle(
+        this string value,
+        CasingStyle casingStyle)
+    {
+        if (string.IsNullOrEmpty(value) || casingStyle == CasingStyle.None)
+        {
+            return value;
+        }
+
+        var words = value.SplitIntoWords();
+        switch (casingStyle)
+        {
+            case CasingStyle.PascalCase:
+                return string.Concat(words.Select(CapitalizeWord));
+            case CasingStyle.CamelCase:
+                return string.Concat(words.Select((word, index) => index == 0
+                    ? InvariantCasingHelper.ToLower(word)
+                    : CapitalizeWord(word)));
+            case CasingStyle.KebabCase:
+                return string.Join("-", words.Select(InvariantCasingHelper.ToLower));
+            case CasingStyle.SnakeCase:
+                return string.Join("_", words.Select(InvariantCasingHelper.ToLower));
+            case CasingStyle.UpperSnakeCase:
+                return string.Join("_", words.Select(InvariantCasingHelper.ToUpper));
+            default:
+                throw new SwitchCaseDefaultException(casingStyle);
+        }
     }
 
     /// <summary>
